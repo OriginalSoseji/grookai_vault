@@ -37,7 +37,7 @@ const DEFAULT_OUTPUT_ROOT =
   'docs/audits/japanese_master_index_v4/payload_preflight';
 
 const IDENTITY_VERSION = 'pokemon_jpn:v1';
-const TARGET_TABLES = [
+export const TARGET_TABLES = [
   'sets',
   'card_prints',
   'card_print_identity',
@@ -66,7 +66,7 @@ function unique(values) {
   )].sort((left, right) => left.localeCompare(right, 'ja'));
 }
 
-function sortRows(rows, keys) {
+export function sortRows(rows, keys) {
   return [...rows].sort((left, right) => {
     for (const key of keys) {
       const comparison = text(left[key]).localeCompare(
@@ -622,7 +622,7 @@ async function loadDescriptor(descriptor) {
   return rows;
 }
 
-async function loadManifestDataset(manifestPath, datasetKey) {
+export async function loadManifestDataset(manifestPath, datasetKey) {
   const { artifact } = await readVerifiedArtifact(manifestPath);
   const descriptor = artifact.content.datasets.find(
     (row) => row.dataset_key === datasetKey,
@@ -634,7 +634,7 @@ async function loadManifestDataset(manifestPath, datasetKey) {
   };
 }
 
-async function migrationCoverage() {
+export async function migrationCoverage() {
   const migrationRoot = 'supabase/migrations';
   const files = (await fs.readdir(migrationRoot))
     .filter((filename) => filename.endsWith('.sql'));
@@ -660,7 +660,7 @@ async function migrationCoverage() {
   }));
 }
 
-async function schemaContract(db) {
+export async function schemaContract(db) {
   const columns = await db.query(
     `select table_name, column_name, data_type, is_nullable,
             column_default
@@ -979,7 +979,7 @@ function validateContractsAgainstSchema(contracts, schema) {
   return collisions;
 }
 
-async function capturePreflight({
+export async function capturePreflight({
   db,
   setCandidates,
   cardCandidates,

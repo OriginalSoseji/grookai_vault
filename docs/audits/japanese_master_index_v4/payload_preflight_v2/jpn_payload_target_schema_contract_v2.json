@@ -1,0 +1,1202 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "columns": [
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "card_print_identity_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "card_print_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "acquisition_key",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "family_status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "family_candidate_source",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "normalized_family_candidate",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "'pending'::text",
+        "column_name": "review_status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "false",
+        "column_name": "family_link_promotion_allowed",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "review_key_hash",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "evidence_subject",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "true",
+        "column_name": "active",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "reviewed_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": null,
+        "column_name": "reviewed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "card_print_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "identity_domain",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "set_code_identity",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "printed_number",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "normalized_printed_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_name_raw",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "identity_payload",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "identity_key_version",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": null,
+        "column_name": "identity_key_hash",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": "true",
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity"
+      },
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": null,
+        "column_name": "card_print_identity_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": null,
+        "column_name": "card_print_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": null,
+        "column_name": "acquisition_key",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": null,
+        "column_name": "source_key",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": null,
+        "column_name": "evidence_key_hash",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "evidence_subject",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "evidence_payload",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": "true",
+        "column_name": "active",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "card_print_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "finish_key",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": "false",
+        "column_name": "is_provisional",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "provenance_source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "provenance_ref",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "created_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "printing_gv_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_path",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_alt_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_note",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_printings"
+      },
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": "'b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5'::uuid",
+        "column_name": "game_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "set_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "name",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "number",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "variant_key",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "rarity",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "tcgplayer_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "external_ids",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "set_code",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "artist",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "regulation_mark",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_alt_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "variants",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "last_synced_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "print_identity_key",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "ai_metadata",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_hash",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "data_quality_flags",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_res",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_last_checked_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "printed_set_abbrev",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "printed_total",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "number_plain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "gv_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_path",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "identity_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "printed_identity_modifier",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": "'standard'::text",
+        "column_name": "set_identity_model",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "representative_image_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": null,
+        "column_name": "image_note",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "card_prints"
+      },
+      {
+        "column_default": "gen_random_uuid()",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "table_name": "sets"
+      },
+      {
+        "column_default": "'pokemon'::text",
+        "column_name": "game",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "code",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "release_date",
+        "data_type": "date",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": "'{}'::jsonb",
+        "column_name": "source",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "logo_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "symbol_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "sets"
+      },
+      {
+        "column_default": "now()",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "last_synced_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "printed_total",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "printed_set_abbrev",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "set_role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "identity_domain_default",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "hero_image_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": null,
+        "column_name": "hero_image_source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "table_name": "sets"
+      },
+      {
+        "column_default": "'standard'::text",
+        "column_name": "identity_model",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "table_name": "sets"
+      }
+    ],
+    "constraints": [
+      {
+        "constraint_name": "card_print_family_review_queue_card_print_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "constraint_name": "card_print_family_review_queue_card_print_identity_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (card_print_identity_id) REFERENCES card_print_identity(id) ON DELETE CASCADE",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "constraint_name": "card_print_family_review_queue_evidence_subject_object_chk",
+        "constraint_type": "c",
+        "definition": "CHECK ((jsonb_typeof(evidence_subject) = 'object'::text))",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "constraint_name": "card_print_family_review_queue_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "constraint_name": "card_print_family_review_queue_promotion_allowed_status_chk",
+        "constraint_type": "c",
+        "definition": "CHECK (((family_link_promotion_allowed = false) OR (review_status = ANY (ARRAY['accepted_for_future_promotion'::text, 'approved_for_family_link_promotion'::text]))))",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "constraint_name": "card_print_family_review_queue_review_status_chk",
+        "constraint_type": "c",
+        "definition": "CHECK ((review_status = ANY (ARRAY['pending'::text, 'accepted_for_future_promotion'::text, 'approved_for_family_link_promotion'::text, 'rejected'::text, 'superseded'::text])))",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "constraint_name": "card_print_identity_card_print_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+        "table_name": "card_print_identity"
+      },
+      {
+        "constraint_name": "card_print_identity_identity_domain_check",
+        "constraint_type": "c",
+        "definition": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text])))",
+        "table_name": "card_print_identity"
+      },
+      {
+        "constraint_name": "card_print_identity_identity_payload_object_check",
+        "constraint_type": "c",
+        "definition": "CHECK ((jsonb_typeof(identity_payload) = 'object'::text))",
+        "table_name": "card_print_identity"
+      },
+      {
+        "constraint_name": "card_print_identity_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "card_print_identity"
+      },
+      {
+        "constraint_name": "card_print_identity_source_evidence_card_print_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "constraint_name": "card_print_identity_source_evidence_card_print_identity_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (card_print_identity_id) REFERENCES card_print_identity(id) ON DELETE CASCADE",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "constraint_name": "card_print_identity_source_evidence_payload_object_chk",
+        "constraint_type": "c",
+        "definition": "CHECK ((jsonb_typeof(evidence_payload) = 'object'::text))",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "constraint_name": "card_print_identity_source_evidence_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "constraint_name": "card_print_identity_source_evidence_subject_object_chk",
+        "constraint_type": "c",
+        "definition": "CHECK ((jsonb_typeof(evidence_subject) = 'object'::text))",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "constraint_name": "card_printings_card_print_id_finish_key_key",
+        "constraint_type": "u",
+        "definition": "UNIQUE (card_print_id, finish_key)",
+        "table_name": "card_printings"
+      },
+      {
+        "constraint_name": "card_printings_card_print_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+        "table_name": "card_printings"
+      },
+      {
+        "constraint_name": "card_printings_finish_key_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (finish_key) REFERENCES finish_keys(key) ON DELETE RESTRICT",
+        "table_name": "card_printings"
+      },
+      {
+        "constraint_name": "card_printings_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "card_printings"
+      },
+      {
+        "constraint_name": "card_prints_game_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "card_prints_image_source_check",
+        "constraint_type": "c",
+        "definition": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['tcgdex'::text, 'ptcg'::text, 'pokemonapi'::text, 'identity'::text, 'user_photo'::text]))))",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "card_prints_image_status_check",
+        "constraint_type": "c",
+        "definition": "CHECK (((image_status IS NULL) OR (image_status = ANY (ARRAY['exact'::text, 'representative_shared'::text, 'representative_shared_collision'::text, 'representative_shared_stamp'::text, 'missing'::text, 'unresolved'::text, 'ok'::text, 'placeholder'::text, 'user_uploaded'::text]))))",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "card_prints_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "card_prints_set_id_fkey",
+        "constraint_type": "f",
+        "definition": "FOREIGN KEY (set_id) REFERENCES sets(id) ON DELETE SET NULL",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "ck_card_prints_reprint_anthology_requires_pik_v1",
+        "constraint_type": "c",
+        "definition": "CHECK (((set_identity_model <> 'reprint_anthology'::text) OR (NULLIF(btrim(print_identity_key), ''::text) IS NOT NULL)))",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "ck_card_prints_set_identity_model_v1",
+        "constraint_type": "c",
+        "definition": "CHECK ((set_identity_model = ANY (ARRAY['standard'::text, 'reprint_anthology'::text])))",
+        "table_name": "card_prints"
+      },
+      {
+        "constraint_name": "ck_sets_identity_model_v1",
+        "constraint_type": "c",
+        "definition": "CHECK ((identity_model = ANY (ARRAY['standard'::text, 'reprint_anthology'::text])))",
+        "table_name": "sets"
+      },
+      {
+        "constraint_name": "sets_game_code_key",
+        "constraint_type": "u",
+        "definition": "UNIQUE (game, code)",
+        "table_name": "sets"
+      },
+      {
+        "constraint_name": "sets_hero_image_source_allowed_chk",
+        "constraint_type": "c",
+        "definition": "CHECK (((hero_image_source IS NULL) OR (hero_image_source = ANY (ARRAY['tcgdex'::text, 'pokemontcgapi'::text, 'manual'::text]))))",
+        "table_name": "sets"
+      },
+      {
+        "constraint_name": "sets_pkey",
+        "constraint_type": "p",
+        "definition": "PRIMARY KEY (id)",
+        "table_name": "sets"
+      },
+      {
+        "constraint_name": "sets_set_role_allowed_chk",
+        "constraint_type": "c",
+        "definition": "CHECK (((set_role IS NULL) OR (set_role = ANY (ARRAY['expansion'::text, 'promotion_umbrella'::text, 'promo_single'::text, 'product_insert'::text, 'magazine'::text, 'tournament'::text]))))",
+        "table_name": "sets"
+      }
+    ],
+    "indexes": [
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_print_family_review_queue_pkey ON public.card_print_family_review_queue USING btree (id)",
+        "indexname": "card_print_family_review_queue_pkey",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_family_review_queue_card_print_id_v1 ON public.card_print_family_review_queue USING btree (card_print_id)",
+        "indexname": "idx_card_print_family_review_queue_card_print_id_v1",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_family_review_queue_hash_v1 ON public.card_print_family_review_queue USING btree (review_key_hash)",
+        "indexname": "idx_card_print_family_review_queue_hash_v1",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_family_review_queue_status_v1 ON public.card_print_family_review_queue USING btree (review_status, active)",
+        "indexname": "idx_card_print_family_review_queue_status_v1",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_family_review_queue_active_key_v1 ON public.card_print_family_review_queue USING btree (card_print_identity_id, family_candidate_source, normalized_family_candidate) WHERE active",
+        "indexname": "uq_card_print_family_review_queue_active_key_v1",
+        "table_name": "card_print_family_review_queue"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_print_identity_pkey ON public.card_print_identity USING btree (id)",
+        "indexname": "card_print_identity_pkey",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_card_print_id ON public.card_print_identity USING btree (card_print_id)",
+        "indexname": "idx_card_print_identity_card_print_id",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_domain_normalized_name_not_null ON public.card_print_identity USING btree (identity_domain, normalized_printed_name) WHERE (normalized_printed_name IS NOT NULL)",
+        "indexname": "idx_card_print_identity_domain_normalized_name_not_null",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_domain_set_code_number ON public.card_print_identity USING btree (identity_domain, set_code_identity, printed_number)",
+        "indexname": "idx_card_print_identity_domain_set_code_number",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_identity_domain ON public.card_print_identity USING btree (identity_domain)",
+        "indexname": "idx_card_print_identity_identity_domain",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_card_print_id ON public.card_print_identity USING btree (card_print_id) WHERE (is_active = true)",
+        "indexname": "uq_card_print_identity_active_card_print_id",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_domain_hash ON public.card_print_identity USING btree (identity_domain, identity_key_version, identity_key_hash) WHERE (is_active = true)",
+        "indexname": "uq_card_print_identity_active_domain_hash",
+        "table_name": "card_print_identity"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_print_identity_source_evidence_pkey ON public.card_print_identity_source_evidence USING btree (id)",
+        "indexname": "card_print_identity_source_evidence_pkey",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_source_evidence_card_print_id_v1 ON public.card_print_identity_source_evidence USING btree (card_print_id)",
+        "indexname": "idx_card_print_identity_source_evidence_card_print_id_v1",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_source_evidence_hash_v1 ON public.card_print_identity_source_evidence USING btree (evidence_key_hash)",
+        "indexname": "idx_card_print_identity_source_evidence_hash_v1",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_print_identity_source_evidence_source_key_v1 ON public.card_print_identity_source_evidence USING btree (source_key, active)",
+        "indexname": "idx_card_print_identity_source_evidence_source_key_v1",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_source_evidence_active_lane_v1 ON public.card_print_identity_source_evidence USING btree (card_print_identity_id, source_key, acquisition_key) WHERE active",
+        "indexname": "uq_card_print_identity_source_evidence_active_lane_v1",
+        "table_name": "card_print_identity_source_evidence"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_printings_card_print_id_finish_key_key ON public.card_printings USING btree (card_print_id, finish_key)",
+        "indexname": "card_printings_card_print_id_finish_key_key",
+        "table_name": "card_printings"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_printings_pkey ON public.card_printings USING btree (id)",
+        "indexname": "card_printings_pkey",
+        "table_name": "card_printings"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_printings_printing_gv_id_key ON public.card_printings USING btree (printing_gv_id) WHERE (printing_gv_id IS NOT NULL)",
+        "indexname": "card_printings_printing_gv_id_key",
+        "table_name": "card_printings"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_unique_idx ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)",
+        "indexname": "card_prints_gv_id_unique_idx",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_uq ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)",
+        "indexname": "card_prints_gv_id_uq",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_name_ci ON public.card_prints USING btree (lower(name))",
+        "indexname": "card_prints_name_ci",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_name_gin ON public.card_prints USING gin (to_tsvector('simple'::regconfig, COALESCE(name, ''::text)))",
+        "indexname": "card_prints_name_gin",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_name_trgm_idx ON public.card_prints USING gin (lower(name) gin_trgm_ops)",
+        "indexname": "card_prints_name_trgm_idx",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX card_prints_pkey ON public.card_prints USING btree (id)",
+        "indexname": "card_prints_pkey",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_set_code_ci ON public.card_prints USING btree (lower(set_code))",
+        "indexname": "card_prints_set_code_ci",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_set_code_number_plain_idx ON public.card_prints USING btree (set_code, number_plain)",
+        "indexname": "card_prints_set_code_number_plain_idx",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_set_id_idx ON public.card_prints USING btree (set_id)",
+        "indexname": "card_prints_set_id_idx",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX card_prints_tcgplayer_id_idx ON public.card_prints USING btree (tcgplayer_id)",
+        "indexname": "card_prints_tcgplayer_id_idx",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX cp_setnum_idx ON public.card_prints USING btree (set_code, number)",
+        "indexname": "cp_setnum_idx",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_prints_identity_domain ON public.card_prints USING btree (identity_domain)",
+        "indexname": "idx_card_prints_identity_domain",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_prints_name ON public.card_prints USING btree (name)",
+        "indexname": "idx_card_prints_name",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_prints_name_trgm ON public.card_prints USING gin (name gin_trgm_ops)",
+        "indexname": "idx_card_prints_name_trgm",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_prints_set_no ON public.card_prints USING btree (set_id, number)",
+        "indexname": "idx_card_prints_set_no",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_prints_setnum ON public.card_prints USING btree (set_code, number)",
+        "indexname": "idx_card_prints_setnum",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_card_prints_setnumplain ON public.card_prints USING btree (set_code, number_plain)",
+        "indexname": "idx_card_prints_setnumplain",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity_v2_standard_sets ON public.card_prints USING btree (set_id, number_plain, COALESCE(printed_identity_modifier, ''::text), COALESCE(variant_key, ''::text)) WHERE ((set_id IS NOT NULL) AND (number_plain IS NOT NULL) AND (set_identity_model = 'standard'::text))",
+        "indexname": "uq_card_prints_identity_v2_standard_sets",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity_v3_print_identity ON public.card_prints USING btree (set_id, number_plain, print_identity_key, COALESCE(variant_key, ''::text)) WHERE ((set_id IS NOT NULL) AND (number_plain IS NOT NULL) AND (print_identity_key IS NOT NULL) AND (set_identity_model = 'reprint_anthology'::text))",
+        "indexname": "uq_card_prints_identity_v3_print_identity",
+        "table_name": "card_prints"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_sets_code ON public.sets USING btree (code)",
+        "indexname": "idx_sets_code",
+        "table_name": "sets"
+      },
+      {
+        "indexdef": "CREATE INDEX idx_sets_set_role ON public.sets USING btree (set_role)",
+        "indexname": "idx_sets_set_role",
+        "table_name": "sets"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX sets_game_code_key ON public.sets USING btree (game, code)",
+        "indexname": "sets_game_code_key",
+        "table_name": "sets"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX sets_pkey ON public.sets USING btree (id)",
+        "indexname": "sets_pkey",
+        "table_name": "sets"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX sets_unique_game_code ON public.sets USING btree (game, code)",
+        "indexname": "sets_unique_game_code",
+        "table_name": "sets"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX uq_sets_code ON public.sets USING btree (code)",
+        "indexname": "uq_sets_code",
+        "table_name": "sets"
+      }
+    ]
+  },
+  "content_fingerprint_sha256": "4f569964c6347c60745bb5d68cb908aacc11bcf26334154e01c49f231e7a761a",
+  "generated_at": "2026-08-05T15:22:30.573Z",
+  "package_id": "JPN-PAYLOAD-TARGET-SCHEMA-CONTRACT-V2",
+  "retrieval": {
+    "access_mode": "live_database_proven_read_only_plus_final_artifacts",
+    "database_reads": true,
+    "database_writes": false,
+    "guard": {
+      "default_transaction_read_only": "on",
+      "environment_key_sha256": "5b2d115d94b2f8fe1543db17110686e4aa7daa448612c3ae1956a7f78dfc2d59",
+      "environment_label": "production-read-only-2026-08-05",
+      "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+      "transaction_read_only": "on"
+    },
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

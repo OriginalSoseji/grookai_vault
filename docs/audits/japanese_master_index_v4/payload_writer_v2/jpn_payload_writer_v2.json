@@ -1,0 +1,148 @@
+{
+  "artifact_version": "JPN-MASTER-INDEX-ARTIFACT-V1",
+  "content": {
+    "conflict_contract": {
+      "card_print_family_review_queue": {
+        "behavior": "insert_only_fail_closed",
+        "conflict_targets": [
+          "id",
+          "card_print_identity_id+family_candidate_source+normalized_family_candidate where active"
+        ],
+        "immutable_columns": [
+          "id",
+          "card_print_identity_id",
+          "card_print_id",
+          "acquisition_key",
+          "family_candidate_source",
+          "normalized_family_candidate",
+          "review_key_hash"
+        ],
+        "mutable_columns": [],
+        "row_grain": "one pending family candidate per Japanese card identity",
+        "winning_row_rule": "the deterministic V4 pending review row is retained"
+      },
+      "card_print_identity": {
+        "behavior": "insert_only_fail_closed",
+        "conflict_targets": [
+          "id",
+          "active identity_domain+identity_key_hash"
+        ],
+        "immutable_columns": [
+          "id",
+          "card_print_id",
+          "identity_domain",
+          "identity_key_version",
+          "identity_key_hash"
+        ],
+        "mutable_columns": [],
+        "row_grain": "one active internal identity per Japanese parent card",
+        "winning_row_rule": "the deterministic V4 identity hash must be unused"
+      },
+      "card_print_identity_source_evidence": {
+        "behavior": "insert_only_fail_closed",
+        "conflict_targets": [
+          "id",
+          "card_print_identity_id+source_key+acquisition_key where active"
+        ],
+        "immutable_columns": [
+          "id",
+          "card_print_identity_id",
+          "card_print_id",
+          "acquisition_key",
+          "source_key",
+          "evidence_key_hash"
+        ],
+        "mutable_columns": [],
+        "row_grain": "one preserved source assertion lane per card identity",
+        "winning_row_rule": "the exact preserved assertion is authoritative"
+      },
+      "card_prints": {
+        "behavior": "insert_only_fail_closed",
+        "conflict_targets": [
+          "id",
+          "gv_id",
+          "set_id+number_plain+printed_identity_modifier+variant_key"
+        ],
+        "immutable_columns": [
+          "id",
+          "set_id",
+          "set_code",
+          "number_plain",
+          "printed_identity_modifier",
+          "variant_key",
+          "identity_domain",
+          "gv_id"
+        ],
+        "mutable_columns": [],
+        "row_grain": "one Japanese parent card identity",
+        "winning_row_rule": "the deterministic V4 row is the only admissible row"
+      },
+      "sets": {
+        "behavior": "insert_only_fail_closed",
+        "conflict_targets": [
+          "id",
+          "game+code",
+          "code"
+        ],
+        "immutable_columns": [
+          "id",
+          "game",
+          "code",
+          "name",
+          "release_date",
+          "source",
+          "printed_total",
+          "printed_set_abbrev",
+          "set_role",
+          "identity_domain_default",
+          "identity_model"
+        ],
+        "mutable_columns": [],
+        "row_grain": "one Japanese source release or product set",
+        "winning_row_rule": "the deterministic V4 row is the only admissible row"
+      }
+    },
+    "counts": {
+      "card_print_family_review_queue": 5336,
+      "card_print_identity": 5336,
+      "card_print_identity_source_evidence": 5461,
+      "card_prints": 5336,
+      "sets": 1041
+    },
+    "database_proof": null,
+    "deferred_public_child_count": 5336,
+    "execution_boundary": {
+      "database_reads": false,
+      "database_writes": false,
+      "deletes": false,
+      "english_mutation": false,
+      "family_promotion": false,
+      "image_writes": false,
+      "non_jpn_mutation": false,
+      "pricing_mutation": false,
+      "public_child_writes": false,
+      "storage_writes": false,
+      "transaction_rolled_back": false,
+      "transactional_insert_attempted": false,
+      "truncates": false,
+      "vault_mutation": false
+    },
+    "generated_at": "2026-08-05T15:25:01.736Z",
+    "mode": "plan",
+    "payload_fingerprint_sha256": "b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c",
+    "required_approval_message": "I approve applying the Japanese V4 master identity payload only: 1041 set rows, 5336 parent card_print rows, 5336 card_print_identity rows, 5461 source evidence rows, and 5336 family review rows, using writer payload fingerprint b11c033901f8cb94b641f2c6e7f3586a3db2bc994242f7d8aa28cb2198218e2c and source preflight fingerprint b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b. I do not approve public child printing writes, Storage writes, image repoints, family promotion, English mutation, non-JPN mutation, pricing writes, vault writes, cleanup, quarantine, deletion, truncation, or rows outside this Japanese V4 payload.",
+    "source_preflight_fingerprint_sha256": "b269de1cae5bb83113e9b88f27400613fca92508c681950861c62213cd6ec36b",
+    "status": "writer_plan_complete_no_database_access",
+    "writer_version": "JPN-MASTER-INDEX-V4-PAYLOAD-WRITER-V2"
+  },
+  "content_fingerprint_sha256": "a6227577cbeda570c2c87925a2d452ed95662fb77bc90e23d74c3950ec0e7ac5",
+  "generated_at": "2026-08-05T15:25:01.736Z",
+  "package_id": "JPN-MASTER-INDEX-V4-PAYLOAD-WRITER-V2",
+  "retrieval": {
+    "access_mode": "verified_local_artifacts_only",
+    "database_reads": false,
+    "database_writes": false,
+    "source_fetches": false,
+    "storage_access": false
+  }
+}

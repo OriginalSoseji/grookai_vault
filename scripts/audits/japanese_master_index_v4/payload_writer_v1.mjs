@@ -166,6 +166,7 @@ async function loadRows(descriptor) {
 
 export async function loadPayload(
   preflightPath = DEFAULT_PREFLIGHT,
+  expectedPreflightFingerprint = EXPECTED_PREFLIGHT_FINGERPRINT,
 ) {
   const { artifact } = await readVerifiedArtifact(preflightPath);
   const report = artifact.content;
@@ -174,7 +175,7 @@ export async function loadPayload(
   }
   if (
     report.payload_fingerprint_sha256
-    !== EXPECTED_PREFLIGHT_FINGERPRINT
+    !== expectedPreflightFingerprint
   ) {
     throw new Error(
       'Preflight fingerprint changed: '
@@ -217,7 +218,10 @@ export async function loadPayload(
   };
 }
 
-export function buildWriterContract(payload) {
+export function buildWriterContract(payload, {
+  writerVersion = PAYLOAD_WRITER_VERSION,
+  expectedPreflightFingerprint = EXPECTED_PREFLIGHT_FINGERPRINT,
+} = {}) {
   const counts = {
     sets: payload.rows.set_rows.length,
     card_prints: payload.rows.card_print_rows.length,
@@ -228,7 +232,7 @@ export function buildWriterContract(payload) {
       payload.rows.family_review_rows.length,
   };
   const payloadFingerprint = contentFingerprint({
-    writer_version: PAYLOAD_WRITER_VERSION,
+    writer_version: writerVersion,
     source_preflight_fingerprint:
       payload.preflight.payload_fingerprint_sha256,
     conflict_contract: CONFLICT_CONTRACT,
@@ -241,7 +245,7 @@ export function buildWriterContract(payload) {
     + `${counts.card_print_identity_source_evidence} source evidence `
     + `rows, and ${counts.card_print_family_review_queue} family review `
     + `rows, using writer payload fingerprint ${payloadFingerprint} and `
-    + `source preflight fingerprint ${EXPECTED_PREFLIGHT_FINGERPRINT}. `
+    + `source preflight fingerprint ${expectedPreflightFingerprint}. `
     + 'I do not approve public child printing writes, Storage writes, '
     + 'image repoints, family promotion, English mutation, non-JPN '
     + 'mutation, pricing writes, vault writes, cleanup, quarantine, '
@@ -503,15 +507,16 @@ function hasAnyRows(counts) {
   return Object.values(counts).some((count) => count !== 0);
 }
 
-async function executeDatabaseMode({
+export async function executeDatabaseMode({
   connectionString,
   mode,
   payload,
   contract,
+  applicationName = 'jpn_master_index_v4_payload_writer_v1',
 }) {
   const client = new Client({
     connectionString,
-    application_name: 'jpn_master_index_v4_payload_writer_v1',
+    application_name: applicationName,
   });
   await client.connect();
   try {
