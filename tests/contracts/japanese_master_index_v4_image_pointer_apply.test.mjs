@@ -1,14 +1,27 @@
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
+
+import { contentFingerprint } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
 
 const APPLY_SCRIPT =
   'scripts/audits/japanese_master_index_v4/image_pointer_apply_v1.mjs';
 const DB_SCRIPT =
   'scripts/audits/japanese_master_index_v4/image_pointer_apply_db_v1.mjs';
-const WORKFLOW =
+const RETIRED_WORKFLOW =
   '.github/workflows/japanese-v4-image-pointer-approved-apply.yml';
+const APPLY_RESULT =
+  'docs/audits/japanese_master_index_v4/image_pointer_apply_v1/'
+  + 'jpn_image_pointer_apply_v1.json';
+const INDEPENDENT_READBACK =
+  'docs/audits/japanese_master_index_v4/image_pointer_apply_v1/'
+  + 'jpn_image_pointer_apply_independent_readback_v1.json';
+
+function fileSha256(file) {
+  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
 
 test('durable apply is plan-only by default and performs no access', () => {
   const result = spawnSync(process.execPath, [APPLY_SCRIPT], {
@@ -78,17 +91,49 @@ test('apply database connector manually verifies bootstrap then enforces TLS', (
   assert.match(source, /rejectUnauthorized: true/);
 });
 
-test('approved apply workflow is one-shot, branch-bound, and implementation-pinned', () => {
-  const source = fs.readFileSync(WORKFLOW, 'utf8');
-  assert.match(source, /pull_request:/);
-  assert.match(source, /github\.event\.pull_request\.head\.repo\.full_name == github\.repository/);
-  assert.match(source, /github\.head_ref == 'catalog\/jpn-v4-production-integration-v2'/);
-  assert.doesNotMatch(source, /^\s+push:/m);
-  assert.doesNotMatch(source, /^\s+schedule:/m);
-  assert.match(source, /5af461261264dd78d55b8bcc66dee0decab71fe71964e86530fde907d7bb4c69/);
-  assert.match(source, /5e5dac562334057e81611c12807de3534ea423cfb3e5ecb769cb38a275569d32/);
-  assert.match(source, /e76ecd6f12ad5c1a1a1f6836d54c34d527e4688f43d5196331aed31da93df912/);
-  assert.match(source, /0600e0de392dcf714b5a3450a6f05fd739e6b32092e9e46883c747c56bacf5be/);
-  assert.match(source, /5f103aaabda1f04533426e6695b367460c29483e694b5909e233c6529778e6f9/);
-  assert.match(source, /ce3dbf33ba7d1cdb247269a8081ac1f31e0572fdfbf5a1322271baa36bcbe185/);
+test('approved implementation remains pinned and one-shot workflow is retired', () => {
+  assert.equal(
+    fileSha256(DB_SCRIPT),
+    '5af461261264dd78d55b8bcc66dee0decab71fe71964e86530fde907d7bb4c69',
+  );
+  assert.equal(
+    fileSha256(APPLY_SCRIPT),
+    '5e5dac562334057e81611c12807de3534ea423cfb3e5ecb769cb38a275569d32',
+  );
+  assert.equal(fs.existsSync(RETIRED_WORKFLOW), false);
+});
+
+test('durable apply proof records the exact approved 53-row commit', () => {
+  const result = JSON.parse(fs.readFileSync(APPLY_RESULT, 'utf8'));
+  const { proof_hash_sha256: proofHash, ...payload } = result;
+  assert.equal(
+    proofHash,
+    'e7392884f42b618000495fbdd181c0eec220e66201cec50bc20f54b1d074dbbb',
+  );
+  assert.equal(contentFingerprint(payload), proofHash);
+  assert.equal(result.status, 'applied_and_durably_verified');
+  assert.equal(result.storage_reverified, 53);
+  assert.equal(result.locked_rows, 53);
+  assert.equal(result.before_rows_verified, 53);
+  assert.equal(result.updated_rows, 53);
+  assert.equal(result.after_rows_verified_inside_transaction, 53);
+  assert.equal(result.commit_completed, true);
+  assert.equal(result.durable_after_rows_verified, 53);
+  assert.equal(result.durable_database_writes, 53);
+  assert.equal(result.storage_writes, 0);
+  assert.deepEqual(result.allowed_columns, [
+    'image_note',
+    'image_path',
+    'image_status',
+  ]);
+});
+
+test('independent HTTPS readback matches every frozen expected-after row', () => {
+  const readback = JSON.parse(fs.readFileSync(INDEPENDENT_READBACK, 'utf8'));
+  assert.equal(readback.status, 'complete_exact_readback');
+  assert.equal(readback.rows, 53);
+  assert.equal(readback.expected_after_hash_matches, 53);
+  assert.equal(readback.exact_hosted_paths, 53);
+  assert.equal(readback.preserved_fallback_source_and_representative, 53);
+  assert.equal(readback.database_writes, false);
 });
