@@ -1,0 +1,61 @@
+{
+  "schema_version": "FLUTTER_PRICING_DEVICE_EVIDENCE_MANIFEST_V1",
+  "producing_code_commit": "725aa1fc1d320a4c2a4e3702c4c0a147249f2403",
+  "raw_evidence_policy": "Raw screenshots and UI XML remain local because some artifacts contain account or private collection data. This permanent manifest preserves content hashes, sizes, and review classifications without publishing personal data.",
+  "artifacts": [
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/final_startup.png",
+      "bytes": 147407,
+      "sha256": "80fc807dc15005be1279ee731c2e7bfaa32b6905ad42622f59c1257dda12d2f5",
+      "classification": "internal_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/final_vault_zoom.png",
+      "bytes": 2308853,
+      "sha256": "04f098435983c784f8d63cf192ff0aba0cc2c0a78ba07962e3235b586994b581",
+      "classification": "private_collection_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/final_search_results.png",
+      "bytes": 2112446,
+      "sha256": "6d0b177524b27b22fd752f649ddf2af92effdfe00c781b1ca6ae6bc4f8be9afb",
+      "classification": "internal_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/card_detail.png",
+      "bytes": 1686153,
+      "sha256": "194c295a29cd223e2730149b70d60ab61cd12f170fcbde55d63418d271ee99c9",
+      "classification": "internal_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/set_grid.png",
+      "bytes": 1592330,
+      "sha256": "6b3d2d3961c8e846ee10e01dc2d018b1d493dbd4de47bdcfb723b23b3d17fd32",
+      "classification": "internal_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/final_exact_compare.png",
+      "bytes": 112468,
+      "sha256": "17d0a691ebeb592826916e8f804675a2a80a9515730958bd61731f8d3f3a49ca",
+      "classification": "internal_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/public_collector_loaded.png",
+      "bytes": 2938431,
+      "sha256": "5d5c7869ffa2fa4060257f89927603b28e8ea2d5a78177faf69252467e691167",
+      "classification": "account_device_evidence"
+    },
+    {
+      "path": "artifacts/flutter_pricing_device_proof/samsung/vault_item_manage.png",
+      "bytes": 1121534,
+      "sha256": "2e39335fdc65cad46185ddfc326d30449f4579bf64d1096009c1227df3e3332b",
+      "classification": "private_collection_device_evidence"
+    },
+    {
+      "path": "build/app/outputs/flutter-apk/app-debug.apk",
+      "bytes": 168026470,
+      "sha256": "de3b4c2f2659a4da4fd8111f96c9e60f46e8068a4e768758bd7150c793a363d4",
+      "classification": "local_release_candidate_binary"
+    }
+  ]
+}

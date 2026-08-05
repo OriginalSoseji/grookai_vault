@@ -1,0 +1,31 @@
+{
+  "phase": "flutter_pricing_device_readiness_pre_migration",
+  "recorded_at": "2026-08-05",
+  "base_commit": "35bcb8bb61ba1e048bfd1387a1edd00fb41b2bf4",
+  "producing_code_commit": "725aa1fc1d320a4c2a4e3702c4c0a147249f2403",
+  "branch": "agent/flutter-pricing-device-proof-v1",
+  "device": {
+    "platform": "android",
+    "manufacturer_model": "Samsung SM-S908U",
+    "api_level": 36,
+    "serial": "R5CT3291F6E"
+  },
+  "application": {
+    "package": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21
+  },
+  "boundaries": {
+    "database_writes": false,
+    "migration_apply": false,
+    "production_deploy": false,
+    "testflight_upload": false,
+    "anonymous_pricing_activation": false
+  },
+  "pending_migrations": [
+    "20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql",
+    "20260728133000_vault_exact_market_pricing_targets_v1.sql"
+  ],
+  "terminal_canary_not_before": "2026-08-08T07:51:54.064Z",
+  "purpose": "Prove Flutter startup, exact-printing identity, honest unavailable states, navigation, and release tooling before the terminal pricing canary authorizes migration and deployment."
+}

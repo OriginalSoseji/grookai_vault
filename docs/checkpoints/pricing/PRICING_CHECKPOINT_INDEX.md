@@ -793,6 +793,11 @@ Recommended reading order for future maintainers:
       expected-commit pin was repaired without changing pricing authority,
       and which evidence is required before the replacement window can pass
 
+41. `PRICING_CHECKPOINT_43_FLUTTER_DEVICE_RELEASE_READINESS.md`
+    - then read the pre-migration Flutter hardening, physical Samsung proof,
+      exact-printing route guarantees, private evidence policy, and the frozen
+      iPhone/TestFlight sequence that remains gated by the terminal canary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -815,3 +820,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/publication_rollback_v1_readiness/2026-07-28T11-36-54-826Z_dry_run_4a3d93d2-9f02-4c06-9f04-d65776ad65a2/summary.json`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/canary_commit_pin_repair_20260805/REPORT.md`
+- `docs/audits/pricing/mee_pricing_platform_production_v1/flutter_device_readiness_20260805/REPORT.md`
