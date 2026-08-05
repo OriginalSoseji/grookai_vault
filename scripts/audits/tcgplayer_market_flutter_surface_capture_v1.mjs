@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,11 +28,62 @@ function parseArgs(argv) {
     outDir: path.resolve(value("out-dir") || "."),
     device: value("device"),
     match: value("match"),
+    adb: value("adb"),
   };
 }
 
-function adb(args, options = {}) {
-  return execFileSync("adb", args, {
+export function resolveAdbExecutableV1({
+  explicit = "",
+  env = process.env,
+  platform = process.platform,
+  exists = existsSync,
+} = {}) {
+  const executableName = platform === "win32" ? "adb.exe" : "adb";
+  const candidates = [
+    explicit,
+    env.ADB_PATH,
+    env.ANDROID_SDK_ROOT
+      ? path.join(env.ANDROID_SDK_ROOT, "platform-tools", executableName)
+      : "",
+    env.ANDROID_HOME
+      ? path.join(env.ANDROID_HOME, "platform-tools", executableName)
+      : "",
+    platform === "win32" && env.LOCALAPPDATA
+      ? path.join(
+          env.LOCALAPPDATA,
+          "Android",
+          "Sdk",
+          "platform-tools",
+          executableName,
+        )
+      : "",
+    platform === "darwin" && env.HOME
+      ? path.join(
+          env.HOME,
+          "Library",
+          "Android",
+          "sdk",
+          "platform-tools",
+          executableName,
+        )
+      : "",
+  ]
+    .map((candidate) => String(candidate ?? "").trim())
+    .filter(Boolean);
+
+  for (const candidate of candidates) {
+    if (exists(candidate)) {
+      return candidate;
+    }
+  }
+  if (explicit) {
+    throw new Error(`Configured adb executable does not exist: ${explicit}`);
+  }
+  return executableName;
+}
+
+function adb(executable, args, options = {}) {
+  return execFileSync(executable, args, {
     encoding: options.binary ? null : "utf8",
     maxBuffer: 32 * 1024 * 1024,
   });
@@ -135,14 +187,13 @@ export function parseFlutterPricingProofKeyV1(key) {
       pricing_scope: scope,
       market_close_usd: Number(parts[5]),
       currency: "USD",
-      source_label: "TCGPlayer Market",
-        observed_at: parts[6] || null,
-        published_at: parts[7] || null,
-        provenance_id: parts[8] || null,
-        source_label: parts[9] || null,
-        is_from_price: parts[10] === "from",
-      },
-    };
+      observed_at: parts[6] || null,
+      published_at: parts[7] || null,
+      provenance_id: parts[8] || null,
+      source_label: parts[9] || null,
+      is_from_price: parts[10] === "from",
+    },
+  };
 }
 
 async function main() {
@@ -155,10 +206,22 @@ async function main() {
     throw new Error("--route is required");
   }
 
+  const adbExecutable = resolveAdbExecutableV1({ explicit: args.adb });
   const prefix = deviceArgs(args.device);
   const remoteDump = "/sdcard/grookai_pricing_surface.xml";
-  adb([...prefix, "shell", "uiautomator", "dump", remoteDump]);
-  const xmlBuffer = adb([...prefix, "exec-out", "cat", remoteDump], {
+  adb(adbExecutable, [
+    ...prefix,
+    "shell",
+    "uiautomator",
+    "dump",
+    remoteDump,
+  ]);
+  const xmlBuffer = adb(adbExecutable, [
+    ...prefix,
+    "exec-out",
+    "cat",
+    remoteDump,
+  ], {
     binary: true,
   });
   const xml = xmlBuffer.toString("utf8");
@@ -191,7 +254,12 @@ async function main() {
   const capturedAt = new Date().toISOString();
   const captureId = `${args.surfaceId}_${capturedAt.replace(/[:.]/g, "-")}`;
   await fs.mkdir(args.outDir, { recursive: true });
-  const screenshot = adb([...prefix, "exec-out", "screencap", "-p"], {
+  const screenshot = adb(adbExecutable, [
+    ...prefix,
+    "exec-out",
+    "screencap",
+    "-p",
+  ], {
     binary: true,
   });
   const screenshotPath = path.join(args.outDir, `${captureId}.png`);

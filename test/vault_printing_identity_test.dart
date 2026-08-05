@@ -56,5 +56,27 @@ void main() {
         'Printing status unavailable',
       );
     });
+
+    test('artwork labels always preserve the governed printing status', () {
+      expect(
+        vaultCardArtworkLabel(
+          'Pikachu ex',
+          resolveVaultPrintingIdentityPresentation({
+            'printing_identity_status': 'exact',
+            'finish_label': 'Holo',
+          }),
+        ),
+        'Pikachu ex · Printing: Holo',
+      );
+      expect(
+        vaultCardArtworkLabel(
+          'Pikachu',
+          resolveVaultPrintingIdentityPresentation({
+            'printing_identity_status': 'unassigned',
+          }),
+        ),
+        'Pikachu · Printing unassigned',
+      );
+    });
   });
 }

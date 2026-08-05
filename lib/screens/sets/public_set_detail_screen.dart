@@ -24,6 +24,21 @@ import '../../widgets/card_zoom_viewer.dart';
 import '../binders/binder_create_screen.dart';
 import '../binders/binder_detail_screen.dart';
 
+void _toggleSetCardCompare(
+  CompareCardSelectionController compare,
+  PublicSetCard card,
+) {
+  final exactPrinting = card.printings.length == 1
+      ? card.printings.single
+      : null;
+  compare.toggle(
+    card.gvId,
+    cardPrintingId: exactPrinting?.id,
+    printingGvId: exactPrinting?.printingGvId,
+    finishLabel: exactPrinting?.finishName,
+  );
+}
+
 class PublicSetDetailScreen extends StatefulWidget {
   const PublicSetDetailScreen({
     required this.setCode,
@@ -1560,7 +1575,7 @@ class _SetCardTile extends StatelessWidget {
                         ? 'Remove from compare'
                         : 'Add to compare',
                     onPressed: () {
-                      compare.toggle(card.gvId);
+                      _toggleSetCardCompare(compare, card);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -1737,7 +1752,8 @@ class _SetCardGridTile extends StatelessWidget {
                               height: 22,
                             ),
                             visualDensity: VisualDensity.compact,
-                            onPressed: () => compare.toggle(card.gvId),
+                            onPressed: () =>
+                                _toggleSetCardCompare(compare, card),
                             icon: Icon(
                               selected
                                   ? Icons.check_circle_rounded

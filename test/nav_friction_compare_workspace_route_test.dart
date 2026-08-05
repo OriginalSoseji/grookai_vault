@@ -12,7 +12,7 @@ void main() {
     expect(build, contains('Expanded('));
     expect(build, contains('child: Stack('));
     expect(build, contains('Positioned('));
-    expect(build, contains('bottom: 18'));
+    expect(build, contains('bottom: shellContentBottomPadding(context)'));
     expect(build, contains('child: _buildCompareWorkspaceEntry(theme)'));
     expect(build, contains('ValueListenableBuilder<List<String>>'));
     expect(build, contains('extra: selectedIds.isEmpty ? 8 : 92'));

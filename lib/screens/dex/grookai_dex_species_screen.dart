@@ -688,7 +688,15 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
       _showMessage('Compare supports up to $kMaxCompareCards cards.');
       return;
     }
-    controller.toggle(gvId);
+    final exactPrinting = card.printings.length == 1
+        ? card.printings.single
+        : null;
+    controller.toggle(
+      gvId,
+      cardPrintingId: exactPrinting?.id,
+      printingGvId: exactPrinting?.printingGvId,
+      finishLabel: exactPrinting?.finishName,
+    );
     await Navigator.of(
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => const CompareScreen()));

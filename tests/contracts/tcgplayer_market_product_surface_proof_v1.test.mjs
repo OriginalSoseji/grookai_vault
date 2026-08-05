@@ -13,6 +13,7 @@ import {
 import {
   extractFlutterPricingProofNodesV1,
   parseFlutterPricingProofKeyV1,
+  resolveAdbExecutableV1,
 } from "../../scripts/audits/tcgplayer_market_flutter_surface_capture_v1.mjs";
 import {
   buildTcgplayerMarketWebRenderEvidenceV2,
@@ -73,6 +74,14 @@ const VISIBLE_PRICE = readFileSync(
 );
 const FLUTTER_PRICE = readFileSync(
   path.join(ROOT, "lib", "widgets", "card_surface_price.dart"),
+  "utf8",
+);
+const FLUTTER_MAIN = readFileSync(
+  path.join(ROOT, "lib", "main.dart"),
+  "utf8",
+);
+const FLUTTER_VAULT = readFileSync(
+  path.join(ROOT, "lib", "main_vault.dart"),
   "utf8",
 );
 const WEB_SET_PAGE = readFileSync(
@@ -587,6 +596,17 @@ test("contract and shared clients preserve machine-readable render evidence", ()
   assert.match(FLUTTER_PRICE, /identifier:\s*!carriesMarketProof/);
   assert.match(FLUTTER_PRICE, /Collector asking price/);
   assert.match(FLUTTER_PRICE, /cardSurfacePricingProofKey/);
+  assert.match(FLUTTER_PRICE, /Price unavailable/);
+  assert.match(FLUTTER_MAIN, /pricing\?\.hasVisibleValue == true[\s\S]*?CardSurfacePriceText[\s\S]*?: Text\(\s*'Value pending'/);
+  assert.match(
+    FLUTTER_MAIN,
+    /bottom:\s*shellContentBottomPadding\(context\),[\s\S]*?_buildCompareWorkspaceEntry\(theme\)/,
+  );
+  assert.match(FLUTTER_VAULT, /Vault market value unavailable/);
+  assert.match(
+    FLUTTER_VAULT,
+    /estimatedValue == null[\s\S]*?\? 'Value pending'[\s\S]*?: _formatVaultValue/,
+  );
   assert.match(AUDIT, /visible_text:\s*clean\(renderEvidence\.visible_text\)/);
 });
 
@@ -702,10 +722,21 @@ test("Flutter Compare and Network preserve governed pricing render evidence", ()
     /final CardSurfacePricingData\? pricing;/,
   );
   assert.match(FLUTTER_COMPARE_SERVICE, /pricing:\s*priceRow,/);
+  assert.match(
+    FLUTTER_COMPARE_SERVICE,
+    /CardSurfacePricingService\.fetchByCardPrintingIds/,
+  );
+  assert.match(FLUTTER_COMPARE_SERVICE, /selectedCardPrintingId/);
+  assert.match(FLUTTER_COMPARE_SERVICE, /selectedFinishLabel/);
   assert.doesNotMatch(FLUTTER_COMPARE_SERVICE, /rawPrice(?:Source|Timestamp)?/);
   assert.match(
     FLUTTER_COMPARE_SCREEN,
     /CardSurfacePriceText\(\s*pricing:\s*card\.pricing,/s,
+  );
+  assert.match(FLUTTER_COMPARE_SCREEN, /Printing not selected/);
+  assert.match(
+    FLUTTER_COMPARE_SCREEN,
+    /_compareDisplayIdentity\(card\)\.displayName/,
   );
   assert.match(
     FLUTTER_NETWORK_SCREEN,
@@ -811,6 +842,34 @@ test("Flutter UIAutomator evidence preserves visible text beside the proof key",
       visible_text: "TCGPlayer Market $12.34",
     },
   ]);
+});
+
+test("Flutter capture resolves adb from the Android SDK without a global PATH entry", () => {
+  const sdkAdb = path.join(
+    "C:\\Users\\collector\\AppData\\Local",
+    "Android",
+    "Sdk",
+    "platform-tools",
+    "adb.exe",
+  );
+  assert.equal(
+    resolveAdbExecutableV1({
+      env: { LOCALAPPDATA: "C:\\Users\\collector\\AppData\\Local" },
+      platform: "win32",
+      exists: (candidate) => candidate === sdkAdb,
+    }),
+    sdkAdb,
+  );
+  assert.throws(
+    () =>
+      resolveAdbExecutableV1({
+        explicit: "C:\\missing\\adb.exe",
+        env: {},
+        platform: "win32",
+        exists: () => false,
+      }),
+    /does not exist/,
+  );
 });
 
 test("Playwright web capture requires every surface once and preserves visible evidence", () => {

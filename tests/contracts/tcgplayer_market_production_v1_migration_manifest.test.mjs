@@ -145,6 +145,51 @@ test("post-canary release plan stays blocked, ordered, and exact", () => {
     true,
   );
   assert.deepEqual(
+    {
+      expectedCommit:
+        postCanaryPlan.production_runtime.expected_commit_sha,
+      activationKey:
+        postCanaryPlan.production_runtime.replacement_activation_key,
+      activationRunId:
+        postCanaryPlan.production_runtime.replacement_activation_run_id,
+      requiredEnd:
+        postCanaryPlan.production_runtime.required_canary_end,
+      definitionRows:
+        postCanaryPlan.production_runtime.canary_definition_row_count,
+      currentRows:
+        postCanaryPlan.production_runtime.expected_current_row_count,
+      maxSourceMissing:
+        postCanaryPlan.production_runtime.max_source_missing_count,
+    },
+    {
+      expectedCommit: "6b729441bf8944048885ade5d9905e23166d9d46",
+      activationKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-05-REPAIR1",
+      activationRunId: "3c1be9e1-de61-4459-9110-890fd7cc9210",
+      requiredEnd: "2026-08-08T07:51:54.064Z",
+      definitionRows: 100,
+      currentRows: 99,
+      maxSourceMissing: 5,
+    },
+  );
+  assert.equal(postCanaryPlan.current_read_only_truth.current_rows, 99);
+  assert.equal(
+    postCanaryPlan.current_read_only_truth.authenticated_read_count,
+    99,
+  );
+  assert.equal(
+    postCanaryPlan.current_read_only_truth.anonymous_runtime_denied,
+    true,
+  );
+  assert.equal(
+    postCanaryPlan.current_read_only_truth.rollback_available,
+    true,
+  );
+  assert.equal(postCanaryPlan.current_read_only_truth.database_writes, 0);
+  assert.match(
+    postCanaryPlan.ordered_gates[0].require,
+    /Checkpoint 42/,
+  );
+  assert.deepEqual(
     postCanaryPlan.pending_migration_package.migrations.map(
       (migration) => migration.id,
     ),

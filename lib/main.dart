@@ -1217,7 +1217,7 @@ class _CatalogCardGridTile extends StatelessWidget {
                             textAlign: TextAlign.left,
                           )
                         : Text(
-                            'TCGPlayer Market',
+                            'Value pending',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.labelSmall?.copyWith(
@@ -1760,6 +1760,13 @@ class _SearchResultActionSheet extends StatelessWidget {
         isRemoving;
     final printingSelectionRequired =
         printingOptions.length > 1 && (selectedPrintingId ?? '').trim().isEmpty;
+    _CatalogPrintingOption? selectedComparePrinting;
+    for (final option in printingOptions) {
+      if (option.id == selectedPrintingId) {
+        selectedComparePrinting = option;
+        break;
+      }
+    }
     final isAddAction =
         action == OwnershipAction.addToVault ||
         action == OwnershipAction.addAnotherCopy ||
@@ -2130,7 +2137,22 @@ class _SearchResultActionSheet extends StatelessWidget {
                                     return;
                                   }
                                   CompareCardSelectionController.instance
-                                      .toggle(normalizedCompareId);
+                                      .toggle(
+                                        normalizedCompareId,
+                                        cardPrintingId:
+                                            selectedComparePrinting?.id ??
+                                            card.searchCardPrintingId,
+                                        printingGvId:
+                                            selectedComparePrinting
+                                                ?.printingGvId ??
+                                            card.selectedPrintingGvId ??
+                                            card.printingGvId,
+                                        finishLabel:
+                                            selectedComparePrinting
+                                                ?.finishLabel ??
+                                            card.displayDiscriminator ??
+                                            card.finishLabel,
+                                      );
                                 },
                           highlighted: isSelected,
                         );
@@ -5168,7 +5190,7 @@ class HomePageState extends State<HomePage> {
               Positioned(
                 left: 16,
                 right: 16,
-                bottom: 18,
+                bottom: shellContentBottomPadding(context),
                 child: _buildCompareWorkspaceEntry(theme),
               ),
             ],

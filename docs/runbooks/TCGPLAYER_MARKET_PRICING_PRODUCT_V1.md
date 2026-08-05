@@ -442,6 +442,11 @@ node scripts/audits/tcgplayer_market_flutter_surface_capture_v1.mjs `
   --out-dir=<surface-capture-directory>
 ```
 
+The collector resolves ADB from `--adb`, `ADB_PATH`, `ANDROID_SDK_ROOT`,
+`ANDROID_HOME`, or the platform's default Android SDK directory before falling
+back to the shell `PATH`. Use `--adb=<absolute-path>` only when the SDK lives in
+a nonstandard location.
+
 When more than one price is visible, add
 `--match=<card-print-id-or-printing-id>` to select exactly one semantics node.
 The command preserves the screenshot, UI Automator tree, and normalized render

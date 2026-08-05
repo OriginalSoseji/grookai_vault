@@ -779,6 +779,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     final controller = CompareCardSelectionController.instance;
+    final selectedPrinting = _selectedPrintingForDisplay;
     final selectedIds = controller.selectedIds;
     final isSelected = selectedIds.contains(normalizedGvId);
     if (!isSelected && selectedIds.length >= kMaxCompareCards) {
@@ -792,7 +793,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return;
     }
 
-    controller.toggle(normalizedGvId);
+    controller.toggle(
+      normalizedGvId,
+      cardPrintingId: selectedPrinting?.id,
+      printingGvId: selectedPrinting?.printingGvId,
+      finishLabel: selectedPrinting?.finishName,
+    );
     await Navigator.of(
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => const CompareScreen()));

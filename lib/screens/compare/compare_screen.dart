@@ -21,6 +21,18 @@ ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
   );
 }
 
+String _comparePrintingContextLabel(ComparePublicCard card) {
+  final finishLabel = (card.selectedFinishLabel ?? '').trim();
+  if (finishLabel.isNotEmpty) {
+    return 'Printing: $finishLabel';
+  }
+  final printingGvId = (card.selectedPrintingGvId ?? '').trim();
+  if (printingGvId.isNotEmpty) {
+    return 'Printing: $printingGvId';
+  }
+  return 'Printing not selected';
+}
+
 class CompareScreen extends StatefulWidget {
   const CompareScreen({super.key});
 
@@ -66,6 +78,8 @@ class _CompareScreenState extends State<CompareScreen> {
     final cards = await PublicCompareService.fetchCardsByGvIds(
       client: _client,
       gvIds: gvIds,
+      selectionContexts:
+          CompareCardSelectionController.instance.selectionContexts,
     );
     await _primeOwnership(cards.map((card) => card.id));
     return cards;
@@ -444,7 +458,6 @@ class _CompareUnderfilledState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compare = CompareCardSelectionController.instance;
-    final selectedIds = compare.selectedIds;
     final missingCount = (kMinCompareCards - cards.length).clamp(0, 4);
     final title = cards.isEmpty ? 'Pick cards to compare' : 'Add one more card';
     final body = cards.isEmpty
@@ -472,20 +485,32 @@ class _CompareUnderfilledState extends StatelessWidget {
               height: 1.45,
             ),
           ),
-          if (selectedIds.isNotEmpty) ...[
+          if (cards.isNotEmpty) ...[
             const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: selectedIds
-                  .map(
-                    (gvId) => Chip(
-                      label: Text(gvId),
-                      onDeleted: () => compare.toggle(gvId),
-                    ),
-                  )
-                  .toList(),
-            ),
+            for (final card in cards)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  _compareDisplayIdentity(card).displayName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  <String>[
+                    if ((card.setName ?? '').trim().isNotEmpty) card.setName!,
+                    if (card.number.trim().isNotEmpty && card.number != '—')
+                      '#${card.number}',
+                    _comparePrintingContextLabel(card),
+                  ].join(' • '),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                trailing: IconButton(
+                  tooltip: 'Remove ${card.name} from compare',
+                  onPressed: () => compare.toggle(card.gvId),
+                  icon: const Icon(Icons.close_rounded),
+                ),
+              ),
           ],
         ],
       ),
@@ -615,6 +640,8 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                           rarity: card.rarity,
                           imageUrl: card.hostedImageUrl,
                           fallbackImageUrl: card.providerFallbackImageUrl,
+                          selectedPrintingGvId: card.selectedPrintingGvId,
+                          selectedFinishLabel: card.selectedFinishLabel,
                         ),
                       ),
                     );
@@ -668,6 +695,16 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                _comparePrintingContextLabel(card),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 4),
               Text(
