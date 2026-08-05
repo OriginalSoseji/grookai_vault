@@ -314,7 +314,8 @@ export function normalizeSetQuery(value: string) {
 
 export function normalizePublicSetDisplayName(value?: string | null) {
   const normalized = (value ?? "")
-    .replace(/<[^>]*>/g, "")
+    .replaceAll("<big>", "")
+    .replaceAll("</big>", "")
     .replace(/\s+/g, " ")
     .trim();
   if (!normalized) {

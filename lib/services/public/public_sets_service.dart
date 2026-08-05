@@ -1202,9 +1202,11 @@ class PublicSetsService {
   }
 
   static String _normalizeSetDisplayName(dynamic value) {
-    return _cleanText(
-      value,
-    ).replaceAll(RegExp(r'<[^>]*>'), '').replaceAll(RegExp(r'\s+'), ' ').trim();
+    return _cleanText(value)
+        .replaceAll('<big>', '')
+        .replaceAll('</big>', '')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
   }
 
   static int? _parseReleaseYear(dynamic rawDate) {

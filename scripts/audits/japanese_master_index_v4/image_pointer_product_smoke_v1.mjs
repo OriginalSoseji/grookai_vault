@@ -383,7 +383,8 @@ export function choosePreferredSetMetadataRow(rows) {
 
 function normalizeSetDisplayName(value) {
   return String(value ?? '')
-    .replace(/<[^>]*>/g, '')
+    .replaceAll('<big>', '')
+    .replaceAll('</big>', '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -459,17 +460,12 @@ async function fetchResponse(url, kind = 'text') {
   }
 }
 
-function decodeRenderedHtml(body) {
-  return String(body ?? '')
-    .replace(/%3A/gi, ':')
-    .replace(/%2F/gi, '/')
-    .replace(/%3F/gi, '?')
-    .replace(/%3D/gi, '=')
-    .replace(/%26/gi, '&')
-    .replace(/\\u0026/g, '&')
-    .replace(/&#x27;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, '&');
+export function renderedHtmlHasPath(body, expectedPath) {
+  const source = String(body ?? '');
+  return source.includes(expectedPath)
+    || source.toLowerCase().includes(
+      encodeURIComponent(expectedPath).toLowerCase(),
+    );
 }
 
 async function fetchImageChecks(baseUrl, pointerRows) {
@@ -502,20 +498,21 @@ async function fetchCardPageChecks(baseUrl, pointerRows) {
   return mapLimit(pointerRows, 6, async (row) => {
     const route = `/card/${encodeURIComponent(row.gv_id)}`;
     const response = await fetchResponse(`${baseUrl}${route}`);
-    const body = decodeRenderedHtml(response.body);
+    const body = String(response.body ?? '');
     const proxyPath = expectedProxyPath(row.gv_id);
+    const containsHostedProxy = renderedHtmlHasPath(body, proxyPath);
     return {
       card_print_id: row.target_row_id,
       gv_id: row.gv_id,
       route,
       status: response.status,
       contains_name: body.includes(row.name),
-      contains_hosted_proxy: body.includes(proxyPath),
+      contains_hosted_proxy: containsHostedProxy,
       contains_image_unavailable: body.includes('Image unavailable'),
       passed:
         response.ok
         && body.includes(row.name)
-        && body.includes(proxyPath)
+        && containsHostedProxy
         && !body.includes('Image unavailable'),
       error: response.error,
     };
@@ -599,7 +596,7 @@ async function fetchSetPageChecks(baseUrl, setScopes) {
   return mapLimit(setScopes, 6, async (scope) => {
     const route = `/sets/${encodeURIComponent(scope.normalized_set_code)}`;
     const response = await fetchResponse(`${baseUrl}${route}`);
-    const body = decodeRenderedHtml(response.body);
+    const body = String(response.body ?? '');
     const containsCanonicalCardCount = renderedSetPageHasCount(
       body,
       scope.canonical_card_count,

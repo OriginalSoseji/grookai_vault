@@ -89,6 +89,16 @@ function normalizeNumber(value) {
     .toLowerCase();
 }
 
+export function isSerebiiUrl(value) {
+  if (!value) return false;
+  try {
+    const hostname = new URL(value).hostname.toLowerCase();
+    return hostname === 'serebii.net' || hostname.endsWith('.serebii.net');
+  } catch {
+    return false;
+  }
+}
+
 function normalizePathSegment(value, fallback = 'unknown') {
   return String(value ?? '')
     .trim()
@@ -390,7 +400,7 @@ async function buildScope() {
       .map((key) => serebiiByKey.get(key))
       .filter(Boolean)
       .filter((row) => fallbackUrl && row.image_urls?.includes(fallbackUrl));
-    if (fallbackUrl?.includes('serebii.net') && serebiiMatches.length !== 1) {
+    if (isSerebiiUrl(fallbackUrl) && serebiiMatches.length !== 1) {
       throw new Error(`Serebii assertion mismatch: ${low.gv_id}`);
     }
     return {

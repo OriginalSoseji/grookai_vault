@@ -15,7 +15,7 @@
       "storage_reads_through_product_proxy": true,
       "storage_writes": false
     },
-    "generated_at": "2026-08-05T21:37:59.256Z",
+    "generated_at": "2026-08-05T21:29:49.017Z",
     "guard": {
       "default_transaction_read_only": "on",
       "environment_key_sha256": "5b2d115d94b2f8fe1543db17110686e4aa7daa448612c3ae1956a7f78dfc2d59",
@@ -4098,8 +4098,8 @@
     },
     "web_base_url": "http://127.0.0.1:3197"
   },
-  "content_fingerprint_sha256": "a9ccb4028b22f082f8b58332f4b7fc59ebdfc9d9417fdab86c282c3ad0b29dfe",
-  "generated_at": "2026-08-05T21:37:59.256Z",
+  "content_fingerprint_sha256": "b8f333bc55f794c2503b768045622fe1a52cf724ceb7bdda4fe92e50321e942c",
+  "generated_at": "2026-08-05T21:29:49.017Z",
   "package_id": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PRODUCT-SMOKE-V1",
   "retrieval": {
     "access_mode": "guarded_live_read_only_plus_production_http_get",

@@ -3,12 +3,12 @@
     {
       "bytes": 174529,
       "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/jpn_image_pointer_product_smoke_v1.json",
-      "sha256": "924b18f946573fd93caf86d3b404ab78b35c42c7fd5064e8cc34c4872190a6e5"
+      "sha256": "425972edb36c0faa74d3dec61575656720c96d059824d436b619bab7153678cf"
     },
     {
       "bytes": 5310,
       "path": "docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/jpn_image_pointer_product_smoke_v1.md",
-      "sha256": "932ce188bf9d97dc37aa1787704c36f4d4a85e27f24f034a85d5149c3d157b45"
+      "sha256": "f65fb3efdbc5cae1440a85a9a704ee39b4d59b981fcd96d13a782e8701e3bd77"
     }
   ],
   "package_id": "JPN-MASTER-INDEX-V4-IMAGE-POINTER-PRODUCT-SMOKE-V1"

@@ -87,11 +87,16 @@ separately and must be rerun after deployment.
 ## Artifact Hashes
 
 - Final JSON SHA-256:
-  `15f308d66d517d03d788dd5a5d99bf5c5b54fb8da541ef3c1dce07d68ea7b47a`
+  `924b18f946573fd93caf86d3b404ab78b35c42c7fd5064e8cc34c4872190a6e5`
 - Final Markdown SHA-256:
-  `1d9a975c7ec20c73686ce2dd8a4209d693de435a4d53f21bceb49ad65a8aa593`
+  `932ce188bf9d97dc37aa1787704c36f4d4a85e27f24f034a85d5149c3d157b45`
 - Final content fingerprint:
-  `cf2b91bd1ef504586702e733953e470828ade567d65dc522b06bed3372d5784d`
+  `a9ccb4028b22f082f8b58332f4b7fc59ebdfc9d9417fdab86c282c3ad0b29dfe`
+
+The final artifact was regenerated after replacing broad markup stripping and
+global HTML re-decoding with exact, known-boundary parsing and literal or
+once-encoded path matching. Earlier successful proofs are preserved under the
+two `pre_*` provenance directories listed below.
 
 Artifacts:
 
@@ -101,6 +106,8 @@ Artifacts:
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/initial_production_failure_v1/`
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/repaired_branch_pagination_assertion_failure_v1/`
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_total_reconciliation_v1/`
+- `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_codeql_parser_hardening_v1/`
+- `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/pre_raw_rendered_html_matching_v1/`
 - `docs/audits/japanese_master_index_v4/image_pointer_product_smoke_v1/total_reconciliation_markup_failure_v1/`
 
 ## Current Truths
@@ -131,12 +138,16 @@ Artifacts:
 
 ## Verification
 
-- Full Japanese Master Index V4 contract suite passed 201/201, including exact
+- Full Japanese Master Index V4 contract suite passed 202/202, including exact
   total and preferred-metadata assertions.
-- Relevant web public-set tests passed 12/12.
+- Full repository contract suite passed 1477/1477.
+- Relevant web public-set tests passed 14/14.
 - Targeted Flutter image and public-set tests passed 37/37, including
   case-equivalent count aggregation and set-name display sanitization.
+- Full Flutter suite passed 565/565.
 - Production web build compiled, typechecked, and generated all routes.
+- Full repository shipcheck passed with zero critical runtime-preflight
+  failures.
 - Final product-smoke contract includes live artifact reconciliation after
   artifact generation.
 - `git diff --check` passed.

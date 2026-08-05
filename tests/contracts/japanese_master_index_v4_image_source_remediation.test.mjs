@@ -10,6 +10,7 @@ import {
   EXPECTED_SEREBII_DETAIL_ROWS,
   chooseRemediation,
   classifyOfficialMatches,
+  isSerebiiUrl,
   ogImageUrl,
 } from '../../scripts/audits/japanese_master_index_v4/image_source_remediation_v1.mjs';
 import { readVerifiedArtifact } from '../../scripts/audits/japanese_master_index_v4/artifact_rows_v1.mjs';
@@ -149,6 +150,15 @@ test('Serebii detail-page parser extracts the full image rather than the thumbna
     ogImageUrl(html, 'https://www.serebii.net/card/example/060.shtml'),
     'https://www.serebii.net/card/example/60.jpg',
   );
+});
+
+test('Serebii source recognition requires the exact host or a true subdomain', () => {
+  assert.equal(isSerebiiUrl('https://www.serebii.net/card/example/60.jpg'), true);
+  assert.equal(isSerebiiUrl('https://serebii.net/card/example/60.jpg'), true);
+  assert.equal(isSerebiiUrl('https://images.serebii.net/card/example/60.jpg'), true);
+  assert.equal(isSerebiiUrl('https://serebii.net.evil.example/card.jpg'), false);
+  assert.equal(isSerebiiUrl('https://example.com/serebii.net/card.jpg'), false);
+  assert.equal(isSerebiiUrl('not-a-url-serebii.net'), false);
 });
 
 test('source-remediation worker has no database or Storage execution path', () => {

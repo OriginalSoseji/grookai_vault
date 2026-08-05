@@ -10,6 +10,7 @@ import {
   buildProductSmokeRow,
   buildProductSmokeSummary,
   choosePreferredSetMetadataRow,
+  renderedHtmlHasPath,
   renderedSetPageHasCount,
 } from '../../scripts/audits/japanese_master_index_v4/image_pointer_product_smoke_v1.mjs';
 import { contentFingerprint } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
@@ -144,6 +145,13 @@ test('set-page totals accept exact HTML and React payload rendering only', () =>
     true,
   );
   assert.equal(renderedSetPageHasCount('286 catalog rows', 287), false);
+});
+
+test('rendered image paths match literal or once-encoded output without HTML decoding', () => {
+  const path = '/api/canon/cards/GV-PK-JPN-S8B-148/image';
+  assert.equal(renderedHtmlHasPath(`src="${path}"`, path), true);
+  assert.equal(renderedHtmlHasPath(encodeURIComponent(path), path), true);
+  assert.equal(renderedHtmlHasPath('&amp;unrelated', path), false);
 });
 
 test('product smoke source is read-only and avoids telemetry search routes', () => {
