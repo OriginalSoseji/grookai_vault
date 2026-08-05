@@ -798,6 +798,11 @@ Recommended reading order for future maintainers:
       exact-printing route guarantees, private evidence policy, and the frozen
       iPhone/TestFlight sequence that remains gated by the terminal canary
 
+42. `PRICING_CHECKPOINT_44_WAITING_FOR_TERMINAL_CANARY.md`
+    - resume here after August 8 completion grace; it records the exact
+      terminal-observer time, frozen PR/SHA, pass and stop criteria, and the
+      ordered migration, device-proof, and TestFlight handoff
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
