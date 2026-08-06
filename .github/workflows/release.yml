@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   build-release:
+    needs: golden-windows
     runs-on: ubuntu-latest
     env:
       ANDROID_KEYSTORE_PATH: ${{ github.workspace }}/android/upload-keystore.jks
