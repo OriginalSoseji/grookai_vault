@@ -76,6 +76,7 @@ import 'services/identity/image_presentation.dart';
 import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/identity_search.dart';
 import 'theme/gv_grid_constants.dart';
+import 'theme/gv_tokens.dart';
 import 'utils/display_image_contract.dart';
 import 'utils/vault_printing_identity.dart';
 import 'widgets/gv_surface.dart';
@@ -218,15 +219,12 @@ Future<String?> _showPublicCollectorSlugPrompt(BuildContext context) async {
 }
 
 ThemeData _buildGrookaiTheme(Brightness brightness) {
-  const seed = Color(0xFF4A90E2);
-
+  final colorScheme = GvPalette.scheme(brightness);
   final base = ThemeData(
     useMaterial3: true,
-    colorSchemeSeed: seed,
+    colorScheme: colorScheme,
     brightness: brightness,
   );
-
-  final colorScheme = base.colorScheme;
 
   return base.copyWith(
     scaffoldBackgroundColor: colorScheme.surface,
@@ -235,26 +233,29 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
       scrolledUnderElevation: 0,
       centerTitle: false,
       toolbarHeight: kShellAppBarHeight,
-      titleSpacing: 12,
-      backgroundColor: colorScheme.surface,
+      titleSpacing: 16,
+      backgroundColor: colorScheme.surfaceContainerLowest,
       foregroundColor: colorScheme.onSurface,
+      shape: Border(
+        bottom: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.44),
+        ),
+      ),
       titleTextStyle: base.textTheme.titleLarge?.copyWith(
         fontWeight: FontWeight.w700,
-        fontSize: 18,
+        fontSize: 20,
+        letterSpacing: 0,
         color: colorScheme.onSurface,
       ),
-      iconTheme: IconThemeData(
-        size: 18,
-        color: colorScheme.onSurface.withValues(alpha: 0.84),
-      ),
+      iconTheme: IconThemeData(size: 20, color: colorScheme.onSurfaceVariant),
       actionsIconTheme: IconThemeData(
-        size: 18,
-        color: colorScheme.onSurface.withValues(alpha: 0.84),
+        size: 20,
+        color: colorScheme.onSurfaceVariant,
       ),
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: colorScheme.surface,
-      indicatorColor: colorScheme.primary.withValues(alpha: 0.08),
+      backgroundColor: colorScheme.surfaceContainerLow,
+      indicatorColor: colorScheme.primary.withValues(alpha: 0.14),
       height: kShellBottomNavHeight,
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       iconTheme: WidgetStateProperty.resolveWith((states) {
@@ -282,51 +283,150 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
       }),
     ),
     cardTheme: CardThemeData(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
+      color: colorScheme.surfaceContainerLow,
       elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvRadii.surface),
+        side: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.38),
+        ),
+      ),
       margin: EdgeInsets.zero,
     ),
     inputDecorationTheme: base.inputDecorationTheme.copyWith(
-      filled: false,
+      filled: true,
+      fillColor: colorScheme.surfaceContainerLow,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(GvRadii.control),
         borderSide: BorderSide(
-          color: colorScheme.outline.withValues(alpha: 0.4),
+          color: colorScheme.outlineVariant.withValues(alpha: 0.56),
           width: 1,
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(GvRadii.control),
         borderSide: BorderSide(
-          color: colorScheme.outline.withValues(alpha: 0.4),
+          color: colorScheme.outlineVariant.withValues(alpha: 0.56),
           width: 1,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(GvRadii.control),
         borderSide: BorderSide(color: colorScheme.primary, width: 1.4),
       ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
     ),
     textTheme: base.textTheme.copyWith(
       headlineSmall: base.textTheme.headlineSmall?.copyWith(
         fontWeight: FontWeight.w700,
         letterSpacing: 0,
       ),
+      titleLarge: base.textTheme.titleLarge?.copyWith(
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0,
+      ),
       titleMedium: base.textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.w600,
+        letterSpacing: 0,
       ),
       bodyLarge: base.textTheme.bodyLarge?.copyWith(
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0,
+      ),
+      bodyMedium: base.textTheme.bodyMedium?.copyWith(letterSpacing: 0),
+      labelLarge: base.textTheme.labelLarge?.copyWith(
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0,
       ),
       labelSmall: base.textTheme.labelSmall?.copyWith(
-        letterSpacing: 0.3,
+        letterSpacing: 0,
         fontWeight: FontWeight.w500,
+      ),
+    ),
+    dividerTheme: DividerThemeData(
+      color: colorScheme.outlineVariant.withValues(alpha: 0.52),
+      thickness: 1,
+      space: 1,
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: colorScheme.surfaceContainerLow,
+      modalBackgroundColor: colorScheme.surfaceContainerLow,
+      surfaceTintColor: Colors.transparent,
+      showDragHandle: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+    ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: colorScheme.surfaceContainerLow,
+      surfaceTintColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvRadii.surface),
+        side: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.46),
+        ),
+      ),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        minimumSize: const Size(0, 46),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.control),
+        ),
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0,
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(0, 46),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        side: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.72),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.control),
+        ),
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0,
+        ),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        minimumSize: const Size(40, 40),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.control),
+        ),
+      ),
+    ),
+    chipTheme: base.chipTheme.copyWith(
+      backgroundColor: colorScheme.surfaceContainer,
+      selectedColor: colorScheme.primary.withValues(alpha: 0.16),
+      side: BorderSide(
+        color: colorScheme.outlineVariant.withValues(alpha: 0.58),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvRadii.control),
+      ),
+      labelStyle: base.textTheme.labelMedium?.copyWith(
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0,
       ),
     ),
     snackBarTheme: base.snackBarTheme.copyWith(
       behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      backgroundColor: colorScheme.surfaceContainerHighest,
+      contentTextStyle: base.textTheme.bodyMedium?.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvRadii.control),
+      ),
     ),
   );
 }
@@ -529,15 +629,10 @@ class _CatalogSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.26),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
+    return SizedBox(
+      height: 52,
       child: TextField(
         controller: controller,
         onChanged: onChanged,
@@ -545,14 +640,31 @@ class _CatalogSearchField extends StatelessWidget {
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           prefixIcon: Icon(
-            Icons.search,
-            color: colorScheme.onSurface.withValues(alpha: 0.58),
+            Icons.search_rounded,
+            color: colorScheme.onSurfaceVariant,
           ),
           hintText: 'Search in a sentence',
-          border: InputBorder.none,
+          filled: true,
+          fillColor: colorScheme.surfaceContainerLow,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(GvRadii.control),
+            borderSide: BorderSide(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.62),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(GvRadii.control),
+            borderSide: BorderSide(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.62),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(GvRadii.control),
+            borderSide: BorderSide(color: colorScheme.primary, width: 1.4),
+          ),
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(
-            vertical: 14,
+            vertical: 13,
             horizontal: 14,
           ),
         ),
@@ -735,7 +847,7 @@ class _ResolverStatusBanner extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(GvRadii.control),
           border: Border.all(color: border, width: 0.8),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -1799,383 +1911,397 @@ class _SearchResultActionSheet extends StatelessWidget {
     final metadataParts = _catalogMetadataParts(card, compact: false);
     final hasSubtitle = metadataParts.isNotEmpty;
     final imagePresentation = _cardPrintImagePresentation(card);
+    final mediaQuery = MediaQuery.of(context);
 
     return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 256),
-                child: AspectRatio(
-                  aspectRatio: 2.5 / 3.5,
-                  child: CardSurfaceArtwork(
-                    label: displayIdentity.displayName,
-                    imageUrl: card.catalogImageUrl,
-                    fallbackImageUrl: card.hostedImageUrl == null
-                        ? null
-                        : card.providerFallbackImageUrl,
-                    borderRadius: 24,
-                    padding: const EdgeInsets.all(6),
-                    imageTruthLabel: imagePresentation.compactBadgeLabel,
-                    imageTruthStrong:
-                        imagePresentation.isCollisionRepresentative,
-                    onViewDetails: interactionLocked ? null : onViewCard,
-                    detailsLabel: 'View card',
+      top: false,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: mediaQuery.size.height * 0.86),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 256),
+                  child: AspectRatio(
+                    aspectRatio: 2.5 / 3.5,
+                    child: CardSurfaceArtwork(
+                      label: displayIdentity.displayName,
+                      imageUrl: card.catalogImageUrl,
+                      fallbackImageUrl: card.hostedImageUrl == null
+                          ? null
+                          : card.providerFallbackImageUrl,
+                      borderRadius: 24,
+                      padding: const EdgeInsets.all(6),
+                      imageTruthLabel: imagePresentation.compactBadgeLabel,
+                      imageTruthStrong:
+                          imagePresentation.isCollisionRepresentative,
+                      onViewDetails: interactionLocked ? null : onViewCard,
+                      detailsLabel: 'View card',
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 14),
-            Text(
-              displayIdentity.displayName,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
-              const SizedBox(height: 3),
+              const SizedBox(height: 14),
               Text(
-                displayIdentity.printedName!,
+                displayIdentity.displayName,
                 textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.labelMedium?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.62),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-            if (hasSubtitle) ...[
-              const SizedBox(height: 4),
-              Center(
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 4,
-                  runSpacing: 2,
-                  children: [
-                    if (card.displaySet.isNotEmpty)
-                      _ActionSheetMetadataLink(
-                        label: card.displaySet,
-                        onTap: interactionLocked ? null : onOpenSet,
-                      ),
-                    if (card.displayNumber.isNotEmpty)
-                      _ActionSheetMetadataText(label: '#${card.displayNumber}'),
-                    if (_searchContextLabel(card).isNotEmpty)
-                      _ActionSheetMetadataText(
-                        label: _searchContextLabel(card),
-                      ),
-                    if ((card.rarity ?? '').isNotEmpty)
-                      _ActionSheetMetadataText(label: card.rarity!),
-                  ],
-                ),
-              ),
-            ],
-            if (printingOptions.isNotEmpty) ...[
-              const SizedBox(height: 10),
-              Text(
-                printingOptions.length == 1
-                    ? 'Printing'
-                    : 'Choose the exact printing',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 6),
-              Center(
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 8,
-                  runSpacing: 6,
-                  children: [
-                    for (final option in printingOptions)
-                      ChoiceChip(
-                        label: Text(option.finishLabel),
-                        selected: option.id == selectedPrintingId,
-                        onSelected: interactionLocked
-                            ? null
-                            : (_) => onPrintingSelected(option.id),
-                      ),
-                  ],
-                ),
-              ),
-            ] else if (isAddAction) ...[
-              const SizedBox(height: 10),
-              Text(
-                'Exact printing unavailable. Try again before adding.',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.labelMedium?.copyWith(
-                  color: colorScheme.error,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-            if (pricing?.hasVisibleValue == true) ...[
-              const SizedBox(height: 9),
-              Center(
-                child: CardSurfacePriceText(
-                  pricing: pricing,
-                  size: CardSurfacePriceSize.list,
+              if ((displayIdentity.printedName ?? '').isNotEmpty) ...[
+                const SizedBox(height: 3),
+                Text(
+                  displayIdentity.printedName!,
                   textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-            if (gvid.isNotEmpty) ...[
-              const SizedBox(height: 6),
-              Center(
-                child: _PressScaleInkWell(
-                  onTap: interactionLocked ? null : onCopyGvid,
-                  borderRadius: BorderRadius.circular(13),
-                  pressedScale: 0.99,
-                  hapticOnTapDown: false,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 9,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.surfaceContainerHighest.withValues(
-                        alpha: 0.07,
-                      ),
-                      borderRadius: BorderRadius.circular(13),
-                      border: Border.all(
-                        color: colorScheme.outline.withValues(alpha: 0.045),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'GVID',
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.34,
-                            ),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10.0,
-                            letterSpacing: 0.28,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          gvid,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.52,
-                            ),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 10.8,
-                            letterSpacing: 0.08,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        Icon(
-                          Icons.content_copy_rounded,
-                          size: 13,
-                          color: colorScheme.onSurface.withValues(alpha: 0.34),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-            if (ownershipState?.owned == true) ...[
-              const SizedBox(height: 10),
-              Center(
-                child: Text(
-                  _ownershipSummaryLabel(ownershipState!),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.labelMedium?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.68),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ],
-            if (showOwnedShortcut) ...[
-              const SizedBox(height: 10),
-              Center(
-                child: _PressScaleInkWell(
-                  onTap: interactionLocked ? null : onViewYourCopy,
-                  borderRadius: BorderRadius.circular(16),
-                  pressedScale: 0.985,
-                  hapticOnTapDown: false,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (isOpeningOwnedCopy)
-                          SizedBox(
-                            width: 14,
-                            height: 14,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: colorScheme.onSurface.withValues(
-                                alpha: 0.72,
-                              ),
-                            ),
-                          )
-                        else
-                          Icon(
-                            Icons.collections_bookmark_outlined,
-                            size: 18,
-                            color: colorScheme.onSurface.withValues(alpha: 0.8),
-                          ),
-                        const SizedBox(width: 8),
-                        Text(
-                          isOpeningOwnedCopy
-                              ? 'Opening your copy...'
-                              : 'View your copy',
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.84,
-                            ),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-            const SizedBox(height: 12),
-            _ActionSheetPrimaryButton(
-              onPressed:
-                  interactionLocked ||
-                      printingSelectionRequired ||
-                      printingUnavailable
-                  ? null
-                  : onPrimaryAction,
-              successState:
-                  justAdded &&
-                  (action == OwnershipAction.addToVault ||
-                      action == OwnershipAction.addAnotherCopy),
-              isBusy: isAdding || isOpeningOwnedCopy || isOpeningManageCard,
-              icon: isAdding
-                  ? const SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : isOpeningOwnedCopy || isOpeningManageCard
-                  ? const SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Icon(switch (action) {
-                      OwnershipAction.viewYourCopy =>
-                        Icons.collections_bookmark_outlined,
-                      OwnershipAction.openManageCard => Icons.tune_rounded,
-                      OwnershipAction.addAnotherCopy =>
-                        justAdded
-                            ? Icons.check_circle_rounded
-                            : Icons.add_circle_outline_rounded,
-                      OwnershipAction.addToVault || OwnershipAction.none =>
-                        justAdded
-                            ? Icons.check_circle_rounded
-                            : Icons.add_circle_outline_rounded,
-                    }),
-              label: primaryLabel,
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: _ActionSheetSecondaryButton(
-                    icon: Icons.style_outlined,
-                    label: 'View card',
-                    expand: true,
-                    onPressed: interactionLocked ? null : onViewCard,
-                  ),
-                ),
-                if (normalizedCompareId.isNotEmpty) ...[
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: ValueListenableBuilder<List<String>>(
-                      valueListenable:
-                          CompareCardSelectionController.instance.listenable,
-                      builder: (context, selectedIds, _) {
-                        final isSelected = selectedIds.contains(
-                          normalizedCompareId,
-                        );
-                        return _ActionSheetSecondaryButton(
-                          icon: isSelected
-                              ? Icons.check_circle_rounded
-                              : Icons.compare_arrows_rounded,
-                          label: isSelected ? 'In compare' : 'Compare',
-                          expand: true,
-                          onPressed: interactionLocked
-                              ? null
-                              : () {
-                                  if (!isSelected &&
-                                      selectedIds.length >= kMaxCompareCards) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Compare supports up to $kMaxCompareCards cards at a time.',
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
-                                  CompareCardSelectionController.instance
-                                      .toggle(normalizedCompareId);
-                                },
-                          highlighted: isSelected,
-                        );
-                      },
-                    ),
-                  ),
-                ],
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _ActionSheetSecondaryButton(
-                    icon: Icons.share_outlined,
-                    label: 'Share',
-                    expand: true,
-                    onPressed: interactionLocked ? null : onShare,
+                    color: colorScheme.onSurface.withValues(alpha: 0.62),
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
-            ),
-            if (ownershipState?.owned == true) ...[
-              const SizedBox(height: 8),
-              Center(
-                child: _ActionSheetSecondaryButton(
-                  icon: isRemoving
-                      ? Icons.hourglass_top_rounded
-                      : Icons.remove_circle_outline_rounded,
-                  label: isRemoving ? 'Removing...' : 'Remove from Vault',
-                  onPressed: interactionLocked ? null : onRemoveFromVault,
-                ),
-              ),
-            ],
-            if (ownedCount > 1) ...[
-              const SizedBox(height: 10),
-              Center(
-                child: Text(
-                  '$ownedCount active copies in your vault',
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.54),
-                    fontWeight: FontWeight.w500,
+              if (hasSubtitle) ...[
+                const SizedBox(height: 4),
+                Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 4,
+                    runSpacing: 2,
+                    children: [
+                      if (card.displaySet.isNotEmpty)
+                        _ActionSheetMetadataLink(
+                          label: card.displaySet,
+                          onTap: interactionLocked ? null : onOpenSet,
+                        ),
+                      if (card.displayNumber.isNotEmpty)
+                        _ActionSheetMetadataText(
+                          label: '#${card.displayNumber}',
+                        ),
+                      if (_searchContextLabel(card).isNotEmpty)
+                        _ActionSheetMetadataText(
+                          label: _searchContextLabel(card),
+                        ),
+                      if ((card.rarity ?? '').isNotEmpty)
+                        _ActionSheetMetadataText(label: card.rarity!),
+                    ],
                   ),
                 ),
+              ],
+              if (printingOptions.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                Text(
+                  printingOptions.length == 1
+                      ? 'Printing'
+                      : 'Choose the exact printing',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.62),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: [
+                      for (final option in printingOptions)
+                        ChoiceChip(
+                          label: Text(option.finishLabel),
+                          selected: option.id == selectedPrintingId,
+                          onSelected: interactionLocked
+                              ? null
+                              : (_) => onPrintingSelected(option.id),
+                        ),
+                    ],
+                  ),
+                ),
+              ] else if (isAddAction) ...[
+                const SizedBox(height: 10),
+                Text(
+                  'Exact printing unavailable. Try again before adding.',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: colorScheme.error,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+              if (pricing?.hasVisibleValue == true) ...[
+                const SizedBox(height: 9),
+                Center(
+                  child: CardSurfacePriceText(
+                    pricing: pricing,
+                    size: CardSurfacePriceSize.list,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+              if (gvid.isNotEmpty) ...[
+                const SizedBox(height: 6),
+                Center(
+                  child: _PressScaleInkWell(
+                    onTap: interactionLocked ? null : onCopyGvid,
+                    borderRadius: BorderRadius.circular(13),
+                    pressedScale: 0.99,
+                    hapticOnTapDown: false,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 9,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.07,
+                        ),
+                        borderRadius: BorderRadius.circular(13),
+                        border: Border.all(
+                          color: colorScheme.outline.withValues(alpha: 0.045),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'GVID',
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.34,
+                              ),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10.0,
+                              letterSpacing: 0.28,
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            gvid,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.52,
+                              ),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10.8,
+                              letterSpacing: 0.08,
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          Icon(
+                            Icons.content_copy_rounded,
+                            size: 13,
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.34,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              if (ownershipState?.owned == true) ...[
+                const SizedBox(height: 10),
+                Center(
+                  child: Text(
+                    _ownershipSummaryLabel(ownershipState!),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.68),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+              if (showOwnedShortcut) ...[
+                const SizedBox(height: 10),
+                Center(
+                  child: _PressScaleInkWell(
+                    onTap: interactionLocked ? null : onViewYourCopy,
+                    borderRadius: BorderRadius.circular(16),
+                    pressedScale: 0.985,
+                    hapticOnTapDown: false,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (isOpeningOwnedCopy)
+                            SizedBox(
+                              width: 14,
+                              height: 14,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.72,
+                                ),
+                              ),
+                            )
+                          else
+                            Icon(
+                              Icons.collections_bookmark_outlined,
+                              size: 18,
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.8,
+                              ),
+                            ),
+                          const SizedBox(width: 8),
+                          Text(
+                            isOpeningOwnedCopy
+                                ? 'Opening your copy...'
+                                : 'View your copy',
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.84,
+                              ),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              const SizedBox(height: 12),
+              _ActionSheetPrimaryButton(
+                onPressed:
+                    interactionLocked ||
+                        printingSelectionRequired ||
+                        printingUnavailable
+                    ? null
+                    : onPrimaryAction,
+                successState:
+                    justAdded &&
+                    (action == OwnershipAction.addToVault ||
+                        action == OwnershipAction.addAnotherCopy),
+                isBusy: isAdding || isOpeningOwnedCopy || isOpeningManageCard,
+                icon: isAdding
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : isOpeningOwnedCopy || isOpeningManageCard
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Icon(switch (action) {
+                        OwnershipAction.viewYourCopy =>
+                          Icons.collections_bookmark_outlined,
+                        OwnershipAction.openManageCard => Icons.tune_rounded,
+                        OwnershipAction.addAnotherCopy =>
+                          justAdded
+                              ? Icons.check_circle_rounded
+                              : Icons.add_circle_outline_rounded,
+                        OwnershipAction.addToVault || OwnershipAction.none =>
+                          justAdded
+                              ? Icons.check_circle_rounded
+                              : Icons.add_circle_outline_rounded,
+                      }),
+                label: primaryLabel,
               ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: _ActionSheetSecondaryButton(
+                      icon: Icons.style_outlined,
+                      label: 'View card',
+                      expand: true,
+                      onPressed: interactionLocked ? null : onViewCard,
+                    ),
+                  ),
+                  if (normalizedCompareId.isNotEmpty) ...[
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: ValueListenableBuilder<List<String>>(
+                        valueListenable:
+                            CompareCardSelectionController.instance.listenable,
+                        builder: (context, selectedIds, _) {
+                          final isSelected = selectedIds.contains(
+                            normalizedCompareId,
+                          );
+                          return _ActionSheetSecondaryButton(
+                            icon: isSelected
+                                ? Icons.check_circle_rounded
+                                : Icons.compare_arrows_rounded,
+                            label: isSelected ? 'In compare' : 'Compare',
+                            expand: true,
+                            onPressed: interactionLocked
+                                ? null
+                                : () {
+                                    if (!isSelected &&
+                                        selectedIds.length >=
+                                            kMaxCompareCards) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Compare supports up to $kMaxCompareCards cards at a time.',
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
+                                    CompareCardSelectionController.instance
+                                        .toggle(normalizedCompareId);
+                                  },
+                            highlighted: isSelected,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: _ActionSheetSecondaryButton(
+                      icon: Icons.share_outlined,
+                      label: 'Share',
+                      expand: true,
+                      onPressed: interactionLocked ? null : onShare,
+                    ),
+                  ),
+                ],
+              ),
+              if (ownershipState?.owned == true) ...[
+                const SizedBox(height: 8),
+                Center(
+                  child: _ActionSheetSecondaryButton(
+                    icon: isRemoving
+                        ? Icons.hourglass_top_rounded
+                        : Icons.remove_circle_outline_rounded,
+                    label: isRemoving ? 'Removing...' : 'Remove from Vault',
+                    onPressed: interactionLocked ? null : onRemoveFromVault,
+                  ),
+                ),
+              ],
+              if (ownedCount > 1) ...[
+                const SizedBox(height: 10),
+                Center(
+                  child: Text(
+                    '$ownedCount active copies in your vault',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.54),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -4680,32 +4806,44 @@ class HomePageState extends State<HomePage> {
 
     const columns = 2;
 
-    return SliverPadding(
-      padding: const EdgeInsets.fromLTRB(
-        GvGridConstants.gridOuterPadding,
-        6,
-        GvGridConstants.gridOuterPadding,
-        0,
-      ),
-      sliver: SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) => _buildCatalogCardWithContext(
-            cards[index],
-            enableFeedImpressionTracking: trackFeedImpressions,
-            feedPosition: index,
-            feedDebug: _trendingDebugByCardId[cards[index].id.trim()],
-            showFeedDebugOverlay: showFeedDebugOverlay,
+    return SliverLayoutBuilder(
+      builder: (context, constraints) {
+        final availableWidth =
+            constraints.crossAxisExtent -
+            (GvGridConstants.gridOuterPadding * 2) -
+            (GvGridConstants.gridSpacing * (columns - 1));
+        final tileWidth = availableWidth / columns;
+
+        return SliverPadding(
+          padding: const EdgeInsets.fromLTRB(
+            GvGridConstants.gridOuterPadding,
+            6,
+            GvGridConstants.gridOuterPadding,
+            0,
           ),
-          childCount: cards.length,
-          addAutomaticKeepAlives: false,
-        ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: columns,
-          mainAxisSpacing: GvGridConstants.gridSpacing,
-          crossAxisSpacing: GvGridConstants.gridSpacing,
-          childAspectRatio: GvGridConstants.gridChildAspectRatio,
-        ),
-      ),
+          sliver: SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => _buildCatalogCardWithContext(
+                cards[index],
+                enableFeedImpressionTracking: trackFeedImpressions,
+                feedPosition: index,
+                feedDebug: _trendingDebugByCardId[cards[index].id.trim()],
+                showFeedDebugOverlay: showFeedDebugOverlay,
+              ),
+              childCount: cards.length,
+              addAutomaticKeepAlives: false,
+            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: columns,
+              mainAxisSpacing: GvGridConstants.gridSpacing,
+              crossAxisSpacing: GvGridConstants.gridSpacing,
+              mainAxisExtent: GvGridConstants.catalogTileMainAxisExtent(
+                tileWidth,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 

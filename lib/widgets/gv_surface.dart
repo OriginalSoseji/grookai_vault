@@ -53,7 +53,7 @@ class GvSurface extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius,
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
         child: content,
       ),
     );
@@ -61,24 +61,28 @@ class GvSurface extends StatelessWidget {
 
   Color _surfaceColor(ColorScheme colorScheme) {
     return switch (variant) {
-      GvSurfaceVariant.resting => colorScheme.surface.withValues(alpha: 0.28),
-      GvSurfaceVariant.grouped => colorScheme.surface.withValues(alpha: 0.18),
-      GvSurfaceVariant.floating => colorScheme.surface.withValues(alpha: 0.58),
-      GvSurfaceVariant.glass => colorScheme.surface.withValues(alpha: 0.70),
+      GvSurfaceVariant.resting => colorScheme.surfaceContainerLow,
+      GvSurfaceVariant.grouped => colorScheme.surfaceContainer,
+      GvSurfaceVariant.floating => colorScheme.surfaceContainerHigh,
+      GvSurfaceVariant.glass => colorScheme.surfaceContainerHigh.withValues(
+        alpha: 0.94,
+      ),
     };
   }
 
   Border? _border(ColorScheme colorScheme) {
     return switch (variant) {
-      GvSurfaceVariant.resting => null,
+      GvSurfaceVariant.resting => Border.all(
+        color: colorScheme.outlineVariant.withValues(alpha: 0.28),
+      ),
       GvSurfaceVariant.grouped => Border.all(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.20),
+        color: colorScheme.outlineVariant.withValues(alpha: 0.38),
       ),
       GvSurfaceVariant.floating => Border.all(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.16),
+        color: colorScheme.outlineVariant.withValues(alpha: 0.52),
       ),
       GvSurfaceVariant.glass => Border.all(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.18),
+        color: colorScheme.outlineVariant.withValues(alpha: 0.56),
       ),
     };
   }
@@ -88,9 +92,9 @@ class GvSurface extends StatelessWidget {
       GvSurfaceVariant.resting || GvSurfaceVariant.grouped => null,
       GvSurfaceVariant.floating || GvSurfaceVariant.glass => [
         BoxShadow(
-          color: colorScheme.shadow.withValues(alpha: 0.18),
-          blurRadius: 34,
-          offset: const Offset(0, 18),
+          color: colorScheme.shadow.withValues(alpha: 0.22),
+          blurRadius: 24,
+          offset: const Offset(0, 12),
         ),
       ],
     };
