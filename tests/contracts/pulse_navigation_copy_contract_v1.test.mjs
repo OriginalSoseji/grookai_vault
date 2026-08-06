@@ -40,7 +40,7 @@ test("web visible error copy avoids obsolete feed wording", () => {
 
   assert.match(wallPage, /Activity Window/);
   assert.match(wallPage, /Wall activity could not be loaded right now/);
-  assert.match(vaultCollection, /Recently added activity could not be loaded right now/);
+  assert.match(vaultCollection, /Recent additions could not be refreshed right now/);
   assert.match(nearbyPage, /Nearby activity is unavailable/);
   assert.match(nearbyPage, /Nearby activity could not load/);
   assert.match(localCommunityHelper, /Local community activity is unavailable/);

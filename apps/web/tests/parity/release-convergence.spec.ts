@@ -5,6 +5,13 @@ const scenarios = [
   "search-vault-bridge",
   "search-result-hierarchy",
   "card-detail-hierarchy",
+  "vault-loaded",
+  "vault-empty",
+  "vault-private",
+  "vault-partial-error",
+  "vault-duplicate-copy",
+  "vault-offline",
+  "vault-exact-copy",
   "error-state",
   "private-state",
 ] as const;
@@ -71,6 +78,40 @@ test("Card detail hierarchy puts the collection action before expanded context",
   await expect(page.getByText("Grookai ID GV-FIXTURE-PIKACHU", { exact: true })).toBeHidden();
 });
 
+test("Vault families keep exact finish context visible without collapsing mixed copies", async ({ page }) => {
+  await openScenario(page, "vault-loaded");
+
+  await expect(page.getByText("Reverse Holo", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("2 copies • Mixed finishes", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("GV-VI-FIXTURE-PIKACHU-RH", { exact: false })).toBeHidden();
+});
+
+test("Duplicate family reveals each exact copy and keeps evidence disclosed", async ({ page }) => {
+  await openScenario(page, "vault-duplicate-copy");
+
+  await expect(page.getByText("NM • Holofoil • Raw", { exact: true })).toBeVisible();
+  await expect(page.getByText("LP • Reverse Holo • Raw", { exact: true })).toBeVisible();
+  const evidence = page.getByText("Copy evidence", { exact: true }).first();
+  await expect(page.getByText("Exact copy ID: GV-VI-FIXTURE-CHARIZARD-NORMAL", { exact: true })).toBeHidden();
+  await evidence.click();
+  await expect(page.getByText("Exact copy ID: GV-VI-FIXTURE-CHARIZARD-NORMAL", { exact: true })).toBeVisible();
+});
+
+test("Exact-copy hierarchy shows version before provenance", async ({ page }) => {
+  await openScenario(page, "vault-exact-copy");
+
+  await expect(page.getByText("Reverse Holo", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("NM", { exact: true })).toBeVisible();
+  await expect(page.getByText("Exact copy ID: GV-VI-FIXTURE-PIKACHU-RH", { exact: true })).toBeHidden();
+});
+
+test("Partial Vault failure preserves loaded ownership context", async ({ page }) => {
+  await openScenario(page, "vault-partial-error");
+  await expect(page.getByText("Your cards are still here", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Pikachu", exact: true })).toBeVisible();
+  await expect(page.getByText("Reverse Holo", { exact: true }).first()).toBeVisible();
+});
+
 test("P0 Search result hierarchy remains visually stable on Samsung", async ({ page }) => {
   await openScenario(page, "search-result-hierarchy");
   await expect(page).toHaveScreenshot("p0-search-result-mobile.png", { fullPage: true });
@@ -91,4 +132,26 @@ test("P0 Card Detail hierarchy remains visually stable on desktop", async ({ pag
   await page.setViewportSize({ width: 1440, height: 1000 });
   await openScenario(page, "card-detail-hierarchy");
   await expect(page).toHaveScreenshot("p0-card-detail-desktop.png", { fullPage: true });
+});
+
+test("P0 Vault hierarchy remains visually stable on Samsung", async ({ page }) => {
+  await openScenario(page, "vault-loaded");
+  await expect(page).toHaveScreenshot("p0-vault-loaded-mobile.png", { fullPage: true });
+});
+
+test("P0 exact-copy hierarchy remains visually stable on Samsung", async ({ page }) => {
+  await openScenario(page, "vault-exact-copy");
+  await expect(page).toHaveScreenshot("p0-vault-exact-copy-mobile.png", { fullPage: true });
+});
+
+test("P0 Vault hierarchy remains visually stable on desktop", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await openScenario(page, "vault-loaded");
+  await expect(page).toHaveScreenshot("p0-vault-loaded-desktop.png", { fullPage: true });
+});
+
+test("P0 exact-copy hierarchy remains visually stable on desktop", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await openScenario(page, "vault-exact-copy");
+  await expect(page).toHaveScreenshot("p0-vault-exact-copy-desktop.png", { fullPage: true });
 });

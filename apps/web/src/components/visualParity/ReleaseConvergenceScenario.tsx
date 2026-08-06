@@ -1,15 +1,26 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
 import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import ProductState from "@/components/layout/ProductState";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
+import type { VaultCardData } from "@/components/vault/VaultCardTile";
+import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
+import ReleaseConvergenceVaultTileFixture from "@/components/visualParity/ReleaseConvergenceVaultTileFixture";
 
 export const RELEASE_CONVERGENCE_SCENARIOS = [
   "search-vault-bridge",
   "search-result-hierarchy",
   "card-detail-hierarchy",
+  "vault-loaded",
+  "vault-empty",
+  "vault-private",
+  "vault-partial-error",
+  "vault-duplicate-copy",
+  "vault-offline",
+  "vault-exact-copy",
   "error-state",
   "private-state",
 ] as const;
@@ -186,6 +197,205 @@ function CardDetailHierarchy() {
   );
 }
 
+const VAULT_SINGLE_COPY: VaultCardData = {
+  id: "fixture-vault-pikachu",
+  vault_item_id: "fixture-vault-item-pikachu",
+  gv_vi_id: "GV-VI-FIXTURE-PIKACHU-RH",
+  card_id: "fixture-card-print-pikachu",
+  gv_id: "GV-FIXTURE-PIKACHU",
+  name: "Pikachu",
+  variant_key: "standard",
+  printed_identity_modifier: "",
+  set_identity_model: "parent_with_finish_children",
+  set_code: "MEW",
+  set_name: "Scarlet & Violet 151",
+  number: "025",
+  condition_label: "NM",
+  intent: "hold",
+  primary_intent: "hold",
+  hold_count: 1,
+  trade_count: 0,
+  sell_count: 0,
+  showcase_count: 0,
+  in_play_count: 0,
+  owned_count: 1,
+  raw_count: 1,
+  slab_count: 0,
+  removable_raw_instance_id: "fixture-instance-pikachu",
+  slab_items: [],
+  copy_items: [{
+    instance_id: "fixture-instance-pikachu",
+    gv_vi_id: "GV-VI-FIXTURE-PIKACHU-RH",
+    card_printing_id: "fixture-printing-pikachu-rh",
+    finish_label: "Reverse Holo",
+    intent: "hold",
+    condition_label: "NM",
+    is_graded: false,
+    grader: null,
+    grade: null,
+    cert_number: null,
+    notes: null,
+    created_at: "2026-08-04T18:00:00.000Z",
+    market_price: 3.42,
+  }],
+  effective_price: 3.42,
+  pricing_updated_at: "2026-08-05T08:15:00.000Z",
+  priced_raw_copy_count: 1,
+  unpriced_raw_copy_count: 0,
+  canonical_image_status: "missing_variant_visual",
+  canonical_image_note: "Exact finish image is not available.",
+  canonical_display_image_kind: "missing_variant_visual",
+  created_at: "2026-08-04T18:00:00.000Z",
+  is_slab: false,
+  grader: null,
+  grade: null,
+  cert_number: null,
+  is_shared: false,
+  active_message_count: 0,
+  unread_message_count: 0,
+  messages_href: null,
+};
+
+const VAULT_DUPLICATE_COPY: VaultCardData = {
+  ...VAULT_SINGLE_COPY,
+  id: "fixture-vault-charizard",
+  vault_item_id: "fixture-vault-item-charizard",
+  gv_vi_id: null,
+  card_id: "fixture-card-print-charizard",
+  gv_id: "GV-FIXTURE-CHARIZARD",
+  name: "Charizard ex",
+  set_code: "OBF",
+  set_name: "Obsidian Flames",
+  number: "125",
+  condition_label: "Mixed",
+  intent: "showcase",
+  primary_intent: "showcase",
+  hold_count: 1,
+  showcase_count: 1,
+  in_play_count: 1,
+  owned_count: 2,
+  raw_count: 2,
+  removable_raw_instance_id: null,
+  copy_items: [
+    {
+      ...VAULT_SINGLE_COPY.copy_items[0],
+      instance_id: "fixture-instance-charizard-normal",
+      gv_vi_id: "GV-VI-FIXTURE-CHARIZARD-NORMAL",
+      card_printing_id: "fixture-printing-charizard-normal",
+      finish_label: "Holofoil",
+      intent: "showcase",
+    },
+    {
+      ...VAULT_SINGLE_COPY.copy_items[0],
+      instance_id: "fixture-instance-charizard-reverse",
+      gv_vi_id: "GV-VI-FIXTURE-CHARIZARD-REVERSE",
+      card_printing_id: "fixture-printing-charizard-reverse",
+      finish_label: "Reverse Holo",
+      condition_label: "LP",
+    },
+  ],
+  effective_price: 15.26,
+  priced_raw_copy_count: 2,
+  canonical_image_status: "verified",
+  canonical_image_note: null,
+  canonical_display_image_kind: "exact",
+  is_shared: true,
+};
+
+function VaultFixtureShell({ children, title = "Vault" }: { children: ReactNode; title?: string }) {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] pb-[104px] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title={title} />
+      {children}
+      <MobileParityDock activeKey="vault" wallHref="/wall" />
+    </div>
+  );
+}
+
+function VaultLoaded() {
+  return (
+    <VaultFixtureShell>
+      <main className="mx-auto w-full max-w-5xl space-y-6 px-4 py-5">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-slate-200/80 pb-4 dark:border-white/[0.08]">
+          <div>
+            <p className="gv-eyebrow">Your collection</p>
+            <h2 className="mt-1 text-2xl font-semibold">24 cards · 18 unique · 6 sets</h2>
+          </div>
+          <p className="text-sm text-slate-500">Value pending</p>
+        </div>
+        <label className="block">
+          <span className="sr-only">Search your Vault</span>
+          <input className="gv-input min-h-11 w-full" readOnly placeholder="Search your Vault" />
+        </label>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <ReleaseConvergenceVaultTileFixture item={VAULT_SINGLE_COPY} />
+          <ReleaseConvergenceVaultTileFixture item={VAULT_DUPLICATE_COPY} />
+        </div>
+      </main>
+    </VaultFixtureShell>
+  );
+}
+
+function VaultDuplicateCopy() {
+  return (
+    <VaultFixtureShell title="Card family">
+      <main className="mx-auto w-full max-w-xl space-y-5 px-4 py-5">
+        <div>
+          <p className="gv-eyebrow">Card family</p>
+          <h2 className="mt-1 text-2xl font-semibold">Choose an exact copy</h2>
+          <p className="mt-1 text-sm text-slate-500">This family contains more than one finish.</p>
+        </div>
+        <div className="max-w-[330px]">
+          <ReleaseConvergenceVaultTileFixture item={VAULT_DUPLICATE_COPY} initialExpanded />
+        </div>
+      </main>
+    </VaultFixtureShell>
+  );
+}
+
+function VaultExactCopy() {
+  return (
+    <VaultFixtureShell title="Exact copy">
+      <main className="mx-auto w-full max-w-6xl px-4 py-5">
+        <VaultExactCopyHero
+          eyebrow="Your exact copy"
+          cardName="Pikachu"
+          setName="Scarlet & Violet 151"
+          setCode="MEW"
+          number="025"
+          gvId="GV-FIXTURE-PIKACHU"
+          gvviId="GV-VI-FIXTURE-PIKACHU-RH"
+          finishLabel="Reverse Holo"
+          conditionLabel="NM"
+          isGraded={false}
+          statusLabel="Active"
+          intentLabel="Hold"
+          contextLabel="This copy is in your Vault."
+          actions={<><Link href="/vault" className="gv-secondary-button">Back to Vault</Link><Link href="/card/GV-FIXTURE-PIKACHU" className="gv-primary-button">View card</Link></>}
+          evidence={<p>Added Aug 4, 2026</p>}
+        />
+      </main>
+    </VaultFixtureShell>
+  );
+}
+
+function VaultState({ kind }: { kind: "empty" | "private" | "partial" | "offline" }) {
+  const model = {
+    empty: { tone: "neutral" as const, eyebrow: "No cards yet", title: "Your Vault is ready", description: "Add an exact card version from Search to start your collection." },
+    private: { tone: "private" as const, eyebrow: "Private collection", title: "This Vault is not shared", description: "Only the collector can see private copies and collection details." },
+    partial: { tone: "error" as const, eyebrow: "Some details are unavailable", title: "Your cards are still here", description: "Collection cards loaded, but value and recent activity could not be refreshed. No ownership data changed." },
+    offline: { tone: "error" as const, eyebrow: "You are offline", title: "Vault could not refresh", description: "Previously loaded collection data was not changed. Reconnect and try again." },
+  }[kind];
+  return (
+    <VaultFixtureShell>
+      <main className="mx-auto max-w-2xl px-4 py-12">
+        <ProductState {...model} action={kind === "empty" ? <Link href="/explore" className="gv-primary-button">Search cards</Link> : <button type="button" className="gv-primary-button">Try again</button>} />
+        {kind === "partial" ? <div className="mt-8 max-w-[190px]"><ReleaseConvergenceVaultTileFixture item={VAULT_SINGLE_COPY} /></div> : null}
+      </main>
+    </VaultFixtureShell>
+  );
+}
+
 function ErrorState() {
   return (
     <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
@@ -231,6 +441,27 @@ export function ReleaseConvergenceScenario({ scenario }: { scenario: ReleaseConv
   }
   if (scenario === "card-detail-hierarchy") {
     return <CardDetailHierarchy />;
+  }
+  if (scenario === "vault-loaded") {
+    return <VaultLoaded />;
+  }
+  if (scenario === "vault-empty") {
+    return <VaultState kind="empty" />;
+  }
+  if (scenario === "vault-private") {
+    return <VaultState kind="private" />;
+  }
+  if (scenario === "vault-partial-error") {
+    return <VaultState kind="partial" />;
+  }
+  if (scenario === "vault-duplicate-copy") {
+    return <VaultDuplicateCopy />;
+  }
+  if (scenario === "vault-offline") {
+    return <VaultState kind="offline" />;
+  }
+  if (scenario === "vault-exact-copy") {
+    return <VaultExactCopy />;
   }
   if (scenario === "private-state") {
     return <PrivateState />;

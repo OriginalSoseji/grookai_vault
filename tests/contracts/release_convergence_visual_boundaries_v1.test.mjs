@@ -59,6 +59,7 @@ test("shared product states govern root and Binder failure surfaces", () => {
   const rootError = read("apps/web/src/app/error.tsx");
   const notFound = read("apps/web/src/app/not-found.tsx");
   const binderError = read("apps/web/src/app/binders/error.tsx");
+  const vault = read("apps/web/src/components/vault/VaultCollectionView.tsx");
 
   assert.match(state, /tone\?: "neutral" \| "error" \| "private"/);
   assert.match(state, /role=\{tone === "error" \? "alert" : "status"\}/);
@@ -67,6 +68,8 @@ test("shared product states govern root and Binder failure surfaces", () => {
   assert.match(notFound, /<ProductState/);
   assert.match(notFound, /old, private, or no longer shared/);
   assert.match(binderError, /<ProductState/);
+  assert.match(vault, /<ProductState/);
+  assert.doesNotMatch(vault, /Vault could not be loaded right now:/);
 });
 
 test("collector card-art surfaces use the canonical five-by-seven frame", () => {
@@ -118,5 +121,46 @@ test("public entry copy avoids internal implementation language", () => {
 
   for (const file of files) {
     assert.doesNotMatch(read(file), internalLanguage, `${file} leaks internal language`);
+  }
+});
+
+test("Vault hierarchy preserves family and exact-copy identity boundaries", () => {
+  const primitives = read("apps/web/src/components/vault/VaultCardPrimitives.tsx");
+  const tile = read("apps/web/src/components/vault/VaultCardTile.tsx");
+  const mobile = read("apps/web/src/components/vault/VaultMobileViews.tsx");
+  const familyPage = read("apps/web/src/app/vault/card/[cardId]/page.tsx");
+  const ownerCopy = read("apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx");
+  const publicCopy = read("apps/web/src/app/gvvi/[gvvi_id]/page.tsx");
+  const hero = read("apps/web/src/components/vault/VaultExactCopyHero.tsx");
+
+  assert.match(primitives, /Mixed finishes/);
+  assert.match(primitives, /Finish assignment needed/);
+  assert.match(tile, /data-vault-copy-presentation/);
+  assert.match(mobile, /data-vault-copy-presentation/);
+  assert.match(tile, /<VaultEvidenceDisclosure/);
+  assert.doesNotMatch(tile, /<VaultInsetCard/);
+  assert.match(familyPage, /getVaultCopyPresentationSummary/);
+  assert.match(ownerCopy, /<VaultExactCopyHero/);
+  assert.match(publicCopy, /<VaultExactCopyHero/);
+  assert.match(hero, /Exact copy ID:/);
+  assert.match(hero, /Finish not selected/);
+  assert.match(hero, /aspect-\[5\/7\]/);
+});
+
+test("release fixtures cover Vault loaded, empty, private, partial, duplicate, and offline states", () => {
+  const fixture = read("apps/web/src/components/visualParity/ReleaseConvergenceScenario.tsx");
+  const parity = read("apps/web/tests/parity/release-convergence.spec.ts");
+
+  for (const scenario of [
+    "vault-loaded",
+    "vault-empty",
+    "vault-private",
+    "vault-partial-error",
+    "vault-duplicate-copy",
+    "vault-offline",
+    "vault-exact-copy",
+  ]) {
+    assert.match(fixture, new RegExp(`\\"${scenario}\\"`));
+    assert.match(parity, new RegExp(`\\"${scenario}\\"`));
   }
 });

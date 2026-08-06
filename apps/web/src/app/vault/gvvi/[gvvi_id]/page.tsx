@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
-import PublicCardImage from "@/components/PublicCardImage";
-import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
@@ -117,127 +116,48 @@ export default async function VaultInstancePage(
 
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
-      <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-7 md:py-5">
-        <PageIntro
-          eyebrow="GVVI"
-          title={detail.cardName}
-          description="One exact owned copy."
-          size="compact"
-          actions={
-            <>
-              <Link
-                href="/vault"
-                prefetch={false}
-                className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-              >
-                Back to vault
+      <VaultExactCopyHero
+        eyebrow="Your exact copy"
+        cardName={detail.cardName}
+        setName={detail.setName}
+        setCode={detail.setCode}
+        number={detail.number}
+        gvId={detail.gvId}
+        gvviId={detail.gvviId}
+        primaryImageUrl={heroImage.primaryImageUrl}
+        fallbackImageUrl={heroImage.fallbackImageUrl}
+        fallbackImageUrls={heroImage.fallbackImageUrls.slice(1)}
+        finishLabel={detail.finishLabel}
+        conditionLabel={detail.conditionLabel}
+        isGraded={detail.isGraded}
+        grader={detail.grader}
+        grade={detail.grade}
+        certNumber={detail.certNumber}
+        statusLabel={isActive ? "Active" : "Archived"}
+        intentLabel={getVaultIntentLabel(detail.intent)}
+        contextLabel={isActive ? "This copy is in your Vault." : "This copy remains available as preserved history."}
+        actions={
+          <>
+            <Link href="/vault" prefetch={false} className="gv-secondary-button">
+              Back to Vault
+            </Link>
+            {detail.gvId ? (
+              <Link href={`/card/${detail.gvId}`} prefetch={false} className="gv-primary-button">
+                View card
               </Link>
-              {detail.gvId ? (
-                <Link
-                  href={`/card/${detail.gvId}`}
-                  prefetch={false}
-                  className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-                >
-                  View card
-                </Link>
-              ) : null}
-            </>
-          }
-        />
-      </PageSection>
+            ) : null}
+          </>
+        }
+        evidence={
+          <>
+            <p>Added {formatTimestamp(detail.createdAt)}</p>
+            {detail.archivedAt ? <p>Archived {formatTimestamp(detail.archivedAt)}</p> : null}
+          </>
+        }
+      />
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
         <div className="space-y-6">
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
-            <SectionHeader
-              title="Identity"
-              description="Canonical card identity plus exact owned-copy identity."
-            />
-
-            <div className="grid gap-5 md:grid-cols-[180px_minmax(0,1fr)]">
-              <div className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-3">
-                <PublicCardImage
-                  src={heroImage.primaryImageUrl ?? undefined}
-                  fallbackSrc={heroImage.fallbackImageUrl ?? undefined}
-                  fallbackSources={heroImage.fallbackImageUrls.slice(1)}
-                  alt={detail.cardName}
-                  imageClassName="aspect-[5/7] w-full object-contain"
-                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={detail.cardName}
-                />
-              </div>
-
-              <div className="space-y-4">
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Card</p>
-                    <p className="mt-2 text-sm font-medium text-slate-950">{detail.cardName}</p>
-                    <p className="mt-1 text-sm text-slate-600">
-                      {[detail.setName || detail.setCode, detail.number !== "—" ? `#${detail.number}` : undefined]
-                        .filter(Boolean)
-                        .join(" • ")}
-                    </p>
-                  </div>
-                  <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Identity</p>
-                    <div className="mt-2 space-y-1 text-sm text-slate-700">
-                      <p>GV-ID {detail.gvId}</p>
-                      <p>GVVI {detail.gvviId}</p>
-                    </div>
-                  </div>
-                  <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Ownership</p>
-                    <div className="mt-2 space-y-1 text-sm text-slate-700">
-                      <p>{isActive ? "Active copy" : "Archived copy"}</p>
-                      <p>Intent {getVaultIntentLabel(detail.intent)}</p>
-                    </div>
-                  </div>
-                  <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Created</p>
-                    <div className="mt-2 space-y-1 text-sm text-slate-700">
-                      <p>{formatTimestamp(detail.createdAt)}</p>
-                      {detail.archivedAt ? <p>Archived {formatTimestamp(detail.archivedAt)}</p> : null}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </PageSection>
-
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
-            <SectionHeader
-              title="Ownership"
-              description="Condition, slab identity, and exact current state for this owned copy."
-            />
-
-            <div className="grid gap-3 md:grid-cols-2">
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Condition</p>
-                <p className="mt-2 text-sm font-medium text-slate-950">{detail.isGraded ? "SLAB" : detail.conditionLabel ?? "Unknown"}</p>
-              </div>
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Finish</p>
-                <p className="mt-2 text-sm font-medium text-slate-950">
-                  {detail.isGraded ? "—" : detail.finishLabel ?? "Finish not selected"}
-                </p>
-              </div>
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Format</p>
-                <p className="mt-2 text-sm font-medium text-slate-950">{detail.isGraded ? "Graded slab" : "Raw copy"}</p>
-              </div>
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Grader</p>
-                <p className="mt-2 text-sm font-medium text-slate-950">{detail.grader ?? "—"}</p>
-              </div>
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Grade / Cert</p>
-                <p className="mt-2 text-sm font-medium text-slate-950">
-                  {[detail.grade, detail.certNumber ? `Cert ${detail.certNumber}` : null].filter(Boolean).join(" • ") || "—"}
-                </p>
-              </div>
-            </div>
-          </PageSection>
-
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
             <SectionHeader
               title="Notes / Media"
