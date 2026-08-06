@@ -54,6 +54,10 @@ test("route matrix gives every surface one shell mode and preserves Scan semanti
   assert.deepEqual(scan.routes, ["/scan"]);
   assert.equal(scan.shell_mode, "fullscreen");
   assert.equal(scan.dock, "hidden");
+  assert.ok(scan.required_states.includes("manual_search_handoff"));
+  assert.ok(scan.required_states.includes("camera_denied"));
+  assert.ok(!scan.required_states.includes("detecting"));
+  assert.ok(!scan.required_states.includes("match"));
 
   const importer = matrix.surfaces.find(
     (surface) => surface.surface === "Import and photos",
@@ -61,6 +65,9 @@ test("route matrix gives every surface one shell mode and preserves Scan semanti
   assert.deepEqual(importer.routes, ["/vault/import"]);
   assert.equal(importer.shell_mode, "fullscreen");
   assert.equal(importer.dock, "hidden");
+  assert.ok(importer.required_states.includes("exact_match"));
+  assert.ok(importer.required_states.includes("ambiguous_not_imported"));
+  assert.ok(!importer.required_states.includes("photos"));
 
   const binders = matrix.surfaces.find(
     (surface) => surface.surface === "Binders",

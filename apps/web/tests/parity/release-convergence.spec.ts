@@ -31,6 +31,9 @@ const scenarios = [
   "binder-invite-unavailable",
   "messages-thread",
   "messages-empty",
+  "login-scan-continuity",
+  "import-exact-review",
+  "information-page",
   "error-state",
   "private-state",
 ] as const;
@@ -141,6 +144,24 @@ test("empty Messages keeps a collector-facing recovery path", async ({ page }) =
   await openScenario(page, "messages-empty");
   await expect(page.getByText("No active messages", { exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Browse collectors" })).toHaveAttribute("href", "/network");
+});
+
+test("signed-out Scan continuity names the destination", async ({ page }) => {
+  await openScenario(page, "login-scan-continuity");
+  await expect(page.getByRole("heading", { name: "Sign in to Scan" })).toBeVisible();
+  await expect(page.getByText("continue directly to the card scanner", { exact: false })).toBeVisible();
+});
+
+test("Vault import separates exact matches from ambiguous rows", async ({ page }) => {
+  await openScenario(page, "import-exact-review");
+  await expect(page.getByText("Exact card matched", { exact: true })).toBeVisible();
+  await expect(page.getByText("2 possible exact cards — not imported", { exact: true })).toBeVisible();
+});
+
+test("information routes share one readable dark-mode template", async ({ page }) => {
+  await openScenario(page, "information-page");
+  await expect(page.getByRole("heading", { name: "Support", exact: true })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Information links" })).toBeVisible();
 });
 
 test("desktop account menu supports keyboard focus without exposing private links early", async ({ page }) => {

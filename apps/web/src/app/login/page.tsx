@@ -16,10 +16,52 @@ function getSafeNextPath(nextParam?: string | null) {
   return getSafePostAuthPath(nextParam);
 }
 
+function getDestinationCopy(nextPath: string) {
+  if (nextPath === "/scan") {
+    return { title: "Scan", description: "Sign in, then continue directly to the card scanner." };
+  }
+  if (nextPath === "/network/inbox") {
+    return { title: "Messages", description: "Sign in, then return to your card conversations." };
+  }
+  if (nextPath === "/wall" || nextPath.startsWith("/wall?")) {
+    return { title: "your Wall", description: "Sign in, then return to your shared collection." };
+  }
+  if (nextPath === "/binders" || nextPath.startsWith("/binders/")) {
+    return { title: "Binders", description: "Sign in, then continue to your collection goals." };
+  }
+  if (nextPath === "/vault" || nextPath.startsWith("/vault/")) {
+    return { title: "your Vault", description: "Sign in, then continue to your collection and exact copies." };
+  }
+  if (nextPath === "/account" || nextPath.startsWith("/account?")) {
+    return { title: "your account", description: "Sign in, then continue to your account settings." };
+  }
+  return { title: "Grookai Vault", description: "Sign in to build your Vault, track exact cards, and connect with collectors." };
+}
+
+function getAuthErrorMessage(error: unknown, mode: "signin" | "signup") {
+  const message = error instanceof Error ? error.message.toLowerCase() : "";
+  if (message.includes("invalid login") || message.includes("invalid credentials")) {
+    return "The email or password did not match. Check both fields and try again.";
+  }
+  if (message.includes("email not confirmed")) {
+    return "Confirm your email address before signing in.";
+  }
+  if (message.includes("already registered") || message.includes("already exists")) {
+    return "An account already uses this email. Sign in instead.";
+  }
+  if (message.includes("rate limit") || message.includes("too many")) {
+    return "Too many attempts were made. Wait a moment and try again.";
+  }
+  return mode === "signin"
+    ? "Sign-in could not be completed. Try again."
+    : "Account creation could not be completed. Try again.";
+}
+
 function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = getSafeNextPath(searchParams.get("next"));
+  const destination = getDestinationCopy(nextPath);
   const callbackError = searchParams.get("error");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,8 +94,8 @@ function LoginPageContent() {
         }
       }
       router.replace(nextPath);
-    } catch (err: any) {
-      setError(err?.message ?? "Auth failed");
+    } catch (err: unknown) {
+      setError(getAuthErrorMessage(err, mode));
     } finally {
       setLoading(false);
     }
@@ -63,8 +105,8 @@ function LoginPageContent() {
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-6">
       <PageIntro
         eyebrow="Account"
-        title={`Sign ${mode === "signin" ? "in" : "up"}`}
-        description="Sign in to build your vault, track your cards, and share your collection."
+        title={mode === "signin" ? `Sign in to ${destination.title}` : `Create an account for ${destination.title}`}
+        description={destination.description}
         size="compact"
       />
 
@@ -72,7 +114,7 @@ function LoginPageContent() {
         <div className="space-y-3">
           <GoogleSignInButton
             label="Sign in with Google"
-            className="w-full rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+            className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
             nextPath={nextPath}
             onError={setError}
           />
@@ -82,7 +124,7 @@ function LoginPageContent() {
           <label className="block text-sm font-medium text-slate-700">
             <span>Email</span>
             <input
-              className="mt-1.5 h-11 w-full rounded-full border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              className="mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -92,7 +134,7 @@ function LoginPageContent() {
           <label className="block text-sm font-medium text-slate-700">
             <span>Password</span>
             <input
-              className="mt-1.5 h-11 w-full rounded-full border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              className="mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -101,7 +143,7 @@ function LoginPageContent() {
           </label>
           {error ? <p className="text-sm text-red-600">{error}</p> : null}
           <button
-            className="w-full rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+            className="gv-primary-button w-full"
             type="submit"
             disabled={loading}
           >

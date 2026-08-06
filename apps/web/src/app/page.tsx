@@ -223,8 +223,8 @@ export default async function HomePage() {
             <Link href="/explore" className="gv-primary-button">
               Explore cards
             </Link>
-            <Link href="/early-access" className="gv-secondary-button">
-              Join early access
+            <Link href="/login?next=%2Fvault" className="gv-secondary-button">
+              Sign in
             </Link>
           </div>
 
@@ -279,10 +279,10 @@ export default async function HomePage() {
 
       <section className="space-y-5">
         <div className="mx-auto max-w-3xl space-y-2 text-center">
-          <p className="gv-eyebrow">Collector intelligence</p>
-          <h2 className="gv-section-title">Start with the relationship, not the row.</h2>
+          <p className="gv-eyebrow">Built for collectors</p>
+          <h2 className="gv-section-title">Search the details collectors care about.</h2>
           <p className="gv-body-copy text-sm">
-            Grookai understands card identity, special variants, stamp families, Pokemon completion, image truth, and vault ownership as connected collector facts.
+            Find exact versions, special stamps, character appearances, collection gaps, and cards other collectors have available.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
@@ -307,7 +307,7 @@ export default async function HomePage() {
         <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
           <div className="space-y-2">
             <p className="gv-eyebrow">Variant families</p>
-            <h2 className="gv-section-title">Special cards are first-class identities.</h2>
+            <h2 className="gv-section-title">Special versions stay distinct.</h2>
           </div>
           <Link href="/explore?identity=stamped" className="gv-secondary-button self-start px-4 py-2 text-sm md:self-auto">
             Browse stamped lanes
@@ -320,15 +320,12 @@ export default async function HomePage() {
               <Link
                 key={family.family_key}
                 href={`/explore?q=${encodeURIComponent(family.family_label)}`}
-                className="group rounded-[16px] border border-slate-200/70 bg-white/78 p-5 shadow-[0_30px_80px_-62px_rgba(15,23,42,0.52)] transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-white/[0.14] dark:hover:bg-white/[0.06]"
+                className="group rounded-lg border border-slate-200/70 bg-white/78 p-5 transition hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-white/[0.14] dark:hover:bg-white/[0.06]"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
                     <span className="rounded-full bg-slate-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white dark:bg-white dark:text-slate-950">
                       {family.variant_category.replace(/_/g, " ")}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-300">
-                      {family.confidence}
                     </span>
                   </div>
                   <div>

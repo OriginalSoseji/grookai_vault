@@ -136,6 +136,69 @@ test("Messages and Want Matches preserve exact-card context and governed actions
   }
 });
 
+test("signed-out actions preserve their safe destination without reflecting secret paths", () => {
+  const login = read("apps/web/src/app/login/page.tsx");
+  const access = read("apps/web/src/lib/auth/routeAccess.ts");
+
+  assert.match(login, /Sign in to \$\{destination\.title\}/);
+  assert.match(login, /nextPath === "\/scan"/);
+  assert.match(login, /nextPath === "\/network\/inbox"/);
+  assert.match(login, /nextPath\.startsWith\("\/vault\/"\)/);
+  assert.match(login, /getAuthErrorMessage/);
+  assert.doesNotMatch(login, /setError\(err\?\.message|setError\(error\.message/);
+  assert.match(access, /isBinderSecretPath/);
+  assert.match(access, /buildLoginHref/);
+});
+
+test("Scan and import expose bounded recovery without raw backend errors", () => {
+  const scan = read("apps/web/src/app/scan/ScanClient.tsx");
+  const importer = read("apps/web/src/app/vault/import/ImportClient.tsx");
+
+  assert.match(scan, /No photo is uploaded automatically/);
+  assert.match(scan, /choose its exact printing/);
+  assert.match(importer, /getImportErrorMessage/);
+  assert.match(importer, /Exact card matched/);
+  assert.match(importer, /possible exact cards — not imported/);
+  assert.doesNotMatch(importer, /setParseError\(error instanceof Error \? error\.message/);
+
+  for (const file of [
+    "apps/web/src/app/scan/loading.tsx",
+    "apps/web/src/app/scan/error.tsx",
+    "apps/web/src/app/vault/import/loading.tsx",
+    "apps/web/src/app/vault/import/error.tsx",
+  ]) {
+    assert.ok(read(file).length > 0, `${file} must define a route-local state`);
+  }
+});
+
+test("legal privacy support and deletion share the standalone information template", () => {
+  const template = read("apps/web/src/components/layout/InformationPage.tsx");
+  assert.match(template, /dark:/);
+  assert.match(template, /max-w-3xl/);
+  assert.match(template, /Information links/);
+
+  for (const file of [
+    "apps/web/src/app/legal/page.tsx",
+    "apps/web/src/app/privacy/page.tsx",
+    "apps/web/src/app/support/page.tsx",
+    "apps/web/src/app/account/delete/page.tsx",
+  ]) {
+    assert.match(read(file), /<InformationPage/);
+  }
+});
+
+test("Account recovery hides RPC detail and preserves existing write components", () => {
+  const account = read("apps/web/src/app/account/page.tsx");
+  assert.match(account, /<PublicProfileSettingsForm/);
+  assert.match(account, /<WallSectionsSettingsCard/);
+  assert.match(account, /Profile settings could not load/);
+  assert.match(account, /No account or market data was changed/);
+  assert.doesNotMatch(account, /loadError=\{profileError\?\.message/);
+  assert.doesNotMatch(account, /Founder Signals are unavailable right now: \{founderSignalsError\}/);
+  assert.ok(read("apps/web/src/app/account/loading.tsx").length > 0);
+  assert.match(read("apps/web/src/app/account/error.tsx"), /<ProductState/);
+});
+
 test("collector card-art surfaces use the canonical five-by-seven frame", () => {
   const files = [
     "apps/web/src/components/cards/PokemonCardGridTile.tsx",

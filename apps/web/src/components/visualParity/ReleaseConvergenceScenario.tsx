@@ -7,6 +7,7 @@ import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import ProductState from "@/components/layout/ProductState";
+import InformationPage from "@/components/layout/InformationPage";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
 import NetworkStreamCard from "@/components/network/NetworkStreamCard";
 import { FeaturedWallSection } from "@/components/public/FeaturedWallSection";
@@ -49,6 +50,9 @@ export const RELEASE_CONVERGENCE_SCENARIOS = [
   "binder-invite-unavailable",
   "messages-thread",
   "messages-empty",
+  "login-scan-continuity",
+  "import-exact-review",
+  "information-page",
   "error-state",
   "private-state",
 ] as const;
@@ -741,6 +745,59 @@ function MessagesFixture({ empty = false }: { empty?: boolean }) {
   );
 }
 
+function LoginScanContinuityFixture() {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title="Account" />
+      <main className="mx-auto w-full max-w-md px-4 py-8">
+        <p className="gv-eyebrow">Account</p>
+        <h1 className="gv-display-title mt-2">Sign in to Scan</h1>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Sign in, then continue directly to the card scanner.</p>
+        <form className="mt-6 space-y-4 rounded-lg border border-slate-200 bg-white p-5 dark:border-white/[0.08]">
+          <label className="block text-sm font-medium">Email<input type="email" className="mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4" /></label>
+          <label className="block text-sm font-medium">Password<input type="password" className="mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4" /></label>
+          <button type="button" className="gv-primary-button w-full">Sign in</button>
+        </form>
+      </main>
+    </div>
+  );
+}
+
+function ImportExactReviewFixture() {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title="Vault Import" />
+      <main className="mx-auto w-full max-w-4xl space-y-6 px-4 py-6">
+        <div className="border-b border-slate-200 pb-5 dark:border-white/[0.08]">
+          <p className="gv-eyebrow">Vault import</p>
+          <h1 className="gv-display-title">Review exact cards</h1>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Only one-to-one matches are ready to import.</p>
+        </div>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-white/[0.08]">
+          <table className="min-w-full divide-y divide-slate-200 text-left text-sm dark:divide-white/[0.08]">
+            <thead><tr><th className="px-4 py-3">CSV row</th><th className="px-4 py-3">Match</th></tr></thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-white/[0.08]">
+              <tr><td className="px-4 py-3">Pikachu · 151 · #025</td><td className="px-4 py-3"><strong>Exact card matched</strong><br /><span className="text-xs text-slate-500">Pikachu · Scarlet &amp; Violet 151 · #025</span></td></tr>
+              <tr><td className="px-4 py-3">Charizard · Base Set · #4</td><td className="px-4 py-3 text-amber-700">2 possible exact cards — not imported</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function InformationPageFixture() {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] px-4 text-slate-950 dark:text-white" data-release-convergence-root>
+      <InformationPage eyebrow="Support" title="Support" description="Get help with your account, card data, safety, or a product problem.">
+        <section><h2>Contact support</h2><p>Email support@grookaivault.com with the card, profile, or account involved.</p></section>
+        <section><h2>What to include</h2><p>Include your device, app version, and a screenshot when it helps explain the issue.</p></section>
+      </InformationPage>
+    </div>
+  );
+}
+
 type DesktopShellFixtureKind =
   | "wide"
   | "narrow"
@@ -892,6 +949,15 @@ export function ReleaseConvergenceScenario({ scenario }: { scenario: ReleaseConv
   }
   if (scenario === "messages-empty") {
     return <MessagesFixture empty />;
+  }
+  if (scenario === "login-scan-continuity") {
+    return <LoginScanContinuityFixture />;
+  }
+  if (scenario === "import-exact-review") {
+    return <ImportExactReviewFixture />;
+  }
+  if (scenario === "information-page") {
+    return <InformationPageFixture />;
   }
   if (scenario === "private-state") {
     return <PrivateState />;

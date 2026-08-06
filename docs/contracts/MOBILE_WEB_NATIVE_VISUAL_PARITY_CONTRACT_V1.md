@@ -104,9 +104,12 @@ Rules:
 - Scan is a global action, not a retained shell destination.
 - Opening Scan preserves the prior stateful root and its scroll/state.
 - Cancel or Back from Scan returns to the prior root.
-- A successful scan may explicitly route to Vault.
-- `/vault/import` remains an import/photos utility and is not the dock Scan
-  target.
+- A successful local capture may hand off to Search. A card reaches Vault only
+  after the collector selects an exact printing through the existing card path.
+- The current Scan surface does not claim image recognition; it captures a
+  local photo and provides a truthful manual exact-card handoff.
+- `/vault/import` remains a Collectr CSV utility and is not the dock Scan
+  target. It does not accept card photos.
 - The dock is hidden while the keyboard is open and on fullscreen, pushed,
   standalone, bearer-token, and authentication surfaces.
 - Mobile dock geometry is a maximum width of `390px`, radius `34px`, normal

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
   title: "Terms and Legal | Grookai Vault",
@@ -8,16 +9,11 @@ export const metadata: Metadata = {
 
 export default function LegalPage() {
   return (
-    <div className="mx-auto max-w-3xl space-y-6 py-8">
-      <div className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Information</p>
-        <h1 className="text-3xl font-semibold text-slate-950">Terms and Legal</h1>
-        <p className="text-sm leading-6 text-slate-600">
-          These terms are provided for immediate public clarity and may be updated after legal counsel review.
-        </p>
-      </div>
-
-      <div className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-7 text-sm leading-7 text-slate-700 shadow-sm">
+    <InformationPage
+      eyebrow="Information"
+      title="Terms and Legal"
+      description="These terms are provided for immediate public clarity and may be updated after legal counsel review."
+    >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Catalog Data, Grookai IDs, and Automated Access</h2>
           <p>
@@ -47,7 +43,7 @@ export default function LegalPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Trademark and Image Notices</h2>
         <p>Pokémon and Pokémon TCG are trademarks of Nintendo, Creatures Inc., and GAME FREAK.</p>
         <p>
@@ -64,14 +60,13 @@ export default function LegalPage() {
         </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Legal Review</h2>
           <p>
             This page is not legal advice and does not replace attorney review. Grookai Vault may update these terms
             as the product, catalog, and data licensing policies evolve.
           </p>
         </section>
-      </div>
-    </div>
+    </InformationPage>
   );
 }

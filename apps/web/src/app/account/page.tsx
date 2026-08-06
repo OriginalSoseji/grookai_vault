@@ -105,23 +105,20 @@ export default async function AccountPage(props: AccountPageProps) {
       : []),
   ];
   let founderSignals: FounderInsightBundle | null = null;
-  let founderSignalsError: string | null = null;
+  let founderSignalsError = false;
 
   if (showFounderSignals && activeTab === "vendor-tools") {
     try {
       const admin = createServerAdminClient();
       founderSignals = await getFounderMarketSignals(admin);
-    } catch (error) {
-      founderSignalsError =
-        error instanceof Error
-          ? error.message
-          : "Unknown founder market-signal error";
+    } catch {
+      founderSignalsError = true;
     }
   }
 
   return (
     <div className="space-y-8 py-8">
-      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="border-b border-slate-200 pb-6 dark:border-white/[0.08]">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your Grookai profile</h1>
@@ -132,13 +129,13 @@ export default async function AccountPage(props: AccountPageProps) {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-lg border border-slate-200 bg-white p-6">
           <h2 className="text-xl font-semibold tracking-tight text-slate-950">Signed in</h2>
           <p className="mt-3 text-sm text-slate-600">Email</p>
           <p className="mt-1 text-base font-medium text-slate-900">{user.email ?? "Email unavailable"}</p>
         </div>
 
-        <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Quick Links</h2>
           <div className="mt-4 flex flex-col gap-3">
             <Link
@@ -193,7 +190,7 @@ export default async function AccountPage(props: AccountPageProps) {
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-slate-200 bg-white p-3 shadow-sm">
+      <section className="border-y border-slate-200 py-2 dark:border-white/[0.08]">
         <nav aria-label="Account sections" className="flex flex-wrap gap-2">
           {tabOptions.map((option) => {
             const active = option.value === activeTab;
@@ -222,12 +219,12 @@ export default async function AccountPage(props: AccountPageProps) {
             initialValues={initialProfileValues}
             hasExistingProfile={Boolean(profileRow)}
             userId={user.id}
-            loadError={profileError?.message ?? null}
+            loadError={profileError ? "Profile settings could not load. Your existing profile was not changed." : null}
           />
 
           <WallSectionsSettingsCard initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
 
-          <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <section className="rounded-lg border border-slate-200 bg-white p-6">
             <div className="space-y-4">
               <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950">Community</h2>
@@ -262,7 +259,7 @@ export default async function AccountPage(props: AccountPageProps) {
             </div>
           </section>
 
-          <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <section className="rounded-lg border border-slate-200 bg-white p-6">
             <div className="space-y-4">
               <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
@@ -281,7 +278,7 @@ export default async function AccountPage(props: AccountPageProps) {
           </section>
         </>
       ) : (
-        <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="rounded-lg border border-slate-200 bg-white p-6">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
               Vendor Tools
@@ -295,8 +292,8 @@ export default async function AccountPage(props: AccountPageProps) {
           </div>
 
           {founderSignalsError ? (
-            <div className="mt-6 rounded-[1.25rem] border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-7 text-rose-700">
-              Founder Signals are unavailable right now: {founderSignalsError}
+            <div className="mt-6 rounded-lg border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-7 text-rose-700">
+              Founder Signals are unavailable right now. No account or market data was changed.
             </div>
           ) : founderSignals ? (
             <div className="mt-6">
@@ -306,7 +303,7 @@ export default async function AccountPage(props: AccountPageProps) {
               />
             </div>
           ) : (
-            <div className="mt-6 rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-7 text-slate-600">
+            <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-7 text-slate-600">
               Founder Signals will appear here once the aggregated market
               insight service is available.
             </div>
