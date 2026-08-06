@@ -26,7 +26,32 @@ test("desktop route state maps secondary tools back to one primary pillar", () =
   assert.match(manifest, /matchesRoute\(pathname, "\/network\/inbox"\)[\s\S]*?activeSecondary = "messages"/);
   assert.match(manifest, /matchesRoute\(pathname, "\/binders"\)[\s\S]*?activePrimary = "vault"/);
   assert.match(manifest, /matchesRoute\(pathname, "\/sets"\)[\s\S]*?activePrimary = "search"/);
-  assert.match(manifest, /childContext\(pathname, "\/binders", "Binders", "Binder workspace"\)/);
+  assert.match(manifest, /childContext\(pathname, "\/binders", "Binders", "\/binders", "Binder workspace"\)/);
+});
+
+test("desktop pushed routes link back to real parent destinations", () => {
+  const manifest = read("apps/web/src/lib/desktopShellManifest.ts");
+
+  const expectedParents = [
+    ['"/binder-templates"', '"Binders"', '"/binders"'],
+    ['"/set"', '"Sets"', '"/sets"'],
+    ['"/card"', '"Search"', '"/explore"'],
+    ['"/vault/card"', '"Vault"', '"/vault"'],
+    ['"/vault/gvvi"', '"Vault"', '"/vault"'],
+    ['"/gvvi"', '"Vault"', '"/vault"'],
+    ['"/network/inbox"', '"Messages"', '"/network/inbox"'],
+  ];
+
+  for (const [routeRoot, parentLabel, parentHref] of expectedParents) {
+    assert.ok(
+      manifest.includes(`childContext(pathname, ${routeRoot}, ${parentLabel}, ${parentHref},`),
+      `${routeRoot} must return to ${parentHref}`,
+    );
+  }
+
+  assert.doesNotMatch(manifest, /childContext\(pathname, "\/card", "Search", "\/card"/);
+  assert.doesNotMatch(manifest, /childContext\(pathname, "\/set", "Sets", "\/set"/);
+  assert.doesNotMatch(manifest, /childContext\(pathname, "\/gvvi", "Vault", "\/gvvi"/);
 });
 
 test("desktop shell uses authenticated state without creating another authority path", () => {

@@ -43,12 +43,13 @@ function matchesRoute(pathname: string, root: string) {
 
 function childContext(
   pathname: string,
-  root: string,
+  routeRoot: string,
   parentLabel: string,
+  parentHref: string,
   currentLabel: string,
 ): DesktopRouteContext | null {
-  return pathname !== root && pathname.startsWith(`${root}/`)
-    ? { parentLabel, parentHref: root, currentLabel }
+  return pathname !== routeRoot && pathname.startsWith(`${routeRoot}/`)
+    ? { parentLabel, parentHref, currentLabel }
     : null;
 }
 
@@ -78,16 +79,16 @@ export function getDesktopRouteState(rawPathname: string): DesktopRouteState {
   ) activePrimary = "search";
 
   const context =
-    childContext(pathname, "/binders", "Binders", "Binder workspace") ??
-    childContext(pathname, "/binder-templates", "Binders", "Binder template") ??
-    childContext(pathname, "/sets", "Sets", "Set detail") ??
-    childContext(pathname, "/set", "Sets", "Set detail") ??
-    childContext(pathname, "/dex", "Dex", "Pokémon detail") ??
-    childContext(pathname, "/card", "Search", "Card detail") ??
-    childContext(pathname, "/vault/card", "Vault", "Card copies") ??
-    childContext(pathname, "/vault/gvvi", "Vault", "Exact copy") ??
-    childContext(pathname, "/gvvi", "Vault", "Exact copy") ??
-    childContext(pathname, "/network/inbox", "Pulse", "Messages") ??
+    childContext(pathname, "/binders", "Binders", "/binders", "Binder workspace") ??
+    childContext(pathname, "/binder-templates", "Binders", "/binders", "Binder template") ??
+    childContext(pathname, "/sets", "Sets", "/sets", "Set detail") ??
+    childContext(pathname, "/set", "Sets", "/sets", "Set detail") ??
+    childContext(pathname, "/dex", "Dex", "/dex", "Pokémon detail") ??
+    childContext(pathname, "/card", "Search", "/explore", "Card detail") ??
+    childContext(pathname, "/vault/card", "Vault", "/vault", "Card copies") ??
+    childContext(pathname, "/vault/gvvi", "Vault", "/vault", "Exact copy") ??
+    childContext(pathname, "/gvvi", "Vault", "/vault", "Exact copy") ??
+    childContext(pathname, "/network/inbox", "Messages", "/network/inbox", "Conversation") ??
     null;
 
   return { activePrimary, activeSecondary, context };
