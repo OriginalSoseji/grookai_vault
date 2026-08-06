@@ -11,6 +11,9 @@ const healthyMetrics = {
   distinct_child_count: 143,
   exact_child_count: 143,
   exact_hidden_review_count: 143,
+  exact_quarantined_hidden_review_count: 0,
+  exact_verified_hidden_review_count: 143,
+  unexpected_hidden_review_status_count: 0,
   public_printing_option_leak_count: 0,
   external_printing_mapping_count: 0,
   qualification_candidate_hidden_child_count: 0,
@@ -26,6 +29,27 @@ test('health policy allows parent discovery mappings but prohibits child publica
     healthy: true,
     failures: [],
   });
+});
+
+test('health policy accepts either quarantined or verified reviews while every child remains hidden', () => {
+  const quarantinedMetrics = {
+    ...healthyMetrics,
+    exact_quarantined_hidden_review_count: 143,
+    exact_verified_hidden_review_count: 0,
+  };
+
+  assert.equal(validateHealthMetrics(quarantinedMetrics, 143).healthy, true);
+  assert.equal(validateHealthMetrics(healthyMetrics, 143).healthy, true);
+});
+
+test('health policy rejects unexpected review states even when the row is hidden', () => {
+  const result = validateHealthMetrics({
+    ...healthyMetrics,
+    unexpected_hidden_review_status_count: 1,
+  }, 143);
+
+  assert.equal(result.healthy, false);
+  assert.ok(result.failures.includes('unexpected_hidden_review_status_count:1!=0'));
 });
 
 test('health policy fails on any hidden child price or public printing leak', () => {

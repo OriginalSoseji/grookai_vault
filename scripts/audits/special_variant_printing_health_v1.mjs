@@ -54,6 +54,7 @@ export function validateHealthMetrics(metrics, expectedCount) {
     'exact_hidden_review_count',
   ];
   const zeroKeys = [
+    'unexpected_hidden_review_status_count',
     'public_printing_option_leak_count',
     'external_printing_mapping_count',
     'qualification_candidate_hidden_child_count',
@@ -92,9 +93,35 @@ async function queryMetrics(client, targets) {
            on review.id = target.review_id
           and review.card_printing_id = target.child_id
           and review.active = true
-          and review.review_status = 'quarantined_candidate'
           and review.public_visibility = 'hidden_pending_review')
         as exact_hidden_review_count,
+      (select count(*)::int
+         from target
+         join public.card_printing_truth_reviews review
+           on review.id = target.review_id
+          and review.card_printing_id = target.child_id
+          and review.active = true
+          and review.review_status = 'quarantined_candidate'
+          and review.public_visibility = 'hidden_pending_review')
+        as exact_quarantined_hidden_review_count,
+      (select count(*)::int
+         from target
+         join public.card_printing_truth_reviews review
+           on review.id = target.review_id
+          and review.card_printing_id = target.child_id
+          and review.active = true
+          and review.review_status = 'verified'
+          and review.public_visibility = 'hidden_pending_review')
+        as exact_verified_hidden_review_count,
+      (select count(*)::int
+         from target
+         join public.card_printing_truth_reviews review
+           on review.id = target.review_id
+          and review.card_printing_id = target.child_id
+          and review.active = true
+          and review.public_visibility = 'hidden_pending_review'
+          and review.review_status not in ('quarantined_candidate', 'verified'))
+        as unexpected_hidden_review_status_count,
       (select count(*)::int
          from target
          join lateral public.get_public_card_printing_options_v1(

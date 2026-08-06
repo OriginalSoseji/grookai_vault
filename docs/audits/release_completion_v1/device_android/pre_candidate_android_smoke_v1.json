@@ -1,0 +1,40 @@
+{
+  "schema_version": "GROOKAI_PRE_CANDIDATE_ANDROID_SMOKE_V1",
+  "observed_at": "2026-08-06T20:18:19.9385304Z",
+  "source": {
+    "branch": "release/8-week-completion-v1",
+    "baseline_commit": "e8fcbdbb47b97a9db215d3874ea9ae83ce075adf",
+    "candidate_status": "pre_candidate",
+    "build_mode": "debug_diagnostic",
+    "apk_sha256": "8e6ea62e46ad96bce6bee74e363a9f4698bb870873d0dc24292efea31b7b0203"
+  },
+  "device": {
+    "model": "SM-S908U",
+    "android_release": "16",
+    "package": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21
+  },
+  "database_readback": {
+    "interaction_rows": 57,
+    "distinct_card_print_ids": 9,
+    "resolved_card_print_ids": 9,
+    "group_state_rows": 12,
+    "received_rows": 29,
+    "sent_rows": 28
+  },
+  "surfaces": {
+    "pulse": "passed",
+    "scan": "passed",
+    "binders": "passed",
+    "vault": "passed",
+    "search": "passed",
+    "wall": "passed",
+    "messages": "passed_after_current_source_rebuild",
+    "message_thread": "passed",
+    "message_card": "passed"
+  },
+  "bounded_runtime_error_count": 0,
+  "final_candidate_gate_satisfied": false,
+  "soak_gate_satisfied": false
+}

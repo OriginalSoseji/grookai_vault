@@ -1,0 +1,104 @@
+{
+  "version": "SPECIAL_VARIANT_PRINTING_HEALTH_V1",
+  "generated_at": "2026-08-06T19:52:29.112Z",
+  "mode": "read_only_health",
+  "db_writes_performed": false,
+  "approvals_performed": false,
+  "manifest_fingerprint_sha256": "2437a727bf53ba62752067b55eddacbfc4a99f98e3564e11ce5b5d1c8a306c9c",
+  "metrics": {
+    "target_count": 143,
+    "distinct_child_count": 143,
+    "exact_child_count": 143,
+    "exact_hidden_review_count": 143,
+    "exact_quarantined_hidden_review_count": 0,
+    "exact_verified_hidden_review_count": 143,
+    "unexpected_hidden_review_status_count": 0,
+    "public_printing_option_leak_count": 0,
+    "external_printing_mapping_count": 0,
+    "exact_parent_tcgplayer_mapping_count": 7,
+    "conflicting_parent_tcgplayer_mapping_count": 2,
+    "qualification_candidate_hidden_child_count": 0,
+    "eligible_decision_count": 0,
+    "historical_snapshot_count": 0,
+    "current_price_count": 0
+  },
+  "pricing_boundary": {
+    "safe": true,
+    "failures": [],
+    "parent_tcgplayer_mappings_are_not_child_publication_authority": true,
+    "parent_mapping_rows": [
+      {
+        "source_product_id": 83784,
+        "expected_card_print_id": "6e99eab4-a0a5-4f70-973a-368e196ed2ef",
+        "printing_gv_id": "GV-PK-PR-NP-022-E-LEAGUE-STAMP-NORMAL",
+        "external_mapping_id": "132073",
+        "mapped_card_print_id": "6e99eab4-a0a5-4f70-973a-368e196ed2ef",
+        "exact_parent": true
+      },
+      {
+        "source_product_id": 84293,
+        "expected_card_print_id": "a81e6413-5ce9-4ee5-8e1c-d0a7c450e1c1",
+        "printing_gv_id": "GV-PK-PR-NP-024-E-LEAGUE-STAMP-NORMAL",
+        "external_mapping_id": "134744",
+        "mapped_card_print_id": "daf712b1-90c2-4abd-898d-891735d47702",
+        "exact_parent": false
+      },
+      {
+        "source_product_id": 84399,
+        "expected_card_print_id": "a8993ccc-7f4b-4332-9516-c88c7c538fa8",
+        "printing_gv_id": "GV-PK-PR-NP-009-E-LEAGUE-WINNER-STAMP-NORMAL",
+        "external_mapping_id": "132064",
+        "mapped_card_print_id": "a8993ccc-7f4b-4332-9516-c88c7c538fa8",
+        "exact_parent": true
+      },
+      {
+        "source_product_id": 85523,
+        "expected_card_print_id": "2eb3ce02-d7b5-41b6-8536-129545ebdd9c",
+        "printing_gv_id": "GV-PK-PR-NP-025-E-LEAGUE-STAMP-NORMAL",
+        "external_mapping_id": "134746",
+        "mapped_card_print_id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+        "exact_parent": false
+      },
+      {
+        "source_product_id": 85934,
+        "expected_card_print_id": "592b8588-7654-4284-af9b-3798b18db341",
+        "printing_gv_id": "GV-PK-PR-NP-004-E-LEAGUE-WINNER-STAMP-NORMAL",
+        "external_mapping_id": "132059",
+        "mapped_card_print_id": "592b8588-7654-4284-af9b-3798b18db341",
+        "exact_parent": true
+      },
+      {
+        "source_product_id": 87231,
+        "expected_card_print_id": "7baacf32-534e-468d-80f1-2f41c745b2be",
+        "printing_gv_id": "GV-PK-PR-NP-011-E-LEAGUE-WINNER-STAMP-NORMAL",
+        "external_mapping_id": "132066",
+        "mapped_card_print_id": "7baacf32-534e-468d-80f1-2f41c745b2be",
+        "exact_parent": true
+      },
+      {
+        "source_product_id": 87604,
+        "expected_card_print_id": "4432f5c3-7e11-4f02-89a0-456cd6926cae",
+        "printing_gv_id": "GV-PK-PR-NP-010-E-LEAGUE-STAMP-REVERSE",
+        "external_mapping_id": "132065",
+        "mapped_card_print_id": "4432f5c3-7e11-4f02-89a0-456cd6926cae",
+        "exact_parent": true
+      },
+      {
+        "source_product_id": 89948,
+        "expected_card_print_id": "674a1987-df59-46fa-9e23-16abe976e3fe",
+        "printing_gv_id": "GV-PK-PR-NP-008-E-LEAGUE-STAMP-REVERSE",
+        "external_mapping_id": "132063",
+        "mapped_card_print_id": "674a1987-df59-46fa-9e23-16abe976e3fe",
+        "exact_parent": true
+      },
+      {
+        "source_product_id": 559566,
+        "expected_card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+        "printing_gv_id": "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP-NORMAL",
+        "external_mapping_id": "120406",
+        "mapped_card_print_id": "a058c87e-0779-4e90-b60e-81d8c90b0b50",
+        "exact_parent": true
+      }
+    ]
+  }
+}
