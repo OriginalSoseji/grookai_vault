@@ -18,7 +18,7 @@ const thread = fs.readFileSync(
 test("message cards disclose absent child-printing identity", () => {
   assert.match(
     service,
-    /String get printingIdentityLabel => 'Printing not specified';/,
+    /String get printingIdentityLabel =>\s*'Exact printing unavailable for this legacy thread';/,
   );
   assert.match(inbox, /group\.printingIdentityLabel/);
   assert.match(thread, /_thread\.printingIdentityLabel/);
