@@ -265,7 +265,9 @@ export function VaultCollectionView({
   const summary = useMemo(() => {
     const cards = items.reduce((sum, item) => sum + item.owned_count, 0);
     const uniqueCards = items.length;
-    const sets = new Set(items.map((item) => item.set_code.trim() || "Unknown set")).size;
+    const sets = new Set(
+      items.map((item) => item.set_name.trim() || item.set_code.trim() || "Unknown set"),
+    ).size;
     const latestTimestamp = items.reduce<string | null>((latest, item) => {
       if (!item.created_at) {
         return latest;
