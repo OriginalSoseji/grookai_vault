@@ -39,7 +39,9 @@ test("web visible error copy avoids obsolete feed wording", () => {
   const localCommunityHelper = readSource("apps/web/src/lib/network/getLocalCommunityFeedRows.ts");
 
   assert.match(wallPage, /Activity Window/);
-  assert.match(wallPage, /Wall activity could not be loaded right now/);
+  assert.match(wallPage, /<ProductState/);
+  assert.match(wallPage, /Recent collection activity could not be refreshed/);
+  assert.doesNotMatch(wallPage, /error\.message/);
   assert.match(vaultCollection, /Recent additions could not be refreshed right now/);
   assert.match(nearbyPage, /Nearby activity is unavailable/);
   assert.match(nearbyPage, /Nearby activity could not load/);

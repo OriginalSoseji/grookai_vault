@@ -164,3 +164,83 @@ test("release fixtures cover Vault loaded, empty, private, partial, duplicate, a
     assert.match(parity, new RegExp(`\\"${scenario}\\"`));
   }
 });
+
+test("Pulse and Wall use separate collector-facing presentation grammars", () => {
+  const pulse = read("apps/web/src/components/network/NetworkStreamCard.tsx");
+  const community = read("apps/web/src/components/network/LocalCommunityFeedCard.tsx");
+  const wall = read("apps/web/src/components/public/FeaturedWallSection.tsx");
+  const facts = read("apps/web/src/components/collector/CollectorCardPresentation.tsx");
+
+  assert.match(pulse, /data-pulse-event-card/);
+  assert.match(pulse, /getActivityLabel/);
+  assert.match(pulse, /<CollectorCardFacts/);
+  assert.match(pulse, /<CollectorEvidenceDisclosure label="Event evidence">/);
+  assert.match(community, /data-pulse-event-card/);
+  assert.match(community, /<CollectorCardFacts/);
+  assert.match(community, /<CollectorEvidenceDisclosure label="Event evidence">/);
+  assert.match(wall, /data-wall-collection-card/);
+  assert.match(wall, /data-wall-collection-display/);
+  assert.match(wall, /View exact copy/);
+  assert.match(wall, /<CollectorCardFacts/);
+  assert.match(facts, /data-collector-card-facts/);
+  assert.match(facts, /data-collector-evidence/);
+  assert.doesNotMatch(facts, /fetch\(|supabase|insert\(|update\(/i);
+});
+
+test("collector surfaces disclose internal IDs instead of promoting them", () => {
+  const pulse = read("apps/web/src/components/network/NetworkStreamCard.tsx");
+  const wall = read("apps/web/src/components/public/FeaturedWallSection.tsx");
+  const grid = read("apps/web/src/components/public/PublicCollectionGrid.tsx");
+  const profile = read("apps/web/src/components/public/PublicCollectorProfileContent.tsx");
+
+  assert.match(pulse, /CollectorEvidenceDisclosure/);
+  assert.match(wall, /CollectorEvidenceDisclosure/);
+  assert.match(grid, /CollectorEvidenceDisclosure/);
+  assert.match(profile, /CollectorEvidenceDisclosure/);
+  assert.doesNotMatch(grid, /footer=\{gvviId/);
+  assert.doesNotMatch(profile, /footer=\{exactCopyGvviId/);
+});
+
+test("collector state fixtures cover private, blocked, deleted, empty, loading, and partial failure", () => {
+  const fixture = read("apps/web/src/components/visualParity/ReleaseConvergenceScenario.tsx");
+  const parity = read("apps/web/tests/parity/release-convergence.spec.ts");
+
+  for (const scenario of [
+    "pulse-empty",
+    "pulse-partial-error",
+    "social-loading",
+    "wall-private",
+    "profile-blocked",
+    "profile-deleted",
+  ]) {
+    assert.match(fixture, new RegExp(`\\"${scenario}\\"`));
+    assert.match(parity, new RegExp(`\\"${scenario}\\"`));
+  }
+
+  for (const file of [
+    "apps/web/src/app/network/loading.tsx",
+    "apps/web/src/app/network/error.tsx",
+    "apps/web/src/app/wall/loading.tsx",
+    "apps/web/src/app/wall/error.tsx",
+    "apps/web/src/app/u/[slug]/loading.tsx",
+    "apps/web/src/app/u/[slug]/error.tsx",
+  ]) {
+    assert.ok(read(file).length > 0, `${file} must define a route-local state`);
+  }
+});
+
+test("social convergence preserves follow, block, message, and public visibility boundaries", () => {
+  const profilePage = read("apps/web/src/app/u/[slug]/page.tsx");
+  const profileContent = read("apps/web/src/components/public/PublicCollectorProfileContent.tsx");
+  const contact = read("apps/web/src/components/network/ContactOwnerButton.tsx");
+  const follow = read("apps/web/src/components/public/FollowCollectorButton.tsx");
+
+  assert.match(profilePage, /!profile\.vault_sharing_enabled/);
+  assert.match(profilePage, /<FollowCollectorButton/);
+  assert.match(profileContent, /<ContactOwnerButton/);
+  assert.match(contact, /COLLECTOR_BLOCKED_EVENT/);
+  assert.match(contact, /createCardInteractionAction/);
+  assert.match(follow, /\/api\/follows\/state/);
+  assert.match(follow, /followCollectorAction/);
+  assert.match(follow, /unfollowCollectorAction/);
+});

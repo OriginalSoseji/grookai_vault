@@ -12,6 +12,15 @@ const scenarios = [
   "vault-duplicate-copy",
   "vault-offline",
   "vault-exact-copy",
+  "pulse-event",
+  "pulse-empty",
+  "pulse-partial-error",
+  "social-loading",
+  "wall-collection",
+  "wall-private",
+  "profile-collector",
+  "profile-blocked",
+  "profile-deleted",
   "error-state",
   "private-state",
 ] as const;
@@ -112,6 +121,49 @@ test("Partial Vault failure preserves loaded ownership context", async ({ page }
   await expect(page.getByText("Reverse Holo", { exact: true }).first()).toBeVisible();
 });
 
+test("Pulse separates collector activity from exact card identity", async ({ page }) => {
+  await openScenario(page, "pulse-event");
+
+  await expect(page.getByText("Fixture Collector", { exact: true })).toBeVisible();
+  await expect(page.getByText(/marked a copy for trade/i)).toBeVisible();
+  await expect(page.getByText("Illustration Rare", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("NM", { exact: true })).toBeVisible();
+  await expect(page.getByText("Card ID: GV-FIXTURE-PIKACHU-IR", { exact: true })).toBeHidden();
+});
+
+test("Wall collection display keeps version context primary and provenance disclosed", async ({ page }) => {
+  await openScenario(page, "wall-collection");
+
+  await expect(page.locator("[data-wall-collection-card]")).toHaveCount(1);
+  await expect(page.getByText("Illustration Rare", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("Raw copy", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View exact copy" })).toHaveAttribute("href", "/gvvi/GV-VI-FIXTURE-PIKACHU-IR-NM");
+  await expect(page.getByText("Exact copy ID: GV-VI-FIXTURE-PIKACHU-IR-NM", { exact: true })).toBeHidden();
+});
+
+test("Collector profile keeps relationship actions separate from collection cards", async ({ page }) => {
+  await openScenario(page, "profile-collector");
+
+  await expect(page.locator("[data-collector-profile-header]")).toHaveCount(1);
+  await expect(page.getByText("24 followers", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Follow", exact: true })).toBeVisible();
+  await expect(page.locator("[data-wall-collection-card]")).toHaveCount(1);
+});
+
+test("social degraded states are explicit and do not expose backend errors", async ({ page }) => {
+  for (const [scenario, title] of [
+    ["pulse-empty", "You are caught up"],
+    ["pulse-partial-error", "Some activity is unavailable"],
+    ["wall-private", "This Wall is private"],
+    ["profile-blocked", "This collector is unavailable"],
+    ["profile-deleted", "Collector profile not found"],
+  ] as const) {
+    await openScenario(page, scenario);
+    await expect(page.getByText(title, { exact: true })).toBeVisible();
+    await expect(page.getByText(/supabase|postgres|error code/i)).toHaveCount(0);
+  }
+});
+
 test("P0 Search result hierarchy remains visually stable on Samsung", async ({ page }) => {
   await openScenario(page, "search-result-hierarchy");
   await expect(page).toHaveScreenshot("p0-search-result-mobile.png", { fullPage: true });
@@ -155,3 +207,16 @@ test("P0 exact-copy hierarchy remains visually stable on desktop", async ({ page
   await openScenario(page, "vault-exact-copy");
   await expect(page).toHaveScreenshot("p0-vault-exact-copy-desktop.png", { fullPage: true });
 });
+
+for (const scenario of ["pulse-event", "wall-collection", "profile-collector"] as const) {
+  test(`P0 ${scenario} remains visually stable on Samsung`, async ({ page }) => {
+    await openScenario(page, scenario);
+    await expect(page).toHaveScreenshot(`p0-${scenario}-mobile.png`, { fullPage: true });
+  });
+
+  test(`P0 ${scenario} remains visually stable on desktop`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await openScenario(page, scenario);
+    await expect(page).toHaveScreenshot(`p0-${scenario}-desktop.png`, { fullPage: true });
+  });
+}

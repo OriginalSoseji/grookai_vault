@@ -1,6 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import {
+  CollectorCardFacts,
+  CollectorEvidenceDisclosure,
+} from "@/components/collector/CollectorCardPresentation";
+import ProductState from "@/components/layout/ProductState";
 import PublicCardImage from "@/components/PublicCardImage";
 import { OwnerWallSectionRail } from "@/components/wall/OwnerWallSectionRail";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
@@ -246,32 +251,39 @@ export default async function WallPage() {
       <OwnerWallSectionRail initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
 
       {error ? (
-        <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
-          Wall activity could not be loaded right now: {error.message}
-        </section>
+        <ProductState
+          compact
+          tone="error"
+          eyebrow="Wall activity unavailable"
+          title="Your Wall settings are still available"
+          description="Recent collection activity could not be refreshed. No cards or sections were changed."
+        />
       ) : feed.length === 0 ? (
-        <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-sm text-slate-600 shadow-sm">
-          No recent vault activity yet.
-        </section>
+        <ProductState
+          compact
+          eyebrow="No recent activity"
+          title="Your Wall is ready"
+          description="Cards appear here after you add exact copies to your Vault."
+        />
       ) : (
         <section className="space-y-4">
           {feed.map((item) => (
             (() => {
               const imagePresentation = resolveCardImagePresentation(item);
+              const displayIdentity = resolveDisplayIdentity(item);
 
               return (
-                <Link
+                <article
                   key={item.id}
-                  href={`/card/${item.gv_id}`}
-                  className="block rounded-[2rem] border border-slate-200 bg-white px-5 py-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+                  className="grid grid-cols-[104px_minmax(0,1fr)] gap-4 border-b border-slate-200/80 py-5 first:pt-0 last:border-b-0 sm:grid-cols-[128px_minmax(0,1fr)] dark:border-white/[0.08]"
+                  data-wall-activity-row
                 >
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                    <div className="relative w-fit">
+                    <Link href={`/card/${item.gv_id}`} className="relative self-start">
                       <PublicCardImage
                         src={item.image_url}
                         alt={item.display_name}
-                        imageClassName="h-40 w-28 rounded-[1.25rem] border border-slate-200 bg-slate-50 object-contain p-2"
-                        fallbackClassName="flex h-40 w-28 items-center justify-center rounded-[1.25rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
+                        imageClassName="aspect-[5/7] w-full rounded-[18px] border border-slate-200 bg-slate-50 object-contain"
+                        fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[18px] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
                         fallbackLabel={item.display_name}
                       />
                       {imagePresentation.compactBadgeLabel ? (
@@ -282,24 +294,22 @@ export default async function WallPage() {
                           />
                         </div>
                       ) : null}
+                    </Link>
+                    <div className="min-w-0 space-y-3">
+                      <p className="gv-eyebrow">Added to Vault · {formatTimeAgo(item.created_at)}</p>
+                      <CollectorCardFacts
+                        title={<Link href={`/card/${item.gv_id}`} className="transition hover:text-slate-700">{displayIdentity.base_name}</Link>}
+                        setName={item.set_name || item.set_code}
+                        number={item.number}
+                        versionLabel={displayIdentity.suffix}
+                      />
+                      <CollectorEvidenceDisclosure label="Activity evidence">
+                        <p>Card ID: {item.gv_id}</p>
+                        <p>Activity: Added to Vault</p>
+                        <p>Recorded {formatTimeAgo(item.created_at)}</p>
+                      </CollectorEvidenceDisclosure>
                     </div>
-                    <div className="min-w-0 flex-1 space-y-3">
-                      <div className="space-y-1">
-                        <h2 className="text-2xl font-medium tracking-tight text-slate-950">{item.display_name}</h2>
-                        <p className="text-sm text-slate-600">
-                          {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
-                        </p>
-                      </div>
-                      <div className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-                        Added to vault
-                      </div>
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">
-                        <p>{formatTimeAgo(item.created_at)}</p>
-                        <p>{item.gv_id}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                </article>
               );
             })()
           ))}

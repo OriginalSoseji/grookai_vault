@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
+import { CollectorEvidenceDisclosure } from "@/components/collector/CollectorCardPresentation";
 import { PublicWallCardVisiblePrice } from "@/components/public/PublicWallCardVisiblePrice";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
@@ -87,6 +88,11 @@ export function PublicCollectionGrid({
                     {[card.set_name, card.number !== "—" ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
                   </span>
                 }
+                badges={
+                  displayIdentity.suffix ? (
+                    <PokemonCardGridBadge tone="accent">{displayIdentity.suffix}</PokemonCardGridBadge>
+                  ) : null
+                }
                 meta={
                   <>
                     {slabSummary ? (
@@ -96,7 +102,13 @@ export function PublicCollectionGrid({
                   </>
                 }
                 summary={<PublicWallCardVisiblePrice card={card} />}
-                footer={gvviId ? <span>GVVI: {gvviId}</span> : null}
+                details={
+                  <CollectorEvidenceDisclosure>
+                    <p>Card ID: {card.gv_id}</p>
+                    {gvviId ? <p>Exact copy ID: {gvviId}</p> : <p>Exact copy identity is not available.</p>}
+                    <p>Collection status: {slabSummary ?? "Raw copy"}</p>
+                  </CollectorEvidenceDisclosure>
+                }
               />
             );
           })()

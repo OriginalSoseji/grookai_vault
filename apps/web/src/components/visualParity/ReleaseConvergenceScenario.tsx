@@ -6,6 +6,11 @@ import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import ProductState from "@/components/layout/ProductState";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
+import NetworkStreamCard from "@/components/network/NetworkStreamCard";
+import { FeaturedWallSection } from "@/components/public/FeaturedWallSection";
+import { PublicCollectorHeader } from "@/components/public/PublicCollectorHeader";
+import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
+import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
 import ReleaseConvergenceVaultTileFixture from "@/components/visualParity/ReleaseConvergenceVaultTileFixture";
@@ -21,6 +26,15 @@ export const RELEASE_CONVERGENCE_SCENARIOS = [
   "vault-duplicate-copy",
   "vault-offline",
   "vault-exact-copy",
+  "pulse-event",
+  "pulse-empty",
+  "pulse-partial-error",
+  "social-loading",
+  "wall-collection",
+  "wall-private",
+  "profile-collector",
+  "profile-blocked",
+  "profile-deleted",
   "error-state",
   "private-state",
 ] as const;
@@ -39,6 +53,176 @@ function FixtureHeader({ title }: { title: string }) {
         <span aria-hidden="true">GV</span>
       </button>
     </header>
+  );
+}
+
+const SOCIAL_CARD_FIXTURE: PublicWallCard = {
+  card_print_id: "fixture-card-print-pikachu",
+  gv_id: "GV-FIXTURE-PIKACHU-IR",
+  gv_vi_id: "GV-VI-FIXTURE-PIKACHU-IR-NM",
+  name: "Pikachu",
+  variant_key: "illustration_rare",
+  set_identity_model: "parent_with_finish_children",
+  set_code: "PAL",
+  set_name: "Paldea Evolved",
+  number: "173",
+  rarity: "Illustration Rare",
+  display_image_kind: "missing_variant_visual",
+  image_status: "missing_variant_visual",
+  image_note: "Exact finish image is not available.",
+  owned_count: 1,
+  raw_count: 1,
+  slab_count: 0,
+  is_slab: false,
+  public_note: "A favorite from this collector's illustration collection.",
+};
+
+const PULSE_CARD_FIXTURE: CardStreamRow = {
+  vaultItemId: "fixture-vault-item-pikachu",
+  ownerUserId: "fixture-owner",
+  ownerSlug: "fixture-collector",
+  ownerDisplayName: "Fixture Collector",
+  cardPrintId: "fixture-card-print-pikachu",
+  intent: "trade",
+  quantity: 1,
+  inPlayCount: 1,
+  tradeCount: 1,
+  sellCount: 0,
+  showcaseCount: 0,
+  rawCount: 1,
+  slabCount: 0,
+  conditionLabel: "NM",
+  isGraded: false,
+  gradeCompany: null,
+  gradeValue: null,
+  gradeLabel: null,
+  createdAt: "2026-08-05T15:30:00.000Z",
+  gvId: "GV-FIXTURE-PIKACHU-IR",
+  name: "Pikachu",
+  setCode: "PAL",
+  setName: "Paldea Evolved",
+  number: "173",
+  variantKey: "illustration_rare",
+  printedIdentityModifier: null,
+  setIdentityModel: "parent_with_finish_children",
+  imageUrl: null,
+  imageFallbackUrls: [],
+  hostedImageUrl: null,
+  providerImageUrl: null,
+  displayImageKind: "missing_variant_visual",
+  imageStatus: "missing_variant_visual",
+  imageNote: "Exact finish image is not available.",
+  inPlayCopies: [{
+    instanceId: "fixture-instance-pikachu",
+    gvviId: "GV-VI-FIXTURE-PIKACHU-IR-NM",
+    vaultItemId: "fixture-vault-item-pikachu",
+    intent: "trade",
+    conditionLabel: "NM",
+    isGraded: false,
+    gradeCompany: null,
+    gradeValue: null,
+    gradeLabel: null,
+    certNumber: null,
+    createdAt: "2026-08-05T15:30:00.000Z",
+  }],
+};
+
+function SocialFixtureShell({
+  title,
+  activeKey,
+  children,
+}: {
+  title: string;
+  activeKey: "pulse" | "wall";
+  children: ReactNode;
+}) {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] pb-[104px] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title={title} />
+      <main className="mx-auto w-full max-w-4xl px-4 py-5">{children}</main>
+      <MobileParityDock activeKey={activeKey} wallHref="/wall" />
+    </div>
+  );
+}
+
+function PulseEventFixture() {
+  return (
+    <SocialFixtureShell title="Pulse" activeKey="pulse">
+      <div className="mb-5 border-b border-slate-200/80 pb-4 dark:border-white/[0.08]">
+        <p className="gv-eyebrow">Latest from collectors</p>
+        <h2 className="mt-1 text-2xl font-semibold">Pulse</h2>
+      </div>
+      <NetworkStreamCard
+        row={PULSE_CARD_FIXTURE}
+        isAuthenticated
+        viewerUserId="fixture-owner"
+        currentPath="/network"
+      />
+    </SocialFixtureShell>
+  );
+}
+
+function WallCollectionFixture({ withProfile = false }: { withProfile?: boolean }) {
+  return (
+    <SocialFixtureShell title={withProfile ? "Collector" : "Wall"} activeKey="wall">
+      <div className="space-y-6">
+        {withProfile ? (
+          <PublicCollectorHeader
+            displayName="Fixture Collector"
+            slug="fixture-collector"
+            description="A collection of illustration rares and favorite exact copies."
+            joinedAt="2025-05-18T12:00:00.000Z"
+            followingCount={18}
+            followerCount={24}
+            followingHref="/u/fixture-collector/following"
+            followerHref="/u/fixture-collector/followers"
+            stats={[{ value: "31", label: "cards" }, { value: "12", label: "sets" }]}
+            actions={<button type="button" className="gv-secondary-button">Follow</button>}
+          />
+        ) : null}
+        <FeaturedWallSection cards={[SOCIAL_CARD_FIXTURE]} viewerUserId={null} ownerUserId="fixture-owner" />
+      </div>
+    </SocialFixtureShell>
+  );
+}
+
+function SocialState({ kind }: { kind: "pulse-empty" | "pulse-partial" | "wall-private" | "profile-blocked" | "profile-deleted" }) {
+  const model = {
+    "pulse-empty": { title: "You are caught up", description: "Nothing new around your collection right now.", eyebrow: "Pulse", tone: "neutral" as const },
+    "pulse-partial": { title: "Some activity is unavailable", description: "Loaded events are still shown. Newer activity could not be refreshed.", eyebrow: "Pulse", tone: "error" as const },
+    "wall-private": { title: "This Wall is private", description: "Only the collector can see its cards and collection details.", eyebrow: "Private collection", tone: "private" as const },
+    "profile-blocked": { title: "This collector is unavailable", description: "Profile, Wall, follow, and message actions are hidden while this block is active.", eyebrow: "Collector blocked", tone: "private" as const },
+    "profile-deleted": { title: "Collector profile not found", description: "This profile may have been deleted or is no longer shared.", eyebrow: "Profile unavailable", tone: "neutral" as const },
+  }[kind];
+  const isPulse = kind.startsWith("pulse");
+
+  return (
+    <SocialFixtureShell title={isPulse ? "Pulse" : kind === "wall-private" ? "Wall" : "Collector"} activeKey={isPulse ? "pulse" : "wall"}>
+      <ProductState {...model} />
+      {kind === "pulse-partial" ? (
+        <div className="mt-7">
+          <NetworkStreamCard row={PULSE_CARD_FIXTURE} isAuthenticated viewerUserId="fixture-owner" currentPath="/network" />
+        </div>
+      ) : null}
+    </SocialFixtureShell>
+  );
+}
+
+function SocialLoadingFixture() {
+  return (
+    <SocialFixtureShell title="Pulse" activeKey="pulse">
+      <section className="space-y-4" aria-busy="true" aria-label="Loading collector activity">
+        <div className="h-5 w-36 rounded bg-slate-200 dark:bg-slate-800" />
+        <div className="grid grid-cols-[104px_minmax(0,1fr)] gap-4 border-t border-slate-200/80 pt-5 dark:border-white/[0.08]">
+          <div className="aspect-[5/7] rounded-[18px] bg-slate-200 dark:bg-slate-800" />
+          <div className="space-y-3 pt-1">
+            <div className="h-4 w-3/4 rounded bg-slate-200 dark:bg-slate-800" />
+            <div className="h-6 w-2/3 rounded bg-slate-200 dark:bg-slate-800" />
+            <div className="h-4 w-full rounded bg-slate-200 dark:bg-slate-800" />
+          </div>
+        </div>
+      </section>
+    </SocialFixtureShell>
   );
 }
 
@@ -462,6 +646,33 @@ export function ReleaseConvergenceScenario({ scenario }: { scenario: ReleaseConv
   }
   if (scenario === "vault-exact-copy") {
     return <VaultExactCopy />;
+  }
+  if (scenario === "pulse-event") {
+    return <PulseEventFixture />;
+  }
+  if (scenario === "pulse-empty") {
+    return <SocialState kind="pulse-empty" />;
+  }
+  if (scenario === "pulse-partial-error") {
+    return <SocialState kind="pulse-partial" />;
+  }
+  if (scenario === "social-loading") {
+    return <SocialLoadingFixture />;
+  }
+  if (scenario === "wall-collection") {
+    return <WallCollectionFixture />;
+  }
+  if (scenario === "wall-private") {
+    return <SocialState kind="wall-private" />;
+  }
+  if (scenario === "profile-collector") {
+    return <WallCollectionFixture withProfile />;
+  }
+  if (scenario === "profile-blocked") {
+    return <SocialState kind="profile-blocked" />;
+  }
+  if (scenario === "profile-deleted") {
+    return <SocialState kind="profile-deleted" />;
   }
   if (scenario === "private-state") {
     return <PrivateState />;

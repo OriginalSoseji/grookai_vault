@@ -88,7 +88,7 @@ export function PublicCollectorHeader({
   ].filter((value): value is { label: string; href: string | null } => Boolean(value.label));
 
   return (
-    <section className="relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60">
+    <section className="relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60" data-collector-profile-header>
       {bannerUrl ? (
         <div aria-hidden="true" className="relative h-24 overflow-hidden sm:h-28">
           <Image src={bannerUrl} alt="" fill className="object-cover" />
@@ -124,7 +124,7 @@ export function PublicCollectorHeader({
       )}
       <div className="relative z-10 px-4 pb-4 sm:px-6 sm:pb-5 md:px-8 md:pb-6">
         <div className="-mt-6 flex flex-col gap-3 sm:-mt-8 sm:gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="flex min-w-0 items-end gap-4">
+          <div className="flex min-w-0 items-start gap-4">
             <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/70 bg-slate-950 text-lg font-semibold tracking-[0.08em] text-white shadow-sm sm:h-[4.5rem] sm:w-[4.5rem] sm:rounded-[1.6rem] sm:text-xl">
               {avatarUrl ? (
                 <Image src={avatarUrl} alt={`${displayName} profile photo`} fill className="object-cover" />
@@ -133,7 +133,7 @@ export function PublicCollectorHeader({
               )}
             </div>
             <div className="min-w-0 flex-1 space-y-1 pb-0.5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">Collector</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-300">Collector</p>
               <div className="space-y-0.5">
                 <h1 className="truncate text-[1.65rem] font-semibold tracking-tight text-slate-950 sm:text-3xl">{displayName}</h1>
                 <p className="text-xs font-medium tracking-[0.08em] text-slate-500 sm:text-sm">/u/{slug}</p>
