@@ -95,7 +95,8 @@ class CardInteractionThreadSummary {
   // Message threads are currently keyed to the parent card and legacy vault
   // bucket. They do not persist a child card_printing_id, so the UI must make
   // that missing identity explicit instead of implying a finish.
-  String get printingIdentityLabel => 'Printing not specified';
+  String get printingIdentityLabel =>
+      'Exact printing unavailable for this legacy thread';
 
   CardInteractionThreadSummary copyWith({
     String? latestMessage,

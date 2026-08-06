@@ -76,8 +76,8 @@ test("wishlist infrastructure is wired into the v2 nearby feed without private w
   assert.match(webHelper, /\.rpc\("local_community_feed_v2"/);
   assert.match(webHelper, /viewerWishlistMatch/);
   assert.match(webHelper, /matchReason/);
-  assert.match(webCard, /Wishlist match/);
-  assert.match(webCard, /This card matches your wishlist\./);
+  assert.match(webCard, /Want Match/);
+  assert.match(webCard, /This collector has a card you marked Wanted\./);
   assert.match(mobileService, /'local_community_feed_v2'/);
   assert.match(mobileService, /viewerWishlistMatch/);
   assert.match(mobileScreen, /Wishlist match/);
