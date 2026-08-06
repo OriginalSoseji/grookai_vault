@@ -20,7 +20,7 @@ export default function ExploreResultActions({
       aria-label={`Choose a version of ${cardName} to add to your Vault`}
       title="Choose the exact version and add it to your Vault"
       className={compact
-        ? "gv-primary-button min-h-11 px-3 py-2 text-xs"
+        ? "gv-primary-button min-h-11 w-full px-4 py-2 text-sm sm:w-auto"
         : "gv-primary-button min-h-11 w-full px-3 py-2 text-sm"}
     >
       Add to Vault

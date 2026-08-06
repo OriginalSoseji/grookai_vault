@@ -385,6 +385,25 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
     linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(239, 244, 251, 0.42));
 }
 
+.gv-card-detail-hero {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.gv-card-detail-hero::after {
+  display: none;
+}
+
+.gv-card-detail-hero .gv-card-hero-image-stage {
+  border-color: var(--gv-border-soft);
+  border-radius: var(--gv-radius-lg);
+  background: var(--gv-surface-container-low);
+  box-shadow: none;
+}
+
 .gv-card-detail-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -402,14 +421,9 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 
 .gv-variant-story {
   border: 1px solid var(--gv-border-hairline);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(74, 144, 226, 0.1), transparent 16rem),
-    rgba(255, 255, 255, 0.54);
-  box-shadow:
-    0 34px 96px -76px rgba(15, 23, 42, 0.56),
-    inset 0 1px 0 rgba(255, 255, 255, 0.76);
-  backdrop-filter: blur(18px);
+  border-radius: var(--gv-radius-md);
+  background: var(--gv-surface-container-low);
+  box-shadow: none;
 }
 
 .gv-card-pricing-panel,
@@ -421,15 +435,11 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-card-lower-section {
-  border: 1px solid var(--gv-border-hairline);
-  border-radius: 32px;
-  background:
-    radial-gradient(circle at 16% 0%, rgba(74, 144, 226, 0.08), transparent 16rem),
-    rgba(255, 255, 255, 0.68);
-  box-shadow:
-    0 32px 96px -74px rgba(15, 23, 42, 0.44),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px);
+  border: 0;
+  border-top: 1px solid var(--gv-border-soft);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .gv-card-section-header {
@@ -1028,6 +1038,126 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   top: 0.55rem;
 }
 
+.gv-search-result-card .gv-visual-card-image {
+  transition:
+    box-shadow var(--gv-transition-fast),
+    transform var(--gv-transition-fast);
+}
+
+.gv-search-result-card:focus-within .gv-visual-card-image {
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.22);
+}
+
+.gv-search-result-row {
+  border-bottom: 1px solid var(--gv-border-soft);
+  padding: var(--gv-space-4) 0;
+}
+
+.gv-search-result-row:first-child {
+  padding-top: 0;
+}
+
+.gv-search-result-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.gv-search-result-row-layout {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: var(--gv-space-4);
+  align-items: start;
+}
+
+.gv-search-result-row-image {
+  display: block;
+  width: 92px;
+  border-radius: var(--gv-radius-md);
+  transition:
+    box-shadow var(--gv-transition-fast),
+    transform var(--gv-transition-fast);
+}
+
+.gv-search-result-row-image:focus-visible {
+  outline: 3px solid rgba(74, 144, 226, 0.34);
+  outline-offset: 3px;
+}
+
+.gv-search-result-row-commercial {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gv-space-3);
+  padding-left: calc(92px + var(--gv-space-4));
+}
+
+.gv-result-evidence {
+  max-width: 42rem;
+  color: var(--gv-text-secondary);
+}
+
+.gv-result-evidence summary {
+  width: fit-content;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  line-height: 1.2;
+  color: var(--gv-text-tertiary);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2rem;
+  transition:
+    color var(--gv-transition-fast),
+    text-decoration-color var(--gv-transition-fast);
+}
+
+.gv-result-evidence summary::-webkit-details-marker {
+  display: none;
+}
+
+.gv-result-evidence summary::after {
+  content: " +";
+}
+
+.gv-result-evidence[open] summary::after {
+  content: " -";
+}
+
+.gv-result-evidence summary:hover,
+.gv-result-evidence summary:focus-visible {
+  color: var(--gv-text-primary);
+  text-decoration-color: currentColor;
+}
+
+.gv-result-evidence-body {
+  margin-top: var(--gv-space-2);
+  display: grid;
+  gap: var(--gv-space-1);
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--gv-text-tertiary);
+}
+
+@media (min-width: 640px) {
+  .gv-search-result-row-layout {
+    grid-template-columns: 108px minmax(0, 1fr) auto;
+    gap: var(--gv-space-5);
+  }
+
+  .gv-search-result-row-image {
+    width: 108px;
+  }
+
+  .gv-search-result-row-commercial {
+    grid-column: auto;
+    min-width: 10.5rem;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-left: 0;
+  }
+}
+
 .gv-card-compare-floating {
   box-shadow: 0 10px 24px -18px rgba(15, 23, 42, 0.72);
 }
@@ -1137,12 +1267,8 @@ html.gv-dark .gv-card-detail-eyebrow {
 
 html.gv-dark .gv-variant-story {
   border-color: rgba(226, 232, 240, 0.08);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12), transparent 16rem),
-    rgba(5, 8, 15, 0.56);
-  box-shadow:
-    0 34px 96px -70px rgba(0, 0, 0, 0.96),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: none;
 }
 
 html.gv-dark .gv-card-pricing-panel,
@@ -1153,10 +1279,20 @@ html.gv-dark .gv-variant-selector {
 
 html.gv-dark .gv-card-lower-section {
   border-color: rgba(226, 232, 240, 0.08);
-  background: rgba(5, 8, 15, 0.58);
-  box-shadow:
-    0 24px 70px -54px rgba(0, 0, 0, 0.9),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: transparent;
+  box-shadow: none;
+}
+
+html.gv-dark .gv-card-detail-hero {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+html.gv-dark .gv-card-detail-hero .gv-card-hero-image-stage {
+  border-color: rgba(226, 232, 240, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: none;
 }
 
 html.gv-dark .gv-results-command-bar {
@@ -1289,6 +1425,12 @@ html.gv-dark .gv-visual-card-image {
 
 html.gv-dark .gv-search-result-card .gv-visual-card-image {
   background: rgba(8, 12, 22, 0.28);
+}
+
+html.gv-dark .gv-search-result-card.gv-visual-card {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
 }
 
 html.gv-dark .gv-visual-card {

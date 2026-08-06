@@ -146,14 +146,14 @@ export function PokemonCardGridBadge({
       : "px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em]";
   const toneClassName =
     tone === "accent"
-      ? "border-sky-200 bg-sky-50 text-sky-700"
+      ? "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-300/30 dark:bg-sky-400/15 dark:text-sky-200"
       : tone === "positive"
-        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+        ? "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-400/15 dark:text-emerald-200"
         : tone === "warm"
-          ? "border-amber-200 bg-amber-50 text-amber-700"
+          ? "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-300/30 dark:bg-amber-400/15 dark:text-amber-200"
           : tone === "neutral"
-            ? "border-slate-200/80 bg-white/80 text-slate-600"
-            : "border-slate-200/80 bg-slate-50/80 text-slate-600";
+            ? "border-slate-200/80 bg-white/80 text-slate-600 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200"
+            : "border-slate-200/80 bg-slate-50/80 text-slate-600 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200";
 
   return (
     <span className={`inline-flex rounded-full border ${sizeClassName} ${toneClassName} ${className}`.trim()}>

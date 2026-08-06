@@ -2,6 +2,7 @@ import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import ExploreResultActions from "@/components/explore/ExploreResultActions";
+import ExploreResultEvidence from "@/components/explore/ExploreResultEvidence";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -30,7 +31,7 @@ function getPrimaryFinishLabel(card: ExploreResultCard) {
   return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
 }
 
-export default function ExploreCardGridItem({ card, href, mode, canViewPricing, imagePriority = false }: ExploreCardGridItemProps) {
+export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason, imagePriority = false }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -130,6 +131,14 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
         <ExploreResultActions
           cardHref={href}
           cardName={displayIdentity.display_name}
+        />
+      )}
+      details={(
+        <ExploreResultEvidence
+          card={card}
+          matchReason={matchReason}
+          searchContext={searchDiscriminator}
+          compact
         />
       )}
       imageClassName={isLarge ? "max-w-[280px]" : "mx-auto max-w-[160px]"}

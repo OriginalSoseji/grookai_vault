@@ -1,6 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
-const port = 3100;
+const configuredPort = Number.parseInt(process.env.GROOKAI_PLAYWRIGHT_PORT ?? "3100", 10);
+const port = Number.isFinite(configuredPort) && configuredPort > 0 ? configuredPort : 3100;
 const baseURL = `http://127.0.0.1:${port}`;
 
 const webServerEnv = {

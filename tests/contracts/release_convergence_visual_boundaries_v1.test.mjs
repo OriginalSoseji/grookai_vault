@@ -23,6 +23,37 @@ test("Search results expose the existing exact-version Vault workflow", () => {
   assert.match(cardPage, /<CardPageMarketVaultPanels/);
 });
 
+test("Search result hierarchy keeps collector facts visible and diagnostics disclosed", () => {
+  const evidence = read("apps/web/src/components/explore/ExploreResultEvidence.tsx");
+  const grid = read("apps/web/src/components/explore/ExploreCardGridItem.tsx");
+  const list = read("apps/web/src/components/explore/ExploreCardListItem.tsx");
+  const details = read("apps/web/src/components/explore/ExploreCardDetailsRow.tsx");
+  const search = read("apps/web/src/components/explore/ExplorePageClient.tsx");
+
+  assert.match(evidence, /Why this result/);
+  assert.match(evidence, /Exact version ID:/);
+  assert.match(grid, /<ExploreResultEvidence/);
+  assert.match(list, /<ExploreResultEvidence/);
+  assert.match(details, /<ExploreResultEvidence/);
+  assert.match(list, /gv-search-result-row-commercial/);
+  assert.match(search, /<ProductState/);
+  assert.match(search, />\s*Search cards\s*</);
+  assert.doesNotMatch(search, /Search collector reality/);
+});
+
+test("Card Detail prioritizes collection action before optional context", () => {
+  const cardPage = read("apps/web/src/app/card/[gv_id]/page.tsx");
+  const styles = read("apps/web/src/app/globals.css");
+
+  assert.match(cardPage, /id="vault-actions" className="order-1/);
+  assert.match(cardPage, /gv-variant-story order-2/);
+  assert.match(cardPage, /gv-result-evidence order-3/);
+  assert.match(cardPage, /text-\[2\.5rem\]/);
+  assert.doesNotMatch(cardPage, /lg:text-\[5\.35rem\]/);
+  assert.match(styles, /\.gv-card-detail-hero \{/);
+  assert.match(styles, /\.gv-card-lower-section \{[\s\S]*?border-top:/);
+});
+
 test("shared product states govern root and Binder failure surfaces", () => {
   const state = read("apps/web/src/components/layout/ProductState.tsx");
   const rootError = read("apps/web/src/app/error.tsx");
