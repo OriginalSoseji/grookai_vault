@@ -54,6 +54,10 @@ test("route matrix gives every surface one shell mode and preserves Scan semanti
   assert.deepEqual(scan.routes, ["/scan"]);
   assert.equal(scan.shell_mode, "fullscreen");
   assert.equal(scan.dock, "hidden");
+  assert.ok(scan.required_states.includes("manual_search_handoff"));
+  assert.ok(scan.required_states.includes("camera_denied"));
+  assert.ok(!scan.required_states.includes("detecting"));
+  assert.ok(!scan.required_states.includes("match"));
 
   const importer = matrix.surfaces.find(
     (surface) => surface.surface === "Import and photos",
@@ -61,6 +65,9 @@ test("route matrix gives every surface one shell mode and preserves Scan semanti
   assert.deepEqual(importer.routes, ["/vault/import"]);
   assert.equal(importer.shell_mode, "fullscreen");
   assert.equal(importer.dock, "hidden");
+  assert.ok(importer.required_states.includes("exact_match"));
+  assert.ok(importer.required_states.includes("ambiguous_not_imported"));
+  assert.ok(!importer.required_states.includes("photos"));
 
   const binders = matrix.surfaces.find(
     (surface) => surface.surface === "Binders",
@@ -93,14 +100,17 @@ test("runtime shell manifest is the exact five-item owner-approved order", () =>
 
 test("production and fallback mobile docks share the manifest and presentation", () => {
   const dock = read("apps/web/src/components/layout/MobileBottomNav.tsx");
+  const presentation = read(
+    "apps/web/src/components/mobileParity/MobileParityDock.tsx",
+  );
   const appChrome = read("apps/web/src/components/layout/AppChrome.tsx");
   const layout = read("apps/web/src/app/layout.tsx");
 
-  assert.match(dock, /MOBILE_PRIMARY_DOCK/);
-  assert.match(dock, /function MobileDockPresentation\(/);
-  assert.match(dock, /MOBILE_PRIMARY_DOCK\.map\(\(item\) =>/);
+  assert.match(dock, /MobileParityDock/);
+  assert.match(presentation, /MOBILE_PRIMARY_DOCK/);
+  assert.match(presentation, /MOBILE_PRIMARY_DOCK\.map\(\(item\) =>/);
   assert.equal(
-    dock.match(/<MobileDockPresentation/g)?.length,
+    dock.match(/<MobileParityDock/g)?.length,
     2,
     "production and fallback must render the same dock presentation",
   );
@@ -109,7 +119,7 @@ test("production and fallback mobile docks share the manifest and presentation",
   assert.doesNotMatch(dock, /\bdexEnabled\b|case "dex"|label: "Dex"|label: "Profile"/);
   assert.match(
     appChrome,
-    /<MobileBottomNav wallHref=\{authState\.wallHref\} \/>/,
+    /<MobileBottomNav[\s\S]*?wallHref=\{authState\.wallHref\}[\s\S]*?pulseUnreadCount=\{authState\.networkUnreadCount\}/,
   );
 
   assert.match(
@@ -118,18 +128,20 @@ test("production and fallback mobile docks share the manifest and presentation",
   );
   assert.match(
     dock,
-    /items=\{resolveMobileDockItems\(currentWallHref\)\}/,
+    /wallHref=\{currentWallHref\}/,
   );
   assert.match(
-    dock,
-    /active=\{item\.kind === "root" && activeKey === item\.key\}/,
+    presentation,
+    /const selected = item\.kind === "root" && item\.key === activeKey/,
   );
+  assert.match(dock, /useKeyboardVisible/);
 });
 
 test("production mobile chrome suppresses approved Scan and Binder route families", () => {
   const manifest = read("apps/web/src/lib/mobileParity/shellManifest.ts");
   const dock = read("apps/web/src/components/layout/MobileBottomNav.tsx");
   const header = read("apps/web/src/components/layout/SiteHeader.tsx");
+  const desktopShell = read("apps/web/src/components/layout/DesktopApplicationShell.tsx");
 
   assert.match(
     manifest,
@@ -158,10 +170,10 @@ test("production mobile chrome suppresses approved Scan and Binder route familie
     "production and fallback docks must enforce route suppression",
   );
   assert.match(header, /shouldSuppressMobileChrome\(pathname\)/);
-  assert.match(header, /suppressMobileChrome \? "hidden md:block" : ""/);
+  assert.match(header, /suppressMobileChrome \? "gv-site-header-mobile-suppressed" : ""/);
   assert.match(
-    header,
-    /\{ href: "\/scan", label: "Scan", matchHref: "\/scan" \}/,
+    desktopShell,
+    /DESKTOP_PRIMARY_NAV\.map/,
   );
 });
 

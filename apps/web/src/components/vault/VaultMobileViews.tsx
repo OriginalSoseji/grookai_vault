@@ -12,15 +12,15 @@ import {
   formatVaultCopyIdentityLabel,
   formatVaultCardValue,
   formatVaultSecondaryContext,
+  getVaultCopyPresentationSummary,
   getVaultCardMetaLine,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
   getVaultMessageSignalLabel,
   getVaultPrimaryActionLabel,
-  VaultDetailPanel,
+  VaultEvidenceDisclosure,
   VaultFieldLabel,
-  VaultInsetCard,
   VaultPrimaryStateBadge,
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
@@ -105,6 +105,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
   });
+  const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
 
   return (
     <PokemonCardGridTile
@@ -134,6 +135,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       badges={<VaultPrimaryStateBadge item={item} />}
       meta={
         <div className="space-y-1">
+          <span className="block font-semibold text-slate-700" data-vault-copy-presentation>{copyPresentationSummary}</span>
           {secondaryContext ? <span className="text-slate-600">{secondaryContext}</span> : null}
         </div>
       }
@@ -160,6 +162,7 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
   });
+  const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
 
   return (
     <Link
@@ -196,6 +199,7 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
             {cardValue ? <p className="text-sm font-semibold text-slate-900">{cardValue}</p> : null}
           </div>
         </div>
+        <p className="line-clamp-1 text-xs font-semibold text-slate-700" data-vault-copy-presentation>{copyPresentationSummary}</p>
         {secondaryContext ? <p className="line-clamp-1 text-xs text-slate-600">{secondaryContext}</p> : null}
         {messageSignal ? (
           <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
@@ -231,6 +235,7 @@ function MobileDetailRow({
     activeMessageCount: item.active_message_count,
   });
   const previewCopies = item.copy_items.slice(0, 2);
+  const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
 
   return (
     <article className="rounded-[1.65rem] border border-slate-200/80 bg-white/95 p-4 shadow-[0_24px_48px_-36px_rgba(15,23,42,0.3)]">
@@ -245,8 +250,8 @@ function MobileDetailRow({
               src={item.image_url}
               fallbackSrc={item.canonical_image_url}
               alt={displayIdentity.display_name}
-              imageClassName="aspect-[3/4] w-full object-contain drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]"
-              fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
+              imageClassName="aspect-[5/7] w-full object-contain drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]"
+              fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
               fallbackLabel={displayIdentity.display_name}
             />
           </Link>
@@ -273,7 +278,8 @@ function MobileDetailRow({
                 ) : null}
               </div>
 
-              {secondaryContext ? <p className="text-sm font-medium text-slate-700">{secondaryContext}</p> : null}
+              <p className="text-sm font-semibold text-slate-700" data-vault-copy-presentation>{copyPresentationSummary}</p>
+              {secondaryContext ? <p className="text-sm text-slate-600">{secondaryContext}</p> : null}
 
               {messageSignal ? (
                 <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>
@@ -283,11 +289,7 @@ function MobileDetailRow({
         </div>
 
         <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-3">
-          {isExpanded ? (
-            <span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span>
-          ) : (
-            <span />
-          )}
+          {isExpanded ? <VaultEvidenceDisclosure><p>Grookai card ID: {item.gv_id}</p></VaultEvidenceDisclosure> : <span />}
           <button
             type="button"
             onClick={() => onExpansionToggle(item)}
@@ -335,22 +337,21 @@ function MobileDetailRow({
               </div>
             </div>
 
-            <VaultDetailPanel>
-              <div className="space-y-3">
+            <div className="space-y-3 border-t border-slate-200/80 pt-4">
                 <div className="space-y-1">
-                  <VaultFieldLabel>Copies</VaultFieldLabel>
+                  <VaultFieldLabel>Exact copies</VaultFieldLabel>
                   <p className="text-xs leading-5 text-slate-500">
-                    Open an exact copy to edit condition, intent, media, sections, or public placement.
+                    Finish, condition, and visibility belong to each exact copy.
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="divide-y divide-slate-200/70 border-y border-slate-200/70">
                   {previewCopies.map((copy) => {
                     const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
                     const createdAt = formatVaultCopyDate(copy.created_at);
 
                     return (
-                      <VaultInsetCard key={copy.instance_id} className="space-y-3">
+                      <div key={copy.instance_id} className="space-y-3 py-3">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="space-y-2">
                             <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
@@ -366,11 +367,12 @@ function MobileDetailRow({
                                 {getVaultCopyVisibilityLabel(copy.intent)}
                               </span>
                             </div>
-                            <div className="flex flex-wrap gap-2 text-xs text-slate-500">
-                              <span>{copy.gv_vi_id ?? "GVVI pending"}</span>
-                              {createdAt ? <span>{createdAt}</span> : null}
-                            </div>
-                            {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
+                            <VaultEvidenceDisclosure label="Copy evidence">
+                              <p>{copy.gv_vi_id ? `Exact copy ID: ${copy.gv_vi_id}` : "Exact copy ID pending"}</p>
+                              {copy.card_printing_id ? <p>Printing ID: {copy.card_printing_id}</p> : null}
+                              {createdAt ? <p>Added {createdAt}</p> : null}
+                              {copy.notes ? <p>Collector note: {copy.notes}</p> : null}
+                            </VaultEvidenceDisclosure>
                           </div>
                           <div className="flex flex-wrap items-center gap-2">
                             {copyHref ? (
@@ -386,12 +388,12 @@ function MobileDetailRow({
                             )}
                           </div>
                         </div>
-                      </VaultInsetCard>
+                      </div>
                     );
                   })}
                 </div>
 
-                <div className="border-t border-slate-200 pt-3">
+                <div>
                   <Link
                     href={manageCardHref}
                     prefetch={false}
@@ -402,8 +404,7 @@ function MobileDetailRow({
                       : "Manage copies"}
                   </Link>
                 </div>
-              </div>
-            </VaultDetailPanel>
+            </div>
           </div>
         ) : null}
       </div>

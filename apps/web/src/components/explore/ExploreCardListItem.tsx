@@ -1,6 +1,8 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import ExploreResultActions from "@/components/explore/ExploreResultActions";
+import ExploreResultEvidence from "@/components/explore/ExploreResultEvidence";
 import PublicCardImage from "@/components/PublicCardImage";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -29,10 +31,6 @@ function getPrimaryFinishLabel(card: ExploreResultCard) {
   return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
 }
 
-function getDiagnosticId(card: ExploreResultCard) {
-  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
-}
-
 export default function ExploreCardListItem({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardListItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = [card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
@@ -50,95 +48,75 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
   ]);
 
   return (
-    <li className="gv-visual-card px-4 py-4">
-      <div className="flex items-start justify-between gap-4">
-        <Link href={href} prefetch={false} className="flex min-w-0 flex-1 items-start gap-4">
+    <li className="gv-search-result-row">
+      <div className="gv-search-result-row-layout">
+        <Link href={href} prefetch={false} className="gv-search-result-row-image">
           <PublicCardImage
             src={card.display_image_url ?? card.image_url}
             fallbackSrc={card.display_image_fallback_url}
             fallbackSources={[card.external_image_fallback_url]}
             alt={getCardImageAltText(displayIdentity.display_name, card)}
-            imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
-            fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
-            sizes="80px"
+            imageClassName="aspect-[5/7] w-full rounded-[14px] object-contain"
+            fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[14px] bg-slate-100 px-2 text-center text-[11px] text-slate-500 ring-1 ring-inset ring-slate-200 dark:bg-white/[0.04] dark:text-slate-500 dark:ring-white/[0.06]"
+            sizes="(max-width: 640px) 92px, 108px"
           />
-          <div className="flex min-w-0 flex-1 items-start justify-between gap-4 pt-1">
-            <div className="min-w-0 space-y-2">
-              <div className="space-y-1">
-                <span className="gv-hi-card-identity block truncate text-lg hover:underline">
-                  {displayIdentity.base_name}
-                </span>
-                {displayIdentity.printed_name ? (
-                  <span className="gv-hi-metadata block truncate text-sm font-medium">{displayIdentity.printed_name}</span>
-                ) : null}
-                {identitySubtitle ? (
-                  <span className="gv-hi-metadata block truncate text-sm font-medium">{identitySubtitle}</span>
-                ) : null}
-                <p className="text-sm text-slate-600 dark:text-slate-400">{setLabel}</p>
-                <PromotionTransitionNote state={card.promotion_transition} />
-              </div>
-              {imagePresentation.compactBadgeLabel ? (
-                <CardImageTruthBadge
-                  label={imagePresentation.compactBadgeLabel}
-                  note={imagePresentation.detailNote}
-                  emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
-                />
-              ) : null}
-              {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
-                <div className="flex flex-wrap gap-1.5">
-                  {primaryFinishLabel ? (
-                    <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
-                  ) : null}
-                  {secondaryVariantLabels.map((label) => (
-                    <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
-                  ))}
-                  {searchDiscriminator ? (
-                    <VariantBadge
-                      key={`${card.gv_id}-${searchDiscriminator}`}
-                      label={searchDiscriminator}
-                      tone={getSearchContextBadgeTone(searchDiscriminator)}
-                    />
-                  ) : null}
-                </div>
-              ) : null}
-              <details className="max-w-xl">
-                <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
-                  Card identity
-                </summary>
-                <div className="mt-1.5 space-y-1 text-xs text-slate-500 dark:text-slate-400">
-                  <p className="truncate">{getDiagnosticId(card)}</p>
-                  {matchReason ? <p className="truncate">{matchReason}</p> : null}
-                  {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
-                </div>
-              </details>
-            </div>
-            <div className="hidden shrink-0 text-right md:block">
-              {canViewPricing ? (
-                <VisiblePrice
-                  value={card.raw_price}
-                  size="list"
-                  className="gv-hi-price"
-                  cardPrintId={card.id}
-                  observedAt={card.raw_price_ts}
-                  publishedAt={card.raw_price_published_at}
-                  provenanceId={card.pricing_provenance_id}
-                  sourceLabel={card.pricing_source_label}
-                  pricingScope={card.pricing_scope}
-                  isFromPrice={card.pricing_is_from_price}
-                />
-              ) : (
-                <LockedPrice href={signInHref} size="list" className="gv-hi-price" />
-              )}
-            </div>
-          </div>
         </Link>
-        <div className="flex flex-col items-end gap-3">
-          <CompareCardButton gvId={card.gv_id} variant="compact" />
-          <div className="md:hidden">
+
+        <div className="min-w-0 space-y-3">
+          <div className="space-y-1">
+            <Link href={href} prefetch={false} className="gv-hi-card-identity block text-lg leading-tight hover:underline">
+              {displayIdentity.base_name}
+            </Link>
+            {displayIdentity.printed_name ? (
+              <p className="gv-hi-metadata truncate text-sm font-medium">{displayIdentity.printed_name}</p>
+            ) : null}
+            {identitySubtitle ? (
+              <p className="gv-hi-metadata truncate text-sm font-medium">{identitySubtitle}</p>
+            ) : null}
+            <p className="text-sm text-slate-600 dark:text-slate-400">{setLabel}</p>
+            <PromotionTransitionNote state={card.promotion_transition} />
+          </div>
+
+          {imagePresentation.compactBadgeLabel ? (
+            <CardImageTruthBadge
+              label={imagePresentation.compactBadgeLabel}
+              note={imagePresentation.detailNote}
+              emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+            />
+          ) : null}
+
+          {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
+            <div className="flex flex-wrap gap-1.5">
+              {primaryFinishLabel ? (
+                <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
+              ) : null}
+              {secondaryVariantLabels.map((label) => (
+                <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
+              ))}
+              {searchDiscriminator ? (
+                <VariantBadge
+                  key={`${card.gv_id}-${searchDiscriminator}`}
+                  label={searchDiscriminator}
+                  tone={getSearchContextBadgeTone(searchDiscriminator)}
+                />
+              ) : null}
+            </div>
+          ) : null}
+
+          <ExploreResultEvidence
+            card={card}
+            matchReason={matchReason}
+            searchContext={searchDiscriminator}
+            compact
+          />
+        </div>
+
+        <div className="gv-search-result-row-commercial">
+          <div className="text-left sm:text-right">
             {canViewPricing ? (
               <VisiblePrice
                 value={card.raw_price}
-                size="dense"
+                size="list"
                 className="gv-hi-price"
                 cardPrintId={card.id}
                 observedAt={card.raw_price_ts}
@@ -149,8 +127,18 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 isFromPrice={card.pricing_is_from_price}
               />
             ) : (
-              <LockedPrice href={signInHref} size="dense" className="gv-hi-price" />
+              <LockedPrice href={signInHref} size="list" className="gv-hi-price" />
             )}
+          </div>
+          <div className="flex w-full items-center gap-2 sm:w-auto sm:justify-end">
+            <div className="min-w-0 flex-1 sm:flex-none">
+              <ExploreResultActions
+                cardHref={href}
+                cardName={displayIdentity.display_name}
+                compact
+              />
+            </div>
+            <CompareCardButton gvId={card.gv_id} variant="floating" />
           </div>
         </div>
       </div>

@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import type { DesktopWallAvailability } from "@/lib/desktopShellManifest";
 import { supabase } from "@/lib/supabaseClient";
 
 type ShellAuthState = {
   isAuthenticated: boolean;
   profileHref: string | null;
   wallHref: string | null;
+  wallAvailability: DesktopWallAvailability;
   networkUnreadCount: number;
 };
 
@@ -16,6 +18,7 @@ const DEFAULT_SHELL_AUTH_STATE: ShellAuthState = {
   isAuthenticated: false,
   profileHref: null,
   wallHref: "/wall",
+  wallAvailability: "signed_out",
   networkUnreadCount: 0,
 };
 
@@ -66,6 +69,12 @@ export function AppChrome({
             isAuthenticated: true,
             profileHref: typeof payload.profileHref === "string" ? payload.profileHref : null,
             wallHref: typeof payload.wallHref === "string" ? payload.wallHref : null,
+            wallAvailability:
+              payload.wallAvailability === "public" ||
+              payload.wallAvailability === "setup" ||
+              payload.wallAvailability === "unavailable"
+                ? payload.wallAvailability
+                : "setup",
             networkUnreadCount:
               typeof payload.networkUnreadCount === "number" ? payload.networkUnreadCount : 0,
           });
@@ -103,10 +112,14 @@ export function AppChrome({
         isAuthenticated={authState.isAuthenticated}
         profileHref={authState.profileHref}
         networkUnreadCount={authState.networkUnreadCount}
+        wallAvailability={authState.wallAvailability}
         dexEnabled={dexEnabled}
         bindersEnabled={bindersEnabled}
       />
-      <MobileBottomNav wallHref={authState.wallHref} />
+      <MobileBottomNav
+        wallHref={authState.wallHref}
+        pulseUnreadCount={authState.networkUnreadCount}
+      />
     </>
   );
 }

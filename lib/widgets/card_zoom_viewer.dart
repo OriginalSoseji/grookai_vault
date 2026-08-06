@@ -308,7 +308,7 @@ class _CardZoomPage extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(18),
           child: AspectRatio(
-            aspectRatio: 3 / 4,
+            aspectRatio: 2.5 / 3.5,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: colorScheme.surfaceContainerHighest.withValues(

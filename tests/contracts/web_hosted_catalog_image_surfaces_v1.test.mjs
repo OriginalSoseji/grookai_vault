@@ -103,6 +103,7 @@ test("public and private GVVI heroes preserve uploaded-first mode and provider f
   const privateLoader = source("apps/web/src/lib/vault/getVaultInstanceByGvvi.ts");
   const publicPage = source("apps/web/src/app/gvvi/[gvvi_id]/page.tsx");
   const privatePage = source("apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx");
+  const exactCopyHero = source("apps/web/src/components/vault/VaultExactCopyHero.tsx");
 
   assert.match(displayPolicy, /orderCatalogImageSourcesV1/);
   assert.match(displayPolicy, /uploadedImageUrl/);
@@ -114,9 +115,11 @@ test("public and private GVVI heroes preserve uploaded-first mode and provider f
   }
   for (const page of [publicPage, privatePage]) {
     assert.match(page, /providerImageUrl: detail\.providerImageUrl/);
-    assert.match(page, /fallbackSources=\{heroImage\.fallbackImageUrls\.slice\(1\)\}/);
-    assert.match(page, /object-contain/);
+    assert.match(page, /fallbackImageUrls=\{heroImage\.fallbackImageUrls\.slice\(1\)\}/);
+    assert.match(page, /<VaultExactCopyHero/);
   }
+  assert.match(exactCopyHero, /fallbackSources=\{fallbackImageUrls\}/);
+  assert.match(exactCopyHero, /object-contain/);
 });
 
 test("catalog thumbnails on the repaired surfaces remain uncropped", () => {
@@ -125,9 +128,9 @@ test("catalog thumbnails on the repaired surfaces remain uncropped", () => {
     "apps/web/src/components/public/FeaturedWallSection.tsx",
     "apps/web/src/components/network/NetworkStreamCard.tsx",
     "apps/web/src/components/network/LocalCommunityFeedCard.tsx",
+    "apps/web/src/components/vault/VaultExactCopyHero.tsx",
     "apps/web/src/app/dex/[speciesSlug]/page.tsx",
     "apps/web/src/app/gvvi/[gvvi_id]/page.tsx",
-    "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
   ]) {
     const contents = source(file);
     assert.match(contents, /object-contain/, file);

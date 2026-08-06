@@ -22,6 +22,7 @@ import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
+import ProductState from "@/components/layout/ProductState";
 import {
   buildPathWithCompareCards,
   normalizeCompareCardsParam,
@@ -121,8 +122,8 @@ const SEARCH_RESULT_INTENT_COPY: Record<
     description: "Specific finishes, variants, stamps, and printing IDs.",
   },
   identity: {
-    label: "Card identity matches",
-    description: "Primary card matches ranked by the resolver.",
+    label: "Card matches",
+    description: "Cards that match the name and version details in your search.",
   },
   cameo: {
     label: "Cameo matches",
@@ -140,12 +141,6 @@ const COLLECTOR_SEARCH_PRESETS = [
     title: "Modern Pikachu reverse holos",
     description: "Pikachu reverse holos from 2014 through today.",
     query: "q=Pikachu&year_min=2014&year_max=2026&finish=reverse",
-  },
-  {
-    key: "missing-images",
-    title: "Missing image worklist",
-    description: "Cards that still need exact image attention.",
-    query: "image_state=missing",
   },
   {
     key: "stamped-specials",
@@ -167,8 +162,8 @@ const COLLECTOR_SEARCH_PRESETS = [
   },
   {
     key: "exact-images",
-    title: "Exact image catalog",
-    description: "Cards with exact image confidence.",
+    title: "Cards with verified images",
+    description: "Browse cards with an image of the exact version.",
     query: "image_state=exact",
   },
 ];
@@ -1207,37 +1202,34 @@ export default function ExplorePageClient({
             ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
             : "Try a card name, set code, collector number, finish, trainer, or cameo subject.";
   const emptyState = (
-    <div className="rounded-[20px] border border-slate-200 bg-white px-5 py-7 text-sm text-slate-600 shadow-sm dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
-      <p className="gv-hi-card-identity text-base font-semibold text-slate-950 dark:text-slate-50">
-        {emptyStateTitle}
-      </p>
-      <p className="mt-2 max-w-xl leading-6">
-        {emptyStateBody}
-      </p>
-      {ownershipRequiresSignIn ? (
-        <Link
-          href={pricingSignInHref}
-          className="mt-4 inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white"
-        >
-          Sign in to apply vault filters
+    <ProductState
+      compact
+      eyebrow="Search"
+      title={emptyStateTitle}
+      description={emptyStateBody}
+      action={ownershipRequiresSignIn ? (
+        <Link href={pricingSignInHref} className="gv-primary-button">
+          Sign in to apply Vault filters
         </Link>
-      ) : null}
-      <div className="mt-4 flex flex-wrap gap-2">
-        {["pikachu masterball", "sv8pt5 exeggutor pokeball", "GV-PK-ME03-033-RH", "cameo charizard"].map((suggestion) => (
-          <Link
-            key={suggestion}
-            href={buildPathWithCompareCards(
-              "/explore",
-              `q=${encodeURIComponent(suggestion)}`,
-              compareCards,
-            )}
-            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-800"
-          >
-            {suggestion}
-          </Link>
-        ))}
-      </div>
-    </div>
+      ) : undefined}
+      secondaryAction={(
+        <div className="flex flex-wrap gap-2">
+          {["Pikachu Master Ball", "Exeggutor Poké Ball", "GV-PK-ME03-033-RH", "Charizard cameo"].map((suggestion) => (
+            <Link
+              key={suggestion}
+              href={buildPathWithCompareCards(
+                "/explore",
+                `q=${encodeURIComponent(suggestion)}`,
+                compareCards,
+              )}
+              className="gv-secondary-button min-h-9 px-3 py-1.5 text-xs"
+            >
+              {suggestion}
+            </Link>
+          ))}
+        </div>
+      )}
+    />
   );
   const loadingState = (
     <div className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
@@ -1543,7 +1535,7 @@ export default function ExplorePageClient({
               Search cards
             </h1>
             <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
-              Search the canonical catalog by card, finish, stamp, year, artist, ownership, and image truth.
+              Search by card, finish, stamp, year, artist, ownership, and image availability.
             </p>
             <div className="flex flex-wrap gap-2 pt-1">
               <Link
@@ -1566,11 +1558,11 @@ export default function ExplorePageClient({
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                 Grookai Search
               </p>
-              <h1 className="mt-1 text-[clamp(2.25rem,4vw,3.75rem)] font-semibold leading-[0.98] tracking-normal text-slate-950 dark:text-slate-50">
-                Search collector reality.
+              <h1 className="mt-1 text-3xl font-semibold leading-tight tracking-normal text-slate-950 dark:text-slate-50">
+                Search cards
               </h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                Ask for cards the way collectors think: reverse holo Pikachu from 2014-2026, Pokemon Center stamped promos, Komiya art, or cards missing from your vault.
+                Search by card, finish, stamp, year, artist, ownership, or visible artwork details.
               </p>
             </div>
             <div className="shrink-0">
@@ -1605,7 +1597,7 @@ export default function ExplorePageClient({
                     {resultCountLabel}
                     {variantFamilyCopy ? (
                       <span className="ml-2 hidden text-slate-400 dark:text-slate-500 sm:inline">
-                        Source-backed family copy
+                        Verified variant context
                       </span>
                     ) : null}
                   </p>
@@ -2041,7 +2033,7 @@ export default function ExplorePageClient({
                           TCGPlayer Market
                         </th>
                         <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          Compare
+                          Actions
                         </th>
                       </tr>
                     </thead>

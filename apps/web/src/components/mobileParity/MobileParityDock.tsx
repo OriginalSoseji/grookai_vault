@@ -50,9 +50,11 @@ function DockIcon({ name }: { name: MobilePrimaryDockKey }) {
 export function MobileParityDock({
   activeKey,
   pulseUnreadCount = 0,
+  wallHref,
 }: {
-  activeKey: Exclude<MobilePrimaryDockKey, "scan">;
+  activeKey: Exclude<MobilePrimaryDockKey, "scan"> | null;
   pulseUnreadCount?: number;
+  wallHref?: string | null;
 }) {
   return (
     <div className={styles.frame}>
@@ -64,14 +66,11 @@ export function MobileParityDock({
         {MOBILE_PRIMARY_DOCK.map((item) => {
           const selected = item.kind === "root" && item.key === activeKey;
           const isScan = item.key === "scan";
-          return (
-            <Link
-              key={item.key}
-              href={item.href}
-              aria-current={selected ? "page" : undefined}
-              className={`${styles.item} ${selected ? styles.selected : ""}`}
-              data-dock-label={item.label}
-            >
+          const href = item.key === "wall" && wallHref !== undefined
+            ? wallHref
+            : item.href;
+          const content = (
+            <>
               {isScan ? (
                 <span className={styles.scanIconWrap}>
                   <DockIcon name={item.key} />
@@ -87,6 +86,31 @@ export function MobileParityDock({
                 </span>
               )}
               <span>{item.label}</span>
+            </>
+          );
+
+          if (!href) {
+            return (
+              <span
+                key={item.key}
+                aria-disabled="true"
+                className={`${styles.item} ${styles.disabled}`}
+                data-dock-label={item.label}
+              >
+                {content}
+              </span>
+            );
+          }
+
+          return (
+            <Link
+              key={item.key}
+              href={href}
+              aria-current={selected ? "page" : undefined}
+              className={`${styles.item} ${selected ? styles.selected : ""}`}
+              data-dock-label={item.label}
+            >
+              {content}
             </Link>
           );
         })}

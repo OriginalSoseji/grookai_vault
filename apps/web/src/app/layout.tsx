@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   applicationName: "Grookai Vault",
   title: "Grookai Vault",
   description:
-    "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+    "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
   openGraph: {
     title: "Grookai Vault",
     description:
-      "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+      "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
     siteName: "Grookai Vault",
     type: "website",
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Grookai Vault",
     description:
-      "Search, organize, and share Pokemon cards through Grookai Vault's collector intelligence layer.",
+      "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
   },
 };
 
@@ -74,10 +74,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
               <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
             </Suspense>
-            <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip md:pb-12">
+            <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip">
               <PageContainer>{children}</PageContainer>
             </main>
-            <footer className="border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur md:pb-0">
+            <footer className="gv-site-footer border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur">
               <PageContainer className="py-4 text-center text-sm text-slate-600">
                 <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
                   <Link href="/early-access" className="underline-offset-4 hover:text-slate-900 hover:underline">

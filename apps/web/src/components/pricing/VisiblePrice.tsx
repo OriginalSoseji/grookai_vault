@@ -22,30 +22,30 @@ function getClasses(size: VisiblePriceProps["size"]) {
     case "dense":
       return {
         wrapper: "space-y-1",
-        label: "text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400",
-        value: "text-sm font-semibold text-slate-900",
-        note: "text-[11px] text-slate-400",
+        label: "text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-300",
+        value: "text-sm font-semibold text-slate-900 dark:text-slate-50",
+        note: "text-[11px] text-slate-500 dark:text-slate-400",
       };
     case "list":
       return {
         wrapper: "space-y-1",
-        label: "text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400",
-        value: "text-sm font-semibold text-slate-900",
-        note: "text-[11px] text-slate-400",
+        label: "text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300",
+        value: "text-sm font-semibold text-slate-900 dark:text-slate-50",
+        note: "text-[11px] text-slate-500 dark:text-slate-400",
       };
     case "detail":
       return {
         wrapper: "space-y-1.5",
-        label: "text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500",
-        value: "text-xl font-semibold tracking-tight text-slate-950",
-        note: "text-xs leading-5 text-slate-500",
+        label: "text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300",
+        value: "text-xl font-semibold tracking-tight text-slate-950 dark:text-white",
+        note: "text-xs leading-5 text-slate-500 dark:text-slate-400",
       };
     default:
       return {
         wrapper: "space-y-1",
-        label: "text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400",
-        value: "text-sm font-semibold text-slate-900",
-        note: "text-[11px] text-slate-400",
+        label: "text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300",
+        value: "text-sm font-semibold text-slate-900 dark:text-slate-50",
+        note: "text-[11px] text-slate-500 dark:text-slate-400",
       };
   }
 }

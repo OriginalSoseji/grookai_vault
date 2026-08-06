@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
-import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
+import { CollectorEvidenceDisclosure } from "@/components/collector/CollectorCardPresentation";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
@@ -553,6 +554,11 @@ export function PublicCollectorProfileContent({
                         {[card.set_name, card.number !== "—" ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
                       </span>
                     }
+                    badges={
+                      displayIdentity.suffix ? (
+                        <PokemonCardGridBadge tone="accent">{displayIdentity.suffix}</PokemonCardGridBadge>
+                      ) : null
+                    }
                     meta={
                       <>
                         {ownershipSummary ? (
@@ -648,9 +654,13 @@ export function PublicCollectorProfileContent({
                             Choose a copy above to message this collector about that card.
                           </p>
                         ) : null}
+                        <CollectorEvidenceDisclosure>
+                          <p>Card ID: {card.gv_id}</p>
+                          {exactCopyGvviId ? <p>Exact copy ID: {exactCopyGvviId}</p> : <p>Exact copy identity is not available.</p>}
+                          <p>Availability: {intentBadges.map((badge) => `${getVaultIntentLabel(badge.intent)} ${badge.count}`).join(", ") || "Not listed"}</p>
+                        </CollectorEvidenceDisclosure>
                       </div>
                     }
-                    footer={exactCopyGvviId ? <span>GVVI: {exactCopyGvviId}</span> : null}
                   />
                 );
               })}

@@ -215,7 +215,7 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
             Sign in to view pricing
           </p>
           <p className="text-xs leading-5 text-slate-500">
-            Exact-printing TCGPlayer Market data is in signed-in canary.
+            Exact-printing TCGPlayer Market data is available to signed-in collectors.
           </p>
         </div>
         <Link

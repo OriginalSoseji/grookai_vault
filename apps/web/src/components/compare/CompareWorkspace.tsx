@@ -314,8 +314,8 @@ export default function CompareWorkspace({
                     fallbackSrc={card.display_image_fallback_url ?? card.representative_image_url}
                     fallbackSources={[card.external_image_fallback_url]}
                     alt={displayIdentity.display_name}
-                    imageClassName="aspect-[3/4] w-full rounded-[12px] object-contain"
-                    fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                    imageClassName="aspect-[5/7] w-full rounded-[22px] object-contain"
+                    fallbackClassName="flex aspect-[5/7] items-center justify-center rounded-[22px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                   />
                   {imagePresentation.compactBadgeLabel ? (
                     <div className="pointer-events-none absolute left-6 top-6">

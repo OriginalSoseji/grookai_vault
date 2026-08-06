@@ -117,13 +117,15 @@
       "dock": "hidden",
       "auth": "required",
       "required_states": [
+        "loading",
+        "idle",
         "camera_prompt",
         "camera_denied",
+        "camera_unavailable",
         "ready",
-        "detecting",
-        "match",
-        "ambiguous",
-        "no_match",
+        "captured",
+        "photo_validation_error",
+        "manual_search_handoff",
         "error"
       ]
     },
@@ -136,10 +138,13 @@
       "dock": "hidden",
       "auth": "required",
       "required_states": [
-        "choose_method",
+        "loading",
         "csv",
-        "photos",
-        "uploading",
+        "matching",
+        "exact_match",
+        "ambiguous_not_imported",
+        "missing_not_imported",
+        "importing",
         "validation_error",
         "complete"
       ]

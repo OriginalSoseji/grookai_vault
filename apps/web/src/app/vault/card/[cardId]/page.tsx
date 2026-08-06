@@ -11,8 +11,10 @@ import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   formatVaultCardValue,
   formatVaultSecondaryContext,
+  getVaultCopyPresentationSummary,
   getVaultMessageSignalLabel,
   getVaultPrimaryActionLabel,
+  VaultEvidenceDisclosure,
   VaultPrimaryStateBadge,
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
@@ -67,6 +69,7 @@ export default async function VaultManageCardPage(
     activeMessageCount: item.active_message_count,
   });
   const displayIdentity = resolveDisplayIdentity(item);
+  const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
   const sectionMembershipModels = await getOwnerWallSectionMembershipsBatch(
     user.id,
     item.copy_items.map((copy) => copy.instance_id),
@@ -80,9 +83,9 @@ export default async function VaultManageCardPage(
       <TrackPageEvent eventName="vault_opened" path={`/vault/card/${item.card_id}`} />
       <div className="space-y-8 py-6 md:space-y-10 md:py-8">
         <PageSection
-          surface="card"
+          surface="plain"
           spacing="default"
-          className="rounded-[2rem] border-slate-200/80 bg-[linear-gradient(180deg,_rgba(255,255,255,1)_0%,_rgba(248,250,252,0.94)_100%)] px-5 py-5 shadow-[0_30px_68px_-52px_rgba(15,23,42,0.3)] md:px-7 md:py-6"
+          className="border-b border-slate-200/80 pb-8 dark:border-white/[0.08] md:pb-10"
         >
           <div className="space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -106,13 +109,13 @@ export default async function VaultManageCardPage(
             </div>
 
             <div className="grid gap-6 lg:grid-cols-[220px_minmax(0,1fr)]">
-              <div className="mx-auto w-full max-w-[220px] overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-[0_20px_42px_-34px_rgba(15,23,42,0.28)]">
+              <div className="gv-image-stage mx-auto w-full max-w-[220px] p-3">
                 <PublicCardImage
                   src={item.image_url}
                   fallbackSrc={item.canonical_image_url}
                   alt={displayIdentity.display_name}
-                  imageClassName="aspect-[3/4] w-full object-contain drop-shadow-[0_18px_32px_rgba(15,23,42,0.14)]"
-                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-sm text-slate-500"
+                  imageClassName="aspect-[5/7] w-full object-contain drop-shadow-[0_18px_32px_rgba(15,23,42,0.14)]"
+                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-3 text-center text-sm text-slate-500"
                   fallbackLabel={displayIdentity.display_name}
                 />
               </div>
@@ -133,6 +136,9 @@ export default async function VaultManageCardPage(
                         </p>
                       </div>
                       {secondaryContext ? <p className="text-sm font-medium text-slate-700">{secondaryContext}</p> : null}
+                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100" data-vault-copy-presentation>
+                        {copyPresentationSummary}
+                      </p>
                     </div>
                     {cardValue ? (
                       <p className="shrink-0 text-[1.75rem] font-semibold text-slate-950">{cardValue}</p>
@@ -187,6 +193,11 @@ export default async function VaultManageCardPage(
                     Open copies
                   </a>
                 </div>
+
+                <VaultEvidenceDisclosure>
+                  <p>Grookai card ID: {item.gv_id}</p>
+                  <p>Card print ID: {item.card_id}</p>
+                </VaultEvidenceDisclosure>
               </div>
             </div>
           </div>

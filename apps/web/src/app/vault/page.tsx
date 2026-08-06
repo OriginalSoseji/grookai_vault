@@ -205,7 +205,7 @@ export default async function VaultPage(
             </p>
             <p className="mt-1 text-sm font-semibold">
               {speciesFilter
-                ? `${speciesFilter.displayName} · canonical mappings only`
+                ? `${speciesFilter.displayName} cards in your Vault`
                 : `No active Dex species matches “${requestedSpeciesSlug}”.`}
             </p>
           </div>

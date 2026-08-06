@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
   title: "Account Deletion | Grookai Vault",
@@ -8,16 +9,11 @@ export const metadata: Metadata = {
 
 export default function AccountDeletionPage() {
   return (
-    <div className="mx-auto max-w-3xl space-y-6 py-8">
-      <div className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Account Data</p>
-        <h1 className="text-3xl font-semibold text-slate-950">Account Deletion</h1>
-        <p className="text-sm leading-6 text-slate-600">
-          Grookai Vault users can request deletion of their account and associated account data at any time.
-        </p>
-      </div>
-
-      <div className="space-y-5 rounded-[28px] border border-slate-200 bg-white p-7 text-sm leading-7 text-slate-700 shadow-sm">
+    <InformationPage
+      eyebrow="Account data"
+      title="Account Deletion"
+      description="Grookai Vault users can request deletion of their account and associated account data at any time."
+    >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Request Account Deletion</h2>
           <p>
@@ -35,7 +31,7 @@ export default function AccountDeletionPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Data Deleted</h2>
           <p>Account deletion generally includes deletion or anonymization of:</p>
           <ul className="list-disc space-y-2 pl-5">
@@ -46,7 +42,7 @@ export default function AccountDeletionPage() {
           </ul>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Data That May Be Retained</h2>
           <p>
             Some limited records may be retained when necessary for security, fraud prevention, abuse prevention,
@@ -59,7 +55,7 @@ export default function AccountDeletionPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Partial Data Deletion</h2>
           <p>
             You may also request deletion of some user data without deleting your entire account by emailing{" "}
@@ -69,7 +65,6 @@ export default function AccountDeletionPage() {
             with the specific data you want removed.
           </p>
         </section>
-      </div>
-    </div>
+    </InformationPage>
   );
 }

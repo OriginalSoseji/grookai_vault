@@ -94,6 +94,72 @@ export function formatVaultCopyIdentityLabel(item: {
   return `${item.condition_label || "Unknown"} • ${item.finish_label || "Finish not selected"} • Raw`;
 }
 
+type VaultCopyPresentationInput = {
+  is_graded: boolean;
+  finish_label?: string | null;
+};
+
+export function getVaultCopyPresentationSummary(
+  copies: VaultCopyPresentationInput[],
+) {
+  if (copies.length === 0) {
+    return "No active copies";
+  }
+
+  if (copies.length === 1) {
+    const [copy] = copies;
+    if (copy.is_graded) {
+      return "1 exact graded copy";
+    }
+    return copy.finish_label?.trim() || "Finish assignment needed";
+  }
+
+  const rawCopies = copies.filter((copy) => !copy.is_graded);
+  const gradedCount = copies.length - rawCopies.length;
+  const hasUnassignedFinish = rawCopies.some((copy) => !copy.finish_label?.trim());
+  const finishLabels = new Set(
+    rawCopies
+      .map((copy) => copy.finish_label?.trim())
+      .filter((value): value is string => Boolean(value)),
+  );
+
+  if (hasUnassignedFinish) {
+    return `${copies.length} copies • Finish assignment needed`;
+  }
+
+  if (gradedCount > 0 && rawCopies.length > 0) {
+    return `${copies.length} copies • Raw and graded`;
+  }
+
+  if (finishLabels.size > 1) {
+    return `${copies.length} copies • Mixed finishes`;
+  }
+
+  if (gradedCount === copies.length) {
+    return `${copies.length} graded copies`;
+  }
+
+  const [finishLabel] = Array.from(finishLabels);
+  return `${copies.length} copies${finishLabel ? ` • ${finishLabel}` : ""}`;
+}
+
+export function VaultEvidenceDisclosure({
+  children,
+  label = "Identity evidence",
+  className,
+}: {
+  children: ReactNode;
+  label?: string;
+  className?: string;
+}) {
+  return (
+    <details className={["gv-result-evidence", className].filter(Boolean).join(" ")}>
+      <summary>{label}</summary>
+      <div className="gv-result-evidence-body">{children}</div>
+    </details>
+  );
+}
+
 export function formatVaultCopyDate(value: string | null) {
   if (!value) {
     return null;

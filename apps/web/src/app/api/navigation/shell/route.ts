@@ -46,6 +46,7 @@ export async function GET(request: NextRequest) {
         isAuthenticated: false,
         profileHref: null,
         wallHref: "/wall",
+        wallAvailability: "signed_out",
         networkUnreadCount: 0,
       },
       401,
@@ -87,6 +88,11 @@ export async function GET(request: NextRequest) {
     isAuthenticated: true,
     profileHref: slug ? `/u/${slug}` : null,
     wallHref: slug && profile?.public_profile_enabled ? `/u/${slug}` : "/wall",
+    wallAvailability: profileResponse.error
+      ? "unavailable"
+      : slug && profile?.public_profile_enabled
+        ? "public"
+        : "setup",
     networkUnreadCount: unreadResponse.error ? 0 : Math.max(0, unreadResponse.count ?? 0),
   });
 }

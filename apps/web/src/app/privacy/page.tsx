@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Grookai Vault",
@@ -8,17 +9,11 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="mx-auto max-w-3xl space-y-6 py-8">
-      <div className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Privacy</p>
-        <h1 className="text-3xl font-semibold text-slate-950">Privacy Policy</h1>
-        <p className="text-sm leading-6 text-slate-600">
-          This launch draft explains what Grookai Vault collects and how it is used. It should be reviewed by counsel
-          before broad public launch.
-        </p>
-      </div>
-
-      <div className="space-y-5 rounded-[28px] border border-slate-200 bg-white p-7 text-sm leading-7 text-slate-700 shadow-sm">
+    <InformationPage
+      eyebrow="Privacy"
+      title="Privacy Policy"
+      description="This launch draft explains what Grookai Vault collects and how it is used. It should be reviewed by counsel before broad public launch."
+    >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Information We Collect</h2>
           <ul className="list-disc space-y-2 pl-5">
@@ -31,7 +26,7 @@ export default function PrivacyPage() {
           </ul>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">How We Use Information</h2>
           <p>
             Grookai Vault uses information to provide account access, card search, vault management, public collector
@@ -44,7 +39,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Public Content</h2>
           <p>
             If you enable public profile, Wall, or sharing features, selected collection information and profile
@@ -53,7 +48,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Service Providers</h2>
           <p>
             Grookai Vault relies on service providers for hosting, authentication, database storage, app distribution,
@@ -62,7 +57,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Choices and Deletion</h2>
           <p>
             You can request account deletion or partial data deletion from the{" "}
@@ -73,7 +68,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="space-y-3 border-t border-slate-200 pt-4">
+        <section>
           <h2 className="text-lg font-semibold text-slate-950">Contact</h2>
           <p>
             Privacy questions can be sent to{" "}
@@ -83,7 +78,6 @@ export default function PrivacyPage() {
             .
           </p>
         </section>
-      </div>
-    </div>
+    </InformationPage>
   );
 }

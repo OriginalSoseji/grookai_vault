@@ -11,6 +11,16 @@ import type { ImportVaultItemsResult, MatchCardPrintsResult, MatchResult } from 
 
 type PreviewFilterKey = "all" | "matched" | "needs-review";
 
+function getImportErrorMessage(stage: "parse" | "match" | "write") {
+  if (stage === "parse") {
+    return "This file could not be read as a Collectr CSV. Check the file and try again.";
+  }
+  if (stage === "match") {
+    return "The card catalog could not be checked right now. Nothing was added to your Vault.";
+  }
+  return "The import could not be completed. No unverified rows were added to your Vault.";
+}
+
 function SummaryPill({
   label,
   value,
@@ -106,13 +116,13 @@ export function ImportClient() {
         try {
           const nextPreview = await matchCardPrints(normalizedRows);
           setPreview(nextPreview);
-        } catch (error) {
+        } catch {
           setPreview(null);
-          setParseError(error instanceof Error ? error.message : "The CSV could not be matched right now.");
+          setParseError(getImportErrorMessage("match"));
         }
       });
-    } catch (error) {
-      setParseError(error instanceof Error ? error.message : "The CSV could not be parsed.");
+    } catch {
+      setParseError(getImportErrorMessage("parse"));
     }
   }
 
@@ -128,23 +138,23 @@ export function ImportClient() {
         const result = await importVaultItems(preview.rows);
         setImportResult(result);
         router.refresh();
-      } catch (error) {
+      } catch {
         setImportResult(null);
-        setParseError(error instanceof Error ? error.message : "The import could not be completed.");
+        setParseError(getImportErrorMessage("write"));
       }
     });
   }
 
   return (
     <div className="space-y-8">
-      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm md:px-8">
+      <section className="border-b border-slate-200 pb-8 dark:border-white/[0.08]">
         <div className="max-w-2xl space-y-3">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">Vault Import</p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-[2.8rem]">Import your collection</h1>
           <p className="text-base leading-7 text-slate-600">Upload a Collectr CSV to match your cards, review the results, and bring them into your vault.</p>
         </div>
 
-        <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-5">
+        <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50/70 p-5">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-sm font-medium text-slate-950">Upload Collectr CSV</p>
@@ -165,19 +175,19 @@ export function ImportClient() {
       </section>
 
       {parseError ? (
-        <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
+        <section className="rounded-lg border border-rose-200 bg-rose-50 px-5 py-4 text-sm text-rose-700" role="alert">
           {parseError}
         </section>
       ) : null}
 
       {isMatching ? (
-        <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-sm text-slate-600 shadow-sm">
+        <section className="border-y border-slate-200 py-5 text-sm text-slate-600 dark:border-white/[0.08]" role="status">
           Matching your cards against Grookai’s catalog…
         </section>
       ) : null}
 
       {preview ? (
-        <section className="space-y-5 rounded-[2rem] border border-slate-200 bg-white px-6 py-6 shadow-sm">
+        <section className="space-y-5 border-y border-slate-200 py-6 dark:border-white/[0.08]">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Import Preview</h2>
@@ -205,7 +215,7 @@ export function ImportClient() {
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-[1.5rem] border border-slate-200">
+          <div className="overflow-x-auto rounded-lg border border-slate-200">
             <table className="min-w-full divide-y divide-slate-200 text-left">
               <thead className="bg-slate-50/80">
                 <tr className="text-xs uppercase tracking-[0.18em] text-slate-500">
@@ -231,11 +241,14 @@ export function ImportClient() {
                     <td className={`px-4 py-3 ${getMatchTone(row.status)}`}>
                       {row.status === "matched" && row.match ? (
                         <div className="space-y-1">
-                          <p className="font-medium">Matched</p>
-                          <p className="text-xs text-slate-500">{row.match.gv_id}</p>
+                          <p className="font-medium">Exact card matched</p>
+                          <p className="text-xs text-slate-600">
+                            {row.match.name ?? row.row.displayName} · {row.match.set_name ?? row.row.displaySet} · #{row.match.number ?? row.row.displayNumber}
+                          </p>
+                          <p className="text-xs text-slate-500">Grookai ID {row.match.gv_id}</p>
                         </div>
                       ) : row.status === "multiple" ? (
-                        "Needs selection"
+                        `${row.matches?.length ?? 0} possible exact cards — not imported`
                       ) : (
                         "Missing match"
                       )}
@@ -246,7 +259,7 @@ export function ImportClient() {
             </table>
           </div>
 
-          <div className="flex flex-col gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 rounded-lg border border-slate-200 bg-slate-50/70 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-sm font-medium text-slate-950">Ready to import</p>
               <p className="text-sm text-slate-600">
@@ -268,7 +281,7 @@ export function ImportClient() {
       ) : null}
 
       {importResult ? (
-        <section className="rounded-[2rem] border border-emerald-200 bg-emerald-50 px-6 py-6 text-emerald-900 shadow-sm">
+        <section className="rounded-lg border border-emerald-200 bg-emerald-50 px-6 py-6 text-emerald-900" role="status">
           <div className="space-y-2">
             <h2 className="text-2xl font-semibold tracking-tight">Import complete</h2>
             <p className="text-sm leading-7">

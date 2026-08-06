@@ -1,6 +1,6 @@
 "use client";
 
-import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 
 export default function BindersError({
   reset,
@@ -10,15 +10,18 @@ export default function BindersError({
 }) {
   return (
     <div className="mx-auto max-w-2xl py-12">
-      <PageSection surface="card">
-        <h1 className="gv-section-title">Binders could not load</h1>
-        <p className="text-sm text-slate-600">
-          Your collection goals were not changed. Check your connection and try again.
-        </p>
-        <button type="button" onClick={reset} className="gv-primary-button">
-          Try again
-        </button>
-      </PageSection>
+      <ProductState
+        compact
+        tone="error"
+        eyebrow="Binders"
+        title="Binders could not load"
+        description="Your collection goals were not changed. Check your connection and try again."
+        action={(
+          <button type="button" onClick={reset} className="gv-primary-button">
+            Try again
+          </button>
+        )}
+      />
     </div>
   );
 }

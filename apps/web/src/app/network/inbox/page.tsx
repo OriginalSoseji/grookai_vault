@@ -3,12 +3,12 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 import InteractionGroupControls from "@/components/network/InteractionGroupControls";
 import InteractionGroupExecutionPanel from "@/components/network/InteractionGroupExecutionPanel";
 import InteractionGroupReadMarker from "@/components/network/InteractionGroupReadMarker";
 import InteractionGroupReplyForm from "@/components/network/InteractionGroupReplyForm";
 import SectionHeader from "@/components/layout/SectionHeader";
-import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   getUserCardInteractionGroups,
@@ -182,7 +182,7 @@ function InboxViewTabs({
   ];
 
   return (
-    <PageSection surface="subtle" spacing="compact" className="p-2.5">
+    <nav aria-label="Message views" className="border-y border-slate-200 py-2 dark:border-white/[0.08]">
       <div className="flex flex-wrap gap-2">
         {items.map((item) => {
           const isActive = item.view === currentView;
@@ -204,7 +204,7 @@ function InboxViewTabs({
           );
         })}
       </div>
-    </PageSection>
+    </nav>
   );
 }
 
@@ -238,14 +238,14 @@ function InteractionGroupCard({
           : "border-slate-200 bg-white text-slate-700";
 
   return (
-    <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="border-b border-slate-200 py-5 last:border-b-0 dark:border-white/[0.08]" data-card-message-thread>
       <div className="flex flex-col gap-4 sm:flex-row">
         <Link href={`/card/${group.card.gvId}`} className="mx-auto w-[96px] shrink-0 sm:mx-0">
           <PublicCardImage
             src={group.card.imageUrl ?? undefined}
             alt={displayIdentity.display_name}
-            imageClassName="aspect-[3/4] w-full rounded-[0.9rem] border border-slate-200 bg-slate-50 object-contain p-1.5"
-            fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[0.9rem] border border-slate-200 bg-slate-100 px-2 text-center text-[10px] text-slate-500"
+            imageClassName="aspect-[5/7] w-full rounded-lg bg-slate-50 object-contain"
+            fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-lg bg-slate-100 px-2 text-center text-[10px] text-slate-500"
             fallbackLabel={displayIdentity.display_name}
           />
         </Link>
@@ -279,7 +279,7 @@ function InteractionGroupCard({
             </div>
 
             {latestMessage ? (
-              <div className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
+              <div className="border-l-2 border-sky-400 bg-slate-50 px-4 py-3">
                 <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                   <span>Latest</span>
                   <span className="h-1 w-1 rounded-full bg-slate-300" />
@@ -292,7 +292,7 @@ function InteractionGroupCard({
             ) : null}
           </div>
 
-          <div className="space-y-2 rounded-[1rem] border border-slate-200 bg-white/70 px-3 py-3">
+          <div className="space-y-2 border-y border-slate-200 py-3 dark:border-white/[0.08]">
             {group.messages.map((message, index) => (
               <div
                 key={message.id}
@@ -319,7 +319,7 @@ function InteractionGroupCard({
           ) : null}
 
           {hasSecondaryActions ? (
-            <details className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
+            <details className="border-t border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/[0.08]">
               <summary className="cursor-pointer text-sm font-medium text-slate-700">
                 {secondarySummaryLabel}
               </summary>
@@ -394,7 +394,7 @@ export default async function NetworkInboxPage(
 
   return (
     <div className="space-y-8 py-8">
-      <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
+      <div className="border-b border-slate-200 pb-6 dark:border-white/[0.08]">
         <PageIntro
           eyebrow="Messages"
           title="Messages about cards"
@@ -402,13 +402,13 @@ export default async function NetworkInboxPage(
           actions={
             <Link
               href="/network"
-              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+              className="gv-secondary-button"
             >
               Browse network
             </Link>
           }
         />
-      </PageSection>
+      </div>
 
       <InboxViewTabs
         currentView={currentView}
@@ -448,7 +448,13 @@ export default async function NetworkInboxPage(
         ) : null}
 
         {visibleGroups.length === 0 ? (
-          <PublicCollectionEmptyState title={viewCopy.emptyTitle} body={viewCopy.emptyBody} />
+          <ProductState
+            compact
+            eyebrow="Messages"
+            title={viewCopy.emptyTitle}
+            description={viewCopy.emptyBody}
+            action={<Link href="/network" className="gv-primary-button">Browse collectors</Link>}
+          />
         ) : (
           <div className="space-y-4">
             {visibleGroups.map((group) => (

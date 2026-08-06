@@ -8,22 +8,27 @@ function readSource(relativePath) {
 
 test("web shell uses Pulse as the visible network surface label", () => {
   const siteHeader = readSource("apps/web/src/components/layout/SiteHeader.tsx");
+  const desktopShell = readSource("apps/web/src/components/layout/DesktopApplicationShell.tsx");
+  const desktopManifest = readSource("apps/web/src/lib/desktopShellManifest.ts");
   const mobileBottomNav = readSource("apps/web/src/components/layout/MobileBottomNav.tsx");
+  const mobileDockPresentation = readSource("apps/web/src/components/mobileParity/MobileParityDock.tsx");
   const layoutFallback = readSource("apps/web/src/app/layout.tsx");
   const shellManifest = readSource("apps/web/src/lib/mobileParity/shellManifest.ts");
 
   assert.match(siteHeader, /<span>Pulse<\/span>/);
-  assert.match(siteHeader, /label: "Pulse", matchHref: "\/network"/);
   assert.match(siteHeader, /\? "Pulse"/);
+  assert.match(desktopManifest, /key: "pulse", label: "Pulse", href: "\/network"/);
+  assert.match(desktopShell, /DESKTOP_PRIMARY_NAV\.map/);
   assert.match(
     shellManifest,
     /key: "pulse",\s+label: "Pulse",\s+href: "\/network",\s+kind: "root"/,
   );
-  assert.match(mobileBottomNav, /MOBILE_PRIMARY_DOCK/);
-  assert.match(mobileBottomNav, /MOBILE_PRIMARY_DOCK\.map/);
+  assert.match(mobileBottomNav, /MobileParityDock/);
+  assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK/);
+  assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK\.map/);
   assert.match(layoutFallback, /<MobileBottomNavFallback \/>/);
 
-  for (const source of [siteHeader, mobileBottomNav, layoutFallback, shellManifest]) {
+  for (const source of [siteHeader, desktopShell, desktopManifest, mobileBottomNav, mobileDockPresentation, layoutFallback, shellManifest]) {
     assert.doesNotMatch(source, /label: "Feed"/);
     assert.doesNotMatch(source, />Feed</);
     assert.doesNotMatch(source, /\? "Feed"/);
@@ -37,8 +42,10 @@ test("web visible error copy avoids obsolete feed wording", () => {
   const localCommunityHelper = readSource("apps/web/src/lib/network/getLocalCommunityFeedRows.ts");
 
   assert.match(wallPage, /Activity Window/);
-  assert.match(wallPage, /Wall activity could not be loaded right now/);
-  assert.match(vaultCollection, /Recently added activity could not be loaded right now/);
+  assert.match(wallPage, /<ProductState/);
+  assert.match(wallPage, /Recent collection activity could not be refreshed/);
+  assert.doesNotMatch(wallPage, /error\.message/);
+  assert.match(vaultCollection, /Recent additions could not be refreshed right now/);
   assert.match(nearbyPage, /Nearby activity is unavailable/);
   assert.match(nearbyPage, /Nearby activity could not load/);
   assert.match(localCommunityHelper, /Local community activity is unavailable/);

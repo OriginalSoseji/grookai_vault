@@ -59,6 +59,10 @@
   background: rgb(41 96 164 / 58%);
 }
 
+.disabled {
+  opacity: 0.45;
+}
+
 .iconWrap {
   position: relative;
   display: grid;

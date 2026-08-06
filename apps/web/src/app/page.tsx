@@ -206,15 +206,10 @@ export default async function HomePage() {
             />
             <p className="gv-eyebrow">Grookai Vault</p>
             <h1 className="gv-display-title mx-auto max-w-4xl">
-              <span className="sm:hidden">
-                Collect with
-                <br />
-                purpose.
-              </span>
-              <span className="hidden sm:inline">Collect with purpose.</span>
+              Grookai Vault
             </h1>
             <p className="gv-body-copy mx-auto max-w-2xl">
-              Search cards, variants, stamps, cameos, Pokemon, sets, and your own collection through one collector intelligence layer.
+              The permanent digital card show. Find the exact card, add it to your Vault, see who has it available, and connect with the collector.
             </p>
           </div>
 
@@ -225,11 +220,11 @@ export default async function HomePage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link href="/early-access" className="gv-primary-button">
-              Join early access
+            <Link href="/explore" className="gv-primary-button">
+              Explore cards
             </Link>
-            <Link href="/explore" className="gv-secondary-button">
-              Preview search
+            <Link href="/login?next=%2Fvault" className="gv-secondary-button">
+              Sign in
             </Link>
           </div>
 
@@ -242,8 +237,8 @@ export default async function HomePage() {
                 <PublicCardImage
                   src={leftCard.image_url}
                   alt={leftCard.display_name}
-                  imageClassName="aspect-[3/4] w-full rounded-[1rem] bg-slate-50 object-contain"
-                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
+                  imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
+                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-3 text-center text-xs text-slate-500"
                   fallbackLabel={leftCard.display_name}
                 />
               </div>
@@ -257,8 +252,8 @@ export default async function HomePage() {
                 <PublicCardImage
                   src={centerCard.image_url}
                   alt={centerCard.display_name}
-                  imageClassName="aspect-[3/4] w-full rounded-[1.1rem] bg-slate-50 object-contain"
-                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1.1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                  imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
+                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                   fallbackLabel={centerCard.display_name}
                 />
               </div>
@@ -272,8 +267,8 @@ export default async function HomePage() {
                 <PublicCardImage
                   src={rightCard.image_url}
                   alt={rightCard.display_name}
-                  imageClassName="aspect-[3/4] w-full rounded-[1rem] bg-slate-50 object-contain"
-                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
+                  imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
+                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-3 text-center text-xs text-slate-500"
                   fallbackLabel={rightCard.display_name}
                 />
               </div>
@@ -284,10 +279,10 @@ export default async function HomePage() {
 
       <section className="space-y-5">
         <div className="mx-auto max-w-3xl space-y-2 text-center">
-          <p className="gv-eyebrow">Collector intelligence</p>
-          <h2 className="gv-section-title">Start with the relationship, not the row.</h2>
+          <p className="gv-eyebrow">Built for collectors</p>
+          <h2 className="gv-section-title">Search the details collectors care about.</h2>
           <p className="gv-body-copy text-sm">
-            Grookai understands card identity, special variants, stamp families, Pokemon completion, image truth, and vault ownership as connected collector facts.
+            Find exact versions, special stamps, character appearances, collection gaps, and cards other collectors have available.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
@@ -312,7 +307,7 @@ export default async function HomePage() {
         <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
           <div className="space-y-2">
             <p className="gv-eyebrow">Variant families</p>
-            <h2 className="gv-section-title">Special cards are first-class identities.</h2>
+            <h2 className="gv-section-title">Special versions stay distinct.</h2>
           </div>
           <Link href="/explore?identity=stamped" className="gv-secondary-button self-start px-4 py-2 text-sm md:self-auto">
             Browse stamped lanes
@@ -325,15 +320,12 @@ export default async function HomePage() {
               <Link
                 key={family.family_key}
                 href={`/explore?q=${encodeURIComponent(family.family_label)}`}
-                className="group rounded-[28px] border border-slate-200/70 bg-white/78 p-5 shadow-[0_30px_80px_-62px_rgba(15,23,42,0.52)] transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-white/[0.14] dark:hover:bg-white/[0.06]"
+                className="group rounded-lg border border-slate-200/70 bg-white/78 p-5 transition hover:border-slate-300 hover:bg-white dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-white/[0.14] dark:hover:bg-white/[0.06]"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
                     <span className="rounded-full bg-slate-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white dark:bg-white dark:text-slate-950">
                       {family.variant_category.replace(/_/g, " ")}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-600 dark:text-emerald-300">
-                      {family.confidence}
                     </span>
                   </div>
                   <div>

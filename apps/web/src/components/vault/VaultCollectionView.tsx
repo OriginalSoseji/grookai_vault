@@ -8,8 +8,8 @@ import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/compon
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 import SectionHeader from "@/components/layout/SectionHeader";
-import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { CollectorPageActivationCard } from "@/components/vault/CollectorPageActivationCard";
 import { formatVaultCurrency } from "@/components/vault/VaultCardPrimitives";
 import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
@@ -187,7 +187,7 @@ function ViewEmptyState({
   title: string;
   body: string;
 }) {
-  return <PublicCollectionEmptyState title={title} body={body} />;
+  return <ProductState compact title={title} description={body} />;
 }
 
 function getVaultRowRuntimeKey(item: Pick<VaultCardData, "card_id">) {
@@ -747,30 +747,22 @@ export function VaultCollectionView({
       </section>
 
       {itemsError ? (
-        <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
-          Vault could not be loaded right now: {itemsError}
-        </section>
+        <ProductState
+          tone="error"
+          eyebrow="Could not load your Vault"
+          title="Your collection was not changed"
+          description="Try this page again, or return to Search while the collection refreshes."
+          action={<button type="button" className="gv-primary-button" onClick={() => window.location.reload()}>Try again</button>}
+          secondaryAction={<Link href="/explore" className="gv-secondary-button">Search cards</Link>}
+        />
       ) : items.length === 0 ? (
-        <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
-          <div className="mx-auto max-w-xl space-y-4">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Your vault is empty.</h2>
-            <p className="text-sm leading-7 text-slate-600">Start building your collection one card at a time.</p>
-            <div className="flex flex-wrap justify-center gap-3 pt-2">
-              <Link
-                href="/vault/import"
-                className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-              >
-                Import Collection
-              </Link>
-              <Link
-                href="/explore"
-                className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-              >
-                Browse Cards
-              </Link>
-            </div>
-          </div>
-        </section>
+        <ProductState
+          eyebrow="No cards yet"
+          title="Your Vault is ready"
+          description="Add an exact card version from Search, or import an existing collection."
+          action={<Link href="/explore" className="gv-primary-button">Search cards</Link>}
+          secondaryAction={<Link href="/vault/import" className="gv-secondary-button">Import collection</Link>}
+        />
       ) : (
         <PageSection spacing="default" className="space-y-6">
           {collectorPageActivationVariant ? (
@@ -851,14 +843,15 @@ export function VaultCollectionView({
         />
 
         {recentError ? (
-          <div className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
-            Recently added activity could not be loaded right now: {recentError}
-          </div>
-        ) : recent.length === 0 ? (
-          <PublicCollectionEmptyState
-            title="No recently added items yet."
-            body="New additions will appear here after you import or add cards."
+          <ProductState
+            compact
+            tone="error"
+            eyebrow="Recent activity unavailable"
+            title="Your Vault cards are unaffected"
+            description="Recent additions could not be refreshed right now."
           />
+        ) : recent.length === 0 ? (
+          <ProductState compact title="No recent additions" description="New cards will appear here after you import or add them." />
         ) : (
           <div className="flex gap-4 overflow-x-auto pt-0.5 pb-2">
             {recent.map((item) => (

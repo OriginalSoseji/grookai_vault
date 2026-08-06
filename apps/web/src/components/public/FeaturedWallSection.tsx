@@ -2,6 +2,11 @@
 
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
+import {
+  CollectorCardFacts,
+  CollectorEvidenceDisclosure,
+} from "@/components/collector/CollectorCardPresentation";
 import PublicCardImage from "@/components/PublicCardImage";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
@@ -44,88 +49,80 @@ function FeaturedWallCard({
   const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
 
   return (
-    <Link
-      href={cardHref}
-      className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+    <article
+      className="group grid min-h-full grid-cols-[minmax(118px,0.72fr)_minmax(0,1.28fr)] gap-4 border-b border-slate-200/80 pb-5 last:border-b-0 last:pb-0 sm:grid-cols-[minmax(150px,0.72fr)_minmax(0,1.28fr)] sm:gap-5 dark:border-white/[0.08]"
+      data-wall-collection-card
     >
-      <div className="grid min-h-full gap-0 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-        <div className="bg-[linear-gradient(180deg,rgba(248,250,252,0.95),rgba(241,245,249,0.9))] p-4 sm:p-5">
-          <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white/80">
+        <Link href={cardHref} className="self-start">
+          <div className="overflow-hidden rounded-[18px] border border-slate-200 bg-slate-50/70 dark:border-white/[0.08] dark:bg-white/[0.03]">
             <div className="relative">
               <PublicCardImage
                 src={card.image_url}
                 fallbackSrc={card.image_fallback_urls?.[0] ?? card.canonical_image_url}
                 fallbackSources={card.image_fallback_urls?.slice(1)}
                 alt={displayIdentity.display_name}
-                imageClassName="aspect-[3/4] w-full object-contain bg-slate-50 p-5 transition duration-200 group-hover:scale-[1.02]"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
+                imageClassName="aspect-[5/7] w-full bg-slate-50 object-contain transition duration-200 group-hover:scale-[1.006]"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
                 fallbackLabel={displayIdentity.display_name}
               />
-              {imagePresentation.compactBadgeLabel ? (
-                <div className="pointer-events-none absolute inset-x-0 top-0 flex p-3">
-                  <CardImageTruthBadge
-                    label={imagePresentation.compactBadgeLabel}
-                    emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
-                  />
-                </div>
-              ) : null}
             </div>
           </div>
-        </div>
-        <div className="flex min-h-full flex-col gap-4 p-5 sm:p-6">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="space-y-2">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Featured Wall</p>
-              <h3 className="line-clamp-2 text-2xl font-semibold tracking-tight text-slate-950">
-                {displayIdentity.display_name}
-              </h3>
-              <p className="text-sm text-slate-600">
-                {[card.set_name, card.number !== "—" ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
-              </p>
-            </div>
-            <div className="flex shrink-0 flex-wrap justify-end gap-2">
-              {card.is_slab ? (
-                <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-700">
-                  Slab
-                </span>
-              ) : null}
-            </div>
-          </div>
-
-          {mixedSummary ? (
-            <div className="rounded-[1rem] border border-slate-200 bg-slate-50 px-3 py-2">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700">{mixedSummary}</p>
+        </Link>
+        <div className="flex min-h-full min-w-0 flex-col gap-4 py-1">
+          <p className="gv-eyebrow dark:text-slate-300">Featured on this Wall</p>
+          <CollectorCardFacts
+            title={<Link href={cardHref} className="line-clamp-2 transition hover:text-slate-700">{displayIdentity.base_name}</Link>}
+            setName={card.set_name}
+            number={card.number}
+            rarity={card.rarity}
+            versionLabel={displayIdentity.suffix}
+            ownershipLabel={mixedSummary ?? (card.is_slab ? "Graded copy" : "Raw copy")}
+          />
+          {imagePresentation.compactBadgeLabel ? (
+            <div className="w-fit">
+              <CardImageTruthBadge
+                label={imagePresentation.compactBadgeLabel}
+                note={imagePresentation.detailNote}
+                emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+              />
             </div>
           ) : null}
 
           {card.is_slab ? (
-            <div className="space-y-1 rounded-[1rem] border border-amber-100 bg-amber-50/70 px-3 py-3">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-amber-700">
+            <div className="flex flex-wrap gap-1.5">
+              <PokemonCardGridBadge tone="warm">
                 {[card.grader, card.grade].filter(Boolean).join(" ") || "Graded slab"}
-              </p>
-              {card.cert_number ? <p className="text-sm text-slate-600">Cert {card.cert_number}</p> : null}
+              </PokemonCardGridBadge>
+              {card.cert_number ? <PokemonCardGridBadge>Cert {card.cert_number}</PokemonCardGridBadge> : null}
             </div>
           ) : null}
 
           {card.public_note ? <p className="text-sm leading-7 text-slate-600">{card.public_note}</p> : null}
 
           {card.back_image_url ? (
-            <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50">
+            <div className="max-w-[118px] overflow-hidden rounded-[18px] border border-slate-200 bg-slate-50 sm:max-w-[150px]">
               <div className="border-b border-slate-200 px-4 py-2">
                 <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">Back Photo</p>
               </div>
               <PublicCardImage
                 src={card.back_image_url}
                 alt={`${displayIdentity.display_name} back`}
-                imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-4"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
+                imageClassName="aspect-[5/7] w-full bg-slate-50 object-contain"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
                 fallbackLabel={`${displayIdentity.display_name} back`}
               />
             </div>
           ) : null}
+          <div className="mt-auto space-y-3">
+            <Link href={cardHref} className="gv-secondary-button w-full sm:w-fit">View exact copy</Link>
+            <CollectorEvidenceDisclosure>
+              <p>Card ID: {card.gv_id}</p>
+              {card.gv_vi_id ? <p>Exact copy ID: {card.gv_vi_id}</p> : <p>Exact copy identity is not available.</p>}
+              <p>Image evidence: {imagePresentation.detailNote ?? "Canonical card image"}</p>
+            </CollectorEvidenceDisclosure>
+          </div>
         </div>
-      </div>
-    </Link>
+    </article>
   );
 }
 
@@ -140,10 +137,10 @@ export function FeaturedWallSection({
   }
 
   return (
-    <section className="space-y-5 rounded-[2rem] border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-200/60 sm:px-7">
+    <section className="space-y-5 border-t border-slate-200/80 pt-5 dark:border-white/[0.08]" data-wall-collection-display>
       {showHeader ? (
         <div className="space-y-2">
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Featured Wall</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">Featured Wall</p>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Featured Wall</h2>
@@ -158,7 +155,7 @@ export function FeaturedWallSection({
         </div>
       ) : null}
 
-      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-x-8">
         {cards.map((card) => (
           <FeaturedWallCard
             key={card.gv_vi_id ?? card.vault_item_id ?? card.card_print_id ?? card.gv_id}

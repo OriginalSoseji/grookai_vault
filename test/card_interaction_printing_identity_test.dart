@@ -20,6 +20,9 @@ void main() {
       isArchived: false,
     );
 
-    expect(thread.printingIdentityLabel, 'Printing not specified');
+    expect(
+      thread.printingIdentityLabel,
+      'Exact printing unavailable for this legacy thread',
+    );
   });
 }

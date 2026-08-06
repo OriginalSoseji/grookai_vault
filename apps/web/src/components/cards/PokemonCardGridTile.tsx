@@ -15,7 +15,7 @@ type PokemonCardGridTileProps = {
   imageLoading?: "eager" | "lazy";
   imagePriority?: boolean;
   imageSizes?: string;
-  imageFallbackLabel?: string;
+  imageFallbackLabel?: ReactNode;
   imageClassName?: string;
   imageOverlay?: ReactNode;
   title: ReactNode;
@@ -23,6 +23,7 @@ type PokemonCardGridTileProps = {
   badges?: ReactNode;
   meta?: ReactNode;
   summary?: ReactNode;
+  actions?: ReactNode;
   details?: ReactNode;
   footer?: ReactNode;
   className?: string;
@@ -36,15 +37,15 @@ type PokemonCardGridBadgeProps = {
 };
 
 const TILE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-2",
-  default: "p-4",
-  large: "p-5",
+  compact: "p-0",
+  default: "p-0",
+  large: "p-0",
 };
 
 const IMAGE_PADDING_BY_DENSITY: Record<ViewDensity, string> = {
-  compact: "p-1.5",
-  default: "p-4",
-  large: "p-5",
+  compact: "p-0",
+  default: "p-0",
+  large: "p-0",
 };
 
 const CONTENT_STACK_BY_DENSITY: Record<ViewDensity, string> = {
@@ -104,7 +105,7 @@ function renderImage({
   imageLoading?: "eager" | "lazy";
   imagePriority?: boolean;
   imageSizes?: string;
-  imageFallbackLabel?: string;
+  imageFallbackLabel?: ReactNode;
   imageClassName?: string;
   imageOverlay?: ReactNode;
 }) {
@@ -120,8 +121,8 @@ function renderImage({
         loading={imageLoading}
         priority={imagePriority}
         sizes={imageSizes}
-        imageClassName={`aspect-[3/4] w-full rounded-[14px] object-contain transition duration-200 group-hover:scale-[1.012] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[14px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+        imageClassName={`aspect-[5/7] w-full rounded-[22px] object-contain transition duration-200 group-hover:scale-[1.006] ${imageClassName ?? ""}`.trim()}
+        fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
@@ -145,14 +146,14 @@ export function PokemonCardGridBadge({
       : "px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em]";
   const toneClassName =
     tone === "accent"
-      ? "border-sky-200 bg-sky-50 text-sky-700"
+      ? "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-300/30 dark:bg-sky-400/15 dark:text-sky-200"
       : tone === "positive"
-        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+        ? "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-400/15 dark:text-emerald-200"
         : tone === "warm"
-          ? "border-amber-200 bg-amber-50 text-amber-700"
+          ? "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-300/30 dark:bg-amber-400/15 dark:text-amber-200"
           : tone === "neutral"
-            ? "border-slate-200/80 bg-white/80 text-slate-600"
-            : "border-slate-200/80 bg-slate-50/80 text-slate-600";
+            ? "border-slate-200/80 bg-white/80 text-slate-600 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200"
+            : "border-slate-200/80 bg-slate-50/80 text-slate-600 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200";
 
   return (
     <span className={`inline-flex rounded-full border ${sizeClassName} ${toneClassName} ${className}`.trim()}>
@@ -181,6 +182,7 @@ export default function PokemonCardGridTile({
   badges,
   meta,
   summary,
+  actions,
   details,
   footer,
   className = "",
@@ -217,6 +219,7 @@ export default function PokemonCardGridTile({
           {badges ? <div className="flex flex-wrap gap-1.5">{badges}</div> : null}
           {meta ? <div className={`${META_TEXT_BY_DENSITY[density]} gv-hi-metadata`}>{meta}</div> : null}
           {summary ? <div className="space-y-2.5">{summary}</div> : null}
+          {actions ? <div className="pt-1">{actions}</div> : null}
           {details ? <div className="pt-1">{details}</div> : null}
           {footer ? (
             <div className={`gv-hi-diagnostics border-t border-slate-100/60 ${FOOTER_TEXT_BY_DENSITY[density]}`}>{footer}</div>

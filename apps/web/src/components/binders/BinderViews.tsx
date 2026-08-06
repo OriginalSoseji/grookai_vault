@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
 import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 import type {
   BinderDashboard,
   BinderProgressUnit,
@@ -77,44 +78,39 @@ export function BinderSummaryCard({ binder }: { binder: BinderSummary }) {
   return (
     <Link
       href={`/binders/${encodeURIComponent(binder.publicId)}`}
-      className="group flex min-h-48 flex-col justify-between rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
+      className="group grid min-h-44 grid-cols-[92px_minmax(0,1fr)] gap-4 rounded-lg border border-slate-200 bg-white p-3 transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 sm:grid-cols-1 sm:p-4"
     >
-      <div className="space-y-3">
-        <div className="h-40 overflow-hidden rounded-2xl bg-slate-50">
-          <PublicCardImage
-            src={binder.coverImageUrl ?? undefined}
-            alt={`${binder.title} cover artwork`}
-            imageClassName="h-full w-full object-contain transition group-hover:scale-[1.02]"
-            fallbackClassName="flex h-full items-center justify-center text-xs text-slate-500"
-            sizes="(max-width: 640px) 90vw, 360px"
-          />
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-700">
-            {binder.role}
-          </span>
-          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold capitalize text-emerald-800">
-            {binder.binderType}
-          </span>
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold text-slate-950 group-hover:text-emerald-800">
+      <div className="aspect-[5/7] overflow-hidden rounded-md bg-slate-50 sm:aspect-[16/10]">
+        <PublicCardImage
+          src={binder.coverImageUrl ?? undefined}
+          alt={`${binder.title} cover artwork`}
+          imageClassName="h-full w-full object-contain"
+          fallbackClassName="flex h-full items-center justify-center text-xs text-slate-500"
+          sizes="(max-width: 640px) 92px, 360px"
+        />
+      </div>
+      <div className="flex min-w-0 flex-col justify-between gap-4">
+        <div className="min-w-0">
+          <p className="text-xs font-semibold capitalize text-slate-500">
+            {binder.role} · {binder.binderType}
+          </p>
+          <h3 className="mt-1 text-base font-semibold text-slate-950 group-hover:text-sky-700">
             {binder.title}
           </h3>
           {binder.description ? (
             <p className="mt-1 line-clamp-2 text-sm text-slate-600">{binder.description}</p>
           ) : null}
         </div>
-      </div>
-      <div className="mt-5 space-y-3">
-        <BinderProgress
-          completed={binder.completedSlots}
-          total={binder.totalSlots}
-          unit={binder.progressUnit}
-        />
-        <p className="text-xs text-slate-500">
-          {binder.memberCount} {binder.memberCount === 1 ? "member" : "members"}
-        </p>
+        <div className="space-y-2">
+          <BinderProgress
+            completed={binder.completedSlots}
+            total={binder.totalSlots}
+            unit={binder.progressUnit}
+          />
+          <p className="text-xs text-slate-500">
+            {binder.memberCount} {binder.memberCount === 1 ? "member" : "members"}
+          </p>
+        </div>
       </div>
     </Link>
   );
@@ -144,9 +140,7 @@ function DashboardSection({
           ))}
         </div>
       ) : (
-        <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 px-5 py-8 text-sm text-slate-600">
-          {empty}
-        </div>
+        <ProductState compact eyebrow={title} title="Nothing here yet" description={empty} />
       )}
     </PageSection>
   );
@@ -190,7 +184,7 @@ export function BinderDashboardView({
               {dashboard.invitations.map((invitation) => (
                 <li
                   key={invitation.invitationPublicId}
-                  className="rounded-2xl border border-slate-200 bg-white p-4"
+                  className="rounded-lg border border-slate-200 bg-white p-4"
                 >
                   <p className="font-semibold text-slate-950">{invitation.binderTitle}</p>
                   <p className="mt-1 text-sm capitalize text-slate-600">
@@ -231,9 +225,12 @@ export function BinderDashboardView({
               ))}
             </ul>
           ) : (
-            <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 px-5 py-8 text-sm text-slate-600">
-              You have no pending Binder invitations.
-            </div>
+            <ProductState
+              compact
+              eyebrow="Invitations"
+              title="No pending invitations"
+              description="New Binder invitations will appear here without exposing their private invitation links."
+            />
           )}
           {dashboard.invitationsNextCursor && invitationPageHref ? (
             <Link href={invitationPageHref} className="gv-secondary-button">
@@ -255,7 +252,7 @@ export function BinderDashboardView({
             {dashboard.suspended.map((binder) => (
               <li
                 key={binder.publicId}
-                className="space-y-3 rounded-2xl border border-amber-200 bg-amber-50 p-4"
+                className="space-y-3 rounded-lg border border-amber-200 bg-amber-50 p-4"
               >
                 <div>
                   <p className="font-semibold text-amber-950">
@@ -304,7 +301,7 @@ export function BinderDashboardView({
             {dashboard.legacyCandidates.map((candidate) => (
               <li
                 key={candidate.watchPublicId}
-                className="rounded-2xl border border-slate-200 bg-white p-4"
+                className="rounded-lg border border-slate-200 bg-white p-4"
               >
                 <div className="flex gap-3">
                   <div className="h-24 w-16 shrink-0 overflow-hidden rounded-lg bg-slate-50">
@@ -375,7 +372,7 @@ export function BinderPublicView({
     <div className="space-y-8">
       <PageSection surface="card" spacing="loose">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div className="h-56 w-full shrink-0 overflow-hidden rounded-2xl bg-slate-50 sm:w-40">
+          <div className="aspect-[5/7] w-full shrink-0 overflow-hidden rounded-lg bg-slate-50 sm:w-40">
             <PublicCardImage
               src={binder.coverImageUrl ?? undefined}
               alt={`${binder.title} cover artwork`}
@@ -424,9 +421,9 @@ export function BinderPublicView({
             {binder.checklist.map((slot) => (
               <li
                 key={slot.slotPublicId || `${slot.title}-${slot.subtitle ?? ""}`}
-                className="rounded-2xl border border-slate-200 bg-white p-4"
+                className="rounded-lg border border-slate-200 bg-white p-4"
               >
-                <div className="mb-3 h-40 overflow-hidden rounded-xl bg-slate-50">
+                <div className="mb-3 aspect-[5/7] overflow-hidden rounded-md bg-slate-50">
                   <PublicCardImage
                     src={slot.imageUrl ?? undefined}
                     alt={`${slot.title} card artwork`}
@@ -480,9 +477,12 @@ export function BinderPublicView({
             ))}
           </ul>
         ) : (
-          <p className="rounded-2xl bg-slate-50 p-5 text-sm text-slate-600">
-            No public checklist slots are available.
-          </p>
+          <ProductState
+            compact
+            eyebrow="Checklist"
+            title="No public cards available"
+            description="This Binder does not currently expose any checklist slots."
+          />
         )}
         {binder.checklistNextCursor && checklistPageHref ? (
           <Link href={checklistPageHref} className="gv-secondary-button">
@@ -515,9 +515,12 @@ export function BinderPublicView({
 export function BinderTemplateGrid({ templates }: { templates: BinderTemplateSummary[] }) {
   if (templates.length === 0) {
     return (
-      <p className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-8 text-sm text-slate-600">
-        No approved Binder templates are available yet.
-      </p>
+      <ProductState
+        compact
+        eyebrow="Templates"
+        title="No templates available"
+        description="Approved Binder templates will appear here when they are ready to use."
+      />
     );
   }
   return (
@@ -526,9 +529,9 @@ export function BinderTemplateGrid({ templates }: { templates: BinderTemplateSum
         <Link
           key={template.templatePublicId}
           href={`/binder-templates/${encodeURIComponent(template.templatePublicId)}`}
-          className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
+          className="rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-300"
         >
-          <div className="mb-4 h-40 overflow-hidden rounded-2xl bg-slate-50">
+          <div className="mb-4 aspect-[5/7] overflow-hidden rounded-md bg-slate-50">
             <PublicCardImage
               src={template.coverImageUrl ?? undefined}
               alt={`${template.title} Template artwork`}

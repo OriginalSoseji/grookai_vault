@@ -148,7 +148,7 @@ export default function ExploreDiscoverySections({
     <div className="space-y-7 md:space-y-12">
       <div className="space-y-5 md:hidden">
         {spotlightCard ? (
-          <section className="overflow-hidden rounded-[1.45rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.16),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-4 py-3 shadow-sm shadow-amber-100/15">
+          <section className="overflow-hidden rounded-[22px] border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm dark:border-white/[0.08] dark:bg-white/[0.03]">
             <div className="space-y-2.5">
               <div className="space-y-0.5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">Spotlight</p>
@@ -165,8 +165,8 @@ export default function ExploreDiscoverySections({
                           fallbackSrc={spotlightCard.display_image_fallback_url}
                           fallbackSources={[spotlightCard.external_image_fallback_url]}
                           alt={getCardImageAltText(spotlightCard.display_name, spotlightCard)}
-                          imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3"
-                          fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                          imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
+                          fallbackClassName="flex aspect-[5/7] items-center justify-center rounded-[22px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                         />
                         {imagePresentation.compactBadgeLabel ? (
                           <div className="px-3 pb-3">
@@ -222,8 +222,8 @@ export default function ExploreDiscoverySections({
                                 fallbackSrc={card.display_image_fallback_url}
                                 fallbackSources={[card.external_image_fallback_url]}
                                 alt={getCardImageAltText(card.display_name, card)}
-                                imageClassName="aspect-[3/4] w-full object-contain"
-                                fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
+                                imageClassName="aspect-[5/7] w-full rounded-[22px] object-contain"
+                                fallbackClassName="flex aspect-[5/7] items-center justify-center rounded-[22px] bg-slate-100 px-3 text-center text-xs text-slate-500"
                               />
                               {imagePresentation.compactBadgeLabel ? (
                                 <CardImageTruthBadge
@@ -378,7 +378,7 @@ export default function ExploreDiscoverySections({
       </div>
 
       <div className="hidden space-y-10 md:block md:space-y-12">
-        <section className="overflow-hidden rounded-[28px] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.18),_transparent_38%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-6 py-7 shadow-sm md:px-8 md:py-9">
+        <section className="overflow-hidden rounded-[16px] border border-slate-200 bg-slate-50 px-6 py-7 shadow-sm md:px-8 md:py-9 dark:border-white/[0.08] dark:bg-white/[0.03]">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Collector Discovery</p>
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950 md:text-3xl">

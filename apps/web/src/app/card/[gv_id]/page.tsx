@@ -974,9 +974,9 @@ async function CardPageContent({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdMarkup(cardProductJsonLd) }}
       />
-      <section className="gv-product-hero isolate">
-        <div className="relative z-10 grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(300px,440px)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:p-12">
-          <div className="mx-auto flex w-full max-w-[380px] flex-col items-center lg:sticky lg:top-8 lg:max-w-[430px]">
+      <section className="gv-product-hero gv-card-detail-hero isolate">
+        <div className="relative z-10 grid gap-8 py-2 sm:py-4 lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)] lg:items-start lg:gap-12">
+          <div className="mx-auto flex w-full max-w-[260px] flex-col items-center sm:max-w-[330px] lg:sticky lg:top-8 lg:max-w-[390px]">
             <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
               <CardZoomModal
                 src={resolvedCardImageSrc}
@@ -986,9 +986,9 @@ async function CardPageContent({
                   resolvedDisplayIdentity.display_name,
                   displayedImageTruthSource,
                 )}
-                imageClassName="h-auto max-h-[580px] w-full cursor-zoom-in rounded-[22px] object-contain shadow-[0_30px_76px_-46px_rgba(15,23,42,0.88)] transition duration-150 hover:scale-[1.008] hover:shadow-[0_36px_84px_-46px_rgba(15,23,42,0.92)] sm:max-h-[660px]"
-                fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
-                sizes="(max-width: 1024px) 86vw, 430px"
+                imageClassName="h-auto max-h-[560px] w-full cursor-zoom-in rounded-[18px] object-contain shadow-[0_24px_60px_-40px_rgba(15,23,42,0.82)] transition duration-150 hover:scale-[1.006] sm:max-h-[620px]"
+                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[18px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+                sizes="(max-width: 1024px) 86vw, 390px"
                 priority
                 unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
               />
@@ -1015,8 +1015,8 @@ async function CardPageContent({
             ) : null}
           </div>
 
-          <div className="gv-card-hero-copy min-w-0 space-y-7">
-            <div className="space-y-5">
+          <div className="gv-card-hero-copy flex min-w-0 flex-col gap-5">
+            <div className="contents">
               <div className="flex flex-wrap items-center gap-2">
                 {resolvedCard.supertype ? (
                   <span className="gv-card-detail-eyebrow">
@@ -1053,7 +1053,7 @@ async function CardPageContent({
                   </div>
                 ) : null}
                 <div className="space-y-3">
-                  <h1 className="gv-hi-card-identity max-w-3xl text-[3rem] leading-[0.96] tracking-normal sm:text-[4.2rem] lg:text-[5.35rem]">
+                  <h1 className="gv-hi-card-identity max-w-3xl text-[2.5rem] leading-[1.02] tracking-normal sm:text-[3.4rem] lg:text-[4.25rem]">
                     {resolvedDisplayIdentity.base_name}
                   </h1>
                   {resolvedDisplayIdentity.printed_name ? (
@@ -1062,9 +1062,6 @@ async function CardPageContent({
                     </p>
                   ) : null}
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="inline-flex w-fit rounded-full border border-slate-200/80 bg-slate-50/90 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
-                      Grookai ID {resolvedCard.gv_id}
-                    </p>
                     {identitySubtitle ? (
                       <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
                     ) : null}
@@ -1091,12 +1088,12 @@ async function CardPageContent({
               ) : null}
 
               {variantOriginCopy ? (
-                <section className="gv-variant-story max-w-4xl px-5 py-5 sm:px-6 sm:py-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="gv-card-detail-eyebrow text-[10px]">
-                      Why this version matters
-                    </span>
-                  </div>
+                <details className="gv-variant-story order-2 group max-w-4xl px-5 py-4 sm:px-6">
+                  <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800 transition hover:text-slate-950 dark:text-slate-200 dark:hover:text-white">
+                    Why this version matters
+                    <span aria-hidden="true" className="ml-2 text-slate-400 group-open:hidden">+</span>
+                    <span aria-hidden="true" className="ml-2 hidden text-slate-400 group-open:inline">-</span>
+                  </summary>
                   <p className="mt-4 max-w-2xl text-2xl font-semibold leading-tight tracking-normal text-slate-950 dark:text-white sm:text-3xl">
                     {variantExplanation?.title ?? variantOriginCopy.family_label}
                   </p>
@@ -1160,35 +1157,40 @@ async function CardPageContent({
                       finishKey={selectedRoutePrinting?.finish_key}
                     />
                   </details>
-                </section>
+                </details>
               ) : null}
 
-              <div className="gv-hi-diagnostics flex flex-wrap items-center gap-3 text-sm">
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">
-                  {resolvedCard.gv_id}
-                </span>
-                <CopyButton text={resolvedCard.gv_id} />
-                {illustratorName ? <span>Illustrated by {illustratorName}</span> : null}
-              </div>
+              <details className="gv-result-evidence order-3">
+                <summary>Card evidence</summary>
+                <div className="gv-result-evidence-body">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono">Grookai ID {resolvedCard.gv_id}</span>
+                    <CopyButton text={resolvedCard.gv_id} />
+                    {illustratorName ? <span>Illustrated by {illustratorName}</span> : null}
+                  </div>
+                </div>
+              </details>
             </div>
 
-            <CardPageMarketVaultPanels
-              addToVaultAction={addToVaultAction}
-              createSlabAction={createSlabAction}
-              isAuthenticated={Boolean(user)}
-              loginHref={loginHref}
-              currentPath={currentCardPath}
-              gvId={resolvedCard.gv_id}
-              cardPrintId={resolvedCard.id}
-              cardName={resolvedDisplayIdentity.display_name}
-              printings={displayPrintingsWithOwnedCounts}
-              initialPrintingId={searchParams?.printing ?? null}
-              pricing={pricingUi}
-              pricingRecords={pricingRecords}
-              ownershipLabel={ownershipLabel}
-              rawCount={ownedObjectSummary.rawCount}
-              slabCount={ownedObjectSummary.slabCount}
-            />
+            <div id="vault-actions" className="order-1 scroll-mt-28">
+              <CardPageMarketVaultPanels
+                addToVaultAction={addToVaultAction}
+                createSlabAction={createSlabAction}
+                isAuthenticated={Boolean(user)}
+                loginHref={loginHref}
+                currentPath={currentCardPath}
+                gvId={resolvedCard.gv_id}
+                cardPrintId={resolvedCard.id}
+                cardName={resolvedDisplayIdentity.display_name}
+                printings={displayPrintingsWithOwnedCounts}
+                initialPrintingId={searchParams?.printing ?? null}
+                pricing={pricingUi}
+                pricingRecords={pricingRecords}
+                ownershipLabel={ownershipLabel}
+                rawCount={ownedObjectSummary.rawCount}
+                slabCount={ownedObjectSummary.slabCount}
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import ExploreResultActions from "@/components/explore/ExploreResultActions";
+import ExploreResultEvidence from "@/components/explore/ExploreResultEvidence";
 import PublicCardImage from "@/components/PublicCardImage";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -27,10 +29,6 @@ type ExploreCardDetailsRowProps = {
 
 function getPrimaryFinishLabel(card: ExploreResultCard) {
   return card.finish_label?.trim() || card.display_discriminator?.trim() || "";
-}
-
-function getDiagnosticId(card: ExploreResultCard) {
-  return card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`;
 }
 
 export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardDetailsRowProps) {
@@ -71,16 +69,12 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
                 <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
               ) : null}
             </Link>
-            <details className="mt-1">
-              <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 transition hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
-                Identity
-              </summary>
-              <div className="mt-1 space-y-1 text-[11px] text-slate-500 dark:text-slate-400">
-                <p className="truncate">{getDiagnosticId(card)}</p>
-                {matchReason ? <p className="truncate">{matchReason}</p> : null}
-                {searchDiscriminator ? <p className="truncate">{searchDiscriminator}</p> : null}
-              </div>
-            </details>
+            <ExploreResultEvidence
+              card={card}
+              matchReason={matchReason}
+              searchContext={searchDiscriminator}
+              compact
+            />
             <PromotionTransitionNote state={card.promotion_transition} className="mt-1" />
             {imagePresentation.compactBadgeLabel ? (
               <div className="mt-1">
@@ -137,7 +131,14 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
         )}
       </td>
       <td className="px-4 py-3 text-right">
-        <CompareCardButton gvId={card.gv_id} variant="compact" />
+        <div className="flex flex-col items-end gap-2">
+          <ExploreResultActions
+            cardHref={href}
+            cardName={displayIdentity.display_name}
+            compact
+          />
+          <CompareCardButton gvId={card.gv_id} variant="compact" />
+        </div>
       </td>
     </tr>
   );

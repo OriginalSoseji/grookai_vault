@@ -1631,10 +1631,12 @@ String _searchContextLabel(CardPrint card) {
 
 List<String> _dedupeCatalogLabels(Iterable<String> labels) {
   final seen = <String>{};
-  return labels.where((label) {
-    final normalized = label.trim().toLowerCase();
-    return normalized.isNotEmpty && seen.add(normalized);
-  }).toList(growable: false);
+  return labels
+      .where((label) {
+        final normalized = label.trim().toLowerCase();
+        return normalized.isNotEmpty && seen.add(normalized);
+      })
+      .toList(growable: false);
 }
 
 List<String> _catalogMetadataParts(
@@ -1799,7 +1801,7 @@ class _SearchResultActionSheet extends StatelessWidget {
     final imagePresentation = _cardPrintImagePresentation(card);
 
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -1809,7 +1811,7 @@ class _SearchResultActionSheet extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 256),
                 child: AspectRatio(
-                  aspectRatio: 3 / 4,
+                  aspectRatio: 2.5 / 3.5,
                   child: CardSurfaceArtwork(
                     label: displayIdentity.displayName,
                     imageUrl: card.catalogImageUrl,

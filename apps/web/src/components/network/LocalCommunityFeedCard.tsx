@@ -1,5 +1,9 @@
 import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import {
+  CollectorCardFacts,
+  CollectorEvidenceDisclosure,
+} from "@/components/collector/CollectorCardPresentation";
 import PublicCardImage from "@/components/PublicCardImage";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { LocalCommunityFeedRow } from "@/lib/network/getLocalCommunityFeedRows";
@@ -32,6 +36,16 @@ function getFreshnessLabel(createdAt: string | null) {
   });
 }
 
+function getCollectorInitials(value: string) {
+  return value
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((token) => token.charAt(0).toUpperCase())
+    .join("") || "GV";
+}
+
 export default function LocalCommunityFeedCard({
   row,
   sourceLabels,
@@ -47,16 +61,35 @@ export default function LocalCommunityFeedCard({
   });
 
   return (
-    <article className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm transition hover:border-slate-300 hover:shadow-md">
-      <div className="flex flex-col gap-5 p-5 sm:flex-row">
-        <Link href={row.routeTarget} className="relative flex w-full justify-center sm:w-[136px] sm:shrink-0">
+    <article className="border-b border-slate-200/80 py-5 first:pt-0 last:border-b-0 dark:border-white/[0.08]" data-pulse-event-card>
+      <header className="mb-4 flex min-w-0 items-center gap-3">
+        <Link
+          href={ownerHref}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border border-slate-200 bg-slate-950 text-xs font-semibold text-white dark:border-white/[0.12]"
+          aria-label={`View ${row.ownerDisplayName}'s profile`}
+        >
+          {getCollectorInitials(row.ownerDisplayName)}
+        </Link>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm text-slate-600 dark:text-slate-300">
+            <Link href={ownerHref} className="font-semibold text-slate-950 underline-offset-4 hover:underline dark:text-white">
+              {row.ownerDisplayName}
+            </Link>{" "}
+            shared a card in {row.localityLabel}
+          </p>
+          <p className="text-xs text-slate-500">{getFreshnessLabel(row.createdAt)}</p>
+        </div>
+      </header>
+
+      <div className="grid grid-cols-[104px_minmax(0,1fr)] gap-4 sm:grid-cols-[128px_minmax(0,1fr)] sm:gap-5">
+        <Link href={row.routeTarget} className="relative self-start">
           <PublicCardImage
             src={row.imageUrl ?? undefined}
             fallbackSrc={row.imageFallbackUrls[0]}
             fallbackSources={row.imageFallbackUrls.slice(1)}
             alt={row.cardName}
-            imageClassName="aspect-[3/4] w-[136px] rounded-[1rem] border border-slate-200 bg-slate-50 object-contain p-2"
-            fallbackClassName="flex aspect-[3/4] w-[136px] flex-col items-center justify-center gap-2 rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
+            imageClassName="aspect-[5/7] w-full rounded-[18px] bg-slate-50 object-contain"
+            fallbackClassName="flex aspect-[5/7] w-full flex-col items-center justify-center gap-2 rounded-[18px] bg-slate-100 px-3 text-center text-xs text-slate-500"
             fallbackLabel={
               <>
                 <span className="text-sm font-semibold text-slate-700">{row.cardName}</span>
@@ -64,29 +97,17 @@ export default function LocalCommunityFeedCard({
               </>
             }
           />
-          {imagePresentation.compactBadgeLabel ? (
-            <span className="pointer-events-none absolute left-2 top-2">
-              <CardImageTruthBadge label={imagePresentation.compactBadgeLabel} note={imagePresentation.detailNote} />
-            </span>
-          ) : null}
         </Link>
 
-        <div className="min-w-0 flex-1 space-y-4">
+        <div className="min-w-0 space-y-4">
+          <CollectorCardFacts
+            title={<Link href={row.routeTarget} className="transition hover:text-slate-700">{row.cardName}</Link>}
+            setName={row.setName || row.setCode}
+            number={row.cardNumber}
+            ownershipLabel={row.localityLabel}
+            availabilityLabels={[primarySourceLabel, ...secondarySourceLabels]}
+          />
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
-              {row.localityLabel}
-            </span>
-            <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
-              {primarySourceLabel}
-            </span>
-            {secondarySourceLabels.map((label) => (
-              <span
-                key={label}
-                className="inline-flex rounded-full border border-emerald-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700"
-              >
-                {label}
-              </span>
-            ))}
             {row.relationshipContext === "following" ? (
               <span className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-700">
                 Following
@@ -94,28 +115,18 @@ export default function LocalCommunityFeedCard({
             ) : null}
             {row.viewerWishlistMatch ? (
               <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">
-                Wishlist match
+                Want Match
               </span>
             ) : null}
           </div>
 
-          <div className="space-y-2">
-            <Link href={row.routeTarget} className="block">
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-950 transition hover:text-slate-700">
-                {row.cardName}
-              </h2>
-            </Link>
-            <p className="text-sm text-slate-600">
-              {[row.setName || row.setCode, row.cardNumber !== "—" ? `#${row.cardNumber}` : undefined]
-                .filter(Boolean)
-                .join(" • ")}
-            </p>
-            <p className="text-sm text-slate-600">
-              From{" "}
-              <Link href={ownerHref} className="font-medium text-slate-900 underline-offset-4 hover:underline">
-                {row.ownerDisplayName}
-              </Link>
-            </p>
+          {imagePresentation.compactBadgeLabel ? (
+            <div className="w-fit">
+              <CardImageTruthBadge label={imagePresentation.compactBadgeLabel} note={imagePresentation.detailNote} />
+            </div>
+          ) : null}
+
+          <div className="space-y-2 text-sm">
             {hasMultipleSources ? (
               <p className="text-sm text-slate-500">
                 Appears in {labels.join(", ")} for this collector.
@@ -123,16 +134,12 @@ export default function LocalCommunityFeedCard({
             ) : null}
             {row.matchReason === "viewer_wishlist" ? (
               <p className="text-sm font-medium text-amber-700">
-                This card matches your wishlist.
+                This collector has a card you marked Wanted.
               </p>
             ) : null}
           </div>
 
-          <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p>{row.gvId}</p>
-              <p>{getFreshnessLabel(row.createdAt)}</p>
-            </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap gap-2">
               <Link
                 href={row.routeTarget}
@@ -148,6 +155,11 @@ export default function LocalCommunityFeedCard({
               </Link>
             </div>
           </div>
+          <CollectorEvidenceDisclosure label="Event evidence">
+            <p>Card ID: {row.gvId}</p>
+            <p>Source: {labels.join(", ")}</p>
+            <p>Relationship: {row.relationshipContext === "following" ? "Following" : "Community"}</p>
+          </CollectorEvidenceDisclosure>
         </div>
       </div>
     </article>

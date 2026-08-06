@@ -323,8 +323,8 @@ export default function AddSlabCardAction({
                             <PublicCardImage
                               src={verificationResult.image_url}
                               alt={verificationResult.title ?? `${cardName} PSA cert`}
-                              imageClassName="aspect-[3/4] w-full rounded-[1rem] border border-slate-200 bg-white object-contain p-2"
-                              fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] border border-slate-200 bg-slate-100 px-2 text-center text-xs text-slate-500"
+                              imageClassName="aspect-[5/7] w-full rounded-[22px] bg-white object-contain"
+                              fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-2 text-center text-xs text-slate-500"
                             />
                           </div>
                         ) : null}

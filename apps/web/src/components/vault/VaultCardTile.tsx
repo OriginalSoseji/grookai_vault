@@ -15,14 +15,14 @@ import {
   formatVaultCopyIdentityLabel,
   formatVaultCardValue,
   formatVaultSecondaryContext,
+  getVaultCopyPresentationSummary,
   getVaultMessageSignalLabel,
   getVaultPrimaryActionLabel,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
-  VaultDetailPanel,
+  VaultEvidenceDisclosure,
   VaultFieldLabel,
-  VaultInsetCard,
   VaultPrimaryStateBadge,
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
@@ -182,6 +182,7 @@ export function VaultCardTile({
     activeMessageCount: item.active_message_count,
   });
   const previewCopies = item.copy_items.slice(0, 2);
+  const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
   const displayedCanonicalImage =
     !item.image_url ||
     item.image_url === item.canonical_display_image_url ||
@@ -266,75 +267,66 @@ export function VaultCardTile({
     <div className="space-y-4">
       {expandedSummary}
 
-      <VaultDetailPanel>
-        <div className="space-y-3">
-          <div className="space-y-1">
-            <VaultFieldLabel>Copies</VaultFieldLabel>
-            <p className="text-xs leading-5 text-slate-500">
-              Open an exact copy to edit condition, intent, media, sections, or public placement.
-            </p>
-          </div>
+      <div className="space-y-3 border-t border-slate-200/80 pt-4">
+        <div className="space-y-1">
+          <VaultFieldLabel>Exact copies</VaultFieldLabel>
+          <p className="text-xs leading-5 text-slate-500">
+            Finish, condition, and visibility belong to each exact copy.
+          </p>
+        </div>
 
-          <div className="space-y-2">
-            {previewCopies.map((copy) => {
-              const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
-              const createdAt = formatVaultCopyDate(copy.created_at);
+        <div className="divide-y divide-slate-200/70 border-y border-slate-200/70">
+          {previewCopies.map((copy) => {
+            const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
+            const createdAt = formatVaultCopyDate(copy.created_at);
 
-              return (
-                <VaultInsetCard key={copy.instance_id} className="space-y-3">
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div className="min-w-0 space-y-2">
-                      <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
-                      <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
-                        <span
-                          className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
-                        >
-                          {getVaultIntentLabel(copy.intent)}
-                        </span>
-                        <span
-                          className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}
-                        >
-                          {getVaultCopyVisibilityLabel(copy.intent)}
-                        </span>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                        <span>{copy.gv_vi_id ?? "GVVI pending"}</span>
-                        {createdAt ? <span>{createdAt}</span> : null}
-                      </div>
-                      {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
-                    </div>
-                    <div className="flex flex-wrap items-center justify-end gap-2">
-                      {copyHref ? (
-                        <Link
-                          href={copyHref}
-                          prefetch={false}
-                          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
-                        >
-                          Open copy
-                        </Link>
-                      ) : (
-                        <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
-                      )}
+            return (
+              <div key={copy.instance_id} className="space-y-2 py-3">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="min-w-0 space-y-2">
+                    <p className="text-sm font-semibold text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
+                      <span className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}>
+                        {getVaultIntentLabel(copy.intent)}
+                      </span>
+                      <span className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}>
+                        {getVaultCopyVisibilityLabel(copy.intent)}
+                      </span>
                     </div>
                   </div>
-                </VaultInsetCard>
-              );
-            })}
-          </div>
-
-          <div className="border-t border-slate-200 pt-3">
-            <Link
-              href={manageCardHref}
-              prefetch={false}
-              className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
-            >
-              {item.copy_items.length > previewCopies.length
-                ? `View all ${item.copy_items.length} copies`
-                : "Manage copies"}
-            </Link>
-          </div>
+                  {copyHref ? (
+                    <Link
+                      href={copyHref}
+                      prefetch={false}
+                      className="text-xs font-semibold text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                    >
+                      Open copy
+                    </Link>
+                  ) : (
+                    <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
+                  )}
+                </div>
+                <VaultEvidenceDisclosure label="Copy evidence">
+                  <p>{copy.gv_vi_id ? `Exact copy ID: ${copy.gv_vi_id}` : "Exact copy ID pending"}</p>
+                  {copy.card_printing_id ? <p>Printing ID: {copy.card_printing_id}</p> : null}
+                  {createdAt ? <p>Added {createdAt}</p> : null}
+                  {copy.notes ? <p>Collector note: {copy.notes}</p> : null}
+                </VaultEvidenceDisclosure>
+              </div>
+            );
+          })}
         </div>
-      </VaultDetailPanel>
+
+        <Link
+          href={manageCardHref}
+          prefetch={false}
+          className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
+        >
+          {item.copy_items.length > previewCopies.length
+            ? `View all ${item.copy_items.length} copies`
+            : "Manage copies"}
+        </Link>
+      </div>
     </div>
   ) : null;
 
@@ -382,14 +374,19 @@ export function VaultCardTile({
           ))}
         </>
       }
-      meta={secondaryContext ? <span className="gv-hi-metadata line-clamp-1 text-sm">{secondaryContext}</span> : undefined}
+      meta={
+        <div className="space-y-1">
+          <p className="font-semibold text-slate-700 dark:text-slate-200" data-vault-copy-presentation>
+            {copyPresentationSummary}
+          </p>
+          {secondaryContext ? <p className="gv-hi-metadata line-clamp-1 text-sm">{secondaryContext}</p> : null}
+        </div>
+      }
       summary={closedSummary}
       details={details}
       footer={
         <div className={`flex items-center gap-3 ${isExpanded ? "justify-between" : "justify-end"}`}>
-          {isExpanded ? (
-            <span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span>
-          ) : null}
+          {isExpanded ? <VaultEvidenceDisclosure><p>Grookai card ID: {item.gv_id}</p></VaultEvidenceDisclosure> : null}
           <button
             type="button"
             onClick={() => onExpansionToggle(item)}

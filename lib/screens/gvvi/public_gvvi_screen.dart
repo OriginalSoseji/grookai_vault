@@ -571,7 +571,7 @@ class _PublicGvviHero extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             AspectRatio(
-              aspectRatio: 3 / 4,
+              aspectRatio: 2.5 / 3.5,
               child: CardSurfaceArtwork(
                 label: displayName,
                 imageUrl: data.primaryImageUrl,

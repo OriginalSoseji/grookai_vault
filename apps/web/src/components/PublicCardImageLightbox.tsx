@@ -96,7 +96,7 @@ export default function PublicCardImageLightbox({
               src={src}
               alt={alt}
               imageClassName="max-h-[85vh] w-auto max-w-full rounded-3xl object-contain shadow-2xl"
-              fallbackClassName="flex aspect-[3/4] w-[min(92vw,420px)] items-center justify-center rounded-3xl bg-slate-100 px-4 text-center text-sm text-slate-500"
+              fallbackClassName="flex aspect-[5/7] w-[min(92vw,420px)] items-center justify-center rounded-[22px] bg-slate-100 px-4 text-center text-sm text-slate-500"
             />
           </div>
         </div>

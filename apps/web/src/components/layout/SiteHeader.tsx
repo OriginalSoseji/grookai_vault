@@ -4,10 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { DesktopApplicationShell } from "@/components/layout/DesktopApplicationShell";
 import { MobileGlobalSearch } from "@/components/layout/MobileGlobalSearch";
 import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/PersistentSearchBar";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import type { DesktopWallAvailability } from "@/lib/desktopShellManifest";
 import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { shouldSuppressMobileChrome } from "@/lib/mobileParity/shellManifest";
 
@@ -15,6 +17,7 @@ type SiteHeaderProps = {
   isAuthenticated: boolean;
   profileHref: string | null;
   networkUnreadCount: number;
+  wallAvailability: DesktopWallAvailability;
   dexEnabled: boolean;
   bindersEnabled: boolean;
 };
@@ -39,25 +42,13 @@ export function SiteHeaderFallback({
 }) {
   const pathname = usePathname();
   const suppressMobileChrome = shouldSuppressMobileChrome(pathname);
-  const desktopNavItems = [
-    { href: "/explore", label: "Search" },
-    { href: "/network", label: "Pulse" },
-    { href: "/scan", label: "Scan" },
-    { href: "/wall", label: "Wall" },
-    { href: "/vault", label: "Vault" },
-    { href: "/sets", label: "Sets" },
-    ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
-    { href: "/compare", label: "Compare" },
-  ];
 
   return (
     <header
-      className={`gv-site-header sticky top-0 z-50 ${
-        suppressMobileChrome ? "hidden md:block" : ""
-      }`}
+      className={`gv-site-header sticky top-0 z-50 ${suppressMobileChrome ? "gv-site-header-mobile-suppressed" : ""}`}
     >
-      <PageContainer className="py-2.5 md:py-4">
-        <div className="md:hidden">
+      <PageContainer className="py-2.5">
+        <div className="gv-mobile-site-header">
           <div className="flex min-h-[46px] items-center justify-between gap-3">
             <Link
               href="/"
@@ -74,25 +65,18 @@ export function SiteHeaderFallback({
             <ThemeToggle />
           </div>
         </div>
-        <div className="hidden min-h-[64px] items-center justify-between gap-4 md:flex">
-          <Link href="/" className="text-lg font-semibold text-slate-950">
-            Grookai Vault
-          </Link>
-          <nav className="flex flex-wrap items-center gap-2 text-sm">
-            {desktopNavItems.map((item) => (
-              <Link key={item.href} href={item.href} className="gv-nav-link">
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              href="/login"
-              className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
-            >
-              Login
-            </Link>
-            <ThemeToggle />
-          </nav>
-        </div>
+        <DesktopApplicationShell
+          pathname={pathname}
+          isAuthenticated={false}
+          profileHref={null}
+          networkUnreadCount={0}
+          wallAvailability="signed_out"
+          dexEnabled={dexEnabled}
+          bindersEnabled={false}
+          compareCount={0}
+          searchHref="/explore"
+          compareHref="/compare"
+        />
       </PageContainer>
     </header>
   );
@@ -102,6 +86,7 @@ export function SiteHeader({
   isAuthenticated,
   profileHref,
   networkUnreadCount,
+  wallAvailability,
   dexEnabled,
   bindersEnabled,
 }: SiteHeaderProps) {
@@ -136,21 +121,6 @@ export function SiteHeader({
     pathname.startsWith("/binders/");
   const accountHref = isAuthenticated ? "/account" : "/login";
   const accountLabel = isAuthenticated ? "Account" : "Login";
-  const primaryNav = [
-    { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Search", matchHref: "/explore" },
-    { href: "/network", label: "Pulse", matchHref: "/network" },
-    { href: "/scan", label: "Scan", matchHref: "/scan" },
-    { href: "/wall", label: "Wall", matchHref: "/wall" },
-    { href: "/vault", label: "Vault", matchHref: "/vault" },
-    ...(isAuthenticated && bindersEnabled
-      ? [{ href: "/binders", label: "Binders", matchHref: "/binders" }]
-      : []),
-  ];
-  const utilityNav = [
-    { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
-    ...(dexEnabled ? [{ href: "/dex", label: "Dex", matchHref: "/dex" }] : []),
-    { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
-  ];
   const mobileSectionLabel =
     pathname === "/scan" || pathname.startsWith("/scan/")
       ? "Scan"
@@ -174,12 +144,10 @@ export function SiteHeader({
 
   return (
     <header
-      className={`gv-site-header sticky top-0 z-50 ${
-        suppressMobileChrome ? "hidden md:block" : ""
-      }`}
+      className={`gv-site-header sticky top-0 z-50 ${suppressMobileChrome ? "gv-site-header-mobile-suppressed" : ""}`}
     >
-      <PageContainer className={showTopSearch ? "space-y-2.5 py-2.5 md:space-y-4 md:py-4" : "py-2.5 md:py-4"}>
-        <div className="md:hidden">
+      <PageContainer className={showTopSearch ? "space-y-2.5 py-2.5" : "py-2.5"}>
+        <div className="gv-mobile-site-header">
           <div className="flex min-h-[46px] items-center justify-between gap-3">
             <Link href="/" className="flex min-w-0 flex-1 items-center gap-2 text-[15px] font-semibold text-slate-950">
               <Image
@@ -248,74 +216,20 @@ export function SiteHeader({
           ) : null}
         </div>
 
-        <div className="hidden min-h-[64px] flex-col justify-center gap-4 md:flex lg:flex-row lg:items-center lg:justify-between">
-          <Link href="/" className="flex items-center gap-3 text-lg font-semibold text-slate-950">
-            <Image
-              src="/grookai-logo-64.png"
-              alt="Grookai Vault logo"
-              width={36}
-              height={36}
-              className="gv-brand-mark"
-            />
-            <span>Grookai Vault</span>
-          </Link>
-
-          <div className="flex flex-col gap-4 lg:items-end">
-            <nav className="flex flex-wrap items-center justify-end gap-2 text-sm">
-              {primaryNav.map((item) => {
-                const matchHref = item.matchHref;
-                const isActive =
-                  matchHref === "/vault"
-                    ? pathname === "/vault" || (pathname.startsWith("/vault/") && !pathname.startsWith("/vault/import"))
-                    : pathname === matchHref || pathname.startsWith(`${matchHref}/`);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`gv-nav-link ${isActive ? "gv-nav-link-active" : ""}`}
-                  >
-                    {matchHref === "/network" ? <NetworkLabel unreadCount={networkUnreadCount} /> : item.label}
-                  </Link>
-                );
-              })}
-              <span className="mx-1 hidden h-5 w-px bg-slate-200/80 lg:inline-block dark:bg-slate-700/70" aria-hidden="true" />
-              {utilityNav.map((item) => {
-                const matchHref = item.matchHref;
-                const isActive = pathname === matchHref || pathname.startsWith(`${matchHref}/`);
-                const isCompareItem = matchHref === "/compare";
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`gv-nav-link gv-nav-link-secondary ${
-                      isActive
-                        ? isCompareItem && compareCount > 0
-                          ? "bg-amber-100 text-amber-950 shadow-sm ring-1 ring-amber-200"
-                          : "gv-nav-link-active"
-                        : ""
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-              {isAuthenticated && profileHref ? (
-                <Link href={profileHref} className="gv-nav-link">
-                  Profile
-                </Link>
-              ) : null}
-              <ThemeToggle />
-              <Link
-                href={accountHref}
-                className="gv-secondary-button min-h-0 px-4 py-2 text-sm"
-              >
-                {accountLabel}
-              </Link>
-            </nav>
-          </div>
-        </div>
+        <DesktopApplicationShell
+          pathname={pathname}
+          isAuthenticated={isAuthenticated}
+          profileHref={profileHref}
+          networkUnreadCount={networkUnreadCount}
+          wallAvailability={wallAvailability}
+          dexEnabled={dexEnabled}
+          bindersEnabled={bindersEnabled}
+          compareCount={compareCount}
+          searchHref={buildPathWithCompareCards("/explore", "", compareCards)}
+          compareHref={buildCompareHref(compareCards)}
+        />
         {showTopSearch ? (
-          <div className="hidden md:block">
+          <div className="gv-desktop-site-header">
             <Suspense fallback={<PersistentSearchBarFallback />}>
               <PersistentSearchBar />
             </Suspense>
