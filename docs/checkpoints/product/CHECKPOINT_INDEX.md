@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `P0_VAULT_EXACT_COPY_HIGH_FIDELITY_20260805_V1.md` — `2026-08-05` — P0 IMPLEMENTED — Locks explicit family-versus-exact-copy presentation, honest mixed and unresolved finish states, shared owner/public exact-copy hierarchy, governed Vault degraded states, four deterministic visual baselines, and the bounded Pulse/Wall/Profile propagation gate.
 - `P0_SEARCH_CARD_DETAIL_HIGH_FIDELITY_20260805_V1.md` — `2026-08-05` — P0 IMPLEMENTED — Locks the approved responsive Search result grammar, shared evidence disclosure, action-first Card Detail hierarchy, four deterministic visual baselines, and the bounded Vault/exact-copy propagation gate.
 - `RELEASE_CONVERGENCE_VISUAL_BOUNDARY_20260805_V1.md` — `2026-08-05` — BOUNDED COMPLETION — Locks native-canon token convergence, the Search-to-existing-Vault bridge, shared product states, canonical card geometry, deterministic runtime evidence, and the separate approval gate for high-fidelity redesign.
 - `public_provisional_warehouse_hardening_v1.md` — `2026-04-22` — COMPLETE — Locks the public provisional warehouse search-only trust boundary, adapter-only access, canonical separation, UI restrictions, and anti-drift checks.
