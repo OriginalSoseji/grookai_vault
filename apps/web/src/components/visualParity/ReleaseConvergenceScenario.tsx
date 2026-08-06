@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
+import { DesktopApplicationShell } from "@/components/layout/DesktopApplicationShell";
+import { PageContainer } from "@/components/layout/PageContainer";
 import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
@@ -35,6 +37,12 @@ export const RELEASE_CONVERGENCE_SCENARIOS = [
   "profile-collector",
   "profile-blocked",
   "profile-deleted",
+  "desktop-shell-wide",
+  "desktop-shell-narrow",
+  "desktop-shell-signed-out",
+  "desktop-shell-unread",
+  "desktop-shell-wall-unavailable",
+  "desktop-shell-pushed-route",
   "error-state",
   "private-state",
 ] as const;
@@ -616,6 +624,70 @@ function PrivateState() {
   );
 }
 
+type DesktopShellFixtureKind =
+  | "wide"
+  | "narrow"
+  | "signed-out"
+  | "unread"
+  | "wall-unavailable"
+  | "pushed-route";
+
+function DesktopShellFixture({ kind }: { kind: DesktopShellFixtureKind }) {
+  const signedOut = kind === "signed-out";
+  const pathname = kind === "pushed-route"
+    ? "/binders/fixture-binder"
+    : kind === "unread"
+      ? "/network"
+      : kind === "wall-unavailable"
+        ? "/wall"
+        : "/vault";
+  const title = kind === "pushed-route"
+    ? "Binder workspace"
+    : kind === "unread"
+      ? "Collector activity"
+      : kind === "wall-unavailable"
+        ? "Your Wall"
+        : signedOut
+          ? "Search the card catalog"
+          : "Your collection";
+
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
+      <header className="gv-site-header">
+        <PageContainer className="py-2.5">
+          <DesktopApplicationShell
+            pathname={pathname}
+            isAuthenticated={!signedOut}
+            profileHref={signedOut ? null : "/u/fixture-collector"}
+            networkUnreadCount={kind === "unread" ? 7 : 0}
+            wallAvailability={signedOut ? "signed_out" : kind === "wall-unavailable" ? "unavailable" : "public"}
+            dexEnabled
+            bindersEnabled
+            compareCount={2}
+            searchHref="/explore?cards=fixture-one%2Cfixture-two"
+            compareHref="/compare?cards=fixture-one%2Cfixture-two"
+          />
+        </PageContainer>
+      </header>
+      <main className="mx-auto w-full max-w-6xl px-5 py-8">
+        <p className="text-xs font-semibold uppercase text-slate-500">{kind === "pushed-route" ? "Workspace" : "Grookai Vault"}</p>
+        <h1 className="mt-2 text-3xl font-semibold text-slate-950 dark:text-white">{title}</h1>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+          Exact card identity, ownership, and collector actions remain available through the same governed routes.
+        </p>
+        <div className="mt-8 grid gap-0 border-y border-slate-200 dark:border-slate-700 sm:grid-cols-3">
+          {["Exact versions", "Owned copies", "Collector activity"].map((label, index) => (
+            <div key={label} className="min-w-0 px-4 py-5 sm:border-r sm:border-slate-200 sm:last:border-r-0 dark:sm:border-slate-700">
+              <p className="text-xs font-medium text-slate-500">{label}</p>
+              <p className="mt-1 text-xl font-semibold text-slate-950 dark:text-white">{[128, 84, 7][index]}</p>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+}
+
 export function ReleaseConvergenceScenario({ scenario }: { scenario: ReleaseConvergenceScenarioName }) {
   if (scenario === "search-vault-bridge") {
     return <SearchVaultBridge />;
@@ -673,6 +745,24 @@ export function ReleaseConvergenceScenario({ scenario }: { scenario: ReleaseConv
   }
   if (scenario === "profile-deleted") {
     return <SocialState kind="profile-deleted" />;
+  }
+  if (scenario === "desktop-shell-wide") {
+    return <DesktopShellFixture kind="wide" />;
+  }
+  if (scenario === "desktop-shell-narrow") {
+    return <DesktopShellFixture kind="narrow" />;
+  }
+  if (scenario === "desktop-shell-signed-out") {
+    return <DesktopShellFixture kind="signed-out" />;
+  }
+  if (scenario === "desktop-shell-unread") {
+    return <DesktopShellFixture kind="unread" />;
+  }
+  if (scenario === "desktop-shell-wall-unavailable") {
+    return <DesktopShellFixture kind="wall-unavailable" />;
+  }
+  if (scenario === "desktop-shell-pushed-route") {
+    return <DesktopShellFixture kind="pushed-route" />;
   }
   if (scenario === "private-state") {
     return <PrivateState />;

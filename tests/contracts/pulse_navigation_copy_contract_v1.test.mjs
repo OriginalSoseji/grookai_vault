@@ -8,14 +8,17 @@ function readSource(relativePath) {
 
 test("web shell uses Pulse as the visible network surface label", () => {
   const siteHeader = readSource("apps/web/src/components/layout/SiteHeader.tsx");
+  const desktopShell = readSource("apps/web/src/components/layout/DesktopApplicationShell.tsx");
+  const desktopManifest = readSource("apps/web/src/lib/desktopShellManifest.ts");
   const mobileBottomNav = readSource("apps/web/src/components/layout/MobileBottomNav.tsx");
   const mobileDockPresentation = readSource("apps/web/src/components/mobileParity/MobileParityDock.tsx");
   const layoutFallback = readSource("apps/web/src/app/layout.tsx");
   const shellManifest = readSource("apps/web/src/lib/mobileParity/shellManifest.ts");
 
   assert.match(siteHeader, /<span>Pulse<\/span>/);
-  assert.match(siteHeader, /label: "Pulse", matchHref: "\/network"/);
   assert.match(siteHeader, /\? "Pulse"/);
+  assert.match(desktopManifest, /key: "pulse", label: "Pulse", href: "\/network"/);
+  assert.match(desktopShell, /DESKTOP_PRIMARY_NAV\.map/);
   assert.match(
     shellManifest,
     /key: "pulse",\s+label: "Pulse",\s+href: "\/network",\s+kind: "root"/,
@@ -25,7 +28,7 @@ test("web shell uses Pulse as the visible network surface label", () => {
   assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK\.map/);
   assert.match(layoutFallback, /<MobileBottomNavFallback \/>/);
 
-  for (const source of [siteHeader, mobileBottomNav, mobileDockPresentation, layoutFallback, shellManifest]) {
+  for (const source of [siteHeader, desktopShell, desktopManifest, mobileBottomNav, mobileDockPresentation, layoutFallback, shellManifest]) {
     assert.doesNotMatch(source, /label: "Feed"/);
     assert.doesNotMatch(source, />Feed</);
     assert.doesNotMatch(source, /\? "Feed"/);

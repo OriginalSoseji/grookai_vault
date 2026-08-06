@@ -866,6 +866,167 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   backdrop-filter: blur(14px);
 }
 
+.gv-mobile-site-header {
+  display: block;
+}
+
+.gv-desktop-site-header {
+  display: none;
+}
+
+.gv-site-header-mobile-suppressed .gv-mobile-site-header {
+  display: none;
+}
+
+.gv-desktop-shell-top {
+  display: flex;
+  min-height: 3rem;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gv-desktop-shell-nav-frame {
+  display: grid;
+  min-width: 0;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.gv-desktop-primary-nav {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-bottom: 1px solid var(--gv-border-hairline);
+}
+
+.gv-desktop-primary-link {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-bottom: 2px solid transparent;
+  border-radius: 4px 4px 0 0;
+  padding: 0.6rem 0.45rem 0.5rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 650;
+  transition: color var(--gv-transition-fast), background-color var(--gv-transition-fast), border-color var(--gv-transition-fast);
+}
+
+.gv-desktop-primary-link:hover {
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-desktop-primary-link-active {
+  border-bottom-color: var(--gv-primary);
+  color: var(--gv-primary);
+}
+
+.gv-desktop-secondary-nav {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.35rem;
+}
+
+.gv-desktop-secondary-link {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 4px;
+  padding: 0.35rem 0.55rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: color var(--gv-transition-fast), background-color var(--gv-transition-fast);
+}
+
+.gv-desktop-secondary-link:hover,
+.gv-desktop-secondary-link-active {
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-desktop-route-context {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 1px solid var(--gv-border-hairline);
+  padding-top: 0.45rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.gv-desktop-route-context a {
+  color: var(--gv-primary);
+}
+
+.gv-desktop-account-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.gv-desktop-account-menu[open] > summary {
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-container);
+}
+
+.gv-desktop-menu-link {
+  display: flex;
+  min-height: 2.25rem;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0.45rem 0.65rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.gv-desktop-menu-link:hover,
+.gv-desktop-menu-link:focus-visible {
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-container-low);
+}
+
+@media (min-width: 900px) {
+  .gv-mobile-site-header {
+    display: none;
+  }
+
+  .gv-desktop-site-header {
+    display: block;
+  }
+
+  .gv-mobile-safe-content {
+    padding-bottom: 3rem;
+  }
+
+  .gv-site-footer {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .gv-desktop-shell-nav-frame {
+    grid-template-columns: minmax(28rem, 1fr) auto;
+    align-items: end;
+    gap: 1rem;
+  }
+
+  .gv-desktop-secondary-nav {
+    justify-content: flex-end;
+    padding-bottom: 0.35rem;
+  }
+}
+
 .gv-brand-mark {
   border-radius: 12px;
   box-shadow: 0 10px 26px -18px rgba(15, 23, 42, 0.7);
@@ -1374,6 +1535,20 @@ html.gv-dark .gv-search-preset-card:hover {
 
 html.gv-dark .gv-site-header {
   background: rgba(2, 6, 23, 0.74);
+}
+
+html.gv-dark .gv-desktop-primary-link:hover,
+html.gv-dark .gv-desktop-secondary-link:hover,
+html.gv-dark .gv-desktop-secondary-link-active,
+html.gv-dark .gv-desktop-account-menu[open] > summary,
+html.gv-dark .gv-desktop-menu-link:hover,
+html.gv-dark .gv-desktop-menu-link:focus-visible {
+  background: rgba(30, 41, 59, 0.72);
+}
+
+html.gv-dark .gv-desktop-primary-link-active,
+html.gv-dark .gv-desktop-route-context a {
+  color: #93c5fd;
 }
 
 html.gv-dark .gv-nav-link:hover {

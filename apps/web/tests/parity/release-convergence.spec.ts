@@ -21,6 +21,12 @@ const scenarios = [
   "profile-collector",
   "profile-blocked",
   "profile-deleted",
+  "desktop-shell-wide",
+  "desktop-shell-narrow",
+  "desktop-shell-signed-out",
+  "desktop-shell-unread",
+  "desktop-shell-wall-unavailable",
+  "desktop-shell-pushed-route",
   "error-state",
   "private-state",
 ] as const;
@@ -36,6 +42,9 @@ async function openScenario(page: import("@playwright/test").Page, scenario: typ
 
 for (const scenario of scenarios) {
   test(`${scenario} is accessible and does not overflow`, async ({ page }) => {
+    if (scenario.startsWith("desktop-shell-")) {
+      await page.setViewportSize({ width: 1024, height: 900 });
+    }
     await openScenario(page, scenario);
     const dimensions = await page.evaluate(() => ({
       clientWidth: document.documentElement.clientWidth,
@@ -49,6 +58,78 @@ for (const scenario of scenarios) {
     expect(results.violations.filter((result) => result.impact === "critical" || result.impact === "serious")).toEqual([]);
   });
 }
+
+test("desktop shell preserves the five primary pillars and separates tools", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await openScenario(page, "desktop-shell-wide");
+
+  await expect(page.locator("[data-desktop-primary-navigation] a")).toHaveText([
+    "Pulse",
+    "Wall",
+    "Scan",
+    "Vault",
+    "Search",
+  ]);
+  await expect(page.locator("[data-desktop-secondary-navigation] a")).toHaveText([
+    "Sets",
+    "Dex",
+    "Compare (2)",
+    "Binders",
+    "Messages",
+  ]);
+  await expect(page.getByRole("link", { name: "Vault", exact: true })).toHaveAttribute("aria-current", "page");
+});
+
+test("desktop signed-out shell hides private tools and exposes Login", async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await openScenario(page, "desktop-shell-signed-out");
+
+  await expect(page.getByRole("link", { name: "Login", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Binders", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Messages", exact: true })).toHaveCount(0);
+  await expect(page.locator("summary", { hasText: "Account" })).toHaveCount(0);
+});
+
+test("desktop unread and Wall availability states remain explicit", async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await openScenario(page, "desktop-shell-unread");
+  await expect(page.getByLabel("7 unread")).toHaveCount(2);
+
+  await openScenario(page, "desktop-shell-wall-unavailable");
+  await expect(page.getByText("Wall status unavailable", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Wall", exact: true })).toHaveAttribute("aria-current", "page");
+});
+
+test("desktop pushed routes preserve parent context and active ownership pillar", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await openScenario(page, "desktop-shell-pushed-route");
+
+  await expect(page.locator("[data-desktop-route-context]")).toContainText("Binder workspace");
+  await expect(page.getByRole("link", { name: "Back to Binders" })).toHaveAttribute("href", "/binders");
+  await expect(page.getByRole("link", { name: "Vault", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("link", { name: "Binders", exact: true })).toHaveAttribute("aria-current", "page");
+});
+
+test("desktop account menu supports keyboard focus without exposing private links early", async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await openScenario(page, "desktop-shell-wide");
+
+  const accountSummary = page.locator("summary", { hasText: "Account" });
+  await accountSummary.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("link", { name: "Public profile", exact: true })).toBeVisible();
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "Public profile", exact: true })).toBeFocused();
+});
+
+test("desktop shell begins at the canonical 900px boundary", async ({ page }) => {
+  await page.setViewportSize({ width: 899, height: 900 });
+  await openScenario(page, "desktop-shell-narrow");
+  await expect(page.locator("[data-desktop-application-shell]")).toBeHidden();
+
+  await page.setViewportSize({ width: 900, height: 900 });
+  await expect(page.locator("[data-desktop-application-shell]")).toBeVisible();
+});
 
 test("Search card keeps identity context and bridges to exact Vault actions", async ({ page }) => {
   await openScenario(page, "search-vault-bridge");
@@ -220,3 +301,27 @@ for (const scenario of ["pulse-event", "wall-collection", "profile-collector"] a
     await expect(page).toHaveScreenshot(`p0-${scenario}-desktop.png`, { fullPage: true });
   });
 }
+
+test("P0 desktop shell remains visually stable at wide desktop", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await openScenario(page, "desktop-shell-wide");
+  await expect(page).toHaveScreenshot("p0-desktop-shell-wide.png", { fullPage: true });
+});
+
+test("P0 desktop shell remains visually stable at narrow desktop", async ({ page }) => {
+  await page.setViewportSize({ width: 900, height: 900 });
+  await openScenario(page, "desktop-shell-narrow");
+  await expect(page).toHaveScreenshot("p0-desktop-shell-narrow.png", { fullPage: true });
+});
+
+test("P0 desktop shell Wall-unavailable state remains visually stable", async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await openScenario(page, "desktop-shell-wall-unavailable");
+  await expect(page).toHaveScreenshot("p0-desktop-shell-wall-unavailable.png", { fullPage: true });
+});
+
+test("P0 desktop shell pushed-route state remains visually stable", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await openScenario(page, "desktop-shell-pushed-route");
+  await expect(page).toHaveScreenshot("p0-desktop-shell-pushed-route.png", { fullPage: true });
+});

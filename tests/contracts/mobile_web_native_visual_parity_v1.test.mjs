@@ -134,6 +134,7 @@ test("production mobile chrome suppresses approved Scan and Binder route familie
   const manifest = read("apps/web/src/lib/mobileParity/shellManifest.ts");
   const dock = read("apps/web/src/components/layout/MobileBottomNav.tsx");
   const header = read("apps/web/src/components/layout/SiteHeader.tsx");
+  const desktopShell = read("apps/web/src/components/layout/DesktopApplicationShell.tsx");
 
   assert.match(
     manifest,
@@ -162,10 +163,10 @@ test("production mobile chrome suppresses approved Scan and Binder route familie
     "production and fallback docks must enforce route suppression",
   );
   assert.match(header, /shouldSuppressMobileChrome\(pathname\)/);
-  assert.match(header, /suppressMobileChrome \? "hidden md:block" : ""/);
+  assert.match(header, /suppressMobileChrome \? "gv-site-header-mobile-suppressed" : ""/);
   assert.match(
-    header,
-    /\{ href: "\/scan", label: "Scan", matchHref: "\/scan" \}/,
+    desktopShell,
+    /DESKTOP_PRIMARY_NAV\.map/,
   );
 });
 
