@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PageIntro from "@/components/layout/PageIntro";
-import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 import { BinderDashboardView } from "@/components/binders/BinderViews";
 import { BinderConnectivityBoundary } from "@/components/binders/BinderOfflineBanner";
 import { BinderIdempotencyScope } from "@/components/binders/BinderIdempotencyScope";
@@ -71,15 +71,14 @@ export default async function BindersPage(
           title="Binders"
           description="Collection goals powered by cards in your Vault."
         />
-        <PageSection surface="card">
-          <h2 className="text-lg font-semibold text-slate-950">Binders could not load</h2>
-          <p className="text-sm text-slate-600">
-            Your Binder data was not changed. Check your connection and try again.
-          </p>
-          <Link href="/binders" className="gv-primary-button">
-            Try again
-          </Link>
-        </PageSection>
+        <ProductState
+          eyebrow="Binder library unavailable"
+          title="Binders could not load"
+          description="Your Binder data was not changed. Check your connection and try again."
+          tone="error"
+          action={<Link href="/binders" className="gv-primary-button">Try again</Link>}
+          secondaryAction={<Link href="/vault" className="gv-secondary-button">Open Vault</Link>}
+        />
       </div>
     );
   }
@@ -127,18 +126,18 @@ export default async function BindersPage(
       />
       <BinderConnectivityBoundary loadedAt={dashboard.loadedAt}>
       {searchParams.notice === "invitation-declined" ? (
-        <div role="status" className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+        <div role="status" className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
           Binder invitation declined.
         </div>
       ) : null}
       {searchParams.notice === "invitation-unavailable" ? (
-        <div role="alert" className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div role="alert" className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
           That invitation could not be completed. It may have expired, changed,
           or already been used.
         </div>
       ) : null}
       {searchParams.notice === "invitation-reported" ? (
-        <div role="status" className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+        <div role="status" className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
           Report received. Thank you for helping keep Binder invitations safe.
         </div>
       ) : null}

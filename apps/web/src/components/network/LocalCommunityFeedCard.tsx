@@ -115,7 +115,7 @@ export default function LocalCommunityFeedCard({
             ) : null}
             {row.viewerWishlistMatch ? (
               <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">
-                Wishlist match
+                Want Match
               </span>
             ) : null}
           </div>
@@ -134,7 +134,7 @@ export default function LocalCommunityFeedCard({
             ) : null}
             {row.matchReason === "viewer_wishlist" ? (
               <p className="text-sm font-medium text-amber-700">
-                This card matches your wishlist.
+                This collector has a card you marked Wanted.
               </p>
             ) : null}
           </div>

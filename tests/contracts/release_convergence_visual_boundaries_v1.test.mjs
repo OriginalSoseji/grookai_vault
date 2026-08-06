@@ -72,6 +72,70 @@ test("shared product states govern root and Binder failure surfaces", () => {
   assert.doesNotMatch(vault, /Vault could not be loaded right now:/);
 });
 
+test("Binder convergence preserves private handoff authority and quiet collector states", () => {
+  const library = read("apps/web/src/app/binders/page.tsx");
+  const views = read("apps/web/src/components/binders/BinderViews.tsx");
+  const invitation = read("apps/web/src/app/binder-invites/review/page.tsx");
+  const handoff = read("apps/web/src/app/binder-invites/[inviteToken]/route.ts");
+  const response = read("apps/web/src/app/binder-invites/respond/route.ts");
+
+  assert.match(library, /<ProductState/);
+  assert.match(views, /aspect-\[5\/7\]/);
+  assert.match(views, /<ProductState compact/);
+  assert.doesNotMatch(views, /rounded-3xl/);
+  assert.match(invitation, /<ProductState/);
+  assert.match(invitation, /BINDER_INVITE_TRANSIENT_COOKIE/);
+  assert.match(handoff, /httpOnly:\s*true/);
+  assert.match(handoff, /sameSite:\s*"lax"/);
+  assert.match(response, /BINDER_MUTATION_RPC/);
+  assert.match(response, /clearTransientCookie/);
+  assert.doesNotMatch(invitation, /name="inviteToken"|value=\{transientState\.token\}/);
+});
+
+test("secondary collection tools share recovery states without changing their data authority", () => {
+  const compare = read("apps/web/src/app/compare/page.tsx");
+  const setResults = read("apps/web/src/components/sets/PublicSetsResults.tsx");
+
+  assert.match(compare, /<ProductState/);
+  assert.match(compare, /getPublicCardsByGvIds/);
+  assert.match(setResults, /<ProductState/);
+
+  for (const file of [
+    "apps/web/src/app/sets/loading.tsx",
+    "apps/web/src/app/sets/error.tsx",
+    "apps/web/src/app/dex/loading.tsx",
+    "apps/web/src/app/dex/error.tsx",
+    "apps/web/src/app/compare/loading.tsx",
+    "apps/web/src/app/compare/error.tsx",
+  ]) {
+    assert.ok(read(file).length > 0, `${file} must define a route-local state`);
+  }
+
+  assert.doesNotMatch(compare, /insert\(|update\(|delete\(/);
+});
+
+test("Messages and Want Matches preserve exact-card context and governed actions", () => {
+  const inbox = read("apps/web/src/app/network/inbox/page.tsx");
+  const community = read("apps/web/src/components/network/LocalCommunityFeedCard.tsx");
+  const interactions = read("apps/web/src/lib/network/getUserCardInteractions.ts");
+
+  assert.match(inbox, /data-card-message-thread/);
+  assert.match(inbox, /resolveDisplayIdentity/);
+  assert.match(inbox, /<InteractionGroupReplyForm/);
+  assert.match(inbox, /<InteractionGroupControls/);
+  assert.match(inbox, /<ProductState/);
+  assert.match(community, /Want Match/);
+  assert.match(community, /viewerWishlistMatch/);
+  assert.match(interactions, /cardPrintId/);
+
+  for (const file of [
+    "apps/web/src/app/network/inbox/loading.tsx",
+    "apps/web/src/app/network/inbox/error.tsx",
+  ]) {
+    assert.ok(read(file).length > 0, `${file} must define a route-local state`);
+  }
+});
+
 test("collector card-art surfaces use the canonical five-by-seven frame", () => {
   const files = [
     "apps/web/src/components/cards/PokemonCardGridTile.tsx",

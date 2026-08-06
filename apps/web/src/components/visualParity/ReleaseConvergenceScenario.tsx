@@ -16,6 +16,8 @@ import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
 import ReleaseConvergenceVaultTileFixture from "@/components/visualParity/ReleaseConvergenceVaultTileFixture";
+import { BinderSummaryCard } from "@/components/binders/BinderViews";
+import type { BinderSummary } from "@/lib/binders/types";
 
 export const RELEASE_CONVERGENCE_SCENARIOS = [
   "search-vault-bridge",
@@ -43,6 +45,10 @@ export const RELEASE_CONVERGENCE_SCENARIOS = [
   "desktop-shell-unread",
   "desktop-shell-wall-unavailable",
   "desktop-shell-pushed-route",
+  "binders-library",
+  "binder-invite-unavailable",
+  "messages-thread",
+  "messages-empty",
   "error-state",
   "private-state",
 ] as const;
@@ -624,6 +630,117 @@ function PrivateState() {
   );
 }
 
+const BINDER_FIXTURES: BinderSummary[] = [
+  {
+    publicId: "fixture-binder-kanto",
+    title: "Kanto Favorites",
+    description: "A shared checklist for favorite first-generation cards.",
+    coverImageUrl: null,
+    binderType: "species",
+    role: "owner",
+    lifecycle: "active",
+    completedSlots: 18,
+    totalSlots: 32,
+    progressUnit: "card_prints",
+    memberCount: 2,
+    updatedAt: "2026-08-05T18:00:00.000Z",
+  },
+  {
+    publicId: "fixture-binder-set",
+    title: "Scarlet & Violet 151",
+    description: "Exact card-print checklist with finish-aware progress.",
+    coverImageUrl: null,
+    binderType: "set",
+    role: "viewer",
+    lifecycle: "active",
+    completedSlots: 121,
+    totalSlots: 165,
+    progressUnit: "finish_options",
+    memberCount: 4,
+    updatedAt: "2026-08-05T18:00:00.000Z",
+  },
+];
+
+function BindersLibraryFixture() {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title="Binders" />
+      <main className="mx-auto w-full max-w-5xl px-4 py-6">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-5 dark:border-slate-700">
+          <div>
+            <p className="gv-eyebrow">Collection goals</p>
+            <h1 className="gv-display-title">Binders</h1>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Build exact-card checklists from cards already in your Vault.</p>
+          </div>
+          <Link href="/binders/new" className="gv-primary-button">Create Binder</Link>
+        </div>
+        <section aria-labelledby="binder-fixture-title">
+          <h2 id="binder-fixture-title" className="gv-section-title">Continue building</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {BINDER_FIXTURES.map((binder) => <BinderSummaryCard key={binder.publicId} binder={binder} />)}
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+function BinderInvitationUnavailableFixture() {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title="Binder invitation" />
+      <main className="mx-auto max-w-2xl px-4 py-12">
+        <ProductState
+          eyebrow="Binder invitation"
+          title="Invitation unavailable"
+          description="This invitation may be expired, revoked, already used, intended for another account, or blocked."
+          action={<Link href="/binders" className="gv-primary-button">My Binders</Link>}
+        />
+      </main>
+    </div>
+  );
+}
+
+function MessagesFixture({ empty = false }: { empty?: boolean }) {
+  return (
+    <div className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white" data-release-convergence-root>
+      <FixtureHeader title="Messages" />
+      <main className="mx-auto w-full max-w-4xl px-4 py-6">
+        <div className="mb-5 border-b border-slate-200 pb-5 dark:border-white/[0.08]">
+          <p className="gv-eyebrow">Messages</p>
+          <h1 className="gv-display-title">Messages about cards</h1>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Reply without losing the exact card version or collector context.</p>
+        </div>
+        {empty ? (
+          <ProductState
+            compact
+            eyebrow="Messages"
+            title="No active messages"
+            description="Messages you send or receive about specific cards will appear here."
+            action={<Link href="/network" className="gv-primary-button">Browse collectors</Link>}
+          />
+        ) : (
+          <article className="grid grid-cols-[96px_minmax(0,1fr)] gap-4 border-b border-slate-200 py-5 dark:border-white/[0.08]" data-card-message-thread>
+            <div className="flex aspect-[5/7] items-center justify-center rounded-lg bg-slate-100 px-2 text-center text-xs text-slate-500 dark:bg-slate-800">Pikachu</div>
+            <div className="min-w-0 space-y-3">
+              <p className="text-xs font-semibold uppercase text-slate-500">With Fixture Collector</p>
+              <div>
+                <h2 className="text-xl font-semibold">Pikachu — Reverse Holo</h2>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">Scarlet &amp; Violet 151 • #025</p>
+              </div>
+              <div className="border-l-2 border-sky-400 bg-slate-50 px-4 py-3 dark:bg-slate-900">
+                <p className="text-xs font-semibold uppercase text-slate-500">Latest · Fixture Collector</p>
+                <p className="mt-1 text-sm text-slate-700 dark:text-slate-200">I can meet locally this weekend.</p>
+              </div>
+              <button type="button" className="gv-primary-button">Reply</button>
+            </div>
+          </article>
+        )}
+      </main>
+    </div>
+  );
+}
+
 type DesktopShellFixtureKind =
   | "wide"
   | "narrow"
@@ -763,6 +880,18 @@ export function ReleaseConvergenceScenario({ scenario }: { scenario: ReleaseConv
   }
   if (scenario === "desktop-shell-pushed-route") {
     return <DesktopShellFixture kind="pushed-route" />;
+  }
+  if (scenario === "binders-library") {
+    return <BindersLibraryFixture />;
+  }
+  if (scenario === "binder-invite-unavailable") {
+    return <BinderInvitationUnavailableFixture />;
+  }
+  if (scenario === "messages-thread") {
+    return <MessagesFixture />;
+  }
+  if (scenario === "messages-empty") {
+    return <MessagesFixture empty />;
   }
   if (scenario === "private-state") {
     return <PrivateState />;

@@ -27,6 +27,10 @@ const scenarios = [
   "desktop-shell-unread",
   "desktop-shell-wall-unavailable",
   "desktop-shell-pushed-route",
+  "binders-library",
+  "binder-invite-unavailable",
+  "messages-thread",
+  "messages-empty",
   "error-state",
   "private-state",
 ] as const;
@@ -108,6 +112,35 @@ test("desktop pushed routes preserve parent context and active ownership pillar"
   await expect(page.getByRole("link", { name: "Back to Binders" })).toHaveAttribute("href", "/binders");
   await expect(page.getByRole("link", { name: "Vault", exact: true })).toHaveAttribute("aria-current", "page");
   await expect(page.getByRole("link", { name: "Binders", exact: true })).toHaveAttribute("aria-current", "page");
+});
+
+test("Binder library keeps goals, collaboration role, and progress distinct", async ({ page }) => {
+  await openScenario(page, "binders-library");
+  await expect(page.getByRole("main").getByRole("heading", { name: "Binders", exact: true })).toBeVisible();
+  await expect(page.getByText("owner · species", { exact: true })).toBeVisible();
+  await expect(page.getByText("18 of 32 card prints", { exact: true })).toBeVisible();
+  await expect(page.getByText("2 members", { exact: true })).toBeVisible();
+});
+
+test("expired Binder invitation exposes no private token or backend detail", async ({ page }) => {
+  await openScenario(page, "binder-invite-unavailable");
+  await expect(page.getByText("Invitation unavailable", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "My Binders" })).toHaveAttribute("href", "/binders");
+  await expect(page.getByText(/inviteToken|supabase|postgres/i)).toHaveCount(0);
+});
+
+test("Messages preserve exact card and collector context", async ({ page }) => {
+  await openScenario(page, "messages-thread");
+  await expect(page.locator("[data-card-message-thread]")).toHaveCount(1);
+  await expect(page.getByText("Pikachu — Reverse Holo", { exact: true })).toBeVisible();
+  await expect(page.getByText("Scarlet & Violet 151 • #025", { exact: true })).toBeVisible();
+  await expect(page.getByText("With Fixture Collector", { exact: true })).toBeVisible();
+});
+
+test("empty Messages keeps a collector-facing recovery path", async ({ page }) => {
+  await openScenario(page, "messages-empty");
+  await expect(page.getByText("No active messages", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Browse collectors" })).toHaveAttribute("href", "/network");
 });
 
 test("desktop account menu supports keyboard focus without exposing private links early", async ({ page }) => {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 import SectionHeader from "@/components/layout/SectionHeader";
 import PublicSetTile from "@/components/sets/PublicSetTile";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -390,9 +390,14 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
           ) : null}
         </div>
       ) : (
-        <PageSection surface="card" className="text-sm text-slate-600">
-          {normalizedQuery ? `No sets found for "${rawQuery}".` : "No sets matched the current filter."}
-        </PageSection>
+        <ProductState
+          compact
+          eyebrow="Sets"
+          title="No sets found"
+          description={normalizedQuery
+            ? `No sets matched “${rawQuery}”. Try a set name, code, or a different language.`
+            : "No sets matched the current filter. Clear a filter to see more sets."}
+        />
       )}
     </>
   );

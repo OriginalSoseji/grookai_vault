@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import PageSection from "@/components/layout/PageSection";
+import ProductState from "@/components/layout/ProductState";
 import { BinderConnectivityBoundary } from "@/components/binders/BinderOfflineBanner";
 import { BinderServerActionButton } from "@/components/binders/BinderForms";
 import { getOptionalServerUser } from "@/lib/auth/requireServerUser";
@@ -33,31 +34,17 @@ function GenericInvitation({
 }) {
   return (
     <div className="mx-auto max-w-2xl py-12">
-      <PageSection surface="card">
-        <p className="gv-eyebrow">Binder invitation</p>
-        <h1 className="gv-section-title">
-          {signedIn
-            ? "Invitation unavailable"
-            : "Sign in to review this invitation"}
-        </h1>
-        <p className="text-sm text-slate-600">
-          {signedIn
-            ? "This invitation may be expired, revoked, already used, intended for another account, or blocked."
-            : "For privacy, Binder details appear only after the eligible account signs in. The temporary invitation session is encrypted, stays server-only, and is never saved in the login destination."}
-        </p>
-        {signedIn ? (
-          <Link href="/binders" className="gv-primary-button">
-            My Binders
-          </Link>
-        ) : (
-          <Link
-            href={buildLoginHref(BINDER_INVITE_REVIEW_PATH)}
-            className="gv-primary-button"
-          >
-            Sign in
-          </Link>
-        )}
-      </PageSection>
+      <ProductState
+        eyebrow="Binder invitation"
+        title={signedIn ? "Invitation unavailable" : "Sign in to review this invitation"}
+        description={signedIn
+          ? "This invitation may be expired, revoked, already used, intended for another account, or blocked."
+          : "For privacy, Binder details appear only after the eligible account signs in. The temporary invitation session is encrypted, stays server-only, and is never saved in the login destination."}
+        tone={signedIn ? "neutral" : "private"}
+        action={signedIn
+          ? <Link href="/binders" className="gv-primary-button">My Binders</Link>
+          : <Link href={buildLoginHref(BINDER_INVITE_REVIEW_PATH)} className="gv-primary-button">Sign in</Link>}
+      />
     </div>
   );
 }
@@ -104,7 +91,7 @@ export default async function BinderInvitationReviewPage() {
                 .
               </p>
             </div>
-            <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
+            <div className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700">
               <p>{invitation.privacyCopy}</p>
               <p className="mt-2">
                 Accepting never publishes your profile, shares your whole Vault,
@@ -181,7 +168,7 @@ export default async function BinderInvitationReviewPage() {
                 <select
                   name="reason"
                   defaultValue="spam"
-                  className="mt-1.5 min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm"
+                  className="mt-1.5 min-h-11 w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-sm"
                 >
                   <option value="spam">Spam</option>
                   <option value="harassment">Harassment</option>
@@ -195,7 +182,7 @@ export default async function BinderInvitationReviewPage() {
                 <textarea
                   name="details"
                   maxLength={1000}
-                  className="mt-1.5 min-h-24 w-full rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm"
+                  className="mt-1.5 min-h-24 w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-sm"
                 />
               </label>
               <BinderServerActionButton tone="secondary">
