@@ -331,8 +331,13 @@ class _VaultGridTile extends StatelessWidget {
     ];
     final metaLine = metaParts.join(' • ');
     return Material(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
-      borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
+      color: colorScheme.surfaceContainerLow,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
+        side: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.34),
+        ),
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: selectionMode ? onLongPress : onTap,
@@ -2315,27 +2320,55 @@ class VaultPageState extends State<VaultPage> {
                           ),
                         ),
                       ),
-                    Card(
+                    GvSurface(
                       key: const ValueKey<String>('vault-binders-entry'),
-                      margin: const EdgeInsets.only(bottom: 10),
+                      variant: GvSurfaceVariant.grouped,
+                      padding: EdgeInsets.zero,
                       child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.compact,
                         contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 14,
-                          vertical: 4,
+                          horizontal: 12,
+                          vertical: 2,
                         ),
-                        leading: const CircleAvatar(
-                          child: Icon(Icons.collections_bookmark_outlined),
+                        leading: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.tertiary.withValues(
+                              alpha: 0.14,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              GvRadii.control,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(9),
+                            child: Icon(
+                              Icons.collections_bookmark_outlined,
+                              size: 20,
+                              color: theme.colorScheme.tertiary,
+                            ),
+                          ),
                         ),
                         title: const Text(
                           'Binders',
-                          style: TextStyle(fontWeight: FontWeight.w800),
+                          style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                         subtitle: const Text('What you’re building'),
                         trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: _openCollectionProjects,
                       ),
                     ),
+                    const SizedBox(height: 12),
                   ],
+                  Text(
+                    'YOUR COLLECTION',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
                   Semantics(
                     identifier:
                         derivedData.vaultPricingSummary.totalMarketValue == null

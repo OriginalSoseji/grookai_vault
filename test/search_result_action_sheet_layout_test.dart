@@ -12,6 +12,9 @@ void main() {
     expect(end, greaterThan(start));
 
     final actionSheet = source.substring(start, end);
+    expect(actionSheet, contains('top: false'));
+    expect(actionSheet, contains('child: ConstrainedBox('));
+    expect(actionSheet, contains('maxHeight: mediaQuery.size.height * 0.86'));
     expect(actionSheet, contains('child: SingleChildScrollView('));
     expect(actionSheet, contains("'Choose the exact printing'"));
     expect(actionSheet, contains("label: 'View card'"));

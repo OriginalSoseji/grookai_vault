@@ -1491,11 +1491,14 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         toolbarHeight: kShellAppBarHeight,
         actionsPadding: const EdgeInsets.only(right: 6),
-        title: Text(
-          _destination.title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+        title: _ShellPageTitle(
+          title: _destination.title,
+          accent: switch (_destination) {
+            _ShellDestination.feed => colorScheme.secondary,
+            _ShellDestination.wall => colorScheme.tertiary,
+            _ShellDestination.vault => colorScheme.tertiary,
+            _ShellDestination.search => colorScheme.primary,
+          },
         ),
         actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
       ),
@@ -1528,7 +1531,7 @@ class _AppShellState extends State<AppShell> {
         opacity: keyboardVisible ? 0 : 1,
         child: SafeArea(
           top: false,
-          minimum: EdgeInsets.fromLTRB(18, 4, 18, bottomSafeInset > 0 ? 4 : 14),
+          minimum: EdgeInsets.fromLTRB(12, 4, 12, bottomSafeInset > 0 ? 4 : 12),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: AnimatedContainer(
@@ -1541,11 +1544,11 @@ class _AppShellState extends State<AppShell> {
                     : kShellBottomNavHeight,
               ),
               child: GvSurface(
-                variant: GvSurfaceVariant.glass,
-                borderRadius: 34,
+                variant: GvSurfaceVariant.floating,
+                borderRadius: 22,
                 padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: collapsed ? 6 : 8,
+                  horizontal: 6,
+                  vertical: collapsed ? 4 : 5,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -1628,17 +1631,17 @@ class _AppShellState extends State<AppShell> {
   }) {
     final selected = _destination.navIndex == navIndex;
     final foreground = selected
-        ? colorScheme.onPrimaryContainer
+        ? colorScheme.primary
         : colorScheme.onSurface.withValues(alpha: 0.68);
     final background = selected
-        ? colorScheme.primaryContainer.withValues(alpha: 0.86)
+        ? colorScheme.primary.withValues(alpha: 0.12)
         : Colors.transparent;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Tooltip(
         message: label,
         child: InkWell(
-          borderRadius: BorderRadius.circular(999),
+          borderRadius: BorderRadius.circular(14),
           onTap: onPressed,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
@@ -1651,12 +1654,27 @@ class _AppShellState extends State<AppShell> {
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
               color: background,
-              borderRadius: BorderRadius.circular(999),
+              borderRadius: BorderRadius.circular(14),
+              border: selected
+                  ? Border.all(
+                      color: colorScheme.primary.withValues(alpha: 0.28),
+                    )
+                  : null,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 180),
+                  width: selected ? 18 : 0,
+                  height: 2,
+                  decoration: BoxDecoration(
+                    color: selected ? colorScheme.primary : Colors.transparent,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const SizedBox(height: 3),
                 if (isPrimaryAction)
                   Container(
                     width: collapsed ? 28 : 30,
@@ -1708,6 +1726,42 @@ class _AppShellState extends State<AppShell> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ShellPageTitle extends StatelessWidget {
+  const _ShellPageTitle({required this.title, required this.accent});
+
+  final String title;
+  final Color accent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 4,
+          height: 22,
+          decoration: BoxDecoration(
+            color: accent,
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Flexible(
+          child: Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
