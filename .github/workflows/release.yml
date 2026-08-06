@@ -103,7 +103,7 @@ jobs:
         run: flutter analyze
 
       - name: Flutter tests
-        run: flutter test --no-pub
+        run: flutter test --no-pub --concurrency=4 --exclude-tags golden
 
       - name: Build signed Android app bundle
         run: |
@@ -118,3 +118,22 @@ jobs:
             build/app/outputs/bundle/release/app-release.aab
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  golden-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify renderer goldens
+        run: >-
+          flutter test --no-pub
+          test/grookai_objects/grookai_object_renderer_golden_test.dart
