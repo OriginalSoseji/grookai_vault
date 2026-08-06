@@ -1,0 +1,50 @@
+{
+  "schema_version": "GROOKAI_VERCEL_BINDER_RELEASE_CONFIGURATION_V1",
+  "observed_at": "2026-08-06T20:20:00.030Z",
+  "production_origin": "https://grookaivault.com",
+  "current_deployment": {
+    "deployment_id": "dpl_G9Ay9vMgMt9zV7VY8o52MVs2aZ39",
+    "commit_sha": "e8fcbdbb47b97a9db215d3874ea9ae83ce075adf",
+    "all_binder_flags_compiled_false": true,
+    "binder_library_available": false
+  },
+  "staged_for_next_production_deployment": {
+    "GROOKAI_BINDERS_SCHEMA_RPC_V1_ENABLED": true,
+    "GROOKAI_BINDERS_PERSONAL_V1_ENABLED": true,
+    "GROOKAI_BINDERS_SHARED_V1_ENABLED": true,
+    "GROOKAI_BINDERS_VIEW_LINKS_V1_ENABLED": true,
+    "GROOKAI_BINDERS_PUBLIC_V1_ENABLED": true,
+    "GROOKAI_BINDERS_COMMUNITY_V1_ENABLED": true,
+    "GROOKAI_BINDERS_TEMPLATES_V1_ENABLED": true,
+    "GROOKAI_BINDERS_CUSTOM_V1_ENABLED": true,
+    "GROOKAI_BINDERS_NOTIFICATIONS_V1_ENABLED": false,
+    "GROOKAI_BINDERS_PULSE_SHARING_V1_ENABLED": false,
+    "GROOKAI_BINDERS_SET_V1_ENABLED": false
+  },
+  "authority": {
+    "production_database_enabled": [
+      "schema_internal",
+      "personal",
+      "shared",
+      "view_links",
+      "public",
+      "community",
+      "custom",
+      "templates"
+    ],
+    "production_database_disabled": [
+      "notifications",
+      "pulse_milestones",
+      "set_binders"
+    ],
+    "source": "docs/audits/xcode_cloud_testflight_external_release_20260731/binder_runtime_repair.json"
+  },
+  "secret_values_recorded": false,
+  "deployment_triggered": false,
+  "verification_required_after_deploy": [
+    "GET /api/health/binders-client-state reports the exact intended vector",
+    "signed-in /binders loads",
+    "Vault exposes the Binders entry",
+    "disabled phases remain unavailable"
+  ]
+}

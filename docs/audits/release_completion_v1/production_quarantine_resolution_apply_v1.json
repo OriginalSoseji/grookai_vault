@@ -1,0 +1,40 @@
+{
+  "schema_version": "CARD_PRINT_APP_VISIBILITY_QUARANTINE_RESOLUTION_APPLY_V1",
+  "applied_at": "2026-08-06T20:43:26.456Z",
+  "migration": {
+    "version": "20260806170000",
+    "name": "card_print_app_visibility_quarantine_resolution_v1",
+    "path": "supabase/migrations/20260806170000_card_print_app_visibility_quarantine_resolution_v1.sql",
+    "sha256": "f8617e1b44cf7d9521d9434279434da4de2696d5c7eee85846c6d4dfe92889db",
+    "history_readback": "present"
+  },
+  "quarantine_record": {
+    "id": "a0229cee-66a2-4cb4-a9c6-c548a51b57f1",
+    "source_system": "app_store_connect",
+    "execution_name": "build_21_identity_image_conflict_repair_v1",
+    "contract_name": "CARD_PRINT_APP_VISIBILITY_GUARD_V1",
+    "resolution_outcome": "resolved_suppression_verified",
+    "historical_evidence_mutated": false
+  },
+  "post_apply_readback": {
+    "unresolved_quarantine_count": 0,
+    "disputed_card_print": {
+      "card_print_id": "77e73dcd-34f9-49a5-8807-efca3b2c3e6c",
+      "gv_id": "GV-PK-JPN-DPP-102",
+      "app_visibility": "suppressed",
+      "active_identity": false
+    },
+    "canonical_target": {
+      "card_print_id": "a7e71718-4ffd-5da2-9275-2ff77c94b591",
+      "gv_id": "GV-PK-JPN-DPP-102-PIKACHU",
+      "name": "Pikachu",
+      "active_identity": true
+    }
+  },
+  "boundaries": {
+    "card_print_rows_updated": 0,
+    "card_print_identity_rows_updated": 0,
+    "quarantine_history_rows_deleted": 0,
+    "resolution_metadata_rows_updated": 1
+  }
+}

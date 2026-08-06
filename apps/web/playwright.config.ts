@@ -3,6 +3,7 @@ import { defineConfig } from "@playwright/test";
 const configuredPort = Number.parseInt(process.env.GROOKAI_PLAYWRIGHT_PORT ?? "3100", 10);
 const port = Number.isFinite(configuredPort) && configuredPort > 0 ? configuredPort : 3100;
 const baseURL = `http://127.0.0.1:${port}`;
+const reuseExistingServer = process.env.GROOKAI_PLAYWRIGHT_REUSE_SERVER === "1";
 
 const webServerEnv = {
   ...process.env,
@@ -60,7 +61,7 @@ export default defineConfig({
     cwd: ".",
     url: `${baseURL}/visual-fixtures/parity/pulse-empty`,
     timeout: 120_000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer,
     env: webServerEnv,
   },
 });

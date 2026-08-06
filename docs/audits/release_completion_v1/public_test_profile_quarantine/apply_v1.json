@@ -1,0 +1,620 @@
+{
+  "version": "PUBLIC_TEST_PROFILE_QUARANTINE_V1",
+  "generated_at": "2026-08-06T19:59:55.230Z",
+  "mode": "apply",
+  "mutation_contract_sha256": "90750a2dfbbd9e42f768582b52789ecfe430df7eb04104a117457955b4b3c7ec",
+  "target_count": 25,
+  "db_writes_performed": true,
+  "rows_deleted": 0,
+  "accounts_deleted": 0,
+  "vault_rows_mutated": 0,
+  "enabled_non_target_profiles_before": 6,
+  "enabled_non_target_profiles_after": 6,
+  "before": [
+    {
+      "user_id": "d50b21c9-dc14-42b2-9383-186a7ec5d199",
+      "slug": "codex-gvvi-owner-1774463786566",
+      "display_name": "Codex GVVI Owner 1774463786566",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T18:36:30.660Z",
+      "updated_at": "2026-03-25T18:36:30.660Z"
+    },
+    {
+      "user_id": "2f112c89-3020-46ef-ad76-70f6b41bd554",
+      "slug": "codex-gvvi-owner-1774463886468",
+      "display_name": "Codex GVVI Owner 1774463886468",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T18:38:10.465Z",
+      "updated_at": "2026-03-25T18:38:10.465Z"
+    },
+    {
+      "user_id": "300a2088-b844-4bf0-b0a9-86efdf518d11",
+      "slug": "codex-gvvi-owner-1774463985119",
+      "display_name": "Codex GVVI Owner 1774463985119",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T18:39:49.171Z",
+      "updated_at": "2026-03-25T18:39:49.171Z"
+    },
+    {
+      "user_id": "d4a5e044-6030-4a84-8506-029287a26b6d",
+      "slug": "codex-gvvi-owner-1774464043211",
+      "display_name": "Codex GVVI Owner 1774464043211",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T18:40:47.221Z",
+      "updated_at": "2026-03-25T18:40:47.221Z"
+    },
+    {
+      "user_id": "d97b5ccf-266d-4be6-9014-6557dc5b830c",
+      "slug": "codex-gvvi-pricing-owner-1774458143573",
+      "display_name": "Codex Pricing Owner 1774458143573",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T17:02:27.582Z",
+      "updated_at": "2026-03-25T17:02:27.582Z"
+    },
+    {
+      "user_id": "bfffa809-7748-437c-99b0-7d10a804338a",
+      "slug": "codex-gvvi-pricing-owner-1774459372226",
+      "display_name": "Codex Pricing Owner 1774459372226",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T17:22:56.209Z",
+      "updated_at": "2026-03-25T17:22:56.209Z"
+    },
+    {
+      "user_id": "00eb142c-66b0-4d93-a2fc-1cec8b8fb922",
+      "slug": "codex-gvvi-pricing-owner-1774460624132",
+      "display_name": "Codex Pricing Owner 1774460624132",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T17:43:48.257Z",
+      "updated_at": "2026-03-25T17:43:48.257Z"
+    },
+    {
+      "user_id": "33abf165-7580-42e0-8c43-ef9619411cc6",
+      "slug": "codex-gvvi-pricing-owner-1774460655456",
+      "display_name": "Codex Pricing Owner 1774460655456",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T17:44:19.384Z",
+      "updated_at": "2026-03-25T17:44:19.384Z"
+    },
+    {
+      "user_id": "97973e17-7772-451d-a012-e552dba04c48",
+      "slug": "codex-live-owner-20260422171853-765bcb",
+      "display_name": "Codex Live Owner 20260422171853-765bcb",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-04-22T17:18:56.663Z",
+      "updated_at": "2026-04-22T17:18:54.391Z"
+    },
+    {
+      "user_id": "64888098-3870-45b3-97f3-043ef175cd8d",
+      "slug": "codex-live-viewer-20260422171853-765bcb",
+      "display_name": "Codex Live Viewer 20260422171853-765bcb",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-04-22T17:18:57.297Z",
+      "updated_at": "2026-04-22T17:18:55.026Z"
+    },
+    {
+      "user_id": "f63623db-010c-4131-a26a-f16ea75805bf",
+      "slug": "codexp3buyer90925214",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:22:07.779Z",
+      "updated_at": "2026-03-24T22:22:07.779Z"
+    },
+    {
+      "user_id": "300dd0ab-bcfd-4b67-b87a-e51c8b9f5a9e",
+      "slug": "codexp3buyer90981826",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:23:04.454Z",
+      "updated_at": "2026-03-24T22:23:04.454Z"
+    },
+    {
+      "user_id": "c089dd15-1556-4793-9e21-83f3ecb855b5",
+      "slug": "codexp3buyer91021024",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:23:43.552Z",
+      "updated_at": "2026-03-24T22:23:43.552Z"
+    },
+    {
+      "user_id": "4e218200-66d2-4a2d-a2b9-2c4162247b16",
+      "slug": "codexp3buyer91104708",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:25:07.294Z",
+      "updated_at": "2026-03-24T22:25:07.294Z"
+    },
+    {
+      "user_id": "111de959-dd36-4337-88db-cb1fb518c1b8",
+      "slug": "codexp3seller90925214",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:22:07.361Z",
+      "updated_at": "2026-03-24T22:22:07.361Z"
+    },
+    {
+      "user_id": "0f20fa17-cbf1-4a3c-b939-b01bc0631c14",
+      "slug": "codexp3seller90981826",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:23:04.034Z",
+      "updated_at": "2026-03-24T22:23:04.034Z"
+    },
+    {
+      "user_id": "08cc7f27-28c8-4443-a16a-cec0dc68f3f7",
+      "slug": "codexp3seller91021024",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:23:43.211Z",
+      "updated_at": "2026-03-24T22:23:43.211Z"
+    },
+    {
+      "user_id": "6b810fe6-a49b-4db5-8c00-653e3aee5a68",
+      "slug": "codexp3seller91104708",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:25:06.927Z",
+      "updated_at": "2026-03-24T22:25:06.927Z"
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7a1",
+      "slug": "e7-a",
+      "display_name": "E7 A",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-07-09T22:48:11.998Z",
+      "updated_at": "2026-07-09T22:55:30.053Z"
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7b2",
+      "slug": "e7-b",
+      "display_name": "E7 B",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-07-09T22:48:11.998Z",
+      "updated_at": "2026-07-09T22:55:30.053Z"
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7c3",
+      "slug": "e7-c",
+      "display_name": "E7 C",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-07-09T22:48:11.998Z",
+      "updated_at": "2026-07-09T22:55:30.053Z"
+    },
+    {
+      "user_id": "0569b9a2-501d-4bb4-a24d-8a3f63f27beb",
+      "slug": "p3-owner-1774390607510",
+      "display_name": "Codex P3 Owner",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-24T22:16:49.740Z",
+      "updated_at": "2026-03-24T22:16:49.740Z"
+    },
+    {
+      "user_id": "40d0c884-d528-4652-a23e-5f8af4c1c622",
+      "slug": "removal-owner-1774471395814",
+      "display_name": "Removal Owner",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T20:43:20.797Z",
+      "updated_at": "2026-03-25T20:43:20.797Z"
+    },
+    {
+      "user_id": "1368bda9-384d-4406-b251-a32b8d9d113b",
+      "slug": "removal-owner-1774471567432",
+      "display_name": "Removal Owner",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T20:46:12.492Z",
+      "updated_at": "2026-03-25T20:46:12.492Z"
+    },
+    {
+      "user_id": "912a8c4c-7ad1-4d53-a32e-a46f1d1efc6c",
+      "slug": "route-owner-1774471662399",
+      "display_name": "Route Owner",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true,
+      "created_at": "2026-03-25T20:47:46.944Z",
+      "updated_at": "2026-03-25T20:47:46.944Z"
+    }
+  ],
+  "after": [
+    {
+      "user_id": "d50b21c9-dc14-42b2-9383-186a7ec5d199",
+      "slug": "codex-gvvi-owner-1774463786566",
+      "display_name": "Codex GVVI Owner 1774463786566",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T18:36:30.660Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "2f112c89-3020-46ef-ad76-70f6b41bd554",
+      "slug": "codex-gvvi-owner-1774463886468",
+      "display_name": "Codex GVVI Owner 1774463886468",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T18:38:10.465Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "300a2088-b844-4bf0-b0a9-86efdf518d11",
+      "slug": "codex-gvvi-owner-1774463985119",
+      "display_name": "Codex GVVI Owner 1774463985119",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T18:39:49.171Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "d4a5e044-6030-4a84-8506-029287a26b6d",
+      "slug": "codex-gvvi-owner-1774464043211",
+      "display_name": "Codex GVVI Owner 1774464043211",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T18:40:47.221Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "d97b5ccf-266d-4be6-9014-6557dc5b830c",
+      "slug": "codex-gvvi-pricing-owner-1774458143573",
+      "display_name": "Codex Pricing Owner 1774458143573",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T17:02:27.582Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "bfffa809-7748-437c-99b0-7d10a804338a",
+      "slug": "codex-gvvi-pricing-owner-1774459372226",
+      "display_name": "Codex Pricing Owner 1774459372226",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T17:22:56.209Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "00eb142c-66b0-4d93-a2fc-1cec8b8fb922",
+      "slug": "codex-gvvi-pricing-owner-1774460624132",
+      "display_name": "Codex Pricing Owner 1774460624132",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T17:43:48.257Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "33abf165-7580-42e0-8c43-ef9619411cc6",
+      "slug": "codex-gvvi-pricing-owner-1774460655456",
+      "display_name": "Codex Pricing Owner 1774460655456",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T17:44:19.384Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "97973e17-7772-451d-a012-e552dba04c48",
+      "slug": "codex-live-owner-20260422171853-765bcb",
+      "display_name": "Codex Live Owner 20260422171853-765bcb",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-04-22T17:18:56.663Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "64888098-3870-45b3-97f3-043ef175cd8d",
+      "slug": "codex-live-viewer-20260422171853-765bcb",
+      "display_name": "Codex Live Viewer 20260422171853-765bcb",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-04-22T17:18:57.297Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "f63623db-010c-4131-a26a-f16ea75805bf",
+      "slug": "codexp3buyer90925214",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:22:07.779Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "300dd0ab-bcfd-4b67-b87a-e51c8b9f5a9e",
+      "slug": "codexp3buyer90981826",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:23:04.454Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "c089dd15-1556-4793-9e21-83f3ecb855b5",
+      "slug": "codexp3buyer91021024",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:23:43.552Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "4e218200-66d2-4a2d-a2b9-2c4162247b16",
+      "slug": "codexp3buyer91104708",
+      "display_name": "Codex P3 buyer",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:25:07.294Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "111de959-dd36-4337-88db-cb1fb518c1b8",
+      "slug": "codexp3seller90925214",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:22:07.361Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "0f20fa17-cbf1-4a3c-b939-b01bc0631c14",
+      "slug": "codexp3seller90981826",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:23:04.034Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "08cc7f27-28c8-4443-a16a-cec0dc68f3f7",
+      "slug": "codexp3seller91021024",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:23:43.211Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "6b810fe6-a49b-4db5-8c00-653e3aee5a68",
+      "slug": "codexp3seller91104708",
+      "display_name": "Codex P3 seller",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:25:06.927Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7a1",
+      "slug": "e7-a",
+      "display_name": "E7 A",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-07-09T22:48:11.998Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7b2",
+      "slug": "e7-b",
+      "display_name": "E7 B",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-07-09T22:48:11.998Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7c3",
+      "slug": "e7-c",
+      "display_name": "E7 C",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-07-09T22:48:11.998Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "0569b9a2-501d-4bb4-a24d-8a3f63f27beb",
+      "slug": "p3-owner-1774390607510",
+      "display_name": "Codex P3 Owner",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-24T22:16:49.740Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "40d0c884-d528-4652-a23e-5f8af4c1c622",
+      "slug": "removal-owner-1774471395814",
+      "display_name": "Removal Owner",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T20:43:20.797Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "1368bda9-384d-4406-b251-a32b8d9d113b",
+      "slug": "removal-owner-1774471567432",
+      "display_name": "Removal Owner",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T20:46:12.492Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    },
+    {
+      "user_id": "912a8c4c-7ad1-4d53-a32e-a46f1d1efc6c",
+      "slug": "route-owner-1774471662399",
+      "display_name": "Route Owner",
+      "public_profile_enabled": false,
+      "vault_sharing_enabled": false,
+      "created_at": "2026-03-25T20:47:46.944Z",
+      "updated_at": "2026-08-06T20:00:01.861Z"
+    }
+  ],
+  "recovery_payload": [
+    {
+      "user_id": "d50b21c9-dc14-42b2-9383-186a7ec5d199",
+      "slug": "codex-gvvi-owner-1774463786566",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "2f112c89-3020-46ef-ad76-70f6b41bd554",
+      "slug": "codex-gvvi-owner-1774463886468",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "300a2088-b844-4bf0-b0a9-86efdf518d11",
+      "slug": "codex-gvvi-owner-1774463985119",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "d4a5e044-6030-4a84-8506-029287a26b6d",
+      "slug": "codex-gvvi-owner-1774464043211",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "d97b5ccf-266d-4be6-9014-6557dc5b830c",
+      "slug": "codex-gvvi-pricing-owner-1774458143573",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "bfffa809-7748-437c-99b0-7d10a804338a",
+      "slug": "codex-gvvi-pricing-owner-1774459372226",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "00eb142c-66b0-4d93-a2fc-1cec8b8fb922",
+      "slug": "codex-gvvi-pricing-owner-1774460624132",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "33abf165-7580-42e0-8c43-ef9619411cc6",
+      "slug": "codex-gvvi-pricing-owner-1774460655456",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "97973e17-7772-451d-a012-e552dba04c48",
+      "slug": "codex-live-owner-20260422171853-765bcb",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "64888098-3870-45b3-97f3-043ef175cd8d",
+      "slug": "codex-live-viewer-20260422171853-765bcb",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "f63623db-010c-4131-a26a-f16ea75805bf",
+      "slug": "codexp3buyer90925214",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "300dd0ab-bcfd-4b67-b87a-e51c8b9f5a9e",
+      "slug": "codexp3buyer90981826",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "c089dd15-1556-4793-9e21-83f3ecb855b5",
+      "slug": "codexp3buyer91021024",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "4e218200-66d2-4a2d-a2b9-2c4162247b16",
+      "slug": "codexp3buyer91104708",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "111de959-dd36-4337-88db-cb1fb518c1b8",
+      "slug": "codexp3seller90925214",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "0f20fa17-cbf1-4a3c-b939-b01bc0631c14",
+      "slug": "codexp3seller90981826",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "08cc7f27-28c8-4443-a16a-cec0dc68f3f7",
+      "slug": "codexp3seller91021024",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "6b810fe6-a49b-4db5-8c00-653e3aee5a68",
+      "slug": "codexp3seller91104708",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7a1",
+      "slug": "e7-a",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7b2",
+      "slug": "e7-b",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "00000000-0000-4000-8000-00000000e7c3",
+      "slug": "e7-c",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "0569b9a2-501d-4bb4-a24d-8a3f63f27beb",
+      "slug": "p3-owner-1774390607510",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "40d0c884-d528-4652-a23e-5f8af4c1c622",
+      "slug": "removal-owner-1774471395814",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "1368bda9-384d-4406-b251-a32b8d9d113b",
+      "slug": "removal-owner-1774471567432",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "user_id": "912a8c4c-7ad1-4d53-a32e-a46f1d1efc6c",
+      "slug": "route-owner-1774471662399",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    }
+  ],
+  "artifact_sha256": "b6e3737f21b8c0cfb9e23149cd63958efa28e936a20838a7e7cfb73548ff8199"
+}
