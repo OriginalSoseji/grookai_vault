@@ -120,6 +120,24 @@ void main() {
     expect(tileBlock, isNot(contains('fontWeight: FontWeight.w800')));
   });
 
+  test('owner Wall cards expose exact-copy management and refresh', () {
+    expect(collectorScreen, contains("tooltip: 'Manage card'"));
+    expect(collectorScreen, contains("? 'Remove from Wall'"));
+    expect(collectorScreen, contains(": 'Remove from section'"));
+    expect(collectorScreen, contains('VaultManageCardScreen(gvviId:'));
+    expect(
+      collectorScreen,
+      contains('VaultCardService.saveVaultItemInstancesIntentBulk'),
+    );
+    expect(
+      collectorScreen,
+      contains('VaultGvviService.removeSectionMembership'),
+    );
+    expect(collectorScreen, contains("intent: 'hold'"));
+    expect(collectorScreen, contains('await onWallChanged()'));
+    expect(collectorScreen, contains('The card is still in your Vault.'));
+  });
+
   test('collector section deep links select the requested section', () {
     expect(
       routeService,

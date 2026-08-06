@@ -10,6 +10,8 @@ import '../../services/identity/display_identity.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
+import '../../services/vault/vault_card_service.dart';
+import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -21,6 +23,7 @@ import '../../widgets/gv_surface.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
+import '../vault/vault_manage_card_screen.dart';
 import 'public_collector_relationship_screen.dart';
 
 ResolvedDisplayIdentity _publicCollectorDisplayIdentity(
@@ -650,6 +653,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           followStateLoading: _followStateLoading,
           followActionBusy: _followActionBusy,
           onFollowPressed: _handleFollowAction,
+          onWallChanged: _load,
         );
       case PublicCollectorViewState.failure:
         return widget.embeddedInShell
@@ -688,6 +692,7 @@ class _PublicCollectorWallLayout extends StatelessWidget {
     required this.followStateLoading,
     required this.followActionBusy,
     required this.onFollowPressed,
+    required this.onWallChanged,
   });
 
   final PublicCollectorProfile profile;
@@ -704,6 +709,7 @@ class _PublicCollectorWallLayout extends StatelessWidget {
   final bool followStateLoading;
   final bool followActionBusy;
   final Future<void> Function() onFollowPressed;
+  final Future<void> Function() onWallChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -722,6 +728,7 @@ class _PublicCollectorWallLayout extends StatelessWidget {
       followStateLoading: followStateLoading,
       followActionBusy: followActionBusy,
       onFollowPressed: onFollowPressed,
+      onWallChanged: onWallChanged,
     );
   }
 }
@@ -742,6 +749,7 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
     required this.followStateLoading,
     required this.followActionBusy,
     required this.onFollowPressed,
+    required this.onWallChanged,
   });
 
   final PublicCollectorProfile profile;
@@ -758,6 +766,7 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
   final bool followStateLoading;
   final bool followActionBusy;
   final Future<void> Function() onFollowPressed;
+  final Future<void> Function() onWallChanged;
 
   @override
   State<_PublicCollectorSegmentedContent> createState() =>
@@ -905,6 +914,9 @@ class _PublicCollectorSegmentedContentState
           _PublicWallCardsSection(
             profile: widget.profile,
             cards: _activeCards,
+            selectedSectionId: selectedSectionId,
+            isOwner: widget.isOwner,
+            onWallChanged: widget.onWallChanged,
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
       ],
@@ -1331,11 +1343,17 @@ class _PublicWallCardsSection extends StatelessWidget {
   const _PublicWallCardsSection({
     required this.profile,
     required this.cards,
+    required this.selectedSectionId,
+    required this.isOwner,
+    required this.onWallChanged,
     required this.viewerOwnershipStateForCard,
   });
 
   final PublicCollectorProfile profile;
   final List<PublicCollectorCard> cards;
+  final String selectedSectionId;
+  final bool isOwner;
+  final Future<void> Function() onWallChanged;
   final OwnershipState? Function(PublicCollectorCard card)
   viewerOwnershipStateForCard;
 
@@ -1348,6 +1366,9 @@ class _PublicWallCardsSection extends StatelessWidget {
           : _PublicCardTileList(
               profile: profile,
               cards: cards,
+              selectedSectionId: selectedSectionId,
+              isOwner: isOwner,
+              onWallChanged: onWallChanged,
               viewerOwnershipStateForCard: viewerOwnershipStateForCard,
             ),
     );
@@ -1413,11 +1434,17 @@ class _PublicCardTileList extends StatelessWidget {
   const _PublicCardTileList({
     required this.profile,
     required this.cards,
+    required this.selectedSectionId,
+    required this.isOwner,
+    required this.onWallChanged,
     required this.viewerOwnershipStateForCard,
   });
 
   final PublicCollectorProfile profile;
   final List<PublicCollectorCard> cards;
+  final String selectedSectionId;
+  final bool isOwner;
+  final Future<void> Function() onWallChanged;
   final OwnershipState? Function(PublicCollectorCard card)
   viewerOwnershipStateForCard;
 
@@ -1449,6 +1476,9 @@ class _PublicCardTileList extends StatelessWidget {
             return _PublicCardTile(
               profile: profile,
               card: card,
+              selectedSectionId: selectedSectionId,
+              isOwner: isOwner,
+              onWallChanged: onWallChanged,
               ownershipState: viewerOwnershipStateForCard(card),
             );
           },
@@ -1462,11 +1492,17 @@ class _PublicCardTile extends StatelessWidget {
   const _PublicCardTile({
     required this.profile,
     required this.card,
+    required this.selectedSectionId,
+    required this.isOwner,
+    required this.onWallChanged,
     this.ownershipState,
   });
 
   final PublicCollectorProfile profile;
   final PublicCollectorCard card;
+  final String selectedSectionId;
+  final bool isOwner;
+  final Future<void> Function() onWallChanged;
   final OwnershipState? ownershipState;
 
   @override
@@ -1483,6 +1519,9 @@ class _PublicCardTile extends StatelessWidget {
       card.conditionLabel,
     ].whereType<String>().toList();
     final vaultItemId = (card.vaultItemId ?? '').trim();
+    final activeCopies = card.inPlayCopies
+        .where((copy) => copy.instanceId.trim().isNotEmpty)
+        .toList(growable: false);
     void openCardDetails() {
       final gvviId = (card.gvviId ?? '').trim();
       Navigator.of(context).push(
@@ -1531,6 +1570,118 @@ class _PublicCardTile extends StatelessWidget {
       }
     }
 
+    Future<void> manageOwnedCard() async {
+      if (!isOwner) {
+        return;
+      }
+
+      final exactGvviId = activeCopies.length == 1
+          ? (activeCopies.single.gvviId ?? '').trim()
+          : '';
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => exactGvviId.isNotEmpty
+              ? VaultManageCardScreen(gvviId: exactGvviId)
+              : VaultManageCardScreen(
+                  vaultItemId: vaultItemId,
+                  cardPrintId: card.cardPrintId,
+                  ownedCount: activeCopies.isEmpty ? 1 : activeCopies.length,
+                  gvId: card.gvId,
+                  name: card.name,
+                  setName: card.setName,
+                  number: card.number == '—' ? null : card.number,
+                  imageUrl: primaryImageUrl,
+                  condition: card.conditionLabel,
+                ),
+        ),
+      );
+      if (context.mounted) {
+        await onWallChanged();
+      }
+    }
+
+    Future<void> removeFromCurrentWallSurface() async {
+      if (!isOwner || activeCopies.isEmpty) {
+        return;
+      }
+
+      final isSystemWall = selectedSectionId == _wallSectionId;
+      final copyCount = activeCopies.length;
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(
+            isSystemWall ? 'Remove from Wall?' : 'Remove from section?',
+          ),
+          content: Text(
+            isSystemWall
+                ? copyCount == 1
+                      ? 'This copy will stay in your Vault and become private.'
+                      : 'These $copyCount copies will stay in your Vault and become private.'
+                : 'This copy will stay in your Vault and on the main Wall if its intent is still public.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: Text(
+                isSystemWall ? 'Remove from Wall' : 'Remove from section',
+              ),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !context.mounted) {
+        return;
+      }
+
+      try {
+        if (isSystemWall) {
+          await VaultCardService.saveVaultItemInstancesIntentBulk(
+            client: Supabase.instance.client,
+            instanceIds: activeCopies.map((copy) => copy.instanceId),
+            intent: 'hold',
+          );
+        } else {
+          for (final copy in activeCopies) {
+            await VaultGvviService.removeSectionMembership(
+              client: Supabase.instance.client,
+              instanceId: copy.instanceId,
+              sectionId: selectedSectionId,
+            );
+          }
+        }
+        if (!context.mounted) {
+          return;
+        }
+        await onWallChanged();
+        if (!context.mounted) {
+          return;
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isSystemWall
+                  ? 'Removed from Wall. The card is still in your Vault.'
+                  : 'Removed from section.',
+            ),
+          ),
+        );
+      } catch (error) {
+        if (!context.mounted) {
+          return;
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.toString().replaceFirst('Exception: ', '')),
+          ),
+        );
+      }
+    }
+
     bool canMessageOwner() {
       if (vaultItemId.isEmpty) return false;
       try {
@@ -1546,6 +1697,27 @@ class _PublicCardTile extends StatelessWidget {
         title: displayIdentity.displayName,
         subtitle: metaParts.isEmpty ? null : metaParts.join(' • '),
         actions: [
+          if (isOwner)
+            VaultQuickAction(
+              icon: Icons.edit_outlined,
+              label: activeCopies.length > 1 ? 'Manage copies' : 'Manage copy',
+              onPressed: activeCopies.isEmpty
+                  ? null
+                  : () => unawaited(manageOwnedCard()),
+            ),
+          if (isOwner)
+            VaultQuickAction(
+              icon: selectedSectionId == _wallSectionId
+                  ? Icons.visibility_off_outlined
+                  : Icons.remove_circle_outline_rounded,
+              label: selectedSectionId == _wallSectionId
+                  ? 'Remove from Wall'
+                  : 'Remove from section',
+              onPressed: activeCopies.isEmpty
+                  ? null
+                  : () => unawaited(removeFromCurrentWallSurface()),
+              destructive: true,
+            ),
           VaultQuickAction(
             icon: Icons.visibility_outlined,
             label: 'View',
@@ -1601,6 +1773,26 @@ class _PublicCardTile extends StatelessWidget {
                       onViewDetails: openCardDetails,
                     ),
                   ),
+                  if (isOwner)
+                    Positioned(
+                      top: 6,
+                      right: 6,
+                      child: Material(
+                        color: colorScheme.surface.withValues(alpha: 0.92),
+                        shape: const CircleBorder(),
+                        child: IconButton(
+                          tooltip: 'Manage card',
+                          visualDensity: VisualDensity.compact,
+                          constraints: const BoxConstraints.tightFor(
+                            width: 36,
+                            height: 36,
+                          ),
+                          padding: EdgeInsets.zero,
+                          onPressed: showQuickActions,
+                          icon: const Icon(Icons.more_vert_rounded, size: 20),
+                        ),
+                      ),
+                    ),
                   if (card.intent == 'trade' || card.intent == 'sell')
                     Positioned(
                       left: 6,
@@ -1659,7 +1851,7 @@ class _PublicCardTile extends StatelessWidget {
                 ),
               ),
             ],
-            if (vaultItemId.isNotEmpty) ...[
+            if (!isOwner && vaultItemId.isNotEmpty) ...[
               const SizedBox(height: 4),
               Align(
                 alignment: Alignment.centerLeft,

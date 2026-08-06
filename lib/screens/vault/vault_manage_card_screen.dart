@@ -373,9 +373,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     }
 
     await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => VaultGvviScreen(gvviId: gvviId),
-      ),
+      MaterialPageRoute<void>(builder: (_) => VaultGvviScreen(gvviId: gvviId)),
     );
     if (mounted) {
       await _load();
@@ -949,12 +947,19 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     });
 
     try {
-      await VaultCardService.archiveAllVaultItems(
-        client: _client,
-        userId: _client.auth.currentUser?.id ?? '',
-        vaultItemId: data.vaultItemId,
-        cardId: data.cardPrintId,
-      );
+      if (data.copies.length == 1 && data.copies.single.instanceId.isNotEmpty) {
+        await VaultGvviService.archiveExactCopy(
+          client: _client,
+          instanceId: data.copies.single.instanceId,
+        );
+      } else {
+        await VaultCardService.archiveAllVaultItems(
+          client: _client,
+          userId: _client.auth.currentUser?.id ?? '',
+          vaultItemId: data.vaultItemId,
+          cardId: data.cardPrintId,
+        );
+      }
 
       if (!mounted) {
         return;
