@@ -68,6 +68,8 @@ Historical durable matches and card events remain stored. Re-enabling the exact 
 - All ten functions are `SECURITY DEFINER`, executable by `service_role`, and not executable by `anon` or `authenticated`.
 - Both enforcement triggers are enabled.
 - Production cron `grookai-want-match-stale-cleanup-v1` is active at `*/15 * * * *`.
+- The merged `notification-dispatcher` source was deployed to production as active version `14`; its entrypoint uses `notification_dispatcher_mark_send_started_if_current_v1` at the final pre-FCM boundary.
+- Function readback reports `verify_jwt=false` as configured, while an unauthenticated production probe returns `401 unauthorized` from the function's required shared-secret boundary.
 - Android build 284 cold-launched against production and displayed `Caught up`; neither stale card was returned. The older-Pulse control did not reintroduce either card.
 
 ## Safety Boundaries

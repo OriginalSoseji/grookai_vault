@@ -7,6 +7,10 @@
       "sha256": "279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959"
     },
     {
+      "path": "supabase/functions/notification-dispatcher/index.ts",
+      "sha256": "9701a576ad8d22aba0b5850785a0ec74de47b883303c7ac955d389612e2508f8"
+    },
+    {
       "path": "docs/audits/release_completion_v1/want_match_current_want_production_preflight_v1.json",
       "sha256": "5751223958bbcfd5c53ef1634f2d3eaee4e5f8ea208cfd834b739866c905e778"
     },
@@ -25,6 +29,14 @@
     {
       "path": "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
       "sha256": "f0fb974f82636ce10a91122cdac6c6fd51a148e55ea5a101568eccd1135c02e8"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_deploy_output_v1.txt",
+      "sha256": "b4d38d3f61b532e4cd24947ad1924d034af3ffc962513e47851e2fd4c7ff3bff"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json",
+      "sha256": "e26381a8674ce6732cab3996ab4df683a1a5124c77d86069fd112b82d02aaf1f"
     },
     {
       "path": "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md",
@@ -48,19 +60,19 @@
     },
     {
       "path": "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
-      "sha256": "e7b177b0c9b719ba6ab04bbc322dca32cdb2e48a0dadd16cdbce25468bd44265"
+      "sha256": "ece7e6c70f9779311bf5796c60e6e60da4559a18fe04fe846c7c221d36838b83"
     },
     {
       "path": "docs/checkpoints/product/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
-      "sha256": "d4ad733e415a7ebae671a342e7b05fa7c5a1bb54e74905df32ec56e393e71e61"
+      "sha256": "57765ba5145efa9f72349a1d6eac95e35fceac8b235580e1f9f89fc52cfe8a0e"
     },
     {
       "path": "docs/audits/release_completion_v1/completion_manifest_v1.json",
-      "sha256": "13804ddfc7851b890312a9d7ee9aad61b8e56e092b7bf8f698ffaed4b474ed26"
+      "sha256": "a2f9f5b70b47ee8886e7b28e9456375e7bb67d01991cef9bf13f8bb2870dae75"
     },
     {
       "path": "docs/audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md",
-      "sha256": "f21fde1cf79204942916985432e274a8345abc7cb4d32aced1a220114211595c"
+      "sha256": "904f902239484a0415738084e2b4acadf314354709c7de32fa8f0ef0f534cf51"
     }
   ]
 }

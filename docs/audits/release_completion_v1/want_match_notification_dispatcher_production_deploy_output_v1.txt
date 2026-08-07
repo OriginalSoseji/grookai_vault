@@ -1,0 +1,13 @@
+Source main SHA: 5dfe6288dd449368f2c918cfb411602ef92d53ae
+Function: notification-dispatcher
+Local entrypoint SHA-256: 9701a576ad8d22aba0b5850785a0ec74de47b883303c7ac955d389612e2508f8
+Deployed at: 2026-08-07T06:12:23.600Z
+
+Deployed Functions on project ycdxbpibncqcchqiihfz: notification-dispatcher
+Uploading asset (notification-dispatcher): supabase/functions/notification-dispatcher/index.ts
+Uploading asset (notification-dispatcher): supabase/functions/_shared/cors.ts
+Uploading asset (notification-dispatcher): supabase/functions/_shared/auth.ts
+Uploading asset (notification-dispatcher): supabase/functions/_shared/key_resolver.ts
+
+Exit code: 0
+Secrets: excluded

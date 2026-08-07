@@ -45,6 +45,8 @@ Use exact `user_card_intents.want=true` as the sole current-want authority. Reta
 - Both rows are now stale; zero active/current-want mismatches remain.
 - Zero invalid deliverable outbox rows and zero stale Want Match Pulse rows remain.
 - Production function, trigger, grant, migration-history, and cron readback passed.
+- Production `notification-dispatcher` version 14 is active and contains the final current-evidence RPC boundary before FCM send-start.
+- An unauthenticated dispatcher probe fails closed with `401 unauthorized`; no notification work was invoked.
 - Android build 284 cold-launch readback excludes both stale cards.
 - Local migration readback has zero active/current-want mismatches.
 - Local E3 engine/delivery and E4 read/daily rollback-only journeys pass.
@@ -77,6 +79,8 @@ Use exact `user_card_intents.want=true` as the sole current-want authority. Reta
 - `../../audits/release_completion_v1/want_match_current_want_production_preflight_v2.json`
 - `../../audits/release_completion_v1/want_match_current_want_production_apply_output_v1.txt`
 - `../../audits/release_completion_v1/want_match_current_want_production_readback_v1.json`
+- `../../audits/release_completion_v1/want_match_notification_dispatcher_production_deploy_output_v1.txt`
+- `../../audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json`
 - `../../audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md`
 
 ## Explicit Next Gate

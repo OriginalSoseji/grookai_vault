@@ -1,0 +1,34 @@
+{
+  "schema_version": "WANT_MATCH_NOTIFICATION_DISPATCHER_PRODUCTION_READBACK_V1",
+  "verified_at": "2026-08-07T06:13:12.494Z",
+  "source_main_sha": "5dfe6288dd449368f2c918cfb411602ef92d53ae",
+  "source_entrypoint": "supabase/functions/notification-dispatcher/index.ts",
+  "source_entrypoint_sha256": "9701a576ad8d22aba0b5850785a0ec74de47b883303c7ac955d389612e2508f8",
+  "required_rpc_call_present": "notification_dispatcher_mark_send_started_if_current_v1",
+  "deployment": {
+    "id": "56c463ad-8b4f-45b7-9efc-0ce8ca2991af",
+    "slug": "notification-dispatcher",
+    "status": "ACTIVE",
+    "version": 14,
+    "verify_jwt": false,
+    "updated_at": "2026-08-07T06:12:23.600Z",
+    "remote_bundle_sha256": "73a12fc0aae4f0601dca5382fac009681719979f88e0bf6db74a994dbf427d5d"
+  },
+  "unauthenticated_probe": {
+    "method": "POST",
+    "body": {
+      "mode": "health"
+    },
+    "status": 401,
+    "response": {
+      "error": "unauthorized"
+    },
+    "finding": "The active production function preserves its explicit shared-secret boundary. No dispatcher work was invoked by this probe."
+  },
+  "boundaries": {
+    "outbox_claims": 0,
+    "notification_sends": 0,
+    "device_token_mutations": 0,
+    "database_mutations_from_probe": 0
+  }
+}

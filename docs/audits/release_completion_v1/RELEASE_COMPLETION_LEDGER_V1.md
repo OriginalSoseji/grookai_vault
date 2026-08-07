@@ -24,7 +24,7 @@ The product-convergence implementation is merged, the isolated release tree pass
 - Production runtime preflight has zero critical failures and zero unresolved quarantine records.
 - Signed-out production web and configured Samsung pre-candidate smokes pass.
 - TestFlight build `283` and the latest owner acceptance gate were completed outside this ledger and must be linked by the final-candidate evidence package before closeout.
-- Want Match current-intent repair `20260807043000` is merged and applied. Production retains both historical rows/events while reporting zero active/current-want mismatches, zero invalid deliverable notifications, and zero stale Want Match Pulse visibility. Android build 284 cold-launch verification passed.
+- Want Match current-intent repair `20260807043000` is merged and applied. Production retains both historical rows/events while reporting zero active/current-want mismatches, zero invalid deliverable notifications, and zero stale Want Match Pulse visibility. Dispatcher version 14 carries the final pre-FCM evidence gate, and Android build 284 cold-launch verification passed.
 
 ## Remaining Gates
 

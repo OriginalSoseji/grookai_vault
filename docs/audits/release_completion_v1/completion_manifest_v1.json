@@ -80,6 +80,7 @@
         "tests/contracts/e3_want_match_delivery_contract_v1.test.mjs",
         "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
         "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
+        "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json",
         "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md"
       ],
       "required_next_evidence": [
