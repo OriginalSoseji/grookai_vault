@@ -1,0 +1,103 @@
+{
+  "schema_version": "CARD_INTERACTIONS_EXACT_INSTANCE_PRODUCTION_READBACK_V2",
+  "recorded_at": "2026-08-07T02:29:02.575Z",
+  "source_commit_sha": "7aaa5c44eabb61435813b45a03b18450bb89c1ce",
+  "migration": {
+    "version": "20260807023000",
+    "name": "card_interactions_exact_instance_authorization_v2",
+    "path": "supabase/migrations/20260807023000_card_interactions_exact_instance_authorization_v2.sql",
+    "sha256": "e30e705561b045227e9ddd66dfd0c1b14fac79dff6812942655490ef954ff863",
+    "history_present": true
+  },
+  "column": {
+    "table_name": "card_interactions",
+    "column_name": "vault_item_instance_id",
+    "data_type": "uuid",
+    "is_nullable": true,
+    "comment": "Exact contacted vault instance for new card conversations. Null identifies only legacy rows and is preserved solely for established legacy replies; null never authorizes printing inference."
+  },
+  "foreign_key": {
+    "constraint_name": "card_interactions_vault_item_instance_id_fkey",
+    "definition": "FOREIGN KEY (vault_item_instance_id) REFERENCES vault_item_instances(id) ON DELETE SET NULL"
+  },
+  "index": {
+    "index_name": "idx_card_interactions_vault_instance_created",
+    "definition": "CREATE INDEX idx_card_interactions_vault_instance_created ON public.card_interactions USING btree (vault_item_instance_id, created_at DESC) WHERE (vault_item_instance_id IS NOT NULL)"
+  },
+  "trigger": {
+    "trigger_name": "card_interactions_enforce_instance_identity_v2",
+    "enabled": true,
+    "function_name": "card_interactions_enforce_instance_identity_v2",
+    "events": [
+      "INSERT",
+      "UPDATE OF vault_item_id, vault_item_instance_id, card_print_id, card_printing_id, sender_user_id, receiver_user_id"
+    ]
+  },
+  "functions": [
+    {
+      "function_name": "card_interaction_insert_authorized_v2",
+      "authenticated_execute": false,
+      "service_role_execute": false,
+      "definition_sha256": "f4980246eb5c297d1c6dce4aa3782d7c82ee20310799cb9e070d5503b26dc484"
+    },
+    {
+      "function_name": "card_interaction_insert_authorized_v4",
+      "authenticated_execute": true,
+      "service_role_execute": true,
+      "definition_sha256": "f884e28a813372ae88715ee1379d49609f9d51ffd0e098d4d964bc1f50f32d32"
+    },
+    {
+      "function_name": "card_interactions_enforce_instance_identity_v2",
+      "anon_execute": false,
+      "authenticated_execute": false,
+      "service_role_execute": true,
+      "definition_sha256": "c607105641c7cf53f6308f2dec62f8e1fa2342b5183693e675f244072461c550"
+    }
+  ],
+  "insert_policy": {
+    "policy_name": "card_interactions_insert_sender",
+    "command": "INSERT",
+    "roles": [
+      "authenticated"
+    ],
+    "with_check": "auth.uid() = sender_user_id AND card_interaction_insert_authorized_v4(vault_item_instance_id, vault_item_id, card_print_id, card_printing_id, receiver_user_id)"
+  },
+  "relation_security": [
+    {
+      "relation_name": "card_interaction_group_states",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "relation_name": "card_interactions",
+      "rls_enabled": true,
+      "rls_forced": false
+    }
+  ],
+  "pre_apply_baseline": {
+    "captured_at": "2026-08-07T02:27:12.097Z",
+    "interactions_total": 76,
+    "interactions_with_printing": 1,
+    "interactions_preserved_columns_checksum": "5f1738390666125158fad71ec692f5a2",
+    "group_states_total": 80,
+    "group_states_checksum": "ff72b6e5b5bff4fe7b1483384c3c360e"
+  },
+  "post_apply_readback": {
+    "interactions_total": 76,
+    "interactions_with_printing": 1,
+    "interactions_with_exact_instance": 0,
+    "interactions_preserved_columns_checksum": "5f1738390666125158fad71ec692f5a2",
+    "group_states_total": 80,
+    "group_states_checksum": "ff72b6e5b5bff4fe7b1483384c3c360e",
+    "invalid_missing_instance_links": 0,
+    "invalid_instance_identity_links": 0
+  },
+  "boundaries": {
+    "existing_rows_updated": 0,
+    "legacy_instance_identity_inferred": false,
+    "canonical_identity_mutated": false,
+    "vault_ownership_mutated": false,
+    "pricing_mutated": false,
+    "persistent_test_rows_created": 0
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "CARD_INTERACTIONS_EXACT_INSTANCE_ARTIFACT_HASHES_V2",
+  "source_commit_sha": "7aaa5c44eabb61435813b45a03b18450bb89c1ce",
+  "migration_sha256": "e30e705561b045227e9ddd66dfd0c1b14fac79dff6812942655490ef954ff863",
+  "artifacts": [
+    {
+      "path": "docs/audits/release_completion_v1/CARD_INTERACTIONS_EXACT_INSTANCE_PRODUCTION_APPLY_20260807_V2.md",
+      "sha256": "2ffe24cc7462432c3a17ce7b7fd4439d4cebfefd9d0662420709faed820ceaeb"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/card_interactions_exact_instance_production_readback_v2.json",
+      "sha256": "304f5aeb8c9b3f3ff9e805ffdfd1f4aa618d1680abc527b69d3cb75b65a42719"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/card_interactions_exact_instance_production_rls_smoke_v2.json",
+      "sha256": "99bc1d02048d6444e40bdefb3e950812b0478892eddaf1ce3b5a5e407e2d235c"
+    }
+  ]
+}
