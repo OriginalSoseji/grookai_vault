@@ -2,7 +2,7 @@
 
 ## Status
 
-`LOCAL_VERIFIED / PRODUCTION_APPLY_PENDING`
+`PRODUCTION_APPLIED_AND_VERIFIED / JOURNEY_C_STILL_PARTIAL`
 
 ## Release Finding
 
@@ -57,6 +57,21 @@ Historical durable matches and card events remain stored. Re-enabling the exact 
 - Complete repository shipcheck passed: secret guard, runtime preflight with zero critical failures, operations reports, web typecheck/lint/production build, Flutter analysis, and 571 Flutter tests.
 - `git diff --check`: passed.
 
+## Production Apply And Readback
+
+- PR `#189` merged to `main` at `5dfe6288dd449368f2c918cfb411602ef92d53ae` after every GitHub check passed and both race-condition review threads were resolved.
+- A fresh production preflight proved the state was unchanged and `20260807043000` was the only pending migration.
+- The migration applied successfully with SHA-256 `279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959`.
+- Both durable rows were retained and changed from `active` to `stale`.
+- Both historical `want_match_available` events were retained.
+- Active/current-want mismatches, invalid deliverable notifications, and stale Want Match Pulse visibility all read back as zero.
+- All ten functions are `SECURITY DEFINER`, executable by `service_role`, and not executable by `anon` or `authenticated`.
+- Both enforcement triggers are enabled.
+- Production cron `grookai-want-match-stale-cleanup-v1` is active at `*/15 * * * *`.
+- The merged `notification-dispatcher` source was deployed to production as active version `14`; its entrypoint uses `notification_dispatcher_mark_send_started_if_current_v1` at the final pre-FCM boundary.
+- Function readback reports `verify_jwt=false` as configured, while an unauthenticated production probe returns `401 unauthorized` from the function's required shared-secret boundary.
+- Android build 284 cold-launched against production and displayed `Caught up`; neither stale card was returned. The older-Pulse control did not reintroduce either card.
+
 ## Safety Boundaries
 
 - No historical match or event deletion.
@@ -69,14 +84,4 @@ Historical durable matches and card events remain stored. Re-enabling the exact 
 
 ## Exact Next Gate
 
-Merge the repair from a frozen commit, apply only migration `20260807043000`, and reconcile production before/after counts. Completion requires:
-
-- migration-history readback;
-- function, trigger, grant, and cron readback;
-- both existing rows retained and transitioned from active to stale;
-- both historical event rows retained;
-- zero active/current-want mismatches;
-- the founder Pulse no longer returns either stale event;
-- final-candidate Android re-smoke confirms the stale cards are absent.
-
-This closes one P0 data-truth defect. It does not complete Journey C or authorize the 72-hour soak.
+Run the clean-account Journey C proof on the immutable final candidate: exact Want, generated current match, owner context, card-centered message, opt-out, database readback, and notification-boundary reconciliation. This repair closes the stale-current P0 defect, but Journey C and the 72-hour soak remain incomplete.

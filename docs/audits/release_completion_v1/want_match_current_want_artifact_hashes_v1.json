@@ -7,20 +7,72 @@
       "sha256": "279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959"
     },
     {
+      "path": "supabase/functions/notification-dispatcher/index.ts",
+      "sha256": "9701a576ad8d22aba0b5850785a0ec74de47b883303c7ac955d389612e2508f8"
+    },
+    {
       "path": "docs/audits/release_completion_v1/want_match_current_want_production_preflight_v1.json",
       "sha256": "5751223958bbcfd5c53ef1634f2d3eaee4e5f8ea208cfd834b739866c905e778"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_preflight_v2.json",
+      "sha256": "8d7a79ca0d6689e2313722d0293869bcd28be690fe5d89bca480c3f6029119a5"
     },
     {
       "path": "docs/audits/release_completion_v1/want_match_current_want_local_verification_v1.json",
       "sha256": "5cd44ac755d810c731c0d7e2abe370f092798de7e63318df5574c8c0121c8c15"
     },
     {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_apply_output_v1.txt",
+      "sha256": "07ef105bde60ec7ebcf18af98821c0378985c152fb17845328745e83d378252a"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
+      "sha256": "f0fb974f82636ce10a91122cdac6c6fd51a148e55ea5a101568eccd1135c02e8"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_deploy_output_v1.txt",
+      "sha256": "b4d38d3f61b532e4cd24947ad1924d034af3ffc962513e47851e2fd4c7ff3bff"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json",
+      "sha256": "e26381a8674ce6732cab3996ab4df683a1a5124c77d86069fd112b82d02aaf1f"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md",
+      "sha256": "61d5497bb8fe5057c120b9534a3deab1c2f4c06c6f51cc6247858f9eb7de518c"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_launch.png",
+      "sha256": "360391190ab3f4abc92d9370d5eeca4532f538a0892b583ef0ed8023c81b3638"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_after_back.png",
+      "sha256": "dab1da26c88d7ef1eed0e4a4b3a01ddf70e619037550c677a209384f2938e89b"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_cold_launch.png",
+      "sha256": "623135283b58b65d6c71a02b720ef3b9b7a4691522d670e5d609c883db701423"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_older_pulse.png",
+      "sha256": "a1aaa809342bb3a417bde5f3bd044323542f0928170c4f1702ecc07a7b1709bc"
+    },
+    {
       "path": "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
-      "sha256": "1eef4d3a786d82a5f3e75fc1d909caabfd981743566300d8b8cc9e59be6d4292"
+      "sha256": "ece7e6c70f9779311bf5796c60e6e60da4559a18fe04fe846c7c221d36838b83"
     },
     {
       "path": "docs/checkpoints/product/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
-      "sha256": "53826de3e2b2ff0daece58443f1d90a448da7b09d88eb31cf000a4b9dae733fd"
+      "sha256": "57765ba5145efa9f72349a1d6eac95e35fceac8b235580e1f9f89fc52cfe8a0e"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/completion_manifest_v1.json",
+      "sha256": "a2f9f5b70b47ee8886e7b28e9456375e7bb67d01991cef9bf13f8bb2870dae75"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md",
+      "sha256": "904f902239484a0415738084e2b4acadf314354709c7de32fa8f0ef0f534cf51"
     }
   ]
 }

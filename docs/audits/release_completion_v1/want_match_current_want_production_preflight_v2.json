@@ -1,0 +1,38 @@
+{
+  "schema_version": "WANT_MATCH_CURRENT_WANT_PRODUCTION_PREFLIGHT_V2",
+  "captured_at": "2026-08-07T05:44:16.537Z",
+  "source_main_sha": "5dfe6288dd449368f2c918cfb411602ef92d53ae",
+  "mode": "production_read_only",
+  "write_operations": 0,
+  "migration_sha256": "279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959",
+  "migration_dry_run": {
+    "pending_count": 1,
+    "pending_versions": [
+      "20260807043000"
+    ]
+  },
+  "counts": {
+    "total_match_rows": 2,
+    "active_match_rows": 2,
+    "stale_match_rows": 0,
+    "acted_match_rows": 0,
+    "want_match_event_rows": 2,
+    "active_without_current_exact_want": 2,
+    "candidate_unsent_want_outbox": 0
+  },
+  "mismatch_evidence": [
+    {
+      "match_ref_sha256_16": "2fec9fd32cdf8e2e",
+      "card_print_ref_sha256_16": "bf1b8e4881a347c4",
+      "card_name": "Blastoise & Piplup-GX",
+      "status": "active"
+    },
+    {
+      "match_ref_sha256_16": "b829418a5778856a",
+      "card_print_ref_sha256_16": "dfb3e45f56286faf",
+      "card_name": "Piplup",
+      "status": "active"
+    }
+  ],
+  "finding": "Production state and scope were unchanged. Exactly one migration was pending before apply."
+}

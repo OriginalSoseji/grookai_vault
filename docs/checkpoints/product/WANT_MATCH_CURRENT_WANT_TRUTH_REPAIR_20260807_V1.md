@@ -36,12 +36,18 @@ Use exact `user_card_intents.want=true` as the sole current-want authority. Reta
 - Path: `supabase/migrations/20260807043000_want_match_current_want_truth_boundary_v1.sql`
 - SHA-256: `279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959`
 - Base candidate: `33d7ff50bda428439c664c7c6db427b7a66abd9a`
-- Production status: pending merge and controlled apply.
+- Merged main SHA: `5dfe6288dd449368f2c918cfb411602ef92d53ae`
+- Production status: applied and read back successfully on `2026-08-07`.
 
 ## Current Truths
 
-- Production has two durable Want Match rows and two historical availability events.
-- Both rows are active without a current exact want and must become stale.
+- Production retains two durable Want Match rows and two historical availability events.
+- Both rows are now stale; zero active/current-want mismatches remain.
+- Zero invalid deliverable outbox rows and zero stale Want Match Pulse rows remain.
+- Production function, trigger, grant, migration-history, and cron readback passed.
+- Production `notification-dispatcher` version 14 is active and contains the final current-evidence RPC boundary before FCM send-start.
+- An unauthenticated dispatcher probe fails closed with `401 unauthorized`; no notification work was invoked.
+- Android build 284 cold-launch readback excludes both stale cards.
 - Local migration readback has zero active/current-want mismatches.
 - Local E3 engine/delivery and E4 read/daily rollback-only journeys pass.
 - Current evidence is required at claim and final send-start, and duplicate send-start is rejected.
@@ -70,7 +76,13 @@ Use exact `user_card_intents.want=true` as the sole current-want authority. Reta
 - `../../audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md`
 - `../../audits/release_completion_v1/want_match_current_want_production_preflight_v1.json`
 - `../../audits/release_completion_v1/want_match_current_want_local_verification_v1.json`
+- `../../audits/release_completion_v1/want_match_current_want_production_preflight_v2.json`
+- `../../audits/release_completion_v1/want_match_current_want_production_apply_output_v1.txt`
+- `../../audits/release_completion_v1/want_match_current_want_production_readback_v1.json`
+- `../../audits/release_completion_v1/want_match_notification_dispatcher_production_deploy_output_v1.txt`
+- `../../audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json`
+- `../../audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md`
 
 ## Explicit Next Gate
 
-Merge and apply the exact migration, reconcile retained row/event counts and stale transitions, then repeat the final-candidate Android Pulse read. Journey C remains partial until the clean-account exact Want-to-match-to-message journey is separately proven.
+Run the clean-account exact Want-to-match-to-message journey on the immutable final candidate with database readback. Journey C remains partial until that separate end-to-end proof passes.

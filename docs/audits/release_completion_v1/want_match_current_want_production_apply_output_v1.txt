@@ -1,0 +1,17 @@
+Source main SHA: 5dfe6288dd449368f2c918cfb411602ef92d53ae
+Migration: 20260807043000_want_match_current_want_truth_boundary_v1.sql
+Migration SHA-256: 279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959
+Applied at: 2026-08-07T05:45Z
+
+Finished supabase db push.
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ - 20260807043000_want_match_current_want_truth_boundary_v1.sql
+
+ [Y/n] y
+Applying migration 20260807043000_want_match_current_want_truth_boundary_v1.sql...
+NOTICE (00000): trigger "trg_enforce_current_want_match_activation_v1" for relation "public.want_matches" does not exist, skipping
+NOTICE (00000): trigger "trg_stale_want_matches_when_intent_removed_v1" for relation "public.user_card_intents" does not exist, skipping
+
+Exit code: 0
+Secrets: excluded
