@@ -74,12 +74,18 @@ test("mobile keeps duplicate, reply, read, and grouping state scoped to exact pr
 });
 
 test("web creates, replies to, groups, and displays exact-printing threads", () => {
+  assert.match(webCreate, /formData\.get\("vault_item_instance_id"\)/);
+  assert.match(webCreate, /\.eq\("instance_id", vaultItemInstanceId\)/);
   assert.match(webCreate, /targetCardPrintingId/);
   assert.match(
     webCreate,
     /duplicateQuery\.eq\("card_printing_id", targetCardPrintingId\)/,
   );
   assert.match(webInsert, /card_printing_id: input\.cardPrintingId/);
+  assert.match(
+    webInsert,
+    /vault_item_instance_id: input\.vaultItemInstanceId/,
+  );
   assert.match(
     webReply,
     /groupQuery\.eq\("card_printing_id", cardPrintingId\)/,
@@ -103,6 +109,19 @@ test("database contract preserves exact printing without inferring legacy rows",
   assert.doesNotMatch(
     migration,
     /update\s+public\.card_interactions[\s\S]*card_printing_id/i,
+  );
+});
+
+test("mobile writes the resolved exact vault instance with the selected printing", () => {
+  assert.match(service, /'instance_id,vault_item_id/);
+  assert.match(service, /resolvedVaultItemInstanceId/);
+  assert.match(
+    service,
+    /'vault_item_instance_id': resolvedVaultItemInstanceId/,
+  );
+  assert.match(
+    service,
+    /existingThread\['vault_item_instance_id'\]/,
   );
 });
 

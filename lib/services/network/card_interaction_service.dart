@@ -258,6 +258,7 @@ class CardInteractionService {
 
   static Future<CardInteractionSendResult> sendMessage({
     required SupabaseClient client,
+    String? vaultItemInstanceId,
     required String vaultItemId,
     required String cardPrintId,
     required String message,
@@ -272,6 +273,7 @@ class CardInteractionService {
     }
 
     final normalizedVaultItemId = _clean(vaultItemId);
+    final normalizedRequestedInstanceId = _nullable(vaultItemInstanceId);
     final normalizedCardPrintId = _clean(cardPrintId);
     final normalizedMessage = _clean(message);
 
@@ -293,13 +295,20 @@ class CardInteractionService {
       );
     }
 
-    final target = await client
+    var targetQuery = client
         .from('v_card_contact_targets_v1')
         .select(
-          'vault_item_id,owner_user_id,owner_display_name,card_print_id,card_printing_id,intent,created_at',
+          'instance_id,vault_item_id,owner_user_id,owner_display_name,card_print_id,card_printing_id,intent,created_at',
         )
         .eq('vault_item_id', normalizedVaultItemId)
-        .eq('card_print_id', normalizedCardPrintId)
+        .eq('card_print_id', normalizedCardPrintId);
+    if (normalizedRequestedInstanceId != null) {
+      targetQuery = targetQuery.eq(
+        'instance_id',
+        normalizedRequestedInstanceId,
+      );
+    }
+    final target = await targetQuery
         .order('created_at', ascending: false)
         .limit(1)
         .maybeSingle();
@@ -308,8 +317,10 @@ class CardInteractionService {
     final receiverUserId = _clean(targetRow?['owner_user_id']);
     final ownerDisplayName = _clean(targetRow?['owner_display_name']);
     final cardPrintingId = _nullable(targetRow?['card_printing_id']);
+    final resolvedVaultItemInstanceId = _clean(targetRow?['instance_id']);
 
     if (receiverUserId.isEmpty ||
+        resolvedVaultItemInstanceId.isEmpty ||
         _clean(targetRow?['vault_item_id']).isEmpty ||
         _clean(targetRow?['card_print_id']).isEmpty) {
       return const CardInteractionSendResult(
@@ -338,6 +349,7 @@ class CardInteractionService {
         .eq('sender_user_id', user.id)
         .eq('receiver_user_id', receiverUserId)
         .eq('vault_item_id', normalizedVaultItemId)
+        .eq('vault_item_instance_id', resolvedVaultItemInstanceId)
         .eq('card_print_id', normalizedCardPrintId)
         .eq('message', normalizedMessage);
     duplicateQuery = cardPrintingId == null
@@ -363,6 +375,7 @@ class CardInteractionService {
     }
 
     await client.from('card_interactions').insert({
+      'vault_item_instance_id': resolvedVaultItemInstanceId,
       'card_print_id': normalizedCardPrintId,
       'card_printing_id': cardPrintingId,
       'vault_item_id': normalizedVaultItemId,
@@ -789,7 +802,7 @@ class CardInteractionService {
 
     var existingThreadQuery = client
         .from('card_interactions')
-        .select('id,card_printing_id')
+        .select('id,card_printing_id,vault_item_instance_id')
         .eq('vault_item_id', normalizedVaultItemId)
         .eq('card_print_id', normalizedCardPrintId)
         .or(participantFilter);
@@ -811,6 +824,9 @@ class CardInteractionService {
     final resolvedCardPrintingId = _nullable(
       existingThread['card_printing_id'],
     );
+    final resolvedVaultItemInstanceId = _nullable(
+      existingThread['vault_item_instance_id'],
+    );
 
     final duplicateWindowStart = DateTime.now()
         .subtract(const Duration(seconds: 15))
@@ -825,6 +841,12 @@ class CardInteractionService {
         .eq('vault_item_id', normalizedVaultItemId)
         .eq('card_print_id', normalizedCardPrintId)
         .eq('message', normalizedMessage);
+    duplicateQuery = resolvedVaultItemInstanceId == null
+        ? duplicateQuery.isFilter('vault_item_instance_id', null)
+        : duplicateQuery.eq(
+            'vault_item_instance_id',
+            resolvedVaultItemInstanceId,
+          );
     duplicateQuery = resolvedCardPrintingId == null
         ? duplicateQuery.isFilter('card_printing_id', null)
         : duplicateQuery.eq('card_printing_id', resolvedCardPrintingId);
@@ -848,6 +870,7 @@ class CardInteractionService {
     }
 
     await client.from('card_interactions').insert({
+      'vault_item_instance_id': resolvedVaultItemInstanceId,
       'card_print_id': normalizedCardPrintId,
       'card_printing_id': resolvedCardPrintingId,
       'vault_item_id': normalizedVaultItemId,

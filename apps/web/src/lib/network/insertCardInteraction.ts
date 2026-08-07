@@ -2,6 +2,7 @@ import "server-only";
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 
 type CardInteractionInsert = {
+  vaultItemInstanceId: string | null;
   cardPrintId: string;
   cardPrintingId: string | null;
   vaultItemId: string;
@@ -37,9 +38,14 @@ async function hasPublicTargetAuthorization(
   client: SupabaseClient,
   input: CardInteractionInsert,
 ) {
+  if (!input.vaultItemInstanceId) {
+    return false;
+  }
+
   const { data, error } = await client
     .from("v_card_contact_targets_v1")
-    .select("vault_item_id,owner_user_id,card_print_id,card_printing_id,intent")
+    .select("instance_id,vault_item_id,owner_user_id,card_print_id,card_printing_id,intent")
+    .eq("instance_id", input.vaultItemInstanceId)
     .eq("vault_item_id", input.vaultItemId)
     .eq("owner_user_id", input.receiverUserId)
     .eq("card_print_id", input.cardPrintId)
@@ -49,7 +55,8 @@ async function hasPublicTargetAuthorization(
 
   return Boolean(
     !error &&
-    data?.vault_item_id === input.vaultItemId &&
+    data?.instance_id === input.vaultItemInstanceId &&
+    data.vault_item_id === input.vaultItemId &&
     data.owner_user_id === input.receiverUserId &&
     data.card_print_id === input.cardPrintId &&
     (data.card_printing_id ?? null) === input.cardPrintingId &&
@@ -72,6 +79,9 @@ async function hasExistingThreadAuthorization(
     .eq("vault_item_id", input.vaultItemId)
     .eq("card_print_id", input.cardPrintId)
     .or(participantFilter);
+  query = input.vaultItemInstanceId
+    ? query.eq("vault_item_instance_id", input.vaultItemInstanceId)
+    : query.is("vault_item_instance_id", null);
   query = input.cardPrintingId
     ? query.eq("card_printing_id", input.cardPrintingId)
     : query.is("card_printing_id", null);
@@ -125,6 +135,7 @@ export async function insertCardInteraction({
   authorization: InteractionAuthorization;
 }): Promise<InsertCardInteractionResult> {
   const payload = {
+    vault_item_instance_id: input.vaultItemInstanceId,
     card_print_id: input.cardPrintId,
     card_printing_id: input.cardPrintingId,
     vault_item_id: input.vaultItemId,

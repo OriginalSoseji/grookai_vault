@@ -111,6 +111,11 @@ test("canonical interaction fallback is limited to RLS drift and re-proves autho
   assert.match(helper, /error\?\.code === "42501"/);
   assert.match(helper, /row-level security\|row level security/);
   assert.match(helper, /authorization\.kind === "public-target"/);
+  assert.match(helper, /\.eq\("instance_id", input\.vaultItemInstanceId\)/);
+  assert.match(
+    helper,
+    /vault_item_instance_id: input\.vaultItemInstanceId/,
+  );
   assert.match(helper, /hasExistingThreadAuthorization/);
   assert.match(helper, /CONTACTABLE_INTENTS\.has\(data\.intent\)/);
   assert.match(helper, /trust_block_exists_between_v1/);

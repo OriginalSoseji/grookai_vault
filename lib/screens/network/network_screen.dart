@@ -2613,6 +2613,7 @@ class _NetworkActionBar extends StatelessWidget {
       primaryAction = _NetworkPrimaryActionShell(
         // LOCK: Contact language must stay calm, clear, and product-facing.
         child: ContactOwnerButton(
+          vaultItemInstanceId: directContact!.vaultItemInstanceId,
           vaultItemId: directContact!.vaultItemId,
           cardPrintId: row.cardPrintId,
           ownerUserId: row.ownerUserId,
@@ -2807,10 +2808,12 @@ class _NetworkActionLink extends StatelessWidget {
 
 class _NetworkContactAnchor {
   const _NetworkContactAnchor({
+    required this.vaultItemInstanceId,
     required this.vaultItemId,
     required this.intent,
   });
 
+  final String vaultItemInstanceId;
   final String vaultItemId;
   final String? intent;
 }
@@ -2823,25 +2826,19 @@ _NetworkContactAnchor? _groupedContactAnchor(NetworkStreamRow row) {
     return null;
   }
 
-  final copyVaultItemIds = row.inPlayCopies
-      .map((copy) => copy.vaultItemId.trim())
-      .where((value) => value.isNotEmpty)
-      .toSet();
-
-  if (copyVaultItemIds.length > 1) {
+  if (row.inPlayCopies.length != 1) {
     return null;
   }
 
-  final vaultItemId = copyVaultItemIds.isNotEmpty
-      ? copyVaultItemIds.first
-      : row.vaultItemId;
-  if (vaultItemId.trim().isEmpty) {
+  final copy = row.inPlayCopies.single;
+  if (copy.instanceId.trim().isEmpty || copy.vaultItemId.trim().isEmpty) {
     return null;
   }
 
   return _NetworkContactAnchor(
-    vaultItemId: vaultItemId,
-    intent: NetworkStreamService.getPrimaryIntent(row),
+    vaultItemInstanceId: copy.instanceId,
+    vaultItemId: copy.vaultItemId,
+    intent: copy.intent,
   );
 }
 
@@ -2862,6 +2859,7 @@ void _openCardDetail(
         number: row.number,
         imageUrl: row.imageUrl,
         fallbackImageUrl: row.fallbackImageUrl,
+        contactVaultItemInstanceId: directContact?.vaultItemInstanceId,
         contactVaultItemId: directContact?.vaultItemId,
         contactOwnerDisplayName: row.ownerDisplayName,
         contactOwnerUserId: row.ownerUserId,
@@ -3009,6 +3007,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         ContactOwnerButton(
+                          vaultItemInstanceId: copy.instanceId,
                           vaultItemId: copy.vaultItemId,
                           cardPrintId: row.cardPrintId,
                           ownerUserId: row.ownerUserId,

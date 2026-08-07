@@ -115,6 +115,7 @@ export function InteractionGroupControls({
         surfaceId={`${cardPrintId}:${counterpartUserId}`}
         returnPath={currentPath}
         cardPrintId={cardPrintId}
+        cardPrintingId={cardPrintingId}
         compact
       />
       {errorMessage ? (

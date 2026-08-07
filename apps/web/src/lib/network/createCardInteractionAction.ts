@@ -10,6 +10,7 @@ import { insertCardInteraction } from "@/lib/network/insertCardInteraction";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type StreamTargetRow = {
+  instance_id: string | null;
   vault_item_id: string | null;
   owner_user_id: string | null;
   owner_slug: string | null;
@@ -119,11 +120,14 @@ export async function createCardInteractionAction(
   }
 
   const vaultItemId = normalizeOptionalText(formData.get("vault_item_id"));
+  const vaultItemInstanceId = normalizeOptionalText(
+    formData.get("vault_item_instance_id"),
+  );
   const cardPrintId = normalizeOptionalText(formData.get("card_print_id"));
   const message = normalizeOptionalText(formData.get("message"));
   const returnPath = normalizeReturnPath(formData.get("return_path"));
 
-  if (!vaultItemId || !cardPrintId || !message) {
+  if (!vaultItemId || !vaultItemInstanceId || !cardPrintId || !message) {
     return {
       ok: false,
       status: "validation-error",
@@ -144,8 +148,9 @@ export async function createCardInteractionAction(
   const { data: streamTarget, error: streamError } = await client
     .from("v_card_contact_targets_v1")
     .select(
-      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,card_printing_id,intent,created_at",
+      "instance_id,vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,card_printing_id,intent,created_at",
     )
+    .eq("instance_id", vaultItemInstanceId)
     .eq("vault_item_id", vaultItemId)
     .eq("card_print_id", cardPrintId)
     .order("created_at", { ascending: false })
@@ -165,7 +170,8 @@ export async function createCardInteractionAction(
   const receiverUserId = normalizeOptionalText(target?.owner_user_id);
 
   if (
-    !target?.vault_item_id ||
+    !target?.instance_id ||
+    !target.vault_item_id ||
     !target.card_print_id ||
     !receiverUserId ||
     !target.intent ||
@@ -189,6 +195,7 @@ export async function createCardInteractionAction(
   }
 
   const targetVaultItemId = target.vault_item_id;
+  const targetVaultItemInstanceId = target.instance_id;
   const targetCardPrintId = target.card_print_id;
   const targetCardPrintingId = normalizeOptionalText(target.card_printing_id);
 
@@ -199,6 +206,7 @@ export async function createCardInteractionAction(
     .eq("sender_user_id", user.id)
     .eq("receiver_user_id", receiverUserId)
     .eq("vault_item_id", targetVaultItemId)
+    .eq("vault_item_instance_id", targetVaultItemInstanceId)
     .eq("card_print_id", targetCardPrintId)
     .eq("message", message);
   duplicateQuery = targetCardPrintingId
@@ -251,6 +259,7 @@ export async function createCardInteractionAction(
               cardPrintId: targetCardPrintId,
               cardPrintingId: targetCardPrintingId,
               vaultItemId: targetVaultItemId,
+              vaultItemInstanceId: targetVaultItemInstanceId,
               senderUserId: user.id,
               receiverUserId,
               message,
@@ -301,6 +310,10 @@ export async function createCardInteractionAction(
           context.setMetadata("interaction_id", inserted.id);
           context.setMetadata("interaction_receiver_user_id", receiverUserId);
           context.setMetadata("interaction_vault_item_id", targetVaultItemId);
+          context.setMetadata(
+            "interaction_vault_item_instance_id",
+            targetVaultItemInstanceId,
+          );
           context.setMetadata("interaction_card_print_id", targetCardPrintId);
           context.setMetadata(
             "interaction_card_printing_id",
@@ -337,7 +350,13 @@ export async function createCardInteractionAction(
                   "interaction_receiver_user_id",
                 ),
                 vaultItemId: getMetadata<string>("interaction_vault_item_id"),
+                vaultItemInstanceId: getMetadata<string>(
+                  "interaction_vault_item_instance_id",
+                ),
                 cardPrintId: getMetadata<string>("interaction_card_print_id"),
+                cardPrintingId: getMetadata<string>(
+                  "interaction_card_printing_id",
+                ),
                 message: getMetadata<string>("interaction_message"),
               };
             },

@@ -22,6 +22,7 @@ void main() {
               currentUserIdOverride: 'viewer-1',
               sendMessageOverride:
                   ({
+                    vaultItemInstanceId,
                     required vaultItemId,
                     required cardPrintId,
                     required message,
@@ -85,6 +86,7 @@ void main() {
                       closeParentOnSuccess: true,
                       sendMessageOverride:
                           ({
+                            vaultItemInstanceId,
                             required vaultItemId,
                             required cardPrintId,
                             required message,
@@ -143,6 +145,7 @@ void main() {
             currentUserIdOverride: 'viewer-1',
             sendMessageOverride:
                 ({
+                  vaultItemInstanceId,
                   required vaultItemId,
                   required cardPrintId,
                   required message,

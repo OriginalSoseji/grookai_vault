@@ -26,6 +26,7 @@ function getGroupedContactAnchor(row: CardStreamRow) {
 
   const copy = row.inPlayCopies[0];
   return {
+    vaultItemInstanceId: copy.instanceId,
     vaultItemId: copy.vaultItemId,
     intent: copy.intent,
   };
@@ -233,6 +234,7 @@ export function NetworkStreamCard({
             </Link>
             {canContactOwner && groupedContactAnchor ? (
               <ContactOwnerButton
+                vaultItemInstanceId={groupedContactAnchor.vaultItemInstanceId}
                 vaultItemId={groupedContactAnchor.vaultItemId}
                 cardPrintId={row.cardPrintId}
                 ownerUserId={row.ownerUserId}
@@ -299,6 +301,7 @@ export function NetworkStreamCard({
                       ) : null}
                       {canContactOwner ? (
                         <ContactOwnerButton
+                          vaultItemInstanceId={copy.instanceId}
                           vaultItemId={copy.vaultItemId}
                           cardPrintId={row.cardPrintId}
                           ownerUserId={row.ownerUserId}

@@ -106,18 +106,16 @@ function getIntentBadgeLabels(card: PublicWallCard) {
 }
 
 function getGroupedContactAnchor(card: PublicWallCard) {
-  if (!card.vault_item_id) {
+  if (!card.vault_item_id || card.in_play_copies?.length !== 1) {
     return null;
   }
 
-  const copyVaultItemIds = Array.from(new Set((card.in_play_copies ?? []).map((copy) => copy.vault_item_id).filter(Boolean)));
-  if (copyVaultItemIds.length > 1) {
-    return null;
-  }
+  const copy = card.in_play_copies[0];
 
   return {
-    vaultItemId: copyVaultItemIds[0] ?? card.vault_item_id,
-    intent: card.intent ?? null,
+    vaultItemInstanceId: copy.instance_id,
+    vaultItemId: copy.vault_item_id,
+    intent: copy.intent,
   };
 }
 
@@ -613,6 +611,7 @@ export function PublicCollectorProfileContent({
                                     ) : null}
                                     {!isOwnProfile && copy.vault_item_id ? (
                                       <ContactOwnerButton
+                                        vaultItemInstanceId={copy.instance_id}
                                         vaultItemId={copy.vault_item_id}
                                         cardPrintId={card.card_print_id}
                                         ownerUserId={collectorUserId}
@@ -635,6 +634,7 @@ export function PublicCollectorProfileContent({
                         ) : null}
                         {!isOwnProfile && groupedContactAnchor ? (
                           <ContactOwnerButton
+                            vaultItemInstanceId={groupedContactAnchor.vaultItemInstanceId}
                             vaultItemId={groupedContactAnchor.vaultItemId}
                             cardPrintId={card.card_print_id}
                             ownerUserId={collectorUserId}

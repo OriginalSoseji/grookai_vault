@@ -14,6 +14,7 @@ type TrustSafetyControlsProps = {
   surfaceId?: string | null;
   returnPath?: string | null;
   cardPrintId?: string | null;
+  cardPrintingId?: string | null;
   canBlock?: boolean;
   compact?: boolean;
 };
@@ -26,6 +27,7 @@ export function TrustSafetyControls({
   surfaceId = null,
   returnPath = null,
   cardPrintId = null,
+  cardPrintingId,
   canBlock = true,
   compact = false,
 }: TrustSafetyControlsProps) {
@@ -75,6 +77,7 @@ export function TrustSafetyControls({
         const result = await blockTrustSafetyUserAction({
           blockedUserId: reportedUserId,
           cardPrintId,
+          ...(cardPrintingId !== undefined ? { cardPrintingId } : {}),
           returnPath,
         });
         finish(result);

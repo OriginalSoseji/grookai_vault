@@ -12,6 +12,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 
 type ExistingInteractionRow = {
   id: string;
+  vault_item_instance_id: string | null;
 };
 
 function normalizeOptionalText(
@@ -135,7 +136,7 @@ export async function replyToCardInteractionGroupAction(
 
   let groupQuery = client
     .from("card_interactions")
-    .select("id")
+    .select("id,vault_item_instance_id")
     .eq("vault_item_id", vaultItemId)
     .eq("card_print_id", cardPrintId)
     .or(participantFilter);
@@ -165,6 +166,9 @@ export async function replyToCardInteractionGroupAction(
       message: "That message thread is no longer available for reply.",
     };
   }
+  const vaultItemInstanceId = normalizeOptionalText(
+    existingGroup.vault_item_instance_id,
+  );
 
   const duplicateWindowStart = new Date(Date.now() - 15_000).toISOString();
   let duplicateQuery = client
@@ -175,6 +179,9 @@ export async function replyToCardInteractionGroupAction(
     .eq("vault_item_id", vaultItemId)
     .eq("card_print_id", cardPrintId)
     .eq("message", message);
+  duplicateQuery = vaultItemInstanceId
+    ? duplicateQuery.eq("vault_item_instance_id", vaultItemInstanceId)
+    : duplicateQuery.is("vault_item_instance_id", null);
   duplicateQuery = cardPrintingId
     ? duplicateQuery.eq("card_printing_id", cardPrintingId)
     : duplicateQuery.is("card_printing_id", null);
@@ -225,6 +232,7 @@ export async function replyToCardInteractionGroupAction(
               cardPrintId,
               cardPrintingId,
               vaultItemId,
+              vaultItemInstanceId,
               senderUserId: user.id,
               receiverUserId: counterpartUserId,
               message,
@@ -278,6 +286,10 @@ export async function replyToCardInteractionGroupAction(
             counterpartUserId,
           );
           context.setMetadata("interaction_vault_item_id", vaultItemId);
+          context.setMetadata(
+            "interaction_vault_item_instance_id",
+            vaultItemInstanceId,
+          );
           context.setMetadata("interaction_card_print_id", cardPrintId);
           context.setMetadata("interaction_card_printing_id", cardPrintingId);
           context.setMetadata("interaction_message", message);
@@ -311,7 +323,13 @@ export async function replyToCardInteractionGroupAction(
                   "interaction_receiver_user_id",
                 ),
                 vaultItemId: getMetadata<string>("interaction_vault_item_id"),
+                vaultItemInstanceId: getMetadata<string>(
+                  "interaction_vault_item_instance_id",
+                ),
                 cardPrintId: getMetadata<string>("interaction_card_print_id"),
+                cardPrintingId: getMetadata<string>(
+                  "interaction_card_printing_id",
+                ),
                 message: getMetadata<string>("interaction_message"),
               };
             },

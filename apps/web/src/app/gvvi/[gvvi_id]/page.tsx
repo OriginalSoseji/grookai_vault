@@ -232,6 +232,7 @@ export default async function PublicVaultInstancePage(
                   This card is marked <span className="font-medium text-slate-900">{getVaultIntentLabel(detail.intent)}</span>.
                 </p>
                 <ContactOwnerButton
+                  vaultItemInstanceId={detail.instanceId}
                   vaultItemId={detail.vaultItemId}
                   cardPrintId={detail.cardPrintId}
                   ownerUserId={detail.ownerUserId}
