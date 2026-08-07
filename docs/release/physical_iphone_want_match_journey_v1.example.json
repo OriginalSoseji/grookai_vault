@@ -5,14 +5,15 @@
   "device_model_family": "iPhone",
   "testflight_build": "284",
   "app_commit_sha": "33d7ff50bda428439c664c7c6db427b7a66abd9a",
-  "tested_at": "2026-07-31T00:00:00.000Z",
+  "tested_at": "2026-08-07T00:00:00.000Z",
   "confirmations": {
-    "signup_completed": false,
-    "card_search_rendered": false,
-    "owned_card_visible": false,
-    "binder_visible": false,
-    "intent_or_listing_visible": false,
-    "activity_visible": false,
+    "exact_card_found": false,
+    "want_enabled": false,
+    "want_match_visible": false,
+    "owner_context_visible": false,
+    "card_centered_message_sent": false,
+    "want_disabled": false,
+    "match_absent_after_opt_out": false,
     "no_blocking_error": false
   },
   "artifact_paths": [

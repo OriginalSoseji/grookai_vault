@@ -35,6 +35,7 @@
     "release:completion:status": "node scripts/audits/release_completion_gate_v1.mjs",
     "release:completion:require": "node scripts/audits/release_completion_gate_v1.mjs --require-complete",
     "release:journey:verify": "node scripts/audits/release_clean_account_journey_readback_v1.mjs",
+    "release:journey:want-match:verify": "node scripts/audits/release_want_match_journey_readback_v1.mjs",
     "web:build:strict": "node scripts/ci/run_next_build_strict.mjs",
     "hooks:install": "node scripts/git/install_hooks_v1.mjs",
     "contracts:drift-audit": "node scripts/contracts/run_drift_audit_v1.mjs",
