@@ -1,0 +1,72 @@
+{
+  "schema_version": "FINAL_CANDIDATE_BLOCKER_REPAIR_IOS_READBACK_V1",
+  "recorded_at": "2026-08-07T23:26:39Z",
+  "source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "archive": {
+    "path_outside_repository": "/Users/cesarcabral/grookai_vault_final_candidate_c3a0aeadf/build/ios/archive/GrookaiVault-1.0.0-286-pinned.xcarchive",
+    "bundle_id": "com.cesar.grookaivault",
+    "marketing_version": "1.0.0",
+    "build_number": "286",
+    "codesign_verified": true,
+    "dependency_resolution_frozen": true,
+    "gtm_session_fetcher_version": "5.3.0",
+    "dsym_count": 4,
+    "runner_dsym_present": true
+  },
+  "ipa": {
+    "path_outside_repository": "/Users/cesarcabral/grookai_vault_final_candidate_c3a0aeadf/build/ios/export/GrookaiVault-1.0.0-286-pinned/Grookai Vault.ipa",
+    "bytes": 28227217,
+    "sha256": "1d42d6948f5406919405c025f188341ee766fbd713356e830d283ff9f230d4b9",
+    "codesign_verified": true
+  },
+  "delivery": {
+    "delivery_uuid": "fde361e1-dcfd-43b7-bc80-ff9cf647e426",
+    "upload_status": "succeeded",
+    "processing_state": "VALID",
+    "build_audience_type": "APP_STORE_ELIGIBLE",
+    "uses_non_exempt_encryption": false
+  },
+  "testflight": {
+    "internal_build_state": "IN_BETA_TESTING",
+    "external_build_state": "IN_BETA_TESTING",
+    "beta_review_state": "APPROVED",
+    "auto_notify_enabled": true,
+    "groups": [
+      {
+        "id": "23f9d065-b536-46ab-95f1-41e3cda6498e",
+        "name": "Friends and Family",
+        "kind": "internal",
+        "contains_build_286": true
+      },
+      {
+        "id": "05d1bcca-b42e-498a-a5d9-7204b55f26ec",
+        "name": "friends and family",
+        "kind": "external",
+        "contains_build_286": true
+      },
+      {
+        "id": "7d7f607e-823b-427b-8757-d72d12712dc5",
+        "name": "beta",
+        "kind": "external",
+        "contains_build_286": true
+      }
+    ]
+  },
+  "crashlytics_symbols": {
+    "upload_status": "succeeded",
+    "submitted_dsym_count": 4,
+    "architectures": ["arm64"],
+    "uuids": [
+      "62c1f85344fe3404a89acac07cd4b897",
+      "0c7143a3c9158f394c4ff302c5b62a3d",
+      "b6b62cfe232d3bb3a8e4d873e1580502",
+      "4c4c446755553144a1923bd2fbb8a250"
+    ]
+  },
+  "physical_devices": {
+    "paired_iphone_15_pro": "unavailable",
+    "paired_iphone_17_pro": "unavailable",
+    "physical_journey_status": "not_claimed_pending_device_availability"
+  },
+  "public_app_store_release_performed": false
+}

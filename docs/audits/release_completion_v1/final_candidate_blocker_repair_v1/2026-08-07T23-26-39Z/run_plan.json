@@ -1,0 +1,28 @@
+{
+  "schema_version": "FINAL_CANDIDATE_BLOCKER_REPAIR_RUN_PLAN_V1",
+  "recorded_at": "2026-08-07T23:26:39Z",
+  "candidate_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "verifier_source_commit": "042ed6e26572aa450de415d84a662105599bb165",
+  "source_branch": "release/final-candidate-proof-v1",
+  "production_ref": "origin/main",
+  "objective": "Replace the pre-repair final candidate, prove collector-safe Pulse failure copy, redistribute exact artifacts, and refresh production evidence without claiming physical-device or soak completion.",
+  "boundaries": {
+    "database_schema_writes": false,
+    "collector_data_writes": false,
+    "test_account_mutations": false,
+    "public_app_store_release": false,
+    "google_play_release": false,
+    "testflight_distribution_only": true,
+    "locked_acceptance_package_modified": false,
+    "physical_journeys_claimed_from_locked_or_unavailable_devices": false,
+    "soak_backdated": false
+  },
+  "targets": {
+    "web_origin": "https://grookaivault.com",
+    "vercel_deployment_id": "dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J",
+    "android_package": "com.grookai.vault",
+    "android_version": "1.0.0 (21)",
+    "ios_bundle_id": "com.cesar.grookaivault",
+    "ios_version": "1.0.0 (286)"
+  }
+}

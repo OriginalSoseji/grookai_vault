@@ -1,0 +1,82 @@
+{
+  "schema_version": "FINAL_CANDIDATE_BLOCKER_REPAIR_WEB_AND_CI_READBACK_V1",
+  "recorded_at": "2026-08-07T23:26:39Z",
+  "candidate_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "web": {
+    "origin": "https://grookaivault.com",
+    "vercel_deployment_id": "dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J",
+    "vercel_url": "grookai-vault-3085jdxhe-sosejis-projects.vercel.app",
+    "target": "production",
+    "state": "READY",
+    "source_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "aliases": [
+      "grookaivault.com",
+      "grookai-vault.vercel.app",
+      "grookai-vault-sosejis-projects.vercel.app",
+      "grookai-vault-git-release-final-candida-1ea9cc-sosejis-projects.vercel.app"
+    ],
+    "signed_out": {
+      "status": "passed",
+      "route_cases": 22,
+      "route_passes": 22,
+      "personal_action_cases": 2,
+      "personal_action_passes": 2,
+      "failures": 0,
+      "artifact_root": "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z"
+    },
+    "signed_in": {
+      "status": "passed",
+      "verifier_source_commit": "042ed6e26572aa450de415d84a662105599bb165",
+      "route_cases": 26,
+      "route_passes": 26,
+      "message_context_cases": 2,
+      "message_context_passes": 2,
+      "database_assertions": 5,
+      "database_assertion_passes": 5,
+      "before_after_database_equal": true,
+      "failures": 0,
+      "artifact_root": "docs/audits/release_completion_v1/signed_in_web_final_candidate_82d5f8b_v1/2026-08-07T23-22-49-126Z"
+    }
+  },
+  "signed_in_verifier_repair": {
+    "initial_failure_artifact": "docs/audits/release_completion_v1/signed_in_web_final_candidate_82d5f8b_v1/2026-08-07T23-06-58-778Z",
+    "initial_failure_class": "stale_hardcoded_archived_gvvi_fixture",
+    "second_failure_artifact": "docs/audits/release_completion_v1/signed_in_web_final_candidate_82d5f8b_v1/2026-08-07T23-18-55-221Z",
+    "second_failure_class": "grouped_vault_default_intent_not_rendered_while_exact_copy_route_passed",
+    "repair_commit": "042ed6e26572aa450de415d84a662105599bb165",
+    "repair_policy": "discover active exact evidence read-only; use owner-only route for private copy; require private hold card absence on public profile",
+    "test_account_data_recreated": false
+  },
+  "github_actions": [
+    {
+      "run_id": 31222690149,
+      "workflow": "Flutter Build Signed APK",
+      "head_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 31225134276,
+      "workflow": "CodeQL",
+      "head_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 31225135027,
+      "workflow": "Guard: No Legacy Keys",
+      "head_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 31225135036,
+      "workflow": "Flutter CI",
+      "head_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 31225135185,
+      "workflow": "Flutter Build Signed APK",
+      "head_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+      "conclusion": "cancelled_intentionally_as_duplicate_of_31222690149"
+    }
+  ]
+}

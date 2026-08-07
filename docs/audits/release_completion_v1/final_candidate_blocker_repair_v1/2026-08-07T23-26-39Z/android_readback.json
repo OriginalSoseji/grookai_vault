@@ -1,0 +1,49 @@
+{
+  "schema_version": "FINAL_CANDIDATE_BLOCKER_REPAIR_ANDROID_READBACK_V1",
+  "recorded_at": "2026-08-07T23:26:39Z",
+  "source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "github_actions": {
+    "workflow_run_id": 31222690149,
+    "workflow": "Flutter Build Signed APK",
+    "conclusion": "success",
+    "artifact_id": 9011141315,
+    "artifact_name": "signed-release-apk",
+    "artifact_expired": false
+  },
+  "apk": {
+    "path_outside_repository": "C:/grookai_release_artifacts/android_82d5f8b_286_candidate/app-release.apk",
+    "bytes": 78933292,
+    "sha256": "7444381f364809a9348fad4d5f5f5437c01f96153bdb92e71f08c59dbcca5289",
+    "package": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21,
+    "v2_signature_verified": true,
+    "certificate_subject": "CN=Grookai Vault, OU=Release, O=Grookai, L=Denver, ST=Colorado, C=US",
+    "certificate_sha256": "51e518ef647b2bd5c1c91d3d00d08e1fe3192af633b2af6741a67fdce872e033"
+  },
+  "disposable_emulator": {
+    "install_status": "succeeded",
+    "signed_in_online": true,
+    "package_only_network_deny_used": true,
+    "friendly_pulse_failure_visible": true,
+    "raw_provider_failure_visible": false,
+    "retry_recovered_same_session": true,
+    "database_writes_performed_by_verifier": false,
+    "screenshots": [
+      "01_initial_launch.png",
+      "08_recovered_online.png",
+      "09_pulse_retry_recovered.png"
+    ]
+  },
+  "samsung": {
+    "serial": "R5CT3291F6E",
+    "model": "SM-S908U",
+    "install_status": "succeeded_in_place",
+    "app_data_preserved": true,
+    "first_install_time": "2026-08-07 11:11:11",
+    "last_update_time": "2026-08-07 16:24:44",
+    "package_readback": "1.0.0 (21)",
+    "device_state": "secure_keyguard_locked",
+    "physical_journey_status": "not_claimed_pending_unlock"
+  }
+}

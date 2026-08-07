@@ -1,0 +1,29 @@
+{
+  "schema_version": "FINAL_CANDIDATE_WEB_AND_CI_READBACK_V1",
+  "recorded_at": "2026-08-07T20:47:52Z",
+  "source_commit": "c3a0aeadf903d4cfc83b004798a397dd718f4f58",
+  "web": {
+    "production_deployment_id": 5801417932,
+    "origin": "https://grookaivault.com",
+    "deployment_status": "success",
+    "signed_out_route_cases": 22,
+    "signed_out_route_passes": 22,
+    "signed_out_personal_action_cases": 2,
+    "signed_out_personal_action_passes": 2,
+    "signed_in_route_cases": 28,
+    "signed_in_route_passes": 28,
+    "message_context_cases": 2,
+    "message_context_passes": 2,
+    "database_assertions": 5,
+    "database_assertion_passes": 5,
+    "failures": 0
+  },
+  "github_actions": [
+    {"run_id": 31215199377, "workflow": "Flutter Build Signed APK", "conclusion": "success"},
+    {"run_id": 31215198938, "workflow": "CodeQL", "conclusion": "success"},
+    {"run_id": 31215199373, "workflow": "Contracts Runtime Protection", "conclusion": "success"},
+    {"run_id": 31215202126, "workflow": "Contracts Runtime Protection", "conclusion": "success"},
+    {"run_id": 31215199388, "workflow": "Guard: No Legacy Keys", "conclusion": "success"},
+    {"run_id": 31216223099, "workflow": "Prod Edge Probe (read-only)", "conclusion": "success"}
+  ]
+}

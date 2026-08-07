@@ -1,0 +1,22 @@
+{
+  "schema_version": "FINAL_CANDIDATE_ANDROID_READBACK_V1",
+  "recorded_at": "2026-08-07T20:47:52Z",
+  "source_commit": "c3a0aeadf903d4cfc83b004798a397dd718f4f58",
+  "workflow_run_id": 31215199377,
+  "artifact_id": 9008467962,
+  "artifact_name": "signed-release-apk",
+  "package": "com.grookai.vault",
+  "version_name": "1.0.0",
+  "version_code": 21,
+  "apk_bytes": 78933292,
+  "apk_sha256": "13ee9ce544201b86c6f95cd500361ad51af01adb321d5b12da852a1b95f83252",
+  "certificate_sha256": "51e518ef647b2bd5c1c91d3d00d08e1fe3192af633b2af6741a67fdce872e033",
+  "signature_verified": true,
+  "samsung": {
+    "serial": "R5CT3291F6E",
+    "model": "SM-S908U",
+    "install_status": "succeeded",
+    "app_data_preserved": true,
+    "visual_journey_status": "pending_secure_device_unlock"
+  }
+}

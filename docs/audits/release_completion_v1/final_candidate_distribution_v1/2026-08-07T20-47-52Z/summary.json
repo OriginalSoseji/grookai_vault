@@ -1,0 +1,21 @@
+{
+  "schema_version": "FINAL_CANDIDATE_DISTRIBUTION_SUMMARY_V1",
+  "recorded_at": "2026-08-07T20:47:52Z",
+  "status": "distributed_pending_physical_journeys_and_soak",
+  "source_commit": "c3a0aeadf903d4cfc83b004798a397dd718f4f58",
+  "web_production": "proven",
+  "android_artifact": "proven_and_installed",
+  "ios_testflight": "proven_internal_and_external",
+  "crashlytics_symbols": "proven",
+  "github_ci": "proven",
+  "google_play_console": "blocked_no_existing_developer_account_current_session_redirects_to_signup",
+  "automated_state_matrix": {
+    "passed": 76,
+    "failed": 0
+  },
+  "account_deletion_disposable_account": "proven",
+  "physical_android_journeys": "pending_secure_device_unlock",
+  "physical_iphone_journeys": "pending_device_availability",
+  "soak_status": "not_started",
+  "completion_allowed": false
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "FINAL_CANDIDATE_DISTRIBUTION_RUN_PLAN_V1",
+  "recorded_at": "2026-08-07T20:47:52Z",
+  "source_commit": "c3a0aeadf903d4cfc83b004798a397dd718f4f58",
+  "source_branch": "release/final-candidate-proof-v1",
+  "production_ref": "origin/main",
+  "boundaries": {
+    "source_frozen_during_distribution": true,
+    "database_schema_writes": false,
+    "collector_data_writes": false,
+    "public_app_store_release": false,
+    "testflight_distribution_only": true,
+    "production_web_deployment_allowed": true,
+    "signed_android_artifact_allowed": true
+  },
+  "targets": {
+    "web_origin": "https://grookaivault.com",
+    "android_package": "com.grookai.vault",
+    "ios_bundle_id": "com.cesar.grookaivault",
+    "ios_marketing_version": "1.0.0",
+    "ios_build_number": "285"
+  }
+}
