@@ -1,0 +1,30 @@
+{
+  "schema_version": "WANT_MATCH_CURRENT_WANT_PRODUCTION_PREFLIGHT_V1",
+  "captured_at": "2026-08-07T04:30:37.847Z",
+  "source_candidate_sha": "33d7ff50bda428439c664c7c6db427b7a66abd9a",
+  "mode": "production_read_only",
+  "write_operations": 0,
+  "counts": {
+    "total_match_rows": 2,
+    "active_match_rows": 2,
+    "stale_match_rows": 0,
+    "acted_match_rows": 0,
+    "want_match_event_rows": 2,
+    "active_without_current_exact_want": 2
+  },
+  "mismatch_evidence": [
+    {
+      "match_ref_sha256_16": "2fec9fd32cdf8e2e",
+      "card_print_ref_sha256_16": "bf1b8e4881a347c4",
+      "card_name": "Blastoise & Piplup-GX",
+      "status": "active"
+    },
+    {
+      "match_ref_sha256_16": "b829418a5778856a",
+      "card_print_ref_sha256_16": "dfb3e45f56286faf",
+      "card_name": "Piplup",
+      "status": "active"
+    }
+  ],
+  "finding": "Every active durable Want Match lacked a current exact user_card_intents.want=true row. Historical match and card-event rows must be retained while current eligibility is repaired."
+}

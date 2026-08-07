@@ -88,5 +88,8 @@ test("E4 Pulse daily local smoke covers PR2 gate", () => {
   assert.match(script, /legacy_digest_after_cutover/);
   assert.match(script, /undelivered_legacy_digest_rows/);
   assert.match(script, /notification_dispatcher_reschedule_digest_fold_v1/);
+  assert.match(script, /notification_outbox_has_current_want_truth_v1/);
+  assert.match(script, /cancelled_current_want_removed/);
+  assert.match(script, /pulse_daily_claimed_after_opt_out/);
   assert.match(script, /rollback_only/);
 });

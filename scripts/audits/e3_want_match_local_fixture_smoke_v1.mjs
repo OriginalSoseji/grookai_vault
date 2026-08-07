@@ -286,20 +286,26 @@ async function seedFixture(client) {
 
   await client.query(
     `
-      insert into public.wishlist_items (user_id, card_id, note)
-      values ($1, $2, 'E3 local fixture want')
-      on conflict (user_id, card_id) do update
-      set note = excluded.note
+      insert into public.user_card_intents (
+        user_id, card_print_id, want, trade, sell, showcase, is_public, metadata
+      )
+      values ($1, $2, true, false, false, false, false, '{}'::jsonb)
+      on conflict (user_id, card_print_id) do update
+      set want = true,
+          updated_at = now()
     `,
     [FIXTURE.userA, FIXTURE.cardId],
   );
 
   await client.query(
     `
-      insert into public.wishlist_items (user_id, card_id, note)
-      values ($1, $2, 'E3 local fixture digest want')
-      on conflict (user_id, card_id) do update
-      set note = excluded.note
+      insert into public.user_card_intents (
+        user_id, card_print_id, want, trade, sell, showcase, is_public, metadata
+      )
+      values ($1, $2, true, false, false, false, false, '{}'::jsonb)
+      on conflict (user_id, card_print_id) do update
+      set want = true,
+          updated_at = now()
     `,
     [FIXTURE.userA, FIXTURE.digestCardId],
   );
@@ -426,6 +432,195 @@ async function main() {
         [`want_match_available:${matchId}`, `want_match_owner_count:${matchId}`],
       );
 
+      await setAuthenticatedUser(client, FIXTURE.userA);
+      const pulseBeforeWantOff = await client.query(
+        `
+          select count(*)::integer as count
+          from public.pulse_eligible_events_for_viewer_v1($1)
+          where card_event_id = (
+            select id
+            from public.card_events
+            where dedupe_key = $2
+            limit 1
+          )
+        `,
+        [FIXTURE.userA, `want_match_available:${matchId}`],
+      );
+
+      await setServiceRole(client);
+      const queuedAlert = await client.query(
+        `
+          insert into public.notification_outbox (
+            recipient_user_id, event_type, tier, card_print_id,
+            actor_user_id, card_event_id, payload, dedupe_key,
+            available_at, next_attempt_at
+          ) values (
+            $1, 'want_match_available', 'instant', $2,
+            $3,
+            (
+              select id
+              from public.card_events
+              where dedupe_key = $4
+              limit 1
+            ),
+            jsonb_build_object('want_match_id', $5::text),
+            $4,
+            now() + interval '1 hour',
+            now() + interval '1 hour'
+          )
+          returning id
+        `,
+        [
+          FIXTURE.userA,
+          FIXTURE.cardId,
+          FIXTURE.userB,
+          `want_match_available:${matchId}`,
+          matchId,
+        ],
+      );
+      await client.query(
+        `
+          update public.user_card_intents
+          set want = false,
+              updated_at = now()
+          where user_id = $1
+            and card_print_id = $2
+        `,
+        [FIXTURE.userA, FIXTURE.cardId],
+      );
+      const statusAfterWantOff = await client.query(
+        `
+          select status, stale_marked_at is not null as has_stale_marker,
+                 payload ->> 'stale_reason' as stale_reason
+          from public.want_matches
+          where id = $1
+        `,
+        [matchId],
+      );
+      const queuedAlertAfterWantOff = await client.query(
+        `
+          select failed_at is not null as failed,
+                 failure_reason,
+                 send_started_at is not null as send_started
+          from public.notification_outbox
+          where id = $1
+        `,
+        [queuedAlert.rows[0].id],
+      );
+      const claimAfterWantOff = await client.query(
+        'select id from public.notification_dispatcher_claim_batch_v1($1) where id = $2',
+        [100, queuedAlert.rows[0].id],
+      );
+      const invalidatedSendStart = await client.query(
+        'select public.notification_dispatcher_mark_send_started_if_current_v1($1) as started',
+        [queuedAlert.rows[0].id],
+      );
+      await client.query(
+        "update public.want_matches set status = 'active' where id = $1",
+        [matchId],
+      );
+      const unsupportedReactivation = await client.query(
+        `
+          select status, payload ->> 'stale_reason' as stale_reason
+          from public.want_matches
+          where id = $1
+        `,
+        [matchId],
+      );
+
+      await setAuthenticatedUser(client, FIXTURE.userA);
+      const candidatesAfterWantOff = await client.query(
+        'select * from public.local_community_want_match_candidates_v1($1, $2)',
+        [FIXTURE.userA, 100],
+      );
+      const pulseAfterWantOff = await client.query(
+        `
+          select count(*)::integer as count
+          from public.pulse_eligible_events_for_viewer_v1($1)
+          where card_event_id = (
+            select id
+            from public.card_events
+            where dedupe_key = $2
+            limit 1
+          )
+        `,
+        [FIXTURE.userA, `want_match_available:${matchId}`],
+      );
+
+      await setServiceRole(client);
+      await client.query(
+        `
+          update public.user_card_intents
+          set want = true,
+              updated_at = now()
+          where user_id = $1
+            and card_print_id = $2
+        `,
+        [FIXTURE.userA, FIXTURE.cardId],
+      );
+      const reactivationRun = await client.query(
+        'select * from public.run_want_match_engine_v1($1, $2)',
+        [FIXTURE.userA, 50],
+      );
+      const statusAfterReactivation = await client.query(
+        'select status, stale_marked_at is null as stale_marker_cleared from public.want_matches where id = $1',
+        [matchId],
+      );
+      const sendBoundaryAlert = await client.query(
+        `
+          insert into public.notification_outbox (
+            recipient_user_id, event_type, tier, card_print_id,
+            actor_user_id, payload, dedupe_key,
+            available_at, next_attempt_at
+          ) values (
+            $1, 'want_match_available', 'instant', $2,
+            $3, jsonb_build_object('want_match_id', $4::text), $5,
+            now(), now()
+          )
+          returning id
+        `,
+        [
+          FIXTURE.userA,
+          FIXTURE.cardId,
+          FIXTURE.userB,
+          matchId,
+          `want_match_send_boundary:${matchId}`,
+        ],
+      );
+      const validSendStart = await client.query(
+        'select public.notification_dispatcher_mark_send_started_if_current_v1($1) as started',
+        [sendBoundaryAlert.rows[0].id],
+      );
+      const duplicateSendStart = await client.query(
+        'select public.notification_dispatcher_mark_send_started_if_current_v1($1) as started',
+        [sendBoundaryAlert.rows[0].id],
+      );
+      const sendBoundaryReadback = await client.query(
+        `
+          select send_started_at is not null as send_started,
+                 failed_at is not null as failed
+          from public.notification_outbox
+          where id = $1
+        `,
+        [sendBoundaryAlert.rows[0].id],
+      );
+
+      await setAuthenticatedUser(client, FIXTURE.userA);
+      const pulseAfterReactivation = await client.query(
+        `
+          select count(*)::integer as count
+          from public.pulse_eligible_events_for_viewer_v1($1)
+          where card_event_id = (
+            select id
+            from public.card_events
+            where dedupe_key = $2
+            limit 1
+          )
+        `,
+        [FIXTURE.userA, `want_match_available:${matchId}`],
+      );
+
+      await setServiceRole(client);
       await client.query(
         `
           update public.public_profiles
@@ -477,6 +672,27 @@ async function main() {
           && Number(outboxAfterFirst.rows[0]?.count ?? 0) === 0
           && Number(matchRowsAfterSecond.rows[0]?.count ?? 0) === 1
           && Number(eventsAfterSecond.rows[0]?.count ?? 0) === 2
+          && Number(pulseBeforeWantOff.rows[0]?.count ?? 0) === 1
+          && statusAfterWantOff.rows[0]?.status === 'stale'
+          && statusAfterWantOff.rows[0]?.has_stale_marker === true
+          && statusAfterWantOff.rows[0]?.stale_reason === 'canonical_want_removed'
+          && queuedAlertAfterWantOff.rows[0]?.failed === true
+          && queuedAlertAfterWantOff.rows[0]?.send_started === false
+          && queuedAlertAfterWantOff.rows[0]?.failure_reason === 'cancelled_current_want_removed'
+          && claimAfterWantOff.rows.length === 0
+          && invalidatedSendStart.rows[0]?.started === false
+          && unsupportedReactivation.rows[0]?.status === 'stale'
+          && unsupportedReactivation.rows[0]?.stale_reason === 'activation_without_current_want'
+          && !candidatesAfterWantOff.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
+          && Number(pulseAfterWantOff.rows[0]?.count ?? 0) === 0
+          && reactivationRun.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
+          && statusAfterReactivation.rows[0]?.status === 'active'
+          && statusAfterReactivation.rows[0]?.stale_marker_cleared === true
+          && Number(pulseAfterReactivation.rows[0]?.count ?? 0) === 1
+          && validSendStart.rows[0]?.started === true
+          && duplicateSendStart.rows[0]?.started === false
+          && sendBoundaryReadback.rows[0]?.send_started === true
+          && sendBoundaryReadback.rows[0]?.failed === false
           && !privateCandidates.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
           && !privateRun.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
           && staleRun.rows.length === 1
@@ -493,6 +709,20 @@ async function main() {
         match_row_count_after_second: Number(matchRowsAfterSecond.rows[0]?.count ?? 0),
         event_rows_after_first: eventsAfterFirst.rows,
         event_count_after_second: Number(eventsAfterSecond.rows[0]?.count ?? 0),
+        pulse_count_before_want_off: Number(pulseBeforeWantOff.rows[0]?.count ?? 0),
+        status_after_want_off: statusAfterWantOff.rows[0] ?? null,
+        queued_alert_after_want_off: queuedAlertAfterWantOff.rows[0] ?? null,
+        queued_alert_claimed_after_want_off: claimAfterWantOff.rows.length,
+        invalidated_send_started: invalidatedSendStart.rows[0]?.started ?? null,
+        unsupported_reactivation: unsupportedReactivation.rows[0] ?? null,
+        candidate_count_after_want_off: candidatesAfterWantOff.rows.length,
+        pulse_count_after_want_off: Number(pulseAfterWantOff.rows[0]?.count ?? 0),
+        reactivation_run: reactivationRun.rows,
+        status_after_reactivation: statusAfterReactivation.rows[0] ?? null,
+        pulse_count_after_reactivation: Number(pulseAfterReactivation.rows[0]?.count ?? 0),
+        valid_send_started: validSendStart.rows[0]?.started ?? null,
+        duplicate_send_started: duplicateSendStart.rows[0]?.started ?? null,
+        send_boundary_readback: sendBoundaryReadback.rows[0] ?? null,
         want_match_outbox_rows: Number(outboxAfterFirst.rows[0]?.count ?? 0),
         private_candidate_count: privateCandidates.rows.length,
         private_run_rows: privateRun.rows.length,
@@ -508,6 +738,22 @@ async function main() {
       const engineRun = await client.query(
         'select * from public.run_want_match_engine_v1($1, $2)',
         [FIXTURE.userA, 50],
+      );
+      const matchTruthBeforeDelivery = await client.query(
+        `
+          select wm.id,
+                 wm.card_print_id,
+                 wm.status,
+                 wm.recommended_tier,
+                 public.viewer_has_current_card_want_v1(
+                   wm.want_user_id,
+                   wm.card_print_id
+                 ) as has_current_want
+          from public.want_matches wm
+          where wm.want_user_id = $1
+          order by wm.card_print_id, wm.id
+        `,
+        [FIXTURE.userA],
       );
       const instantEnqueue = await client.query(
         'select * from public.enqueue_want_match_instant_notifications_v1($1, $2)',
@@ -535,11 +781,7 @@ async function main() {
         [FIXTURE.userB, FIXTURE.userC],
       );
 
-      const digestEnqueue = await client.query(
-        'select * from public.enqueue_want_match_digest_notifications_v1(current_date, $1, $2)',
-        [50, false],
-      );
-      const digestEnqueueSecond = await client.query(
+      const legacyDigestCutover = await client.query(
         'select * from public.enqueue_want_match_digest_notifications_v1(current_date, $1, $2)',
         [50, false],
       );
@@ -552,29 +794,12 @@ async function main() {
           order by created_at
         `,
       );
-      const digestId = digestRows.rows[0]?.id ?? null;
-      if (digestId) {
-        await client.query(
-          "select public.notification_dispatcher_reschedule_digest_fold_v1($1, 'daily_budget_exhausted', now() + interval '1 day')",
-          [digestId],
-        );
-      }
-      const digestAfterReschedule = await client.query(
-        `
-          select id, available_at > now() as rescheduled_future,
-                 folded_into_digest_at is null as not_terminal,
-                 failure_reason
-          from public.notification_outbox
-          where id = $1
-        `,
-        [digestId],
-      );
       const jobDryRun = await client.query(
         'select public.run_want_match_instant_candidate_pass_v1($1, $2, $3, $4, $5) as result',
         [5, 50, 50, 10, true],
       );
-      const digestDryRun = await client.query(
-        'select public.run_want_match_daily_digest_aggregation_v1(current_date, $1, $2, $3) as result',
+      const pulseDryRun = await client.query(
+        'select public.run_pulse_daily_aggregation_v1(current_date, $1, $2, $3) as result',
         [50, 10, true],
       );
       const deliveryFailures = await client.query(
@@ -595,41 +820,29 @@ async function main() {
           && instantEnqueue.rows.filter((row) => row.action === 'enqueued').length === 1
           && instantEnqueueSecond.rows.length === 0
       );
-      const digestPass = Boolean(
-        digestRows.rows.length === 1
-          && digestRows.rows[0].recipient_user_id === FIXTURE.userA
-          && digestRows.rows[0].tier === 'daily_pulse'
-          && String(digestRows.rows[0].dedupe_key ?? '').includes(`want_match_digest:${FIXTURE.userA}:`)
-          && Number(digestRows.rows[0].payload?.match_count ?? 0) === 1
-          && Array.isArray(digestRows.rows[0].payload?.compact_match_ids)
-          && digestEnqueue.rows.filter((row) => row.action === 'enqueued').length === 1
-          && digestEnqueueSecond.rows.length === 0
-      );
-      const reschedulePass = Boolean(
-        digestAfterReschedule.rows[0]?.rescheduled_future === true
-          && digestAfterReschedule.rows[0]?.not_terminal === true
-          && String(digestAfterReschedule.rows[0]?.failure_reason ?? '').includes('daily_budget_exhausted_rescheduled')
+      const digestCutoverPass = Boolean(
+        legacyDigestCutover.rows.length === 0
+          && digestRows.rows.length === 0
+          && Number(pulseDryRun.rows[0]?.result?.dry_run_candidates ?? 0) >= 1
       );
       const deliveryPass = Boolean(
         instantPass
-          && digestPass
-          && reschedulePass
+          && digestCutoverPass
           && ownerRows.rows.length === 0
       );
 
       result.delivery = {
         status: deliveryPass ? 'PASS' : 'FAIL',
         engine_run: engineRun.rows,
+        match_truth_before_delivery: matchTruthBeforeDelivery.rows,
         instant_enqueue: instantEnqueue.rows,
         instant_enqueue_second: instantEnqueueSecond.rows,
         instant_outbox_rows: instantRows.rows,
         owner_outbox_rows: ownerRows.rows,
-        digest_enqueue: digestEnqueue.rows,
-        digest_enqueue_second: digestEnqueueSecond.rows,
+        legacy_digest_cutover: legacyDigestCutover.rows,
         digest_outbox_rows: digestRows.rows,
-        digest_after_reschedule: digestAfterReschedule.rows[0] ?? null,
         instant_job_dry_run: jobDryRun.rows[0]?.result ?? null,
-        digest_job_dry_run: digestDryRun.rows[0]?.result ?? null,
+        pulse_job_dry_run: pulseDryRun.rows[0]?.result ?? null,
         delivery_failures: deliveryFailures.rows,
       };
       result.status = result.status === 'PASS' && deliveryPass ? 'PASS' : 'FAIL';
