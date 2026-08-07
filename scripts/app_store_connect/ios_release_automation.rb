@@ -372,7 +372,7 @@ class IosReleaseAutomation
   def find_app_info(required: true)
     response = @client.get(
       "/v1/apps/#{app_id}/appInfos",
-      "fields[appInfos]" => "appStoreAgeRating,kidsAgeBand,state,ageRatingDeclaration,appInfoLocalizations",
+      "fields[appInfos]" => "appStoreAgeRating,state,ageRatingDeclaration,appInfoLocalizations",
       "limit" => "10"
     )
     app_info = response.fetch("data", []).first

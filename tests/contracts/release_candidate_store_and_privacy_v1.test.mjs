@@ -64,3 +64,13 @@ test("App Store automation supports an explicit immutable build-number override"
   assert.match(automation, /ASC_BUILD_NUMBER/);
   assert.match(automation, /APP_STORE_CONNECT_BUILD_NUMBER/);
 });
+
+test("App Store status requests only supported app-info fields", () => {
+  const automation = read("scripts/app_store_connect/ios_release_automation.rb");
+
+  assert.match(
+    automation,
+    /fields\[appInfos\].*appStoreAgeRating,state,ageRatingDeclaration,appInfoLocalizations/,
+  );
+  assert.doesNotMatch(automation, /kidsAgeBand/);
+});
