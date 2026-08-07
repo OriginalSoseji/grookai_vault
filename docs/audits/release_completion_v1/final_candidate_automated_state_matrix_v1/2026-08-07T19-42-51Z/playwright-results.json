@@ -1,0 +1,2674 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\grookai_vault_release_journeys_f909\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/parity/release-convergence.spec.ts",
+      "--reporter=json"
+    ],
+    "configFile": "C:\\grookai_vault_release_journeys_f909\\apps\\web\\playwright.config.ts",
+    "rootDir": "C:/grookai_vault_release_journeys_f909/apps/web/tests/parity",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/grookai_vault_release_journeys_f909/apps/web/test-results/mobile-parity",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "canonical-samsung",
+        "name": "canonical-samsung",
+        "testDir": "C:/grookai_vault_release_journeys_f909/apps/web/tests/parity",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --webpack --hostname 127.0.0.1 --port 3297",
+      "cwd": ".",
+      "url": "http://127.0.0.1:3297/visual-fixtures/parity/pulse-empty",
+      "timeout": 120000,
+      "reuseExistingServer": false,
+      "env": {
+        "GROOKAI_PLAYWRIGHT_PORT": "3297",
+        "environment_values_redacted": true
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "release-convergence.spec.ts",
+      "file": "release-convergence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "search-vault-bridge is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:42:58.702Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-6c0efe1eb545137a26eb",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "search-result-hierarchy is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1336,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:02.238Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-5b86b49251624618971d",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "card-detail-hierarchy is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1323,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:03.582Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-430db8caf12ae71c7d03",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-loaded is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1325,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:04.912Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-368ebc858a61087d5373",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-empty is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:06.244Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-a22a6959b668db1594b9",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-private is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:07.534Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-7cad9bb2c80bd37848dd",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-partial-error is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1322,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:08.843Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-35cd60afe8b6f878f0fe",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-duplicate-copy is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1342,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:10.172Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-15592a4ca2fd6834e730",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-offline is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1241,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:11.522Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-7791321722cd145a0586",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "vault-exact-copy is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1300,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:12.769Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-84b6b97a689985979802",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "pulse-event is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1299,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:14.077Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-2d8d9bc028023e204ff8",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "pulse-empty is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:15.383Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-195fdf0351cf770c37ec",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "pulse-partial-error is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1293,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:16.692Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-3d4b2a4ebef2f6825b02",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "social-loading is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1248,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:17.991Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-ab4c5f72876feb5db875",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "wall-collection is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1289,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:19.246Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-3a4c4aaeba4990745252",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "wall-private is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1243,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:20.540Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-6a83d46554bf14006249",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "profile-collector is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1277,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:21.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-694fb323b8822cb4026f",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "profile-blocked is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1228,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:23.074Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-8a98c27bf1ebc710530a",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "profile-deleted is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1257,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:24.307Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-f3a1d45d409d84ed383d",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop-shell-wide is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1325,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:25.572Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-34e7ddbf9129f147b2fa",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop-shell-narrow is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1300,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:26.903Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-bbbac7735b014b10e2cb",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop-shell-signed-out is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1268,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:28.209Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-52a8576f4021b0446cb3",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop-shell-unread is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1308,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:29.483Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-16e7803917c4fa683691",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop-shell-wall-unavailable is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1304,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:30.798Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-6cd2551bea8cb1cd11a0",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop-shell-pushed-route is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1269,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:32.107Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-7ebdcca2936cb1af3c7a",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "binders-library is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1266,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:33.383Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-bbe40638dc24489336d5",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "binder-invite-unavailable is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1211,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:34.655Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-88999c11b705d58b1f24",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "messages-thread is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1225,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:35.873Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-d3bbc10cf1376d059fe5",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "messages-empty is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1242,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:37.104Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-cc09fa355a3af61251af",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "login-scan-continuity is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1238,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:38.353Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-0ed893bf4345f9016547",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "import-exact-review is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1272,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:39.598Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-d9bb0dc364945dcfca4e",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "information-page is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1222,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:40.876Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-72676602af6ed37c44b0",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "error-state is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1245,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:42.104Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-26738e7992935b0dde02",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "private-state is accessible and does not overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1278,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:43.354Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-4a74fc8ffd9f02af5eab",
+          "file": "release-convergence.spec.ts",
+          "line": 51,
+          "column": 7
+        },
+        {
+          "title": "desktop shell preserves the five primary pillars and separates tools",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 973,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:44.640Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-eae2c0a70a7d30bac608",
+          "file": "release-convergence.spec.ts",
+          "line": 69,
+          "column": 5
+        },
+        {
+          "title": "desktop signed-out shell hides private tools and exposes Login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 970,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:45.620Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-c5ad3ac2992536b1bf24",
+          "file": "release-convergence.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "desktop unread and Wall availability states remain explicit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1848,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:46.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-5269eafe26b9b7eb7ef1",
+          "file": "release-convergence.spec.ts",
+          "line": 100,
+          "column": 5
+        },
+        {
+          "title": "desktop pushed routes preserve parent context and active ownership pillar",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 985,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:48.452Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-aad0187ddf7daf89a6f5",
+          "file": "release-convergence.spec.ts",
+          "line": 110,
+          "column": 5
+        },
+        {
+          "title": "Binder library keeps goals, collaboration role, and progress distinct",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 987,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:49.443Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-e429bb026a75ee93ad2c",
+          "file": "release-convergence.spec.ts",
+          "line": 120,
+          "column": 5
+        },
+        {
+          "title": "expired Binder invitation exposes no private token or backend detail",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 961,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:50.438Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-53c7a869b9f7e910fa82",
+          "file": "release-convergence.spec.ts",
+          "line": 128,
+          "column": 5
+        },
+        {
+          "title": "Messages preserve exact card and collector context",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 984,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:51.405Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-32f783d2f7b907a15029",
+          "file": "release-convergence.spec.ts",
+          "line": 135,
+          "column": 5
+        },
+        {
+          "title": "empty Messages keeps a collector-facing recovery path",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 941,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:52.395Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-166692c67b93eeae87f4",
+          "file": "release-convergence.spec.ts",
+          "line": 143,
+          "column": 5
+        },
+        {
+          "title": "signed-out Scan continuity names the destination",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 957,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:53.342Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-49e9973eb2260c9a19b8",
+          "file": "release-convergence.spec.ts",
+          "line": 149,
+          "column": 5
+        },
+        {
+          "title": "Vault import separates exact matches from ambiguous rows",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 944,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:54.305Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-b35eafd5956bda6b2437",
+          "file": "release-convergence.spec.ts",
+          "line": 155,
+          "column": 5
+        },
+        {
+          "title": "information routes share one readable dark-mode template",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 961,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:55.254Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-a6a52163978f4ab0f6f9",
+          "file": "release-convergence.spec.ts",
+          "line": 161,
+          "column": 5
+        },
+        {
+          "title": "desktop account menu supports keyboard focus without exposing private links early",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 987,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:56.221Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-eef6d993d5ffbabcc098",
+          "file": "release-convergence.spec.ts",
+          "line": 167,
+          "column": 5
+        },
+        {
+          "title": "desktop shell begins at the canonical 900px boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 975,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:57.216Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-0de11f6a30df01c7aff8",
+          "file": "release-convergence.spec.ts",
+          "line": 179,
+          "column": 5
+        },
+        {
+          "title": "Search card keeps identity context and bridges to exact Vault actions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 989,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:58.198Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-1a7f42f8410d4d2098ee",
+          "file": "release-convergence.spec.ts",
+          "line": 188,
+          "column": 5
+        },
+        {
+          "title": "Search result hierarchy keeps version, price, action, and evidence distinct",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1076,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:43:59.193Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-15883ec3d8d6dc4e9cfd",
+          "file": "release-convergence.spec.ts",
+          "line": 201,
+          "column": 5
+        },
+        {
+          "title": "Card detail hierarchy puts the collection action before expanded context",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:00.277Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-78dbd04f80a97923d7a9",
+          "file": "release-convergence.spec.ts",
+          "line": 215,
+          "column": 5
+        },
+        {
+          "title": "Vault families keep exact finish context visible without collapsing mixed copies",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1012,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:01.293Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-db3df2f727b05216c4ac",
+          "file": "release-convergence.spec.ts",
+          "line": 225,
+          "column": 5
+        },
+        {
+          "title": "Duplicate family reveals each exact copy and keeps evidence disclosed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1025,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:02.313Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-313c0e51e790c189b813",
+          "file": "release-convergence.spec.ts",
+          "line": 233,
+          "column": 5
+        },
+        {
+          "title": "Exact-copy hierarchy shows version before provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 970,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:03.345Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-fcec68b843c40980678e",
+          "file": "release-convergence.spec.ts",
+          "line": 244,
+          "column": 5
+        },
+        {
+          "title": "Partial Vault failure preserves loaded ownership context",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 949,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:04.321Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-c852445d78c05eaf5b03",
+          "file": "release-convergence.spec.ts",
+          "line": 252,
+          "column": 5
+        },
+        {
+          "title": "Pulse separates collector activity from exact card identity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 972,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:05.277Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-c8ebbf271a8c4d5e3b18",
+          "file": "release-convergence.spec.ts",
+          "line": 259,
+          "column": 5
+        },
+        {
+          "title": "Wall collection display keeps version context primary and provenance disclosed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:06.257Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-368264c19251b7ba32f2",
+          "file": "release-convergence.spec.ts",
+          "line": 270,
+          "column": 5
+        },
+        {
+          "title": "Collector profile keeps relationship actions separate from collection cards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1041,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:07.274Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-42c37bb86e2947824457",
+          "file": "release-convergence.spec.ts",
+          "line": 280,
+          "column": 5
+        },
+        {
+          "title": "social degraded states are explicit and do not expose backend errors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4379,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:08.321Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-bdda84bc5c3c9e4cd9ad",
+          "file": "release-convergence.spec.ts",
+          "line": 289,
+          "column": 5
+        },
+        {
+          "title": "P0 Search result hierarchy remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1043,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:12.706Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-6d0540bd91c7462a2151",
+          "file": "release-convergence.spec.ts",
+          "line": 303,
+          "column": 5
+        },
+        {
+          "title": "P0 Card Detail hierarchy remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1013,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:13.755Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-e6bd643e7477696b736f",
+          "file": "release-convergence.spec.ts",
+          "line": 308,
+          "column": 5
+        },
+        {
+          "title": "P0 Search result hierarchy remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1051,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:14.775Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-ec3990b706af6207ad3d",
+          "file": "release-convergence.spec.ts",
+          "line": 313,
+          "column": 5
+        },
+        {
+          "title": "P0 Card Detail hierarchy remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:15.834Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-dd8b8a27a43808503c16",
+          "file": "release-convergence.spec.ts",
+          "line": 319,
+          "column": 5
+        },
+        {
+          "title": "P0 Vault hierarchy remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 989,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:16.850Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-6b67828803ceb33206ec",
+          "file": "release-convergence.spec.ts",
+          "line": 325,
+          "column": 5
+        },
+        {
+          "title": "P0 exact-copy hierarchy remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 971,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:17.845Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-e3163ac0d4b24dc2f2ce",
+          "file": "release-convergence.spec.ts",
+          "line": 330,
+          "column": 5
+        },
+        {
+          "title": "P0 Vault hierarchy remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1054,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:18.822Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-b1f9ba1bffdb484a936a",
+          "file": "release-convergence.spec.ts",
+          "line": 335,
+          "column": 5
+        },
+        {
+          "title": "P0 exact-copy hierarchy remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1011,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:19.882Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-91b8db33fe53b0f1be67",
+          "file": "release-convergence.spec.ts",
+          "line": 341,
+          "column": 5
+        },
+        {
+          "title": "P0 pulse-event remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 948,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:20.900Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-3b2d460cb494561846a5",
+          "file": "release-convergence.spec.ts",
+          "line": 348,
+          "column": 7
+        },
+        {
+          "title": "P0 pulse-event remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1008,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:21.855Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-92217d61fc004ae24a82",
+          "file": "release-convergence.spec.ts",
+          "line": 353,
+          "column": 7
+        },
+        {
+          "title": "P0 wall-collection remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 981,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:22.869Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-165f4e17c9b2a81f6b22",
+          "file": "release-convergence.spec.ts",
+          "line": 348,
+          "column": 7
+        },
+        {
+          "title": "P0 wall-collection remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:23.856Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-00bd2f340f157e5a08a7",
+          "file": "release-convergence.spec.ts",
+          "line": 353,
+          "column": 7
+        },
+        {
+          "title": "P0 profile-collector remains visually stable on Samsung",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1011,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:24.873Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-ef51eb67d823cd32a076",
+          "file": "release-convergence.spec.ts",
+          "line": 348,
+          "column": 7
+        },
+        {
+          "title": "P0 profile-collector remains visually stable on desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:25.890Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-9f57c925f28257424c48",
+          "file": "release-convergence.spec.ts",
+          "line": 353,
+          "column": 7
+        },
+        {
+          "title": "P0 desktop shell remains visually stable at wide desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1080,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:26.905Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-47640bc34c10ad8f9529",
+          "file": "release-convergence.spec.ts",
+          "line": 360,
+          "column": 5
+        },
+        {
+          "title": "P0 desktop shell remains visually stable at narrow desktop",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1014,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:27.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-4760c39399afbed1da6a",
+          "file": "release-convergence.spec.ts",
+          "line": 366,
+          "column": 5
+        },
+        {
+          "title": "P0 desktop shell Wall-unavailable state remains visually stable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1030,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:29.012Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-91e729de62418da7ad92",
+          "file": "release-convergence.spec.ts",
+          "line": 372,
+          "column": 5
+        },
+        {
+          "title": "P0 desktop shell pushed-route state remains visually stable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "canonical-samsung",
+              "projectName": "canonical-samsung",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1071,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-07T19:44:30.048Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d27332aac5ee26a5217-0bffdf19315d71036774",
+          "file": "release-convergence.spec.ts",
+          "line": 378,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-07T19:42:52.567Z",
+    "duration": 99498.728,
+    "expected": 76,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

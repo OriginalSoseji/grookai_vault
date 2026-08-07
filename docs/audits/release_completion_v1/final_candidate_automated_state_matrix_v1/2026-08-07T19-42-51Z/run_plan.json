@@ -1,0 +1,26 @@
+{
+  "version": "FINAL_CANDIDATE_AUTOMATED_STATE_MATRIX_RUN_PLAN_V1",
+  "started_at": "2026-08-07T19:42:51.2400646Z",
+  "source_commit_sha": "4873940cbce45c6db34743f699b3527d6eb22d6a",
+  "branch": "release/final-candidate-proof-v1",
+  "tracked_worktree_clean_before_run": true,
+  "command": "npx playwright test tests/parity/release-convergence.spec.ts --reporter=json",
+  "project": "canonical-samsung",
+  "workers": 1,
+  "local_server_port": 3297,
+  "expected_tests": 76,
+  "test_scope": {
+    "accessibility_and_overflow_states": true,
+    "loaded_empty_private_partial_error_offline_blocked_deleted_signed_out_states": true,
+    "exact_printing_and_message_context": true,
+    "P0_visual_snapshot_comparisons": true
+  },
+  "boundaries": {
+    "local_fixture_harness": true,
+    "production_network_proof": false,
+    "physical_device_proof": false,
+    "database_access": false,
+    "database_writes": false,
+    "auth_mutations": false
+  }
+}
