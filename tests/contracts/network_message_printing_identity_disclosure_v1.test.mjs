@@ -34,6 +34,10 @@ const migration = fs.readFileSync(
   "supabase/migrations/20260806220000_card_interactions_exact_printing_v1.sql",
   "utf8",
 );
+const deviceJourneyReadback = fs.readFileSync(
+  "scripts/audits/card_interaction_exact_printing_device_journey_readback_v1.mjs",
+  "utf8",
+);
 
 test("message cards disclose absent or exact child-printing identity", () => {
   assert.match(service, /return 'Printing not recorded';/);
@@ -100,4 +104,14 @@ test("database contract preserves exact printing without inferring legacy rows",
     migration,
     /update\s+public\.card_interactions[\s\S]*card_printing_id/i,
   );
+});
+
+test("device journey readback is read-only, identity-redacted, and exact-printing scoped", () => {
+  assert.match(deviceJourneyReadback, /begin transaction read only/i);
+  assert.match(deviceJourneyReadback, /printing\.card_print_id = ci\.card_print_id/);
+  assert.match(deviceJourneyReadback, /participant_state_count === 2/);
+  assert.match(deviceJourneyReadback, /identities_redacted: true/);
+  assert.doesNotMatch(deviceJourneyReadback, /sender_user_id:\s*interaction/);
+  assert.doesNotMatch(deviceJourneyReadback, /receiver_user_id:\s*interaction/);
+  assert.doesNotMatch(deviceJourneyReadback, /\b(insert|update|delete)\s+(into|public\.)/i);
 });

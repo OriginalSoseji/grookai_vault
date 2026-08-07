@@ -263,6 +263,7 @@ test("Pulse separates collector activity from exact card identity", async ({ pag
   await expect(page.getByText(/marked a copy for trade/i)).toBeVisible();
   await expect(page.getByText("Illustration Rare", { exact: true }).first()).toBeVisible();
   await expect(page.getByText("NM", { exact: true })).toBeVisible();
+  await expect(page.getByText("Printing: Reverse Holo", { exact: true })).toBeVisible();
   await expect(page.getByText("Card ID: GV-FIXTURE-PIKACHU-IR", { exact: true })).toBeHidden();
 });
 

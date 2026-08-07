@@ -83,6 +83,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         buildConfigField("boolean", "LOCKED_ACCEPTANCE_ENABLED", "false")
+        manifestPlaceholders["usesCleartextTraffic"] = "false"
     }
 
     signingConfigs {
@@ -107,6 +108,7 @@ android {
 
     buildTypes {
         debug {
+            manifestPlaceholders["usesCleartextTraffic"] = "true"
             if (lockedAcceptanceRequested) {
                 applicationIdSuffix = ".lockedacceptance"
                 versionNameSuffix = "-locked-acceptance"
@@ -123,6 +125,7 @@ android {
             }
         }
         release {
+            manifestPlaceholders["usesCleartextTraffic"] = "false"
             signingConfig = signingConfigs.getByName("release")
         }
     }

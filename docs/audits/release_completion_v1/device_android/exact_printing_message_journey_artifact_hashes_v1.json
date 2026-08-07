@@ -1,0 +1,31 @@
+{
+  "schema_version": "CARD_INTERACTION_EXACT_PRINTING_DEVICE_JOURNEY_ARTIFACT_HASHES_V1",
+  "source_commit_sha": "89d2f69921380de1b4876f5013c79fdffc5c5831",
+  "artifacts": [
+    {
+      "path": "docs/audits/release_completion_v1/device_android/EXACT_PRINTING_MESSAGE_JOURNEY_20260806_V1.md",
+      "sha256": "3bdd9eccf9919e6c82f23ae51f16378f15964f0fe00d7939ed545f394ef1c489",
+      "size_bytes": 2485
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/exact_printing_message_composer.png",
+      "sha256": "0369ae55528f9e51560b4b8c53772226a91f6067f64d8ad2157e078b014a66ff",
+      "size_bytes": 289526
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/exact_printing_message_journey_readback_v1.json",
+      "sha256": "b308d10524415d1f32272906f89113c7177c9211003a01f5d6a761f48d3b6983",
+      "size_bytes": 1851
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/exact_printing_message_sent.png",
+      "sha256": "41fc0fb66bffeade15c439de0785d1c370b8098e471ad8005deff0970595d462",
+      "size_bytes": 309491
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/legacy_and_exact_printing_boundaries.png",
+      "sha256": "5f28eea5c996cd04c7d0fb6578d176daf2520cf874fa3c004688a41c146d5bda",
+      "size_bytes": 767939
+    }
+  ]
+}
