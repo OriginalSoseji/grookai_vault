@@ -1,0 +1,1142 @@
+{
+  "audit_version": "RELEASE_SIGNED_IN_WEB_JOURNEYS_V1",
+  "as_of": "2026-08-07T18:39:12.768Z",
+  "status": "passed",
+  "completion_allowed": true,
+  "run_plan": {
+    "audit_version": "RELEASE_SIGNED_IN_WEB_JOURNEYS_V1",
+    "created_at": "2026-08-07T18:37:25.302Z",
+    "origin": "https://grookaivault.com",
+    "deployment_sha": "80d30d0ef5f373e8208e01926f276faa705092c9",
+    "verifier_sha": "fd1b4d2355368c59471f0305bf7c06c391029a4d",
+    "deployment_id": "5798722633",
+    "deployment_url": "https://grookai-vault-i23kkjzam-sosejis-projects.vercel.app",
+    "expected_identity": {
+      "canonical_gv_id": "GV-PK-MEW-025",
+      "gvvi_id": "GVVI-B3591CC8-000001"
+    },
+    "profiles": {
+      "owner_slug": "release-owner-20260807133819",
+      "owner_display_name": "Release Owner 2026Release Owner0807133819",
+      "subject_slug": "release-subject-20260807133819",
+      "subject_display_name": "Release Subject 20260807133819"
+    },
+    "viewports": [
+      {
+        "name": "narrow",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    "routes": {
+      "subject": [
+        {
+          "name": "collector_discovery",
+          "path": "/network/discover?q=release-owner-20260807133819",
+          "expected": [
+            "Discover collectors",
+            "Release Owner 2026Release Owner0807133819",
+            "Following"
+          ]
+        },
+        {
+          "name": "following",
+          "path": "/following",
+          "expected": [
+            "Following",
+            "Release Owner 2026Release Owner0807133819"
+          ]
+        },
+        {
+          "name": "card_stream",
+          "path": "/network",
+          "expected": [
+            "Cards collectors want to share",
+            "Pikachu",
+            "Trade"
+          ]
+        },
+        {
+          "name": "message_inbox",
+          "path": "/network/inbox",
+          "expected": [
+            "Inbox",
+            "Release Owner 2026Release Owner0807133819",
+            "Pikachu",
+            "Printing: Normal"
+          ]
+        },
+        {
+          "name": "owner_profile",
+          "path": "/u/release-owner-20260807133819",
+          "expected": [
+            "Release Owner 2026Release Owner0807133819",
+            "Pikachu",
+            "Following"
+          ]
+        },
+        {
+          "name": "canonical_card",
+          "path": "/card/GV-PK-MEW-025",
+          "expected": [
+            "Pikachu",
+            "Normal",
+            "Choose a copy above to message this collector about that card."
+          ]
+        },
+        {
+          "name": "shared_exact_copy",
+          "path": "/gvvi/GVVI-B3591CC8-000001",
+          "expected": [
+            "Pikachu",
+            "GVVI-B3591CC8-000001",
+            "Normal",
+            "Release Owner 2026Release Owner0807133819"
+          ]
+        }
+      ],
+      "owner": [
+        {
+          "name": "vault",
+          "path": "/vault",
+          "expected": [
+            "Vault",
+            "Pikachu",
+            "Normal",
+            "Trade"
+          ]
+        },
+        {
+          "name": "private_exact_copy",
+          "path": "/gvvi/GVVI-B3591CC8-000001",
+          "expected": [
+            "Pikachu",
+            "GVVI-B3591CC8-000001",
+            "Normal",
+            "Shared"
+          ]
+        },
+        {
+          "name": "binders",
+          "path": "/binders",
+          "expected": [
+            "Binders",
+            "Collection goals",
+            "No Binders yet"
+          ]
+        },
+        {
+          "name": "dex",
+          "path": "/dex",
+          "expected": [
+            "Grookai Dex",
+            "Vault-aware",
+            "Character completion"
+          ]
+        },
+        {
+          "name": "sets",
+          "path": "/sets",
+          "expected": [
+            "Browse Pokemon Sets"
+          ]
+        },
+        {
+          "name": "wall",
+          "path": "/wall",
+          "expected": [
+            "Manage your Wall",
+            "Pikachu"
+          ]
+        },
+        {
+          "name": "public_profile",
+          "path": "/u/release-owner-20260807133819",
+          "expected": [
+            "Release Owner 2026Release Owner0807133819",
+            "Pikachu"
+          ]
+        }
+      ]
+    },
+    "credential_source": "external_temporary_file",
+    "boundaries": {
+      "isolated_browser_contexts": true,
+      "browser_storage_preserved": false,
+      "authentication_session_establishment": true,
+      "post_authentication_non_read_requests_blocked": true,
+      "database_transactions_read_only": true,
+      "database_writes": false,
+      "application_writes": false,
+      "follow_mutation": false,
+      "want_mutation": false,
+      "message_sent": false,
+      "vault_mutation": false
+    }
+  },
+  "summary": {
+    "route_case_count": 28,
+    "route_pass_count": 28,
+    "message_context_case_count": 2,
+    "message_context_pass_count": 2,
+    "blocked_non_read_request_count": 20,
+    "database_assertion_count": 5,
+    "database_assertion_pass_count": 5,
+    "failure_count": 0
+  },
+  "journey_assessment": {
+    "journey_d_collector_connection": "passed_web_final_candidate",
+    "journey_c_want_and_match": "passed_read_only_context_only",
+    "journey_e_collection_depth": "passed_web_supported_surfaces_only"
+  },
+  "route_results": [
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/network/discover?q=release-owner-20260807133819",
+      "final_path": "/network/discover?q=release-owner-20260807133819",
+      "http_status": 200,
+      "text_assertions": {
+        "Discover collectors": true,
+        "Release Owner 2026Release Owner0807133819": true,
+        "Following": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_collector_discovery.png",
+      "screenshot_sha256": "77fe188d28e07246b44e1a036fac9012ab0871809df7f902135e78f23cb6a333",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/following",
+      "final_path": "/following",
+      "http_status": 200,
+      "text_assertions": {
+        "Following": true,
+        "Release Owner 2026Release Owner0807133819": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_following.png",
+      "screenshot_sha256": "8619424cfa014a48514f1f5167a40f4904f3daa7640a8628f689978a11ce29dc",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/network",
+      "final_path": "/network",
+      "http_status": 200,
+      "text_assertions": {
+        "Cards collectors want to share": true,
+        "Pikachu": true,
+        "Trade": true
+      },
+      "images": {
+        "rendered_count": 26,
+        "loaded_count": 11,
+        "failed_count": 0,
+        "pending_count": 15
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_card_stream.png",
+      "screenshot_sha256": "488ef2952b5223520a728b75e2310ad7eb2ddc2948a54f2ccd0e8a142387e50d",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/network/inbox",
+      "final_path": "/network/inbox",
+      "http_status": 200,
+      "text_assertions": {
+        "Inbox": true,
+        "Release Owner 2026Release Owner0807133819": true,
+        "Pikachu": true,
+        "Printing: Normal": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_message_inbox.png",
+      "screenshot_sha256": "2766b4d73f9683ad3c0f2a0f0a9e7050c141120e5c4f8e6220232f3eb749bc35",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/u/release-owner-20260807133819",
+      "final_path": "/u/release-owner-20260807133819",
+      "http_status": 200,
+      "text_assertions": {
+        "Release Owner 2026Release Owner0807133819": true,
+        "Pikachu": true,
+        "Following": true
+      },
+      "images": {
+        "rendered_count": 4,
+        "loaded_count": 3,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_owner_profile.png",
+      "screenshot_sha256": "5ea44eb8d9b6d0683f2135ace5d604a4913558d39d3ba9aafb75d743b65c80d5",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/card/GV-PK-MEW-025",
+      "final_path": "/card/GV-PK-MEW-025",
+      "http_status": 200,
+      "text_assertions": {
+        "Pikachu": true,
+        "Normal": true,
+        "Choose a copy above to message this collector about that card.": true
+      },
+      "images": {
+        "rendered_count": 15,
+        "loaded_count": 4,
+        "failed_count": 0,
+        "pending_count": 11
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_canonical_card.png",
+      "screenshot_sha256": "0528ace12e5e5f715b8aad53ede1414be39e4d3fc24e2e45e68347eb8839d31b",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "narrow",
+      "route": "/gvvi/GVVI-B3591CC8-000001",
+      "final_path": "/gvvi/GVVI-B3591CC8-000001",
+      "http_status": 200,
+      "text_assertions": {
+        "Pikachu": true,
+        "GVVI-B3591CC8-000001": true,
+        "Normal": true,
+        "Release Owner 2026Release Owner0807133819": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_subject_shared_exact_copy.png",
+      "screenshot_sha256": "3552e87dd6cca2e8d989ee0209135a629ab3f1c69e5a1f9aee9544edf9c503de",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/vault",
+      "final_path": "/vault",
+      "http_status": 200,
+      "text_assertions": {
+        "Vault": true,
+        "Pikachu": true,
+        "Normal": true,
+        "Trade": true
+      },
+      "images": {
+        "rendered_count": 5,
+        "loaded_count": 3,
+        "failed_count": 0,
+        "pending_count": 2
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_vault.png",
+      "screenshot_sha256": "70973c725b924eac117144aabd053d70bb0ae44405b7af39776e58da1f7ddcfc",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/gvvi/GVVI-B3591CC8-000001",
+      "final_path": "/gvvi/GVVI-B3591CC8-000001",
+      "http_status": 200,
+      "text_assertions": {
+        "Pikachu": true,
+        "GVVI-B3591CC8-000001": true,
+        "Normal": true,
+        "Shared": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_private_exact_copy.png",
+      "screenshot_sha256": "05579ebc330175d1e49d82969fc52d5ff1250e66134f32ef7ce00f576bac9368",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/binders",
+      "final_path": "/binders",
+      "http_status": 200,
+      "text_assertions": {
+        "Binders": true,
+        "Collection goals": true,
+        "No Binders yet": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 0,
+        "failed_count": 0,
+        "pending_count": 2
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_binders.png",
+      "screenshot_sha256": "01861b923b20f79f2ec63f9503dfc1e19beebef74063b8eb5f68cc0e0410963d",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/dex",
+      "final_path": "/dex",
+      "http_status": 200,
+      "text_assertions": {
+        "Grookai Dex": true,
+        "Vault-aware": true,
+        "Character completion": true
+      },
+      "images": {
+        "rendered_count": 105,
+        "loaded_count": 9,
+        "failed_count": 0,
+        "pending_count": 96
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_dex.png",
+      "screenshot_sha256": "5665fe5e6854f7694126891ac0d3f508149cdb57457b21a9d1e6c1b7bb71273c",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/sets",
+      "final_path": "/sets",
+      "http_status": 200,
+      "text_assertions": {
+        "Browse Pokemon Sets": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_sets.png",
+      "screenshot_sha256": "8928cbbcd85235ccf99ae0598b5d611a8add22ee6baea9b9eb24177fdc422402",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/wall",
+      "final_path": "/wall",
+      "http_status": 200,
+      "text_assertions": {
+        "Manage your Wall": true,
+        "Pikachu": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_wall.png",
+      "screenshot_sha256": "563dea0b897deaed7777d5607129f6e7671e1b72444163413ddb1a7d031f06b6",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "narrow",
+      "route": "/u/release-owner-20260807133819",
+      "final_path": "/u/release-owner-20260807133819",
+      "http_status": 200,
+      "text_assertions": {
+        "Release Owner 2026Release Owner0807133819": true,
+        "Pikachu": true
+      },
+      "images": {
+        "rendered_count": 4,
+        "loaded_count": 3,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "narrow_owner_public_profile.png",
+      "screenshot_sha256": "51bf7bfa13a2d2b47e0952025462654136de08ca1cc0fb6d24ce57d16b7e9ef5",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/network/discover?q=release-owner-20260807133819",
+      "final_path": "/network/discover?q=release-owner-20260807133819",
+      "http_status": 200,
+      "text_assertions": {
+        "Discover collectors": true,
+        "Release Owner 2026Release Owner0807133819": true,
+        "Following": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_collector_discovery.png",
+      "screenshot_sha256": "f45992717bfec722cc105cc02c375e3205885d27e4e680dd7eb3f93eb836ff1b",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/following",
+      "final_path": "/following",
+      "http_status": 200,
+      "text_assertions": {
+        "Following": true,
+        "Release Owner 2026Release Owner0807133819": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_following.png",
+      "screenshot_sha256": "20aebe0598375fb5f00f3fb09136ff205dd0ae7d8c3d23b7828f0dc6a50ed85c",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/network",
+      "final_path": "/network",
+      "http_status": 200,
+      "text_assertions": {
+        "Cards collectors want to share": true,
+        "Pikachu": true,
+        "Trade": true
+      },
+      "images": {
+        "rendered_count": 26,
+        "loaded_count": 12,
+        "failed_count": 0,
+        "pending_count": 14
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_card_stream.png",
+      "screenshot_sha256": "145896f3c500c2fb02c674bb298d43aea25dfac3df1b81839e8479f1cffdf6a6",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/network/inbox",
+      "final_path": "/network/inbox",
+      "http_status": 200,
+      "text_assertions": {
+        "Inbox": true,
+        "Release Owner 2026Release Owner0807133819": true,
+        "Pikachu": true,
+        "Printing: Normal": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_message_inbox.png",
+      "screenshot_sha256": "3e45338626a36f0742c20b7f564987e0c143016278bff97bbd395ec93b262378",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/u/release-owner-20260807133819",
+      "final_path": "/u/release-owner-20260807133819",
+      "http_status": 200,
+      "text_assertions": {
+        "Release Owner 2026Release Owner0807133819": true,
+        "Pikachu": true,
+        "Following": true
+      },
+      "images": {
+        "rendered_count": 4,
+        "loaded_count": 3,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_owner_profile.png",
+      "screenshot_sha256": "f8474d0d8e5d75977abbf0e63673f1e02e9ce2d480b312b3f240d91e0092bde6",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/card/GV-PK-MEW-025",
+      "final_path": "/card/GV-PK-MEW-025",
+      "http_status": 200,
+      "text_assertions": {
+        "Pikachu": true,
+        "Normal": true,
+        "Choose a copy above to message this collector about that card.": true
+      },
+      "images": {
+        "rendered_count": 15,
+        "loaded_count": 14,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_canonical_card.png",
+      "screenshot_sha256": "4bcc9f34a90b52fe2f725b8ed325ba30d95111d48c283bdd7c5b3f6e48340e70",
+      "status": "passed"
+    },
+    {
+      "role": "subject",
+      "viewport": "desktop",
+      "route": "/gvvi/GVVI-B3591CC8-000001",
+      "final_path": "/gvvi/GVVI-B3591CC8-000001",
+      "http_status": 200,
+      "text_assertions": {
+        "Pikachu": true,
+        "GVVI-B3591CC8-000001": true,
+        "Normal": true,
+        "Release Owner 2026Release Owner0807133819": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_subject_shared_exact_copy.png",
+      "screenshot_sha256": "b610f51d1ad2106729981d191c9280a3bdeaffa5c998313e8c0af7b00a7872e1",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/vault",
+      "final_path": "/vault",
+      "http_status": 200,
+      "text_assertions": {
+        "Vault": true,
+        "Pikachu": true,
+        "Normal": true,
+        "Trade": true
+      },
+      "images": {
+        "rendered_count": 5,
+        "loaded_count": 3,
+        "failed_count": 0,
+        "pending_count": 2
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_vault.png",
+      "screenshot_sha256": "4218adb4470e95f6ebf4279390f3316f961cfa37862415d86c376910e966e0d5",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/gvvi/GVVI-B3591CC8-000001",
+      "final_path": "/gvvi/GVVI-B3591CC8-000001",
+      "http_status": 200,
+      "text_assertions": {
+        "Pikachu": true,
+        "GVVI-B3591CC8-000001": true,
+        "Normal": true,
+        "Shared": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_private_exact_copy.png",
+      "screenshot_sha256": "5a2699c24322ed48584c64127fcfaac3d350b0770f5547abc99628eebb3e7f88",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/binders",
+      "final_path": "/binders",
+      "http_status": 200,
+      "text_assertions": {
+        "Binders": true,
+        "Collection goals": true,
+        "No Binders yet": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_binders.png",
+      "screenshot_sha256": "eb95407433e0c5c995e916dc15ad0ae2832dc29347b5e76d0ab402545b7d6ff6",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/dex",
+      "final_path": "/dex",
+      "http_status": 200,
+      "text_assertions": {
+        "Grookai Dex": true,
+        "Vault-aware": true,
+        "Character completion": true
+      },
+      "images": {
+        "rendered_count": 105,
+        "loaded_count": 12,
+        "failed_count": 0,
+        "pending_count": 93
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_dex.png",
+      "screenshot_sha256": "d7e4c5231c6c0c16f3ff50246ae6b64fe94adb2fa7a820421d4acc22e03f97f4",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/sets",
+      "final_path": "/sets",
+      "http_status": 200,
+      "text_assertions": {
+        "Browse Pokemon Sets": true
+      },
+      "images": {
+        "rendered_count": 2,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_sets.png",
+      "screenshot_sha256": "180e642432f8b965a1f17abd179fc783e10f6fbdf442b1130d56eddcc899637c",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/wall",
+      "final_path": "/wall",
+      "http_status": 200,
+      "text_assertions": {
+        "Manage your Wall": true,
+        "Pikachu": true
+      },
+      "images": {
+        "rendered_count": 3,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_wall.png",
+      "screenshot_sha256": "ea640969283a2801d4a6fe968167ae8ba1e2eaeb1788019cc7866976e6652ec2",
+      "status": "passed"
+    },
+    {
+      "role": "owner",
+      "viewport": "desktop",
+      "route": "/u/release-owner-20260807133819",
+      "final_path": "/u/release-owner-20260807133819",
+      "http_status": 200,
+      "text_assertions": {
+        "Release Owner 2026Release Owner0807133819": true,
+        "Pikachu": true
+      },
+      "images": {
+        "rendered_count": 4,
+        "loaded_count": 3,
+        "failed_count": 0,
+        "pending_count": 1
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "screenshot": "desktop_owner_public_profile.png",
+      "screenshot_sha256": "2f73f840cd4390e478df5190a087b9464eb6050edbf8649216be33437107b0d3",
+      "status": "passed"
+    }
+  ],
+  "message_context_results": [
+    {
+      "viewport": "narrow",
+      "source_path": "/network/inbox",
+      "thread_count": 1,
+      "counterpart_context_visible": true,
+      "card_context_visible": true,
+      "exact_printing_context_visible": true,
+      "textarea_count": 1,
+      "send_button_count": 1,
+      "reply_submitted": false,
+      "private_message_copy_masked_in_screenshot": true,
+      "screenshot": "narrow_subject_existing_message_context.png",
+      "screenshot_sha256": "2766b4d73f9683ad3c0f2a0f0a9e7050c141120e5c4f8e6220232f3eb749bc35",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "source_path": "/network/inbox",
+      "thread_count": 1,
+      "counterpart_context_visible": true,
+      "card_context_visible": true,
+      "exact_printing_context_visible": true,
+      "textarea_count": 1,
+      "send_button_count": 1,
+      "reply_submitted": false,
+      "private_message_copy_masked_in_screenshot": true,
+      "screenshot": "desktop_subject_existing_message_context.png",
+      "screenshot_sha256": "3e45338626a36f0742c20b7f564987e0c143016278bff97bbd395ec93b262378",
+      "status": "passed"
+    }
+  ],
+  "blocked_non_read_requests": [
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "61755cd1e9fccf6cd02c5b61ca3afa20b0aceeea8c1701f5b731e5bd624ac083",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "61755cd1e9fccf6cd02c5b61ca3afa20b0aceeea8c1701f5b731e5bd624ac083",
+      "role": "owner",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "owner",
+      "viewport": "narrow"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "61755cd1e9fccf6cd02c5b61ca3afa20b0aceeea8c1701f5b731e5bd624ac083",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "subject",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "61755cd1e9fccf6cd02c5b61ca3afa20b0aceeea8c1701f5b731e5bd624ac083",
+      "role": "owner",
+      "viewport": "desktop"
+    },
+    {
+      "method": "POST",
+      "url_sha256": "fd173fe5b8f8e66ee1110822b48a467fdfb221a09327476f70ce1cc33a8867a4",
+      "role": "owner",
+      "viewport": "desktop"
+    }
+  ],
+  "database_assertions": {
+    "profiles_public": true,
+    "subject_follows_owner": true,
+    "exact_owner_copy": true,
+    "existing_open_interaction": true,
+    "subject_current_want_is_false": true
+  },
+  "database_reconciliation": {
+    "before_after_equal": true,
+    "before": {
+      "profiles": {
+        "owner": {
+          "slug": "release-owner-20260807133819",
+          "display_name": "Release Owner 2026Release Owner0807133819",
+          "public_profile_enabled": true,
+          "vault_sharing_enabled": true
+        },
+        "subject": {
+          "slug": "release-subject-20260807133819",
+          "display_name": "Release Subject 20260807133819",
+          "public_profile_enabled": true,
+          "vault_sharing_enabled": true
+        }
+      },
+      "follow": {
+        "row_count": 1,
+        "active": true
+      },
+      "owner_exact_card": [
+        {
+          "gv_vi_id": "GVVI-B3591CC8-000001",
+          "canonical_gv_id": "GV-PK-MEW-025",
+          "name": "Pikachu",
+          "intent": "trade",
+          "condition_label": "NM",
+          "exact_printing_assigned": true
+        }
+      ],
+      "card_interaction": {
+        "row_count": 1,
+        "open_count": 1,
+        "exact_printing_count": 1,
+        "maximum_message_length": 97,
+        "latest_created_at": "2026-08-07T14:01:39.872Z"
+      },
+      "card_interaction_group_states": [
+        {
+          "account_role": "owner",
+          "has_unread": true,
+          "last_read_at": null,
+          "latest_message_at": "2026-08-07T14:01:39.872Z",
+          "archived_at": null,
+          "closed_at": null,
+          "updated_at": "2026-08-07T14:01:39.872Z"
+        },
+        {
+          "account_role": "subject",
+          "has_unread": false,
+          "last_read_at": "2026-08-07T14:01:39.872Z",
+          "latest_message_at": "2026-08-07T14:01:39.872Z",
+          "archived_at": null,
+          "closed_at": null,
+          "updated_at": "2026-08-07T14:01:39.872Z"
+        }
+      ],
+      "subject_want": {
+        "row_count": 1,
+        "active_want_count": 0,
+        "current_want": false
+      }
+    },
+    "after": {
+      "profiles": {
+        "owner": {
+          "slug": "release-owner-20260807133819",
+          "display_name": "Release Owner 2026Release Owner0807133819",
+          "public_profile_enabled": true,
+          "vault_sharing_enabled": true
+        },
+        "subject": {
+          "slug": "release-subject-20260807133819",
+          "display_name": "Release Subject 20260807133819",
+          "public_profile_enabled": true,
+          "vault_sharing_enabled": true
+        }
+      },
+      "follow": {
+        "row_count": 1,
+        "active": true
+      },
+      "owner_exact_card": [
+        {
+          "gv_vi_id": "GVVI-B3591CC8-000001",
+          "canonical_gv_id": "GV-PK-MEW-025",
+          "name": "Pikachu",
+          "intent": "trade",
+          "condition_label": "NM",
+          "exact_printing_assigned": true
+        }
+      ],
+      "card_interaction": {
+        "row_count": 1,
+        "open_count": 1,
+        "exact_printing_count": 1,
+        "maximum_message_length": 97,
+        "latest_created_at": "2026-08-07T14:01:39.872Z"
+      },
+      "card_interaction_group_states": [
+        {
+          "account_role": "owner",
+          "has_unread": true,
+          "last_read_at": null,
+          "latest_message_at": "2026-08-07T14:01:39.872Z",
+          "archived_at": null,
+          "closed_at": null,
+          "updated_at": "2026-08-07T14:01:39.872Z"
+        },
+        {
+          "account_role": "subject",
+          "has_unread": false,
+          "last_read_at": "2026-08-07T14:01:39.872Z",
+          "latest_message_at": "2026-08-07T14:01:39.872Z",
+          "archived_at": null,
+          "closed_at": null,
+          "updated_at": "2026-08-07T14:01:39.872Z"
+        }
+      ],
+      "subject_want": {
+        "row_count": 1,
+        "active_want_count": 0,
+        "current_want": false
+      }
+    }
+  },
+  "boundaries": {
+    "isolated_browser_contexts": true,
+    "browser_storage_preserved": false,
+    "authentication_session_establishment": true,
+    "post_authentication_non_read_requests_blocked": true,
+    "database_transactions_read_only": true,
+    "database_writes": false,
+    "application_writes": false,
+    "follow_mutation": false,
+    "want_mutation": false,
+    "message_sent": false,
+    "vault_mutation": false
+  }
+}

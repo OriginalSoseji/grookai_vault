@@ -26,6 +26,7 @@ The production web deployment and signed Android package are now proven from the
 - Main Flutter CI, signed APK, CodeQL, and legacy-key workflows passed.
 - Vercel Production serves the exact final-candidate SHA.
 - The cookie-free web harness passed `22/22` signed-out routes and `2/2` action-continuation cases across narrow and desktop viewports.
+- The signed-in production web harness passed `28/28` routes and `2/2` existing exact-card message-context cases across narrow and desktop viewports with zero broken images and `5/5` unchanged database assertions.
 - Production `assetlinks.json` matches the signed Android package and certificate.
 - The physical Samsung reports `grookaivault.com` as verified.
 - An HTTPS canonical-card URL cold-opened the signed release package to the correct card.
@@ -47,6 +48,7 @@ One Pulse mark-seen request attempted to move a cursor backwards. The monotonic 
 ## Evidence
 
 - `docs/audits/release_completion_v1/signed_out_web_final_candidate_v1/2026-08-07T17-31-51-763Z/REPORT.md`
+- `docs/audits/release_completion_v1/signed_in_web_final_candidate_v1/2026-08-07T18-37-25-300Z/REPORT.md`
 - `docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md`
 - `docs/audits/release_completion_v1/final_candidate_security_and_operations_v1/2026-08-07T17-53-47Z/REPORT.md`
 - `docs/audits/release_completion_v1/completion_manifest_v1.json`
@@ -56,7 +58,7 @@ One Pulse mark-seen request attempted to move a cursor backwards. The monotonic 
 
 1. Produce or identify an iOS/TestFlight build from SHA `80d30d0e` and assign it to the intended tester groups.
 2. Complete Journey A fresh-user comprehension and physical-iPhone signed-out continuation.
-3. Complete final-candidate Journeys C, D, E, and F with required product and database reconciliation.
+3. Complete Journey C's fresh state transition, Journey D's physical-device confirmation, Journey E's mobile Journeys/Memories return, and Journey F's physical-iPhone proof. Production web coverage for Journey D and the supported portions of C/E is proven.
 4. Finish the desktop, narrow-web, Android, and iPhone state matrix.
 5. Finish final-candidate privacy, RLS, account deletion, analytics, Crashlytics, support, terms, monitoring, and store review.
 6. Freeze all platform identifiers and begin a new 72-hour soak. The soak cannot be backdated.

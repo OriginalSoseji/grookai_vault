@@ -111,10 +111,11 @@
         "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
         "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json",
         "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md",
-        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md",
+        "docs/audits/release_completion_v1/signed_in_web_final_candidate_v1/2026-08-07T18-37-25-300Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Clean-account final-candidate proof from exact Want through match, owner context, card-centered message, opt-out, and database readback"
+        "Clean-account final-candidate state-transition proof from exact Want through active match and opt-out with device and database readback; final-candidate web owner, exact-card, and message context is proven read-only"
       ]
     },
     {
@@ -122,10 +123,11 @@
       "status": "partial",
       "evidence": [
         "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
-        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md",
+        "docs/audits/release_completion_v1/signed_in_web_final_candidate_v1/2026-08-07T18-37-25-300Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Final-candidate device proof for discover, follow, activity, exact card, and contextual message"
+        "Physical final-candidate device confirmation for discover, follow, activity, exact card, and contextual message; narrow and desktop production web passed"
       ]
     },
     {
@@ -134,10 +136,11 @@
       "evidence": [
         "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md",
+        "docs/audits/release_completion_v1/signed_in_web_final_candidate_v1/2026-08-07T18-37-25-300Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Final-candidate proof across Vault, exact copy, Binders, Dex, Sets, Journeys, and Memories with context return"
+        "Final-candidate mobile proof for Journeys and Memories with context return; production web Vault, exact copy, Binders, Dex, Sets, Wall, and profile surfaces passed"
       ]
     },
     {
@@ -170,10 +173,11 @@
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_v1/2026-08-07T17-31-51-763Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md",
+        "docs/audits/release_completion_v1/signed_in_web_final_candidate_v1/2026-08-07T18-37-25-300Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Final-candidate desktop, narrow-web, iPhone, and Android execution of required loading, empty, error, offline, private, and signed-out states"
+        "Final-candidate iPhone and Android execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states; signed-in production desktop and narrow-web route truth passed"
       ]
     },
     {

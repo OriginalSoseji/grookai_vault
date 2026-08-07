@@ -4,7 +4,7 @@
 
 Status: `IN_PROGRESS`
 
-The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web and the signed Android package are proven from the same final-candidate commit, and Journey B has a physical-device write/readback with net-zero cleanup. The entire August 5 release contract is not yet complete. Completion remains prohibited until iOS/TestFlight is tied to the same candidate, the remaining journeys and state/operations/store gates are proven, and the immutable candidate completes a 72-hour soak.
+The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web and the signed Android package are proven from the same final-candidate commit, Journey B has a physical-device write/readback with net-zero cleanup, and signed-in production web now proves the collector-connection path plus the supported collection-depth surfaces. The entire August 5 release contract is not yet complete. Completion remains prohibited until iOS/TestFlight is tied to the same candidate, the remaining state transitions, device, operations, and store gates are proven, and the immutable candidate completes a 72-hour soak.
 
 ## Authority
 
@@ -37,13 +37,14 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - Vercel production deployment `5798722633` serves the exact final-candidate SHA. The cookie-free final-candidate web harness passed `22/22` routes and `2/2` personal-action continuation cases across narrow and desktop viewports with zero broken visible images.
 - Signed Android workflow artifact `9002772994` was installed fresh on the disposable Samsung package. The package certificate matches production `assetlinks.json`; Android reports `grookaivault.com` verified; an HTTPS card URL cold-opened the app to the correct canonical card and all three exact printings.
 - Journey B is proven on the signed final-candidate Android package: Normal remained selected through authentication, one exact child copy was written, the private-copy screen showed `Printing: Normal`, the copy was removed through the product UI, and database readback reconciled to zero active test rows.
+- The read-only signed-in production web harness passed `28/28` route cases and `2/2` existing exact-card message-context cases across narrow and desktop viewports. It proves collector discovery, active follow state, relevant card activity, owner profile, exact shared copy, card-centered inbox/reply context, Vault, Binders, Dex, Sets, Wall, and profile rendering with zero broken images. A post-authentication request barrier blocked all non-read requests, and all five scoped database assertions were identical before and after.
 - Final-candidate production security metadata readback passes for all five governed views with zero security-definer target views, zero unsafe fixed-path findings, and no database writes. Runtime operations remain healthy with zero critical preflight failures, zero failed health checks, and zero unresolved quarantines. Production analytics, public privacy/support/terms/deletion pages, and privacy-safe mobile diagnostics contracts pass; final iOS Crashlytics delivery remains open.
 
 ## Remaining Gates
 
 1. Produce or identify an iOS/TestFlight build from final-candidate SHA `80d30d0e`, assign it to the intended tester groups, and record its immutable build identifiers.
 2. Complete Journey A fresh-user comprehension and physical-iPhone signed-out continuation proof.
-3. Repeat Journeys C, D, and E against the final candidate with required clean-account/database reconciliation; complete Journey F on physical iPhone/TestFlight.
+3. Complete Journey C's fresh Want-to-match-to-opt-out state transition, confirm Journey D on a physical final-candidate device, finish Journey E mobile Journeys/Memories context return, and complete Journey F on physical iPhone/TestFlight. Signed-in production web coverage for D and the web-supported portions of C/E is proven.
 4. Execute the remaining final-candidate route-state matrix across desktop web, narrow web, Android, and iPhone, including loading, empty, error, offline, private, signed-out, text-scaling, and recovery states.
 5. Complete final-candidate RLS/privacy/account-deletion, analytics, Crashlytics, support, terms, monitoring, and current store metadata/assets readback.
 6. Start the soak only after web, Android, and iOS identifiers and all prerequisite gates are frozen. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.

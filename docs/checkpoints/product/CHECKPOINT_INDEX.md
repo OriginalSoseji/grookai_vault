@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `FINAL_CANDIDATE_SIGNED_IN_WEB_JOURNEYS_20260807_V1.md` - `2026-08-07` - SIGNED-IN WEB PROVEN / DEVICE AND STATE TRANSITION GATES OPEN - Records `28/28` production signed-in route cases, `2/2` exact-card message-context checks, `5/5` unchanged database assertions, Journey D web proof, and the remaining Journey C transition, Journey D device, Journey E mobile, iOS, store, and soak gates.
 - `FINAL_CANDIDATE_WEB_AND_SIGNED_ANDROID_20260807_V1.md` - `2026-08-07` - WEB AND ANDROID PROVEN / IOS AND RELEASE GATES OPEN - Records the merged final-candidate SHA, exact Vercel and signed-APK provenance, production App-Link authority, signed Samsung exact-printing write/readback and cleanup, Journey B completion, and the remaining TestFlight, journey, state, operations, store, and soak gates.
 - `FINAL_CANDIDATE_EXACT_PRINTING_AUTH_AND_ANDROID_APP_LINKS_20260807_V1.md` — `2026-08-07` — ANDROID SOURCE AND PHYSICAL DEBUG PROVEN / SIGNED-CANDIDATE GATES OPEN — Records pre-auth exact-printing enforcement, exact child identity across the root swap, successful physical-Samsung write/readback and net-zero cleanup, release-certificate Android App Link authority, and the remaining signed-candidate/iPhone/soak gates.
 - `SIGNED_OUT_AUTH_ROOT_SWAP_REPAIR_20260807_V1.md` — `2026-08-07` — PHYSICAL ANDROID PROVEN / PR GATE — Records exact pending-card action preservation across authentication root replacement, web-origin OAuth repair, stale login-route cleanup, net-zero test mutation, and full shipcheck against repair commit `21add8fb8`.
