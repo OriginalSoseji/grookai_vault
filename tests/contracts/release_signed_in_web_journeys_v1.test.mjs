@@ -18,7 +18,10 @@ test("signed-in audit requires frozen deployment provenance", () => {
     "--deployment-url is required",
     "SUPABASE_DB_URL is required",
   ]) {
-    assert.match(SOURCE, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(
+      SOURCE,
+      new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 });
 
@@ -38,17 +41,36 @@ test("post-authentication browser activity is physically read-only", () => {
   assert.match(SOURCE, /application_writes:\s*false/);
   assert.match(SOURCE, /message_sent:\s*false/);
   assert.match(SOURCE, /reply_submitted:\s*false/);
-  assert.doesNotMatch(SOURCE, /getByRole\("button",\s*\{\s*name:\s*\/send\/i\s*\}\)\.click/);
+  assert.doesNotMatch(
+    SOURCE,
+    /getByRole\("button",\s*\{\s*name:\s*\/send\/i\s*\}\)\.click/,
+  );
 });
 
 test("database reconciliation uses read-only transactions and checks exact truth", () => {
   assert.match(SOURCE, /begin transaction read only/);
   assert.match(SOURCE, /before_after_equal/);
   assert.match(SOURCE, /GV-PK-MEW-025/);
-  assert.match(SOURCE, /GVVI-B3591CC8-000001/);
+  assert.match(SOURCE, /selectJourneyEvidence\(before\)/);
+  assert.match(SOURCE, /snapshot\.owner_exact_card\.find/);
+  assert.match(SOURCE, /active_owner_exact_copy/);
+  assert.doesNotMatch(SOURCE, /GVVI-B3591CC8-000001/);
   assert.match(SOURCE, /subject_follows_owner/);
   assert.match(SOURCE, /subject_current_want_is_false/);
   assert.doesNotMatch(SOURCE, /\b(insert|update|delete|truncate)\s+public\./i);
+});
+
+test("active private evidence is discovered without recreating stale fixtures", () => {
+  assert.match(SOURCE, /vii\.archived_at is null/);
+  assert.match(SOURCE, /publiclyDiscoverable/);
+  assert.match(SOURCE, /privateCardAbsence/);
+  assert.match(SOURCE, /path:\s*`\/vault\/gvvi\/\$\{evidence\.gvviId\}`/);
+  assert.match(
+    SOURCE,
+    /name:\s*"private_exact_copy"[\s\S]*?evidence\.intentLabel/,
+  );
+  assert.match(SOURCE, /text_absence_assertions/);
+  assert.doesNotMatch(SOURCE, /selectedCopy\?\.intent === "trade"/);
 });
 
 test("collector connection and collection-depth surfaces are covered", () => {
@@ -63,7 +85,10 @@ test("collector connection and collection-depth surfaces are covered", () => {
     "/sets",
     "/wall",
   ]) {
-    assert.match(SOURCE, new RegExp(route.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(
+      SOURCE,
+      new RegExp(route.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
   assert.match(SOURCE, /Choose a copy above to message this collector/);
   assert.match(SOURCE, /Reply message/);
