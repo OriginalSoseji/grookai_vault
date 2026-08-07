@@ -21,6 +21,7 @@ import 'models/provisional_card.dart';
 import 'models/grookai_sale_listing.dart';
 import 'secrets.dart';
 import 'screens/account/account_screen.dart';
+import 'screens/auth/sign_in_continuation_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/dex/grookai_dex_species_screen.dart';
@@ -62,6 +63,7 @@ import 'services/public/public_collector_service.dart';
 import 'services/scanner/scanner_native_camera_guardrail.dart';
 import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
+import 'services/navigation/pending_personal_card_action.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_exact_pricing.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -2708,6 +2710,7 @@ class _MyAppState extends State<MyApp> {
   static const String _themeModePreferenceKey = 'grookai_theme_mode_v1';
 
   final AppLinks _appLinks = AppLinks();
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   StreamSubscription<Uri>? _linkSubscription;
   StreamSubscription<AuthState>? _authSubscription;
   PendingCanonicalLinkRequest? _pendingCanonicalLink;
@@ -2743,11 +2746,22 @@ class _MyAppState extends State<MyApp> {
           return;
         }
         final nextSession = Supabase.instance.client.auth.currentSession;
+        final pendingPersonalAction =
+            PendingPersonalCardActionCoordinator.pending;
         setState(() {
           _authSession = nextSession;
           _authRecoveryPending =
               event.event == AuthChangeEvent.initialSession &&
               (nextSession?.isExpired ?? false);
+          if (nextSession != null &&
+              !nextSession.isExpired &&
+              pendingPersonalAction != null &&
+              pendingPersonalAction.gvId.isNotEmpty) {
+            _pendingCanonicalLink = PendingCanonicalLinkRequest(
+              id: ++_nextPendingCanonicalLinkId,
+              route: GrookaiCanonicalRoute.card(pendingPersonalAction.gvId),
+            );
+          }
         });
         if (nextSession != null && !nextSession.isExpired) {
           unawaited(
@@ -2755,6 +2769,11 @@ class _MyAppState extends State<MyApp> {
               reason: 'auth_${event.event.name}',
             ),
           );
+          if (pendingPersonalAction != null) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _navigatorKey.currentState?.popUntil((route) => route.isFirst);
+            });
+          }
         }
       },
       onError: (error, stackTrace) {
@@ -3063,6 +3082,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final app = MaterialApp(
+      navigatorKey: _navigatorKey,
       title: 'Grookai Vault',
       debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
@@ -3240,13 +3260,22 @@ class _SignedOutCatalogScreenState extends State<_SignedOutCatalogScreen> {
   }
 
   Future<void> _handleAccountAction(BuildContext context) async {
+    final navigator = Navigator.of(context);
     if (_signedIn) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
+      navigator.popUntil((route) => route.isFirst);
       return;
     }
-    await Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (_) => const LoginPage()));
+    final signedIn = await navigator.push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) => const SignInContinuationScreen(
+          destinationLabel: 'continue to Grookai',
+        ),
+      ),
+    );
+    if (!mounted || signedIn != true) {
+      return;
+    }
+    navigator.popUntil((route) => route.isFirst);
   }
 
   @override

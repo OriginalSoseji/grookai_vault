@@ -849,6 +849,11 @@ class _AppShellState extends State<AppShell> {
     final displayNumber = _routeText(cardRow['number']).isNotEmpty
         ? _routeText(cardRow['number'])
         : _routeText(cardRow['number_plain']);
+    final pendingPersonalAction =
+        PendingPersonalCardActionCoordinator.takeForCard(
+          cardPrintId: cardPrintId,
+          gvId: resolvedGvId,
+        );
 
     unawaited(
       _pushPage<void>(
@@ -868,6 +873,7 @@ class _AppShellState extends State<AppShell> {
               : _routeText(cardRow['rarity']),
           imageUrl: artwork.primaryImageUrl,
           fallbackImageUrl: artwork.fallbackImageUrl,
+          initialPersonalAction: pendingPersonalAction?.kind,
         ),
       ),
     );

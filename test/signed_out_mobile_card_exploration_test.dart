@@ -40,15 +40,31 @@ void main() {
       expect(main, contains('class _PublicCardRouteScreen'));
       expect(main, contains('CardPrintRepository.getCardPrintByGvId'));
       expect(main, contains('first_route_public_card_link'));
+      expect(main, contains('PendingPersonalCardActionCoordinator.pending'));
+      expect(main, contains('GrookaiCanonicalRoute.card'));
+      expect(main, contains('_navigatorKey.currentState?.popUntil'));
+      expect(main, contains("destinationLabel: 'continue to Grookai'"));
       expect(cardDetail, contains('SignInContinuationScreen'));
-      expect(cardDetail, contains('if (signedIn == true &&'));
-      expect(cardDetail, contains('await onSignedIn();'));
+      expect(
+        cardDetail,
+        contains('PendingPersonalCardActionCoordinator.stage'),
+      );
+      expect(cardDetail, contains('initialPersonalAction'));
+      expect(cardDetail, contains('if (signedIn != true ||'));
+      expect(
+        cardDetail,
+        isNot(contains('required Future<void> Function() onSignedIn')),
+      );
       expect(
         cardDetail,
         contains('MediaQuery.viewPaddingOf(sheetContext).bottom'),
       );
       expect(continuation, contains('onAuthStateChange.listen'));
       expect(continuation, contains('Navigator.of(context).pop(true)'));
+      expect(
+        continuation,
+        contains('redirectTo: kIsWeb ? null : _googleRedirectUri'),
+      );
       expect(
         continuation,
         contains('You will return to this card when sign in completes.'),

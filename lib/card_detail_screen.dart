@@ -23,6 +23,7 @@ import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/navigation/copy_detail_navigation_policy.dart';
+import 'services/navigation/pending_personal_card_action.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
@@ -61,6 +62,7 @@ class CardDetailScreen extends StatefulWidget {
   final String? selectedPrintingGvId;
   final String? selectedFinishLabel;
   final bool openedFromCopyDetail;
+  final PendingPersonalCardActionKind? initialPersonalAction;
 
   const CardDetailScreen({
     super.key,
@@ -86,6 +88,7 @@ class CardDetailScreen extends StatefulWidget {
     this.selectedPrintingGvId,
     this.selectedFinishLabel,
     this.openedFromCopyDetail = false,
+    this.initialPersonalAction,
   });
 
   @override
@@ -156,6 +159,30 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       unawaited(_loadJourneyOverview());
     }
     unawaited(_recordOpenDetailEvent());
+    if (widget.initialPersonalAction != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(_resumePersonalAction(widget.initialPersonalAction!));
+      });
+    }
+  }
+
+  Future<void> _resumePersonalAction(
+    PendingPersonalCardActionKind action,
+  ) async {
+    if (!mounted || supabase.auth.currentUser == null) {
+      return;
+    }
+    switch (action) {
+      case PendingPersonalCardActionKind.addToVault:
+        await _addToVault();
+        return;
+      case PendingPersonalCardActionKind.want:
+        await _loadWantState();
+        if (mounted && !_wantState.want) {
+          await _toggleWant();
+        }
+        return;
+    }
   }
 
   Future<void> _loadJourneyOverview() async {
@@ -984,7 +1011,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         body:
             'Sign in to save this card to your want list. When you return, the app will finish that action.',
         actionLabel: 'Sign in to save',
-        onSignedIn: _toggleWant,
+        pendingAction: PendingPersonalCardActionKind.want,
       );
       return;
     }
@@ -1191,7 +1218,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     required String title,
     required String body,
     required String actionLabel,
-    required Future<void> Function() onSignedIn,
+    required PendingPersonalCardActionKind pendingAction,
   }) async {
     if (!mounted) {
       return;
@@ -1239,6 +1266,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   const SizedBox(width: 8),
                   FilledButton.icon(
                     onPressed: () async {
+                      final request =
+                          PendingPersonalCardActionCoordinator.stage(
+                            kind: pendingAction,
+                            cardPrintId: widget.cardPrintId,
+                            gvId: _cleanText(widget.gvId),
+                          );
                       final navigator = Navigator.of(context);
                       Navigator.of(sheetContext).pop();
                       final signedIn = await navigator.push<bool>(
@@ -1255,10 +1288,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                         return;
                       }
                       final userId = supabase.auth.currentUser?.id;
-                      if (signedIn == true &&
-                          userId != null &&
-                          userId.isNotEmpty) {
-                        await onSignedIn();
+                      if (signedIn != true ||
+                          userId == null ||
+                          userId.isEmpty) {
+                        PendingPersonalCardActionCoordinator.cancel(request.id);
                       }
                     },
                     icon: const Icon(Icons.login_rounded),
@@ -1287,7 +1320,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         body:
             'Sign in to add this card to your vault. When you return, the app will finish that action.',
         actionLabel: 'Sign in to add',
-        onSignedIn: _addToVault,
+        pendingAction: PendingPersonalCardActionKind.addToVault,
       );
       return;
     }

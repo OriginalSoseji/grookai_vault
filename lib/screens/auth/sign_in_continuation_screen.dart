@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -88,7 +89,7 @@ class _SignInContinuationScreenState extends State<SignInContinuationScreen> {
     try {
       final launched = await _client.auth.signInWithOAuth(
         OAuthProvider.google,
-        redirectTo: _googleRedirectUri,
+        redirectTo: kIsWeb ? null : _googleRedirectUri,
       );
       if (!launched) {
         throw const AuthException('Google sign in could not be opened.');
