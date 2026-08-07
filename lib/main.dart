@@ -2715,6 +2715,7 @@ class _MyAppState extends State<MyApp> {
   StreamSubscription<AuthState>? _authSubscription;
   PendingCanonicalLinkRequest? _pendingCanonicalLink;
   PendingDebugActionRequest? _pendingDebugAction;
+  int? _pendingPersonalActionAuthHandoffId;
   int _nextPendingCanonicalLinkId = 0;
   int _nextPendingDebugActionId = 0;
   bool _authCallbackInFlight = false;
@@ -2748,32 +2749,30 @@ class _MyAppState extends State<MyApp> {
         final nextSession = Supabase.instance.client.auth.currentSession;
         final pendingPersonalAction =
             PendingPersonalCardActionCoordinator.pending;
+        final authenticated = nextSession != null && !nextSession.isExpired;
         setState(() {
           _authSession = nextSession;
           _authRecoveryPending =
               event.event == AuthChangeEvent.initialSession &&
               (nextSession?.isExpired ?? false);
-          if (nextSession != null &&
-              !nextSession.isExpired &&
-              pendingPersonalAction != null &&
-              pendingPersonalAction.gvId.isNotEmpty) {
-            _pendingCanonicalLink = PendingCanonicalLinkRequest(
-              id: ++_nextPendingCanonicalLinkId,
-              route: GrookaiCanonicalRoute.card(pendingPersonalAction.gvId),
-            );
+          if (!authenticated) {
+            _pendingPersonalActionAuthHandoffId = null;
           }
         });
-        if (nextSession != null && !nextSession.isExpired) {
+        if (authenticated) {
+          if (pendingPersonalAction != null &&
+              pendingPersonalAction.gvId.isNotEmpty) {
+            _schedulePendingPersonalActionAuthHandoff(pendingPersonalAction);
+            return;
+          }
+          if (PendingPersonalCardActionCoordinator.hasUnsettledAction) {
+            return;
+          }
           unawaited(
             GrookaiPushNotificationService.instance.registerForCurrentUser(
               reason: 'auth_${event.event.name}',
             ),
           );
-          if (pendingPersonalAction != null) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _navigatorKey.currentState?.popUntil((route) => route.isFirst);
-            });
-          }
         }
       },
       onError: (error, stackTrace) {
@@ -3024,6 +3023,40 @@ class _MyAppState extends State<MyApp> {
   void _queueCanonicalLink(Uri? uri) {
     final route = GrookaiWebRouteService.parseCanonicalUri(uri);
     _queueCanonicalRoute(route);
+  }
+
+  void _schedulePendingPersonalActionAuthHandoff(
+    PendingPersonalCardActionRequest request,
+  ) {
+    if (_pendingPersonalActionAuthHandoffId == request.id) {
+      return;
+    }
+    _pendingPersonalActionAuthHandoffId = request.id;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          PendingPersonalCardActionCoordinator.pending?.id != request.id) {
+        if (_pendingPersonalActionAuthHandoffId == request.id) {
+          _pendingPersonalActionAuthHandoffId = null;
+        }
+        return;
+      }
+      _navigatorKey.currentState?.popUntil((route) => route.isFirst);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted ||
+            PendingPersonalCardActionCoordinator.pending?.id != request.id) {
+          if (_pendingPersonalActionAuthHandoffId == request.id) {
+            _pendingPersonalActionAuthHandoffId = null;
+          }
+          return;
+        }
+        setState(() {
+          _pendingCanonicalLink = PendingCanonicalLinkRequest(
+            id: ++_nextPendingCanonicalLinkId,
+            route: GrookaiCanonicalRoute.card(request.gvId),
+          );
+        });
+      });
+    });
   }
 
   void _queueCanonicalRoute(GrookaiCanonicalRoute? route) {

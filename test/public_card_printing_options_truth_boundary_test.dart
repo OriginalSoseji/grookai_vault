@@ -143,7 +143,21 @@ void main() {
         contains('Choose the exact printing before adding this card.'),
       );
       expect(resolverBlock, contains('_selectedCardPrintingId = resolved.id'));
-      expect(addBlock, contains('final printingOption = await'));
+      expect(
+        addBlock,
+        contains('late final _CardDetailPrintingOption printingOption'),
+      );
+      expect(
+        addBlock,
+        contains('printingOption = await _resolvePrintingOptionForVaultAdd()'),
+      );
+      expect(
+        addBlock.indexOf(
+          'printingOption = await _resolvePrintingOptionForVaultAdd()',
+        ),
+        lessThan(addBlock.indexOf('final userId = supabase.auth.currentUser')),
+      );
+      expect(addBlock, contains('pendingPrinting: printingOption'));
       expect(addBlock, contains('cardPrintingId: printingOption.id'));
       expect(detail, contains('_printingOptions.length == 1'));
     },

@@ -26,6 +26,7 @@ import 'services/navigation/copy_detail_navigation_policy.dart';
 import 'services/navigation/pending_personal_card_action.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
+import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_card_printing_options_service.dart';
@@ -62,7 +63,7 @@ class CardDetailScreen extends StatefulWidget {
   final String? selectedPrintingGvId;
   final String? selectedFinishLabel;
   final bool openedFromCopyDetail;
-  final PendingPersonalCardActionKind? initialPersonalAction;
+  final PendingPersonalCardActionRequest? initialPersonalAction;
 
   const CardDetailScreen({
     super.key,
@@ -167,21 +168,37 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<void> _resumePersonalAction(
-    PendingPersonalCardActionKind action,
+    PendingPersonalCardActionRequest request,
   ) async {
     if (!mounted || supabase.auth.currentUser == null) {
+      PendingPersonalCardActionCoordinator.complete(request.id);
       return;
     }
-    switch (action) {
-      case PendingPersonalCardActionKind.addToVault:
-        await _addToVault();
-        return;
-      case PendingPersonalCardActionKind.want:
-        await _loadWantState();
-        if (mounted && !_wantState.want) {
-          await _toggleWant();
-        }
-        return;
+    try {
+      switch (request.kind) {
+        case PendingPersonalCardActionKind.addToVault:
+          await _addToVault();
+          return;
+        case PendingPersonalCardActionKind.want:
+          await _loadWantState();
+          if (mounted && !_wantState.want) {
+            await _toggleWant();
+          }
+          return;
+      }
+    } finally {
+      PendingPersonalCardActionCoordinator.complete(request.id);
+      if (supabase.auth.currentUser != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (supabase.auth.currentUser != null) {
+            unawaited(
+              GrookaiPushNotificationService.instance.registerForCurrentUser(
+                reason: 'pending_personal_action_complete',
+              ),
+            );
+          }
+        });
+      }
     }
   }
 
@@ -1219,6 +1236,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     required String body,
     required String actionLabel,
     required PendingPersonalCardActionKind pendingAction,
+    _CardDetailPrintingOption? pendingPrinting,
   }) async {
     if (!mounted) {
       return;
@@ -1271,6 +1289,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                             kind: pendingAction,
                             cardPrintId: widget.cardPrintId,
                             gvId: _cleanText(widget.gvId),
+                            cardPrintingId: pendingPrinting?.id,
+                            printingGvId: pendingPrinting?.printingGvId,
+                            finishLabel: pendingPrinting?.finishName,
                           );
                       final navigator = Navigator.of(context);
                       Navigator.of(sheetContext).pop();
@@ -1313,6 +1334,21 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     final messenger = ScaffoldMessenger.of(context);
     final navigator = Navigator.of(context);
+    late final _CardDetailPrintingOption printingOption;
+    try {
+      printingOption = await _resolvePrintingOptionForVaultAdd();
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(error.toString().replaceFirst('Exception: ', '')),
+        ),
+      );
+      return;
+    }
+
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) {
       await _showSignedOutIntentSheet(
@@ -1321,6 +1357,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             'Sign in to add this card to your vault. When you return, the app will finish that action.',
         actionLabel: 'Sign in to add',
         pendingAction: PendingPersonalCardActionKind.addToVault,
+        pendingPrinting: printingOption,
       );
       return;
     }
@@ -1330,7 +1367,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
 
     try {
-      final printingOption = await _resolvePrintingOptionForVaultAdd();
       final gvviId = await VaultCardService.addOrIncrementVaultItem(
         client: supabase,
         userId: userId,
@@ -1376,12 +1412,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         return;
       }
 
-      await navigator.pushReplacement(
-        MaterialPageRoute<void>(
-          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+      unawaited(
+        navigator.pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+          ),
         ),
       );
     } catch (error) {
+      debugPrint('vault.mobile.add.failed: ${widget.cardPrintId} ($error)');
       if (!mounted) {
         return;
       }

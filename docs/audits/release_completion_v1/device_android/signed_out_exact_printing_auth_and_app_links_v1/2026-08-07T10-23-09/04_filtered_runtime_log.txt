@@ -1,0 +1,11 @@
+08-07 10:13:09.308 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=false
+08-07 10:13:09.489 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=false
+08-07 10:13:10.182 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 10:13:10.275 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 10:14:19.749 I/flutter (15364): [APP_BOOT_V1] 71377ms auth_event_signedIn
+08-07 10:14:19.767 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=true sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 10:14:19.990 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=true sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 10:14:20.617 I/flutter (15364): card.detail.printings.add.resolve: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d (3)
+08-07 10:14:20.620 I/flutter (15364): vault.mobile.add.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d
+08-07 10:14:20.733 I/flutter (15364): [GOOGLE_OAUTH_V1] auth gate sessionPresent=true sessionExpired=false recoveryPending=false pendingCanonicalLink=false
+08-07 10:23:54.352 I/flutter (15364): vault.mobile.add.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d

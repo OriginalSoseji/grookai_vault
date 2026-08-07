@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.grookai.vault",
+      "sha256_cert_fingerprints": [
+        "51:E5:18:EF:64:7B:2B:D5:C1:C9:1D:3D:00:D0:8E:1F:E3:19:2A:F6:33:B2:AF:67:41:A6:7F:DC:E8:72:E0:33"
+      ]
+    }
+  }
+]

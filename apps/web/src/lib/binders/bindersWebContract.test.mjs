@@ -67,7 +67,7 @@ test("Collaborative Binders web route contract exists", () => {
   }
 });
 
-test("authorized iOS universal links cover Binder routes without claiming Android App Links", () => {
+test("authorized iOS and Android app links cover Binder routes", () => {
   const associationPath = path.join(
     webRoot,
     "public/.well-known/apple-app-site-association",
@@ -83,11 +83,21 @@ test("authorized iOS universal links cover Binder routes without claiming Androi
   ]) {
     assert.ok(paths.includes(authorizedPath), authorizedPath);
   }
-  assert.equal(
-    fs.existsSync(path.join(webRoot, "public/.well-known/assetlinks.json")),
-    false,
-    "Android HTTPS App Links remain unclaimed until a certificate fingerprint is authorized",
+  const assetLinks = JSON.parse(
+    fs.readFileSync(
+      path.join(webRoot, "public/.well-known/assetlinks.json"),
+      "utf8",
+    ),
   );
+  assert.equal(assetLinks.length, 1);
+  assert.deepEqual(assetLinks[0].relation, [
+    "delegate_permission/common.handle_all_urls",
+  ]);
+  assert.equal(assetLinks[0].target.namespace, "android_app");
+  assert.equal(assetLinks[0].target.package_name, "com.grookai.vault");
+  assert.deepEqual(assetLinks[0].target.sha256_cert_fingerprints, [
+    "51:E5:18:EF:64:7B:2B:D5:C1:C9:1D:3D:00:D0:8E:1F:E3:19:2A:F6:33:B2:AF:67:41:A6:7F:DC:E8:72:E0:33",
+  ]);
 
   const nextConfig = fs.readFileSync(
     path.join(webRoot, "next.config.mjs"),
@@ -96,6 +106,10 @@ test("authorized iOS universal links cover Binder routes without claiming Androi
   assert.match(
     nextConfig,
     /source: "\/\.well-known\/apple-app-site-association"[\s\S]*?"Content-Type", value: "application\/json"/,
+  );
+  assert.match(
+    nextConfig,
+    /source: "\/\.well-known\/assetlinks\.json"[\s\S]*?"Content-Type", value: "application\/json"/,
   );
 });
 
@@ -863,7 +877,8 @@ test("Binder UI uses collector language and does not change the mobile dock", ()
   const bottomDock = read("components/layout/MobileBottomNav.tsx");
   assert.doesNotMatch(bottomDock, /Binders/);
   const header = read("components/layout/SiteHeader.tsx");
-  assert.match(header, /label: "Binders"/);
+  assert.match(header, /href="\/binders"/);
+  assert.match(header, />\s*Binders\s*</);
   const views = read("components/binders/BinderViews.tsx");
   const workspace = read("components/binders/BinderWorkspace.tsx");
   assert.match(views, /aria-valuenow=\{accessibleCompleted\}/);

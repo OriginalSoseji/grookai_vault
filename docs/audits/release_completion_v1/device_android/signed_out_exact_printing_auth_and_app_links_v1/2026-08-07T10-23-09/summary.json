@@ -1,0 +1,49 @@
+{
+  "schema_version": "SIGNED_OUT_EXACT_PRINTING_AUTH_AND_ANDROID_APP_LINKS_V1",
+  "status": "PASS",
+  "recorded_at": "2026-08-07T16:24:37.765Z",
+  "source_commit": "1a24a22070d72c5352abe7cb47684229fa8b40dc",
+  "branch": "release/final-candidate-auth-order-v1",
+  "device_class": "physical_android_samsung",
+  "package": "com.grookai.vault",
+  "locked_acceptance_package_touched": false,
+  "journey": {
+    "card_gv_id": "GV-PK-MEW-025",
+    "printing_gv_id": "GV-PK-MEW-025-STD",
+    "finish_key": "normal",
+    "available_printing_count": 3,
+    "selected_before_authentication": true,
+    "selection_preserved_after_root_swap": true,
+    "notification_permission_interruption": false,
+    "vault_write_executed": true,
+    "private_copy_screen_opened": true,
+    "test_copy_archived_through_product_ui": true,
+    "active_rows_after_cleanup": 0
+  },
+  "android_app_links": {
+    "host": "grookaivault.com",
+    "relation": "delegate_permission/common.handle_all_urls",
+    "release_certificate_sha256": "51:E5:18:EF:64:7B:2B:D5:C1:C9:1D:3D:00:D0:8E:1F:E3:19:2A:F6:33:B2:AF:67:41:A6:7F:DC:E8:72:E0:33",
+    "implementation_verified": true,
+    "signed_candidate_domain_verification_pending": true
+  },
+  "verification": {
+    "shipcheck": "PASS",
+    "flutter_tests": "579/579",
+    "flutter_analyzer": "PASS",
+    "strict_web": "PASS",
+    "node_contracts": "PASS",
+    "runtime_preflight": "PASS_WITH_DEFERRED_DEBT",
+    "critical_runtime_failures": 0,
+    "secret_guard": "PASS"
+  },
+  "completion_allowed": false,
+  "remaining_external_gates": [
+    "merge_and_production_assetlinks_readback",
+    "signed_android_domain_verification",
+    "physical_iphone_testflight",
+    "cross_platform_journey_and_state_matrix",
+    "store_distribution_readback",
+    "non_backdated_72_hour_soak"
+  ]
+}

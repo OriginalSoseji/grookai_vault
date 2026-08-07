@@ -41,6 +41,11 @@ void main() {
       expect(main, contains('CardPrintRepository.getCardPrintByGvId'));
       expect(main, contains('first_route_public_card_link'));
       expect(main, contains('PendingPersonalCardActionCoordinator.pending'));
+      expect(main, contains('_schedulePendingPersonalActionAuthHandoff'));
+      expect(
+        main,
+        contains('PendingPersonalCardActionCoordinator.hasUnsettledAction'),
+      );
       expect(main, contains('GrookaiCanonicalRoute.card'));
       expect(main, contains('_navigatorKey.currentState?.popUntil'));
       expect(main, contains("destinationLabel: 'continue to Grookai'"));
@@ -49,7 +54,40 @@ void main() {
         cardDetail,
         contains('PendingPersonalCardActionCoordinator.stage'),
       );
+      expect(cardDetail, contains('pendingPrinting: printingOption'));
+      expect(cardDetail, contains('cardPrintingId: pendingPrinting?.id'));
+      final addToVaultMethod = cardDetail.substring(
+        cardDetail.indexOf('Future<void> _addToVault()'),
+      );
+      expect(
+        addToVaultMethod.indexOf(
+          'printingOption = await _resolvePrintingOptionForVaultAdd()',
+        ),
+        lessThan(
+          addToVaultMethod.indexOf('final userId = supabase.auth.currentUser'),
+        ),
+      );
       expect(cardDetail, contains('initialPersonalAction'));
+      expect(
+        cardDetail,
+        contains("reason: 'pending_personal_action_complete'"),
+      );
+      expect(
+        cardDetail,
+        contains('WidgetsBinding.instance.addPostFrameCallback'),
+      );
+      expect(
+        cardDetail.indexOf(
+          'PendingPersonalCardActionCoordinator.complete(request.id)',
+        ),
+        lessThan(
+          cardDetail.indexOf("reason: 'pending_personal_action_complete'"),
+        ),
+      );
+      expect(
+        cardDetail,
+        contains('unawaited(\n        navigator.pushReplacement'),
+      );
       expect(cardDetail, contains('if (signedIn != true ||'));
       expect(
         cardDetail,

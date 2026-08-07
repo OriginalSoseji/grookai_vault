@@ -91,6 +91,13 @@ const nextConfig = {
         ],
       },
       {
+        source: "/.well-known/assetlinks.json",
+        headers: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "Cache-Control", value: setPublicCache },
+        ],
+      },
+      {
         source: "/",
         headers: [{ key: "Cache-Control", value: setPublicCache }],
       },

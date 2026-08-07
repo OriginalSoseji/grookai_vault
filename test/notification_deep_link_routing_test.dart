@@ -181,6 +181,49 @@ void main() {
     },
   );
 
+  test('Android App Link authority matches the signed release package', () {
+    final assetLinks =
+        jsonDecode(
+              File(
+                'apps/web/public/.well-known/assetlinks.json',
+              ).readAsStringSync(),
+            )
+            as List<dynamic>;
+    final statement = assetLinks.single as Map<String, dynamic>;
+    final target = statement['target'] as Map<String, dynamic>;
+    final manifest = File(
+      'android/app/src/main/AndroidManifest.xml',
+    ).readAsStringSync();
+
+    expect(statement['relation'], <String>[
+      'delegate_permission/common.handle_all_urls',
+    ]);
+    expect(target['namespace'], 'android_app');
+    expect(target['package_name'], 'com.grookai.vault');
+    expect(target['sha256_cert_fingerprints'], <String>[
+      '51:E5:18:EF:64:7B:2B:D5:C1:C9:1D:3D:00:D0:8E:1F:E3:19:2A:F6:33:B2:AF:67:41:A6:7F:DC:E8:72:E0:33',
+    ]);
+    expect(manifest, contains('android:autoVerify="true"'));
+    expect(manifest, contains('android:host="grookaivault.com"'));
+    for (final path in <String>[
+      '/card/',
+      '/u/',
+      '/collector/',
+      '/set/',
+      '/sets/',
+      '/gvvi/',
+      '/dex',
+      '/network',
+      '/feed',
+      '/binders',
+      '/b/',
+      '/binder-invites/',
+      '/binder-templates/',
+    ]) {
+      expect(manifest, contains('"$path"'), reason: path);
+    }
+  });
+
   test('unsupported notification app links are ignored', () {
     expect(
       GrookaiWebRouteService.parseCanonicalUri(Uri.parse('other://card/GV-1')),
