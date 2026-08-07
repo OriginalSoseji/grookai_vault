@@ -34,6 +34,8 @@
     "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",
     "release:completion:status": "node scripts/audits/release_completion_gate_v1.mjs",
     "release:completion:require": "node scripts/audits/release_completion_gate_v1.mjs --require-complete",
+    "release:soak:status": "node scripts/audits/release_candidate_soak_v1.mjs",
+    "release:soak:require": "node scripts/audits/release_candidate_soak_v1.mjs --require-pass",
     "release:journey:verify": "node scripts/audits/release_clean_account_journey_readback_v1.mjs",
     "release:journey:want-match:verify": "node scripts/audits/release_want_match_journey_readback_v1.mjs",
     "release:journey:signed-out-web:verify": "node scripts/audits/release_signed_out_web_journeys_v2.mjs",
