@@ -3146,6 +3146,11 @@ class _MyAppState extends State<MyApp> {
                   }
                   break;
                 case GrookaiCanonicalRouteKind.card:
+                  AppBootTiming.markOnce('first_route_public_card_link');
+                  publicRoute = _PublicCardRouteScreen(
+                    gvId: pendingRoute.value,
+                  );
+                  break;
                 case GrookaiCanonicalRouteKind.collector:
                 case GrookaiCanonicalRouteKind.collectorSection:
                 case GrookaiCanonicalRouteKind.set:
@@ -3200,9 +3205,166 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+class _SignedOutCatalogScreen extends StatefulWidget {
+  const _SignedOutCatalogScreen();
+
+  @override
+  State<_SignedOutCatalogScreen> createState() =>
+      _SignedOutCatalogScreenState();
+}
+
+class _SignedOutCatalogScreenState extends State<_SignedOutCatalogScreen> {
+  StreamSubscription<AuthState>? _authSubscription;
+  bool _signedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _signedIn = Supabase.instance.client.auth.currentUser != null;
+    _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen((
+      event,
+    ) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _signedIn = event.session?.user != null;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _authSubscription?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _handleAccountAction(BuildContext context) async {
+    if (_signedIn) {
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      return;
+    }
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const LoginPage()));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Explore cards'),
+        actions: [
+          TextButton.icon(
+            onPressed: () => _handleAccountAction(context),
+            icon: Icon(
+              _signedIn ? Icons.arrow_forward_rounded : Icons.login_rounded,
+              size: 18,
+            ),
+            label: Text(_signedIn ? 'Continue' : 'Sign in'),
+          ),
+        ],
+      ),
+      body: const SafeArea(child: HomePage(signedOutBrowse: true)),
+    );
+  }
+}
+
+class _PublicCardRouteScreen extends StatefulWidget {
+  const _PublicCardRouteScreen({required this.gvId});
+
+  final String gvId;
+
+  @override
+  State<_PublicCardRouteScreen> createState() => _PublicCardRouteScreenState();
+}
+
+class _PublicCardRouteScreenState extends State<_PublicCardRouteScreen> {
+  late Future<CardPrint?> _cardFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  void _load() {
+    final normalizedGvId = widget.gvId.trim().toUpperCase();
+    _cardFuture = CardPrintRepository.getCardPrintByGvId(
+      client: Supabase.instance.client,
+      gvId: normalizedGvId,
+    );
+  }
+
+  void _retry() {
+    setState(_load);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<CardPrint?>(
+      future: _cardFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator.adaptive()),
+          );
+        }
+
+        final card = snapshot.data;
+        if (snapshot.hasError || card == null) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Card')),
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.broken_image_outlined, size: 40),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'That shared card could not be opened.',
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    OutlinedButton.icon(
+                      onPressed: _retry,
+                      icon: const Icon(Icons.refresh_rounded),
+                      label: const Text('Try again'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
+        return CardDetailScreen(
+          cardPrintId: card.id,
+          gvId: card.gvId,
+          name: card.name,
+          setName: card.displaySet,
+          setCode: card.setCode,
+          number: card.displayNumber,
+          rarity: card.rarity,
+          imageUrl: card.catalogImageUrl,
+          fallbackImageUrl: card.providerFallbackImageUrl,
+          selectedPrintingGvId: card.selectedPrintingGvId ?? card.printingGvId,
+          selectedFinishLabel: card.displayDiscriminator ?? card.finishLabel,
+          entrySurface: 'public_card_link',
+        );
+      },
+    );
+  }
+}
+
 /// ---------------------- HOME PAGE (catalog search) ----------------------
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, this.signedOutBrowse = false});
+
+  final bool signedOutBrowse;
+
   @override
   HomePageState createState() => HomePageState();
 }
@@ -3342,6 +3504,9 @@ class HomePageState extends State<HomePage> {
   }
 
   bool _shouldShowCuratedLanding([String? query]) {
+    if (widget.signedOutBrowse) {
+      return false;
+    }
     final trimmed = (query ?? _searchCtrl.text).trim();
     return trimmed.isEmpty &&
         _rarityFilter == _RarityFilter.all &&
@@ -3468,7 +3633,11 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _loadTrending();
+    if (widget.signedOutBrowse) {
+      unawaited(_runSearch(''));
+    } else {
+      _loadTrending();
+    }
   }
 
   @override
@@ -3836,18 +4005,22 @@ class HomePageState extends State<HomePage> {
         _loading = false;
       });
       var pricing = const <String, CardSurfacePricingData>{};
-      try {
-        pricing = await CardSurfacePricingService.fetchByCardPrintIds(
-          client: supabase,
-          cardPrintIds: resolved.rows.map((card) => card.id),
-        );
-      } catch (_) {
-        pricing = const <String, CardSurfacePricingData>{};
+      if (!widget.signedOutBrowse) {
+        try {
+          pricing = await CardSurfacePricingService.fetchByCardPrintIds(
+            client: supabase,
+            cardPrintIds: resolved.rows.map((card) => card.id),
+          );
+        } catch (_) {
+          pricing = const <String, CardSurfacePricingData>{};
+        }
       }
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
-      final ownershipStates = await _primeCatalogOwnershipStates(resolved.rows);
+      final ownershipStates = widget.signedOutBrowse
+          ? const <String, OwnershipState>{}
+          : await _primeCatalogOwnershipStates(resolved.rows);
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
@@ -4723,8 +4896,11 @@ class HomePageState extends State<HomePage> {
   }) {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
     final printingSummary = _catalogPrintingSummary(card);
-    final ownershipState = _catalogOwnershipStateForCard(card.id);
-    final showQuickAdd = !(ownershipState?.owned ?? false);
+    final ownershipState = widget.signedOutBrowse
+        ? null
+        : _catalogOwnershipStateForCard(card.id);
+    final showQuickAdd =
+        !widget.signedOutBrowse && !(ownershipState?.owned ?? false);
     final isAdding = _addingCardIds.contains(card.id);
     final onImpressionCandidate =
         enableFeedImpressionTracking && feedPosition != null
@@ -4738,7 +4914,9 @@ class HomePageState extends State<HomePage> {
         card: card,
         pricing: pricing,
         ownershipState: ownershipState,
-        onTap: () => _openSearchCardActionHub(card),
+        onTap: () => widget.signedOutBrowse
+            ? _openCardDetail(card)
+            : _openSearchCardActionHub(card),
         onQuickAdd: showQuickAdd
             ? () => _quickAddSearchResultToVault(card)
             : null,
@@ -4755,7 +4933,9 @@ class HomePageState extends State<HomePage> {
       pricing: pricing,
       ownershipState: ownershipState,
       viewMode: _viewMode,
-      onTap: () => _openSearchCardActionHub(card),
+      onTap: () => widget.signedOutBrowse
+          ? _openCardDetail(card)
+          : _openSearchCardActionHub(card),
       onQuickAdd: showQuickAdd
           ? () => _quickAddSearchResultToVault(card)
           : null,

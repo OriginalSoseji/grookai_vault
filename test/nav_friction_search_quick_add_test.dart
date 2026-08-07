@@ -23,7 +23,18 @@ void main() {
     expect(search, contains("label: 'View copy'"));
     expect(search, contains('VaultManageCardScreen(gvviId: gvviId)'));
     expect(search, contains('onQuickAdd: showQuickAdd'));
-    expect(search, contains('onTap: () => _openSearchCardActionHub(card)'));
+    expect(
+      search,
+      contains(
+        'onTap: () => widget.signedOutBrowse\n'
+        '            ? _openCardDetail(card)\n'
+        '            : _openSearchCardActionHub(card)',
+      ),
+    );
+    expect(
+      search,
+      contains('!widget.signedOutBrowse && !(ownershipState?.owned ?? false)'),
+    );
   });
 
   test('search quick add reuses existing vault write path', () {

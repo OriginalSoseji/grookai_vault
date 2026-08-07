@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'models/grookai_memory_card.dart';
 import 'models/grookai_sale_listing.dart';
 import 'models/ownership_state.dart';
-import 'screens/account/account_screen.dart';
+import 'screens/auth/sign_in_continuation_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/grookai_objects/for_sale_terms_screen.dart';
@@ -1207,7 +1207,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             24,
             8,
             24,
-            24 + MediaQuery.of(sheetContext).viewInsets.bottom,
+            24 +
+                MediaQuery.viewPaddingOf(sheetContext).bottom +
+                MediaQuery.viewInsetsOf(sheetContext).bottom,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -1239,16 +1241,23 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                     onPressed: () async {
                       final navigator = Navigator.of(context);
                       Navigator.of(sheetContext).pop();
-                      await navigator.push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => const AccountScreen(),
+                      final signedIn = await navigator.push<bool>(
+                        MaterialPageRoute<bool>(
+                          builder: (_) => SignInContinuationScreen(
+                            destinationLabel: title.replaceFirst(
+                              'Sign in to ',
+                              '',
+                            ),
+                          ),
                         ),
                       );
                       if (!mounted) {
                         return;
                       }
                       final userId = supabase.auth.currentUser?.id;
-                      if (userId != null && userId.isNotEmpty) {
+                      if (signedIn == true &&
+                          userId != null &&
+                          userId.isNotEmpty) {
                         await onSignedIn();
                       }
                     },

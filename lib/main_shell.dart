@@ -2593,6 +2593,12 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
+  Future<void> _openPublicCatalog() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const _SignedOutCatalogScreen()),
+    );
+  }
+
   void _switchEmailMode(bool creatingAccount) {
     if (_loading) {
       return;
@@ -2988,6 +2994,12 @@ class _LoginPageState extends State<LoginPage> {
                               _buildGoogleButton(),
                               const SizedBox(height: 14),
                               _buildEmailEntryActions(scheme),
+                              const SizedBox(height: 8),
+                              TextButton.icon(
+                                onPressed: _loading ? null : _openPublicCatalog,
+                                icon: const Icon(Icons.search_rounded),
+                                label: const Text('Explore cards'),
+                              ),
                               _buildSignupConfirmation(scheme, textTheme),
                               _buildEmailForm(scheme, textTheme),
                               if (_loginError != null) ...[
