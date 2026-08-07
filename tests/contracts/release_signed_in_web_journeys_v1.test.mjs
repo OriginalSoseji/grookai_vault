@@ -37,6 +37,7 @@ test("post-authentication browser activity is physically read-only", () => {
   assert.match(SOURCE, /post_authentication_non_read_requests_blocked:\s*true/);
   assert.match(SOURCE, /application_writes:\s*false/);
   assert.match(SOURCE, /message_sent:\s*false/);
+  assert.match(SOURCE, /reply_submitted:\s*false/);
   assert.doesNotMatch(SOURCE, /getByRole\("button",\s*\{\s*name:\s*\/send\/i\s*\}\)\.click/);
 });
 
@@ -64,8 +65,10 @@ test("collector connection and collection-depth surfaces are covered", () => {
   ]) {
     assert.match(SOURCE, new RegExp(route.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
-  assert.match(SOURCE, /Message collector/);
-  assert.match(SOURCE, /message_submitted:\s*false/);
+  assert.match(SOURCE, /Choose a copy above to message this collector/);
+  assert.match(SOURCE, /Reply message/);
+  assert.match(SOURCE, /reply_submitted:\s*false/);
+  assert.match(SOURCE, /private_message_copy_masked_in_screenshot:\s*true/);
 });
 
 test("narrow and desktop signed-in screenshots are hashed", () => {

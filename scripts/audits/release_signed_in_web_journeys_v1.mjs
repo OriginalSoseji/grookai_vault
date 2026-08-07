@@ -386,7 +386,11 @@ function routeDefinitions(accounts) {
       {
         name: "canonical_card",
         path: `/card/${EXPECTED_CARD_GV_ID}`,
-        expected: ["Pikachu", "Normal", "Message collector"],
+        expected: [
+          "Pikachu",
+          "Normal",
+          "Choose a copy above to message this collector about that card.",
+        ],
       },
       {
         name: "shared_exact_copy",
@@ -457,6 +461,10 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
       path: path.join(runDir, screenshotName),
       fullPage: true,
       animations: "disabled",
+      mask: route.name === "message_inbox"
+        ? [page.locator("[data-card-message-thread] p")]
+        : [],
+      maskColor: "#020617",
     });
     const status =
       response &&
@@ -486,53 +494,58 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
   }
 }
 
-async function proveMessageComposer(page, origin, accounts, viewport, runDir) {
-  await page.goto(`${origin}/card/${EXPECTED_CARD_GV_ID}`, {
+async function proveExistingMessageContext(
+  page,
+  origin,
+  accounts,
+  viewport,
+  runDir,
+) {
+  await page.goto(`${origin}/network/inbox`, {
     waitUntil: "domcontentloaded",
     timeout: 60_000,
   });
   await settle(page);
-  const triggers = page.getByRole("button", {
-    name: "Message collector",
-    exact: true,
-  });
-  const triggerCount = await triggers.count();
-  if (triggerCount > 0) await triggers.first().click();
-  const dialog = page.getByRole("dialog");
-  const dialogCount = await dialog.count();
-  const dialogText = dialogCount > 0 ? normalizeBody(await dialog.innerText()) : "";
-  const textareaCount = dialogCount > 0
-    ? await dialog.getByRole("textbox", { name: "Message", exact: true }).count()
-    : 0;
-  const sendButtonCount = dialogCount > 0
-    ? await dialog.getByRole("button", { name: /send/i }).count()
-    : 0;
-  const screenshotName = `${viewport}_subject_message_composer.png`;
+  const thread = page.locator("[data-card-message-thread]");
+  const threadCount = await thread.count();
+  const threadText = threadCount > 0
+    ? normalizeBody(await thread.first().innerText())
+    : "";
+  const textareaCount = await page
+    .getByRole("textbox", { name: "Reply message", exact: true })
+    .count();
+  const sendButtonCount = await page
+    .getByRole("button", { name: "Send", exact: true })
+    .count();
+  const screenshotName = `${viewport}_subject_existing_message_context.png`;
   const screenshot = await page.screenshot({
     path: path.join(runDir, screenshotName),
     fullPage: true,
     animations: "disabled",
+    mask: [page.locator("[data-card-message-thread] p")],
+    maskColor: "#020617",
   });
-  const expectedTitle = `message ${accounts.owner.displayName}`.toLowerCase();
+  const expectedCounterpart = accounts.owner.displayName.toLowerCase();
   const status =
-    triggerCount >= 1 &&
-    dialogCount === 1 &&
-    dialogText.includes(expectedTitle) &&
-    dialogText.includes("start a message about pikachu") &&
+    threadCount === 1 &&
+    threadText.includes(expectedCounterpart) &&
+    threadText.includes("pikachu") &&
+    threadText.includes("printing: normal") &&
     textareaCount === 1 &&
     sendButtonCount === 1
       ? "passed"
       : "failed";
   return {
     viewport,
-    source_path: `/card/${EXPECTED_CARD_GV_ID}`,
-    trigger_count: triggerCount,
-    dialog_count: dialogCount,
-    title_visible: dialogText.includes(expectedTitle),
-    card_context_visible: dialogText.includes("start a message about pikachu"),
+    source_path: "/network/inbox",
+    thread_count: threadCount,
+    counterpart_context_visible: threadText.includes(expectedCounterpart),
+    card_context_visible: threadText.includes("pikachu"),
+    exact_printing_context_visible: threadText.includes("printing: normal"),
     textarea_count: textareaCount,
     send_button_count: sendButtonCount,
-    message_submitted: false,
+    reply_submitted: false,
+    private_message_copy_masked_in_screenshot: true,
     screenshot: screenshotName,
     screenshot_sha256: sha256(screenshot),
     status,
@@ -544,9 +557,9 @@ function markdown(report) {
     (result) =>
       `| ${result.viewport} | ${result.role} | \`${result.route}\` | ${result.status} | ${result.images.failed_count} |`,
   );
-  const composerRows = report.message_composer_results.map(
+  const contextRows = report.message_context_results.map(
     (result) =>
-      `| ${result.viewport} | ${result.trigger_count} | ${result.dialog_count} | ${result.message_submitted} | ${result.status} |`,
+      `| ${result.viewport} | ${result.thread_count} | ${result.textarea_count} | ${result.reply_submitted} | ${result.status} |`,
   );
   return `${[
     "# Final-Candidate Signed-In Web Journeys V1",
@@ -566,11 +579,11 @@ function markdown(report) {
     "| --- | --- | --- | --- | ---: |",
     ...routeRows,
     "",
-    "## Message Composer",
+    "## Existing Card Message Context",
     "",
-    "| Viewport | Triggers | Dialogs | Message submitted | Status |",
+    "| Viewport | Threads | Reply forms | Reply submitted | Status |",
     "| --- | ---: | ---: | --- | --- |",
-    ...composerRows,
+    ...contextRows,
     "",
     "## Database Reconciliation",
     "",
@@ -662,7 +675,7 @@ async function main() {
 
     browser = await chromium.launch({ headless: true });
     const routeResults = [];
-    const messageComposerResults = [];
+    const messageContextResults = [];
     const blockedRequests = [];
     for (const viewport of VIEWPORTS) {
       for (const role of ["subject", "owner"]) {
@@ -699,8 +712,8 @@ async function main() {
           );
         }
         if (role === "subject") {
-          messageComposerResults.push(
-            await proveMessageComposer(
+          messageContextResults.push(
+            await proveExistingMessageContext(
               page,
               args.origin,
               accounts,
@@ -721,13 +734,13 @@ async function main() {
     const after = await queryScopedTruth(client, accounts);
     const beforeAfterEqual = JSON.stringify(before) === JSON.stringify(after);
     const routeFailures = routeResults.filter((result) => result.status !== "passed");
-    const composerFailures = messageComposerResults.filter(
+    const messageContextFailures = messageContextResults.filter(
       (result) => result.status !== "passed",
     );
     const databasePassed = Object.values(databaseAssertions).every(Boolean);
     const passed =
       routeFailures.length === 0 &&
-      composerFailures.length === 0 &&
+      messageContextFailures.length === 0 &&
       databasePassed &&
       beforeAfterEqual;
     const report = {
@@ -739,13 +752,13 @@ async function main() {
       summary: {
         route_case_count: routeResults.length,
         route_pass_count: routeResults.length - routeFailures.length,
-        message_composer_case_count: messageComposerResults.length,
-        message_composer_pass_count:
-          messageComposerResults.length - composerFailures.length,
+        message_context_case_count: messageContextResults.length,
+        message_context_pass_count:
+          messageContextResults.length - messageContextFailures.length,
         blocked_non_read_request_count: blockedRequests.length,
         database_assertion_count: Object.keys(databaseAssertions).length,
         database_assertion_pass_count: Object.values(databaseAssertions).filter(Boolean).length,
-        failure_count: routeFailures.length + composerFailures.length +
+        failure_count: routeFailures.length + messageContextFailures.length +
           (databasePassed ? 0 : 1) + (beforeAfterEqual ? 0 : 1),
       },
       journey_assessment: {
@@ -754,7 +767,7 @@ async function main() {
         journey_e_collection_depth: passed ? "passed_web_supported_surfaces_only" : "failed",
       },
       route_results: routeResults,
-      message_composer_results: messageComposerResults,
+      message_context_results: messageContextResults,
       blocked_non_read_requests: blockedRequests,
       database_assertions: databaseAssertions,
       database_reconciliation: {
