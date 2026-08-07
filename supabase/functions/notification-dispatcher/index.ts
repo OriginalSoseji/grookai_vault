@@ -782,9 +782,27 @@ async function dispatchOne(
   const failures: FcmResult[] = [];
   let hasDeferredFallback = false;
   try {
-    await rpc(sb, "notification_dispatcher_mark_send_started_v1", {
-      p_outbox_id: row.id,
-    }, rowSignal);
+    const sendStarted = await rpc(
+      sb,
+      "notification_dispatcher_mark_send_started_if_current_v1",
+      {
+        p_outbox_id: row.id,
+      },
+      rowSignal,
+    );
+    if (sendStarted !== true) {
+      if (!isOperationsAlert) {
+        await rpc(sb, "notification_dispatcher_release_budget_v1", {
+          p_user_id: row.recipient_user_id,
+          p_budget_date: budgetDate,
+        }, invocationSignal).catch(() => null);
+      }
+      return {
+        id: row.id,
+        status: "skipped",
+        reason: "current_evidence_invalidated",
+      };
+    }
 
     const mock = shouldUseMockFcm(requestBody);
     const availableTokens = tokens as DeviceToken[];

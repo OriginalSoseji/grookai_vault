@@ -79,7 +79,7 @@ test("E3 dispatcher formats want-match notifications and reschedules digest budg
   assert.match(dispatcher, /reason === "daily_budget_exhausted"/);
 });
 
-test("E3 local smoke has delivery gates for instant, digest, owner-zero, and reschedule", () => {
+test("E3 local smoke proves instant delivery and the E4 digest cutover", () => {
   const script = readSource("scripts/audits/e3_want_match_local_fixture_smoke_v1.mjs");
 
   assert.match(script, /--include-delivery/);
@@ -87,6 +87,7 @@ test("E3 local smoke has delivery gates for instant, digest, owner-zero, and res
   assert.match(script, /instant_enqueue_second/);
   assert.match(script, /owner_outbox_rows/);
   assert.match(script, /enqueue_want_match_digest_notifications_v1/);
-  assert.match(script, /notification_dispatcher_reschedule_digest_fold_v1/);
+  assert.match(script, /legacy_digest_cutover/);
+  assert.match(script, /run_pulse_daily_aggregation_v1/);
   assert.match(script, /delivery_failures/);
 });

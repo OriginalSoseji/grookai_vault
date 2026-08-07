@@ -53,6 +53,51 @@ test("turning off or deleting a want stales matches without deleting history", (
   assert.doesNotMatch(sql, /delete from public\.card_events/i);
 });
 
+test("every active match activation serializes against the exact current intent", () => {
+  const sql = readSource(migrationPath);
+
+  assert.match(sql, /create or replace function public\.enforce_current_want_match_activation_v1/i);
+  assert.match(sql, /from public\.user_card_intents uci[\s\S]*for update/i);
+  assert.match(sql, /after insert or update of status on public\.want_matches/i);
+  assert.match(sql, /activation_without_current_want/i);
+  assert.match(sql, /set status = 'stale'/i);
+});
+
+test("opt-out terminally cancels queued Want Match delivery", () => {
+  const sql = readSource(migrationPath);
+
+  assert.match(
+    sql,
+    /update public\.notification_outbox outbox[\s\S]*cancelled_current_want_removed/i,
+  );
+  assert.match(sql, /outbox\.send_started_at is null/i);
+  assert.match(sql, /outbox\.event_type = 'want_match_available'/i);
+  assert.match(sql, /'want_match_digest'::text, 'pulse_daily'::text/i);
+  assert.match(sql, /failed_at = now\(\)/i);
+});
+
+test("dispatcher claim and send-start both recheck current evidence", () => {
+  const sql = readSource(migrationPath);
+  const worker = readSource("supabase/functions/notification-dispatcher/index.ts");
+
+  assert.match(sql, /create or replace function public\.notification_outbox_has_current_want_truth_v1/i);
+  assert.match(
+    sql,
+    /create or replace function public\.notification_dispatcher_claim_batch_v1[\s\S]*notification_outbox_has_current_want_truth_v1/i,
+  );
+  assert.match(
+    sql,
+    /create or replace function public\.notification_dispatcher_mark_send_started_if_current_v1[\s\S]*same intent -> outbox lock order[\s\S]*from public\.user_card_intents[\s\S]*for update[\s\S]*from public\.notification_outbox[\s\S]*for update[\s\S]*notification_outbox_has_current_want_truth_v1/i,
+  );
+  assert.match(sql, /v_outbox\.send_started_at is not null then[\s\S]*return false/i);
+  assert.match(
+    worker,
+    /notification_dispatcher_mark_send_started_if_current_v1/,
+  );
+  assert.match(worker, /sendStarted !== true/);
+  assert.match(worker, /current_evidence_invalidated/);
+});
+
 test("Pulse eligibility rejects inactive or unsupported Want Match events", () => {
   const sql = readSource(migrationPath);
 
@@ -95,8 +140,11 @@ test("rollback-only E3 smoke covers opt-out hiding and deterministic reactivatio
   assert.match(script, /statusAfterWantOff/);
   assert.match(script, /candidatesAfterWantOff/);
   assert.match(script, /pulseAfterWantOff/);
+  assert.match(script, /invalidatedSendStart/);
   assert.match(script, /reactivationRun/);
   assert.match(script, /pulseAfterReactivation/);
+  assert.match(script, /validSendStart/);
+  assert.match(script, /duplicateSendStart/);
   assert.match(script, /rollback_only: true/);
 });
 

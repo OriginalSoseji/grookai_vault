@@ -1,36 +1,51 @@
 {
   "schema_version": "WANT_MATCH_CURRENT_WANT_LOCAL_VERIFICATION_V1",
-  "verified_at": "2026-08-07T04:29:00Z",
+  "verified_at": "2026-08-07T05:23:30Z",
   "branch": "release/want-match-truth-boundary-v1",
   "source_candidate_sha": "33d7ff50bda428439c664c7c6db427b7a66abd9a",
   "migration": {
     "version": "20260807043000",
     "path": "supabase/migrations/20260807043000_want_match_current_want_truth_boundary_v1.sql",
-    "sha256": "f578b0c4daa8f5da46a1b7e455591943fe19d2a01259c0d336786e5cb8b229da",
+    "sha256": "279ff56334079fc8858faba53eafa6d98162c7bcecc30f08f23e59c1cdf19959",
+    "full_local_history_replay": "PASS",
     "local_history_present": true
   },
   "schema_readback": {
-    "expected_function_count": 6,
-    "actual_function_count": 6,
+    "expected_function_count": 10,
+    "actual_function_count": 10,
     "functions": [
       "binder_pulse_base_eligible_events_for_viewer_v1",
+      "enforce_current_want_match_activation_v1",
       "legacy_binder_pulse_base_eligible_events_v1",
       "legacy_local_community_visible_source_cards_v1",
       "local_community_visible_source_cards_v1",
+      "notification_dispatcher_claim_batch_v1",
+      "notification_dispatcher_mark_send_started_if_current_v1",
+      "notification_outbox_has_current_want_truth_v1",
       "stale_want_matches_when_intent_removed_v1",
       "viewer_has_current_card_want_v1"
     ],
-    "trigger": {
-      "name": "trg_stale_want_matches_when_intent_removed_v1",
-      "enabled": true
-    },
+    "triggers": [
+      {
+        "name": "trg_stale_want_matches_when_intent_removed_v1",
+        "table": "user_card_intents",
+        "enabled": true
+      },
+      {
+        "name": "trg_enforce_current_want_match_activation_v1",
+        "table": "want_matches",
+        "enabled": true
+      }
+    ],
     "cron": {
       "name": "grookai-want-match-stale-cleanup-v1",
       "schedule": "*/15 * * * *",
-      "active": true
+      "migration_contract_present": true,
+      "local_runtime_readback": "UNAVAILABLE_PG_CRON_NOT_INSTALLED",
+      "production_readback_required": true
     },
     "security_readback": {
-      "security_definer_function_count": 6,
+      "security_definer_function_count": 10,
       "execute_grantees": [
         "postgres",
         "service_role"
@@ -38,29 +53,45 @@
       "anon_execute_grants": 0,
       "authenticated_execute_grants": 0
     },
-    "active_without_current_exact_want": 0
+    "active_without_current_exact_want": 0,
+    "deliverable_without_current_evidence": 0
   },
   "verification": {
     "targeted_contracts": {
-      "passed": 9,
+      "passed": 19,
       "failed": 0
     },
     "full_contract_suite": {
-      "passed": 1544,
+      "passed": 1547,
       "failed": 0
     },
-    "e3_rollback_only_smoke": {
+    "e3_engine_rollback_only_smoke": {
       "status": "PASS",
       "pulse_before_want_off": 1,
       "status_after_want_off": "stale",
+      "queued_alert_after_want_off": "cancelled_current_want_removed",
+      "queued_alert_claimed_after_want_off": 0,
+      "invalidated_send_started": false,
+      "unsupported_reactivation_status": "stale",
       "pulse_after_want_off": 0,
       "status_after_reactivation": "active",
       "pulse_after_reactivation": 1,
+      "valid_send_started": true,
+      "duplicate_send_started": false,
       "duplicate_match_rows": 0,
-      "notification_outbox_rows": 0,
+      "historical_event_rows_retained": 2,
       "rollback_only": true
     },
-    "e4_rollback_only_smoke": {
+    "e3_delivery_rollback_only_smoke": {
+      "status": "PASS",
+      "instant_rows": 1,
+      "duplicate_instant_rows": 0,
+      "owner_alert_rows": 0,
+      "standalone_digest_rows_after_e4_cutover": 0,
+      "pulse_dry_run_candidates": 1,
+      "rollback_only": true
+    },
+    "e4_read_rollback_only_smoke": {
       "status": "PASS",
       "muted_event_visible": false,
       "private_event_visible": false,
@@ -68,6 +99,16 @@
       "unread_before": 3,
       "unread_after": 0,
       "backwards_mark_seen_rejected": true,
+      "rollback_only": true
+    },
+    "e4_daily_rollback_only_smoke": {
+      "status": "PASS",
+      "pulse_rows": 1,
+      "pulse_item_count": 2,
+      "want_match_count": 1,
+      "current_evidence_before_opt_out": true,
+      "status_after_opt_out": "cancelled_current_want_removed",
+      "claimed_after_opt_out": 0,
       "rollback_only": true
     },
     "git_diff_check": "PASS",

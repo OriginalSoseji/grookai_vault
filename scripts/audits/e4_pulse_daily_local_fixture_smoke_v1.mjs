@@ -142,6 +142,19 @@ async function seedFixture(client) {
 
   await client.query(
     `
+      insert into public.user_card_intents (
+        user_id, card_print_id, want, trade, sell, showcase, is_public, metadata
+      )
+      values ($1, $2, true, false, false, false, false, '{}'::jsonb)
+      on conflict (user_id, card_print_id) do update
+      set want = true,
+          updated_at = now()
+    `,
+    [FIXTURE.viewerUserId, FIXTURE.digestCardId],
+  );
+
+  await client.query(
+    `
       insert into public.want_matches (
         id, want_user_id, owner_user_id, card_print_id,
         distance_bucket, locality_label, relationship_context, intent,
@@ -253,6 +266,22 @@ async function main() {
     summary.undelivered_legacy_digest_rows = undeliveredLegacy.rows[0].count;
 
     const pulseOutboxId = pulseRows.rows[0]?.id;
+    const pulseEvidenceBeforeOptOut = await client.query(
+      `
+        select public.notification_outbox_has_current_want_truth_v1(
+          event_type,
+          recipient_user_id,
+          card_print_id,
+          payload
+        ) as supported
+        from public.notification_outbox
+        where id = $1
+      `,
+      [pulseOutboxId],
+    );
+    summary.pulse_daily_evidence_before_opt_out =
+      pulseEvidenceBeforeOptOut.rows[0]?.supported ?? false;
+
     await client.query(
       "select public.notification_dispatcher_reschedule_digest_fold_v1($1, 'daily_budget_exhausted', '2026-07-09 09:00:00+00'::timestamptz)",
       [pulseOutboxId],
@@ -273,6 +302,33 @@ async function main() {
       reschedule_reason: rescheduled.rows[0].payload.reschedule_reason,
     };
 
+    await client.query(
+      `
+        update public.user_card_intents
+        set want = false,
+            updated_at = now()
+        where user_id = $1
+          and card_print_id = $2
+      `,
+      [FIXTURE.viewerUserId, FIXTURE.digestCardId],
+    );
+    const pulseAfterOptOut = await client.query(
+      `
+        select failed_at is not null as failed,
+               failure_reason,
+               send_started_at is not null as send_started
+        from public.notification_outbox
+        where id = $1
+      `,
+      [pulseOutboxId],
+    );
+    const claimedAfterOptOut = await client.query(
+      'select id from public.notification_dispatcher_claim_batch_v1($1) where id = $2',
+      [100, pulseOutboxId],
+    );
+    summary.pulse_daily_after_opt_out = pulseAfterOptOut.rows[0] ?? null;
+    summary.pulse_daily_claimed_after_opt_out = claimedAfterOptOut.rows.length;
+
     if (summary.cutover_digest_enqueue_returned_rows !== 0) {
       throw new Error('legacy digest enqueue returned rows after cutover');
     }
@@ -287,6 +343,10 @@ async function main() {
 
     if (!summary.pulse_daily_rows[0].counts_by_type?.want_match) {
       throw new Error('digest-tier want match was not folded into pulse_daily payload');
+    }
+
+    if (summary.pulse_daily_evidence_before_opt_out !== true) {
+      throw new Error('current digest-tier want evidence did not authorize pulse_daily delivery');
     }
 
     if (summary.zero_user_pulse_daily_rows !== 0) {
@@ -306,6 +366,13 @@ async function main() {
         summary.pulse_daily_after_budget_fold.failure_reason !== 'daily_budget_exhausted_rescheduled' ||
         summary.pulse_daily_after_budget_fold.reschedule_reason !== 'daily_budget_exhausted') {
       throw new Error('pulse_daily budget fold did not reschedule cleanly');
+    }
+
+    if (summary.pulse_daily_after_opt_out?.failed !== true ||
+        summary.pulse_daily_after_opt_out?.send_started !== false ||
+        summary.pulse_daily_after_opt_out?.failure_reason !== 'cancelled_current_want_removed' ||
+        summary.pulse_daily_claimed_after_opt_out !== 0) {
+      throw new Error('pulse_daily row remained deliverable after the exact want was removed');
     }
 
     await client.query('rollback');
