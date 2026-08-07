@@ -26,6 +26,7 @@ The product-convergence implementation is merged, the isolated release tree pass
 - TestFlight build `283` and the latest owner acceptance gate were completed outside this ledger and must be linked by the final-candidate evidence package before closeout.
 - Want Match current-intent repair `20260807043000` is merged and applied. Production retains both historical rows/events while reporting zero active/current-want mismatches, zero invalid deliverable notifications, and zero stale Want Match Pulse visibility. Dispatcher version 14 carries the final pre-FCM evidence gate, and Android build 284 cold-launch verification passed.
 - Physical-Samsung signed-out card exploration, exact-card detail, action-specific login continuation, exact pending-action resume, test-copy cleanup, authenticated shell return, custom-scheme card routing, and bottom-safe-area behavior pass against source commit `ff45bc07c7518daf369970bc7834aacfb2b4849f`.
+- Physical-Samsung root-swap repair proof confirms the pending exact-card action survives authentication root replacement and executes once against repair commit `21add8fb8b62808124b57329a28ec922d84a0902`; the disposable copy reconciled to zero and the full shipcheck passed with `577/577` Flutter tests.
 - The dedicated-account Android Want Match journey passed every product and database confirmation. Its preserved raw report remains failed only because it was evaluated by an iPhone/TestFlight policy.
 
 ## Remaining Gates

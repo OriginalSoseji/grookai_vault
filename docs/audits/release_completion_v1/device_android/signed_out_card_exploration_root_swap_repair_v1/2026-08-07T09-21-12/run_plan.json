@@ -1,0 +1,33 @@
+{
+  "audit_version": "SIGNED_OUT_CARD_AUTH_ROOT_SWAP_REPAIR_ANDROID_V1",
+  "source_commit_sha": "21add8fb8b62808124b57329a28ec922d84a0902",
+  "source_base_commit_sha": "d398b8a416603f616ffa988470096ee55af237c0",
+  "branch": "release/final-journey-proof-v1",
+  "device": {
+    "platform": "Android",
+    "model_family": "Samsung Galaxy S22 Ultra",
+    "physical_device": true,
+    "application_id": "com.grookai.vault",
+    "build_mode": "debug",
+    "backend": "production Supabase"
+  },
+  "exact_card": {
+    "gv_id": "GV-PK-MEW-025",
+    "name": "Pikachu",
+    "set": "151",
+    "number": "025/165",
+    "finish": "Normal"
+  },
+  "repair_scope": [
+    "preserve exact pending card action across authentication root replacement",
+    "use origin-safe Google OAuth continuation on web",
+    "remove stale pushed sign-in routes after authentication"
+  ],
+  "boundaries": {
+    "locked_acceptance_application_id": "com.grookai.vault.lockedacceptance",
+    "locked_acceptance_package_mutated": false,
+    "test_account_only": true,
+    "disposable_copy_cleanup_required": true,
+    "credentials_in_artifacts": false
+  }
+}

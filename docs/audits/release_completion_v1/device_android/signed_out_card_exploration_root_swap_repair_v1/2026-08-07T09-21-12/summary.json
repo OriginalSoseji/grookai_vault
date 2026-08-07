@@ -1,0 +1,43 @@
+{
+  "audit_version": "SIGNED_OUT_CARD_AUTH_ROOT_SWAP_REPAIR_ANDROID_V1",
+  "status": "pass",
+  "completion_allowed": false,
+  "source_commit_sha": "21add8fb8b62808124b57329a28ec922d84a0902",
+  "branch": "release/final-journey-proof-v1",
+  "results": {
+    "signed_out_exact_card_link_loaded": true,
+    "exact_printing_visible_before_authentication": true,
+    "add_to_vault_staged_before_authentication": true,
+    "named_authentication_continuation_visible": true,
+    "authentication_root_replacement_completed": true,
+    "same_exact_card_reopened_after_authentication": true,
+    "pending_add_action_completed_once": true,
+    "disposable_copy_removed": true,
+    "test_account_signed_out_after_cleanup": true,
+    "locked_acceptance_package_mutated": false
+  },
+  "review_repairs": {
+    "pending_action_root_swap": "physically_proven",
+    "web_oauth_origin_redirect": "contract_and_full_build_proven",
+    "stale_pushed_login_route": "contract_and_navigation_policy_proven"
+  },
+  "verification": {
+    "physical_android": "passed",
+    "full_repository_shipcheck": "passed",
+    "flutter_tests": "577/577 passed",
+    "flutter_analyzer": "passed",
+    "node_contracts": "passed",
+    "strict_web_typecheck_lint_build": "passed",
+    "git_diff_check": "passed"
+  },
+  "mutation_reconciliation": {
+    "created_disposable_copy_count": 1,
+    "removed_disposable_copy_count": 1,
+    "net_disposable_copy_count": 0
+  },
+  "remaining_external_gates": [
+    "Repeat final-candidate journey on physical iPhone/TestFlight.",
+    "Establish Android verified HTTPS App Links from the authoritative release signing certificate.",
+    "Complete final-candidate operations/distribution proof and the non-backdated 72-hour soak."
+  ]
+}
