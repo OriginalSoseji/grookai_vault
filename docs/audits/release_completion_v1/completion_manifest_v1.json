@@ -55,11 +55,12 @@
       "status": "partial",
       "evidence": [
         "docs/checkpoints/product/RELEASE_READINESS_AUDIT_20260731_V2.md",
-        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md"
+        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Fresh-user ten-second comprehension result",
-        "Signed-out card exploration and login-continuation proof on web and mobile"
+        "Signed-out card exploration and login-continuation proof on the final iPhone and Android candidates"
       ]
     },
     {
@@ -112,10 +113,11 @@
       "status": "partial",
       "evidence": [
         "docs/audits/release_convergence_v1/RELEASE_VISUAL_COMPLETION_REPORT_V1.md",
-        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md"
+        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Production proof for Scan, Wall, Vault, pricing, and personal-action previews plus preserved login destination"
+        "Final-candidate iPhone and Android proof for supported signed-out locked features and preserved login destinations"
       ]
     },
     {
@@ -125,7 +127,8 @@
         "docs/audits/mobile_web_native_parity_v1/route_state_matrix.json",
         "docs/audits/release_convergence_v1/FINAL_DEVICE_AND_REPOSITORY_VERIFICATION_20260806_V1.md",
         "docs/audits/release_completion_v1/device_android/PRE_CANDIDATE_ANDROID_SMOKE_20260806_V1.md",
-        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md"
+        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate desktop, narrow-web, iPhone, and Android execution of required loading, empty, error, offline, private, and signed-out states"

@@ -1,0 +1,84 @@
+{
+  "audit_version": "RELEASE_SIGNED_OUT_WEB_JOURNEYS_V2",
+  "created_at": "2026-08-07T07:51:34.487Z",
+  "origin": "https://grookaivault.com",
+  "deployment_sha": "f909baadd2502c05dfcd26675d096a2ab079e5c7",
+  "verifier_sha": "6a56846aab20ff1c79f18af72590a9e186d3c090",
+  "deployment_id": "5790116963",
+  "deployment_url": "https://grookai-vault-i7mxkuk0z-sosejis-projects.vercel.app",
+  "viewports": [
+    {
+      "name": "narrow",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "routes": [
+    {
+      "name": "home",
+      "path": "/",
+      "expected_final_path": "/"
+    },
+    {
+      "name": "card",
+      "path": "/card/GV-PK-AR-71",
+      "expected_final_path": "/card/GV-PK-AR-71"
+    },
+    {
+      "name": "network",
+      "path": "/network",
+      "expected_final_path": "/network"
+    },
+    {
+      "name": "scan",
+      "path": "/scan",
+      "expected_final_path": "/login?next=%2Fscan"
+    },
+    {
+      "name": "wall",
+      "path": "/wall",
+      "expected_final_path": "/login?next=%2Fwall"
+    },
+    {
+      "name": "vault",
+      "path": "/vault",
+      "expected_final_path": "/login?next=%2Fvault"
+    },
+    {
+      "name": "binders",
+      "path": "/binders",
+      "expected_final_path": "/login?next=%2Fbinders"
+    },
+    {
+      "name": "privacy",
+      "path": "/privacy",
+      "expected_final_path": "/privacy"
+    },
+    {
+      "name": "terms",
+      "path": "/legal",
+      "expected_final_path": "/legal"
+    },
+    {
+      "name": "support",
+      "path": "/support",
+      "expected_final_path": "/support"
+    },
+    {
+      "name": "account_deletion",
+      "path": "/account/delete",
+      "expected_final_path": "/account/delete"
+    }
+  ],
+  "boundaries": {
+    "isolated_cookie_free_contexts": true,
+    "authenticated_browser_state_accessed": false,
+    "database_writes": false,
+    "application_writes": false
+  }
+}
