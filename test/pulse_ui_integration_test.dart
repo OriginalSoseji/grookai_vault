@@ -94,4 +94,27 @@ void main() {
     expect(main, isNot(contains('Show feed debug overlay')));
     expect(networkScreen, isNot(contains('Refreshing feed')));
   });
+
+  test('Pulse failures never expose raw provider exceptions', () {
+    final networkScreen = File(
+      'lib/screens/network/network_screen.dart',
+    ).readAsStringSync();
+
+    expect(
+      networkScreen,
+      contains(
+        'Pulse is temporarily unavailable. Check your connection and try again.',
+      ),
+    );
+    expect(
+      networkScreen,
+      contains("debugPrint('[PULSE_E4] items_failed=\$error')"),
+    );
+    expect(
+      networkScreen,
+      isNot(
+        contains("_pulseError = error is Error ? error.toString() : '\$error'"),
+      ),
+    );
+  });
 }

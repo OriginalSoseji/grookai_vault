@@ -420,8 +420,10 @@ class NetworkScreenState extends State<NetworkScreen> {
       if (!mounted || resetGeneration != _resetGeneration) {
         return;
       }
+      debugPrint('[PULSE_E4] items_failed=$error');
       setState(() {
-        _pulseError = error is Error ? error.toString() : '$error';
+        _pulseError =
+            'Pulse is temporarily unavailable. Check your connection and try again.';
         _pulseLoading = false;
         _pulseLoadingOlder = false;
       });
