@@ -11,16 +11,56 @@
       "sha256": "5751223958bbcfd5c53ef1634f2d3eaee4e5f8ea208cfd834b739866c905e778"
     },
     {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_preflight_v2.json",
+      "sha256": "8d7a79ca0d6689e2313722d0293869bcd28be690fe5d89bca480c3f6029119a5"
+    },
+    {
       "path": "docs/audits/release_completion_v1/want_match_current_want_local_verification_v1.json",
       "sha256": "5cd44ac755d810c731c0d7e2abe370f092798de7e63318df5574c8c0121c8c15"
     },
     {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_apply_output_v1.txt",
+      "sha256": "07ef105bde60ec7ebcf18af98821c0378985c152fb17845328745e83d378252a"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
+      "sha256": "f0fb974f82636ce10a91122cdac6c6fd51a148e55ea5a101568eccd1135c02e8"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md",
+      "sha256": "61d5497bb8fe5057c120b9534a3deab1c2f4c06c6f51cc6247858f9eb7de518c"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_launch.png",
+      "sha256": "360391190ab3f4abc92d9370d5eeca4532f538a0892b583ef0ed8023c81b3638"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_after_back.png",
+      "sha256": "dab1da26c88d7ef1eed0e4a4b3a01ddf70e619037550c677a209384f2938e89b"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_cold_launch.png",
+      "sha256": "623135283b58b65d6c71a02b720ef3b9b7a4691522d670e5d609c883db701423"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_android/want_match_post_apply_older_pulse.png",
+      "sha256": "a1aaa809342bb3a417bde5f3bd044323542f0928170c4f1702ecc07a7b1709bc"
+    },
+    {
       "path": "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
-      "sha256": "1eef4d3a786d82a5f3e75fc1d909caabfd981743566300d8b8cc9e59be6d4292"
+      "sha256": "e7b177b0c9b719ba6ab04bbc322dca32cdb2e48a0dadd16cdbce25468bd44265"
     },
     {
       "path": "docs/checkpoints/product/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
-      "sha256": "53826de3e2b2ff0daece58443f1d90a448da7b09d88eb31cf000a4b9dae733fd"
+      "sha256": "d4ad733e415a7ebae671a342e7b05fa7c5a1bb54e74905df32ec56e393e71e61"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/completion_manifest_v1.json",
+      "sha256": "13804ddfc7851b890312a9d7ee9aad61b8e56e092b7bf8f698ffaed4b474ed26"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md",
+      "sha256": "f21fde1cf79204942916985432e274a8345abc7cb4d32aced1a220114211595c"
     }
   ]
 }

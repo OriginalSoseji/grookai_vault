@@ -1,0 +1,65 @@
+{
+  "schema_version": "WANT_MATCH_CURRENT_WANT_PRODUCTION_READBACK_V1",
+  "verified_at": "2026-08-07T05:45:32.880Z",
+  "source_main_sha": "5dfe6288dd449368f2c918cfb411602ef92d53ae",
+  "migration": {
+    "version": "20260807043000",
+    "history_present": true,
+    "statements_recorded": true
+  },
+  "counts": {
+    "total_match_rows": 2,
+    "active_match_rows": 0,
+    "stale_match_rows": 2,
+    "acted_match_rows": 0,
+    "want_match_event_rows": 2,
+    "active_without_current_exact_want": 0,
+    "deliverable_without_current_evidence": 0,
+    "stale_want_events_visible_in_pulse": 0
+  },
+  "schema_security": {
+    "expected_function_count": 10,
+    "actual_function_count": 10,
+    "security_definer_count": 10,
+    "anon_execute_count": 0,
+    "authenticated_execute_count": 0,
+    "service_role_execute_count": 10,
+    "functions": [
+      "binder_pulse_base_eligible_events_for_viewer_v1",
+      "enforce_current_want_match_activation_v1",
+      "legacy_binder_pulse_base_eligible_events_v1",
+      "legacy_local_community_visible_source_cards_v1",
+      "local_community_visible_source_cards_v1",
+      "notification_dispatcher_claim_batch_v1",
+      "notification_dispatcher_mark_send_started_if_current_v1",
+      "notification_outbox_has_current_want_truth_v1",
+      "stale_want_matches_when_intent_removed_v1",
+      "viewer_has_current_card_want_v1"
+    ],
+    "triggers": [
+      {
+        "name": "trg_enforce_current_want_match_activation_v1",
+        "table": "want_matches",
+        "enabled": true
+      },
+      {
+        "name": "trg_stale_want_matches_when_intent_removed_v1",
+        "table": "user_card_intents",
+        "enabled": true
+      }
+    ],
+    "cron": {
+      "jobname": "grookai-want-match-stale-cleanup-v1",
+      "schedule": "*/15 * * * *",
+      "active": true,
+      "command": "select count(*) from public.mark_stale_want_matches_v1(null, 1000);"
+    }
+  },
+  "boundaries": {
+    "historical_match_deletes": 0,
+    "historical_event_deletes": 0,
+    "canonical_identity_mutations": 0,
+    "vault_mutations": 0,
+    "pricing_mutations": 0
+  }
+}
