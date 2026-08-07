@@ -1,0 +1,2695 @@
+{
+  "audit_version": "RELEASE_SECURITY_ADVISOR_VIEWS_READBACK_V1",
+  "as_of": "2026-08-07T12:56:11.166Z",
+  "mode": "read_only_metadata",
+  "status": "needs_remediation",
+  "summary": {
+    "target_view_count": 5,
+    "found_view_count": 5,
+    "missing_view_count": 0,
+    "security_definer_view_count": 5,
+    "security_definer_function_without_fixed_path_count": 0
+  },
+  "missing_views": [],
+  "security_definer_views": [
+    "v_card_contact_targets_v1",
+    "v_card_stream_v1",
+    "v_section_cards_v1",
+    "v_vault_mobile_pricing_targets_v1",
+    "v_wall_cards_v1"
+  ],
+  "views": [
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_invoker=false"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+      "definition": " SELECT vii.id AS instance_id,\n    vii.legacy_vault_item_id AS vault_item_id,\n    vii.user_id AS owner_user_id,\n    pp.slug AS owner_slug,\n    pp.display_name AS owner_display_name,\n    COALESCE(vii.card_print_id, sc.card_print_id) AS card_print_id,\n    vii.intent,\n    vii.condition_label,\n    vii.is_graded,\n    vii.grade_company,\n    vii.grade_value,\n    vii.grade_label,\n    vii.created_at,\n    vii.card_printing_id\n   FROM vault_item_instances vii\n     LEFT JOIN slab_certs sc ON sc.id = vii.slab_cert_id\n     JOIN public_profiles pp ON pp.user_id = vii.user_id\n  WHERE vii.archived_at IS NULL AND vii.legacy_vault_item_id IS NOT NULL AND COALESCE(vii.card_print_id, sc.card_print_id) IS NOT NULL AND pp.public_profile_enabled = true AND pp.vault_sharing_enabled = true AND NOT trust_block_exists_for_current_viewer_v1(vii.user_id);"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "owner_name": "postgres",
+      "reloptions": [],
+      "acl": "{postgres=arwdDxtm/postgres,anon=arwdDxtm/postgres,authenticated=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+      "definition": " WITH discoverable_instances AS (\n         SELECT vii.id AS instance_id,\n            vii.legacy_vault_item_id AS vault_item_id,\n            vii.user_id AS owner_user_id,\n            pp.slug AS owner_slug,\n            pp.display_name AS owner_display_name,\n            COALESCE(vii.card_print_id, sc.card_print_id) AS card_print_id,\n            vii.intent,\n            vii.slab_cert_id,\n            vii.condition_label,\n            vii.is_graded,\n            vii.grade_company,\n            vii.grade_value,\n            vii.grade_label,\n            vii.created_at,\n            cp.gv_id,\n            cp.name,\n            cp.set_code,\n            s.name AS set_name,\n            cp.number,\n            NULLIF(btrim(COALESCE(\n                CASE\n                    WHEN vii.image_display_mode = 'uploaded'::text THEN vii.photo_url\n                    ELSE NULL::text\n                END,\n                CASE\n                    WHEN vii.image_display_mode = 'uploaded'::text THEN vii.image_url\n                    ELSE NULL::text\n                END, cp.image_url, cp.image_alt_url, cp.representative_image_url)), ''::text) AS image_url,\n            cp.representative_image_url,\n            cp.image_status,\n            cp.image_note,\n            NULLIF(btrim(COALESCE(\n                CASE\n                    WHEN vii.image_display_mode = 'uploaded'::text THEN vii.photo_url\n                    ELSE NULL::text\n                END,\n                CASE\n                    WHEN vii.image_display_mode = 'uploaded'::text THEN vii.image_url\n                    ELSE NULL::text\n                END, cp.image_url, cp.image_alt_url, cp.representative_image_url)), ''::text) AS display_image_url,\n                CASE\n                    WHEN vii.image_display_mode = 'uploaded'::text AND NULLIF(btrim(COALESCE(vii.photo_url, vii.image_url)), ''::text) IS NOT NULL THEN 'exact'::text\n                    WHEN NULLIF(btrim(COALESCE(cp.image_url, cp.image_alt_url)), ''::text) IS NOT NULL THEN 'exact'::text\n                    WHEN NULLIF(btrim(cp.representative_image_url), ''::text) IS NOT NULL THEN 'representative'::text\n                    ELSE 'missing'::text\n                END AS display_image_kind,\n            row_number() OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)) ORDER BY vii.created_at DESC, vii.id DESC) AS owner_card_rank,\n            count(*) OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)))::integer AS in_play_count,\n            sum(\n                CASE\n                    WHEN vii.intent = 'trade'::text THEN 1\n                    ELSE 0\n                END) OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)))::integer AS trade_count,\n            sum(\n                CASE\n                    WHEN vii.intent = 'sell'::text THEN 1\n                    ELSE 0\n                END) OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)))::integer AS sell_count,\n            sum(\n                CASE\n                    WHEN vii.intent = 'showcase'::text THEN 1\n                    ELSE 0\n                END) OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)))::integer AS showcase_count,\n            sum(\n                CASE\n                    WHEN vii.slab_cert_id IS NULL THEN 1\n                    ELSE 0\n                END) OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)))::integer AS raw_count,\n            sum(\n                CASE\n                    WHEN vii.slab_cert_id IS NOT NULL THEN 1\n                    ELSE 0\n                END) OVER (PARTITION BY vii.user_id, (COALESCE(vii.card_print_id, sc.card_print_id)))::integer AS slab_count\n           FROM vault_item_instances vii\n             LEFT JOIN slab_certs sc ON sc.id = vii.slab_cert_id\n             JOIN card_prints cp ON cp.id = COALESCE(vii.card_print_id, sc.card_print_id)\n             LEFT JOIN sets s ON s.id = cp.set_id\n             JOIN public_profiles pp ON pp.user_id = vii.user_id\n          WHERE vii.archived_at IS NULL AND vii.legacy_vault_item_id IS NOT NULL AND (vii.intent = ANY (ARRAY['trade'::text, 'sell'::text, 'showcase'::text])) AND pp.public_profile_enabled = true AND pp.vault_sharing_enabled = true\n        )\n SELECT vault_item_id,\n    owner_user_id,\n    owner_slug,\n    owner_display_name,\n    card_print_id,\n        CASE\n            WHEN trade_count > 0 AND sell_count = 0 AND showcase_count = 0 THEN 'trade'::text\n            WHEN sell_count > 0 AND trade_count = 0 AND showcase_count = 0 THEN 'sell'::text\n            WHEN showcase_count > 0 AND trade_count = 0 AND sell_count = 0 THEN 'showcase'::text\n            ELSE NULL::text\n        END AS intent,\n    in_play_count AS quantity,\n        CASE\n            WHEN in_play_count = 1 AND slab_count = 0 THEN condition_label\n            ELSE NULL::text\n        END AS condition_label,\n        CASE\n            WHEN in_play_count = 1 AND slab_count = 1 THEN true\n            ELSE false\n        END AS is_graded,\n        CASE\n            WHEN in_play_count = 1 AND slab_count = 1 THEN grade_company\n            ELSE NULL::text\n        END AS grade_company,\n        CASE\n            WHEN in_play_count = 1 AND slab_count = 1 THEN grade_value\n            ELSE NULL::text\n        END AS grade_value,\n        CASE\n            WHEN in_play_count = 1 AND slab_count = 1 THEN grade_label\n            ELSE NULL::text\n        END AS grade_label,\n    created_at,\n    gv_id,\n    name,\n    set_code,\n    set_name,\n    number,\n    image_url,\n    in_play_count,\n    trade_count,\n    sell_count,\n    showcase_count,\n    raw_count,\n    slab_count,\n    representative_image_url,\n    image_status,\n    image_note,\n    display_image_url,\n    display_image_kind\n   FROM discoverable_instances\n  WHERE owner_card_rank = 1\n  ORDER BY created_at DESC, vault_item_id DESC;"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "owner_name": "postgres",
+      "reloptions": [],
+      "acl": "{postgres=arwdDxtm/postgres,anon=arwdDxtm/postgres,authenticated=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+      "definition": " SELECT ws.id AS section_id,\n    ws.name AS section_name,\n    ws.\"position\" AS section_position,\n    vii.id AS instance_id,\n    vii.gv_vi_id,\n    vii.legacy_vault_item_id AS vault_item_id,\n    vii.user_id AS owner_user_id,\n    pp.slug AS owner_slug,\n    pp.display_name AS owner_display_name,\n    COALESCE(vii.card_print_id, slab.card_print_id) AS card_print_id,\n    vii.intent,\n    vii.slab_cert_id,\n    vii.condition_label,\n    vii.is_graded,\n    vii.grade_company,\n    vii.grade_value,\n    vii.grade_label,\n    wsm.created_at AS section_added_at,\n    vii.created_at AS instance_created_at,\n    cp.gv_id,\n    cp.name,\n    cp.set_code,\n    sets.name AS set_name,\n    cp.number,\n    NULLIF(btrim(COALESCE(\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.photo_url\n            ELSE NULL::text\n        END,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.image_url\n            ELSE NULL::text\n        END, cp.image_url, cp.image_alt_url, cp.representative_image_url)), ''::text) AS image_url,\n    cp.representative_image_url,\n    cp.image_status,\n    cp.image_note,\n    NULLIF(btrim(COALESCE(\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.photo_url\n            ELSE NULL::text\n        END,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.image_url\n            ELSE NULL::text\n        END, cp.image_url, cp.image_alt_url, cp.representative_image_url)), ''::text) AS display_image_url,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text AND NULLIF(btrim(COALESCE(vii.photo_url, vii.image_url)), ''::text) IS NOT NULL THEN 'exact'::text\n            WHEN NULLIF(btrim(COALESCE(cp.image_url, cp.image_alt_url)), ''::text) IS NOT NULL THEN 'exact'::text\n            WHEN NULLIF(btrim(cp.representative_image_url), ''::text) IS NOT NULL THEN 'representative'::text\n            ELSE 'missing'::text\n        END AS display_image_kind,\n    shared.public_note,\n    shared.price_display_mode,\n    shared.wall_category AS legacy_wall_category,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN NULLIF(btrim(vii.image_back_url), ''::text)\n            ELSE NULL::text\n        END AS image_back_url,\n    vii.image_display_mode,\n        CASE\n            WHEN vii.slab_cert_id IS NULL THEN vii.card_printing_id\n            ELSE NULL::uuid\n        END AS card_printing_id\n   FROM wall_sections ws\n     JOIN public_profiles pp ON pp.user_id = ws.user_id\n     JOIN wall_section_memberships wsm ON wsm.section_id = ws.id\n     JOIN vault_item_instances vii ON vii.id = wsm.vault_item_instance_id AND vii.user_id = ws.user_id AND vii.archived_at IS NULL\n     LEFT JOIN slab_certs slab ON slab.id = vii.slab_cert_id\n     JOIN card_prints cp ON cp.id = COALESCE(vii.card_print_id, slab.card_print_id)\n     LEFT JOIN sets ON sets.id = cp.set_id\n     LEFT JOIN shared_cards shared ON shared.user_id = ws.user_id AND shared.card_id = cp.id AND shared.is_shared = true\n  WHERE ws.is_active = true AND pp.public_profile_enabled = true AND pp.vault_sharing_enabled = true;"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_barrier=true",
+        "security_invoker=false"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,authenticated=r/postgres,service_role=r/postgres}",
+      "definition": " SELECT id AS instance_id,\n    card_print_id,\n    card_printing_id\n   FROM vault_item_instances vii\n  WHERE user_id = (( SELECT auth.uid() AS uid)) AND archived_at IS NULL AND slab_cert_id IS NULL AND card_print_id IS NOT NULL;"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "owner_name": "postgres",
+      "reloptions": [],
+      "acl": "{postgres=arwdDxtm/postgres,anon=arwdDxtm/postgres,authenticated=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+      "definition": " SELECT vii.id AS instance_id,\n    vii.gv_vi_id,\n    vii.legacy_vault_item_id AS vault_item_id,\n    vii.user_id AS owner_user_id,\n    pp.slug AS owner_slug,\n    pp.display_name AS owner_display_name,\n    COALESCE(vii.card_print_id, slab.card_print_id) AS card_print_id,\n    vii.intent,\n    vii.slab_cert_id,\n    vii.condition_label,\n    vii.is_graded,\n    vii.grade_company,\n    vii.grade_value,\n    vii.grade_label,\n    vii.created_at,\n    cp.gv_id,\n    cp.name,\n    cp.set_code,\n    sets.name AS set_name,\n    cp.number,\n    NULLIF(btrim(COALESCE(\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.photo_url\n            ELSE NULL::text\n        END,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.image_url\n            ELSE NULL::text\n        END, cp.image_url, cp.image_alt_url, cp.representative_image_url)), ''::text) AS image_url,\n    cp.representative_image_url,\n    cp.image_status,\n    cp.image_note,\n    NULLIF(btrim(COALESCE(\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.photo_url\n            ELSE NULL::text\n        END,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN vii.image_url\n            ELSE NULL::text\n        END, cp.image_url, cp.image_alt_url, cp.representative_image_url)), ''::text) AS display_image_url,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text AND NULLIF(btrim(COALESCE(vii.photo_url, vii.image_url)), ''::text) IS NOT NULL THEN 'exact'::text\n            WHEN NULLIF(btrim(COALESCE(cp.image_url, cp.image_alt_url)), ''::text) IS NOT NULL THEN 'exact'::text\n            WHEN NULLIF(btrim(cp.representative_image_url), ''::text) IS NOT NULL THEN 'representative'::text\n            ELSE 'missing'::text\n        END AS display_image_kind,\n    shared.public_note,\n    shared.price_display_mode,\n    shared.wall_category AS legacy_wall_category,\n        CASE\n            WHEN vii.image_display_mode = 'uploaded'::text THEN NULLIF(btrim(vii.image_back_url), ''::text)\n            ELSE NULL::text\n        END AS image_back_url,\n    vii.image_display_mode,\n        CASE\n            WHEN vii.slab_cert_id IS NULL THEN vii.card_printing_id\n            ELSE NULL::uuid\n        END AS card_printing_id\n   FROM vault_item_instances vii\n     LEFT JOIN slab_certs slab ON slab.id = vii.slab_cert_id\n     JOIN card_prints cp ON cp.id = COALESCE(vii.card_print_id, slab.card_print_id)\n     LEFT JOIN sets ON sets.id = cp.set_id\n     JOIN public_profiles pp ON pp.user_id = vii.user_id\n     LEFT JOIN shared_cards shared ON shared.user_id = vii.user_id AND shared.card_id = cp.id AND shared.is_shared = true\n  WHERE vii.archived_at IS NULL AND (vii.intent = ANY (ARRAY['trade'::text, 'sell'::text, 'showcase'::text])) AND pp.public_profile_enabled = true AND pp.vault_sharing_enabled = true;"
+    }
+  ],
+  "columns": [
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 1,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 2,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 3,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 4,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 5,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 6,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 7,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 8,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 9,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 10,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 11,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 12,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 13,
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 14,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 1,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 2,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 3,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 4,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 5,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 6,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 7,
+      "column_name": "quantity",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 8,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 9,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 10,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 11,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 12,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 13,
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 14,
+      "column_name": "gv_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 15,
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 16,
+      "column_name": "set_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 17,
+      "column_name": "set_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 18,
+      "column_name": "number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 19,
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 20,
+      "column_name": "in_play_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 21,
+      "column_name": "trade_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 22,
+      "column_name": "sell_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 23,
+      "column_name": "showcase_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 24,
+      "column_name": "raw_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 25,
+      "column_name": "slab_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 26,
+      "column_name": "representative_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 27,
+      "column_name": "image_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 28,
+      "column_name": "image_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 29,
+      "column_name": "display_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 30,
+      "column_name": "display_image_kind",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 1,
+      "column_name": "section_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 2,
+      "column_name": "section_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 3,
+      "column_name": "section_position",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 4,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 5,
+      "column_name": "gv_vi_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 6,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 7,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 8,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 9,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 10,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 11,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 12,
+      "column_name": "slab_cert_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 13,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 14,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 15,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 16,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 17,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 18,
+      "column_name": "section_added_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 19,
+      "column_name": "instance_created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 20,
+      "column_name": "gv_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 21,
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 22,
+      "column_name": "set_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 23,
+      "column_name": "set_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 24,
+      "column_name": "number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 25,
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 26,
+      "column_name": "representative_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 27,
+      "column_name": "image_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 28,
+      "column_name": "image_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 29,
+      "column_name": "display_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 30,
+      "column_name": "display_image_kind",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 31,
+      "column_name": "public_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 32,
+      "column_name": "price_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 33,
+      "column_name": "legacy_wall_category",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 34,
+      "column_name": "image_back_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 35,
+      "column_name": "image_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 36,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "ordinal_position": 1,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "ordinal_position": 2,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "ordinal_position": 3,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 1,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 2,
+      "column_name": "gv_vi_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 3,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 4,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 5,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 6,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 7,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 8,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 9,
+      "column_name": "slab_cert_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 10,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 11,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 12,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 13,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 14,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 15,
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 16,
+      "column_name": "gv_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 17,
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 18,
+      "column_name": "set_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 19,
+      "column_name": "set_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 20,
+      "column_name": "number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 21,
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 22,
+      "column_name": "representative_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 23,
+      "column_name": "image_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 24,
+      "column_name": "image_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 25,
+      "column_name": "display_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 26,
+      "column_name": "display_image_kind",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 27,
+      "column_name": "public_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 28,
+      "column_name": "price_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 29,
+      "column_name": "legacy_wall_category",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 30,
+      "column_name": "image_back_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 31,
+      "column_name": "image_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 32,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    }
+  ],
+  "dependencies": [
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "dependency_schema": "public",
+      "dependency_name": "public_profiles",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "dependency_schema": "public",
+      "dependency_name": "slab_certs",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "dependency_schema": "public",
+      "dependency_name": "vault_item_instances",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "dependency_schema": "public",
+      "dependency_name": "card_prints",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "dependency_schema": "public",
+      "dependency_name": "public_profiles",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "dependency_schema": "public",
+      "dependency_name": "sets",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "dependency_schema": "public",
+      "dependency_name": "slab_certs",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "dependency_schema": "public",
+      "dependency_name": "vault_item_instances",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "card_prints",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "public_profiles",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "sets",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "shared_cards",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "slab_certs",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "vault_item_instances",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "wall_section_memberships",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "wall_sections",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "dependency_schema": "public",
+      "dependency_name": "vault_item_instances",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "card_prints",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "public_profiles",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "sets",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "shared_cards",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "slab_certs",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "dependency_schema": "public",
+      "dependency_name": "vault_item_instances",
+      "dependency_kind": "r",
+      "rls_enabled": true,
+      "rls_forced": false
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "public",
+      "tablename": "card_prints",
+      "policyname": "anon can read card_prints",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "card_prints",
+      "policyname": "card_prints_hide_explicitly_suppressed_v1",
+      "permissive": "RESTRICTIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "(COALESCE((data_quality_flags #>> '{app_visibility_v1,status}'::text[]), 'visible'::text) <> 'suppressed'::text)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "card_prints",
+      "policyname": "card_prints_read",
+      "permissive": "PERMISSIVE",
+      "roles": "{public}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "card_prints",
+      "policyname": "catalog readable 2",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "card_prints",
+      "policyname": "read_all_card_prints",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "card_prints",
+      "policyname": "refdata_read",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "public_profiles",
+      "policyname": "public_profiles_owner_delete",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "DELETE",
+      "qual": "(user_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "public_profiles",
+      "policyname": "public_profiles_owner_insert",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(user_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "public_profiles",
+      "policyname": "public_profiles_owner_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(user_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "public_profiles",
+      "policyname": "public_profiles_owner_update",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "(user_id = auth.uid())",
+      "with_check": "(user_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "public_profiles",
+      "policyname": "public_profiles_public_read_enabled",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "(public_profile_enabled = true)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "sets",
+      "policyname": "catalog readable",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "sets",
+      "policyname": "refdata_read",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "sets",
+      "policyname": "sets_public_read_anon",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "shared_cards",
+      "policyname": "shared_cards_owner_delete",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "DELETE",
+      "qual": "(user_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "shared_cards",
+      "policyname": "shared_cards_owner_insert",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(user_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "shared_cards",
+      "policyname": "shared_cards_owner_select",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(user_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "shared_cards",
+      "policyname": "shared_cards_owner_update",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "(user_id = auth.uid())",
+      "with_check": "(user_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "shared_cards",
+      "policyname": "shared_cards_public_read_enabled",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "((is_shared = true) AND (EXISTS ( SELECT 1\n   FROM public_profiles pp\n  WHERE ((pp.user_id = shared_cards.user_id) AND (pp.public_profile_enabled = true) AND (pp.vault_sharing_enabled = true)))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "slab_certs",
+      "policyname": "slab_certs public read",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "true",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "vault_item_instances",
+      "policyname": "vault_item_instances_owner_select_active_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()) AND (archived_at IS NULL))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "vault_item_instances",
+      "policyname": "vault_item_instances_owner_update_active_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()) AND (archived_at IS NULL))",
+      "with_check": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()))"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "vault_item_instances",
+      "policyname": "vault_item_instances_service_role_all_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{service_role}",
+      "cmd": "ALL",
+      "qual": "true",
+      "with_check": "true"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_section_memberships",
+      "policyname": "wall_section_memberships_owner_delete_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "DELETE",
+      "qual": "(EXISTS ( SELECT 1\n   FROM wall_sections ws\n  WHERE ((ws.id = wall_section_memberships.section_id) AND (ws.user_id = auth.uid()))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_section_memberships",
+      "policyname": "wall_section_memberships_owner_insert_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(EXISTS ( SELECT 1\n   FROM (wall_sections ws\n     JOIN vault_item_instances vii ON ((vii.id = wall_section_memberships.vault_item_instance_id)))\n  WHERE ((ws.id = wall_section_memberships.section_id) AND (ws.user_id = auth.uid()) AND (vii.user_id = auth.uid()) AND (vii.archived_at IS NULL))))"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_section_memberships",
+      "policyname": "wall_section_memberships_owner_select_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(EXISTS ( SELECT 1\n   FROM wall_sections ws\n  WHERE ((ws.id = wall_section_memberships.section_id) AND (ws.user_id = auth.uid()))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_section_memberships",
+      "policyname": "wall_section_memberships_owner_update_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "(EXISTS ( SELECT 1\n   FROM wall_sections ws\n  WHERE ((ws.id = wall_section_memberships.section_id) AND (ws.user_id = auth.uid()))))",
+      "with_check": "(EXISTS ( SELECT 1\n   FROM (wall_sections ws\n     JOIN vault_item_instances vii ON ((vii.id = wall_section_memberships.vault_item_instance_id)))\n  WHERE ((ws.id = wall_section_memberships.section_id) AND (ws.user_id = auth.uid()) AND (vii.user_id = auth.uid()) AND (vii.archived_at IS NULL))))"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_section_memberships",
+      "policyname": "wall_section_memberships_public_select_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "(EXISTS ( SELECT 1\n   FROM ((wall_sections ws\n     JOIN public_profiles pp ON ((pp.user_id = ws.user_id)))\n     JOIN vault_item_instances vii ON (((vii.id = wall_section_memberships.vault_item_instance_id) AND (vii.user_id = ws.user_id))))\n  WHERE ((ws.id = wall_section_memberships.section_id) AND (ws.is_active = true) AND (pp.public_profile_enabled = true) AND (pp.vault_sharing_enabled = true) AND (vii.archived_at IS NULL))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_section_memberships",
+      "policyname": "wall_section_memberships_service_role_all_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{service_role}",
+      "cmd": "ALL",
+      "qual": "true",
+      "with_check": "true"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_sections",
+      "policyname": "wall_sections_owner_delete_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "DELETE",
+      "qual": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_sections",
+      "policyname": "wall_sections_owner_insert_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()))"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_sections",
+      "policyname": "wall_sections_owner_select_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_sections",
+      "policyname": "wall_sections_owner_update_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()))",
+      "with_check": "((auth.uid() IS NOT NULL) AND (user_id = auth.uid()))"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_sections",
+      "policyname": "wall_sections_public_select_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "((is_active = true) AND (EXISTS ( SELECT 1\n   FROM public_profiles pp\n  WHERE ((pp.user_id = wall_sections.user_id) AND (pp.public_profile_enabled = true) AND (pp.vault_sharing_enabled = true)))))",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "wall_sections",
+      "policyname": "wall_sections_service_role_all_v1",
+      "permissive": "PERMISSIVE",
+      "roles": "{service_role}",
+      "cmd": "ALL",
+      "qual": "true",
+      "with_check": "true"
+    }
+  ],
+  "grants": [
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "card_prints",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "public_profiles",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "sets",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "shared_cards",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "slab_certs",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_vault_mobile_pricing_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_vault_mobile_pricing_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_section_memberships",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "wall_sections",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    }
+  ],
+  "security_definer_functions_without_fixed_path": [],
+  "boundaries": {
+    "database_writes": false,
+    "collector_rows_selected": false,
+    "credentials_emitted": false
+  }
+}

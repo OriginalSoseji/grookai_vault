@@ -1,0 +1,238 @@
+{
+  "audit_version": "SECURITY_ADVISOR_VIEW_AUTHORITY_ARTIFACT_HASHES_V1",
+  "generated_at": "2026-08-07T13:19:45.3656185Z",
+  "source_commit_sha": "a730b0cc245730055a48d3d359218c81d5256203",
+  "file_count": 46,
+  "files": [
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_db_push_dry_run_v1.txt",
+      "sha256": "e283e628cb372ee8527d95ecd745656c289f7f0a7d042dae2bfd639a5ad739e3",
+      "bytes": 477
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_guarded_dry_run_v1.json",
+      "sha256": "8708a3d157ad25ced3501ba8495de76bd513dd6367978d7910a57ed88d6e9480",
+      "bytes": 4773
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_guarded_dry_run_v1.json.sha256",
+      "sha256": "75dcbeecf1cad09f29367c34e342612b425c13dbe754919723b993e7172a20b5",
+      "bytes": 122
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/pulse.png",
+      "sha256": "7e5190a7945833a11f37f4e88eadff38f33bdd17964343183f7841129c98953e",
+      "bytes": 143799
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/pulse.xml",
+      "sha256": "c5e25228d36ae8735e385f670f5f5e4c4a313572ecd2f18bb52249be9a508ffc",
+      "bytes": 10056
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/REPORT.md",
+      "sha256": "4b8ac3763fec4574eb8023a382ae054213dd9218ad89099d57b4bff6d2b08e68",
+      "bytes": 1697
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/summary.json",
+      "sha256": "ab5cfe84b740b4e1a12a67e8942014415cd4b7dab6f2fbeae114b0a5877ba949",
+      "bytes": 1541
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/vault.png",
+      "sha256": "38fc9fcba1b7e649476e4e6b0421390ef2c2bbe459fa2da52664a4fec40856ef",
+      "bytes": 2204098
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/vault.xml",
+      "sha256": "72b97778b84efd4df21ba4ad17a9576a202248df5da593923adba2e281417c16",
+      "bytes": 18811
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/wall.png",
+      "sha256": "db47b11c025287eb62882f699f6cdbad290aa8d424b95858ea51fd8f270a75e3",
+      "bytes": 2405073
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/wall.xml",
+      "sha256": "1167ad237049772f32200117f6047639a2a167df365db6bc1042b0dd2cf3ae89",
+      "bytes": 17498
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/artifact_hashes.json",
+      "sha256": "9060e3094f873b2a8096ecc23176b7d3d8e9e4ac33f92a22f3a93e62055a47d0",
+      "bytes": 2491
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_account_deletion.png",
+      "sha256": "ee57113f2b50f31dc8962112de7f5803b6a2d44a1ea722c39492ee1a5ef09c9a",
+      "bytes": 103065
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_binders.png",
+      "sha256": "f3bcaea95f9499daf70749c211188d43039e3c1eaf5867b2c90afa4f6d2cf9ca",
+      "bytes": 39984
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_card_personal_action.png",
+      "sha256": "f49e67806800487e50f80194ccede4a26dbbcca8f88d251627a47bc72cb6130e",
+      "bytes": 41798
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_card.png",
+      "sha256": "739ff9e45a5b0eb033c9afeeb0f05073e9cb9b945f6d16fb8d7033336e46517e",
+      "bytes": 669075
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_home.png",
+      "sha256": "0984475c6b0f37dbe52e896e337334417abb9641084ba58576c6e3936406628f",
+      "bytes": 863698
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_network.png",
+      "sha256": "ba40bd03b6c03fca842ccd9927133963b5ca495da3a1301655720b43b371b9e9",
+      "bytes": 1086735
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_privacy.png",
+      "sha256": "b77b0182a619ce5533b04f61003eedc4c2224c839afc9f49463dd6525e501900",
+      "bytes": 109959
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_scan.png",
+      "sha256": "0e4a3e755b5206381b2d4e508189188476f6aa17f239b7cba6333f5eed8c5ca1",
+      "bytes": 39587
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_support.png",
+      "sha256": "18f0d6b3361b5bfcb7750ca2d0a7a4b804fac10165e1f6e5ce5eec9d21c66bd2",
+      "bytes": 58356
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_terms.png",
+      "sha256": "102982b4cd81d6408605e77125577b7aaf0df32aa0b5f97463e8ee70cd587707",
+      "bytes": 116157
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_vault.png",
+      "sha256": "8afb8f0f42400a8a7a3eb6bb8a12ac594586604b9d0147017397d2acf1f4ee2d",
+      "bytes": 40505
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/desktop_wall.png",
+      "sha256": "d65f8413bdce8766437083932429dd44b0aa2bfaf2f3f73cef2a7630d15bbca2",
+      "bytes": 40280
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_account_deletion.png",
+      "sha256": "5d737d12475b270078ce8db2097d728709fad19d62cef29b06c31558a99f1b66",
+      "bytes": 101475
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_binders.png",
+      "sha256": "f7eb73e474accd213906cd6fe4c7779c57f8631411f1edf328a60df5cf141bca",
+      "bytes": 35847
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_card_personal_action.png",
+      "sha256": "5fb9ffa556c922f84da54d6831b25c03a4b86b44aad6081e0de7c342321f6360",
+      "bytes": 40697
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_card.png",
+      "sha256": "1eb3b9a69b0e30acf3ef2dc9930e87736988094acd1ebb8df2d06ffb944b1948",
+      "bytes": 348392
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_home.png",
+      "sha256": "4e05eea121ecd9c727031243e76f251da5e6fcc52ea2ea6845f4d9bae249b5aa",
+      "bytes": 376286
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_network.png",
+      "sha256": "7dbed6da6093f2833e22a038bd5754cab40212966ac88fb5e58445cc8ee4df7a",
+      "bytes": 789269
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_privacy.png",
+      "sha256": "8a4b38285f6115568c0401b40eb670c7d873bfb6d14590cfc5010673e7caa2da",
+      "bytes": 106632
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_scan.png",
+      "sha256": "1b2479df776b4a2409e32a722b3b435b9bb65ae6556d8c00f6b966b9626e0aa6",
+      "bytes": 36844
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_support.png",
+      "sha256": "91fa7677ebcac557a2d688c157b1a4612c6213b1ddc42d104a82ad021ffcb7b7",
+      "bytes": 57987
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_terms.png",
+      "sha256": "58c34a0bacb52da1dc4d4cfca8ce0295d11dce3c695b5db703f84f5d9e9b0ca5",
+      "bytes": 116638
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_vault.png",
+      "sha256": "fc52031be1d3e4fee5d672ec207c494f9fd33b9281065fe8298aaec923a0b680",
+      "bytes": 37731
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/narrow_wall.png",
+      "sha256": "fd16bb071d28b3770bd61cd07f9f0ebb6eccb4620c91af0250b9453ce8c2fac8",
+      "bytes": 36252
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/REPORT.md",
+      "sha256": "ec01fc7479d48bdca13ebe49b04977d153664d2cb3b9cce033d521d0ef37e9f5",
+      "bytes": 2126
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/run_plan.json",
+      "sha256": "e116846efc6457e181c8c05c3d7452e438ad7ff6a6d0c105843421893005f2eb",
+      "bytes": 1952
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/summary.json",
+      "sha256": "bc1921080c0ffd4e91bf00c4087648efb69a22812d9a09656f1f244145b88ec4",
+      "bytes": 46221
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_production_apply_v1.txt",
+      "sha256": "7cf6fdf996f961c244e49e28d929f9e99417a54a23391186f75fb19572d193a8",
+      "bytes": 549
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_production_proof_v1.json",
+      "sha256": "215a6d81abb1c8bd747bdb7d80199c8b2ea1498a8af370199d927328272b7239",
+      "bytes": 5789
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_production_proof_v1.json.sha256",
+      "sha256": "a78b250e47929311ae7a4a9327e7f00d4e3913857ad663c1d8c5cae8466a0e55",
+      "bytes": 123
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_production_readback_v1.json",
+      "sha256": "a81c349a512d600fd5bf7c6e45bd09dd0942d6b58da5b58973c3be5948c606e6",
+      "bytes": 31810
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_view_authority_production_readback_v1.json.sha256",
+      "sha256": "8c9a23b0ce5693dc30c6fc35a78eb5086f59513382bcdd5979833a77351f7edb",
+      "bytes": 126
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_views_pre_apply_readback_v1.json",
+      "sha256": "c0e3a2efc06ef7879396ac225252be29fa2753067507bc1bfd65d4db28e957d6",
+      "bytes": 83829
+    },
+    {
+      "path": "docs/audits/release_completion_v1/security_advisor_views_pre_apply_readback_v1.json.sha256",
+      "sha256": "150a0221a7a8cc6f7d7c1a68930ad464ae95f341af947f27210e7f6ec7efcb3a",
+      "bytes": 116
+    }
+  ]
+}

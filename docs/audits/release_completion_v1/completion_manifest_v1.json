@@ -143,7 +143,13 @@
         "docs/audits/release_completion_v1/production_quarantine_resolution_apply_v1.json",
         "docs/audits/founder_ops_dashboard_v1/runtime_preflight_v1.json",
         "docs/audits/founder_ops_dashboard_v1/runtime_health_v1.json",
-        "docs/audits/founder_ops_dashboard_v1/quarantine_report_v1.json"
+        "docs/audits/founder_ops_dashboard_v1/quarantine_report_v1.json",
+        "docs/checkpoints/security/SECURITY_ADVISOR_VIEW_AUTHORITY_HARDENING_20260807_V1.md",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_guarded_dry_run_v1.json",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_production_proof_v1.json",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/REPORT.md",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/REPORT.md",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_artifact_hashes_v1.json"
       ],
       "required_next_evidence": [
         "Final-candidate RLS/privacy/account-deletion verification",

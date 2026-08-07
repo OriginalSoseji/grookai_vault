@@ -1,0 +1,10 @@
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20260807133000_security_advisor_view_authority_hardening_v1.sql
+
+ [Y/n] y
+Applying migration 20260807133000_security_advisor_view_authority_hardening_v1.sql...
+Finished supabase db push.
+A new version of Supabase CLI is available: v2.112.0 (currently installed v2.90.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli
