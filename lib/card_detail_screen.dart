@@ -26,6 +26,7 @@ import 'services/navigation/copy_detail_navigation_policy.dart';
 import 'services/navigation/pending_personal_card_action.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/card_journey_service.dart';
+import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_card_printing_options_service.dart';
@@ -187,6 +188,17 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       }
     } finally {
       PendingPersonalCardActionCoordinator.complete(request.id);
+      if (supabase.auth.currentUser != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (supabase.auth.currentUser != null) {
+            unawaited(
+              GrookaiPushNotificationService.instance.registerForCurrentUser(
+                reason: 'pending_personal_action_complete',
+              ),
+            );
+          }
+        });
+      }
     }
   }
 
@@ -1400,9 +1412,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         return;
       }
 
-      await navigator.pushReplacement(
-        MaterialPageRoute<void>(
-          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+      unawaited(
+        navigator.pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+          ),
         ),
       );
     } catch (error) {

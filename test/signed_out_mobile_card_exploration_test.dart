@@ -68,6 +68,26 @@ void main() {
         ),
       );
       expect(cardDetail, contains('initialPersonalAction'));
+      expect(
+        cardDetail,
+        contains("reason: 'pending_personal_action_complete'"),
+      );
+      expect(
+        cardDetail,
+        contains('WidgetsBinding.instance.addPostFrameCallback'),
+      );
+      expect(
+        cardDetail.indexOf(
+          'PendingPersonalCardActionCoordinator.complete(request.id)',
+        ),
+        lessThan(
+          cardDetail.indexOf("reason: 'pending_personal_action_complete'"),
+        ),
+      );
+      expect(
+        cardDetail,
+        contains('unawaited(\n        navigator.pushReplacement'),
+      );
       expect(cardDetail, contains('if (signedIn != true ||'));
       expect(
         cardDetail,
