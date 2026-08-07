@@ -152,7 +152,11 @@ class IosReleaseAutomation
     run(["ruby", "scripts/write_ios_xcode_secrets.rb"])
 
     puts "Building Flutter release app..."
-    run(["flutter", "build", "ios", "--release", "--no-pub"])
+    run([
+      "flutter", "build", "ios", "--release", "--no-pub",
+      "--build-name=#{build_marketing_version}",
+      "--build-number=#{build_number}"
+    ])
 
     FileUtils.mkdir_p(File.dirname(archive_path))
     puts "Archiving #{version_string}+#{build_number} to #{archive_path}..."
@@ -354,15 +358,28 @@ class IosReleaseAutomation
   end
 
   def archive_path
-    @config.fetch("archive_path")
+    first_env("ASC_ARCHIVE_PATH", "APP_STORE_CONNECT_ARCHIVE_PATH") ||
+      derived_build_path("archive", ".xcarchive") ||
+      @config.fetch("archive_path")
   end
 
   def export_path
-    @config.fetch("export_path")
+    first_env("ASC_EXPORT_PATH", "APP_STORE_CONNECT_EXPORT_PATH") ||
+      derived_build_path("export") ||
+      @config.fetch("export_path")
   end
 
   def export_options_plist
     @config.fetch("export_options_plist", "ios/ExportOptionsAppStore.plist")
+  end
+
+  def derived_build_path(kind, suffix = "")
+    return nil unless first_env("ASC_BUILD_NUMBER", "APP_STORE_CONNECT_BUILD_NUMBER")
+
+    File.join(
+      "build", "ios", kind,
+      "GrookaiVault-#{build_marketing_version}-#{build_number}#{suffix}"
+    )
   end
 
   def require_client!

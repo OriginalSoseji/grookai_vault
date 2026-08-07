@@ -21,6 +21,7 @@ export ASC_BUILD_NUMBER="<FINAL_CANDIDATE_BUILD_NUMBER>"
 
 The script will default to `~/.appstoreconnect/private_keys/AuthKey_<KEY_ID>.p8`. Use `ASC_KEY_PATH` if the file lives somewhere else.
 `ASC_BUILD_NUMBER` overrides the historical fallback in the checked-in metadata file so status and attachment commands target the immutable final candidate explicitly.
+Archive builds receive the same marketing version and build number, and build-number overrides derive matching archive and export directories. `ASC_ARCHIVE_PATH` and `ASC_EXPORT_PATH` may override those directories when an operator needs an explicit location.
 
 ## Reviewer Values
 

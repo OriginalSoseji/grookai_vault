@@ -63,6 +63,10 @@ test("App Store automation supports an explicit immutable build-number override"
 
   assert.match(automation, /ASC_BUILD_NUMBER/);
   assert.match(automation, /APP_STORE_CONNECT_BUILD_NUMBER/);
+  assert.match(automation, /--build-name=#\{build_marketing_version\}/);
+  assert.match(automation, /--build-number=#\{build_number\}/);
+  assert.match(automation, /derived_build_path\("archive", "\.xcarchive"\)/);
+  assert.match(automation, /derived_build_path\("export"\)/);
 });
 
 test("App Store status requests only supported app-info fields", () => {
