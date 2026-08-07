@@ -23,6 +23,7 @@ import {
 } from "@/components/network/ContactEligibilityProvider";
 
 type ContactOwnerButtonProps = {
+  vaultItemInstanceId: string;
   vaultItemId: string;
   cardPrintId: string;
   ownerUserId?: string | null;
@@ -96,6 +97,7 @@ function SubmitInteractionButton({ isSubmitting }: { isSubmitting: boolean }) {
 }
 
 export function ContactOwnerButton({
+  vaultItemInstanceId,
   vaultItemId,
   cardPrintId,
   ownerUserId = null,
@@ -369,6 +371,11 @@ export function ContactOwnerButton({
 
                 <form action={formAction} onSubmit={handleFormSubmit} className="mt-5 space-y-4">
                   <input type="hidden" name="vault_item_id" value={vaultItemId} />
+                  <input
+                    type="hidden"
+                    name="vault_item_instance_id"
+                    value={vaultItemInstanceId}
+                  />
                   <input type="hidden" name="card_print_id" value={cardPrintId} />
                   <input type="hidden" name="return_path" value={currentPath} />
 

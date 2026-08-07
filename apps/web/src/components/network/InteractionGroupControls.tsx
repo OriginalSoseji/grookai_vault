@@ -11,6 +11,7 @@ import TrustSafetyControls from "@/components/trust/TrustSafetyControls";
 
 type InteractionGroupControlsProps = {
   cardPrintId: string;
+  cardPrintingId: string | null;
   counterpartUserId: string;
   currentPath: string;
   hasUnread: boolean;
@@ -44,6 +45,7 @@ function ActionButton({
 
 export function InteractionGroupControls({
   cardPrintId,
+  cardPrintingId,
   counterpartUserId,
   currentPath,
   hasUnread,
@@ -51,7 +53,8 @@ export function InteractionGroupControls({
 }: InteractionGroupControlsProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [pendingAction, setPendingAction] = useState<CardInteractionGroupStateAction | null>(null);
+  const [pendingAction, setPendingAction] =
+    useState<CardInteractionGroupStateAction | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   if (conversationState !== "inbox") {
@@ -66,6 +69,7 @@ export function InteractionGroupControls({
       const result = await updateCardInteractionGroupStateAction({
         action,
         cardPrintId,
+        cardPrintingId,
         counterpartUserId,
         returnPath: currentPath,
       });
@@ -111,9 +115,12 @@ export function InteractionGroupControls({
         surfaceId={`${cardPrintId}:${counterpartUserId}`}
         returnPath={currentPath}
         cardPrintId={cardPrintId}
+        cardPrintingId={cardPrintingId}
         compact
       />
-      {errorMessage ? <p className="text-xs text-rose-700">{errorMessage}</p> : null}
+      {errorMessage ? (
+        <p className="text-xs text-rose-700">{errorMessage}</p>
+      ) : null}
     </div>
   );
 }

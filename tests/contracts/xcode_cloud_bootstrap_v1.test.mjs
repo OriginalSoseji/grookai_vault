@@ -52,6 +52,21 @@ test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
   assert.match(infoPlist, /FlutterSceneDelegate/);
 });
 
+test("iOS declares every release privacy purpose string required by linked frameworks", () => {
+  for (const key of [
+    "NSCameraUsageDescription",
+    "NSLocationWhenInUseUsageDescription",
+    "NSPhotoLibraryAddUsageDescription",
+    "NSPhotoLibraryUsageDescription",
+  ]) {
+    assert.match(infoPlist, new RegExp(`<key>${key}</key>\\s*<string>[^<]+</string>`));
+  }
+  assert.match(
+    infoPlist,
+    /Your precise location is not shown to other collectors\./,
+  );
+});
+
 test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /flutter pub get --enforce-lockfile/);
   assert.match(script, /phase=release-secrets/);

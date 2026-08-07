@@ -100,6 +100,7 @@ export async function reportTrustSafetySurfaceAction(args: {
 export async function blockTrustSafetyUserAction(args: {
   blockedUserId: string;
   cardPrintId?: string | null;
+  cardPrintingId?: string | null;
   returnPath?: string | null;
 }): Promise<TrustSafetyActionResult> {
   const client = await createServerComponentClient();
@@ -133,22 +134,35 @@ export async function blockTrustSafetyUserAction(args: {
   }
 
   const cardPrintId = normalizeOptionalText(args.cardPrintId);
-  if (cardPrintId) {
+  if (cardPrintId && Object.hasOwn(args, "cardPrintingId")) {
     const now = new Date().toISOString();
-    await client.from("card_interaction_group_states").upsert(
-      {
-        user_id: user.id,
-        card_print_id: cardPrintId,
-        counterpart_user_id: blockedUserId,
-        has_unread: false,
-        last_read_at: now,
-        latest_message_at: now,
-        archived_at: now,
-        closed_at: null,
-        updated_at: now,
-      },
-      { onConflict: "user_id,card_print_id,counterpart_user_id" },
-    );
+    const { error: stateError } = await client
+      .from("card_interaction_group_states")
+      .upsert(
+        {
+          user_id: user.id,
+          card_print_id: cardPrintId,
+          card_printing_id: normalizeOptionalText(args.cardPrintingId),
+          counterpart_user_id: blockedUserId,
+          has_unread: false,
+          last_read_at: now,
+          latest_message_at: now,
+          archived_at: now,
+          closed_at: null,
+          updated_at: now,
+        },
+        {
+          onConflict:
+            "user_id,card_print_id,card_printing_id,counterpart_user_id",
+        },
+      );
+    if (stateError) {
+      return {
+        ok: false,
+        message:
+          "Collector was blocked, but the conversation could not be archived.",
+      };
+    }
   }
 
   revalidateTrustSafetyPaths(normalizeOptionalText(args.returnPath));

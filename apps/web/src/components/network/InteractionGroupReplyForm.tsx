@@ -9,6 +9,7 @@ import { replyToCardInteractionGroupAction } from "@/lib/network/replyToCardInte
 type InteractionGroupReplyFormProps = {
   vaultItemId: string;
   cardPrintId: string;
+  cardPrintingId: string | null;
   counterpartUserId: string;
   counterpartDisplayName: string;
   currentPath: string;
@@ -51,12 +52,16 @@ function SubmitReplyButton({ isSubmitting }: { isSubmitting: boolean }) {
 export function InteractionGroupReplyForm({
   vaultItemId,
   cardPrintId,
+  cardPrintingId,
   counterpartUserId,
   counterpartDisplayName,
   currentPath,
 }: InteractionGroupReplyFormProps) {
   const router = useRouter();
-  const [state, formAction] = useFormState(replyToCardInteractionGroupAction, null);
+  const [state, formAction] = useFormState(
+    replyToCardInteractionGroupAction,
+    null,
+  );
   const [draft, setDraft] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const submissionLockRef = useRef(false);
@@ -90,11 +95,28 @@ export function InteractionGroupReplyForm({
     <div className="space-y-3 rounded-[1.1rem] border border-slate-300 bg-slate-50 px-4 py-4 shadow-sm">
       <p className="text-sm font-semibold text-slate-950">Reply</p>
 
-      <form action={formAction} onSubmit={handleFormSubmit} className="space-y-3">
+      <form
+        action={formAction}
+        onSubmit={handleFormSubmit}
+        className="space-y-3"
+      >
         <input type="hidden" name="vault_item_id" value={vaultItemId} />
         <input type="hidden" name="card_print_id" value={cardPrintId} />
-        <input type="hidden" name="counterpart_user_id" value={counterpartUserId} />
-        <input type="hidden" name="counterpart_display_name" value={counterpartDisplayName} />
+        <input
+          type="hidden"
+          name="card_printing_id"
+          value={cardPrintingId ?? ""}
+        />
+        <input
+          type="hidden"
+          name="counterpart_user_id"
+          value={counterpartUserId}
+        />
+        <input
+          type="hidden"
+          name="counterpart_display_name"
+          value={counterpartDisplayName}
+        />
         <input type="hidden" name="return_path" value={currentPath} />
 
         <label className="block space-y-2">
@@ -114,7 +136,9 @@ export function InteractionGroupReplyForm({
         {statusMessage ? (
           <p
             className={`text-sm ${
-              statusMessage.tone === "success" ? "text-emerald-700" : "text-rose-700"
+              statusMessage.tone === "success"
+                ? "text-emerald-700"
+                : "text-rose-700"
             }`}
           >
             {statusMessage.body}

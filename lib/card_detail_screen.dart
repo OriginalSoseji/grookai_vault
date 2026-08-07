@@ -50,6 +50,7 @@ class CardDetailScreen extends StatefulWidget {
   final String? fallbackImageUrl;
   final int? quantity;
   final String? condition;
+  final String? contactVaultItemInstanceId;
   final String? contactVaultItemId;
   final String? contactOwnerDisplayName;
   final String? contactOwnerUserId;
@@ -74,6 +75,7 @@ class CardDetailScreen extends StatefulWidget {
     this.fallbackImageUrl,
     this.quantity,
     this.condition,
+    this.contactVaultItemInstanceId,
     this.contactVaultItemId,
     this.contactOwnerDisplayName,
     this.contactOwnerUserId,
@@ -2325,6 +2327,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             children: [
               Expanded(
                 child: ContactOwnerButton(
+                  vaultItemInstanceId: _cleanText(
+                    widget.contactVaultItemInstanceId,
+                  ),
                   vaultItemId: _cleanText(widget.contactVaultItemId),
                   cardPrintId: widget.cardPrintId,
                   ownerUserId: widget.contactOwnerUserId,

@@ -2,7 +2,9 @@ import "server-only";
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 
 type CardInteractionInsert = {
+  vaultItemInstanceId: string | null;
   cardPrintId: string;
+  cardPrintingId: string | null;
   vaultItemId: string;
   senderUserId: string;
   receiverUserId: string;
@@ -26,16 +28,24 @@ type InsertCardInteractionResult = {
 const CONTACTABLE_INTENTS = new Set(["trade", "sell", "showcase"]);
 
 function isRowLevelSecurityError(error: PostgrestError | null) {
-  return error?.code === "42501" && /row-level security|row level security/i.test(error.message);
+  return (
+    error?.code === "42501" &&
+    /row-level security|row level security/i.test(error.message)
+  );
 }
 
 async function hasPublicTargetAuthorization(
   client: SupabaseClient,
   input: CardInteractionInsert,
 ) {
+  if (!input.vaultItemInstanceId) {
+    return false;
+  }
+
   const { data, error } = await client
     .from("v_card_contact_targets_v1")
-    .select("vault_item_id,owner_user_id,card_print_id,intent")
+    .select("instance_id,vault_item_id,owner_user_id,card_print_id,card_printing_id,intent")
+    .eq("instance_id", input.vaultItemInstanceId)
     .eq("vault_item_id", input.vaultItemId)
     .eq("owner_user_id", input.receiverUserId)
     .eq("card_print_id", input.cardPrintId)
@@ -45,11 +55,13 @@ async function hasPublicTargetAuthorization(
 
   return Boolean(
     !error &&
-      data?.vault_item_id === input.vaultItemId &&
-      data.owner_user_id === input.receiverUserId &&
-      data.card_print_id === input.cardPrintId &&
-      typeof data.intent === "string" &&
-      CONTACTABLE_INTENTS.has(data.intent),
+    data?.instance_id === input.vaultItemInstanceId &&
+    data.vault_item_id === input.vaultItemId &&
+    data.owner_user_id === input.receiverUserId &&
+    data.card_print_id === input.cardPrintId &&
+    (data.card_printing_id ?? null) === input.cardPrintingId &&
+    typeof data.intent === "string" &&
+    CONTACTABLE_INTENTS.has(data.intent),
   );
 }
 
@@ -61,14 +73,19 @@ async function hasExistingThreadAuthorization(
     `and(sender_user_id.eq.${input.senderUserId},receiver_user_id.eq.${input.receiverUserId})`,
     `and(sender_user_id.eq.${input.receiverUserId},receiver_user_id.eq.${input.senderUserId})`,
   ].join(",");
-  const { data, error } = await client
+  let query = client
     .from("card_interactions")
     .select("id")
     .eq("vault_item_id", input.vaultItemId)
     .eq("card_print_id", input.cardPrintId)
-    .or(participantFilter)
-    .limit(1)
-    .maybeSingle();
+    .or(participantFilter);
+  query = input.vaultItemInstanceId
+    ? query.eq("vault_item_instance_id", input.vaultItemInstanceId)
+    : query.is("vault_item_instance_id", null);
+  query = input.cardPrintingId
+    ? query.eq("card_printing_id", input.cardPrintingId)
+    : query.is("card_printing_id", null);
+  const { data, error } = await query.limit(1).maybeSingle();
 
   return Boolean(!error && data?.id);
 }
@@ -118,13 +135,19 @@ export async function insertCardInteraction({
   authorization: InteractionAuthorization;
 }): Promise<InsertCardInteractionResult> {
   const payload = {
+    vault_item_instance_id: input.vaultItemInstanceId,
     card_print_id: input.cardPrintId,
+    card_printing_id: input.cardPrintingId,
     vault_item_id: input.vaultItemId,
     sender_user_id: input.senderUserId,
     receiver_user_id: input.receiverUserId,
     message: input.message,
   };
-  const primary = await client.from("card_interactions").insert(payload).select("id").single();
+  const primary = await client
+    .from("card_interactions")
+    .insert(payload)
+    .select("id")
+    .single();
 
   if (!primary.error) {
     return {
@@ -142,7 +165,10 @@ export async function insertCardInteraction({
     authorization.kind === "public-target"
       ? await hasPublicTargetAuthorization(client, input)
       : await hasExistingThreadAuthorization(client, input);
-  if (!isAuthorized || (await isBlocked(client, input.senderUserId, input.receiverUserId))) {
+  if (
+    !isAuthorized ||
+    (await isBlocked(client, input.senderUserId, input.receiverUserId))
+  ) {
     return { data: null, error: primary.error, usedCanonicalFallback: false };
   }
 

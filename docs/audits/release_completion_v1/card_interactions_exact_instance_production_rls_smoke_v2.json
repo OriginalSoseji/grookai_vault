@@ -1,0 +1,27 @@
+{
+  "schema_version": "CARD_INTERACTIONS_EXACT_INSTANCE_PRODUCTION_RLS_SMOKE_V2",
+  "recorded_at": "2026-08-07T02:30Z",
+  "source_commit_sha": "7aaa5c44eabb61435813b45a03b18450bb89c1ce",
+  "migration_version": "20260807023000",
+  "transaction_mode": "ROLLBACK_ONLY",
+  "authenticated_boundary": {
+    "exact_instance_insert_accepted": true,
+    "exact_instance_preserved": true,
+    "exact_child_printing_preserved": true,
+    "old_client_null_instance_resolved": true,
+    "old_client_resolution_matched_exact_owner_instance": true,
+    "sibling_printing_rejected": true,
+    "sibling_printing_error_code": "23514"
+  },
+  "rollback_proof": {
+    "transaction_rolled_back": true,
+    "persisted_probe_rows": 0
+  },
+  "test_data_policy": {
+    "identifiers_recorded": false,
+    "messages_recorded": false,
+    "existing_rows_mutated": false,
+    "notifications_persisted": false,
+    "group_state_mutations_persisted": false
+  }
+}

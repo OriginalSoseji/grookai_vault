@@ -34,10 +34,17 @@ test("web trust safety actions expose report and block without bypassing auth", 
   assert.match(actions, /\.from\("trust_reports"\)\.insert/);
   assert.match(actions, /\.from\("trust_blocks"\)\.upsert/);
   assert.match(actions, /card_interaction_group_states/);
+  assert.match(actions, /card_printing_id: normalizeOptionalText\(args\.cardPrintingId\)/);
+  assert.match(
+    actions,
+    /user_id,card_print_id,card_printing_id,counterpart_user_id/,
+  );
+  assert.match(actions, /if \(stateError\)/);
   assert.match(controls, /Report/);
   assert.match(controls, /Block/);
   assert.match(inboxControls, /surface="message"/);
   assert.match(inboxControls, /reportedUserId=\{counterpartUserId\}/);
+  assert.match(inboxControls, /cardPrintingId=\{cardPrintingId\}/);
   assert.match(contactButton, /surface="listing"/);
   assert.match(contactButton, /reportedUserId=\{ownerUserId\}/);
 });

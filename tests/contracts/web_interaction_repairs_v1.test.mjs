@@ -95,7 +95,10 @@ test("message action sanitizes invalidation paths and reports a confirmed commit
   assert.match(action, /committedInteractionId = inserted\.id/);
   assert.match(action, /interaction_signal_written/);
   assert.match(action, /post-write verification failed after commit/);
-  assert.match(action, /return buildSuccessResult\(submissionKey, committedInteractionId, target\.owner_display_name\)/);
+  assert.match(
+    action,
+    /return buildSuccessResult\(\s*submissionKey,\s*committedInteractionId,\s*target\.owner_display_name,?\s*\)/s,
+  );
   assert.doesNotMatch(action, /revalidatePath\("\/", "layout"\)/);
 });
 
@@ -108,6 +111,11 @@ test("canonical interaction fallback is limited to RLS drift and re-proves autho
   assert.match(helper, /error\?\.code === "42501"/);
   assert.match(helper, /row-level security\|row level security/);
   assert.match(helper, /authorization\.kind === "public-target"/);
+  assert.match(helper, /\.eq\("instance_id", input\.vaultItemInstanceId\)/);
+  assert.match(
+    helper,
+    /vault_item_instance_id: input\.vaultItemInstanceId/,
+  );
   assert.match(helper, /hasExistingThreadAuthorization/);
   assert.match(helper, /CONTACTABLE_INTENTS\.has\(data\.intent\)/);
   assert.match(helper, /trust_block_exists_between_v1/);

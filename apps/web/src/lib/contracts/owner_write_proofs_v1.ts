@@ -80,6 +80,8 @@ type InteractionProofInput = {
   senderUserId?: string;
   receiverUserId?: string | null;
   vaultItemId?: string | null;
+  vaultItemInstanceId?: string | null;
+  cardPrintingId?: string | null;
   cardPrintId?: string | null;
   message?: string | null;
 };
@@ -475,7 +477,7 @@ export function createInteractionExistsProofV1<TResult>(
 
     const { data, error } = await context.adminClient
       .from("card_interactions")
-      .select("id,sender_user_id,receiver_user_id,vault_item_id,card_print_id,message")
+      .select("id,sender_user_id,receiver_user_id,vault_item_id,vault_item_instance_id,card_print_id,card_printing_id,message")
       .eq("id", input.interactionId)
       .maybeSingle();
 
@@ -502,6 +504,22 @@ export function createInteractionExistsProofV1<TResult>(
         normalizeOptionalText(data.vault_item_id) ===
           normalizeOptionalText(input.vaultItemId),
         "owner_write_proof_failed:interaction_vault_item_drift",
+      );
+    }
+
+    if (input.vaultItemInstanceId) {
+      ensure(
+        normalizeOptionalText(data.vault_item_instance_id) ===
+          normalizeOptionalText(input.vaultItemInstanceId),
+        "owner_write_proof_failed:interaction_vault_item_instance_drift",
+      );
+    }
+
+    if (Object.hasOwn(input, "cardPrintingId")) {
+      ensure(
+        normalizeNullableText(data.card_printing_id) ===
+          normalizeNullableText(input.cardPrintingId),
+        "owner_write_proof_failed:interaction_card_printing_drift",
       );
     }
 

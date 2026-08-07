@@ -11,6 +11,7 @@ enum ContactOwnerButtonVariant { filled, outlined, compact, pulseSecondary }
 
 typedef ContactOwnerSendMessage =
     Future<CardInteractionSendResult> Function({
+      String? vaultItemInstanceId,
       required String vaultItemId,
       required String cardPrintId,
       required String message,
@@ -29,6 +30,7 @@ typedef ContactOwnerOpenConversation =
 
 Future<void> showContactOwnerComposerSheet({
   required BuildContext context,
+  String? vaultItemInstanceId,
   required String vaultItemId,
   required String cardPrintId,
   required String ownerDisplayName,
@@ -44,6 +46,7 @@ Future<void> showContactOwnerComposerSheet({
     isScrollControlled: true,
     showDragHandle: true,
     builder: (sheetContext) => _ContactComposerSheet(
+      vaultItemInstanceId: vaultItemInstanceId,
       vaultItemId: vaultItemId,
       cardPrintId: cardPrintId,
       ownerDisplayName: ownerDisplayName,
@@ -60,6 +63,7 @@ Future<void> showContactOwnerComposerSheet({
 
 class ContactOwnerButton extends StatelessWidget {
   const ContactOwnerButton({
+    this.vaultItemInstanceId,
     required this.vaultItemId,
     required this.cardPrintId,
     required this.ownerDisplayName,
@@ -76,6 +80,7 @@ class ContactOwnerButton extends StatelessWidget {
     super.key,
   });
 
+  final String? vaultItemInstanceId;
   final String vaultItemId;
   final String cardPrintId;
   final String ownerDisplayName;
@@ -112,6 +117,7 @@ class ContactOwnerButton extends StatelessWidget {
     Future<void> onPressed() async {
       await showContactOwnerComposerSheet(
         context: context,
+        vaultItemInstanceId: vaultItemInstanceId,
         vaultItemId: vaultItemId,
         cardPrintId: cardPrintId,
         ownerDisplayName: ownerDisplayName,
@@ -187,6 +193,7 @@ class ContactOwnerButton extends StatelessWidget {
 
 class _ContactComposerSheet extends StatefulWidget {
   const _ContactComposerSheet({
+    this.vaultItemInstanceId,
     required this.vaultItemId,
     required this.cardPrintId,
     required this.ownerDisplayName,
@@ -199,6 +206,7 @@ class _ContactComposerSheet extends StatefulWidget {
     this.openConversationOverride,
   });
 
+  final String? vaultItemInstanceId;
   final String vaultItemId;
   final String cardPrintId;
   final String ownerDisplayName;
@@ -346,6 +354,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
     final override = widget.sendMessageOverride;
     if (override != null) {
       return override(
+        vaultItemInstanceId: widget.vaultItemInstanceId,
         vaultItemId: widget.vaultItemId,
         cardPrintId: widget.cardPrintId,
         message: message,
@@ -355,6 +364,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
     final client = Supabase.instance.client;
     return CardInteractionService.sendMessage(
       client: client,
+      vaultItemInstanceId: widget.vaultItemInstanceId,
       vaultItemId: widget.vaultItemId,
       cardPrintId: widget.cardPrintId,
       message: message,
@@ -376,6 +386,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
       userId: userId,
       cardPrintId: result.cardPrintId ?? widget.cardPrintId,
       counterpartUserId: result.counterpartUserId ?? '',
+      cardPrintingId: result.cardPrintingId,
     );
   }
 

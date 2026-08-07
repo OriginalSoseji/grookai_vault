@@ -1,0 +1,197 @@
+{
+  "schema_version": "CARD_INTERACTIONS_EXACT_PRINTING_PRODUCTION_READBACK_V1",
+  "recorded_at": "2026-08-07T00:51:48.009Z",
+  "source_commit_sha": "7b0bbf4fdc7e3afd18a0a931a23bbd7c287d60f7",
+  "migration": {
+    "version": "20260806220000",
+    "path": "supabase/migrations/20260806220000_card_interactions_exact_printing_v1.sql",
+    "sha256": "856571653bae3f07cf84fecebad707a99ffc8ba26d3f0a07916fb063b11e1075",
+    "history": [
+      {
+        "version": "20260806220000",
+        "name": "card_interactions_exact_printing_v1"
+      }
+    ]
+  },
+  "columns": [
+    {
+      "table_name": "card_interaction_group_states",
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "card_interactions",
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    }
+  ],
+  "constraints": [
+    {
+      "constraint_name": "card_interaction_group_states_card_printing_id_fkey",
+      "constraint_type": "f",
+      "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE SET NULL"
+    },
+    {
+      "constraint_name": "card_interaction_group_states_identity_key",
+      "constraint_type": "u",
+      "definition": "UNIQUE NULLS NOT DISTINCT (user_id, card_print_id, card_printing_id, counterpart_user_id)"
+    },
+    {
+      "constraint_name": "card_interactions_card_printing_id_fkey",
+      "constraint_type": "f",
+      "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE SET NULL"
+    }
+  ],
+  "triggers": [
+    {
+      "table_name": "card_interactions",
+      "trigger_name": "card_interactions_enforce_printing_parent_v1",
+      "action_timing": "BEFORE",
+      "event_manipulation": "INSERT"
+    },
+    {
+      "table_name": "card_interactions",
+      "trigger_name": "card_interactions_enforce_printing_parent_v1",
+      "action_timing": "BEFORE",
+      "event_manipulation": "UPDATE"
+    },
+    {
+      "table_name": "card_interactions",
+      "trigger_name": "trg_enqueue_card_interaction_notification_v1",
+      "action_timing": "AFTER",
+      "event_manipulation": "INSERT"
+    },
+    {
+      "table_name": "card_interactions",
+      "trigger_name": "trg_sync_card_interaction_group_states_v1",
+      "action_timing": "AFTER",
+      "event_manipulation": "INSERT"
+    }
+  ],
+  "functions": [
+    {
+      "function_name": "card_interactions_enforce_printing_parent_v1",
+      "comment": "Rejects any interaction whose optional child printing does not belong to its canonical parent card.",
+      "definition_sha256": "d3cebfd04b6667ca5ba392c058b1a29573109dce0129603539d4e882b900dbee"
+    },
+    {
+      "function_name": "sync_card_interaction_group_states_v1",
+      "comment": "Maintains independent per-user conversation state for each parent card, exact child printing, and counterpart tuple.",
+      "definition_sha256": "a0e33ca9024160fd6555388caa6b45f4ab726fe9d032f04451f3b6b6f5433eaf"
+    }
+  ],
+  "grants": [
+    {
+      "table_name": "card_interaction_group_states",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "card_interaction_group_states",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "card_interaction_group_states",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "table_name": "card_interactions",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT"
+    },
+    {
+      "table_name": "card_interactions",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "policies": [
+    {
+      "tablename": "card_interaction_group_states",
+      "policyname": "card_interaction_group_states_insert_owner",
+      "roles": "{public}",
+      "cmd": "INSERT"
+    },
+    {
+      "tablename": "card_interaction_group_states",
+      "policyname": "card_interaction_group_states_select_owner",
+      "roles": "{public}",
+      "cmd": "SELECT"
+    },
+    {
+      "tablename": "card_interaction_group_states",
+      "policyname": "card_interaction_group_states_update_owner",
+      "roles": "{public}",
+      "cmd": "UPDATE"
+    },
+    {
+      "tablename": "card_interactions",
+      "policyname": "card_interactions_insert_sender",
+      "roles": "{authenticated}",
+      "cmd": "INSERT"
+    },
+    {
+      "tablename": "card_interactions",
+      "policyname": "card_interactions_select_participants",
+      "roles": "{authenticated}",
+      "cmd": "SELECT"
+    }
+  ],
+  "relation_security": [
+    {
+      "relation_name": "card_interaction_group_states",
+      "rls_enabled": true,
+      "rls_forced": false
+    },
+    {
+      "relation_name": "card_interactions",
+      "rls_enabled": true,
+      "rls_forced": false
+    }
+  ],
+  "row_counts": {
+    "interactions_total": 74,
+    "interactions_exact": 0,
+    "interactions_legacy_or_unassigned": 74,
+    "group_states_total": 76,
+    "group_states_exact": 0,
+    "group_states_legacy_or_unassigned": 76
+  },
+  "integrity": {
+    "invalid_interaction_parent_links": 0,
+    "invalid_group_state_parent_links": 0,
+    "duplicate_group_state_identity_tuples": 0
+  },
+  "contact_targets": {
+    "contact_targets_total": 2891,
+    "contact_targets_with_exact_printing": 11
+  },
+  "boundaries": {
+    "transaction_mode": "read_only",
+    "existing_rows_updated": 0,
+    "legacy_printing_identity_inferred": false,
+    "canonical_identity_mutated": false,
+    "vault_ownership_mutated": false,
+    "pricing_mutated": false
+  }
+}

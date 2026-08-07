@@ -1522,6 +1522,7 @@ class _PublicCardTile extends StatelessWidget {
     final activeCopies = card.inPlayCopies
         .where((copy) => copy.instanceId.trim().isNotEmpty)
         .toList(growable: false);
+    final contactCopy = activeCopies.length == 1 ? activeCopies.single : null;
     void openCardDetails() {
       final gvviId = (card.gvviId ?? '').trim();
       Navigator.of(context).push(
@@ -1683,7 +1684,7 @@ class _PublicCardTile extends StatelessWidget {
     }
 
     bool canMessageOwner() {
-      if (vaultItemId.isEmpty) return false;
+      if (vaultItemId.isEmpty || contactCopy == null) return false;
       try {
         return Supabase.instance.client.auth.currentUser?.id != profile.userId;
       } catch (_) {
@@ -1736,7 +1737,8 @@ class _PublicCardTile extends StatelessWidget {
                     unawaited(
                       showContactOwnerComposerSheet(
                         context: context,
-                        vaultItemId: vaultItemId,
+                        vaultItemInstanceId: contactCopy!.instanceId,
+                        vaultItemId: contactCopy.vaultItemId,
                         cardPrintId: card.cardPrintId,
                         ownerDisplayName: profile.displayName,
                         cardName: displayIdentity.displayName,
@@ -1851,12 +1853,13 @@ class _PublicCardTile extends StatelessWidget {
                 ),
               ),
             ],
-            if (!isOwner && vaultItemId.isNotEmpty) ...[
+            if (!isOwner && canMessageOwner()) ...[
               const SizedBox(height: 4),
               Align(
                 alignment: Alignment.centerLeft,
                 child: ContactOwnerButton(
-                  vaultItemId: vaultItemId,
+                  vaultItemInstanceId: contactCopy!.instanceId,
+                  vaultItemId: contactCopy.vaultItemId,
                   cardPrintId: card.cardPrintId,
                   ownerUserId: profile.userId,
                   ownerDisplayName: profile.displayName,

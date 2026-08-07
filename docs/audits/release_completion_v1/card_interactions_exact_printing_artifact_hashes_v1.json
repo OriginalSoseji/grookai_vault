@@ -1,0 +1,19 @@
+{
+  "schema_version": "CARD_INTERACTIONS_EXACT_PRINTING_ARTIFACT_HASHES_V1",
+  "source_commit_sha": "7b0bbf4fdc7e3afd18a0a931a23bbd7c287d60f7",
+  "algorithm": "SHA-256",
+  "artifacts": [
+    {
+      "path": "docs/audits/release_completion_v1/card_interactions_exact_printing_production_readback_v1.json",
+      "sha256": "ff218815d86be3f94cbf2398a33c7fecd7d96b5e45b89bb8be4705ac62fa5875"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/card_interactions_exact_printing_production_rls_smoke_v1.json",
+      "sha256": "82c680ca0dfb9e3b8fbf77a857437b2a099bd058da5c2d1ab918ff613e1d748c"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/CARD_INTERACTIONS_EXACT_PRINTING_PRODUCTION_APPLY_20260806_V1.md",
+      "sha256": "1fc6db3274d746a4f77976f1cc0fd936992c58f3e6e624e8e4fcf72572d9943e"
+    }
+  ]
+}

@@ -279,6 +279,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           number: data.number,
           imageUrl: data.primaryImageUrl,
           fallbackImageUrl: data.fallbackImageUrl,
+          contactVaultItemInstanceId: data.instanceId,
           contactVaultItemId: data.vaultItemId,
           contactOwnerDisplayName: data.ownerDisplayName,
           contactOwnerUserId: data.ownerUserId,
@@ -389,6 +390,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ContactOwnerButton(
+                        vaultItemInstanceId: _data!.instanceId,
                         vaultItemId: _data!.vaultItemId,
                         cardPrintId: _data!.cardPrintId,
                         ownerUserId: _data!.ownerUserId,

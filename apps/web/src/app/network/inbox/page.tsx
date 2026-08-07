@@ -38,7 +38,9 @@ function formatTimestamp(value: string | null) {
   });
 }
 
-function normalizeInboxView(value: string | string[] | undefined): UserCardInteractionInboxView {
+function normalizeInboxView(
+  value: string | string[] | undefined,
+): UserCardInteractionInboxView {
   const candidate = Array.isArray(value) ? value[0] : value;
 
   switch (candidate) {
@@ -61,7 +63,10 @@ function normalizeCardFilter(value: string | string[] | undefined) {
   return normalized.length > 0 ? normalized : null;
 }
 
-function buildInboxHref(view: UserCardInteractionInboxView, cardPrintId: string | null = null) {
+function buildInboxHref(
+  view: UserCardInteractionInboxView,
+  cardPrintId: string | null = null,
+) {
   const params = new URLSearchParams();
   if (view !== "inbox") {
     params.set("view", view);
@@ -99,12 +104,35 @@ function getMessagePreview(value: string) {
   return normalized.length > 0 ? normalized : "No message yet.";
 }
 
-function getVisibleGroups(groups: UserCardInteractionGroup[], view: UserCardInteractionInboxView) {
+function buildThreadCardHref(group: UserCardInteractionGroup) {
+  const printing = group.card.printingGvId;
+  return printing
+    ? `/card/${group.card.gvId}?printing=${encodeURIComponent(printing)}`
+    : `/card/${group.card.gvId}`;
+}
+
+function getPrintingIdentityLabel(group: UserCardInteractionGroup) {
+  if (!group.card.cardPrintingId) {
+    return "Printing not recorded";
+  }
+
+  return `Printing: ${group.card.finishLabel ?? group.card.printingGvId ?? "Exact printing"}`;
+}
+
+function getVisibleGroups(
+  groups: UserCardInteractionGroup[],
+  view: UserCardInteractionInboxView,
+) {
   switch (view) {
     case "unread":
-      return groups.filter((group) => group.conversationState === "inbox" && group.hasUnread);
+      return groups.filter(
+        (group) => group.conversationState === "inbox" && group.hasUnread,
+      );
     case "sent":
-      return groups.filter((group) => group.conversationState === "inbox" && group.startedByCurrentUser);
+      return groups.filter(
+        (group) =>
+          group.conversationState === "inbox" && group.startedByCurrentUser,
+      );
     case "closed":
       return groups.filter((group) => group.conversationState !== "inbox");
     case "inbox":
@@ -113,7 +141,10 @@ function getVisibleGroups(groups: UserCardInteractionGroup[], view: UserCardInte
   }
 }
 
-function filterGroupsByCardPrintId(groups: UserCardInteractionGroup[], cardPrintId: string | null) {
+function filterGroupsByCardPrintId(
+  groups: UserCardInteractionGroup[],
+  cardPrintId: string | null,
+) {
   if (!cardPrintId) {
     return groups;
   }
@@ -126,7 +157,8 @@ function getViewCopy(view: UserCardInteractionInboxView) {
     case "unread":
       return {
         title: "Unread",
-        description: "Card messages with new collector activity you have not cleared yet.",
+        description:
+          "Card messages with new collector activity you have not cleared yet.",
         emptyTitle: "Nothing unread",
         emptyBody: "New card messages from collectors will appear here.",
       };
@@ -135,7 +167,8 @@ function getViewCopy(view: UserCardInteractionInboxView) {
         title: "Sent",
         description: "Active card messages you started with another collector.",
         emptyTitle: "Nothing in Sent",
-        emptyBody: "Messages you initiate will appear here while they stay active.",
+        emptyBody:
+          "Messages you initiate will appear here while they stay active.",
       };
     case "closed":
       return {
@@ -148,9 +181,11 @@ function getViewCopy(view: UserCardInteractionInboxView) {
     default:
       return {
         title: "Inbox",
-        description: "Active grouped card messages with collectors, ordered by the latest reply.",
+        description:
+          "Active grouped card messages with collectors, ordered by the latest reply.",
         emptyTitle: "No active messages",
-        emptyBody: "Messages you send or receive about specific cards will appear here.",
+        emptyBody:
+          "Messages you send or receive about specific cards will appear here.",
       };
   }
 }
@@ -182,7 +217,10 @@ function InboxViewTabs({
   ];
 
   return (
-    <nav aria-label="Message views" className="border-y border-slate-200 py-2 dark:border-white/[0.08]">
+    <nav
+      aria-label="Message views"
+      className="border-y border-slate-200 py-2 dark:border-white/[0.08]"
+    >
       <div className="flex flex-wrap gap-2">
         {items.map((item) => {
           const isActive = item.view === currentView;
@@ -216,6 +254,7 @@ function InteractionGroupCard({
   currentPath: string;
 }) {
   const pillLabel = getConversationPill(group);
+  const cardHref = buildThreadCardHref(group);
   const latestMessage = getLatestMessage(group);
   const displayIdentity = resolveDisplayIdentity({
     name: group.card.name,
@@ -225,9 +264,13 @@ function InteractionGroupCard({
     set_code: group.card.setCode,
     number: group.card.number,
   });
-  const hasExecutionActions = group.ownedSourceInstances.length > 0 || Boolean(group.latestOutcome);
-  const hasSecondaryActions = hasExecutionActions || group.conversationState === "inbox";
-  const secondarySummaryLabel = group.latestOutcome ? "Card actions • outcome recorded" : "Card actions";
+  const hasExecutionActions =
+    group.ownedSourceInstances.length > 0 || Boolean(group.latestOutcome);
+  const hasSecondaryActions =
+    hasExecutionActions || group.conversationState === "inbox";
+  const secondarySummaryLabel = group.latestOutcome
+    ? "Card actions • outcome recorded"
+    : "Card actions";
   const pillClassName =
     group.conversationState === "archived"
       ? "border-slate-200 bg-slate-100 text-slate-700"
@@ -238,9 +281,12 @@ function InteractionGroupCard({
           : "border-slate-200 bg-white text-slate-700";
 
   return (
-    <article className="border-b border-slate-200 py-5 last:border-b-0 dark:border-white/[0.08]" data-card-message-thread>
+    <article
+      className="border-b border-slate-200 py-5 last:border-b-0 dark:border-white/[0.08]"
+      data-card-message-thread
+    >
       <div className="flex flex-col gap-4 sm:flex-row">
-        <Link href={`/card/${group.card.gvId}`} className="mx-auto w-[96px] shrink-0 sm:mx-0">
+        <Link href={cardHref} className="mx-auto w-[96px] shrink-0 sm:mx-0">
           <PublicCardImage
             src={group.card.imageUrl ?? undefined}
             alt={displayIdentity.display_name}
@@ -252,13 +298,21 @@ function InteractionGroupCard({
         <div className="min-w-0 flex-1 space-y-4">
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
-              <span className={`rounded-full border px-2.5 py-1 font-medium ${pillClassName}`}>{pillLabel}</span>
+              <span
+                className={`rounded-full border px-2.5 py-1 font-medium ${pillClassName}`}
+              >
+                {pillLabel}
+              </span>
               <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700">
-                {group.messageCount} {group.messageCount === 1 ? "message" : "messages"}
+                {group.messageCount}{" "}
+                {group.messageCount === 1 ? "message" : "messages"}
               </span>
               <span>{formatTimestamp(group.latestCreatedAt)}</span>
               {group.counterpartSlug ? (
-                <Link href={`/u/${group.counterpartSlug}`} className="font-medium text-slate-700 underline-offset-4 hover:underline">
+                <Link
+                  href={`/u/${group.counterpartSlug}`}
+                  className="font-medium text-slate-700 underline-offset-4 hover:underline"
+                >
                   View collector
                 </Link>
               ) : null}
@@ -268,13 +322,26 @@ function InteractionGroupCard({
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 With {group.counterpartDisplayName}
               </p>
-              <Link href={`/card/${group.card.gvId}`} className="block">
-                <h2 className="text-xl font-semibold tracking-tight text-slate-950">{displayIdentity.display_name}</h2>
+              <Link href={cardHref} className="block">
+                <h2 className="text-xl font-semibold tracking-tight text-slate-950">
+                  {displayIdentity.display_name}
+                </h2>
               </Link>
               <p className="text-sm text-slate-600">
-                {[group.card.setName || group.card.setCode, group.card.number !== "—" ? `#${group.card.number}` : undefined]
+                {[
+                  group.card.setName || group.card.setCode,
+                  group.card.number !== "—"
+                    ? `#${group.card.number}`
+                    : undefined,
+                ]
                   .filter(Boolean)
                   .join(" • ")}
+              </p>
+              <p
+                className="text-sm font-medium text-slate-800"
+                data-card-printing-identity
+              >
+                {getPrintingIdentityLabel(group)}
               </p>
             </div>
 
@@ -283,7 +350,11 @@ function InteractionGroupCard({
                 <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
                   <span>Latest</span>
                   <span className="h-1 w-1 rounded-full bg-slate-300" />
-                  <span>{latestMessage.direction === "sent" ? "You" : group.counterpartDisplayName}</span>
+                  <span>
+                    {latestMessage.direction === "sent"
+                      ? "You"
+                      : group.counterpartDisplayName}
+                  </span>
                 </div>
                 <p className="line-clamp-2 text-sm leading-6 text-slate-700">
                   {getMessagePreview(latestMessage.message)}
@@ -299,11 +370,17 @@ function InteractionGroupCard({
                 className={`${index > 0 ? "border-t border-slate-100 pt-2.5" : ""}`}
               >
                 <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                  <span>{message.direction === "sent" ? "You" : group.counterpartDisplayName}</span>
+                  <span>
+                    {message.direction === "sent"
+                      ? "You"
+                      : group.counterpartDisplayName}
+                  </span>
                   <span className="h-1 w-1 rounded-full bg-slate-300" />
                   <span>{formatTimestamp(message.createdAt)}</span>
                 </div>
-                <p className="text-sm leading-6 text-slate-700">{message.message}</p>
+                <p className="text-sm leading-6 text-slate-700">
+                  {message.message}
+                </p>
               </div>
             ))}
           </div>
@@ -312,6 +389,7 @@ function InteractionGroupCard({
             <InteractionGroupReplyForm
               vaultItemId={group.vaultItemId}
               cardPrintId={group.card.cardPrintId}
+              cardPrintingId={group.card.cardPrintingId}
               counterpartUserId={group.counterpartUserId}
               counterpartDisplayName={group.counterpartDisplayName}
               currentPath={currentPath}
@@ -331,12 +409,17 @@ function InteractionGroupCard({
                   currentPath={currentPath}
                   ownedSourceInstances={group.ownedSourceInstances}
                   latestOutcome={group.latestOutcome}
-                  pendingTradeExecutionEventId={group.pendingTradeExecutionEventId}
-                  hasAmbiguousPendingTradeEvent={group.hasAmbiguousPendingTradeEvent}
+                  pendingTradeExecutionEventId={
+                    group.pendingTradeExecutionEventId
+                  }
+                  hasAmbiguousPendingTradeEvent={
+                    group.hasAmbiguousPendingTradeEvent
+                  }
                 />
 
                 <InteractionGroupControls
                   cardPrintId={group.card.cardPrintId}
+                  cardPrintingId={group.card.cardPrintingId}
                   counterpartUserId={group.counterpartUserId}
                   currentPath={currentPath}
                   hasUnread={group.hasUnread}
@@ -351,11 +434,12 @@ function InteractionGroupCard({
   );
 }
 
-export default async function NetworkInboxPage(
-  props: {
-    searchParams?: Promise<{ view?: string | string[]; card?: string | string[] }>;
-  }
-) {
+export default async function NetworkInboxPage(props: {
+  searchParams?: Promise<{
+    view?: string | string[];
+    card?: string | string[];
+  }>;
+}) {
   const searchParams = await props.searchParams;
   const { user } = await requireServerUser("/network/inbox");
 
@@ -363,20 +447,34 @@ export default async function NetworkInboxPage(
   const currentCardFilter = normalizeCardFilter(searchParams?.card);
   const currentPath = buildInboxHref(currentView, currentCardFilter);
   const groups = await getUserCardInteractionGroups(user.id);
-  const unreadCount = groups.filter((group) => group.conversationState === "inbox" && group.hasUnread).length;
-  const inboxCount = groups.filter((group) => group.conversationState === "inbox").length;
-  const sentCount = groups.filter((group) => group.conversationState === "inbox" && group.startedByCurrentUser).length;
-  const closedCount = groups.filter((group) => group.conversationState !== "inbox").length;
-  const visibleGroups = filterGroupsByCardPrintId(getVisibleGroups(groups, currentView), currentCardFilter);
+  const unreadCount = groups.filter(
+    (group) => group.conversationState === "inbox" && group.hasUnread,
+  ).length;
+  const inboxCount = groups.filter(
+    (group) => group.conversationState === "inbox",
+  ).length;
+  const sentCount = groups.filter(
+    (group) =>
+      group.conversationState === "inbox" && group.startedByCurrentUser,
+  ).length;
+  const closedCount = groups.filter(
+    (group) => group.conversationState !== "inbox",
+  ).length;
+  const visibleGroups = filterGroupsByCardPrintId(
+    getVisibleGroups(groups, currentView),
+    currentCardFilter,
+  );
   const viewCopy = getViewCopy(currentView);
   const filteredCard = currentCardFilter
-    ? groups.find((group) => group.card.cardPrintId === currentCardFilter)?.card ?? null
+    ? (groups.find((group) => group.card.cardPrintId === currentCardFilter)
+        ?.card ?? null)
     : null;
   const filteredCardDisplayName = filteredCard
     ? resolveDisplayIdentity({
         name: filteredCard.name,
         variant_key: filteredCard.variant_key ?? null,
-        printed_identity_modifier: filteredCard.printed_identity_modifier ?? null,
+        printed_identity_modifier:
+          filteredCard.printed_identity_modifier ?? null,
         set_identity_model: filteredCard.set_identity_model ?? null,
         set_code: filteredCard.setCode,
         number: filteredCard.number,
@@ -388,6 +486,7 @@ export default async function NetworkInboxPage(
           .filter((group) => group.hasUnread)
           .map((group) => ({
             cardPrintId: group.card.cardPrintId,
+            cardPrintingId: group.card.cardPrintingId,
             counterpartUserId: group.counterpartUserId,
           }))
       : [];
@@ -400,10 +499,7 @@ export default async function NetworkInboxPage(
           title="Messages about cards"
           description="Reply to collectors about specific cards without losing the card context."
           actions={
-            <Link
-              href="/network"
-              className="gv-secondary-button"
-            >
+            <Link href="/network" className="gv-secondary-button">
               Browse network
             </Link>
           }
@@ -444,7 +540,10 @@ export default async function NetworkInboxPage(
         />
 
         {autoReadTargets.length > 0 ? (
-          <InteractionGroupReadMarker currentPath={currentPath} targets={autoReadTargets} />
+          <InteractionGroupReadMarker
+            currentPath={currentPath}
+            targets={autoReadTargets}
+          />
         ) : null}
 
         {visibleGroups.length === 0 ? (
@@ -453,12 +552,20 @@ export default async function NetworkInboxPage(
             eyebrow="Messages"
             title={viewCopy.emptyTitle}
             description={viewCopy.emptyBody}
-            action={<Link href="/network" className="gv-primary-button">Browse collectors</Link>}
+            action={
+              <Link href="/network" className="gv-primary-button">
+                Browse collectors
+              </Link>
+            }
           />
         ) : (
           <div className="space-y-4">
             {visibleGroups.map((group) => (
-              <InteractionGroupCard key={group.groupKey} group={group} currentPath={currentPath} />
+              <InteractionGroupCard
+                key={group.groupKey}
+                group={group}
+                currentPath={currentPath}
+              />
             ))}
           </div>
         )}

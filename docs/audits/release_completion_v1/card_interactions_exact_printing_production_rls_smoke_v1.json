@@ -1,0 +1,36 @@
+{
+  "schema_version": "CARD_INTERACTIONS_EXACT_PRINTING_PRODUCTION_RLS_SMOKE_V1",
+  "recorded_at": "2026-08-07T00:53:51.417Z",
+  "source_commit_sha": "7b0bbf4fdc7e3afd18a0a931a23bbd7c287d60f7",
+  "transaction_evidence": {
+    "exact_target_available": true,
+    "sender_interaction_visible": true,
+    "sender_exact_state_visible": true,
+    "receiver_interaction_visible": true,
+    "receiver_exact_state_visible": true,
+    "outsider_interaction_visible_count": 0,
+    "outsider_state_visible_count": 0,
+    "mismatched_child_rejected": true,
+    "mismatch_error_code": "23514",
+    "mismatch_error_message": "card_interaction_printing_parent_mismatch"
+  },
+  "row_counts_before": {
+    "interactions": 74,
+    "group_states": 76
+  },
+  "row_counts_after": {
+    "interactions": 74,
+    "group_states": 76
+  },
+  "rollback_verified": true,
+  "identities_redacted": true,
+  "boundaries": {
+    "transaction_committed": false,
+    "persistent_rows_created": 0,
+    "existing_rows_updated": 0,
+    "existing_rows_deleted": 0,
+    "canonical_identity_mutated": false,
+    "vault_ownership_mutated": false,
+    "pricing_mutated": false
+  }
+}

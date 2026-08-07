@@ -1379,14 +1379,16 @@ function getOfferIntentSummary(offer: CardNetworkOffer) {
 }
 
 function getGroupedOfferContactAnchor(offer: CardNetworkOffer) {
-  const copyVaultItemIds = Array.from(new Set(offer.inPlayCopies.map((copy) => copy.vaultItemId)));
-  if (copyVaultItemIds.length > 1) {
+  if (offer.inPlayCopies.length !== 1) {
     return null;
   }
 
+  const copy = offer.inPlayCopies[0];
+
   return {
-    vaultItemId: copyVaultItemIds[0] ?? offer.vaultItemId,
-    intent: offer.intent,
+    vaultItemInstanceId: copy.instanceId,
+    vaultItemId: copy.vaultItemId,
+    intent: copy.intent,
   };
 }
 
@@ -1486,6 +1488,7 @@ async function CardNetworkOffersSection({
                 </div>
                 {offer.ownerUserId !== viewerUserId && groupedContactAnchor ? (
                   <ContactOwnerButton
+                    vaultItemInstanceId={groupedContactAnchor.vaultItemInstanceId}
                     vaultItemId={groupedContactAnchor.vaultItemId}
                     cardPrintId={offer.cardPrintId}
                     ownerUserId={offer.ownerUserId}
@@ -1532,6 +1535,7 @@ async function CardNetworkOffersSection({
                           ) : null}
                           {offer.ownerUserId !== viewerUserId ? (
                             <ContactOwnerButton
+                              vaultItemInstanceId={copy.instanceId}
                               vaultItemId={copy.vaultItemId}
                               cardPrintId={offer.cardPrintId}
                               ownerUserId={offer.ownerUserId}

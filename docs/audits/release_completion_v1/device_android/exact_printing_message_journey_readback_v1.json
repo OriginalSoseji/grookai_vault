@@ -1,0 +1,56 @@
+{
+  "schema_version": "CARD_INTERACTION_EXACT_PRINTING_DEVICE_JOURNEY_READBACK_V1",
+  "recorded_at": "2026-08-07T01:19:43.276Z",
+  "source_commit_sha": "89d2f69921380de1b4876f5013c79fdffc5c5831",
+  "device_evidence": {
+    "platform": "Android",
+    "model": "SM-S908U",
+    "package": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21,
+    "journey_marker": "Release_test_exact_printing_no_action_needed"
+  },
+  "interaction": {
+    "interaction_id": "10ea4f9b-1332-4892-be20-efabfca460ff",
+    "created_at": "2026-08-07T01:04:52.396Z",
+    "status": "open",
+    "parent_gv_id": "GV-PK-UPR-32-BUILD-A-BEAR-WORKSHOP-STAMP",
+    "card_name": "Piplup",
+    "set_code": "sm5",
+    "number": "32",
+    "printing_gv_id": "GV-PK-UPR-32-BUILD-A-BEAR-WORKSHOP-STAMP-STD",
+    "finish_key": "normal"
+  },
+  "participant_state_readback": {
+    "participant_state_count": 2,
+    "exact_participant_state_count": 2,
+    "distinct_participant_state_users": 2,
+    "all_state_parents_match": true
+  },
+  "global_integrity": {
+    "invalid_interaction_parent_links": 0,
+    "invalid_state_parent_links": 0,
+    "duplicate_state_identity_tuples": 0
+  },
+  "checks": {
+    "interaction_found": true,
+    "exact_printing_recorded": true,
+    "child_parent_match": true,
+    "participants_are_distinct": true,
+    "two_participant_states_recorded": true,
+    "all_state_parents_match": true,
+    "global_parent_integrity_clean": true,
+    "duplicate_state_identity_tuples_absent": true
+  },
+  "status": "passed",
+  "identities_redacted": true,
+  "boundaries": {
+    "transaction_mode": "read_only",
+    "persistent_rows_created_by_readback": 0,
+    "existing_rows_updated_by_readback": 0,
+    "existing_rows_deleted_by_readback": 0,
+    "canonical_identity_mutated": false,
+    "vault_ownership_mutated": false,
+    "pricing_mutated": false
+  }
+}

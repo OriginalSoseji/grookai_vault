@@ -21,6 +21,7 @@ class CardInteractionSendResult {
     required this.status,
     required this.message,
     this.cardPrintId,
+    this.cardPrintingId,
     this.vaultItemId,
     this.counterpartUserId,
   });
@@ -29,6 +30,7 @@ class CardInteractionSendResult {
   final CardInteractionSendStatus status;
   final String message;
   final String? cardPrintId;
+  final String? cardPrintingId;
   final String? vaultItemId;
   final String? counterpartUserId;
 }
@@ -66,6 +68,10 @@ class CardInteractionThreadSummary {
     required this.isClosed,
     required this.isArchived,
     this.vaultItemId,
+    this.cardPrintingId,
+    this.printingGvId,
+    this.finishKey,
+    this.finishLabel,
     this.counterpartSlug,
     this.imageUrl,
     this.fallbackImageUrl,
@@ -87,16 +93,25 @@ class CardInteractionThreadSummary {
   final bool isClosed;
   final bool isArchived;
   final String? vaultItemId;
+  final String? cardPrintingId;
+  final String? printingGvId;
+  final String? finishKey;
+  final String? finishLabel;
   final String? counterpartSlug;
   final String? imageUrl;
   final String? fallbackImageUrl;
   final DateTime? latestCreatedAt;
 
-  // Message threads are currently keyed to the parent card and legacy vault
-  // bucket. They do not persist a child card_printing_id, so the UI must make
-  // that missing identity explicit instead of implying a finish.
-  String get printingIdentityLabel =>
-      'Exact printing unavailable for this legacy thread';
+  String get printingIdentityLabel {
+    if ((cardPrintingId ?? '').trim().isEmpty) {
+      return 'Printing not recorded';
+    }
+    final label = formatFinishLabel(
+      finishKey: finishKey,
+      finishLabel: finishLabel,
+    );
+    return 'Printing: ${label ?? printingGvId ?? 'Exact printing'}';
+  }
 
   CardInteractionThreadSummary copyWith({
     String? latestMessage,
@@ -123,6 +138,10 @@ class CardInteractionThreadSummary {
       isClosed: isClosed ?? this.isClosed,
       isArchived: isArchived ?? this.isArchived,
       vaultItemId: vaultItemId,
+      cardPrintingId: cardPrintingId,
+      printingGvId: printingGvId,
+      finishKey: finishKey,
+      finishLabel: finishLabel,
       counterpartSlug: counterpartSlug,
       imageUrl: imageUrl,
       fallbackImageUrl: fallbackImageUrl,
@@ -180,6 +199,7 @@ class CardInteractionService {
     required SupabaseClient client,
     required String counterpartUserId,
     String? cardPrintId,
+    String? cardPrintingId,
   }) async {
     final user = client.auth.currentUser;
     if (user == null) {
@@ -207,18 +227,26 @@ class CardInteractionService {
 
     final normalizedCardPrintId = _clean(cardPrintId);
     if (normalizedCardPrintId.isNotEmpty) {
+      final normalizedCardPrintingId = _clean(cardPrintingId);
       final now = DateTime.now().toUtc().toIso8601String();
-      await client.from('card_interaction_group_states').upsert({
-        'user_id': user.id,
-        'card_print_id': normalizedCardPrintId,
-        'counterpart_user_id': normalizedCounterpartUserId,
-        'has_unread': false,
-        'last_read_at': now,
-        'latest_message_at': now,
-        'archived_at': now,
-        'closed_at': null,
-        'updated_at': now,
-      }, onConflict: 'user_id,card_print_id,counterpart_user_id');
+      await client.from('card_interaction_group_states').upsert(
+        {
+          'user_id': user.id,
+          'card_print_id': normalizedCardPrintId,
+          'card_printing_id': normalizedCardPrintingId.isEmpty
+              ? null
+              : normalizedCardPrintingId,
+          'counterpart_user_id': normalizedCounterpartUserId,
+          'has_unread': false,
+          'last_read_at': now,
+          'latest_message_at': now,
+          'archived_at': now,
+          'closed_at': null,
+          'updated_at': now,
+        },
+        onConflict:
+            'user_id,card_print_id,card_printing_id,counterpart_user_id',
+      );
     }
 
     return const CardInteractionSendResult(
@@ -230,6 +258,7 @@ class CardInteractionService {
 
   static Future<CardInteractionSendResult> sendMessage({
     required SupabaseClient client,
+    String? vaultItemInstanceId,
     required String vaultItemId,
     required String cardPrintId,
     required String message,
@@ -244,6 +273,7 @@ class CardInteractionService {
     }
 
     final normalizedVaultItemId = _clean(vaultItemId);
+    final normalizedRequestedInstanceId = _nullable(vaultItemInstanceId);
     final normalizedCardPrintId = _clean(cardPrintId);
     final normalizedMessage = _clean(message);
 
@@ -265,13 +295,20 @@ class CardInteractionService {
       );
     }
 
-    final target = await client
+    var targetQuery = client
         .from('v_card_contact_targets_v1')
         .select(
-          'vault_item_id,owner_user_id,owner_display_name,card_print_id,intent,created_at',
+          'instance_id,vault_item_id,owner_user_id,owner_display_name,card_print_id,card_printing_id,intent,created_at',
         )
         .eq('vault_item_id', normalizedVaultItemId)
-        .eq('card_print_id', normalizedCardPrintId)
+        .eq('card_print_id', normalizedCardPrintId);
+    if (normalizedRequestedInstanceId != null) {
+      targetQuery = targetQuery.eq(
+        'instance_id',
+        normalizedRequestedInstanceId,
+      );
+    }
+    final target = await targetQuery
         .order('created_at', ascending: false)
         .limit(1)
         .maybeSingle();
@@ -279,8 +316,11 @@ class CardInteractionService {
     final targetRow = target == null ? null : Map<String, dynamic>.from(target);
     final receiverUserId = _clean(targetRow?['owner_user_id']);
     final ownerDisplayName = _clean(targetRow?['owner_display_name']);
+    final cardPrintingId = _nullable(targetRow?['card_printing_id']);
+    final resolvedVaultItemInstanceId = _clean(targetRow?['instance_id']);
 
     if (receiverUserId.isEmpty ||
+        resolvedVaultItemInstanceId.isEmpty ||
         _clean(targetRow?['vault_item_id']).isEmpty ||
         _clean(targetRow?['card_print_id']).isEmpty) {
       return const CardInteractionSendResult(
@@ -303,14 +343,19 @@ class CardInteractionService {
         .toUtc()
         .toIso8601String();
 
-    final duplicate = await client
+    var duplicateQuery = client
         .from('card_interactions')
         .select('id')
         .eq('sender_user_id', user.id)
         .eq('receiver_user_id', receiverUserId)
         .eq('vault_item_id', normalizedVaultItemId)
+        .eq('vault_item_instance_id', resolvedVaultItemInstanceId)
         .eq('card_print_id', normalizedCardPrintId)
-        .eq('message', normalizedMessage)
+        .eq('message', normalizedMessage);
+    duplicateQuery = cardPrintingId == null
+        ? duplicateQuery.isFilter('card_printing_id', null)
+        : duplicateQuery.eq('card_printing_id', cardPrintingId);
+    final duplicate = await duplicateQuery
         .gte('created_at', duplicateWindowStart)
         .order('created_at', ascending: false)
         .limit(1)
@@ -323,13 +368,16 @@ class CardInteractionService {
         message:
             'Message sent to ${ownerDisplayName.isEmpty ? 'collector' : ownerDisplayName}.',
         cardPrintId: normalizedCardPrintId,
+        cardPrintingId: cardPrintingId,
         vaultItemId: normalizedVaultItemId,
         counterpartUserId: receiverUserId,
       );
     }
 
     await client.from('card_interactions').insert({
+      'vault_item_instance_id': resolvedVaultItemInstanceId,
       'card_print_id': normalizedCardPrintId,
+      'card_printing_id': cardPrintingId,
       'vault_item_id': normalizedVaultItemId,
       'sender_user_id': user.id,
       'receiver_user_id': receiverUserId,
@@ -350,6 +398,7 @@ class CardInteractionService {
       message:
           'Message sent to ${ownerDisplayName.isEmpty ? 'collector' : ownerDisplayName}.',
       cardPrintId: normalizedCardPrintId,
+      cardPrintingId: cardPrintingId,
       vaultItemId: normalizedVaultItemId,
       counterpartUserId: receiverUserId,
     );
@@ -360,10 +409,12 @@ class CardInteractionService {
     required String userId,
     required String cardPrintId,
     required String counterpartUserId,
+    String? cardPrintingId,
   }) async {
     final normalizedUserId = _clean(userId);
     final normalizedCardPrintId = _clean(cardPrintId);
     final normalizedCounterpartUserId = _clean(counterpartUserId);
+    final normalizedCardPrintingId = _clean(cardPrintingId);
     if (normalizedUserId.isEmpty ||
         normalizedCardPrintId.isEmpty ||
         normalizedCounterpartUserId.isEmpty) {
@@ -376,7 +427,10 @@ class CardInteractionService {
     );
     for (final summary in summaries) {
       if (summary.cardPrintId == normalizedCardPrintId &&
-          summary.counterpartUserId == normalizedCounterpartUserId) {
+          summary.counterpartUserId == normalizedCounterpartUserId &&
+          (normalizedCardPrintingId.isEmpty
+              ? summary.cardPrintingId == null
+              : summary.cardPrintingId == normalizedCardPrintingId)) {
         return summary;
       }
     }
@@ -395,7 +449,7 @@ class CardInteractionService {
     final interactions = await client
         .from('card_interactions')
         .select(
-          'id,card_print_id,vault_item_id,sender_user_id,receiver_user_id,message,status,created_at',
+          'id,card_print_id,card_printing_id,vault_item_id,sender_user_id,receiver_user_id,message,status,created_at',
         )
         .or(
           'sender_user_id.eq.$normalizedUserId,receiver_user_id.eq.$normalizedUserId',
@@ -426,6 +480,11 @@ class CardInteractionService {
         .where((value) => value.isNotEmpty && value != normalizedUserId)
         .toSet()
         .toList();
+    final cardPrintingIds = interactionRows
+        .map((row) => _clean(row['card_printing_id']))
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
 
     final lookups = await Future.wait<dynamic>([
       cardPrintIds.isEmpty
@@ -445,9 +504,17 @@ class CardInteractionService {
       client
           .from('card_interaction_group_states')
           .select(
-            'card_print_id,counterpart_user_id,has_unread,archived_at,closed_at,latest_message_at',
+            'card_print_id,card_printing_id,counterpart_user_id,has_unread,archived_at,closed_at,latest_message_at',
           )
           .eq('user_id', normalizedUserId),
+      cardPrintingIds.isEmpty
+          ? Future.value(<dynamic>[])
+          : client
+                .from('card_printings')
+                .select(
+                  'id,card_print_id,printing_gv_id,finish_key,image_path,finish_keys(label)',
+                )
+                .inFilter('id', cardPrintingIds),
     ]);
 
     final cardById = <String, Map<String, dynamic>>{};
@@ -472,11 +539,22 @@ class CardInteractionService {
     for (final rawRow in lookups[2] as List<dynamic>) {
       final row = Map<String, dynamic>.from(rawRow as Map);
       final cardPrintId = _clean(row['card_print_id']);
+      final cardPrintingId = _clean(row['card_printing_id']);
       final counterpartUserId = _clean(row['counterpart_user_id']);
       if (cardPrintId.isEmpty || counterpartUserId.isEmpty) {
         continue;
       }
-      stateByKey['$cardPrintId:$counterpartUserId'] = row;
+      stateByKey['$cardPrintId:${cardPrintingId.isEmpty ? 'unrecorded' : cardPrintingId}:$counterpartUserId'] =
+          row;
+    }
+
+    final printingById = <String, Map<String, dynamic>>{};
+    for (final rawRow in lookups[3] as List<dynamic>) {
+      final row = Map<String, dynamic>.from(rawRow as Map);
+      final id = _clean(row['id']);
+      if (id.isNotEmpty) {
+        printingById[id] = row;
+      }
     }
 
     final grouped = <String, _ThreadAccumulator>{};
@@ -502,15 +580,44 @@ class CardInteractionService {
         continue;
       }
 
-      final key = '$cardPrintId:$counterpartUserId';
+      final requestedCardPrintingId = _clean(row['card_printing_id']);
+      final requestedPrinting = printingById[requestedCardPrintingId];
+      final printing =
+          requestedPrinting != null &&
+              _clean(requestedPrinting['card_print_id']) == cardPrintId
+          ? requestedPrinting
+          : null;
+      final cardPrintingId = printing == null ? null : _clean(printing['id']);
+      final key =
+          '$cardPrintId:${cardPrintingId ?? 'unrecorded'}:$counterpartUserId';
       final stateRow = stateByKey[key];
       final counterpartProfile = profileById[counterpartUserId];
       final gvId = _clean(card['gv_id']).isEmpty
           ? cardPrintId
           : _clean(card['gv_id']);
-      final catalogArtwork = resolveCatalogArtwork(
+      final parentArtwork = resolveCatalogArtwork(
         gvId: gvId,
         providerImageUrl: _displayImageUrl(card),
+      );
+      final printingGvId = _nullable(printing?['printing_gv_id']);
+      final exactArtworkUrl = buildCanonicalCardImageUrl(printingGvId);
+      final imageUrl = exactArtworkUrl ?? parentArtwork.primaryImageUrl;
+      final fallbackImageUrl =
+          exactArtworkUrl != null &&
+              exactArtworkUrl != parentArtwork.primaryImageUrl
+          ? parentArtwork.primaryImageUrl
+          : parentArtwork.fallbackImageUrl;
+      final finishRecord = switch (printing?['finish_keys']) {
+        List<dynamic> rows when rows.isNotEmpty => Map<String, dynamic>.from(
+          rows.first as Map,
+        ),
+        Map<dynamic, dynamic> row => Map<String, dynamic>.from(row),
+        _ => null,
+      };
+      final finishKey = _nullable(printing?['finish_key']);
+      final finishLabel = formatFinishLabel(
+        finishKey: finishKey,
+        finishLabel: _nullable(finishRecord?['label']),
       );
       final setRecord = switch (card['sets']) {
         List<dynamic> rows when rows.isNotEmpty => Map<String, dynamic>.from(
@@ -540,9 +647,13 @@ class CardInteractionService {
                     : _clean(card['set_code']))
               : _clean(setRecord?['name']),
           number: _clean(card['number']).isEmpty ? '—' : _clean(card['number']),
-          imageUrl: catalogArtwork.primaryImageUrl,
-          fallbackImageUrl: catalogArtwork.fallbackImageUrl,
+          imageUrl: imageUrl,
+          fallbackImageUrl: fallbackImageUrl,
           vaultItemId: vaultItemId,
+          cardPrintingId: cardPrintingId,
+          printingGvId: printingGvId,
+          finishKey: finishKey,
+          finishLabel: finishLabel,
           counterpartDisplayName:
               _clean(counterpartProfile?['display_name']).isEmpty
               ? 'Collector'
@@ -583,10 +694,12 @@ class CardInteractionService {
     required String userId,
     required String cardPrintId,
     required String counterpartUserId,
+    String? cardPrintingId,
   }) async {
     final normalizedUserId = _clean(userId);
     final normalizedCardPrintId = _clean(cardPrintId);
     final normalizedCounterpartUserId = _clean(counterpartUserId);
+    final normalizedCardPrintingId = _clean(cardPrintingId);
     if (normalizedUserId.isEmpty ||
         normalizedCardPrintId.isEmpty ||
         normalizedCounterpartUserId.isEmpty) {
@@ -598,13 +711,15 @@ class CardInteractionService {
       'and(sender_user_id.eq.$normalizedCounterpartUserId,receiver_user_id.eq.$normalizedUserId)',
     ].join(',');
 
-    final rows = await client
+    var query = client
         .from('card_interactions')
         .select('id,message,status,created_at,sender_user_id,receiver_user_id')
         .eq('card_print_id', normalizedCardPrintId)
-        .or(participantFilter)
-        .order('created_at', ascending: true)
-        .limit(200);
+        .or(participantFilter);
+    query = normalizedCardPrintingId.isEmpty
+        ? query.isFilter('card_printing_id', null)
+        : query.eq('card_printing_id', normalizedCardPrintingId);
+    final rows = await query.order('created_at', ascending: true).limit(200);
 
     return (rows as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
@@ -636,6 +751,7 @@ class CardInteractionService {
     required String counterpartUserId,
     required String counterpartDisplayName,
     required String message,
+    String? cardPrintingId,
   }) async {
     final user = client.auth.currentUser;
     if (user == null) {
@@ -649,6 +765,7 @@ class CardInteractionService {
     final normalizedVaultItemId = _clean(vaultItemId);
     final normalizedCardPrintId = _clean(cardPrintId);
     final normalizedCounterpartUserId = _clean(counterpartUserId);
+    final normalizedCardPrintingId = _clean(cardPrintingId);
     final normalizedMessage = _clean(message);
 
     if (normalizedVaultItemId.isEmpty ||
@@ -683,12 +800,16 @@ class CardInteractionService {
       'and(sender_user_id.eq.$normalizedCounterpartUserId,receiver_user_id.eq.${user.id})',
     ].join(',');
 
-    final existingThread = await client
+    var existingThreadQuery = client
         .from('card_interactions')
-        .select('id')
+        .select('id,card_printing_id,vault_item_instance_id')
         .eq('vault_item_id', normalizedVaultItemId)
         .eq('card_print_id', normalizedCardPrintId)
-        .or(participantFilter)
+        .or(participantFilter);
+    existingThreadQuery = normalizedCardPrintingId.isEmpty
+        ? existingThreadQuery.isFilter('card_printing_id', null)
+        : existingThreadQuery.eq('card_printing_id', normalizedCardPrintingId);
+    final existingThread = await existingThreadQuery
         .order('created_at', ascending: false)
         .limit(1)
         .maybeSingle();
@@ -700,20 +821,36 @@ class CardInteractionService {
         message: 'That message thread is no longer available for reply.',
       );
     }
+    final resolvedCardPrintingId = _nullable(
+      existingThread['card_printing_id'],
+    );
+    final resolvedVaultItemInstanceId = _nullable(
+      existingThread['vault_item_instance_id'],
+    );
 
     final duplicateWindowStart = DateTime.now()
         .subtract(const Duration(seconds: 15))
         .toUtc()
         .toIso8601String();
 
-    final duplicate = await client
+    var duplicateQuery = client
         .from('card_interactions')
         .select('id')
         .eq('sender_user_id', user.id)
         .eq('receiver_user_id', normalizedCounterpartUserId)
         .eq('vault_item_id', normalizedVaultItemId)
         .eq('card_print_id', normalizedCardPrintId)
-        .eq('message', normalizedMessage)
+        .eq('message', normalizedMessage);
+    duplicateQuery = resolvedVaultItemInstanceId == null
+        ? duplicateQuery.isFilter('vault_item_instance_id', null)
+        : duplicateQuery.eq(
+            'vault_item_instance_id',
+            resolvedVaultItemInstanceId,
+          );
+    duplicateQuery = resolvedCardPrintingId == null
+        ? duplicateQuery.isFilter('card_printing_id', null)
+        : duplicateQuery.eq('card_printing_id', resolvedCardPrintingId);
+    final duplicate = await duplicateQuery
         .gte('created_at', duplicateWindowStart)
         .order('created_at', ascending: false)
         .limit(1)
@@ -726,13 +863,16 @@ class CardInteractionService {
         message:
             'Reply sent to ${counterpartDisplayName.trim().isEmpty ? 'collector' : counterpartDisplayName.trim()}.',
         cardPrintId: normalizedCardPrintId,
+        cardPrintingId: resolvedCardPrintingId,
         vaultItemId: normalizedVaultItemId,
         counterpartUserId: normalizedCounterpartUserId,
       );
     }
 
     await client.from('card_interactions').insert({
+      'vault_item_instance_id': resolvedVaultItemInstanceId,
       'card_print_id': normalizedCardPrintId,
+      'card_printing_id': resolvedCardPrintingId,
       'vault_item_id': normalizedVaultItemId,
       'sender_user_id': user.id,
       'receiver_user_id': normalizedCounterpartUserId,
@@ -753,6 +893,7 @@ class CardInteractionService {
       message:
           'Reply sent to ${counterpartDisplayName.trim().isEmpty ? 'collector' : counterpartDisplayName.trim()}.',
       cardPrintId: normalizedCardPrintId,
+      cardPrintingId: resolvedCardPrintingId,
       vaultItemId: normalizedVaultItemId,
       counterpartUserId: normalizedCounterpartUserId,
     );
@@ -763,10 +904,12 @@ class CardInteractionService {
     required String userId,
     required String cardPrintId,
     required String counterpartUserId,
+    String? cardPrintingId,
     DateTime? readAt,
   }) async {
     final normalizedUserId = _clean(userId);
     final normalizedCardPrintId = _clean(cardPrintId);
+    final normalizedCardPrintingId = _clean(cardPrintingId);
     final normalizedCounterpartUserId = _clean(counterpartUserId);
     if (normalizedUserId.isEmpty ||
         normalizedCardPrintId.isEmpty ||
@@ -781,7 +924,7 @@ class CardInteractionService {
     // mark-read trigger: thread open after message load
     // refresh trigger: inbox reloads when thread route returns
     // expected status transition: New/Unread -> Active
-    await client
+    var query = client
         .from('card_interaction_group_states')
         .update({
           'has_unread': false,
@@ -790,8 +933,11 @@ class CardInteractionService {
         })
         .eq('user_id', normalizedUserId)
         .eq('card_print_id', normalizedCardPrintId)
-        .eq('counterpart_user_id', normalizedCounterpartUserId)
-        .eq('has_unread', true);
+        .eq('counterpart_user_id', normalizedCounterpartUserId);
+    query = normalizedCardPrintingId.isEmpty
+        ? query.isFilter('card_printing_id', null)
+        : query.eq('card_printing_id', normalizedCardPrintingId);
+    await query.eq('has_unread', true);
   }
 
   static List<CardInteractionThreadSummary> filterByView(
@@ -893,6 +1039,10 @@ class _ThreadAccumulator {
     required this.isArchived,
     required this.messageCount,
     this.vaultItemId,
+    this.cardPrintingId,
+    this.printingGvId,
+    this.finishKey,
+    this.finishLabel,
     this.counterpartSlug,
     this.imageUrl,
     this.fallbackImageUrl,
@@ -914,6 +1064,10 @@ class _ThreadAccumulator {
   final bool isClosed;
   final bool isArchived;
   final String? vaultItemId;
+  final String? cardPrintingId;
+  final String? printingGvId;
+  final String? finishKey;
+  final String? finishLabel;
   final String? counterpartSlug;
   final String? imageUrl;
   final String? fallbackImageUrl;
@@ -936,6 +1090,10 @@ class _ThreadAccumulator {
       isClosed: isClosed,
       isArchived: isArchived,
       vaultItemId: vaultItemId,
+      cardPrintingId: cardPrintingId,
+      printingGvId: printingGvId,
+      finishKey: finishKey,
+      finishLabel: finishLabel,
       counterpartSlug: counterpartSlug,
       imageUrl: imageUrl,
       fallbackImageUrl: fallbackImageUrl,
