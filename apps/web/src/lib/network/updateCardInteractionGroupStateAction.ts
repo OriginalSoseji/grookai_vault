@@ -19,6 +19,7 @@ export type CardInteractionGroupStateActionResult =
 
 type CardInteractionGroupStateTarget = {
   cardPrintId: string;
+  cardPrintingId: string | null;
   counterpartUserId: string;
 };
 
@@ -35,8 +36,11 @@ function normalizeOptionalText(value: string | null | undefined) {
   return normalized.length > 0 ? normalized : null;
 }
 
-function normalizeTarget(target: CardInteractionGroupStateTarget | null | undefined) {
+function normalizeTarget(
+  target: CardInteractionGroupStateTarget | null | undefined,
+) {
   const cardPrintId = normalizeOptionalText(target?.cardPrintId);
+  const cardPrintingId = normalizeOptionalText(target?.cardPrintingId);
   const counterpartUserId = normalizeOptionalText(target?.counterpartUserId);
   if (!cardPrintId || !counterpartUserId) {
     return null;
@@ -44,6 +48,7 @@ function normalizeTarget(target: CardInteractionGroupStateTarget | null | undefi
 
   return {
     cardPrintId,
+    cardPrintingId,
     counterpartUserId,
   };
 }
@@ -58,11 +63,15 @@ async function getLatestGroupInteractionCreatedAt(
     `and(sender_user_id.eq.${target.counterpartUserId},receiver_user_id.eq.${userId})`,
   ].join(",");
 
-  const { data, error } = await client
+  let query = client
     .from("card_interactions")
     .select("created_at")
     .eq("card_print_id", target.cardPrintId)
-    .or(participantFilter)
+    .or(participantFilter);
+  query = target.cardPrintingId
+    ? query.eq("card_printing_id", target.cardPrintingId)
+    : query.is("card_printing_id", null);
+  const { data, error } = await query
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
@@ -94,6 +103,7 @@ async function upsertGroupState(
     {
       user_id: userId,
       card_print_id: target.cardPrintId,
+      card_printing_id: target.cardPrintingId,
       counterpart_user_id: target.counterpartUserId,
       has_unread: false,
       last_read_at: latestMessageAt,
@@ -102,7 +112,7 @@ async function upsertGroupState(
       ...nextState,
     },
     {
-      onConflict: "user_id,card_print_id,counterpart_user_id",
+      onConflict: "user_id,card_print_id,card_printing_id,counterpart_user_id",
     },
   );
 
@@ -132,7 +142,10 @@ async function applyGroupStateAction(
   let updatedCount = 0;
 
   for (const target of targets) {
-    const latestMessageAt = await getLatestGroupInteractionCreatedAt(user.id, target);
+    const latestMessageAt = await getLatestGroupInteractionCreatedAt(
+      user.id,
+      target,
+    );
     if (!latestMessageAt) {
       continue;
     }
@@ -158,7 +171,9 @@ export async function markCardInteractionGroupsReadAction(
 ) {
   const normalizedTargets = targets
     .map((target) => normalizeTarget(target))
-    .filter((target): target is CardInteractionGroupStateTarget => Boolean(target));
+    .filter((target): target is CardInteractionGroupStateTarget =>
+      Boolean(target),
+    );
 
   if (normalizedTargets.length === 0) {
     return {
@@ -174,12 +189,14 @@ export async function markCardInteractionGroupsReadAction(
 export async function updateCardInteractionGroupStateAction(args: {
   action: CardInteractionGroupStateAction;
   cardPrintId: string;
+  cardPrintingId?: string | null;
   counterpartUserId: string;
   returnPath?: string;
 }) {
   const action = args.action;
   const target = normalizeTarget({
     cardPrintId: args.cardPrintId,
+    cardPrintingId: args.cardPrintingId ?? null,
     counterpartUserId: args.counterpartUserId,
   });
   const returnPath = normalizeOptionalText(args.returnPath) ?? "/network/inbox";

@@ -16,7 +16,10 @@ test("trade completion can expose active trade copies beyond the original card c
   assert.match(source, /\.eq\("intent", "trade"\)/);
   assert.match(source, /trade source instance lookup failed/);
   assert.match(source, /buildTradeSourceInstanceLabel/);
-  assert.match(source, /group\.ownedSourceInstances = \[\.\.\.group\.ownedSourceInstances, \.\.\.mergedTradeSources\]/);
+  assert.match(
+    source,
+    /group\.ownedSourceInstances = \[\s*\.\.\.group\.ownedSourceInstances,\s*\.\.\.mergedTradeSources,?\s*\]\.sort/s,
+  );
 });
 
 test("trade execution second leg accepts a separate trade-marked source copy", () => {

@@ -20,15 +20,23 @@ type NetworkStreamCardProps = {
 };
 
 function getGroupedContactAnchor(row: CardStreamRow) {
-  const copyVaultItemIds = Array.from(new Set(row.inPlayCopies.map((copy) => copy.vaultItemId)));
-  if (copyVaultItemIds.length > 1) {
+  if (row.inPlayCopies.length !== 1) {
     return null;
   }
 
+  const copy = row.inPlayCopies[0];
   return {
-    vaultItemId: copyVaultItemIds[0] ?? row.vaultItemId,
-    intent: row.intent,
+    vaultItemId: copy.vaultItemId,
+    intent: copy.intent,
   };
+}
+
+function getCopyPrintingLabel(copy: CardStreamRow["inPlayCopies"][number]) {
+  if (!copy.cardPrintingId) {
+    return "Printing not recorded";
+  }
+
+  return `Printing: ${copy.finishLabel ?? copy.printingGvId ?? "Exact printing"}`;
 }
 
 function getOwnershipSummary(row: CardStreamRow) {
@@ -37,7 +45,11 @@ function getOwnershipSummary(row: CardStreamRow) {
   }
 
   if (row.isGraded) {
-    return (row.gradeLabel ?? [row.gradeCompany, row.gradeValue].filter(Boolean).join(" ")) || "Graded";
+    return (
+      (row.gradeLabel ??
+        [row.gradeCompany, row.gradeValue].filter(Boolean).join(" ")) ||
+      "Graded"
+    );
   }
 
   return row.conditionLabel ?? "Raw";
@@ -45,9 +57,15 @@ function getOwnershipSummary(row: CardStreamRow) {
 
 function getIntentSummary(row: CardStreamRow) {
   return [
-    row.sellCount > 0 ? `${getVaultIntentLabel("sell")} ${row.sellCount}` : null,
-    row.tradeCount > 0 ? `${getVaultIntentLabel("trade")} ${row.tradeCount}` : null,
-    row.showcaseCount > 0 ? `${getVaultIntentLabel("showcase")} ${row.showcaseCount}` : null,
+    row.sellCount > 0
+      ? `${getVaultIntentLabel("sell")} ${row.sellCount}`
+      : null,
+    row.tradeCount > 0
+      ? `${getVaultIntentLabel("trade")} ${row.tradeCount}`
+      : null,
+    row.showcaseCount > 0
+      ? `${getVaultIntentLabel("showcase")} ${row.showcaseCount}`
+      : null,
   ].filter((value): value is string => Boolean(value));
 }
 
@@ -69,14 +87,24 @@ function getActivityLabel(row: CardStreamRow) {
   }
 
   if (row.intent) {
-    const intentPhrase = row.intent === "sell" ? "for sale" : row.intent === "trade" ? "for trade" : "for showcase";
+    const intentPhrase =
+      row.intent === "sell"
+        ? "for sale"
+        : row.intent === "trade"
+          ? "for trade"
+          : "for showcase";
     return `marked a copy ${intentPhrase}`;
   }
 
   return "shared a card";
 }
 
-export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentPath }: NetworkStreamCardProps) {
+export function NetworkStreamCard({
+  row,
+  isAuthenticated,
+  viewerUserId,
+  currentPath,
+}: NetworkStreamCardProps) {
   const displayIdentity = resolveDisplayIdentity({
     name: row.name,
     variant_key: row.variantKey,
@@ -95,13 +123,22 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
   const canContactOwner = viewerUserId !== row.ownerUserId;
   const intentSummary = getIntentSummary(row);
   const groupedContactAnchor = getGroupedContactAnchor(row);
+  const singleCopy = row.inPlayCopies.length === 1 ? row.inPlayCopies[0] : null;
   const singleCopyHref =
     row.inPlayCopies.length === 1 && row.inPlayCopies[0]?.gvviId
-      ? getVaultInstanceHref(row.inPlayCopies[0].gvviId, viewerUserId, row.ownerUserId) ?? `/card/${row.gvId}`
+      ? (getVaultInstanceHref(
+          row.inPlayCopies[0].gvviId,
+          viewerUserId,
+          row.ownerUserId,
+        ) ?? `/card/${row.gvId}`)
       : `/card/${row.gvId}`;
 
   const freshnessLabel = row.createdAt
-    ? new Date(row.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+    ? new Date(row.createdAt).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
     : "Recently";
 
   return (
@@ -119,12 +156,20 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
         </Link>
         <div className="min-w-0 flex-1">
           <p className="text-sm text-slate-600 dark:text-slate-300">
-            <Link href={ownerHref} className="font-semibold text-slate-950 underline-offset-4 hover:underline dark:text-white">
+            <Link
+              href={ownerHref}
+              className="font-semibold text-slate-950 underline-offset-4 hover:underline dark:text-white"
+            >
               {row.ownerDisplayName}
             </Link>{" "}
             {getActivityLabel(row)}
           </p>
-          <time className="text-xs text-slate-500" dateTime={row.createdAt ?? undefined}>{freshnessLabel}</time>
+          <time
+            className="text-xs text-slate-500"
+            dateTime={row.createdAt ?? undefined}
+          >
+            {freshnessLabel}
+          </time>
         </div>
       </header>
 
@@ -143,25 +188,47 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
 
         <div className="min-w-0 space-y-4">
           <CollectorCardFacts
-            title={<Link href={singleCopyHref} className="transition hover:text-slate-700">{displayIdentity.base_name}</Link>}
+            title={
+              <Link
+                href={singleCopyHref}
+                className="transition hover:text-slate-700"
+              >
+                {displayIdentity.base_name}
+              </Link>
+            }
             setName={row.setName || row.setCode}
             number={row.number}
             versionLabel={displayIdentity.suffix}
             ownershipLabel={getOwnershipSummary(row)}
             availabilityLabels={intentSummary}
           />
+          {singleCopy ? (
+            <p
+              className="text-sm font-medium text-slate-800"
+              data-card-printing-identity
+            >
+              {getCopyPrintingLabel(singleCopy)}
+            </p>
+          ) : null}
           {imagePresentation.compactBadgeLabel ? (
             <div className="w-fit">
               <CardImageTruthBadge
                 label={imagePresentation.compactBadgeLabel}
                 note={imagePresentation.detailNote}
-                emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                emphasis={
+                  imagePresentation.isCollisionRepresentative
+                    ? "strong"
+                    : "default"
+                }
               />
             </div>
           ) : null}
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <Link href={singleCopyHref} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline dark:text-slate-300 dark:hover:text-white">
+            <Link
+              href={singleCopyHref}
+              className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline dark:text-slate-300 dark:hover:text-white"
+            >
               View card
             </Link>
             {canContactOwner && groupedContactAnchor ? (
@@ -173,7 +240,9 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                 ownerDisplayName={row.ownerDisplayName}
                 cardName={displayIdentity.display_name}
                 intent={groupedContactAnchor.intent}
-                buttonLabel={groupedContactAnchor.intent ? undefined : "Message collector"}
+                buttonLabel={
+                  groupedContactAnchor.intent ? undefined : "Message collector"
+                }
                 isAuthenticated={isAuthenticated}
                 loginHref={loginHref}
                 currentPath={currentPath}
@@ -187,7 +256,10 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
               </summary>
               <div className="mt-3 space-y-2">
                 {row.inPlayCopies.map((copy) => (
-                  <div key={copy.instanceId} className="rounded-[0.9rem] border border-slate-200 bg-white px-3 py-3">
+                  <div
+                    key={copy.instanceId}
+                    className="rounded-[0.9rem] border border-slate-200 bg-white px-3 py-3"
+                  >
                     <div className="space-y-3">
                       <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
                         <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-slate-700">
@@ -195,16 +267,31 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                         </span>
                         {copy.isGraded ? (
                           <span>
-                            {copy.gradeLabel ?? ([copy.gradeCompany, copy.gradeValue].filter(Boolean).join(" ") || "Graded")}
+                            {copy.gradeLabel ??
+                              ([copy.gradeCompany, copy.gradeValue]
+                                .filter(Boolean)
+                                .join(" ") ||
+                                "Graded")}
                           </span>
                         ) : copy.conditionLabel ? (
                           <span>{copy.conditionLabel}</span>
                         ) : null}
-                        {copy.certNumber ? <span>Cert {copy.certNumber}</span> : null}
+                        {copy.certNumber ? (
+                          <span>Cert {copy.certNumber}</span>
+                        ) : null}
+                        <span data-card-printing-identity>
+                          {getCopyPrintingLabel(copy)}
+                        </span>
                       </div>
                       {copy.gvviId ? (
                         <Link
-                          href={getVaultInstanceHref(copy.gvviId, viewerUserId, row.ownerUserId) ?? `/card/${row.gvId}`}
+                          href={
+                            getVaultInstanceHref(
+                              copy.gvviId,
+                              viewerUserId,
+                              row.ownerUserId,
+                            ) ?? `/card/${row.gvId}`
+                          }
                           className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                         >
                           Open copy
@@ -219,7 +306,11 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                           ownerDisplayName={row.ownerDisplayName}
                           cardName={displayIdentity.display_name}
                           intent={copy.intent}
-                          buttonLabel={row.inPlayCopies.length > 1 ? "Message about this copy" : undefined}
+                          buttonLabel={
+                            row.inPlayCopies.length > 1
+                              ? "Message about this copy"
+                              : undefined
+                          }
                           isAuthenticated={isAuthenticated}
                           loginHref={loginHref}
                           currentPath={currentPath}
@@ -232,7 +323,9 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
               </div>
             </details>
           ) : null}
-          {canContactOwner && !groupedContactAnchor && row.inPlayCopies.length > 1 ? (
+          {canContactOwner &&
+          !groupedContactAnchor &&
+          row.inPlayCopies.length > 1 ? (
             <p className="text-xs text-slate-500">
               Choose a copy above to message this collector about that card.
             </p>
@@ -240,7 +333,10 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
           <CollectorEvidenceDisclosure label="Event evidence">
             <p>Card ID: {row.gvId}</p>
             <p>Activity recorded {freshnessLabel}</p>
-            <p>{row.inPlayCount} visible {row.inPlayCount === 1 ? "copy" : "copies"}</p>
+            <p>
+              {row.inPlayCount} visible{" "}
+              {row.inPlayCount === 1 ? "copy" : "copies"}
+            </p>
           </CollectorEvidenceDisclosure>
         </div>
       </div>

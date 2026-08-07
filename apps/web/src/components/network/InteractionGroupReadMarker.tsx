@@ -8,11 +8,15 @@ type InteractionGroupReadMarkerProps = {
   currentPath: string;
   targets: Array<{
     cardPrintId: string;
+    cardPrintingId: string | null;
     counterpartUserId: string;
   }>;
 };
 
-export function InteractionGroupReadMarker({ currentPath, targets }: InteractionGroupReadMarkerProps) {
+export function InteractionGroupReadMarker({
+  currentPath,
+  targets,
+}: InteractionGroupReadMarkerProps) {
   const router = useRouter();
   const hasMarkedRef = useRef(false);
   const [, startTransition] = useTransition();
@@ -25,7 +29,10 @@ export function InteractionGroupReadMarker({ currentPath, targets }: Interaction
     hasMarkedRef.current = true;
 
     startTransition(async () => {
-      const result = await markCardInteractionGroupsReadAction(targets, currentPath);
+      const result = await markCardInteractionGroupsReadAction(
+        targets,
+        currentPath,
+      );
       if (result.ok && result.updatedCount > 0) {
         router.refresh();
       }

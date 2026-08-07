@@ -71,6 +71,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
         client: _client,
         userId: userId,
         cardPrintId: _thread.cardPrintId,
+        cardPrintingId: _thread.cardPrintingId,
         counterpartUserId: _thread.counterpartUserId,
       );
       if (!mounted) {
@@ -112,6 +113,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
       counterpartUserId: _thread.counterpartUserId,
       counterpartDisplayName: _thread.counterpartDisplayName,
       message: _replyController.text,
+      cardPrintingId: _thread.cardPrintingId,
     );
 
     if (!mounted) {
@@ -162,6 +164,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
         client: _client,
         userId: userId,
         cardPrintId: _thread.cardPrintId,
+        cardPrintingId: _thread.cardPrintingId,
         counterpartUserId: _thread.counterpartUserId,
         readAt: latestMessageAt,
       );
@@ -261,6 +264,7 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
       client: _client,
       counterpartUserId: _thread.counterpartUserId,
       cardPrintId: _thread.cardPrintId,
+      cardPrintingId: _thread.cardPrintingId,
     );
     if (!mounted) {
       return;
@@ -366,6 +370,8 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                               contactOwnerDisplayName:
                                   _thread.counterpartDisplayName,
                               contactOwnerUserId: _thread.counterpartUserId,
+                              selectedPrintingGvId: _thread.printingGvId,
+                              selectedFinishLabel: _thread.finishLabel,
                             ),
                           ),
                         );
@@ -477,6 +483,10 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                                             _thread.counterpartDisplayName,
                                         contactOwnerUserId:
                                             _thread.counterpartUserId,
+                                        selectedPrintingGvId:
+                                            _thread.printingGvId,
+                                        selectedFinishLabel:
+                                            _thread.finishLabel,
                                       ),
                                     ),
                                   );

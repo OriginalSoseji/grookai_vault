@@ -48,7 +48,10 @@ test("Network and Nearby use hosted-first ordered sources and retain uploaded co
 
   assert.match(stream, /photo_url,image_url,image_display_mode/);
   assert.match(stream, /presentationCopy\?\.imageDisplayMode/);
-  assert.match(stream, /hostedImageUrl: row\.hostedImageUrl/);
+  assert.match(
+    stream,
+    /hostedImageUrl: exactPrintingImageUrl \?\? row\.hostedImageUrl/,
+  );
   assert.match(stream, /providerImageUrl: row\.providerImageUrl/);
   assert.match(streamCard, /fallbackSources=\{row\.imageFallbackUrls\.slice\(1\)\}/);
 

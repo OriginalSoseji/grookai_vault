@@ -6,6 +6,7 @@ import {
   getChildDisplayImageFallbacks,
 } from "@/lib/cards/childDisplayImageFallbacks";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import { buildCanonCardImageProxyUrl } from "@/lib/canon/canonImageProxy";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
@@ -14,6 +15,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 type CardInteractionSourceRow = {
   id: string;
   card_print_id: string | null;
+  card_printing_id: string | null;
   vault_item_id: string | null;
   sender_user_id: string | null;
   receiver_user_id: string | null;
@@ -79,12 +81,21 @@ type PublicProfileRow = {
 type CardInteractionGroupStateRow = {
   user_id: string | null;
   card_print_id: string | null;
+  card_printing_id: string | null;
   counterpart_user_id: string | null;
   has_unread: boolean | null;
   last_read_at: string | null;
   latest_message_at: string | null;
   archived_at: string | null;
   closed_at: string | null;
+};
+
+type CardPrintingSourceRow = {
+  id: string;
+  card_print_id: string | null;
+  printing_gv_id: string | null;
+  finish_key: string | null;
+  finish_keys: { label: string | null } | { label: string | null }[] | null;
 };
 
 type OwnedSourceInstanceRow = {
@@ -124,22 +135,30 @@ export type UserCardInteractionRow = {
   counterpartUserId: string;
   counterpartSlug: string | null;
   counterpartDisplayName: string;
-    card: {
-      cardPrintId: string;
-      gvId: string;
-      name: string;
-      variant_key?: string;
-      printed_identity_modifier?: string;
-      set_identity_model?: string;
-      setCode: string;
-      setName: string;
-      number: string;
-      imageUrl: string | null;
-    };
+  card: {
+    cardPrintId: string;
+    cardPrintingId: string | null;
+    printingGvId: string | null;
+    finishKey: string | null;
+    finishLabel: string | null;
+    gvId: string;
+    name: string;
+    variant_key?: string;
+    printed_identity_modifier?: string;
+    set_identity_model?: string;
+    setCode: string;
+    setName: string;
+    number: string;
+    imageUrl: string | null;
+  };
 };
 
 export type UserCardInteractionGroupState = "inbox" | "closed" | "archived";
-export type UserCardInteractionInboxView = "unread" | "inbox" | "sent" | "closed";
+export type UserCardInteractionInboxView =
+  | "unread"
+  | "inbox"
+  | "sent"
+  | "closed";
 
 export type UserCardInteractionOwnedSourceInstance = {
   instanceId: string;
@@ -178,6 +197,10 @@ export type UserCardInteractionGroup = {
   counterpartDisplayName: string;
   card: {
     cardPrintId: string;
+    cardPrintingId: string | null;
+    printingGvId: string | null;
+    finishKey: string | null;
+    finishLabel: string | null;
     gvId: string;
     name: string;
     variant_key?: string;
@@ -214,7 +237,9 @@ function normalizeOptionalText(value: string | null | undefined) {
   return normalized.length > 0 ? normalized : null;
 }
 
-function normalizeOptionalNumericText(value: string | number | null | undefined) {
+function normalizeOptionalNumericText(
+  value: string | number | null | undefined,
+) {
   if (typeof value === "number" && Number.isFinite(value)) {
     return value.toString();
   }
@@ -228,7 +253,9 @@ function normalizeOptionalNumericText(value: string | number | null | undefined)
 }
 
 function uniqueValues(values: string[]) {
-  return Array.from(new Set(values.map((value) => value.trim()).filter(Boolean)));
+  return Array.from(
+    new Set(values.map((value) => value.trim()).filter(Boolean)),
+  );
 }
 
 function compareCreatedAtDescending(left: string | null, right: string | null) {
@@ -237,11 +264,31 @@ function compareCreatedAtDescending(left: string | null, right: string | null) {
   return rightTimestamp - leftTimestamp;
 }
 
-function buildInteractionGroupKey(cardPrintId: string, counterpartUserId: string) {
-  return `${cardPrintId}:${counterpartUserId}`;
+function buildInteractionGroupKey(
+  cardPrintId: string,
+  cardPrintingId: string | null,
+  counterpartUserId: string,
+) {
+  return `${cardPrintId}:${cardPrintingId ?? "unrecorded"}:${counterpartUserId}`;
 }
 
-function getConversationState(row: CardInteractionGroupStateRow | null): UserCardInteractionGroupState {
+function getFinishLabel(printing: CardPrintingSourceRow | null) {
+  if (!printing) {
+    return null;
+  }
+
+  const finishRecord = Array.isArray(printing.finish_keys)
+    ? (printing.finish_keys[0] ?? null)
+    : printing.finish_keys;
+  return (
+    normalizeOptionalText(finishRecord?.label) ??
+    normalizeOptionalText(printing.finish_key)
+  );
+}
+
+function getConversationState(
+  row: CardInteractionGroupStateRow | null,
+): UserCardInteractionGroupState {
   if (normalizeOptionalText(row?.archived_at)) {
     return "archived";
   }
@@ -264,7 +311,12 @@ function buildOwnedInstanceLabel(row: OwnedSourceInstanceRow) {
     ? [gradeLabel, [gradeCompany, gradeValue].filter(Boolean).join(" "), gvviId]
     : [conditionLabel, gvviId];
 
-  return parts.map((value) => normalizeOptionalText(value)).filter(Boolean).join(" • ") || "Owned instance";
+  return (
+    parts
+      .map((value) => normalizeOptionalText(value))
+      .filter(Boolean)
+      .join(" • ") || "Owned instance"
+  );
 }
 
 function buildTradeSourceInstanceLabel(
@@ -279,14 +331,19 @@ function buildTradeSourceInstanceLabel(
   const cardName = resolveDisplayIdentity({
     name: normalizeOptionalText(card.name) ?? "Unknown card",
     variant_key: normalizeOptionalText(card.variant_key),
-    printed_identity_modifier: normalizeOptionalText(card.printed_identity_modifier),
+    printed_identity_modifier: normalizeOptionalText(
+      card.printed_identity_modifier,
+    ),
     set_identity_model: normalizeOptionalText(setRecord?.identity_model),
     set_code: normalizeOptionalText(card.set_code) ?? "Unknown set",
     number: normalizeOptionalText(card.number) ?? "—",
   }).display_name;
   const setLabel = [
-    normalizeOptionalText(setRecord?.name) ?? normalizeOptionalText(card.set_code),
-    normalizeOptionalText(card.number) ? `#${normalizeOptionalText(card.number)}` : null,
+    normalizeOptionalText(setRecord?.name) ??
+      normalizeOptionalText(card.set_code),
+    normalizeOptionalText(card.number)
+      ? `#${normalizeOptionalText(card.number)}`
+      : null,
   ]
     .filter(Boolean)
     .join(" • ");
@@ -295,7 +352,9 @@ function buildTradeSourceInstanceLabel(
   return [cardName, setLabel, copyLabel].filter(Boolean).join(" • ");
 }
 
-export async function getUnreadCardInteractionGroupCount(userId: string): Promise<number> {
+export async function getUnreadCardInteractionGroupCount(
+  userId: string,
+): Promise<number> {
   const normalizedUserId = userId.trim();
   if (!normalizedUserId) {
     return 0;
@@ -311,13 +370,17 @@ export async function getUnreadCardInteractionGroupCount(userId: string): Promis
     .is("closed_at", null);
 
   if (error) {
-    throw new Error(`[network:inbox] unread count query failed: ${error.message}`);
+    throw new Error(
+      `[network:inbox] unread count query failed: ${error.message}`,
+    );
   }
 
   return count ?? 0;
 }
 
-export async function getUserCardInteractionGroups(userId: string): Promise<UserCardInteractionGroup[]> {
+export async function getUserCardInteractionGroups(
+  userId: string,
+): Promise<UserCardInteractionGroup[]> {
   const normalizedUserId = userId.trim();
   if (!normalizedUserId) {
     return [];
@@ -327,13 +390,19 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
   const adminClient = createServerAdminClient();
   const { data, error } = await client
     .from("card_interactions")
-    .select("id,card_print_id,vault_item_id,sender_user_id,receiver_user_id,message,status,created_at")
-    .or(`sender_user_id.eq.${normalizedUserId},receiver_user_id.eq.${normalizedUserId}`)
+    .select(
+      "id,card_print_id,card_printing_id,vault_item_id,sender_user_id,receiver_user_id,message,status,created_at",
+    )
+    .or(
+      `sender_user_id.eq.${normalizedUserId},receiver_user_id.eq.${normalizedUserId}`,
+    )
     .order("created_at", { ascending: false })
     .limit(200);
 
   if (error) {
-    throw new Error(`[network:inbox] interactions query failed: ${error.message}`);
+    throw new Error(
+      `[network:inbox] interactions query failed: ${error.message}`,
+    );
   }
 
   const interactionRows = (data ?? []) as CardInteractionSourceRow[];
@@ -347,12 +416,24 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       const senderUserId = normalizeOptionalText(row.sender_user_id);
       const receiverUserId = normalizeOptionalText(row.receiver_user_id);
       return [senderUserId, receiverUserId].filter(
-        (value): value is string => Boolean(value) && value !== normalizedUserId,
+        (value): value is string =>
+          Boolean(value) && value !== normalizedUserId,
       );
     }),
   );
+  const cardPrintingIds = uniqueValues(
+    interactionRows
+      .map((row) => normalizeOptionalText(row.card_printing_id))
+      .filter((value): value is string => Boolean(value)),
+  );
 
-  const [cardPrintsResponse, profilesResponse, groupStatesResponse, tradeOutcomesResponse] = await Promise.all([
+  const [
+    cardPrintsResponse,
+    profilesResponse,
+    groupStatesResponse,
+    tradeOutcomesResponse,
+    cardPrintingsResponse,
+  ] = await Promise.all([
     cardPrintIds.length > 0
       ? client
           .from("card_prints")
@@ -369,29 +450,57 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       : Promise.resolve({ data: [], error: null }),
     client
       .from("card_interaction_group_states")
-      .select("user_id,card_print_id,counterpart_user_id,has_unread,last_read_at,latest_message_at,archived_at,closed_at")
+      .select(
+        "user_id,card_print_id,card_printing_id,counterpart_user_id,has_unread,last_read_at,latest_message_at,archived_at,closed_at",
+      )
       .eq("user_id", normalizedUserId),
     client
       .from("card_interaction_outcomes")
-      .select("id,execution_event_id,latest_interaction_id,source_user_id,target_user_id,outcome_type,price_amount,price_currency,executed_by_user_id,created_at")
+      .select(
+        "id,execution_event_id,latest_interaction_id,source_user_id,target_user_id,outcome_type,price_amount,price_currency,executed_by_user_id,created_at",
+      )
       .eq("outcome_type", "trade")
-      .or(`source_user_id.eq.${normalizedUserId},target_user_id.eq.${normalizedUserId}`),
+      .or(
+        `source_user_id.eq.${normalizedUserId},target_user_id.eq.${normalizedUserId}`,
+      ),
+    cardPrintingIds.length > 0
+      ? adminClient
+          .from("card_printings")
+          .select(
+            "id,card_print_id,printing_gv_id,finish_key,finish_keys(label)",
+          )
+          .in("id", cardPrintingIds)
+      : Promise.resolve({ data: [], error: null }),
   ]);
 
   if (cardPrintsResponse.error) {
-    throw new Error(`[network:inbox] card print lookup failed: ${cardPrintsResponse.error.message}`);
+    throw new Error(
+      `[network:inbox] card print lookup failed: ${cardPrintsResponse.error.message}`,
+    );
   }
 
   if (profilesResponse.error) {
-    throw new Error(`[network:inbox] profile lookup failed: ${profilesResponse.error.message}`);
+    throw new Error(
+      `[network:inbox] profile lookup failed: ${profilesResponse.error.message}`,
+    );
   }
 
   if (groupStatesResponse.error) {
-    throw new Error(`[network:inbox] group state lookup failed: ${groupStatesResponse.error.message}`);
+    throw new Error(
+      `[network:inbox] group state lookup failed: ${groupStatesResponse.error.message}`,
+    );
   }
 
   if (tradeOutcomesResponse.error) {
-    throw new Error(`[network:inbox] trade outcome lookup failed: ${tradeOutcomesResponse.error.message}`);
+    throw new Error(
+      `[network:inbox] trade outcome lookup failed: ${tradeOutcomesResponse.error.message}`,
+    );
+  }
+
+  if (cardPrintingsResponse.error) {
+    throw new Error(
+      `[network:inbox] card printing lookup failed: ${cardPrintingsResponse.error.message}`,
+    );
   }
 
   const cardPrintRows = (cardPrintsResponse.data ?? []) as CardPrintSourceRow[];
@@ -408,37 +517,62 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       return { ...row, display_image_url: imageFields.display_image_url };
     }),
   );
-  const cardById = new Map(
-    resolvedCardRows.map((row) => [row.id, row]),
-  );
+  const cardById = new Map(resolvedCardRows.map((row) => [row.id, row]));
   const profileByUserId = new Map(
     ((profilesResponse.data ?? []) as PublicProfileRow[])
       .map((row) => [normalizeOptionalText(row.user_id), row] as const)
-      .filter((entry): entry is [string, PublicProfileRow] => Boolean(entry[0])),
+      .filter((entry): entry is [string, PublicProfileRow] =>
+        Boolean(entry[0]),
+      ),
+  );
+  const printingById = new Map(
+    ((cardPrintingsResponse.data ?? []) as CardPrintingSourceRow[]).map(
+      (row) => [row.id, row],
+    ),
   );
   const stateByGroupKey = new Map(
     ((groupStatesResponse.data ?? []) as CardInteractionGroupStateRow[])
       .map((row) => {
         const cardPrintId = normalizeOptionalText(row.card_print_id);
-        const counterpartUserId = normalizeOptionalText(row.counterpart_user_id);
+        const cardPrintingId = normalizeOptionalText(row.card_printing_id);
+        const counterpartUserId = normalizeOptionalText(
+          row.counterpart_user_id,
+        );
         if (!cardPrintId || !counterpartUserId) {
           return null;
         }
 
-        return [buildInteractionGroupKey(cardPrintId, counterpartUserId), row] as const;
+        return [
+          buildInteractionGroupKey(
+            cardPrintId,
+            cardPrintingId,
+            counterpartUserId,
+          ),
+          row,
+        ] as const;
       })
-      .filter((entry): entry is [string, CardInteractionGroupStateRow] => Boolean(entry)),
+      .filter((entry): entry is [string, CardInteractionGroupStateRow] =>
+        Boolean(entry),
+      ),
   );
 
   const flatRows = interactionRows.flatMap((row) => {
     const vaultItemId = normalizeOptionalText(row.vault_item_id);
     const cardPrintId = normalizeOptionalText(row.card_print_id);
+    const requestedCardPrintingId = normalizeOptionalText(row.card_printing_id);
     const senderUserId = normalizeOptionalText(row.sender_user_id);
     const receiverUserId = normalizeOptionalText(row.receiver_user_id);
-    const status = normalizeOptionalText(row.status) === "closed" ? "closed" : "open";
+    const status =
+      normalizeOptionalText(row.status) === "closed" ? "closed" : "open";
     const message = normalizeOptionalText(row.message);
 
-    if (!vaultItemId || !cardPrintId || !senderUserId || !receiverUserId || !message) {
+    if (
+      !vaultItemId ||
+      !cardPrintId ||
+      !senderUserId ||
+      !receiverUserId ||
+      !message
+    ) {
       return [];
     }
 
@@ -446,9 +580,21 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     if (!card) {
       return [];
     }
+    const requestedPrinting = requestedCardPrintingId
+      ? (printingById.get(requestedCardPrintingId) ?? null)
+      : null;
+    const printing =
+      requestedPrinting?.card_print_id === cardPrintId
+        ? requestedPrinting
+        : null;
+    const cardPrintingId = printing?.id ?? null;
+    const printingGvId = normalizeOptionalText(printing?.printing_gv_id);
+    const finishKey = normalizeOptionalText(printing?.finish_key);
+    const finishLabel = getFinishLabel(printing);
 
     const direction = senderUserId === normalizedUserId ? "sent" : "received";
-    const counterpartUserId = direction === "sent" ? receiverUserId : senderUserId;
+    const counterpartUserId =
+      direction === "sent" ? receiverUserId : senderUserId;
     const counterpartProfile = profileByUserId.get(counterpartUserId);
     const setRecord = Array.isArray(card.sets) ? card.sets[0] : card.sets;
 
@@ -467,23 +613,31 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
           (direction === "sent" ? "Collector" : "Interested collector"),
         card: {
           cardPrintId,
+          cardPrintingId,
+          printingGvId,
+          finishKey,
+          finishLabel,
           gvId: normalizeOptionalText(card.gv_id) ?? cardPrintId,
           name: normalizeOptionalText(card.name) ?? "Unknown card",
           variant_key: normalizeOptionalText(card.variant_key) ?? undefined,
-          printed_identity_modifier: normalizeOptionalText(card.printed_identity_modifier) ?? undefined,
-          set_identity_model: normalizeOptionalText(setRecord?.identity_model) ?? undefined,
+          printed_identity_modifier:
+            normalizeOptionalText(card.printed_identity_modifier) ?? undefined,
+          set_identity_model:
+            normalizeOptionalText(setRecord?.identity_model) ?? undefined,
           setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
           setName:
             normalizeOptionalText(setRecord?.name) ??
             normalizeOptionalText(card.set_code) ??
             "Unknown set",
           number: normalizeOptionalText(card.number) ?? "—",
-          imageUrl: resolveDisplayImageUrl({
-            display_image_url: card.display_image_url,
-            image_url: card.image_url,
-            image_alt_url: card.image_alt_url,
-            representative_image_url: card.representative_image_url,
-          }),
+          imageUrl:
+            buildCanonCardImageProxyUrl(printingGvId) ??
+            resolveDisplayImageUrl({
+              display_image_url: card.display_image_url,
+              image_url: card.image_url,
+              image_alt_url: card.image_alt_url,
+              representative_image_url: card.representative_image_url,
+            }),
         },
       } satisfies UserCardInteractionRow,
     ];
@@ -493,7 +647,13 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     string,
     Omit<
       UserCardInteractionGroup,
-      "startedByCurrentUser" | "hasUnread" | "conversationState" | "ownedSourceInstances" | "latestOutcome" | "pendingTradeExecutionEventId" | "hasAmbiguousPendingTradeEvent"
+      | "startedByCurrentUser"
+      | "hasUnread"
+      | "conversationState"
+      | "ownedSourceInstances"
+      | "latestOutcome"
+      | "pendingTradeExecutionEventId"
+      | "hasAmbiguousPendingTradeEvent"
     > & {
       startedByCurrentUser: boolean;
       hasUnread: boolean;
@@ -507,7 +667,11 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
   const interactionIdToGroupKey = new Map<string, string>();
 
   for (const row of flatRows) {
-    const groupKey = buildInteractionGroupKey(row.card.cardPrintId, row.counterpartUserId);
+    const groupKey = buildInteractionGroupKey(
+      row.card.cardPrintId,
+      row.card.cardPrintingId,
+      row.counterpartUserId,
+    );
     const existingGroup = groups.get(groupKey);
     const message = {
       id: row.id,
@@ -530,10 +694,13 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
         counterpartSlug: row.counterpartSlug,
         counterpartDisplayName: row.counterpartDisplayName,
         card: row.card,
-        hasUnread: Boolean(stateRow?.has_unread ?? row.direction === "received"),
+        hasUnread: Boolean(
+          stateRow?.has_unread ?? row.direction === "received",
+        ),
         conversationState: getConversationState(stateRow),
         messageCount: 1,
-        latestCreatedAt: normalizeOptionalText(stateRow?.latest_message_at) ?? row.createdAt,
+        latestCreatedAt:
+          normalizeOptionalText(stateRow?.latest_message_at) ?? row.createdAt,
         ownedSourceInstances: [],
         latestOutcome: null,
         pendingTradeExecutionEventId: null,
@@ -557,11 +724,14 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       return {
         ...group,
         startedByCurrentUser: messages[0]?.direction === "sent",
-        hasUnread: group.conversationState === "inbox" ? group.hasUnread : false,
+        hasUnread:
+          group.conversationState === "inbox" ? group.hasUnread : false,
         messages,
       };
     })
-    .sort((left, right) => compareCreatedAtDescending(left.latestCreatedAt, right.latestCreatedAt));
+    .sort((left, right) =>
+      compareCreatedAtDescending(left.latestCreatedAt, right.latestCreatedAt),
+    );
 
   const groupByKey = new Map(groupList.map((group) => [group.groupKey, group]));
   const groupVaultItemIds = uniqueValues(
@@ -571,18 +741,26 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
   );
 
   if (groupVaultItemIds.length > 0) {
-    const { data: ownedInstancesData, error: ownedInstancesError } = await adminClient
-      .from("vault_item_instances")
-      .select("id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,intent,is_graded,grade_company,grade_value,grade_label,created_at")
-      .eq("user_id", normalizedUserId)
-      .is("archived_at", null)
-      .in("legacy_vault_item_id", groupVaultItemIds);
+    const { data: ownedInstancesData, error: ownedInstancesError } =
+      await adminClient
+        .from("vault_item_instances")
+        .select(
+          "id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,intent,is_graded,grade_company,grade_value,grade_label,created_at",
+        )
+        .eq("user_id", normalizedUserId)
+        .is("archived_at", null)
+        .in("legacy_vault_item_id", groupVaultItemIds);
 
     if (ownedInstancesError) {
-      throw new Error(`[network:inbox] owned source instance lookup failed: ${ownedInstancesError.message}`);
+      throw new Error(
+        `[network:inbox] owned source instance lookup failed: ${ownedInstancesError.message}`,
+      );
     }
 
-    const ownedInstancesByVaultItemId = new Map<string, UserCardInteractionOwnedSourceInstance[]>();
+    const ownedInstancesByVaultItemId = new Map<
+      string,
+      UserCardInteractionOwnedSourceInstance[]
+    >();
 
     for (const row of (ownedInstancesData ?? []) as OwnedSourceInstanceRow[]) {
       const legacyVaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
@@ -592,14 +770,17 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       }
 
       const group = groupList.find(
-        (candidate) => candidate.vaultItemId === legacyVaultItemId && candidate.card.cardPrintId === cardPrintId,
+        (candidate) =>
+          candidate.vaultItemId === legacyVaultItemId &&
+          candidate.card.cardPrintId === cardPrintId,
       );
 
       if (!group) {
         continue;
       }
 
-      const instances = ownedInstancesByVaultItemId.get(legacyVaultItemId) ?? [];
+      const instances =
+        ownedInstancesByVaultItemId.get(legacyVaultItemId) ?? [];
       instances.push({
         instanceId: row.id,
         gvviId: normalizeOptionalText(row.gv_vi_id),
@@ -620,27 +801,38 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
         continue;
       }
 
-      group.ownedSourceInstances = [...(ownedInstancesByVaultItemId.get(group.vaultItemId) ?? [])].sort((left, right) =>
+      group.ownedSourceInstances = [
+        ...(ownedInstancesByVaultItemId.get(group.vaultItemId) ?? []),
+      ].sort((left, right) =>
         compareCreatedAtDescending(left.createdAt, right.createdAt),
       );
     }
   }
 
-  const interactionIds = uniqueValues(groupList.flatMap((group) => group.messages.map((message) => message.id)));
+  const interactionIds = uniqueValues(
+    groupList.flatMap((group) => group.messages.map((message) => message.id)),
+  );
 
   if (interactionIds.length > 0) {
     const { data: outcomeRowsData, error: outcomesError } = await client
       .from("card_interaction_outcomes")
-      .select("id,execution_event_id,latest_interaction_id,source_user_id,target_user_id,outcome_type,price_amount,price_currency,executed_by_user_id,created_at")
+      .select(
+        "id,execution_event_id,latest_interaction_id,source_user_id,target_user_id,outcome_type,price_amount,price_currency,executed_by_user_id,created_at",
+      )
       .in("latest_interaction_id", interactionIds);
 
     if (outcomesError) {
-      throw new Error(`[network:inbox] interaction outcome lookup failed: ${outcomesError.message}`);
+      throw new Error(
+        `[network:inbox] interaction outcome lookup failed: ${outcomesError.message}`,
+      );
     }
 
-    for (const row of (outcomeRowsData ?? []) as CardInteractionOutcomeSourceRow[]) {
+    for (const row of (outcomeRowsData ??
+      []) as CardInteractionOutcomeSourceRow[]) {
       const interactionId = normalizeOptionalText(row.latest_interaction_id);
-      const groupKey = interactionId ? interactionIdToGroupKey.get(interactionId) : null;
+      const groupKey = interactionId
+        ? interactionIdToGroupKey.get(interactionId)
+        : null;
       const group = groupKey ? groupByKey.get(groupKey) : null;
       const executionEventId = normalizeOptionalText(row.execution_event_id);
       const outcomeId = normalizeOptionalText(row.id);
@@ -649,7 +841,15 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       const executedByUserId = normalizeOptionalText(row.executed_by_user_id);
       const outcomeType = normalizeOptionalText(row.outcome_type);
 
-      if (!group || !interactionId || !executionEventId || !outcomeId || !sourceUserId || !targetUserId || !executedByUserId) {
+      if (
+        !group ||
+        !interactionId ||
+        !executionEventId ||
+        !outcomeId ||
+        !sourceUserId ||
+        !targetUserId ||
+        !executedByUserId
+      ) {
         continue;
       }
 
@@ -670,15 +870,25 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
         createdAt: row.created_at ?? null,
       };
 
-      if (!group.latestOutcome || compareCreatedAtDescending(group.latestOutcome.createdAt, candidateOutcome.createdAt) > 0) {
+      if (
+        !group.latestOutcome ||
+        compareCreatedAtDescending(
+          group.latestOutcome.createdAt,
+          candidateOutcome.createdAt,
+        ) > 0
+      ) {
         group.latestOutcome = candidateOutcome;
       }
     }
   }
 
-  const tradeEventRows = (tradeOutcomesResponse.data ?? []) as CardInteractionOutcomeSourceRow[];
+  const tradeEventRows = (tradeOutcomesResponse.data ??
+    []) as CardInteractionOutcomeSourceRow[];
   const tradeEventCandidatesByCounterpart = new Map<string, string[]>();
-  const tradeEventRowsByEventId = new Map<string, CardInteractionOutcomeSourceRow[]>();
+  const tradeEventRowsByEventId = new Map<
+    string,
+    CardInteractionOutcomeSourceRow[]
+  >();
 
   for (const row of tradeEventRows) {
     const eventId = normalizeOptionalText(row.execution_event_id);
@@ -704,39 +914,50 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       continue;
     }
 
-    if (sourceUserId === normalizedUserId || targetUserId !== normalizedUserId) {
+    if (
+      sourceUserId === normalizedUserId ||
+      targetUserId !== normalizedUserId
+    ) {
       continue;
     }
 
-    const candidates = tradeEventCandidatesByCounterpart.get(sourceUserId) ?? [];
+    const candidates =
+      tradeEventCandidatesByCounterpart.get(sourceUserId) ?? [];
     candidates.push(eventId);
     tradeEventCandidatesByCounterpart.set(sourceUserId, candidates);
   }
 
   for (const group of groupList) {
-    const candidates = tradeEventCandidatesByCounterpart.get(group.counterpartUserId) ?? [];
-    group.pendingTradeExecutionEventId = candidates.length === 1 ? candidates[0] : null;
+    const candidates =
+      tradeEventCandidatesByCounterpart.get(group.counterpartUserId) ?? [];
+    group.pendingTradeExecutionEventId =
+      candidates.length === 1 ? candidates[0] : null;
     group.hasAmbiguousPendingTradeEvent = candidates.length > 1;
   }
 
   const pendingTradeGroups = groupList.filter(
-    (group) => group.pendingTradeExecutionEventId && !group.hasAmbiguousPendingTradeEvent,
+    (group) =>
+      group.pendingTradeExecutionEventId &&
+      !group.hasAmbiguousPendingTradeEvent,
   );
 
   if (pendingTradeGroups.length > 0) {
-    const { data: tradeInstanceRows, error: tradeInstancesError } = await adminClient
-      .from("vault_item_instances")
-      .select(
-        "id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,intent,is_graded,grade_company,grade_value,grade_label,created_at",
-      )
-      .eq("user_id", normalizedUserId)
-      .eq("intent", "trade")
-      .is("archived_at", null)
-      .order("created_at", { ascending: false })
-      .order("id", { ascending: false });
+    const { data: tradeInstanceRows, error: tradeInstancesError } =
+      await adminClient
+        .from("vault_item_instances")
+        .select(
+          "id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,intent,is_graded,grade_company,grade_value,grade_label,created_at",
+        )
+        .eq("user_id", normalizedUserId)
+        .eq("intent", "trade")
+        .is("archived_at", null)
+        .order("created_at", { ascending: false })
+        .order("id", { ascending: false });
 
     if (tradeInstancesError) {
-      throw new Error(`[network:inbox] trade source instance lookup failed: ${tradeInstancesError.message}`);
+      throw new Error(
+        `[network:inbox] trade source instance lookup failed: ${tradeInstancesError.message}`,
+      );
     }
 
     const tradeRows = (tradeInstanceRows ?? []) as OwnedSourceInstanceRow[];
@@ -750,11 +971,15 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     if (tradeCardPrintIds.length > 0) {
       const { data: tradeCardRows, error: tradeCardError } = await adminClient
         .from("card_prints")
-        .select("id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,sets(name,identity_model)")
+        .select(
+          "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,sets(name,identity_model)",
+        )
         .in("id", tradeCardPrintIds);
 
       if (tradeCardError) {
-        throw new Error(`[network:inbox] trade source card lookup failed: ${tradeCardError.message}`);
+        throw new Error(
+          `[network:inbox] trade source card lookup failed: ${tradeCardError.message}`,
+        );
       }
 
       for (const row of (tradeCardRows ?? []) as TradeSourceCardRow[]) {
@@ -771,7 +996,10 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
         return {
           instanceId: row.id,
           gvviId: normalizeOptionalText(row.gv_vi_id),
-          label: buildTradeSourceInstanceLabel(row, cardPrintId ? tradeCardById.get(cardPrintId) ?? null : null),
+          label: buildTradeSourceInstanceLabel(
+            row,
+            cardPrintId ? (tradeCardById.get(cardPrintId) ?? null) : null,
+          ),
           intent: normalizeVaultIntent(row.intent) ?? "hold",
           conditionLabel: normalizeOptionalText(row.condition_label),
           isGraded: Boolean(row.is_graded),
@@ -781,12 +1009,21 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
           createdAt: row.created_at ?? null,
         } satisfies UserCardInteractionOwnedSourceInstance;
       })
-      .sort((left, right) => compareCreatedAtDescending(left.createdAt, right.createdAt));
+      .sort((left, right) =>
+        compareCreatedAtDescending(left.createdAt, right.createdAt),
+      );
 
     for (const group of pendingTradeGroups) {
-      const existingInstanceIds = new Set(group.ownedSourceInstances.map((instance) => instance.instanceId));
-      const mergedTradeSources = tradeSourceInstances.filter((instance) => !existingInstanceIds.has(instance.instanceId));
-      group.ownedSourceInstances = [...group.ownedSourceInstances, ...mergedTradeSources].sort((left, right) =>
+      const existingInstanceIds = new Set(
+        group.ownedSourceInstances.map((instance) => instance.instanceId),
+      );
+      const mergedTradeSources = tradeSourceInstances.filter(
+        (instance) => !existingInstanceIds.has(instance.instanceId),
+      );
+      group.ownedSourceInstances = [
+        ...group.ownedSourceInstances,
+        ...mergedTradeSources,
+      ].sort((left, right) =>
         compareCreatedAtDescending(left.createdAt, right.createdAt),
       );
     }

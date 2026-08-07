@@ -95,7 +95,10 @@ test("message action sanitizes invalidation paths and reports a confirmed commit
   assert.match(action, /committedInteractionId = inserted\.id/);
   assert.match(action, /interaction_signal_written/);
   assert.match(action, /post-write verification failed after commit/);
-  assert.match(action, /return buildSuccessResult\(submissionKey, committedInteractionId, target\.owner_display_name\)/);
+  assert.match(
+    action,
+    /return buildSuccessResult\(\s*submissionKey,\s*committedInteractionId,\s*target\.owner_display_name,?\s*\)/s,
+  );
   assert.doesNotMatch(action, /revalidatePath\("\/", "layout"\)/);
 });
 

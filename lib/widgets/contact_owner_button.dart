@@ -376,6 +376,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
       userId: userId,
       cardPrintId: result.cardPrintId ?? widget.cardPrintId,
       counterpartUserId: result.counterpartUserId ?? '',
+      cardPrintingId: result.cardPrintingId,
     );
   }
 
