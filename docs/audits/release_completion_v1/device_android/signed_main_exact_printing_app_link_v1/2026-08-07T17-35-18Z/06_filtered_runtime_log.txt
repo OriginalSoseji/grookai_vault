@@ -1,0 +1,29 @@
+APP_PROCESS_ID=24099 
+08-07 11:12:33.096 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=false
+08-07 11:12:33.096 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth state event=initialSession sessionPresent=false
+08-07 11:12:33.099 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=false
+08-07 11:12:33.139 24099 24099 I flutter : [GOOGLE_OAUTH_V1] initial uri=https://grookaivault.com/card/GV-PK-MEW-025 queryKeys=[] fragmentKeys=[]
+08-07 11:12:33.139 24099 24099 I flutter : [GOOGLE_OAUTH_V1] inbound uri=https://grookaivault.com/card/GV-PK-MEW-025 queryKeys=[] fragmentKeys=[]
+08-07 11:12:33.143 24099 24099 I flutter : [GOOGLE_OAUTH_V1] inbound uri=https://grookaivault.com/card/GV-PK-MEW-025 queryKeys=[] fragmentKeys=[]
+08-07 11:12:33.294 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 11:12:33.476 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=false sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 11:12:38.750 24099 24099 I flutter : card.detail.printings.fetch.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d
+08-07 11:12:38.844 24099 24099 I flutter : card.detail.printings.fetch.complete: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d (3)
+08-07 11:28:14.909 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth state event=signedIn sessionPresent=true
+08-07 11:28:14.916 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=true sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 11:28:14.965 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=true sessionExpired=false recoveryPending=false pendingCanonicalLink=true
+08-07 11:28:15.157 24099 24099 I flutter : card.detail.printings.fetch.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d
+08-07 11:28:15.375 24099 24099 I flutter : [GOOGLE_OAUTH_V1] auth gate sessionPresent=true sessionExpired=false recoveryPending=false pendingCanonicalLink=false
+08-07 11:28:15.403 24099 24099 I flutter : card.detail.printings.fetch.complete: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d (3)
+08-07 11:28:15.403 24099 24099 I flutter : card.detail.printings.add.resolve: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d (3)
+08-07 11:28:15.403 24099 24099 I flutter : vault.mobile.add.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d
+08-07 11:28:15.664 24099 24099 I flutter : card.detail.printings.fetch.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d
+08-07 11:28:15.825 24099 24099 I flutter : card.detail.printings.fetch.complete: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d (3)
+08-07 11:28:15.892 24099 24099 I flutter : card.detail.printings.fetch.begin: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d
+08-07 11:28:16.097 24099 24099 I flutter : card.detail.printings.fetch.complete: 85d64fe0-be9a-4760-a1a6-51dadcc88a7d (3)
+08-07 11:28:16.681 24099 24099 I flutter : [PULSE_E4] mark_seen_failed=PostgrestException(message: pulse seen cursor cannot move backwards, code: P0001, details: Bad Request, hint: null)
+
+ANDROID_PERMISSION_RESULT
+08-07 11:11:09.367 20005 20005 I GrantPermissionsViewModel: Permission grant result requestId=2198874321880080777 callingUid=10436 callingPackage=com.grookai.vault.lockedacceptance permission=android.permission.POST_NOTIFICATIONS isImplicit=false result=2 isPermissionRationaleShown=falseisPackageRestrictedByEnhancedConfirmation=false
+08-07 11:29:05.130 20005 20005 I GrantPermissionsViewModel: Logged buttons presented and clicked permissionGroupName=android.permission-group.NOTIFICATIONS uid=10440 package=com.grookai.vault presentedButtons=9 clickedButton=1 isPermissionRationaleShown=false sessionId=5804096863513214840 targetSdk=36 prompt=BASIC initialLocationPrecision=0 selectedLocationPrecision=0 locationAccuracyButtonClicked= false
+08-07 11:29:05.138 20005 20005 I GrantPermissionsViewModel: Permission grant result requestId=5804096863513214840 callingUid=10440 callingPackage=com.grookai.vault permission=android.permission.POST_NOTIFICATIONS isImplicit=false result=4 isPermissionRationaleShown=falseisPackageRestrictedByEnhancedConfirmation=false

@@ -1,0 +1,84 @@
+{
+  "schema_version": "FINAL_CANDIDATE_SECURITY_AND_OPERATIONS_V1",
+  "recorded_at": "2026-08-07T17:53:47.9257435Z",
+  "status": "partial_pass",
+  "final_candidate_sha": "80d30d0ef5f373e8208e01926f276faa705092c9",
+  "security": {
+    "production_metadata_readback_status": "passed",
+    "target_views": 5,
+    "found_views": 5,
+    "missing_views": 0,
+    "security_definer_views": 0,
+    "security_definer_functions_without_fixed_path": 0,
+    "database_writes": false,
+    "source_artifact": "docs/audits/release_completion_v1/final_candidate_security_advisor_views_readback_v1.json",
+    "source_sha256": "64cf57901a69f85f806c57e888deaa87d6e1c93ca4553baad6f666bd34097972"
+  },
+  "operations": {
+    "runtime_preflight_critical_fail_checks": 0,
+    "runtime_health_ok": true,
+    "runtime_health_failed_checks": 0,
+    "unresolved_quarantine_rows": 0,
+    "known_deferred_debt_checks": 10,
+    "deferred_gap_count": 7,
+    "blocked_or_deferred_records": 7,
+    "source_artifacts": [
+      {
+        "path": "docs/audits/founder_ops_dashboard_v1/runtime_preflight_v1.json",
+        "sha256": "07b47b9c5e48238621117d836547a667df8e0367c5f158399c1c81ce7f3217e7"
+      },
+      {
+        "path": "docs/audits/founder_ops_dashboard_v1/runtime_health_v1.json",
+        "sha256": "ad1d2cc7b8211c1a0ad7cb887f39a8ea154014ef334c2944b3d5e45510b0d309"
+      },
+      {
+        "path": "docs/audits/founder_ops_dashboard_v1/quarantine_report_v1.json",
+        "sha256": "7ca2298def6aed1fe90f9434cee73fce503c2b366d2f1cbaeb0e60009e7f8dfd"
+      },
+      {
+        "path": "docs/audits/founder_ops_dashboard_v1/deferred_report_v1.json",
+        "sha256": "73a6c11df4d120623af42de3aa8d0e54ebba0ecac54bb5f1e31342adacf9a4c7"
+      }
+    ]
+  },
+  "web_analytics": {
+    "production_home_http_status": 200,
+    "production_analytics_script_http_status": 200,
+    "production_layout_bundle_contains_analytics_loader": true,
+    "production_layout_bundle_contains_before_send_policy": true,
+    "secret_binder_routes_fail_closed": true
+  },
+  "mobile_crash_reporting": {
+    "firebase_initialized_before_app_start": true,
+    "release_collection_enabled": true,
+    "flutter_and_platform_fatal_handlers_installed": true,
+    "privacy_safe_nonfatal_context_allowlist": true,
+    "xcode_cloud_dsym_upload_contract_present": true,
+    "console_delivery_readback": false
+  },
+  "public_operations_surfaces": {
+    "privacy_route_final_candidate_passed": true,
+    "terms_route_final_candidate_passed": true,
+    "support_route_final_candidate_passed": true,
+    "account_deletion_route_final_candidate_passed": true,
+    "support_contact_present": true
+  },
+  "tests": {
+    "targeted_contracts_passed": 64,
+    "targeted_contracts_failed": 0,
+    "founder_ops_contracts_passed": 2
+  },
+  "remaining_gates": [
+    "Read back Crashlytics delivery and dSYM state from Firebase/App Store tooling for the final iOS build.",
+    "Verify the operational account-deletion request process end to end without deleting a real collector account.",
+    "Complete the final-candidate cross-platform state matrix and 72-hour monitoring soak."
+  ],
+  "boundaries": {
+    "database_writes": false,
+    "collector_rows_selected": false,
+    "account_deleted": false,
+    "crash_injected": false,
+    "overall_security_operations_gate_claimed_complete": false
+  }
+}
+

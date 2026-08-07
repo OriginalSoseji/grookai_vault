@@ -1,0 +1,40 @@
+{
+  "schema_version": "SIGNED_MAIN_EXACT_PRINTING_ANDROID_SUMMARY_V1",
+  "recorded_at": "2026-08-07T17:37:00.4625796Z",
+  "status": "passed",
+  "completion_allowed_for_this_gate": true,
+  "main_sha": "80d30d0ef5f373e8208e01926f276faa705092c9",
+  "proof": {
+    "main_workflows_green": true,
+    "production_deployment_green": true,
+    "signed_apk_verified": true,
+    "release_certificate_verified": true,
+    "production_asset_links_verified": true,
+    "android_domain_state_verified": true,
+    "https_card_link_opened_release_app": true,
+    "expected_canonical_card_rendered": true,
+    "three_exact_printings_rendered": true,
+    "selected_printing_preserved_through_auth": true,
+    "choose_exact_printing_guard_absent_after_auth": true,
+    "exact_normal_private_copy_rendered": true,
+    "test_copy_written_once": true,
+    "push_registration_resumed_after_action": true,
+    "notification_permission_prompt_rendered_after_action": true,
+    "test_copy_removed_through_ui": true,
+    "active_exact_rows_after_cleanup": 0,
+    "test_account_password_restored": true,
+    "locked_acceptance_package_untouched": true,
+    "fatal_runtime_errors": 0
+  },
+  "test_copy_gv_vi_id": "GVVI-FA55C026-000006",
+  "residual_observations": [
+    "A Pulse mark-seen request was rejected by the monotonic cursor guard because the cursor attempted to move backwards. No ownership or exact-printing mutation was affected. Track this in the final state-matrix and operations review."
+  ],
+  "boundaries": {
+    "no_direct_database_write": true,
+    "no_locked_acceptance_package_change": true,
+    "no_credential_or_token_artifact": true,
+    "no_iOS_claim": true,
+    "overall_release_completion_not_claimed": true
+  }
+}

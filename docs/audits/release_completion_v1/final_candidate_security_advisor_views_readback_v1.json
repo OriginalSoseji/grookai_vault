@@ -1,0 +1,1083 @@
+{
+  "audit_version": "RELEASE_SECURITY_ADVISOR_VIEWS_READBACK_V1",
+  "as_of": "2026-08-07T17:51:16.426Z",
+  "mode": "read_only_metadata",
+  "status": "passed",
+  "summary": {
+    "target_view_count": 5,
+    "found_view_count": 5,
+    "missing_view_count": 0,
+    "security_definer_view_count": 0,
+    "security_definer_function_without_fixed_path_count": 0
+  },
+  "missing_views": [],
+  "security_definer_views": [],
+  "views": [
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_barrier=true",
+        "security_invoker=true"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres,service_role=r/postgres}",
+      "definition": " SELECT instance_id,\n    vault_item_id,\n    owner_user_id,\n    owner_slug,\n    owner_display_name,\n    card_print_id,\n    intent,\n    condition_label,\n    is_graded,\n    grade_company,\n    grade_value,\n    grade_label,\n    created_at,\n    card_printing_id\n   FROM card_contact_target_rows_for_current_viewer_v2() card_contact_target_rows_for_current_viewer_v2(instance_id, vault_item_id, owner_user_id, owner_slug, owner_display_name, card_print_id, intent, condition_label, is_graded, grade_company, grade_value, grade_label, created_at, card_printing_id);"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_barrier=true",
+        "security_invoker=true"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres,service_role=r/postgres}",
+      "definition": " SELECT vault_item_id,\n    owner_user_id,\n    owner_slug,\n    owner_display_name,\n    card_print_id,\n    intent,\n    quantity,\n    condition_label,\n    is_graded,\n    grade_company,\n    grade_value,\n    grade_label,\n    created_at,\n    gv_id,\n    name,\n    set_code,\n    set_name,\n    number,\n    image_url,\n    in_play_count,\n    trade_count,\n    sell_count,\n    showcase_count,\n    raw_count,\n    slab_count,\n    representative_image_url,\n    image_status,\n    image_note,\n    display_image_url,\n    display_image_kind\n   FROM card_stream_rows_v2() card_stream_rows_v2(vault_item_id, owner_user_id, owner_slug, owner_display_name, card_print_id, intent, quantity, condition_label, is_graded, grade_company, grade_value, grade_label, created_at, gv_id, name, set_code, set_name, number, image_url, in_play_count, trade_count, sell_count, showcase_count, raw_count, slab_count, representative_image_url, image_status, image_note, display_image_url, display_image_kind);"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_barrier=true",
+        "security_invoker=true"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres,service_role=r/postgres}",
+      "definition": " SELECT section_id,\n    section_name,\n    section_position,\n    instance_id,\n    gv_vi_id,\n    vault_item_id,\n    owner_user_id,\n    owner_slug,\n    owner_display_name,\n    card_print_id,\n    intent,\n    slab_cert_id,\n    condition_label,\n    is_graded,\n    grade_company,\n    grade_value,\n    grade_label,\n    section_added_at,\n    instance_created_at,\n    gv_id,\n    name,\n    set_code,\n    set_name,\n    number,\n    image_url,\n    representative_image_url,\n    image_status,\n    image_note,\n    display_image_url,\n    display_image_kind,\n    public_note,\n    price_display_mode,\n    legacy_wall_category,\n    image_back_url,\n    image_display_mode,\n    card_printing_id\n   FROM section_card_rows_v2() section_card_rows_v2(section_id, section_name, section_position, instance_id, gv_vi_id, vault_item_id, owner_user_id, owner_slug, owner_display_name, card_print_id, intent, slab_cert_id, condition_label, is_graded, grade_company, grade_value, grade_label, section_added_at, instance_created_at, gv_id, name, set_code, set_name, number, image_url, representative_image_url, image_status, image_note, display_image_url, display_image_kind, public_note, price_display_mode, legacy_wall_category, image_back_url, image_display_mode, card_printing_id);"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_barrier=true",
+        "security_invoker=true"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,authenticated=r/postgres,service_role=r/postgres}",
+      "definition": " SELECT instance_id,\n    card_print_id,\n    card_printing_id\n   FROM vault_mobile_pricing_target_rows_for_current_user_v2() vault_mobile_pricing_target_rows_for_current_user_v2(instance_id, card_print_id, card_printing_id);"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "owner_name": "postgres",
+      "reloptions": [
+        "security_barrier=true",
+        "security_invoker=true"
+      ],
+      "acl": "{postgres=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres,service_role=r/postgres}",
+      "definition": " SELECT instance_id,\n    gv_vi_id,\n    vault_item_id,\n    owner_user_id,\n    owner_slug,\n    owner_display_name,\n    card_print_id,\n    intent,\n    slab_cert_id,\n    condition_label,\n    is_graded,\n    grade_company,\n    grade_value,\n    grade_label,\n    created_at,\n    gv_id,\n    name,\n    set_code,\n    set_name,\n    number,\n    image_url,\n    representative_image_url,\n    image_status,\n    image_note,\n    display_image_url,\n    display_image_kind,\n    public_note,\n    price_display_mode,\n    legacy_wall_category,\n    image_back_url,\n    image_display_mode,\n    card_printing_id\n   FROM wall_card_rows_v2() wall_card_rows_v2(instance_id, gv_vi_id, vault_item_id, owner_user_id, owner_slug, owner_display_name, card_print_id, intent, slab_cert_id, condition_label, is_graded, grade_company, grade_value, grade_label, created_at, gv_id, name, set_code, set_name, number, image_url, representative_image_url, image_status, image_note, display_image_url, display_image_kind, public_note, price_display_mode, legacy_wall_category, image_back_url, image_display_mode, card_printing_id);"
+    }
+  ],
+  "columns": [
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 1,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 2,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 3,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 4,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 5,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 6,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 7,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 8,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 9,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 10,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 11,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 12,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 13,
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "ordinal_position": 14,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 1,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 2,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 3,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 4,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 5,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 6,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 7,
+      "column_name": "quantity",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 8,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 9,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 10,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 11,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 12,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 13,
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 14,
+      "column_name": "gv_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 15,
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 16,
+      "column_name": "set_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 17,
+      "column_name": "set_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 18,
+      "column_name": "number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 19,
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 20,
+      "column_name": "in_play_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 21,
+      "column_name": "trade_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 22,
+      "column_name": "sell_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 23,
+      "column_name": "showcase_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 24,
+      "column_name": "raw_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 25,
+      "column_name": "slab_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 26,
+      "column_name": "representative_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 27,
+      "column_name": "image_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 28,
+      "column_name": "image_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 29,
+      "column_name": "display_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_card_stream_v1",
+      "ordinal_position": 30,
+      "column_name": "display_image_kind",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 1,
+      "column_name": "section_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 2,
+      "column_name": "section_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 3,
+      "column_name": "section_position",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 4,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 5,
+      "column_name": "gv_vi_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 6,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 7,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 8,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 9,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 10,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 11,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 12,
+      "column_name": "slab_cert_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 13,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 14,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 15,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 16,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 17,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 18,
+      "column_name": "section_added_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 19,
+      "column_name": "instance_created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 20,
+      "column_name": "gv_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 21,
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 22,
+      "column_name": "set_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 23,
+      "column_name": "set_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 24,
+      "column_name": "number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 25,
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 26,
+      "column_name": "representative_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 27,
+      "column_name": "image_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 28,
+      "column_name": "image_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 29,
+      "column_name": "display_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 30,
+      "column_name": "display_image_kind",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 31,
+      "column_name": "public_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 32,
+      "column_name": "price_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 33,
+      "column_name": "legacy_wall_category",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 34,
+      "column_name": "image_back_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 35,
+      "column_name": "image_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "ordinal_position": 36,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "ordinal_position": 1,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "ordinal_position": 2,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "ordinal_position": 3,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 1,
+      "column_name": "instance_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 2,
+      "column_name": "gv_vi_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 3,
+      "column_name": "vault_item_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 4,
+      "column_name": "owner_user_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 5,
+      "column_name": "owner_slug",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 6,
+      "column_name": "owner_display_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 7,
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 8,
+      "column_name": "intent",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 9,
+      "column_name": "slab_cert_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 10,
+      "column_name": "condition_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 11,
+      "column_name": "is_graded",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 12,
+      "column_name": "grade_company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 13,
+      "column_name": "grade_value",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 14,
+      "column_name": "grade_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 15,
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 16,
+      "column_name": "gv_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 17,
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 18,
+      "column_name": "set_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 19,
+      "column_name": "set_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 20,
+      "column_name": "number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 21,
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 22,
+      "column_name": "representative_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 23,
+      "column_name": "image_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 24,
+      "column_name": "image_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 25,
+      "column_name": "display_image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 26,
+      "column_name": "display_image_kind",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 27,
+      "column_name": "public_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 28,
+      "column_name": "price_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 29,
+      "column_name": "legacy_wall_category",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 30,
+      "column_name": "image_back_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 31,
+      "column_name": "image_display_mode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "ordinal_position": 32,
+      "column_name": "card_printing_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "YES"
+    }
+  ],
+  "dependencies": [],
+  "policies": [],
+  "grants": [
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_vault_mobile_pricing_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_vault_mobile_pricing_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    }
+  ],
+  "security_definer_functions_without_fixed_path": [],
+  "boundaries": {
+    "database_writes": false,
+    "collector_rows_selected": false,
+    "credentials_emitted": false
+  }
+}

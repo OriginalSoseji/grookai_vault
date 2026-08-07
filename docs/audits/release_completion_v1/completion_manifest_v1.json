@@ -12,6 +12,28 @@
     "source_commit": "e8fcbdbb47b97a9db215d3874ea9ae83ce075adf",
     "source_ref": "origin/main"
   },
+  "final_candidate": {
+    "source_commit": "80d30d0ef5f373e8208e01926f276faa705092c9",
+    "merged_pull_request": 192,
+    "web": {
+      "deployment_id": "5798722633",
+      "origin": "https://grookaivault.com",
+      "status": "proven"
+    },
+    "android": {
+      "workflow_run_id": "31200311976",
+      "artifact_id": "9002772994",
+      "package": "com.grookai.vault",
+      "version": "1.0.0 (21)",
+      "apk_sha256": "1ebeba31394e0182b90ec9194e2e62b7ed2ddd8db28edca312da26aaad2eaea4",
+      "status": "proven"
+    },
+    "ios_testflight": {
+      "status": "open",
+      "reason": "No TestFlight build has yet been proven to originate from the final-candidate source commit."
+    },
+    "soak_status": "not_started"
+  },
   "completion_allowed": false,
   "status": "IN_PROGRESS",
   "gates": [
@@ -59,7 +81,9 @@
         "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md",
+        "docs/audits/release_completion_v1/signed_out_web_final_candidate_v1/2026-08-07T17-31-51-763Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Fresh-user ten-second comprehension result",
@@ -68,15 +92,13 @@
     },
     {
       "id": "journey_b_first_card",
-      "status": "partial",
+      "status": "proven",
       "evidence": [
         "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md"
-      ],
-      "required_next_evidence": [
-        "Clean-account physical-device journey and database readback from the final candidate"
+        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md"
       ]
     },
     {
@@ -127,7 +149,9 @@
         "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md",
+        "docs/audits/release_completion_v1/signed_out_web_final_candidate_v1/2026-08-07T17-31-51-763Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Repeat supported signed-out locked-feature and preserved-destination proof on the physical iPhone/TestFlight final candidate"
@@ -144,7 +168,9 @@
         "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
         "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/signed_out_exact_printing_auth_and_app_links_v1/2026-08-07T10-23-09/REPORT.md",
+        "docs/audits/release_completion_v1/signed_out_web_final_candidate_v1/2026-08-07T17-31-51-763Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate desktop, narrow-web, iPhone, and Android execution of required loading, empty, error, offline, private, and signed-out states"
@@ -165,7 +191,10 @@
         "docs/audits/release_completion_v1/security_advisor_view_authority_production_proof_v1.json",
         "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/REPORT.md",
         "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/REPORT.md",
-        "docs/audits/release_completion_v1/security_advisor_view_authority_artifact_hashes_v1.json"
+        "docs/audits/release_completion_v1/security_advisor_view_authority_artifact_hashes_v1.json",
+        "docs/audits/release_completion_v1/signed_out_web_final_candidate_v1/2026-08-07T17-31-51-763Z/REPORT.md",
+        "docs/audits/release_completion_v1/final_candidate_security_advisor_views_readback_v1.json",
+        "docs/audits/release_completion_v1/final_candidate_security_and_operations_v1/2026-08-07T17-53-47Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate RLS/privacy/account-deletion verification",
@@ -176,7 +205,8 @@
       "id": "store_and_distribution_readiness",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/APP_STORE_CONNECT_FEEDBACK_RELEASE_CHECKPOINT_20260804_V1.md"
+        "docs/checkpoints/product/APP_STORE_CONNECT_FEEDBACK_RELEASE_CHECKPOINT_20260804_V1.md",
+        "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Current App Store and Play Store metadata/assets review",

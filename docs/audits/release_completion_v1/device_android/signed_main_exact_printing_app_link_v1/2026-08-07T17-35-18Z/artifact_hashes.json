@@ -1,0 +1,15 @@
+{
+  "01_https_deep_link_signed_out.png": "b8aa554757aab0de1ae3590d4d02bc337512efdb2d40d45e21f74d1d3e18dbd0",
+  "01_https_deep_link_signed_out.xml": "a26dcb89fe19c698b65141ca25a33d3926e06e7de4064b39b4c89bffea1325e8",
+  "02_notification_permission_after_action.xml": "6486cccdaca4fc2491d4b1f751fa9db42f6a9e0865dba389bf40f55e5acf084b",
+  "03_exact_normal_private_copy.xml": "d36fd947aed0d3ee1d3d5e0799e09a8c968c5507c22a685a6b4a380ae1a87876",
+  "04_after_ui_remove.png": "939ebfde33c11a873b92243905c0c5028476c0662a13f8c98c795d0d42d2842e",
+  "04_after_ui_remove.xml": "7c214e693bebb069fc1836de8a900c92ec27b6743434ffcab845e6f70c04793a",
+  "05_device_package_and_links.txt": "addc5b7943deeefbf23024e33353a7250f8359b7be8f06fe7b218762c6eb9b10",
+  "06_filtered_runtime_log.txt": "96d0a3c35c4f9671eaa008e0cd8c4a2488af1e1cea6f71bc7f667240a26f256f",
+  "07_release_provenance.json": "71172ca38adaebf8f826296eab90802867b6b149adf7f5f1f5d494fb116d9af3",
+  "08_db_reconciliation.json": "4973df2b239fa142b84e10e0cec6052e66937d078d9484c6bdf0cf10617ffc33",
+  "09_auth_automation_safety.json": "373cbe7cf51204454c83633dfd5459e9acbcc4536586e8027ae2a7f97c7deeb3",
+  "REPORT.md": "b021fbeba2d3e4557fcb78ff9c783a7092b09c7fd326860c056f436a95024496",
+  "summary.json": "4bb1afd16897f7e3dda0561e0ff60faac9a04ec78668176288f0f94fca30962c"
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "SIGNED_MAIN_AUTH_AUTOMATION_SAFETY_V1",
+  "recorded_at": "2026-08-07T17:29:00Z",
+  "reason": "Samsung keyboard automation did not preserve the original test password reliably in an obscured field.",
+  "method": "The authorized disposable journey account was rotated briefly to a deterministic lowercase alphanumeric password, authenticated in the signed app, and restored in the same guarded execution.",
+  "temporary_password_value_recorded": false,
+  "access_token_recorded": false,
+  "original_password_restored": true,
+  "original_password_direct_auth_verified_after_restore": true,
+  "temporary_password_rejected_after_restore": true,
+  "account_identity_excluded": true,
+  "production_auth_project_verified": true
+}

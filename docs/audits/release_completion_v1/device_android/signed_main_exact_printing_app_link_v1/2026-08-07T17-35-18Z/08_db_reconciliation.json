@@ -1,0 +1,30 @@
+{
+  "schema_version": "SIGNED_MAIN_EXACT_PRINTING_DB_RECONCILIATION_V1",
+  "recorded_at": "2026-08-07T17:31:03.084Z",
+  "card": {
+    "gv_id": "GV-PK-MEW-025",
+    "name": "Pikachu"
+  },
+  "selected_printing": {
+    "printing_gv_id": "GV-PK-MEW-025-STD",
+    "finish_key": "normal",
+    "card_printing_id": "e92cf614-ea13-49c8-9737-786c5ee200fe"
+  },
+  "test_row": {
+    "gv_vi_id": "GVVI-FA55C026-000006",
+    "condition_label": "NM",
+    "created_at": "2026-08-07T17:28:17.401Z",
+    "archived_at": "2026-08-07T17:31:03.084Z"
+  },
+  "before_ui_remove": {
+    "test_row_count": 1,
+    "active_test_row_count": 1
+  },
+  "after_ui_remove": {
+    "test_row_count": 1,
+    "active_test_row_count": 0,
+    "active_exact_card_rows": 0
+  },
+  "test_account_identifier_excluded": true,
+  "database_mutation_performed_by_product_ui_only": true
+}

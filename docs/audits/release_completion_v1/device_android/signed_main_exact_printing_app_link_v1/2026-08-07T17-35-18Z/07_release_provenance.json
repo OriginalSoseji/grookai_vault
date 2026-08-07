@@ -1,0 +1,76 @@
+{
+  "schema_version": "SIGNED_MAIN_ANDROID_RELEASE_PROVENANCE_V1",
+  "recorded_at": "2026-08-07T17:37:00.4625796Z",
+  "pull_request": {
+    "number": 192,
+    "url": "https://github.com/OriginalSoseji/grookai_vault/pull/192",
+    "merged_at": "2026-08-07T17:00:54Z",
+    "main_sha": "80d30d0ef5f373e8208e01926f276faa705092c9"
+  },
+  "source_commits": [
+    "1a24a22070d72c5352abe7cb47684229fa8b40dc",
+    "e8e3d6c6a25ac12903762963c4b84e02720812ff",
+    "6c690e0dbed90dd4e9fd4da4aa667137f394fc8f"
+  ],
+  "main_workflows": [
+    {
+      "name": "Flutter CI",
+      "run_id": 31200311703,
+      "status": "success"
+    },
+    {
+      "name": "Flutter Build Signed APK",
+      "run_id": 31200311976,
+      "status": "success"
+    },
+    {
+      "name": "CodeQL",
+      "run_id": 31200311117,
+      "status": "success"
+    },
+    {
+      "name": "Guard: No Legacy Keys",
+      "run_id": 31200311936,
+      "status": "success"
+    }
+  ],
+  "vercel_production": {
+    "deployment_id": 5798722633,
+    "environment": "Production",
+    "state": "success",
+    "created_at": "2026-08-07T17:02:59Z",
+    "deployment_url": "https://grookai-vault-i23kkjzam-sosejis-projects.vercel.app",
+    "canonical_origin": "https://grookaivault.com"
+  },
+  "signed_apk": {
+    "artifact_id": 9002772994,
+    "artifact_name": "signed-release-apk",
+    "archive_size_bytes": 35196619,
+    "apk_size_bytes": 78933292,
+    "apk_sha256": "1ebeba31394e0182b90ec9194e2e62b7ed2ddd8db28edca312da26aaad2eaea4",
+    "application_id": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21,
+    "signer_dn": "CN=Grookai Vault, OU=Release, O=Grookai, L=Denver, ST=Colorado, C=US",
+    "signer_sha256": "51e518ef647b2bd5c1c91d3d00d08e1fe3192af633b2af6741a67fdce872e033",
+    "libapp_sha256": "90f1f363ba3f0fc859e980a6f2836a2dbc0c9812ee5749863c81f5c702558405",
+    "production_supabase_url_embedded": true,
+    "other_supabase_url_embedded": false
+  },
+  "asset_links": {
+    "url": "https://grookaivault.com/.well-known/assetlinks.json",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "body_sha256": "f2a8fa39bf5aa25a812dadeac7e8549b5504db32166103acf062cf3a0aa2cfe9",
+    "package_name_matches": true,
+    "certificate_matches": true
+  },
+  "device": {
+    "model": "SM-S908U",
+    "serial": "R5CT3291F6E",
+    "installed_at": "2026-08-07 11:11:11",
+    "domain_state": "verified",
+    "https_link_opened_component": "com.grookai.vault/.MainActivity",
+    "locked_acceptance_package_untouched": true
+  }
+}
