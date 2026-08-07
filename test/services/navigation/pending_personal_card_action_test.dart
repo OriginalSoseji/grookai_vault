@@ -10,6 +10,9 @@ void main() {
       kind: PendingPersonalCardActionKind.addToVault,
       cardPrintId: 'card-print-1',
       gvId: 'gv-pk-mew-025',
+      cardPrintingId: ' card-printing-1 ',
+      printingGvId: 'gv-pk-mew-025-rh',
+      finishLabel: ' Reverse Holo ',
     );
 
     expect(PendingPersonalCardActionCoordinator.pending, same(request));
@@ -27,7 +30,13 @@ void main() {
       gvId: 'GV-PK-MEW-025',
     );
     expect(consumed?.kind, PendingPersonalCardActionKind.addToVault);
+    expect(consumed?.cardPrintingId, 'card-printing-1');
+    expect(consumed?.printingGvId, 'GV-PK-MEW-025-RH');
+    expect(consumed?.finishLabel, 'Reverse Holo');
     expect(PendingPersonalCardActionCoordinator.pending, isNull);
+    expect(PendingPersonalCardActionCoordinator.hasUnsettledAction, isTrue);
+    PendingPersonalCardActionCoordinator.complete(request.id);
+    expect(PendingPersonalCardActionCoordinator.hasUnsettledAction, isFalse);
   });
 
   test('normalized GV-ID can consume the staged action after root swap', () {
@@ -42,6 +51,8 @@ void main() {
       gvId: 'gv-pk-mew-025',
     );
     expect(consumed?.kind, PendingPersonalCardActionKind.want);
+    PendingPersonalCardActionCoordinator.complete(consumed!.id);
+    expect(PendingPersonalCardActionCoordinator.hasUnsettledAction, isFalse);
   });
 
   test('cancelling one request cannot clear a newer request', () {
@@ -60,5 +71,32 @@ void main() {
     expect(PendingPersonalCardActionCoordinator.pending, same(newer));
     PendingPersonalCardActionCoordinator.cancel(newer.id);
     expect(PendingPersonalCardActionCoordinator.pending, isNull);
+    expect(PendingPersonalCardActionCoordinator.hasUnsettledAction, isFalse);
+  });
+
+  test('completed older action cannot settle a newer active action', () {
+    final older = PendingPersonalCardActionCoordinator.stage(
+      kind: PendingPersonalCardActionKind.addToVault,
+      cardPrintId: 'card-print-1',
+      gvId: 'GV-PK-MEW-025',
+    );
+    PendingPersonalCardActionCoordinator.takeForCard(
+      cardPrintId: 'card-print-1',
+      gvId: 'GV-PK-MEW-025',
+    );
+    final newer = PendingPersonalCardActionCoordinator.stage(
+      kind: PendingPersonalCardActionKind.want,
+      cardPrintId: 'card-print-2',
+      gvId: 'GV-PK-MEW-026',
+    );
+    PendingPersonalCardActionCoordinator.takeForCard(
+      cardPrintId: 'card-print-2',
+      gvId: 'GV-PK-MEW-026',
+    );
+
+    PendingPersonalCardActionCoordinator.complete(older.id);
+    expect(PendingPersonalCardActionCoordinator.hasUnsettledAction, isTrue);
+    PendingPersonalCardActionCoordinator.complete(newer.id);
+    expect(PendingPersonalCardActionCoordinator.hasUnsettledAction, isFalse);
   });
 }

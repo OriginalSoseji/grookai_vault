@@ -873,7 +873,11 @@ class _AppShellState extends State<AppShell> {
               : _routeText(cardRow['rarity']),
           imageUrl: artwork.primaryImageUrl,
           fallbackImageUrl: artwork.fallbackImageUrl,
-          initialPersonalAction: pendingPersonalAction?.kind,
+          selectedPrintingGvId:
+              pendingPersonalAction?.printingGvId ??
+              pendingPersonalAction?.cardPrintingId,
+          selectedFinishLabel: pendingPersonalAction?.finishLabel,
+          initialPersonalAction: pendingPersonalAction,
         ),
       ),
     );

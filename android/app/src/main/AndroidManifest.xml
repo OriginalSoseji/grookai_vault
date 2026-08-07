@@ -69,6 +69,30 @@
                 <data android:host="binder-invites" />
                 <data android:host="binder-templates" />
             </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" />
+                <data android:host="grookaivault.com" />
+                <data android:pathPrefix="/card/" />
+                <data android:pathPrefix="/u/" />
+                <data android:pathPrefix="/collector/" />
+                <data android:pathPrefix="/set/" />
+                <data android:pathPrefix="/sets/" />
+                <data android:pathPrefix="/gvvi/" />
+                <data android:path="/dex" />
+                <data android:pathPrefix="/dex/" />
+                <data android:path="/network" />
+                <data android:pathPrefix="/network/" />
+                <data android:path="/feed" />
+                <data android:pathPrefix="/feed/" />
+                <data android:path="/binders" />
+                <data android:pathPrefix="/binders/" />
+                <data android:pathPrefix="/b/" />
+                <data android:pathPrefix="/binder-invites/" />
+                <data android:pathPrefix="/binder-templates/" />
+            </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
