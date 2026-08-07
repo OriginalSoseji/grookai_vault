@@ -1,0 +1,166 @@
+{
+  "audit_version": "SECURITY_ADVISOR_VIEW_AUTHORITY_GUARDED_DRY_RUN_V1",
+  "as_of": "2026-08-07T13:04:14.308Z",
+  "status": "passed",
+  "completion_allowed": true,
+  "migration": "supabase/migrations/20260807133000_security_advisor_view_authority_hardening_v1.sql",
+  "migration_sha256": "0b829846d1c33c5de7641f40e5676ca2faeceb066fad7791cdcac6a4f419187e",
+  "checks": {
+    "all_views_present": true,
+    "column_contracts_unchanged": true,
+    "row_counts_unchanged": true,
+    "row_fingerprints_unchanged": true,
+    "all_views_security_invoker": true,
+    "all_views_security_barrier": true,
+    "all_wrapper_functions_present": true,
+    "all_wrapper_functions_security_definer": true,
+    "all_wrapper_functions_fixed_path": true,
+    "anonymous_public_reads_succeeded": true,
+    "anonymous_pricing_denied": true,
+    "authenticated_pricing_allowed": true,
+    "authenticated_pricing_exact": true,
+    "rollback_restored_view_contracts": true,
+    "rollback_removed_wrapper_functions": true
+  },
+  "failed_checks": [],
+  "view_fingerprints_before": [
+    {
+      "view_name": "v_card_stream_v1",
+      "row_count": 44,
+      "row_fingerprint": "92e6f4217dcf6df9c1660b95572a0ece"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "row_count": 47,
+      "row_fingerprint": "315e0305a3d5fc9765c4f4843a67658e"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "row_count": 34,
+      "row_fingerprint": "f33b949bc59a1d600f91b47674f25afe"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "row_count": 2878,
+      "row_fingerprint": "87b5123695591719fa4a31d41b47a9d8"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "row_count": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  ],
+  "view_fingerprints_inside_transaction": [
+    {
+      "view_name": "v_card_stream_v1",
+      "row_count": 44,
+      "row_fingerprint": "92e6f4217dcf6df9c1660b95572a0ece"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "row_count": 47,
+      "row_fingerprint": "315e0305a3d5fc9765c4f4843a67658e"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "row_count": 34,
+      "row_fingerprint": "f33b949bc59a1d600f91b47674f25afe"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "row_count": 2878,
+      "row_fingerprint": "87b5123695591719fa4a31d41b47a9d8"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "row_count": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  ],
+  "wrapper_function_posture": [
+    {
+      "function_name": "card_contact_target_rows_for_current_viewer_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "card_stream_rows_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "section_card_rows_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "vault_mobile_pricing_target_rows_for_current_user_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": false,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "wall_card_rows_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    }
+  ],
+  "role_smoke": {
+    "anonymous_public_reads": [
+      {
+        "view_name": "v_card_stream_v1",
+        "bounded_count": 1
+      },
+      {
+        "view_name": "v_wall_cards_v1",
+        "bounded_count": 1
+      },
+      {
+        "view_name": "v_section_cards_v1",
+        "bounded_count": 1
+      },
+      {
+        "view_name": "v_card_contact_targets_v1",
+        "bounded_count": 1
+      }
+    ],
+    "anonymous_pricing_select": false,
+    "authenticated_pricing_select": true,
+    "authenticated_pricing_expected_count": 1802,
+    "authenticated_pricing_actual_count": 1802
+  },
+  "post_rollback": {
+    "wrapper_function_count": 0,
+    "original_view_contracts_restored": true
+  },
+  "boundaries": {
+    "transaction_ended_with_rollback": true,
+    "persistent_database_writes": false,
+    "collector_identifiers_emitted": false,
+    "row_content_emitted": false
+  }
+}

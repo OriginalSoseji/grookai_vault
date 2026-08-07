@@ -2,19 +2,23 @@
 
 ## Purpose
 
-This gate proves that TestFlight Build 258 supports the complete collector
+This gate proves that TestFlight Build 284 supports the complete collector
 journey on a physical iPhone. Flutter tests, Xcode Cloud, and database probes do
 not replace this device proof.
 
 ## Fixed Release Inputs
 
-- TestFlight build: `1.0.0 (258)`
-- App-producing commit: `35c8bff9cc4368dec05e61b3739322c2f0c524f1`
-- Distribution: internal Friends and Family
+- TestFlight build: `1.0.0 (284)`
+- App-producing commit: `33d7ff50bda428439c664c7c6db427b7a66abd9a`
+- Distribution: internal Friends and Family, external friends and family, and
+  external beta
+- Provenance:
+  `docs/audits/release_completion_v1/testflight_build_284_provenance_v1.json`
 
 ## Device Procedure
 
-1. Install Build 258 from TestFlight on a physical iPhone.
+1. Install Build 284 from TestFlight on a physical iPhone. Confirm the installed
+   app reports bundle version `284` before starting the journey window.
 2. Start a continuous screen recording before opening Grookai Vault.
 3. Sign up with a new account created for this gate.
 4. Search for a card and open its exact card-detail screen.
@@ -48,8 +52,8 @@ $env:RELEASE_JOURNEY_SUBJECT_USER_ID = "<new Supabase auth user UUID>"
 node scripts/audits/release_clean_account_journey_readback_v1.mjs `
   --window-start=<signup-start-UTC> `
   --window-end=<test-end-UTC> `
-  --expected-app-commit-sha=35c8bff9cc4368dec05e61b3739322c2f0c524f1 `
-  --expected-testflight-build=258 `
+  --expected-app-commit-sha=33d7ff50bda428439c664c7c6db427b7a66abd9a `
+  --expected-testflight-build=284 `
   --device-evidence=<private-evidence-json> `
   --require-pass
 ```

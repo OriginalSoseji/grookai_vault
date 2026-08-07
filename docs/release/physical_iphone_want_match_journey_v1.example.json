@@ -1,0 +1,22 @@
+{
+  "platform": "iOS",
+  "physical_device": false,
+  "installed_from_testflight": false,
+  "device_model_family": "iPhone",
+  "testflight_build": "284",
+  "app_commit_sha": "33d7ff50bda428439c664c7c6db427b7a66abd9a",
+  "tested_at": "2026-08-07T00:00:00.000Z",
+  "confirmations": {
+    "exact_card_found": false,
+    "want_enabled": false,
+    "want_match_visible": false,
+    "owner_context_visible": false,
+    "card_centered_message_sent": false,
+    "want_disabled": false,
+    "match_absent_after_opt_out": false,
+    "no_blocking_error": false
+  },
+  "artifact_paths": [
+    "path/to/continuous-screen-recording.mov"
+  ]
+}

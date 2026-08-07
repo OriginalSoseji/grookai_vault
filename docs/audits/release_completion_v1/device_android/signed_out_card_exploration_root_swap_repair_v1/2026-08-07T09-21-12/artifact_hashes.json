@@ -1,0 +1,13 @@
+{
+  "01_direct_card_signed_out.png": "53de7fb154fea9515f50351c5b0b5dc29e0683dcca041f42d4bb479c33b25aa0",
+  "01_direct_card_signed_out.xml": "a26dcb89fe19c698b65141ca25a33d3926e06e7de4064b39b4c89bffea1325e8",
+  "02_add_to_vault_auth_gate.xml": "06e015250cb3fca0273d2cffdd0db25235336fa58422e94a8e4d9e6426f23536",
+  "03_named_sign_in_continuation.xml": "082ed2588c7365882564cd2c823cf83f6d27a44a368436f8165cef5ceb824068",
+  "04_post_auth_exact_card_action_completed.png": "e0fc6074e9e3288681def926e458bbc41054887f2d11652648d8343546cc928e",
+  "04_post_auth_exact_card_action_completed.xml": "877c211c3435467544e21683eb7165ed7c3d3db16fe9f5df627b47c4fe110299",
+  "05_disposable_copy_removed.xml": "a0186b21b090d11b93d9032f76bc87da38fdfb760c4f2e8d277a027eab3e8e5f",
+  "06_test_account_signed_out.xml": "183ad06653100ae4eceab6c86b64c68aa93544061406b43d017ce5c75c40ebd4",
+  "REPORT.md": "4e0a93a6325932715c4d19d69c3e072e234013d1ddaff94aa49ad13ddcfc26fd",
+  "run_plan.json": "68edc8330bfc6ad28140fdcdae4768c0043bee4fd55c9fd2949ef0f4c2659f26",
+  "summary.json": "7c1d4bc70eb1a93e5675ccea8cc059f636c74495a32263d292f55913aa32eb17"
+}

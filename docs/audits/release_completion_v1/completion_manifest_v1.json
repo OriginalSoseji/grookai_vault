@@ -55,18 +55,23 @@
       "status": "partial",
       "evidence": [
         "docs/checkpoints/product/RELEASE_READINESS_AUDIT_20260731_V2.md",
-        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md"
+        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md"
       ],
       "required_next_evidence": [
         "Fresh-user ten-second comprehension result",
-        "Signed-out card exploration and login-continuation proof on web and mobile"
+        "Repeat signed-out card exploration and login continuation on the physical iPhone/TestFlight final candidate"
       ]
     },
     {
       "id": "journey_b_first_card",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md"
+        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md"
       ],
       "required_next_evidence": [
         "Clean-account physical-device journey and database readback from the final candidate"
@@ -81,7 +86,8 @@
         "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
         "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
         "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json",
-        "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md"
+        "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md",
+        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Clean-account final-candidate proof from exact Want through match, owner context, card-centered message, opt-out, and database readback"
@@ -91,7 +97,8 @@
       "id": "journey_d_collector_connection",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md"
+        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
+        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate device proof for discover, follow, activity, exact card, and contextual message"
@@ -101,7 +108,9 @@
       "id": "journey_e_collection_depth",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md"
+        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate proof across Vault, exact copy, Binders, Dex, Sets, Journeys, and Memories with context return"
@@ -112,10 +121,13 @@
       "status": "partial",
       "evidence": [
         "docs/audits/release_convergence_v1/RELEASE_VISUAL_COMPLETION_REPORT_V1.md",
-        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md"
+        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md"
       ],
       "required_next_evidence": [
-        "Production proof for Scan, Wall, Vault, pricing, and personal-action previews plus preserved login destination"
+        "Repeat supported signed-out locked-feature and preserved-destination proof on the physical iPhone/TestFlight final candidate"
       ]
     },
     {
@@ -125,7 +137,10 @@
         "docs/audits/mobile_web_native_parity_v1/route_state_matrix.json",
         "docs/audits/release_convergence_v1/FINAL_DEVICE_AND_REPOSITORY_VERIFICATION_20260806_V1.md",
         "docs/audits/release_completion_v1/device_android/PRE_CANDIDATE_ANDROID_SMOKE_20260806_V1.md",
-        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md"
+        "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_root_swap_repair_v1/2026-08-07T09-21-12/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate desktop, narrow-web, iPhone, and Android execution of required loading, empty, error, offline, private, and signed-out states"
@@ -140,7 +155,13 @@
         "docs/audits/release_completion_v1/production_quarantine_resolution_apply_v1.json",
         "docs/audits/founder_ops_dashboard_v1/runtime_preflight_v1.json",
         "docs/audits/founder_ops_dashboard_v1/runtime_health_v1.json",
-        "docs/audits/founder_ops_dashboard_v1/quarantine_report_v1.json"
+        "docs/audits/founder_ops_dashboard_v1/quarantine_report_v1.json",
+        "docs/checkpoints/security/SECURITY_ADVISOR_VIEW_AUTHORITY_HARDENING_20260807_V1.md",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_guarded_dry_run_v1.json",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_production_proof_v1.json",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_web_smoke_v1/2026-08-07T13-07-45-177Z/REPORT.md",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_post_apply_android_v1/REPORT.md",
+        "docs/audits/release_completion_v1/security_advisor_view_authority_artifact_hashes_v1.json"
       ],
       "required_next_evidence": [
         "Final-candidate RLS/privacy/account-deletion verification",

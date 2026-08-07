@@ -2,6 +2,8 @@
 
 ## Checkpoints
 
+- `SIGNED_OUT_AUTH_ROOT_SWAP_REPAIR_20260807_V1.md` — `2026-08-07` — PHYSICAL ANDROID PROVEN / PR GATE — Records exact pending-card action preservation across authentication root replacement, web-origin OAuth repair, stale login-route cleanup, net-zero test mutation, and full shipcheck against repair commit `21add8fb8`.
+- `SIGNED_OUT_MOBILE_CARD_CONTINUATION_ANDROID_20260807_V1.md` — `2026-08-07` — ANDROID PROVEN / FINAL CANDIDATE GATES OPEN — Records physical-Samsung signed-out catalog and exact-card proof, action-specific authentication continuation, disposable-copy cleanup, custom-scheme deep linking, safe-area repair, full shipcheck, and the remaining iPhone/TestFlight and verified Android HTTPS App Links gates.
 - `WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md` — `2026-08-07` — LOCAL VERIFIED / PRODUCTION APPLY PENDING — Records the final-candidate stale Want Match defect, exact current-intent authority, history-preserving migration, 1,544-contract and rollback-only database proof, and the controlled production apply/re-smoke gate.
 - `../../audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md` — `2026-08-06` — ACTIVE RELEASE LEDGER — Reconciles the August 5 eight-week completion contract against merged implementation and names the remaining journey, state, operations, store, and 72-hour final-candidate evidence gates.
 - `RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md` — `2026-08-06` — IMPLEMENTATION COMPLETE / EXTERNAL GATES — Records the frozen release-plan implementation, 1,506 Node and 566 Flutter tests, full web parity, signed-in Samsung proof, isolated iOS simulator proof, privacy-preserving evidence handling, and the remaining physical-iPhone and DB-capable release gates.

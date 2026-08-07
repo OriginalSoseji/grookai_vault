@@ -849,6 +849,11 @@ class _AppShellState extends State<AppShell> {
     final displayNumber = _routeText(cardRow['number']).isNotEmpty
         ? _routeText(cardRow['number'])
         : _routeText(cardRow['number_plain']);
+    final pendingPersonalAction =
+        PendingPersonalCardActionCoordinator.takeForCard(
+          cardPrintId: cardPrintId,
+          gvId: resolvedGvId,
+        );
 
     unawaited(
       _pushPage<void>(
@@ -868,6 +873,7 @@ class _AppShellState extends State<AppShell> {
               : _routeText(cardRow['rarity']),
           imageUrl: artwork.primaryImageUrl,
           fallbackImageUrl: artwork.fallbackImageUrl,
+          initialPersonalAction: pendingPersonalAction?.kind,
         ),
       ),
     );
@@ -2593,6 +2599,12 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
+  Future<void> _openPublicCatalog() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const _SignedOutCatalogScreen()),
+    );
+  }
+
   void _switchEmailMode(bool creatingAccount) {
     if (_loading) {
       return;
@@ -2988,6 +3000,12 @@ class _LoginPageState extends State<LoginPage> {
                               _buildGoogleButton(),
                               const SizedBox(height: 14),
                               _buildEmailEntryActions(scheme),
+                              const SizedBox(height: 8),
+                              TextButton.icon(
+                                onPressed: _loading ? null : _openPublicCatalog,
+                                icon: const Icon(Icons.search_rounded),
+                                label: const Text('Explore cards'),
+                              ),
                               _buildSignupConfirmation(scheme, textTheme),
                               _buildEmailForm(scheme, textTheme),
                               if (_loginError != null) ...[

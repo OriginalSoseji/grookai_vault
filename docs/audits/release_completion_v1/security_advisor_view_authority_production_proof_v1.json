@@ -1,0 +1,211 @@
+{
+  "audit_version": "SECURITY_ADVISOR_VIEW_AUTHORITY_PRODUCTION_READBACK_V1",
+  "as_of": "2026-08-07T13:07:36.789Z",
+  "status": "passed",
+  "completion_allowed": true,
+  "frozen_commit_sha": "a730b0cc245730055a48d3d359218c81d5256203",
+  "migration_version": "20260807133000",
+  "checks": {
+    "migration_history_exact": true,
+    "all_views_present": true,
+    "pre_apply_column_contract_preserved": true,
+    "all_views_security_invoker": true,
+    "all_views_security_barrier": true,
+    "pre_apply_row_counts_preserved": true,
+    "pre_apply_row_fingerprints_preserved": true,
+    "all_wrapper_functions_present": true,
+    "all_wrapper_functions_security_definer": true,
+    "all_wrapper_functions_fixed_path": true,
+    "no_public_definer_function_without_fixed_path": true,
+    "exact_view_grants": true,
+    "anonymous_public_reads_succeeded": true,
+    "anonymous_pricing_denied": true,
+    "authenticated_pricing_allowed": true,
+    "authenticated_pricing_exact": true
+  },
+  "failed_checks": [],
+  "view_fingerprints": [
+    {
+      "view_name": "v_card_stream_v1",
+      "row_count": 44,
+      "row_fingerprint": "92e6f4217dcf6df9c1660b95572a0ece"
+    },
+    {
+      "view_name": "v_wall_cards_v1",
+      "row_count": 47,
+      "row_fingerprint": "315e0305a3d5fc9765c4f4843a67658e"
+    },
+    {
+      "view_name": "v_section_cards_v1",
+      "row_count": 34,
+      "row_fingerprint": "f33b949bc59a1d600f91b47674f25afe"
+    },
+    {
+      "view_name": "v_card_contact_targets_v1",
+      "row_count": 2878,
+      "row_fingerprint": "87b5123695591719fa4a31d41b47a9d8"
+    },
+    {
+      "view_name": "v_vault_mobile_pricing_targets_v1",
+      "row_count": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  ],
+  "wrapper_function_posture": [
+    {
+      "function_name": "card_contact_target_rows_for_current_viewer_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "card_stream_rows_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "section_card_rows_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "vault_mobile_pricing_target_rows_for_current_user_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": false,
+      "authenticated_execute": true,
+      "service_execute": true
+    },
+    {
+      "function_name": "wall_card_rows_v2",
+      "security_definer": true,
+      "settings": [
+        "search_path=pg_catalog, public"
+      ],
+      "anon_execute": true,
+      "authenticated_execute": true,
+      "service_execute": true
+    }
+  ],
+  "view_grants": [
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_contact_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_card_stream_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_section_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_vault_mobile_pricing_targets_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_vault_mobile_pricing_targets_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "anon",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT"
+    },
+    {
+      "table_name": "v_wall_cards_v1",
+      "grantee": "service_role",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "role_smoke": {
+    "anonymous_public_reads": [
+      {
+        "view_name": "v_card_stream_v1",
+        "bounded_count": 1
+      },
+      {
+        "view_name": "v_wall_cards_v1",
+        "bounded_count": 1
+      },
+      {
+        "view_name": "v_section_cards_v1",
+        "bounded_count": 1
+      },
+      {
+        "view_name": "v_card_contact_targets_v1",
+        "bounded_count": 1
+      }
+    ],
+    "anonymous_pricing_select": false,
+    "authenticated_pricing_select": true,
+    "authenticated_pricing_expected_count": 1802,
+    "authenticated_pricing_actual_count": 1802
+  },
+  "evidence_inputs": {
+    "pre_apply_readback_sha256": "c0e3a2efc06ef7879396ac225252be29fa2753067507bc1bfd65d4db28e957d6",
+    "guarded_dry_run_sha256": "8708a3d157ad25ced3501ba8495de76bd513dd6367978d7910a57ed88d6e9480"
+  },
+  "boundaries": {
+    "database_writes": false,
+    "collector_identifiers_emitted": false,
+    "row_content_emitted": false
+  }
+}

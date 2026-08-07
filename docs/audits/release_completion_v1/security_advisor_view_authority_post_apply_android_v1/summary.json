@@ -1,0 +1,48 @@
+{
+  "audit_version": "SECURITY_ADVISOR_VIEW_AUTHORITY_POST_APPLY_ANDROID_V1",
+  "status": "passed",
+  "completion_allowed": true,
+  "device": {
+    "platform": "android",
+    "model": "SM-S908U",
+    "serial": "R5CT3291F6E",
+    "package": "com.grookai.vault.lockedacceptance",
+    "build": 284
+  },
+  "migration": {
+    "version": "20260807133000",
+    "commit_sha": "a730b0cc245730055a48d3d359218c81d5256203"
+  },
+  "screens": [
+    {
+      "name": "pulse",
+      "status": "passed",
+      "unable_to_load_visible": false,
+      "screenshot_sha256": "7e5190a7945833a11f37f4e88eadff38f33bdd17964343183f7841129c98953e",
+      "ui_dump_sha256": "c5e25228d36ae8735e385f670f5f5e4c4a313572ecd2f18bb52249be9a508ffc"
+    },
+    {
+      "name": "wall",
+      "status": "passed",
+      "unable_to_load_visible": false,
+      "visible_card_count": 31,
+      "screenshot_sha256": "db47b11c025287eb62882f699f6cdbad290aa8d424b95858ea51fd8f270a75e3",
+      "ui_dump_sha256": "1167ad237049772f32200117f6047639a2a167df365db6bc1042b0dd2cf3ae89"
+    },
+    {
+      "name": "vault",
+      "status": "passed",
+      "unable_to_load_visible": false,
+      "card_count": 1008,
+      "unique_card_count": 215,
+      "set_count": 53,
+      "screenshot_sha256": "38fc9fcba1b7e649476e4e6b0421390ef2c2bbe459fa2da52664a4fec40856ef",
+      "ui_dump_sha256": "72b97778b84efd4df21ba4ad17a9576a202248df5da593923adba2e281417c16"
+    }
+  ],
+  "boundaries": {
+    "database_writes": false,
+    "application_mutations": false,
+    "collector_identifiers_emitted": false
+  }
+}

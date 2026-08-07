@@ -1,0 +1,70 @@
+{
+  "audit_version": "RELEASE_SIGNED_OUT_MOBILE_CARD_EXPLORATION_ANDROID_V1",
+  "status": "pass_with_external_release_gates",
+  "completion_allowed": false,
+  "source_commit_sha": "ff45bc07c7518daf369970bc7834aacfb2b4849f",
+  "branch": "release/final-journey-proof-v1",
+  "device": {
+    "platform": "Android",
+    "model_family": "Samsung Galaxy S22 Ultra",
+    "physical_device": true,
+    "application_id": "com.grookai.vault",
+    "build_mode": "debug",
+    "backend": "production Supabase"
+  },
+  "results": {
+    "signed_out_entry_exposes_explore_cards": true,
+    "public_catalog_loaded": true,
+    "catalog_total_rows": 32,
+    "catalog_visible_rows": 24,
+    "public_card_detail_loaded": true,
+    "exact_printing_visible": true,
+    "personal_mutations_hidden_in_guest_catalog": true,
+    "personal_action_requires_authentication": true,
+    "auth_continuation_names_destination": true,
+    "pending_action_resumed_after_authentication": true,
+    "exact_copy_opened_after_resume": true,
+    "disposable_exact_copy_removed": true,
+    "authenticated_shell_returned": true,
+    "custom_scheme_card_link_loaded_signed_out": true,
+    "post_fix_action_sheet_clears_system_navigation": true,
+    "unhandled_error_observed": false
+  },
+  "route_results": {
+    "grookaivault_card_route": "pass",
+    "android_verified_https_app_link": "blocked_missing_release_certificate_and_assetlinks_authority",
+    "https_share_behavior": "web_first"
+  },
+  "mutation_reconciliation": {
+    "scope": "dedicated_release_test_account",
+    "created_disposable_copy_count": 1,
+    "removed_disposable_copy_count": 1,
+    "net_disposable_copy_count": 0,
+    "production_collector_data_mutated": false
+  },
+  "privacy": {
+    "email_in_artifacts": false,
+    "password_in_artifacts": false,
+    "auth_token_in_artifacts": false,
+    "device_serial_in_artifacts": false,
+    "temporary_secret_file_committed": false
+  },
+  "verification": {
+    "targeted_flutter_tests": "5/5 passed",
+    "full_flutter_tests": "574/574 passed",
+    "full_repository_shipcheck": "passed",
+    "flutter_analyzer": "passed",
+    "strict_web_build": "passed",
+    "git_diff_check": "passed"
+  },
+  "superseded_evidence": {
+    "artifact": "04_personal_action_sign_in_gate.png",
+    "reason": "Captured the pre-repair bottom-safe-area overlap.",
+    "replacement": "10_safe_area_personal_action_gate.png"
+  },
+  "external_release_gates": [
+    "Repeat signed-out exploration and continuation on the physical iPhone/TestFlight final candidate.",
+    "Publish Android assetlinks.json from the authoritative release signing certificate before claiming verified HTTPS App Links.",
+    "Freeze the immutable cross-platform release candidate before starting the 72-hour soak."
+  ]
+}

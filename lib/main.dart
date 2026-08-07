@@ -21,6 +21,7 @@ import 'models/provisional_card.dart';
 import 'models/grookai_sale_listing.dart';
 import 'secrets.dart';
 import 'screens/account/account_screen.dart';
+import 'screens/auth/sign_in_continuation_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/dex/grookai_dex_species_screen.dart';
@@ -62,6 +63,7 @@ import 'services/public/public_collector_service.dart';
 import 'services/scanner/scanner_native_camera_guardrail.dart';
 import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
+import 'services/navigation/pending_personal_card_action.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_exact_pricing.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -2708,6 +2710,7 @@ class _MyAppState extends State<MyApp> {
   static const String _themeModePreferenceKey = 'grookai_theme_mode_v1';
 
   final AppLinks _appLinks = AppLinks();
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   StreamSubscription<Uri>? _linkSubscription;
   StreamSubscription<AuthState>? _authSubscription;
   PendingCanonicalLinkRequest? _pendingCanonicalLink;
@@ -2743,11 +2746,22 @@ class _MyAppState extends State<MyApp> {
           return;
         }
         final nextSession = Supabase.instance.client.auth.currentSession;
+        final pendingPersonalAction =
+            PendingPersonalCardActionCoordinator.pending;
         setState(() {
           _authSession = nextSession;
           _authRecoveryPending =
               event.event == AuthChangeEvent.initialSession &&
               (nextSession?.isExpired ?? false);
+          if (nextSession != null &&
+              !nextSession.isExpired &&
+              pendingPersonalAction != null &&
+              pendingPersonalAction.gvId.isNotEmpty) {
+            _pendingCanonicalLink = PendingCanonicalLinkRequest(
+              id: ++_nextPendingCanonicalLinkId,
+              route: GrookaiCanonicalRoute.card(pendingPersonalAction.gvId),
+            );
+          }
         });
         if (nextSession != null && !nextSession.isExpired) {
           unawaited(
@@ -2755,6 +2769,11 @@ class _MyAppState extends State<MyApp> {
               reason: 'auth_${event.event.name}',
             ),
           );
+          if (pendingPersonalAction != null) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _navigatorKey.currentState?.popUntil((route) => route.isFirst);
+            });
+          }
         }
       },
       onError: (error, stackTrace) {
@@ -3063,6 +3082,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final app = MaterialApp(
+      navigatorKey: _navigatorKey,
       title: 'Grookai Vault',
       debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
@@ -3146,6 +3166,11 @@ class _MyAppState extends State<MyApp> {
                   }
                   break;
                 case GrookaiCanonicalRouteKind.card:
+                  AppBootTiming.markOnce('first_route_public_card_link');
+                  publicRoute = _PublicCardRouteScreen(
+                    gvId: pendingRoute.value,
+                  );
+                  break;
                 case GrookaiCanonicalRouteKind.collector:
                 case GrookaiCanonicalRouteKind.collectorSection:
                 case GrookaiCanonicalRouteKind.set:
@@ -3200,9 +3225,175 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+class _SignedOutCatalogScreen extends StatefulWidget {
+  const _SignedOutCatalogScreen();
+
+  @override
+  State<_SignedOutCatalogScreen> createState() =>
+      _SignedOutCatalogScreenState();
+}
+
+class _SignedOutCatalogScreenState extends State<_SignedOutCatalogScreen> {
+  StreamSubscription<AuthState>? _authSubscription;
+  bool _signedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _signedIn = Supabase.instance.client.auth.currentUser != null;
+    _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen((
+      event,
+    ) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _signedIn = event.session?.user != null;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _authSubscription?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _handleAccountAction(BuildContext context) async {
+    final navigator = Navigator.of(context);
+    if (_signedIn) {
+      navigator.popUntil((route) => route.isFirst);
+      return;
+    }
+    final signedIn = await navigator.push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) => const SignInContinuationScreen(
+          destinationLabel: 'continue to Grookai',
+        ),
+      ),
+    );
+    if (!mounted || signedIn != true) {
+      return;
+    }
+    navigator.popUntil((route) => route.isFirst);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Explore cards'),
+        actions: [
+          TextButton.icon(
+            onPressed: () => _handleAccountAction(context),
+            icon: Icon(
+              _signedIn ? Icons.arrow_forward_rounded : Icons.login_rounded,
+              size: 18,
+            ),
+            label: Text(_signedIn ? 'Continue' : 'Sign in'),
+          ),
+        ],
+      ),
+      body: const SafeArea(child: HomePage(signedOutBrowse: true)),
+    );
+  }
+}
+
+class _PublicCardRouteScreen extends StatefulWidget {
+  const _PublicCardRouteScreen({required this.gvId});
+
+  final String gvId;
+
+  @override
+  State<_PublicCardRouteScreen> createState() => _PublicCardRouteScreenState();
+}
+
+class _PublicCardRouteScreenState extends State<_PublicCardRouteScreen> {
+  late Future<CardPrint?> _cardFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  void _load() {
+    final normalizedGvId = widget.gvId.trim().toUpperCase();
+    _cardFuture = CardPrintRepository.getCardPrintByGvId(
+      client: Supabase.instance.client,
+      gvId: normalizedGvId,
+    );
+  }
+
+  void _retry() {
+    setState(_load);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<CardPrint?>(
+      future: _cardFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator.adaptive()),
+          );
+        }
+
+        final card = snapshot.data;
+        if (snapshot.hasError || card == null) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Card')),
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.broken_image_outlined, size: 40),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'That shared card could not be opened.',
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    OutlinedButton.icon(
+                      onPressed: _retry,
+                      icon: const Icon(Icons.refresh_rounded),
+                      label: const Text('Try again'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
+        return CardDetailScreen(
+          cardPrintId: card.id,
+          gvId: card.gvId,
+          name: card.name,
+          setName: card.displaySet,
+          setCode: card.setCode,
+          number: card.displayNumber,
+          rarity: card.rarity,
+          imageUrl: card.catalogImageUrl,
+          fallbackImageUrl: card.providerFallbackImageUrl,
+          selectedPrintingGvId: card.selectedPrintingGvId ?? card.printingGvId,
+          selectedFinishLabel: card.displayDiscriminator ?? card.finishLabel,
+          entrySurface: 'public_card_link',
+        );
+      },
+    );
+  }
+}
+
 /// ---------------------- HOME PAGE (catalog search) ----------------------
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, this.signedOutBrowse = false});
+
+  final bool signedOutBrowse;
+
   @override
   HomePageState createState() => HomePageState();
 }
@@ -3342,6 +3533,9 @@ class HomePageState extends State<HomePage> {
   }
 
   bool _shouldShowCuratedLanding([String? query]) {
+    if (widget.signedOutBrowse) {
+      return false;
+    }
     final trimmed = (query ?? _searchCtrl.text).trim();
     return trimmed.isEmpty &&
         _rarityFilter == _RarityFilter.all &&
@@ -3468,7 +3662,11 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _loadTrending();
+    if (widget.signedOutBrowse) {
+      unawaited(_runSearch(''));
+    } else {
+      _loadTrending();
+    }
   }
 
   @override
@@ -3836,18 +4034,22 @@ class HomePageState extends State<HomePage> {
         _loading = false;
       });
       var pricing = const <String, CardSurfacePricingData>{};
-      try {
-        pricing = await CardSurfacePricingService.fetchByCardPrintIds(
-          client: supabase,
-          cardPrintIds: resolved.rows.map((card) => card.id),
-        );
-      } catch (_) {
-        pricing = const <String, CardSurfacePricingData>{};
+      if (!widget.signedOutBrowse) {
+        try {
+          pricing = await CardSurfacePricingService.fetchByCardPrintIds(
+            client: supabase,
+            cardPrintIds: resolved.rows.map((card) => card.id),
+          );
+        } catch (_) {
+          pricing = const <String, CardSurfacePricingData>{};
+        }
       }
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
-      final ownershipStates = await _primeCatalogOwnershipStates(resolved.rows);
+      final ownershipStates = widget.signedOutBrowse
+          ? const <String, OwnershipState>{}
+          : await _primeCatalogOwnershipStates(resolved.rows);
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
@@ -4723,8 +4925,11 @@ class HomePageState extends State<HomePage> {
   }) {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
     final printingSummary = _catalogPrintingSummary(card);
-    final ownershipState = _catalogOwnershipStateForCard(card.id);
-    final showQuickAdd = !(ownershipState?.owned ?? false);
+    final ownershipState = widget.signedOutBrowse
+        ? null
+        : _catalogOwnershipStateForCard(card.id);
+    final showQuickAdd =
+        !widget.signedOutBrowse && !(ownershipState?.owned ?? false);
     final isAdding = _addingCardIds.contains(card.id);
     final onImpressionCandidate =
         enableFeedImpressionTracking && feedPosition != null
@@ -4738,7 +4943,9 @@ class HomePageState extends State<HomePage> {
         card: card,
         pricing: pricing,
         ownershipState: ownershipState,
-        onTap: () => _openSearchCardActionHub(card),
+        onTap: () => widget.signedOutBrowse
+            ? _openCardDetail(card)
+            : _openSearchCardActionHub(card),
         onQuickAdd: showQuickAdd
             ? () => _quickAddSearchResultToVault(card)
             : null,
@@ -4755,7 +4962,9 @@ class HomePageState extends State<HomePage> {
       pricing: pricing,
       ownershipState: ownershipState,
       viewMode: _viewMode,
-      onTap: () => _openSearchCardActionHub(card),
+      onTap: () => widget.signedOutBrowse
+          ? _openCardDetail(card)
+          : _openSearchCardActionHub(card),
       onQuickAdd: showQuickAdd
           ? () => _quickAddSearchResultToVault(card)
           : null,

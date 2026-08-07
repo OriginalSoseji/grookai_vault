@@ -25,12 +25,15 @@ The product-convergence implementation is merged, the isolated release tree pass
 - Signed-out production web and configured Samsung pre-candidate smokes pass.
 - TestFlight build `283` and the latest owner acceptance gate were completed outside this ledger and must be linked by the final-candidate evidence package before closeout.
 - Want Match current-intent repair `20260807043000` is merged and applied. Production retains both historical rows/events while reporting zero active/current-want mismatches, zero invalid deliverable notifications, and zero stale Want Match Pulse visibility. Dispatcher version 14 carries the final pre-FCM evidence gate, and Android build 284 cold-launch verification passed.
+- Physical-Samsung signed-out card exploration, exact-card detail, action-specific login continuation, exact pending-action resume, test-copy cleanup, authenticated shell return, custom-scheme card routing, and bottom-safe-area behavior pass against source commit `ff45bc07c7518daf369970bc7834aacfb2b4849f`.
+- Physical-Samsung root-swap repair proof confirms the pending exact-card action survives authentication root replacement and executes once against repair commit `21add8fb8b62808124b57329a28ec922d84a0902`; the disposable copy reconciled to zero and the full shipcheck passed with `577/577` Flutter tests.
+- The dedicated-account Android Want Match journey passed every product and database confirmation. Its preserved raw report remains failed only because it was evaluated by an iPhone/TestFlight policy.
 
 ## Remaining Gates
 
-1. Commit and merge the verified isolated release tree through the normal release path.
+1. Push and merge the verified isolated release tree through the normal release path.
 2. Perform one controlled production web deployment and verify the exact deployed SHA, Binder configuration, signed-in routes, signed-out routes, and universal-link responses.
-3. Cut Android and iOS builds from that immutable SHA and assign the iOS build to the intended TestFlight groups.
+3. Cut Android and iOS builds from that immutable SHA, publish Android `assetlinks.json` from the authoritative Play release certificate, and assign the iOS build to the intended TestFlight groups.
 4. Prove all six release journeys from the same final candidate. Mutation journeys require a clean test account and database readback; read-only journeys require production web and physical-device evidence.
 5. Execute the route-state matrix across desktop web, narrow web, Android, and iPhone, including loading, empty, error, offline, private, signed-out, text-scaling, and recovery states.
 6. Verify final-candidate RLS/privacy, account deletion, deep links, notifications, analytics, Crashlytics, support, terms, monitoring, and store metadata.

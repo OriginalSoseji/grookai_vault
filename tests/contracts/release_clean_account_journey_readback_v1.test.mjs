@@ -31,11 +31,11 @@ function validEvidence() {
       end: "2026-07-31T19:00:00.000Z",
     },
     release: {
-      app_commit_sha: "35c8bff9cc4368dec05e61b3739322c2f0c524f1",
+      app_commit_sha: "33d7ff50bda428439c664c7c6db427b7a66abd9a",
       expected_app_commit_sha:
-        "35c8bff9cc4368dec05e61b3739322c2f0c524f1",
-      testflight_build: "258",
-      expected_testflight_build: "258",
+        "33d7ff50bda428439c664c7c6db427b7a66abd9a",
+      testflight_build: "284",
+      expected_testflight_build: "284",
     },
     device: {
       platform: "iOS",
@@ -164,6 +164,14 @@ test("example evidence cannot accidentally pass", () => {
   const result = evaluateCleanAccountJourneyReadbackV1(input);
   assert.equal(result.status, "failed");
   assert.ok(result.findings.includes("physical_iphone_not_confirmed"));
+});
+
+test("example evidence stays pinned to the governed final candidate", () => {
+  assert.equal(EXAMPLE.testflight_build, "284");
+  assert.equal(
+    EXAMPLE.app_commit_sha,
+    "33d7ff50bda428439c664c7c6db427b7a66abd9a",
+  );
 });
 
 test("production readback is read-only and excludes direct customer identity", () => {
