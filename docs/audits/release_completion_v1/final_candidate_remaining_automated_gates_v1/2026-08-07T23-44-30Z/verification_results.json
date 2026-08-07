@@ -1,0 +1,42 @@
+{
+  "audit_version": "FINAL_CANDIDATE_REMAINING_AUTOMATED_GATES_VERIFICATION_V1",
+  "verifier_commit": "31def12bbb15291f7a7cdd3e4c4e867b4309a552",
+  "commands": [
+    {
+      "command": "node --check scripts/audits/release_candidate_soak_v1.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node --test tests/contracts/release_candidate_soak_v1.test.mjs tests/contracts/release_completion_gate_v1.test.mjs",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "command": "npm run contracts:test",
+      "status": "passed",
+      "tests": 1607
+    },
+    {
+      "command": "pre-commit shipcheck",
+      "status": "passed",
+      "flutter_tests": 580,
+      "release_secret_guard": "passed"
+    },
+    {
+      "command": "node scripts/audits/release_completion_gate_v1.mjs",
+      "status": "passed_incomplete",
+      "manifest_findings": 0,
+      "completion_allowed": false
+    },
+    {
+      "command": "node scripts/audits/release_candidate_soak_v1.mjs",
+      "status": "blocked_prerequisites",
+      "soak_started": false,
+      "final_report_allowed": false
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    }
+  ]
+}

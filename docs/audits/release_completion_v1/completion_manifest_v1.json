@@ -28,7 +28,7 @@
       "package": "com.grookai.vault",
       "version": "1.0.0 (21)",
       "apk_sha256": "7444381f364809a9348fad4d5f5f5437c01f96153bdb92e71f08c59dbcca5289",
-      "status": "artifact_and_emulator_recovery_proven_installed_samsung_physical_journeys_pending"
+      "status": "artifact_emulator_recovery_and_fresh_install_proven_installed_samsung_physical_journeys_pending"
     },
     "ios_testflight": {
       "build": "1.0.0 (286)",
@@ -94,7 +94,8 @@
         "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_c3a0aead_v1/2026-08-07T20-39-31-829Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z/REPORT.md",
-        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md"
+        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
+        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Fresh-user ten-second comprehension result",
@@ -199,7 +200,8 @@
         "docs/audits/release_completion_v1/final_candidate_automated_state_matrix_v1/2026-08-07T19-42-51Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_in_web_final_candidate_82d5f8b_v1/2026-08-07T23-22-49-126Z/REPORT.md",
-        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md"
+        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
+        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate iPhone and Android execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states; signed-in production desktop and narrow-web route truth passed"
@@ -241,17 +243,20 @@
         "docs/checkpoints/product/APP_STORE_CONNECT_FEEDBACK_RELEASE_CHECKPOINT_20260804_V1.md",
         "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_distribution_v1/2026-08-07T20-47-52Z/REPORT.md",
-        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md"
+        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
+        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Current Play Store metadata/assets review; App Store metadata and intended TestFlight groups are proven"
+        "Establish or identify the intended Google Play developer account, then review the current Play listing and assets; App Store metadata and intended TestFlight groups are proven"
       ]
     },
     {
       "id": "final_72_hour_release_candidate_soak",
       "status": "open",
       "evidence": [
-        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md"
+        "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
+        "docs/contracts/FINAL_RELEASE_CANDIDATE_SOAK_V1.md",
+        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Complete required physical-device, fresh-user, and store-account prerequisite gates",

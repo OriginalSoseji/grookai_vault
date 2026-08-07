@@ -1,0 +1,22 @@
+{
+  "audit_version": "FINAL_CANDIDATE_REMAINING_AUTOMATED_GATES_V1",
+  "recorded_at": "2026-08-07T23:44:30.000Z",
+  "branch": "release/final-candidate-proof-v1",
+  "application_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "verifier_commit": "31def12bbb15291f7a7cdd3e4c4e867b4309a552",
+  "scope": [
+    "fresh-install Android startup and signed-out exploration",
+    "read-only Google Play Console authority",
+    "physical-device availability",
+    "soak and final-report readiness"
+  ],
+  "boundaries": {
+    "application_source_changes": false,
+    "database_writes": false,
+    "production_deployments": false,
+    "store_mutations": false,
+    "soak_started": false,
+    "human_comprehension_claimed": false,
+    "physical_device_journey_claimed": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "policy_version": "GROOKAI_FINAL_RELEASE_CANDIDATE_SOAK_POLICY_V1",
+  "status": "blocked_prerequisites",
+  "start_allowed": false,
+  "final_report_allowed": false,
+  "candidate_identity": {
+    "source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "web_deployment_id": "dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J",
+    "android_apk_sha256": "7444381f364809a9348fad4d5f5f5437c01f96153bdb92e71f08c59dbcca5289",
+    "ios_ipa_sha256": "1d42d6948f5406919405c025f188341ee766fbd713356e830d283ff9f230d4b9"
+  },
+  "prerequisite_gate_ids": [
+    "journey_a_first_time_visitor",
+    "journey_c_want_and_match",
+    "journey_d_collector_connection",
+    "journey_e_collection_depth",
+    "journey_f_signed_out_locked_features",
+    "cross_platform_state_matrix",
+    "store_and_distribution_readiness"
+  ],
+  "findings": [],
+  "soak": null
+}

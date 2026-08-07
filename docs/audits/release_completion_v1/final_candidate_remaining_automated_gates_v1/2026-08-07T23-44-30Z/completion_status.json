@@ -1,0 +1,23 @@
+{
+  "audit_version": "GROOKAI_8_WEEK_RELEASE_COMPLETION_GATE_V1",
+  "manifest_path": "docs/audits/release_completion_v1/completion_manifest_v1.json",
+  "manifest_sha256": "35fd3fba048f87b59273260dc965cbccd52bf5d4c6e6101e78793beaf2b98e9c",
+  "plan_sha256_expected": "216d012a9b4d1544654021a0ccb781c5bf1aa9b533b324fbf71b149f0697c423",
+  "plan_sha256_actual": "216d012a9b4d1544654021a0ccb781c5bf1aa9b533b324fbf71b149f0697c423",
+  "gate_count": 14,
+  "proven_gate_count": 6,
+  "non_proven_gate_ids": [
+    "journey_a_first_time_visitor",
+    "journey_c_want_and_match",
+    "journey_d_collector_connection",
+    "journey_e_collection_depth",
+    "journey_f_signed_out_locked_features",
+    "cross_platform_state_matrix",
+    "store_and_distribution_readiness",
+    "final_72_hour_release_candidate_soak"
+  ],
+  "missing_evidence_paths": [],
+  "findings": [],
+  "completion_allowed": false,
+  "status": "IN_PROGRESS"
+}

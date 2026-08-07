@@ -1,0 +1,67 @@
+{
+  "audit_version": "FINAL_CANDIDATE_REMAINING_AUTOMATED_GATES_ARTIFACT_HASHES_V1",
+  "generated_at": "2026-08-07T23:54:58.8215028Z",
+  "artifact_count": 12,
+  "artifacts": [
+    {
+      "path": "android_fresh_install_explore_initial.png",
+      "bytes": 1167556,
+      "sha256": "28f0b2abd5731848f0a17cb71667aa8dc1a4d41081b4e26ba129f3bd702dcfdb"
+    },
+    {
+      "path": "android_fresh_install_explore_settled.png",
+      "bytes": 1726842,
+      "sha256": "db489b159a2111f00747baa5adeeb47cf2b732453e493c4ce8a3ae194edd90e3"
+    },
+    {
+      "path": "android_fresh_install_first_screen.png",
+      "bytes": 183862,
+      "sha256": "87db8bccad4a7660068f9a70bae276eeec0e758d5ebf7fa9faa7692749b0b8a8"
+    },
+    {
+      "path": "android_fresh_install_readback.json",
+      "bytes": 1864,
+      "sha256": "2ae6f91916bb613967594872a42c22a8638dfb02d96626b86c156855c78d9e88"
+    },
+    {
+      "path": "completion_status.json",
+      "bytes": 937,
+      "sha256": "30d14a021641a792877f8f8684cef12ce6fcc12f3f3672ef5d6f647498eac292"
+    },
+    {
+      "path": "device_availability.json",
+      "bytes": 672,
+      "sha256": "cf0190ff2816fc49ebb46f809682892c8835f291523adea2c398f8082fe517fc"
+    },
+    {
+      "path": "google_play_console_readback.json",
+      "bytes": 995,
+      "sha256": "01bbe037560182a034f68f4fde0bcd7872e8d004733fdfc5757704a30742e64a"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 2732,
+      "sha256": "8809aaee18c3c195073ce4a74732c061548f98d0bc683250834547b4f6bfa9ba"
+    },
+    {
+      "path": "run_plan.json",
+      "bytes": 781,
+      "sha256": "da9dda9e0aed8ae652828957bfa182371df2d3ff43627fced0d643b6a5268611"
+    },
+    {
+      "path": "soak_readiness.json",
+      "bytes": 858,
+      "sha256": "087b626e03e8e115ed588d5e6feff14907d1d233aa860e8bce4792401a38d04b"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1293,
+      "sha256": "bbef232c1f470051ffdc22e7e292b95ebf785507038cdaed3383ef351682edab"
+    },
+    {
+      "path": "verification_results.json",
+      "bytes": 1174,
+      "sha256": "05474d659fbfb87a34eefd52340a6b2bc10cb3252a4c5ab7030ecc7451813e86"
+    }
+  ]
+}

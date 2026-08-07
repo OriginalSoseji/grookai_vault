@@ -1,0 +1,55 @@
+{
+  "audit_version": "FINAL_CANDIDATE_ANDROID_FRESH_INSTALL_READBACK_V1",
+  "recorded_at": "2026-08-07T23:37:48.000Z",
+  "device_class": "disposable_android_emulator",
+  "package": "com.grookai.vault",
+  "version_name": "1.0.0",
+  "version_code": 21,
+  "application_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "apk_sha256": "7444381f364809a9348fad4d5f5f5437c01f96153bdb92e71f08c59dbcca5289",
+  "install_mode": "uninstall_then_fresh_install",
+  "first_cold_launch": {
+    "command": "adb shell am start -W -S -n com.grookai.vault/.MainActivity",
+    "status": "ok",
+    "launch_state": "COLD",
+    "total_time_ms": 1958,
+    "wait_time_ms": 1961,
+    "visible_labels": [
+      "Grookai Vault",
+      "Collect with purpose.",
+      "Continue with Google",
+      "Sign in with email",
+      "Create account",
+      "Explore cards"
+    ]
+  },
+  "signed_out_explore": {
+    "action": "Explore cards",
+    "initial_result_after_seconds": 4,
+    "initial_error_visible": false,
+    "settled_result_after_seconds": 14,
+    "settled_error_visible": false,
+    "settled_image_unavailable_visible": false,
+    "card_list_visible": true
+  },
+  "screenshots": [
+    {
+      "path": "android_fresh_install_first_screen.png",
+      "sha256": "87db8bccad4a7660068f9a70bae276eeec0e758d5ebf7fa9faa7692749b0b8a8",
+      "bytes": 183862
+    },
+    {
+      "path": "android_fresh_install_explore_initial.png",
+      "sha256": "28f0b2abd5731848f0a17cb71667aa8dc1a4d41081b4e26ba129f3bd702dcfdb",
+      "bytes": 1167556
+    },
+    {
+      "path": "android_fresh_install_explore_settled.png",
+      "sha256": "db489b159a2111f00747baa5adeeb47cf2b732453e493c4ce8a3ae194edd90e3",
+      "bytes": 1726842
+    }
+  ],
+  "classification": "automated_startup_and_action_evidence_only",
+  "human_ten_second_comprehension_proven": false,
+  "physical_device_journey_proven": false
+}
