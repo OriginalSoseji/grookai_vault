@@ -1,0 +1,30 @@
+{
+  "version": "ACCOUNT_DELETION_DISPOSABLE_EXERCISE_V1",
+  "worker_version": "ACCOUNT_DELETION_WORKER_V1",
+  "generated_at": "2026-08-07T19:30:38.935Z",
+  "status": "passed",
+  "target_fingerprint": "329cc81a0e87f4afb594bbec11935ace262ba61013c531d47fb7b084ae94e482",
+  "request_ticket_hash": "6e9eca803fca759eaa0b56769760e094d86cd6ca87f3f91beb2e621d6566e9f1",
+  "dry_run_decision": "hard_delete_allowed",
+  "plan_sha256": "96f5bb56712af9363879ef48935544dcf2b5fbc9edc5cd2d24a08e9809a43a63",
+  "fixture": {
+    "profile_rows": 1,
+    "storage_objects": 1,
+    "public_profile_enabled": false
+  },
+  "readback": {
+    "auth_user_absent": true,
+    "direct_reference_rows_remaining": 0,
+    "storage_objects_remaining": 0
+  },
+  "boundaries": {
+    "disposable_account_created_by_execution": true,
+    "real_user_touched": false,
+    "raw_user_id_persisted": false,
+    "raw_email_persisted": false,
+    "password_persisted": false,
+    "credentials_persisted": false,
+    "retained_history_path_proven": false
+  },
+  "artifact_sha256": "059212b593866e091d0fa2fcc809b90e0c1aceaa93b82ea3a4cf6df45ff9b72c"
+}

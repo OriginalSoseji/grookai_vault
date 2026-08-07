@@ -346,7 +346,7 @@ class IosReleaseAutomation
   end
 
   def build_number
-    @config.fetch("build_number").to_s
+    first_env("ASC_BUILD_NUMBER", "APP_STORE_CONNECT_BUILD_NUMBER") || @config.fetch("build_number").to_s
   end
 
   def build_marketing_version

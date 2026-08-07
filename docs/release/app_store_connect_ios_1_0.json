@@ -47,7 +47,7 @@
   },
   "version_localization": {
     "promotionalText": "Track your collection, browse master sets, open public collector walls, and follow the cards that matter most.",
-    "description": "Grookai Vault is built for Pokemon card collectors who want a cleaner way to organize, inspect, and share their collection.\n\nSearch the card catalog, browse sets, track Grookai Dex progress, review master-set options, and keep your personal vault close at hand. Public collector walls make it easier to showcase cards, discover other collectors, and return to profiles by slug.\n\nEarly beta features include card search, vault views, public walls, collector discovery, messaging entry points, Grookai Dex, master-set progress, and an intentionally gated scanner surface while card scanning is rebuilt.",
+    "description": "Grookai Vault helps Pokemon card collectors identify exact cards, organize their collection, and connect around the cards they care about.\n\nSearch the card catalog, scan a card, choose the correct printing and finish, and keep every owned copy organized in your Vault. Browse sets, track Grookai Dex progress, build Binders, and use your Wall to showcase selected cards.\n\nDiscover collectors, follow their public activity, and open card-centered conversations with the exact card and collector context preserved. Grookai keeps canonical card identity, ownership, intent, and collection context connected across the experience.",
     "keywords": "pokemon,cards,collector,vault,trading cards,tcg,sets,dex,collection",
     "supportUrl": "https://grookaivault.com/support",
     "marketingUrl": "https://grookaivault.com"
@@ -60,7 +60,7 @@
     "demoAccountRequired": true,
     "demoAccountName": null,
     "demoAccountPassword": null,
-    "notes": "The scanner tab currently shows an under-construction placeholder by design. Testers should use Search, Sets, and Vault flows to add and inspect cards. This build is iOS beta 1.0.0+2 with the backend RPC permission fix for vault and card detail flows."
+    "notes": "Use the supplied review account to verify sign-in, Search, Scan, exact-printing selection, Vault, Binders, Wall, Dex, Sets, collector discovery, Following, and card-centered messaging. Personal collection and messaging surfaces require authentication. Account deletion instructions are available at https://grookaivault.com/account/delete."
   },
   "beta_app_localization": {
     "description": "Grookai Vault helps Pokemon card collectors organize their vault, browse sets, track collection progress, showcase public walls, and connect with other collectors.",
@@ -69,7 +69,7 @@
     "privacyPolicyUrl": "https://grookaivault.com/privacy"
   },
   "beta_build_localization": {
-    "whatsNew": "Please test account sign-in, card search, vault browsing, public collector walls, Grookai Dex, set/master-set progress, drawer navigation, appearance mode switching, messaging entry points, and the scanner placeholder flow. The scanner is intentionally marked as under construction in this beta."
+    "whatsNew": "Verify exact-card search and scanning, printing-aware Vault organization, Binders, Wall, Grookai Dex and set progress, collector discovery, Following, and card-centered messaging."
   },
   "screenshot_sets": [
     {

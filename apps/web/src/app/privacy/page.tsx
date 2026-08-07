@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <InformationPage
       eyebrow="Privacy"
       title="Privacy Policy"
-      description="This launch draft explains what Grookai Vault collects and how it is used. It should be reviewed by counsel before broad public launch."
+      description="This policy explains what Grookai Vault collects, how that information is used, and the choices available to collectors."
     >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Information We Collect</h2>
@@ -21,7 +21,6 @@ export default function PrivacyPage() {
             <li>Collection data, including vault cards, wanted cards, sections, public wall settings, and notes.</li>
             <li>User content, including profile media, card photos, uploaded images, messages, and submissions.</li>
             <li>Device-permission content you choose to provide, such as camera captures or selected photo-library images.</li>
-            <li>Approximate or permission-based location signals when you use location-aware collector features.</li>
             <li>Usage, diagnostics, and security data used to operate, protect, and improve the service.</li>
           </ul>
         </section>

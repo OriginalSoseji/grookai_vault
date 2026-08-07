@@ -10,7 +10,6 @@ class ScannerViewfinderChrome extends StatelessWidget {
   const ScannerViewfinderChrome({
     required this.onClose,
     required this.onFlashToggle,
-    required this.onHistory,
     required this.onCapture,
     required this.onPhotos,
     required this.onVault,
@@ -24,7 +23,6 @@ class ScannerViewfinderChrome extends StatelessWidget {
 
   final VoidCallback onClose;
   final VoidCallback onFlashToggle;
-  final VoidCallback onHistory;
   final VoidCallback onCapture;
   final VoidCallback onPhotos;
   final VoidCallback onVault;
@@ -52,22 +50,12 @@ class ScannerViewfinderChrome extends StatelessWidget {
         Positioned(
           right: 16,
           top: padding.top + 10,
-          child: Row(
-            children: [
-              _GlassCircleButton(
-                icon: flashEnabled
-                    ? Icons.flash_on_rounded
-                    : Icons.flash_off_rounded,
-                tooltip: 'Toggle flash',
-                onPressed: onFlashToggle,
-              ),
-              const SizedBox(width: 10),
-              _GlassCircleButton(
-                icon: Icons.history_rounded,
-                tooltip: 'Scan history',
-                onPressed: onHistory,
-              ),
-            ],
+          child: _GlassCircleButton(
+            icon: flashEnabled
+                ? Icons.flash_on_rounded
+                : Icons.flash_off_rounded,
+            tooltip: 'Toggle flash',
+            onPressed: onFlashToggle,
           ),
         ),
         Positioned(

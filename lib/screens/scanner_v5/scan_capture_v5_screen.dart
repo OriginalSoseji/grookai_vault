@@ -583,10 +583,6 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     }
   }
 
-  void _showHistoryStub() {
-    _showScanNotice('History coming soon', 'Recent scans will live here.');
-  }
-
   void _popToVault() {
     Navigator.of(context).pop(ScanCaptureV5Exit.vault);
   }
@@ -690,7 +686,6 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
                     toastMessage: showResultSheet ? null : _toastMessage,
                     onClose: () => Navigator.of(context).maybePop(),
                     onFlashToggle: _toggleFlash,
-                    onHistory: _showHistoryStub,
                     onCapture: _captureAndIdentify,
                     onPhotos: _pickPhotoAndIdentify,
                     onVault: _popToVault,

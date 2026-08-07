@@ -44,27 +44,47 @@ void main() {
     expect(screen, contains('final tint = active ? colorScheme.error'));
   });
 
-  test('visible Scan entry is deliberately parked behind construction gate', () {
-    final main = File('lib/main.dart').readAsStringSync();
-    final shell = File('lib/main_shell.dart').readAsStringSync();
-    final placeholder = File(
-      'lib/screens/scanner/scanner_build_placeholder_screen.dart',
-    ).readAsStringSync();
+  test(
+    'production Scan entry uses Scanner V5 without construction placeholder',
+    () {
+      final main = File('lib/main.dart').readAsStringSync();
+      final shell = File('lib/main_shell.dart').readAsStringSync();
+      final placeholder = File(
+        'lib/screens/scanner/scanner_build_placeholder_screen.dart',
+      ).readAsStringSync();
+      final scanner = File(
+        'lib/screens/scanner_v5/scan_capture_v5_screen.dart',
+      ).readAsStringSync();
+      final chrome = File(
+        'lib/screens/scanner_v5/widgets/scanner_viewfinder_chrome.dart',
+      ).readAsStringSync();
 
-    expect(
-      main,
-      contains(
-        'const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment',
-      ),
-    );
-    expect(main, contains("defaultValue: true"));
-    expect(shell, contains('Future<void> _startScanFlow() async'));
-    expect(shell, contains('if (kScannerConstructionPlaceholderEnabled)'));
-    expect(shell, contains('ScannerBuildPlaceholderScreen'));
-    expect(placeholder, contains('Scanner is being built'));
-    expect(placeholder, contains('Search cards instead'));
-    expect(placeholder, contains('Open vault'));
-  });
+      expect(
+        RegExp(
+          r"const bool kScannerV5Enabled = bool\.fromEnvironment\(\s*'SCANNER_V5',\s*defaultValue: true,\s*\);",
+          multiLine: true,
+        ).hasMatch(main),
+        isTrue,
+      );
+      expect(
+        RegExp(
+          r"const bool kScannerConstructionPlaceholderEnabled = bool\.fromEnvironment\(\s*'SCANNER_CONSTRUCTION_PLACEHOLDER',\s*defaultValue: false,\s*\);",
+          multiLine: true,
+        ).hasMatch(main),
+        isTrue,
+      );
+      expect(shell, contains('Future<void> _startScanFlow() async'));
+      expect(shell, contains('if (kScannerConstructionPlaceholderEnabled)'));
+      expect(shell, contains('ScannerBuildPlaceholderScreen'));
+      expect(placeholder, contains('Scanner is being built'));
+      expect(placeholder, contains('Search cards instead'));
+      expect(placeholder, contains('Open vault'));
+      expect(scanner, isNot(contains('History coming soon')));
+      expect(scanner, isNot(contains('_showHistoryStub')));
+      expect(chrome, isNot(contains("tooltip: 'Scan history'")));
+      expect(chrome, isNot(contains('Icons.history_rounded')));
+    },
+  );
 
   test(
     'legacy scanner identify placeholder is not routed as the scan entry',
