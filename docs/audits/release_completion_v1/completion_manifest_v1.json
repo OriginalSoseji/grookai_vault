@@ -56,18 +56,20 @@
       "evidence": [
         "docs/checkpoints/product/RELEASE_READINESS_AUDIT_20260731_V2.md",
         "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
-        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md"
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md"
       ],
       "required_next_evidence": [
         "Fresh-user ten-second comprehension result",
-        "Signed-out card exploration and login-continuation proof on the final iPhone and Android candidates"
+        "Repeat signed-out card exploration and login continuation on the physical iPhone/TestFlight final candidate"
       ]
     },
     {
       "id": "journey_b_first_card",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md"
+        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md"
       ],
       "required_next_evidence": [
         "Clean-account physical-device journey and database readback from the final candidate"
@@ -82,7 +84,8 @@
         "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
         "docs/audits/release_completion_v1/want_match_current_want_production_readback_v1.json",
         "docs/audits/release_completion_v1/want_match_notification_dispatcher_production_readback_v1.json",
-        "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md"
+        "docs/audits/release_completion_v1/device_android/WANT_MATCH_CURRENT_WANT_POST_APPLY_ANDROID_20260807_V1.md",
+        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Clean-account final-candidate proof from exact Want through match, owner context, card-centered message, opt-out, and database readback"
@@ -92,7 +95,8 @@
       "id": "journey_d_collector_connection",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md"
+        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
+        "docs/audits/release_completion_v1/device_android/want_match_journey_android_supplemental_v1/2026-08-07T14-17-10-607Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate device proof for discover, follow, activity, exact card, and contextual message"
@@ -102,7 +106,8 @@
       "id": "journey_e_collection_depth",
       "status": "partial",
       "evidence": [
-        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md"
+        "docs/checkpoints/product/RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate proof across Vault, exact copy, Binders, Dex, Sets, Journeys, and Memories with context return"
@@ -114,10 +119,11 @@
       "evidence": [
         "docs/audits/release_convergence_v1/RELEASE_VISUAL_COMPLETION_REPORT_V1.md",
         "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
-        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md"
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md"
       ],
       "required_next_evidence": [
-        "Final-candidate iPhone and Android proof for supported signed-out locked features and preserved login destinations"
+        "Repeat supported signed-out locked-feature and preserved-destination proof on the physical iPhone/TestFlight final candidate"
       ]
     },
     {
@@ -128,7 +134,8 @@
         "docs/audits/release_convergence_v1/FINAL_DEVICE_AND_REPOSITORY_VERIFICATION_20260806_V1.md",
         "docs/audits/release_completion_v1/device_android/PRE_CANDIDATE_ANDROID_SMOKE_20260806_V1.md",
         "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
-        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md"
+        "docs/audits/release_completion_v1/signed_out_web_journeys_v2/2026-08-07T07-51-34-484Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/signed_out_card_exploration_v1/2026-08-07T08-36-02/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate desktop, narrow-web, iPhone, and Android execution of required loading, empty, error, offline, private, and signed-out states"

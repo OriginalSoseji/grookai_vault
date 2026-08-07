@@ -1,0 +1,39 @@
+{
+  "audit_version": "RELEASE_SIGNED_OUT_MOBILE_CARD_EXPLORATION_ANDROID_V1",
+  "source_commit_sha": "ff45bc07c7518daf369970bc7834aacfb2b4849f",
+  "source_base_commit_sha": "39f7230786fd2cf890aefc53d3a652ab5768b390",
+  "branch": "release/final-journey-proof-v1",
+  "device": {
+    "platform": "Android",
+    "model_family": "Samsung Galaxy S22 Ultra",
+    "physical_device": true,
+    "application_id": "com.grookai.vault",
+    "build_mode": "debug",
+    "backend": "production Supabase"
+  },
+  "scope": [
+    "signed-out mobile entry",
+    "public catalog browse",
+    "public exact-card detail",
+    "first personal-action authentication boundary",
+    "post-authentication action continuation",
+    "return to authenticated shell",
+    "custom-scheme canonical card link",
+    "short-viewport safe-area behavior"
+  ],
+  "exact_card": {
+    "gv_id": "GV-PK-MEW-025",
+    "name": "Pikachu",
+    "set": "151",
+    "number": "025/165",
+    "finish": "Normal"
+  },
+  "boundaries": {
+    "locked_acceptance_application_id": "com.grookai.vault.lockedacceptance",
+    "locked_acceptance_package_mutated": false,
+    "public_mobile_defines_only": true,
+    "secrets_committed": false,
+    "test_account_only": true,
+    "disposable_exact_copy_removed_after_proof": true
+  }
+}
