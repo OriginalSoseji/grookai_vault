@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md` — `2026-08-07` — LOCAL VERIFIED / PRODUCTION APPLY PENDING — Records the final-candidate stale Want Match defect, exact current-intent authority, history-preserving migration, 1,544-contract and rollback-only database proof, and the controlled production apply/re-smoke gate.
 - `../../audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md` — `2026-08-06` — ACTIVE RELEASE LEDGER — Reconciles the August 5 eight-week completion contract against merged implementation and names the remaining journey, state, operations, store, and 72-hour final-candidate evidence gates.
 - `RELEASE_CONVERGENCE_IMPLEMENTATION_20260806_V1.md` — `2026-08-06` — IMPLEMENTATION COMPLETE / EXTERNAL GATES — Records the frozen release-plan implementation, 1,506 Node and 566 Flutter tests, full web parity, signed-in Samsung proof, isolated iOS simulator proof, privacy-preserving evidence handling, and the remaining physical-iPhone and DB-capable release gates.
 - `P0_DESKTOP_APPLICATION_SHELL_HIGH_FIDELITY_20260805_V1.md` — `2026-08-05` — P0 IMPLEMENTED — Locks the native-order five-pillar desktop shell, secondary collection/account tools, cookie-verified private state, exact 900px handoff, unread/unavailable/pushed-route states, four visual baselines, and the bounded Binders and Invitations gate.

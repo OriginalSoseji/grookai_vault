@@ -1,0 +1,26 @@
+{
+  "schema_version": "WANT_MATCH_CURRENT_WANT_ARTIFACT_HASHES_V1",
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "supabase/migrations/20260807043000_want_match_current_want_truth_boundary_v1.sql",
+      "sha256": "f578b0c4daa8f5da46a1b7e455591943fe19d2a01259c0d336786e5cb8b229da"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_production_preflight_v1.json",
+      "sha256": "5751223958bbcfd5c53ef1634f2d3eaee4e5f8ea208cfd834b739866c905e778"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/want_match_current_want_local_verification_v1.json",
+      "sha256": "507e6e4a4730ebdde03d3b633b0115d6a9d93cc7095c8e1a2bbcab56f215ffe5"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
+      "sha256": "569f6ed524d8f5c82f8fb59bd8db787411c382f855385897f31bc8d00d4cfd6f"
+    },
+    {
+      "path": "docs/checkpoints/product/WANT_MATCH_CURRENT_WANT_TRUTH_REPAIR_20260807_V1.md",
+      "sha256": "843d5ff1672194eb95c1cdb8bc1d04aa697869d5c923f796f7f59a50bc1d4137"
+    }
+  ]
+}

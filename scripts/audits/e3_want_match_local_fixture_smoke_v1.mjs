@@ -286,20 +286,26 @@ async function seedFixture(client) {
 
   await client.query(
     `
-      insert into public.wishlist_items (user_id, card_id, note)
-      values ($1, $2, 'E3 local fixture want')
-      on conflict (user_id, card_id) do update
-      set note = excluded.note
+      insert into public.user_card_intents (
+        user_id, card_print_id, want, trade, sell, showcase, is_public, metadata
+      )
+      values ($1, $2, true, false, false, false, false, '{}'::jsonb)
+      on conflict (user_id, card_print_id) do update
+      set want = true,
+          updated_at = now()
     `,
     [FIXTURE.userA, FIXTURE.cardId],
   );
 
   await client.query(
     `
-      insert into public.wishlist_items (user_id, card_id, note)
-      values ($1, $2, 'E3 local fixture digest want')
-      on conflict (user_id, card_id) do update
-      set note = excluded.note
+      insert into public.user_card_intents (
+        user_id, card_print_id, want, trade, sell, showcase, is_public, metadata
+      )
+      values ($1, $2, true, false, false, false, false, '{}'::jsonb)
+      on conflict (user_id, card_print_id) do update
+      set want = true,
+          updated_at = now()
     `,
     [FIXTURE.userA, FIXTURE.digestCardId],
   );
@@ -426,6 +432,97 @@ async function main() {
         [`want_match_available:${matchId}`, `want_match_owner_count:${matchId}`],
       );
 
+      await setAuthenticatedUser(client, FIXTURE.userA);
+      const pulseBeforeWantOff = await client.query(
+        `
+          select count(*)::integer as count
+          from public.pulse_eligible_events_for_viewer_v1($1)
+          where card_event_id = (
+            select id
+            from public.card_events
+            where dedupe_key = $2
+            limit 1
+          )
+        `,
+        [FIXTURE.userA, `want_match_available:${matchId}`],
+      );
+
+      await setServiceRole(client);
+      await client.query(
+        `
+          update public.user_card_intents
+          set want = false,
+              updated_at = now()
+          where user_id = $1
+            and card_print_id = $2
+        `,
+        [FIXTURE.userA, FIXTURE.cardId],
+      );
+      const statusAfterWantOff = await client.query(
+        `
+          select status, stale_marked_at is not null as has_stale_marker,
+                 payload ->> 'stale_reason' as stale_reason
+          from public.want_matches
+          where id = $1
+        `,
+        [matchId],
+      );
+
+      await setAuthenticatedUser(client, FIXTURE.userA);
+      const candidatesAfterWantOff = await client.query(
+        'select * from public.local_community_want_match_candidates_v1($1, $2)',
+        [FIXTURE.userA, 100],
+      );
+      const pulseAfterWantOff = await client.query(
+        `
+          select count(*)::integer as count
+          from public.pulse_eligible_events_for_viewer_v1($1)
+          where card_event_id = (
+            select id
+            from public.card_events
+            where dedupe_key = $2
+            limit 1
+          )
+        `,
+        [FIXTURE.userA, `want_match_available:${matchId}`],
+      );
+
+      await setServiceRole(client);
+      await client.query(
+        `
+          update public.user_card_intents
+          set want = true,
+              updated_at = now()
+          where user_id = $1
+            and card_print_id = $2
+        `,
+        [FIXTURE.userA, FIXTURE.cardId],
+      );
+      const reactivationRun = await client.query(
+        'select * from public.run_want_match_engine_v1($1, $2)',
+        [FIXTURE.userA, 50],
+      );
+      const statusAfterReactivation = await client.query(
+        'select status, stale_marked_at is null as stale_marker_cleared from public.want_matches where id = $1',
+        [matchId],
+      );
+
+      await setAuthenticatedUser(client, FIXTURE.userA);
+      const pulseAfterReactivation = await client.query(
+        `
+          select count(*)::integer as count
+          from public.pulse_eligible_events_for_viewer_v1($1)
+          where card_event_id = (
+            select id
+            from public.card_events
+            where dedupe_key = $2
+            limit 1
+          )
+        `,
+        [FIXTURE.userA, `want_match_available:${matchId}`],
+      );
+
+      await setServiceRole(client);
       await client.query(
         `
           update public.public_profiles
@@ -477,6 +574,16 @@ async function main() {
           && Number(outboxAfterFirst.rows[0]?.count ?? 0) === 0
           && Number(matchRowsAfterSecond.rows[0]?.count ?? 0) === 1
           && Number(eventsAfterSecond.rows[0]?.count ?? 0) === 2
+          && Number(pulseBeforeWantOff.rows[0]?.count ?? 0) === 1
+          && statusAfterWantOff.rows[0]?.status === 'stale'
+          && statusAfterWantOff.rows[0]?.has_stale_marker === true
+          && statusAfterWantOff.rows[0]?.stale_reason === 'canonical_want_removed'
+          && !candidatesAfterWantOff.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
+          && Number(pulseAfterWantOff.rows[0]?.count ?? 0) === 0
+          && reactivationRun.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
+          && statusAfterReactivation.rows[0]?.status === 'active'
+          && statusAfterReactivation.rows[0]?.stale_marker_cleared === true
+          && Number(pulseAfterReactivation.rows[0]?.count ?? 0) === 1
           && !privateCandidates.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
           && !privateRun.rows.some((row) => clean(row.card_print_id) === FIXTURE.cardId)
           && staleRun.rows.length === 1
@@ -493,6 +600,13 @@ async function main() {
         match_row_count_after_second: Number(matchRowsAfterSecond.rows[0]?.count ?? 0),
         event_rows_after_first: eventsAfterFirst.rows,
         event_count_after_second: Number(eventsAfterSecond.rows[0]?.count ?? 0),
+        pulse_count_before_want_off: Number(pulseBeforeWantOff.rows[0]?.count ?? 0),
+        status_after_want_off: statusAfterWantOff.rows[0] ?? null,
+        candidate_count_after_want_off: candidatesAfterWantOff.rows.length,
+        pulse_count_after_want_off: Number(pulseAfterWantOff.rows[0]?.count ?? 0),
+        reactivation_run: reactivationRun.rows,
+        status_after_reactivation: statusAfterReactivation.rows[0] ?? null,
+        pulse_count_after_reactivation: Number(pulseAfterReactivation.rows[0]?.count ?? 0),
         want_match_outbox_rows: Number(outboxAfterFirst.rows[0]?.count ?? 0),
         private_candidate_count: privateCandidates.rows.length,
         private_run_rows: privateRun.rows.length,

@@ -1,0 +1,97 @@
+{
+  "schema_version": "WANT_MATCH_CURRENT_WANT_LOCAL_VERIFICATION_V1",
+  "verified_at": "2026-08-07T04:29:00Z",
+  "branch": "release/want-match-truth-boundary-v1",
+  "source_candidate_sha": "33d7ff50bda428439c664c7c6db427b7a66abd9a",
+  "migration": {
+    "version": "20260807043000",
+    "path": "supabase/migrations/20260807043000_want_match_current_want_truth_boundary_v1.sql",
+    "sha256": "f578b0c4daa8f5da46a1b7e455591943fe19d2a01259c0d336786e5cb8b229da",
+    "local_history_present": true
+  },
+  "schema_readback": {
+    "expected_function_count": 6,
+    "actual_function_count": 6,
+    "functions": [
+      "binder_pulse_base_eligible_events_for_viewer_v1",
+      "legacy_binder_pulse_base_eligible_events_v1",
+      "legacy_local_community_visible_source_cards_v1",
+      "local_community_visible_source_cards_v1",
+      "stale_want_matches_when_intent_removed_v1",
+      "viewer_has_current_card_want_v1"
+    ],
+    "trigger": {
+      "name": "trg_stale_want_matches_when_intent_removed_v1",
+      "enabled": true
+    },
+    "cron": {
+      "name": "grookai-want-match-stale-cleanup-v1",
+      "schedule": "*/15 * * * *",
+      "active": true
+    },
+    "security_readback": {
+      "security_definer_function_count": 6,
+      "execute_grantees": [
+        "postgres",
+        "service_role"
+      ],
+      "anon_execute_grants": 0,
+      "authenticated_execute_grants": 0
+    },
+    "active_without_current_exact_want": 0
+  },
+  "verification": {
+    "targeted_contracts": {
+      "passed": 9,
+      "failed": 0
+    },
+    "full_contract_suite": {
+      "passed": 1544,
+      "failed": 0
+    },
+    "e3_rollback_only_smoke": {
+      "status": "PASS",
+      "pulse_before_want_off": 1,
+      "status_after_want_off": "stale",
+      "pulse_after_want_off": 0,
+      "status_after_reactivation": "active",
+      "pulse_after_reactivation": 1,
+      "duplicate_match_rows": 0,
+      "notification_outbox_rows": 0,
+      "rollback_only": true
+    },
+    "e4_rollback_only_smoke": {
+      "status": "PASS",
+      "muted_event_visible": false,
+      "private_event_visible": false,
+      "pagination_overlap_count": 0,
+      "unread_before": 3,
+      "unread_after": 0,
+      "backwards_mark_seen_rejected": true,
+      "rollback_only": true
+    },
+    "git_diff_check": "PASS",
+    "repository_shipcheck": {
+      "status": "PASS",
+      "runtime_preflight_critical_failures": 0,
+      "secret_packaging_guard": "PASS",
+      "runtime_health": "PASS",
+      "quarantine_report": "PASS",
+      "deferred_report": "PASS_WITH_GOVERNED_DEBT",
+      "web_typecheck": "PASS",
+      "web_lint": "PASS",
+      "web_production_build": "PASS",
+      "flutter_analyze": "PASS",
+      "flutter_tests_passed": 571,
+      "flutter_tests_failed": 0
+    }
+  },
+  "boundaries": {
+    "production_writes": 0,
+    "historical_match_deletes": 0,
+    "historical_event_deletes": 0,
+    "canonical_identity_mutations": 0,
+    "vault_mutations": 0,
+    "pricing_mutations": 0
+  }
+}

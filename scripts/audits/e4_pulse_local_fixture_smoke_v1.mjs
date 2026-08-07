@@ -12,6 +12,7 @@ const FIXTURE = {
   cardWantId: '00000000-0000-4000-8000-00000000e402',
   cardCollectorId: '00000000-0000-4000-8000-00000000e403',
   cardMutedId: '00000000-0000-4000-8000-00000000e404',
+  wantMatchId: '00000000-0000-4000-8000-00000000e410',
   wantEventId: '00000000-0000-4000-8000-00000000e411',
   collectorEventId: '00000000-0000-4000-8000-00000000e412',
   completionEventId: '00000000-0000-4000-8000-00000000e413',
@@ -145,12 +146,51 @@ async function seedFixture(client) {
 
   await client.query(
     `
+      insert into public.user_card_intents (
+        user_id, card_print_id, want, trade, sell, showcase, is_public, metadata
+      )
+      values ($1, $2, true, false, false, false, false, '{}'::jsonb)
+      on conflict (user_id, card_print_id) do update
+      set want = true,
+          updated_at = now()
+    `,
+    [FIXTURE.viewerUserId, FIXTURE.cardWantId],
+  );
+
+  await client.query(
+    `
+      insert into public.want_matches (
+        id, want_user_id, owner_user_id, card_print_id,
+        distance_bucket, locality_label, relationship_context, intent,
+        source_type, match_strength, recommended_tier, status, payload
+      )
+      values (
+        $1, $2, $3, $4,
+        'nearby', 'Denver', 'not_following', 'trade',
+        'wall_card', 0.90, 'instant', 'active', '{}'::jsonb
+      )
+      on conflict (id) do update
+      set status = 'active',
+          stale_marked_at = null,
+          last_seen_available_at = now(),
+          updated_at = now()
+    `,
+    [
+      FIXTURE.wantMatchId,
+      FIXTURE.viewerUserId,
+      FIXTURE.ownerUserId,
+      FIXTURE.cardWantId,
+    ],
+  );
+
+  await client.query(
+    `
       insert into public.card_events (
         id, event_type, card_print_id, actor_user_id, subject_user_id,
         payload, visibility, dedupe_key, created_at
       )
       values
-        ($1, 'want_match_available', $6, $9, $8, '{"distance_bucket":"nearby","locality_label":"Denver","intent":"trade","display_image_url":"https://example.com/want.png"}'::jsonb, 'private', 'e4-pulse-smoke-want', '2026-07-08 10:00:00+00'),
+        ($1, 'want_match_available', $6, $9, $8, jsonb_build_object('want_match_id', $13::text, 'distance_bucket', 'nearby', 'locality_label', 'Denver', 'intent', 'trade', 'display_image_url', 'https://example.com/want.png'), 'private', 'e4-pulse-smoke-want', '2026-07-08 10:00:00+00'),
         ($2, 'vault_added', $7, $9, null, '{"intent":"trade","display_image_url":"https://example.com/collector.png"}'::jsonb, 'public', 'e4-pulse-smoke-collector', '2026-07-08 11:00:00+00'),
         ($3, 'set_completion_crossed', $7, $8, $8, jsonb_build_object('set_id', $10::text, 'subject_id', $10::text, 'subject_label', 'E4 Pulse Set', 'threshold', 50), 'private', 'e4-pulse-smoke-completion', '2026-07-08 12:00:00+00'),
         ($4, 'want_match_available', $11, $9, $8, '{"distance_bucket":"nearby","intent":"trade"}'::jsonb, 'private', 'e4-pulse-smoke-muted', '2026-07-08 13:00:00+00'),
@@ -170,6 +210,7 @@ async function seedFixture(client) {
       FIXTURE.setId,
       FIXTURE.cardMutedId,
       FIXTURE.privateOwnerUserId,
+      FIXTURE.wantMatchId,
     ],
   );
 }
