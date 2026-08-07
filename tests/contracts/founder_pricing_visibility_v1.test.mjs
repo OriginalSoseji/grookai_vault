@@ -77,6 +77,8 @@ test("database-only canary is healthy only inside the database boundary", () => 
   assert.equal(result.classification, "Database-only production canary");
   assert.equal(result.status, "healthy");
   assert.equal(result.observedHours, 72);
+  assert.equal(result.remainingHours, 0);
+  assert.equal(result.windowElapsed, true);
   assert.equal(result.webClientsExercised, false);
   assert.equal(result.flutterClientsExercised, false);
   assert.match(result.statement, /does not currently prove deployed web or mobile rendering/i);
@@ -195,6 +197,7 @@ test("release gates block low coverage and unclassified gaps", () => {
     coveragePercentage: 94.9,
     coverageTargetPercentage: 95,
     unclassifiedGapRows: 3,
+    currentPublicationOutOfScopeCount: 2,
   });
   assert.equal(gates.find((gate) => gate.id === "coverage")?.status, "blocked");
   assert.equal(
@@ -205,6 +208,18 @@ test("release gates block low coverage and unclassified gaps", () => {
     gates.find((gate) => gate.id === "product-surfaces")?.status,
     "pending",
   );
+  assert.equal(
+    gates.find((gate) => gate.id === "current-publication-scope")?.status,
+    "blocked",
+  );
+});
+
+test("Founder dashboard exposes all post-canary migrations and scope evidence", () => {
+  assert.match(SUMMARY, /20260728130000/);
+  assert.match(SUMMARY, /20260728133000/);
+  assert.match(SUMMARY, /20260730180000/);
+  assert.match(COMPONENT, /Current canary scope correction required/);
+  assert.match(COMPONENT, /post-canary shadow must omit them/);
 });
 
 test("Founder route enforces access and keeps service data server-side", () => {

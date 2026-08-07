@@ -67,6 +67,8 @@ export type PricingCanaryState = {
   startAt: string | null;
   requiredEndAt: string | null;
   observedHours: number;
+  remainingHours: number;
+  windowElapsed: boolean;
   expectedHours: number;
   exactPriceCount: number;
   positivePriceCount: number;
@@ -105,6 +107,30 @@ export const LAST_VERIFIED_COVERAGE = {
   ],
   source:
     "docs/audits/pricing/mee_pricing_platform_production_v1/coverage_scope_v1_2_post_mapping_apply/2026-07-28T11-11-15-894Z/REPORT.md",
+} as const;
+
+export const LAST_VERIFIED_CURRENT_PUBLICATION_SCOPE = {
+  policyVersion: "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2",
+  verifiedAt: "2026-07-30T19:33:55.211Z",
+  status: "blocked",
+  rowCount: 100,
+  outOfScopeCount: 2,
+  outOfScopeRows: [
+    {
+      sourceProductId: 83_694,
+      name: "Bagon",
+      group: "EX Trainer Kit 1: Latias & Latios",
+      reason: "deck_exclusive_special_variant",
+    },
+    {
+      sourceProductId: 85_131,
+      name: "Electrike",
+      group: "EX Trainer Kit 1: Latias & Latios",
+      reason: "deck_exclusive_special_variant",
+    },
+  ],
+  source:
+    "docs/audits/pricing/mee_pricing_platform_production_v1/post_canary_parallel_readiness_20260730/coverage/REPORT.md",
 } as const;
 
 function parseTime(value: string | null | undefined) {
@@ -228,6 +254,10 @@ export function buildCanaryState(input: {
   flutterRenderingVerified: boolean;
 }): PricingCanaryState {
   const observedHours = hoursBetween(input.activatedAt, input.nowIso);
+  const remainingHours = Math.max(
+    0,
+    PRICING_CANARY_REQUIRED_HOURS - observedHours,
+  );
   const activatedMs = parseTime(input.activatedAt);
   const requiredEndAt =
     activatedMs === null
@@ -272,6 +302,8 @@ export function buildCanaryState(input: {
     startAt: input.activatedAt,
     requiredEndAt,
     observedHours,
+    remainingHours,
+    windowElapsed: remainingHours === 0,
     expectedHours: PRICING_CANARY_REQUIRED_HOURS,
     exactPriceCount: input.exactPriceCount,
     positivePriceCount: input.positivePriceCount,
@@ -306,6 +338,7 @@ export function buildReleaseGates(input: {
   coveragePercentage?: number;
   coverageTargetPercentage?: number;
   unclassifiedGapRows?: number;
+  currentPublicationOutOfScopeCount?: number;
 }): PricingReleaseGate[] {
   const canaryElapsed =
     input.canary.observedHours >= input.canary.expectedHours &&
@@ -319,6 +352,8 @@ export function buildReleaseGates(input: {
     LAST_VERIFIED_COVERAGE.targetPercentage;
   const unclassifiedGapRows =
     input.unclassifiedGapRows ?? LAST_VERIFIED_COVERAGE.unclassifiedGapRows;
+  const currentPublicationOutOfScopeCount =
+    input.currentPublicationOutOfScopeCount ?? 0;
 
   return [
     {
@@ -331,7 +366,7 @@ export function buildReleaseGates(input: {
     },
     {
       id: "frozen-migrations",
-      label: "Two frozen migrations",
+      label: "Governed post-canary migrations",
       status: input.pendingMigrationCount === 0 ? "passed" : "pending",
       detail:
         input.pendingMigrationCount === 0
@@ -359,6 +394,16 @@ export function buildReleaseGates(input: {
           ? "passed"
           : "blocked",
       detail: `${coveragePercentage}% last verified coverage.`,
+    },
+    {
+      id: "current-publication-scope",
+      label: "Current publication matches V1.2 scope",
+      status:
+        currentPublicationOutOfScopeCount === 0 ? "passed" : "blocked",
+      detail:
+        currentPublicationOutOfScopeCount === 0
+          ? "No current publication rows are outside the frozen product scope."
+          : `${currentPublicationOutOfScopeCount} current rows are outside V1.2 scope and must be excluded by the post-canary shadow.`,
     },
     {
       id: "unclassified-gaps",

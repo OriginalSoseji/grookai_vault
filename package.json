@@ -75,6 +75,7 @@
     "grookai-dex:checkpoint": "node scripts/grookai_dex/checkpoint_v1.mjs",
     "grookai-dex:smoke:routes": "node scripts/grookai_dex/smoke_routes_v1.mjs",
     "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
+    "pricing:market:post-canary:inventory": "node scripts/audits/tcgplayer_market_post_canary_integration_inventory_v1.mjs",
     "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
     "mee:query-plan": "node scripts/audits/market_evidence_engine_query_plan_v1.mjs",
     "mee:acquisition-batch": "node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",

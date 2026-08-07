@@ -1,0 +1,23 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_PRODUCT_SURFACE_CHECKLIST_V1",
+  "required_surfaces": [
+    "web_card_detail",
+    "web_search",
+    "web_explore",
+    "web_set_grid",
+    "web_compare",
+    "web_private_vault",
+    "web_public_vault",
+    "web_vault_item",
+    "web_market_history",
+    "flutter_card_detail",
+    "flutter_search_or_grid",
+    "flutter_set_grid",
+    "flutter_compare",
+    "flutter_private_vault",
+    "flutter_public_collector",
+    "flutter_network",
+    "flutter_vault_item"
+  ],
+  "capture_status": "pending_deployment"
+}

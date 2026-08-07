@@ -8,6 +8,7 @@ import {
   classifyPricingPlatformOverall,
   deploymentVerificationStatus,
   LAST_VERIFIED_COVERAGE,
+  LAST_VERIFIED_CURRENT_PUBLICATION_SCOPE,
   latestDurablePhaseAttempts,
   nextExpectedPricingCycle,
   PRICING_RELEASE_BASELINE_SHA,
@@ -294,6 +295,7 @@ export type FounderGovernedPricingPlatformSummary = {
   recentRuns: FounderPricingRun[];
   phases: FounderPricingPhase[];
   coverage: FounderPricingCoverage;
+  publicationScope: typeof LAST_VERIFIED_CURRENT_PUBLICATION_SCOPE;
   deployments: PricingDeploymentState[];
   releaseGates: PricingReleaseGate[];
   alerts: {
@@ -312,6 +314,10 @@ const PENDING_MIGRATIONS = [
   {
     version: "20260728133000",
     name: "Vault exact market pricing targets",
+  },
+  {
+    version: "20260730180000",
+    name: "TCGPlayer market parent-summary runtime repair",
   },
 ] as const;
 
@@ -1035,6 +1041,8 @@ export async function getFounderGovernedPricingPlatformSummary(
     coveragePercentage: LAST_VERIFIED_COVERAGE.percentage,
     coverageTargetPercentage: LAST_VERIFIED_COVERAGE.targetPercentage,
     unclassifiedGapRows: LAST_VERIFIED_COVERAGE.unclassifiedGapRows,
+    currentPublicationOutOfScopeCount:
+      LAST_VERIFIED_CURRENT_PUBLICATION_SCOPE.outOfScopeCount,
   });
 
   return {
@@ -1073,6 +1081,7 @@ export async function getFounderGovernedPricingPlatformSummary(
           ? "passed"
           : "blocked",
     },
+    publicationScope: LAST_VERIFIED_CURRENT_PUBLICATION_SCOPE,
     deployments,
     releaseGates,
     alerts,

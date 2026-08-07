@@ -1,0 +1,23 @@
+{
+  "publication_set_id": "5b016262-764b-4b05-9e1e-df15971d0a7d",
+  "run_id": "421f40ab-2d2d-4411-a1b3-7420603c5b86",
+  "previous_publication_set_id": "1317e10a-c88f-4316-b062-bc5d62e297c9",
+  "activated_at": "2026-07-30T18:17:48.625Z",
+  "current_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR2-publication",
+  "current_publication_state": "published",
+  "current_expected_snapshot_count": 100,
+  "current_rollback_reason": null,
+  "current_run_state": "verified",
+  "current_reconciliation_state": "reconciled",
+  "current_run_commit_sha": "456306bdb2a335286d513c1d612a97a58a1f01cc",
+  "prior_run_id": "50149782-9b45-4606-8fa1-05ae182a5435",
+  "prior_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30-REPAIR1-publication",
+  "prior_publication_state": "superseded",
+  "prior_expected_snapshot_count": 100,
+  "prior_previous_publication_set_id": "7df41f05-0afe-45b3-a1f6-2fe8ee3f2599",
+  "prior_run_state": "verified",
+  "prior_reconciliation_state": "reconciled",
+  "prior_run_commit_sha": "294f1e2672162c2800113f17ff4afe9bc12ede04",
+  "current_snapshot_count": 100,
+  "prior_snapshot_count": 100
+}

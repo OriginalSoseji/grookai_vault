@@ -1,0 +1,33 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_PRODUCT_SURFACE_CAPTURE_V1",
+  "created_at": "2026-07-30T19:35:49.329Z",
+  "deployed_commit_sha": "456306bdb2a335286d513c1d612a97a58a1f01cc",
+  "environment": "production",
+  "auth_lane": "authenticated",
+  "captures": [],
+  "reconciliation": {
+    "required_surface_count": 17,
+    "captured_surface_count": 0,
+    "missing_surface_ids": [
+      "web_card_detail",
+      "web_search",
+      "web_explore",
+      "web_set_grid",
+      "web_compare",
+      "web_private_vault",
+      "web_public_vault",
+      "web_vault_item",
+      "web_market_history",
+      "flutter_card_detail",
+      "flutter_search_or_grid",
+      "flutter_set_grid",
+      "flutter_compare",
+      "flutter_private_vault",
+      "flutter_public_collector",
+      "flutter_network",
+      "flutter_vault_item"
+    ],
+    "duplicated_surface_ids": [],
+    "unsupported_surface_ids": []
+  }
+}
