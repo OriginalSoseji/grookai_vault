@@ -13,6 +13,11 @@ void main() {
     expect(source, contains('Save and opt in'));
     expect(source, contains('Do not enter a street address'));
     expect(source, contains('LocalDiscoverySettingsService.save'));
+    expect(source, contains("identifier: 'local-discovery-toggle'"));
+    expect(source, contains("identifier: 'local-discovery-area'"));
+    expect(source, contains("identifier: 'local-discovery-region'"));
+    expect(source, contains("identifier: 'local-discovery-country'"));
+    expect(source, contains("identifier: 'local-discovery-save'"));
   });
 
   test('existing persistence contract remains owner-only and coarse', () {

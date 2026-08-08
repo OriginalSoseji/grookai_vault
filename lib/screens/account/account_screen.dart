@@ -744,14 +744,18 @@ class _AccountScreenState extends State<AccountScreen> {
             if (_localDiscoveryLoading)
               const Center(child: CircularProgressIndicator())
             else ...[
-              _ToggleField(
-                label: 'Local discovery',
-                description: _localDiscoverySettings.hasCoarseRegion
-                    ? _localDiscoverySettings.displayLabel
-                    : 'Add your coarse region to find nearby collectors and Want Matches.',
-                checked: _localDiscoverySettings.enabled,
-                disabled: _localDiscoverySaving,
-                onChanged: _changeLocalDiscovery,
+              Semantics(
+                container: true,
+                identifier: 'local-discovery-toggle',
+                child: _ToggleField(
+                  label: 'Local discovery',
+                  description: _localDiscoverySettings.hasCoarseRegion
+                      ? _localDiscoverySettings.displayLabel
+                      : 'Add your coarse region to find nearby collectors and Want Matches.',
+                  checked: _localDiscoverySettings.enabled,
+                  disabled: _localDiscoverySaving,
+                  onChanged: _changeLocalDiscovery,
+                ),
               ),
               if (_localDiscoverySettings.hasCoarseRegion) ...[
                 const SizedBox(height: 10),
@@ -1626,44 +1630,56 @@ class _LocalDiscoverySettingsDialogState
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 14),
-            TextField(
-              key: const ValueKey('local-discovery-area'),
-              controller: _areaController,
-              textCapitalization: TextCapitalization.words,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                labelText: 'City or area',
-                hintText: 'Denver',
-                errorText: _errors['areaLabel'],
+            Semantics(
+              container: true,
+              identifier: 'local-discovery-area',
+              child: TextField(
+                key: const ValueKey('local-discovery-area'),
+                controller: _areaController,
+                textCapitalization: TextCapitalization.words,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  labelText: 'City or area',
+                  hintText: 'Denver',
+                  errorText: _errors['areaLabel'],
+                ),
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              key: const ValueKey('local-discovery-region'),
-              controller: _regionController,
-              textCapitalization: TextCapitalization.characters,
-              textInputAction: TextInputAction.next,
-              maxLength: 12,
-              decoration: InputDecoration(
-                labelText: 'Region code',
-                hintText: 'CO',
-                counterText: '',
-                errorText: _errors['regionCode'],
+            Semantics(
+              container: true,
+              identifier: 'local-discovery-region',
+              child: TextField(
+                key: const ValueKey('local-discovery-region'),
+                controller: _regionController,
+                textCapitalization: TextCapitalization.characters,
+                textInputAction: TextInputAction.next,
+                maxLength: 12,
+                decoration: InputDecoration(
+                  labelText: 'Region code',
+                  hintText: 'CO',
+                  counterText: '',
+                  errorText: _errors['regionCode'],
+                ),
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              key: const ValueKey('local-discovery-country'),
-              controller: _countryController,
-              textCapitalization: TextCapitalization.characters,
-              textInputAction: TextInputAction.done,
-              maxLength: 2,
-              onSubmitted: (_) => _submit(),
-              decoration: InputDecoration(
-                labelText: 'Country code',
-                hintText: 'US',
-                counterText: '',
-                errorText: _errors['countryCode'],
+            Semantics(
+              container: true,
+              identifier: 'local-discovery-country',
+              child: TextField(
+                key: const ValueKey('local-discovery-country'),
+                controller: _countryController,
+                textCapitalization: TextCapitalization.characters,
+                textInputAction: TextInputAction.done,
+                maxLength: 2,
+                onSubmitted: (_) => _submit(),
+                decoration: InputDecoration(
+                  labelText: 'Country code',
+                  hintText: 'US',
+                  counterText: '',
+                  errorText: _errors['countryCode'],
+                ),
               ),
             ),
           ],
@@ -1674,7 +1690,14 @@ class _LocalDiscoverySettingsDialogState
           onPressed: () => Navigator.of(context).pop(),
           child: const Text('Cancel'),
         ),
-        FilledButton(onPressed: _submit, child: const Text('Save and opt in')),
+        Semantics(
+          container: true,
+          identifier: 'local-discovery-save',
+          child: FilledButton(
+            onPressed: _submit,
+            child: const Text('Save and opt in'),
+          ),
+        ),
       ],
     );
   }
