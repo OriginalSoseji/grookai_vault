@@ -69,6 +69,17 @@ test("App Store automation supports an explicit immutable build-number override"
   assert.match(automation, /derived_build_path\("export"\)/);
 });
 
+test("App Store upload authenticates xcodebuild without logging API identifiers", () => {
+  const automation = read("scripts/app_store_connect/ios_release_automation.rb");
+
+  assert.match(automation, /xcodebuild_authentication_args/);
+  assert.match(automation, /-authenticationKeyPath/);
+  assert.match(automation, /-authenticationKeyID/);
+  assert.match(automation, /-authenticationKeyIssuerID/);
+  assert.match(automation, /redact_command/);
+  assert.match(automation, /\[REDACTED\]/);
+});
+
 test("App Store status requests only supported app-info fields", () => {
   const automation = read("scripts/app_store_connect/ios_release_automation.rb");
 
