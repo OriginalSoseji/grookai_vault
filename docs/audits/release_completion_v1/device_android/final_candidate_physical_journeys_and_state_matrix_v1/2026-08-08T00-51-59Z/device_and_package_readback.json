@@ -1,0 +1,33 @@
+{
+  "schema_version": "FINAL_CANDIDATE_PHYSICAL_ANDROID_DEVICE_READBACK_V1",
+  "recorded_at": "2026-08-08T00:51:59Z",
+  "platform": "Android",
+  "physical_device": true,
+  "model": "Samsung Galaxy S22 Ultra",
+  "model_code": "SM-S908U",
+  "production_package": {
+    "package_id": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21,
+    "target_sdk": 36,
+    "app_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "apk_sha256": "7444381f364809a9348fad4d5f5f5437c01f96153bdb92e71f08c59dbcca5289",
+    "certificate_sha256": "51e518ef647b2bd5c1c91d3d00d08e1fe3192af633b2af6741a67fdce872e033",
+    "cold_launch_total_ms": 875,
+    "cold_launch_wait_ms": 882
+  },
+  "locked_acceptance_package": {
+    "package_id": "com.grookai.vault.lockedacceptance",
+    "installed": true,
+    "modified": false,
+    "launched": false
+  },
+  "post_test_system_state": {
+    "wifi_enabled": true,
+    "mobile_data_enabled": true,
+    "airplane_mode": false,
+    "font_scale": 0.8,
+    "production_package_in_foreground": true
+  },
+  "sensitive_identifiers_recorded": false
+}

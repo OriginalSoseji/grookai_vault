@@ -1,0 +1,59 @@
+{
+  "schema_version": "FINAL_CANDIDATE_PHYSICAL_ANDROID_SUMMARY_V1",
+  "recorded_at": "2026-08-08T00:51:59Z",
+  "status": "passed_android_scope_ios_and_fresh_user_gates_open",
+  "release": {
+    "app_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "package": "com.grookai.vault",
+    "version": "1.0.0 (21)"
+  },
+  "journeys": {
+    "journey_a_first_time_visitor_android": "passed",
+    "journey_c_want_auth_continuation_android": "passed_with_net_zero_cleanup",
+    "journey_c_clean_account_full_transition": "open_requires_physical_testflight_clean_account",
+    "journey_d_collector_connection_android": "passed",
+    "journey_e_collection_depth_android": "passed",
+    "journey_f_signed_out_locked_features_android": "passed",
+    "cross_platform_state_matrix_android": "passed"
+  },
+  "physical_assertions": {
+    "signed_out_card_images_rendered": true,
+    "exact_set_number_and_finish_rendered": true,
+    "locked_action_preserved_destination": true,
+    "auth_returned_to_exact_card": true,
+    "wall_manage_copy_available": true,
+    "wall_remove_action_available": true,
+    "vault_loaded": true,
+    "vault_card_count": 1008,
+    "vault_unique_card_count": 215,
+    "vault_set_count": 53,
+    "discover_loaded": true,
+    "following_activity_loaded": true,
+    "contextual_message_entry_loaded": true,
+    "message_sent": false,
+    "card_journey_loaded": true,
+    "journey_context_returned_to_same_card": true,
+    "memory_capture_loaded": true,
+    "memory_context_returned_to_same_card": true,
+    "memory_saved": false
+  },
+  "data_integrity": {
+    "temporary_want_final_state": false,
+    "temporary_want_cleanup_reconciled": true,
+    "vault_copy_mutation_count": 0,
+    "direct_database_write_count": 0,
+    "locked_acceptance_package_modified": false
+  },
+  "findings": [
+    "Some legacy owned copies are honestly labeled Printing unassigned. Assigned Holo and Normal examples also rendered. This is a coverage gap, not an inferred variant.",
+    "At 1.3 font scale the Discover and Following tab labels use ellipsis, but primary navigation remains distinct and usable."
+  ],
+  "open_gates": [
+    "fresh-user ten-second comprehension result",
+    "physical iPhone/TestFlight signed-out and signed-in journey proof",
+    "clean-account iPhone Want-to-match-to-message-to-opt-out proof",
+    "Google Play developer account and listing authority",
+    "final 72-hour release candidate soak"
+  ],
+  "completion_allowed": false
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "FINAL_CANDIDATE_PHYSICAL_ANDROID_STATE_MATRIX_V1",
+  "recorded_at": "2026-08-08T00:51:59Z",
+  "status": "passed_android_scope",
+  "states": [
+    {
+      "state": "signed_out",
+      "status": "passed",
+      "evidence": ["01_signed_out_launch.png", "01_signed_out_launch.xml"]
+    },
+    {
+      "state": "signed_out_public_exploration",
+      "status": "passed",
+      "evidence": ["02_signed_out_explore.png", "02_signed_out_explore.xml"]
+    },
+    {
+      "state": "signed_out_locked_action",
+      "status": "passed",
+      "evidence": ["04_signed_out_want_gate.png", "04_signed_out_want_gate.xml"]
+    },
+    {
+      "state": "preserved_login_destination",
+      "status": "passed",
+      "evidence": ["05_auth_resume_context.png", "05_auth_resume_context.xml", "06_auth_continuation_complete.png", "06_auth_continuation_complete.xml"]
+    },
+    {
+      "state": "private",
+      "status": "passed",
+      "evidence": ["07_private_copy_overview.png", "08_private_copy_list.png"]
+    },
+    {
+      "state": "empty",
+      "status": "passed",
+      "evidence": ["09_empty_pulse.png", "09_empty_pulse.xml"]
+    },
+    {
+      "state": "loading",
+      "status": "passed",
+      "evidence": ["24_loading_state.png"],
+      "detail": "Search rendered stable skeleton rows and a progress indicator without layout collapse."
+    },
+    {
+      "state": "offline_error",
+      "status": "passed",
+      "evidence": ["22_offline_degraded_search.png", "22_offline_degraded_search.xml"],
+      "detail": "Search stated that it was temporarily limited and showed local results when available."
+    },
+    {
+      "state": "online_recovery",
+      "status": "passed",
+      "evidence": ["23_online_recovery.png", "23_online_recovery.xml"],
+      "detail": "A new query returned 24 of 32 cards after Wi-Fi and mobile data were restored."
+    },
+    {
+      "state": "text_scaling_1_3",
+      "status": "passed_with_minor_truncation",
+      "evidence": ["25_text_scale_1_3.png", "25_text_scale_1_3.xml"],
+      "detail": "No overlap or inaccessible primary action was observed. Discover and Following tab labels used ellipsis at 1.3 scale."
+    }
+  ],
+  "restoration": {
+    "wifi_enabled": true,
+    "mobile_data_enabled": true,
+    "font_scale": 0.8
+  }
+}

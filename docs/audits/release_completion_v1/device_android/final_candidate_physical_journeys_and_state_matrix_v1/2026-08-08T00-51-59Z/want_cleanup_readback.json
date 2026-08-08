@@ -1,0 +1,23 @@
+{
+  "schema_version": "FINAL_CANDIDATE_TRANSIENT_WANT_CLEANUP_READBACK_V1",
+  "recorded_at": "2026-08-08T00:48:07.178Z",
+  "database_transaction_read_only": true,
+  "subject_fingerprint_sha256": "431c0626c153caae34111f84f2dc5e566149a22c7507028266249a6bcc5c4496",
+  "card_gv_id": "GV-PK-PR-24",
+  "exact_card": "Wizards Black Star Promos #24 Holo",
+  "product_ui_events": [
+    {
+      "event_type": "want_on",
+      "created_at": "2026-08-08T00:29:06.383Z"
+    },
+    {
+      "event_type": "want_off",
+      "created_at": "2026-08-08T00:48:07.178Z"
+    }
+  ],
+  "final_current_want": false,
+  "cleanup_reconciled": true,
+  "existing_vault_copy_count_changed": false,
+  "message_sent": false,
+  "account_identifier_recorded": false
+}
