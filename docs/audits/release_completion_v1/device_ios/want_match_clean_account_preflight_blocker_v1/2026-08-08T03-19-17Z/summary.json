@@ -1,0 +1,31 @@
+{
+  "audit_version": "CLEAN_ACCOUNT_WANT_MATCH_PREFLIGHT_BLOCKER_V1",
+  "status": "blocked",
+  "completion_allowed": false,
+  "testflight_build": "286",
+  "app_commit_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "target_gv_id": "GV-PK-CEC-214",
+  "production_readback": {
+    "release_account_count": 1,
+    "profile_ready": true,
+    "local_discovery_setting_count": 0,
+    "exact_visible_source_count": 0,
+    "exact_candidate_count": 0,
+    "current_want": false,
+    "active_match_count": 0,
+    "eligible_owner_copy_count": 1,
+    "eligible_owner_profile_ready": true
+  },
+  "decision": {
+    "direct_database_prerequisite_write_allowed": false,
+    "journey_c_complete": false,
+    "new_candidate_required": true
+  },
+  "boundaries": {
+    "database_transaction_read_only": true,
+    "database_writes": false,
+    "want_write": false,
+    "match_manufactured": false,
+    "private_identity_in_artifacts": false
+  }
+}

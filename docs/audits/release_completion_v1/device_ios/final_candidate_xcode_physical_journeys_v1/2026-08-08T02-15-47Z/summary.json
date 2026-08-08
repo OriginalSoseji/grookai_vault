@@ -1,0 +1,26 @@
+{
+  "schema_version": "FINAL_CANDIDATE_XCODE_PHYSICAL_IPHONE_NAVIGATION_V1",
+  "recorded_at": "2026-08-08T02:15:47Z",
+  "status": "PRIMARY_NAVIGATION_PROVED_RELEASE_COMPLETION_NOT_CLAIMED",
+  "candidate": {
+    "platform": "ios",
+    "distribution": "testflight",
+    "build_number": 286,
+    "app_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574"
+  },
+  "execution": {
+    "physical_device": true,
+    "xcode_xctest_only": true,
+    "apple_device_mirroring_used": false
+  },
+  "proved_surfaces": [
+    "signed_in_pulse",
+    "signed_in_search"
+  ],
+  "boundaries": {
+    "database_direct_write": false,
+    "want_match_journey_complete": false,
+    "release_complete": false,
+    "sensitive_identifiers_recorded": false
+  }
+}

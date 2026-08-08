@@ -1,0 +1,17 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "iphone_testflight_286_clean_account_pulse.png",
+      "sha256": "0027dbed37fb9941c6a462d090437e21fec8ddec08100741ed51c2622ec004de"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "7316ed1fd5e14b83205ddf2c470d97f07d5679a4105b8b2d14e6b9e28c1e8d7c"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "62026b4ce36f4554be3a09480d0bac48a6972e7e776433b5f2bda94c40dadf59"
+    }
+  ]
+}

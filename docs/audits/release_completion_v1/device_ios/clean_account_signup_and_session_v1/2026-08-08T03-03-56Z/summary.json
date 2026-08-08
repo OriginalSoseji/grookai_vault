@@ -1,0 +1,33 @@
+{
+  "audit_version": "PHYSICAL_IPHONE_CLEAN_ACCOUNT_SIGNUP_AND_SESSION_V1",
+  "status": "passed",
+  "completion_allowed": false,
+  "platform": "iOS",
+  "physical_device": true,
+  "installed_from_testflight": true,
+  "testflight_build": "286",
+  "app_commit_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "account_created_at": "2026-08-08T02:57:36.684Z",
+  "account_count_in_window": 1,
+  "profile_ready": true,
+  "preexisting_target_want": false,
+  "preexisting_active_match_count": 0,
+  "preexisting_available_event_count": 0,
+  "xcode": {
+    "test_name": "testCleanAccountCurrentSession",
+    "tests_passed": 1,
+    "tests_failed": 0,
+    "onboarding_completed": true,
+    "authenticated_session": true
+  },
+  "boundaries": {
+    "email_in_artifacts": false,
+    "password_in_artifacts": false,
+    "token_in_artifacts": false,
+    "raw_user_id_in_artifacts": false,
+    "device_identifier_in_artifacts": false,
+    "profile_slug_in_artifacts": false,
+    "want_match_claimed": false,
+    "overall_release_completion_claimed": false
+  }
+}
