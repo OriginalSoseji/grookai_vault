@@ -4,8 +4,11 @@ import path from "node:path";
 import test from "node:test";
 
 import {
+  createReleaseCandidateSoakStateV1,
   evaluateReleaseCandidateSoakV1,
+  prerequisiteProjectionDigestV1,
   RELEASE_CANDIDATE_SOAK_STATE_V1,
+  RELEASE_CANDIDATE_SOAK_START_AUTHORITY_V1,
 } from "../../scripts/audits/release_candidate_soak_v1.mjs";
 
 const candidate = {
@@ -46,17 +49,19 @@ function observation(observedAt, overrides = {}) {
 
 function soakState(overrides = {}) {
   return {
-    schema_version: RELEASE_CANDIDATE_SOAK_STATE_V1,
-    candidate_identity: candidate,
+    ...createReleaseCandidateSoakStateV1({
+      manifest: manifest(),
+      startedAt: "2026-08-08T00:00:00.000Z",
+      startRecordedAt: "2026-08-08T00:00:00.000Z",
+      observations: [
+        observation("2026-08-08T00:00:00.000Z"),
+        observation("2026-08-09T00:00:00.000Z"),
+        observation("2026-08-10T00:00:00.000Z"),
+        observation("2026-08-11T00:00:00.000Z"),
+      ],
+    }),
     started_at: "2026-08-08T00:00:00.000Z",
     start_recorded_at: "2026-08-08T00:00:00.000Z",
-    required_hours: 72,
-    observations: [
-      observation("2026-08-08T00:00:00.000Z"),
-      observation("2026-08-09T00:00:00.000Z"),
-      observation("2026-08-10T00:00:00.000Z"),
-      observation("2026-08-11T00:00:00.000Z"),
-    ],
     ...overrides,
   };
 }
@@ -84,6 +89,82 @@ test("all non-soak gates must be proven before a soak can start", () => {
   const ready = evaluateReleaseCandidateSoakV1({ manifest: manifest() });
   assert.equal(ready.status, "ready_to_start");
   assert.equal(ready.start_allowed, true);
+
+  assert.throws(
+    () =>
+      createReleaseCandidateSoakStateV1({
+        manifest: manifest({ ready: false }),
+      }),
+    /soak start is not authorized/,
+  );
+  const state = createReleaseCandidateSoakStateV1({ manifest: manifest() });
+  assert.equal(state.schema_version, RELEASE_CANDIDATE_SOAK_STATE_V1);
+  assert.equal(
+    state.start_authorization.schema_version,
+    RELEASE_CANDIDATE_SOAK_START_AUTHORITY_V1,
+  );
+  assert.equal(
+    state.start_authorization.prerequisite_projection_sha256,
+    prerequisiteProjectionDigestV1(
+      state.start_authorization.prerequisite_projection,
+    ),
+  );
+});
+
+test("a legacy state created before prerequisites opened cannot become valid later", () => {
+  const state = soakState();
+  delete state.start_authorization;
+  const result = evaluateReleaseCandidateSoakV1({
+    manifest: manifest(),
+    state,
+    asOf: "2026-08-11T00:00:00.000Z",
+  });
+  assert.equal(result.status, "failed");
+  assert.ok(result.findings.includes("soak_start_authorization_missing"));
+});
+
+test("a self-consistent authorization with an unproven start gate fails closed", () => {
+  const state = soakState();
+  state.start_authorization.prerequisite_projection.gates[0].status = "partial";
+  state.start_authorization.prerequisite_projection_sha256 =
+    prerequisiteProjectionDigestV1(
+      state.start_authorization.prerequisite_projection,
+    );
+  const result = evaluateReleaseCandidateSoakV1({
+    manifest: manifest(),
+    state,
+    asOf: "2026-08-11T00:00:00.000Z",
+  });
+  assert.equal(result.status, "failed");
+  assert.ok(
+    result.findings.includes(
+      "soak_start_authorization_prerequisites_not_proven",
+    ),
+  );
+  assert.ok(result.findings.includes("soak_prerequisite_authority_mismatch"));
+});
+
+test("tampered authorization and prerequisite drift fail closed", () => {
+  const tamperedState = soakState();
+  tamperedState.start_authorization.prerequisite_projection_sha256 = "0".repeat(64);
+  const tampered = evaluateReleaseCandidateSoakV1({
+    manifest: manifest(),
+    state: tamperedState,
+    asOf: "2026-08-11T00:00:00.000Z",
+  });
+  assert.ok(
+    tampered.findings.includes("soak_start_authorization_digest_invalid"),
+  );
+
+  const driftedManifest = manifest();
+  driftedManifest.gates[0].evidence = ["new-evidence-after-start"];
+  const drifted = evaluateReleaseCandidateSoakV1({
+    manifest: driftedManifest,
+    state: soakState(),
+    asOf: "2026-08-11T00:00:00.000Z",
+  });
+  assert.equal(drifted.status, "failed");
+  assert.ok(drifted.findings.includes("soak_prerequisite_authority_mismatch"));
 });
 
 test("a backdated start is rejected", () => {

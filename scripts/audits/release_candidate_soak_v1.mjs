@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -17,6 +18,10 @@ export const RELEASE_CANDIDATE_SOAK_POLICY_V1 =
   "GROOKAI_FINAL_RELEASE_CANDIDATE_SOAK_POLICY_V1";
 export const RELEASE_CANDIDATE_SOAK_STATE_V1 =
   "GROOKAI_FINAL_RELEASE_CANDIDATE_SOAK_STATE_V1";
+export const RELEASE_CANDIDATE_SOAK_START_AUTHORITY_V1 =
+  "GROOKAI_FINAL_RELEASE_CANDIDATE_SOAK_START_AUTHORITY_V1";
+export const RELEASE_CANDIDATE_SOAK_PREREQUISITE_PROJECTION_V1 =
+  "GROOKAI_FINAL_RELEASE_CANDIDATE_SOAK_PREREQUISITE_PROJECTION_V1";
 export const RELEASE_CANDIDATE_SOAK_GATE_ID =
   "final_72_hour_release_candidate_soak";
 
@@ -40,6 +45,62 @@ function candidateIdentity(manifest) {
   };
 }
 
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  if (value !== null && typeof value === "object") {
+    return Object.fromEntries(
+      Object.keys(value)
+        .sort()
+        .map((key) => [key, canonicalize(value[key])]),
+    );
+  }
+  return value;
+}
+
+export function prerequisiteProjectionDigestV1(projection) {
+  return createHash("sha256")
+    .update(JSON.stringify(canonicalize(projection)))
+    .digest("hex");
+}
+
+export function releaseCandidateSoakPrerequisiteProjectionV1(manifest) {
+  const gates = Array.isArray(manifest?.gates) ? manifest.gates : [];
+  return {
+    schema_version: RELEASE_CANDIDATE_SOAK_PREREQUISITE_PROJECTION_V1,
+    candidate_identity: candidateIdentity(manifest),
+    gates: gates
+      .filter((gate) => gate?.id !== RELEASE_CANDIDATE_SOAK_GATE_ID)
+      .map((gate) => ({
+        id: String(gate?.id ?? ""),
+        status: gate?.status ?? null,
+        evidence: [...(Array.isArray(gate?.evidence) ? gate.evidence : [])]
+          .map(String)
+          .sort(),
+        required_next_evidence: [
+          ...(Array.isArray(gate?.required_next_evidence)
+            ? gate.required_next_evidence
+            : []),
+        ]
+          .map(String)
+          .sort(),
+      }))
+      .sort((left, right) => left.id.localeCompare(right.id)),
+  };
+}
+
+function projectionHasOnlyProvenPrerequisites(projection) {
+  const gates = Array.isArray(projection?.gates) ? projection.gates : [];
+  const ids = gates.map((gate) => gate?.id);
+  return (
+    projection?.schema_version ===
+      RELEASE_CANDIDATE_SOAK_PREREQUISITE_PROJECTION_V1 &&
+    gates.length > 0 &&
+    ids.every((id) => typeof id === "string" && id.length > 0) &&
+    new Set(ids).size === ids.length &&
+    gates.every((gate) => gate?.status === "proven")
+  );
+}
+
 function identitiesMatch(left, right) {
   return Object.keys(left).every(
     (key) => typeof left[key] === "string" && left[key] === right?.[key],
@@ -55,6 +116,46 @@ function observationIsHealthy(observation) {
     observation?.unresolved_p0_count === 0 &&
     observation?.launch_blocking_crash_count === 0
   );
+}
+
+export function createReleaseCandidateSoakStateV1({
+  manifest,
+  startedAt = new Date().toISOString(),
+  startRecordedAt = startedAt,
+  requiredHours = MINIMUM_SOAK_HOURS,
+  observations = [],
+}) {
+  const readiness = evaluateReleaseCandidateSoakV1({
+    manifest,
+    state: null,
+    asOf: startRecordedAt,
+  });
+  if (!readiness.start_allowed) {
+    throw new Error(
+      `release candidate soak start is not authorized: ${[
+        ...readiness.prerequisite_gate_ids,
+        ...readiness.findings,
+      ].join(",")}`,
+    );
+  }
+  const prerequisiteProjection =
+    releaseCandidateSoakPrerequisiteProjectionV1(manifest);
+  return {
+    schema_version: RELEASE_CANDIDATE_SOAK_STATE_V1,
+    candidate_identity: candidateIdentity(manifest),
+    started_at: startedAt,
+    start_recorded_at: startRecordedAt,
+    required_hours: requiredHours,
+    start_authorization: {
+      schema_version: RELEASE_CANDIDATE_SOAK_START_AUTHORITY_V1,
+      authorized_at: startRecordedAt,
+      prerequisite_projection_sha256: prerequisiteProjectionDigestV1(
+        prerequisiteProjection,
+      ),
+      prerequisite_projection: prerequisiteProjection,
+    },
+    observations,
+  };
 }
 
 export function evaluateReleaseCandidateSoakV1({
@@ -74,6 +175,11 @@ export function evaluateReleaseCandidateSoakV1({
     )
     .map((gate) => gate.id);
   const expectedCandidate = candidateIdentity(manifest);
+  const currentPrerequisiteProjection =
+    releaseCandidateSoakPrerequisiteProjectionV1(manifest);
+  const currentPrerequisiteDigest = prerequisiteProjectionDigestV1(
+    currentPrerequisiteProjection,
+  );
   const missingCandidateFields = Object.entries(expectedCandidate)
     .filter(([, value]) => typeof value !== "string" || value.length === 0)
     .map(([key]) => key);
@@ -111,17 +217,67 @@ export function evaluateReleaseCandidateSoakV1({
     findings.push("soak_candidate_identity_mismatch");
   }
 
+  const startAuthorization = state?.start_authorization;
+  if (!startAuthorization || typeof startAuthorization !== "object") {
+    findings.push("soak_start_authorization_missing");
+  } else {
+    if (
+      startAuthorization.schema_version !==
+      RELEASE_CANDIDATE_SOAK_START_AUTHORITY_V1
+    ) {
+      findings.push("invalid_soak_start_authorization_schema");
+    }
+    const storedProjection = startAuthorization.prerequisite_projection;
+    if (!storedProjection || typeof storedProjection !== "object") {
+      findings.push("soak_prerequisite_projection_missing");
+    } else {
+      const storedProjectionDigest =
+        prerequisiteProjectionDigestV1(storedProjection);
+      if (
+        storedProjectionDigest !==
+        startAuthorization.prerequisite_projection_sha256
+      ) {
+        findings.push("soak_start_authorization_digest_invalid");
+      }
+      if (!projectionHasOnlyProvenPrerequisites(storedProjection)) {
+        findings.push("soak_start_authorization_prerequisites_not_proven");
+      }
+      if (
+        !identitiesMatch(
+          state?.candidate_identity ?? {},
+          storedProjection.candidate_identity,
+        )
+      ) {
+        findings.push("soak_start_authorization_candidate_mismatch");
+      }
+      if (storedProjectionDigest !== currentPrerequisiteDigest) {
+        findings.push("soak_prerequisite_authority_mismatch");
+      }
+    }
+  }
+
   const startedAtMs = timestamp(state?.started_at);
   const recordedAtMs = timestamp(state?.start_recorded_at);
+  const authorizedAtMs = timestamp(startAuthorization?.authorized_at);
   const requiredHours = Number(state?.required_hours);
   if (startedAtMs === null) findings.push("invalid_soak_start_timestamp");
   if (recordedAtMs === null) findings.push("invalid_soak_recorded_timestamp");
+  if (authorizedAtMs === null) {
+    findings.push("invalid_soak_authorized_timestamp");
+  }
   if (
     startedAtMs !== null &&
     recordedAtMs !== null &&
     Math.abs(startedAtMs - recordedAtMs) > START_RECORDING_TOLERANCE_MS
   ) {
     findings.push("soak_start_is_backdated_or_forward_dated");
+  }
+  if (
+    recordedAtMs !== null &&
+    authorizedAtMs !== null &&
+    Math.abs(recordedAtMs - authorizedAtMs) > START_RECORDING_TOLERANCE_MS
+  ) {
+    findings.push("soak_authorization_is_not_bound_to_recorded_start");
   }
   if (!Number.isFinite(requiredHours) || requiredHours < MINIMUM_SOAK_HOURS) {
     findings.push("soak_duration_below_72_hours");

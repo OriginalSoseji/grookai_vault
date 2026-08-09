@@ -13,6 +13,13 @@ The soak may start only when every completion-manifest gate other than
 timestamps must be created together; a start more than five minutes before or
 after its recording time is invalid.
 
+The state must preserve a deterministic start-authorization projection containing
+the frozen candidate identity and every non-soak gate's status, evidence, and
+remaining-evidence list. Its SHA-256 is recorded with the start. Legacy states,
+unproven projections, digest tampering, or prerequisite drift during the soak
+fail closed. A state created before the prerequisites were proven cannot become
+valid merely because the live manifest changes later.
+
 The frozen identity contains all of:
 
 - source commit

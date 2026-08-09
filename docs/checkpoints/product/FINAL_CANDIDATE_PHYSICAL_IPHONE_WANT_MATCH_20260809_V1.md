@@ -1,10 +1,10 @@
-# Final Candidate Physical iPhone Want Match Checkpoint V1
+# Physical iPhone Want Match Functional Proof Checkpoint V1
 
 ## Status
 
-`JOURNEY C PROVEN / CURRENT WANT CLEAN / STALE MATCH SUPPRESSED`
+`FUNCTIONAL JOURNEY C PROOF / NOT FINAL-CANDIDATE-SCOPED / CURRENT WANT CLEAN`
 
-## Frozen Candidate
+## Functional Proof Build
 
 - Branch: `release/final-candidate-proof-v1`
 - Source and verifier SHA: `09300d858fd8de2b23e0d3540e8ee6940181a426`
@@ -12,6 +12,7 @@
 - Physical device: iPhone 17 Pro
 - Exact card: `GV-PK-CEC-214`
 - Subject identity retained only as SHA-256 fingerprint.
+- Release scope: this build is not the candidate declared in `completion_manifest_v1.json`; it cannot close the candidate-scoped Journey C gate.
 
 ## Proven
 
@@ -29,7 +30,7 @@
 
 ## Current Truths
 
-- Journey C is no longer an open release gate.
+- Journey C behavior is proven on build `288`, but the release gate remains `partial` until the same journey is reconciled on the newly synchronized final candidate.
 - The disposable account's final current Want for the target is false.
 - The historical match and message remain as append-only product evidence; they were not deleted or rewritten.
 - The release verifier and final database reconciliation were read-only.
@@ -53,5 +54,4 @@
 
 ## Exact Next Gate
 
-Reconcile the release completion manifest against this proof and the existing Android/web evidence, then complete only the remaining iPhone state/Journey F, store, Crashlytics, and soak prerequisites. Do not repeat Journey C or create another test message.
-
+Preserve this proof unchanged, merge the release-candidate repair, and cut web, Android, and iOS artifacts from one source commit. Repeat Journey C once on that synchronized candidate, then complete the remaining iPhone state/Journey F, store, Crashlytics, and soak prerequisites.

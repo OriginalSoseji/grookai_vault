@@ -115,7 +115,7 @@
     },
     {
       "id": "journey_c_want_and_match",
-      "status": "proven",
+      "status": "partial",
       "evidence": [
         "tests/contracts/e3_want_match_durable_engine_contract_v1.test.mjs",
         "tests/contracts/e3_want_match_delivery_contract_v1.test.mjs",
@@ -132,7 +132,9 @@
         "docs/audits/release_completion_v1/device_ios/clean_account_want_match_journey_v1/2026-08-09T05-42-34Z/summary.json",
         "docs/checkpoints/product/FINAL_CANDIDATE_PHYSICAL_IPHONE_WANT_MATCH_20260809_V1.md"
       ],
-      "required_next_evidence": []
+      "required_next_evidence": [
+        "Repeat and reconcile the clean-account Want-to-match-to-message-to-opt-out journey on the newly synchronized final candidate whose web, Android, and iOS artifacts share one source commit; TestFlight build 288 remains historical functional proof only"
+      ]
     },
     {
       "id": "journey_d_collector_connection",

@@ -4,7 +4,7 @@
 
 Status: `IN_PROGRESS`
 
-The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web and the signed Android package are proven, Journey B has a physical-device write/readback with net-zero cleanup, and physical-iPhone Journey C now proves the clean-account Want-to-match-to-message-to-opt-out chain on TestFlight build `288`. The entire August 5 release contract is not yet complete. Completion remains prohibited until the remaining iPhone state, store, operations, and soak gates are proven.
+The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web and the signed Android package are proven, Journey B has a physical-device write/readback with net-zero cleanup, and physical-iPhone Journey C has functional proof on TestFlight build `288`. Build `288` is not the final candidate declared by the manifest, so Journey C remains candidate-scoped `partial`. The entire August 5 release contract is not yet complete. Completion remains prohibited until one synchronized candidate satisfies the remaining iPhone journeys, state, store, operations, and soak gates.
 
 ## Authority
 
@@ -39,13 +39,13 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - Journey B is proven on the signed final-candidate Android package: Normal remained selected through authentication, one exact child copy was written, the private-copy screen showed `Printing: Normal`, the copy was removed through the product UI, and database readback reconciled to zero active test rows.
 - The read-only signed-in production web harness passed `28/28` route cases and `2/2` existing exact-card message-context cases across narrow and desktop viewports. It proves collector discovery, active follow state, relevant card activity, owner profile, exact shared copy, card-centered inbox/reply context, Vault, Binders, Dex, Sets, Wall, and profile rendering with zero broken images. A post-authentication request barrier blocked all non-read requests, and all five scoped database assertions were identical before and after.
 - Final-candidate production security metadata readback passes for all five governed views with zero security-definer target views, zero unsafe fixed-path findings, and no database writes. Runtime operations remain healthy with zero critical preflight failures, zero failed health checks, and zero unresolved quarantines. Production analytics, public privacy/support/terms/deletion pages, and privacy-safe mobile diagnostics contracts pass; final iOS Crashlytics delivery remains open.
-- Physical-iPhone Journey C passed on TestFlight build `288` from source/verifier SHA `09300d858fd8de2b23e0d3540e8ee6940181a426`. One clean-account Want produced one scheduled exact match for `GV-PK-CEC-214`, visible Poke Javi owner/trade context, one exact card-centered message, product-UI opt-out, one stale historical match, zero active matches, zero stale Pulse rows, zero invalid deliverable or post-opt-out notifications, and zero verifier findings.
+- Physical-iPhone Journey C functionally passed on TestFlight build `288` from source/verifier SHA `09300d858fd8de2b23e0d3540e8ee6940181a426`. One clean-account Want produced one scheduled exact match for `GV-PK-CEC-214`, visible Poke Javi owner/trade context, one exact card-centered message, product-UI opt-out, one stale historical match, zero active matches, zero stale Pulse rows, zero invalid deliverable or post-opt-out notifications, and zero verifier findings. This proves behavior but does not close the release gate because build `288` is not the manifest's frozen candidate.
 
 ## Remaining Gates
 
 1. Produce or identify an iOS/TestFlight build from final-candidate SHA `80d30d0e`, assign it to the intended tester groups, and record its immutable build identifiers.
 2. Complete Journey A fresh-user comprehension and physical-iPhone signed-out continuation proof.
-3. Complete Journey F on physical iPhone/TestFlight and reconcile any remaining cross-platform Journey A/D/E evidence. Journey C is proven and must not be repeated.
+3. Complete Journey F and repeat Journey C on the newly synchronized physical-iPhone/TestFlight final candidate; reconcile any remaining cross-platform Journey A/D/E evidence.
 4. Execute the remaining final-candidate route-state matrix across desktop web, narrow web, Android, and iPhone, including loading, empty, error, offline, private, signed-out, text-scaling, and recovery states.
 5. Complete final-candidate RLS/privacy/account-deletion, analytics, Crashlytics, support, terms, monitoring, and current store metadata/assets readback.
 6. Start the soak only after web, Android, and iOS identifiers and all prerequisite gates are frozen. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
@@ -64,4 +64,4 @@ Elapsed calendar time does not complete this plan. A gate changes to `proven` on
 
 ## Exact Next Gate
 
-Reconcile the completion manifest with TestFlight build `288` Journey C evidence, then close only the remaining iPhone state/Journey F, store, Crashlytics, and monitoring prerequisites. Start the 72-hour soak only after those prerequisite gates and candidate identifiers are frozen.
+Merge the release-candidate repair, cut web, Android, and iOS artifacts from one resulting source commit, and freeze those identifiers as the newly synchronized candidate. Preserve build `288` as functional Journey C evidence, but repeat Journey C on that synchronized candidate before starting the 72-hour soak.
