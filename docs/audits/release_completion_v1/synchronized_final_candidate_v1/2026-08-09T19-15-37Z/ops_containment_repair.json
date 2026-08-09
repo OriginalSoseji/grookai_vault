@@ -1,0 +1,27 @@
+{
+  "schema_version": "POST_EVIDENCE_OPS_CONTAINMENT_REPAIR_V1",
+  "recorded_at": "2026-08-09T20:11:16.096Z",
+  "commit_sha": "b5e68cf06",
+  "commit_sha_full": "b5e68cf06125c09dcbb46c07245f62dddc141b7c",
+  "scope": "operations containment only",
+  "application_source_changed": false,
+  "frozen_application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "candidate_artifacts_changed": false,
+  "repair": {
+    "summary": "Preserve contained timeout output while retaining bounded cancellation and process-tree termination.",
+    "production_rollout_module_sha256": "00f43c30d5335beddcdb41f88a67f120792c89f15230def0a929acec7b84451f",
+    "activation_package_fingerprint": "2203037110380e862b0c9d8606196f8a3dea218f962327c6dee3e8d73a889a1f"
+  },
+  "verification": {
+    "containment_contracts": "7/7 passed",
+    "activation_and_rollout_contracts": "62/62 passed",
+    "node_contracts": "1612/1612 passed",
+    "flutter_tests": "585/585 passed",
+    "full_shipcheck": "passed"
+  },
+  "boundaries": {
+    "database_writes": false,
+    "public_release": false,
+    "soak_started": false
+  }
+}

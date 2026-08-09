@@ -1,0 +1,13 @@
+{
+  "schema_version": "GOOGLE_PLAY_CONSOLE_ACCOUNT_READBACK_V1",
+  "observed_at": "2026-08-09T19:38:45.745Z",
+  "surface": "https://play.google.com/console/",
+  "resolved_url": "https://play.google.com/console/signup",
+  "browser": "Chrome",
+  "observation": "The authenticated browser session resolved to the Play Console developer-account signup route rather than an existing developer console.",
+  "developer_account_established": false,
+  "listing_readback_available": false,
+  "release_gate_status": "external_enrollment_required",
+  "writes_performed": false,
+  "next_required_action": "Complete Google Play developer enrollment, then inventory the Grookai listing, assets, tracks, testers, package ownership, and release state."
+}

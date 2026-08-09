@@ -1,0 +1,64 @@
+{
+  "schema_version": "SYNCHRONIZED_FINAL_CANDIDATE_IOS_ARCHIVE_READBACK_V1",
+  "source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "xcode": {
+    "version": "26.6",
+    "build_version": "17F113"
+  },
+  "archive": {
+    "path": "build/ios/archive/GrookaiVault-1.0.0-build289-a8ec3d2.xcarchive",
+    "info_plist_sha256": "9ab43e7525a642c8fd9cc75addcfe4f0a42ad287c20a95a5c0b08c4fa1ce22e9",
+    "bundle_id": "com.cesar.grookaivault",
+    "marketing_version": "1.0.0",
+    "build_number": "289",
+    "signing_identity": "iPhone Distribution: Cesar Cabral (DUADT25J5V)",
+    "team_id": "DUADT25J5V",
+    "archive_succeeded": true
+  },
+  "ipa": {
+    "path": "build/ios/export-local/GrookaiVault-1.0.0-build289-a8ec3d2/Grookai Vault.ipa",
+    "bytes": 28214096,
+    "sha256": "27619987ad4121347dbbfa2ef68a840d4ccc5139757f6f14d28a31a3660a09e1",
+    "embedded_bundle_id": "com.cesar.grookaivault",
+    "embedded_marketing_version": "1.0.0",
+    "embedded_build_number": "289"
+  },
+  "delivery": {
+    "upload_succeeded": true,
+    "build_id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+    "processing_state": "VALID",
+    "internal_state": "IN_BETA_TESTING",
+    "external_state": "IN_BETA_TESTING",
+    "beta_review_state": "APPROVED",
+    "auto_notify_enabled": true,
+    "intended_testflight_group_count": 3,
+    "groups_with_build_count": 3
+  },
+  "dsyms": [
+    {
+      "name": "App.framework.dSYM",
+      "architecture": "arm64",
+      "uuid": "0C7143A3-B365-120D-4C4F-F302A2E869D3"
+    },
+    {
+      "name": "Flutter.framework.dSYM",
+      "architecture": "arm64",
+      "uuid": "4C4C4467-5555-3144-A192-3BD2FBB8A250"
+    },
+    {
+      "name": "Runner.app.dSYM",
+      "architecture": "arm64",
+      "uuid": "D3780FFB-530F-3840-90FE-F9E281EEDC93"
+    },
+    {
+      "name": "sensors_plus.framework.dSYM",
+      "architecture": "arm64",
+      "uuid": "DF9B6F8E-0AA3-391B-AC28-BF0590E97D8C"
+    }
+  ],
+  "boundaries": {
+    "public_app_store_release": false,
+    "app_store_version_submission": false,
+    "database_writes": false
+  }
+}

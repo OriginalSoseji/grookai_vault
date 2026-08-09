@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.grookai.testflightpreflight289</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>/Users/cesarcabral/Library/Logs/Grookai/physical_smoke_289/run_testflight_preflight_289.sh</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardErrorPath</key>
+  <string>/Users/cesarcabral/Library/Logs/Grookai/physical_smoke_289/launch_agent.log</string>
+  <key>StandardOutPath</key>
+  <string>/Users/cesarcabral/Library/Logs/Grookai/physical_smoke_289/launch_agent.log</string>
+</dict>
+</plist>

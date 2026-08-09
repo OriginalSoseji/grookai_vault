@@ -1,0 +1,42 @@
+{
+  "schema_version": "IOS_PHYSICAL_TESTFLIGHT_PREFLIGHT_V1",
+  "observed_at": "2026-08-09T19:47:31Z",
+  "device": {
+    "device_id": "7828E26C-BC77-5F00-BDEC-3545864095CB",
+    "hardware_id": "00008150-001C5DCA0A84401C",
+    "model": "iPhone 17 Pro",
+    "os_version": "26.6",
+    "installed_app_version": "1.0.0 (288)",
+    "candidate_app_version": "1.0.0 (289)",
+    "candidate_update_required": true
+  },
+  "testflight_candidate": {
+    "build_id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+    "distribution_state": "IN_BETA_TESTING",
+    "beta_review_state": "APPROVED",
+    "intended_groups_containing_build": 3
+  },
+  "automation_attempt": {
+    "result": "blocked_before_test_execution",
+    "failed_tests": 1,
+    "passed_tests": 0,
+    "failure": "The physical-device UI-test runner could not initialize because device authentication was canceled.",
+    "subsequent_testflight_launch_result": "device_locked",
+    "candidate_functional_assertions_executed": 0
+  },
+  "boundaries": {
+    "app_data_cleared": false,
+    "app_reinstalled": false,
+    "database_writes": false,
+    "collector_data_mutations": false,
+    "candidate_gate_claimed": false
+  },
+  "evidence": [
+    "xcresult_summary.json",
+    "xcodebuild.log",
+    "testflight_launch_locked.log",
+    "../ios_testflight_preflight_runner.sh",
+    "../com.grookai.testflightpreflight289.plist"
+  ],
+  "next_required_action": "Unlock the physical iPhone, install TestFlight build 289, and rerun the candidate-scoped UI journeys."
+}

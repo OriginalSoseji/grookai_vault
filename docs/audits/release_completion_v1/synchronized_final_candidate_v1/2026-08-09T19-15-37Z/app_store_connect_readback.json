@@ -1,0 +1,120 @@
+{
+  "schema_version": "SYNCHRONIZED_FINAL_CANDIDATE_APP_STORE_CONNECT_READBACK_V1",
+  "source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "build": {
+    "type": "builds",
+    "id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+    "attributes": {
+      "version": "289",
+      "uploadedDate": "2026-08-09T12:07:12-07:00",
+      "expired": false,
+      "processingState": "VALID"
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/builds/dc5801e6-e1fd-42ef-b476-768e5ff5d411"
+    }
+  },
+  "groups_with_build": [
+    {
+      "type": "betaGroups",
+      "id": "23f9d065-b536-46ab-95f1-41e3cda6498e",
+      "attributes": {
+        "name": "Friends and Family",
+        "publicLinkEnabled": null,
+        "hasAccessToAllBuilds": true,
+        "isInternalGroup": true
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/betaGroups/23f9d065-b536-46ab-95f1-41e3cda6498e"
+      }
+    },
+    {
+      "type": "betaGroups",
+      "id": "05d1bcca-b42e-498a-a5d9-7204b55f26ec",
+      "attributes": {
+        "name": "friends and family",
+        "publicLinkEnabled": true,
+        "hasAccessToAllBuilds": null,
+        "isInternalGroup": false
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/betaGroups/05d1bcca-b42e-498a-a5d9-7204b55f26ec"
+      }
+    },
+    {
+      "type": "betaGroups",
+      "id": "7d7f607e-823b-427b-8757-d72d12712dc5",
+      "attributes": {
+        "name": "beta",
+        "publicLinkEnabled": true,
+        "hasAccessToAllBuilds": null,
+        "isInternalGroup": false
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/betaGroups/7d7f607e-823b-427b-8757-d72d12712dc5"
+      }
+    }
+  ],
+  "build_beta_detail": {
+    "type": "buildBetaDetails",
+    "id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+    "attributes": {
+      "autoNotifyEnabled": true,
+      "internalBuildState": "IN_BETA_TESTING",
+      "externalBuildState": "IN_BETA_TESTING"
+    },
+    "relationships": {
+      "build": {
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/dc5801e6-e1fd-42ef-b476-768e5ff5d411/relationships/build",
+          "related": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/dc5801e6-e1fd-42ef-b476-768e5ff5d411/build"
+        }
+      }
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/buildBetaDetails/dc5801e6-e1fd-42ef-b476-768e5ff5d411"
+    }
+  },
+  "beta_build_localizations": [
+    {
+      "type": "betaBuildLocalizations",
+      "id": "0c3829e4-863f-4d7c-9393-45e6cbef533e",
+      "attributes": {
+        "whatsNew": "Verify exact-card search and scanning, printing-aware Vault organization, Binders, Wall, Grookai Dex and set progress, collector discovery, Following, and card-centered messaging.",
+        "locale": "en-US"
+      },
+      "relationships": {
+        "build": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/0c3829e4-863f-4d7c-9393-45e6cbef533e/relationships/build",
+            "related": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/0c3829e4-863f-4d7c-9393-45e6cbef533e/build"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/betaBuildLocalizations/0c3829e4-863f-4d7c-9393-45e6cbef533e"
+      }
+    }
+  ],
+  "beta_review_submissions": [
+    {
+      "type": "betaAppReviewSubmissions",
+      "id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+      "attributes": {
+        "betaReviewState": "APPROVED",
+        "submittedDate": null
+      },
+      "relationships": {
+        "build": {
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/dc5801e6-e1fd-42ef-b476-768e5ff5d411/relationships/build",
+            "related": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/dc5801e6-e1fd-42ef-b476-768e5ff5d411/build"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/betaAppReviewSubmissions/dc5801e6-e1fd-42ef-b476-768e5ff5d411"
+      }
+    }
+  ]
+}

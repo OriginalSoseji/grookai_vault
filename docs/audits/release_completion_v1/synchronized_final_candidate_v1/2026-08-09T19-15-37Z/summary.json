@@ -1,0 +1,67 @@
+{
+  "schema_version": "SYNCHRONIZED_FINAL_CANDIDATE_SUMMARY_V1",
+  "recorded_at": "2026-08-09T19:15:37Z",
+  "status": "candidate_identifiers_frozen_prerequisite_journeys_open",
+  "application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "verifier_commit": "e343879a5dc247958f77f37562e7f29ad8a50cfd",
+  "web": {
+    "github_deployment_id": "5816529955",
+    "deployment_url": "https://grookai-vault-llmlay4xe-sosejis-projects.vercel.app",
+    "production_origin": "https://grookaivault.com",
+    "signed_out_routes": "22/22",
+    "personal_action_cases": "2/2",
+    "summary_sha256": "821a037b9f56726f8538adb14f21808886ba104bc100c6e49fa76ec3c9778c80",
+    "signed_in_routes": "26/26",
+    "signed_in_message_context_cases": "2/2",
+    "signed_in_database_assertions": "5/5",
+    "signed_in_status": "passed"
+  },
+  "android": {
+    "workflow_run_id": "31301013632",
+    "artifact_id": "9034580292",
+    "version": "1.0.0 (23)",
+    "apk_sha256": "deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6"
+  },
+  "ios_testflight": {
+    "version": "1.0.0 (289)",
+    "build_id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+    "ipa_sha256": "27619987ad4121347dbbfa2ef68a840d4ccc5139757f6f14d28a31a3660a09e1",
+    "processing_state": "VALID",
+    "internal_state": "IN_BETA_TESTING",
+    "external_state": "IN_BETA_TESTING",
+    "beta_review_state": "APPROVED",
+    "group_count": 3
+  },
+  "candidate_identity_reconciled": true,
+  "post_evidence_ops_guard": {
+    "commit": "b5e68cf06",
+    "scope": "operations containment only",
+    "application_source_changed": false,
+    "candidate_artifacts_changed": false,
+    "containment_contracts": "7/7 passed",
+    "activation_and_rollout_contracts": "62/62 passed",
+    "node_contracts": "1612/1612 passed",
+    "flutter_tests": "585/585 passed",
+    "full_shipcheck": "passed"
+  },
+  "physical_ios": {
+    "installed_version": "1.0.0 (288)",
+    "candidate_version": "1.0.0 (289)",
+    "status": "candidate_install_and_device_authentication_required"
+  },
+  "google_play": {
+    "resolved_console_route": "https://play.google.com/console/signup",
+    "developer_account_established": false,
+    "status": "external_enrollment_required"
+  },
+  "soak_started": false,
+  "completion_allowed": false,
+  "open_gates": [
+    "journey_a_first_time_visitor",
+    "journey_c_want_and_match",
+    "journey_f_signed_out_locked_features",
+    "cross_platform_state_matrix",
+    "store_and_distribution_readiness",
+    "final_72_hour_release_candidate_soak"
+  ]
+}

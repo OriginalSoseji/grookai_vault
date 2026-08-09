@@ -1,0 +1,27 @@
+{
+  "schema_version": "SYNCHRONIZED_FINAL_CANDIDATE_RUN_PLAN_V1",
+  "recorded_at": "2026-08-09T19:15:37Z",
+  "application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "verifier_commit": "e343879a5dc247958f77f37562e7f29ad8a50cfd",
+  "merged_pull_request": 193,
+  "boundaries": {
+    "public_app_store_release": false,
+    "google_play_release": false,
+    "database_writes": false,
+    "soak_start": false,
+    "historical_build_substitution": false
+  },
+  "required_platform_identity": {
+    "web_deployment_sha": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+    "android_artifact_sha": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+    "ios_archive_sha": "a8ec3d27808fd100cbb8e544032ee479e9632f24"
+  },
+  "required_next_gates": [
+    "freeze_platform_identifiers",
+    "repeat_candidate_scoped_journeys_a_c_f",
+    "repeat_candidate_scoped_cross_platform_state_matrix",
+    "complete_google_play_account_and_listing_readback",
+    "collect_genuine_fresh_user_comprehension_evidence",
+    "start_soak_only_after_every_non_soak_gate_is_proven"
+  ]
+}

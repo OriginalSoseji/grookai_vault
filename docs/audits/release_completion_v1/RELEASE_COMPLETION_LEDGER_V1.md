@@ -4,7 +4,7 @@
 
 Status: `IN_PROGRESS`
 
-The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web and the signed Android package are proven, Journey B has a physical-device write/readback with net-zero cleanup, and physical-iPhone Journey C has functional proof on TestFlight build `288`. Build `288` is not the final candidate declared by the manifest, so Journey C remains candidate-scoped `partial`. The entire August 5 release contract is not yet complete. Completion remains prohibited until one synchronized candidate satisfies the remaining iPhone journeys, state, store, operations, and soak gates.
+The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web, signed Android build `23`, and TestFlight build `289` are now frozen to application source `a8ec3d2`. Journey B has a physical-device write/readback with net-zero cleanup, and physical-iPhone Journey C has historical functional proof on TestFlight build `288`. Build `288` cannot close build `289` gates, so Journey C remains candidate-scoped `partial`. The entire August 5 release contract is not yet complete. Completion remains prohibited until the synchronized candidate satisfies the remaining iPhone journeys, state, store, fresh-user, and soak gates.
 
 ## Authority
 
@@ -12,10 +12,13 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - Plan date: `2026-08-05`
 - Plan SHA-256: `216d012a9b4d1544654021a0ccb781c5bf1aa9b533b324fbf71b149f0697c423`
 - Release baseline: `e8fcbdbb47b97a9db215d3874ea9ae83ce075adf`
-- Final-candidate source: `80d30d0ef5f373e8208e01926f276faa705092c9`
-- Production web deployment: `5798722633`
-- Signed Android artifact: `9002772994`
-- Signed Android APK SHA-256: `1ebeba31394e0182b90ec9194e2e62b7ed2ddd8db28edca312da26aaad2eaea4`
+- Final-candidate source: `a8ec3d27808fd100cbb8e544032ee479e9632f24`
+- Candidate verifier: `e343879a5dc247958f77f37562e7f29ad8a50cfd`
+- Production web deployment: `5816529955`
+- Signed Android artifact: `9034580292`
+- Signed Android APK SHA-256: `deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6`
+- TestFlight build: `1.0.0 (289)` / `dc5801e6-e1fd-42ef-b476-768e5ff5d411`
+- iOS IPA SHA-256: `27619987ad4121347dbbfa2ef68a840d4ccc5139757f6f14d28a31a3660a09e1`
 - Completion manifest: `completion_manifest_v1.json`
 
 ## Proven
@@ -40,15 +43,17 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - The read-only signed-in production web harness passed `28/28` route cases and `2/2` existing exact-card message-context cases across narrow and desktop viewports. It proves collector discovery, active follow state, relevant card activity, owner profile, exact shared copy, card-centered inbox/reply context, Vault, Binders, Dex, Sets, Wall, and profile rendering with zero broken images. A post-authentication request barrier blocked all non-read requests, and all five scoped database assertions were identical before and after.
 - Final-candidate production security metadata readback passes for all five governed views with zero security-definer target views, zero unsafe fixed-path findings, and no database writes. Runtime operations remain healthy with zero critical preflight failures, zero failed health checks, and zero unresolved quarantines. Production analytics, public privacy/support/terms/deletion pages, and privacy-safe mobile diagnostics contracts pass; final iOS Crashlytics delivery remains open.
 - Physical-iPhone Journey C functionally passed on TestFlight build `288` from source/verifier SHA `09300d858fd8de2b23e0d3540e8ee6940181a426`. One clean-account Want produced one scheduled exact match for `GV-PK-CEC-214`, visible Poke Javi owner/trade context, one exact card-centered message, product-UI opt-out, one stale historical match, zero active matches, zero stale Pulse rows, zero invalid deliverable or post-opt-out notifications, and zero verifier findings. This proves behavior but does not close the release gate because build `288` is not the manifest's frozen candidate.
+- Synchronized candidate `a8ec3d2` is now distributed across production web, signed Android `1.0.0 (23)`, and TestFlight `1.0.0 (289)`. Signed-out web passed `22/22` routes and `2/2` continuation cases. Android package/signature/install and emulator exact-printing smoke passed. TestFlight build `289` is `VALID`, approved, internally and externally testing, and present in all three intended groups. No public store release or soak start occurred.
+- Candidate-scoped signed-in production web passed `26/26` routes, `2/2` exact-card message-context cases, and `5/5` unchanged database assertions while blocking ten non-read requests. The first pre-authentication navigation attempt timed out, production immediately read back HTTP `200`, and the unchanged verifier passed one controlled retry.
+- The connected iPhone 17 Pro remains on build `288`; its candidate preflight was blocked by device authentication and later lock state before any functional assertion. Play Console still resolves to `/console/signup`, so developer enrollment and listing verification remain external prerequisites.
 
 ## Remaining Gates
 
-1. Produce or identify an iOS/TestFlight build from final-candidate SHA `80d30d0e`, assign it to the intended tester groups, and record its immutable build identifiers.
-2. Complete Journey A fresh-user comprehension and physical-iPhone signed-out continuation proof.
-3. Complete Journey F and repeat Journey C on the newly synchronized physical-iPhone/TestFlight final candidate; reconcile any remaining cross-platform Journey A/D/E evidence.
-4. Execute the remaining final-candidate route-state matrix across desktop web, narrow web, Android, and iPhone, including loading, empty, error, offline, private, signed-out, text-scaling, and recovery states.
-5. Complete final-candidate RLS/privacy/account-deletion, analytics, Crashlytics, support, terms, monitoring, and current store metadata/assets readback.
-6. Start the soak only after web, Android, and iOS identifiers and all prerequisite gates are frozen. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
+1. Complete Journey A fresh-user comprehension and physical-iPhone build `289` signed-out continuation proof.
+2. Complete Journey F and repeat Journey C on physical-iPhone/TestFlight build `289`; reconcile any remaining cross-platform Journey A/D/E evidence.
+3. Execute the synchronized-candidate route-state matrix across desktop web, narrow web, Android build `23`, and iPhone build `289`, including loading, empty, error, offline, private, signed-out, text-scaling, and recovery states.
+4. Complete candidate-scoped RLS/privacy/account-deletion, analytics, Crashlytics, support, terms, monitoring, and current store metadata/assets readback. App Store Connect distribution is proven; Google Play account/listing authority remains open.
+5. Start the soak only after every non-soak prerequisite gate is `proven`. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
 
 ## Completion Rule
 
@@ -64,4 +69,4 @@ Elapsed calendar time does not complete this plan. A gate changes to `proven` on
 
 ## Exact Next Gate
 
-Merge the release-candidate repair, cut web, Android, and iOS artifacts from one resulting source commit, and freeze those identifiers as the newly synchronized candidate. Preserve build `288` as functional Journey C evidence, but repeat Journey C on that synchronized candidate before starting the 72-hour soak.
+Install/open TestFlight build `289` on a connected physical iPhone and repeat Journeys A, C, and F plus the required state matrix. Complete the corresponding Android build `23` state proof, obtain genuine fresh-user comprehension evidence, and establish the Google Play account/listing readback before starting the 72-hour soak.

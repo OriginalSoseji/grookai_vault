@@ -1,0 +1,29 @@
+{
+  "schema_version": "SIGNED_IN_WEB_RETRY_CLASSIFICATION_V1",
+  "candidate_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "verifier_commit": "e343879a5dc247958f77f37562e7f29ad8a50cfd",
+  "production_origin": "https://grookaivault.com",
+  "initial_attempt": {
+    "artifact": "signed_in_web/2026-08-09T19-42-00-435Z/run_plan.json",
+    "result": "stopped_before_authentication",
+    "failure_class": "transient_navigation_timeout",
+    "failure": "The production login route did not reach DOM-ready within 60 seconds.",
+    "application_assertions_executed": 0,
+    "database_writes": false
+  },
+  "availability_readback_after_failure": {
+    "production_http_status": 200,
+    "production_total_seconds": 1.362082
+  },
+  "controlled_retry": {
+    "artifact": "signed_in_web_retry_1/2026-08-09T19-43-59-506Z/summary.json",
+    "status": "passed",
+    "route_cases": "26/26",
+    "message_context_cases": "2/2",
+    "blocked_non_read_requests": 10,
+    "database_assertions": "5/5",
+    "failure_count": 0
+  },
+  "classification": "The first attempt was a transient production-navigation timeout. The unchanged verifier passed on one controlled retry after the production route returned HTTP 200.",
+  "candidate_defect_found": false
+}
