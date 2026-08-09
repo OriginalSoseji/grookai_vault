@@ -1,0 +1,26 @@
+{
+  "schema_version": "ARTIFACT_HASH_MANIFEST_V1",
+  "artifact_count": 4,
+  "artifacts": [
+    {
+      "path": "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/iphone_testflight_286_pulse.png",
+      "sha256": "3cd13ed2af701a242a30e496c466cbefd5916b10eec982a632f23f6caa186823",
+      "bytes": 429313
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/iphone_testflight_286_search.png",
+      "sha256": "99aace3e7a7cc64bd8dbf4d12f2a7fda4c959f47853b8b6f64b6ad688e5ff9be",
+      "bytes": 510118
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/REPORT.md",
+      "sha256": "126bf9612726e2e674c4a685bb3def7a366949982aed248331dd9e6c05c90617",
+      "bytes": 1146
+    },
+    {
+      "path": "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/summary.json",
+      "sha256": "423572f3c215f1fa54c10ddad159710fdb188618038b26e7897c6708d731c9c9",
+      "bytes": 736
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "android_01_initial_launch.png": "bc26110d7c81c7e90b939aed07c42899b3d5994aee4d8415ba81517662ce17f9",
+  "android_08_friendly_pulse_error.png": "e6e084669fa312fe9640244562cd2db97a107621bddfd916e3fad0e76a8718ca",
+  "android_09_pulse_retry_recovered.png": "5d62168a9f7dd13ccb5867144286697a40caaacc7e3dfed164ed4f4726e8dfe5",
+  "android_readback.json": "dcc7888f17cb5bd72f0793ce39689edfcb6afbe8b869d9cc8dd8ca153eac0fa6",
+  "device_availability_readback.json": "907cd52c158a65ca31872bf7304e22307e0236dfe402bbc2ff4f06e437879fd9",
+  "ios_testflight_readback.json": "06b0dd4cefb4fba7ab126b15dc672912352f979761e942c58b0ace7eec79c9a3",
+  "REPORT.md": "4ce2ecea4458cbb1981daea18faf47eb8505c6c55d43ce0cbb73f084bac459a8",
+  "run_plan.json": "3aa27b050c6ef4b45e012284236783557ef143638feb355d1992e2fab560d6c6",
+  "summary.json": "ed84b8b7f57844ee480b508dd9f2d01ed44f8ec064831e46608fcf7851863d0b",
+  "web_and_ci_readback.json": "6ac0ad190687874785458c78f5f85649089110a07cf54ef9ef7ab2894a357e9c"
+}

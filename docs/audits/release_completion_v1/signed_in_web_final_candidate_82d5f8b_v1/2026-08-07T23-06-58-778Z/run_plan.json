@@ -1,0 +1,176 @@
+{
+  "audit_version": "RELEASE_SIGNED_IN_WEB_JOURNEYS_V1",
+  "created_at": "2026-08-07T23:06:58.779Z",
+  "origin": "https://grookaivault.com",
+  "deployment_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "verifier_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "deployment_id": "dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J",
+  "deployment_url": "https://grookai-vault-3085jdxhe-sosejis-projects.vercel.app",
+  "expected_identity": {
+    "canonical_gv_id": "GV-PK-MEW-025",
+    "gvvi_id": "GVVI-B3591CC8-000001"
+  },
+  "profiles": {
+    "owner_slug": "release-owner-20260807133819",
+    "owner_display_name": "Release Owner 2026Release Owner0807133819",
+    "subject_slug": "release-subject-20260807133819",
+    "subject_display_name": "Release Subject 20260807133819"
+  },
+  "viewports": [
+    {
+      "name": "narrow",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "routes": {
+    "subject": [
+      {
+        "name": "collector_discovery",
+        "path": "/network/discover?q=release-owner-20260807133819",
+        "expected": [
+          "Discover collectors",
+          "Release Owner 2026Release Owner0807133819",
+          "Following"
+        ]
+      },
+      {
+        "name": "following",
+        "path": "/following",
+        "expected": [
+          "Following",
+          "Release Owner 2026Release Owner0807133819"
+        ]
+      },
+      {
+        "name": "card_stream",
+        "path": "/network",
+        "expected": [
+          "Cards collectors want to share",
+          "Pikachu",
+          "Trade"
+        ]
+      },
+      {
+        "name": "message_inbox",
+        "path": "/network/inbox",
+        "expected": [
+          "Inbox",
+          "Release Owner 2026Release Owner0807133819",
+          "Pikachu",
+          "Printing: Normal"
+        ]
+      },
+      {
+        "name": "owner_profile",
+        "path": "/u/release-owner-20260807133819",
+        "expected": [
+          "Release Owner 2026Release Owner0807133819",
+          "Pikachu",
+          "Following"
+        ]
+      },
+      {
+        "name": "canonical_card",
+        "path": "/card/GV-PK-MEW-025",
+        "expected": [
+          "Pikachu",
+          "Normal",
+          "Choose a copy above to message this collector about that card."
+        ]
+      },
+      {
+        "name": "shared_exact_copy",
+        "path": "/gvvi/GVVI-B3591CC8-000001",
+        "expected": [
+          "Pikachu",
+          "GVVI-B3591CC8-000001",
+          "Normal",
+          "Release Owner 2026Release Owner0807133819"
+        ]
+      }
+    ],
+    "owner": [
+      {
+        "name": "vault",
+        "path": "/vault",
+        "expected": [
+          "Vault",
+          "Pikachu",
+          "Normal",
+          "Trade"
+        ]
+      },
+      {
+        "name": "private_exact_copy",
+        "path": "/gvvi/GVVI-B3591CC8-000001",
+        "expected": [
+          "Pikachu",
+          "GVVI-B3591CC8-000001",
+          "Normal",
+          "Shared"
+        ]
+      },
+      {
+        "name": "binders",
+        "path": "/binders",
+        "expected": [
+          "Binders",
+          "Collection goals",
+          "No Binders yet"
+        ]
+      },
+      {
+        "name": "dex",
+        "path": "/dex",
+        "expected": [
+          "Grookai Dex",
+          "Vault-aware",
+          "Character completion"
+        ]
+      },
+      {
+        "name": "sets",
+        "path": "/sets",
+        "expected": [
+          "Browse Pokemon Sets"
+        ]
+      },
+      {
+        "name": "wall",
+        "path": "/wall",
+        "expected": [
+          "Manage your Wall",
+          "Pikachu"
+        ]
+      },
+      {
+        "name": "public_profile",
+        "path": "/u/release-owner-20260807133819",
+        "expected": [
+          "Release Owner 2026Release Owner0807133819",
+          "Pikachu"
+        ]
+      }
+    ]
+  },
+  "credential_source": "external_temporary_file",
+  "boundaries": {
+    "isolated_browser_contexts": true,
+    "browser_storage_preserved": false,
+    "authentication_session_establishment": true,
+    "post_authentication_non_read_requests_blocked": true,
+    "database_transactions_read_only": true,
+    "database_writes": false,
+    "application_writes": false,
+    "follow_mutation": false,
+    "want_mutation": false,
+    "message_sent": false,
+    "vault_mutation": false
+  }
+}

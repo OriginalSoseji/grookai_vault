@@ -1,0 +1,37 @@
+{
+  "audit_version": "FINAL_CANDIDATE_REMAINING_AUTOMATED_GATES_V1",
+  "status": "automated_gates_complete_external_and_physical_prerequisites_open",
+  "application_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "verifier_commit": "31def12bbb15291f7a7cdd3e4c4e867b4309a552",
+  "automated_results": {
+    "android_fresh_install_cold_launch_ms": 1958,
+    "android_signed_out_explore_settled": true,
+    "google_play_developer_account_exists": false,
+    "soak_status": "blocked_prerequisites",
+    "soak_started": false,
+    "final_report_allowed": false
+  },
+  "test_results": {
+    "targeted_node_tests": "10/10 passed",
+    "full_contract_tests": "1607/1607 passed",
+    "flutter_tests": "580/580 passed",
+    "pre_commit_shipcheck": "passed",
+    "release_secret_guard": "passed"
+  },
+  "remaining_prerequisite_gate_ids": [
+    "journey_a_first_time_visitor",
+    "journey_c_want_and_match",
+    "journey_d_collector_connection",
+    "journey_e_collection_depth",
+    "journey_f_signed_out_locked_features",
+    "cross_platform_state_matrix",
+    "store_and_distribution_readiness"
+  ],
+  "boundaries": {
+    "database_writes": false,
+    "application_source_changes": false,
+    "production_deployments": false,
+    "store_mutations": false,
+    "soak_started": false
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "audit_version": "FINAL_CANDIDATE_GOOGLE_PLAY_CONSOLE_AUTHORITY_READBACK_V1",
+  "recorded_at": "2026-08-07T23:40:00.000Z",
+  "mode": "read_only_browser_readback",
+  "requested_url": "https://play.google.com/console/",
+  "resolved_url": "https://play.google.com/console/signup",
+  "page_title": "Creating a developer account",
+  "visible_authoritative_signals": [
+    "Creating a Play Console developer account",
+    "To get started, choose an account type",
+    "An organization",
+    "Yourself",
+    "To join an existing developer account, ask an admin for an invite."
+  ],
+  "signed_in_account_identifier": "redacted",
+  "existing_developer_account_proven": false,
+  "existing_app_listing_proven": false,
+  "classification": "blocked_external_account_prerequisite",
+  "mutations_performed": false,
+  "screenshot_committed": false,
+  "screenshot_exclusion_reason": "The browser screenshot contained a private account identifier; the repository retains the redacted DOM readback instead."
+}

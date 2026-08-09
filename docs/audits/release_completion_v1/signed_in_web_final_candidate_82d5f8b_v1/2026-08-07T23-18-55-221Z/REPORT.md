@@ -1,0 +1,70 @@
+# Final-Candidate Signed-In Web Journeys V1
+
+- Status: `failed`
+- Production origin: `https://grookaivault.com`
+- Deployment SHA: `82d5f8b26cb914f405cde4ea13fd395456134574`
+- Verifier SHA: `44517ae6b0337ea4a0421acaad1174b87801ee4d`
+- Deployment ID: `dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J`
+- Journey D web proof: `failed`
+- Journey C read-only context: `failed`
+- Journey E web-supported context: `failed`
+
+## Routes
+
+| Viewport | Role | Route | Status | Broken images |
+| --- | --- | --- | --- | ---: |
+| narrow | subject | `/network/discover?q=release-owner-20260807133819` | passed | 0 |
+| narrow | subject | `/following` | passed | 0 |
+| narrow | subject | `/network` | passed | 0 |
+| narrow | subject | `/network/inbox` | passed | 0 |
+| narrow | subject | `/u/release-owner-20260807133819` | passed | 0 |
+| narrow | subject | `/card/GV-PK-MEW-025` | passed | 0 |
+| narrow | owner | `/vault` | failed | 0 |
+| narrow | owner | `/vault/gvvi/GVVI-B3591CC8-000002` | passed | 0 |
+| narrow | owner | `/binders` | passed | 0 |
+| narrow | owner | `/dex` | passed | 0 |
+| narrow | owner | `/sets` | passed | 0 |
+| narrow | owner | `/wall` | passed | 0 |
+| narrow | owner | `/u/release-owner-20260807133819` | passed | 0 |
+| desktop | subject | `/network/discover?q=release-owner-20260807133819` | passed | 0 |
+| desktop | subject | `/following` | passed | 0 |
+| desktop | subject | `/network` | passed | 0 |
+| desktop | subject | `/network/inbox` | passed | 0 |
+| desktop | subject | `/u/release-owner-20260807133819` | passed | 0 |
+| desktop | subject | `/card/GV-PK-MEW-025` | passed | 0 |
+| desktop | owner | `/vault` | failed | 0 |
+| desktop | owner | `/vault/gvvi/GVVI-B3591CC8-000002` | passed | 0 |
+| desktop | owner | `/binders` | passed | 0 |
+| desktop | owner | `/dex` | passed | 0 |
+| desktop | owner | `/sets` | passed | 0 |
+| desktop | owner | `/wall` | passed | 0 |
+| desktop | owner | `/u/release-owner-20260807133819` | passed | 0 |
+
+## Existing Card Message Context
+
+| Viewport | Threads | Reply forms | Reply submitted | Status |
+| --- | ---: | ---: | --- | --- |
+| narrow | 1 | 1 | false | passed |
+| desktop | 1 | 1 | false | passed |
+
+## Database Reconciliation
+
+- Before/after equal: `true`
+- Subject follows owner: `true`
+- Active owner exact copy: `true`
+- Existing open card interaction: `true`
+- Subject current Want remains false: `true`
+
+## Boundaries
+
+- Credentials came from an external temporary file and are not stored in artifacts.
+- Each role and viewport used a new isolated browser context.
+- After authentication, every non-read browser request was blocked.
+- Follow, Want, message, vault, and database mutations were not performed.
+- No browser cookies, local storage, session storage, tokens, emails, or user UUIDs are preserved.
+- Screenshots and report artifacts are SHA-256 hashed.
+
+## Scope
+
+Journey D is proven for final-candidate web. Journey C proves the existing exact-card owner/message context but does not create a new Want-to-match transition. Journey E proves the supported web collection surfaces but leaves mobile Journeys and Memories for device evidence.
+

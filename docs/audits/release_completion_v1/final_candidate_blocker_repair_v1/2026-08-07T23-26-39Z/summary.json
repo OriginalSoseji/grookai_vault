@@ -1,0 +1,21 @@
+{
+  "schema_version": "FINAL_CANDIDATE_BLOCKER_REPAIR_SUMMARY_V1",
+  "recorded_at": "2026-08-07T23:26:39Z",
+  "status": "replacement_candidate_distributed_and_web_proven_pending_physical_store_and_soak_gates",
+  "candidate_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+  "verifier_source_commit": "042ed6e26572aa450de415d84a662105599bb165",
+  "pulse_collector_safe_error_repair": "proven_on_signed_apk_emulator",
+  "production_web": "proven_signed_out_and_signed_in",
+  "android_artifact": "proven_signed_installed_emulator_and_samsung",
+  "ios_testflight": "proven_build_286_internal_and_external",
+  "crashlytics_symbols": "proven",
+  "github_ci": "proven_with_duplicate_apk_run_intentionally_cancelled",
+  "database_writes": 0,
+  "public_store_releases": 0,
+  "physical_android_journeys": "pending_secure_device_unlock",
+  "physical_ios_journeys": "pending_device_availability",
+  "fresh_user_comprehension": "pending",
+  "google_play_console": "blocked_no_existing_developer_account_in_available_session",
+  "soak_status": "not_started",
+  "completion_allowed": false
+}

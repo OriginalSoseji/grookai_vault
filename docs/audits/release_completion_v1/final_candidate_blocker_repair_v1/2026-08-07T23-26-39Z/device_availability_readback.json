@@ -1,0 +1,23 @@
+{
+  "schema_version": "FINAL_CANDIDATE_BLOCKER_REPAIR_DEVICE_AVAILABILITY_V1",
+  "recorded_at": "2026-08-07T23:26:39Z",
+  "android": {
+    "samsung_connected": true,
+    "samsung_model": "SM-S908U",
+    "candidate_installed": true,
+    "candidate_package_readback": "com.grookai.vault 1.0.0 (21)",
+    "secure_keyguard_locked": true,
+    "physical_evidence_allowed": false
+  },
+  "ios": {
+    "mac_reachable": true,
+    "iphone_15_pro_state": "unavailable",
+    "iphone_17_pro_state": "unavailable",
+    "testflight_build_distributed": "1.0.0 (286)",
+    "physical_evidence_allowed": false
+  },
+  "human_comprehension": {
+    "fresh_user_ten_second_evidence": "not_captured",
+    "completion_allowed": false
+  }
+}

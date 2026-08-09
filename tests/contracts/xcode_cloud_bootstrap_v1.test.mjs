@@ -52,6 +52,23 @@ test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
   assert.match(infoPlist, /FlutterSceneDelegate/);
 });
 
+test("local Debug signing is automatic while release signing remains manual", () => {
+  const debugConfig = project.match(
+    /97C147061CF9000F007C117D \/\* Debug \*\/ = \{[\s\S]*?\n\t\t\};/,
+  )?.[0];
+  const releaseConfig = project.match(
+    /97C147071CF9000F007C117D \/\* Release \*\/ = \{[\s\S]*?\n\t\t\};/,
+  )?.[0];
+
+  assert.ok(debugConfig, "Runner Debug configuration must exist");
+  assert.match(debugConfig, /CODE_SIGN_STYLE = Automatic;/);
+  assert.doesNotMatch(debugConfig, /PROVISIONING_PROFILE_SPECIFIER/);
+
+  assert.ok(releaseConfig, "Runner Release configuration must exist");
+  assert.match(releaseConfig, /CODE_SIGN_STYLE = Manual;/);
+  assert.match(releaseConfig, /Grookai Vault App Store Push/);
+});
+
 test("iOS declares only release privacy purpose strings used by the app", () => {
   for (const key of [
     "NSCameraUsageDescription",

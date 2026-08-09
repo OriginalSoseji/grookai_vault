@@ -26,7 +26,6 @@ const DEFAULT_OUT_ROOT = path.join(
   "signed_in_web_journeys_v1",
 );
 const EXPECTED_CARD_GV_ID = "GV-PK-MEW-025";
-const EXPECTED_GVVI_ID = "GVVI-B3591CC8-000001";
 
 const VIEWPORTS = Object.freeze([
   { name: "narrow", width: 390, height: 844 },
@@ -49,7 +48,9 @@ function parseArgs(argv) {
     verifierSha: value(argv, "verifier-sha"),
     deploymentId: value(argv, "deployment-id"),
     deploymentUrl: value(argv, "deployment-url"),
-    secretsFile: path.resolve(value(argv, "secrets-file") || DEFAULT_SECRETS_FILE),
+    secretsFile: path.resolve(
+      value(argv, "secrets-file") || DEFAULT_SECRETS_FILE,
+    ),
     outRoot: path.resolve(value(argv, "out-root") || DEFAULT_OUT_ROOT),
     requirePass: argv.includes("--require-pass"),
   };
@@ -160,7 +161,9 @@ async function lookupAccounts(client, secrets) {
     identityResult.rows.map((row) => [row.email_key, row.id]),
   );
   const owner = byEmail.get(idByEmail.get(secrets.owner_email.toLowerCase()));
-  const subject = byEmail.get(idByEmail.get(secrets.subject_email.toLowerCase()));
+  const subject = byEmail.get(
+    idByEmail.get(secrets.subject_email.toLowerCase()),
+  );
   if (!owner || !subject) {
     throw new Error("both release journey accounts require public profiles");
   }
@@ -185,9 +188,11 @@ async function queryScopedTruth(client, accounts) {
          cp.name,
          vii.intent,
          vii.condition_label,
+         printings.finish_key,
          (vii.card_printing_id is not null) as exact_printing_assigned
        from public.vault_item_instances vii
        join public.card_prints cp on cp.id = vii.card_print_id
+       left join public.card_printings printings on printings.id = vii.card_printing_id
        where vii.user_id = $1::uuid
          and vii.archived_at is null
          and cp.gv_id = $2
@@ -276,19 +281,51 @@ async function queryScopedTruth(client, accounts) {
   }
 }
 
-function evaluateDatabaseTruth(snapshot) {
+function collectorLabel(value) {
+  return String(value || "")
+    .split("_")
+    .filter(Boolean)
+    .map((part) => `${part[0]?.toUpperCase() || ""}${part.slice(1)}`)
+    .join(" ");
+}
+
+function selectJourneyEvidence(snapshot) {
+  const copy = snapshot.owner_exact_card.find(
+    (candidate) =>
+      candidate.exact_printing_assigned === true &&
+      typeof candidate.gv_vi_id === "string" &&
+      candidate.gv_vi_id.trim() !== "",
+  );
+  if (!copy) {
+    throw new Error(
+      `release owner requires an active exact copy of ${EXPECTED_CARD_GV_ID}`,
+    );
+  }
+  return {
+    canonicalGvId: copy.canonical_gv_id,
+    gvviId: copy.gv_vi_id,
+    cardName: copy.name,
+    intent: copy.intent,
+    intentLabel: collectorLabel(copy.intent),
+    finishLabel: collectorLabel(copy.finish_key),
+    publiclyDiscoverable: ["trade", "sell", "showcase"].includes(copy.intent),
+  };
+}
+
+function evaluateDatabaseTruth(snapshot, evidence) {
+  const selectedCopy = snapshot.owner_exact_card.find(
+    (candidate) => candidate.gv_vi_id === evidence.gvviId,
+  );
   return {
     profiles_public:
       snapshot.profiles.owner.public_profile_enabled === true &&
       snapshot.profiles.owner.vault_sharing_enabled === true &&
       snapshot.profiles.subject.public_profile_enabled === true,
     subject_follows_owner: snapshot.follow.row_count === 1,
-    exact_owner_copy:
-      snapshot.owner_exact_card.length === 1 &&
-      snapshot.owner_exact_card[0]?.gv_vi_id === EXPECTED_GVVI_ID &&
-      snapshot.owner_exact_card[0]?.canonical_gv_id === EXPECTED_CARD_GV_ID &&
-      snapshot.owner_exact_card[0]?.intent === "trade" &&
-      snapshot.owner_exact_card[0]?.exact_printing_assigned === true,
+    active_owner_exact_copy:
+      selectedCopy?.canonical_gv_id === EXPECTED_CARD_GV_ID &&
+      selectedCopy?.intent === evidence.intent &&
+      selectedCopy?.exact_printing_assigned === true,
     existing_open_interaction:
       snapshot.card_interaction.row_count >= 1 &&
       snapshot.card_interaction.open_count >= 1 &&
@@ -324,10 +361,10 @@ async function imageState(page) {
 }
 
 async function login(context, page, origin, credentials, nextPath) {
-  await page.goto(
-    `${origin}/login?next=${encodeURIComponent(nextPath)}`,
-    { waitUntil: "domcontentloaded", timeout: 60_000 },
-  );
+  await page.goto(`${origin}/login?next=${encodeURIComponent(nextPath)}`, {
+    waitUntil: "domcontentloaded",
+    timeout: 60_000,
+  });
   await page.getByLabel("Email", { exact: true }).fill(credentials.email);
   await page.getByLabel("Password", { exact: true }).fill(credentials.password);
   await Promise.all([
@@ -353,9 +390,12 @@ async function login(context, page, origin, credentials, nextPath) {
   return blockedRequests;
 }
 
-function routeDefinitions(accounts) {
+function routeDefinitions(accounts, evidence) {
   const ownerName = accounts.owner.displayName;
   const ownerSlug = accounts.owner.slug;
+  const privateCardAbsence = evidence.publiclyDiscoverable
+    ? []
+    : [evidence.cardName];
   return {
     subject: [
       {
@@ -381,7 +421,8 @@ function routeDefinitions(accounts) {
       {
         name: "owner_profile",
         path: `/u/${encodeURIComponent(ownerSlug)}`,
-        expected: [ownerName, "Pikachu", "Following"],
+        expected: [ownerName, "Following"],
+        absent: privateCardAbsence,
       },
       {
         name: "canonical_card",
@@ -392,22 +433,23 @@ function routeDefinitions(accounts) {
           "Choose a copy above to message this collector about that card.",
         ],
       },
-      {
-        name: "shared_exact_copy",
-        path: `/gvvi/${EXPECTED_GVVI_ID}`,
-        expected: ["Pikachu", EXPECTED_GVVI_ID, "Normal", ownerName],
-      },
     ],
     owner: [
       {
         name: "vault",
         path: "/vault",
-        expected: ["Vault", "Pikachu", "Normal", "Trade"],
+        expected: ["Vault", evidence.cardName, evidence.finishLabel],
       },
       {
         name: "private_exact_copy",
-        path: `/gvvi/${EXPECTED_GVVI_ID}`,
-        expected: ["Pikachu", EXPECTED_GVVI_ID, "Normal", "Shared"],
+        path: `/vault/gvvi/${evidence.gvviId}`,
+        expected: [
+          "Your exact copy",
+          evidence.cardName,
+          evidence.gvviId,
+          evidence.finishLabel,
+          evidence.intentLabel,
+        ],
       },
       {
         name: "binders",
@@ -432,7 +474,8 @@ function routeDefinitions(accounts) {
       {
         name: "public_profile",
         path: `/u/${encodeURIComponent(ownerSlug)}`,
-        expected: [ownerName, "Pikachu"],
+        expected: [ownerName],
+        absent: privateCardAbsence,
       },
     ],
   };
@@ -455,15 +498,22 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
         body.includes(expected.toLowerCase()),
       ]),
     );
+    const textAbsenceAssertions = Object.fromEntries(
+      (route.absent || []).map((unexpected) => [
+        unexpected,
+        !body.includes(unexpected.toLowerCase()),
+      ]),
+    );
     const images = await imageState(page);
     const screenshotName = `${viewport}_${role}_${route.name}.png`;
     const screenshot = await page.screenshot({
       path: path.join(runDir, screenshotName),
       fullPage: true,
       animations: "disabled",
-      mask: route.name === "message_inbox"
-        ? [page.locator("[data-card-message-thread] p")]
-        : [],
+      mask:
+        route.name === "message_inbox"
+          ? [page.locator("[data-card-message-thread] p")]
+          : [],
       maskColor: "#020617",
     });
     const status =
@@ -471,6 +521,7 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
       response.status() < 400 &&
       normalizedPath(page.url()) === route.path &&
       Object.values(textAssertions).every(Boolean) &&
+      Object.values(textAbsenceAssertions).every(Boolean) &&
       images.failed_count === 0 &&
       pageErrors.length === 0
         ? "passed"
@@ -482,6 +533,7 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
       final_path: normalizedPath(page.url()),
       http_status: response?.status() ?? null,
       text_assertions: textAssertions,
+      text_absence_assertions: textAbsenceAssertions,
       images,
       page_error_count: pageErrors.length,
       page_error_hashes: pageErrors,
@@ -508,9 +560,8 @@ async function proveExistingMessageContext(
   await settle(page);
   const thread = page.locator("[data-card-message-thread]");
   const threadCount = await thread.count();
-  const threadText = threadCount > 0
-    ? normalizeBody(await thread.first().innerText())
-    : "";
+  const threadText =
+    threadCount > 0 ? normalizeBody(await thread.first().innerText()) : "";
   const textareaCount = await page
     .getByRole("textbox", { name: "Reply message", exact: true })
     .count();
@@ -589,7 +640,7 @@ function markdown(report) {
     "",
     `- Before/after equal: \`${report.database_reconciliation.before_after_equal}\``,
     `- Subject follows owner: \`${report.database_assertions.subject_follows_owner}\``,
-    `- Exact owner copy: \`${report.database_assertions.exact_owner_copy}\``,
+    `- Active owner exact copy: \`${report.database_assertions.active_owner_exact_copy}\``,
     `- Existing open card interaction: \`${report.database_assertions.existing_open_interaction}\``,
     `- Subject current Want remains false: \`${report.database_assertions.subject_current_want_is_false}\``,
     "",
@@ -628,8 +679,9 @@ async function main() {
   try {
     const accounts = await lookupAccounts(client, secrets);
     const before = await queryScopedTruth(client, accounts);
-    const databaseAssertions = evaluateDatabaseTruth(before);
-    const routes = routeDefinitions(accounts);
+    const journeyEvidence = selectJourneyEvidence(before);
+    const databaseAssertions = evaluateDatabaseTruth(before, journeyEvidence);
+    const routes = routeDefinitions(accounts, journeyEvidence);
     const runDir = path.join(args.outRoot, stamp());
     await fs.mkdir(runDir, { recursive: true });
     const runPlan = {
@@ -641,8 +693,12 @@ async function main() {
       deployment_id: args.deploymentId,
       deployment_url: args.deploymentUrl,
       expected_identity: {
-        canonical_gv_id: EXPECTED_CARD_GV_ID,
-        gvvi_id: EXPECTED_GVVI_ID,
+        canonical_gv_id: journeyEvidence.canonicalGvId,
+        gvvi_id: journeyEvidence.gvviId,
+        card_name: journeyEvidence.cardName,
+        intent: journeyEvidence.intent,
+        finish_label: journeyEvidence.finishLabel,
+        publicly_discoverable: journeyEvidence.publiclyDiscoverable,
       },
       profiles: {
         owner_slug: accounts.owner.slug,
@@ -688,9 +744,13 @@ async function main() {
           serviceWorkers: "block",
         });
         const page = await context.newPage();
-        const credentials = role === "subject"
-          ? { email: secrets.subject_email, password: secrets.subject_password }
-          : { email: secrets.owner_email, password: secrets.owner_password };
+        const credentials =
+          role === "subject"
+            ? {
+                email: secrets.subject_email,
+                password: secrets.subject_password,
+              }
+            : { email: secrets.owner_email, password: secrets.owner_password };
         const nextPath = role === "subject" ? "/network/discover" : "/account";
         const blocked = await login(
           context,
@@ -723,7 +783,11 @@ async function main() {
           );
         }
         blockedRequests.push(
-          ...blocked.map((request) => ({ ...request, role, viewport: viewport.name })),
+          ...blocked.map((request) => ({
+            ...request,
+            role,
+            viewport: viewport.name,
+          })),
         );
         await context.close();
       }
@@ -733,7 +797,9 @@ async function main() {
 
     const after = await queryScopedTruth(client, accounts);
     const beforeAfterEqual = JSON.stringify(before) === JSON.stringify(after);
-    const routeFailures = routeResults.filter((result) => result.status !== "passed");
+    const routeFailures = routeResults.filter(
+      (result) => result.status !== "passed",
+    );
     const messageContextFailures = messageContextResults.filter(
       (result) => result.status !== "passed",
     );
@@ -757,14 +823,24 @@ async function main() {
           messageContextResults.length - messageContextFailures.length,
         blocked_non_read_request_count: blockedRequests.length,
         database_assertion_count: Object.keys(databaseAssertions).length,
-        database_assertion_pass_count: Object.values(databaseAssertions).filter(Boolean).length,
-        failure_count: routeFailures.length + messageContextFailures.length +
-          (databasePassed ? 0 : 1) + (beforeAfterEqual ? 0 : 1),
+        database_assertion_pass_count:
+          Object.values(databaseAssertions).filter(Boolean).length,
+        failure_count:
+          routeFailures.length +
+          messageContextFailures.length +
+          (databasePassed ? 0 : 1) +
+          (beforeAfterEqual ? 0 : 1),
       },
       journey_assessment: {
-        journey_d_collector_connection: passed ? "passed_web_final_candidate" : "failed",
-        journey_c_want_and_match: passed ? "passed_read_only_context_only" : "failed",
-        journey_e_collection_depth: passed ? "passed_web_supported_surfaces_only" : "failed",
+        journey_d_collector_connection: passed
+          ? "passed_web_final_candidate"
+          : "failed",
+        journey_c_want_and_match: passed
+          ? "passed_read_only_context_only"
+          : "failed",
+        journey_e_collection_depth: passed
+          ? "passed_web_supported_surfaces_only"
+          : "failed",
       },
       route_results: routeResults,
       message_context_results: messageContextResults,

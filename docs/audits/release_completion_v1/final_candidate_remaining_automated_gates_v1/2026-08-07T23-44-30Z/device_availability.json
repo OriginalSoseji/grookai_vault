@@ -1,0 +1,23 @@
+{
+  "audit_version": "FINAL_CANDIDATE_DEVICE_AVAILABILITY_V1",
+  "recorded_at": "2026-08-07T23:44:30.000Z",
+  "android": {
+    "serial": "R5CT3291F6E",
+    "model": "SM_S908U",
+    "adb_state": "device",
+    "current_focus": "NotificationShade",
+    "wakefulness": "Dozing",
+    "physical_journey_available": false,
+    "reason": "secure device is not unlocked for an honest interactive journey"
+  },
+  "ios": {
+    "remote_mac_reachable": true,
+    "iphone_15_pro_state": "unavailable",
+    "iphone_17_pro_state": "unavailable",
+    "physical_journey_available": false
+  },
+  "claims": {
+    "physical_android_completed": false,
+    "physical_ios_completed": false
+  }
+}

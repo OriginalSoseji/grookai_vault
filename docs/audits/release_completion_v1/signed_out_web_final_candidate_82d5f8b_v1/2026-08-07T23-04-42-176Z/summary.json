@@ -1,0 +1,1067 @@
+{
+  "audit_version": "RELEASE_SIGNED_OUT_WEB_JOURNEYS_V2",
+  "as_of": "2026-08-07T23:06:49.578Z",
+  "status": "passed",
+  "completion_allowed": true,
+  "run_plan": {
+    "audit_version": "RELEASE_SIGNED_OUT_WEB_JOURNEYS_V2",
+    "created_at": "2026-08-07T23:04:42.179Z",
+    "origin": "https://grookaivault.com",
+    "deployment_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "verifier_sha": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "deployment_id": "dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J",
+    "deployment_url": "https://grookai-vault-3085jdxhe-sosejis-projects.vercel.app",
+    "viewports": [
+      {
+        "name": "narrow",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    "routes": [
+      {
+        "name": "home",
+        "path": "/",
+        "expected_final_path": "/"
+      },
+      {
+        "name": "card",
+        "path": "/card/GV-PK-AR-71",
+        "expected_final_path": "/card/GV-PK-AR-71"
+      },
+      {
+        "name": "network",
+        "path": "/network",
+        "expected_final_path": "/network"
+      },
+      {
+        "name": "scan",
+        "path": "/scan",
+        "expected_final_path": "/login?next=%2Fscan"
+      },
+      {
+        "name": "wall",
+        "path": "/wall",
+        "expected_final_path": "/login?next=%2Fwall"
+      },
+      {
+        "name": "vault",
+        "path": "/vault",
+        "expected_final_path": "/login?next=%2Fvault"
+      },
+      {
+        "name": "binders",
+        "path": "/binders",
+        "expected_final_path": "/login?next=%2Fbinders"
+      },
+      {
+        "name": "privacy",
+        "path": "/privacy",
+        "expected_final_path": "/privacy"
+      },
+      {
+        "name": "terms",
+        "path": "/legal",
+        "expected_final_path": "/legal"
+      },
+      {
+        "name": "support",
+        "path": "/support",
+        "expected_final_path": "/support"
+      },
+      {
+        "name": "account_deletion",
+        "path": "/account/delete",
+        "expected_final_path": "/account/delete"
+      }
+    ],
+    "boundaries": {
+      "isolated_cookie_free_contexts": true,
+      "authenticated_browser_state_accessed": false,
+      "database_writes": false,
+      "application_writes": false
+    }
+  },
+  "summary": {
+    "route_case_count": 22,
+    "route_pass_count": 22,
+    "personal_action_case_count": 2,
+    "personal_action_pass_count": 2,
+    "failure_count": 0
+  },
+  "route_results": [
+    {
+      "viewport": "narrow",
+      "route": "/",
+      "final_path": "/",
+      "expected_final_path": "/",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "The permanent digital card show.": true,
+        "Explore cards": true,
+        "Search the details collectors care about.": true
+      },
+      "visible_images": {
+        "visible_count": 5,
+        "loaded_count": 5,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 3,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "e0fff655e0bbd7940fa5620874cd37d9cfb333066ef8e49237b27445d07bf08a",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "6208faa423458697f30ae437f807a2e5f90bcafd77b20e7aabe9aef8f4168d92",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "62c5c27ed91629f55429b9a52f457c7bc8962485a341ea0f3e87ea41237f8172",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_home.png",
+      "screenshot_sha256": "4e05eea121ecd9c727031243e76f251da5e6fcc52ea2ea6845f4d9bae249b5aa",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/card/GV-PK-AR-71",
+      "final_path": "/card/GV-PK-AR-71",
+      "expected_final_path": "/card/GV-PK-AR-71",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Pikachu": true,
+        "Sign in to view pricing": true,
+        "Choose the exact version before adding it to your vault.": true,
+        "Sign in to add": true
+      },
+      "visible_images": {
+        "visible_count": 2,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 3,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "c469ca20a24265b39138875a0336796c53914dd31aa44cc6cbe26178e166f5e7",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "9a29e10efa8fdbda94cf78f5429347843d9791234fcc8b6537801d1780da81f0",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e4c27a90951abe045a6869cce462c07be13b792450e9490ad800fe6635365e85",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_card.png",
+      "screenshot_sha256": "1eb3b9a69b0e30acf3ef2dc9930e87736988094acd1ebb8df2d06ffb944b1948",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/network",
+      "final_path": "/network",
+      "expected_final_path": "/network",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Pulse": true
+      },
+      "visible_images": {
+        "visible_count": 2,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 3,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "2eb47b2d60a18874a3518369515cdf6d27b625562ab51a4352c1349bc3d65322",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "f9de6db8aae08e5e84cd18dccdc177a74d8984853c23cff18a28c7c0fcb5cb23",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "4611d792b4347cf50a6d6a972a689119a1d8b7e056a5cc383e9a73c3df4303db",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_network.png",
+      "screenshot_sha256": "7dbed6da6093f2833e22a038bd5754cab40212966ac88fb5e58445cc8ee4df7a",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/scan",
+      "final_path": "/login?next=%2Fscan",
+      "expected_final_path": "/login?next=%2Fscan",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Sign in to Scan": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 6,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "336ae1c2ac211d64b2c80370a2ffaadca9f4aae3bdfa6e6babac336cda42b8a1",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "060f67810b7247b935d6c9969bf8e078242e78be4ddc568fa2aef0b76eb0d8ba",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "b5c3dc853148d19ac2207b9e7e75a022f9a696509a6e1f199d5406de55d04e2c",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "da50c9b4e8684e6fe6945117514be1b255b48965ef13a573fe55d1087cbff511",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "4b05d7d3b6fccb8af92375295536e78f600264142e88e6e82b6a4ebcc198a307",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "51d5b4bc24816797fb4c82b82df8ad07c0563f44dbccf1da4bfda32b57f6bd4f",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_scan.png",
+      "screenshot_sha256": "1b2479df776b4a2409e32a722b3b435b9bb65ae6556d8c00f6b966b9626e0aa6",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/wall",
+      "final_path": "/login?next=%2Fwall",
+      "expected_final_path": "/login?next=%2Fwall",
+      "http_status": 200,
+      "network_idle": false,
+      "text_assertions": {
+        "Sign in to your Wall": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 0,
+      "failed_requests": [],
+      "screenshot": "narrow_wall.png",
+      "screenshot_sha256": "fd16bb071d28b3770bd61cd07f9f0ebb6eccb4620c91af0250b9453ce8c2fac8",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/vault",
+      "final_path": "/login?next=%2Fvault",
+      "expected_final_path": "/login?next=%2Fvault",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Sign in to your Vault": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 7,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "7357b0972fcc3ead138837de91fd508a139a973d88143031df75b4ab472ff553",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7b23691c66bee43e096e0a2d459c0453b3e2b0952942af330519e17273faaa54",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "b2e780728b1f6f4d105e3a7efb071a8b1d725b837988c3bba4e5069f7523a033",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "51d5b4bc24816797fb4c82b82df8ad07c0563f44dbccf1da4bfda32b57f6bd4f",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "b2e780728b1f6f4d105e3a7efb071a8b1d725b837988c3bba4e5069f7523a033",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7357b0972fcc3ead138837de91fd508a139a973d88143031df75b4ab472ff553",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7b23691c66bee43e096e0a2d459c0453b3e2b0952942af330519e17273faaa54",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_vault.png",
+      "screenshot_sha256": "fc52031be1d3e4fee5d672ec207c494f9fd33b9281065fe8298aaec923a0b680",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/binders",
+      "final_path": "/login?next=%2Fbinders",
+      "expected_final_path": "/login?next=%2Fbinders",
+      "http_status": 200,
+      "network_idle": false,
+      "text_assertions": {
+        "Sign in to Binders": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 2,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "98bcb5e6fbcc14d48a3a9d24c248c5ed088b369990508643dd6a90c85765ea4f",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "51d5b4bc24816797fb4c82b82df8ad07c0563f44dbccf1da4bfda32b57f6bd4f",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_binders.png",
+      "screenshot_sha256": "f7eb73e474accd213906cd6fe4c7779c57f8631411f1edf328a60df5cf141bca",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/privacy",
+      "final_path": "/privacy",
+      "expected_final_path": "/privacy",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Privacy": true,
+        "support@grookaivault.com": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 3,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "b2e780728b1f6f4d105e3a7efb071a8b1d725b837988c3bba4e5069f7523a033",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7357b0972fcc3ead138837de91fd508a139a973d88143031df75b4ab472ff553",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7b23691c66bee43e096e0a2d459c0453b3e2b0952942af330519e17273faaa54",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "narrow_privacy.png",
+      "screenshot_sha256": "832f1ae5d952e4bbb929f2a878bd4e08c2e3e1f4025490598dd3aae2250367f3",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/legal",
+      "final_path": "/legal",
+      "expected_final_path": "/legal",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Terms": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 0,
+      "failed_requests": [],
+      "screenshot": "narrow_terms.png",
+      "screenshot_sha256": "58c34a0bacb52da1dc4d4cfca8ce0295d11dce3c695b5db703f84f5d9e9b0ca5",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/support",
+      "final_path": "/support",
+      "expected_final_path": "/support",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Support": true,
+        "support@grookaivault.com": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 0,
+      "failed_requests": [],
+      "screenshot": "narrow_support.png",
+      "screenshot_sha256": "91fa7677ebcac557a2d688c157b1a4612c6213b1ddc42d104a82ad021ffcb7b7",
+      "status": "passed"
+    },
+    {
+      "viewport": "narrow",
+      "route": "/account/delete",
+      "final_path": "/account/delete",
+      "expected_final_path": "/account/delete",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Delete": true,
+        "support@grookaivault.com": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 0,
+      "failed_requests": [],
+      "screenshot": "narrow_account_deletion.png",
+      "screenshot_sha256": "5d737d12475b270078ce8db2097d728709fad19d62cef29b06c31558a99f1b66",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "final_path": "/",
+      "expected_final_path": "/",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "The permanent digital card show.": true,
+        "Explore cards": true,
+        "Search the details collectors care about.": true
+      },
+      "visible_images": {
+        "visible_count": 5,
+        "loaded_count": 5,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 7,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "642a4169c803dc94c1a1a96d6611ec1144dd1ab33be657fc473d4b34749a79a5",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "83628075aff9c394e066d7807bcc61aa962e573fb1623387ae1e5eb2438d99ef",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "2244d5e7b997dfa83cce401ff243236fb4815dcf0e457f6b9f41b8fc29e41ea4",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "1fa77c43b22a44fbd8935bb338813f53ac45f571e338e60745943e58a121c241",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e0fff655e0bbd7940fa5620874cd37d9cfb333066ef8e49237b27445d07bf08a",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "6208faa423458697f30ae437f807a2e5f90bcafd77b20e7aabe9aef8f4168d92",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "62c5c27ed91629f55429b9a52f457c7bc8962485a341ea0f3e87ea41237f8172",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_home.png",
+      "screenshot_sha256": "0984475c6b0f37dbe52e896e337334417abb9641084ba58576c6e3936406628f",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/card/GV-PK-AR-71",
+      "final_path": "/card/GV-PK-AR-71",
+      "expected_final_path": "/card/GV-PK-AR-71",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Pikachu": true,
+        "Sign in to view pricing": true,
+        "Choose the exact version before adding it to your vault.": true,
+        "Sign in to add": true
+      },
+      "visible_images": {
+        "visible_count": 2,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 4,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "c469ca20a24265b39138875a0336796c53914dd31aa44cc6cbe26178e166f5e7",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "67230225e7e1f029bd84c0c9d0e10bb3bb17823991872a1a044a60d5df6a69e7",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e4c27a90951abe045a6869cce462c07be13b792450e9490ad800fe6635365e85",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "1fc3f9150c2126bb96430326532fae17c2a2fb444a3f488178ac033b327b72e0",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_card.png",
+      "screenshot_sha256": "739ff9e45a5b0eb033c9afeeb0f05073e9cb9b945f6d16fb8d7033336e46517e",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/network",
+      "final_path": "/network",
+      "expected_final_path": "/network",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Pulse": true
+      },
+      "visible_images": {
+        "visible_count": 2,
+        "loaded_count": 2,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 6,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "bd8e47a3bed00de76b5131725489fabeb7737bd275bd9c1b3ef82addb938e087",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "29a377a26dd0796c2a86039831f7aca314b6a25a93ac06b5c6790fd7cf782509",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "eb8a32ad4ba7aec7d81a8636a621dbe94ca5e79131ca202cd004a230caececb1",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "837e0e4be7e6ca7edfe6518cb198ab27f67bbbfcfbeb9132c08dee8ac42fa208",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "3b44febb5624eafeaad5cd1bd6e355ee8a480cf06d5ae68a50a5188361de9ddd",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "4611d792b4347cf50a6d6a972a689119a1d8b7e056a5cc383e9a73c3df4303db",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_network.png",
+      "screenshot_sha256": "ba40bd03b6c03fca842ccd9927133963b5ca495da3a1301655720b43b371b9e9",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/scan",
+      "final_path": "/login?next=%2Fscan",
+      "expected_final_path": "/login?next=%2Fscan",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Sign in to Scan": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 7,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "336ae1c2ac211d64b2c80370a2ffaadca9f4aae3bdfa6e6babac336cda42b8a1",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "da50c9b4e8684e6fe6945117514be1b255b48965ef13a573fe55d1087cbff511",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "060f67810b7247b935d6c9969bf8e078242e78be4ddc568fa2aef0b76eb0d8ba",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "71c7024e2928982c2bd5dbfd440e2ec249e90e1df803a98ecde338089026cebe",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "6bc89b8833174cf237cd9813a16e7ed3e2d79407cda601925b726ef217afe5a0",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "8818a2b2e47d2b35cfc7563f2a5e82a238c8790f4a243f778e62264c732c3a35",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "51d5b4bc24816797fb4c82b82df8ad07c0563f44dbccf1da4bfda32b57f6bd4f",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_scan.png",
+      "screenshot_sha256": "0e4a3e755b5206381b2d4e508189188476f6aa17f239b7cba6333f5eed8c5ca1",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/wall",
+      "final_path": "/login?next=%2Fwall",
+      "expected_final_path": "/login?next=%2Fwall",
+      "http_status": 200,
+      "network_idle": false,
+      "text_assertions": {
+        "Sign in to your Wall": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 6,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "7af1db7781636507037cb171e346a203ff597ab5f95ad9c6ab9c46b142d42f5b",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "89f7c6688eedcca4070ee2d4a8f0b74df3445fd3a7cb460c94537577644795c0",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "d2aa22ebcd637fbbb6f9057e2b15f52cb862d68d83b6ee60a018362abe74903b",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "49df546354443bad16428bd1e1dccffa79fe013c7f853c73f4085e1056c1f891",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "8f5ed6a321bb472d86bf7acd6c43ce2cfd91eefd6bf7d8f1d724174c290ec6b3",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "51d5b4bc24816797fb4c82b82df8ad07c0563f44dbccf1da4bfda32b57f6bd4f",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_wall.png",
+      "screenshot_sha256": "d65f8413bdce8766437083932429dd44b0aa2bfaf2f3f73cef2a7630d15bbca2",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/vault",
+      "final_path": "/login?next=%2Fvault",
+      "expected_final_path": "/login?next=%2Fvault",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Sign in to your Vault": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 7,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "7b23691c66bee43e096e0a2d459c0453b3e2b0952942af330519e17273faaa54",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "b2e780728b1f6f4d105e3a7efb071a8b1d725b837988c3bba4e5069f7523a033",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7357b0972fcc3ead138837de91fd508a139a973d88143031df75b4ab472ff553",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7af1db7781636507037cb171e346a203ff597ab5f95ad9c6ab9c46b142d42f5b",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "b2e780728b1f6f4d105e3a7efb071a8b1d725b837988c3bba4e5069f7523a033",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7357b0972fcc3ead138837de91fd508a139a973d88143031df75b4ab472ff553",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7b23691c66bee43e096e0a2d459c0453b3e2b0952942af330519e17273faaa54",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_vault.png",
+      "screenshot_sha256": "8afb8f0f42400a8a7a3eb6bb8a12ac594586604b9d0147017397d2acf1f4ee2d",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/binders",
+      "final_path": "/login?next=%2Fbinders",
+      "expected_final_path": "/login?next=%2Fbinders",
+      "http_status": 200,
+      "network_idle": false,
+      "text_assertions": {
+        "Sign in to Binders": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 1,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "8f5ed6a321bb472d86bf7acd6c43ce2cfd91eefd6bf7d8f1d724174c290ec6b3",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_binders.png",
+      "screenshot_sha256": "f3bcaea95f9499daf70749c211188d43039e3c1eaf5867b2c90afa4f6d2cf9ca",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/privacy",
+      "final_path": "/privacy",
+      "expected_final_path": "/privacy",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Privacy": true,
+        "support@grookaivault.com": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 5,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "b2e780728b1f6f4d105e3a7efb071a8b1d725b837988c3bba4e5069f7523a033",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7357b0972fcc3ead138837de91fd508a139a973d88143031df75b4ab472ff553",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7b23691c66bee43e096e0a2d459c0453b3e2b0952942af330519e17273faaa54",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e6bc6322ad6387cc3c65c03bce77181f2fcfe40fefc97c2bf90c53a45539f37a",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "fb9ff974bc1bf7ab80a9ccd3437cdc35435176ab1d5355032284c31397486cf5",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_privacy.png",
+      "screenshot_sha256": "39118cdcff10ba227152f3ffaabebcb53852cb548b4e7da329f0c28389f52315",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/legal",
+      "final_path": "/legal",
+      "expected_final_path": "/legal",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Terms": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 2,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "d9a861efb335dd7441146cad82c10b55eb88e864d5ba7369480aa5bccaac64e9",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "c9387eefa38ed8eb142061ac43f404a516259de4be29483993437a7481acef2a",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_terms.png",
+      "screenshot_sha256": "102982b4cd81d6408605e77125577b7aaf0df32aa0b5f97463e8ee70cd587707",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/support",
+      "final_path": "/support",
+      "expected_final_path": "/support",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Support": true,
+        "support@grookaivault.com": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 3,
+      "failed_requests": [
+        {
+          "method": "GET",
+          "url_sha256": "ce05fd4d7ab2c1b531e3a51f498a1d110676735f3dca88a2a5ca1cca555baa8a",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "64b715128cc02b12ecaa00a2d91fe6ace1aa70a840ffc5ccd7fc944c3d3651bc",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "f26ad70ed9b5224bddec0044d44d2d49fd625f79795beeb26b76a14d7afb82f2",
+          "failure_sha256": "7ba7a1709a2d7d220e120c927e0a7e90adf45c88b09ba912b237d705090d1d4e"
+        }
+      ],
+      "screenshot": "desktop_support.png",
+      "screenshot_sha256": "18f0d6b3361b5bfcb7750ca2d0a7a4b804fac10165e1f6e5ce5eec9d21c66bd2",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/account/delete",
+      "final_path": "/account/delete",
+      "expected_final_path": "/account/delete",
+      "http_status": 200,
+      "network_idle": true,
+      "text_assertions": {
+        "Delete": true,
+        "support@grookaivault.com": true
+      },
+      "visible_images": {
+        "visible_count": 1,
+        "loaded_count": 1,
+        "failed_count": 0,
+        "pending_count": 0
+      },
+      "page_error_count": 0,
+      "page_error_hashes": [],
+      "failed_request_count": 0,
+      "failed_requests": [],
+      "screenshot": "desktop_account_deletion.png",
+      "screenshot_sha256": "ee57113f2b50f31dc8962112de7f5803b6a2d44a1ea722c39492ee1a5ef09c9a",
+      "status": "passed"
+    }
+  ],
+  "personal_action_results": [
+    {
+      "viewport": "narrow",
+      "action": "add_exact_card",
+      "source_path": "/card/GV-PK-AR-71",
+      "action_count": 1,
+      "final_path": "/login?next=%2Fcard%2FGV-PK-AR-71",
+      "expected_final_path": "/login?next=%2Fcard%2FGV-PK-AR-71",
+      "continuation_copy_visible": true,
+      "screenshot": "narrow_card_personal_action.png",
+      "screenshot_sha256": "5fb9ffa556c922f84da54d6831b25c03a4b86b44aad6081e0de7c342321f6360",
+      "status": "passed"
+    },
+    {
+      "viewport": "desktop",
+      "action": "add_exact_card",
+      "source_path": "/card/GV-PK-AR-71",
+      "action_count": 1,
+      "final_path": "/login?next=%2Fcard%2FGV-PK-AR-71",
+      "expected_final_path": "/login?next=%2Fcard%2FGV-PK-AR-71",
+      "continuation_copy_visible": true,
+      "screenshot": "desktop_card_personal_action.png",
+      "screenshot_sha256": "f49e67806800487e50f80194ccede4a26dbbcca8f88d251627a47bc72cb6130e",
+      "status": "passed"
+    }
+  ],
+  "boundaries": {
+    "isolated_cookie_free_contexts": true,
+    "authenticated_browser_state_accessed": false,
+    "database_writes": false,
+    "application_writes": false
+  }
+}

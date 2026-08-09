@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/account/account_profile_service.dart';
 import '../../services/network/founder_insight_service.dart';
+import '../../services/network/local_discovery_settings_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../widgets/founder/founder_market_signals_section.dart';
 import '../founder/founder_metrics_screen.dart';
@@ -58,6 +59,12 @@ class _AccountScreenState extends State<AccountScreen> {
   String? _bannerPath;
   PublicCollectorEntryState _wallState =
       PublicCollectorEntryState.missingProfile;
+  LocalDiscoverySettingsData _localDiscoverySettings =
+      const LocalDiscoverySettingsData.disabled();
+  bool _localDiscoveryLoading = true;
+  bool _localDiscoverySaving = false;
+  String? _localDiscoveryError;
+  String? _localDiscoveryStatus;
 
   @override
   void initState() {
@@ -86,6 +93,17 @@ class _AccountScreenState extends State<AccountScreen> {
         client: _client,
         userId: profile.userId,
       );
+      LocalDiscoverySettingsData localDiscoverySettings =
+          const LocalDiscoverySettingsData.disabled();
+      String? localDiscoveryError;
+      try {
+        localDiscoverySettings = await LocalDiscoverySettingsService.load(
+          client: _client,
+        );
+      } catch (_) {
+        localDiscoveryError =
+            'Nearby collector settings are unavailable right now.';
+      }
 
       if (!mounted) {
         return;
@@ -96,6 +114,9 @@ class _AccountScreenState extends State<AccountScreen> {
         if (!_isFounderUser && _activeSegment == _AccountSegment.vendorTools) {
           _activeSegment = _AccountSegment.profile;
         }
+        _localDiscoverySettings = localDiscoverySettings;
+        _localDiscoveryLoading = false;
+        _localDiscoveryError = localDiscoveryError;
         _loading = false;
       });
     } catch (error) {
@@ -367,6 +388,66 @@ class _AccountScreenState extends State<AccountScreen> {
     }
   }
 
+  Future<void> _changeLocalDiscovery(bool enabled) async {
+    if (_localDiscoverySaving) {
+      return;
+    }
+    if (!enabled) {
+      await _saveLocalDiscovery(
+        _localDiscoverySettings.copyWith(enabled: false),
+      );
+      return;
+    }
+    await _editLocalDiscovery(enableOnSave: true);
+  }
+
+  Future<void> _editLocalDiscovery({bool enableOnSave = false}) async {
+    final next = await showDialog<LocalDiscoverySettingsData>(
+      context: context,
+      builder: (context) => _LocalDiscoverySettingsDialog(
+        initial: _localDiscoverySettings.copyWith(
+          enabled: enableOnSave || _localDiscoverySettings.enabled,
+        ),
+      ),
+    );
+    if (next != null) {
+      await _saveLocalDiscovery(next);
+    }
+  }
+
+  Future<void> _saveLocalDiscovery(LocalDiscoverySettingsData settings) async {
+    setState(() {
+      _localDiscoverySaving = true;
+      _localDiscoveryError = null;
+      _localDiscoveryStatus = null;
+    });
+    try {
+      final saved = await LocalDiscoverySettingsService.save(
+        client: _client,
+        data: settings,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _localDiscoverySettings = saved;
+        _localDiscoverySaving = false;
+        _localDiscoveryStatus = saved.enabled
+            ? 'Nearby collector discovery is on.'
+            : 'Nearby collector discovery is off.';
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _localDiscoverySaving = false;
+        _localDiscoveryError =
+            'Could not save nearby collector settings. Try again.';
+      });
+    }
+  }
+
   Future<void> _openFounderMetrics() async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) => const FounderMetricsScreen()),
@@ -635,6 +716,66 @@ class _AccountScreenState extends State<AccountScreen> {
                 label: Text(_saving ? 'Saving...' : 'Save profile settings'),
               ),
             ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 12),
+      _AccountSurface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Nearby collectors',
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'Opt in with a city or area and region. Grookai does not store an exact address or GPS location here.',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.72),
+                height: 1.35,
+              ),
+            ),
+            const SizedBox(height: 12),
+            if (_localDiscoveryLoading)
+              const Center(child: CircularProgressIndicator())
+            else ...[
+              Semantics(
+                container: true,
+                identifier: 'local-discovery-toggle',
+                child: _ToggleField(
+                  label: 'Local discovery',
+                  description: _localDiscoverySettings.hasCoarseRegion
+                      ? _localDiscoverySettings.displayLabel
+                      : 'Add your coarse region to find nearby collectors and Want Matches.',
+                  checked: _localDiscoverySettings.enabled,
+                  disabled: _localDiscoverySaving,
+                  onChanged: _changeLocalDiscovery,
+                ),
+              ),
+              if (_localDiscoverySettings.hasCoarseRegion) ...[
+                const SizedBox(height: 10),
+                OutlinedButton.icon(
+                  onPressed: _localDiscoverySaving
+                      ? null
+                      : () => _editLocalDiscovery(),
+                  icon: const Icon(Icons.edit_location_alt_outlined),
+                  label: const Text('Edit coarse region'),
+                ),
+              ],
+            ],
+            if (_localDiscoveryStatus != null) ...[
+              const SizedBox(height: 10),
+              _StatusBanner(message: _localDiscoveryStatus!, success: true),
+            ],
+            if (_localDiscoveryError != null) ...[
+              const SizedBox(height: 10),
+              _StatusBanner(message: _localDiscoveryError!, success: false),
+            ],
           ],
         ),
       ),
@@ -1419,6 +1560,145 @@ class _ToggleField extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _LocalDiscoverySettingsDialog extends StatefulWidget {
+  const _LocalDiscoverySettingsDialog({required this.initial});
+
+  final LocalDiscoverySettingsData initial;
+
+  @override
+  State<_LocalDiscoverySettingsDialog> createState() =>
+      _LocalDiscoverySettingsDialogState();
+}
+
+class _LocalDiscoverySettingsDialogState
+    extends State<_LocalDiscoverySettingsDialog> {
+  late final TextEditingController _areaController;
+  late final TextEditingController _regionController;
+  late final TextEditingController _countryController;
+  Map<String, String> _errors = const {};
+
+  @override
+  void initState() {
+    super.initState();
+    _areaController = TextEditingController(text: widget.initial.areaLabel);
+    _regionController = TextEditingController(text: widget.initial.regionCode);
+    _countryController = TextEditingController(
+      text: widget.initial.countryCode,
+    );
+  }
+
+  @override
+  void dispose() {
+    _areaController.dispose();
+    _regionController.dispose();
+    _countryController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    final draft = LocalDiscoverySettingsData(
+      enabled: true,
+      areaLabel: _areaController.text,
+      regionCode: _regionController.text,
+      countryCode: _countryController.text,
+    );
+    final errors = LocalDiscoverySettingsService.validate(draft);
+    if (errors.isNotEmpty) {
+      setState(() {
+        _errors = errors;
+      });
+      return;
+    }
+    Navigator.of(context).pop(LocalDiscoverySettingsService.normalize(draft));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Nearby collector region'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Only this coarse region is stored. Do not enter a street address.',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 14),
+            Semantics(
+              container: true,
+              identifier: 'local-discovery-area',
+              child: TextField(
+                key: const ValueKey('local-discovery-area'),
+                controller: _areaController,
+                textCapitalization: TextCapitalization.words,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  labelText: 'City or area',
+                  hintText: 'Denver',
+                  errorText: _errors['areaLabel'],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Semantics(
+              container: true,
+              identifier: 'local-discovery-region',
+              child: TextField(
+                key: const ValueKey('local-discovery-region'),
+                controller: _regionController,
+                textCapitalization: TextCapitalization.characters,
+                textInputAction: TextInputAction.next,
+                maxLength: 12,
+                decoration: InputDecoration(
+                  labelText: 'Region code',
+                  hintText: 'CO',
+                  counterText: '',
+                  errorText: _errors['regionCode'],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Semantics(
+              container: true,
+              identifier: 'local-discovery-country',
+              child: TextField(
+                key: const ValueKey('local-discovery-country'),
+                controller: _countryController,
+                textCapitalization: TextCapitalization.characters,
+                textInputAction: TextInputAction.done,
+                maxLength: 2,
+                onSubmitted: (_) => _submit(),
+                decoration: InputDecoration(
+                  labelText: 'Country code',
+                  hintText: 'US',
+                  counterText: '',
+                  errorText: _errors['countryCode'],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
+        Semantics(
+          container: true,
+          identifier: 'local-discovery-save',
+          child: FilledButton(
+            onPressed: _submit,
+            child: const Text('Save and opt in'),
+          ),
+        ),
+      ],
     );
   }
 }

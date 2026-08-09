@@ -1,0 +1,36 @@
+{
+  "schema_version": "FINAL_CANDIDATE_PHYSICAL_ANDROID_RUN_PLAN_V1",
+  "recorded_at": "2026-08-08T00:51:59Z",
+  "status": "frozen_before_permanent_audit_packaging",
+  "release": {
+    "app_source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
+    "audit_branch": "release/final-candidate-proof-v1",
+    "audit_head_before_packaging": "78f717bd30186687e2c4fe63a0e5a9ab0797da22",
+    "package": "com.grookai.vault",
+    "version_name": "1.0.0",
+    "version_code": 21
+  },
+  "scope": [
+    "signed-out launch and card exploration",
+    "exact-card identity and printing context",
+    "signed-out locked action and preserved login destination",
+    "signed-in continuation without credential capture",
+    "private copy and Vault collection depth",
+    "Wall management controls",
+    "Discover, Following, exact copy, and contextual message entry",
+    "card Journey and Memory context return",
+    "loading, empty, offline, recovery, private, signed-out, and text-scale states"
+  ],
+  "boundaries": {
+    "locked_acceptance_package_modification": false,
+    "app_source_modification": false,
+    "database_direct_write": false,
+    "message_sent": false,
+    "memory_saved": false,
+    "vault_copy_created_or_removed": false,
+    "temporary_want_state_restored": true,
+    "network_settings_restored": true,
+    "font_scale_restored": true,
+    "oauth_picker_or_account_identifier_committed": false
+  }
+}

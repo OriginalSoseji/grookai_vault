@@ -1,0 +1,36 @@
+{
+  "schema_version": "FINAL_CANDIDATE_DISTRIBUTION_ARTIFACT_HASHES_V1",
+  "recorded_at": "2026-08-07T20:47:52Z",
+  "artifacts": [
+    {
+      "path": "android_readback.json",
+      "sha256": "46911655e343b5f9b21c7f4f356278154aa960320be614fafaf98caf986cf804",
+      "bytes": 785
+    },
+    {
+      "path": "app_store_connect_readback.json",
+      "sha256": "283bc39f062765609f17537d8b1e346735f9f2499229b9b698a5c1d0b1cd9c6a",
+      "bytes": 1843
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "3d8ba7204469a624fa2f88dc2159b0ef526fc7f627b5eb4543aee00cbfd1e21a",
+      "bytes": 2749
+    },
+    {
+      "path": "run_plan.json",
+      "sha256": "8fdf1494d728bd887c85c78c76f093c48f487932f5e681985974101aa2f3d774",
+      "bytes": 801
+    },
+    {
+      "path": "summary.json",
+      "sha256": "dae70ba4b5d191ad685a3ddacef472d70ca0d4de55b100131c30bac94b45cfee",
+      "bytes": 829
+    },
+    {
+      "path": "web_and_ci_readback.json",
+      "sha256": "6047ff4eff281747cab16244be69b1233e6701445bacfa62a34431b83be837af",
+      "bytes": 1259
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "REPORT.md",
+      "sha256": "9eed47a681809a703102b62e5e300ec899c9bfc1efaa68757581dca0d2ce6f6c"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "d7ef1c5cadbf3bce2002723b3f4b3663275d19d0b9cb625fe4f98c940f389fa3"
+    }
+  ]
+}

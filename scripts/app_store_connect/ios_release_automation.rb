@@ -178,14 +178,16 @@ class IosReleaseAutomation
     FileUtils.rm_rf(export_path)
     FileUtils.mkdir_p(export_path)
     puts "Uploading archive to App Store Connect..."
-    run([
+    command = [
       "xcodebuild",
       "-exportArchive",
       "-archivePath", archive_path,
       "-exportPath", export_path,
       "-exportOptionsPlist", export_options_plist,
       "-allowProvisioningUpdates"
-    ])
+    ]
+    command.concat(xcodebuild_authentication_args)
+    run(command)
   end
 
   def apply_metadata(wait_build: false, wait_seconds: 1800, skip_review: false, skip_attach_build: false, skip_beta: false)
@@ -373,6 +375,30 @@ class IosReleaseAutomation
     @config.fetch("export_options_plist", "ios/ExportOptionsAppStore.plist")
   end
 
+  def xcodebuild_authentication_args
+    key_id = first_env("ASC_KEY_ID", "APP_STORE_CONNECT_API_KEY_ID")
+    issuer_id = first_env("ASC_ISSUER_ID", "APP_STORE_CONNECT_API_ISSUER_ID")
+    key_path = first_env("ASC_KEY_PATH", "APP_STORE_CONNECT_API_KEY_PATH")
+    return [] if [key_id, issuer_id, key_path].all? { |value| blank?(value) }
+
+    key_path ||= "~/.appstoreconnect/private_keys/AuthKey_#{key_id}.p8" unless blank?(key_id)
+    expanded_key_path = File.expand_path(key_path.to_s)
+    missing = []
+    missing << "ASC_KEY_ID" if blank?(key_id)
+    missing << "ASC_ISSUER_ID" if blank?(issuer_id)
+    missing << "ASC_KEY_PATH or default private key" unless File.exist?(expanded_key_path)
+    unless missing.empty?
+      raise AppStoreConnectError,
+            "Missing Xcode App Store Connect authentication: #{missing.join(", ")}"
+    end
+
+    [
+      "-authenticationKeyPath", expanded_key_path,
+      "-authenticationKeyID", key_id,
+      "-authenticationKeyIssuerID", issuer_id
+    ]
+  end
+
   def derived_build_path(kind, suffix = "")
     return nil unless first_env("ASC_BUILD_NUMBER", "APP_STORE_CONNECT_BUILD_NUMBER")
 
@@ -399,9 +425,30 @@ class IosReleaseAutomation
   end
 
   def run(command)
-    puts "$ #{command.join(" ")}"
+    printable = redact_command(command)
+    puts "$ #{printable.join(" ")}"
     ok = system(*command)
-    raise AppStoreConnectError, "Command failed: #{command.join(" ")}" unless ok
+    raise AppStoreConnectError, "Command failed: #{printable.join(" ")}" unless ok
+  end
+
+  def redact_command(command)
+    sensitive_options = [
+      "-authenticationKeyPath",
+      "-authenticationKeyID",
+      "-authenticationKeyIssuerID"
+    ]
+    redact_next = false
+    command.map do |argument|
+      if redact_next
+        redact_next = false
+        "[REDACTED]"
+      elsif sensitive_options.include?(argument)
+        redact_next = true
+        argument
+      else
+        argument
+      end
+    end
   end
 
   def app_store_version
