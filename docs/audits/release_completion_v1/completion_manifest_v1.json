@@ -115,7 +115,7 @@
     },
     {
       "id": "journey_c_want_and_match",
-      "status": "partial",
+      "status": "proven",
       "evidence": [
         "tests/contracts/e3_want_match_durable_engine_contract_v1.test.mjs",
         "tests/contracts/e3_want_match_delivery_contract_v1.test.mjs",
@@ -127,11 +127,12 @@
         "docs/audits/release_completion_v1/signed_in_web_final_candidate_v1/2026-08-07T18-37-25-300Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_in_web_final_candidate_c3a0aead_v1/2026-08-07T20-42-11-403Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_in_web_final_candidate_82d5f8b_v1/2026-08-07T23-22-49-126Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/clean_account_want_match_journey_v1/2026-08-09T05-42-34Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/clean_account_want_match_journey_v1/2026-08-09T05-42-34Z/summary.json",
+        "docs/checkpoints/product/FINAL_CANDIDATE_PHYSICAL_IPHONE_WANT_MATCH_20260809_V1.md"
       ],
-      "required_next_evidence": [
-        "Clean-account final-candidate state-transition proof from exact Want through active match and opt-out with device and database readback; final-candidate web owner, exact-card, and message context is proven read-only"
-      ]
+      "required_next_evidence": []
     },
     {
       "id": "journey_d_collector_connection",
