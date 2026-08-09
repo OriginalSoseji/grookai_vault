@@ -13,7 +13,7 @@ $ErrorActionPreference = 'Stop'
 
 $modulePath = Join-Path $PSScriptRoot 'CollaborativeBindersProductionRolloutV1.psm1'
 $expectedModuleSha256 =
-  '4a3c61cec4e490f17f180c7f994041675c37fd8d39bbd95cc8e5711eabedd471'
+  '00f43c30d5335beddcdb41f88a67f120792c89f15230def0a929acec7b84451f'
 $moduleItem = Get-Item -LiteralPath $modulePath
 if ($moduleItem.Attributes.HasFlag([IO.FileAttributes]::ReparsePoint)) {
   throw 'Production rollout module must not be a reparse point.'

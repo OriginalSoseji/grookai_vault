@@ -885,6 +885,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $payloadName = 'GROOKAI_BINDER_SUPERVISOR_PAYLOAD_V1'
 $gate = $null
+$cancellationGate = $null
+$executionStartedGate = $null
 $child = $null
 $exitCode = 250
 try {
@@ -906,6 +908,12 @@ try {
   $payload = $payloadJson | ConvertFrom-Json
   $gate = [Threading.EventWaitHandle]::OpenExisting(
     [string]$payload.GateName
+  )
+  $cancellationGate = [Threading.EventWaitHandle]::OpenExisting(
+    [string]$payload.CancellationGateName
+  )
+  $executionStartedGate = [Threading.EventWaitHandle]::OpenExisting(
+    [string]$payload.ExecutionStartedGateName
   )
   if (-not $gate.WaitOne(600000)) {
     throw 'Supervisor gate was not released within ten minutes.'
@@ -933,7 +941,16 @@ try {
   $stderrCopy = $child.StandardError.BaseStream.CopyToAsync(
     [Console]::OpenStandardError()
   )
-  $child.WaitForExit()
+  if (-not $executionStartedGate.Set()) {
+    throw 'Contained command execution-start gate could not be signaled.'
+  }
+  while (-not $child.WaitForExit(100)) {
+    if ($cancellationGate.WaitOne(0)) {
+      $child.Kill($true)
+      $child.WaitForExit()
+      break
+    }
+  }
   $exitCode = $child.ExitCode
   $copies = [Threading.Tasks.Task]::WhenAll(
     [Threading.Tasks.Task[]]@($stdoutCopy, $stderrCopy)
@@ -950,6 +967,12 @@ try {
   }
   if ($null -ne $gate) {
     $gate.Dispose()
+  }
+  if ($null -ne $cancellationGate) {
+    $cancellationGate.Dispose()
+  }
+  if ($null -ne $executionStartedGate) {
+    $executionStartedGate.Dispose()
   }
 }
 [Environment]::Exit($exitCode)
@@ -1032,14 +1055,43 @@ function Stop-BinderContainedTreeV1 {
     [Parameter(Mandatory = $true)]
     [object]$Job,
 
+    [object]$CancellationGate,
+
     [int]$ConfirmationTimeoutMilliseconds = 15000
   )
 
   $killSucceeded = $false
   $killError = $null
+  if ($null -ne $CancellationGate) {
+    try {
+      if (-not $CancellationGate.Set()) {
+        throw 'Contained supervisor cancellation gate was not signaled.'
+      }
+      $gracefulConfirmation = Wait-BinderContainedTreeV1 `
+        -RootProcess $RootProcess `
+        -Job $Job `
+        -TimeoutMilliseconds (
+          [Math]::Min(5000, $ConfirmationTimeoutMilliseconds)
+        )
+      if ($gracefulConfirmation.TerminationConfirmed) {
+        return [pscustomobject][ordered]@{
+          KillAttempted = $true
+          KillRequestSucceeded = $true
+          KillRequestError = $null
+          RootExited = $true
+          ProcessTreeEmpty = $true
+          TerminationConfirmed = $true
+          QueryError = $gracefulConfirmation.QueryError
+        }
+      }
+    } catch {
+      $killError = $_.Exception.Message
+    }
+  }
   try {
     $Job.Terminate(1)
     $killSucceeded = $true
+    $killError = $null
   } catch {
     $killError = $_.Exception.Message
   }
@@ -1256,6 +1308,8 @@ function Invoke-BinderProcessV1 {
     -Values $state
 
   $gate = $null
+  $cancellationGate = $null
+  $executionStartedGate = $null
   $job = $null
   $process = $null
   $stdoutCapture = $null
@@ -1269,6 +1323,14 @@ function Invoke-BinderProcessV1 {
       'Local\GrookaiBinderRolloutV1-' +
       [guid]::NewGuid().ToString('N')
     )
+    $cancellationGateName = (
+      'Local\GrookaiBinderRolloutCancelV1-' +
+      [guid]::NewGuid().ToString('N')
+    )
+    $executionStartedGateName = (
+      'Local\GrookaiBinderRolloutStartedV1-' +
+      [guid]::NewGuid().ToString('N')
+    )
     $createdNew = $false
     $gate = [Threading.EventWaitHandle]::new(
       $false,
@@ -1279,10 +1341,32 @@ function Invoke-BinderProcessV1 {
     Assert-BinderConditionV1 $createdNew (
       'A unique rollout supervisor gate could not be created.'
     )
+    $cancellationGateCreatedNew = $false
+    $cancellationGate = [Threading.EventWaitHandle]::new(
+      $false,
+      [Threading.EventResetMode]::ManualReset,
+      $cancellationGateName,
+      [ref]$cancellationGateCreatedNew
+    )
+    Assert-BinderConditionV1 $cancellationGateCreatedNew (
+      'A unique rollout supervisor cancellation gate could not be created.'
+    )
+    $executionStartedGateCreatedNew = $false
+    $executionStartedGate = [Threading.EventWaitHandle]::new(
+      $false,
+      [Threading.EventResetMode]::ManualReset,
+      $executionStartedGateName,
+      [ref]$executionStartedGateCreatedNew
+    )
+    Assert-BinderConditionV1 $executionStartedGateCreatedNew (
+      'A unique command execution-start gate could not be created.'
+    )
     $job = [Grookai.Vault.RolloutV1.BinderJob]::new()
 
     $payload = [ordered]@{
       GateName = $gateName
+      CancellationGateName = $cancellationGateName
+      ExecutionStartedGateName = $executionStartedGateName
       FilePath = $resolvedFilePath
       WorkingDirectory = $resolvedWorkingDirectory
       Arguments = @($Arguments)
@@ -1354,6 +1438,9 @@ function Invoke-BinderProcessV1 {
     Assert-BinderConditionV1 ($gate.Set()) (
       'Contained supervisor gate could not be released.'
     )
+    Assert-BinderConditionV1 (
+      $executionStartedGate.WaitOne(10000)
+    ) 'Contained command did not start within ten seconds.'
 
     $normalWait = Wait-BinderContainedTreeV1 `
       -RootProcess $process `
@@ -1367,7 +1454,8 @@ function Invoke-BinderProcessV1 {
       $state.TimedOut = $true
       $termination = Stop-BinderContainedTreeV1 `
         -RootProcess $process `
-        -Job $job
+        -Job $job `
+        -CancellationGate $cancellationGate
       $state.KillAttempted = $termination.KillAttempted
       $state.KillRequestSucceeded =
         $termination.KillRequestSucceeded
@@ -1440,7 +1528,8 @@ function Invoke-BinderProcessV1 {
       if ($jobAssigned) {
         $termination = Stop-BinderContainedTreeV1 `
           -RootProcess $process `
-          -Job $job
+          -Job $job `
+          -CancellationGate $cancellationGate
         $state.KillAttempted = $termination.KillAttempted
         $state.KillRequestSucceeded =
           $termination.KillRequestSucceeded
@@ -1517,6 +1606,12 @@ function Invoke-BinderProcessV1 {
     }
     if ($null -ne $job) {
       $job.Dispose()
+    }
+    if ($null -ne $cancellationGate) {
+      $cancellationGate.Dispose()
+    }
+    if ($null -ne $executionStartedGate) {
+      $executionStartedGate.Dispose()
     }
     if ($null -ne $gate) {
       $gate.Dispose()

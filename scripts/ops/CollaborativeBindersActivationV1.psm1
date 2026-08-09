@@ -13,7 +13,7 @@ $script:RolloutModulePath = Join-Path (
   $script:ActivationRepoRoot
 ) 'scripts/ops/CollaborativeBindersProductionRolloutV1.psm1'
 $script:ExpectedRolloutModuleSha256 =
-  '4a3c61cec4e490f17f180c7f994041675c37fd8d39bbd95cc8e5711eabedd471'
+  '00f43c30d5335beddcdb41f88a67f120792c89f15230def0a929acec7b84451f'
 $rolloutModuleItem = Get-Item -LiteralPath $script:RolloutModulePath
 if ($rolloutModuleItem.Attributes.HasFlag(
   [IO.FileAttributes]::ReparsePoint
