@@ -24,7 +24,7 @@ const observer = fs.readFileSync(
 test("scheduled canary observer is pinned to the reviewed source and canary", () => {
   assert.match(
     workflow,
-    /OBSERVER_SOURCE_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"/,
+    /OBSERVER_SOURCE_SHA: "d8035f50e3754027eb1693aac4d28b894fde9749"/,
   );
   assert.match(
     workflow,
@@ -40,6 +40,7 @@ test("scheduled canary observer is pinned to the reviewed source and canary", ()
     /TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"/,
   );
   assert.match(workflow, /ref: \$\{\{ env\.OBSERVER_SOURCE_SHA \}\}/);
+  assert.match(workflow, /GITHUB_EVENT_NAME.*workflow_dispatch/);
 });
 
 test("scheduled canary observer allows final-slot completion before requiring a terminal pass", () => {

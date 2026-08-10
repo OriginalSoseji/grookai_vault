@@ -24,7 +24,7 @@ jobs:
       CANARY_EXPECTED_COUNT: "100"
       TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"
       CANARY_COMPLETION_GRACE_SECONDS: "28800"
-      OBSERVER_SOURCE_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"
+      OBSERVER_SOURCE_SHA: "d8035f50e3754027eb1693aac4d28b894fde9749"
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
 
     steps:
@@ -53,7 +53,7 @@ jobs:
           final_completion_deadline="$((required_end_epoch + CANARY_COMPLETION_GRACE_SECONDS))"
           final_observation_deadline="$((final_completion_deadline + 21600))"
 
-          if (( now_epoch > final_observation_deadline )); then
+          if [[ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]] && (( now_epoch > final_observation_deadline )); then
             echo "The frozen canary observation window is complete; no further scheduled reads are required."
             echo "skipped_after_final_window=true" >> "$GITHUB_OUTPUT"
             exit 0
