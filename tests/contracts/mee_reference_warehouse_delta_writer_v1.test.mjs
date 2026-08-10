@@ -26,6 +26,8 @@ test("MEE reference warehouse delta writer is guarded and non-public", () => {
   assert.match(script, /countRowsBySourceWithPg/);
   assert.match(script, /fetchExistingCandidateMapWithPg/);
   assert.match(script, /fetchExistingNormalizedKeysWithPg/);
+  assert.match(script, /resolveMeeArtifactInputV1\(REPO_ROOT, item\.acquisitionPath\)/);
+  assert.match(script, /resolveMeeArtifactInputV1\(REPO_ROOT, item\.normalizedPath\)/);
   assert.match(script, /db_writes:\s*run\s*&&\s*applyResults\.some/);
   assert.match(script, /pricing_observations_writes:\s*false/);
   assert.match(script, /ebay_active_prices_latest_writes:\s*false/);

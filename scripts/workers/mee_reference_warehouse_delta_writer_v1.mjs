@@ -13,7 +13,11 @@ import {
   MARKET_REFERENCE_WAREHOUSE_AUTOMATED_APPLY_CONTRACT_VERSION,
 } from "../../backend/pricing/market_reference_warehouse_automated_apply_policy_v1.mjs";
 import { referenceCandidateHashV1 } from "../../backend/pricing/market_reference_warehouse_backfill_manifest_v1.mjs";
-import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
+import {
+  meeArtifactReferenceV1,
+  resolveMeeArtifactInputV1,
+  resolveMeeAuditRootV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 export const PACKAGE_ID = "MEE-REFERENCE-WAREHOUSE-DELTA-WRITER-V1";
 
@@ -159,10 +163,10 @@ async function buildArtifactInventory({ candidateCounts = {}, normalizedCounts =
   });
   const tcgdexAudit = readJsonIfPresent(tcgdexAuditPath);
   const tcgdexCandidateManifestPath = tcgdexAudit?.artifacts?.candidates
-    ? path.join(REPO_ROOT, tcgdexAudit.artifacts.candidates)
+    ? resolveMeeArtifactInputV1(REPO_ROOT, tcgdexAudit.artifacts.candidates)
     : null;
   const tcgdexNormalizedManifestPath = tcgdexAudit?.artifacts?.normalized
-    ? path.join(REPO_ROOT, tcgdexAudit.artifacts.normalized)
+    ? resolveMeeArtifactInputV1(REPO_ROOT, tcgdexAudit.artifacts.normalized)
     : null;
 
   const pokemonAcquisitionPath = await latestFile({
@@ -429,8 +433,8 @@ async function buildSourceDeltaPlan({ supabase, inventory }) {
   const findings = [];
 
   for (const item of plannedSourcesFromInventory(inventory)) {
-    const acquisition = readJsonIfPresent(item.acquisitionPath ? path.join(REPO_ROOT, item.acquisitionPath) : null);
-    const normalized = readJsonIfPresent(item.normalizedPath ? path.join(REPO_ROOT, item.normalizedPath) : null);
+    const acquisition = readJsonIfPresent(resolveMeeArtifactInputV1(REPO_ROOT, item.acquisitionPath));
+    const normalized = readJsonIfPresent(resolveMeeArtifactInputV1(REPO_ROOT, item.normalizedPath));
     if (!acquisition || !normalized) {
       findings.push(`${item.source}:source_artifacts_missing`);
       continue;
