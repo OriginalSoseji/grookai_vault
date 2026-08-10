@@ -38,7 +38,7 @@
       "internal_state": "IN_BETA_TESTING",
       "external_state": "IN_BETA_TESTING",
       "beta_review_state": "APPROVED",
-      "status": "installed_and_read_only_launch_proven_physical_journeys_pending"
+      "status": "installed_journeys_c_f_proven_journey_a_device_path_proven"
     },
     "soak_status": "not_started"
   },
@@ -96,11 +96,11 @@
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
-        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md"
+        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Fresh-user ten-second comprehension result",
-        "Repeat signed-out card exploration and login continuation on physical iPhone/TestFlight build 289"
+        "Fresh-user ten-second comprehension result"
       ]
     },
     {
@@ -116,7 +116,7 @@
     },
     {
       "id": "journey_c_want_and_match",
-      "status": "partial",
+      "status": "proven",
       "evidence": [
         "tests/contracts/e3_want_match_durable_engine_contract_v1.test.mjs",
         "tests/contracts/e3_want_match_delivery_contract_v1.test.mjs",
@@ -134,11 +134,12 @@
         "docs/checkpoints/product/FINAL_CANDIDATE_PHYSICAL_IPHONE_WANT_MATCH_20260809_V1.md",
         "docs/checkpoints/product/SYNCHRONIZED_FINAL_CANDIDATE_20260809_V1.md",
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/signed_in_web_retry_1/2026-08-09T19-43-59-506Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/WANT_MATCH_REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/want_match_summary.json"
       ],
-      "required_next_evidence": [
-        "Repeat and reconcile the clean-account Want-to-match-to-message-to-opt-out journey on synchronized TestFlight build 289; build 288 remains historical functional proof only"
-      ]
+      "required_next_evidence": []
     },
     {
       "id": "journey_d_collector_connection",
@@ -171,7 +172,7 @@
     },
     {
       "id": "journey_f_signed_out_locked_features",
-      "status": "partial",
+      "status": "proven",
       "evidence": [
         "docs/audits/release_convergence_v1/RELEASE_VISUAL_COMPLETION_REPORT_V1.md",
         "docs/audits/release_completion_v1/PRODUCTION_SIGNED_OUT_WEB_SMOKE_20260806_V1.md",
@@ -184,11 +185,11 @@
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_c3a0aead_v1/2026-08-07T20-39-31-829Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
-        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md"
+        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/signed_out_af_summary.json"
       ],
-      "required_next_evidence": [
-        "Repeat supported signed-out locked-feature and preserved-destination proof on physical iPhone/TestFlight build 289"
-      ]
+      "required_next_evidence": []
     },
     {
       "id": "cross_platform_state_matrix",
@@ -214,7 +215,8 @@
         "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Synchronized-candidate iPhone build 289 and Android build 23 execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states"

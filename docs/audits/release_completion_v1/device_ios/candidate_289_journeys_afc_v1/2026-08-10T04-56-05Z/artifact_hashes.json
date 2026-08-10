@@ -1,0 +1,40 @@
+{
+  "schema_version": "FINAL_CANDIDATE_289_JOURNEYS_AFC_ARTIFACT_HASHES_V1",
+  "artifacts": [
+    {
+      "name": "REPORT.md",
+      "size_bytes": 3479,
+      "sha256": "f8d5143e9d1993a8bfbabf897eaa04c8e5ae54d49ac340a5ef96f3a51fe00907"
+    },
+    {
+      "name": "WANT_MATCH_REPORT.md",
+      "size_bytes": 1045,
+      "sha256": "c03195a179cde1875c9df7c10b8f98c79c860d84879bc82b9db8d97560a787ab"
+    },
+    {
+      "name": "private_evidence_hashes.json",
+      "size_bytes": 1960,
+      "sha256": "0cebd4178de46341e3041bad8093297233d07a65c66e89d5895ccb2bdf4ad1f9"
+    },
+    {
+      "name": "signed_out_af_summary.json",
+      "size_bytes": 1660,
+      "sha256": "12629600aedef14c8f62b4d69fc03a725adfe0384c2a859b0ea1462b17b4fe34"
+    },
+    {
+      "name": "want_match_artifact_hashes.json",
+      "size_bytes": 259,
+      "sha256": "820f0cf17370732a3c837c3679283ff19d38d3ffb3a367124f681cdc03e0b60c"
+    },
+    {
+      "name": "want_match_run_plan.json",
+      "size_bytes": 1027,
+      "sha256": "dd63ac9d03819582f2b75bbde64c8093352c4996d43ccf081522ff2c911e3782"
+    },
+    {
+      "name": "want_match_summary.json",
+      "size_bytes": 4603,
+      "sha256": "b33044a6631aaaface874c1e92529af6a2896ee7bcb5cbabd3c0b49a02de4c31"
+    }
+  ]
+}

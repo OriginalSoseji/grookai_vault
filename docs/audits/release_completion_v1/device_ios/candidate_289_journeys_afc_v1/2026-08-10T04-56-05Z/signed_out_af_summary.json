@@ -1,0 +1,42 @@
+{
+  "schema_version": "FINAL_CANDIDATE_289_SIGNED_OUT_AF_SUMMARY_V1",
+  "candidate": {
+    "app_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+    "testflight_build": "289",
+    "platform": "iOS",
+    "physical_device": true,
+    "installed_from_testflight": true
+  },
+  "status": "product_flow_proven_with_non_product_terminal_assertion_failure",
+  "product_confirmations": {
+    "signed_out_entry_visible": true,
+    "signed_out_catalog_exploration": true,
+    "exact_card_found": true,
+    "exact_card_gv_id": "GV-PK-CEC-214",
+    "locked_want_explanation_visible": true,
+    "authentication_required_before_mutation": true,
+    "destination_preserved_into_authentication": true,
+    "disposable_account_authenticated": true,
+    "exact_card_restored_after_authentication": true,
+    "no_blocking_product_error": true
+  },
+  "test_result": {
+    "raw_xcuitest_status": "failed",
+    "failure_class": "terminal_harness_assertion_after_product_success",
+    "failure_detail": "The terminal assertion expected a global Account control while the app correctly remained on the restored exact-card detail surface.",
+    "rerun_performed": false,
+    "rerun_reason": "A rerun would duplicate a production mutation after the product states had already been captured."
+  },
+  "gate_effect": {
+    "journey_a_device_path": "proven",
+    "journey_a_overall": "partial_pending_fresh_human_comprehension",
+    "journey_f": "proven"
+  },
+  "privacy": {
+    "raw_credentials_committed": false,
+    "email_committed": false,
+    "user_id_committed": false,
+    "device_identifier_committed": false,
+    "private_artifacts_represented_by_hash_only": true
+  }
+}

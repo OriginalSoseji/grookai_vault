@@ -1,0 +1,27 @@
+{
+  "audit_version": "RELEASE_WANT_MATCH_JOURNEY_READBACK_AUDIT_V1",
+  "policy_version": "WANT_MATCH_JOURNEY_READBACK_POLICY_V1",
+  "verifier_commit_sha": "ccf6d702b517d127f5301435958fa60269285555",
+  "verifier_branch": "release/final-candidate-proof-v1",
+  "tracked_worktree_clean": true,
+  "expected_app_commit_sha": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "expected_testflight_build": "289",
+  "subject_fingerprint_sha256": "83ca78ab0d151a7cbf9b388e73e1084060d3e5a2832bd4313048216b1fcd49a6",
+  "window": {
+    "start": "2026-08-10T03:20:20.0231Z",
+    "end": "2026-08-10T04:56:03.518Z"
+  },
+  "require_pass": true,
+  "boundaries": {
+    "database_transaction_read_only": true,
+    "database_writes": false,
+    "production_user_mutations": false,
+    "email_in_artifacts": false,
+    "user_id_in_artifacts": false,
+    "owner_id_in_artifacts": false,
+    "match_id_in_artifacts": false,
+    "interaction_id_in_artifacts": false,
+    "message_content_in_artifacts": false,
+    "device_serial_in_artifacts": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "FINAL_CANDIDATE_289_PRIVATE_EVIDENCE_HASHES_V1",
+  "subject_fingerprint_sha256": "83ca78ab0d151a7cbf9b388e73e1084060d3e5a2832bd4313048216b1fcd49a6",
+  "artifacts": [
+    { "role": "private_run_plan", "size_bytes": 745, "sha256": "ea21e20078fcd15c8a1cafe3db3edec66e5e61937d746b09b6d1c188fee05ada" },
+    { "role": "private_harness_summary", "size_bytes": 399, "sha256": "c626a982ed6a3b3b373e5a2920db1f3cca588eac4ebc2265c0a93b679e1f89f9" },
+    { "role": "signed_out_entry_screenshot", "size_bytes": 1845619, "sha256": "dc6f43449ea2483ec7550d778693cd89df0584ce41b5988ccf9ebd4809feed05" },
+    { "role": "signed_out_exact_card_screenshot", "size_bytes": 1639857, "sha256": "288ded3104800d2cc7c375bffec1c638027c7bd9f89346858d61780b36c50a69" },
+    { "role": "locked_want_explanation_screenshot", "size_bytes": 1456367, "sha256": "1b5bd57688b3132899044ea1e3057de64cb51d7fd3c6a57e51d6668dd4188d4c" },
+    { "role": "preserved_auth_destination_screenshot", "size_bytes": 394283, "sha256": "a89784e8fa00ec28d5d0c2ea7ec098617a93b46536cb435050bf3edc5ab806ad" },
+    { "role": "restored_exact_card_after_authentication_screenshot", "size_bytes": 1619931, "sha256": "4e66077d1fe5f7420ffeb453d60f5bbbb0970eba01169096ba7b801744fbe5b3" },
+    { "role": "signed_out_af_raw_xcodebuild_log", "sha256": "b51229480678aa0530d1727c58a1bb609c4d44211e69d4a2096558a4dee6cdf2" },
+    { "role": "local_discovery_raw_xcodebuild_log", "sha256": "dedbd966e0908798e9316f52a0c3a01bfcdb03093f6d27f3b9675b43d0a011c4" },
+    { "role": "private_physical_xcuitest_harness", "sha256": "a0df406e54a4724eed360532bc8d0181411ff119a6c6f184842c70a9a93107ff" },
+    { "role": "want_match_device_evidence_manifest", "sha256": "12671fa767b45ac6acd553410b1ccde4b0c0c9b9622835e319fc81736ca94a50" }
+  ],
+  "boundaries": {
+    "private_files_committed": false,
+    "raw_credentials_committed": false,
+    "raw_message_committed": false,
+    "raw_device_identifier_committed": false
+  }
+}
