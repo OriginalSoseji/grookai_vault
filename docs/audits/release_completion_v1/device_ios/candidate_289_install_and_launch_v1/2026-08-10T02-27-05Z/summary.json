@@ -1,0 +1,83 @@
+{
+  "schema_version": "IOS_CANDIDATE_289_INSTALL_AND_READ_ONLY_LAUNCH_V1",
+  "observed_at": "2026-08-10T02:27:05Z",
+  "status": "candidate_installed_and_read_only_surfaces_proven_full_journeys_open",
+  "candidate": {
+    "application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+    "bundle_identifier": "com.cesar.grookaivault",
+    "version": "1.0.0",
+    "build": "289",
+    "app_store_connect_build_id": "dc5801e6-e1fd-42ef-b476-768e5ff5d411",
+    "ipa_sha256": "27619987ad4121347dbbfa2ef68a840d4ccc5139757f6f14d28a31a3660a09e1"
+  },
+  "device": {
+    "core_device_identifier": "7828E26C-BC77-5F00-BDEC-3545864095CB",
+    "hardware_identifier": "00008150-001C5DCA0A84401C",
+    "model": "iPhone 17 Pro",
+    "os_version": "26.6",
+    "passcode_required_during_readback": false,
+    "unlocked_since_boot": true
+  },
+  "verification": {
+    "testflight_preflight": "1/1 passed",
+    "candidate_app_launch": "1/1 passed",
+    "candidate_read_only_routes": "8/8 passed",
+    "total_selected_tests": 10,
+    "failed_tests": 0,
+    "validated_surfaces": [
+      "signed-in Pulse launch",
+      "Search landing",
+      "Blastoise Piplup 214 search results",
+      "exact card detail",
+      "full card page",
+      "Account top and lower navigation",
+      "Messages",
+      "Pulse readback"
+    ]
+  },
+  "harness": {
+    "swift_source_sha256": "d67f83b0ed46de0b3e072be31d04c1d8060690b4b9d7b5acedba44a6eb33cd08",
+    "xcode_project_sha256": "73f2befd6f7fb345158f788d83ba2497f88770a823d1af9c2467af606d067124",
+    "runner_restored_sha256": "bb85172c0d7f14de6bdf5a8be41ac8e57d8977599a10c394ec1aa3c0dd5fb1df"
+  },
+  "visual_review": {
+    "white_screen_observed": false,
+    "broken_card_image_observed": false,
+    "target_search_result_rank": 1,
+    "exact_printing_controls_visible": true
+  },
+  "follow_up_observations": [
+    {
+      "surface": "full card page",
+      "observation": "No pricing data available",
+      "classification": "separate_pricing_truth_follow_up",
+      "release_gate_failure": false,
+      "reason": "This read-only device audit did not determine whether the absence is expected before exact-printing selection or is a pricing defect."
+    }
+  ],
+  "boundaries": {
+    "mutating_xcuitests_selected": false,
+    "intentional_database_writes": false,
+    "want_state_changed": false,
+    "message_sent": false,
+    "session_signed_out": false,
+    "app_data_cleared": false,
+    "public_release": false,
+    "soak_started": false
+  },
+  "privacy": {
+    "private_account_and_message_screenshots_committed": false,
+    "verbose_accessibility_logs_committed": false,
+    "private_evidence_retained_outside_repository": true,
+    "private_evidence_hashes_recorded": true
+  },
+  "remaining_candidate_gates": [
+    "signed-out Journey A and preserved login continuation",
+    "clean-account Journey C mutation and net-zero reconciliation",
+    "signed-out locked-feature Journey F",
+    "remaining iPhone and Android state matrix",
+    "genuine fresh-user comprehension",
+    "Google Play account and listing readiness",
+    "72-hour soak"
+  ]
+}

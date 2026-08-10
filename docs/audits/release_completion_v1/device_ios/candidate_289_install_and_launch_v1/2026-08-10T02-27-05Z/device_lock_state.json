@@ -1,0 +1,28 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "info",
+      "lockState",
+      "--device",
+      "7828E26C-BC77-5F00-BDEC-3545864095CB",
+      "--timeout",
+      "20",
+      "--json-output",
+      "<REDACTED_HOME>/Library/Logs/Grookai/candidate_289_device_proof_20260810T0227Z/device_lock_state.json"
+    ],
+    "commandType" : "devicectl.device.info.lockState",
+    "environment" : {
+
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "518.33"
+  },
+  "result" : {
+    "deviceIdentifier" : "7828E26C-BC77-5F00-BDEC-3545864095CB",
+    "passcodeRequired" : false,
+    "unlockedSinceBoot" : true
+  }
+}

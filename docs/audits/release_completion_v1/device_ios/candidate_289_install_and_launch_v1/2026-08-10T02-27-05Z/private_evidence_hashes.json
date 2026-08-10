@@ -1,0 +1,56 @@
+{
+  "schema_version": "IOS_CANDIDATE_289_PRIVATE_EVIDENCE_HASHES_V1",
+  "storage": "retained outside repository",
+  "artifacts": [
+    {
+      "logical_name": "account_bottom.png",
+      "sha256": "cfe4efde198eee73fbe4ae39b814894e3583fa317da60bead1656d41684ea6c7",
+      "bytes": 588321
+    },
+    {
+      "logical_name": "account_top.png",
+      "sha256": "96e1a9cae2cf25a54fde053593ebf7a4033cd767e1c83884ef18650695333e1d",
+      "bytes": 845180
+    },
+    {
+      "logical_name": "candidate_app_launch_xcodebuild.log",
+      "sha256": "359b204529df9bc7985685a5a7f4f0f7aa3335a43635023aecac75b57dbe0948",
+      "bytes": 16051
+    },
+    {
+      "logical_name": "candidate_app_manifest.json",
+      "sha256": "d31f1e18a2d692a06d904f0a90354fd941e2a53ab98b0a48cc4d91684e40fefd",
+      "bytes": 689
+    },
+    {
+      "logical_name": "candidate_read_only_routes_manifest.json",
+      "sha256": "837676e21d8e6763c469f47e2502741be88f58673f021f44d5692d835a368a3a",
+      "bytes": 5620
+    },
+    {
+      "logical_name": "candidate_read_only_routes_xcodebuild.log",
+      "sha256": "7a5c960bc7fae9e380c72c65c91733b11c7e725aa233861768e8d11169e6fe86",
+      "bytes": 82277
+    },
+    {
+      "logical_name": "messages.png",
+      "sha256": "72fc35f474b11f39e4fa4601c20d9bca4ff730fff5125db49fc52cb4372140cd",
+      "bytes": 1177956
+    },
+    {
+      "logical_name": "testflight_attachments/11463BA8-8048-449F-B666-693A53C1C324.png",
+      "sha256": "694ced9a48ce3057f2e66d4fa589f1486b95865cffc09885e9be7e30e5698689",
+      "bytes": 148960
+    },
+    {
+      "logical_name": "testflight_attachments/manifest.json",
+      "sha256": "691ad3f00e74df3bac36d7a38a2575090bf937bfd32ffd940e6b800426b59eb2",
+      "bytes": 721
+    },
+    {
+      "logical_name": "testflight_preflight_xcodebuild.log",
+      "sha256": "13dcc47c9befe013232be3cbe97472bc0161309a81b89690e932893d80f15d3a",
+      "bytes": 15419
+    }
+  ]
+}

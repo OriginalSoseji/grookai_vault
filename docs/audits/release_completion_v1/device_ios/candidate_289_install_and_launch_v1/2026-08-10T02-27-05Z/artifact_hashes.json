@@ -1,0 +1,83 @@
+{
+  "schema_version": "IOS_CANDIDATE_289_ARTIFACT_HASHES_V1",
+  "recorded_at": "2026-08-10T02:52:04.832Z",
+  "hash_algorithm": "sha256",
+  "scope": "All source-controlled audit artifacts except this hash manifest.",
+  "artifacts": [
+    {
+      "path": "candidate_app_launch_summary.json",
+      "sha256": "0bb53360997ad8eb25c46fe1daaa89174f31cc2492028de065f67712c0907aef",
+      "bytes": 936
+    },
+    {
+      "path": "candidate_read_only_routes_summary.json",
+      "sha256": "88479143720d80da98771404eb71e017fe6732eeacbe7086ba55d07a9b414c8c",
+      "bytes": 936
+    },
+    {
+      "path": "curated_screenshot_manifest.json",
+      "sha256": "259d9588b180f188deb14506bf8e6fd50dce3f1dd2a3e1b4479f0ab2be528e69",
+      "bytes": 1626
+    },
+    {
+      "path": "device_apps.json",
+      "sha256": "9bdfb5cfad3305b2167830d5f9b6c17c5e6cacf9768c4767117f349cfa91e273",
+      "bytes": 2258
+    },
+    {
+      "path": "device_lock_state.json",
+      "sha256": "e1dcacd16753fd40cc2eab5907b5de2f0d0788d9aca054a83ad012c140ed6752",
+      "bytes": 652
+    },
+    {
+      "path": "private_evidence_hashes.json",
+      "sha256": "4c52b8090c9d62d73eba1a25a77be4d6400c009540cc72ecd7ae6fec059c2ea6",
+      "bytes": 1898
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "76d3e191f6db1142a8974306e4d35696ce65df0713991e7900a764fd4f3f5de9",
+      "bytes": 3086
+    },
+    {
+      "path": "screenshots/exact_card_detail.png",
+      "sha256": "7a3e2fddb4730a724668332d6c28ec746b5be672bc8dbe3f56169a64ed0cada9",
+      "bytes": 1590611
+    },
+    {
+      "path": "screenshots/full_card_page.png",
+      "sha256": "43e6944d9b157d06910c3421a14394365709af40f269dcae6cc8cd8d10994a43",
+      "bytes": 1636136
+    },
+    {
+      "path": "screenshots/search_landing.png",
+      "sha256": "d98850aa377b8df768fd91438b0d603550f25d96585e57685bae17c272c6e2ba",
+      "bytes": 512004
+    },
+    {
+      "path": "screenshots/search_results.png",
+      "sha256": "530e0453d512e905bcdbe8902d8ad369da22c51ff223e81526723a39e22eb98f",
+      "bytes": 2400396
+    },
+    {
+      "path": "screenshots/signed_in_pulse_launch.png",
+      "sha256": "c172cf3dcffaabb3038b7c5f1ace2f49c7753ac134774d33bed4835b378037b2",
+      "bytes": 435327
+    },
+    {
+      "path": "screenshots/signed_in_pulse_readback.png",
+      "sha256": "f0095e968f27d96716e01303aa8352c57cdef0862693f796ed64657aad30dac8",
+      "bytes": 430456
+    },
+    {
+      "path": "summary.json",
+      "sha256": "afef91daac82b8a6ff50e108333960c64a82e742fd73bd120cc9aec2d6ded528",
+      "bytes": 3079
+    },
+    {
+      "path": "testflight_preflight_summary.json",
+      "sha256": "e88bc774cf87d43ea5b37a1800eb44a15e130160a00a14f212883e583f254417",
+      "bytes": 932
+    }
+  ]
+}

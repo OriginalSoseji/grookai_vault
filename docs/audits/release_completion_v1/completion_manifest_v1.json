@@ -38,7 +38,7 @@
       "internal_state": "IN_BETA_TESTING",
       "external_state": "IN_BETA_TESTING",
       "beta_review_state": "APPROVED",
-      "status": "distributed_candidate_physical_journeys_pending"
+      "status": "installed_and_read_only_launch_proven_physical_journeys_pending"
     },
     "soak_status": "not_started"
   },
@@ -133,7 +133,8 @@
         "docs/audits/release_completion_v1/device_ios/clean_account_want_match_journey_v1/2026-08-09T05-42-34Z/summary.json",
         "docs/checkpoints/product/FINAL_CANDIDATE_PHYSICAL_IPHONE_WANT_MATCH_20260809_V1.md",
         "docs/checkpoints/product/SYNCHRONIZED_FINAL_CANDIDATE_20260809_V1.md",
-        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/signed_in_web_retry_1/2026-08-09T19-43-59-506Z/REPORT.md"
+        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/signed_in_web_retry_1/2026-08-09T19-43-59-506Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Repeat and reconcile the clean-account Want-to-match-to-message-to-opt-out journey on synchronized TestFlight build 289; build 288 remains historical functional proof only"
@@ -212,7 +213,8 @@
         "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
-        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md"
+        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Synchronized-candidate iPhone build 289 and Android build 23 execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states"
@@ -257,7 +259,8 @@
         "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/app_store_connect_readback.json",
-        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/play_console_account_readback.json"
+        "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/play_console_account_readback.json",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Establish or identify the intended Google Play developer account, then review the current Play listing and assets; App Store metadata and intended TestFlight groups are proven"

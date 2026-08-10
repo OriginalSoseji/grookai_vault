@@ -1,0 +1,71 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "info",
+      "apps",
+      "--device",
+      "7828E26C-BC77-5F00-BDEC-3545864095CB",
+      "--timeout",
+      "20",
+      "--json-output",
+      "<REDACTED_HOME>/Library/Logs/Grookai/candidate_289_device_proof_20260810T0227Z/device_apps.json"
+    ],
+    "commandType" : "devicectl.device.info.apps",
+    "environment" : {
+
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "518.33"
+  },
+  "result" : {
+    "apps" : [
+      {
+        "appClip" : false,
+        "builtByDeveloper" : true,
+        "bundleIdentifier" : "com.cesar.grookaivault",
+        "bundleVersion" : "289",
+        "defaultApp" : false,
+        "hidden" : false,
+        "internalApp" : false,
+        "name" : "Grookai Vault",
+        "removable" : true,
+        "url" : "file:///private/var/containers/Bundle/Application/6E55902B-7F9F-4F2C-A2DA-2706FAFAAEC2/Runner.app/",
+        "version" : "1.0.0"
+      },
+      {
+        "appClip" : false,
+        "builtByDeveloper" : true,
+        "bundleIdentifier" : "com.cesar.grookaivault.physical-smoke-uitests.xctrunner",
+        "bundleVersion" : "1",
+        "defaultApp" : false,
+        "hidden" : false,
+        "internalApp" : false,
+        "name" : "GrookaiPhysicalSmokeUITests-Runner",
+        "removable" : true,
+        "url" : "file:///private/var/containers/Bundle/Application/F95A969D-2B2B-4D4A-BF1A-0642F614137A/GrookaiPhysicalSmokeUITests-Runner.app/",
+        "version" : "1.0"
+      },
+      {
+        "appClip" : false,
+        "builtByDeveloper" : true,
+        "bundleIdentifier" : "com.cesar.grookaivault.releaseuitests.xctrunner",
+        "bundleVersion" : "1",
+        "defaultApp" : false,
+        "hidden" : false,
+        "internalApp" : false,
+        "name" : "GrookaiPhysicalUITests-Runner",
+        "removable" : true,
+        "url" : "file:///private/var/containers/Bundle/Application/3E0EDE62-8AF3-45B7-82CE-E12C4671DD71/GrookaiPhysicalUITests-Runner.app/",
+        "version" : "1.0"
+      }
+    ],
+    "defaultAppsIncluded" : false,
+    "deviceIdentifier" : "7828E26C-BC77-5F00-BDEC-3545864095CB",
+    "hiddenAppsIncluded" : false,
+    "internalAppsIncluded" : false,
+    "removableAppsIncluded" : true
+  }
+}

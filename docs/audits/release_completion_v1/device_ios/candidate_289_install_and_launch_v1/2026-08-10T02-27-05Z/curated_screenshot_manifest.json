@@ -1,0 +1,42 @@
+{
+  "schema_version": "IOS_CANDIDATE_289_CURATED_SCREENSHOTS_V1",
+  "screenshots": [
+    {
+      "path": "screenshots/signed_in_pulse_launch.png",
+      "test": "testDumpLiveAccessibility",
+      "description": "Candidate build 289 signed-in Pulse after cold launch."
+    },
+    {
+      "path": "screenshots/search_landing.png",
+      "test": "testDumpSearchAccessibility",
+      "description": "Search landing with sentence search and collector examples."
+    },
+    {
+      "path": "screenshots/search_results.png",
+      "test": "testDumpBlastoisePiplupSearchResults",
+      "description": "Blastoise Piplup 214 query with the expected card ranked first."
+    },
+    {
+      "path": "screenshots/exact_card_detail.png",
+      "test": "testDumpBlastoisePiplupCardDetail",
+      "description": "Exact card detail with set, number, GV-ID, and printing controls."
+    },
+    {
+      "path": "screenshots/full_card_page.png",
+      "test": "testDumpBlastoisePiplupFullCardPage",
+      "description": "Full card page with card image, canonical identity, printing choices, and actions."
+    },
+    {
+      "path": "screenshots/signed_in_pulse_readback.png",
+      "test": "testDumpPulseWantMatchAccessibility",
+      "description": "Signed-in Pulse readback after route checks."
+    }
+  ],
+  "excluded_private_attachments": [
+    "TestFlight account screenshot",
+    "Account profile screenshots",
+    "Messages screenshot",
+    "verbose accessibility logs"
+  ],
+  "exclusion_reason": "The excluded artifacts contain private account, profile, family-photo, email, or message content and are not appropriate for source control."
+}
