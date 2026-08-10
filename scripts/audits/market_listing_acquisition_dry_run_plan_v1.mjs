@@ -121,6 +121,7 @@ async function loadTargets() {
         cp.identity_domain,
         cp.printed_identity_modifier,
         s.game,
+        s.identity_domain_default as set_identity_domain,
         s.release_date,
         freshness.last_queried_at,
         cp.updated_at
@@ -130,6 +131,7 @@ async function loadTargets() {
       where cp.gv_id is not null
         and cp.name is not null
         and lower(coalesce(s.game, '')) = 'pokemon'
+        and s.identity_domain_default like 'pokemon_eng%'
         and not exists (
           select 1
           from public.card_printings child
@@ -156,6 +158,7 @@ async function loadTargets() {
         null::text as identity_domain,
         null::text as printed_identity_modifier,
         s.game,
+        s.identity_domain_default as set_identity_domain,
         s.release_date,
         coalesce(printing_freshness.last_queried_at, parent_freshness.last_queried_at) as last_queried_at,
         cp.updated_at
@@ -170,6 +173,7 @@ async function loadTargets() {
         and target.name is not null
         and target.ebay_query_text is not null
         and lower(coalesce(s.game, '')) = 'pokemon'
+        and s.identity_domain_default like 'pokemon_eng%'
     )
     select *
     from (

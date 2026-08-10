@@ -20,7 +20,11 @@ function timestamp(value) {
 }
 
 function isEnglishPokemonTarget(target) {
-  return text(target?.game).toLowerCase() === "pokemon";
+  const identityDomain = text(target?.set_identity_domain || target?.identity_domain).toLowerCase();
+  return (
+    text(target?.game).toLowerCase() === "pokemon" &&
+    identityDomain.startsWith("pokemon_eng")
+  );
 }
 
 function isRecentRelease(target, { asOf, newSetWindowDays }) {

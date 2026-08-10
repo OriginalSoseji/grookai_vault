@@ -12,6 +12,7 @@ function target(id, overrides = {}) {
     card_print_id: `card-${id}`,
     gv_id: `GV-PK-${id}`,
     game: "pokemon",
+    set_identity_domain: "pokemon_eng_physical",
     release_date: "2025-01-01",
     last_queried_at: null,
     rarity: "Rare",
@@ -27,7 +28,10 @@ test("new English Pokemon releases enter the next acquisition selection without 
         acquisition_priority: "priority_variant_special_finish",
       }),
       target("NEW-SET", { release_date: "2026-07-17" }),
-      target("JAPANESE", { game: "pokemon_jpn", release_date: "2026-07-20" }),
+      target("JAPANESE", {
+        set_identity_domain: "pokemon_jpn_physical",
+        release_date: "2026-07-20",
+      }),
     ],
     limit: 1,
     asOf: "2026-08-03T00:00:00.000Z",
@@ -85,7 +89,10 @@ test("selection excludes non-English Pokemon domains", () => {
   const selected = selectMarketListingAcquisitionTargetsV1({
     targets: [
       target("ENGLISH", { game: "pokemon" }),
-      target("JAPANESE", { game: "pokemon_jpn", release_date: "2026-07-20" }),
+      target("JAPANESE", {
+        set_identity_domain: "pokemon_jpn_physical",
+        release_date: "2026-07-20",
+      }),
     ],
     limit: 10,
     asOf: "2026-08-03T00:00:00.000Z",

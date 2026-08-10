@@ -156,6 +156,7 @@ test("MEE-11D audit script does not contain provider fetches or pricing writes",
   assert.doesNotMatch(script, /\.from\(["']market_listing_/);
   assert.doesNotMatch(script, /\.from\(["']pricing_observations["']\)/);
   assert.doesNotMatch(script, /\.from\(["']ebay_active_prices_latest["']\)/);
+  assert.match(script, /identity_domain_default like 'pokemon_eng%'/);
   assert.doesNotMatch(script, /\binsert\s+into\b/i);
   assert.doesNotMatch(script, /\bupdate\s+public\./i);
   assert.doesNotMatch(script, /\bdelete\s+from\b/i);
