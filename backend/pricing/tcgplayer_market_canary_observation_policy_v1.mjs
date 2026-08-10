@@ -491,13 +491,27 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     minuteUtc: scheduleMinuteUtc,
   });
 
-  const sourceRuns = scheduledSourceRuns.filter((run) => {
+  const observedSourceRuns = scheduledSourceRuns.filter((run) => {
     const startedAt = new Date(run?.started_at).getTime();
-    return Number.isFinite(startedAt) && startedAt > start.getTime();
+    return Number.isFinite(startedAt) && startedAt > start.getTime() && startedAt <= end.getTime();
   });
-  const publicationRuns = scheduledRuns.filter((run) => {
+  const observedPublicationRuns = scheduledRuns.filter((run) => {
     const startedAt = new Date(run?.started_at).getTime();
-    return Number.isFinite(startedAt) && startedAt > start.getTime();
+    return Number.isFinite(startedAt) && startedAt > start.getTime() && startedAt <= end.getTime();
+  });
+  const sourceRuns = observedSourceRuns.filter(
+    (run) => new Date(run.started_at).getTime() <= slotsThrough.getTime(),
+  );
+  const publicationRuns = observedPublicationRuns.filter(
+    (run) => new Date(run.started_at).getTime() <= slotsThrough.getTime(),
+  );
+  const terminalAlertsInWindow = terminalAlerts.filter((alert) => {
+    const receivedAt = new Date(alert?.received_at).getTime();
+    return (
+      Number.isFinite(receivedAt) &&
+      receivedAt > start.getTime() &&
+      receivedAt <= slotsThrough.getTime()
+    );
   });
   const scheduleResult = evaluateScheduleEvidence({
     slots: expectedSlots,
@@ -542,9 +556,9 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   ) {
     findings.push("duplicate_scheduled_run_key");
   }
-  if (terminalAlerts.length) findings.push("terminal_operations_alert_in_window");
+  if (terminalAlertsInWindow.length) findings.push("terminal_operations_alert_in_window");
 
-  const healthyRuns = [activationRun, ...publicationRuns]
+  const healthyRuns = [activationRun, ...observedPublicationRuns]
     .filter(Boolean)
     .filter((run) =>
       runIsHealthy(run, {
@@ -668,11 +682,14 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
       activation_run_key: activationRun?.run_key ?? null,
       scheduled_source_run_count: sourceRuns.length,
       scheduled_publication_run_count: publicationRuns.length,
+      post_window_source_run_count: observedSourceRuns.length - sourceRuns.length,
+      post_window_publication_run_count:
+        observedPublicationRuns.length - publicationRuns.length,
       unhealthy_run_keys: scheduleResult.unhealthy.map(
         (entry) => entry.publication_run_key || entry.source_run_key,
       ),
     },
-    terminal_alert_count: terminalAlerts.length,
+    terminal_alert_count: terminalAlertsInWindow.length,
     current,
     source_health: sourceHealth,
     access,

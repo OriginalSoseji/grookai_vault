@@ -359,6 +359,56 @@ test("a missing elapsed schedule slot fails the gate", () => {
   assert.ok(result.findings.includes("expected_schedule_slot_missing"));
 });
 
+test("a healthy run after the frozen window does not invalidate the completed gate", () => {
+  const postWindowRun = exactRun({
+    id: "run-aug-01",
+    runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-01-publication",
+    startedAt: "2026-08-01T08:15:03.000Z",
+    completedAt: "2026-08-01T08:16:10.000Z",
+  });
+  const postWindowSourceRun = {
+    ...scheduledSourceRun("31"),
+    id: "source-aug-01",
+    run_key: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-01-warehouse",
+    started_at: "2026-08-01T08:15:01.000Z",
+    finished_at: "2026-08-01T09:40:00.000Z",
+  };
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-08-01T10:00:00.000Z",
+      scheduledSourceRuns: [
+        scheduledSourceRun("29"),
+        scheduledSourceRun("30"),
+        scheduledSourceRun("31"),
+        postWindowSourceRun,
+      ],
+      scheduledRuns: [
+        scheduledRun("29"),
+        scheduledRun("30"),
+        scheduledRun("31"),
+        postWindowRun,
+      ],
+      terminalAlerts: [{
+        notification_id: "post-window-alert",
+        received_at: "2026-08-01T09:00:00.000Z",
+      }],
+      current: {
+        ...baseInput().current,
+        current_publication_run_id: "run-aug-01",
+      },
+    }),
+  );
+
+  assert.equal(result.status, "passed");
+  assert.equal(result.run_evidence.scheduled_source_run_count, 3);
+  assert.equal(result.run_evidence.scheduled_publication_run_count, 3);
+  assert.equal(result.run_evidence.post_window_source_run_count, 1);
+  assert.equal(result.run_evidence.post_window_publication_run_count, 1);
+  assert.equal(result.terminal_alert_count, 0);
+  assert.ok(!result.findings.includes("unexpected_extra_canary_run"));
+  assert.ok(!result.findings.includes("current_publication_pointer_mismatch"));
+});
+
 test("terminal alerts and wrong producing commits fail the gate", () => {
   const badRun = scheduledRun("29");
   badRun.git_commit_sha = "wrong-sha";
@@ -367,7 +417,10 @@ test("terminal alerts and wrong producing commits fail the gate", () => {
       asOf: "2026-07-29T09:00:00.000Z",
       scheduledSourceRuns: [scheduledSourceRun("29")],
       scheduledRuns: [badRun],
-      terminalAlerts: [{ notification_id: "alert-1" }],
+      terminalAlerts: [{
+        notification_id: "alert-1",
+        received_at: "2026-07-29T08:30:00.000Z",
+      }],
       current: {
         ...baseInput().current,
         current_publication_run_id: "run-29",
