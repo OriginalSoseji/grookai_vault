@@ -1,0 +1,47 @@
+{
+  "schema_version": "FINAL_CANDIDATE_ANDROID_PRIVATE_EVIDENCE_HASHES_V1",
+  "private_root": "C:\\grookai_private_evidence\\candidate_289_android_state_matrix_20260810",
+  "artifacts": [
+    {
+      "name": "07_offline_settled.xml",
+      "sha256": "fb14ea55fa25ec4ac7f83ee6ca199080a739dfcac7e0f01084b1af04ad24eee8"
+    },
+    {
+      "name": "09_recovery_settled.xml",
+      "sha256": "8d9cf3467683f53b38f13195d70dcf90e33b61ae6ceeaa62895c47b63cdb24bf"
+    },
+    {
+      "name": "10_empty_state.png",
+      "sha256": "42be0e8092112bdbecda2f2a1b9ca470229ee62aae8462174b95bc2e0b8cc4d5"
+    },
+    {
+      "name": "10_empty_state.xml",
+      "sha256": "b7fd9ef12fad29950514813ea15a98f4994ed8dbd9aaa90491beb4663c0393b8"
+    },
+    {
+      "name": "11_text_scale_auth.xml",
+      "sha256": "935cdb8ce4610391b25163c1d0ae87453d16807bcee0a8d3f3139d275278e05b"
+    },
+    {
+      "name": "12_text_scale_catalog.xml",
+      "sha256": "9d463f7cc2697140dc9d5f5ca9a1b57d5690332e1f47bd7196148a7d195305fd"
+    },
+    {
+      "name": "16_private_session.xml",
+      "sha256": "8f02be3fdd3f609d8280fb710dd284e7f47ee9493856ccb44063d8b2dc9ea158"
+    },
+    {
+      "name": "20_private_search.xml",
+      "sha256": "35317ae8ae2876ba6c264f5724661b29a185837b4bbcf7c5b8955767565e1f64"
+    },
+    {
+      "name": "installed_base.apk",
+      "sha256": "deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6"
+    }
+  ],
+  "privacy": {
+    "credentials_committed": false,
+    "raw_authentication_fields_committed": false,
+    "private_account_identifiers_committed": false
+  }
+}

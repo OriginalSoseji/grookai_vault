@@ -49,11 +49,12 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - The physical iPhone 17 Pro now has TestFlight build `289` installed. TestFlight preflight passed `1/1`, direct candidate launch passed `1/1`, and eight additional read-only tests passed `8/8` across Search, exact card detail, the full card page, Account, Messages, and Pulse. This closed the install/launch prerequisite; the subsequent evidence below closes Journeys C/F and the device portion of Journey A.
 - Physical TestFlight build `289` completed the Journey A signed-out exploration and exact-card continuation path and proved Journey F's action-specific locked-feature behavior. The combined raw harness ended on a post-success terminal assertion because it expected a global Account control while the restored exact-card surface was active; retained screenshots prove the product states, and no mutation-producing rerun was performed. Journey A remains partial only for genuine fresh-human comprehension.
 - Synchronized-candidate Journey C passed its authoritative read-only verifier with zero findings: one exact Want, one scheduled match, one available event, one exact card-centered message, one product-UI opt-out, final Want false, one stale historical match, zero stale Pulse rows, zero invalid or post-opt-out notification deliveries, and zero event-emission failures. Journey C and Journey F are now proven.
+- Synchronized Android build `23` passed the required state matrix on the exact frozen signed APK. Installed-package readback matched SHA-256 `deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6`, and live loading, empty, offline/error, recovery, private, signed-out, and 130% text-scale states passed with airplane mode and font scale restored exactly.
 
 ## Remaining Gates
 
 1. Complete Journey A genuine fresh-user ten-second comprehension evidence.
-2. Execute the synchronized-candidate route-state matrix across desktop web, narrow web, Android build `23`, and iPhone build `289`, including loading, empty, error, offline, private, signed-out, text-scaling, and recovery states.
+2. Execute loading, empty, error, offline, private, signed-out, text-scaling, and recovery states on physical TestFlight build `289`. Deterministic web and synchronized Android build `23` state evidence is complete.
 3. Establish or identify the intended Google Play developer account and verify the current Play listing and assets. App Store Connect distribution is proven.
 4. Reconcile every non-soak gate to `proven`, then start a new non-backdated 72-hour soak. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
 
@@ -71,4 +72,4 @@ Elapsed calendar time does not complete this plan. A gate changes to `proven` on
 
 ## Exact Next Gate
 
-Complete the synchronized-candidate state matrix on iPhone build `289` and Android build `23`, obtain genuine fresh-user comprehension evidence, and establish Google Play account/listing readback. Reconcile all non-soak gates before starting the 72-hour soak.
+Complete the synchronized-candidate state matrix on physical iPhone build `289`, obtain genuine fresh-user comprehension evidence, and establish Google Play account/listing readback. Reconcile all non-soak gates before starting the 72-hour soak.

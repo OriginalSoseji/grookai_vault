@@ -1,0 +1,45 @@
+{
+  "schema_version": "FINAL_CANDIDATE_ANDROID_ARTIFACT_HASHES_V1",
+  "artifacts": [
+    {
+      "path": "private_evidence_hashes.json",
+      "sha256": "a01beaee063ea8c55508f993fc6fd27c9f9a970232bc9ae06ff8fd6a66e5d253"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "2fbf3c5a2325b2a6ef6c9ddbc1e58fbe8f8660073d5ba4d0cbc731c11720bff8"
+    },
+    {
+      "path": "run_plan.json",
+      "sha256": "0f76e94e1d7d107a794740b8195cc0ad93af686c27588b21728db1549116738d"
+    },
+    {
+      "path": "state_assertions.json",
+      "sha256": "49f95a14c02376f29b944a75c99f2338483f803e4a7a677133e0d88f036f7f3a"
+    },
+    {
+      "path": "offline_settled.png",
+      "sha256": "8b71343cef998952f27bac7a66493947b0945f56ffca98822023f14249b42fb6"
+    },
+    {
+      "path": "private_pulse_empty.png",
+      "sha256": "627bc59e616804da57ddc3234c027a8f37802028c50e42004f62e45f28a24248"
+    },
+    {
+      "path": "private_search_loading.png",
+      "sha256": "274be0235dc42040bcecff144412da931680a5b3e60ae29be84dde14a1e68f4f"
+    },
+    {
+      "path": "recovery_settled.png",
+      "sha256": "c5d1a9748851d50071a738eacfc58584995b708691846c230487484f941deee3"
+    },
+    {
+      "path": "text_scale_auth_130.png",
+      "sha256": "987962d03f79e713cb1c656631f68e6623fb81263fdb3220e62d4743ea4a232d"
+    },
+    {
+      "path": "text_scale_catalog_130.png",
+      "sha256": "afda5a197d45e42b073201737c9234a2ee941f90566b816899ae21e3f48c4f08"
+    }
+  ]
+}

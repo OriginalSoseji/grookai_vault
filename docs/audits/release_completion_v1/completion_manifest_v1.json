@@ -215,11 +215,12 @@
         "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_android/candidate_23_state_matrix_v1/2026-08-10T05-43-20Z/REPORT.md",
         "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md",
         "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Synchronized-candidate iPhone build 289 and Android build 23 execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states"
+        "Physical TestFlight build 289 execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states; synchronized Android build 23 is proven"
       ]
     },
     {

@@ -1,0 +1,81 @@
+{
+  "schema_version": "FINAL_CANDIDATE_ANDROID_STATE_ASSERTIONS_V1",
+  "status": "passed",
+  "artifact_identity": {
+    "installed_apk_sha256": "deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6",
+    "matches_frozen_candidate": true,
+    "application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24"
+  },
+  "states": {
+    "loading": {
+      "status": "passed",
+      "evidence": "private_search_loading.png",
+      "assertion": "The candidate displayed its catalog LinearProgressIndicator while loading signed-in Search."
+    },
+    "empty": {
+      "status": "passed",
+      "private_evidence_sha256": "b7fd9ef12fad29950514813ea15a98f4994ed8dbd9aaa90491beb4663c0393b8",
+      "assertions": [
+        "No matching cards",
+        "No results yet"
+      ]
+    },
+    "offline_error": {
+      "status": "passed",
+      "evidence": "offline_settled.png",
+      "assertions": [
+        "Search is temporarily limited. Showing local results when available.",
+        "No cards yet",
+        "Cards will appear here when the catalog loads."
+      ]
+    },
+    "recovery": {
+      "status": "passed",
+      "evidence": "recovery_settled.png",
+      "assertions": [
+        "Showing 24 of 32",
+        "32 cards"
+      ]
+    },
+    "private": {
+      "status": "passed",
+      "evidence": "private_pulse_empty.png",
+      "assertions": [
+        "Pulse",
+        "Caught up",
+        "Nothing new around your collection right now.",
+        "Wall",
+        "Vault",
+        "Search"
+      ]
+    },
+    "signed_out": {
+      "status": "passed",
+      "evidence": "text_scale_auth_130.png",
+      "assertions": [
+        "Continue with Google",
+        "Sign in with email",
+        "Create account",
+        "Explore cards"
+      ]
+    },
+    "text_scaling": {
+      "status": "passed",
+      "scale": "1.3",
+      "evidence": [
+        "text_scale_auth_130.png",
+        "text_scale_catalog_130.png"
+      ],
+      "assertion": "Required authentication and catalog controls remained visible and non-overlapping at 130 percent font scale."
+    }
+  },
+  "restoration": {
+    "airplane_mode_initial": "0",
+    "airplane_mode_final": "0",
+    "airplane_mode_restored": true,
+    "font_scale_initial": "1.0",
+    "font_scale_final": "1.0",
+    "font_scale_restored": true
+  },
+  "findings": []
+}
