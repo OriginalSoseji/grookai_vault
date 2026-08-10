@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import test from "node:test";
 
 import {
+  findFrozenDryRunPlanForCursorV2,
   pipelineStateIsResumableV2,
   phaseReportSupportsResumeV2,
   selectFrozenDryRunPathV2,
@@ -58,6 +61,53 @@ test("V2 conditionally selects a frozen plan only for an incomplete cursor", () 
     conditionalPath: "/audit/original-plan.json",
     previousCursor: { cycle_complete: false },
   }), /cannot be used together/);
+});
+
+test("V2 auto recovery resolves the preserved plan matching the incomplete cursor", () => {
+  const auditRoot = mkdtempSync(path.join(os.tmpdir(), "mee-frozen-plan-auto-"));
+  try {
+    const target = (id, name) => ({
+      card_print_id: `00000000-0000-0000-0000-${id.padStart(12, "0")}`,
+      card_printing_id: `10000000-0000-0000-0000-${id.padStart(12, "0")}`,
+      gv_id: `GV-TEST-${id}`,
+      printing_gv_id: `GV-TEST-${id}-HOLO`,
+      name,
+      set_code: "test",
+      finish_key: "holo",
+      ebay_query_text: `Pokemon ${name} holo`,
+      acquisition_priority: "priority_variant_finish",
+    });
+    const matchingPlan = buildMarketListingAcquisitionDryRunPlanV1({
+      targets: [target("1", "Test Card")],
+      setShelfPageBudget: 0,
+    });
+    const unrelatedPlan = buildMarketListingAcquisitionDryRunPlanV1({
+      targets: [target("2", "Other Card")],
+      setShelfPageBudget: 0,
+    });
+    const matchingPath = path.join(
+      auditRoot,
+      "mee_11d_market_listing_acquisition_dry_run_plan_2026-08-10T00-00-00-000Z.json",
+    );
+    writeFileSync(matchingPath, `${JSON.stringify(matchingPlan)}\n`);
+    writeFileSync(
+      path.join(auditRoot, "mee_11d_market_listing_acquisition_dry_run_plan_2026-08-09T00-00-00-000Z.json"),
+      `${JSON.stringify(unrelatedPlan)}\n`,
+    );
+
+    const previousCursor = {
+      cycle_complete: false,
+      source_manifest_hash: matchingPlan.request_manifest_hash_sha256,
+      source_request_count: matchingPlan.acquisition_requests.length,
+    };
+    assert.equal(findFrozenDryRunPlanForCursorV2({ auditRoot, previousCursor }), matchingPath);
+    assert.throws(() => findFrozenDryRunPlanForCursorV2({
+      auditRoot,
+      previousCursor: { ...previousCursor, source_manifest_hash: "missing" },
+    }), /no governed frozen plan matches incomplete cursor/);
+  } finally {
+    rmSync(auditRoot, { recursive: true, force: true });
+  }
 });
 
 test("V2 resumes interrupted work but never carries a terminal failure into the next daily run", () => {

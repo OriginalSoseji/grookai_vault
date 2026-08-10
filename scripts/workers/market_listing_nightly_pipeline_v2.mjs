@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, renameSync, statfsSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statfsSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import pg from "pg";
@@ -262,6 +262,39 @@ export function selectFrozenDryRunPathV2({ strictPath, conditionalPath, previous
   if (strictPath) return strictPath;
   if (conditionalPath && previousCursor && previousCursor.cycle_complete === false) return conditionalPath;
   return null;
+}
+
+export function findFrozenDryRunPlanForCursorV2({ auditRoot, previousCursor } = {}) {
+  if (!previousCursor || previousCursor.cycle_complete !== false) return null;
+  if (!auditRoot || !existsSync(auditRoot)) {
+    throw new Error("governed MEE artifact root is unavailable for frozen-plan recovery");
+  }
+
+  const candidates = [];
+  for (const entry of readdirSync(auditRoot, { withFileTypes: true })) {
+    if (!entry.isFile() || !/^mee_11d_market_listing_acquisition_dry_run_plan_.*\.json$/.test(entry.name)) {
+      continue;
+    }
+    const candidatePath = path.join(auditRoot, entry.name);
+    try {
+      const plan = readJson(candidatePath);
+      validateFrozenDryRunPlanV2({ plan, previousCursor });
+      candidates.push({
+        path: candidatePath,
+        generatedAt: Date.parse(plan.generated_at ?? "") || 0,
+      });
+    } catch {
+      // A preserved plan for another cursor is expected and is not a recovery candidate.
+    }
+  }
+
+  if (candidates.length === 0) {
+    throw new Error(
+      `no governed frozen plan matches incomplete cursor ${previousCursor.source_manifest_hash}`,
+    );
+  }
+  candidates.sort((left, right) => right.generatedAt - left.generatedAt || right.path.localeCompare(left.path));
+  return candidates[0].path;
 }
 
 export function validateFrozenDryRunPlanV2({ plan, previousCursor } = {}) {
@@ -568,8 +601,11 @@ async function main() {
     conditionalPath: conditionalFrozenDryRunInput,
     previousCursor,
   });
-  const frozenDryRunPath = selectedFrozenDryRunInput
-    ? resolveFrozenDryRunPathV2(selectedFrozenDryRunInput)
+  const selectedFrozenDryRunPath = selectedFrozenDryRunInput === "auto"
+    ? findFrozenDryRunPlanForCursorV2({ auditRoot: AUDIT_ROOT, previousCursor })
+    : selectedFrozenDryRunInput;
+  const frozenDryRunPath = selectedFrozenDryRunPath
+    ? resolveFrozenDryRunPathV2(selectedFrozenDryRunPath)
     : null;
   if (
     frozenDryRunPath
