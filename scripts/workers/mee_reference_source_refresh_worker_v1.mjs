@@ -6,11 +6,12 @@ import { fileURLToPath } from "node:url";
 
 import "../../backend/env.mjs";
 import { buildMarketEvidenceSourceRefreshPlanV1 } from "../../backend/pricing/market_evidence_source_refresh_policy_v1.mjs";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const PACKAGE_ID = "MEE-REFERENCE-SOURCE-REFRESH-WORKER-V1";
 
 function stable(value) {
@@ -112,8 +113,8 @@ function writeReport(report) {
   writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
   writeFileSync(mdPath, renderMarkdown(report));
   return {
-    json: path.relative(REPO_ROOT, jsonPath).replace(/\\/g, "/"),
-    markdown: path.relative(REPO_ROOT, mdPath).replace(/\\/g, "/"),
+    json: meeArtifactReferenceV1(REPO_ROOT, jsonPath),
+    markdown: meeArtifactReferenceV1(REPO_ROOT, mdPath),
   };
 }
 

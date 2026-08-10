@@ -4,11 +4,12 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { meeArtifactReferenceV1, resolveMeeArtifactInputV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const { Client } = pg;
 
 function parseArgs(argv) {
@@ -43,12 +44,12 @@ function latestReferenceWriterArtifact() {
       fullPath: path.join(AUDIT_DIR, name),
     }))
     .sort((a, b) => b.name.localeCompare(a.name))[0];
-  return file ? path.relative(REPO_ROOT, file.fullPath).replace(/\\/g, "/") : null;
+  return file ? meeArtifactReferenceV1(REPO_ROOT, file.fullPath) : null;
 }
 
-function readArtifact(relativePath) {
-  if (!relativePath) return null;
-  const fullPath = path.join(REPO_ROOT, relativePath);
+function readArtifact(artifactPath) {
+  if (!artifactPath) return null;
+  const fullPath = resolveMeeArtifactInputV1(REPO_ROOT, artifactPath);
   if (!existsSync(fullPath)) return null;
   return JSON.parse(readFileSync(fullPath, "utf8"));
 }

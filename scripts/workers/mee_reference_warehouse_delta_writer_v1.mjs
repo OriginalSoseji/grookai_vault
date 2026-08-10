@@ -13,13 +13,14 @@ import {
   MARKET_REFERENCE_WAREHOUSE_AUTOMATED_APPLY_CONTRACT_VERSION,
 } from "../../backend/pricing/market_reference_warehouse_automated_apply_policy_v1.mjs";
 import { referenceCandidateHashV1 } from "../../backend/pricing/market_reference_warehouse_backfill_manifest_v1.mjs";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 export const PACKAGE_ID = "MEE-REFERENCE-WAREHOUSE-DELTA-WRITER-V1";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const { Client } = pg;
 const REFERENCE_WAREHOUSE_TABLES = new Set([
   "market_reference_candidates",
@@ -45,7 +46,7 @@ function sha256(value) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function parseArgs(argv) {

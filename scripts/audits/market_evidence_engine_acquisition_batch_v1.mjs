@@ -3,11 +3,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildMarketEvidenceAcquisitionBatchV1 } from '../../backend/pricing/market_evidence_acquisition_batch_v1.mjs';
+import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const DEFAULT_OUT_DIR = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1');
+const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 
 function parseArgs(argv) {
   const parsed = {

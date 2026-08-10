@@ -13,6 +13,8 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   const verify = read("deploy/scripts/verify-mee-reference-refresh-systemd.sh");
 
   assert.match(service, /WorkingDirectory=\/opt\/grookai_mee_current/);
+  assert.match(service, /MEE_RUNTIME_ARTIFACT_ROOT=\/var\/lib\/grookai\/mee\/audits/);
+  assert.match(service, /"\$artifact_root"\/mee_06a_/);
   assert.match(install, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_mee_current\}"/);
 
   assert.match(service, /market_evidence_engine_query_plan_v1\.mjs/);
@@ -40,6 +42,19 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(install, /mee_reference_warehouse_delta_writer_v1\.mjs --dry-run/);
   assert.match(verify, /journalctl -u "\$\{SERVICE_NAME\}"/);
   assert.match(verify, /mee_reference_warehouse_delta_writer_v1_/);
+});
+
+test("every reference refresh stage honors the external runtime artifact root", () => {
+  for (const scriptPath of [
+    "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
+    "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+    "scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
+    "scripts/workers/mee_reference_source_refresh_worker_v1.mjs",
+    "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
+    "scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs",
+  ]) {
+    assert.match(read(scriptPath), /resolveMeeAuditRootV1/, scriptPath);
+  }
 });
 
 test("MEE publication bridge view is internal-only and never public pricing", () => {
