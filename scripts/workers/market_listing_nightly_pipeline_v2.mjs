@@ -189,8 +189,12 @@ async function latestUnfinishedPipeline() {
       [PIPELINE_KEY],
     );
     const row = result.rows[0] ?? null;
-    return row && row.status !== "succeeded" ? row : null;
+    return pipelineStateIsResumableV2(row) ? row : null;
   });
+}
+
+export function pipelineStateIsResumableV2(row) {
+  return row?.status === "started";
 }
 
 async function appendPhaseLedger(runKey, phase, statePath) {

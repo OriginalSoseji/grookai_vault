@@ -12,6 +12,9 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   const install = read("deploy/scripts/install-mee-reference-refresh-systemd.sh");
   const verify = read("deploy/scripts/verify-mee-reference-refresh-systemd.sh");
 
+  assert.match(service, /WorkingDirectory=\/opt\/grookai_mee_current/);
+  assert.match(install, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_mee_current\}"/);
+
   assert.match(service, /market_evidence_engine_query_plan_v1\.mjs/);
   assert.match(service, /reference_limit="\$\{MEE_NIGHTLY_REFERENCE_LIMIT:-5000\}"/);
   assert.match(service, /market_evidence_engine_query_plan_v1\.mjs --limit="\$reference_limit"/);

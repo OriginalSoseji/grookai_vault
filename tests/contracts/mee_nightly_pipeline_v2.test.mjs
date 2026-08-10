@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
+  pipelineStateIsResumableV2,
   phaseReportSupportsResumeV2,
   selectFrozenDryRunPathV2,
   validateFrozenDryRunPlanV2,
@@ -57,6 +58,13 @@ test("V2 conditionally selects a frozen plan only for an incomplete cursor", () 
     conditionalPath: "/audit/original-plan.json",
     previousCursor: { cycle_complete: false },
   }), /cannot be used together/);
+});
+
+test("V2 resumes interrupted work but never carries a terminal failure into the next daily run", () => {
+  assert.equal(pipelineStateIsResumableV2({ status: "started" }), true);
+  assert.equal(pipelineStateIsResumableV2({ status: "failed" }), false);
+  assert.equal(pipelineStateIsResumableV2({ status: "succeeded" }), false);
+  assert.equal(pipelineStateIsResumableV2(null), false);
 });
 
 test("V2 accepts only a frozen manifest that exactly matches the incomplete cursor", () => {
