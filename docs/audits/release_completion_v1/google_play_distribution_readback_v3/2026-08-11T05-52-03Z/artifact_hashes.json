@@ -1,0 +1,14 @@
+{
+  "schema_version": "GROOKAI_GOOGLE_PLAY_DISTRIBUTION_ARTIFACT_HASHES_V1",
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "REPORT.md",
+      "sha256": "24181e5c078be3b6df79aa7d779d84e76288dfa433e1e1bfd68d44b0ab5dcfb2"
+    },
+    {
+      "path": "readback.json",
+      "sha256": "6dba8e202f7281be461fb21e71ec1047b93306d8f69a92f721489251dc03ce3a"
+    }
+  ]
+}

@@ -51,10 +51,11 @@ and does not complete Production V1 pricing.
 
 1. `journey_a_first_time_visitor`: genuine fresh-human ten-second
    comprehension evidence.
-2. `store_and_distribution_readiness`: establish the intended Google Play
-   developer account and verify the listing, assets, package ownership, and
-   release track. A fresh authenticated readback still presents account
-   creation at `/console/signup`; App Store Connect/TestFlight evidence is
+2. `store_and_distribution_readiness`: the intended Google Play developer
+   account, Grookai Vault app, package `com.grookai.vault`, and open-testing
+   bundle `1.0.0 (3)` are verified. The app remains a draft, Production is
+   inactive, six initial setup tasks remain incomplete, and the release has
+   not been submitted or rolled out. App Store Connect/TestFlight evidence is
    proven.
 3. `final_72_hour_release_candidate_soak`: begin only after the first two
    gates are proven, then preserve 72 continuous hours and issue the final
@@ -113,8 +114,9 @@ Production V1 publication.
 - **TestFlight beta:** ready and already distributed.
 - **Public iOS App Store:** not authorized until the remaining release gates
   and final report pass.
-- **Public Android/Google Play:** blocked by developer-account and listing
-  authority in addition to the remaining release gates.
+- **Public Android/Google Play:** the account, app record, package, and staged
+  open-test bundle are proven; listing/declaration completion and release
+  submission remain open in addition to the other release gates.
 - **Full Production V1 signed-in pricing:** not yet activated.
 - **Anonymous pricing:** intentionally closed.
 
@@ -133,8 +135,8 @@ behavior was changed on the pricing branch to mask it.
 
 ## Exact Next Work
 
-1. Stop at the genuine fresh-user and Google Play account gates if they remain
-   unavailable; do not manufacture either proof.
+1. Complete genuine fresh-user evidence and the six remaining Google Play
+   setup tasks; do not manufacture either proof or declaration.
 2. When both non-soak gates are proven, begin the new non-backdated 72-hour
    application soak and preserve its final report.
 3. In parallel, execute the frozen post-canary Production V1 pricing rollout.
@@ -145,6 +147,7 @@ behavior was changed on the pricing branch to mask it.
 - `docs/audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md`
 - `docs/checkpoints/product/FINAL_CANDIDATE_RELEASE_HANDOFF_20260810_V1.md`
 - `docs/audits/release_completion_v1/google_play_account_readback_v2/2026-08-10T23-32-00Z/REPORT.md`
+- `docs/audits/release_completion_v1/google_play_distribution_readback_v3/2026-08-11T05-52-03Z/REPORT.md`
 - `docs/runbooks/FRESH_USER_TEN_SECOND_COMPREHENSION_V1.md`
 - `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md`
 - `docs/checkpoints/market_evidence_engine/MEE_AND_TCG_CANARY_OPERATIONAL_CLOSEOUT_20260810_V1.md`

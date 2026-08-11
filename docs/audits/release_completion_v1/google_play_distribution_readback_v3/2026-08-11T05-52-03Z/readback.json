@@ -1,0 +1,71 @@
+{
+  "schema_version": "GROOKAI_GOOGLE_PLAY_DISTRIBUTION_READBACK_V3",
+  "observed_at": "2026-08-11T05:52:03Z",
+  "source": "authenticated_google_play_console_browser_session",
+  "repository_commit": "57dece7645eba693e02bebd8b03da0886b4b32a5",
+  "repository_branch": "release/final-candidate-proof-v1",
+  "developer_account_state": "active",
+  "developer_account_verified": true,
+  "app": {
+    "name": "Grookai Vault",
+    "package": "com.grookai.vault",
+    "console_app_record_verified": true,
+    "state": "draft_app",
+    "temporary_name_state": "unreviewed",
+    "production_track": "inactive"
+  },
+  "open_testing_release": {
+    "draft_exists": true,
+    "release_name": "Grookai Vault 1.0.0 (3)",
+    "version_name": "1.0.0",
+    "version_code": 3,
+    "minimum_api": 24,
+    "target_sdk": 36,
+    "app_bundle_present": true,
+    "retracing_mapping_attached": true,
+    "native_debug_symbols_attached": true,
+    "google_play_signing_active": true,
+    "automatic_protection_active": true,
+    "release_notes_languages": [
+      "en-US"
+    ],
+    "release_stage": "create_release",
+    "submitted_for_review": false,
+    "rolled_out": false
+  },
+  "initial_setup": {
+    "completed_tasks": 5,
+    "total_tasks": 11,
+    "incomplete_tasks": [
+      "sign_in_details",
+      "content_rating",
+      "target_audience",
+      "data_safety",
+      "app_category_and_contact_details",
+      "store_listing"
+    ]
+  },
+  "open_testing_setup": {
+    "completed_tasks": 2,
+    "total_tasks": 4,
+    "release_submission_locked_by_initial_setup": true
+  },
+  "compliance_notifications": [
+    "android_developer_verification_due_2026-09-30",
+    "google_play_policy_changes_pending_review"
+  ],
+  "browser_boundaries": {
+    "release_mutations": 0,
+    "listing_mutations": 0,
+    "form_submissions": 0,
+    "uploads": 0,
+    "release_rollouts": 0,
+    "screenshot_preserved": false,
+    "screenshot_omission_reason": "The authenticated console was inspected through a privacy-safe structured readback; no account identifier or private console screenshot was retained."
+  },
+  "release_gate": {
+    "gate": "store_and_distribution_readiness",
+    "status": "partial",
+    "result": "ACCOUNT_AND_APP_VERIFIED_SETUP_AND_RELEASE_INCOMPLETE"
+  }
+}

@@ -263,10 +263,11 @@
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/app_store_connect_readback.json",
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/play_console_account_readback.json",
         "docs/audits/release_completion_v1/google_play_account_readback_v2/2026-08-10T23-32-00Z/REPORT.md",
+        "docs/audits/release_completion_v1/google_play_distribution_readback_v3/2026-08-11T05-52-03Z/REPORT.md",
         "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Establish or identify the intended Google Play developer account, then review the current Play listing and assets; App Store metadata and intended TestFlight groups are proven"
+        "Complete and validate the six remaining Google Play initial-setup tasks, then preview, submit, and read back the existing open-testing release; App Store metadata and intended TestFlight groups are proven"
       ]
     },
     {
