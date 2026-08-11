@@ -24,35 +24,37 @@ class GrookaiObjectShareDestinationSheet extends StatelessWidget {
     final theme = Theme.of(context);
     final destinations = GrookaiObjectExportService.destinationsFor(object);
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 6, 20, 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Share destination',
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w800,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 6, 20, 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Share destination',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Choose the output shape before generating the image.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
+              const SizedBox(height: 4),
+              Text(
+                'Choose the output shape before generating the image.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            for (final destination in destinations)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: Icon(_iconFor(destination)),
-                title: Text(destination.label),
-                subtitle: Text(_descriptionFor(destination)),
-                onTap: () => Navigator.of(context).pop(destination),
-              ),
-          ],
+              const SizedBox(height: 12),
+              for (final destination in destinations)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(_iconFor(destination)),
+                  title: Text(destination.label),
+                  subtitle: Text(_descriptionFor(destination)),
+                  onTap: () => Navigator.of(context).pop(destination),
+                ),
+            ],
+          ),
         ),
       ),
     );

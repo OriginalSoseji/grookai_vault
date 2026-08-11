@@ -9,6 +9,7 @@ import 'package:grookai_vault/services/grookai_objects/memory_card_print_service
 import 'package:grookai_vault/services/vault/collector_memory_service.dart';
 import 'package:grookai_vault/widgets/card_surface_artwork.dart';
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_renderer.dart';
+import 'package:share_plus/share_plus.dart';
 
 void main() {
   testWidgets('Memories home renders empty state', (tester) async {
@@ -277,6 +278,49 @@ void main() {
     expect(printService.lastMemorySide, isNotEmpty);
   });
 
+  testWidgets(
+    'Memory detail shares through the existing destination workflow',
+    (tester) async {
+      final exportService = _FakeObjectExportService();
+      await tester.pumpWidget(
+        MaterialApp(
+          home: CollectorMemoryDetailScreen(
+            item: const OwnerCollectorMemory(
+              memory: CollectorMemory(
+                id: 'memory-1',
+                vaultItemInstanceId: 'instance-1',
+                gvviId: 'GVVI-1',
+                memoryType: CollectorMemoryType.note,
+                note: 'A complete memory.',
+              ),
+              cardPrintId: 'card-1',
+              cardName: 'Pikachu',
+              setName: 'Promo',
+            ),
+            exportService: exportService,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(const Key('share-memory-button')));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Instagram Feed'), findsOneWidget);
+      expect(find.text('Story'), findsOneWidget);
+      expect(find.text('Save Image'), findsOneWidget);
+      expect(find.text('eBay Listing'), findsNothing);
+
+      await tester.tap(find.text('Story'));
+      await tester.pumpAndSettle();
+
+      expect(exportService.shareCalls, 1);
+      expect(exportService.lastFileName, 'grookai-memory-story-pikachu.png');
+      expect(exportService.lastSubject, 'Grookai memory card');
+      expect(exportService.lastBytes, isNotEmpty);
+    },
+  );
+
   testWidgets('maximum-length Memory note renders without overflow', (
     tester,
   ) async {
@@ -360,11 +404,31 @@ class _FakeMemoryPrintService extends MemoryCardPrintService {
 }
 
 class _FakeObjectExportService extends GrookaiObjectExportService {
+  int shareCalls = 0;
+  Uint8List? lastBytes;
+  String? lastFileName;
+  String? lastSubject;
+
   @override
   Future<Uint8List> capturePng(
     GlobalKey repaintBoundaryKey, {
     double pixelRatio = 3,
   }) async {
     return Uint8List.fromList(const [137, 80, 78, 71]);
+  }
+
+  @override
+  Future<ShareResult> sharePng({
+    required Uint8List bytes,
+    required String fileName,
+    String? text,
+    String? subject,
+    Rect? sharePositionOrigin,
+  }) async {
+    shareCalls += 1;
+    lastBytes = bytes;
+    lastFileName = fileName;
+    lastSubject = subject;
+    return ShareResult.unavailable;
   }
 }
