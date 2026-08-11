@@ -1,0 +1,40 @@
+{
+  "schema_version": "GROOKAI_FRESH_USER_TEN_SECOND_COMPREHENSION_RESULT_V1",
+  "status": "DRAFT_NOT_EXECUTED",
+  "candidate": {
+    "source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+    "platform": null,
+    "build_or_deployment": null,
+    "starting_state": "signed_out"
+  },
+  "session": {
+    "observed_at": null,
+    "anonymous_tester_id": null,
+    "tester_is_genuinely_fresh": null,
+    "tester_has_seen_grookai_before": null,
+    "tester_was_briefed_before_exposure": null,
+    "exposure_seconds": 10,
+    "facilitator_spoke_during_exposure": null
+  },
+  "verbatim_answers": {
+    "what_is_this": null,
+    "who_is_it_for": null,
+    "what_would_you_do_next": null,
+    "what_do_you_think_connect_with_collectors_means": null
+  },
+  "observer_classification": {
+    "identified_cards_or_card_collecting": null,
+    "identified_collection_showing_or_organization": null,
+    "identified_collector_connection": null,
+    "identified_a_plausible_next_action": null,
+    "mistook_product_for_generic_social_network_only": null,
+    "mistook_product_for_store_or_marketplace_only": null,
+    "needed_coaching": null
+  },
+  "decision": {
+    "result": "PENDING",
+    "reason": null,
+    "reviewed_by": null,
+    "reviewed_at": null
+  }
+}

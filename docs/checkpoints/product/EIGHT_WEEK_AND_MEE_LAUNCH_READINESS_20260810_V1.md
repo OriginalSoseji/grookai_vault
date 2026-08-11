@@ -53,7 +53,9 @@ and does not complete Production V1 pricing.
    comprehension evidence.
 2. `store_and_distribution_readiness`: establish the intended Google Play
    developer account and verify the listing, assets, package ownership, and
-   release track. App Store Connect/TestFlight evidence is proven.
+   release track. A fresh authenticated readback still presents account
+   creation at `/console/signup`; App Store Connect/TestFlight evidence is
+   proven.
 3. `final_72_hour_release_candidate_soak`: begin only after the first two
    gates are proven, then preserve 72 continuous hours and issue the final
    production report.
@@ -142,5 +144,7 @@ behavior was changed on the pricing branch to mask it.
 - `docs/audits/release_completion_v1/completion_manifest_v1.json`
 - `docs/audits/release_completion_v1/RELEASE_COMPLETION_LEDGER_V1.md`
 - `docs/checkpoints/product/FINAL_CANDIDATE_RELEASE_HANDOFF_20260810_V1.md`
+- `docs/audits/release_completion_v1/google_play_account_readback_v2/2026-08-10T23-32-00Z/REPORT.md`
+- `docs/runbooks/FRESH_USER_TEN_SECOND_COMPREHENSION_V1.md`
 - `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md`
 - `docs/checkpoints/market_evidence_engine/MEE_AND_TCG_CANARY_OPERATIONAL_CLOSEOUT_20260810_V1.md`

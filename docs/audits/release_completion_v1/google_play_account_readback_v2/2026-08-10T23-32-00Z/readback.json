@@ -1,0 +1,23 @@
+{
+  "schema_version": "GROOKAI_GOOGLE_PLAY_ACCOUNT_READBACK_V2",
+  "observed_at": "2026-08-10T23:32:00Z",
+  "source": "authenticated_google_play_console_browser_session",
+  "url": "https://play.google.com/console/signup",
+  "page_title": "Play Console",
+  "account_identifier_present": true,
+  "account_identifier_preserved": false,
+  "developer_account_state": "account_creation_required",
+  "developer_account_verified": false,
+  "app_listing_verified": false,
+  "package_ownership_verified": false,
+  "release_track_verified": false,
+  "available_account_types": [
+    "organization",
+    "personal"
+  ],
+  "browser_writes": 0,
+  "enrollment_started": false,
+  "screenshot_preserved": false,
+  "screenshot_omission_reason": "The page displayed the signed-in Google account identifier; the durable readback is intentionally privacy-safe.",
+  "result": "BLOCKED_OWNER_ENROLLMENT_REQUIRED"
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": "GROOKAI_GOOGLE_PLAY_ACCOUNT_READBACK_ARTIFACT_HASHES_V2",
+  "algorithm": "sha256",
+  "artifacts": {
+    "readback.json": "81e9eeac4d2bb9bfac49ab880560d241f6d09dfb4677516a6e9c2771ccad246d",
+    "REPORT.md": "208417df545fa0e6cfd662f803171ddec5be93fe2d863fb42592ed120bf3072e"
+  }
+}
