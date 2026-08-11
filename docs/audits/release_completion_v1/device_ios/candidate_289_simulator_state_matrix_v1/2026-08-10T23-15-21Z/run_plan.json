@@ -1,0 +1,48 @@
+{
+  "schema_version": "GROOKAI_IOS_SIMULATOR_STATE_MATRIX_RUN_PLAN_V1",
+  "recorded_after_execution": true,
+  "recording_reason": "The bounded simulator matrix began as the authorized next action from the 2026-08-10 release handoff. This file records the frozen execution inputs without claiming it preceded the first test.",
+  "application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "release_checkpoint_commit": "be63c83b79f290913226f685d0e05f4dd42b1a38",
+  "release_branch": "release/final-candidate-proof-v1",
+  "simulator": {
+    "name": "iPhone 17 Pro",
+    "model_identifier": "iPhone18,1",
+    "runtime": "iOS 26.5",
+    "udid": "1DA6ED80-7D03-4644-B295-D25E2899666B"
+  },
+  "toolchain": {
+    "xcode": "26.6",
+    "xcode_build": "17F113"
+  },
+  "online_build": {
+    "version": "1.0.0 (23)",
+    "runner_sha256": "8fccc03da56286bcb0b5fa8d0c457a00b2d45a76ad8aeae18e858517ee186a26",
+    "configuration": "production public runtime values"
+  },
+  "deterministic_offline_build": {
+    "version": "1.0.0 (23)",
+    "runner_sha256": "1725f96bb9d6db74b90f8f723fe41abf983c17735db2d91916da8d8de36074d3",
+    "configuration": "same source with loopback-only service endpoints"
+  },
+  "states": [
+    "signed_out",
+    "loading",
+    "empty",
+    "offline_error",
+    "recovery",
+    "private_authenticated",
+    "text_scale_accessibility_medium",
+    "signed_out_restored"
+  ],
+  "boundaries": {
+    "production_application_database_writes": false,
+    "vault_writes": false,
+    "pricing_writes": false,
+    "messaging_writes": false,
+    "approval_or_publication_changes": false,
+    "disposable_auth_session_only": true,
+    "physical_device_required": false,
+    "authority": "EIGHT_WEEK_AND_MEE_LAUNCH_READINESS_20260810_V1"
+  }
+}

@@ -193,7 +193,7 @@
     },
     {
       "id": "cross_platform_state_matrix",
-      "status": "partial",
+      "status": "proven",
       "evidence": [
         "docs/audits/mobile_web_native_parity_v1/route_state_matrix.json",
         "docs/audits/release_convergence_v1/FINAL_DEVICE_AND_REPOSITORY_VERIFICATION_20260806_V1.md",
@@ -217,11 +217,10 @@
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/REPORT.md",
         "docs/audits/release_completion_v1/device_android/candidate_23_state_matrix_v1/2026-08-10T05-43-20Z/REPORT.md",
         "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_ios/candidate_289_journeys_afc_v1/2026-08-10T04-56-05Z/REPORT.md",
+        "docs/audits/release_completion_v1/device_ios/candidate_289_simulator_state_matrix_v1/2026-08-10T23-15-21Z/REPORT.md"
       ],
-      "required_next_evidence": [
-        "Physical TestFlight build 289 execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states; synchronized Android build 23 is proven"
-      ]
+      "required_next_evidence": []
     },
     {
       "id": "security_privacy_and_operations",

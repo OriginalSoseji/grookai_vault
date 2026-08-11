@@ -1,0 +1,69 @@
+{
+  "schema_version": "GROOKAI_IOS_SIMULATOR_STATE_ASSERTIONS_V1",
+  "status": "PASS",
+  "application_source_commit": "a8ec3d27808fd100cbb8e544032ee479e9632f24",
+  "assertions": [
+    {
+      "state": "signed_out",
+      "status": "pass",
+      "assertions": ["Collect with purpose visible", "Sign in with email visible", "Explore cards visible"],
+      "evidence": "signed_out.png"
+    },
+    {
+      "state": "loading",
+      "status": "pass",
+      "assertions": ["search request accepted", "bounded skeleton rows visible", "layout stable"],
+      "evidence": "loading.png"
+    },
+    {
+      "state": "empty",
+      "status": "pass",
+      "assertions": ["impossible query settles", "No matching cards visible", "No results yet visible"],
+      "evidence": "empty.png"
+    },
+    {
+      "state": "offline_error",
+      "status": "pass",
+      "assertions": ["bounded local fallback copy visible", "empty fallback visible", "no crash or infinite loading"],
+      "evidence": "offline_error.png"
+    },
+    {
+      "state": "recovery",
+      "status": "pass",
+      "assertions": ["online build restored", "Pikachu results populated", "self-hosted card images rendered"],
+      "evidence": "recovery.png"
+    },
+    {
+      "state": "private_authenticated",
+      "status": "pass",
+      "assertions": ["Account control visible", "Pulse private shell visible", "private empty feed state visible"],
+      "evidence": "private_authenticated.png"
+    },
+    {
+      "state": "text_scale_accessibility_medium",
+      "status": "pass",
+      "assertions": ["primary signed-out controls remain readable", "text wraps without overlap", "content remains scrollable"],
+      "evidence": "text_scale_accessibility_medium.png"
+    },
+    {
+      "state": "signed_out_restored",
+      "status": "pass",
+      "assertions": ["product sign-out completed", "signed-out entry restored", "disposable persisted session absent"],
+      "evidence": "signed_out_restored.png"
+    }
+  ],
+  "fixture_note": {
+    "initial_query": "zzzz-no-card-can-match-20260810",
+    "result": "unsuitable empty-state fixture because the production parser removed generic terms and returned valid rows",
+    "product_defect": false,
+    "corrected_query": "Qzxwvplmntr999999",
+    "corrected_result": "pass",
+    "rerun_scope": "empty-state test only"
+  },
+  "restoration": {
+    "installed_online_runner_hash_match": true,
+    "content_size_category": "default",
+    "app_local_supabase_session_present": false,
+    "simulator_domain_supabase_session_present": false
+  }
+}

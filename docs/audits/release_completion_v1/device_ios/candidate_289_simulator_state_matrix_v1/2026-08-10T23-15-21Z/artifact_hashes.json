@@ -1,0 +1,22 @@
+{
+  "schema_version": "GROOKAI_IOS_SIMULATOR_STATE_MATRIX_ARTIFACT_HASHES_V1",
+  "algorithm": "sha256",
+  "artifacts": {
+    "cleanup_readback.json": "2483ef2aed0f019b0f7fa000002e583b81e587d202cb7d906abd3702a6731938",
+    "empty.png": "1752d34d6134b732902ce866b0aa7d23eb3aa3c4fa89b4f7df8abab44f833888",
+    "loading.png": "cd7b32ddef29a8ad56f1ea6ea728dc7dab5feba7212c3722309805e601f21339",
+    "offline_error.png": "59a2b33263482505e0b44129325605d9928744461a1fd9917d14a8a2a9a47cd8",
+    "private_authenticated.png": "b5f543c952865a6bda3e80a9c3f187aed23239b65bb649d2e0decf714c0d317e",
+    "recovery.png": "2fc1b393527fb8ea0dadfca687d974260a517cc03f22dbe5fe59f6d4a31e5268",
+    "REPORT.md": "ad51dbd3fd5e556278a8c24839882eff0a74e9bb7357056b6f3efd973b29b611",
+    "run_plan.json": "d9a029dcbdcd92c4d0d1e01e26e6f50d0dde8350449bd4c907ee967bbf62a056",
+    "signed_out_restored.png": "274a7f8d842f3fbf570a3aa844f446823458c9abac6a63c3bfa291943bcdd4f5",
+    "signed_out.png": "dbd8915452e736c3ba40bde96eea0e33ea33f79f8c343248e25c16eb75e9e2b3",
+    "state_assertions.json": "3cd5546f96b583fd4b0ce310fcb109752ea3ace5aae08145ebcbd6ef9796c212",
+    "test_output.txt": "2803a699af2f1a407381f98bf3c8fa77626d66a22da0b43f0b2907b26f580a48",
+    "text_scale_accessibility_medium.png": "f1115c2647eb2a23a5d779f7eb42cd783d47f007b462513d10fc975338303103",
+    "docs/checkpoints/product/FINAL_CANDIDATE_IOS_SIMULATOR_STATE_MATRIX_20260810_V1.md": "e4c5e71835ceb32f9332c0099be9f70bda5e4be847325072db060cb76b3e4c62",
+    "scripts/app_store_connect/GrookaiSimulatorStateMatrixUITests.swift": "7528c124a3db258a17bbbfb872f33b98555ad081f8c7acbc0ee5bc29a2a999b8",
+    "scripts/app_store_connect/inject_disposable_simulator_session.sh": "b561371463211ca5e9249e53b3571497add725fa1992bc48e8618e770e282076"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "GROOKAI_IOS_SIMULATOR_STATE_MATRIX_CLEANUP_READBACK_V1",
+  "bundle_id": "com.cesar.grookaivault",
+  "app_local_session_present": false,
+  "simulator_domain_session_present": false,
+  "installed_online_binary_matches_preserved_build": true,
+  "installed_online_runner_sha256": "8fccc03da56286bcb0b5fa8d0c457a00b2d45a76ad8aeae18e858517ee186a26",
+  "content_size_category": "default",
+  "production_application_database_mutations": 0,
+  "result": "PASS"
+}

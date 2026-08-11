@@ -10,9 +10,9 @@ Grookai may continue and expand its controlled signed-in beta on production web
 and TestFlight. It is not yet authorized for a full public App Store and Google
 Play launch under the frozen eight-week completion contract.
 
-The formal release manifest remains `10/14` proven. MEE operational recovery
-is complete, but this does not promote any of the four remaining application
-release gates and does not complete Production V1 pricing.
+The formal release manifest is now `11/14` proven. MEE operational recovery
+is complete, but it does not promote any remaining application release gate
+and does not complete Production V1 pricing.
 
 ## Frozen Candidate
 
@@ -39,6 +39,9 @@ release gates and does not complete Production V1 pricing.
   Match, messaging, opt-out, and signed-out continuation.
 - Journeys B, C, D, E, and F.
 - Journey A device path.
+- The authorized exact-source iOS simulator matrix for signed-out, loading,
+  empty, deterministic offline/error, recovery, private, accessibility-medium
+  text, and sign-out restoration states.
 - Exact printing, Vault ownership, intent, collector context, app links, and
   card-centered messaging behavior.
 - Security, RLS, privacy, account deletion, production monitoring, and iOS
@@ -48,14 +51,10 @@ release gates and does not complete Production V1 pricing.
 
 1. `journey_a_first_time_visitor`: genuine fresh-human ten-second
    comprehension evidence.
-2. `cross_platform_state_matrix`: remaining iOS loading, empty, offline/error,
-   recovery, private, signed-out, and text-scale evidence. The latest handoff
-   authorizes a simulator for these non-mutating states because physical
-   TestFlight build 289 already proves artifact identity and high-risk journeys.
-3. `store_and_distribution_readiness`: establish the intended Google Play
+2. `store_and_distribution_readiness`: establish the intended Google Play
    developer account and verify the listing, assets, package ownership, and
    release track. App Store Connect/TestFlight evidence is proven.
-4. `final_72_hour_release_candidate_soak`: begin only after the first three
+3. `final_72_hour_release_candidate_soak`: begin only after the first two
    gates are proven, then preserve 72 continuous hours and issue the final
    production report.
 
@@ -122,25 +121,21 @@ truthfully limited or hidden and the application release manifest independently
 reaches `14/14`. It may not imply catalog-wide price coverage from the current
 100-printing canary.
 
-## Known Test Gap
+## Binder Classification
 
-The frozen application candidate previously passed its complete shipcheck.
-The current MEE integration worktree exposes one unrelated serial Flutter
-failure in `test/binders/binder_release_feature_flags_test.dart` for
-`production release exposes only activated Binder phases`. This must be
-classified and repaired or proven to be a stale test expectation before the
-final repository-wide launch report.
+The exact frozen application candidate passes
+`test/binders/binder_release_feature_flags_test.dart`. The failure seen in the
+MEE recovery worktree comes from that worktree's stale application-base
+feature defaults and is not a frozen-candidate release defect. No product
+behavior was changed on the pricing branch to mask it.
 
 ## Exact Next Work
 
-1. Repair or correctly reclassify the Binder release-feature-flag failure
-   without changing frozen product behavior unnecessarily.
-2. Run the remaining iOS non-mutating state matrix on a simulator built from
-   the exact frozen candidate.
-3. Reconcile those results into the completion manifest.
-4. Stop at the genuine fresh-user and Google Play account gates if they remain
+1. Stop at the genuine fresh-user and Google Play account gates if they remain
    unavailable; do not manufacture either proof.
-5. In parallel, execute the frozen post-canary Production V1 pricing rollout.
+2. When both non-soak gates are proven, begin the new non-backdated 72-hour
+   application soak and preserve its final report.
+3. In parallel, execute the frozen post-canary Production V1 pricing rollout.
 
 ## Authority
 

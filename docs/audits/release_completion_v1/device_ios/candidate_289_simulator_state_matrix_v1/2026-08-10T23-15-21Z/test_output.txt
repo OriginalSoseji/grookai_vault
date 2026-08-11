@@ -1,0 +1,19 @@
+Frozen application source: a8ec3d27808fd100cbb8e544032ee479e9632f24
+Simulator: iPhone 17 Pro / iOS 26.5 / iPhone18,1
+Xcode: 26.6 (17F113)
+
+testSignedOutEntry: PASS, 4.140 seconds
+testPublicLoadingAndEmpty initial fixture: FAIL, 54.220 seconds
+  Classification: unsuitable empty-state fixture; product search correctly returned rows.
+testPublicLoadingAndEmpty corrected fixture: PASS, 8.105 seconds
+testOfflineFallback: PASS, 14.611 seconds
+testRecoveredPublicSearch: PASS, 7.482 seconds
+testSignedOutEntry at accessibility-medium: PASS, 4.192 seconds
+testPrivateAuthenticatedState: PASS, 15.649 seconds
+testSignOutCleanup: PASS, 13.253 seconds
+
+Final state assertions: 8/8 PASS
+App-local disposable session after cleanup: absent
+Simulator-domain disposable session after cleanup: absent
+Installed online binary restored: yes
+Content size category restored: default

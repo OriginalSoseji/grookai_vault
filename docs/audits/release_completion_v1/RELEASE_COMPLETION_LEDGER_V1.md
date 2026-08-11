@@ -4,7 +4,7 @@
 
 Status: `IN_PROGRESS`
 
-The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web, signed Android build `23`, and TestFlight build `289` are frozen to application source `a8ec3d2`. Synchronized-candidate Journey C and Journey F now pass on physical TestFlight build `289`, and Journey A's signed-out device path is proven. Journey A remains partial only for genuine fresh-human comprehension. The entire August 5 release contract is not yet complete. Completion remains prohibited until the synchronized candidate satisfies the remaining state, store, fresh-user, and soak gates.
+The product-convergence implementation and exact-printing/App-Link repair are merged to `main`. Production web, signed Android build `23`, and TestFlight build `289` are frozen to application source `a8ec3d2`. Synchronized-candidate Journey C and Journey F pass on physical TestFlight build `289`, Journey A's signed-out device path is proven, and the authorized exact-source iOS simulator matrix closes the remaining non-mutating iOS states. Journey A remains partial only for genuine fresh-human comprehension. The entire August 5 release contract is not yet complete. Completion remains prohibited until the synchronized candidate satisfies the store, fresh-user, and soak gates.
 
 ## Authority
 
@@ -50,13 +50,13 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - Physical TestFlight build `289` completed the Journey A signed-out exploration and exact-card continuation path and proved Journey F's action-specific locked-feature behavior. The combined raw harness ended on a post-success terminal assertion because it expected a global Account control while the restored exact-card surface was active; retained screenshots prove the product states, and no mutation-producing rerun was performed. Journey A remains partial only for genuine fresh-human comprehension.
 - Synchronized-candidate Journey C passed its authoritative read-only verifier with zero findings: one exact Want, one scheduled match, one available event, one exact card-centered message, one product-UI opt-out, final Want false, one stale historical match, zero stale Pulse rows, zero invalid or post-opt-out notification deliveries, and zero event-emission failures. Journey C and Journey F are now proven.
 - Synchronized Android build `23` passed the required state matrix on the exact frozen signed APK. Installed-package readback matched SHA-256 `deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6`, and live loading, empty, offline/error, recovery, private, signed-out, and 130% text-scale states passed with airplane mode and font scale restored exactly.
+- Frozen application source `a8ec3d2` passed the authorized iOS 26.5 simulator matrix for signed-out, loading, empty, deterministic offline/error, recovery, private, accessibility-medium text, and sign-out restoration. The disposable auth session was removed, content size returned to default, and the preserved online Runner hash matched after the offline proof. Together with physical TestFlight build `289` installation and high-risk journey evidence, this promotes `cross_platform_state_matrix` to proven.
 
 ## Remaining Gates
 
 1. Complete Journey A genuine fresh-user ten-second comprehension evidence.
-2. Execute loading, empty, error, offline, private, signed-out, text-scaling, and recovery states on physical TestFlight build `289`. Deterministic web and synchronized Android build `23` state evidence is complete.
-3. Establish or identify the intended Google Play developer account and verify the current Play listing and assets. App Store Connect distribution is proven.
-4. Reconcile every non-soak gate to `proven`, then start a new non-backdated 72-hour soak. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
+2. Establish or identify the intended Google Play developer account and verify the current Play listing and assets. App Store Connect distribution is proven.
+3. Reconcile both remaining non-soak gates to `proven`, then start a new non-backdated 72-hour soak. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
 
 ## Completion Rule
 
@@ -72,4 +72,4 @@ Elapsed calendar time does not complete this plan. A gate changes to `proven` on
 
 ## Exact Next Gate
 
-Complete the synchronized-candidate state matrix on physical iPhone build `289`, obtain genuine fresh-user comprehension evidence, and establish Google Play account/listing readback. Reconcile all non-soak gates before starting the 72-hour soak.
+Obtain genuine fresh-user comprehension evidence and establish Google Play account/listing readback. Reconcile both non-soak gates before starting the 72-hour soak.
