@@ -78,8 +78,26 @@ void main() {
         memories.single.cardImageUrl,
         '/api/canon/cards/GV-PK-JPN-M5-118/image',
       );
+      expect(memories.single.memory.isPublic, isFalse);
     },
   );
+
+  test('publication state parses from owner RPC rows', () {
+    final memory = CollectorMemory.fromJson(<String, dynamic>{
+      'id': memoryId,
+      'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+      'gv_vi_id': gvviId,
+      'memory_type': 'note',
+      'is_public': true,
+      'published_at': '2026-08-11T12:00:00Z',
+      'publication_version': 3,
+    });
+
+    expect(memory, isNotNull);
+    expect(memory!.isPublic, isTrue);
+    expect(memory.publicationVersion, 3);
+    expect(memory.publishedAt, DateTime.parse('2026-08-11T12:00:00Z'));
+  });
 
   test(
     'owner memory feed batch-enriches GV-ID and raw provider fallback',
@@ -246,6 +264,36 @@ void main() {
     expect(removed, <String>['$userId/memories/$memoryId/photo']);
     expect(calls, <String>['collector_memory_archive_v1']);
   });
+
+  test(
+    'publication uses the governed owner RPC and returns current state',
+    () async {
+      final service = CollectorMemoryService(
+        rpc: (functionName, {params}) async {
+          expect(functionName, 'collector_memory_set_public_v1');
+          expect(params?['p_memory_id'], memoryId);
+          expect(params?['p_is_public'], isTrue);
+          return <String, dynamic>{
+            'id': memoryId,
+            'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+            'gv_vi_id': gvviId,
+            'memory_type': 'note',
+            'is_public': true,
+            'published_at': '2026-08-11T12:00:00Z',
+            'publication_version': 1,
+          };
+        },
+      );
+
+      final memory = await service.setPublic(
+        memoryId: memoryId,
+        isPublic: true,
+      );
+
+      expect(memory.isPublic, isTrue);
+      expect(memory.publicationVersion, 1);
+    },
+  );
 
   test(
     'photo upload uses the private memory bucket and deterministic path',

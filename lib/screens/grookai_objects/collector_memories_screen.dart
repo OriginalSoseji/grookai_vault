@@ -50,6 +50,7 @@ class _CollectorMemoriesScreenState extends State<CollectorMemoriesScreen> {
         builder: (_) => CollectorMemoryDetailScreen(
           item: model.memory,
           signedPhotoUrl: model.signedPhotoUrl,
+          memoryService: widget.service,
         ),
       ),
     );
@@ -180,12 +181,34 @@ class _OwnerMemoryTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      _memoryTypeLabel(memory.memoryType),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w800,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _memoryTypeLabel(memory.memoryType),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        if (memory.isPublic) ...[
+                          Icon(
+                            Icons.public_rounded,
+                            size: 14,
+                            color: colorScheme.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Public',
+                            key: const Key('public-memory-indicator'),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                     const SizedBox(height: 3),
                     Text(

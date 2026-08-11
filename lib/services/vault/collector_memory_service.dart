@@ -82,6 +82,9 @@ class CollectorMemory {
     this.occasionLabel,
     this.memoryDate,
     this.promptKey,
+    this.isPublic = false,
+    this.publishedAt,
+    this.publicationVersion = 0,
     this.createdAt,
     this.updatedAt,
   });
@@ -96,6 +99,9 @@ class CollectorMemory {
   final String? occasionLabel;
   final DateTime? memoryDate;
   final String? promptKey;
+  final bool isPublic;
+  final DateTime? publishedAt;
+  final int publicationVersion;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -113,6 +119,9 @@ class CollectorMemory {
       occasionLabel: _optionalText(json['occasion_label']),
       memoryDate: _date(json['memory_date']),
       promptKey: _optionalText(json['prompt_key']),
+      isPublic: _bool(json['is_public']),
+      publishedAt: _date(json['published_at']),
+      publicationVersion: _integer(json['publication_version']),
       createdAt: _date(json['created_at']),
       updatedAt: _date(json['updated_at']),
     );
@@ -418,6 +427,20 @@ class CollectorMemoryService {
     );
   }
 
+  Future<CollectorMemory> setPublic({
+    required String memoryId,
+    required bool isPublic,
+  }) async {
+    final response = await _callRpc(
+      'collector_memory_set_public_v1',
+      params: <String, dynamic>{
+        'p_memory_id': _text(memoryId),
+        'p_is_public': isPublic,
+      },
+    );
+    return _requiredMemory(response, 'collector_memory_set_public_v1');
+  }
+
   Future<void> dismissPrompt({required String promptKey}) async {
     await _callRpc(
       'collector_memory_prompt_dismiss_v1',
@@ -599,6 +622,17 @@ String? _optionalText(dynamic value) {
 DateTime? _date(dynamic value) {
   final normalized = _text(value);
   return normalized.isEmpty ? null : DateTime.tryParse(normalized);
+}
+
+bool _bool(dynamic value) {
+  if (value is bool) return value;
+  return _text(value).toLowerCase() == 'true';
+}
+
+int _integer(dynamic value) {
+  if (value is int) return value;
+  if (value is num) return value.toInt();
+  return int.tryParse(_text(value)) ?? 0;
 }
 
 String? _dateParam(DateTime? value) =>
