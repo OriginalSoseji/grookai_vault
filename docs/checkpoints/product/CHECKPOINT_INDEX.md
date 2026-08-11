@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `EIGHT_WEEK_AND_MEE_LAUNCH_READINESS_20260810_V1.md` - `2026-08-10` - CONTROLLED BETA READY / PUBLIC LAUNCH 10 OF 14 - Reconciles the frozen application candidate with completed MEE operational recovery, preserves the distinction between the pricing canary and app soak, records the four remaining application gates, and keeps full signed-in pricing behind its frozen post-canary rollout.
 - `FINAL_CANDIDATE_RELEASE_HANDOFF_20260810_V1.md` - `2026-08-10` - RELEASE 10/14 / EMULATOR STATE COVERAGE AUTHORIZED / MEE AUDIT NEXT - Freezes synchronized-candidate physical and emulator truths, prevents device automation from blocking non-mutating state coverage, preserves the evidence-based 72-hour rule, and hands off to full MEE operational reconciliation.
 - `FINAL_CANDIDATE_ANDROID_23_STATE_MATRIX_20260810_V1.md` - `2026-08-10` - ANDROID BUILD 23 STATE MATRIX PROVEN / IOS, FRESH-USER, PLAY, AND SOAK GATES OPEN - Proves the installed Android APK exactly matches the frozen signed candidate and records live loading, empty, offline, recovery, private, signed-out, and 130% text-scale states with exact setting restoration.
 - `FINAL_CANDIDATE_IOS_289_JOURNEYS_AFC_20260810_V1.md` - `2026-08-10` - JOURNEYS C/F PROVEN / JOURNEY A DEVICE PATH PROVEN / FRESH-USER, STATE, PLAY, AND SOAK GATES OPEN - Records physical TestFlight build 289 signed-out exact-card continuation, locked Want behavior, local-discovery setup, the exact Want-to-match-to-message-to-opt-out chain, zero-finding authoritative readback, and privacy-preserving evidence hashes.
