@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getExploreRowsForLanguageScopedTextSearch } from "@/lib/explore/getExploreRows";
 import { getBinderFeatureFlags } from "@/lib/binders/featureFlags";
 import {
@@ -139,6 +140,13 @@ export async function GET(request: NextRequest) {
         row.image_url ??
         row.representative_image_url ??
         null,
+      variantLabels: getVariantLabels({
+        number: row.number,
+        setCode: row.set_code,
+        variantKey: row.variant_key,
+        printedIdentityModifier: row.printed_identity_modifier,
+        variants: row.variants,
+      }),
       finishes: (finishesByCardPrintId.get(row.id) ?? []).map(
         ({ cardPrintingId, label }) => ({ cardPrintingId, label }),
       ),

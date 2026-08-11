@@ -22,6 +22,7 @@ test("Founder market signals use Grookai-hosted catalog art before provider fall
   assert.match(loader, /providerImageUrl: catalogImageSources\.providerImageUrl/);
   assert.match(loader, /imageFallbackUrls: imageSources\.slice\(1\)/);
   assert.doesNotMatch(loader, /getBestPublicCardImageUrl/);
+  assert.match(loader, /entry\.count === 1 \? "wants" : "want"/);
 
   assert.match(section, /src=\{row\.card\.imageUrl \?\? undefined\}/);
   assert.match(section, /fallbackSources=\{row\.card\.imageFallbackUrls\}/);

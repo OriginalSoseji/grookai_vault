@@ -8,9 +8,7 @@ import { createClient } from "@supabase/supabase-js";
 import { resolveSameOriginHttpUrl } from "./lib/url_authority_v1.mjs";
 
 const ROOT = process.cwd();
-const OUT_DIR = path.join(ROOT, "docs", "audits", "web_cohesion_link_integrity_v1");
-const OUT_JSON = path.join(OUT_DIR, "web_cohesion_link_integrity_v1.json");
-const OUT_MD = path.join(OUT_DIR, "web_cohesion_link_integrity_v1.md");
+const DEFAULT_OUT_DIR = path.join(ROOT, "docs", "audits", "web_cohesion_link_integrity_v1");
 const DEFAULT_BASE_URL = "http://127.0.0.1:3000";
 const DEFAULT_MAX_PAGES = 15000;
 const FETCH_TIMEOUT_MS = 60000;
@@ -27,6 +25,8 @@ function parseArgs(argv) {
     crawlDiscovered: process.env.WEB_AUDIT_CRAWL_DISCOVERED !== "false",
     exhaustiveCards: process.env.WEB_AUDIT_EXHAUSTIVE_CARDS === "true",
     cardSamplePerSet: Number.parseInt(process.env.WEB_AUDIT_CARD_SAMPLE_PER_SET ?? "3", 10),
+    concurrency: Number.parseInt(process.env.WEB_AUDIT_CONCURRENCY ?? "1", 10),
+    outDir: path.resolve(process.env.WEB_AUDIT_OUT_DIR ?? DEFAULT_OUT_DIR),
   };
 
   for (let index = 2; index < argv.length; index += 1) {
@@ -44,6 +44,12 @@ function parseArgs(argv) {
     } else if (arg === "--card-sample-per-set") {
       args.cardSamplePerSet = Number.parseInt(argv[index + 1] ?? `${args.cardSamplePerSet}`, 10);
       index += 1;
+    } else if (arg === "--out-dir") {
+      args.outDir = path.resolve(argv[index + 1] ?? args.outDir);
+      index += 1;
+    } else if (arg === "--concurrency") {
+      args.concurrency = Number.parseInt(argv[index + 1] ?? `${args.concurrency}`, 10);
+      index += 1;
     }
   }
 
@@ -51,6 +57,10 @@ function parseArgs(argv) {
   args.maxPages = Number.isFinite(args.maxPages) && args.maxPages > 0 ? args.maxPages : DEFAULT_MAX_PAGES;
   args.cardSamplePerSet =
     Number.isFinite(args.cardSamplePerSet) && args.cardSamplePerSet >= 0 ? args.cardSamplePerSet : 3;
+  args.concurrency =
+    Number.isFinite(args.concurrency) && args.concurrency >= 1
+      ? Math.min(Math.floor(args.concurrency), 20)
+      : 1;
   return args;
 }
 
@@ -226,12 +236,21 @@ function buildSeedRoutes(universe, options) {
     "/network/discover",
     "/network/inbox",
     "/following",
+    "/scan",
     "/vault",
     "/vault/import",
     "/wall",
+    "/binders",
+    "/binders/explore",
+    "/binders/new",
+    "/binder-invites/review",
     "/account",
+    "/account/delete",
     "/login",
+    "/privacy",
     "/legal",
+    "/support",
+    "/early-access",
     "/submit",
   ].forEach((pathname) => add(pathname, "primary_route_seed", "primary"));
 
@@ -419,45 +438,62 @@ async function crawlRoutes(baseUrl, seedRoutes, maxPages, options) {
   const linkEdges = [];
 
   while (queue.length > 0 && visited.size < maxPages) {
-    const pathname = queue.shift();
-    if (!pathname || visited.has(pathname)) {
+    const batch = [];
+    while (
+      queue.length > 0 &&
+      batch.length < options.concurrency &&
+      visited.size < maxPages
+    ) {
+      const pathname = queue.shift();
+      if (!pathname || visited.has(pathname)) {
+        continue;
+      }
+      visited.add(pathname);
+      batch.push(pathname);
+    }
+    if (batch.length === 0) {
       continue;
     }
-    visited.add(pathname);
 
-    const response = await fetchRoute(baseUrl, pathname);
-    const analysis = analyzeHtml(response, baseUrl);
-    const result = {
-      pathname,
-      category: routeMeta.get(pathname)?.category ?? "unknown",
-      sources: Array.from(routeMeta.get(pathname)?.sources ?? []),
-      status: response.status,
-      statusText: response.statusText,
-      location: response.location,
-      contentType: response.contentType,
-      durationMs: response.durationMs,
-      bodyLength: response.bodyLength,
-      error: response.error ?? null,
-      classification: classifyResult(response),
-      flags: analysis.flags,
-      internalLinkCount: analysis.links.length,
-    };
-    results.push(result);
+    const responses = await Promise.all(
+      batch.map((pathname) => fetchRoute(baseUrl, pathname)),
+    );
+    for (let index = 0; index < batch.length; index += 1) {
+      const pathname = batch[index];
+      const response = responses[index];
+      const analysis = analyzeHtml(response, baseUrl);
+      const result = {
+        pathname,
+        category: routeMeta.get(pathname)?.category ?? "unknown",
+        sources: Array.from(routeMeta.get(pathname)?.sources ?? []),
+        status: response.status,
+        statusText: response.statusText,
+        location: response.location,
+        contentType: response.contentType,
+        durationMs: response.durationMs,
+        bodyLength: response.bodyLength,
+        error: response.error ?? null,
+        classification: classifyResult(response),
+        flags: analysis.flags,
+        internalLinkCount: analysis.links.length,
+      };
+      results.push(result);
 
-    for (const link of analysis.links) {
-      linkEdges.push({
-        from: pathname,
-        to: link.pathname,
-        href: link.href,
-        parseError: link.parseError === true,
-      });
-      if (!link.parseError && options.crawlDiscovered && shouldAutoCrawlDiscoveredPath(link.pathname)) {
-        addDiscoveredRoute(queue, routeMeta, link.pathname, `linked-from:${pathname}`);
+      for (const link of analysis.links) {
+        linkEdges.push({
+          from: pathname,
+          to: link.pathname,
+          href: link.href,
+          parseError: link.parseError === true,
+        });
+        if (!link.parseError && options.crawlDiscovered && shouldAutoCrawlDiscoveredPath(link.pathname)) {
+          addDiscoveredRoute(queue, routeMeta, link.pathname, `linked-from:${pathname}`);
+        }
       }
     }
 
-    if (visited.size % 100 === 0) {
-      console.log(`[web-audit] visited=${visited.size} queue=${queue.length} latest=${pathname}`);
+    if (visited.size % 100 < batch.length) {
+      console.log(`[web-audit] visited=${visited.size} queue=${queue.length} latest=${batch.at(-1)}`);
     }
 
     await sleep(ROUTE_DELAY_MS);
@@ -592,6 +628,8 @@ function buildCohesionFindings(summary, crawl) {
 }
 
 async function writeReports(options, universe, crawl, summary, findings) {
+  const outJson = path.join(options.outDir, "web_cohesion_link_integrity_v1.json");
+  const outMd = path.join(options.outDir, "web_cohesion_link_integrity_v1.md");
   const serializableResults = crawl.results.sort((left, right) => left.pathname.localeCompare(right.pathname));
   const brokenRoutes = serializableResults.filter((result) =>
     ["request_error", "server_error", "not_found", "client_error"].includes(result.classification),
@@ -613,8 +651,8 @@ async function writeReports(options, universe, crawl, summary, findings) {
     link_edges_count: crawl.linkEdges.length,
   };
 
-  await fs.mkdir(OUT_DIR, { recursive: true });
-  await fs.writeFile(OUT_JSON, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+  await fs.mkdir(options.outDir, { recursive: true });
+  await fs.writeFile(outJson, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 
   const lines = [
     "# Web Cohesion Link Integrity V1",
@@ -684,7 +722,9 @@ async function writeReports(options, universe, crawl, summary, findings) {
   lines.push("- mutation_routes_called: false");
   lines.push("");
 
-  await fs.writeFile(OUT_MD, `${lines.join("\n")}\n`, "utf8");
+  await fs.writeFile(outMd, `${lines.join("\n")}\n`, "utf8");
+
+  return { outJson, outMd };
 }
 
 async function main() {
@@ -692,13 +732,13 @@ async function main() {
   const universe = await loadAuditUniverse();
   const seedRoutes = buildSeedRoutes(universe, options);
   console.log(
-    `[web-audit] base=${options.baseUrl} sets=${universe.sets.length} cards=${universe.cards.length} species=${universe.species.length} seeds=${seedRoutes.size}`,
+    `[web-audit] base=${options.baseUrl} sets=${universe.sets.length} cards=${universe.cards.length} species=${universe.species.length} seeds=${seedRoutes.size} concurrency=${options.concurrency}`,
   );
   const crawl = await crawlRoutes(options.baseUrl, seedRoutes, options.maxPages, options);
   const summary = summarize(universe, crawl);
   const findings = buildCohesionFindings(summary, crawl);
-  await writeReports(options, universe, crawl, summary, findings);
-  console.log(JSON.stringify({ summary, report: OUT_MD, json: OUT_JSON }, null, 2));
+  const reports = await writeReports(options, universe, crawl, summary, findings);
+  console.log(JSON.stringify({ summary, report: reports.outMd, json: reports.outJson }, null, 2));
   if (summary.brokenRoutes > 0 || summary.failedSetRoutes > 0) {
     process.exitCode = 1;
   }

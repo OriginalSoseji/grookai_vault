@@ -45,6 +45,22 @@ test("Next 16 request interception uses proxy and no legacy middleware entrypoin
   assert.match(proxy, /matcher:/);
 });
 
+test("authenticated abuse protection isolates sessions under a guarded network ceiling", () => {
+  const proxy = source("apps/web/src/proxy.ts");
+
+  assert.match(proxy, /getSessionKeyMaterial/);
+  assert.match(proxy, /AUTHENTICATED_NETWORK_LIMIT_MULTIPLIER/);
+  assert.match(proxy, /networkActorHash/);
+  assert.match(proxy, /rate_limit_scope/);
+  assert.match(proxy, /observeCardWalking\(actorHash/);
+  assert.match(proxy, /signalKey = `\$\{classification\.lane\}\|\$\{reason\}\|\$\{actorHash\}`/);
+  assert.ok(
+    proxy.indexOf('pathname === "/api/resolver/search"') <
+      proxy.indexOf('pathname.startsWith("/api/")'),
+    "resolver search must use the search lane before the generic API lane",
+  );
+});
+
 test("strict production build deliberately retains the verified webpack engine", () => {
   const buildWrapper = source("scripts/ci/run_next_build_with_system_ca.mjs");
 

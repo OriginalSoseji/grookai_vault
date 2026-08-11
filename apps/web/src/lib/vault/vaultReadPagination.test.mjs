@@ -18,7 +18,13 @@ test("canonical Vault reads every active-instance page", () => {
 
 test("ownership counts page through every matching copy", () => {
   assert.match(ownedCountsSource, /SUPABASE_OWNERSHIP_PAGE_SIZE\s*=\s*1_000/);
+  assert.match(ownedCountsSource, /SUPABASE_IN_FILTER_CHUNK_SIZE\s*=\s*200/);
   assert.match(ownedCountsSource, /async function fetchAllOwnershipPages/);
+  assert.match(
+    ownedCountsSource,
+    /chunkArray\(normalizedIds, SUPABASE_IN_FILTER_CHUNK_SIZE\)/,
+  );
+  assert.doesNotMatch(ownedCountsSource, /chunkArray\([^\n]*, 500\)/);
   assert.match(ownedCountsSource, /\.range\(from, to\)/);
   assert.match(ownedCountsSource, /page\.length < SUPABASE_OWNERSHIP_PAGE_SIZE/);
 });

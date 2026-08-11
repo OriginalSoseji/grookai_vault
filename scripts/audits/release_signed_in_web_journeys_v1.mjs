@@ -185,6 +185,8 @@ async function queryScopedTruth(client, accounts) {
       `select
          vii.gv_vi_id,
          cp.gv_id as canonical_gv_id,
+         cp.id::text as card_print_id,
+         cp.set_code,
          cp.name,
          vii.intent,
          vii.condition_label,
@@ -303,6 +305,8 @@ function selectJourneyEvidence(snapshot) {
   }
   return {
     canonicalGvId: copy.canonical_gv_id,
+    cardPrintId: copy.card_print_id,
+    setCode: copy.set_code,
     gvviId: copy.gv_vi_id,
     cardName: copy.name,
     intent: copy.intent,
@@ -393,11 +397,22 @@ async function login(context, page, origin, credentials, nextPath) {
 function routeDefinitions(accounts, evidence) {
   const ownerName = accounts.owner.displayName;
   const ownerSlug = accounts.owner.slug;
+  const setPath = `/sets/${encodeURIComponent(evidence.setCode)}`;
   const privateCardAbsence = evidence.publiclyDiscoverable
     ? []
     : [evidence.cardName];
   return {
     subject: [
+      {
+        name: "home",
+        path: "/",
+        expected: ["The permanent digital card show.", "Explore cards"],
+      },
+      {
+        name: "search_results",
+        path: "/explore?q=Pikachu",
+        expected: ["Showing", "Pikachu"],
+      },
       {
         name: "collector_discovery",
         path: `/network/discover?q=${encodeURIComponent(ownerSlug)}`,
@@ -433,8 +448,80 @@ function routeDefinitions(accounts, evidence) {
           "Choose a copy above to message this collector about that card.",
         ],
       },
+      {
+        name: "compare_workspace",
+        path: "/compare?cards=GV-PK-MEW-025%2CGV-PK-MEW-006",
+        expected: ["Compare cards", "Pikachu"],
+      },
+      {
+        name: "scan",
+        path: "/scan",
+        expected: ["Scan", "Start camera", "Use a photo instead"],
+      },
+      {
+        name: "account",
+        path: "/account",
+        expected: ["Your Grookai profile", "Signed in", "Quick Links"],
+      },
+      {
+        name: "market_analysis",
+        path: `/card/${EXPECTED_CARD_GV_ID}/market`,
+        expected: ["Market Analysis", "Pricing & data sources"],
+      },
+      {
+        name: "set_detail",
+        path: setPath,
+        expected: ["Set Album", "Cards in this album"],
+      },
+      {
+        name: "dex_species",
+        path: "/dex/pikachu",
+        expected: ["Pikachu", "Collection"],
+      },
+      {
+        name: "public_exact_copy",
+        path: `/gvvi/${evidence.gvviId}`,
+        expectedStatus: evidence.publiclyDiscoverable ? 200 : 404,
+        expected: evidence.publiclyDiscoverable
+          ? [evidence.cardName, ownerName, evidence.finishLabel]
+          : ["That destination is not available"],
+      },
+      {
+        name: "owner_followers",
+        path: `/u/${encodeURIComponent(ownerSlug)}/followers`,
+        expected: [ownerName, "Followers"],
+      },
+      {
+        name: "owner_following",
+        path: `/u/${encodeURIComponent(ownerSlug)}/following`,
+        expected: [ownerName, "Following"],
+      },
+      {
+        name: "owner_pokemon_collection",
+        path: `/u/${encodeURIComponent(ownerSlug)}/pokemon/pikachu`,
+        expectedStatus: 200,
+        expected: evidence.publiclyDiscoverable
+          ? [ownerName, "Pikachu Collection"]
+          : ["That destination is not available"],
+      },
+      {
+        name: "owner_collection_compatibility",
+        path: `/u/${encodeURIComponent(ownerSlug)}/collection`,
+        finalPath: `/u/${encodeURIComponent(ownerSlug)}`,
+        expected: [ownerName],
+      },
     ],
     owner: [
+      {
+        name: "home",
+        path: "/",
+        expected: ["The permanent digital card show.", "Explore cards"],
+      },
+      {
+        name: "search_results",
+        path: "/explore?q=Pikachu",
+        expected: ["Showing", "Pikachu"],
+      },
       {
         name: "vault",
         path: "/vault",
@@ -452,9 +539,34 @@ function routeDefinitions(accounts, evidence) {
         ],
       },
       {
+        name: "manage_card",
+        path: `/vault/card/${encodeURIComponent(evidence.cardPrintId)}`,
+        expected: [evidence.cardName, "Back to Vault", "Manage copies"],
+      },
+      {
+        name: "vault_import",
+        path: "/vault/import",
+        expected: ["Import your collection", "Upload Collectr CSV"],
+      },
+      {
         name: "binders",
         path: "/binders",
         expected: ["Binders", "Collection goals", "No Binders yet"],
+      },
+      {
+        name: "binder_create",
+        path: "/binders/new",
+        expected: ["Create Binder", "How Binders work"],
+      },
+      {
+        name: "binder_explore",
+        path: "/binders/explore",
+        expected: ["Explore Binders", "Community Binders"],
+      },
+      {
+        name: "binder_invite_review",
+        path: "/binder-invites/review",
+        expected: ["Invitation unavailable", "My Binders"],
       },
       {
         name: "dex",
@@ -462,9 +574,19 @@ function routeDefinitions(accounts, evidence) {
         expected: ["Grookai Dex", "Vault-aware", "Character completion"],
       },
       {
+        name: "dex_species",
+        path: "/dex/pikachu",
+        expected: ["Pikachu", "Collection"],
+      },
+      {
         name: "sets",
         path: "/sets",
         expected: ["Browse Pokemon Sets"],
+      },
+      {
+        name: "set_detail",
+        path: setPath,
+        expected: ["Set Album", "Cards in this album"],
       },
       {
         name: "wall",
@@ -477,20 +599,78 @@ function routeDefinitions(accounts, evidence) {
         expected: [ownerName],
         absent: privateCardAbsence,
       },
+      {
+        name: "account",
+        path: "/account",
+        expected: ["Your Grookai profile", "Signed in", "Quick Links"],
+      },
+      {
+        name: "scan",
+        path: "/scan",
+        expected: ["Scan", "Start camera", "Use a photo instead"],
+      },
+      {
+        name: "compare_workspace",
+        path: "/compare?cards=GV-PK-MEW-025%2CGV-PK-MEW-006",
+        expected: ["Compare cards", "Pikachu"],
+      },
+      {
+        name: "market_analysis",
+        path: `/card/${EXPECTED_CARD_GV_ID}/market`,
+        expected: ["Market Analysis", "Pricing & data sources"],
+      },
+      {
+        name: "public_exact_copy",
+        path: `/gvvi/${evidence.gvviId}`,
+        expectedStatus: evidence.publiclyDiscoverable ? 200 : 404,
+        expected: evidence.publiclyDiscoverable
+          ? [evidence.cardName, ownerName, evidence.finishLabel]
+          : ["That destination is not available"],
+      },
     ],
   };
 }
 
 async function runRoute(page, origin, role, viewport, route, runDir) {
   const pageErrors = [];
+  const failedReadRequests = [];
   const onPageError = (error) => pageErrors.push(sha256(String(error)));
+  const onRequestFailed = (request) => {
+    if (!["GET", "HEAD", "OPTIONS"].includes(request.method().toUpperCase())) {
+      return;
+    }
+    const failure = request.failure()?.errorText ?? "unknown";
+    if (failure === "net::ERR_ABORTED") {
+      return;
+    }
+    failedReadRequests.push({
+      method: request.method(),
+      resource_type: request.resourceType(),
+      url_sha256: sha256(request.url()),
+      failure_sha256: sha256(failure),
+    });
+  };
   page.on("pageerror", onPageError);
+  page.on("requestfailed", onRequestFailed);
   try {
     const response = await page.goto(`${origin}${route.path}`, {
       waitUntil: "domcontentloaded",
       timeout: 60_000,
     });
     await settle(page);
+    const expectedTerms = route.expected.map((term) => term.toLowerCase());
+    try {
+      await page.waitForFunction(
+        (terms) => {
+          const body = document.body?.innerText.toLowerCase() ?? "";
+          return terms.every((term) => body.includes(term));
+        },
+        expectedTerms,
+        { timeout: 30_000 },
+      );
+    } catch {
+      // The assertion below records the missing terms without hiding the route failure.
+    }
     const body = normalizeBody(await page.locator("body").innerText());
     const textAssertions = Object.fromEntries(
       route.expected.map((expected) => [
@@ -516,14 +696,17 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
           : [],
       maskColor: "#020617",
     });
+    const expectedFinalPath = route.finalPath ?? route.path;
+    const expectedStatus = route.expectedStatus ?? 200;
     const status =
       response &&
-      response.status() < 400 &&
-      normalizedPath(page.url()) === route.path &&
+      response.status() === expectedStatus &&
+      normalizedPath(page.url()) === expectedFinalPath &&
       Object.values(textAssertions).every(Boolean) &&
       Object.values(textAbsenceAssertions).every(Boolean) &&
       images.failed_count === 0 &&
-      pageErrors.length === 0
+      pageErrors.length === 0 &&
+      failedReadRequests.length === 0
         ? "passed"
         : "failed";
     return {
@@ -531,19 +714,238 @@ async function runRoute(page, origin, role, viewport, route, runDir) {
       viewport,
       route: route.path,
       final_path: normalizedPath(page.url()),
+      expected_final_path: expectedFinalPath,
+      expected_http_status: expectedStatus,
       http_status: response?.status() ?? null,
       text_assertions: textAssertions,
       text_absence_assertions: textAbsenceAssertions,
       images,
       page_error_count: pageErrors.length,
       page_error_hashes: pageErrors,
+      failed_read_request_count: failedReadRequests.length,
+      failed_read_requests: failedReadRequests,
       screenshot: screenshotName,
       screenshot_sha256: sha256(screenshot),
       status,
     };
   } finally {
     page.off("pageerror", onPageError);
+    page.off("requestfailed", onRequestFailed);
   }
+}
+
+async function proveSearchNavigation(page, origin, role, viewport, runDir) {
+  await page.goto(`${origin}/`, {
+    waitUntil: "domcontentloaded",
+    timeout: 60_000,
+  });
+  await settle(page);
+  const searchbox = page
+    .locator("main")
+    .getByRole("searchbox", { name: "Search cards", exact: true })
+    .first();
+  const searchboxCount = await searchbox.count();
+  if (searchboxCount === 1) {
+    await searchbox.fill("Pikachu");
+    await Promise.all([
+      page.waitForURL((url) => url.pathname === "/explore" && url.searchParams.get("q") === "Pikachu", {
+        timeout: 60_000,
+      }),
+      searchbox.press("Enter"),
+    ]);
+  }
+  await settle(page);
+  try {
+    await page.waitForFunction(
+      () => (document.body?.innerText.toLowerCase() ?? "").includes("pikachu"),
+      undefined,
+      { timeout: 60_000 },
+    );
+  } catch {
+    // The result assertion below records a genuine unresolved search state.
+  }
+  const body = normalizeBody(await page.locator("body").innerText());
+  const finalPath = normalizedPath(page.url());
+  const screenshotName = `${viewport}_${role}_search_navigation.png`;
+  const screenshot = await page.screenshot({
+    path: path.join(runDir, screenshotName),
+    fullPage: true,
+    animations: "disabled",
+  });
+  const status =
+    searchboxCount === 1 &&
+    finalPath === "/explore?q=Pikachu" &&
+    body.includes("pikachu")
+      ? "passed"
+      : "failed";
+  return {
+    role,
+    viewport,
+    source_path: "/",
+    final_path: finalPath,
+    searchbox_count: searchboxCount,
+    query_visible_in_results: body.includes("pikachu"),
+    telemetry_or_other_non_read_requests_remained_blocked: true,
+    screenshot: screenshotName,
+    screenshot_sha256: sha256(screenshot),
+    status,
+  };
+}
+
+async function proveAuthenticatedReadApis(
+  page,
+  origin,
+  role,
+  accounts,
+  evidence,
+) {
+  const otherAccount = role === "subject" ? accounts.owner : accounts.subject;
+  const currentAccount = accounts[role];
+  const cases = [
+    {
+      name: "navigation_shell",
+      path: "/api/navigation/shell",
+      projection: "navigation",
+    },
+    {
+      name: "card_pricing",
+      path: `/api/card-pricing?card_print_id=${encodeURIComponent(evidence.cardPrintId)}`,
+      projection: "pricing",
+    },
+    {
+      name: "follow_state",
+      path: `/api/follows/state?collector_user_id=${encodeURIComponent(otherAccount.id)}`,
+      projection: "follow",
+    },
+    {
+      name: "wall_owner_sections",
+      path: `/api/wall/owner-sections?collectorUserId=${encodeURIComponent(currentAccount.id)}`,
+      projection: "wall",
+    },
+    {
+      name: "binder_client_state",
+      path: "/api/health/binders-client-state",
+      projection: "binders",
+    },
+    {
+      name: "public_set_cards",
+      path: `/api/public-set-cards?set_code=${encodeURIComponent(evidence.setCode)}&offset=0&limit=2`,
+      projection: "set_cards",
+    },
+    {
+      name: "resolver_search",
+      path: "/api/resolver/search?q=Pikachu&limit=2",
+      projection: "resolver",
+    },
+  ];
+
+  const results = [];
+  for (const testCase of cases) {
+    const response = await page.evaluate(
+      async ({ path, projection }) => {
+        const result = await fetch(path, {
+          method: "GET",
+          headers: { Accept: "application/json" },
+          cache: "no-store",
+        });
+        const body = await result.json().catch(() => null);
+        const object = body && typeof body === "object" ? body : {};
+        let facts = {};
+        if (projection === "navigation") {
+          facts = {
+            is_authenticated: object.isAuthenticated === true,
+            wall_availability: object.wallAvailability ?? null,
+          };
+        } else if (projection === "pricing") {
+          facts = {
+            ok: object.ok === true,
+            pricing_record_count: Array.isArray(object.pricingRecords)
+              ? object.pricingRecords.length
+              : 0,
+            market_intelligence_record_count: Array.isArray(
+              object.marketIntelligenceRecords,
+            )
+              ? object.marketIntelligenceRecords.length
+              : 0,
+          };
+        } else if (projection === "follow") {
+          facts = {
+            is_following: object.isFollowing === true,
+            has_error: typeof object.error === "string",
+          };
+        } else if (projection === "wall") {
+          facts = {
+            is_owner: object.isOwner === true,
+            section_count: Array.isArray(object.sections)
+              ? object.sections.length
+              : 0,
+            has_load_error: Boolean(object.loadError),
+          };
+        } else if (projection === "binders") {
+          const flags =
+            object.flags && typeof object.flags === "object"
+              ? Object.values(object.flags)
+              : [];
+          facts = {
+            clients_dark: object.clients_dark === true,
+            enabled_flag_count: flags.filter((value) => value === true).length,
+          };
+        } else if (projection === "set_cards") {
+          facts = {
+            item_count: Array.isArray(object.items) ? object.items.length : 0,
+            has_error: typeof object.error === "string",
+          };
+        } else if (projection === "resolver") {
+          facts = {
+            ok: object.ok === true,
+            canonical_count: Array.isArray(object.canonical)
+              ? object.canonical.length
+              : Array.isArray(object.rows)
+                ? object.rows.length
+                : 0,
+            provisional_count: Array.isArray(object.provisional)
+              ? object.provisional.length
+              : 0,
+          };
+        }
+        return { http_status: result.status, facts };
+      },
+      { path: testCase.path, projection: testCase.projection },
+    );
+
+    const expectedFollowState = role === "subject";
+    const assertions = {
+      http_200: response.http_status === 200,
+      contract:
+        testCase.projection === "navigation"
+          ? response.facts.is_authenticated === true
+          : testCase.projection === "pricing"
+            ? response.facts.ok === true
+            : testCase.projection === "follow"
+              ? response.facts.has_error === false &&
+                response.facts.is_following === expectedFollowState
+              : testCase.projection === "wall"
+                ? response.facts.is_owner === true &&
+                  response.facts.has_load_error === false
+                : testCase.projection === "binders"
+                  ? response.facts.clients_dark === false &&
+                    response.facts.enabled_flag_count >= 2
+                  : testCase.projection === "set_cards"
+                    ? response.facts.has_error === false &&
+                      response.facts.item_count > 0
+                    : response.facts.ok === true &&
+                      response.facts.canonical_count > 0,
+    };
+    results.push({
+      role,
+      endpoint: testCase.name,
+      http_status: response.http_status,
+      facts: response.facts,
+      assertions,
+      status: Object.values(assertions).every(Boolean) ? "passed" : "failed",
+    });
+  }
+  return results;
 }
 
 async function proveExistingMessageContext(
@@ -612,6 +1014,10 @@ function markdown(report) {
     (result) =>
       `| ${result.viewport} | ${result.thread_count} | ${result.textarea_count} | ${result.reply_submitted} | ${result.status} |`,
   );
+  const searchRows = report.search_navigation_results.map(
+    (result) =>
+      `| ${result.viewport} | ${result.role} | \`${result.final_path}\` | ${result.searchbox_count} | ${result.status} |`,
+  );
   return `${[
     "# Final-Candidate Signed-In Web Journeys V1",
     "",
@@ -629,6 +1035,16 @@ function markdown(report) {
     "| Viewport | Role | Route | Status | Broken images |",
     "| --- | --- | --- | --- | ---: |",
     ...routeRows,
+    "",
+    "## Search Navigation",
+    "",
+    "| Viewport | Role | Final path | Search boxes | Status |",
+    "| --- | --- | --- | ---: | --- |",
+    ...searchRows,
+    "",
+    "## Authenticated Read APIs",
+    "",
+    `- Passed: \`${report.summary.authenticated_read_api_pass_count}/${report.summary.authenticated_read_api_case_count}\``,
     "",
     "## Existing Card Message Context",
     "",
@@ -732,6 +1148,8 @@ async function main() {
     browser = await chromium.launch({ headless: true });
     const routeResults = [];
     const messageContextResults = [];
+    const searchNavigationResults = [];
+    const authenticatedReadApiResults = [];
     const blockedRequests = [];
     for (const viewport of VIEWPORTS) {
       for (const role of ["subject", "owner"]) {
@@ -771,6 +1189,26 @@ async function main() {
             ),
           );
         }
+        searchNavigationResults.push(
+          await proveSearchNavigation(
+            page,
+            args.origin,
+            role,
+            viewport.name,
+            runDir,
+          ),
+        );
+        if (viewport.name === "narrow") {
+          authenticatedReadApiResults.push(
+            ...(await proveAuthenticatedReadApis(
+              page,
+              args.origin,
+              role,
+              accounts,
+              journeyEvidence,
+            )),
+          );
+        }
         if (role === "subject") {
           messageContextResults.push(
             await proveExistingMessageContext(
@@ -803,10 +1241,18 @@ async function main() {
     const messageContextFailures = messageContextResults.filter(
       (result) => result.status !== "passed",
     );
+    const searchNavigationFailures = searchNavigationResults.filter(
+      (result) => result.status !== "passed",
+    );
+    const authenticatedReadApiFailures = authenticatedReadApiResults.filter(
+      (result) => result.status !== "passed",
+    );
     const databasePassed = Object.values(databaseAssertions).every(Boolean);
     const passed =
       routeFailures.length === 0 &&
       messageContextFailures.length === 0 &&
+      searchNavigationFailures.length === 0 &&
+      authenticatedReadApiFailures.length === 0 &&
       databasePassed &&
       beforeAfterEqual;
     const report = {
@@ -821,6 +1267,13 @@ async function main() {
         message_context_case_count: messageContextResults.length,
         message_context_pass_count:
           messageContextResults.length - messageContextFailures.length,
+        search_navigation_case_count: searchNavigationResults.length,
+        search_navigation_pass_count:
+          searchNavigationResults.length - searchNavigationFailures.length,
+        authenticated_read_api_case_count: authenticatedReadApiResults.length,
+        authenticated_read_api_pass_count:
+          authenticatedReadApiResults.length -
+          authenticatedReadApiFailures.length,
         blocked_non_read_request_count: blockedRequests.length,
         database_assertion_count: Object.keys(databaseAssertions).length,
         database_assertion_pass_count:
@@ -828,6 +1281,8 @@ async function main() {
         failure_count:
           routeFailures.length +
           messageContextFailures.length +
+          searchNavigationFailures.length +
+          authenticatedReadApiFailures.length +
           (databasePassed ? 0 : 1) +
           (beforeAfterEqual ? 0 : 1),
       },
@@ -844,6 +1299,8 @@ async function main() {
       },
       route_results: routeResults,
       message_context_results: messageContextResults,
+      search_navigation_results: searchNavigationResults,
+      authenticated_read_api_results: authenticatedReadApiResults,
       blocked_non_read_requests: blockedRequests,
       database_assertions: databaseAssertions,
       database_reconciliation: {

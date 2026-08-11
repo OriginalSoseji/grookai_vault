@@ -84,6 +84,8 @@ export type BinderChecklistSlot = {
   title: string;
   subtitle: string | null;
   finishLabel: string | null;
+  variantLabels: string[];
+  printingLabels: string[];
   imageUrl: string | null;
   hostedImage: boolean;
   status: "in_binder" | "missing";
@@ -125,6 +127,8 @@ export type BinderEligibleCopy = {
   cardPrintingId: string | null;
   title: string;
   finishLabel: string | null;
+  variantLabels: string[];
+  printingLabels: string[];
   imageUrl: string | null;
   eligible: boolean;
   reason: string | null;

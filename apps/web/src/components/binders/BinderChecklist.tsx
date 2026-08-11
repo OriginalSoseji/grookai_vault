@@ -88,7 +88,9 @@ export function BinderChecklist({
                       </div>
                       <div className="min-w-0">
                         <p className="font-semibold text-slate-950">{copy.title}</p>
-                        {copy.finishLabel ? <p className="mt-1 text-sm text-slate-600">{copy.finishLabel}</p> : null}
+                        <p className="mt-1 text-sm font-medium text-slate-700">
+                          {copy.printingLabels.join(" · ")}
+                        </p>
                         <div className="mt-3">
                           <AddCopyForm publicId={publicId} copyReference={copy.copyReference} label="Add your copy" />
                         </div>
@@ -138,6 +140,9 @@ export function BinderChecklist({
                     <div className="min-w-0">
                       <p className="font-semibold text-slate-950">{slot.title}</p>
                       {slot.subtitle ? <p className="mt-1 text-sm text-slate-600">{slot.subtitle}</p> : null}
+                      <p className="mt-1 text-xs font-medium text-slate-700">
+                        {slot.printingLabels.join(" · ")}
+                      </p>
                     </div>
                     <span
                       className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${

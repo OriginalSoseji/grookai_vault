@@ -280,6 +280,239 @@ async function runPersonalAction(page, viewport, origin, runDir) {
   };
 }
 
+async function proveSignedOutApiContracts(page, origin) {
+  const cases = [
+    {
+      name: "navigation_shell_requires_auth",
+      path: "/api/navigation/shell",
+      method: "GET",
+      projection: "navigation",
+      expectedStatus: 401,
+    },
+    {
+      name: "card_pricing_requires_auth",
+      path: "/api/card-pricing?card_print_id=85d64fe0-be9a-4760-a1a6-51dadcc88a7d",
+      method: "GET",
+      projection: "pricing",
+      expectedStatus: 401,
+    },
+    {
+      name: "follow_state_requires_auth",
+      path: "/api/follows/state?collector_user_id=00000000-0000-4000-8000-000000000001",
+      method: "GET",
+      projection: "follow",
+      expectedStatus: 401,
+    },
+    {
+      name: "wall_owner_controls_hidden",
+      path: "/api/wall/owner-sections",
+      method: "GET",
+      projection: "wall",
+      expectedStatus: 200,
+    },
+    {
+      name: "binder_client_state",
+      path: "/api/health/binders-client-state",
+      method: "GET",
+      projection: "binders",
+      expectedStatus: 200,
+    },
+    {
+      name: "public_set_cards",
+      path: "/api/public-set-cards?set_code=sv03.5&offset=0&limit=2",
+      method: "GET",
+      projection: "set_cards",
+      expectedStatus: 200,
+    },
+    {
+      name: "resolver_search",
+      path: "/api/resolver/search?q=Pikachu&limit=2",
+      method: "GET",
+      projection: "resolver",
+      expectedStatus: 200,
+    },
+    {
+      name: "canonical_image",
+      path: "/api/canon/cards/GV-PK-MEW-025/image",
+      method: "GET",
+      projection: "image",
+      expectedStatus: 200,
+    },
+    {
+      name: "canonical_image_rejects_missing_path",
+      path: "/api/canon/image",
+      method: "GET",
+      projection: "generic_image_validation",
+      expectedStatus: 400,
+    },
+    {
+      name: "canonical_image_batch_empty_read",
+      path: "/api/canon/images",
+      method: "POST",
+      body: { paths: [] },
+      projection: "image_batch",
+      expectedStatus: 200,
+    },
+    {
+      name: "public_set_metadata_read",
+      path: "/api/public-set-metadata",
+      method: "POST",
+      body: { setCodes: ["sv03.5"] },
+      projection: "set_metadata",
+      expectedStatus: 200,
+    },
+    {
+      name: "contact_eligibility_requires_auth",
+      path: "/api/network/contact-eligibility",
+      method: "POST",
+      body: { targets: [] },
+      projection: "contact",
+      expectedStatus: 401,
+    },
+  ];
+
+  const results = [];
+  for (const testCase of cases) {
+    const response = await page.evaluate(
+      async ({ path, method, body, projection }) => {
+        const result = await fetch(path, {
+          method,
+          headers: {
+            Accept: projection === "image" ? "image/*" : "application/json",
+            ...(body ? { "Content-Type": "application/json" } : {}),
+          },
+          body: body ? JSON.stringify(body) : undefined,
+          cache: "no-store",
+        });
+        const contentType = result.headers.get("content-type") ?? "";
+        if (projection === "image") {
+          const bytes = await result.arrayBuffer();
+          return {
+            http_status: result.status,
+            facts: {
+              image_content_type: contentType.startsWith("image/"),
+              byte_count_positive: bytes.byteLength > 0,
+            },
+          };
+        }
+
+        const bodyValue = await result.json().catch(() => null);
+        const object =
+          bodyValue && typeof bodyValue === "object" ? bodyValue : {};
+        let facts = {};
+        if (projection === "navigation") {
+          facts = { is_authenticated: object.isAuthenticated === true };
+        } else if (projection === "pricing") {
+          facts = { ok: object.ok === true, has_error: Boolean(object.error) };
+        } else if (projection === "follow") {
+          facts = {
+            is_following: object.isFollowing === true,
+            has_error: Boolean(object.error),
+          };
+        } else if (projection === "wall") {
+          facts = {
+            is_owner: object.isOwner === true,
+            section_count: Array.isArray(object.sections)
+              ? object.sections.length
+              : -1,
+          };
+        } else if (projection === "binders") {
+          const flags =
+            object.flags && typeof object.flags === "object"
+              ? Object.values(object.flags)
+              : [];
+          facts = {
+            clients_dark: object.clients_dark === true,
+            enabled_flag_count: flags.filter((value) => value === true).length,
+          };
+        } else if (projection === "set_cards") {
+          facts = {
+            item_count: Array.isArray(object.items) ? object.items.length : 0,
+            has_error: Boolean(object.error),
+          };
+        } else if (projection === "resolver") {
+          facts = {
+            ok: object.ok === true,
+            canonical_count: Array.isArray(object.canonical)
+              ? object.canonical.length
+              : Array.isArray(object.rows)
+                ? object.rows.length
+                : 0,
+          };
+        } else if (projection === "generic_image_validation") {
+          facts = { has_error: Boolean(object.error) };
+        } else if (projection === "image_batch") {
+          facts = {
+            url_count:
+              object.urls && typeof object.urls === "object"
+                ? Object.keys(object.urls).length
+                : -1,
+          };
+        } else if (projection === "set_metadata") {
+          facts = {
+            item_count: Array.isArray(object.items) ? object.items.length : 0,
+            first_set_code: Array.isArray(object.items)
+              ? object.items[0]?.set_code ?? null
+              : null,
+          };
+        } else if (projection === "contact") {
+          facts = {
+            eligible_count: Array.isArray(object.eligibleTargetKeys)
+              ? object.eligibleTargetKeys.length
+              : -1,
+          };
+        }
+        return { http_status: result.status, facts };
+      },
+      testCase,
+    );
+
+    const assertions = {
+      expected_status: response.http_status === testCase.expectedStatus,
+      contract:
+        testCase.projection === "navigation"
+          ? response.facts.is_authenticated === false
+          : testCase.projection === "pricing"
+            ? response.facts.ok === false && response.facts.has_error === true
+            : testCase.projection === "follow"
+              ? response.facts.is_following === false &&
+                response.facts.has_error === true
+              : testCase.projection === "wall"
+                ? response.facts.is_owner === false &&
+                  response.facts.section_count === 0
+                : testCase.projection === "binders"
+                  ? response.facts.clients_dark === false &&
+                    response.facts.enabled_flag_count >= 2
+                  : testCase.projection === "set_cards"
+                    ? response.facts.item_count > 0 &&
+                      response.facts.has_error === false
+                    : testCase.projection === "resolver"
+                      ? response.facts.ok === true &&
+                        response.facts.canonical_count > 0
+                      : testCase.projection === "image"
+                        ? response.facts.image_content_type === true &&
+                          response.facts.byte_count_positive === true
+                        : testCase.projection === "generic_image_validation"
+                          ? response.facts.has_error === true
+                          : testCase.projection === "image_batch"
+                            ? response.facts.url_count === 0
+                            : testCase.projection === "set_metadata"
+                              ? response.facts.item_count > 0 &&
+                                response.facts.first_set_code === "sv03.5"
+                              : response.facts.eligible_count === 0,
+    };
+    results.push({
+      endpoint: testCase.name,
+      method: testCase.method,
+      http_status: response.http_status,
+      facts: response.facts,
+      assertions,
+      status: Object.values(assertions).every(Boolean) ? "passed" : "failed",
+    });
+  }
+  return results;
+}
+
 function markdown(report) {
   const rows = report.route_results.map(
     (result) =>
@@ -310,6 +543,11 @@ function markdown(report) {
     "| Viewport | Action | Final | Status |",
     "| --- | --- | --- | --- |",
     ...actionRows,
+    "",
+    "## Signed-Out API Contracts",
+    "",
+    `- Passed: \`${report.summary.api_contract_pass_count}/${report.summary.api_contract_case_count}\``,
+    "- Safe read-only POST lookups are included; mutation, telemetry, model, and external-verification endpoints are intentionally not invoked.",
     "",
     "## Boundaries",
     "",
@@ -359,6 +597,7 @@ async function main() {
   const browser = await chromium.launch({ headless: true });
   const routeResults = [];
   const personalActionResults = [];
+  let apiContractResults = [];
   try {
     for (const viewport of VIEWPORTS) {
       const context = await browser.newContext({
@@ -378,6 +617,9 @@ async function main() {
       personalActionResults.push(
         await runPersonalAction(page, viewport, args.origin, runDir),
       );
+      if (viewport.name === "narrow") {
+        apiContractResults = await proveSignedOutApiContracts(page, args.origin);
+      }
       await context.close();
     }
   } finally {
@@ -387,6 +629,7 @@ async function main() {
   const failures = [
     ...routeResults.filter((result) => result.status !== "passed"),
     ...personalActionResults.filter((result) => result.status !== "passed"),
+    ...apiContractResults.filter((result) => result.status !== "passed"),
   ];
   const report = {
     audit_version: AUDIT_VERSION,
@@ -401,10 +644,14 @@ async function main() {
       personal_action_case_count: personalActionResults.length,
       personal_action_pass_count: personalActionResults.length -
         personalActionResults.filter((result) => result.status !== "passed").length,
+      api_contract_case_count: apiContractResults.length,
+      api_contract_pass_count: apiContractResults.length -
+        apiContractResults.filter((result) => result.status !== "passed").length,
       failure_count: failures.length,
     },
     route_results: routeResults,
     personal_action_results: personalActionResults,
+    api_contract_results: apiContractResults,
     boundaries: runPlan.boundaries,
   };
   const files = {

@@ -15,6 +15,7 @@ type CardOption = {
   title: string;
   subtitle: string | null;
   imageUrl: string | null;
+  variantLabels: string[];
   finishes: FinishOption[];
 };
 
@@ -26,6 +27,7 @@ type EditorSlot = {
   subtitle: string | null;
   imageUrl: string | null;
   finishLabel: string | null;
+  variantLabels: string[];
   finishOptions: FinishOption[];
   requiredQuantity: number;
 };
@@ -71,6 +73,7 @@ function makeInitialSlots(initialSlots: BinderChecklistSlot[]): EditorSlot[] {
       subtitle: slot.subtitle,
       imageUrl: slot.imageUrl,
       finishLabel: slot.finishLabel,
+      variantLabels: slot.variantLabels,
       finishOptions,
       requiredQuantity: Math.min(
         100,
@@ -79,6 +82,21 @@ function makeInitialSlots(initialSlots: BinderChecklistSlot[]): EditorSlot[] {
     });
   });
   return slots;
+}
+
+function getEditorPrintingLabels(slot: Pick<
+  EditorSlot,
+  "variantLabels" | "finishLabel" | "cardPrintingId"
+>) {
+  const labels = slot.variantLabels.length > 0
+    ? [...slot.variantLabels]
+    : ["Standard print"];
+  const finishLabel = slot.finishLabel ??
+    (slot.cardPrintingId ? "Governed finish" : "Any governed finish");
+  if (!labels.some((label) => label.toLowerCase() === finishLabel.toLowerCase())) {
+    labels.push(finishLabel);
+  }
+  return labels;
 }
 
 function identitiesOverlap(
@@ -303,6 +321,7 @@ export function CustomBinderSlotEditor({
         subtitle: option.subtitle,
         imageUrl: option.imageUrl,
         finishLabel: selectedFinish?.label ?? null,
+        variantLabels: option.variantLabels,
         finishOptions: option.finishes,
         requiredQuantity: 1,
       },
@@ -453,6 +472,12 @@ export function CustomBinderSlotEditor({
                           {option.subtitle}
                         </p>
                       ) : null}
+                      <p className="mt-1 text-xs font-medium text-slate-700">
+                        {(option.variantLabels.length > 0
+                          ? option.variantLabels
+                          : ["Standard print"]
+                        ).join(" · ")}
+                      </p>
                       <label className="mt-2 block text-xs font-medium text-slate-700">
                         Finish requirement
                         <select
@@ -540,6 +565,9 @@ export function CustomBinderSlotEditor({
                           {slot.subtitle}
                         </p>
                       ) : null}
+                      <p className="mt-1 text-xs font-medium text-slate-700">
+                        {getEditorPrintingLabels(slot).join(" · ")}
+                      </p>
                     </div>
                     <div className="grid gap-3 sm:grid-cols-2">
                       <label className="block text-xs font-medium text-slate-700">
@@ -633,7 +661,7 @@ export function CustomBinderSlotEditor({
             {slots.map((slot) => (
               <li key={`preview-${slot.localKey}`}>
                 {slot.title}
-                {slot.finishLabel ? ` · ${slot.finishLabel}` : " · any finish"}
+                {` · ${getEditorPrintingLabels(slot).join(" · ")}`}
                 {` · ${slot.requiredQuantity} ${
                   slot.requiredQuantity === 1 ? "copy" : "copies"
                 }`}

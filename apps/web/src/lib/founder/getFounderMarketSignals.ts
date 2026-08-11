@@ -240,7 +240,7 @@ export async function getFounderMarketSignals(
         cardMetadataById,
         "wants",
         (entry) =>
-          `${entry.count} ${pluralize(entry.count, "collector")} currently want this card`,
+          `${entry.count} ${pluralize(entry.count, "collector")} currently ${entry.count === 1 ? "wants" : "want"} this card`,
       ),
       emptyMessage:
         "Not enough signal yet. Top Wanted will populate as collectors mark cards they want.",

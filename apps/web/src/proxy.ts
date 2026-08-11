@@ -15,6 +15,7 @@ import {
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const CARD_WALK_WINDOW_MS = 10 * 60_000;
 const SIGNAL_DEDUPE_WINDOW_MS = 10 * 60_000;
+const AUTHENTICATED_NETWORK_LIMIT_MULTIPLIER = 5;
 
 type RateLimitBucket = {
   count: number;
@@ -69,6 +70,20 @@ function getActorKey(request: NextRequest) {
   return `${ip}|${userAgent}`;
 }
 
+function getSessionKeyMaterial(request: NextRequest) {
+  const authCookies = request.cookies
+    .getAll()
+    .filter(
+      ({ name, value }) =>
+        /^sb-.+-auth-token(?:\.\d+)?$/i.test(name) && value.length > 0,
+    )
+    .sort((left, right) => left.name.localeCompare(right.name));
+
+  return authCookies.length > 0
+    ? authCookies.map(({ name, value }) => `${name}=${value}`).join("|")
+    : null;
+}
+
 async function getActorHash(actorKey: string) {
   const digest = await crypto.subtle.digest(
     "SHA-256",
@@ -90,21 +105,21 @@ function classifyRequest(pathname: string): AbuseClassification {
     };
   }
 
-  if (pathname.startsWith("/api/") && pathname !== "/api/telemetry") {
-    return {
-      lane: "api",
-      limit: 120,
-      enforce: true,
-      reason: "api_request_volume",
-    };
-  }
-
   if (pathname === "/search" || pathname === "/api/resolver/search") {
     return {
       lane: "search",
       limit: 80,
       enforce: true,
       reason: "search_request_volume",
+    };
+  }
+
+  if (pathname.startsWith("/api/") && pathname !== "/api/telemetry") {
+    return {
+      lane: "api",
+      limit: 120,
+      enforce: true,
+      reason: "api_request_volume",
     };
   }
 
@@ -185,13 +200,17 @@ async function incrementDurableRateLimit(
   lane: AbuseClassification["lane"],
   actorHash: string,
   now: number,
+  scope: "actor" | "network" = "actor",
 ) {
   const config = getDurableRateLimitConfig();
   if (!config || lane === "none") {
     return null;
   }
 
-  const key = `${config.prefix}:${lane}:${actorHash}`;
+  const key =
+    scope === "actor"
+      ? `${config.prefix}:${lane}:${actorHash}`
+      : `${config.prefix}:network:${lane}:${actorHash}`;
   const pipeline = await runUpstashPipeline([
     ["INCR", key],
     ["PTTL", key],
@@ -219,13 +238,19 @@ async function incrementClassifiedRateLimit(
   lane: AbuseClassification["lane"],
   actorHash: string,
   now: number,
+  scope: "actor" | "network" = "actor",
 ) {
-  const durableBucket = await incrementDurableRateLimit(lane, actorHash, now);
+  const durableBucket = await incrementDurableRateLimit(
+    lane,
+    actorHash,
+    now,
+    scope,
+  );
   if (durableBucket) {
     return durableBucket;
   }
 
-  return incrementMemoryRateLimit(`${lane}|${actorHash}`, now);
+  return incrementMemoryRateLimit(`${scope}|${lane}|${actorHash}`, now);
 }
 
 function getCardIdFromPath(pathname: string) {
@@ -312,37 +337,61 @@ function addSecurityHeaders(response: NextResponse, request: NextRequest) {
 
 async function applyAbuseProtection(request: NextRequest, event: NextFetchEvent) {
   const now = Date.now();
-  const actorKey = getActorKey(request);
-  const actorHash = await getActorHash(actorKey);
+  const networkActorKey = getActorKey(request);
+  const networkActorHash = await getActorHash(networkActorKey);
+  const sessionKeyMaterial = getSessionKeyMaterial(request);
+  const actorHash = sessionKeyMaterial
+    ? await getActorHash(`${networkActorKey}|session|${sessionKeyMaterial}`)
+    : networkActorHash;
   const classification = classifyRequest(request.nextUrl.pathname);
   const userAgent = request.headers.get("user-agent")?.trim() || "";
   const bucket = await incrementClassifiedRateLimit(classification.lane, actorHash, now);
+  const networkBucket = sessionKeyMaterial
+    ? await incrementClassifiedRateLimit(
+        classification.lane,
+        networkActorHash,
+        now,
+        "network",
+      )
+    : null;
+  const networkLimit =
+    classification.limit * AUTHENTICATED_NETWORK_LIMIT_MULTIPLIER;
   const isMissingUserAgent = userAgent.length === 0;
   const isRetiredRegistryHit = classification.lane === "retired_registry";
   const isApiProbe = classification.lane === "api";
   const isSearchBurst = classification.lane === "search" && bucket.count > Math.floor(classification.limit * 0.7);
   const cardId = getCardIdFromPath(request.nextUrl.pathname);
-  const isCardWalking = classification.lane === "card" && cardId ? observeCardWalking(actorKey, cardId, now) : false;
-  const shouldThrottle = classification.enforce && bucket.count > classification.limit;
+  const isCardWalking = classification.lane === "card" && cardId ? observeCardWalking(actorHash, cardId, now) : false;
+  const actorLimitExceeded = bucket.count > classification.limit;
+  const networkLimitExceeded = Boolean(
+    networkBucket && networkBucket.count > networkLimit,
+  );
+  const shouldThrottle =
+    classification.enforce && (actorLimitExceeded || networkLimitExceeded);
 
   if (shouldThrottle) {
-    const retryAfterSeconds = Math.max(1, Math.ceil((bucket.resetAt - now) / 1000));
+    const limitingBucket = networkLimitExceeded && networkBucket ? networkBucket : bucket;
+    const retryAfterSeconds = Math.max(
+      1,
+      Math.ceil((limitingBucket.resetAt - now) / 1000),
+    );
     const response = new NextResponse("Too many requests.", {
       status: 429,
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Retry-After": String(retryAfterSeconds),
         "Cache-Control": "private, no-store",
-        "X-Grookai-Rate-Limit-Source": bucket.source,
+        "X-Grookai-Rate-Limit-Source": limitingBucket.source,
       },
     });
 
     emitAbuseEvent(event, request, "abuse_throttled", {
       lane: classification.lane,
       reason: classification.reason,
-      request_count: bucket.count,
-      limit: classification.limit,
-      rate_limit_source: bucket.source,
+      request_count: limitingBucket.count,
+      limit: networkLimitExceeded ? networkLimit : classification.limit,
+      rate_limit_scope: networkLimitExceeded ? "network" : "actor",
+      rate_limit_source: limitingBucket.source,
       retry_after_seconds: retryAfterSeconds,
       user_agent: userAgent.slice(0, 180),
       ip_hint: getActorIp(request),
@@ -357,7 +406,7 @@ async function applyAbuseProtection(request: NextRequest, event: NextFetchEvent)
       : isMissingUserAgent
         ? "missing_user_agent"
         : classification.reason;
-    const signalKey = `${classification.lane}|${reason}|${actorKey}`;
+    const signalKey = `${classification.lane}|${reason}|${actorHash}`;
 
     if (shouldEmitSignal(signalKey, now)) {
       emitAbuseEvent(event, request, "abuse_signal", {
@@ -365,6 +414,7 @@ async function applyAbuseProtection(request: NextRequest, event: NextFetchEvent)
         reason,
         request_count: bucket.count,
         limit: classification.limit,
+        rate_limit_scope: "actor",
         rate_limit_source: bucket.source,
         user_agent: userAgent.slice(0, 180),
         ip_hint: getActorIp(request),

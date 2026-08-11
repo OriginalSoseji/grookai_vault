@@ -26,6 +26,8 @@ import {
   parsePublicContributionActions,
   safeCanonicalBinderImageUrl,
 } from "./publicSafety";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 
 type JsonRecord = Record<string, unknown>;
 const OPAQUE_UUID_PATTERN =
@@ -110,6 +112,42 @@ function field(source: JsonRecord, ...keys: string[]) {
     }
   }
   return undefined;
+}
+
+function binderVariantLabels(item: JsonRecord, card: JsonRecord) {
+  return getVariantLabels(
+    {
+      number: nullableString(field(item, "number")) ?? nullableString(field(card, "number")),
+      setCode:
+        nullableString(field(item, "set_code")) ??
+        nullableString(field(card, "set_code")),
+      variantKey:
+        nullableString(field(item, "variant_key")) ??
+        nullableString(field(card, "variant_key")),
+      printedIdentityModifier:
+        nullableString(field(item, "printed_identity_modifier")) ??
+        nullableString(field(card, "printed_identity_modifier")),
+    },
+    2,
+  );
+}
+
+function binderPrintingLabels(item: JsonRecord, card: JsonRecord) {
+  const labels = binderVariantLabels(item, card);
+  const finishLabel = getCardPrintingFinishLabel({
+    finishLabel:
+      nullableString(field(item, "finish_label")) ??
+      nullableString(field(card, "finish_label")),
+  });
+
+  if (
+    finishLabel &&
+    !labels.some((label) => label.toLowerCase() === finishLabel.toLowerCase())
+  ) {
+    labels.push(finishLabel);
+  }
+
+  return labels.length > 0 ? labels.slice(0, 3) : ["Standard print"];
 }
 
 function nested(source: JsonRecord, key: string) {
@@ -282,6 +320,8 @@ function parseChecklistSlot(value: unknown): BinderChecklistSlot {
     title: string(field(item, "title", "card_name", "label"), "Card print"),
     subtitle: nullableString(field(item, "subtitle", "set_label", "finish_label")),
     finishLabel: nullableString(field(item, "finish_label")),
+    variantLabels: binderVariantLabels(item, card),
+    printingLabels: binderPrintingLabels(item, card),
     imageUrl: nullableString(field(item, "image_url", "canonical_image_url")),
     hostedImage: boolean(
       field(item, "hosted_image") ?? field(card, "hosted_image"),
@@ -401,6 +441,12 @@ function parsePublicChecklistSlot(
       160,
     ),
     finishLabel: boundedNullableString(field(item, "finish_label"), 100),
+    variantLabels: binderVariantLabels(item, card).map((label) =>
+      label.slice(0, 100),
+    ),
+    printingLabels: binderPrintingLabels(item, card).map((label) =>
+      label.slice(0, 100),
+    ),
     imageUrl: safeCanonicalBinderImageUrl(
       field(item, "image_url", "canonical_image_url"),
     ),
@@ -464,6 +510,7 @@ function parseMember(value: unknown): BinderMember {
 
 function parseEligibleCopy(value: unknown): BinderEligibleCopy {
   const item = record(value);
+  const card = nested(item, "card");
   return {
     copyReference: string(
       field(item, "copy_reference", "vault_item_instance_id", "instance_id"),
@@ -472,6 +519,8 @@ function parseEligibleCopy(value: unknown): BinderEligibleCopy {
     cardPrintingId: nullableString(item.card_printing_id),
     title: string(field(item, "title", "card_name"), "Owned copy"),
     finishLabel: nullableString(field(item, "finish_label")),
+    variantLabels: binderVariantLabels(item, card),
+    printingLabels: binderPrintingLabels(item, card),
     imageUrl: nullableString(field(item, "image_url", "canonical_image_url")),
     eligible: boolean(field(item, "eligible"), true),
     reason: nullableString(field(item, "reason", "ineligible_reason")),

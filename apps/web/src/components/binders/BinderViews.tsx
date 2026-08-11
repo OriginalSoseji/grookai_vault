@@ -435,6 +435,9 @@ export function BinderPublicView({
                   <div className="min-w-0">
                     <p className="font-semibold text-slate-950">{slot.title}</p>
                     {slot.subtitle ? <p className="mt-1 text-sm text-slate-600">{slot.subtitle}</p> : null}
+                    <p className="mt-1 text-xs font-medium text-slate-700">
+                      {slot.printingLabels.join(" · ")}
+                    </p>
                     {slot.contributors.length > 0 ? (
                       <p className="mt-2 text-xs text-slate-500">
                         Added by{" "}

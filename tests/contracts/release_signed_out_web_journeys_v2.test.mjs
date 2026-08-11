@@ -42,6 +42,34 @@ test("the production audit is read-only and hashes visual evidence", () => {
   assert.match(SOURCE, /visibleImageState/);
 });
 
+test("signed-out audit proves public, private, image, and lookup API boundaries", () => {
+  assert.match(SOURCE, /async function proveSignedOutApiContracts/);
+  for (const endpoint of [
+    "/api/navigation/shell",
+    "/api/card-pricing?card_print_id=",
+    "/api/follows/state?collector_user_id=",
+    "/api/wall/owner-sections",
+    "/api/health/binders-client-state",
+    "/api/public-set-cards?set_code=",
+    "/api/resolver/search?q=Pikachu&limit=2",
+    "/api/canon/cards/GV-PK-MEW-025/image",
+    "/api/canon/images",
+    "/api/public-set-metadata",
+    "/api/network/contact-eligibility",
+  ]) {
+    assert.match(
+      SOURCE,
+      new RegExp(endpoint.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+  assert.match(SOURCE, /expectedStatus:\s*401/);
+  assert.match(SOURCE, /api_contract_results:\s*apiContractResults/);
+  assert.match(SOURCE, /api_contract_pass_count/);
+  assert.doesNotMatch(SOURCE, /\/api\/telemetry/);
+  assert.doesNotMatch(SOURCE, /\/api\/assistant\/search-interpretation/);
+  assert.doesNotMatch(SOURCE, /\/api\/slabs\/upgrade/);
+});
+
 test("deployment provenance is mandatory", () => {
   assert.match(SOURCE, /--deployment-sha is required/);
   assert.match(SOURCE, /--verifier-sha is required/);

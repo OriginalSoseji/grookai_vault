@@ -82,6 +82,9 @@ test('repaired acquisition scripts retain explicit authority boundaries', () => 
 
   const linkAudit = readFileSync('scripts/audits/web_cohesion_link_integrity_v1.mjs', 'utf8');
   assert.match(linkAudit, /resolveSameOriginHttpUrl\(href, baseUrl, currentPathname\)/);
+  assert.match(linkAudit, /WEB_AUDIT_CONCURRENCY \?\? "1"/);
+  assert.match(linkAudit, /Math\.min\(Math\.floor\(args\.concurrency\), 20\)/);
+  assert.match(linkAudit, /await Promise\.all\([\s\S]*batch\.map\(\(pathname\) => fetchRoute\(baseUrl, pathname\)\)/);
 
   const legacyUploader = readFileSync(
     'scripts/audits/self_hosted_images_wh05b_trainer_kit_runtime_storage_upload_apply.mjs',

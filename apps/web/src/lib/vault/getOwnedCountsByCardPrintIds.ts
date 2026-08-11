@@ -28,6 +28,7 @@ type SupabaseReadError = {
 };
 
 const SUPABASE_OWNERSHIP_PAGE_SIZE = 1_000;
+const SUPABASE_IN_FILTER_CHUNK_SIZE = 200;
 
 function chunkArray<T>(values: T[], size: number) {
   const chunks: T[][] = [];
@@ -96,7 +97,7 @@ export async function getOwnedCountsByCardPrintIds(
   const counts = new Map<string, number>();
   const requestedCardPrintIds = new Set(normalizedIds);
 
-  for (const chunk of chunkArray(normalizedIds, 500)) {
+  for (const chunk of chunkArray(normalizedIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
     const rows = await fetchAllOwnershipPages<DirectOwnedInstanceRow>(
       (from, to) =>
         adminClient
@@ -136,7 +137,10 @@ export async function getOwnedCountsByCardPrintIds(
     ),
   );
   const slabCertCardPrintIdById = new Map<string, string>();
-  for (const chunk of chunkArray(ownedSlabCertIds, 500)) {
+  for (const chunk of chunkArray(
+    ownedSlabCertIds,
+    SUPABASE_IN_FILTER_CHUNK_SIZE,
+  )) {
     const { data, error } = await adminClient
       .from("slab_certs")
       .select("id,card_print_id")
@@ -204,7 +208,10 @@ export async function getAllOwnedCountsForUser(
   }
 
   const cardPrintIdBySlabCertId = new Map<string, string>();
-  for (const chunk of chunkArray(Array.from(slabCertIds), 500)) {
+  for (const chunk of chunkArray(
+    Array.from(slabCertIds),
+    SUPABASE_IN_FILTER_CHUNK_SIZE,
+  )) {
     const { data: slabRows, error: slabError } = await adminClient
       .from("slab_certs")
       .select("id,card_print_id")

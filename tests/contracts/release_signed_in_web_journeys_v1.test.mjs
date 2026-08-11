@@ -96,6 +96,53 @@ test("collector connection and collection-depth surfaces are covered", () => {
   assert.match(SOURCE, /private_message_copy_masked_in_screenshot:\s*true/);
 });
 
+test("expanded route coverage uses live canonical evidence and explicit private states", () => {
+  assert.match(SOURCE, /setCode:\s*copy\.set_code/);
+  assert.match(SOURCE, /const setPath = `\/sets\/\$\{encodeURIComponent\(evidence\.setCode\)\}`/);
+  assert.match(SOURCE, /path:\s*"\/explore\?q=Pikachu"/);
+  assert.match(SOURCE, /path:\s*"\/compare\?cards=GV-PK-MEW-025%2CGV-PK-MEW-006"/);
+  assert.match(SOURCE, /path:\s*"\/dex\/pikachu"/);
+  assert.match(SOURCE, /path:\s*"\/binders\/new"/);
+  assert.match(SOURCE, /path:\s*"\/binders\/explore"/);
+  assert.match(SOURCE, /path:\s*"\/binder-invites\/review"/);
+  assert.match(SOURCE, /expectedStatus:\s*evidence\.publiclyDiscoverable \? 200 : 404/);
+  assert.match(
+    SOURCE,
+    /name:\s*"owner_pokemon_collection"[\s\S]*?expectedStatus:\s*200/,
+  );
+  assert.match(SOURCE, /const expectedStatus = route\.expectedStatus \?\? 200/);
+  assert.match(SOURCE, /expected_http_status:\s*expectedStatus/);
+});
+
+test("signed-in audit proves authenticated read API contracts", () => {
+  assert.match(SOURCE, /async function proveAuthenticatedReadApis/);
+  for (const endpoint of [
+    "/api/navigation/shell",
+    "/api/card-pricing?card_print_id=",
+    "/api/follows/state?collector_user_id=",
+    "/api/wall/owner-sections?collectorUserId=",
+    "/api/health/binders-client-state",
+    "/api/public-set-cards?set_code=",
+    "/api/resolver/search?q=Pikachu&limit=2",
+  ]) {
+    assert.match(
+      SOURCE,
+      new RegExp(endpoint.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+  assert.match(SOURCE, /method:\s*"GET"/);
+  assert.match(SOURCE, /authenticated_read_api_results:\s*authenticatedReadApiResults/);
+  assert.match(SOURCE, /authenticatedReadApiFailures\.length === 0/);
+  assert.match(SOURCE, /authenticated_read_api_pass_count/);
+});
+
+test("search navigation waits for rendered evidence before deciding", () => {
+  assert.match(SOURCE, /url\.pathname === "\/explore"/);
+  assert.match(SOURCE, /url\.searchParams\.get\("q"\) === "Pikachu"/);
+  assert.match(SOURCE, /document\.body\?\.innerText\.toLowerCase/);
+  assert.match(SOURCE, /query_visible_in_results:\s*body\.includes\("pikachu"\)/);
+});
+
 test("narrow and desktop signed-in screenshots are hashed", () => {
   assert.match(SOURCE, /width:\s*390,\s*height:\s*844/);
   assert.match(SOURCE, /width:\s*1440,\s*height:\s*1000/);

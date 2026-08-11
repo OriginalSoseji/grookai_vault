@@ -23,22 +23,28 @@ test("root chrome does not perform server auth reads during public render", () =
   );
 });
 
-test("primary public routes use bounded revalidation instead of force-dynamic", () => {
-  const publicRouteSources = [
+test("catalog landings cache while viewer-specific public routes remain dynamic", () => {
+  const cachedRouteSources = [
     readSource("app", "page.tsx"),
+    readSource("app", "sets", "page.tsx"),
+    readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx"),
+  ].join("\n");
+  const viewerSpecificRouteSources = [
     readSource("app", "network", "page.tsx"),
     readSource("app", "network", "discover", "page.tsx"),
     readSource("app", "u", "[slug]", "page.tsx"),
-    readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx"),
     readSource("app", "gvvi", "[gvvi_id]", "page.tsx"),
-    readSource("app", "sets", "page.tsx"),
     readSource("app", "compare", "page.tsx"),
   ].join("\n");
 
-  assert.doesNotMatch(publicRouteSources, /force-dynamic|revalidate\s*=\s*0/);
-  assert.match(publicRouteSources, /export const revalidate = 60/);
-  assert.match(publicRouteSources, /export const revalidate = 120/);
-  assert.match(publicRouteSources, /export const revalidate = 300/);
+  assert.doesNotMatch(cachedRouteSources, /force-dynamic|revalidate\s*=\s*0/);
+  assert.match(cachedRouteSources, /export const revalidate = 60/);
+  assert.match(cachedRouteSources, /export const revalidate = 300/);
+  assert.equal(
+    viewerSpecificRouteSources.match(/force-dynamic/g)?.length,
+    5,
+    "all viewer-specific routes must opt out of shared rendering",
+  );
 });
 
 test("public read helpers use the anonymous public server client", () => {
@@ -150,8 +156,8 @@ test("explore search keeps results compact and cards above supporting tools", ()
   assert.match(gridItem, /variant="floating"/);
   assert.match(gridItem, /gv-search-result-card/);
   assert.match(gridItem, /max-w-\[160px\]/);
-  assert.match(gridTile, /compact: "p-2"/);
-  assert.match(gridTile, /compact: "p-1\.5"/);
+  assert.match(gridTile, /compact: "p-0"/);
+  assert.match(gridTile, /compact: "space-y-1\.5"/);
   assert.match(compareButton, /variant\?: "default" \| "compact" \| "floating"/);
   assert.match(compareButton, /gv-card-compare-floating/);
   assert.match(globals, /\.gv-search-result-card\.gv-visual-card/);
@@ -250,7 +256,7 @@ test("card detail streams lower panels after exact card information", () => {
     cardPage.indexOf("<h2>Card information</h2>") < cardPage.indexOf("<StreamedRelatedPrintsSection"),
     "card detail information should render before streamed other versions",
   );
-  assert.match(pricingRail, /function PricingLoadingState/);
+  assert.match(pricingRail, /Loading market data\.\.\./);
   assert.match(pricingRail, /isLoadingPricing && !selectedPricing/);
   assert.doesNotMatch(pricingRail, /No pricing data available/);
 });
