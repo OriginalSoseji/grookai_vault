@@ -7,6 +7,7 @@ import '../../models/grookai_memory_card.dart';
 import '../../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../services/grookai_objects/memory_card_print_service.dart';
+import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/vault/collector_memory_service.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
 import '../../widgets/grookai_objects/grookai_object_destination_export_renderer.dart';
@@ -14,6 +15,14 @@ import '../../widgets/grookai_objects/grookai_object_share_destination_sheet.dar
 import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
 import '../vault/vault_manage_card_screen.dart';
+
+String buildCollectorMemoryShareText(OwnerCollectorMemory item) {
+  final gvId = (item.gvId ?? '').trim();
+  final path = gvId.isEmpty ? '/' : '/card/${Uri.encodeComponent(gvId)}';
+  final appLink = GrookaiWebRouteService.buildUri(path);
+  return 'A collector Memory for ${item.cardName}.\n'
+      'Open in Grookai Vault: $appLink';
+}
 
 class CollectorMemoryDetailScreen extends StatefulWidget {
   CollectorMemoryDetailScreen({
@@ -188,7 +197,7 @@ class _CollectorMemoryDetailScreenState
           title: widget.item.cardName,
         ),
         subject: 'Grookai memory card',
-        text: 'Shared from Grookai Vault',
+        text: buildCollectorMemoryShareText(widget.item),
         sharePositionOrigin: sharePositionOrigin,
       );
     } catch (error, stackTrace) {

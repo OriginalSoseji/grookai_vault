@@ -12,6 +12,28 @@ import 'package:grookai_vault/widgets/grookai_objects/grookai_object_renderer.da
 import 'package:share_plus/share_plus.dart';
 
 void main() {
+  test('Memory share text links to the canonical card app route', () {
+    const item = OwnerCollectorMemory(
+      memory: CollectorMemory(
+        id: 'memory-1',
+        vaultItemInstanceId: 'instance-1',
+        gvviId: 'GVVI-1',
+        memoryType: CollectorMemoryType.note,
+      ),
+      cardPrintId: 'card-1',
+      cardName: 'Pikachu',
+      setName: 'Promo',
+      gvId: 'GV-PK-TEST-001',
+    );
+
+    expect(
+      buildCollectorMemoryShareText(item),
+      'A collector Memory for Pikachu.\n'
+      'Open in Grookai Vault: '
+      'https://grookaivault.com/card/GV-PK-TEST-001',
+    );
+  });
+
   testWidgets('Memories home renders empty state', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -317,6 +339,11 @@ void main() {
       expect(exportService.shareCalls, 1);
       expect(exportService.lastFileName, 'grookai-memory-story-pikachu.png');
       expect(exportService.lastSubject, 'Grookai memory card');
+      expect(
+        exportService.lastText,
+        'A collector Memory for Pikachu.\n'
+        'Open in Grookai Vault: https://grookaivault.com/',
+      );
       expect(exportService.lastBytes, isNotEmpty);
     },
   );
@@ -408,6 +435,7 @@ class _FakeObjectExportService extends GrookaiObjectExportService {
   Uint8List? lastBytes;
   String? lastFileName;
   String? lastSubject;
+  String? lastText;
 
   @override
   Future<Uint8List> capturePng(
@@ -429,6 +457,7 @@ class _FakeObjectExportService extends GrookaiObjectExportService {
     lastBytes = bytes;
     lastFileName = fileName;
     lastSubject = subject;
+    lastText = text;
     return ShareResult.unavailable;
   }
 }
