@@ -8,7 +8,9 @@ import '../../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
 import '../../services/grookai_objects/memory_card_print_service.dart';
 import '../../services/vault/collector_memory_service.dart';
-import '../../widgets/grookai_objects/grookai_object_flattened_renderer.dart';
+import '../../widgets/grookai_objects/grookai_object.dart';
+import '../../widgets/grookai_objects/grookai_object_destination_export_renderer.dart';
+import '../../widgets/grookai_objects/grookai_object_share_destination_sheet.dart';
 import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
 import '../vault/vault_manage_card_screen.dart';
@@ -41,8 +43,11 @@ class _CollectorMemoryDetailScreenState
   // available on the front without replacing the Memory experience.
   bool _showFront = false;
   bool _printing = false;
+  bool _sharing = false;
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
-  final GlobalKey _printBoundaryKey = GlobalKey();
+  GrookaiObjectExportDestination _exportDestination =
+      GrookaiObjectExportDestination.saveImage;
+  final GlobalKey _exportBoundaryKey = GlobalKey();
 
   void _openCard() {
     final injectedAction = widget.onViewCard;
@@ -63,7 +68,7 @@ class _CollectorMemoryDetailScreenState
   }
 
   Future<void> _openPrintMenu() async {
-    if (_printing) {
+    if (_printing || _sharing) {
       return;
     }
     final action = await showModalBottomSheet<_MemoryPrintAction>(
@@ -135,11 +140,83 @@ class _CollectorMemoryDetailScreenState
   }
 
   Future<Uint8List> _captureSide({required bool showFront}) async {
-    if (_showFront != showFront) {
-      setState(() => _showFront = showFront);
+    if (_showFront != showFront ||
+        _exportDestination != GrookaiObjectExportDestination.saveImage) {
+      setState(() {
+        _showFront = showFront;
+        _exportDestination = GrookaiObjectExportDestination.saveImage;
+      });
     }
     await WidgetsBinding.instance.endOfFrame;
-    return widget.exportService.capturePng(_printBoundaryKey, pixelRatio: 3);
+    return widget.exportService.capturePng(_exportBoundaryKey, pixelRatio: 3);
+  }
+
+  Future<void> _shareCurrentSide() async {
+    if (_sharing || _printing) {
+      return;
+    }
+
+    final object = _memoryObject;
+    final destination = await showGrookaiObjectShareDestinationSheet(
+      context: context,
+      object: object,
+    );
+    if (destination == null || !mounted) {
+      return;
+    }
+
+    final previousDestination = _exportDestination;
+    setState(() {
+      _sharing = true;
+      _exportDestination = destination;
+    });
+    final sharePositionOrigin =
+        GrookaiObjectExportService.sharePositionOriginFor(context);
+
+    try {
+      await _precachePrintImages();
+      await WidgetsBinding.instance.endOfFrame;
+      final bytes = await widget.exportService.exportObjectPng(
+        object: object,
+        destination: destination,
+        repaintBoundaryKey: _exportBoundaryKey,
+      );
+      await widget.exportService.sharePng(
+        bytes: bytes,
+        fileName: GrookaiObjectExportService.fileNameFor(
+          type: 'memory-${destination.slug}',
+          title: widget.item.cardName,
+        ),
+        subject: 'Grookai memory card',
+        text: 'Shared from Grookai Vault',
+        sharePositionOrigin: sharePositionOrigin,
+      );
+    } catch (error, stackTrace) {
+      GrookaiCrashReportingService.recordNonFatalError(
+        error,
+        stackTrace,
+        reason: 'grookai_object_share_failed',
+        context: <String, Object?>{
+          'memory_id': widget.item.memory.id,
+          'card_print_id': widget.item.cardPrintId,
+          'surface': 'collector_memory_detail',
+          'operation': 'share_png',
+          'destination': destination.slug,
+        },
+      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Unable to share this Memory.')),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _sharing = false;
+          _exportDestination = previousDestination;
+        });
+      }
+    }
   }
 
   Future<void> _precachePrintImages() async {
@@ -166,13 +243,11 @@ class _CollectorMemoryDetailScreenState
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
+  GrookaiObject get _memoryObject {
     final item = widget.item;
-    final memory = item.memory;
     final artwork = item.catalogArtwork;
-    final object = GrookaiMemoryCardAdapter.fromMemory(
-      memory: memory,
+    return GrookaiMemoryCardAdapter.fromMemory(
+      memory: item.memory,
       source: GrookaiMemoryCardSource(
         cardName: item.cardName,
         setLine: item.setName,
@@ -182,6 +257,13 @@ class _CollectorMemoryDetailScreenState
       skin: _skin,
       signedPhotoUrl: widget.signedPhotoUrl,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final item = widget.item;
+    final memory = item.memory;
+    final object = _memoryObject;
     final note = (memory.note ?? '').trim();
     final details = _memoryDetails(memory);
     final canOpenCard =
@@ -193,8 +275,19 @@ class _CollectorMemoryDetailScreenState
         title: const Text('Memory'),
         actions: [
           IconButton(
+            key: const Key('share-memory-button'),
+            onPressed: _printing || _sharing ? null : _shareCurrentSide,
+            tooltip: 'Share Memory',
+            icon: _sharing
+                ? const SizedBox.square(
+                    dimension: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Icon(Icons.ios_share_outlined),
+          ),
+          IconButton(
             key: const Key('print-memory-button'),
-            onPressed: _printing ? null : _openPrintMenu,
+            onPressed: _printing || _sharing ? null : _openPrintMenu,
             tooltip: 'Print Memory',
             icon: _printing
                 ? const SizedBox.square(
@@ -212,9 +305,10 @@ class _CollectorMemoryDetailScreenState
             Center(
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: GrookaiObjectFlattenedRenderer(
-                  repaintBoundaryKey: _printBoundaryKey,
+                child: GrookaiObjectDestinationExportRenderer(
+                  repaintBoundaryKey: _exportBoundaryKey,
                   object: object,
+                  destination: _exportDestination,
                   showFront: _showFront,
                 ),
               ),
