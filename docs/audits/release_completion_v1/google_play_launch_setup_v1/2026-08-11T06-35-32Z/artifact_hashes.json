@@ -1,0 +1,46 @@
+{
+  "schema_version": "GROOKAI_GOOGLE_PLAY_LAUNCH_SETUP_ARTIFACT_HASHES_V1",
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "docs/audits/release_completion_v1/google_play_launch_setup_v1/2026-08-11T06-35-32Z/REPORT.md",
+      "sha256": "c34a6528708fb187d489d045d83d2359d2ca3c249e08349ef18e7d2bba69a00f"
+    },
+    {
+      "path": "docs/audits/release_completion_v1/google_play_launch_setup_v1/2026-08-11T06-35-32Z/readback.json",
+      "sha256": "75c38ebf7bc6c1365d30d902106b07a65e3cf58ac0683a44f2cf8d799397c4f1"
+    },
+    {
+      "path": "docs/checkpoints/product/GOOGLE_PLAY_LAUNCH_SETUP_20260811_V1.md",
+      "sha256": "fcb667771b674cbfab8c9755ac1760670b4d041db3ad02d7bcb5384226d2ccda"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/README.md",
+      "sha256": "5d93d8b955eed0777fe77910c4e21815a55c9034e0f6354df7f649cc815e33a8"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/app_icon_512.png",
+      "sha256": "bb3fc6120b377dbc4411462bc7b4967afad7047dfa1e02f878e0fefaf13e9c2d"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/feature_graphic_1024x500.png",
+      "sha256": "dbf4b3cde471777837f92258b2c2038ccd679f578d314c71a25129c0a392f0bb"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/01_search.png",
+      "sha256": "eb9ac167b73b9d09850c392f02cfbd053f6987226c760d4dee1f57670da284fa"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/02_search_results.png",
+      "sha256": "6cdd7fcd949f2e1381bf101cdbe5d91a7881f020846f46bb5130de4a121c187a"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/03_exact_printing.png",
+      "sha256": "e529213d3e559c8caf8358090765ccfdde9ee854ae9b33787032e6091402b0bc"
+    },
+    {
+      "path": "docs/release/google_play_store_assets_v1/04_card_detail.png",
+      "sha256": "7de3e83fa62d53c82f047093536d96806a7be1e82826ba015beb1379ea14ee25"
+    }
+  ]
+}

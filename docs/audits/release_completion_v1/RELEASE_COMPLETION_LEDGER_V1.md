@@ -51,11 +51,12 @@ The product-convergence implementation and exact-printing/App-Link repair are me
 - Synchronized-candidate Journey C passed its authoritative read-only verifier with zero findings: one exact Want, one scheduled match, one available event, one exact card-centered message, one product-UI opt-out, final Want false, one stale historical match, zero stale Pulse rows, zero invalid or post-opt-out notification deliveries, and zero event-emission failures. Journey C and Journey F are now proven.
 - Synchronized Android build `23` passed the required state matrix on the exact frozen signed APK. Installed-package readback matched SHA-256 `deda3271c92258870a8abbeffce163ba39fb9a5e6d3142aca8907ff969ddb7f6`, and live loading, empty, offline/error, recovery, private, signed-out, and 130% text-scale states passed with airplane mode and font scale restored exactly.
 - Frozen application source `a8ec3d2` passed the authorized iOS 26.5 simulator matrix for signed-out, loading, empty, deterministic offline/error, recovery, private, accessibility-medium text, and sign-out restoration. The disposable auth session was removed, content size returned to default, and the preserved online Runner hash matched after the offline proof. Together with physical TestFlight build `289` installation and high-risk journey evidence, this promotes `cross_platform_state_matrix` to proven.
+- Google Play initial setup advanced from `5/11` to `9/11`. Reviewer access, target audience, Data Safety, and category/contact are saved; store copy is drafted; six verified visual assets are prepared. Content rating remains blocked on owner acceptance of the IARC Terms of Use, the visual assets remain unattached because the browser bridge cannot upload local files, and no release was submitted or rolled out.
 
 ## Remaining Gates
 
 1. Complete Journey A genuine fresh-user ten-second comprehension evidence.
-2. Complete and validate the six remaining Google Play setup tasks, then preview, submit, and read back the existing open-testing release. App Store Connect distribution is proven.
+2. Complete and validate the two remaining Google Play setup tasks: content rating and store visual assets. Then preview, submit, and read back the existing open-testing release. App Store Connect distribution is proven.
 3. Reconcile both remaining non-soak gates to `proven`, then start a new non-backdated 72-hour soak. Observe at least 72 continuous hours and produce the final production report with zero unresolved P0 defects.
 
 The neutral fresh-user procedure and result template are frozen at `docs/runbooks/FRESH_USER_TEN_SECOND_COMPREHENSION_V1.md` and `docs/audits/release_completion_v1/fresh_user_comprehension_v1/result_template.json`.

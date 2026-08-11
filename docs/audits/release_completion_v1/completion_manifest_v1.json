@@ -264,10 +264,11 @@
         "docs/audits/release_completion_v1/synchronized_final_candidate_v1/2026-08-09T19-15-37Z/play_console_account_readback.json",
         "docs/audits/release_completion_v1/google_play_account_readback_v2/2026-08-10T23-32-00Z/REPORT.md",
         "docs/audits/release_completion_v1/google_play_distribution_readback_v3/2026-08-11T05-52-03Z/REPORT.md",
+        "docs/audits/release_completion_v1/google_play_launch_setup_v1/2026-08-11T06-35-32Z/REPORT.md",
         "docs/audits/release_completion_v1/device_ios/candidate_289_install_and_launch_v1/2026-08-10T02-27-05Z/REPORT.md"
       ],
       "required_next_evidence": [
-        "Complete and validate the six remaining Google Play initial-setup tasks, then preview, submit, and read back the existing open-testing release; App Store metadata and intended TestFlight groups are proven"
+        "Owner accepts IARC Terms of Use and the content questionnaire is completed; prepared Play store visual assets are uploaded; then preview, submit, and read back the existing open-testing release"
       ]
     },
     {

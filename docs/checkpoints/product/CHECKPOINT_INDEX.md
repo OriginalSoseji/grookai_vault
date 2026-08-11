@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `GOOGLE_PLAY_LAUNCH_SETUP_20260811_V1.md` - `2026-08-11` - INITIAL SETUP 9/11 / OWNER ACTIONS OPEN - Records completed reviewer access, audience, Data Safety, category/contact, drafted store copy, prepared visual assets, and the remaining IARC acceptance and media-upload boundaries before open-testing submission.
 - `GOOGLE_PLAY_DISTRIBUTION_READBACK_20260811_V3.md` - `2026-08-11` - ACCOUNT AND APP VERIFIED / STORE GATE PARTIAL - Supersedes the wrong-profile account-absence result, verifies the Grookai developer account, package, and staged open-testing bundle, and records the six incomplete setup tasks and unsent release boundary.
 - `FINAL_CANDIDATE_IOS_SIMULATOR_STATE_MATRIX_20260810_V1.md` - `2026-08-10` - IOS FUNCTIONAL STATE MATRIX PROVEN / RELEASE 11 OF 14 - Records the exact-source iOS simulator proof for signed-out, loading, empty, deterministic offline/error, recovery, private, accessibility-medium text, and cleanup states while preserving physical TestFlight artifact authority and the three remaining release gates.
 - `EIGHT_WEEK_AND_MEE_LAUNCH_READINESS_20260810_V1.md` - `2026-08-10` - CONTROLLED BETA READY / PUBLIC LAUNCH 11 OF 14 - Reconciles the frozen application candidate with completed MEE operational recovery, closes the authorized iOS non-mutating state matrix, preserves the distinction between the pricing canary and app soak, records the three remaining application gates, and keeps full signed-in pricing behind its frozen post-canary rollout.
