@@ -277,6 +277,7 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
       memoryDate: _parseDate(_dateController.text),
       note: _noteController.text,
       placeLabel: _placeController.text,
+      occasionLabel: _occasionController.text,
     );
   }
 

@@ -1,8 +1,14 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/screens/grookai_objects/collector_memories_screen.dart';
+import 'package:grookai_vault/screens/grookai_objects/collector_memory_detail_screen.dart';
+import 'package:grookai_vault/services/grookai_objects/grookai_object_export_service.dart';
+import 'package:grookai_vault/services/grookai_objects/memory_card_print_service.dart';
 import 'package:grookai_vault/services/vault/collector_memory_service.dart';
 import 'package:grookai_vault/widgets/card_surface_artwork.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_renderer.dart';
 
 void main() {
   testWidgets('Memories home renders empty state', (tester) async {
@@ -143,6 +149,162 @@ void main() {
       '/api/canon/cards/GV-PK-TEST-001/image',
     );
   });
+
+  testWidgets('tapping a Memory opens its Memory detail, not card detail', (
+    tester,
+  ) async {
+    const fullNote =
+        'Found at trade night after looking for this exact printing all year.';
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoriesScreen(
+          service: _FakeMemoryService(
+            memories: [
+              OwnerCollectorMemory(
+                memory: CollectorMemory(
+                  id: 'memory-1',
+                  vaultItemInstanceId: 'instance-1',
+                  gvviId: 'GVVI-1',
+                  memoryType: CollectorMemoryType.occasion,
+                  note: fullNote,
+                  placeLabel: 'Denver',
+                  occasionLabel: 'Trade night',
+                  memoryDate: DateTime.utc(2026, 7, 10),
+                ),
+                cardPrintId: 'card-1',
+                cardName: 'Pikachu',
+                setName: 'Scarlet & Violet Promos',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Pikachu').first);
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('collector-memory-detail')), findsOneWidget);
+    expect(find.byType(GrookaiObjectRenderer), findsOneWidget);
+    expect(find.text('Memory'), findsWidgets);
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('collector-memory-full-note')),
+      300,
+    );
+    expect(find.byKey(const Key('collector-memory-full-note')), findsOneWidget);
+    expect(find.text(fullNote), findsWidgets);
+    expect(find.text('Trade night'), findsWidgets);
+    expect(find.text('Jul 10, 2026'), findsWidgets);
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('view-memory-card-button')),
+      300,
+    );
+    expect(find.byKey(const Key('view-memory-card-button')), findsOneWidget);
+  });
+
+  testWidgets('Memory detail opens card only from the explicit action', (
+    tester,
+  ) async {
+    var viewCardCalls = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoryDetailScreen(
+          item: const OwnerCollectorMemory(
+            memory: CollectorMemory(
+              id: 'memory-1',
+              vaultItemInstanceId: 'instance-1',
+              gvviId: 'GVVI-1',
+              memoryType: CollectorMemoryType.note,
+              note: 'A complete memory.',
+            ),
+            cardPrintId: 'card-1',
+            cardName: 'Pikachu',
+            setName: 'Promo',
+          ),
+          onViewCard: () => viewCardCalls += 1,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(viewCardCalls, 0);
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('view-memory-card-button')),
+      300,
+    );
+    await tester.tap(find.byKey(const Key('view-memory-card-button')));
+    await tester.pump();
+    expect(viewCardCalls, 1);
+  });
+
+  testWidgets('Memory detail prepares an exact-size Memory insert for print', (
+    tester,
+  ) async {
+    final printService = _FakeMemoryPrintService();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoryDetailScreen(
+          item: const OwnerCollectorMemory(
+            memory: CollectorMemory(
+              id: 'memory-1',
+              vaultItemInstanceId: 'instance-1',
+              gvviId: 'GVVI-1',
+              memoryType: CollectorMemoryType.note,
+              note: 'A complete memory.',
+            ),
+            cardPrintId: 'card-1',
+            cardName: 'Pikachu',
+            setName: 'Promo',
+          ),
+          printService: printService,
+          exportService: _FakeObjectExportService(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('print-memory-button')));
+    await tester.pumpAndSettle();
+    expect(find.text('Memory insert'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('print-memory-insert-option')));
+    await tester.pumpAndSettle();
+
+    expect(printService.printCalls, 1);
+    expect(printService.lastMode, MemoryCardPrintMode.memoryInsert);
+    expect(printService.lastMemorySide, isNotNull);
+    expect(printService.lastMemorySide, isNotEmpty);
+  });
+
+  testWidgets('maximum-length Memory note renders without overflow', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoryDetailScreen(
+          item: OwnerCollectorMemory(
+            memory: CollectorMemory(
+              id: 'memory-long',
+              vaultItemInstanceId: 'instance-1',
+              gvviId: 'GVVI-1',
+              memoryType: CollectorMemoryType.note,
+              note: List.filled(
+                120,
+                'remembered detail',
+              ).join(' ').substring(0, 1200),
+            ),
+            cardPrintId: 'card-1',
+            cardName: 'Pikachu',
+            setName: 'Promo',
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
+  });
 }
 
 class _FakeMemoryService extends CollectorMemoryService {
@@ -175,5 +337,34 @@ class _FakeMemoryService extends CollectorMemoryService {
     int expiresIn = 3600,
   }) async {
     return photoPath == null ? null : signedPhotoUrl;
+  }
+}
+
+class _FakeMemoryPrintService extends MemoryCardPrintService {
+  int printCalls = 0;
+  MemoryCardPrintMode? lastMode;
+  Uint8List? lastMemorySide;
+
+  @override
+  Future<bool> printMemory({
+    required Uint8List memorySidePng,
+    Uint8List? cardSidePng,
+    required MemoryCardPrintMode mode,
+    required String documentName,
+  }) async {
+    printCalls += 1;
+    lastMode = mode;
+    lastMemorySide = memorySidePng;
+    return true;
+  }
+}
+
+class _FakeObjectExportService extends GrookaiObjectExportService {
+  @override
+  Future<Uint8List> capturePng(
+    GlobalKey repaintBoundaryKey, {
+    double pixelRatio = 3,
+  }) async {
+    return Uint8List.fromList(const [137, 80, 78, 71]);
   }
 }

@@ -13,6 +13,7 @@ void main() {
         memoryType: CollectorMemoryType.addedPlace,
         note: 'Found this at a local show.',
         placeLabel: 'Dallas card show',
+        occasionLabel: 'Trade night',
         memoryDate: DateTime.utc(2026, 7, 10),
       ),
       source: const GrookaiMemoryCardSource(
@@ -31,6 +32,7 @@ void main() {
     expect(object.fields['cardName'], 'Pikachu');
     expect(object.fields['setLine'], 'SVP #001');
     expect(object.fields['location'], 'Dallas card show');
+    expect(object.fields['occasion'], 'Trade night');
     expect(object.fields['storyText'], 'Found this at a local show.');
     expect(
       object.fields['photoUrl'],

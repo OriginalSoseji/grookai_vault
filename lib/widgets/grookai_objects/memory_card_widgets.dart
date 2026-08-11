@@ -71,6 +71,7 @@ class MemoryCardBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = grookaiObjectTokens[data.skin]!;
+    final density = _MemoryBackDensity.forStory(data.storyText);
     return GrookaiObjectFrame(
       skin: data.skin,
       child: Column(
@@ -126,36 +127,42 @@ class MemoryCardBack extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          Center(
-            child: _Polaroid(skin: data.skin, imageUrl: data.photoUrl),
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    '"${data.storyText}"',
-                    textAlign: TextAlign.center,
-                    style: serifTitle(
-                      t,
-                      size: 17,
-                    ).copyWith(fontStyle: FontStyle.italic),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    '— ${data.authorName.toUpperCase()}',
-                    style: monoLabel(
-                      t,
-                      size: 10.5,
-                      color: t.accent,
-                      letterSpacing: 0.08,
+          if ((data.occasion ?? '').trim().isNotEmpty) ...[
+            const SizedBox(height: 9),
+            Row(
+              children: [
+                Icon(Icons.celebration_outlined, size: 15, color: t.accent),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    data.occasion!.trim(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: t.primaryText.withValues(alpha: 0.72),
                     ),
                   ),
-                ],
+                ),
+              ],
+            ),
+          ],
+          if (density.showPhoto) ...[
+            SizedBox(height: density.photoSpacing),
+            Center(
+              child: _Polaroid(
+                skin: data.skin,
+                imageUrl: data.photoUrl,
+                width: density.photoWidth,
+                height: density.photoHeight,
               ),
+            ),
+            SizedBox(height: density.photoSpacing),
+          ] else
+            const SizedBox(height: 14),
+          Expanded(
+            child: Center(
+              child: _MemoryStoryBlock(data: data, tokens: t, density: density),
             ),
           ),
           CardDivider(tokens: t),
@@ -185,12 +192,74 @@ class MemoryCardBack extends StatelessWidget {
   }
 }
 
+class _MemoryStoryBlock extends StatelessWidget {
+  const _MemoryStoryBlock({
+    required this.data,
+    required this.tokens,
+    required this.density,
+  });
+
+  final MemoryCardData data;
+  final GrookaiObjectTokens tokens;
+  final _MemoryBackDensity density;
+
+  @override
+  Widget build(BuildContext context) {
+    final author = Text(
+      '— ${data.authorName.toUpperCase()}',
+      style: monoLabel(
+        tokens,
+        size: 10.5,
+        color: tokens.accent,
+        letterSpacing: 0.08,
+      ),
+    );
+    if (!density.compactStory) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '"${data.storyText}"',
+            textAlign: TextAlign.center,
+            style: serifTitle(
+              tokens,
+              size: 17,
+            ).copyWith(fontStyle: FontStyle.italic),
+          ),
+          const SizedBox(height: 10),
+          author,
+        ],
+      );
+    }
+    return Column(
+      children: [
+        Expanded(
+          child: _MemoryStoryText(
+            text: data.storyText,
+            tokens: tokens,
+            preferredFontSize: density.storyFontSize,
+          ),
+        ),
+        const SizedBox(height: 10),
+        author,
+      ],
+    );
+  }
+}
+
 /// Polaroid photo block, rotation differs per skin (-3deg Onyx, 0deg Ivory,
 /// +2deg Kraft) to match the mockup exactly.
 class _Polaroid extends StatelessWidget {
   final GrookaiObjectSkin skin;
   final String? imageUrl;
-  const _Polaroid({required this.skin, this.imageUrl});
+  final double width;
+  final double height;
+  const _Polaroid({
+    required this.skin,
+    this.imageUrl,
+    this.width = 176,
+    this.height = 220,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -203,8 +272,8 @@ class _Polaroid extends StatelessWidget {
     return Transform.rotate(
       angle: rotation * 3.14159 / 180,
       child: Container(
-        width: 176,
-        height: 220,
+        width: width,
+        height: height,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: t.primaryText.withValues(alpha: 0.05),
@@ -223,8 +292,8 @@ class _Polaroid extends StatelessWidget {
         child: imageUrl != null
             ? GrookaiObjectNetworkImage(
                 imageUrl: imageUrl!,
-                width: 160,
-                height: 204,
+                width: width - 16,
+                height: height - 16,
                 fit: BoxFit.cover,
                 borderRadius: BorderRadius.zero,
               )
@@ -240,6 +309,106 @@ class _Polaroid extends StatelessWidget {
                 ),
               ),
       ),
+    );
+  }
+}
+
+class _MemoryStoryText extends StatelessWidget {
+  const _MemoryStoryText({
+    required this.text,
+    required this.tokens,
+    required this.preferredFontSize,
+  });
+
+  final String text;
+  final GrookaiObjectTokens tokens;
+  final double preferredFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final quotedText = '"$text"';
+        var fontSize = preferredFontSize;
+        while (fontSize > 8.5) {
+          final painter = TextPainter(
+            text: TextSpan(
+              text: quotedText,
+              style: serifTitle(
+                tokens,
+                size: fontSize,
+              ).copyWith(fontStyle: FontStyle.italic),
+            ),
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+          )..layout(maxWidth: constraints.maxWidth);
+          if (painter.height <= constraints.maxHeight) {
+            break;
+          }
+          fontSize -= 0.5;
+        }
+        return Align(
+          alignment: Alignment.center,
+          child: Text(
+            quotedText,
+            textAlign: TextAlign.center,
+            style: serifTitle(
+              tokens,
+              size: fontSize,
+            ).copyWith(fontStyle: FontStyle.italic),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _MemoryBackDensity {
+  const _MemoryBackDensity({
+    required this.showPhoto,
+    required this.photoWidth,
+    required this.photoHeight,
+    required this.photoSpacing,
+    required this.storyFontSize,
+    required this.compactStory,
+  });
+
+  final bool showPhoto;
+  final double photoWidth;
+  final double photoHeight;
+  final double photoSpacing;
+  final double storyFontSize;
+  final bool compactStory;
+
+  factory _MemoryBackDensity.forStory(String story) {
+    final length = story.trim().length;
+    if (length > 700) {
+      return const _MemoryBackDensity(
+        showPhoto: false,
+        photoWidth: 0,
+        photoHeight: 0,
+        photoSpacing: 0,
+        storyFontSize: 11,
+        compactStory: true,
+      );
+    }
+    if (length > 320) {
+      return const _MemoryBackDensity(
+        showPhoto: true,
+        photoWidth: 104,
+        photoHeight: 130,
+        photoSpacing: 12,
+        storyFontSize: 13,
+        compactStory: true,
+      );
+    }
+    return const _MemoryBackDensity(
+      showPhoto: true,
+      photoWidth: 176,
+      photoHeight: 220,
+      photoSpacing: 20,
+      storyFontSize: 17,
+      compactStory: false,
     );
   }
 }
