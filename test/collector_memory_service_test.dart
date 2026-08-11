@@ -312,6 +312,9 @@ void main() {
     final privateHome = File(
       'lib/screens/grookai_objects/collector_memories_screen.dart',
     ).readAsStringSync();
+    final privateDetail = File(
+      'lib/screens/grookai_objects/collector_memory_detail_screen.dart',
+    ).readAsStringSync();
     final publicCard = File('lib/card_detail_screen.dart').readAsStringSync();
     final publicGvvi = File(
       'lib/screens/gvvi/public_gvvi_screen.dart',
@@ -327,7 +330,9 @@ void main() {
     expect(privateScreen, contains('ImagePicker().pickImage'));
     expect(privateScreen, contains('createSignedPhotoUrl'));
     expect(privateHome, contains('loadOwnerMemories'));
-    expect(privateHome, contains('VaultManageCardScreen'));
+    expect(privateHome, contains('CollectorMemoryDetailScreen'));
+    expect(privateDetail, contains('VaultManageCardScreen'));
+    expect(privateDetail, contains('MemoryCardPrintService'));
     expect(publicCard, contains('MemoryCardCaptureScreen'));
     expect(publicCard, contains('kCollectorMemoriesEnabled'));
     expect(publicGvvi, isNot(contains('CollectorMemory')));

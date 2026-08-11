@@ -30,6 +30,7 @@ class MemoryCardData {
   final String listingNo; // display only, e.g. "001"
   final DateTime date;
   final String location;
+  final String? occasion;
   final String? photoUrl; // null -> polaroid placeholder
   final String storyText;
   final String authorName;
@@ -40,6 +41,7 @@ class MemoryCardData {
     required this.listingNo,
     required this.date,
     required this.location,
+    this.occasion,
     this.photoUrl,
     required this.storyText,
     required this.authorName,
@@ -60,6 +62,7 @@ class MemoryCardData {
       listingNo: f['listingNo'] as String,
       date: DateTime.parse(f['date'] as String),
       location: f['location'] as String,
+      occasion: f['occasion'] as String?,
       photoUrl: f['photoUrl'] as String?,
       storyText: f['storyText'] as String,
       authorName: f['authorName'] as String,
@@ -74,6 +77,7 @@ class MemoryCardData {
     'listingNo': listingNo,
     'date': date.toIso8601String(),
     'location': location,
+    'occasion': occasion,
     'photoUrl': photoUrl,
     'storyText': storyText,
     'authorName': authorName,
