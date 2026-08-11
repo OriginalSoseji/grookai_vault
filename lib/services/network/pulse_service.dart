@@ -8,6 +8,9 @@ const bool kPulseSurfaceEnabled = bool.fromEnvironment(
   defaultValue: true,
 );
 
+typedef PulseMemoryPhotoSigner =
+    Future<String> Function({required String path, required int expiresIn});
+
 class PulseUnreadSnapshot {
   const PulseUnreadSnapshot({
     required this.unreadCount,
@@ -70,6 +73,7 @@ class PulseItem {
     this.setIdentityModel,
     required this.displayImageUrl,
     required this.fallbackImageUrl,
+    this.memoryPhotoUrl,
     required this.ownershipContext,
     required this.distanceBucket,
     required this.localityLabel,
@@ -102,6 +106,7 @@ class PulseItem {
   final String? setIdentityModel;
   final String? displayImageUrl;
   final String? fallbackImageUrl;
+  final String? memoryPhotoUrl;
   final String ownershipContext;
   final String distanceBucket;
   final String localityLabel;
@@ -117,6 +122,7 @@ class PulseItem {
   bool get isWantMatch => rankBucket == 'want_match';
   bool get isCompletion => rankBucket == 'completion';
   bool get isCollectorActivity => rankBucket == 'collector_activity';
+  bool get isMemory => eventType == 'collector_memory_published';
   bool get isDexCompletion =>
       eventType == 'dex_completion_crossed' ||
       (isCompletion && completionSubjectType == 'character');
@@ -164,6 +170,14 @@ class PulseItem {
 
   String get contactVaultItemId => _text(payload['vault_item_id']);
 
+  String get memoryId => _text(payload['memory_id']);
+  String get memoryNote => _text(payload['memory_note']);
+  String get memoryPhotoPath => _text(payload['memory_photo_path']);
+  String get memoryPlaceLabel => _text(payload['memory_place_label']);
+  String get memoryOccasionLabel => _text(payload['memory_occasion_label']);
+  String get memoryDate => _text(payload['memory_date']);
+  String get memoryType => _text(payload['memory_type']);
+
   String get intent {
     final payloadIntent = _text(payload['intent']);
     if (payloadIntent.isNotEmpty) return payloadIntent;
@@ -195,6 +209,7 @@ class PulseItem {
       setIdentityModel: setIdentityModel,
       displayImageUrl: displayImageUrl,
       fallbackImageUrl: fallbackImageUrl,
+      memoryPhotoUrl: memoryPhotoUrl,
       ownershipContext: ownershipContext,
       distanceBucket: distanceBucket,
       localityLabel: localityLabel,
@@ -241,6 +256,43 @@ class PulseItem {
       setIdentityModel: setIdentityModel,
       displayImageUrl: displayImageUrl,
       fallbackImageUrl: fallbackImageUrl,
+      memoryPhotoUrl: memoryPhotoUrl,
+      ownershipContext: ownershipContext,
+      distanceBucket: distanceBucket,
+      localityLabel: localityLabel,
+      completionSubjectType: completionSubjectType,
+      completionSubjectLabel: completionSubjectLabel,
+      completionThreshold: completionThreshold,
+      primaryActionLabel: primaryActionLabel,
+      primaryActionRoute: primaryActionRoute,
+      payload: payload,
+      nextCursorCreatedAt: nextCursorCreatedAt,
+      nextCursorEventId: nextCursorEventId,
+    );
+  }
+
+  PulseItem copyWithMemoryPhotoUrl(String signedUrl) {
+    return PulseItem(
+      pulseItemId: pulseItemId,
+      cardEventId: cardEventId,
+      eventType: eventType,
+      rankBucket: rankBucket,
+      createdAt: createdAt,
+      actorUserId: actorUserId,
+      actorSlug: actorSlug,
+      actorDisplayName: actorDisplayName,
+      cardPrintId: cardPrintId,
+      gvId: gvId,
+      cardName: cardName,
+      setCode: setCode,
+      setName: setName,
+      cardNumber: cardNumber,
+      variantKey: variantKey,
+      printedIdentityModifier: printedIdentityModifier,
+      setIdentityModel: setIdentityModel,
+      displayImageUrl: displayImageUrl,
+      fallbackImageUrl: fallbackImageUrl,
+      memoryPhotoUrl: signedUrl,
       ownershipContext: ownershipContext,
       distanceBucket: distanceBucket,
       localityLabel: localityLabel,
@@ -298,6 +350,7 @@ class PulseItem {
       setIdentityModel: _nullableText(json['set_identity_model']),
       displayImageUrl: hostedImageUrl ?? fallbackImageUrl,
       fallbackImageUrl: hostedImageUrl == null ? null : fallbackImageUrl,
+      memoryPhotoUrl: null,
       ownershipContext: _text(json['ownership_context']),
       distanceBucket: _text(json['distance_bucket']),
       localityLabel: _text(json['locality_label']),
@@ -316,9 +369,17 @@ class PulseItem {
 }
 
 class PulseService {
-  const PulseService({required SupabaseClient client}) : _client = client;
+  const PulseService({
+    required SupabaseClient client,
+    PulseMemoryPhotoSigner? memoryPhotoSigner,
+  }) : _client = client,
+       _memoryPhotoSigner = memoryPhotoSigner;
 
   final SupabaseClient _client;
+  final PulseMemoryPhotoSigner? _memoryPhotoSigner;
+
+  static const String _memoryPhotoBucket = 'collector-memory-images';
+  static const int _memoryPhotoExpirySeconds = 300;
 
   Future<PulseUnreadSnapshot> fetchUnread() async {
     if (_client.auth.currentUser == null) {
@@ -359,13 +420,50 @@ class PulseService {
         .whereType<PulseItem>()
         .toList(growable: false);
     final identityItems = await _resolveCardDisplayIdentities(items);
-    final resolvedItems = await _resolveDexCompletionRoutes(identityItems);
+    final completionItems = await _resolveDexCompletionRoutes(identityItems);
+    final resolvedItems = await _resolveMemoryPhotos(completionItems);
     final tail = resolvedItems.isEmpty ? null : resolvedItems.last;
     return PulsePage(
       items: resolvedItems,
       nextCursorCreatedAt: tail?.nextCursorCreatedAt,
       nextCursorEventId: tail?.nextCursorEventId,
     );
+  }
+
+  Future<List<PulseItem>> _resolveMemoryPhotos(List<PulseItem> items) {
+    return Future.wait(
+      items.map((item) async {
+        final path = item.memoryPhotoPath;
+        if (!item.isMemory || !_validMemoryPhotoPath(item, path)) {
+          return item;
+        }
+
+        try {
+          final injected = _memoryPhotoSigner;
+          final signedUrl = injected != null
+              ? await injected(path: path, expiresIn: _memoryPhotoExpirySeconds)
+              : await _client.storage
+                    .from(_memoryPhotoBucket)
+                    .createSignedUrl(path, _memoryPhotoExpirySeconds);
+          return signedUrl.trim().isEmpty
+              ? item
+              : item.copyWithMemoryPhotoUrl(signedUrl);
+        } catch (_) {
+          // The card artwork remains a safe fallback when the private photo
+          // cannot be signed or the current publication is no longer visible.
+          return item;
+        }
+      }),
+    );
+  }
+
+  bool _validMemoryPhotoPath(PulseItem item, String path) {
+    final segments = path.split('/');
+    return segments.length == 4 &&
+        segments[0] == item.actorUserId &&
+        segments[1] == 'memories' &&
+        segments[2] == item.memoryId &&
+        segments[3] == 'photo';
   }
 
   Future<List<PulseItem>> _resolveCardDisplayIdentities(

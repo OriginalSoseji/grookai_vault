@@ -94,6 +94,36 @@ void main() {
     expect(find.textContaining('Denver'), findsOneWidget);
   });
 
+  testWidgets('Memories home identifies published Memories', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoriesScreen(
+          service: _FakeMemoryService(
+            memories: const [
+              OwnerCollectorMemory(
+                memory: CollectorMemory(
+                  id: 'memory-1',
+                  vaultItemInstanceId: 'instance-1',
+                  gvviId: 'GVVI-1',
+                  memoryType: CollectorMemoryType.note,
+                  isPublic: true,
+                  publicationVersion: 1,
+                ),
+                cardPrintId: 'card-1',
+                cardName: 'Pikachu',
+                setName: 'Promo',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('public-memory-indicator')), findsOneWidget);
+    expect(find.text('Public'), findsOneWidget);
+  });
+
   testWidgets('catalog thumbnail uses hosted primary and provider fallback', (
     tester,
   ) async {
@@ -261,6 +291,90 @@ void main() {
     expect(viewCardCalls, 1);
   });
 
+  testWidgets('Memory detail publishes only after explicit confirmation', (
+    tester,
+  ) async {
+    final service = _FakeMemoryService();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoryDetailScreen(
+          item: const OwnerCollectorMemory(
+            memory: CollectorMemory(
+              id: 'memory-1',
+              vaultItemInstanceId: 'instance-1',
+              gvviId: 'GVVI-1',
+              memoryType: CollectorMemoryType.note,
+              note: 'A complete memory.',
+            ),
+            cardPrintId: 'card-1',
+            cardName: 'Pikachu',
+            setName: 'Promo',
+          ),
+          memoryService: service,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('memory-public-switch')),
+      300,
+    );
+    await tester.tap(find.byKey(const Key('memory-public-switch')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Share this Memory in Pulse?'), findsOneWidget);
+    expect(service.requestedPublic, isNull);
+
+    await tester.tap(find.byKey(const Key('confirm-publish-memory-button')));
+    await tester.pumpAndSettle();
+
+    expect(service.requestedPublic, isTrue);
+    expect(find.text('Memory published to Pulse.'), findsOneWidget);
+    final toggle = tester.widget<SwitchListTile>(
+      find.byKey(const Key('memory-public-switch')),
+    );
+    expect(toggle.value, isTrue);
+  });
+
+  testWidgets('published Memory can be made private without deleting it', (
+    tester,
+  ) async {
+    final service = _FakeMemoryService();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoryDetailScreen(
+          item: const OwnerCollectorMemory(
+            memory: CollectorMemory(
+              id: 'memory-1',
+              vaultItemInstanceId: 'instance-1',
+              gvviId: 'GVVI-1',
+              memoryType: CollectorMemoryType.note,
+              isPublic: true,
+              publicationVersion: 2,
+            ),
+            cardPrintId: 'card-1',
+            cardName: 'Pikachu',
+            setName: 'Promo',
+          ),
+          memoryService: service,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('memory-public-switch')),
+      300,
+    );
+    await tester.tap(find.byKey(const Key('memory-public-switch')));
+    await tester.pumpAndSettle();
+
+    expect(service.requestedPublic, isFalse);
+    expect(find.text('Memory is private again.'), findsOneWidget);
+    expect(find.text('Share this Memory in Pulse?'), findsNothing);
+  });
+
   testWidgets('Memory detail prepares an exact-size Memory insert for print', (
     tester,
   ) async {
@@ -388,6 +502,7 @@ class _FakeMemoryService extends CollectorMemoryService {
   final List<OwnerCollectorMemory> memories;
   final Object? error;
   final String? signedPhotoUrl;
+  bool? requestedPublic;
 
   @override
   Future<List<OwnerCollectorMemory>> loadOwnerMemories({
@@ -408,6 +523,23 @@ class _FakeMemoryService extends CollectorMemoryService {
     int expiresIn = 3600,
   }) async {
     return photoPath == null ? null : signedPhotoUrl;
+  }
+
+  @override
+  Future<CollectorMemory> setPublic({
+    required String memoryId,
+    required bool isPublic,
+  }) async {
+    requestedPublic = isPublic;
+    return CollectorMemory(
+      id: memoryId,
+      vaultItemInstanceId: 'instance-1',
+      gvviId: 'GVVI-1',
+      memoryType: CollectorMemoryType.note,
+      isPublic: isPublic,
+      publishedAt: isPublic ? DateTime.utc(2026, 8, 11) : null,
+      publicationVersion: isPublic ? 1 : 2,
+    );
   }
 }
 

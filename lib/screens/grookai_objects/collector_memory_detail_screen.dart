@@ -32,6 +32,7 @@ class CollectorMemoryDetailScreen extends StatefulWidget {
     this.onViewCard,
     MemoryCardPrintService? printService,
     GrookaiObjectExportService? exportService,
+    this.memoryService,
   }) : printService = printService ?? MemoryCardPrintService(),
        exportService = exportService ?? const GrookaiObjectExportService();
 
@@ -40,6 +41,7 @@ class CollectorMemoryDetailScreen extends StatefulWidget {
   final VoidCallback? onViewCard;
   final MemoryCardPrintService printService;
   final GrookaiObjectExportService exportService;
+  final CollectorMemoryService? memoryService;
 
   @override
   State<CollectorMemoryDetailScreen> createState() =>
@@ -53,10 +55,18 @@ class _CollectorMemoryDetailScreenState
   bool _showFront = false;
   bool _printing = false;
   bool _sharing = false;
+  bool _publicationBusy = false;
+  late bool _isPublic;
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
   GrookaiObjectExportDestination _exportDestination =
       GrookaiObjectExportDestination.saveImage;
   final GlobalKey _exportBoundaryKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _isPublic = widget.item.memory.isPublic;
+  }
 
   void _openCard() {
     final injectedAction = widget.onViewCard;
@@ -77,7 +87,7 @@ class _CollectorMemoryDetailScreenState
   }
 
   Future<void> _openPrintMenu() async {
-    if (_printing || _sharing) {
+    if (_printing || _sharing || _publicationBusy) {
       return;
     }
     final action = await showModalBottomSheet<_MemoryPrintAction>(
@@ -161,7 +171,7 @@ class _CollectorMemoryDetailScreenState
   }
 
   Future<void> _shareCurrentSide() async {
-    if (_sharing || _printing) {
+    if (_sharing || _printing || _publicationBusy) {
       return;
     }
 
@@ -228,6 +238,90 @@ class _CollectorMemoryDetailScreenState
     }
   }
 
+  Future<void> _changePublication(bool nextValue) async {
+    if (_publicationBusy || nextValue == _isPublic) {
+      return;
+    }
+
+    if (nextValue) {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('Share this Memory in Pulse?'),
+          content: const Text(
+            'Eligible collectors may see this Memory, including its note, '
+            'photo, place, occasion, and date. You can make it private again '
+            'at any time.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              key: const Key('confirm-publish-memory-button'),
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: const Text('Publish'),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !mounted) {
+        return;
+      }
+    }
+
+    setState(() => _publicationBusy = true);
+    try {
+      final service = widget.memoryService ?? CollectorMemoryService();
+      final updated = await service.setPublic(
+        memoryId: widget.item.memory.id,
+        isPublic: nextValue,
+      );
+      if (!mounted) return;
+      setState(() => _isPublic = updated.isPublic);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            updated.isPublic
+                ? 'Memory published to Pulse.'
+                : 'Memory is private again.',
+          ),
+        ),
+      );
+    } catch (error, stackTrace) {
+      GrookaiCrashReportingService.recordNonFatalError(
+        error,
+        stackTrace,
+        reason: 'collector_memory_publication_failed',
+        context: <String, Object?>{
+          'memory_id': widget.item.memory.id,
+          'card_print_id': widget.item.cardPrintId,
+          'surface': 'collector_memory_detail',
+          'requested_public': nextValue,
+        },
+      );
+      if (mounted) {
+        final needsPublicProfile = error.toString().contains(
+          'enable your public profile and vault sharing',
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              needsPublicProfile
+                  ? 'Enable your public profile and vault sharing first.'
+                  : 'Unable to change Memory visibility.',
+            ),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _publicationBusy = false);
+      }
+    }
+  }
+
   Future<void> _precachePrintImages() async {
     final artwork = widget.item.catalogArtwork;
     await _precacheFirstAvailable([widget.signedPhotoUrl]);
@@ -285,7 +379,9 @@ class _CollectorMemoryDetailScreenState
         actions: [
           IconButton(
             key: const Key('share-memory-button'),
-            onPressed: _printing || _sharing ? null : _shareCurrentSide,
+            onPressed: _printing || _sharing || _publicationBusy
+                ? null
+                : _shareCurrentSide,
             tooltip: 'Share Memory',
             icon: _sharing
                 ? const SizedBox.square(
@@ -296,7 +392,9 @@ class _CollectorMemoryDetailScreenState
           ),
           IconButton(
             key: const Key('print-memory-button'),
-            onPressed: _printing || _sharing ? null : _openPrintMenu,
+            onPressed: _printing || _sharing || _publicationBusy
+                ? null
+                : _openPrintMenu,
             tooltip: 'Print Memory',
             icon: _printing
                 ? const SizedBox.square(
@@ -399,6 +497,32 @@ class _CollectorMemoryDetailScreenState
                 ],
               ),
             ],
+            const SizedBox(height: 22),
+            const Divider(),
+            SwitchListTile(
+              key: const Key('memory-public-switch'),
+              contentPadding: EdgeInsets.zero,
+              value: _isPublic,
+              onChanged: _printing || _sharing || _publicationBusy
+                  ? null
+                  : _changePublication,
+              secondary: _publicationBusy
+                  ? const SizedBox.square(
+                      dimension: 24,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Icon(
+                      _isPublic
+                          ? Icons.public_rounded
+                          : Icons.lock_outline_rounded,
+                    ),
+              title: const Text('Public in Pulse'),
+              subtitle: Text(
+                _isPublic
+                    ? 'Eligible collectors can see this Memory in Pulse.'
+                    : 'Private. Publish it when you want to share it.',
+              ),
+            ),
             if (canOpenCard) ...[
               const SizedBox(height: 24),
               OutlinedButton.icon(
