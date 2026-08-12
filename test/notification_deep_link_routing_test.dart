@@ -22,6 +22,23 @@ void main() {
     }
   });
 
+  test('shared Memory links parse to canonical Memory routes', () {
+    const memoryId = '22222222-2222-2222-2222-222222222222';
+    for (final link in <String>[
+      'grookai://memory/$memoryId',
+      'grookaivault://memory/$memoryId',
+      'grookai:///memory/$memoryId',
+      'https://grookaivault.com/memory/$memoryId',
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
+
+      expect(route, isNotNull, reason: link);
+      expect(route!.kind, GrookaiCanonicalRouteKind.memory);
+      expect(route.value, memoryId);
+      expect(route.path, '/memory/$memoryId');
+    }
+  });
+
   test(
     'notification collector and set app links parse to canonical routes',
     () {
@@ -167,6 +184,7 @@ void main() {
         paths,
         containsAll(<String>[
           '/card/*',
+          '/memory/*',
           '/u/*',
           '/collector/*',
           '/set/*',
@@ -207,6 +225,7 @@ void main() {
     expect(manifest, contains('android:host="grookaivault.com"'));
     for (final path in <String>[
       '/card/',
+      '/memory/',
       '/u/',
       '/collector/',
       '/set/',

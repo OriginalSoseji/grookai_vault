@@ -100,6 +100,46 @@ void main() {
   });
 
   test(
+    'accessible Memory uses governed route RPC and parses viewer authority',
+    () async {
+      final service = CollectorMemoryService(
+        rpc: (functionName, {params}) async {
+          expect(functionName, 'collector_memory_accessible_by_id_v1');
+          expect(params, <String, dynamic>{'p_memory_id': memoryId});
+          return <Map<String, dynamic>>[
+            <String, dynamic>{
+              'id': memoryId,
+              'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+              'gv_vi_id': gvviId,
+              'card_print_id': '44444444-4444-4444-4444-444444444444',
+              'card_name': 'Pikachu',
+              'set_name': 'Promo',
+              'gv_id': 'GV-PK-TEST-001',
+              'owner_user_id': userId,
+              'owner_slug': 'collector-one',
+              'owner_display_name': 'Collector One',
+              'viewer_is_owner': false,
+              'memory_type': 'note',
+              'note': 'Trade night pull.',
+              'is_public': true,
+              'publication_version': 1,
+            },
+          ];
+        },
+      );
+
+      final item = await service.loadAccessibleMemory(memoryId: memoryId);
+
+      expect(item, isNotNull);
+      expect(item!.memory.id, memoryId);
+      expect(item.viewerIsOwner, isFalse);
+      expect(item.ownerSlug, 'collector-one');
+      expect(item.ownerDisplayName, 'Collector One');
+      expect(item.gvId, 'GV-PK-TEST-001');
+    },
+  );
+
+  test(
     'owner memory feed batch-enriches GV-ID and raw provider fallback',
     () async {
       const cardPrintId = '44444444-4444-4444-4444-444444444444';
