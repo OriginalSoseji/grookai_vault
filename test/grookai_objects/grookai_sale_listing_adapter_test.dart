@@ -9,6 +9,7 @@ void main() {
       source: const GrookaiSaleListingSource(
         cardName: 'Umbreon VMAX',
         setLine: 'Evolving Skies #215',
+        printingIdentityLabel: 'Printing: Holo',
         cardImageUrl: 'https://example.test/umbreon.webp',
         sellerHandle: 'Casey',
       ),
@@ -33,6 +34,7 @@ void main() {
     expect(object.skin, GrookaiObjectSkin.onyx);
     expect(object.fields['cardName'], 'Umbreon VMAX');
     expect(object.fields['setLine'], 'Evolving Skies #215');
+    expect(object.fields['printingIdentityLabel'], 'Printing: Holo');
     expect(object.fields['price'], 420);
     expect(object.fields['condition'], 'PSA 10');
     expect(object.fields['sellerHandle'], 'Casey');
@@ -69,6 +71,7 @@ void main() {
         items: [
           GrookaiLotListingItemSource(
             cardName: 'Charizard ex',
+            printingIdentityLabel: 'Printing: Reverse Holo',
             condition: 'Raw NM',
             price: 120,
             imageUrl: 'https://example.test/charizard.webp',
@@ -95,6 +98,15 @@ void main() {
     expect(object.fields['bundlePrice'], 175);
     expect(object.fields['sellerHandle'], 'Casey');
     expect(object.fields['items'], hasLength(2));
+    final items = object.fields['items'] as List<dynamic>;
+    expect(
+      (items.first as Map<String, dynamic>)['printingIdentityLabel'],
+      'Printing: Reverse Holo',
+    );
+    expect(
+      (items.last as Map<String, dynamic>)['printingIdentityLabel'],
+      'Printing not recorded',
+    );
     expect(object.metadata['card_print_ids'], ['CARD-1', 'CARD-2']);
   });
 

@@ -1333,6 +1333,9 @@ class VaultPageState extends State<VaultPage> {
     final price = _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0;
     return GrookaiLotListingItemSource(
       cardName: (row['name'] ?? 'Card').toString(),
+      printingIdentityLabel: resolveVaultPrintingIdentityPresentation(
+        row,
+      ).label,
       condition: (row['condition_label'] ?? 'Raw NM').toString(),
       price: price,
       imageUrl: _vaultDisplayImageUrl(row),

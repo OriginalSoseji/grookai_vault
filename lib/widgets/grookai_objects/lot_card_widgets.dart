@@ -123,6 +123,38 @@ class _GridTile extends StatelessWidget {
                     ),
             ),
             Positioned(
+              left: 3,
+              top: 3,
+              right: 3,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: const Color(0xCC000000),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 1.5,
+                    ),
+                    child: Text(
+                      _compactPrintingIdentityLabel(item.printingIdentityLabel),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: monoLabel(
+                        tokens,
+                        size: 6.5,
+                        color: tokens.accent,
+                        weight: FontWeight.w700,
+                        letterSpacing: 0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
               right: 3,
               bottom: 3,
               child: DecoratedBox(
@@ -153,6 +185,21 @@ class _GridTile extends StatelessWidget {
       },
     );
   }
+}
+
+String _compactPrintingIdentityLabel(String label) {
+  final normalized = label.trim();
+  if (normalized.startsWith('Printing: ')) {
+    return normalized.substring('Printing: '.length);
+  }
+  return switch (normalized) {
+    'Printing unassigned' => 'Unassigned',
+    'Printing not recorded' => 'Not recorded',
+    'Printing status unavailable' => 'Unavailable',
+    'Printing partially unassigned' => 'Partially assigned',
+    'Exact printing assigned' => 'Exact assigned',
+    _ => normalized,
+  };
 }
 
 /// Back side — "Card For Sale.dc.html" Row 5, itemized: every card, its
@@ -204,15 +251,31 @@ class LotCardBack extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          item.cardName,
-                          overflow: TextOverflow.ellipsis,
-                          style: monoLabel(
-                            t,
-                            size: 10.5,
-                            color: t.primaryText.withValues(alpha: 0.85),
-                            weight: FontWeight.w400,
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              item.cardName,
+                              overflow: TextOverflow.ellipsis,
+                              style: monoLabel(
+                                t,
+                                size: 10.5,
+                                color: t.primaryText.withValues(alpha: 0.85),
+                                weight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              item.printingIdentityLabel,
+                              overflow: TextOverflow.ellipsis,
+                              style: monoLabel(
+                                t,
+                                size: 7.5,
+                                color: t.mutedText,
+                                letterSpacing: 0,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Text(item.condition, style: monoLabel(t, size: 10.5)),

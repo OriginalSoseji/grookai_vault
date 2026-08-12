@@ -345,8 +345,10 @@ String _memoryMeta(CollectorMemory memory) {
 }
 
 String _cardSubtitle(OwnerCollectorMemory item) {
-  final setName = item.setName.trim();
-  return setName;
+  return <String>[
+    if (item.setName.trim().isNotEmpty) item.setName.trim(),
+    item.printingIdentityLabel,
+  ].join(' · ');
 }
 
 String _formatDate(DateTime date) {

@@ -10,6 +10,9 @@ void main() {
     final shell = File('lib/main_shell.dart').readAsStringSync();
 
     expect(source, contains('VaultCardService.getCanonicalCollectorRows'));
+    expect(source, contains('resolveVaultPrintingIdentityPresentation(row)'));
+    expect(source, contains('_SmallPill(label: printingIdentity.label)'));
+    expect(source, contains('printingIdentityLabel:'));
     expect(source, contains('MemoryCardCaptureScreen'));
     expect(source, contains('ForSaleTermsScreen'));
     expect(source, contains('LotPricingScreen'));
@@ -21,5 +24,15 @@ void main() {
     expect(source, isNot(contains('GrookaiObjectsHubAction')));
     expect(source, isNot(contains('Open Vault')));
     expect(shell, isNot(contains('Open an owned card, then tap Share Memory')));
+  });
+
+  test('card-detail object launch resolves the exact owned-copy printing', () {
+    final source = File('lib/card_detail_screen.dart').readAsStringSync();
+
+    expect(source, contains('VaultGvviService.loadPrivate'));
+    expect(source, contains("return 'Printing not recorded';"));
+    expect(source, contains("return 'Printing unassigned';"));
+    expect(source, contains("return 'Exact printing assigned';"));
+    expect(source, contains("return 'Printing: \${option.finishName}';"));
   });
 }

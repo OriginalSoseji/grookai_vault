@@ -363,6 +363,7 @@ class _CollectorMemoryDetailScreenState
       source: GrookaiMemoryCardSource(
         cardName: item.cardName,
         setLine: item.setName,
+        printingIdentityLabel: item.printingIdentityLabel,
         cardImageUrl: artwork.primaryImageUrl,
         cardImageFallbackUrl: artwork.fallbackImageUrl,
       ),
@@ -485,6 +486,14 @@ class _CollectorMemoryDetailScreenState
                 ),
               ),
             ],
+            const SizedBox(height: 3),
+            Text(
+              item.printingIdentityLabel,
+              key: const Key('collector-memory-printing-identity'),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
             if (note.isNotEmpty) ...[
               const SizedBox(height: 20),
               Text(

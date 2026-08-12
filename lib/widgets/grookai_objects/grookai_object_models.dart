@@ -7,11 +7,13 @@ import 'grookai_object_skin.dart';
 class CardObjectRef {
   final String cardName;
   final String setLine; // e.g. "Evolving Skies · Secret Rare"
+  final String printingIdentityLabel;
   final String? cardImageUrl;
   final String? cardImageFallbackUrl;
   const CardObjectRef({
     required this.cardName,
     required this.setLine,
+    this.printingIdentityLabel = 'Printing not recorded',
     this.cardImageUrl,
     this.cardImageFallbackUrl,
   });
@@ -56,6 +58,8 @@ class MemoryCardData {
       card: CardObjectRef(
         cardName: f['cardName'] as String,
         setLine: (f['setLine'] as String?) ?? '',
+        printingIdentityLabel:
+            (f['printingIdentityLabel'] as String?) ?? 'Printing not recorded',
         cardImageUrl: f['cardImageUrl'] as String?,
         cardImageFallbackUrl: f['cardImageFallbackUrl'] as String?,
       ),
@@ -72,6 +76,7 @@ class MemoryCardData {
   Map<String, dynamic> toFields() => {
     'cardName': card.cardName,
     'setLine': card.setLine,
+    'printingIdentityLabel': card.printingIdentityLabel,
     'cardImageUrl': card.cardImageUrl,
     'cardImageFallbackUrl': card.cardImageFallbackUrl,
     'listingNo': listingNo,
@@ -124,6 +129,8 @@ class SaleListingData {
       card: CardObjectRef(
         cardName: f['cardName'] as String,
         setLine: (f['setLine'] as String?) ?? '',
+        printingIdentityLabel:
+            (f['printingIdentityLabel'] as String?) ?? 'Printing not recorded',
         cardImageUrl: f['cardImageUrl'] as String?,
         cardImageFallbackUrl: f['cardImageFallbackUrl'] as String?,
       ),
@@ -142,6 +149,7 @@ class SaleListingData {
   Map<String, dynamic> toFields() => {
     'cardName': card.cardName,
     'setLine': card.setLine,
+    'printingIdentityLabel': card.printingIdentityLabel,
     'cardImageUrl': card.cardImageUrl,
     'cardImageFallbackUrl': card.cardImageFallbackUrl,
     'listingNo': listingNo,
@@ -159,12 +167,14 @@ class SaleListingData {
 @immutable
 class LotItem {
   final String cardName;
+  final String printingIdentityLabel;
   final String condition;
   final double price;
   final String? imageUrl;
   final String? fallbackImageUrl;
   const LotItem({
     required this.cardName,
+    this.printingIdentityLabel = 'Printing not recorded',
     required this.condition,
     required this.price,
     this.imageUrl,
@@ -173,6 +183,8 @@ class LotItem {
 
   factory LotItem.fromFields(Map<String, dynamic> f) => LotItem(
     cardName: f['cardName'] as String,
+    printingIdentityLabel:
+        (f['printingIdentityLabel'] as String?) ?? 'Printing not recorded',
     condition: f['condition'] as String,
     price: (f['price'] as num).toDouble(),
     imageUrl: f['imageUrl'] as String?,
@@ -181,6 +193,7 @@ class LotItem {
 
   Map<String, dynamic> toFields() => {
     'cardName': cardName,
+    'printingIdentityLabel': printingIdentityLabel,
     'condition': condition,
     'price': price,
     'imageUrl': imageUrl,

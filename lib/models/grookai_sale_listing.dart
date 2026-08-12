@@ -9,6 +9,7 @@ class GrookaiSaleListingSource {
   const GrookaiSaleListingSource({
     required this.cardName,
     required this.setLine,
+    this.printingIdentityLabel = 'Printing not recorded',
     this.cardImageUrl,
     this.cardImageFallbackUrl,
     this.sellerHandle = 'Collector',
@@ -18,6 +19,7 @@ class GrookaiSaleListingSource {
 
   final String cardName;
   final String setLine;
+  final String printingIdentityLabel;
   final String? cardImageUrl;
   final String? cardImageFallbackUrl;
   final String sellerHandle;
@@ -44,6 +46,10 @@ class GrookaiSaleListingAdapter {
       card: CardObjectRef(
         cardName: _fallback(source.cardName, 'Card listing'),
         setLine: source.setLine,
+        printingIdentityLabel: _fallback(
+          source.printingIdentityLabel,
+          'Printing not recorded',
+        ),
         cardImageUrl: _blankToNull(source.cardImageUrl),
         cardImageFallbackUrl: _blankToNull(source.cardImageFallbackUrl),
       ),
@@ -113,6 +119,7 @@ class GrookaiLotListingItemSource {
     required this.cardName,
     required this.condition,
     required this.price,
+    this.printingIdentityLabel = 'Printing not recorded',
     this.imageUrl,
     this.fallbackImageUrl,
   });
@@ -120,6 +127,7 @@ class GrookaiLotListingItemSource {
   final String cardName;
   final String condition;
   final double price;
+  final String printingIdentityLabel;
   final String? imageUrl;
   final String? fallbackImageUrl;
 }
@@ -155,6 +163,10 @@ class GrookaiLotListingAdapter {
         .map(
           (item) => LotItem(
             cardName: _fallback(item.cardName, 'Card'),
+            printingIdentityLabel: _fallback(
+              item.printingIdentityLabel,
+              'Printing not recorded',
+            ),
             condition: _fallback(item.condition, 'Raw NM'),
             price: _normalizePrice(item.price),
             imageUrl: _blankToNull(item.imageUrl),

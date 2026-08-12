@@ -45,6 +45,17 @@ class MemoryCardFront extends StatelessWidget {
             style: serifTitle(t, size: 30),
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 4),
+          Text(
+            [
+              if (data.card.setLine.trim().isNotEmpty) data.card.setLine.trim(),
+              data.card.printingIdentityLabel,
+            ].join(' · ').toUpperCase(),
+            style: monoLabel(t, size: 8.5, letterSpacing: 0.08),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(height: 6),
           Text(
             'MY COLLECTOR MEMORY',

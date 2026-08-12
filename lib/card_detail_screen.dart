@@ -1163,6 +1163,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       );
       return;
     }
+    final printingIdentityLabel = await _resolveObjectPrintingIdentityLabel(
+      gvviId,
+    );
+    if (!mounted) {
+      return;
+    }
 
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -1172,6 +1178,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           source: GrookaiMemoryCardSource(
             cardName: _displayTitle,
             setLine: _collectorIdentityLine ?? _resolvedSetName,
+            printingIdentityLabel: printingIdentityLabel,
             cardImageUrl: _cardImagePresentation.displayImageUrl,
           ),
         ),
@@ -1187,6 +1194,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       );
       return;
     }
+    final printingIdentityLabel = await _resolveObjectPrintingIdentityLabel(
+      gvviId,
+    );
+    if (!mounted) {
+      return;
+    }
 
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -1195,6 +1208,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           source: GrookaiSaleListingSource(
             cardName: _displayTitle,
             setLine: _collectorIdentityLine ?? _resolvedSetName,
+            printingIdentityLabel: printingIdentityLabel,
             cardImageUrl: _cardImagePresentation.displayImageUrl,
             sellerHandle: _saleSellerHandle,
           ),
@@ -1216,6 +1230,35 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return email.split('@').first;
     }
     return 'Collector';
+  }
+
+  Future<String> _resolveObjectPrintingIdentityLabel(String gvviId) async {
+    try {
+      final copy = await VaultGvviService.loadPrivate(
+        client: supabase,
+        gvviId: gvviId,
+      );
+      if (copy == null) {
+        return 'Printing not recorded';
+      }
+      final cardPrintingId = _cleanText(copy.cardPrintingId);
+      if (cardPrintingId.isEmpty) {
+        return 'Printing unassigned';
+      }
+
+      var options = _printingOptions;
+      if (options.isEmpty) {
+        options = await _fetchPrintingOptions(copy.cardPrintId);
+      }
+      for (final option in options) {
+        if (option.id == cardPrintingId) {
+          return 'Printing: ${option.finishName}';
+        }
+      }
+      return 'Exact printing assigned';
+    } catch (_) {
+      return 'Printing not recorded';
+    }
   }
 
   Future<void> _openCommentsSheet() async {

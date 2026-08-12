@@ -79,6 +79,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
       items.add(
         GrookaiLotListingItemSource(
           cardName: item.cardName,
+          printingIdentityLabel: item.printingIdentityLabel,
           condition: item.condition,
           price: _parseMoney(_itemPriceControllers[index].text) ?? item.price,
           imageUrl: item.imageUrl,

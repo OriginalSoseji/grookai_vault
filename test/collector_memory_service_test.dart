@@ -55,6 +55,11 @@ void main() {
               'card_name': 'Pikachu',
               'set_name': 'Scarlet & Violet Promos',
               'card_image_url': '/api/canon/cards/GV-PK-JPN-M5-118/image',
+              'card_printing_id': '55555555-5555-5555-5555-555555555555',
+              'printing_gv_id': 'GV-PK-JPN-M5-118-HOLO',
+              'finish_key': 'holo',
+              'finish_label': 'Holo',
+              'printing_identity_status': 'exact',
               'memory_type': 'note',
               'note': 'Trade night pull.',
               'created_at': '2026-07-10T12:00:00Z',
@@ -79,6 +84,7 @@ void main() {
         '/api/canon/cards/GV-PK-JPN-M5-118/image',
       );
       expect(memories.single.memory.isPublic, isFalse);
+      expect(memories.single.printingIdentityLabel, 'Printing: Holo');
     },
   );
 
@@ -97,6 +103,21 @@ void main() {
     expect(memory!.isPublic, isTrue);
     expect(memory.publicationVersion, 3);
     expect(memory.publishedAt, DateTime.parse('2026-08-11T12:00:00Z'));
+  });
+
+  test('legacy Memory rows do not infer a printing', () {
+    final item = OwnerCollectorMemory.fromJson(<String, dynamic>{
+      'id': memoryId,
+      'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+      'gv_vi_id': gvviId,
+      'card_print_id': '44444444-4444-4444-4444-444444444444',
+      'card_name': 'Pikachu',
+      'set_name': 'Promo',
+      'memory_type': 'note',
+    });
+
+    expect(item, isNotNull);
+    expect(item!.printingIdentityLabel, 'Printing not recorded');
   });
 
   test(

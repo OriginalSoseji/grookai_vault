@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../identity/catalog_artwork_resolution.dart';
 import '../identity/display_identity.dart';
+import '../../utils/vault_printing_identity.dart';
 
 const bool kCollectorMemoriesEnabled = bool.fromEnvironment(
   'COLLECTOR_MEMORIES_ENABLED',
@@ -136,6 +137,11 @@ class OwnerCollectorMemory {
     required this.setName,
     this.gvId,
     this.cardImageUrl,
+    this.cardPrintingId,
+    this.printingGvId,
+    this.finishKey,
+    this.finishLabel,
+    this.printingIdentityStatus,
     this.ownerUserId,
     this.ownerSlug,
     this.ownerDisplayName,
@@ -148,10 +154,27 @@ class OwnerCollectorMemory {
   final String setName;
   final String? gvId;
   final String? cardImageUrl;
+  final String? cardPrintingId;
+  final String? printingGvId;
+  final String? finishKey;
+  final String? finishLabel;
+  final String? printingIdentityStatus;
   final String? ownerUserId;
   final String? ownerSlug;
   final String? ownerDisplayName;
   final bool viewerIsOwner;
+
+  String get printingIdentityLabel {
+    final status = (printingIdentityStatus ?? '').trim();
+    if (status.isEmpty) {
+      return 'Printing not recorded';
+    }
+    return resolveVaultPrintingIdentityPresentation(<String, dynamic>{
+      'printing_identity_status': status,
+      'printing_gv_id': printingGvId,
+      'finish_label': finishLabel,
+    }).label;
+  }
 
   CatalogArtworkResolution get catalogArtwork =>
       resolveCatalogArtwork(gvId: gvId, providerImageUrl: cardImageUrl);
@@ -168,6 +191,11 @@ class OwnerCollectorMemory {
       setName: setName,
       gvId: _optionalText(gvId) ?? this.gvId,
       cardImageUrl: _optionalText(providerImageUrl) ?? cardImageUrl,
+      cardPrintingId: cardPrintingId,
+      printingGvId: printingGvId,
+      finishKey: finishKey,
+      finishLabel: finishLabel,
+      printingIdentityStatus: printingIdentityStatus,
       ownerUserId: ownerUserId,
       ownerSlug: ownerSlug,
       ownerDisplayName: ownerDisplayName,
@@ -187,6 +215,11 @@ class OwnerCollectorMemory {
       setName: _text(json['set_name']),
       gvId: _optionalText(json['gv_id']),
       cardImageUrl: _optionalText(json['card_image_url']),
+      cardPrintingId: _optionalText(json['card_printing_id']),
+      printingGvId: _optionalText(json['printing_gv_id']),
+      finishKey: _optionalText(json['finish_key']),
+      finishLabel: _optionalText(json['finish_label']),
+      printingIdentityStatus: _optionalText(json['printing_identity_status']),
       ownerUserId: _optionalText(json['owner_user_id']),
       ownerSlug: _optionalText(json['owner_slug']),
       ownerDisplayName: _optionalText(json['owner_display_name']),

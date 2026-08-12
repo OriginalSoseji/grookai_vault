@@ -7,6 +7,7 @@ class GrookaiMemoryCardSource {
   const GrookaiMemoryCardSource({
     required this.cardName,
     required this.setLine,
+    this.printingIdentityLabel = 'Printing not recorded',
     this.cardImageUrl,
     this.cardImageFallbackUrl,
     this.authorName = 'You',
@@ -14,6 +15,7 @@ class GrookaiMemoryCardSource {
 
   final String cardName;
   final String setLine;
+  final String printingIdentityLabel;
   final String? cardImageUrl;
   final String? cardImageFallbackUrl;
   final String authorName;
@@ -96,6 +98,10 @@ class GrookaiMemoryCardAdapter {
       card: CardObjectRef(
         cardName: _fallback(source.cardName, 'Card memory'),
         setLine: source.setLine,
+        printingIdentityLabel: _fallback(
+          source.printingIdentityLabel,
+          'Printing not recorded',
+        ),
         cardImageUrl: _blankToNull(source.cardImageUrl),
         cardImageFallbackUrl: _blankToNull(source.cardImageFallbackUrl),
       ),

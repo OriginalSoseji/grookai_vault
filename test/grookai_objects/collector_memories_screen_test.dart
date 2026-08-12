@@ -84,6 +84,9 @@ void main() {
                 cardPrintId: 'card-1',
                 cardName: 'Pikachu',
                 setName: 'Scarlet & Violet Promos',
+                cardPrintingId: 'printing-1',
+                finishLabel: 'Reverse Holo',
+                printingIdentityStatus: 'exact',
               ),
             ],
           ),
@@ -94,7 +97,10 @@ void main() {
 
     expect(find.text('Pikachu'), findsWidgets);
     expect(find.text('Found at trade night.'), findsOneWidget);
-    expect(find.text('Scarlet & Violet Promos'), findsOneWidget);
+    expect(
+      find.text('Scarlet & Violet Promos · Printing: Reverse Holo'),
+      findsOneWidget,
+    );
     expect(find.textContaining('Denver'), findsOneWidget);
   });
 

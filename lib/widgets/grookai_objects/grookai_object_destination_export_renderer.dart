@@ -382,8 +382,14 @@ String _subtitleFor(GrookaiObject object) {
     }
   }
   final setLine = fields['setLine'];
-  if (setLine is String && setLine.trim().isNotEmpty) {
-    return setLine.trim().toUpperCase();
+  final printingIdentity = fields['printingIdentityLabel'];
+  final parts = <String>[
+    if (setLine is String && setLine.trim().isNotEmpty) setLine.trim(),
+    if (printingIdentity is String && printingIdentity.trim().isNotEmpty)
+      printingIdentity.trim(),
+  ];
+  if (parts.isNotEmpty) {
+    return parts.join(' · ').toUpperCase();
   }
   final items = fields['items'];
   if (items is List) {

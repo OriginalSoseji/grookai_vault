@@ -8,6 +8,7 @@ import '../../services/identity/display_identity.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
+import '../../utils/vault_printing_identity.dart';
 import '../../widgets/card_surface_artwork.dart';
 import 'collector_memories_screen.dart';
 import 'for_sale_terms_screen.dart';
@@ -180,6 +181,9 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
           source: GrookaiMemoryCardSource(
             cardName: _cardNameForRow(row),
             setLine: _setLineForRow(row),
+            printingIdentityLabel: resolveVaultPrintingIdentityPresentation(
+              row,
+            ).label,
             cardImageUrl: artwork.primaryImageUrl,
             cardImageFallbackUrl: artwork.fallbackImageUrl,
             authorName: _sellerHandle,
@@ -201,6 +205,9 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
           source: GrookaiSaleListingSource(
             cardName: _cardNameForRow(row),
             setLine: _setLineForRow(row),
+            printingIdentityLabel: resolveVaultPrintingIdentityPresentation(
+              row,
+            ).label,
             cardImageUrl: artwork.primaryImageUrl,
             cardImageFallbackUrl: artwork.fallbackImageUrl,
             sellerHandle: _sellerHandle,
@@ -451,6 +458,9 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     final artwork = _objectRowArtwork(row, _displayImageUrlForRow(row));
     return GrookaiLotListingItemSource(
       cardName: _cardNameForRow(row),
+      printingIdentityLabel: resolveVaultPrintingIdentityPresentation(
+        row,
+      ).label,
       condition: _conditionForRow(row),
       price: _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0,
       imageUrl: artwork.primaryImageUrl,
@@ -503,6 +513,7 @@ class _ObjectCardPickerRow extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final hasError = (error ?? '').isNotEmpty;
     final hostedArtwork = _objectRowArtwork(row, imageUrl);
+    final printingIdentity = resolveVaultPrintingIdentityPresentation(row);
 
     return Material(
       color: selected
@@ -558,6 +569,7 @@ class _ObjectCardPickerRow extends StatelessWidget {
                           spacing: 6,
                           runSpacing: 6,
                           children: [
+                            _SmallPill(label: printingIdentity.label),
                             _SmallPill(label: condition),
                             if (price != null)
                               _SmallPill(

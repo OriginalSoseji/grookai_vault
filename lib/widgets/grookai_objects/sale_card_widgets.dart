@@ -55,8 +55,14 @@ class SaleCardFront extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            data.card.setLine.toUpperCase(),
+            [
+              if (data.card.setLine.trim().isNotEmpty) data.card.setLine.trim(),
+              data.card.printingIdentityLabel,
+            ].join(' · ').toUpperCase(),
             style: monoLabel(t, size: 9, letterSpacing: 0.12),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 16),
           Row(
