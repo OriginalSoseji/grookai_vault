@@ -35,6 +35,7 @@ class GrookaiMemoryCardAdapter {
       listingNo: listingNoFor(memory.id),
       date: date,
       location: memory.placeLabel,
+      occasion: memory.occasionLabel,
       photoUrl: signedPhotoUrl,
       storyText: memory.note,
       metadata: <String, dynamic>{
@@ -53,6 +54,7 @@ class GrookaiMemoryCardAdapter {
     DateTime? memoryDate,
     String? note,
     String? placeLabel,
+    String? occasionLabel,
     String? photoUrl,
   }) {
     return _object(
@@ -61,6 +63,7 @@ class GrookaiMemoryCardAdapter {
       listingNo: 'DRAFT',
       date: memoryDate ?? DateTime.now(),
       location: placeLabel,
+      occasion: occasionLabel,
       photoUrl: photoUrl,
       storyText: note,
       metadata: <String, dynamic>{'memory_type': memoryType.rpcValue},
@@ -84,6 +87,7 @@ class GrookaiMemoryCardAdapter {
     required DateTime date,
     required Map<String, dynamic> metadata,
     String? location,
+    String? occasion,
     String? photoUrl,
     String? storyText,
   }) {
@@ -98,6 +102,7 @@ class GrookaiMemoryCardAdapter {
       listingNo: listingNo,
       date: date,
       location: _fallback(location, 'Vault memory'),
+      occasion: _blankToNull(occasion),
       photoUrl: _blankToNull(photoUrl),
       storyText: _fallback(storyText, 'A memory from the vault.'),
       authorName: _fallback(source.authorName, 'You'),

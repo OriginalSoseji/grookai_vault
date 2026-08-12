@@ -133,6 +133,7 @@ void main() {
     expect(manifest, contains('android:scheme="grookaivault"'));
     for (final host in <String>[
       'card',
+      'memory',
       'u',
       'collector',
       'set',
@@ -151,6 +152,14 @@ void main() {
 
     expect(source, contains('case GrookaiCanonicalRouteKind.gvvi:'));
     expect(source, contains('PublicGvviScreen(gvviId: route.value)'));
+  });
+
+  test('root deep-link dispatch opens shared Memories in the app', () {
+    final source = File('lib/main_shell.dart').readAsStringSync();
+
+    expect(source, contains('case GrookaiCanonicalRouteKind.memory:'));
+    expect(source, contains('CollectorMemoryRouteScreen('));
+    expect(source, contains('memoryId: route.value'));
   });
 
   test(

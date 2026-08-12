@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/vault/collector_memory_service.dart';
 import '../../widgets/card_surface_artwork.dart';
-import '../vault/vault_manage_card_screen.dart';
+import 'collector_memory_detail_screen.dart';
 
 class CollectorMemoriesScreen extends StatefulWidget {
   CollectorMemoriesScreen({super.key, CollectorMemoryService? service})
@@ -44,14 +44,14 @@ class _CollectorMemoriesScreenState extends State<CollectorMemoriesScreen> {
     });
   }
 
-  Future<void> _openCard(OwnerCollectorMemory item) async {
-    final gvviId = item.memory.gvviId.trim();
-    if (gvviId.isEmpty) {
-      return;
-    }
+  Future<void> _openMemory(_OwnerMemoryViewModel model) async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+        builder: (_) => CollectorMemoryDetailScreen(
+          item: model.memory,
+          signedPhotoUrl: model.signedPhotoUrl,
+          memoryService: widget.service,
+        ),
       ),
     );
     if (mounted) {
@@ -117,7 +117,7 @@ class _CollectorMemoriesScreenState extends State<CollectorMemoriesScreen> {
                   final model = memories[index];
                   return _OwnerMemoryTile(
                     model: model,
-                    onTap: () => _openCard(model.memory),
+                    onTap: () => _openMemory(model),
                   );
                 },
               );
@@ -181,12 +181,34 @@ class _OwnerMemoryTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      _memoryTypeLabel(memory.memoryType),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w800,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _memoryTypeLabel(memory.memoryType),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        if (memory.isPublic) ...[
+                          Icon(
+                            Icons.public_rounded,
+                            size: 14,
+                            color: colorScheme.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Public',
+                            key: const Key('public-memory-indicator'),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                     const SizedBox(height: 3),
                     Text(

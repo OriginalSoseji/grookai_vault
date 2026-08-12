@@ -4,6 +4,7 @@ import '../../secrets.dart';
 
 enum GrookaiCanonicalRouteKind {
   card,
+  memory,
   collector,
   collectorSection,
   set,
@@ -31,6 +32,15 @@ class GrookaiCanonicalRoute {
     return GrookaiCanonicalRoute._(
       kind: GrookaiCanonicalRouteKind.card,
       path: '/card/$normalized',
+      value: normalized,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.memory(String memoryId) {
+    final normalized = memoryId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.memory,
+      path: '/memory/${Uri.encodeComponent(normalized)}',
       value: normalized,
     );
   }
@@ -275,6 +285,8 @@ class GrookaiWebRouteService {
     switch (head) {
       case 'card':
         return GrookaiCanonicalRoute.card(value);
+      case 'memory':
+        return GrookaiCanonicalRoute.memory(value);
       case 'u':
       case 'collector':
         if (segments.length >= 4 && segments[2].toLowerCase() == 'section') {
@@ -313,6 +325,9 @@ class GrookaiWebRouteService {
 
     if (host == 'card' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.card(segments.first);
+    }
+    if (host == 'memory' && segments.isNotEmpty) {
+      return GrookaiCanonicalRoute.memory(segments.first);
     }
     if ((host == 'set' || host == 'sets') && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.set(segments.first);

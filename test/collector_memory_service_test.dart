@@ -78,6 +78,64 @@ void main() {
         memories.single.cardImageUrl,
         '/api/canon/cards/GV-PK-JPN-M5-118/image',
       );
+      expect(memories.single.memory.isPublic, isFalse);
+    },
+  );
+
+  test('publication state parses from owner RPC rows', () {
+    final memory = CollectorMemory.fromJson(<String, dynamic>{
+      'id': memoryId,
+      'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+      'gv_vi_id': gvviId,
+      'memory_type': 'note',
+      'is_public': true,
+      'published_at': '2026-08-11T12:00:00Z',
+      'publication_version': 3,
+    });
+
+    expect(memory, isNotNull);
+    expect(memory!.isPublic, isTrue);
+    expect(memory.publicationVersion, 3);
+    expect(memory.publishedAt, DateTime.parse('2026-08-11T12:00:00Z'));
+  });
+
+  test(
+    'accessible Memory uses governed route RPC and parses viewer authority',
+    () async {
+      final service = CollectorMemoryService(
+        rpc: (functionName, {params}) async {
+          expect(functionName, 'collector_memory_accessible_by_id_v1');
+          expect(params, <String, dynamic>{'p_memory_id': memoryId});
+          return <Map<String, dynamic>>[
+            <String, dynamic>{
+              'id': memoryId,
+              'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+              'gv_vi_id': gvviId,
+              'card_print_id': '44444444-4444-4444-4444-444444444444',
+              'card_name': 'Pikachu',
+              'set_name': 'Promo',
+              'gv_id': 'GV-PK-TEST-001',
+              'owner_user_id': userId,
+              'owner_slug': 'collector-one',
+              'owner_display_name': 'Collector One',
+              'viewer_is_owner': false,
+              'memory_type': 'note',
+              'note': 'Trade night pull.',
+              'is_public': true,
+              'publication_version': 1,
+            },
+          ];
+        },
+      );
+
+      final item = await service.loadAccessibleMemory(memoryId: memoryId);
+
+      expect(item, isNotNull);
+      expect(item!.memory.id, memoryId);
+      expect(item.viewerIsOwner, isFalse);
+      expect(item.ownerSlug, 'collector-one');
+      expect(item.ownerDisplayName, 'Collector One');
+      expect(item.gvId, 'GV-PK-TEST-001');
     },
   );
 
@@ -248,6 +306,36 @@ void main() {
   });
 
   test(
+    'publication uses the governed owner RPC and returns current state',
+    () async {
+      final service = CollectorMemoryService(
+        rpc: (functionName, {params}) async {
+          expect(functionName, 'collector_memory_set_public_v1');
+          expect(params?['p_memory_id'], memoryId);
+          expect(params?['p_is_public'], isTrue);
+          return <String, dynamic>{
+            'id': memoryId,
+            'vault_item_instance_id': '33333333-3333-3333-3333-333333333333',
+            'gv_vi_id': gvviId,
+            'memory_type': 'note',
+            'is_public': true,
+            'published_at': '2026-08-11T12:00:00Z',
+            'publication_version': 1,
+          };
+        },
+      );
+
+      final memory = await service.setPublic(
+        memoryId: memoryId,
+        isPublic: true,
+      );
+
+      expect(memory.isPublic, isTrue);
+      expect(memory.publicationVersion, 1);
+    },
+  );
+
+  test(
     'photo upload uses the private memory bucket and deterministic path',
     () async {
       final uploaded = <String, dynamic>{};
@@ -312,6 +400,9 @@ void main() {
     final privateHome = File(
       'lib/screens/grookai_objects/collector_memories_screen.dart',
     ).readAsStringSync();
+    final privateDetail = File(
+      'lib/screens/grookai_objects/collector_memory_detail_screen.dart',
+    ).readAsStringSync();
     final publicCard = File('lib/card_detail_screen.dart').readAsStringSync();
     final publicGvvi = File(
       'lib/screens/gvvi/public_gvvi_screen.dart',
@@ -327,7 +418,9 @@ void main() {
     expect(privateScreen, contains('ImagePicker().pickImage'));
     expect(privateScreen, contains('createSignedPhotoUrl'));
     expect(privateHome, contains('loadOwnerMemories'));
-    expect(privateHome, contains('VaultManageCardScreen'));
+    expect(privateHome, contains('CollectorMemoryDetailScreen'));
+    expect(privateDetail, contains('VaultManageCardScreen'));
+    expect(privateDetail, contains('MemoryCardPrintService'));
     expect(publicCard, contains('MemoryCardCaptureScreen'));
     expect(publicCard, contains('kCollectorMemoriesEnabled'));
     expect(publicGvvi, isNot(contains('CollectorMemory')));

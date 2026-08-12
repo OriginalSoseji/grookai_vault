@@ -82,6 +82,9 @@ class CollectorMemory {
     this.occasionLabel,
     this.memoryDate,
     this.promptKey,
+    this.isPublic = false,
+    this.publishedAt,
+    this.publicationVersion = 0,
     this.createdAt,
     this.updatedAt,
   });
@@ -96,6 +99,9 @@ class CollectorMemory {
   final String? occasionLabel;
   final DateTime? memoryDate;
   final String? promptKey;
+  final bool isPublic;
+  final DateTime? publishedAt;
+  final int publicationVersion;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -113,6 +119,9 @@ class CollectorMemory {
       occasionLabel: _optionalText(json['occasion_label']),
       memoryDate: _date(json['memory_date']),
       promptKey: _optionalText(json['prompt_key']),
+      isPublic: _bool(json['is_public']),
+      publishedAt: _date(json['published_at']),
+      publicationVersion: _integer(json['publication_version']),
       createdAt: _date(json['created_at']),
       updatedAt: _date(json['updated_at']),
     );
@@ -127,6 +136,10 @@ class OwnerCollectorMemory {
     required this.setName,
     this.gvId,
     this.cardImageUrl,
+    this.ownerUserId,
+    this.ownerSlug,
+    this.ownerDisplayName,
+    this.viewerIsOwner = true,
   });
 
   final CollectorMemory memory;
@@ -135,6 +148,10 @@ class OwnerCollectorMemory {
   final String setName;
   final String? gvId;
   final String? cardImageUrl;
+  final String? ownerUserId;
+  final String? ownerSlug;
+  final String? ownerDisplayName;
+  final bool viewerIsOwner;
 
   CatalogArtworkResolution get catalogArtwork =>
       resolveCatalogArtwork(gvId: gvId, providerImageUrl: cardImageUrl);
@@ -151,6 +168,10 @@ class OwnerCollectorMemory {
       setName: setName,
       gvId: _optionalText(gvId) ?? this.gvId,
       cardImageUrl: _optionalText(providerImageUrl) ?? cardImageUrl,
+      ownerUserId: ownerUserId,
+      ownerSlug: ownerSlug,
+      ownerDisplayName: ownerDisplayName,
+      viewerIsOwner: viewerIsOwner,
     );
   }
 
@@ -166,6 +187,12 @@ class OwnerCollectorMemory {
       setName: _text(json['set_name']),
       gvId: _optionalText(json['gv_id']),
       cardImageUrl: _optionalText(json['card_image_url']),
+      ownerUserId: _optionalText(json['owner_user_id']),
+      ownerSlug: _optionalText(json['owner_slug']),
+      ownerDisplayName: _optionalText(json['owner_display_name']),
+      viewerIsOwner: json.containsKey('viewer_is_owner')
+          ? _bool(json['viewer_is_owner'])
+          : true,
     );
   }
 }
@@ -325,6 +352,22 @@ class CollectorMemoryService {
     }
   }
 
+  Future<OwnerCollectorMemory?> loadAccessibleMemory({
+    required String memoryId,
+  }) async {
+    final normalizedId = _text(memoryId);
+    if (normalizedId.isEmpty) {
+      return null;
+    }
+
+    final response = await _callRpc(
+      'collector_memory_accessible_by_id_v1',
+      params: <String, dynamic>{'p_memory_id': normalizedId},
+    );
+    final row = _firstMap(response);
+    return row == null ? null : OwnerCollectorMemory.fromJson(row);
+  }
+
   Future<List<Map<String, dynamic>>> _loadCatalogRows(
     List<String> cardPrintIds,
   ) async {
@@ -416,6 +459,20 @@ class CollectorMemoryService {
       'collector_memory_archive_v1',
       params: <String, dynamic>{'p_memory_id': _text(memoryId)},
     );
+  }
+
+  Future<CollectorMemory> setPublic({
+    required String memoryId,
+    required bool isPublic,
+  }) async {
+    final response = await _callRpc(
+      'collector_memory_set_public_v1',
+      params: <String, dynamic>{
+        'p_memory_id': _text(memoryId),
+        'p_is_public': isPublic,
+      },
+    );
+    return _requiredMemory(response, 'collector_memory_set_public_v1');
   }
 
   Future<void> dismissPrompt({required String promptKey}) async {
@@ -599,6 +656,17 @@ String? _optionalText(dynamic value) {
 DateTime? _date(dynamic value) {
   final normalized = _text(value);
   return normalized.isEmpty ? null : DateTime.tryParse(normalized);
+}
+
+bool _bool(dynamic value) {
+  if (value is bool) return value;
+  return _text(value).toLowerCase() == 'true';
+}
+
+int _integer(dynamic value) {
+  if (value is int) return value;
+  if (value is num) return value.toInt();
+  return int.tryParse(_text(value)) ?? 0;
 }
 
 String? _dateParam(DateTime? value) =>

@@ -29,6 +29,8 @@ import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../dex/grookai_dex_screen.dart';
 import '../dex/grookai_dex_species_screen.dart';
 import '../gvvi/public_gvvi_screen.dart';
+import '../grookai_objects/collector_memory_route_screen.dart';
+import 'pulse_memory_detail_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../sets/public_set_detail_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
@@ -1148,10 +1150,14 @@ class _PulseItemRow extends StatelessWidget {
                       runSpacing: 4,
                       children: [
                         _PulseActionPill(
-                          label: item.isCompletion
+                          label: item.isMemory
+                              ? 'View memory'
+                              : item.isCompletion
                               ? 'View progress'
                               : 'View card',
-                          icon: item.isCompletion
+                          icon: item.isMemory
+                              ? Icons.auto_stories_outlined
+                              : item.isCompletion
                               ? Icons.trending_up_rounded
                               : Icons.style_outlined,
                           primary: true,
@@ -1190,10 +1196,16 @@ class _PulseItemRow extends StatelessWidget {
       subtitle: _secondaryLine,
       actions: [
         VaultQuickAction(
-          icon: item.isCompletion
+          icon: item.isMemory
+              ? Icons.auto_stories_outlined
+              : item.isCompletion
               ? Icons.trending_up_rounded
               : Icons.style_outlined,
-          label: item.isCompletion ? 'View progress' : 'View card',
+          label: item.isMemory
+              ? 'View memory'
+              : item.isCompletion
+              ? 'View progress'
+              : 'View card',
           onPressed: () => unawaited(_openPrimary(context)),
         ),
         VaultQuickAction(
@@ -1232,6 +1244,9 @@ class _PulseItemRow extends StatelessWidget {
   }
 
   String get _primaryLine {
+    if (item.isMemory) {
+      return '${item.displayActorName} shared a Memory about ${item.displayCardName}';
+    }
     if (item.isWantMatch) {
       return '${item.displayCardName} is available from ${item.displayActorName}';
     }
@@ -1261,6 +1276,9 @@ class _PulseItemRow extends StatelessWidget {
   }
 
   String get _secondaryLine {
+    if (item.isMemory && item.memoryNote.isNotEmpty) {
+      return item.memoryNote;
+    }
     final setLabel = item.setName.isNotEmpty ? item.setName : item.setCode;
     final setAndNumber = [
       if (setLabel.isNotEmpty) setLabel,
@@ -1277,6 +1295,10 @@ class _PulseItemRow extends StatelessWidget {
   }
 
   Future<void> _openPrimary(BuildContext context) async {
+    if (item.isMemory) {
+      await _openMemoryDetail(context);
+      return;
+    }
     if (await _openPrimaryActionRoute(context)) {
       return;
     }
@@ -1299,6 +1321,19 @@ class _PulseItemRow extends StatelessWidget {
     }
   }
 
+  Future<void> _openMemoryDetail(BuildContext context) {
+    return Navigator.of(context, rootNavigator: true).push(
+      MaterialPageRoute<void>(
+        builder: (detailContext) => PulseMemoryDetailScreen(
+          item: item,
+          onViewCard: () async {
+            await _openCardDetail(detailContext);
+          },
+        ),
+      ),
+    );
+  }
+
   Future<bool> _openPrimaryActionRoute(BuildContext context) async {
     final rawRoute = item.primaryActionRoute.trim();
     final uri = rawRoute.isEmpty ? null : Uri.tryParse(rawRoute);
@@ -1311,6 +1346,18 @@ class _PulseItemRow extends StatelessWidget {
     switch (route.kind) {
       case GrookaiCanonicalRouteKind.card:
         return _openCardDetail(context, preferredGvId: route.value);
+      case GrookaiCanonicalRouteKind.memory:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => CollectorMemoryRouteScreen(
+              memoryId: route.value,
+              onViewCard: (gvId) async {
+                await _openCardDetail(context, preferredGvId: gvId);
+              },
+            ),
+          ),
+        );
+        return true;
       case GrookaiCanonicalRouteKind.collector:
         await navigator.push(
           MaterialPageRoute<void>(
@@ -1532,6 +1579,13 @@ class _PulseTone {
   final Color foreground;
 
   static _PulseTone forItem(ColorScheme colorScheme, PulseItem item) {
+    if (item.isMemory) {
+      return _PulseTone(
+        label: 'Memory',
+        icon: Icons.auto_stories_outlined,
+        foreground: colorScheme.tertiary,
+      );
+    }
     if (item.isWantMatch) {
       return const _PulseTone(
         label: 'Want match',
@@ -1619,8 +1673,10 @@ class _PulseArtworkTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           child: CardSurfaceArtwork(
             label: item.displayCardName,
-            imageUrl: item.displayImageUrl,
-            fallbackImageUrl: item.fallbackImageUrl,
+            imageUrl: item.memoryPhotoUrl ?? item.displayImageUrl,
+            fallbackImageUrl: item.memoryPhotoUrl == null
+                ? item.fallbackImageUrl
+                : item.displayImageUrl ?? item.fallbackImageUrl,
             borderRadius: 8,
             padding: EdgeInsets.zero,
             frame: CardArtworkFrame.none,
