@@ -17,11 +17,10 @@ import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
 import '../vault/vault_manage_card_screen.dart';
 
 String buildCollectorMemoryShareText(OwnerCollectorMemory item) {
-  final gvId = (item.gvId ?? '').trim();
-  final path = gvId.isEmpty ? '/' : '/card/${Uri.encodeComponent(gvId)}';
+  final path = '/memory/${Uri.encodeComponent(item.memory.id)}';
   final appLink = GrookaiWebRouteService.buildUri(path);
   return 'A collector Memory for ${item.cardName}.\n'
-      'Open in Grookai Vault: $appLink';
+      'Open this Memory in Grookai Vault: $appLink';
 }
 
 class CollectorMemoryDetailScreen extends StatefulWidget {

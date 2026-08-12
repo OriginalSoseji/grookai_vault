@@ -6,6 +6,7 @@
         "appID": "DUADT25J5V.com.cesar.grookaivault",
         "paths": [
           "/card/*",
+          "/memory/*",
           "/u/*",
           "/collector/*",
           "/set/*",

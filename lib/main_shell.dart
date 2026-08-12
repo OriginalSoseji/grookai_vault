@@ -668,6 +668,16 @@ class _AppShellState extends State<AppShell> {
       case GrookaiCanonicalRouteKind.card:
         await _openCardDetailFromCanonicalGvId(route.value);
         break;
+      case GrookaiCanonicalRouteKind.memory:
+        unawaited(
+          _pushPage<void>(
+            CollectorMemoryRouteScreen(
+              memoryId: route.value,
+              onViewCard: _openCardDetailFromCanonicalGvId,
+            ),
+          ),
+        );
+        break;
       case GrookaiCanonicalRouteKind.collector:
         unawaited(_pushPage<void>(PublicCollectorScreen(slug: route.value)));
         break;

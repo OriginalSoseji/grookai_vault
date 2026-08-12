@@ -136,6 +136,10 @@ class OwnerCollectorMemory {
     required this.setName,
     this.gvId,
     this.cardImageUrl,
+    this.ownerUserId,
+    this.ownerSlug,
+    this.ownerDisplayName,
+    this.viewerIsOwner = true,
   });
 
   final CollectorMemory memory;
@@ -144,6 +148,10 @@ class OwnerCollectorMemory {
   final String setName;
   final String? gvId;
   final String? cardImageUrl;
+  final String? ownerUserId;
+  final String? ownerSlug;
+  final String? ownerDisplayName;
+  final bool viewerIsOwner;
 
   CatalogArtworkResolution get catalogArtwork =>
       resolveCatalogArtwork(gvId: gvId, providerImageUrl: cardImageUrl);
@@ -160,6 +168,10 @@ class OwnerCollectorMemory {
       setName: setName,
       gvId: _optionalText(gvId) ?? this.gvId,
       cardImageUrl: _optionalText(providerImageUrl) ?? cardImageUrl,
+      ownerUserId: ownerUserId,
+      ownerSlug: ownerSlug,
+      ownerDisplayName: ownerDisplayName,
+      viewerIsOwner: viewerIsOwner,
     );
   }
 
@@ -175,6 +187,12 @@ class OwnerCollectorMemory {
       setName: _text(json['set_name']),
       gvId: _optionalText(json['gv_id']),
       cardImageUrl: _optionalText(json['card_image_url']),
+      ownerUserId: _optionalText(json['owner_user_id']),
+      ownerSlug: _optionalText(json['owner_slug']),
+      ownerDisplayName: _optionalText(json['owner_display_name']),
+      viewerIsOwner: json.containsKey('viewer_is_owner')
+          ? _bool(json['viewer_is_owner'])
+          : true,
     );
   }
 }
@@ -332,6 +350,22 @@ class CollectorMemoryService {
       // hide the owner's private memories or their signed photos.
       return memories;
     }
+  }
+
+  Future<OwnerCollectorMemory?> loadAccessibleMemory({
+    required String memoryId,
+  }) async {
+    final normalizedId = _text(memoryId);
+    if (normalizedId.isEmpty) {
+      return null;
+    }
+
+    final response = await _callRpc(
+      'collector_memory_accessible_by_id_v1',
+      params: <String, dynamic>{'p_memory_id': normalizedId},
+    );
+    final row = _firstMap(response);
+    return row == null ? null : OwnerCollectorMemory.fromJson(row);
   }
 
   Future<List<Map<String, dynamic>>> _loadCatalogRows(

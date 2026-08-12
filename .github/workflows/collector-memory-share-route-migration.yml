@@ -1,0 +1,91 @@
+name: Collector Memory Share Route Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Inspect or apply the frozen Memory share-route migration
+        required: true
+        type: choice
+        options:
+          - dry_run
+          - apply
+      expected_sha:
+        description: Exact pushed commit SHA that must be checked out
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: collector-memory-share-route-migration-v1
+  cancel-in-progress: false
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TARGET_MIGRATION: '20260811213000'
+      TARGET_FILE: supabase/migrations/20260811213000_collector_memory_share_route_v1.sql
+      DISPATCH_MODE: ${{ inputs.mode }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - name: Check out frozen ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_sha }}
+          fetch-depth: 0
+
+      - name: Verify frozen boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "$TARGET_FILE"
+          grep -q "collector_memory_accessible_by_id_v1" "$TARGET_FILE"
+
+      - name: Inspect pending migrations
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          pending_count="$(grep -Ec '^[[:space:]]*•[[:space:]]+[0-9]{14}' migration_dry_run.txt || true)"
+          test "$pending_count" = "1"
+
+      - name: Apply frozen migration
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push --db-url "$SUPABASE_DB_URL" --yes
+
+      - name: Read back function and grants
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql "$SUPABASE_DB_URL" --no-psqlrc --tuples-only --no-align \
+            --field-separator=, \
+            --command="select p.proname, p.prosecdef, has_function_privilege('authenticated', p.oid, 'execute') as authenticated_execute, has_function_privilege('anon', p.oid, 'execute') as anon_execute from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'public' and p.proname = 'collector_memory_accessible_by_id_v1';" \
+            | tee function_readback.csv
+          grep -q 'collector_memory_accessible_by_id_v1,true,true,false' function_readback.csv
+
+      - name: Upload bounded evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: collector-memory-share-route-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            function_readback.csv
+          if-no-files-found: warn
+          retention-days: 90

@@ -12,7 +12,7 @@ import 'package:grookai_vault/widgets/grookai_objects/grookai_object_renderer.da
 import 'package:share_plus/share_plus.dart';
 
 void main() {
-  test('Memory share text links to the canonical card app route', () {
+  test('Memory share text links to the canonical Memory app route', () {
     const item = OwnerCollectorMemory(
       memory: CollectorMemory(
         id: 'memory-1',
@@ -29,8 +29,8 @@ void main() {
     expect(
       buildCollectorMemoryShareText(item),
       'A collector Memory for Pikachu.\n'
-      'Open in Grookai Vault: '
-      'https://grookaivault.com/card/GV-PK-TEST-001',
+      'Open this Memory in Grookai Vault: '
+      'https://grookaivault.com/memory/memory-1',
     );
   });
 
@@ -456,7 +456,8 @@ void main() {
       expect(
         exportService.lastText,
         'A collector Memory for Pikachu.\n'
-        'Open in Grookai Vault: https://grookaivault.com/',
+        'Open this Memory in Grookai Vault: '
+        'https://grookaivault.com/memory/memory-1',
       );
       expect(exportService.lastBytes, isNotEmpty);
     },

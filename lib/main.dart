@@ -33,6 +33,7 @@ import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/grookai_objects/collector_memories_screen.dart';
+import 'screens/grookai_objects/collector_memory_route_screen.dart';
 import 'screens/grookai_objects/grookai_objects_hub_screen.dart';
 import 'screens/grookai_objects/lot_pricing_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
@@ -3204,6 +3205,7 @@ class _MyAppState extends State<MyApp> {
                     gvId: pendingRoute.value,
                   );
                   break;
+                case GrookaiCanonicalRouteKind.memory:
                 case GrookaiCanonicalRouteKind.collector:
                 case GrookaiCanonicalRouteKind.collectorSection:
                 case GrookaiCanonicalRouteKind.set:

@@ -29,6 +29,7 @@ import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../dex/grookai_dex_screen.dart';
 import '../dex/grookai_dex_species_screen.dart';
 import '../gvvi/public_gvvi_screen.dart';
+import '../grookai_objects/collector_memory_route_screen.dart';
 import 'pulse_memory_detail_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../sets/public_set_detail_screen.dart';
@@ -1345,6 +1346,18 @@ class _PulseItemRow extends StatelessWidget {
     switch (route.kind) {
       case GrookaiCanonicalRouteKind.card:
         return _openCardDetail(context, preferredGvId: route.value);
+      case GrookaiCanonicalRouteKind.memory:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => CollectorMemoryRouteScreen(
+              memoryId: route.value,
+              onViewCard: (gvId) async {
+                await _openCardDetail(context, preferredGvId: gvId);
+              },
+            ),
+          ),
+        );
+        return true;
       case GrookaiCanonicalRouteKind.collector:
         await navigator.push(
           MaterialPageRoute<void>(
