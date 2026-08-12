@@ -28,6 +28,10 @@ void main() {
 
     expect(
       buildCollectorMemoryShareText(item),
+      'A collector Memory for Pikachu.',
+    );
+    expect(
+      buildCollectorMemoryShareText(item, includeAppLink: true),
       'A collector Memory for Pikachu.\n'
       'Open this Memory in Grookai Vault: '
       'https://grookaivault.com/memory/memory-1',
@@ -453,12 +457,7 @@ void main() {
       expect(exportService.shareCalls, 1);
       expect(exportService.lastFileName, 'grookai-memory-story-pikachu.png');
       expect(exportService.lastSubject, 'Grookai memory card');
-      expect(
-        exportService.lastText,
-        'A collector Memory for Pikachu.\n'
-        'Open this Memory in Grookai Vault: '
-        'https://grookaivault.com/memory/memory-1',
-      );
+      expect(exportService.lastText, 'A collector Memory for Pikachu.');
       expect(exportService.lastBytes, isNotEmpty);
     },
   );

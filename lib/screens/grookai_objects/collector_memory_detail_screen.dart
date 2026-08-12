@@ -16,10 +16,17 @@ import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
 import '../vault/vault_manage_card_screen.dart';
 
-String buildCollectorMemoryShareText(OwnerCollectorMemory item) {
+String buildCollectorMemoryShareText(
+  OwnerCollectorMemory item, {
+  bool includeAppLink = false,
+}) {
+  final summary = 'A collector Memory for ${item.cardName}.';
+  if (!includeAppLink) {
+    return summary;
+  }
   final path = '/memory/${Uri.encodeComponent(item.memory.id)}';
   final appLink = GrookaiWebRouteService.buildUri(path);
-  return 'A collector Memory for ${item.cardName}.\n'
+  return '$summary\n'
       'Open this Memory in Grookai Vault: $appLink';
 }
 
@@ -206,7 +213,10 @@ class _CollectorMemoryDetailScreenState
           title: widget.item.cardName,
         ),
         subject: 'Grookai memory card',
-        text: buildCollectorMemoryShareText(widget.item),
+        text: buildCollectorMemoryShareText(
+          widget.item,
+          includeAppLink: _isPublic,
+        ),
         sharePositionOrigin: sharePositionOrigin,
       );
     } catch (error, stackTrace) {
