@@ -66,6 +66,33 @@ void main() {
     expect(find.byKey(const Key('memory-public-switch')), findsOne);
   });
 
+  testWidgets('missing optional photo does not hide a shared Memory', (
+    tester,
+  ) async {
+    final service = CollectorMemoryService(
+      rpc: (functionName, {params}) async => <Map<String, dynamic>>[
+        _memoryRow(viewerIsOwner: false, isPublic: true),
+      ],
+      sign: ({required bucket, required path, required expiresIn}) async {
+        throw Exception('Object not found');
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CollectorMemoryRouteScreen(memoryId: memoryId, service: service),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('shared-collector-memory-detail')), findsOne);
+    expect(find.text('Shared by Collector One'), findsOne);
+    expect(
+      find.byKey(const Key('collector-memory-route-unavailable')),
+      findsNothing,
+    );
+  });
+
   testWidgets('private or removed Memory is unavailable to another viewer', (
     tester,
   ) async {

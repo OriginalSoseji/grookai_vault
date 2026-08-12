@@ -41,12 +41,7 @@ class _CollectorMemoryRouteScreenState
       final item = await widget.service.loadAccessibleMemory(
         memoryId: widget.memoryId,
       );
-      final signedPhotoUrl = item == null
-          ? null
-          : await widget.service.createSignedPhotoUrl(
-              item.memory.photoPath,
-              expiresIn: 300,
-            );
+      final signedPhotoUrl = await _loadOptionalPhoto(item);
       if (!mounted) return;
       setState(() {
         _item = item;
@@ -59,6 +54,23 @@ class _CollectorMemoryRouteScreenState
         _error = error;
         _loading = false;
       });
+    }
+  }
+
+  Future<String?> _loadOptionalPhoto(OwnerCollectorMemory? item) async {
+    if (item == null || item.memory.photoPath == null) {
+      return null;
+    }
+
+    try {
+      return await widget.service.createSignedPhotoUrl(
+        item.memory.photoPath,
+        expiresIn: 300,
+      );
+    } catch (_) {
+      // A Memory remains readable when its optional photo is unavailable.
+      // The detail surface falls back to canonical card artwork.
+      return null;
     }
   }
 
