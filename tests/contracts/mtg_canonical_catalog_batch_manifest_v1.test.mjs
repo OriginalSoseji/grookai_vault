@@ -3,7 +3,10 @@ import test from "node:test";
 
 import { buildMtgCanonicalCandidateV1 } from "../../backend/pricing/mtg_canonical_catalog_candidate_v1.mjs";
 import { buildMtgCanaryPayloadV1 } from "../../scripts/audits/mtg_canonical_catalog_canary_plan_v1.mjs";
-import { validateMtgCatalogBatchManifestV1 } from "../../scripts/audits/mtg_canonical_catalog_batch_manifest_v1.mjs";
+import {
+  resolveMtgSetMetadataV1,
+  validateMtgCatalogBatchManifestV1,
+} from "../../scripts/audits/mtg_canonical_catalog_batch_manifest_v1.mjs";
 
 function candidate(setType = "commander") {
   return buildMtgCanonicalCandidateV1({
@@ -39,12 +42,32 @@ test("catalog set payload supports non-expansion sets without inventing a set ro
       plan_version: "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
       require_expansion: false,
       quality_flag: "mtg_catalog_set_batch_v1",
+      include_source_card_release_evidence: true,
     },
   );
   assert.equal(payload.rows.sets[0].set_role, null);
   assert.equal(payload.rows.card_prints[0].data_quality_flags.mtg_catalog_set_batch_v1, true);
   assert.equal(payload.rows.card_prints[0].data_quality_flags.mtg_catalog_canary, undefined);
   assert.equal(payload.plan_version, "MTG_CANONICAL_CATALOG_SET_BATCH_V1");
+  assert.equal(payload.rows.external_mappings[0].meta.source_card_released_at, "2025-06-13");
+});
+
+test("set metadata abstains at set level while preserving card-level release evidence", () => {
+  const first = candidate();
+  const second = {
+    ...candidate(),
+    card: { ...candidate().card, source_print_id: "00000000-0000-4000-8000-000000000002" },
+    set: { ...candidate().set, released_at: "2026-01-01" },
+  };
+  const resolved = resolveMtgSetMetadataV1([first, second]);
+  assert.equal(resolved.set.released_at, null);
+  assert.deepEqual(resolved.observed_release_dates, ["2025-06-13", "2026-01-01"]);
+  assert.equal(
+    resolved.release_date_resolution,
+    "card_level_values_preserved_set_level_abstained",
+  );
+  assert.equal(resolved.candidates[0].source_card_released_at, "2025-06-13");
+  assert.equal(resolved.candidates[1].source_card_released_at, "2026-01-01");
 });
 
 test("existing canary payload defaults remain unchanged", () => {

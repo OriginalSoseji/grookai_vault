@@ -113,11 +113,16 @@ async function partitionCandidates({ bulkFile, candidateDir }) {
       set: candidate.set,
       file_name: fileName,
       candidate_count: 0,
+      release_dates: new Set(),
     };
-    if (stableJson(entry.set) !== stableJson(candidate.set)) {
+    if (
+      stableJson({ ...entry.set, released_at: null }) !==
+      stableJson({ ...candidate.set, released_at: null })
+    ) {
       throw new Error(`Inconsistent set metadata for ${candidate.set.source_set_id}`);
     }
     entry.candidate_count += 1;
+    if (candidate.set.released_at) entry.release_dates.add(candidate.set.released_at);
     sets.set(candidate.set.source_set_id, entry);
     const fileLines = buffers.get(fileName) ?? [];
     fileLines.push(serialized);
@@ -146,6 +151,44 @@ async function loadCandidates(file) {
   return candidates.sort((left, right) =>
     left.card.source_print_id.localeCompare(right.card.source_print_id),
   );
+}
+
+export function resolveMtgSetMetadataV1(candidates) {
+  if (candidates.length === 0) throw new Error("Set candidates are required");
+  const first = candidates[0].set;
+  const releaseDates = new Set();
+  for (const candidate of candidates) {
+    const current = candidate.set;
+    if (
+      current.source_set_id !== first.source_set_id ||
+      current.code !== first.code ||
+      current.name !== first.name ||
+      current.set_type !== first.set_type
+    ) {
+      throw new Error(`Inconsistent set identity for ${first.source_set_id}`);
+    }
+    if (current.released_at) releaseDates.add(current.released_at);
+  }
+  const observedReleaseDates = [...releaseDates].sort();
+  const set = {
+    ...first,
+    released_at: observedReleaseDates.length === 1 ? observedReleaseDates[0] : null,
+  };
+  return {
+    set,
+    observed_release_dates: observedReleaseDates,
+    release_date_resolution:
+      observedReleaseDates.length === 0
+        ? "not_observed"
+        : observedReleaseDates.length === 1
+          ? "single_observed_value"
+          : "card_level_values_preserved_set_level_abstained",
+    candidates: candidates.map((candidate) => ({
+      ...candidate,
+      source_card_released_at: candidate.set.released_at,
+      set,
+    })),
+  };
 }
 
 function uniquenessTracker() {
@@ -352,10 +395,11 @@ async function main() {
       left.set.code.localeCompare(right.set.code),
   );
   for (const entry of orderedSets) {
-    const candidates = await loadCandidates(path.join(candidateDir, entry.file_name));
+    const loadedCandidates = await loadCandidates(path.join(candidateDir, entry.file_name));
+    const resolvedSet = resolveMtgSetMetadataV1(loadedCandidates);
     const payload = buildMtgCanaryPayloadV1(
       {
-        candidates,
+        candidates: resolvedSet.candidates,
         warehouseProducts,
         collisionSourceRows,
         sourceBulkSha256: bulkHash,
@@ -367,6 +411,7 @@ async function main() {
         plan_version: SET_PAYLOAD_VERSION,
         require_expansion: false,
         quality_flag: "mtg_catalog_set_batch_v1",
+        include_source_card_release_evidence: true,
       },
     );
     addPayloadUniqueness(tracker, payload);
@@ -380,7 +425,9 @@ async function main() {
       code: entry.set.code,
       name: entry.set.name,
       set_type: entry.set.set_type,
-      released_at: entry.set.released_at,
+      released_at: resolvedSet.set.released_at,
+      observed_release_dates: resolvedSet.observed_release_dates,
+      release_date_resolution: resolvedSet.release_date_resolution,
       catalog_state: alreadyCanonical ? "already_canonical_dsk" : "not_staged",
       candidate_count: payload.counts.card_prints,
       card_printings: payload.counts.card_printings,

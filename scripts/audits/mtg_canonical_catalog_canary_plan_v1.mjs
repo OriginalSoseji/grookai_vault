@@ -215,6 +215,12 @@ export function buildMtgCanaryPayloadV1({
       meta: {
         contract_version: planVersion,
         oracle_id: candidate.card.source_oracle_id,
+        ...(policy.include_source_card_release_evidence
+          ? {
+              source_card_released_at:
+                candidate.source_card_released_at ?? candidate.set.released_at,
+            }
+          : {}),
         source_images: candidate.source_images,
         image_policy: candidate.source_image_policy,
       },
