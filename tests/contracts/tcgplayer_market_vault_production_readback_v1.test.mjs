@@ -27,12 +27,21 @@ function evidence() {
       relation_kind: "v",
       relation_options: [
         "security_barrier=true",
-        "security_invoker=false",
+        "security_invoker=true",
       ],
       owner_table_rls_enabled: true,
-      definition_owner_scoped: true,
-      definition_excludes_archived: true,
-      definition_excludes_slabs: true,
+      definition_owner_scoped: false,
+      definition_excludes_archived: false,
+      definition_excludes_slabs: false,
+      definition_uses_backing_function: true,
+      backing_function_name:
+        "vault_mobile_pricing_target_rows_for_current_user_v2",
+      backing_function_security_definer: true,
+      backing_function_stable: true,
+      backing_function_fixed_search_path: true,
+      backing_function_owner_scoped: true,
+      backing_function_excludes_archived: true,
+      backing_function_excludes_slabs: true,
     },
     access: {
       anonymous_select_granted: false,
@@ -43,6 +52,9 @@ function evidence() {
       anonymous_runtime_denied: true,
       anonymous_runtime_code: "42501",
       authenticated_without_uid_count: 0,
+      backing_function_anonymous_execute_granted: false,
+      backing_function_authenticated_execute_granted: true,
+      backing_function_service_execute_granted: true,
     },
     owner_scope: {
       sample_owner_available: true,
@@ -81,9 +93,52 @@ test("clean production readback passes exact-copy pricing and access proof", () 
   );
   assert.equal(result.status, "passed");
   assert.deepEqual(result.findings, []);
+  assert.equal(
+    result.schema.authority_mode,
+    "security_invoker_function",
+  );
   assert.equal(result.owner_scope.authenticated_target_count, 3);
   assert.equal(result.exact_pricing.priced_copy_count, 2);
   assert.equal(result.exact_pricing.reconciled_total_usd, 24.68);
+});
+
+test("legacy direct owner-scoped authority remains valid", () => {
+  const input = evidence();
+  input.schema.relation_options = [
+    "security_barrier=true",
+    "security_invoker=false",
+  ];
+  input.schema.definition_owner_scoped = true;
+  input.schema.definition_excludes_archived = true;
+  input.schema.definition_excludes_slabs = true;
+  input.schema.definition_uses_backing_function = false;
+  input.schema.backing_function_name = null;
+  input.schema.backing_function_security_definer = false;
+  input.schema.backing_function_stable = false;
+  input.schema.backing_function_fixed_search_path = false;
+  input.schema.backing_function_owner_scoped = false;
+  input.schema.backing_function_excludes_archived = false;
+  input.schema.backing_function_excludes_slabs = false;
+  input.access.backing_function_authenticated_execute_granted = false;
+  input.access.backing_function_service_execute_granted = false;
+  const result =
+    evaluateTcgplayerMarketVaultProductionReadbackV1(input);
+  assert.equal(result.status, "passed");
+  assert.equal(
+    result.schema.authority_mode,
+    "direct_security_definer_view",
+  );
+});
+
+test("hardened authority fails closed when backing function grants widen", () => {
+  const input = evidence();
+  input.access.backing_function_anonymous_execute_granted = true;
+  const result =
+    evaluateTcgplayerMarketVaultProductionReadbackV1(input);
+  assert.equal(result.status, "failed");
+  assert.ok(
+    result.findings.includes("vault_pricing_target_authority_invalid"),
+  );
 });
 
 test("missing schema and widened grants fail closed", () => {
