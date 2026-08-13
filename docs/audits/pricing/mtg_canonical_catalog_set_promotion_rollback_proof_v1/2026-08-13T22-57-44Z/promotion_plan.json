@@ -1,0 +1,67 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_SET_PROMOTION_CONTRACT_V1",
+  "source_plan_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+  "writer_payload_fingerprint": "73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38",
+  "staging_batch_id": "276cc9f7-0159-5df3-874c-73ea04e741a4",
+  "staging_rows_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+  "selected_set": {
+    "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+    "code": "msh",
+    "name": "Marvel Super Heroes",
+    "set_type": "expansion",
+    "released_at": "2026-06-26"
+  },
+  "foundation_migration_sha256": "d4085f0dab4c9d5724dcda5644b1774ab48bb3535f94b42f0ca3cea1786de082",
+  "mutation_contract_sha256": "9ac75a734957bc25901805e51a9a6a8787b8a982cc76db771a90c934d737ebac",
+  "promotion_rows_sha256": "2b3cb12453146bea1bf9adfe793ad8f62d237bb720f3946e4603d028a19b275e",
+  "row_counts": {
+    "sets": 1,
+    "card_prints": 453,
+    "card_print_identity": 453,
+    "card_printings": 865,
+    "external_mappings": 453,
+    "external_printing_mappings": 864
+  },
+  "total_rows": 3089,
+  "boundaries": {
+    "version": "MTG_CANONICAL_CATALOG_SET_PROMOTION_CONTRACT_V1",
+    "accepted_payload_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+    "source": "immutable_service_only_staging_batch",
+    "allowed_inserts": [
+      "sets",
+      "card_prints",
+      "card_print_identity",
+      "card_printings",
+      "external_mappings",
+      "external_printing_mappings"
+    ],
+    "required_release_status": "hidden",
+    "migration_writes": false,
+    "release_control_writes": false,
+    "canonical_updates": false,
+    "deletes": false,
+    "truncates": false,
+    "image_pointer_writes": false,
+    "storage_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "pokemon_mutation": false
+  },
+  "promotion_plan_sha256": "b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba",
+  "staging_contract": {
+    "version": "MTG_CANONICAL_CATALOG_CANARY_STAGE_V1",
+    "batch_id": "276cc9f7-0159-5df3-874c-73ea04e741a4",
+    "staged_row_count": 3089,
+    "entity_counts": {
+      "sets": 1,
+      "card_prints": 453,
+      "card_print_identity": 453,
+      "card_printings": 865,
+      "external_mappings": 453,
+      "external_printing_mappings": 864
+    },
+    "staged_rows_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+    "mutation_contract_sha256": "0bb200c5e273f99fcb3090d54b2accfa0b781d26d985584fbbe59882e04a387c",
+    "required_approval_message": "I approve the service-only MTG canonical staging canary only: staging migration 20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8, payload 73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38, mutation contract 0bb200c5e273f99fcb3090d54b2accfa0b781d26d985584fbbe59882e04a387c, one immutable batch and 3089 immutable staged rows. I do not approve canonical game, set, card, printing, mapping, image, Storage, pricing, publication, app-visibility, Pokemon, update, delete, truncate, cleanup, or promotion writes."
+  }
+}

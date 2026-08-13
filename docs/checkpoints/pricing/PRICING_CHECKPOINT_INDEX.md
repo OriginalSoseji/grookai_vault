@@ -833,6 +833,11 @@ Recommended reading order for future maintainers:
       quarantine, set metadata abstentions, and the independently verified
       3,089-row MSH service-only staging apply
 
+49. `PRICING_CHECKPOINT_51_MTG_MSH_CANONICAL_PROMOTION_ROLLBACK_PROVEN.md`
+    - then read the set-generic hidden promotion contract, exact 3,089-row MSH
+      transactional rollback proof, independent zero-finding readback, and the
+      still-closed fail-closed durable writer gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -867,3 +872,5 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mtg_canonical_catalog_set_stage_writer_v1/2026-08-13T22-16-18Z_dry_run/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_set_stage_writer_v1/2026-08-13T22-25-15Z_apply/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_set_stage_post_apply_readback_v1/2026-08-13T22-27-42Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_promotion_rollback_proof_v1/2026-08-13T22-57-44Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_promotion_post_rollback_readback_v1/2026-08-13T22-58-45Z/REPORT.md`
