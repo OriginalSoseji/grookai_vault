@@ -15,7 +15,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
     auth_boundary_files: Object.freeze([
       "apps/web/src/app/card/[gv_id]/page.tsx",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_search",
@@ -36,7 +37,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
       "apps/web/src/app/explore/page.tsx",
       "apps/web/src/app/api/resolver/search/route.ts",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_explore",
@@ -54,7 +56,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
     auth_boundary_files: Object.freeze([
       "apps/web/src/app/explore/page.tsx",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_set_grid",
@@ -73,7 +76,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
       "apps/web/src/app/sets/[set_code]/page.tsx",
       "apps/web/src/app/api/public-set-cards/route.ts",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_compare",
@@ -92,7 +96,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
     auth_boundary_files: Object.freeze([
       "apps/web/src/app/compare/page.tsx",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_private_vault",
@@ -130,7 +135,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
     auth_boundary_files: Object.freeze([
       "apps/web/src/app/u/[slug]/page.tsx",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_vault_item",
@@ -148,7 +154,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
     auth_boundary_files: Object.freeze([
       "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "web_market_history",
@@ -167,7 +174,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1 = Object.freeze([
     auth_boundary_files: Object.freeze([
       "apps/web/src/app/card/[gv_id]/market/page.tsx",
     ]),
-    capture_selector: '[data-pricing-proof="tcgplayer-market"]',
+    capture_selector:
+      '[data-pricing-proof="tcgplayer-market"][data-pricing-proof-role="primary"]',
   }),
   Object.freeze({
     surface_id: "flutter_card_detail",
