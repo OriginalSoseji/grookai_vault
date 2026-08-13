@@ -1,0 +1,7 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "writer_payload.json": "37b6973d48edbf19966dae12d76cc6e6dfd556a9c52155332f71d4faddbb4b1b",
+    "REPORT.md": "1e77cd3446b9f809aa1027e060038138d697e3e50b47e914ede8622f68918bce"
+  }
+}

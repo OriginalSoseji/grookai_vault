@@ -803,6 +803,11 @@ Recommended reading order for future maintainers:
       117,267 warehoused source products and zero canonical MTG identities,
       and the exact canonical-catalog import gate required before publication
 
+43. `PRICING_CHECKPOINT_45_MTG_CANONICAL_STAGING_CANARY_READY.md`
+    - then read the full 104,712-print reconciliation, the app-visibility
+      boundary correction, and the rollback-proven service-only Duskmourn
+      staging canary awaiting its exact apply gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

@@ -1,0 +1,60 @@
+{
+  "preflight_version": "MTG_CANONICAL_CATALOG_CANARY_PREFLIGHT_V1",
+  "recorded_at": "2026-08-13T18:39:18.171Z",
+  "status": "ready_for_service_only_stage_apply_approval",
+  "writer_payload_fingerprint": "83d491f692c6544ad7602e06dc6acce4c6cfc2895aabb9aabcf93735ed1d2ad7",
+  "staging_migration_sha256": "20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8",
+  "foundation_migration_sha256": "d4085f0dab4c9d5724dcda5644b1774ab48bb3535f94b42f0ca3cea1786de082",
+  "payload_integrity": {
+    "ok": true,
+    "issues": []
+  },
+  "production": {
+    "schema": {
+      "database_user": "postgres",
+      "mtg_set_count": 0,
+      "mtg_game_count": 0,
+      "foil_finish_count": 0,
+      "pokemon_set_count": 1380,
+      "etched_finish_count": 0,
+      "mtg_card_print_count": 0,
+      "pokemon_jpn_set_count": 504,
+      "transaction_read_only": true,
+      "image_source_constraint": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['tcgdex'::text, 'ptcg'::text, 'pokemonapi'::text, 'identity'::text, 'user_photo'::text]))))",
+      "pokemon_card_print_count": 58769,
+      "staging_row_table_present": false,
+      "identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text])))",
+      "staging_batch_table_present": false,
+      "staging_migration_already_applied": false,
+      "foundation_migration_already_applied": false
+    },
+    "collisions": {
+      "staging_payloads": 0,
+      "set_ids": 0,
+      "set_codes": 0,
+      "card_print_ids": 0,
+      "parent_gv_ids": 0,
+      "identity_hashes": 0,
+      "printing_ids": 0,
+      "printing_gv_ids": 0,
+      "parent_external_mappings": 0,
+      "printing_external_mappings": 0
+    },
+    "source_readback": {
+      "planned_count": 807,
+      "source_row_count": 807,
+      "positive_market_price_count": 807,
+      "observed_on": "2026-08-13T06:00:00.000Z"
+    }
+  },
+  "findings": [],
+  "boundaries": {
+    "database_writes": false,
+    "staging_migration_apply": false,
+    "foundation_migration_apply": false,
+    "staging_payload_apply": false,
+    "canonical_apply": false,
+    "storage_writes": false,
+    "price_publication": false
+  }
+}
