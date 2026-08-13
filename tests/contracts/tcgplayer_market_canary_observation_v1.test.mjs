@@ -16,6 +16,7 @@ function exactRun({
   startedAt,
   completedAt,
   commit = COMMIT,
+  resolvedCount = 100,
 } = {}) {
   return {
     id,
@@ -23,10 +24,10 @@ function exactRun({
     run_mode: "canary",
     state: "verified",
     reconciliation_state: "reconciled",
-    selected_count: 100,
-    mapped_count: 100,
-    eligible_count: 100,
-    snapshot_count: 100,
+    selected_count: resolvedCount,
+    mapped_count: resolvedCount,
+    eligible_count: resolvedCount,
+    snapshot_count: resolvedCount,
     delayed_count: 0,
     suppressed_count: 0,
     quarantined_count: 0,
@@ -38,7 +39,13 @@ function exactRun({
     completed_at: completedAt,
     failed_at: null,
     error: null,
-    reconciliation: { mismatches: [] },
+    reconciliation: {
+      mismatches: [],
+      canary_expected_count: 100,
+      canary_resolved_count: resolvedCount,
+      canary_source_missing_count: 100 - resolvedCount,
+      canary_source_coverage_reconciled: true,
+    },
   };
 }
 
@@ -116,6 +123,59 @@ test("a healthy incomplete window remains observing", () => {
   assert.equal(result.status, "observing");
   assert.equal(result.window.elapsed, false);
   assert.deepEqual(result.findings, []);
+});
+
+test("a reconciled source-missing row is allowed within the frozen cohort tolerance", () => {
+  const reducedActivation = exactRun({
+    id: "activation-99",
+    runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-99-publication",
+    startedAt: "2026-07-28T08:39:53.963Z",
+    completedAt: WINDOW_START,
+    resolvedCount: 99,
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      activationRun: reducedActivation,
+      maxSourceMissingCount: 5,
+      current: {
+        ...baseInput().current,
+        exact_price_count: 99,
+        positive_usd_count: 99,
+        current_publication_run_id: "activation-99",
+      },
+    }),
+  );
+
+  assert.equal(result.status, "observing");
+  assert.deepEqual(result.findings, []);
+  assert.equal(result.run_evidence.expected_count, 100);
+  assert.equal(result.run_evidence.max_source_missing_count, 5);
+  assert.equal(result.run_evidence.latest_resolved_count, 99);
+});
+
+test("source-missing rows fail when unreconciled or above tolerance", () => {
+  const belowFloor = exactRun({
+    id: "activation-94",
+    runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-94-publication",
+    startedAt: "2026-07-28T08:39:53.963Z",
+    completedAt: WINDOW_START,
+    resolvedCount: 94,
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      activationRun: belowFloor,
+      maxSourceMissingCount: 5,
+      current: {
+        ...baseInput().current,
+        exact_price_count: 94,
+        positive_usd_count: 94,
+        current_publication_run_id: "activation-94",
+      },
+    }),
+  );
+
+  assert.equal(result.status, "failed");
+  assert.ok(result.findings.includes("activation_run_not_exact_and_healthy"));
 });
 
 test("the exact three scheduled slots pass after 72 hours", () => {

@@ -19,7 +19,10 @@ GitHub was no longer observing the active release gate.
 
 ## Decision
 
-- Preserve the current 99-row canary and its producing SHA unchanged.
+- Preserve the frozen 100-printing cohort, its current 99 resolved rows, and
+  its producing SHA unchanged.
+- Validate source-missing variation against the reviewed maximum of five;
+  never freeze an observer to a transient resolved-row count.
 - Point the read-only GitHub observer at the current activation.
 - Keep the full eligible publication blocked until the observer passes.
 - Deploy the web proof-role repair now so post-canary captures are
@@ -37,6 +40,8 @@ GitHub was no longer observing the active release gate.
 | Previous publication set | `9eeb8801-9729-4c37-a24b-a2068fe43c91` |
 | Window start | `2026-08-13T09:56:42.279Z` |
 | Required 72-hour end | `2026-08-16T09:56:42.279Z` |
+| Frozen cohort size | `100` |
+| Allowed source-missing rows | `5` |
 | Current exact rows | `99` |
 | Current parent rows | `98` |
 | Warehouse source rows | `543,960` |

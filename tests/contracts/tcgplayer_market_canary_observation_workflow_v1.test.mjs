@@ -34,10 +34,14 @@ test("scheduled canary observer is pinned to the reviewed source and canary", ()
     workflow,
     /CANARY_ACTIVATION_RUN_ID: "e902fb55-c0ac-49d5-a9b4-9412d694900e"/,
   );
-  assert.match(workflow, /CANARY_EXPECTED_COUNT: "99"/);
+  assert.match(workflow, /CANARY_EXPECTED_COUNT: "100"/);
   assert.match(
     workflow,
     /TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"/,
+  );
+  assert.match(
+    workflow,
+    /--max-source-missing-count=\$\{TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT\}/,
   );
   assert.match(workflow, /ref: \$\{\{ env\.OBSERVER_SOURCE_SHA \}\}/);
 });

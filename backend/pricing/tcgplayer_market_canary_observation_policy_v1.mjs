@@ -27,12 +27,36 @@ function reconciliationMismatches(run) {
     : [];
 }
 
-function runIsExact(run, expectedCount) {
+function canaryResolvedCount(run, expectedCount, maxSourceMissingCount) {
+  const reconciliation = run?.reconciliation;
+  const resolvedCount = integer(reconciliation?.canary_resolved_count);
+  const missingCount = integer(reconciliation?.canary_source_missing_count);
+  if (
+    integer(reconciliation?.canary_expected_count) !== expectedCount ||
+    resolvedCount === null ||
+    missingCount === null ||
+    missingCount < 0 ||
+    missingCount > maxSourceMissingCount ||
+    resolvedCount + missingCount !== expectedCount ||
+    reconciliation?.canary_source_coverage_reconciled !== true
+  ) {
+    return null;
+  }
+  return resolvedCount;
+}
+
+function runIsExact(run, expectedCount, maxSourceMissingCount) {
+  const resolvedCount = canaryResolvedCount(
+    run,
+    expectedCount,
+    maxSourceMissingCount,
+  );
   return (
-    integer(run?.selected_count) === expectedCount &&
-    integer(run?.mapped_count) === expectedCount &&
-    integer(run?.eligible_count) === expectedCount &&
-    integer(run?.snapshot_count) === expectedCount &&
+    resolvedCount !== null &&
+    integer(run?.selected_count) === resolvedCount &&
+    integer(run?.mapped_count) === resolvedCount &&
+    integer(run?.eligible_count) === resolvedCount &&
+    integer(run?.snapshot_count) === resolvedCount &&
     integer(run?.delayed_count) === 0 &&
     integer(run?.suppressed_count) === 0 &&
     integer(run?.quarantined_count) === 0 &&
@@ -40,7 +64,10 @@ function runIsExact(run, expectedCount) {
   );
 }
 
-function runIsHealthy(run, { expectedCount, expectedCommitSha }) {
+function runIsHealthy(
+  run,
+  { expectedCount, maxSourceMissingCount, expectedCommitSha },
+) {
   return (
     run?.run_mode === "canary" &&
     run?.state === "verified" &&
@@ -51,7 +78,7 @@ function runIsHealthy(run, { expectedCount, expectedCommitSha }) {
     !run?.failed_at &&
     !run?.error &&
     reconciliationMismatches(run).length === 0 &&
-    runIsExact(run, expectedCount)
+    runIsExact(run, expectedCount, maxSourceMissingCount)
   );
 }
 
@@ -134,6 +161,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   scheduleMinuteUtc = 15,
   scheduleToleranceMinutes = 90,
   expectedCount = 100,
+  maxSourceMissingCount = 0,
   expectedCommitSha,
   activationRun,
   scheduledRuns = [],
@@ -152,6 +180,15 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   }
   if (!Number.isInteger(expectedCount) || expectedCount < 1) {
     throw new Error("expectedCount must be a positive integer");
+  }
+  if (
+    !Number.isInteger(maxSourceMissingCount) ||
+    maxSourceMissingCount < 0 ||
+    maxSourceMissingCount >= expectedCount
+  ) {
+    throw new Error(
+      "maxSourceMissingCount must be a non-negative integer below expectedCount",
+    );
   }
 
   const requiredEnd = new Date(start.getTime() + requiredHours * HOUR_MS);
@@ -181,6 +218,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   } else if (
     !runIsHealthy(activationRun, {
       expectedCount,
+      maxSourceMissingCount,
       expectedCommitSha: commitSha,
     })
   ) {
@@ -192,6 +230,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
       (run) =>
         !runIsHealthy(run, {
           expectedCount,
+          maxSourceMissingCount,
           expectedCommitSha: commitSha,
         }),
     )
@@ -203,12 +242,6 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   }
   if (terminalAlerts.length) findings.push("terminal_operations_alert_in_window");
 
-  if (integer(current.exact_price_count) !== expectedCount) {
-    findings.push("current_exact_price_count_mismatch");
-  }
-  if (integer(current.positive_usd_count) !== expectedCount) {
-    findings.push("current_positive_usd_count_mismatch");
-  }
   if (integer(current.missing_provenance_count) !== 0) {
     findings.push("current_price_missing_provenance");
   }
@@ -222,6 +255,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   const healthyRuns = [activationRun, ...runs].filter(Boolean).filter((run) =>
     runIsHealthy(run, {
       expectedCount,
+      maxSourceMissingCount,
       expectedCommitSha: commitSha,
     }),
   );
@@ -232,6 +266,25 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
         new Date(right.completed_at).getTime() -
         new Date(left.completed_at).getTime(),
     )[0];
+  const latestResolvedCount = latestHealthyRun
+    ? canaryResolvedCount(
+        latestHealthyRun,
+        expectedCount,
+        maxSourceMissingCount,
+      )
+    : null;
+  if (
+    latestResolvedCount !== null &&
+    integer(current.exact_price_count) !== latestResolvedCount
+  ) {
+    findings.push("current_exact_price_count_mismatch");
+  }
+  if (
+    latestResolvedCount !== null &&
+    integer(current.positive_usd_count) !== latestResolvedCount
+  ) {
+    findings.push("current_positive_usd_count_mismatch");
+  }
   if (
     latestHealthyRun &&
     string(current.current_publication_run_id) !== string(latestHealthyRun.id)
@@ -300,6 +353,8 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
     run_evidence: {
       expected_commit_sha: commitSha,
       expected_count: expectedCount,
+      max_source_missing_count: maxSourceMissingCount,
+      latest_resolved_count: latestResolvedCount,
       activation_run_key: activationRun?.run_key ?? null,
       scheduled_run_count: runs.length,
       unhealthy_run_keys: unhealthyRuns,
