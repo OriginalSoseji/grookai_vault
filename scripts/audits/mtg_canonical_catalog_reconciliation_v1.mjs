@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { createReadStream } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -62,6 +63,10 @@ async function fileSha256(file) {
 
 function timestampSegment(date = new Date()) {
   return date.toISOString().replace(/[:.]/g, "-");
+}
+
+function git(args) {
+  return execFileSync("git", args, { cwd: ROOT, encoding: "utf8" }).trim();
 }
 
 async function loadWarehouseProducts(file) {
@@ -469,6 +474,10 @@ async function main() {
   const summary = {
     reconciliation_version: VERSION,
     recorded_at: recordedAt,
+    repository: {
+      commit_sha: git(["rev-parse", "HEAD"]),
+      branch: git(["branch", "--show-current"]),
+    },
     source_bulk: {
       type: metadata.type,
       name: metadata.name,
