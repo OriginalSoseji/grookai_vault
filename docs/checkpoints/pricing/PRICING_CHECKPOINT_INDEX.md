@@ -818,6 +818,11 @@ Recommended reading order for future maintainers:
       release boundary, complete production rollback proof, and the still
       closed durable canonical apply gate
 
+46. `PRICING_CHECKPOINT_48_MTG_DSK_HIDDEN_CANONICAL_APPLY_READY.md`
+    - then read the exact fail-closed writer, two-row migration ledger,
+      enforcing pre/post-commit checks, rollback-proven approval package, and
+      the bounded hidden canonical apply that remains pending
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -843,3 +848,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mtg_pricing_readiness_v1/2026-08-13T17-52-09-387Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_stage_readback_v1/2026-08-13T19-06-22Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_promotion_rollback_proof_v1/2026-08-13T19-21-09Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_promotion_writer_v1/2026-08-13T19-27-59Z_dry_run/REPORT.md`

@@ -17,7 +17,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..", "..");
 const VERSION = "MTG_CANONICAL_CATALOG_PROMOTION_ROLLBACK_PROOF_V1";
-const MTG_GAME_ID = "4d544700-0000-4000-8000-000000000001";
+export const MTG_GAME_ID = "4d544700-0000-4000-8000-000000000001";
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -46,7 +46,7 @@ function assertEqual(actual, expected, label) {
   }
 }
 
-async function baseline(client, plan) {
+export async function captureMtgPromotionStateV1(client, plan) {
   const result = await client.query(
     `select jsonb_build_object(
        'foundation_migration_present', exists (
@@ -79,7 +79,7 @@ async function baseline(client, plan) {
   return result.rows[0].value;
 }
 
-async function collisionReadback(client, rows) {
+export async function captureMtgPromotionCollisionsV1(client, rows) {
   const result = await client.query(
     `select jsonb_build_object(
        'set_ids', (select count(*) from public.sets where id = any($1::uuid[])),
@@ -119,7 +119,7 @@ async function collisionReadback(client, rows) {
   return result.rows[0].value;
 }
 
-async function visiblePokemonCount(client, role) {
+export async function captureVisiblePokemonCountV1(client, role) {
   await client.query(`set local role ${role}`);
   await client.query("select set_config('request.jwt.claim.role', $1, true)", [role]);
   try {
@@ -135,7 +135,7 @@ async function visiblePokemonCount(client, role) {
   }
 }
 
-async function insertPromotionRows(client, rows) {
+export async function insertMtgPromotionRowsV1(client, rows) {
   const inserted = {};
   inserted.sets = (
     await client.query(
@@ -243,7 +243,7 @@ async function insertPromotionRows(client, rows) {
   return inserted;
 }
 
-async function exactReadback(client, rows) {
+export async function captureMtgPromotionExactReadbackV1(client, rows) {
   const checks = {};
   checks.sets = (
     await client.query(
@@ -411,7 +411,7 @@ async function exactReadback(client, rows) {
   return checks;
 }
 
-async function clientVisibility(client, role, setCode) {
+export async function captureMtgClientVisibilityV1(client, role, setCode) {
   await client.query(`set local role ${role}`);
   await client.query("select set_config('request.jwt.claim.role', $1, true)", [role]);
   try {
@@ -468,8 +468,11 @@ async function rollbackProof({ payload, plan, foundationSql, visibilitySql }) {
     transactionOpen = true;
     await client.query("set local lock_timeout = '5s'");
     await client.query("set local statement_timeout = '240s'");
-    const before = await baseline(client, plan);
-    const authenticatedPokemonBefore = await visiblePokemonCount(client, "authenticated");
+    const before = await captureMtgPromotionStateV1(client, plan);
+    const authenticatedPokemonBefore = await captureVisiblePokemonCountV1(
+      client,
+      "authenticated",
+    );
     if (before.foundation_migration_present) throw new Error("Foundation migration is already applied");
     if (before.visibility_migration_present) throw new Error("Visibility migration is already applied");
     if (before.visibility_table_present) throw new Error("Visibility table already exists");
@@ -478,16 +481,16 @@ async function rollbackProof({ payload, plan, foundationSql, visibilitySql }) {
     assertEqual(before.mtg_game_count, 0, "baseline MTG game count");
     assertEqual(before.mtg_set_count, 0, "baseline MTG set count");
     assertEqual(before.mtg_card_count, 0, "baseline MTG card count");
-    const collisions = await collisionReadback(client, plan.rows);
+    const collisions = await captureMtgPromotionCollisionsV1(client, plan.rows);
     for (const [name, count] of Object.entries(collisions)) assertEqual(count, 0, name);
 
     await client.query(stripMtgPromotionMigrationEnvelopeV1(foundationSql));
     await client.query(stripMtgPromotionMigrationEnvelopeV1(visibilitySql));
-    const inserted = await insertPromotionRows(client, plan.rows);
+    const inserted = await insertMtgPromotionRowsV1(client, plan.rows);
     for (const [name, expected] of Object.entries(plan.row_counts)) {
       assertEqual(inserted[name], expected, `${name} inserted rows`);
     }
-    const exact = await exactReadback(client, plan.rows);
+    const exact = await captureMtgPromotionExactReadbackV1(client, plan.rows);
     for (const [name, check] of Object.entries(exact)) {
       assertEqual(check.planned_count, plan.row_counts[name], `${name} planned readback`);
       assertEqual(check.actual_count, plan.row_counts[name], `${name} actual readback`);
@@ -545,8 +548,8 @@ async function rollbackProof({ payload, plan, foundationSql, visibilitySql }) {
     if (service.release_status !== "hidden") throw new Error("MTG release is not hidden");
     assertEqual(service.pokemon_card_count, before.pokemon_card_count, "Pokemon service count");
 
-    const anon = await clientVisibility(client, "anon", payload.selected_set.code);
-    const authenticated = await clientVisibility(
+    const anon = await captureMtgClientVisibilityV1(client, "anon", payload.selected_set.code);
+    const authenticated = await captureMtgClientVisibilityV1(
       client,
       "authenticated",
       payload.selected_set.code,
@@ -572,7 +575,7 @@ async function rollbackProof({ payload, plan, foundationSql, visibilitySql }) {
 
     await client.query("rollback");
     transactionOpen = false;
-    const after = await baseline(client, plan);
+    const after = await captureMtgPromotionStateV1(client, plan);
     if (after.visibility_table_present) throw new Error("Visibility table survived rollback");
     assertEqual(after.staging_batch_count, 1, "post-rollback staging batch count");
     assertEqual(after.staging_row_count, 2866, "post-rollback staging row count");
