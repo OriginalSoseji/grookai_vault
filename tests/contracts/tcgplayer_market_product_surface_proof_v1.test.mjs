@@ -83,6 +83,12 @@ const COMPARE_WORKSPACE = readFileSync(
   ),
   "utf8",
 );
+const DIRECT_WEB_PRICE_EMITTERS = [
+  "apps/web/src/components/pricing/CardPagePricingRail.tsx",
+  "apps/web/src/components/vault/VaultInstancePricingCard.tsx",
+  "apps/web/src/components/vault/VaultInstanceVisiblePricingCard.tsx",
+  "apps/web/src/app/card/[gv_id]/market/page.tsx",
+].map((relativePath) => readFileSync(path.join(ROOT, relativePath), "utf8"));
 const FLUTTER_PRICE = readFileSync(
   path.join(ROOT, "lib", "widgets", "card_surface_price.dart"),
   "utf8",
@@ -652,6 +658,12 @@ test("web price capture distinguishes primary evidence from supplemental repeats
   assert.match(VISIBLE_PRICE, /data-pricing-proof-role=\{proofRole\}/);
   assert.match(VISIBLE_PRICE, /proofRole = "primary"/);
   assert.match(COMPARE_WORKSPACE, /proofRole="supplemental"/);
+  for (const emitter of DIRECT_WEB_PRICE_EMITTERS) {
+    const proofCount = emitter.match(/data-pricing-proof="tcgplayer-market"/g)?.length ?? 0;
+    const primaryCount = emitter.match(/data-pricing-proof-role="primary"/g)?.length ?? 0;
+    assert.ok(proofCount > 0);
+    assert.equal(primaryCount, proofCount);
+  }
 });
 
 test("newly wired web surfaces require auth before fetching governed pricing", () => {

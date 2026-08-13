@@ -61,6 +61,7 @@ function PricingEmptyState() {
     <div
       className="space-y-1.5"
       data-pricing-proof="tcgplayer-market"
+      data-pricing-proof-role="primary"
       data-pricing-status="unavailable"
     >
       <p className="text-base font-semibold text-slate-950 dark:text-slate-100">
@@ -94,6 +95,7 @@ function MarketPriceBlock({
     <div
       className="space-y-1"
       data-pricing-proof="tcgplayer-market"
+      data-pricing-proof-role="primary"
       data-pricing-status={pricing.status}
       data-pricing-scope={pricing.pricing_scope}
       data-card-print-id={pricing.card_print_id}

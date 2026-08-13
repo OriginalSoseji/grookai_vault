@@ -170,6 +170,7 @@ export default function VaultInstancePricingCard({
               <p
                 className="text-xl font-semibold tracking-tight text-slate-950"
                 data-pricing-proof="tcgplayer-market"
+                data-pricing-proof-role="primary"
                 data-pricing-status="available"
                 data-pricing-scope="card_printing"
                 data-card-print-id={cardPrintId}
