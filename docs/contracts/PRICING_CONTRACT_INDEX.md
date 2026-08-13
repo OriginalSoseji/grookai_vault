@@ -28,6 +28,11 @@ publication. MTG source rows remain warehouse evidence until a separately
 approved canonical catalog, finish model, exact mapping lane, and bounded
 publication canary exist.
 
+`MTG_CANONICAL_CATALOG_IMPORT_CONTRACT_V1.md` governs the Scryfall bulk
+candidate catalog, exact TCGPlayer product/subtype crosswalk, collision
+quarantine, self-hosted image boundary, and separately approved schema and
+one-set apply gates.
+
 ## 1. Purpose
 
 This document defines all invariant rules governing Grookai Vault pricing logic.
