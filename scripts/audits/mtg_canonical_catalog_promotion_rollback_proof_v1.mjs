@@ -120,8 +120,11 @@ export async function captureMtgPromotionCollisionsV1(client, rows) {
 }
 
 export async function captureVisiblePokemonCountV1(client, role) {
-  await client.query(`set local role ${role}`);
-  await client.query("select set_config('request.jwt.claim.role', $1, true)", [role]);
+  if (!new Set(["anon", "authenticated"]).has(role)) {
+    throw new Error(`Unsupported client role: ${role}`);
+  }
+  await client.query(`set role ${role}`);
+  await client.query("select set_config('request.jwt.claim.role', $1, false)", [role]);
   try {
     const result = await client.query(
       `select count(*)::integer as count
@@ -132,6 +135,7 @@ export async function captureVisiblePokemonCountV1(client, role) {
     return result.rows[0].count;
   } finally {
     await client.query("reset role");
+    await client.query("reset request.jwt.claim.role");
   }
 }
 
@@ -412,8 +416,11 @@ export async function captureMtgPromotionExactReadbackV1(client, rows) {
 }
 
 export async function captureMtgClientVisibilityV1(client, role, setCode) {
-  await client.query(`set local role ${role}`);
-  await client.query("select set_config('request.jwt.claim.role', $1, true)", [role]);
+  if (!new Set(["anon", "authenticated"]).has(role)) {
+    throw new Error(`Unsupported client role: ${role}`);
+  }
+  await client.query(`set role ${role}`);
+  await client.query("select set_config('request.jwt.claim.role', $1, false)", [role]);
   try {
     const result = await client.query(
       `select jsonb_build_object(
@@ -448,6 +455,7 @@ export async function captureMtgClientVisibilityV1(client, role, setCode) {
     return result.rows[0].value;
   } finally {
     await client.query("reset role");
+    await client.query("reset request.jwt.claim.role");
   }
 }
 

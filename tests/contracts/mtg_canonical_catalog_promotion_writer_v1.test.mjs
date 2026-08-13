@@ -6,6 +6,10 @@ import {
   buildMtgCanonicalPromotionApprovalV1,
   buildMtgPromotionLedgerRowsV1,
 } from "../../scripts/audits/mtg_canonical_catalog_promotion_writer_v1.mjs";
+import {
+  captureMtgClientVisibilityV1,
+  captureVisiblePokemonCountV1,
+} from "../../scripts/audits/mtg_canonical_catalog_promotion_rollback_proof_v1.mjs";
 
 const migrationSqlByVersion = {
   "20260813190000": fs.readFileSync(
@@ -57,4 +61,16 @@ test("promotion writer approval keeps MTG hidden and prohibits adjacent writes",
   assert.match(approval.required_approval_message, /another set/);
   assert.match(approval.required_approval_message, /Pokemon mutation/);
   assert.match(approval.required_approval_message, /global db push/);
+});
+
+test("client readback rejects arbitrary database roles before query execution", async () => {
+  const client = { query: () => assert.fail("query must not execute") };
+  await assert.rejects(
+    captureVisiblePokemonCountV1(client, "service_role"),
+    /Unsupported client role/,
+  );
+  await assert.rejects(
+    captureMtgClientVisibilityV1(client, "postgres", "dsk"),
+    /Unsupported client role/,
+  );
 });
