@@ -823,6 +823,11 @@ Recommended reading order for future maintainers:
       enforcing pre/post-commit checks, rollback-proven approval package, and
       the bounded hidden canonical apply that remains pending
 
+47. `PRICING_CHECKPOINT_49_MTG_DSK_HIDDEN_CANONICAL_APPLIED.md`
+    - then read the durable hidden DSK canonical apply, independent read-only
+      reconciliation, exact 417-parent and 807-printing proof, zero client
+      visibility, and the bounded full-catalog batching gate that follows
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -849,3 +854,5 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mtg_canonical_catalog_stage_readback_v1/2026-08-13T19-06-22Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_promotion_rollback_proof_v1/2026-08-13T19-21-09Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_promotion_writer_v1/2026-08-13T19-27-59Z_dry_run/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_promotion_writer_v1/2026-08-13T21-33-11Z_apply/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_promotion_post_apply_readback_v1/2026-08-13T21-39-13Z/REPORT.md`
