@@ -64,6 +64,7 @@ export function evaluateMtgSetPromotionPostRollbackV1({
   clientVisibility,
   authenticatedPokemonCount,
 }) {
+  const rollbackProof = rollbackSummary.proof ?? rollbackSummary.database_proof;
   const findings = evaluateMtgSetPromotionBaselineV1({
     plan,
     state,
@@ -71,16 +72,19 @@ export function evaluateMtgSetPromotionPostRollbackV1({
     reconciliation,
     collisions,
   });
-  if (rollbackSummary.status !== "rollback_proof_passed") {
+  if (!new Set([
+    "rollback_proof_passed",
+    "promotion_writer_rollback_proof_passed",
+  ]).has(rollbackSummary.status)) {
     findings.push("rollback_proof_status_mismatch");
   }
   if (rollbackSummary.plan?.promotion_plan_sha256 !== plan.promotion_plan_sha256) {
     findings.push("rollback_promotion_plan_mismatch");
   }
-  if (JSON.stringify(rollbackSummary.proof?.before) !== JSON.stringify(state)) {
+  if (JSON.stringify(rollbackProof?.before) !== JSON.stringify(state)) {
     findings.push("post_rollback_baseline_mismatch");
   }
-  if (JSON.stringify(rollbackSummary.proof?.after_rollback) !== JSON.stringify(state)) {
+  if (JSON.stringify(rollbackProof?.after_rollback) !== JSON.stringify(state)) {
     findings.push("rollback_summary_after_state_mismatch");
   }
   for (const [role, evidence] of Object.entries(clientVisibility)) {
@@ -98,7 +102,7 @@ export function evaluateMtgSetPromotionPostRollbackV1({
   }
   if (
     Number(authenticatedPokemonCount) !==
-    Number(rollbackSummary.proof?.authenticated_pokemon_before)
+    Number(rollbackProof?.authenticated_pokemon_before)
   ) {
     findings.push("authenticated_pokemon_visibility_changed");
   }
