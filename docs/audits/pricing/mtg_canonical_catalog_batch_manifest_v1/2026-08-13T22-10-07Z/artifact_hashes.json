@@ -1,0 +1,8 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "manifest.json": "1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1",
+    "REPORT.md": "df1b936f3974599a8b7b1101f64d5a7ddc74782d11d00c97bbe2a6892d89482d",
+    "next_bounded_stage_writer_payload.json": "e49748977f8688aa852b9f5366cfb68c8b2f6ed92ab2db284f8b1ec9ad96a12f"
+  }
+}

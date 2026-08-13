@@ -1,0 +1,100 @@
+{
+  "requirements_version": "MTG_CANONICAL_CATALOG_SCHEMA_REQUIREMENTS_V1",
+  "generated_from_candidate_payload_sha256": "857fd2246f75965a57922b6fc12ddb99b8d433e156edf4c17052b32b68a32b4c",
+  "required_changes": [
+    {
+      "object": "public.games",
+      "action": "insert_one",
+      "values": {
+        "code": "mtg",
+        "name": "Magic: The Gathering",
+        "slug": "mtg"
+      }
+    },
+    {
+      "object": "public.card_print_identity",
+      "action": "extend_identity_domain_check",
+      "add_value": "mtg_eng_paper_print"
+    },
+    {
+      "object": "public.finish_keys",
+      "action": "insert_idempotent",
+      "values": [
+        {
+          "key": "foil",
+          "label": "Foil"
+        },
+        {
+          "key": "etched",
+          "label": "Etched Foil"
+        }
+      ],
+      "publication_scope": {
+        "normal": "v1",
+        "foil": "v1",
+        "etched": "deferred"
+      }
+    },
+    {
+      "object": "public.card_prints.card_prints_image_source_check",
+      "action": "extend_check",
+      "add_value": "scryfall"
+    },
+    {
+      "object": "public.card_prints",
+      "action": "use_existing_columns_with_mtg_identity_rules",
+      "rules": {
+        "number": "exact Scryfall collector_number token",
+        "number_plain": "derived compatibility only; never MTG identity authority",
+        "variant_key": "scryfall:<source print UUID>",
+        "print_identity_key": "scryfall:<source print UUID>",
+        "gv_id": "GV-MTG-SF-<source print UUID>",
+        "tcgplayer_id": "null; product IDs may span finish-specific parents"
+      }
+    },
+    {
+      "object": "public.card_printings",
+      "action": "insert_finish_children",
+      "rules": {
+        "printing_gv_id": "<parent gv_id>-<NORMAL|FOIL|ETCHED>",
+        "provenance_source": "scryfall",
+        "publication_scope": "normal and foil only for MTG V1"
+      }
+    },
+    {
+      "object": "public.external_mappings",
+      "action": "insert_parent_source_identity",
+      "rules": {
+        "source": "scryfall",
+        "external_id": "source print UUID"
+      }
+    },
+    {
+      "object": "public.external_printing_mappings",
+      "action": "insert_exact_market_lane_identity",
+      "rules": {
+        "source": "tcgplayer_market",
+        "external_id": "<product_id>:<normal|foil>",
+        "collision_policy": "quarantine; never choose one owner"
+      }
+    }
+  ],
+  "forbidden_changes": [
+    "no mutation of Pokemon games, sets, cards, identities, mappings, or prices",
+    "no use of card_prints.tcgplayer_id as MTG exact printing authority",
+    "no name-only or collector-number-only mapping",
+    "no image pointer before self-hosted upload hash and readback",
+    "no etched price publication in V1",
+    "no delete, truncate, cleanup, or quarantine removal"
+  ],
+  "existing_schema_reused": [
+    "public.sets unique (game, code)",
+    "public.card_prints game_id and set_id",
+    "public.card_print_identity identity_payload",
+    "public.card_printings unique (card_print_id, finish_key)",
+    "public.external_mappings unique (source, external_id)",
+    "public.external_printing_mappings unique (source, external_id)",
+    "MEE qualification, immutable publication, provenance, rollback, and read model"
+  ],
+  "approval_state": "not_authorized_for_apply"
+}
