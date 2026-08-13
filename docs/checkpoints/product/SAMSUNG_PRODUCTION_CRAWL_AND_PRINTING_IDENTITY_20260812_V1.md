@@ -2,7 +2,7 @@
 
 Date: 2026-08-12
 
-Status: LOCAL REPAIR VERIFIED / DATABASE AND DISTRIBUTION GATES OPEN
+Status: MIGRATION AND SIGNED CANDIDATE VERIFIED / STORE DISTRIBUTION GATE OPEN
 
 ## Context
 
@@ -24,9 +24,12 @@ The frozen source baseline for the crawl was:
 - The scanner camera permission and live preview were exercised, but no image
   was captured or submitted.
 - Theme was temporarily changed to Dark and restored to Auto.
-- The production Samsung package was not uninstalled, cleared, or replaced.
+- The production Samsung package was not uninstalled or cleared. It was later
+  updated in place with the matching-certificate signed candidate after all
+  database and CI gates passed.
 - A fresh debug build was installed only on the logged-out Android emulator.
-- The new database migration was not applied.
+- The new database migration was applied only after strict preflight and full
+  local migration replay passed.
 
 ## Physical Samsung Coverage
 
@@ -130,11 +133,13 @@ The migration:
 - revokes `public` and `anon` execution;
 - grants execution only to `authenticated`.
 
-It remains unapplied at this checkpoint.
+It was applied to production on 2026-08-12 after the release worktree proved
+that it was the only local-only migration. Post-apply ledger, schema, grant,
+security-setting, and authenticated execution readbacks all passed.
 
 ## Verification
 
-- Full Flutter suite: `614/614` passed.
+- Full Flutter suite: `614/614` passed locally and in GitHub CI.
 - Grookai Object renderer suite: `19/19` passed.
 - Static analysis: no issues.
 - Diff whitespace validation: passed.
@@ -142,8 +147,36 @@ It remains unapplied at this checkpoint.
 - Emulator startup smoke: passed.
 - Emulator startup logcat: no app crash, Flutter exception, overflow, or
   request-failure signature.
-- Local Supabase migration/RLS smoke: not run because the Docker Desktop
-  Linux engine was unavailable on this machine.
+- Strict Supabase migration preflight: passed.
+- Full local migration reset/replay through `20260812183000`: passed.
+- Production migration ledger readback: reconciled.
+- Function signature and return-column readback: passed.
+- Function grant readback: authenticated only; `anon` and `public` denied.
+- Authenticated read-only owner-feed and detail execution proof: passed and
+  rolled back.
+- Signed Android artifact GitHub run `31660604012`: passed.
+- Physical Samsung matching-certificate in-place install: passed.
+- Signed-candidate emulator render and logcat smoke: passed.
+
+Release CI stabilization commit:
+
+- `a12e8a230e5ac6a2ebb2b71088b6cf09888d9c04`
+
+Migration SHA-256:
+
+- `B666D783E06A92A9D6F3DD19FFC3CCD7BA70B2AAE822DFE13009BDB93F26A529`
+
+Signed release APK:
+
+- version: `1.0.0 (23)`
+- SHA-256:
+  `CE261BB15F8DAE617639A7904F29B6E892D64D342459463A582D2EB42EC31E3D`
+- signer certificate SHA-256:
+  `51E518EF647B2BD5C1C91D3D00D08E1FE3192AF633B2AF6741A67FDCE872E033`
+
+Permanent migration and signed-build audit:
+
+- `docs/audits/collector_memory_printing_identity_v1/20260812_MIGRATION_AND_SIGNED_ANDROID_PROOF.md`
 
 Fresh debug APK:
 
@@ -166,15 +199,19 @@ permanent repository record.
 
 - The crawled Samsung production build is broadly functional across the
   tested signed-in surfaces.
-- That installed build is stale and does not contain this repair.
+- The Samsung now has the matching-certificate signed candidate from commit
+  `a12e8a230e5ac6a2ebb2b71088b6cf09888d9c04`, installed in place with app data
+  preserved.
 - Current source enforces printing visibility across Grookai Objects without
   inventing missing identity.
-- Current source and the fresh debug artifact pass the available automated
-  and emulator gates.
-- The read-only Memory printing migration is locally contract-tested but not
-  database-smoke-tested or applied.
-- A physical current-build proof is still required after normal signing and
-  distribution.
+- Current source and the signed release artifact pass the automated, CI,
+  signing, physical-install, and emulator-render gates.
+- The read-only Memory printing migration is applied, ledger-reconciled, and
+  authenticated-readback proven.
+- The physical handset accepted and launched the build without runtime
+  failures. Its secure Doze/bouncer state prevented a valid UI screenshot, so
+  the emulator supplied the visual-render proof rather than misrepresenting a
+  black device screenshot.
 
 ## What Must Never Be Broken
 
@@ -188,11 +225,10 @@ permanent repository record.
 
 ## Exact Next Gate
 
-1. Run the migration and RLS smoke suite in a DB-capable environment.
-2. Apply the read-only migration through the normal governed release path.
-3. Build and distribute a newly signed Android/iOS candidate from the repair
-   commit.
-4. On a signed-in current build, verify one exact printing and one genuinely
-   unassigned printing across Memory, Sale, Lot, export/share, and Memory
-   detail.
-5. Confirm no collector data changed during readback, then close the gate.
+1. Assign a new mobile build number and distribute the frozen release commit
+   through the normal Android/iOS store pipelines.
+2. Perform a short signed-in acceptance check on the distributed build for
+   one exact and one genuinely unassigned printing.
+3. Treat any missing exact printing as a data-coverage issue; never infer it
+   in the client.
+4. No further schema or implementation change is required for this gate.
