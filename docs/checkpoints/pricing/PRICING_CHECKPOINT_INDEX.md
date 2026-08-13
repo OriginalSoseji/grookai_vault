@@ -828,6 +828,11 @@ Recommended reading order for future maintainers:
       reconciliation, exact 417-parent and 807-printing proof, zero client
       visibility, and the bounded full-catalog batching gate that follows
 
+48. `PRICING_CHECKPOINT_50_MTG_FULL_CATALOG_BATCHED_MSH_STAGED.md`
+    - then read the complete 104,712-parent and 953-set manifest, collision
+      quarantine, set metadata abstentions, and the independently verified
+      3,089-row MSH service-only staging apply
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -856,3 +861,9 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mtg_canonical_catalog_promotion_writer_v1/2026-08-13T19-27-59Z_dry_run/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_promotion_writer_v1/2026-08-13T21-33-11Z_apply/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_promotion_post_apply_readback_v1/2026-08-13T21-39-13Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_reconciliation_v1/2026-08-13T21-56-22Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_batch_manifest_v1/2026-08-13T22-10-07Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_stage_preflight_v1/2026-08-13T22-15-33Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_stage_writer_v1/2026-08-13T22-16-18Z_dry_run/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_stage_writer_v1/2026-08-13T22-25-15Z_apply/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_stage_post_apply_readback_v1/2026-08-13T22-27-42Z/REPORT.md`
