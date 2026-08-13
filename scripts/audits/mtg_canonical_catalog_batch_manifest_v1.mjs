@@ -403,8 +403,8 @@ async function main() {
         warehouseProducts,
         collisionSourceRows,
         sourceBulkSha256: bulkHash,
-        stagingMigrationSha256,
-        foundationMigrationSha256,
+        stagingMigrationSha256: stagingMigrationSha,
+        foundationMigrationSha256: foundationMigrationSha,
         repository,
       },
       {
