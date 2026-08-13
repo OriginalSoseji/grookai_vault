@@ -44,6 +44,22 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(verify, /mee_reference_warehouse_delta_writer_v1_/);
 });
 
+test("MEE reference acquisition adapters share the external runtime artifact root", () => {
+  for (const artifact of [
+    "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
+    "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+    "scripts/audits/market_evidence_engine_pokemontcg_io_reference_acquisition_v1.mjs",
+    "scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs",
+  ]) {
+    const source = read(artifact);
+    assert.match(source, /resolveMeeAuditRootV1/);
+    assert.match(source, /DEFAULT_OUT_DIR = resolveMeeAuditRootV1\(REPO_ROOT\)/);
+  }
+
+  const tcgcsv = read("scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs");
+  assert.match(tcgcsv, /DEFAULT_CACHE_DIR = path\.join\(DEFAULT_OUT_DIR, 'tcgcsv_reference_cache_v1'\)/);
+});
+
 test("every reference refresh stage honors the external runtime artifact root", () => {
   for (const scriptPath of [
     "scripts/audits/market_evidence_engine_query_plan_v1.mjs",
