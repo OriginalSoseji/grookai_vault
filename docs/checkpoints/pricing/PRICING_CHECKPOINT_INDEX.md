@@ -798,6 +798,11 @@ Recommended reading order for future maintainers:
       surface deployment, repaired GitHub observer, and exact post-canary
       completion boundary
 
+42. `PRICING_CHECKPOINT_44_MTG_V1_SOURCE_READY_CANON_BLOCKED.md`
+    - then read the read-only MTG production inventory, the distinction between
+      117,267 warehoused source products and zero canonical MTG identities,
+      and the exact canonical-catalog import gate required before publication
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -820,3 +825,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/publication_rollback_v1_readiness/2026-07-28T11-36-54-826Z_dry_run_4a3d93d2-9f02-4c06-9f04-d65776ad65a2/summary.json`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/canary_commit_pin_repair_20260805/REPORT.md`
+- `docs/audits/pricing/mtg_pricing_readiness_v1/2026-08-13T17-52-09-387Z/REPORT.md`

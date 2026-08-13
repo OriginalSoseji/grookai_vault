@@ -1,0 +1,255 @@
+{
+  "audit_version": "MTG_PRICING_READINESS_AUDIT_V1",
+  "recorded_at": "2026-08-13T17:57:05.644Z",
+  "repository": {
+    "commit_sha": "a7910ba60f43929874c5d1da9a43e44a71876176",
+    "branch": "agent/mtg-pricing-readiness-v1"
+  },
+  "source_snapshot_version": "MTG_PRICING_READINESS_PRODUCTION_SNAPSHOT_V1",
+  "read_only_proof": {
+    "database_user": "postgres",
+    "transaction_read_only": true
+  },
+  "source": {
+    "category_id": 1,
+    "group_count": 453,
+    "category_name": "Magic",
+    "product_count": 117267,
+    "source_active": true,
+    "active_group_count": 453,
+    "latest_observed_on": "2026-08-13",
+    "product_image_count": 117267,
+    "active_product_count": 117267,
+    "category_display_name": "Magic: The Gathering",
+    "category_last_seen_at": "2026-08-13T08:15:12.343305+00:00",
+    "latest_price_row_count": 160858,
+    "product_with_number_count": 103714,
+    "product_with_rarity_count": 113623,
+    "raw_single_candidate_count": 103714,
+    "latest_priced_product_count": 111866,
+    "latest_positive_market_price_count": 158310
+  },
+  "source_subtypes": [
+    {
+      "source_label": "Foil",
+      "product_count": 64281,
+      "price_row_count": 64281,
+      "subtype_name_normalized": "foil",
+      "positive_market_price_count": 63424
+    },
+    {
+      "source_label": "Normal",
+      "product_count": 96577,
+      "price_row_count": 96577,
+      "subtype_name_normalized": "normal",
+      "positive_market_price_count": 94886
+    }
+  ],
+  "source_signals": {
+    "language_name_signals": {
+      "french": 618,
+      "german": 126,
+      "korean": 1,
+      "chinese": 2,
+      "italian": 686,
+      "russian": 2,
+      "spanish": 736,
+      "japanese": 24,
+      "portuguese": 1
+    },
+    "treatment_name_signals": {
+      "etched": 1211,
+      "showcase": 2243,
+      "halo_foil": 163,
+      "borderless": 2983,
+      "serialized": 0,
+      "surge_foil": 2564,
+      "galaxy_foil": 382,
+      "retro_frame": 1416,
+      "extended_art": 4175
+    },
+    "packaged_product_name_signals": {
+      "bundle": 432,
+      "booster_box": 246,
+      "starter_kit": 16,
+      "booster_pack": 371,
+      "commander_deck": 220,
+      "prerelease_pack": 113
+    }
+  },
+  "canonical": {
+    "set_count": 0,
+    "game_count": 0,
+    "finish_keys": [
+      {
+        "key": "normal",
+        "label": "Normal",
+        "is_active": true
+      },
+      {
+        "key": "reverse",
+        "label": "Reverse Holo",
+        "is_active": true
+      },
+      {
+        "key": "holo",
+        "label": "Holo",
+        "is_active": true
+      },
+      {
+        "key": "cosmos",
+        "label": "Cosmos Holo",
+        "is_active": true
+      },
+      {
+        "key": "cracked_ice",
+        "label": "Cracked Ice Holo",
+        "is_active": true
+      },
+      {
+        "key": "pokeball",
+        "label": "Poké Ball",
+        "is_active": true
+      },
+      {
+        "key": "rocket_reverse",
+        "label": "Rocket Reverse",
+        "is_active": true
+      },
+      {
+        "key": "masterball",
+        "label": "Master Ball",
+        "is_active": true
+      }
+    ],
+    "card_print_count": 0,
+    "card_printing_count": 0,
+    "set_game_distribution": [
+      {
+        "game": "pokemon",
+        "set_count": 1380
+      },
+      {
+        "game": "pokemon_jpn",
+        "set_count": 504
+      },
+      {
+        "game": "e7pokemon",
+        "set_count": 1
+      }
+    ]
+  },
+  "mappings": {
+    "exact_mapping_count": 0,
+    "published_snapshot_count": 0
+  },
+  "readiness": {
+    "policy_version": "MTG_PRICING_READINESS_POLICY_V1",
+    "status": "blocked",
+    "source_ready": true,
+    "canonical_ready": false,
+    "exact_mapping_ready": false,
+    "publication_ready": false,
+    "next_gate": "mtg_canonical_catalog_import_contract",
+    "gates": [
+      {
+        "id": "mtg_source_category_current",
+        "status": "pass",
+        "evidence": {
+          "category_id": 1,
+          "source_active": true
+        },
+        "blocker": null
+      },
+      {
+        "id": "mtg_source_groups_present",
+        "status": "pass",
+        "evidence": {
+          "active_group_count": 453
+        },
+        "blocker": null
+      },
+      {
+        "id": "mtg_source_products_present",
+        "status": "pass",
+        "evidence": {
+          "active_product_count": 117267
+        },
+        "blocker": null
+      },
+      {
+        "id": "mtg_current_market_prices_present",
+        "status": "pass",
+        "evidence": {
+          "observed_on": "2026-08-13",
+          "positive_market_price_count": 158310
+        },
+        "blocker": null
+      },
+      {
+        "id": "mtg_canonical_game_present",
+        "status": "blocked",
+        "evidence": {
+          "game_count": 0
+        },
+        "blocker": "Grookai has no single canonical MTG game identity."
+      },
+      {
+        "id": "mtg_canonical_sets_present",
+        "status": "blocked",
+        "evidence": {
+          "set_count": 0
+        },
+        "blocker": "Grookai has no canonical MTG sets."
+      },
+      {
+        "id": "mtg_canonical_card_prints_present",
+        "status": "blocked",
+        "evidence": {
+          "card_print_count": 0
+        },
+        "blocker": "Grookai has no canonical MTG card prints."
+      },
+      {
+        "id": "mtg_finish_vocabulary_present",
+        "status": "blocked",
+        "evidence": {
+          "finish_keys": [
+            "cosmos",
+            "cracked_ice",
+            "holo",
+            "masterball",
+            "normal",
+            "pokeball",
+            "reverse",
+            "rocket_reverse"
+          ]
+        },
+        "blocker": "The canonical finish vocabulary does not yet contain both normal and foil MTG lanes."
+      },
+      {
+        "id": "mtg_exact_source_mappings_present",
+        "status": "blocked",
+        "evidence": {
+          "exact_mapping_count": 0
+        },
+        "blocker": "No exact MTG source-product to canonical-printing mappings exist."
+      },
+      {
+        "id": "mtg_publication_isolated",
+        "status": "pass",
+        "evidence": {
+          "published_snapshot_count": 0
+        },
+        "blocker": null
+      }
+    ],
+    "blocker_ids": [
+      "mtg_canonical_game_present",
+      "mtg_canonical_sets_present",
+      "mtg_canonical_card_prints_present",
+      "mtg_finish_vocabulary_present",
+      "mtg_exact_source_mappings_present"
+    ]
+  }
+}

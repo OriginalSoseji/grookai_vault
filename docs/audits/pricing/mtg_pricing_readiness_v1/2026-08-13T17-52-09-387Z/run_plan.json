@@ -1,0 +1,16 @@
+{
+  "audit_version": "MTG_PRICING_READINESS_AUDIT_V1",
+  "commit_sha": "a7910ba60f43929874c5d1da9a43e44a71876176",
+  "branch": "agent/mtg-pricing-readiness-v1",
+  "mode": "read_only_production_audit",
+  "target": "TCGPlayer Magic category 1 and Grookai canonical MTG readiness",
+  "boundaries": {
+    "database_writes": false,
+    "migrations": false,
+    "canonical_import": false,
+    "mapping_apply": false,
+    "publication": false,
+    "scheduler_changes": false,
+    "client_changes": false
+  }
+}
