@@ -793,6 +793,11 @@ Recommended reading order for future maintainers:
       expected-commit pin was repaired without changing pricing authority,
       and which evidence is required before the replacement window can pass
 
+41. `PRICING_CHECKPOINT_43_CURRENT_CANARY_AND_SURFACE_PUBLICATION.md`
+    - then read the August 13 live restart, current 99-row health, production
+      surface deployment, repaired GitHub observer, and exact post-canary
+      completion boundary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

@@ -1,0 +1,65 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1",
+  "status": "observing",
+  "window": {
+    "started_at": "2026-08-13T09:56:42.279Z",
+    "required_end_at": "2026-08-16T09:56:42.279Z",
+    "as_of": "2026-08-13T15:50:43.259Z",
+    "required_hours": 72,
+    "observed_hours": 5.9,
+    "elapsed": false
+  },
+  "schedule": {
+    "hour_utc": 8,
+    "minute_utc": 15,
+    "tolerance_minutes": 90,
+    "expected_slots": [],
+    "matched_slots": [],
+    "missing_slots": [],
+    "unmatched_run_keys": []
+  },
+  "run_evidence": {
+    "expected_commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+    "expected_count": 99,
+    "activation_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-publication",
+    "scheduled_run_count": 0,
+    "unhealthy_run_keys": []
+  },
+  "terminal_alert_count": 0,
+  "current": {
+    "exact_price_count": 99,
+    "positive_usd_count": 99,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "a1c26975-c8b3-423f-b604-8bf61dbe85b0",
+    "current_publication_run_id": "e902fb55-c0ac-49d5-a9b4-9412d694900e",
+    "previous_publication_set_id": "9eeb8801-9729-4c37-a24b-a2068fe43c91",
+    "current_publication_activated_at": "2026-08-13T09:56:42.279Z"
+  },
+  "source_health": {
+    "status": "healthy",
+    "source_continuity_mode": "completed_sync",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-warehouse",
+    "effective_source_status": "completed",
+    "effective_source_price_row_count": 543960,
+    "source_age_hours": 6.135,
+    "findings": []
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 1,
+    "authenticated_runtime_latency_ms": 310.155,
+    "sampled_card_print_ids": [
+      "004a0cc7-3e4b-434e-bcef-530325b43539"
+    ],
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  },
+  "findings": []
+}
