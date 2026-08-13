@@ -20,6 +20,14 @@ Deployed authenticated pricing surfaces are governed by
 `TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. Repository wiring alone does
 not satisfy its source-to-render requirement.
 
+## MTG Planning Amendment
+
+`MTG_MARKET_PRICING_PRODUCT_V1.md` defines the fail-closed scope and authority
+chain for the next TCG. It does not broaden the active Pokemon Production V1
+publication. MTG source rows remain warehouse evidence until a separately
+approved canonical catalog, finish model, exact mapping lane, and bounded
+publication canary exist.
+
 ## 1. Purpose
 
 This document defines all invariant rules governing Grookai Vault pricing logic.
