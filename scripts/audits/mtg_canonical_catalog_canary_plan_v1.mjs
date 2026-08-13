@@ -105,13 +105,18 @@ export function buildMtgCanaryPayloadV1({
   stagingMigrationSha256,
   foundationMigrationSha256,
   repository,
-}) {
+}, policy = {}) {
+  const planVersion = policy.plan_version ?? PLAN_VERSION;
+  const requireExpansion = policy.require_expansion ?? true;
+  const qualityFlag = policy.quality_flag ?? "mtg_catalog_canary";
   if (candidates.length === 0) throw new Error("Canary set has no eligible candidates");
   if (!repository?.commit_sha || !repository?.branch) {
     throw new Error("Repository commit SHA and branch are required");
   }
   const set = candidates[0].set;
-  if (set.set_type !== "expansion") throw new Error("Canary set must be an expansion");
+  if (requireExpansion && set.set_type !== "expansion") {
+    throw new Error("Canary set must be an expansion");
+  }
   for (const candidate of candidates) {
     if (candidate.set.source_set_id !== set.source_set_id) {
       throw new Error("Canary candidates span multiple set identities");
@@ -135,7 +140,7 @@ export function buildMtgCanaryPayloadV1({
             bulk_sha256: sourceBulkSha256,
           },
         },
-        set_role: "expansion",
+        set_role: set.set_type === "expansion" ? "expansion" : null,
         identity_domain_default: "mtg_eng_paper_print",
         identity_model: "standard",
         logo_url: null,
@@ -184,7 +189,7 @@ export function buildMtgCanaryPayloadV1({
       printed_identity_modifier: null,
       set_identity_model: "standard",
       data_quality_flags: {
-        mtg_catalog_canary: true,
+        [qualityFlag]: true,
         image_pending_self_host: true,
         source_bulk_sha256: sourceBulkSha256,
       },
@@ -208,7 +213,7 @@ export function buildMtgCanaryPayloadV1({
       external_id: sourcePrintId,
       active: true,
       meta: {
-        contract_version: PLAN_VERSION,
+        contract_version: planVersion,
         oracle_id: candidate.card.source_oracle_id,
         source_images: candidate.source_images,
         image_policy: candidate.source_image_policy,
@@ -227,7 +232,7 @@ export function buildMtgCanaryPayloadV1({
         is_provisional: false,
         provenance_source: "scryfall",
         provenance_ref: sourcePrintId,
-        created_by: PLAN_VERSION,
+        created_by: planVersion,
         printing_gv_id: `${gvId}-${finish.toUpperCase()}`,
         image_source: null,
         image_path: null,
@@ -256,7 +261,7 @@ export function buildMtgCanaryPayloadV1({
           external_id: identity,
           active: true,
           meta: {
-            contract_version: PLAN_VERSION,
+            contract_version: planVersion,
             product_id: link.product_id,
             source_subtype: subtype,
             source_print_id: sourcePrintId,
@@ -283,7 +288,7 @@ export function buildMtgCanaryPayloadV1({
   );
 
   const payloadCore = {
-    plan_version: PLAN_VERSION,
+    plan_version: planVersion,
     repository,
     staging_migration_sha256: stagingMigrationSha256,
     foundation_migration_sha256: foundationMigrationSha256,
