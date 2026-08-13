@@ -105,6 +105,7 @@ function renderAttributeContent(
             sourceLabel={card.pricing_source_label}
             pricingScope={card.pricing_scope}
             isFromPrice={card.pricing_is_from_price}
+            proofRole="supplemental"
           />
         )
       : <LockedPrice href={pricingSignInHref} size="dense" />;

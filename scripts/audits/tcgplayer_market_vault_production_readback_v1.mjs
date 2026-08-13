@@ -106,6 +106,14 @@ async function querySchemaEvidence(client) {
            when c.oid is null then null
            else pg_get_viewdef(c.oid, true)
          end as definition,
+         p.proname as backing_function_name,
+         p.prosecdef as backing_function_security_definer,
+         p.provolatile = 's' as backing_function_stable,
+         coalesce(p.proconfig, '{}'::text[]) as backing_function_config,
+         case
+           when p.oid is null then null
+           else pg_get_functiondef(p.oid)
+         end as backing_function_definition,
          owner_table.relrowsecurity as owner_table_rls_enabled,
          case
            when c.oid is null then null
@@ -140,14 +148,34 @@ async function querySchemaEvidence(client) {
              or has_table_privilege('service_role', c.oid, 'REFERENCES')
              or has_table_privilege('service_role', c.oid, 'TRIGGER')
            )
-         end as service_write_or_ddl_granted
+         end as service_write_or_ddl_granted,
+         case
+           when p.oid is null then null
+           else has_function_privilege('anon', p.oid, 'EXECUTE')
+         end as backing_function_anonymous_execute_granted,
+         case
+           when p.oid is null then null
+           else has_function_privilege('authenticated', p.oid, 'EXECUTE')
+         end as backing_function_authenticated_execute_granted,
+         case
+           when p.oid is null then null
+           else has_function_privilege('service_role', p.oid, 'EXECUTE')
+         end as backing_function_service_execute_granted
        from target
        left join pg_class c on c.oid = target.relation_oid
+       left join pg_proc p
+         on p.oid = to_regprocedure(
+           'public.vault_mobile_pricing_target_rows_for_current_user_v2()'
+         )
        left join pg_class owner_table
          on owner_table.oid = 'public.vault_item_instances'::regclass`,
     )
   ).rows[0] ?? {};
   const definition = String(row.definition ?? "").toLowerCase();
+  const backingFunctionDefinition = String(
+    row.backing_function_definition ?? "",
+  ).toLowerCase();
+  const backingFunctionConfig = row.backing_function_config ?? [];
   return {
     relation_name: row.relation_name ?? null,
     relation_kind: row.relation_kind ?? null,
@@ -160,6 +188,27 @@ async function querySchemaEvidence(client) {
       definition.includes("vii.archived_at is null"),
     definition_excludes_slabs:
       definition.includes("vii.slab_cert_id is null"),
+    definition_uses_backing_function: definition.includes(
+      "vault_mobile_pricing_target_rows_for_current_user_v2()",
+    ),
+    backing_function_name: row.backing_function_name ?? null,
+    backing_function_security_definer: bool(
+      row.backing_function_security_definer,
+    ),
+    backing_function_stable: bool(row.backing_function_stable),
+    backing_function_fixed_search_path: backingFunctionConfig.some(
+      (option) =>
+        String(option)
+          .toLowerCase()
+          .replaceAll(" ", "") === "search_path=pg_catalog,public",
+    ),
+    backing_function_owner_scoped:
+      backingFunctionDefinition.includes("auth.uid()") &&
+      backingFunctionDefinition.includes("vii.user_id = auth.uid()"),
+    backing_function_excludes_archived:
+      backingFunctionDefinition.includes("vii.archived_at is null"),
+    backing_function_excludes_slabs:
+      backingFunctionDefinition.includes("vii.slab_cert_id is null"),
     access: {
       anonymous_select_granted: bool(row.anonymous_select_granted),
       authenticated_select_granted: bool(
@@ -171,6 +220,15 @@ async function querySchemaEvidence(client) {
       service_select_granted: bool(row.service_select_granted),
       service_write_or_ddl_granted: bool(
         row.service_write_or_ddl_granted,
+      ),
+      backing_function_anonymous_execute_granted: bool(
+        row.backing_function_anonymous_execute_granted,
+      ),
+      backing_function_authenticated_execute_granted: bool(
+        row.backing_function_authenticated_execute_granted,
+      ),
+      backing_function_service_execute_granted: bool(
+        row.backing_function_service_execute_granted,
       ),
     },
   };
@@ -505,6 +563,7 @@ function markdown(report) {
     "## Schema And Access",
     "",
     `- View: \`${report.schema.relation_name}\``,
+    `- Authority mode: \`${report.schema.authority_mode}\``,
     `- Security options: \`${report.schema.relation_options.join(", ")}\``,
     `- Owner table RLS: \`${report.schema.owner_table_rls_enabled}\``,
     `- Authenticated SELECT: \`${report.access.authenticated_select_granted}\``,

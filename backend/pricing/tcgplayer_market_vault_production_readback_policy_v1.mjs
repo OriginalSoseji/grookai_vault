@@ -15,6 +15,33 @@ function includesOption(options, expected) {
   return Array.isArray(options) && options.includes(expected);
 }
 
+function directViewAuthorityIsValid(schema) {
+  return (
+    includesOption(schema.relation_options, "security_invoker=false") &&
+    schema.definition_owner_scoped === true &&
+    schema.definition_excludes_archived === true &&
+    schema.definition_excludes_slabs === true
+  );
+}
+
+function functionAuthorityIsValid(schema, access) {
+  return (
+    includesOption(schema.relation_options, "security_invoker=true") &&
+    schema.definition_uses_backing_function === true &&
+    schema.backing_function_name ===
+      "vault_mobile_pricing_target_rows_for_current_user_v2" &&
+    schema.backing_function_security_definer === true &&
+    schema.backing_function_stable === true &&
+    schema.backing_function_fixed_search_path === true &&
+    schema.backing_function_owner_scoped === true &&
+    schema.backing_function_excludes_archived === true &&
+    schema.backing_function_excludes_slabs === true &&
+    access.backing_function_anonymous_execute_granted === false &&
+    access.backing_function_authenticated_execute_granted === true &&
+    access.backing_function_service_execute_granted === true
+  );
+}
+
 export function evaluateTcgplayerMarketVaultProductionReadbackV1(
   evidence = {},
 ) {
@@ -23,6 +50,13 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
   const access = evidence.access ?? {};
   const owner = evidence.owner_scope ?? {};
   const pricing = evidence.exact_pricing ?? {};
+  const directViewAuthority = directViewAuthorityIsValid(schema);
+  const functionAuthority = functionAuthorityIsValid(schema, access);
+  const authorityMode = functionAuthority
+    ? "security_invoker_function"
+    : directViewAuthority
+      ? "direct_security_definer_view"
+      : "invalid";
 
   if (schema.relation_name !== "v_vault_mobile_pricing_targets_v1") {
     findings.push("vault_pricing_target_view_missing");
@@ -33,20 +67,11 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
   if (!includesOption(schema.relation_options, "security_barrier=true")) {
     findings.push("vault_pricing_target_security_barrier_missing");
   }
-  if (!includesOption(schema.relation_options, "security_invoker=false")) {
-    findings.push("vault_pricing_target_security_invoker_not_false");
-  }
   if (schema.owner_table_rls_enabled !== true) {
     findings.push("vault_owner_table_rls_not_enabled");
   }
-  if (schema.definition_owner_scoped !== true) {
-    findings.push("vault_pricing_target_not_owner_scoped");
-  }
-  if (schema.definition_excludes_archived !== true) {
-    findings.push("vault_pricing_target_does_not_exclude_archived");
-  }
-  if (schema.definition_excludes_slabs !== true) {
-    findings.push("vault_pricing_target_does_not_exclude_slabs");
+  if (authorityMode === "invalid") {
+    findings.push("vault_pricing_target_authority_invalid");
   }
 
   if (access.anonymous_select_granted !== false) {
@@ -149,6 +174,7 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
     status: findings.length === 0 ? "passed" : "failed",
     findings: [...new Set(findings)].sort(),
     schema: {
+      authority_mode: authorityMode,
       relation_name: schema.relation_name ?? null,
       relation_kind: schema.relation_kind ?? null,
       relation_options: schema.relation_options ?? [],
@@ -157,6 +183,20 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
       definition_excludes_archived:
         schema.definition_excludes_archived === true,
       definition_excludes_slabs: schema.definition_excludes_slabs === true,
+      definition_uses_backing_function:
+        schema.definition_uses_backing_function === true,
+      backing_function_name: schema.backing_function_name ?? null,
+      backing_function_security_definer:
+        schema.backing_function_security_definer === true,
+      backing_function_stable: schema.backing_function_stable === true,
+      backing_function_fixed_search_path:
+        schema.backing_function_fixed_search_path === true,
+      backing_function_owner_scoped:
+        schema.backing_function_owner_scoped === true,
+      backing_function_excludes_archived:
+        schema.backing_function_excludes_archived === true,
+      backing_function_excludes_slabs:
+        schema.backing_function_excludes_slabs === true,
     },
     access: {
       anonymous_select_granted: access.anonymous_select_granted === true,
@@ -172,6 +212,12 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
       authenticated_without_uid_count: integer(
         access.authenticated_without_uid_count,
       ),
+      backing_function_anonymous_execute_granted:
+        access.backing_function_anonymous_execute_granted === true,
+      backing_function_authenticated_execute_granted:
+        access.backing_function_authenticated_execute_granted === true,
+      backing_function_service_execute_granted:
+        access.backing_function_service_execute_granted === true,
     },
     owner_scope: {
       sample_owner_available: owner.sample_owner_available === true,

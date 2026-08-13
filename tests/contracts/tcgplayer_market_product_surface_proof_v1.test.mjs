@@ -71,6 +71,24 @@ const VISIBLE_PRICE = readFileSync(
   ),
   "utf8",
 );
+const COMPARE_WORKSPACE = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "components",
+    "compare",
+    "CompareWorkspace.tsx",
+  ),
+  "utf8",
+);
+const DIRECT_WEB_PRICE_EMITTERS = [
+  "apps/web/src/components/pricing/CardPagePricingRail.tsx",
+  "apps/web/src/components/vault/VaultInstancePricingCard.tsx",
+  "apps/web/src/components/vault/VaultInstanceVisiblePricingCard.tsx",
+  "apps/web/src/app/card/[gv_id]/market/page.tsx",
+].map((relativePath) => readFileSync(path.join(ROOT, relativePath), "utf8"));
 const FLUTTER_PRICE = readFileSync(
   path.join(ROOT, "lib", "widgets", "card_surface_price.dart"),
   "utf8",
@@ -626,6 +644,26 @@ test("the executable registry binds all 17 surfaces to existing owners and proof
   assert.deepEqual(vaultItem?.auth_boundary_files, [
     "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
   ]);
+});
+
+test("web price capture distinguishes primary evidence from supplemental repeats", () => {
+  const webPriceSurfaces = TCGPLAYER_MARKET_PRODUCT_SURFACE_REGISTRY_V1.filter(
+    (surface) =>
+      surface.client === "web" && surface.proof_kind === "price_record",
+  );
+  assert.ok(webPriceSurfaces.length > 0);
+  for (const surface of webPriceSurfaces) {
+    assert.match(surface.capture_selector, /data-pricing-proof-role="primary"/);
+  }
+  assert.match(VISIBLE_PRICE, /data-pricing-proof-role=\{proofRole\}/);
+  assert.match(VISIBLE_PRICE, /proofRole = "primary"/);
+  assert.match(COMPARE_WORKSPACE, /proofRole="supplemental"/);
+  for (const emitter of DIRECT_WEB_PRICE_EMITTERS) {
+    const proofCount = emitter.match(/data-pricing-proof="tcgplayer-market"/g)?.length ?? 0;
+    const primaryCount = emitter.match(/data-pricing-proof-role="primary"/g)?.length ?? 0;
+    assert.ok(proofCount > 0);
+    assert.equal(primaryCount, proofCount);
+  }
 });
 
 test("newly wired web surfaces require auth before fetching governed pricing", () => {

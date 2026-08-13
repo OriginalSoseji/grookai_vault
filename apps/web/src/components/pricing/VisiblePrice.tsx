@@ -15,6 +15,7 @@ type VisiblePriceProps = {
   provenanceId?: string;
   pricingScope?: "parent" | "card_printing";
   isFromPrice?: boolean;
+  proofRole?: "primary" | "supplemental";
 };
 
 function getClasses(size: VisiblePriceProps["size"]) {
@@ -65,6 +66,7 @@ export default function VisiblePrice({
   provenanceId,
   pricingScope = "parent",
   isFromPrice = false,
+  proofRole = "primary",
 }: VisiblePriceProps) {
   const classes = getClasses(size);
 
@@ -72,6 +74,7 @@ export default function VisiblePrice({
     <div
       className={`${classes.wrapper} ${className}`.trim()}
       data-pricing-proof="tcgplayer-market"
+      data-pricing-proof-role={proofRole}
       data-pricing-status={
         typeof value === "number" ? "available" : "unavailable"
       }

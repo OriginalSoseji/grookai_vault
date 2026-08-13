@@ -242,6 +242,7 @@ export default async function MarketAnalysisPage(
                   <p
                     className="text-5xl font-semibold tracking-tight text-slate-950"
                     data-pricing-proof="tcgplayer-market"
+                    data-pricing-proof-role="primary"
                     data-pricing-status="available"
                     data-pricing-scope="card_printing"
                     data-card-print-id={model.selectedSlice?.cardPrintId}
@@ -320,6 +321,7 @@ export default async function MarketAnalysisPage(
                   <p
                     className="pt-2 text-lg font-medium text-slate-950"
                     data-pricing-proof="tcgplayer-market"
+                    data-pricing-proof-role="primary"
                     data-pricing-status="available"
                     data-pricing-scope="card_printing"
                     data-card-print-id={model.selectedSlice?.cardPrintId}
