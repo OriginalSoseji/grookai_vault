@@ -175,7 +175,25 @@ pointer is written:
 
 No broad image upload is part of the first database canary.
 
-## Required Schema Gate
+## Service-Only Staging Gate
+
+The first durable database target is not the shared canonical tables. A
+fingerprinted canary payload must first be inserted into immutable,
+service-only MTG import staging tables.
+
+- `anon` and `authenticated` receive no privileges;
+- RLS is enabled on batch and row tables;
+- only `select` and `insert` are granted to `service_role`;
+- staged rows preserve the exact intended canonical payload as JSONB;
+- no game, set, card, printing, mapping, image, or price row is created;
+- promotion is a separate transaction and approval boundary.
+
+This staging gate is required because existing generic card and set read
+models can discover shared canonical rows before MTG product surfaces are
+ready. A canonical canary may not claim zero app visibility merely because it
+has no published price.
+
+## Required Canonical Schema Gate
 
 The first migration package must be idempotent and limited to:
 
@@ -187,21 +205,28 @@ The first migration package must be idempotent and limited to:
   payloads are insufficient;
 - preserve all Pokémon rows and constraints.
 
-The existing `sets`, `card_prints`, identity, printing, external mapping, and
-MEE publication tables remain the storage targets.
+After staging is accepted, the existing `sets`, `card_prints`, identity,
+printing, external mapping, and MEE publication tables remain the promotion
+targets.
 
 ## Apply Sequence
 
-1. Produce a schema-only migration and remote preflight.
+1. Produce a service-only staging migration and remote preflight.
 2. Generate a frozen zero-write canary payload for one ordinary expansion set
    with Normal and Foil rows and zero collision lanes.
-3. Apply the schema migration only after an explicit migration gate.
-4. Apply the one-set canonical canary only after a separate payload approval.
-5. Read back game, set, parent, identity, child printing, and external mapping
+3. Prove the complete staging migration and payload in one rollback
+   transaction.
+4. Apply the staging migration and immutable payload only after an exact
+   fingerprint approval.
+5. Review the staged payload, then apply the canonical foundation migration
+   only after a separate promotion gate.
+6. Promote the one-set canonical canary only after proving app visibility is
+   explicitly controlled.
+7. Read back game, set, parent, identity, child printing, and external mapping
    counts and hashes.
-6. Run search/API/RLS smoke tests with MTG hidden from public clients.
-7. Build a bounded exact-price shadow for the imported set.
-8. Stop before publication, image population, or full-catalog import.
+8. Run search/API/RLS smoke tests with MTG hidden from public clients.
+9. Build a bounded exact-price shadow for the imported set.
+10. Stop before publication, image population, or full-catalog import.
 
 ## Invariants
 
@@ -211,4 +236,3 @@ MEE publication tables remain the storage targets.
 - Collisions remain quarantined and immutable until separately adjudicated.
 - Source image availability never authorizes a pointer write.
 - No public or signed-in MTG surface is enabled by catalog import alone.
-

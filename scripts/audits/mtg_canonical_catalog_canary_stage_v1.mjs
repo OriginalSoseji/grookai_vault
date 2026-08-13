@@ -258,6 +258,32 @@ async function exactReadback(client, payload, contract) {
   return { batch_count: batchResult.rowCount, row_count: rowsResult.rowCount, issues };
 }
 
+async function stagingSecurityReadback(client) {
+  const result = await client.query(`
+    select jsonb_build_object(
+      'batch_rls_enabled', (
+        select relrowsecurity
+        from pg_class
+        where oid = 'public.mtg_canonical_import_batches'::regclass
+      ),
+      'row_rls_enabled', (
+        select relrowsecurity
+        from pg_class
+        where oid = 'public.mtg_canonical_import_rows'::regclass
+      ),
+      'anon_batch_select', has_table_privilege('anon', 'public.mtg_canonical_import_batches', 'select'),
+      'authenticated_batch_select', has_table_privilege('authenticated', 'public.mtg_canonical_import_batches', 'select'),
+      'anon_row_select', has_table_privilege('anon', 'public.mtg_canonical_import_rows', 'select'),
+      'authenticated_row_select', has_table_privilege('authenticated', 'public.mtg_canonical_import_rows', 'select'),
+      'service_batch_select', has_table_privilege('service_role', 'public.mtg_canonical_import_batches', 'select'),
+      'service_batch_insert', has_table_privilege('service_role', 'public.mtg_canonical_import_batches', 'insert'),
+      'service_row_select', has_table_privilege('service_role', 'public.mtg_canonical_import_rows', 'select'),
+      'service_row_insert', has_table_privilege('service_role', 'public.mtg_canonical_import_rows', 'insert')
+    ) as value
+  `);
+  return result.rows[0].value;
+}
+
 async function executeDatabaseMode({ mode, payload, contract, migrationSql }) {
   const client = new Client({
     connectionString: marketEvidenceDbUrl(),
@@ -289,6 +315,21 @@ async function executeDatabaseMode({ mode, payload, contract, migrationSql }) {
       await insertStaging(client, payload, contract);
       const inside = await exactReadback(client, payload, contract);
       if (inside.issues.length > 0) throw new Error(inside.issues.join(", "));
+      const security = await stagingSecurityReadback(client);
+      if (
+        security.batch_rls_enabled !== true ||
+        security.row_rls_enabled !== true ||
+        security.anon_batch_select !== false ||
+        security.authenticated_batch_select !== false ||
+        security.anon_row_select !== false ||
+        security.authenticated_row_select !== false ||
+        security.service_batch_select !== true ||
+        security.service_batch_insert !== true ||
+        security.service_row_select !== true ||
+        security.service_row_insert !== true
+      ) {
+        throw new Error(`Service-only staging boundary failed: ${stableJson(security)}`);
+      }
       const insideState = await tableState(client);
       if (
         Number(insideState.mtg_game_count) !== Number(before.mtg_game_count) ||
@@ -309,7 +350,13 @@ async function executeDatabaseMode({ mode, payload, contract, migrationSql }) {
         durable.issues.push("rollback_left_staging_schema");
       }
       if (durable.issues.length > 0) throw new Error(durable.issues.join(", "));
-      return { before, transaction_readback: inside, after, durable_readback: durable };
+      return {
+        before,
+        transaction_readback: inside,
+        transaction_security: security,
+        after,
+        durable_readback: durable,
+      };
     } catch (error) {
       await client.query("rollback").catch(() => {});
       throw error;
