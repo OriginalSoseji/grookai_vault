@@ -1,0 +1,79 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+
+import {
+  assertMtgSetPromotionSecurityV1,
+  buildMtgCanonicalSetPromotionApprovalV1,
+} from "../../scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs";
+
+function fixture() {
+  return {
+    plan: {
+      selected_set: { code: "msh", name: "Marvel Super Heroes" },
+      promotion_plan_sha256: "a".repeat(64),
+      writer_payload_fingerprint: "b".repeat(64),
+      staging_batch_id: "276cc9f7-0159-5df3-874c-73ea04e741a4",
+      staging_rows_sha256: "c".repeat(64),
+      promotion_rows_sha256: "d".repeat(64),
+      mutation_contract_sha256: "e".repeat(64),
+      row_counts: {
+        sets: 1,
+        card_prints: 453,
+        card_print_identity: 453,
+        card_printings: 865,
+        external_mappings: 453,
+        external_printing_mappings: 864,
+      },
+    },
+    repository: {
+      governing_commit_sha: "f".repeat(40),
+      governing_files_sha256: "1".repeat(64),
+    },
+  };
+}
+
+test("set writer approval binds exact rows, code, and prohibited boundaries", () => {
+  const { plan, repository } = fixture();
+  const approval = buildMtgCanonicalSetPromotionApprovalV1(plan, repository);
+  assert.match(approval.approval_sha256, /^[0-9a-f]{64}$/);
+  assert.match(approval.required_approval_message, /MTG set msh/);
+  assert.match(approval.required_approval_message, /453 card_prints/);
+  assert.match(approval.required_approval_message, /865 card_printings/);
+  assert.match(approval.required_approval_message, /864 TCGPlayer/);
+  assert.match(approval.required_approval_message, new RegExp(repository.governing_commit_sha));
+  assert.match(approval.required_approval_message, /do not approve migrations/i);
+  assert.match(approval.required_approval_message, /another set/);
+  assert.match(approval.required_approval_message, /Pokemon mutation/);
+});
+
+test("set writer security accepts only the hidden release boundary", () => {
+  assert.doesNotThrow(() => assertMtgSetPromotionSecurityV1({
+    release_table_rls: true,
+    anon_release_select: false,
+    authenticated_release_select: false,
+    service_release_select: true,
+    service_release_insert: true,
+    service_release_update: true,
+    restrictive_policy_count: 5,
+    internal_search_anon_execute: false,
+    internal_search_authenticated_execute: false,
+    wrapper_search_anon_execute: true,
+    wrapper_search_authenticated_execute: true,
+  }));
+});
+
+test("set writer security rejects an authenticated release-table grant", () => {
+  assert.throws(() => assertMtgSetPromotionSecurityV1({
+    release_table_rls: true,
+    anon_release_select: false,
+    authenticated_release_select: true,
+    service_release_select: true,
+    service_release_insert: true,
+    service_release_update: true,
+    restrictive_policy_count: 5,
+    internal_search_anon_execute: false,
+    internal_search_authenticated_execute: false,
+    wrapper_search_anon_execute: true,
+    wrapper_search_authenticated_execute: true,
+  }), /security mismatch/);
+});

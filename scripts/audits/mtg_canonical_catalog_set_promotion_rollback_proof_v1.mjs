@@ -206,7 +206,7 @@ export function evaluateMtgSetPromotionBaselineV1({ plan, state, stage, reconcil
   return [...new Set(findings)];
 }
 
-function verifyExactReadback(plan, exact) {
+export function verifyMtgSetPromotionExactReadbackV1(plan, exact) {
   for (const [name, check] of Object.entries(exact)) {
     expectCount(check.planned_count, plan.row_counts[name], `${name} planned readback`);
     expectCount(check.actual_count, plan.row_counts[name], `${name} actual readback`);
@@ -214,7 +214,7 @@ function verifyExactReadback(plan, exact) {
   }
 }
 
-function verifyPromotionDelta(plan, before, inside) {
+export function verifyMtgSetPromotionDeltaV1(plan, before, inside) {
   const deltas = {
     mtg_set_count: plan.row_counts.sets,
     mtg_card_count: plan.row_counts.card_prints,
@@ -278,9 +278,9 @@ async function runRollbackProof(payload, plan) {
       expectCount(inserted[name], expected, `${name} inserted rows`);
     }
     const exact = await captureMtgPromotionExactReadbackV1(client, plan.rows);
-    verifyExactReadback(plan, exact);
+    verifyMtgSetPromotionExactReadbackV1(plan, exact);
     const inside = await captureMtgSetPromotionStateV1(client, plan);
-    verifyPromotionDelta(plan, before, inside);
+    verifyMtgSetPromotionDeltaV1(plan, before, inside);
 
     const anon = await captureMtgClientVisibilityV1(client, "anon", payload.selected_set.code);
     const authenticated = await captureMtgClientVisibilityV1(
