@@ -38,7 +38,7 @@ test("Xcode Cloud bootstraps Flutter from the repository root", () => {
 });
 
 test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
-  assert.match(script, /FLUTTER_VERSION="3\.44\.7"/);
+  assert.match(script, /FLUTTER_VERSION="3\.44\.9"/);
   assert.doesNotMatch(script, /^FLUTTER_VERSION="\$\{/m);
   assert.match(script, /FLUTTER_HOME="\$\{HOME\}\/flutter-\$\{FLUTTER_VERSION\}"/);
   assert.match(script, /--branch "\$\{FLUTTER_VERSION\}"/);

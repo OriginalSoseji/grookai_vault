@@ -42,6 +42,36 @@ test("App Store release metadata describes the shipping product without stale be
   assert.match(metadata.review_detail?.notes ?? "", /account\/delete/);
 });
 
+test("mobile release metadata uses one monotonic synchronized build number", () => {
+  const pubspec = read("pubspec.yaml");
+  const metadata = JSON.parse(read("docs/release/app_store_connect_ios_1_0.json"));
+  const buildMatch = pubspec.match(/^version:\s*1\.0\.0\+(\d+)$/m);
+
+  assert.ok(buildMatch, "pubspec must declare a 1.0.0 release build number");
+  assert.equal(buildMatch[1], "289");
+  assert.equal(metadata.build_number, buildMatch[1]);
+  assert.match(metadata.archive_path, /build289\.xcarchive$/);
+  assert.match(metadata.export_path, /build289$/);
+});
+
+test("web release resolves Nano ID to the supported patched branch", () => {
+  const manifest = JSON.parse(read("apps/web/package.json"));
+  const lockfile = JSON.parse(read("apps/web/package-lock.json"));
+
+  assert.equal(manifest.overrides?.nanoid, "5.1.16");
+  assert.equal(lockfile.packages?.["node_modules/nanoid"]?.version, "5.1.16");
+});
+
+test("Android release can produce a signed AAB without inventing a version tag", () => {
+  const workflow = read(".github/workflows/release.yml");
+
+  assert.match(workflow, /^\s{2}workflow_dispatch:\s*$/m);
+  assert.match(workflow, /name: Upload signed AAB artifact/);
+  assert.match(workflow, /name: signed-release-aab/);
+  assert.match(workflow, /path: build\/app\/outputs\/bundle\/release\/app-release\.aab/);
+  assert.match(workflow, /name: Create GitHub Release\s+if: github\.event_name == 'push'/);
+});
+
 test("App Store privacy worksheet includes active Firebase diagnostics and messaging identifiers", () => {
   const privacy = read("docs/release/app_store_privacy_ios_1_0.md");
 
