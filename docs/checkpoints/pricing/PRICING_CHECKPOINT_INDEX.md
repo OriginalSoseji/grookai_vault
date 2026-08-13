@@ -813,6 +813,11 @@ Recommended reading order for future maintainers:
       production reconciliation, security and zero-visibility proof, and the
       bounded canonical-promotion gate that remains closed
 
+45. `PRICING_CHECKPOINT_47_MTG_DSK_CANONICAL_PROMOTION_ROLLBACK_PROVEN.md`
+    - then read the exact DSK canonical-promotion plan, hidden-by-default game
+      release boundary, complete production rollback proof, and the still
+      closed durable canonical apply gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -837,3 +842,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/canary_commit_pin_repair_20260805/REPORT.md`
 - `docs/audits/pricing/mtg_pricing_readiness_v1/2026-08-13T17-52-09-387Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_stage_readback_v1/2026-08-13T19-06-22Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_promotion_rollback_proof_v1/2026-08-13T19-21-09Z/REPORT.md`

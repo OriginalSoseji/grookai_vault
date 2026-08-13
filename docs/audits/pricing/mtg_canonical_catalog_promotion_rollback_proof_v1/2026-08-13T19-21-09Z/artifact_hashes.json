@@ -1,0 +1,8 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "promotion_plan.json": "b0c6ec30eb18869aed93727a8100376ce0cc8f6df446b219a70436fd4ee9a7ac",
+    "summary.json": "10cb58f4dfb5b7654d145558ece4a2dcf9831cb7f10ff8731a0b889c5d9f617b",
+    "REPORT.md": "3dc3b9c6b8d5007854b7d7e47306f825dca837c6d1605c981939268c21f66cdd"
+  }
+}
