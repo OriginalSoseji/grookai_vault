@@ -330,6 +330,8 @@ function report(manifest) {
 - Remaining sets: \`${manifest.coverage.remaining_set_count}\`
 - Planned finish printings: \`${manifest.totals.card_printings}\`
 - Planned exact TCGPlayer mappings: \`${manifest.totals.external_printing_mappings}\`
+- Unique ambiguous source lanes quarantined: \`${manifest.collision_quarantine.unique_source_lanes}\`
+- Supported Normal/Foil lanes withheld for ambiguity: \`${manifest.collision_quarantine.supported_standard_source_lanes_withheld}\`
 - Global uniqueness findings: \`${manifest.findings.length}\`
 - Database writes: \`0\`
 
@@ -497,6 +499,23 @@ async function main() {
       remaining_parent_count: partition.eligible_count - (dsk?.candidate_count ?? 0),
     },
     totals,
+    collision_quarantine: {
+      unique_source_lanes: reconciliation.reconciliation.exact_product_collision_count,
+      unique_standard_source_lanes:
+        reconciliation.reconciliation.collision_samples.filter(
+          (row) => row.source_subtype !== "etched",
+        ).length,
+      unique_etched_source_lanes:
+        reconciliation.reconciliation.collision_samples.filter(
+          (row) => row.source_subtype === "etched",
+        ).length,
+      supported_standard_source_lanes_withheld:
+        reconciliation.reconciliation.exact_standard_price_lane_count -
+        totals.external_printing_mappings,
+      candidate_to_standard_lane_assignments_withheld:
+        totals.quarantined_collision_lanes,
+      policy: "ambiguous lanes remain unmapped; no owner is chosen",
+    },
     global_uniqueness_key_count: tracker.size,
     batches,
     bounded_stage_selection_policy: {
@@ -525,14 +544,37 @@ async function main() {
     args.outDir ??
     path.join(ROOT, "docs", "audits", "pricing", "mtg_canonical_catalog_batch_manifest_v1");
   await fs.mkdir(outDir, { recursive: true });
+  const selectedPayloadArtifact = "next_bounded_stage_writer_payload.json";
+  const selectedPayloadBody = manifest.next_bounded_stage_candidate
+    ? await fs.readFile(
+        path.resolve(ROOT, manifest.next_bounded_stage_candidate.payload_file),
+        "utf8",
+      )
+    : null;
+  if (selectedPayloadBody) {
+    if (
+      sha256(selectedPayloadBody) !==
+      manifest.next_bounded_stage_candidate.payload_file_sha256
+    ) {
+      throw new Error("Selected payload hash changed before permanent artifact write");
+    }
+    manifest.next_bounded_stage_candidate.permanent_payload_artifact =
+      selectedPayloadArtifact;
+  }
   const manifestBody = await writeJson(path.join(outDir, "manifest.json"), manifest);
   const reportBody = report(manifest);
   await fs.writeFile(path.join(outDir, "REPORT.md"), reportBody, "utf8");
+  if (selectedPayloadBody) {
+    await fs.writeFile(path.join(outDir, selectedPayloadArtifact), selectedPayloadBody, "utf8");
+  }
   await writeJson(path.join(outDir, "artifact_hashes.json"), {
     hash_algorithm: "sha256",
     artifacts: {
       "manifest.json": sha256(manifestBody),
       "REPORT.md": sha256(reportBody),
+      ...(selectedPayloadBody
+        ? { [selectedPayloadArtifact]: sha256(selectedPayloadBody) }
+        : {}),
     },
   });
   process.stdout.write(
