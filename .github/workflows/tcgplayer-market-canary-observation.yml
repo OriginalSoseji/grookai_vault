@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      CANARY_WINDOW_START: "2026-08-05T07:51:54.064Z"
-      CANARY_REQUIRED_END: "2026-08-08T07:51:54.064Z"
-      CANARY_ACTIVATION_RUN_ID: "3c1be9e1-de61-4459-9110-890fd7cc9210"
+      CANARY_WINDOW_START: "2026-08-13T09:56:42.279Z"
+      CANARY_REQUIRED_END: "2026-08-16T09:56:42.279Z"
+      CANARY_ACTIVATION_RUN_ID: "e902fb55-c0ac-49d5-a9b4-9412d694900e"
       CANARY_EXPECTED_COMMIT_SHA: "6b729441bf8944048885ade5d9905e23166d9d46"
       CANARY_EXPECTED_COUNT: "100"
       TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"
@@ -70,6 +70,7 @@ jobs:
             "--expected-commit-sha=${CANARY_EXPECTED_COMMIT_SHA}" \
             --required-hours=72 \
             "--expected-count=${CANARY_EXPECTED_COUNT}" \
+            "--max-source-missing-count=${TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT}" \
             --schedule-tolerance-minutes=90 \
             --schedule-completion-grace-minutes=480 \
             --out-root="$RUNNER_TEMP/tcgplayer-market-canary-observation" \

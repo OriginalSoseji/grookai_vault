@@ -36,6 +36,7 @@ function parseArgs(argv) {
     asOf: null,
     requiredHours: 72,
     expectedCount: 100,
+    maxSourceMissingCount: 0,
     scheduleToleranceMinutes: 90,
     outRoot: DEFAULT_OUT_ROOT,
     requirePass: false,
@@ -56,6 +57,11 @@ function parseArgs(argv) {
     } else if (arg.startsWith("--expected-count=")) {
       args.expectedCount = Number.parseInt(
         arg.slice("--expected-count=".length),
+        10,
+      );
+    } else if (arg.startsWith("--max-source-missing-count=")) {
+      args.maxSourceMissingCount = Number.parseInt(
+        arg.slice("--max-source-missing-count=".length),
         10,
       );
     } else if (arg.startsWith("--schedule-tolerance-minutes=")) {
@@ -84,6 +90,15 @@ function parseArgs(argv) {
   }
   if (!Number.isInteger(args.expectedCount) || args.expectedCount < 1) {
     throw new Error("--expected-count must be a positive integer");
+  }
+  if (
+    !Number.isInteger(args.maxSourceMissingCount) ||
+    args.maxSourceMissingCount < 0 ||
+    args.maxSourceMissingCount >= args.expectedCount
+  ) {
+    throw new Error(
+      "--max-source-missing-count must be a non-negative integer below --expected-count",
+    );
   }
   if (
     !Number.isFinite(args.scheduleToleranceMinutes) ||
@@ -368,6 +383,9 @@ function markdown(report) {
     `- As of: \`${report.window.as_of}\``,
     `- Observed hours: \`${report.window.observed_hours}\``,
     `- Expected commit: \`${report.run_evidence.expected_commit_sha}\``,
+    `- Frozen cohort size: \`${report.run_evidence.expected_count}\``,
+    `- Allowed source-missing rows: \`${report.run_evidence.max_source_missing_count}\``,
+    `- Latest resolved rows: \`${report.run_evidence.latest_resolved_count}\``,
     "",
     "## Schedule",
     "",
@@ -428,6 +446,7 @@ async function main() {
       requiredHours: args.requiredHours,
       scheduleToleranceMinutes: args.scheduleToleranceMinutes,
       expectedCount: args.expectedCount,
+      maxSourceMissingCount: args.maxSourceMissingCount,
       expectedCommitSha: args.expectedCommitSha,
       ...evidence,
     });
@@ -443,6 +462,7 @@ async function main() {
       as_of: asOf,
       required_hours: args.requiredHours,
       expected_count: args.expectedCount,
+      max_source_missing_count: args.maxSourceMissingCount,
       schedule_tolerance_minutes: args.scheduleToleranceMinutes,
       boundaries: {
         database_reads_only: true,

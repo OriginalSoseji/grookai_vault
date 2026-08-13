@@ -1,0 +1,3133 @@
+{
+  "activationRun": {
+    "id": "e902fb55-c0ac-49d5-a9b4-9412d694900e",
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-publication",
+    "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+    "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2",
+    "run_mode": "canary",
+    "source_name": "tcgplayer",
+    "source_observed_on": "2026-08-13T00:00:00.000Z",
+    "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+    "source_artifact_id": null,
+    "source_artifact_hash": "9e2a904f7e42b5f4b1a4cc6240ff232f3a8719712dd0cee9a6c64b137056cd28",
+    "source_marker": "2026-08-12T20:05:43+0000",
+    "state": "verified",
+    "current_phase": "activate",
+    "reconciliation_state": "reconciled",
+    "selected_count": 99,
+    "mapped_count": 99,
+    "excluded_count": 0,
+    "quarantined_count": 0,
+    "delayed_count": 0,
+    "suppressed_count": 0,
+    "eligible_count": 99,
+    "snapshot_count": 99,
+    "required_phase_count": 5,
+    "succeeded_phase_count": 5,
+    "git_commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+    "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_4",
+    "schema_version": "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1",
+    "started_at": "2026-08-13T09:49:46.789Z",
+    "completed_at": "2026-08-13T09:56:42.279Z",
+    "failed_at": null,
+    "error_classification": null,
+    "error": null,
+    "resumability_data": {},
+    "reconciliation": {
+      "mismatches": [],
+      "mapped_count": 99,
+      "delayed_count": 0,
+      "decision_count": 99,
+      "eligible_count": 99,
+      "excluded_count": 0,
+      "selected_count": 99,
+      "snapshot_count": 99,
+      "suppressed_count": 0,
+      "quarantined_count": 0,
+      "canary_expected_count": 100,
+      "canary_resolved_count": 99,
+      "traced_snapshot_count": 99,
+      "canary_source_outcomes": [
+        {
+          "gv_id": "GV-PK-HP-101",
+          "reason": null,
+          "ordinal": 1,
+          "outcome": "resolved",
+          "card_print_id": "7b67bbe0-370d-4db1-af41-020f3c4e576e",
+          "printing_gv_id": "GV-PK-HP-101-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "a4cb9162-7d27-449c-9f1e-718fb9ae306c",
+          "source_product_id": 87451,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "fb11636c-a8d2-45a5-b5fb-7f455e230339",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:87451:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 87451,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "fb11636c-a8d2-45a5-b5fb-7f455e230339",
+              "source_price_row_identity": "tcgplayer:87451:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-AR-1",
+          "reason": null,
+          "ordinal": 2,
+          "outcome": "resolved",
+          "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+          "printing_gv_id": "GV-PK-AR-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "81924ee3-9c88-4e1b-acaa-7f612bb82f9c",
+          "source_product_id": 84191,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "850251f6-05c7-430e-8501-cfe3be4753cc",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84191:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 84191,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "850251f6-05c7-430e-8501-cfe3be4753cc",
+              "source_price_row_identity": "tcgplayer:84191:holofoil"
+            },
+            {
+              "source_product_id": 84191,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "15d9d09a-97b4-4b4e-aeea-3e28565da7b6",
+              "source_price_row_identity": "tcgplayer:84191:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-AR-1",
+          "reason": null,
+          "ordinal": 3,
+          "outcome": "resolved",
+          "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+          "printing_gv_id": "GV-PK-AR-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "8aac81d1-ad9e-49b8-ba94-9d0bf503ed8f",
+          "source_product_id": 84191,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "15d9d09a-97b4-4b4e-aeea-3e28565da7b6",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84191:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 84191,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "850251f6-05c7-430e-8501-cfe3be4753cc",
+              "source_price_row_identity": "tcgplayer:84191:holofoil"
+            },
+            {
+              "source_product_id": 84191,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "15d9d09a-97b4-4b4e-aeea-3e28565da7b6",
+              "source_price_row_identity": "tcgplayer:84191:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-ASC-276",
+          "reason": null,
+          "ordinal": 4,
+          "outcome": "resolved",
+          "card_print_id": "737f427f-f6d8-405b-a5ac-bbdc5d349b04",
+          "printing_gv_id": "GV-PK-ASC-276-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "e46ab20d-0fc9-4ac1-8fd3-66497d0c517f",
+          "source_product_id": 676088,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "24fbedbf-6ada-4297-b1c5-d23789c86a67",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:676088:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 676088,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "24fbedbf-6ada-4297-b1c5-d23789c86a67",
+              "source_price_row_identity": "tcgplayer:676088:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SM-SM127",
+          "reason": null,
+          "ordinal": 5,
+          "outcome": "resolved",
+          "card_print_id": "a2c14949-1db7-46ac-bf9c-a531b353bff3",
+          "printing_gv_id": "GV-PK-SM-SM127-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "bc7659e4-6673-42d2-a6d3-5dbf882fc68e",
+          "source_product_id": 168211,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "5a8125cf-b9ed-413c-a995-a9d13ec98f04",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:168211:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 168211,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "1adf4943-7ddc-459a-91ad-4a68077d068d",
+              "source_price_row_identity": "tcgplayer:168211:holofoil"
+            },
+            {
+              "source_product_id": 168211,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "5a8125cf-b9ed-413c-a995-a9d13ec98f04",
+              "source_price_row_identity": "tcgplayer:168211:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-NP-1",
+          "reason": null,
+          "ordinal": 6,
+          "outcome": "resolved",
+          "card_print_id": "31b34e8e-819b-40da-bac2-1799ae95c654",
+          "printing_gv_id": "GV-PK-PR-NP-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "1d6b7619-952b-4463-8c3e-937e29067a82",
+          "source_product_id": 86555,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "2eb72d9a-15c1-4d3b-ab8c-a64f34c2e576",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:86555:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 86555,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "98a587d3-58d8-41a5-9d1e-184ef5b6cd30",
+              "source_price_row_identity": "tcgplayer:86555:holofoil"
+            },
+            {
+              "source_product_id": 86555,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "2eb72d9a-15c1-4d3b-ab8c-a64f34c2e576",
+              "source_price_row_identity": "tcgplayer:86555:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SM-SM128",
+          "reason": null,
+          "ordinal": 7,
+          "outcome": "resolved",
+          "card_print_id": "d9f253c3-01ae-4149-a477-e11b674de5b8",
+          "printing_gv_id": "GV-PK-SM-SM128-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "69886a4a-0514-40ac-85f4-3a8aabac1750",
+          "source_product_id": 168245,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "fffecc25-8b6a-4fb3-947c-ec8cab56f320",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:168245:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 168245,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "fffecc25-8b6a-4fb3-947c-ec8cab56f320",
+              "source_price_row_identity": "tcgplayer:168245:holofoil"
+            },
+            {
+              "source_product_id": 168245,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "7e0d1b9d-89aa-49bf-b8b5-2f7fa93b516e",
+              "source_price_row_identity": "tcgplayer:168245:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-NP-35",
+          "reason": null,
+          "ordinal": 8,
+          "outcome": "resolved",
+          "card_print_id": "0efa1c0b-2556-4fcd-aeaa-a7bd612ffe92",
+          "printing_gv_id": "GV-PK-PR-NP-35-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "e998915b-4feb-42d5-ad66-054e8fd197b8",
+          "source_product_id": 88109,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "983df782-b48f-4a6c-8d95-17888ebd354a",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:88109:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 88109,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "983df782-b48f-4a6c-8d95-17888ebd354a",
+              "source_price_row_identity": "tcgplayer:88109:holofoil"
+            },
+            {
+              "source_product_id": 88109,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "95c2d516-8cca-4a4e-880a-edba17e6df5f",
+              "source_price_row_identity": "tcgplayer:88109:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-ASR-135",
+          "reason": null,
+          "ordinal": 9,
+          "outcome": "resolved",
+          "card_print_id": "c172778d-d8c6-4380-a425-001f208020a2",
+          "printing_gv_id": "GV-PK-ASR-135-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "22c5f21c-e810-407e-aee7-3a9e4f12d708",
+          "source_product_id": 272387,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "dd32836a-e597-4ff4-938d-daaf47d5aa44",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:272387:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 272387,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "4febf25e-a449-4896-b0cb-7cfe26ece10a",
+              "source_price_row_identity": "tcgplayer:272387:holofoil"
+            },
+            {
+              "source_product_id": 272387,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "dd32836a-e597-4ff4-938d-daaf47d5aa44",
+              "source_price_row_identity": "tcgplayer:272387:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SM-SM51",
+          "reason": null,
+          "ordinal": 10,
+          "outcome": "resolved",
+          "card_print_id": "a0b06ac1-3edc-46cc-8d29-cff7d7aa4238",
+          "printing_gv_id": "GV-PK-SM-SM51-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "272c434e-c10a-40cf-a484-cb5d68141f1f",
+          "source_product_id": 139102,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "cf68b4bd-ed56-4049-b839-14439c452050",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:139102:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 139102,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "f36eca56-3531-444f-a759-ce5a72082839",
+              "source_price_row_identity": "tcgplayer:139102:holofoil"
+            },
+            {
+              "source_product_id": 139102,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "cf68b4bd-ed56-4049-b839-14439c452050",
+              "source_price_row_identity": "tcgplayer:139102:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-AOR-69",
+          "reason": null,
+          "ordinal": 11,
+          "outcome": "resolved",
+          "card_print_id": "c2742235-c155-4bbb-925c-7dfaa283bb00",
+          "printing_gv_id": "GV-PK-AOR-69-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "6cabcc5a-73e7-496c-bad4-6babcb41ba21",
+          "source_product_id": 101491,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "b27653a3-65b2-4f98-be09-3f306843a447",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:101491:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 101491,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "c056181f-3d95-495c-bb57-90c073138a1c",
+              "source_price_row_identity": "tcgplayer:101491:normal"
+            },
+            {
+              "source_product_id": 101491,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "b27653a3-65b2-4f98-be09-3f306843a447",
+              "source_price_row_identity": "tcgplayer:101491:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BKP-100",
+          "reason": null,
+          "ordinal": 12,
+          "outcome": "resolved",
+          "card_print_id": "1411097c-5799-4a9d-92e9-28c9d8deb277",
+          "printing_gv_id": "GV-PK-BKP-100-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "87556b7f-5321-4b69-ad05-00f2e6c2da3f",
+          "source_product_id": 111631,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "4c08e059-a49e-4483-8ec4-6f117615e522",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:111631:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 111631,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "cfb95252-41a7-4335-afdf-26dbb9208f7f",
+              "source_price_row_identity": "tcgplayer:111631:normal"
+            },
+            {
+              "source_product_id": 111631,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "4c08e059-a49e-4483-8ec4-6f117615e522",
+              "source_price_row_identity": "tcgplayer:111631:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-AQ-100",
+          "reason": null,
+          "ordinal": 13,
+          "outcome": "resolved",
+          "card_print_id": "a642549c-0f0d-415e-ba09-76cac5bdcd7f",
+          "printing_gv_id": "GV-PK-AQ-100-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "fb6f79f5-ffa3-4d5f-9726-7dc296878a73",
+          "source_product_id": 87998,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "b7baaa7c-c9c4-4927-9058-73174aeff7a8",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:87998:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 87998,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "b7baaa7c-c9c4-4927-9058-73174aeff7a8",
+              "source_price_row_identity": "tcgplayer:87998:normal"
+            },
+            {
+              "source_product_id": 87998,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "653627ee-117f-482b-8a5f-e91e7f03a3ae",
+              "source_price_row_identity": "tcgplayer:87998:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BRS-025",
+          "reason": null,
+          "ordinal": 14,
+          "outcome": "resolved",
+          "card_print_id": "13e752eb-466d-4823-9fc9-08d0dee0c8ac",
+          "printing_gv_id": "GV-PK-BRS-025-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "ffa9fe07-b82c-4a76-8a27-2ed493fa1ad6",
+          "source_product_id": 263724,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "79657e72-6d1d-4e49-a985-54ed024af22d",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:263724:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 263724,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "782847af-075f-49b9-8512-38c6abf71844",
+              "source_price_row_identity": "tcgplayer:263724:normal"
+            },
+            {
+              "source_product_id": 263724,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "79657e72-6d1d-4e49-a985-54ed024af22d",
+              "source_price_row_identity": "tcgplayer:263724:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DR-3",
+          "reason": null,
+          "ordinal": 15,
+          "outcome": "resolved",
+          "card_print_id": "e039bb5d-b740-4bb2-a23a-4a503e7bc239",
+          "printing_gv_id": "GV-PK-DR-3-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "b6fa04d8-cdf2-4894-b282-88243e2667b1",
+          "source_product_id": 84461,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "c669d1fa-f909-4f44-8eb5-dc46f0a15dbe",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84461:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 84461,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "c669d1fa-f909-4f44-8eb5-dc46f0a15dbe",
+              "source_price_row_identity": "tcgplayer:84461:holofoil"
+            },
+            {
+              "source_product_id": 84461,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "89931b0b-e2c9-46cb-b42e-18ed61038895",
+              "source_price_row_identity": "tcgplayer:84461:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-SV-114",
+          "reason": null,
+          "ordinal": 16,
+          "outcome": "resolved",
+          "card_print_id": "a7effbd0-dbe3-422d-a3f1-b3ac98720d7f",
+          "printing_gv_id": "GV-PK-PR-SV-114-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "ea79cf88-14f4-4666-bb76-b2ba6a6250db",
+          "source_product_id": 551687,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "151aaecf-c638-433e-9e44-4263b14ab2ff",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:551687:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 551687,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "151aaecf-c638-433e-9e44-4263b14ab2ff",
+              "source_price_row_identity": "tcgplayer:551687:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BCR-1",
+          "reason": null,
+          "ordinal": 17,
+          "outcome": "resolved",
+          "card_print_id": "8977b7dc-38f0-4747-9618-74acd4e83d11",
+          "printing_gv_id": "GV-PK-BCR-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "86f7db37-43e8-477e-a29a-71a45f47dada",
+          "source_product_id": 87846,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "361a3807-ed30-4723-82d5-2a1aab466a7e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:87846:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 87846,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "06d19556-3ea5-4c87-8c73-29f55a77e82d",
+              "source_price_row_identity": "tcgplayer:87846:normal"
+            },
+            {
+              "source_product_id": 87846,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "361a3807-ed30-4723-82d5-2a1aab466a7e",
+              "source_price_row_identity": "tcgplayer:87846:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BKT-15",
+          "reason": null,
+          "ordinal": 18,
+          "outcome": "resolved",
+          "card_print_id": "737b19b7-dfde-45db-ac09-d7e0ef65ae3c",
+          "printing_gv_id": "GV-PK-BKT-15-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "5f6717e8-c7d9-4a96-92f5-9471cabb4bf8",
+          "source_product_id": 107134,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "c369c752-8bab-48b8-a560-d686dee47fbd",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:107134:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 107134,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "c369c752-8bab-48b8-a560-d686dee47fbd",
+              "source_price_row_identity": "tcgplayer:107134:holofoil"
+            },
+            {
+              "source_product_id": 107134,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "e16fb3ce-ce9f-4df4-94b4-d59ebc2e673e",
+              "source_price_row_identity": "tcgplayer:107134:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BST-1",
+          "reason": null,
+          "ordinal": 19,
+          "outcome": "resolved",
+          "card_print_id": "c9f351b5-c516-4aa2-99af-2e4bde6ec61a",
+          "printing_gv_id": "GV-PK-BST-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "78245322-558b-4989-ac64-a04bb9f7fe59",
+          "source_product_id": 234035,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "c7077743-c0eb-4a78-9a42-e35b765f78b3",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:234035:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 234035,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "0ae32e8b-7a66-4692-87dd-3822982f32fc",
+              "source_price_row_identity": "tcgplayer:234035:normal"
+            },
+            {
+              "source_product_id": 234035,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "c7077743-c0eb-4a78-9a42-e35b765f78b3",
+              "source_price_row_identity": "tcgplayer:234035:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-16",
+          "reason": null,
+          "ordinal": 20,
+          "outcome": "resolved",
+          "card_print_id": "f7ccf97a-08aa-447e-a324-a0eb59d72108",
+          "printing_gv_id": "GV-PK-PR-16-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "49a70f1f-c732-4e97-89d8-5d433ac91455",
+          "source_product_id": 84414,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "5b185399-f789-448c-87ea-74c2bc217971",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84414:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 84414,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "5b185399-f789-448c-87ea-74c2bc217971",
+              "source_price_row_identity": "tcgplayer:84414:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CIN-38",
+          "reason": null,
+          "ordinal": 21,
+          "outcome": "resolved",
+          "card_print_id": "37c9315a-282f-4ec8-93c8-7d9797a9c538",
+          "printing_gv_id": "GV-PK-CIN-38-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "63fc5752-2377-4de2-bf26-a9fd88f2d98c",
+          "source_product_id": 149061,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "2c68843b-929e-4789-8eba-10aebf2370b6",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:149061:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 149061,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "2c68843b-929e-4789-8eba-10aebf2370b6",
+              "source_price_row_identity": "tcgplayer:149061:holofoil"
+            },
+            {
+              "source_product_id": 149061,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "fd52f55b-6717-4078-be15-8b4e3ee1aa17",
+              "source_price_row_identity": "tcgplayer:149061:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BLW-1",
+          "reason": null,
+          "ordinal": 22,
+          "outcome": "resolved",
+          "card_print_id": "cb354025-1f27-484a-8175-df4ba23b9f2b",
+          "printing_gv_id": "GV-PK-BLW-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "1e71bfaa-bdfb-4309-bbd1-98bac4a7a232",
+          "source_product_id": 89375,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "fa9f4513-97ca-40f9-a1b0-cdad61adc8fc",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:89375:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 89375,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "23ba2bbb-9835-4737-a6b7-92214e6fcf50",
+              "source_price_row_identity": "tcgplayer:89375:normal"
+            },
+            {
+              "source_product_id": 89375,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "fa9f4513-97ca-40f9-a1b0-cdad61adc8fc",
+              "source_price_row_identity": "tcgplayer:89375:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BUS-1",
+          "reason": null,
+          "ordinal": 23,
+          "outcome": "resolved",
+          "card_print_id": "7f055bc2-c442-4a23-aba2-0c79bdba0522",
+          "printing_gv_id": "GV-PK-BUS-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "b3df7762-5bd1-430e-8199-303120a5a82e",
+          "source_product_id": 138271,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "9a688de6-36d4-43ec-a491-4fc23cf8f59e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:138271:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 138271,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "9a688de6-36d4-43ec-a491-4fc23cf8f59e",
+              "source_price_row_identity": "tcgplayer:138271:normal"
+            },
+            {
+              "source_product_id": 138271,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "782a1913-d3d3-4227-b452-02f7eb5a8822",
+              "source_price_row_identity": "tcgplayer:138271:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-EX-1",
+          "reason": null,
+          "ordinal": 24,
+          "outcome": "resolved",
+          "card_print_id": "e2d3cfef-8a55-413b-a1cd-cf36c68b0f01",
+          "printing_gv_id": "GV-PK-EX-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "49ff4d5e-47c0-439f-8f0d-4495675aac4d",
+          "source_product_id": 83497,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "dba86a00-4f57-4ad9-ac1a-658b40c64f73",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83497:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83497,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "dba86a00-4f57-4ad9-ac1a-658b40c64f73",
+              "source_price_row_identity": "tcgplayer:83497:holofoil"
+            },
+            {
+              "source_product_id": 83497,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "13ad61d2-e9c9-4cc1-a609-87975d3d6652",
+              "source_price_row_identity": "tcgplayer:83497:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-SW-SWSH120",
+          "reason": null,
+          "ordinal": 25,
+          "outcome": "resolved",
+          "card_print_id": "20ba1cfa-740f-45a4-9079-8d977702d345",
+          "printing_gv_id": "GV-PK-PR-SW-SWSH120-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "d4cf1860-fc62-4214-b610-e5c53029e743",
+          "source_product_id": 245871,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "b378a5e3-852b-45bb-8aab-9bd7d39fc408",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:245871:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 245871,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "b378a5e3-852b-45bb-8aab-9bd7d39fc408",
+              "source_price_row_identity": "tcgplayer:245871:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CG-1",
+          "reason": null,
+          "ordinal": 26,
+          "outcome": "resolved",
+          "card_print_id": "0361f2ec-2533-4f55-bcb5-5bd1bc4cdc34",
+          "printing_gv_id": "GV-PK-CG-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "5468e86f-34c7-4ff3-80b9-e10869f82374",
+          "source_product_id": 83720,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "ef2d80dd-1cff-415a-ae24-0b9a990050ba",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83720:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83720,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "05132a23-f523-4544-a269-fa7b5f098f91",
+              "source_price_row_identity": "tcgplayer:83720:holofoil"
+            },
+            {
+              "source_product_id": 83720,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "ef2d80dd-1cff-415a-ae24-0b9a990050ba",
+              "source_price_row_identity": "tcgplayer:83720:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CEC-10",
+          "reason": null,
+          "ordinal": 27,
+          "outcome": "resolved",
+          "card_print_id": "d51c7994-ec33-4c69-832e-e68cf8baa9c6",
+          "printing_gv_id": "GV-PK-CEC-10-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "cefaccf2-7317-42f4-8816-33522fef4d95",
+          "source_product_id": 201159,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "19290784-09f6-42d6-aea4-be3c0bee7ccf",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:201159:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 201159,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "19290784-09f6-42d6-aea4-be3c0bee7ccf",
+              "source_price_row_identity": "tcgplayer:201159:normal"
+            },
+            {
+              "source_product_id": 201159,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "60ce982c-a004-4b21-bf4e-149d0153cafb",
+              "source_price_row_identity": "tcgplayer:201159:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-HL-1",
+          "reason": null,
+          "ordinal": 28,
+          "outcome": "resolved",
+          "card_print_id": "971c3a26-7301-4546-a0ea-02bb65c495c7",
+          "printing_gv_id": "GV-PK-HL-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "ee3f0644-43d1-4461-a527-f9b3f2e0b977",
+          "source_product_id": 83719,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "0e87ed10-f597-4340-a3de-7da0986f5192",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83719:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83719,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "0e87ed10-f597-4340-a3de-7da0986f5192",
+              "source_price_row_identity": "tcgplayer:83719:holofoil"
+            },
+            {
+              "source_product_id": 83719,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "306cb1ac-e4e7-4841-9cb5-f385d1f228ff",
+              "source_price_row_identity": "tcgplayer:83719:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-PR-XY-XY105",
+          "reason": null,
+          "ordinal": 29,
+          "outcome": "resolved",
+          "card_print_id": "df34b393-be18-4581-9b16-231110be68b7",
+          "printing_gv_id": "GV-PK-PR-XY-XY105-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "404ea3e6-70f7-4aa2-8011-c28e50b35d58",
+          "source_product_id": 118858,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "98dedac7-2e4b-465e-a3c8-da42b56f6d10",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:118858:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 118858,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "98dedac7-2e4b-465e-a3c8-da42b56f6d10",
+              "source_price_row_identity": "tcgplayer:118858:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CES-1",
+          "reason": null,
+          "ordinal": 30,
+          "outcome": "resolved",
+          "card_print_id": "3bd04f8d-2336-41f3-8f50-8a0cdd7acad0",
+          "printing_gv_id": "GV-PK-CES-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "8bd47dae-37d3-480c-aebe-8b5669a942ce",
+          "source_product_id": 170806,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "4944dd69-6623-4fe5-b080-36b84c0a9814",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:170806:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 170806,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "318fd286-6c4d-4421-b201-49ac3d6e794e",
+              "source_price_row_identity": "tcgplayer:170806:normal"
+            },
+            {
+              "source_product_id": 170806,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "4944dd69-6623-4fe5-b080-36b84c0a9814",
+              "source_price_row_identity": "tcgplayer:170806:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CRE-1",
+          "reason": null,
+          "ordinal": 31,
+          "outcome": "resolved",
+          "card_print_id": "f724f638-4d91-4ff1-8ce1-13ce0461c599",
+          "printing_gv_id": "GV-PK-CRE-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "77299a14-96ce-4a74-bf7b-ce5253c559cf",
+          "source_product_id": 241648,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "a8fb66ba-216b-466c-8d53-2d9e47d7ea3d",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:241648:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 241648,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "278eb4d5-3681-498c-ac22-34d8126fc3a9",
+              "source_price_row_identity": "tcgplayer:241648:normal"
+            },
+            {
+              "source_product_id": 241648,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "a8fb66ba-216b-466c-8d53-2d9e47d7ea3d",
+              "source_price_row_identity": "tcgplayer:241648:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LC-1",
+          "reason": null,
+          "ordinal": 32,
+          "outcome": "resolved",
+          "card_print_id": "fd852708-bb5d-4a35-8c1a-10756ed4747d",
+          "printing_gv_id": "GV-PK-LC-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "8d7afc7c-ac33-45c9-9891-899891694f04",
+          "source_product_id": 83496,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "78853b26-46a2-4ddd-88f8-3512956c5ef0",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83496:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83496,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "78853b26-46a2-4ddd-88f8-3512956c5ef0",
+              "source_price_row_identity": "tcgplayer:83496:holofoil"
+            },
+            {
+              "source_product_id": 83496,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "2b48c4cf-b332-4ec9-b91a-067155f8036f",
+              "source_price_row_identity": "tcgplayer:83496:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-COL-83",
+          "reason": null,
+          "ordinal": 33,
+          "outcome": "resolved",
+          "card_print_id": "43d12e25-6cce-479c-83f1-ba31f1f9acc5",
+          "printing_gv_id": "GV-PK-COL-83-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "20d7dbb8-f097-4031-8f00-ee6f664bdb04",
+          "source_product_id": 88401,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "511f4539-cf4d-4fa5-a5ef-8c0473456c06",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:88401:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 88401,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "511f4539-cf4d-4fa5-a5ef-8c0473456c06",
+              "source_price_row_identity": "tcgplayer:88401:normal"
+            },
+            {
+              "source_product_id": 88401,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "5e14570e-89c3-4da8-8da5-ae51effbb436",
+              "source_price_row_identity": "tcgplayer:88401:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2016-1",
+          "reason": null,
+          "ordinal": 34,
+          "outcome": "resolved",
+          "card_print_id": "9421a17d-0ef5-44f3-ac6f-2e9616f79a6d",
+          "printing_gv_id": "GV-PK-MCD-2016-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "9c493f74-ce02-4596-916a-9aa34d931720",
+          "source_product_id": 275057,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "97765052-aa9b-4435-be38-d3130c11cc93",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:275057:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 275057,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "97765052-aa9b-4435-be38-d3130c11cc93",
+              "source_price_row_identity": "tcgplayer:275057:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CPA-10",
+          "reason": null,
+          "ordinal": 35,
+          "outcome": "resolved",
+          "card_print_id": "5b152efb-2c1c-4af3-a44d-389daf243eb3",
+          "printing_gv_id": "GV-PK-CPA-10-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "9b7fb241-7fc3-4cf5-8cbc-737302c59bdf",
+          "source_product_id": 223005,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "8ddf5456-946e-42af-baa3-112c647d398b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:223005:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 223005,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "a5798b4a-955e-40ab-9726-c484559ce4c3",
+              "source_price_row_identity": "tcgplayer:223005:holofoil"
+            },
+            {
+              "source_product_id": 223005,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "8ddf5456-946e-42af-baa3-112c647d398b",
+              "source_price_row_identity": "tcgplayer:223005:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DRM-1",
+          "reason": null,
+          "ordinal": 36,
+          "outcome": "resolved",
+          "card_print_id": "a592c487-4e07-4d38-963b-768dba841fee",
+          "printing_gv_id": "GV-PK-DRM-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "b1f2ff30-1f42-40d5-b842-fdd01c58d654",
+          "source_product_id": 175263,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "32ae54ed-dc54-46e6-a10c-bc18d4f0af4e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:175263:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 175263,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "32ae54ed-dc54-46e6-a10c-bc18d4f0af4e",
+              "source_price_row_identity": "tcgplayer:175263:normal"
+            },
+            {
+              "source_product_id": 175263,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "1e76844e-781b-4953-be4f-83ac97d7ba7e",
+              "source_price_row_identity": "tcgplayer:175263:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MA-1",
+          "reason": null,
+          "ordinal": 37,
+          "outcome": "resolved",
+          "card_print_id": "f03504ab-baa1-4f34-9ebd-a5b5e22555d0",
+          "printing_gv_id": "GV-PK-MA-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "d216b15c-97f3-488d-b053-daa3c7fd5304",
+          "source_product_id": 89775,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "a032d745-4629-4524-b1a7-47660f802544",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:89775:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 89775,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "a032d745-4629-4524-b1a7-47660f802544",
+              "source_price_row_identity": "tcgplayer:89775:holofoil"
+            },
+            {
+              "source_product_id": 89775,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "86709849-2296-46d7-ac80-ecebbcd4ba52",
+              "source_price_row_identity": "tcgplayer:89775:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CRI-074",
+          "reason": null,
+          "ordinal": 38,
+          "outcome": "resolved",
+          "card_print_id": "13d32698-f1f8-4afe-8745-b8eae65b251c",
+          "printing_gv_id": "GV-PK-CRI-074-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "41813adc-51fd-4fb6-b6f0-72cccda95fb4",
+          "source_product_id": 693444,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "cd37c259-7395-4b03-b760-afa4b1bc5411",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:693444:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 693444,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "15620b32-2231-4a2c-bef2-108935354b2f",
+              "source_price_row_identity": "tcgplayer:693444:normal"
+            },
+            {
+              "source_product_id": 693444,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "cd37c259-7395-4b03-b760-afa4b1bc5411",
+              "source_price_row_identity": "tcgplayer:693444:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CRZ-109",
+          "reason": null,
+          "ordinal": 39,
+          "outcome": "resolved",
+          "card_print_id": "9a6005c5-abff-4821-adb6-d2c13584c097",
+          "printing_gv_id": "GV-PK-CRZ-109-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "96612662-6a91-4380-842d-33ebce97fc1e",
+          "source_product_id": 478136,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "e79fd506-6dc3-4ab0-8733-c0d5cd4e49cd",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:478136:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 478136,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "e79fd506-6dc3-4ab0-8733-c0d5cd4e49cd",
+              "source_price_row_identity": "tcgplayer:478136:normal"
+            },
+            {
+              "source_product_id": 478136,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "61c726e5-f8d4-4ac5-a322-3428b054db0d",
+              "source_price_row_identity": "tcgplayer:478136:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-ASR-TG01",
+          "reason": null,
+          "ordinal": 40,
+          "outcome": "resolved",
+          "card_print_id": "fa4caefd-b888-4960-b821-1aa79cb9e4ef",
+          "printing_gv_id": "GV-PK-ASR-TG01-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "9b9cd255-c8ce-4926-8f04-c0ae2bd07295",
+          "source_product_id": 272472,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "4e04fa19-4600-41b2-9010-44e062ada2d1",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:272472:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 272472,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "4e04fa19-4600-41b2-9010-44e062ada2d1",
+              "source_price_row_identity": "tcgplayer:272472:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-B2-100",
+          "reason": null,
+          "ordinal": 41,
+          "outcome": "resolved",
+          "card_print_id": "544c7320-d6eb-49ae-9277-50021dfd5eea",
+          "printing_gv_id": "GV-PK-B2-100-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "1fccb14a-d9c9-4bf0-987a-91486c66fd69",
+          "source_product_id": 42551,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "d94fd64c-a2be-49c5-bd4e-530fda18ed68",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:42551:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 42551,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "d94fd64c-a2be-49c5-bd4e-530fda18ed68",
+              "source_price_row_identity": "tcgplayer:42551:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-UNB-187",
+          "reason": null,
+          "ordinal": 42,
+          "outcome": "resolved",
+          "card_print_id": "83071740-0dad-4b37-956f-6c99f7583074",
+          "printing_gv_id": "GV-PK-UNB-187-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "ec50b45d-c93b-4357-9b52-620cc04bae07",
+          "source_product_id": 189296,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "4cbafeb6-d46f-4a82-9cc0-d936d8d2f195",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:189296:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 189296,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "e2900ebf-eb98-4c6f-a915-208ec2516e53",
+              "source_price_row_identity": "tcgplayer:189296:normal"
+            },
+            {
+              "source_product_id": 189296,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "4cbafeb6-d46f-4a82-9cc0-d936d8d2f195",
+              "source_price_row_identity": "tcgplayer:189296:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BOG-1",
+          "reason": null,
+          "ordinal": 43,
+          "outcome": "resolved",
+          "card_print_id": "6b07130e-6ce9-468e-828b-3df34f7be2d4",
+          "printing_gv_id": "GV-PK-BOG-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "f8026127-0cc8-42c8-8b6a-0d580465d532",
+          "source_product_id": 85106,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "54682900-7cc0-40d4-9292-1534d4da2a75",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:85106:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 85106,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "54682900-7cc0-40d4-9292-1534d4da2a75",
+              "source_price_row_identity": "tcgplayer:85106:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BLK-003",
+          "reason": null,
+          "ordinal": 44,
+          "outcome": "resolved",
+          "card_print_id": "a5af061a-bf0e-41c7-a42c-e078659f22a3",
+          "printing_gv_id": "GV-PK-BLK-003-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "c8c83a14-d166-498d-9df6-984ab04deb4c",
+          "source_product_id": 642452,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "2b771040-1510-40f7-a234-b1dc2e7b7110",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:642452:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 642452,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "2b771040-1510-40f7-a234-b1dc2e7b7110",
+              "source_price_row_identity": "tcgplayer:642452:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BS-17",
+          "reason": null,
+          "ordinal": 45,
+          "outcome": "resolved",
+          "card_print_id": "813413dc-8317-4776-a5f9-dbc54dfaaf46",
+          "printing_gv_id": "GV-PK-BS-17-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "01a0d486-2289-4b4e-a36d-3ab173e6b299",
+          "source_product_id": 42357,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "f7f08fbd-7c51-48b1-b8e4-eae0ec3ff65b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:42357:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 42357,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "f7f08fbd-7c51-48b1-b8e4-eae0ec3ff65b",
+              "source_price_row_identity": "tcgplayer:42357:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DCR-1",
+          "reason": null,
+          "ordinal": 46,
+          "outcome": "resolved",
+          "card_print_id": "a6318802-a905-4b20-9400-33e1d90120b6",
+          "printing_gv_id": "GV-PK-DCR-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "184f7ee9-50ba-489c-8a89-9e71fc177e75",
+          "source_product_id": 97047,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "5306e136-fdd1-46e0-955e-9f33adcc1556",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:97047:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 97047,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "dedcf418-8b1f-4857-bf85-723544d6fe2b",
+              "source_price_row_identity": "tcgplayer:97047:normal"
+            },
+            {
+              "source_product_id": 97047,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "5306e136-fdd1-46e0-955e-9f33adcc1556",
+              "source_price_row_identity": "tcgplayer:97047:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET",
+          "reason": null,
+          "ordinal": 47,
+          "outcome": "resolved",
+          "card_print_id": "c267755e-9f4a-4ed5-a6aa-190dd42ae977",
+          "printing_gv_id": "GV-PK-CEL-15CC-HERE-COMES-TEAM-ROCKET-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "15c26d52-1719-40be-b29f-5169263e923b",
+          "source_product_id": 250323,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "ee41f136-ce0e-4a5e-8490-1e2457e5473f",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:250323:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 250323,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "ee41f136-ce0e-4a5e-8490-1e2457e5473f",
+              "source_price_row_identity": "tcgplayer:250323:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-POP1-16",
+          "reason": null,
+          "ordinal": 48,
+          "outcome": "resolved",
+          "card_print_id": "785324c8-f41a-41f4-9317-65da614cf4b5",
+          "printing_gv_id": "GV-PK-POP1-16-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "f394f7e0-a58b-4c0b-bdbf-59fde2671a85",
+          "source_product_id": 83623,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "b871edb0-bd36-4dda-bccc-ca5152a9ce8d",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83623:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 83623,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "b871edb0-bd36-4dda-bccc-ca5152a9ce8d",
+              "source_price_row_identity": "tcgplayer:83623:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-BRS-TG01",
+          "reason": null,
+          "ordinal": 49,
+          "outcome": "resolved",
+          "card_print_id": "d163f11d-57a4-4be6-a859-627db7a72fee",
+          "printing_gv_id": "GV-PK-BRS-TG01-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "f3af66cc-e775-4bce-9718-ebcc588aa744",
+          "source_product_id": 264210,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "773da9ef-5294-4b79-9869-d8c03afcfe9c",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:264210:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 264210,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "773da9ef-5294-4b79-9869-d8c03afcfe9c",
+              "source_price_row_identity": "tcgplayer:264210:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DEX-1",
+          "reason": null,
+          "ordinal": 50,
+          "outcome": "resolved",
+          "card_print_id": "63f698b5-2db3-41a5-a56c-ce4fa98f5f78",
+          "printing_gv_id": "GV-PK-DEX-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "f0de42d1-0388-4bea-869b-dbc8123e7693",
+          "source_product_id": 84036,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "729573d3-7779-4110-b0ed-4eadfece1891",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84036:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 84036,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "729573d3-7779-4110-b0ed-4eadfece1891",
+              "source_price_row_identity": "tcgplayer:84036:normal"
+            },
+            {
+              "source_product_id": 84036,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "902ac342-489a-4d41-97d5-49bf8ad0454a",
+              "source_price_row_identity": "tcgplayer:84036:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DAA-157",
+          "reason": null,
+          "ordinal": 51,
+          "outcome": "resolved",
+          "card_print_id": "6b0a9f33-63c9-47fc-a70b-c2b98c6d0466",
+          "printing_gv_id": "GV-PK-DAA-157-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "00e5761c-fdba-44f5-9190-63f640db370a",
+          "source_product_id": 219265,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "435a6095-0a46-41dc-b666-9592ef914dea",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:219265:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 219265,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "85135f46-b94f-41cd-a8ca-20221210630e",
+              "source_price_row_identity": "tcgplayer:219265:normal"
+            },
+            {
+              "source_product_id": 219265,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "435a6095-0a46-41dc-b666-9592ef914dea",
+              "source_price_row_identity": "tcgplayer:219265:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CEL-1",
+          "reason": null,
+          "ordinal": 52,
+          "outcome": "resolved",
+          "card_print_id": "f1e209cf-0570-4cc6-a096-dbccd9991f46",
+          "printing_gv_id": "GV-PK-CEL-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "500d56a0-e462-4ae5-8fca-ed178f939ed2",
+          "source_product_id": 250300,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "534f2fd8-0c0a-48e3-91af-0ec983216318",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:250300:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 250300,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "534f2fd8-0c0a-48e3-91af-0ec983216318",
+              "source_price_row_identity": "tcgplayer:250300:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DF-1",
+          "reason": null,
+          "ordinal": 53,
+          "outcome": "resolved",
+          "card_print_id": "cc3bbedb-63f7-4253-8f66-e423ed794635",
+          "printing_gv_id": "GV-PK-DF-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "3a0390d1-c7f7-4ff4-9632-5abef609475e",
+          "source_product_id": 83549,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "4615a0a3-3f0b-4f1a-ace7-dbf4abf7a19a",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83549:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83549,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "6d994852-2753-49cb-b0c6-dbbd03397e5b",
+              "source_price_row_identity": "tcgplayer:83549:holofoil"
+            },
+            {
+              "source_product_id": 83549,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "4615a0a3-3f0b-4f1a-ace7-dbf4abf7a19a",
+              "source_price_row_identity": "tcgplayer:83549:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-RG-103",
+          "reason": null,
+          "ordinal": 54,
+          "outcome": "resolved",
+          "card_print_id": "5813071c-3b26-47b6-b21f-919dc0c1a157",
+          "printing_gv_id": "GV-PK-RG-103-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "d94e510e-70ab-4fd6-9d9c-408f1b58f3ba",
+          "source_product_id": 87630,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "29f1c2c3-c849-44ae-90db-b5fd5dade71f",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:87630:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 87630,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "29f1c2c3-c849-44ae-90db-b5fd5dade71f",
+              "source_price_row_identity": "tcgplayer:87630:normal"
+            },
+            {
+              "source_product_id": 87630,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "813421e1-e960-43c0-81ef-42011450b095",
+              "source_price_row_identity": "tcgplayer:87630:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-CRZ-GG01",
+          "reason": null,
+          "ordinal": 55,
+          "outcome": "resolved",
+          "card_print_id": "d553ac9f-f620-4e1f-bc58-4bbd761e6e26",
+          "printing_gv_id": "GV-PK-CRZ-GG01-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "d1829c3a-bb7c-42c3-8800-01d167197d92",
+          "source_product_id": 478017,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "5c89af35-9e24-446c-8279-a294f0536eb6",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:478017:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 478017,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "5c89af35-9e24-446c-8279-a294f0536eb6",
+              "source_price_row_identity": "tcgplayer:478017:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DP-105",
+          "reason": null,
+          "ordinal": 56,
+          "outcome": "resolved",
+          "card_print_id": "71b84bf6-1ece-41fb-9e82-ae1edd9e185b",
+          "printing_gv_id": "GV-PK-DP-105-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "c37248e9-c1d2-4af7-bd3f-eda6fbac405e",
+          "source_product_id": 84890,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "18fd8269-e118-4435-8cc9-f299714de914",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84890:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 84890,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "18fd8269-e118-4435-8cc9-f299714de914",
+              "source_price_row_identity": "tcgplayer:84890:normal"
+            },
+            {
+              "source_product_id": 84890,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "f88441d9-996a-4db5-b46c-6439afc9770f",
+              "source_price_row_identity": "tcgplayer:84890:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-EVO-11",
+          "reason": null,
+          "ordinal": 57,
+          "outcome": "resolved",
+          "card_print_id": "af0c6454-8b98-419b-ac89-c9e6d18ad636",
+          "printing_gv_id": "GV-PK-EVO-11-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "0a597fc6-5696-4f32-9c7d-416fb58c3ed3",
+          "source_product_id": 124026,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "77ce26f3-3074-475d-94a7-07f3c5a02b84",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:124026:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 124026,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "3c873bdd-0489-439d-8e02-676b17526f86",
+              "source_price_row_identity": "tcgplayer:124026:holofoil"
+            },
+            {
+              "source_product_id": 124026,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "77ce26f3-3074-475d-94a7-07f3c5a02b84",
+              "source_price_row_identity": "tcgplayer:124026:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-RS-1",
+          "reason": null,
+          "ordinal": 58,
+          "outcome": "resolved",
+          "card_print_id": "748d15c7-bce7-4c42-9edf-220315e3fa8f",
+          "printing_gv_id": "GV-PK-RS-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "1e8e1e9a-5fce-4620-85ee-d515e4ff9beb",
+          "source_product_id": 83475,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "6b4c9699-8e6a-4fb8-876b-d65afac95ed1",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83475:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83475,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "6b4c9699-8e6a-4fb8-876b-d65afac95ed1",
+              "source_price_row_identity": "tcgplayer:83475:holofoil"
+            },
+            {
+              "source_product_id": 83475,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "c7a81983-a84a-4f48-860f-24a19989de6f",
+              "source_price_row_identity": "tcgplayer:83475:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DRI-1",
+          "reason": null,
+          "ordinal": 59,
+          "outcome": "resolved",
+          "card_print_id": "983b08d8-1849-457f-bf09-b420847ff9ea",
+          "printing_gv_id": "GV-PK-DRI-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "a61d5c0e-3f0d-481d-801e-c374379d796e",
+          "source_product_id": 632829,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "597965ed-c436-4bc9-868e-68d5cf684383",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:632829:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 632829,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "73153d17-db4f-42cd-88c8-456ce2e5c956",
+              "source_price_row_identity": "tcgplayer:632829:normal"
+            },
+            {
+              "source_product_id": 632829,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "597965ed-c436-4bc9-868e-68d5cf684383",
+              "source_price_row_identity": "tcgplayer:632829:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DS-91",
+          "reason": null,
+          "ordinal": 60,
+          "outcome": "resolved",
+          "card_print_id": "24390716-6ee5-4fcb-87a2-9313b42660c1",
+          "printing_gv_id": "GV-PK-DS-91-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "8c7308b3-8f35-4da5-a0a5-f7b57fafbb95",
+          "source_product_id": 86142,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "2d48a707-4b93-4154-9f68-3073c444162b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:86142:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 86142,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "2d48a707-4b93-4154-9f68-3073c444162b",
+              "source_price_row_identity": "tcgplayer:86142:normal"
+            },
+            {
+              "source_product_id": 86142,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "ac5757e9-3350-4eee-af04-4536398b2703",
+              "source_price_row_identity": "tcgplayer:86142:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DET-1",
+          "reason": null,
+          "ordinal": 61,
+          "outcome": "resolved",
+          "card_print_id": "46eeae94-2c5b-46cd-8745-ca3d2083d75c",
+          "printing_gv_id": "GV-PK-DET-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "029c5e05-d64f-496b-bdb3-52406498b23b",
+          "source_product_id": 186001,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "48844cdc-1e0b-4d64-b591-c7b131f5c06e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:186001:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 186001,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "48844cdc-1e0b-4d64-b591-c7b131f5c06e",
+              "source_price_row_identity": "tcgplayer:186001:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SI-1",
+          "reason": null,
+          "ordinal": 62,
+          "outcome": "resolved",
+          "card_print_id": "666de235-a8af-49f2-99c9-f1a8a5343494",
+          "printing_gv_id": "GV-PK-SI-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "99d4906b-2fda-4564-ba5d-30da23f4378a",
+          "source_product_id": 46466,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "9a55017b-8dac-4f64-a9be-61b21114c4f5",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:46466:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 46466,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "9a55017b-8dac-4f64-a9be-61b21114c4f5",
+              "source_price_row_identity": "tcgplayer:46466:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DRX-108",
+          "reason": null,
+          "ordinal": 63,
+          "outcome": "resolved",
+          "card_print_id": "3cbe16b8-99c5-4eb7-a0ee-06ac8ee480a4",
+          "printing_gv_id": "GV-PK-DRX-108-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "5ddcdd2e-ca2a-48d6-a31b-b2b56eddbb66",
+          "source_product_id": 83663,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "0613d48c-cddb-4740-bc99-5f2a30e46159",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83663:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 83663,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "0613d48c-cddb-4740-bc99-5f2a30e46159",
+              "source_price_row_identity": "tcgplayer:83663:normal"
+            },
+            {
+              "source_product_id": 83663,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "1c76d754-7292-437d-a1e1-83ab51a50a4a",
+              "source_price_row_identity": "tcgplayer:83663:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-EVS-1",
+          "reason": null,
+          "ordinal": 64,
+          "outcome": "resolved",
+          "card_print_id": "1246a863-aad0-43ae-a6de-7405e1600dff",
+          "printing_gv_id": "GV-PK-EVS-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "84bb3fdb-5390-4dcb-8e63-d37e121e56dd",
+          "source_product_id": 246813,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "469ed899-73a5-439b-b358-12cee5a93736",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:246813:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 246813,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "cabb7478-e681-47b4-be27-5f5fe5f72004",
+              "source_price_row_identity": "tcgplayer:246813:normal"
+            },
+            {
+              "source_product_id": 246813,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "469ed899-73a5-439b-b358-12cee5a93736",
+              "source_price_row_identity": "tcgplayer:246813:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FCO-105",
+          "reason": null,
+          "ordinal": 65,
+          "outcome": "resolved",
+          "card_print_id": "0714d2e7-b966-42b1-96d9-60e548e2fd01",
+          "printing_gv_id": "GV-PK-FCO-105-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "a86c685f-e3e7-42c0-91b6-6db335fd98aa",
+          "source_product_id": 117878,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "ed1889f5-03e5-4dc7-935a-e581bfb0ee08",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:117878:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 117878,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "ed1889f5-03e5-4dc7-935a-e581bfb0ee08",
+              "source_price_row_identity": "tcgplayer:117878:normal"
+            },
+            {
+              "source_product_id": 117878,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "a8431a59-63c8-4ebc-854e-732a7f3ffd38",
+              "source_price_row_identity": "tcgplayer:117878:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SK-150",
+          "reason": "exact_product_and_subtype_absent_from_current_source_run",
+          "ordinal": 66,
+          "outcome": "source_missing",
+          "card_print_id": "a396351e-03c0-4204-8d8e-21ce49e5dee9",
+          "printing_gv_id": "GV-PK-SK-150-HOLO",
+          "candidate_count": 0,
+          "expected_finish": "holo",
+          "card_printing_id": "371d5406-a4bc-4638-8e37-69e7af72e21f",
+          "source_product_id": 86396,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": null,
+          "current_source_row_count": 0,
+          "available_source_identities": [
+            {
+              "source_product_id": 86396,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "d8b47ca7-1729-442f-9145-dfaee765b25f",
+              "source_price_row_identity": "tcgplayer:86396:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DRV-1",
+          "reason": null,
+          "ordinal": 67,
+          "outcome": "resolved",
+          "card_print_id": "402b8286-5f90-48a3-8b9d-41f04284374a",
+          "printing_gv_id": "GV-PK-DRV-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "97a26962-f359-4161-82a6-d4db54adf1a5",
+          "source_product_id": 84937,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "9dd70da7-83b3-4887-a249-1f3d0f73e3b6",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84937:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 84937,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "9dd70da7-83b3-4887-a249-1f3d0f73e3b6",
+              "source_price_row_identity": "tcgplayer:84937:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FLI-1",
+          "reason": null,
+          "ordinal": 68,
+          "outcome": "resolved",
+          "card_print_id": "84595fe3-c26d-4764-a5f7-d63590110333",
+          "printing_gv_id": "GV-PK-FLI-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "33daf5dc-f225-44da-8252-27864447c048",
+          "source_product_id": 165648,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "0825d5fd-9425-45bf-b757-fe25be697484",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:165648:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 165648,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "0825d5fd-9425-45bf-b757-fe25be697484",
+              "source_price_row_identity": "tcgplayer:165648:normal"
+            },
+            {
+              "source_product_id": 165648,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "530bd990-6499-4c73-824b-711309fce98a",
+              "source_price_row_identity": "tcgplayer:165648:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-DX-88",
+          "reason": null,
+          "ordinal": 69,
+          "outcome": "resolved",
+          "card_print_id": "71907f79-eb86-483f-8b3c-011bf00a6725",
+          "printing_gv_id": "GV-PK-DX-88-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "014cb8fe-5b0a-4a04-bbb1-95815af2037c",
+          "source_product_id": 87253,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "db8fe0fb-206e-4883-ace2-1ec9d04af815",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:87253:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 87253,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "34803d72-91b9-407b-b6e9-7084ac6171b6",
+              "source_price_row_identity": "tcgplayer:87253:normal"
+            },
+            {
+              "source_product_id": 87253,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "db8fe0fb-206e-4883-ace2-1ec9d04af815",
+              "source_price_row_identity": "tcgplayer:87253:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FST-1",
+          "reason": null,
+          "ordinal": 70,
+          "outcome": "resolved",
+          "card_print_id": "4b7072a5-5870-4bc6-a88c-7da1396631ab",
+          "printing_gv_id": "GV-PK-FST-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "f161d191-7e32-4762-8820-181112ffd11b",
+          "source_product_id": 253069,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "ed9b9b4c-ffca-46b0-a27c-71d639e48afa",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:253069:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 253069,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "c194d1ab-fa19-47ee-9c6e-26e2678bc4c6",
+              "source_price_row_identity": "tcgplayer:253069:normal"
+            },
+            {
+              "source_product_id": 253069,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "ed9b9b4c-ffca-46b0-a27c-71d639e48afa",
+              "source_price_row_identity": "tcgplayer:253069:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-SS-1",
+          "reason": null,
+          "ordinal": 71,
+          "outcome": "resolved",
+          "card_print_id": "04966375-d63d-4cb5-a544-b503e05dcec5",
+          "printing_gv_id": "GV-PK-SS-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "9ad0a5fc-caeb-4912-9a5c-8e620e7da65d",
+          "source_product_id": 83619,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "2950abcb-b4ab-4c9a-a4c2-c22930b7cc4e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83619:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83619,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "2950abcb-b4ab-4c9a-a4c2-c22930b7cc4e",
+              "source_price_row_identity": "tcgplayer:83619:holofoil"
+            },
+            {
+              "source_product_id": 83619,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "4a1ee55a-9540-4a69-9e75-b7f2803d06d7",
+              "source_price_row_identity": "tcgplayer:83619:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-EM-15",
+          "reason": null,
+          "ordinal": 72,
+          "outcome": "resolved",
+          "card_print_id": "03c825fd-bbb7-4ad6-aa17-c6c26926aed9",
+          "printing_gv_id": "GV-PK-EM-15-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "62a59493-c569-4614-9489-22f8b7b49c60",
+          "source_product_id": 86548,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "61e6b82a-4630-4de1-8054-f56012a5fe5b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:86548:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 86548,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "61e6b82a-4630-4de1-8054-f56012a5fe5b",
+              "source_price_row_identity": "tcgplayer:86548:normal"
+            },
+            {
+              "source_product_id": 86548,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "395828dc-5a87-4db1-8586-5a51019feefb",
+              "source_price_row_identity": "tcgplayer:86548:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-GEN-1",
+          "reason": null,
+          "ordinal": 73,
+          "outcome": "resolved",
+          "card_print_id": "095e74cb-e9fd-46c8-8ffb-15f165195672",
+          "printing_gv_id": "GV-PK-GEN-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "87f6f038-e6a5-49e2-bcdc-3840e927bae5",
+          "source_product_id": 113659,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "a40fb93a-8732-4ae6-a7da-d71cc1fc91b3",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:113659:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 113659,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "a40fb93a-8732-4ae6-a7da-d71cc1fc91b3",
+              "source_price_row_identity": "tcgplayer:113659:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-GRI-116",
+          "reason": null,
+          "ordinal": 74,
+          "outcome": "resolved",
+          "card_print_id": "1f6709c8-42ca-40fc-bf09-7a1df49175fd",
+          "printing_gv_id": "GV-PK-GRI-116-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "bc9cf04d-efef-46bd-9298-a725c9f7ca92",
+          "source_product_id": 131036,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "54739661-418c-4676-87cc-334bd195f8eb",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:131036:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 131036,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "ab0dc9ce-11c5-4db4-9685-c1ff92759eb9",
+              "source_price_row_identity": "tcgplayer:131036:normal"
+            },
+            {
+              "source_product_id": 131036,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "54739661-418c-4676-87cc-334bd195f8eb",
+              "source_price_row_identity": "tcgplayer:131036:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-TRR-15",
+          "reason": null,
+          "ordinal": 75,
+          "outcome": "resolved",
+          "card_print_id": "76377ebb-e4a7-4c75-8ba9-34b8e5612b6b",
+          "printing_gv_id": "GV-PK-TRR-15-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "33f489a2-448b-4204-af63-ebc1ec907a37",
+          "source_product_id": 84587,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "b3f2b6a9-fc0d-4552-85e1-bb79b2b2693d",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84587:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 84587,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "b3f2b6a9-fc0d-4552-85e1-bb79b2b2693d",
+              "source_price_row_identity": "tcgplayer:84587:normal"
+            },
+            {
+              "source_product_id": 84587,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "f20c7262-2b31-4246-a761-3508dc79f5dc",
+              "source_price_row_identity": "tcgplayer:84587:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-HIF-1",
+          "reason": null,
+          "ordinal": 76,
+          "outcome": "resolved",
+          "card_print_id": "e7ddf83b-5727-4231-8cf3-acbd8fb93a5d",
+          "printing_gv_id": "GV-PK-HIF-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "c4c64ccd-7817-4cc5-b7e7-cf2459617ad3",
+          "source_product_id": 197643,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "4763d88b-aec5-4c16-97c7-5f6081b260bb",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:197643:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 197643,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "68344484-5096-4b72-8ee1-7ae9c1bfc807",
+              "source_price_row_identity": "tcgplayer:197643:normal"
+            },
+            {
+              "source_product_id": 197643,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "4763d88b-aec5-4c16-97c7-5f6081b260bb",
+              "source_price_row_identity": "tcgplayer:197643:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-EPO-12",
+          "reason": null,
+          "ordinal": 77,
+          "outcome": "resolved",
+          "card_print_id": "cea86ac8-d500-4101-9e8a-3a697ae38e4b",
+          "printing_gv_id": "GV-PK-EPO-12-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "eda72f16-3dac-4c05-86a9-103387367876",
+          "source_product_id": 90568,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "36fca084-79b5-4805-af1b-2abd5f2b8913",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:90568:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 90568,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "36fca084-79b5-4805-af1b-2abd5f2b8913",
+              "source_price_row_identity": "tcgplayer:90568:normal"
+            },
+            {
+              "source_product_id": 90568,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "10af1357-2003-4b20-99e9-5e03ec26c6ab",
+              "source_price_row_identity": "tcgplayer:90568:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LOT-209",
+          "reason": null,
+          "ordinal": 78,
+          "outcome": "resolved",
+          "card_print_id": "0b10a118-7409-4dd6-bad9-3317853d0cbf",
+          "printing_gv_id": "GV-PK-LOT-209-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "accdea11-4d49-409b-9603-90d64e703c57",
+          "source_product_id": 179010,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "ca8102ab-364d-4e51-af9f-3641b307d091",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:179010:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 179010,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "ca8102ab-364d-4e51-af9f-3641b307d091",
+              "source_price_row_identity": "tcgplayer:179010:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-TK-tk1a-1",
+          "reason": null,
+          "ordinal": 79,
+          "outcome": "resolved",
+          "card_print_id": "a2f6a54a-d443-4aed-aca0-fc2e720bce2e",
+          "printing_gv_id": "GV-PK-TK-tk1a-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "33fe2f8f-2674-42b5-b83b-f281b134b1c4",
+          "source_product_id": 83694,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "5c2ca997-5a0d-49e2-9ef2-70c62c7bcd8c",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83694:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 83694,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "5c2ca997-5a0d-49e2-9ef2-70c62c7bcd8c",
+              "source_price_row_identity": "tcgplayer:83694:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FFI-103",
+          "reason": null,
+          "ordinal": 80,
+          "outcome": "resolved",
+          "card_print_id": "ab342ad9-2d98-48a2-a6d0-a50a19a5c00e",
+          "printing_gv_id": "GV-PK-FFI-103-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "ecf690bd-b622-4d28-965e-2efea5590aa6",
+          "source_product_id": 92286,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "8edc0f07-f9ab-4c58-abdf-543cd3c4ea06",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:92286:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 92286,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "98c8ed64-7aec-48bc-93ac-a3cc70533cca",
+              "source_price_row_identity": "tcgplayer:92286:normal"
+            },
+            {
+              "source_product_id": 92286,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "8edc0f07-f9ab-4c58-abdf-543cd3c4ea06",
+              "source_price_row_identity": "tcgplayer:92286:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LOR-177",
+          "reason": null,
+          "ordinal": 81,
+          "outcome": "resolved",
+          "card_print_id": "25ba9d11-ac75-443e-9e02-f8226bafd992",
+          "printing_gv_id": "GV-PK-LOR-177-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "7dc00583-f26e-4b23-8772-3fe7a1bf8b5b",
+          "source_product_id": 284119,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "c8155785-31cb-48d7-a09f-e0d34028914e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:284119:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 284119,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "c8155785-31cb-48d7-a09f-e0d34028914e",
+              "source_price_row_identity": "tcgplayer:284119:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LOR-TG01",
+          "reason": null,
+          "ordinal": 82,
+          "outcome": "resolved",
+          "card_print_id": "eed66685-9b88-49d3-8d73-07dc647c3a8b",
+          "printing_gv_id": "GV-PK-LOR-TG01-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "a2092321-193f-4660-bd19-88a810169234",
+          "source_product_id": 284253,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "2086f1a2-53cf-449a-975e-6f6d5b9546a2",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:284253:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 284253,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "2086f1a2-53cf-449a-975e-6f6d5b9546a2",
+              "source_price_row_identity": "tcgplayer:284253:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-FLF-89",
+          "reason": null,
+          "ordinal": 83,
+          "outcome": "resolved",
+          "card_print_id": "edee6376-89df-4746-9f47-4619fb34e0a2",
+          "printing_gv_id": "GV-PK-FLF-89-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "9931e436-44f5-4859-beb7-69661d646666",
+          "source_product_id": 91226,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "32aad82c-a628-4f59-870c-c3fa2ebf7e54",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:91226:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 91226,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "9310500e-c76e-4088-be20-b492bc00c862",
+              "source_price_row_identity": "tcgplayer:91226:normal"
+            },
+            {
+              "source_product_id": 91226,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "32aad82c-a628-4f59-870c-c3fa2ebf7e54",
+              "source_price_row_identity": "tcgplayer:91226:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-TK-tk1b-1",
+          "reason": null,
+          "ordinal": 84,
+          "outcome": "resolved",
+          "card_print_id": "0eb9e8db-ae0c-4631-b05f-53ff181d24ab",
+          "printing_gv_id": "GV-PK-TK-tk1b-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "c65f59aa-4738-41aa-b1b0-9bdb1ee411bb",
+          "source_product_id": 85131,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "1c51712f-afbf-4694-b8e0-1ecfd9bc96eb",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:85131:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 85131,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "1c51712f-afbf-4694-b8e0-1ecfd9bc96eb",
+              "source_price_row_identity": "tcgplayer:85131:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2017-5",
+          "reason": null,
+          "ordinal": 85,
+          "outcome": "resolved",
+          "card_print_id": "004a0cc7-3e4b-434e-bcef-530325b43539",
+          "printing_gv_id": "GV-PK-MCD-2017-5-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "b11e0e5e-b1e2-4627-831c-14668556c3a6",
+          "source_product_id": 152685,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "68a915cd-39f5-4ce3-af1b-7d7b1d600f9e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:152685:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 152685,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "68a915cd-39f5-4ce3-af1b-7d7b1d600f9e",
+              "source_price_row_identity": "tcgplayer:152685:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-GE-1",
+          "reason": null,
+          "ordinal": 86,
+          "outcome": "resolved",
+          "card_print_id": "80e82be5-8e5f-4ddc-8562-738ee7025f87",
+          "printing_gv_id": "GV-PK-GE-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "345cce47-d820-42c8-867c-78bb04c016cc",
+          "source_product_id": 83909,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "15e9f139-3b93-4961-a23c-aa4693cbe9ba",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83909:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83909,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "c2445ee4-4021-4b6b-bc44-612c62d34dab",
+              "source_price_row_identity": "tcgplayer:83909:holofoil"
+            },
+            {
+              "source_product_id": 83909,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "15e9f139-3b93-4961-a23c-aa4693cbe9ba",
+              "source_price_row_identity": "tcgplayer:83909:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-HS-102",
+          "reason": null,
+          "ordinal": 87,
+          "outcome": "resolved",
+          "card_print_id": "b84efb23-a27c-41e1-86b9-3431126a2865",
+          "printing_gv_id": "GV-PK-HS-102-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "6c6be2fa-4f7d-4e35-a21d-3fe64bd252d0",
+          "source_product_id": 89718,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "b581557e-a902-48b8-a32d-3930fd5d1a65",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:89718:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 89718,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "b581557e-a902-48b8-a32d-3930fd5d1a65",
+              "source_price_row_identity": "tcgplayer:89718:normal"
+            },
+            {
+              "source_product_id": 89718,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "f80cf698-0c65-4b04-a7c3-e2b36cdaf70b",
+              "source_price_row_identity": "tcgplayer:89718:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-JTG-1",
+          "reason": null,
+          "ordinal": 88,
+          "outcome": "resolved",
+          "card_print_id": "8d242e33-c9ba-4b80-8f0e-b370ea49a92e",
+          "printing_gv_id": "GV-PK-JTG-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "0833a874-41da-4efc-8a2d-1948e99b41a3",
+          "source_product_id": 623428,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "dd8ee6f6-c67e-41fa-8037-c645d9c2c67e",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:623428:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 623428,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "11f428e0-8c0e-47e8-803c-75f00c39d35b",
+              "source_price_row_identity": "tcgplayer:623428:normal"
+            },
+            {
+              "source_product_id": 623428,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "dd8ee6f6-c67e-41fa-8037-c645d9c2c67e",
+              "source_price_row_identity": "tcgplayer:623428:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-KSS-1",
+          "reason": null,
+          "ordinal": 89,
+          "outcome": "resolved",
+          "card_print_id": "919c8d0a-e1a4-48b1-8523-ab656a31ac35",
+          "printing_gv_id": "GV-PK-KSS-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "a181739d-e481-400b-80a5-87a915da6837",
+          "source_product_id": 90549,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "58562fc7-1a68-4acb-a8b6-894adcf6c06b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:90549:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 90549,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "58562fc7-1a68-4acb-a8b6-894adcf6c06b",
+              "source_price_row_identity": "tcgplayer:90549:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LA-1",
+          "reason": null,
+          "ordinal": 90,
+          "outcome": "resolved",
+          "card_print_id": "407c72f8-e3d9-468a-9381-7bc2a75cdb75",
+          "printing_gv_id": "GV-PK-LA-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "3b5a63df-35fa-4758-932b-bed647583397",
+          "source_product_id": 84778,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "48188894-8318-448d-80a3-2ac7aa11ffde",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:84778:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 84778,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "48188894-8318-448d-80a3-2ac7aa11ffde",
+              "source_price_row_identity": "tcgplayer:84778:holofoil"
+            },
+            {
+              "source_product_id": 84778,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "02081245-c78a-49f8-9074-4e0c92eb45c5",
+              "source_price_row_identity": "tcgplayer:84778:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LM-1",
+          "reason": null,
+          "ordinal": 91,
+          "outcome": "resolved",
+          "card_print_id": "61fbb6c3-4b5e-43a7-a106-bd1f38fdc05f",
+          "printing_gv_id": "GV-PK-LM-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "2e5d8b32-299c-498c-9c7b-9ee11dabbd3e",
+          "source_product_id": 83468,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "315cabd7-aa6f-4f6a-98e7-fdb8a6cfb6a9",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:83468:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 83468,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "315cabd7-aa6f-4f6a-98e7-fdb8a6cfb6a9",
+              "source_price_row_identity": "tcgplayer:83468:holofoil"
+            },
+            {
+              "source_product_id": 83468,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "b3431e73-5462-4a14-addc-763a0076cecc",
+              "source_price_row_identity": "tcgplayer:83468:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-LTR-1",
+          "reason": null,
+          "ordinal": 92,
+          "outcome": "resolved",
+          "card_print_id": "4aeac519-f09c-4b9a-a138-84c1c5705597",
+          "printing_gv_id": "GV-PK-LTR-1-RH",
+          "candidate_count": 1,
+          "expected_finish": "reverse",
+          "card_printing_id": "028d5f99-983b-4f50-b843-97212072f8b3",
+          "source_product_id": 89750,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Reverse Holofoil",
+          "source_observation_id": "ea830535-b02e-4c53-9089-38926a8bcaa5",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:89750:reverse holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 89750,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "8f067c2c-6325-4c96-8054-cb848687fb91",
+              "source_price_row_identity": "tcgplayer:89750:normal"
+            },
+            {
+              "source_product_id": 89750,
+              "source_subtype_name": "Reverse Holofoil",
+              "source_observation_id": "ea830535-b02e-4c53-9089-38926a8bcaa5",
+              "source_price_row_identity": "tcgplayer:89750:reverse holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2011-1",
+          "reason": null,
+          "ordinal": 93,
+          "outcome": "resolved",
+          "card_print_id": "e0fd3359-fbc5-47c3-9cba-a184f3d88bac",
+          "printing_gv_id": "GV-PK-MCD-2011-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "ef8d469b-d415-4d7a-a5bc-3f628b4dd047",
+          "source_product_id": 89378,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "7ee28a90-46c2-43d9-a6d9-051628d1b6a8",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:89378:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 89378,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "7ee28a90-46c2-43d9-a6d9-051628d1b6a8",
+              "source_price_row_identity": "tcgplayer:89378:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2012-1",
+          "reason": null,
+          "ordinal": 94,
+          "outcome": "resolved",
+          "card_print_id": "dfdb5d89-696c-4982-a392-ad082b20b3be",
+          "printing_gv_id": "GV-PK-MCD-2012-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "f77d596c-47d3-4d54-b85b-c3a1fe1de9ba",
+          "source_product_id": 89081,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "26b8f79c-29fd-451d-b014-6546e742e810",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:89081:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 89081,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "26b8f79c-29fd-451d-b014-6546e742e810",
+              "source_price_row_identity": "tcgplayer:89081:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2014-1",
+          "reason": null,
+          "ordinal": 95,
+          "outcome": "resolved",
+          "card_print_id": "7df32558-45a4-41a6-817e-69119a056e96",
+          "printing_gv_id": "GV-PK-MCD-2014-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "848be932-7048-4c08-b1f3-ddd97b86eb64",
+          "source_product_id": 110406,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "4ec32004-2c56-44ea-991d-94873be5499b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:110406:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 110406,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "4ec32004-2c56-44ea-991d-94873be5499b",
+              "source_price_row_identity": "tcgplayer:110406:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2015-1",
+          "reason": null,
+          "ordinal": 96,
+          "outcome": "resolved",
+          "card_print_id": "660b70e4-c52e-44bf-beb4-2efc1af977b6",
+          "printing_gv_id": "GV-PK-MCD-2015-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "42936039-6f61-403f-9422-43d303f8ee77",
+          "source_product_id": 110429,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "f9988b5e-7b0c-43eb-8a5d-ad22ab1fe27b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:110429:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 110429,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "f9988b5e-7b0c-43eb-8a5d-ad22ab1fe27b",
+              "source_price_row_identity": "tcgplayer:110429:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2018-1",
+          "reason": null,
+          "ordinal": 97,
+          "outcome": "resolved",
+          "card_print_id": "c91a4d0b-4416-4227-959e-0dbc482a5079",
+          "printing_gv_id": "GV-PK-MCD-2018-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "d5991521-9d62-467d-b583-d765dbfa94ec",
+          "source_product_id": 180450,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "af821a92-0b3b-4d7d-91a1-822245fd981c",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:180450:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 180450,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "af821a92-0b3b-4d7d-91a1-822245fd981c",
+              "source_price_row_identity": "tcgplayer:180450:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2019-1",
+          "reason": null,
+          "ordinal": 98,
+          "outcome": "resolved",
+          "card_print_id": "97d1f0f0-a38b-483f-ac9e-93cc1b322b01",
+          "printing_gv_id": "GV-PK-MCD-2019-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "e9b87c1c-df1b-49dd-8674-d4f61ed66e42",
+          "source_product_id": 200960,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "928f47f7-22ec-40ad-81ff-479855481e7b",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:200960:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 200960,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "928f47f7-22ec-40ad-81ff-479855481e7b",
+              "source_price_row_identity": "tcgplayer:200960:holofoil"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2022-1",
+          "reason": null,
+          "ordinal": 99,
+          "outcome": "resolved",
+          "card_print_id": "5ce84e07-d2fa-46bd-8775-5848a904ae9f",
+          "printing_gv_id": "GV-PK-MCD-2022-1-STD",
+          "candidate_count": 1,
+          "expected_finish": "normal",
+          "card_printing_id": "66b5c09b-4294-4eee-a146-7a062fdc09ef",
+          "source_product_id": 281476,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Normal",
+          "source_observation_id": "319a7d23-2f13-4d08-988a-7a2c42266e92",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:281476:normal",
+          "available_source_identities": [
+            {
+              "source_product_id": 281476,
+              "source_subtype_name": "Normal",
+              "source_observation_id": "319a7d23-2f13-4d08-988a-7a2c42266e92",
+              "source_price_row_identity": "tcgplayer:281476:normal"
+            }
+          ]
+        },
+        {
+          "gv_id": "GV-PK-MCD-2023-1",
+          "reason": null,
+          "ordinal": 100,
+          "outcome": "resolved",
+          "card_print_id": "4091ae25-3624-4f56-a455-7bd3d4beb154",
+          "printing_gv_id": "GV-PK-MCD-2023-1-HOLO",
+          "candidate_count": 1,
+          "expected_finish": "holo",
+          "card_printing_id": "3a5ab65e-dda3-45a7-9871-f0532fd349ba",
+          "source_product_id": 516512,
+          "source_observed_on": "2026-08-13T00:00:00.000Z",
+          "source_sync_run_id": "44df6e62-a195-4d87-9a1a-dafa7628b5ae",
+          "source_subtype_name": "Holofoil",
+          "source_observation_id": "31190fca-a473-4e33-895f-585dc3db91c9",
+          "current_source_row_count": 1,
+          "source_price_row_identity": "tcgplayer:516512:holofoil",
+          "available_source_identities": [
+            {
+              "source_product_id": 516512,
+              "source_subtype_name": "Holofoil",
+              "source_observation_id": "31190fca-a473-4e33-895f-585dc3db91c9",
+              "source_price_row_identity": "tcgplayer:516512:holofoil"
+            }
+          ]
+        }
+      ],
+      "canary_source_missing_count": 1,
+      "canary_source_coverage_reconciled": true,
+      "canary_source_coverage_policy_version": "TCGPLAYER_MARKET_CANARY_SOURCE_COVERAGE_V1"
+    },
+    "created_at": "2026-08-13T09:49:46.789Z",
+    "updated_at": "2026-08-13T09:56:50.123Z"
+  },
+  "scheduledRuns": [],
+  "terminalAlerts": [],
+  "current": {
+    "exact_price_count": 99,
+    "positive_usd_count": 99,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "a1c26975-c8b3-423f-b604-8bf61dbe85b0",
+    "current_publication_run_id": "e902fb55-c0ac-49d5-a9b4-9412d694900e",
+    "previous_publication_set_id": "9eeb8801-9729-4c37-a24b-a2068fe43c91",
+    "current_publication_activated_at": "2026-08-13T09:56:42.279Z"
+  },
+  "sourceHealth": {
+    "status": "healthy",
+    "source_continuity_mode": "completed_sync",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-warehouse",
+    "effective_source_status": "completed",
+    "effective_source_price_row_count": 543960,
+    "source_age_hours": 6.135,
+    "findings": []
+  },
+  "sourceRunEvidence": {
+    "latest_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-warehouse",
+    "latest_source_status": "completed",
+    "latest_source_marker": "2026-08-12T20:05:43+0000",
+    "latest_source_finished_at": "2026-08-13T09:42:35.498Z",
+    "latest_source_price_row_count": 543960,
+    "latest_source_failed_count": 0,
+    "latest_source_error": null,
+    "latest_source_payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9250
+      },
+      "failed_fetches": [],
+      "missing_marked": {
+        "groups_marked_missing": 0,
+        "products_marked_missing": 0,
+        "categories_marked_missing": 0
+      },
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    },
+    "completed_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-warehouse",
+    "completed_source_status": "completed",
+    "completed_source_marker": "2026-08-12T20:05:43+0000",
+    "completed_source_finished_at": "2026-08-13T09:42:35.498Z",
+    "completed_source_price_row_count": 543960,
+    "completed_source_failed_count": 0,
+    "completed_source_error": null,
+    "completed_source_payload": {
+      "apply_results": {
+        "streamed": true,
+        "artifactCount": 9250
+      },
+      "failed_fetches": [],
+      "missing_marked": {
+        "groups_marked_missing": 0,
+        "products_marked_missing": 0,
+        "categories_marked_missing": 0
+      },
+      "skipped_empty_categories": [
+        9,
+        10,
+        12,
+        14,
+        21,
+        55,
+        69,
+        70
+      ]
+    }
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 1,
+    "authenticated_runtime_latency_ms": 310.155,
+    "sampled_card_print_ids": [
+      "004a0cc7-3e4b-434e-bcef-530325b43539"
+    ],
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  }
+}
