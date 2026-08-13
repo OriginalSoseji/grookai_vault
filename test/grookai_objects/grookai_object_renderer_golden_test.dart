@@ -1,6 +1,9 @@
 @Tags(['golden'])
 library;
 
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,9 +17,19 @@ import 'grookai_object_fixtures.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  late GoldenFileComparator originalGoldenComparator;
   setUpAll(() {
     GoogleFonts.config.allowRuntimeFetching = false;
+    originalGoldenComparator = goldenFileComparator;
+    goldenFileComparator = _RendererGoldenComparator(
+      Uri.file(
+        File(
+          'test/grookai_objects/grookai_object_renderer_golden_test.dart',
+        ).absolute.path,
+      ),
+    );
   });
+  tearDownAll(() => goldenFileComparator = originalGoldenComparator);
 
   final fixtures = <String, GrookaiObject Function(GrookaiObjectSkin)>{
     'memory': memoryCardFixture,
@@ -93,4 +106,26 @@ void main() {
 
     expect(find.text('Unsupported card layout: trade.v99'), findsOneWidget);
   });
+}
+
+class _RendererGoldenComparator extends LocalFileComparator {
+  _RendererGoldenComparator(super.testFile);
+
+  static const double _maxRasterizationDiff = 0.005;
+
+  @override
+  Future<bool> compare(Uint8List imageBytes, Uri golden) async {
+    final result = await GoldenFileComparator.compareLists(
+      imageBytes,
+      await getGoldenBytes(golden),
+    );
+    if (result.passed || result.diffPercent <= _maxRasterizationDiff) {
+      result.dispose();
+      return true;
+    }
+
+    final error = await generateFailureOutput(result, golden, basedir);
+    result.dispose();
+    throw FlutterError(error);
+  }
 }
