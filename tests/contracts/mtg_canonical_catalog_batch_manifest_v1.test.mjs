@@ -4,6 +4,7 @@ import test from "node:test";
 import { buildMtgCanonicalCandidateV1 } from "../../backend/pricing/mtg_canonical_catalog_candidate_v1.mjs";
 import { buildMtgCanaryPayloadV1 } from "../../scripts/audits/mtg_canonical_catalog_canary_plan_v1.mjs";
 import {
+  pickNextMtgCatalogBatchV1,
   resolveMtgSetMetadataV1,
   validateMtgCatalogBatchManifestV1,
 } from "../../scripts/audits/mtg_canonical_catalog_batch_manifest_v1.mjs";
@@ -114,4 +115,21 @@ test("manifest validation protects frozen source and DSK subtraction", () => {
   assert.deepEqual(validateMtgCatalogBatchManifestV1(manifest, reconciliation), [
     "remaining_parent_count_mismatch",
   ]);
+});
+
+test("bounded selector excludes unreleased and weakly mapped sets", () => {
+  const base = {
+    catalog_state: "not_staged",
+    set_type: "expansion",
+    quarantined_collision_lanes: 0,
+    candidate_count: 200,
+    positive_market_lanes: 200,
+    price_lane_coverage: 1,
+  };
+  const rows = [
+    { ...base, code: "future", released_at: "2026-11-13" },
+    { ...base, code: "weak", released_at: "2026-07-01", price_lane_coverage: 0.5 },
+    { ...base, code: "ready", released_at: "2026-06-26" },
+  ];
+  assert.equal(pickNextMtgCatalogBatchV1(rows, "2026-08-13").code, "ready");
 });

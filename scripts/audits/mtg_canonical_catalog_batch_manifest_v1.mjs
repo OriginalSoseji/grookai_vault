@@ -36,6 +36,7 @@ function parseArgs(argv) {
     bulkFile: path.join(ROOT, ".tmp", "scryfall-default-cards.jsonl.gz"),
     payloadDir: path.join(ROOT, ".tmp", "mtg_canonical_catalog_set_batches_v1"),
     outDir: null,
+    asOf: new Date().toISOString().slice(0, 10),
   };
   for (const arg of argv) {
     if (arg.startsWith("--warehouse-products=")) {
@@ -48,6 +49,8 @@ function parseArgs(argv) {
       args.payloadDir = path.resolve(arg.slice(14));
     } else if (arg.startsWith("--out-dir=")) {
       args.outDir = path.resolve(arg.slice(10));
+    } else if (arg.startsWith("--as-of=")) {
+      args.asOf = arg.slice(8);
     } else {
       throw new Error(`Unsupported argument: ${arg}`);
     }
@@ -55,6 +58,9 @@ function parseArgs(argv) {
   if (!args.warehouseProducts) throw new Error("--warehouse-products=<jsonl> is required");
   if (!args.reconciliationSummary) {
     throw new Error("--reconciliation-summary=<summary.json> is required");
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(args.asOf)) {
+    throw new Error("--as-of must be YYYY-MM-DD");
   }
   return args;
 }
@@ -286,13 +292,16 @@ export function validateMtgCatalogBatchManifestV1(manifest, reconciliation) {
   return findings;
 }
 
-function pickNextBatch(batches) {
+export function pickNextMtgCatalogBatchV1(batches, asOf) {
   const eligible = batches.filter(
     (row) =>
       row.catalog_state === "not_staged" &&
       row.set_type === "expansion" &&
+      row.released_at &&
+      row.released_at <= asOf &&
       row.quarantined_collision_lanes === 0 &&
-      row.candidate_count >= 100,
+      row.candidate_count >= 100 &&
+      row.price_lane_coverage >= 0.95,
   );
   return eligible.sort(
     (left, right) =>
@@ -434,6 +443,10 @@ async function main() {
       external_printing_mappings: payload.counts.external_printing_mappings,
       positive_market_lanes: payload.counts.positive_market_lanes,
       quarantined_collision_lanes: payload.counts.quarantined_collision_lanes,
+      price_lane_coverage:
+        payload.counts.card_printings === 0
+          ? 0
+          : payload.counts.external_printing_mappings / payload.counts.card_printings,
       total_staging_rows:
         payload.counts.sets +
         payload.counts.card_prints +
@@ -486,7 +499,15 @@ async function main() {
     totals,
     global_uniqueness_key_count: tracker.size,
     batches,
-    next_bounded_stage_candidate: pickNextBatch(batches),
+    bounded_stage_selection_policy: {
+      as_of: args.asOf,
+      set_type: "expansion",
+      minimum_parent_count: 100,
+      minimum_price_lane_coverage: 0.95,
+      maximum_quarantined_collision_lanes: 0,
+      order: "released_at_desc_then_positive_market_lanes_desc_then_code_asc",
+    },
+    next_bounded_stage_candidate: pickNextMtgCatalogBatchV1(batches, args.asOf),
     findings: [],
     boundaries: {
       database_writes: false,
