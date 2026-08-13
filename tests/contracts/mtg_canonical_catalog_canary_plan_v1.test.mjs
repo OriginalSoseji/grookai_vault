@@ -56,7 +56,8 @@ test("one-set plan keeps parent, identity, printing, and mapping rows exact", ()
     candidates: [candidate()],
     warehouseProducts,
     sourceBulkSha256: "a".repeat(64),
-    migrationSha256: "b".repeat(64),
+    stagingMigrationSha256: "b".repeat(64),
+    foundationMigrationSha256: "c".repeat(64),
     repository: REPOSITORY,
   });
 
@@ -86,7 +87,8 @@ test("collision lane is quarantined instead of mapped", () => {
     warehouseProducts,
     collisionSourceRows: new Set(["633195:foil"]),
     sourceBulkSha256: "a".repeat(64),
-    migrationSha256: "b".repeat(64),
+    stagingMigrationSha256: "b".repeat(64),
+    foundationMigrationSha256: "c".repeat(64),
     repository: REPOSITORY,
   });
 
@@ -109,7 +111,8 @@ test("canary fingerprint changes when source evidence changes", () => {
     candidates: [candidate()],
     warehouseProducts,
     sourceBulkSha256: "a".repeat(64),
-    migrationSha256: "b".repeat(64),
+    stagingMigrationSha256: "b".repeat(64),
+    foundationMigrationSha256: "c".repeat(64),
     repository: REPOSITORY,
   };
   const first = buildMtgCanaryPayloadV1(base);

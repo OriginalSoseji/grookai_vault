@@ -36,7 +36,8 @@ function validPayload() {
       ],
     ]),
     sourceBulkSha256: "a".repeat(64),
-    migrationSha256: "b".repeat(64),
+    stagingMigrationSha256: "b".repeat(64),
+    foundationMigrationSha256: "c".repeat(64),
     repository: {
       commit_sha: "a".repeat(40),
       branch: "agent/mtg-pricing-readiness-v1",

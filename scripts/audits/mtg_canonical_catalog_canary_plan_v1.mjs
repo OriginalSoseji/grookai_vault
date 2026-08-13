@@ -102,7 +102,8 @@ export function buildMtgCanaryPayloadV1({
   warehouseProducts,
   collisionSourceRows = new Set(),
   sourceBulkSha256,
-  migrationSha256,
+  stagingMigrationSha256,
+  foundationMigrationSha256,
   repository,
 }) {
   if (candidates.length === 0) throw new Error("Canary set has no eligible candidates");
@@ -284,7 +285,8 @@ export function buildMtgCanaryPayloadV1({
   const payloadCore = {
     plan_version: PLAN_VERSION,
     repository,
-    migration_sha256: migrationSha256,
+    staging_migration_sha256: stagingMigrationSha256,
+    foundation_migration_sha256: foundationMigrationSha256,
     source_bulk_sha256: sourceBulkSha256,
     selected_set: set,
     rows,
@@ -300,6 +302,7 @@ export function buildMtgCanaryPayloadV1({
       quarantined_collision_lanes: collisionLaneCount,
     },
     boundaries: {
+      apply_target: "service_only_mtg_import_staging",
       database_writes: false,
       storage_writes: false,
       image_pointer_updates: false,
@@ -328,7 +331,8 @@ function report(plan) {
 - Branch: \`${plan.repository.branch}\`
 - Set: **${plan.selected_set.name}** (\`${plan.selected_set.code}\`)
 - Writer payload fingerprint: \`${plan.writer_payload_fingerprint}\`
-- Migration SHA-256: \`${plan.migration_sha256}\`
+- Staging migration SHA-256: \`${plan.staging_migration_sha256}\`
+- Foundation migration SHA-256: \`${plan.foundation_migration_sha256}\`
 - Database writes performed: \`0\`
 
 ## Rows
@@ -341,7 +345,7 @@ ${Object.entries(plan.counts)
 
 ## Boundaries
 
-This is an artifacts-only plan. It does not apply the migration, write canonical rows, upload images, update image pointers, publish prices, expose MTG in clients, or mutate Pokemon data.
+This is an artifacts-only plan. Its first durable target is the service-only MTG import staging layer. It does not apply either migration, write canonical rows, upload images, update image pointers, publish prices, expose MTG in clients, or mutate Pokemon data.
 `;
 }
 
@@ -351,10 +355,21 @@ async function main() {
     commit_sha: execFileSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim(),
     branch: execFileSync("git", ["branch", "--show-current"], { cwd: ROOT, encoding: "utf8" }).trim(),
   };
-  const [warehouseProducts, reconciliation, bulkSha, migrationSha] = await Promise.all([
+  const [
+    warehouseProducts,
+    reconciliation,
+    bulkSha,
+    stagingMigrationSha,
+    foundationMigrationSha,
+  ] = await Promise.all([
     loadWarehouseProducts(args.warehouseProducts),
     fs.readFile(args.reconciliationSummary, "utf8").then(JSON.parse),
     fs.readFile(args.bulkFile).then(sha256),
+    fs
+      .readFile(
+        path.join(ROOT, "supabase", "migrations", "20260813185000_mtg_canonical_import_staging_v1.sql"),
+      )
+      .then(sha256),
     fs
       .readFile(
         path.join(ROOT, "supabase", "migrations", "20260813190000_mtg_canonical_catalog_foundation_v1.sql"),
@@ -372,7 +387,8 @@ async function main() {
     warehouseProducts,
     collisionSourceRows,
     sourceBulkSha256: bulkSha,
-    migrationSha256: migrationSha,
+    stagingMigrationSha256: stagingMigrationSha,
+    foundationMigrationSha256: foundationMigrationSha,
     repository,
   });
   if (plan.counts.quarantined_collision_lanes !== 0) {

@@ -99,6 +99,9 @@ export function verifyMtgCanaryPayloadIntegrityV1(payload) {
     issues.push("printing_image_pointer_must_be_null");
   }
   if (payload.boundaries?.database_writes !== false) issues.push("database_write_boundary_missing");
+  if (payload.boundaries?.apply_target !== "service_only_mtg_import_staging") {
+    issues.push("service_only_staging_boundary_missing");
+  }
   if (payload.boundaries?.pokemon_mutation !== false) issues.push("pokemon_boundary_missing");
   return { ok: issues.length === 0, issues };
 }
@@ -130,9 +133,14 @@ async function productionPreflight(payload) {
       select jsonb_build_object(
         'transaction_read_only', current_setting('transaction_read_only')::boolean,
         'database_user', current_user,
-        'migration_already_applied', exists (
+        'staging_migration_already_applied', exists (
+          select 1 from supabase_migrations.schema_migrations where version = '20260813185000'
+        ),
+        'foundation_migration_already_applied', exists (
           select 1 from supabase_migrations.schema_migrations where version = '20260813190000'
         ),
+        'staging_batch_table_present', to_regclass('public.mtg_canonical_import_batches') is not null,
+        'staging_row_table_present', to_regclass('public.mtg_canonical_import_rows') is not null,
         'mtg_game_count', (select count(*) from public.games where code = 'mtg'),
         'mtg_set_count', (select count(*) from public.sets where game = 'mtg'),
         'mtg_card_print_count', (
@@ -162,7 +170,18 @@ async function productionPreflight(payload) {
       ) as value
     `);
     const rows = payload.rows;
+    let stagingPayloadCollisions = 0;
+    if (schema.rows[0].value.staging_batch_table_present) {
+      const staged = await client.query(
+        `select count(*)::integer as count
+         from public.mtg_canonical_import_batches
+         where payload_fingerprint_sha256 = $1`,
+        [payload.writer_payload_fingerprint],
+      );
+      stagingPayloadCollisions = staged.rows[0].count;
+    }
     const collisions = {
+      staging_payloads: stagingPayloadCollisions,
       set_ids: await queryCollisionCount(client, "sets", "id", rows.sets.map((row) => row.id), "uuid"),
       set_codes: await queryCollisionCount(client, "sets", "code", rows.sets.map((row) => row.code), "text"),
       card_print_ids: await queryCollisionCount(client, "card_prints", "id", rows.card_prints.map((row) => row.id), "uuid"),
@@ -244,7 +263,8 @@ function report(result) {
 
 - Status: **${result.status.toUpperCase()}**
 - Payload fingerprint: \`${result.writer_payload_fingerprint}\`
-- Migration SHA-256: \`${result.migration_sha256}\`
+- Staging migration SHA-256: \`${result.staging_migration_sha256}\`
+- Foundation migration SHA-256: \`${result.foundation_migration_sha256}\`
 - Transaction read-only: \`${result.production.schema.transaction_read_only}\`
 - Database writes: \`0\`
 
@@ -263,7 +283,7 @@ ${Object.entries(result.production.collisions)
 
 ## Decision
 
-${result.status === "ready_for_separate_apply_approval" ? "The frozen schema migration and one-set payload are collision-free and ready for separately bounded apply approval." : "The apply gate remains blocked. Repair the preflight findings without writing production data."}
+${result.status === "ready_for_service_only_stage_apply_approval" ? "The service-only staging migration and frozen one-set payload are collision-free. Canonical promotion remains a separate blocked gate because shared canonical rows can become app-visible." : "The staging apply gate remains blocked. Repair the preflight findings without writing production data."}
 `;
 }
 
@@ -278,18 +298,38 @@ async function main() {
   const payload = JSON.parse(await fs.readFile(args.payload, "utf8"));
   const integrity = verifyMtgCanaryPayloadIntegrityV1(payload);
   if (!integrity.ok) throw new Error(`Payload integrity failed: ${integrity.issues.join(", ")}`);
-  const migrationFile = path.join(
+  const stagingMigrationFile = path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260813185000_mtg_canonical_import_staging_v1.sql",
+  );
+  const foundationMigrationFile = path.join(
     ROOT,
     "supabase",
     "migrations",
     "20260813190000_mtg_canonical_catalog_foundation_v1.sql",
   );
-  const migrationSha = sha256(await fs.readFile(migrationFile));
-  if (migrationSha !== payload.migration_sha256) throw new Error("Migration hash mismatch");
+  const stagingMigrationSha = sha256(await fs.readFile(stagingMigrationFile));
+  const foundationMigrationSha = sha256(await fs.readFile(foundationMigrationFile));
+  if (stagingMigrationSha !== payload.staging_migration_sha256) {
+    throw new Error("Staging migration hash mismatch");
+  }
+  if (foundationMigrationSha !== payload.foundation_migration_sha256) {
+    throw new Error("Foundation migration hash mismatch");
+  }
   const production = await productionPreflight(payload);
   const findings = [];
   if (production.schema.transaction_read_only !== true) findings.push("transaction_not_read_only");
-  if (production.schema.migration_already_applied) findings.push("migration_already_applied");
+  if (
+    production.schema.staging_batch_table_present !==
+    production.schema.staging_row_table_present
+  ) {
+    findings.push("partial_staging_schema_present");
+  }
+  if (production.schema.foundation_migration_already_applied) {
+    findings.push("foundation_migration_already_applied");
+  }
   if (Number(production.schema.mtg_game_count) !== 0) findings.push("mtg_game_already_present");
   if (Number(production.schema.mtg_set_count) !== 0) findings.push("mtg_sets_already_present");
   if (Number(production.schema.mtg_card_print_count) !== 0) findings.push("mtg_cards_already_present");
@@ -310,15 +350,19 @@ async function main() {
   const result = {
     preflight_version: VERSION,
     recorded_at: new Date().toISOString(),
-    status: findings.length === 0 ? "ready_for_separate_apply_approval" : "blocked",
+    status:
+      findings.length === 0 ? "ready_for_service_only_stage_apply_approval" : "blocked",
     writer_payload_fingerprint: payload.writer_payload_fingerprint,
-    migration_sha256: migrationSha,
+    staging_migration_sha256: stagingMigrationSha,
+    foundation_migration_sha256: foundationMigrationSha,
     payload_integrity: integrity,
     production,
     findings,
     boundaries: {
       database_writes: false,
-      migration_apply: false,
+      staging_migration_apply: false,
+      foundation_migration_apply: false,
+      staging_payload_apply: false,
       canonical_apply: false,
       storage_writes: false,
       price_publication: false,
@@ -334,7 +378,9 @@ async function main() {
     artifacts: { "summary.json": sha256(summaryBody), "REPORT.md": sha256(reportBody) },
   });
   process.stdout.write(`${JSON.stringify({ out_dir: outDir, status: result.status, findings })}\n`);
-  if (result.status !== "ready_for_separate_apply_approval") process.exitCode = 1;
+  if (result.status !== "ready_for_service_only_stage_apply_approval") {
+    process.exitCode = 1;
+  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename)) {
@@ -343,4 +389,3 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename
     process.exitCode = 1;
   });
 }
-
