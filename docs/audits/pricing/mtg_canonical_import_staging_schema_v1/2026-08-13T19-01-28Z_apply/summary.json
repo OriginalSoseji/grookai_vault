@@ -1,0 +1,72 @@
+{
+  "version": "MTG_CANONICAL_IMPORT_STAGING_SCHEMA_WRITER_V1",
+  "recorded_at": "2026-08-13T19:01:31.285Z",
+  "mode": "apply",
+  "status": "schema_applied_and_read_back",
+  "migration": {
+    "version": "20260813185000",
+    "name": "mtg_canonical_import_staging_v1",
+    "sha256": "20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8",
+    "ledger_fingerprint_sha256": "2179eeba053bdd9eb57d78063d8c4c6d096089f8e8adf23bea624224c2f246c7"
+  },
+  "required_approval_message": "I approve only MTG service-only staging migration 20260813185000 with SQL SHA-256 20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8 and ledger fingerprint 2179eeba053bdd9eb57d78063d8c4c6d096089f8e8adf23bea624224c2f246c7. I approve no canonical game, set, card, printing, mapping, image, Storage, pricing, publication, app-visibility, Pokemon, payload-row, update, delete, truncate, cleanup, promotion, global db push, or other migration writes.",
+  "database_proof": {
+    "before": {
+      "ledger_name": null,
+      "ledger_rows": 0,
+      "mtg_set_count": 0,
+      "mtg_game_count": 0,
+      "row_table_present": false,
+      "pokemon_card_count": 58769,
+      "batch_table_present": false,
+      "later_version_count": 0,
+      "latest_earlier_version": "20260812183000"
+    },
+    "transaction": {
+      "ledger_name": "mtg_canonical_import_staging_v1",
+      "ledger_rows": 1,
+      "mtg_set_count": 0,
+      "mtg_game_count": 0,
+      "row_table_present": true,
+      "pokemon_card_count": 58769,
+      "batch_table_present": true,
+      "later_version_count": 0,
+      "latest_earlier_version": "20260812183000"
+    },
+    "transaction_security": {
+      "anon_row_select": false,
+      "row_rls_enabled": true,
+      "anon_batch_select": false,
+      "batch_rls_enabled": true,
+      "service_row_insert": true,
+      "service_row_select": true,
+      "service_batch_insert": true,
+      "service_batch_select": true,
+      "authenticated_row_select": false,
+      "authenticated_batch_select": false
+    },
+    "durable": {
+      "ledger_name": "mtg_canonical_import_staging_v1",
+      "ledger_rows": 1,
+      "mtg_set_count": 0,
+      "mtg_game_count": 0,
+      "row_table_present": true,
+      "pokemon_card_count": 58769,
+      "batch_table_present": true,
+      "later_version_count": 0,
+      "latest_earlier_version": "20260812183000"
+    }
+  },
+  "boundaries": {
+    "database_writes": true,
+    "transaction_rolled_back": false,
+    "canonical_writes": false,
+    "payload_row_writes": false,
+    "app_visibility": false,
+    "storage_writes": false,
+    "pricing_writes": false,
+    "pokemon_mutation": false,
+    "global_db_push": false,
+    "foundation_migration_apply": false
+  }
+}

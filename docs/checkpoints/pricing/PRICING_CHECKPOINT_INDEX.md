@@ -808,6 +808,11 @@ Recommended reading order for future maintainers:
       boundary correction, and the rollback-proven service-only Duskmourn
       staging canary awaiting its exact apply gate
 
+44. `PRICING_CHECKPOINT_46_MTG_DSK_SERVICE_ONLY_STAGING_APPLIED.md`
+    - then read the durable service-only DSK staging apply, exact 2,866-row
+      production reconciliation, security and zero-visibility proof, and the
+      bounded canonical-promotion gate that remains closed
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -831,3 +836,4 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mee_pricing_platform_production_v1/production_completion_matrix_v1/runs/2026-07-28T11-36-54-775Z/REPORT.md`
 - `docs/audits/pricing/mee_pricing_platform_production_v1/canary_commit_pin_repair_20260805/REPORT.md`
 - `docs/audits/pricing/mtg_pricing_readiness_v1/2026-08-13T17-52-09-387Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_stage_readback_v1/2026-08-13T19-06-22Z/REPORT.md`
