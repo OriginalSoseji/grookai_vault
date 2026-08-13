@@ -35,6 +35,7 @@ GitHub was no longer observing the active release gate.
 | Truth | Value |
 | --- | --- |
 | Canary producing commit | `6b729441bf8944048885ade5d9905e23166d9d46` |
+| Read-only observer implementation | `7c7593040bbf3c48a320008e26e6b21970d99847` |
 | Active activation run | `e902fb55-c0ac-49d5-a9b4-9412d694900e` |
 | Active publication set | `a1c26975-c8b3-423f-b604-8bf61dbe85b0` |
 | Previous publication set | `9eeb8801-9729-4c37-a24b-a2068fe43c91` |
