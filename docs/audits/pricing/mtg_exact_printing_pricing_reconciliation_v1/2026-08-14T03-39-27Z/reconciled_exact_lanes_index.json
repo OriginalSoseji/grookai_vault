@@ -1,0 +1,90 @@
+{
+  "version": "MTG_EXACT_PRINTING_PRICING_RECONCILIATION_V1",
+  "artifact": "reconciled_exact_lanes",
+  "total_row_count": 144462,
+  "logical_jsonl_sha256": "2887ebc707798fe782553c0d689f92654f61960acad9fb6b346800601714d7ac",
+  "max_rows_per_part": 20000,
+  "part_count": 8,
+  "parts": [
+    {
+      "file": "reconciled_exact_lanes_part_0001.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 0,
+      "last_row_ordinal": 19999,
+      "logical_jsonl_sha256": "0646c1297399d587caf409b92b3c3fb84d8356adffea0fa76eea6b57d4478140",
+      "compressed_sha256": "70fe9c52d05ba4be23de4f7a8e95bf63f0ddc798622e597b975b30513d25f535",
+      "compressed_byte_size": 2095458,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0002.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 20000,
+      "last_row_ordinal": 39999,
+      "logical_jsonl_sha256": "2a54193db602b12d08c516bfa386a5d956067901f4d5728f000a75f46f68aac6",
+      "compressed_sha256": "408a37fa50a3bdc0b64f47e38af0e9715939ecdebba7fba9896ab2ddc90f5763",
+      "compressed_byte_size": 2115434,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0003.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 40000,
+      "last_row_ordinal": 59999,
+      "logical_jsonl_sha256": "648e9e888b405fe6a6e7824fe87f92736e4b21845f1d9076b48ec30a55312c50",
+      "compressed_sha256": "ed7d50f3e02edfd9c86b923801e9e97df7a3a4b4a20e6fba51218a9e4a106633",
+      "compressed_byte_size": 2128535,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0004.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 60000,
+      "last_row_ordinal": 79999,
+      "logical_jsonl_sha256": "684d2b1ddd427876411e661b96b115f3cc4ae2b188513aa10047e4920fe6aa62",
+      "compressed_sha256": "91e0644550f7784479929b290b346d4e3f00f0a0508909d9a7e8ea6fc6896bb0",
+      "compressed_byte_size": 2121119,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0005.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 80000,
+      "last_row_ordinal": 99999,
+      "logical_jsonl_sha256": "e7a0b6cc5d823b4d75e37318cade43fe954b11985b9106b0069483fd679abb66",
+      "compressed_sha256": "527c7ba141f42fc1b93924bfa1e08341f9c158c402d700d2ff2479fae1dbfadd",
+      "compressed_byte_size": 2106991,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0006.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 100000,
+      "last_row_ordinal": 119999,
+      "logical_jsonl_sha256": "4ec3c4aad3d97ebaa1e568cc0e74ff02fcb1e5ac3de8bbea1fabeb63d6b12bbf",
+      "compressed_sha256": "d7be374981ccdbbf23805ab5d74abb44f05f5fe0deb3f15fb33d52f4e0f7a650",
+      "compressed_byte_size": 2094698,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0007.jsonl.gz",
+      "row_count": 20000,
+      "first_row_ordinal": 120000,
+      "last_row_ordinal": 139999,
+      "logical_jsonl_sha256": "f481ef2719d313d7ee3c804def1fa9c4ec71c2563fdb16f8576ee7ee570a720a",
+      "compressed_sha256": "4f3283665e346fb4d2d9ac5633ea8331ce3bbb12c94c8ef8ea3de7694252c74b",
+      "compressed_byte_size": 2100033,
+      "content_encoding": "gzip"
+    },
+    {
+      "file": "reconciled_exact_lanes_part_0008.jsonl.gz",
+      "row_count": 4462,
+      "first_row_ordinal": 140000,
+      "last_row_ordinal": 144461,
+      "logical_jsonl_sha256": "40149220f8445ff63969ec9b849868b3e91012c6fc40f14787e7d8bd4c8c9e99",
+      "compressed_sha256": "d836a4230409b3cddf51edd441979cf46cd72ffc422907a209882485c1ad6cc4",
+      "compressed_byte_size": 466226,
+      "content_encoding": "gzip"
+    }
+  ]
+}

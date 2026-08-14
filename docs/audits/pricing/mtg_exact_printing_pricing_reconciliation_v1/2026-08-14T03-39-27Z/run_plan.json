@@ -1,0 +1,30 @@
+{
+  "version": "MTG_EXACT_PRINTING_PRICING_RECONCILIATION_V1",
+  "recorded_at": "2026-08-14T03:39:28.209Z",
+  "repository": {
+    "branch": "agent/mtg-pricing-mapping-v1",
+    "commit_sha": "e7762745dbcaa10f3c6ef61390cf0e8608d1e947",
+    "tracked_worktree_clean": true
+  },
+  "inputs": {
+    "manifest_path": "C:\\grookai_vault_mtg_pricing_readiness\\docs\\audits\\pricing\\mtg_canonical_catalog_batch_manifest_v1\\2026-08-13T22-10-07Z\\manifest.json",
+    "manifest_sha256": "1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1",
+    "payload_directory": "C:\\grookai_vault_mtg_pricing_readiness\\.tmp\\mtg_canonical_catalog_set_batches_v1\\payloads",
+    "payload_file_count": 953,
+    "payload_inventory_sha256": "6d080c4eb8cc3cb2db9ff50416f4836b1d4571882a15ec4d3ba4669649c26a32",
+    "warehouse_snapshot_path": "C:\\grookai_vault_mtg_pricing_readiness\\.tmp\\mtg_source_products_current.jsonl",
+    "warehouse_snapshot_sha256": "4931471d864b6f48234c3b51b15206de4218b7afd87c708a03fa72b94224048b"
+  },
+  "boundaries": {
+    "offline_only": true,
+    "database_access": false,
+    "database_writes": false,
+    "publication_writes": false,
+    "release_control_writes": false,
+    "image_access": false,
+    "storage_writes": false,
+    "vault_writes": false,
+    "active_ingestion_access": false,
+    "inferred_mappings": false
+  }
+}

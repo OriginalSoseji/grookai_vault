@@ -1,0 +1,20 @@
+{
+  "version": "MTG_EXACT_PRINTING_PRICING_RECONCILIATION_V1",
+  "artifact": "publication_blocked_gap_ledger",
+  "total_row_count": 15607,
+  "logical_jsonl_sha256": "33bc0db50a359cea540d8bc02dbd8503abe5159f37fec381cd20dd65de833ba8",
+  "max_rows_per_part": 50000,
+  "part_count": 1,
+  "parts": [
+    {
+      "file": "publication_blocked_gap_ledger_part_0001.jsonl.gz",
+      "row_count": 15607,
+      "first_row_ordinal": 0,
+      "last_row_ordinal": 15606,
+      "logical_jsonl_sha256": "33bc0db50a359cea540d8bc02dbd8503abe5159f37fec381cd20dd65de833ba8",
+      "compressed_sha256": "4a60301bfcaceaae6aef27be95aec89c6afd0a4d5331a2ef2cfe52b0be97223b",
+      "compressed_byte_size": 1303142,
+      "content_encoding": "gzip"
+    }
+  ]
+}
