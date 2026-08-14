@@ -849,7 +849,7 @@ Recommended reading order for future maintainers:
       all-type production rollback canary locked the durable ingestion safety
       boundary without changing production data
 
-52. `PRICING_CHECKPOINT_54_ONE_PIECE_DURABLE_STAGING_SCHEMA_OFFLINE_READY.md`
+53. `PRICING_CHECKPOINT_55_ONE_PIECE_DURABLE_STAGING_SCHEMA_OFFLINE_READY.md`
     - then read the passed One Piece production rollback proof, the new
       unapplied durable service-only staging and zero-row rollback candidates,
       the explicit effective-privilege boundary, and the production read-only

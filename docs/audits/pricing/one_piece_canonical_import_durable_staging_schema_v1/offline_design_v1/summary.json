@@ -1,0 +1,23 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_OFFLINE_GATE_V1",
+  "recorded_at": "2026-08-14T06:59:02.027Z",
+  "status": "offline_durable_staging_design_ready_for_production_read_only_preflight",
+  "repository": {
+    "commit_sha": "e755cc28e9fae221f204b5dd470a7c3bf9165adf",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "migration_candidate_sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a",
+  "rollback_candidate_sha256": "60a17c8daeae7a7e306dec74178fd8b7f95368f701b41d8b5ed18447740b9bc1",
+  "plan_fingerprint_sha256": "75187d3758b726426aadcae8533ddb9ecd4083cb413850fd1c50dca5e4ad3d46",
+  "sql_validation": {
+    "valid": true,
+    "findings": []
+  },
+  "plan_validation": {
+    "valid": true,
+    "findings": []
+  },
+  "database_connections": 0,
+  "database_writes": 0,
+  "exact_next_gate": "production read-only migration collision, security, migration-order, lock, and protected-boundary preflight; stop before migration placement or apply"
+}

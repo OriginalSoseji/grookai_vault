@@ -1,0 +1,101 @@
+{
+  "plan_version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_PLAN_V1",
+  "schema_version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_V1",
+  "repository": {
+    "commit_sha": "e755cc28e9fae221f204b5dd470a7c3bf9165adf",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "proposed_migration": {
+    "version": "20260814120000",
+    "name": "one_piece_canonical_import_durable_staging_v1",
+    "candidate_file": "docs/sql/one_piece_canonical_import_durable_staging_schema_v1_migration_candidate.sql",
+    "candidate_sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a",
+    "target_file": "supabase/migrations/20260814120000_one_piece_canonical_import_durable_staging_v1.sql",
+    "applied": false
+  },
+  "rollback_candidate": {
+    "file": "docs/sql/one_piece_canonical_import_durable_staging_schema_v1_rollback_candidate.sql",
+    "sha256": "60a17c8daeae7a7e306dec74178fd8b7f95368f701b41d8b5ed18447740b9bc1",
+    "zero_row_only": true,
+    "applied": false
+  },
+  "passed_rollback_canary": {
+    "canary_plan_fingerprint_sha256": "174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90",
+    "migration_draft_sha256": "7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591",
+    "execution_summary_file": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/production_rollback_attribution_v2/summary.json",
+    "execution_summary_sha256": "a85b2a60bef1227bcf061e5a802d35a82a42b30671dc40793adf4de97994f76b",
+    "execution_status": "rollback_canary_passed_zero_durable_change",
+    "independent_summary_file": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/production_rollback_attribution_v2/independent_verify/summary.json",
+    "independent_summary_sha256": "c641f9558479728085e4b6db471e2ce902fd6dac203ab98e82dcdbe6fdb8bfb9",
+    "independent_status": "rollback_independently_verified",
+    "durable_objects_after_canary": 0,
+    "durable_rows_after_canary": 0
+  },
+  "object_inventory": {
+    "tables": [
+      "public.one_piece_canonical_import_batches",
+      "public.one_piece_canonical_import_rows"
+    ],
+    "function": "public.one_piece_canonical_import_reject_mutation_v1()",
+    "triggers": [
+      "one_piece_canonical_import_batches_immutable",
+      "one_piece_canonical_import_rows_immutable"
+    ],
+    "policies": [
+      "one_piece_import_batches_service_select",
+      "one_piece_import_batches_service_insert",
+      "one_piece_import_rows_service_select",
+      "one_piece_import_rows_service_insert"
+    ],
+    "indexes": [
+      "one_piece_canonical_import_batches_group_idx",
+      "one_piece_canonical_import_rows_batch_idx"
+    ]
+  },
+  "security_contract": {
+    "rls_enabled": true,
+    "rls_forced": true,
+    "anon_privileges": [],
+    "authenticated_privileges": [],
+    "service_role_table_privileges": [
+      "SELECT",
+      "INSERT"
+    ],
+    "service_role_function_execute": false,
+    "update_delete_truncate_references_trigger_denied": true,
+    "mutation_rejection_triggers": true,
+    "app_rpc": false
+  },
+  "apply_contract": {
+    "schema_only": true,
+    "expected_durable_tables": 2,
+    "expected_durable_data_rows": 0,
+    "migration_ledger_rows": 1,
+    "global_db_push": false,
+    "exact_candidate_copy_required": true,
+    "independent_post_apply_readback_required": true
+  },
+  "production_read_only_preflight": {
+    "required": true,
+    "migration_version_absent": true,
+    "all_object_names_absent": true,
+    "no_later_migration_than_proposed_version": true,
+    "effective_role_privileges_captured": true,
+    "protected_domain_baseline_captured": true,
+    "active_mtg_scope_attribution_required": true,
+    "database_writes": false
+  },
+  "boundaries": {
+    "current_gate_database_connections": 0,
+    "current_gate_database_writes": 0,
+    "migration_applied": false,
+    "staging_rows_written": 0,
+    "canonical_promotion": false,
+    "app_or_public_visibility": false,
+    "pricing_publication": false,
+    "storage_or_image_work": false,
+    "vault_writes": false,
+    "mtg_writes": false
+  },
+  "plan_fingerprint_sha256": "75187d3758b726426aadcae8533ddb9ecd4083cb413850fd1c50dca5e4ad3d46"
+}

@@ -1,0 +1,50 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_OFFLINE_GATE_V1",
+  "repository": {
+    "commit_sha": "e755cc28e9fae221f204b5dd470a7c3bf9165adf",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "mode": "offline_design_only",
+  "input_files": {
+    "migration_candidate": {
+      "version": "20260814120000",
+      "name": "one_piece_canonical_import_durable_staging_v1",
+      "candidate_file": "docs/sql/one_piece_canonical_import_durable_staging_schema_v1_migration_candidate.sql",
+      "candidate_sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a",
+      "target_file": "supabase/migrations/20260814120000_one_piece_canonical_import_durable_staging_v1.sql",
+      "applied": false
+    },
+    "rollback_candidate": {
+      "file": "docs/sql/one_piece_canonical_import_durable_staging_schema_v1_rollback_candidate.sql",
+      "sha256": "60a17c8daeae7a7e306dec74178fd8b7f95368f701b41d8b5ed18447740b9bc1",
+      "zero_row_only": true,
+      "applied": false
+    },
+    "passed_rollback_canary": {
+      "canary_plan_fingerprint_sha256": "174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90",
+      "migration_draft_sha256": "7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591",
+      "execution_summary_file": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/production_rollback_attribution_v2/summary.json",
+      "execution_summary_sha256": "a85b2a60bef1227bcf061e5a802d35a82a42b30671dc40793adf4de97994f76b",
+      "execution_status": "rollback_canary_passed_zero_durable_change",
+      "independent_summary_file": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/production_rollback_attribution_v2/independent_verify/summary.json",
+      "independent_summary_sha256": "c641f9558479728085e4b6db471e2ce902fd6dac203ab98e82dcdbe6fdb8bfb9",
+      "independent_status": "rollback_independently_verified",
+      "durable_objects_after_canary": 0,
+      "durable_rows_after_canary": 0
+    }
+  },
+  "database_connections": 0,
+  "database_writes": 0,
+  "boundaries": {
+    "current_gate_database_connections": 0,
+    "current_gate_database_writes": 0,
+    "migration_applied": false,
+    "staging_rows_written": 0,
+    "canonical_promotion": false,
+    "app_or_public_visibility": false,
+    "pricing_publication": false,
+    "storage_or_image_work": false,
+    "vault_writes": false,
+    "mtg_writes": false
+  }
+}

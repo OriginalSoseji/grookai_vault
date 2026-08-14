@@ -1,4 +1,4 @@
-# Pricing Checkpoint 54: One Piece Durable Staging Schema Offline Ready
+# Pricing Checkpoint 55: One Piece Durable Staging Schema Offline Ready
 
 ## Current Truth
 
@@ -37,6 +37,14 @@ durable One Piece rows.
 
 ## Artifacts
 
+- Producing design commit:
+  `e755cc28e9fae221f204b5dd470a7c3bf9165adf`
+- Migration candidate SHA-256:
+  `7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a`
+- Rollback candidate SHA-256:
+  `60a17c8daeae7a7e306dec74178fd8b7f95368f701b41d8b5ed18447740b9bc1`
+- Offline schema plan fingerprint:
+  `75187d3758b726426aadcae8533ddb9ecd4083cb413850fd1c50dca5e4ad3d46`
 - Contract:
   `docs/contracts/ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_V1.md`
 - Migration candidate:
