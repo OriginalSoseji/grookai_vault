@@ -870,6 +870,11 @@ Recommended reading order for future maintainers:
       One Piece planning, the refreshed zero-finding preflight, and the exact
       schema-only boundary that remains closed
 
+56. `PRICING_CHECKPOINT_58_ONE_PIECE_DURABLE_STAGING_SCHEMA_APPLIED.md`
+    - then read the safely rolled-back verifier repair, exact successful schema
+      apply, independent zero-finding readback, empty private staging state,
+      and the still-closed payload-staging boundary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
