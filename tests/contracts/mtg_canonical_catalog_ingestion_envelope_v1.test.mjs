@@ -62,6 +62,7 @@ function manifest() {
     version: "MTG_CANONICAL_CATALOG_BATCH_MANIFEST_V1",
     status: "full_catalog_batches_frozen",
     source: { bulk_sha256: "c".repeat(64), warehouse_sha256: "d".repeat(64) },
+    bounded_stage_selection_policy: { as_of: "2026-08-13" },
     coverage: { total_set_count: batches.length },
     batches,
     findings: [],
@@ -238,4 +239,20 @@ test("future-dated sets are deferred while abstained set dates remain eligible",
     true,
   );
   assert.equal(isMtgCatalogBatchEligibleAsOfV1({ released_at: null }, "2026-08-13"), true);
+});
+
+test("safety ramp prefers a released example over a smaller future set", () => {
+  const value = manifest();
+  value.batches.push(
+    batch("future-expansion", 6, {
+      source_set_id: "set-future-expansion",
+      released_at: "2026-09-01",
+      candidate_count: 1,
+      total_staging_rows: 5,
+    }),
+  );
+  value.coverage.total_set_count = value.batches.length;
+  const order = buildMtgCatalogExecutionOrderV1(value);
+  assert.equal(order[0].code, "msh");
+  assert.equal(order.findIndex((row) => row.code === "future-expansion"), order.length - 1);
 });

@@ -71,6 +71,8 @@ export function buildMtgCatalogSafetyRampV1(manifest) {
   const remaining = manifest.batches.filter(
     (batch) => batch.catalog_state !== "already_canonical_dsk",
   );
+  const asOf = manifest.bounded_stage_selection_policy?.as_of ?? "9999-12-31";
+  const eligible = remaining.filter((batch) => isMtgCatalogBatchEligibleAsOfV1(batch, asOf));
   const selected = [];
   const selectedIds = new Set();
   const add = (batch, reason) => {
@@ -83,14 +85,14 @@ export function buildMtgCatalogSafetyRampV1(manifest) {
 
   const setTypes = [...new Set(remaining.map((batch) => batch.set_type))].sort();
   for (const setType of setTypes) {
-    const candidate = remaining
+    const candidate = eligible
       .filter((batch) => batch.set_type === setType)
       .sort(compareBatch)[0];
     add(candidate, `smallest_payload_for_set_type:${setType}`);
   }
 
   add(
-    remaining
+    eligible
       .filter(
         (batch) =>
           batch.release_date_resolution ===
@@ -100,15 +102,15 @@ export function buildMtgCatalogSafetyRampV1(manifest) {
     "set_release_date_abstention",
   );
   add(
-    remaining.filter((batch) => batch.external_printing_mappings === 0).sort(compareBatch)[0],
+    eligible.filter((batch) => batch.external_printing_mappings === 0).sort(compareBatch)[0],
     "zero_tcgplayer_mapping_lane",
   );
   add(
-    remaining.filter((batch) => batch.quarantined_collision_lanes > 0).sort(compareBatch)[0],
+    eligible.filter((batch) => batch.quarantined_collision_lanes > 0).sort(compareBatch)[0],
     "quarantined_ambiguous_source_lane",
   );
 
-  for (const batch of [...remaining].sort(compareBatch)) {
+  for (const batch of [...eligible].sort(compareBatch)) {
     if (selected.length >= 25) break;
     add(batch, "bounded_small_payload_fill");
   }
