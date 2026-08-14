@@ -203,7 +203,7 @@ test("release activation is service-only, reconciled, and compare-and-swap", () 
   assert.doesNotMatch(stripped, /grant[^;]*update[^;]*sealed_product_release_pointer/i);
   assert.match(stripped, /grant execute on function public\.sealed_product_set_active_release_v1\(uuid, uuid, uuid\) to service_role/i);
   assert.match(stripped, /grant execute on function public\.sealed_product_freeze_release_v1\(uuid, text, uuid\) to service_role/i);
-  assert.match(stripped, /revoke all on function public\.sealed_product_set_active_release_v1\(uuid, uuid, uuid\) from public, anon, authenticated/i);
+  assert.match(stripped, /revoke all on function public\.sealed_product_set_active_release_v1\(uuid, uuid, uuid\) from public, anon, authenticated, service_role/i);
 });
 
 test("every table forces RLS and exposes only service-role policy", () => {
@@ -212,7 +212,7 @@ test("every table forces RLS and exposes only service-role policy", () => {
   for (const table of tables) {
     assert.match(stripped, new RegExp(`alter table public\\.${table} enable row level security`, "i"));
     assert.match(stripped, new RegExp(`alter table public\\.${table} force row level security`, "i"));
-    assert.match(stripped, new RegExp(`revoke all on public\\.${table} from public, anon, authenticated`, "i"));
+    assert.match(stripped, new RegExp(`revoke all on public\\.${table} from public, anon, authenticated, service_role`, "i"));
     assert.match(stripped, new RegExp(`create policy [a-z_]+ on public\\.${table}\\s+for all to service_role`, "i"));
   }
   assert.doesNotMatch(stripped, /\bgrant\b[^;]*\bto\s+(anon|authenticated)\b/i);

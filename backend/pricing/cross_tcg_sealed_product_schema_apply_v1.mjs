@@ -389,6 +389,73 @@ export function evaluateSealedSchemaReadbackV1({
   if ((readback.app_role_privileges ?? []).some((row) => row.has_any_privilege)) {
     findings.push("app_role_has_sealed_privilege");
   }
+  const effectiveTableRows = readback.service_role_effective_table_privileges ?? [];
+  const effectiveTableByName = new Map(
+    effectiveTableRows.map((row) => [row.table_name, row]),
+  );
+  if (
+    effectiveTableRows.length !== inventory.tables.length ||
+    effectiveTableByName.size !== inventory.tables.length
+  ) {
+    findings.push("service_role_effective_table_privilege_inventory_mismatch");
+  }
+  const tablePrivilegeFields = [
+    ["SELECT", "has_select"],
+    ["INSERT", "has_insert"],
+    ["UPDATE", "has_update"],
+    ["DELETE", "has_delete"],
+    ["TRUNCATE", "has_truncate"],
+    ["REFERENCES", "has_references"],
+    ["TRIGGER", "has_trigger"],
+  ];
+  for (const table of inventory.tables) {
+    const row = effectiveTableByName.get(table);
+    if (!row) continue;
+    const expected = new Set(
+      table === "sealed_product_release_pointer"
+        ? ["SELECT"]
+        : ["SELECT", "INSERT"],
+    );
+    for (const [privilege, field] of tablePrivilegeFields) {
+      if (Boolean(row[field]) !== expected.has(privilege)) {
+        findings.push(
+          `service_role_effective_table_privilege_mismatch:${table}:${privilege}`,
+        );
+      }
+    }
+  }
+
+  const effectiveFunctionRows = readback.effective_function_privileges ?? [];
+  const effectiveFunctionByKey = new Map(
+    effectiveFunctionRows.map((row) => [
+      `${row.role_name}:${row.signature}`,
+      row,
+    ]),
+  );
+  const effectiveFunctionRoles = ["anon", "authenticated", "service_role"];
+  const expectedEffectiveFunctionRowCount =
+    inventory.functions.length * effectiveFunctionRoles.length;
+  if (
+    effectiveFunctionRows.length !== expectedEffectiveFunctionRowCount ||
+    effectiveFunctionByKey.size !== expectedEffectiveFunctionRowCount
+  ) {
+    findings.push("effective_function_privilege_inventory_mismatch");
+  }
+  for (const role of effectiveFunctionRoles) {
+    for (const signature of inventory.functions) {
+      const row = effectiveFunctionByKey.get(`${role}:${signature}`);
+      if (!row) continue;
+      const serviceCallable =
+        signature.startsWith("sealed_product_freeze_release_v1(") ||
+        signature.startsWith("sealed_product_set_active_release_v1(");
+      const expected = role === "service_role" && serviceCallable;
+      if (Boolean(row.has_execute) !== expected) {
+        findings.push(
+          `effective_function_privilege_mismatch:${role}:${signature}`,
+        );
+      }
+    }
+  }
   const expectedLedger = [plan.ledger_row];
   if (stableJsonSealedSchemaApplyV1(readback.migration_ledger) !==
       stableJsonSealedSchemaApplyV1(expectedLedger)) {

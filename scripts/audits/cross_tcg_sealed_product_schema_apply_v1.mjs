@@ -341,6 +341,43 @@ export async function captureSealedSchemaReadbackV1(client, {
       from unnest(array['anon', 'authenticated']) as roles(role_name)
       cross join unnest($1::text[]) as tables(table_name)
      order by roles.role_name, tables.table_name`, [SEALED_TABLES_V1]);
+  const serviceRoleEffectiveTablePrivileges = await queryRows(client, `
+    select tables.table_name,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'SELECT') as has_select,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'INSERT') as has_insert,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'UPDATE') as has_update,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'DELETE') as has_delete,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'TRUNCATE') as has_truncate,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'REFERENCES') as has_references,
+           has_table_privilege('service_role',
+             'public.' || quote_ident(tables.table_name), 'TRIGGER') as has_trigger
+      from unnest($1::text[]) as tables(table_name)
+     order by tables.table_name`, [SEALED_TABLES_V1]);
+  const effectiveFunctionPrivileges = await queryRows(client, `
+    select roles.role_name,
+           procedure.proname || '(' ||
+             replace(oidvectortypes(procedure.proargtypes), ', ', ',') || ')'
+             as signature,
+           has_function_privilege(roles.role_name, procedure.oid, 'EXECUTE')
+             as has_execute
+      from unnest(array['anon', 'authenticated', 'service_role']) as roles(role_name)
+      cross join pg_proc procedure
+      join pg_namespace namespace on namespace.oid = procedure.pronamespace
+     where namespace.nspname = 'public'
+       and procedure.proname = any($1::text[])
+     order by roles.role_name, signature`, [[
+    "sealed_product_reject_row_mutation_v1",
+    "sealed_product_guard_release_mutation_v1",
+    "sealed_product_guard_release_member_insert_v1",
+    "sealed_product_freeze_release_v1",
+    "sealed_product_set_active_release_v1",
+  ]]);
   const migrationLedger = await queryRows(client, `
     select version, name, statements
       from supabase_migrations.schema_migrations
@@ -361,6 +398,8 @@ export async function captureSealedSchemaReadbackV1(client, {
     table_grants: tableGrants,
     routine_grants: routineGrants,
     app_role_privileges: appRolePrivileges,
+    service_role_effective_table_privileges: serviceRoleEffectiveTablePrivileges,
+    effective_function_privileges: effectiveFunctionPrivileges,
     migration_ledger: migrationLedger,
     protected_schema_contract: protectedSchema,
     protected_schema_fingerprint_sha256: sealedSchemaApplySha256V1(

@@ -117,8 +117,13 @@ assert(countMatches(strippedMigration, /create trigger sealed_product_[a-z_]+_ap
   "migration must contain eight append-only triggers");
 assert(countMatches(strippedMigration, /force row level security/gi) === 10,
   "migration must force RLS on all ten tables");
-assert(countMatches(strippedMigration, /from public, anon, authenticated/gi) === 15,
-  "migration must revoke public client access from ten tables and five functions");
+assert(
+  countMatches(
+    strippedMigration,
+    /from public, anon, authenticated, service_role/gi,
+  ) === 15,
+  "migration must reset public, client, and service-role privileges before exact grants",
+);
 assert(/create function public\.sealed_product_freeze_release_v1/i.test(strippedMigration),
   "migration must include the service-only release freeze control");
 assert(/create function public\.sealed_product_set_active_release_v1/i.test(strippedMigration),

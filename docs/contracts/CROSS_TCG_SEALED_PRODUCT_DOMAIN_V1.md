@@ -194,7 +194,8 @@ not mutate identity or source mapping rows.
 All proposed tables:
 
 - enable and force RLS;
-- revoke all privileges from `public`, `anon`, and `authenticated`;
+- revoke all privileges from `public`, `anon`, `authenticated`, and
+  `service_role` before applying the exact service-role grants;
 - grant only the minimum table privileges to `service_role`;
 - have service-role-only policies;
 - expose no public view, materialized view, or RPC in this gate.

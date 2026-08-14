@@ -108,6 +108,27 @@ function validReadback(plan) {
         has_any_privilege: false,
       })),
     ),
+    service_role_effective_table_privileges: plan.inventory.tables.map(
+      (table_name) => ({
+        table_name,
+        has_select: true,
+        has_insert: table_name !== "sealed_product_release_pointer",
+        has_update: false,
+        has_delete: false,
+        has_truncate: false,
+        has_references: false,
+        has_trigger: false,
+      }),
+    ),
+    effective_function_privileges: ["anon", "authenticated", "service_role"]
+      .flatMap((role_name) => plan.inventory.functions.map((signature) => ({
+        role_name,
+        signature,
+        has_execute: role_name === "service_role" && (
+          signature.startsWith("sealed_product_freeze_release_v1(") ||
+          signature.startsWith("sealed_product_set_active_release_v1(")
+        ),
+      }))),
     migration_ledger: [structuredClone(plan.ledger_row)],
     protected_schema_fingerprint_sha256: plan.protected_schema_fingerprint_sha256,
     mtg: { release_status: "hidden" },
@@ -173,12 +194,19 @@ test("RLS, row, grant, ledger, and protected-schema drift fail closed", async ()
   readback.tables[0].rls_forced = false;
   readback.tables[1].row_count = 1;
   readback.app_role_privileges[0].has_any_privilege = true;
+  readback.service_role_effective_table_privileges[0].has_update = true;
+  readback.effective_function_privileges.find((row) =>
+    row.role_name === "anon").has_execute = true;
   readback.migration_ledger[0].name = "wrong";
   readback.protected_schema_fingerprint_sha256 = "0".repeat(64);
   const findings = evaluateSealedSchemaReadbackV1({ plan, readback });
   assert.ok(findings.includes("rls_not_forced"));
   assert.ok(findings.includes("sealed_data_rows_present"));
   assert.ok(findings.includes("app_role_has_sealed_privilege"));
+  assert.ok(findings.some((finding) =>
+    finding.startsWith("service_role_effective_table_privilege_mismatch:")));
+  assert.ok(findings.some((finding) =>
+    finding.startsWith("effective_function_privilege_mismatch:anon:")));
   assert.ok(findings.includes("migration_ledger_mismatch"));
   assert.ok(findings.includes("protected_schema_fingerprint_mismatch"));
 });

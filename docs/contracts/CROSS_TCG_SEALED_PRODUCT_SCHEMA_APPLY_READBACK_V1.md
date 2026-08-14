@@ -69,6 +69,11 @@ Therefore, global row-count equality is not used as write attribution.
   exist.
 - `anon` and `authenticated` have no table privileges.
 - Only the frozen service-role table and function privileges exist.
+- Effective service-role table privileges are verified individually; inherited
+  or default `UPDATE`, `DELETE`, `TRUNCATE`, `REFERENCES`, or `TRIGGER`
+  privileges fail the gate.
+- Effective function execution is verified for `anon`, `authenticated`, and
+  `service_role`; only the frozen release functions are service-callable.
 - Exactly one migration-ledger row exists for version `20260814060000`, and its
   name and statement array match the frozen plan.
 - No app-facing RPC, view, release pointer row, or publication is created.
