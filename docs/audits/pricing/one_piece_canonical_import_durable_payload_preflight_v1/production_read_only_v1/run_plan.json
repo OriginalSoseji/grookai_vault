@@ -1,0 +1,21 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_PAYLOAD_PREFLIGHT_V1",
+  "recorded_at": "2026-08-14T07:39:28.596Z",
+  "repository": {
+    "commit_sha": "9d399f660067cf45fae69a78b7c190d1810b0624",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "payload_plan_sha256": "863c294262df66fc3a7cc2a51bf8c206df1fe1e67ea5633b92012e6453f2a729",
+  "payload_plan_fingerprint_sha256": "fc9b66a2ef637a62d13c46e23b09e815e923d8d7b19ff14c2e9dfaff5c5cb804",
+  "payload_fingerprint_sha256": "3af8e474e2bf8036bcb6683c6bdb82c0f81a94015851f148b5a7f8e7c60b4a00",
+  "schema_plan_sha256": "3bbd6456187ffb7b6f94329356fbccd47f03e8db337ab9f7fae7866f19b15f75",
+  "schema_apply_plan_fingerprint_sha256": "ee4b70bbfbda797cede83706cccc5234dc9dba619fc23053d02cff6aaad09e58",
+  "mode": "production_read_only",
+  "boundaries": {
+    "database_writes": false,
+    "storage_writes": false,
+    "canonical_or_publication_writes": false,
+    "mtg_writes": false
+  }
+}

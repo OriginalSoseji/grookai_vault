@@ -880,6 +880,11 @@ Recommended reading order for future maintainers:
       zero-mismatch evidence binding, zero promotion authority, and the fresh
       source/schema preflight still required before any staging append
 
+58. `PRICING_CHECKPOINT_60_ONE_PIECE_DURABLE_PAYLOAD_PREFLIGHT_PASSED.md`
+    - then read the fresh zero-finding production source/schema preflight,
+      zero-collision empty staging state, exact evidence fingerprints, and the
+      separately guarded 1-batch/21-row writer still required
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
