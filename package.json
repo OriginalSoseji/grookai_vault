@@ -152,6 +152,7 @@
     "pricing:market:pipeline:apply": "node scripts/workers/tcgplayer_market_pipeline_v1.mjs --apply",
     "pricing:market:schedule:dry-run": "node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --dry-run",
     "pricing:market:schedule:run": "node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run",
+    "mtg:pricing:reconcile:offline": "node scripts/audits/mtg_exact_printing_pricing_reconciliation_v1.mjs",
     "ops:webhook:dry-run": "node scripts/ops/grookai_operations_webhook_v1.mjs --dry-run",
     "mee:reference-warehouse-automated-apply-plan": "node scripts/audits/market_reference_warehouse_automated_apply_plan_v1.mjs",
     "mee:reference-warehouse-delta-writer:dry-run": "node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --dry-run",
