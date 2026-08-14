@@ -1,0 +1,54 @@
+{
+  "status": "ready_for_separately_authorized_rollback_only_database_canary",
+  "repository": {
+    "commit_sha": "d6bcdc1338a41ea0ed5d06bb28b409b1dbf2c8d8",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "manifest_logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9",
+  "migration_draft_sha256": "e7a9f3afeb1ac1355955960f2ef5c5346fcd8988418c04ef1f75fcfc38ef74a9",
+  "canary_plan_fingerprint_sha256": "98bf6bfa61fdd38b8c3cadfccb0b64b4e6607381d66182226b34aff997deccef",
+  "selected_group": {
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_product_count": 21,
+    "exact_single_count": 18,
+    "numbered_card_count": 17,
+    "don_card_count": 1,
+    "sealed_product_count": 3,
+    "quarantine_count": 0,
+    "future_or_presale_count": 0,
+    "inactive_count": 0,
+    "source_price_lane_count": 21,
+    "released_on": [
+      "2022-12-02"
+    ],
+    "languages": [
+      "en"
+    ]
+  },
+  "counts": {
+    "source_products": 21,
+    "exact_single_card_candidates": 18,
+    "numbered_cards": 17,
+    "don_cards": 1,
+    "sealed_product_candidates": 3,
+    "ambiguous_quarantined": 0,
+    "future_or_presale_holds": 0,
+    "source_price_lanes": 21
+  },
+  "selected_evidence": {
+    "row_count": 21,
+    "logical_bytes": 43760,
+    "compressed_bytes": 3880,
+    "logical_sha256": "b6adbbffa3ea5f1f390827bb9497056e5eba3130ce7c85ebd178caa7fd92a857",
+    "compressed_sha256": "d1e53f09d77ccc5840caba1f190ea6b5fe3e63dec63ac7e9e0c972727c33c793"
+  },
+  "validation": {
+    "valid": true,
+    "errors": []
+  },
+  "database_connections": 0,
+  "database_writes": 0,
+  "authorized_durable_rows": 0,
+  "exact_next_gate": "separately authorize the exact draft and plan for one production transaction that must roll back and leave zero durable schema objects or rows"
+}
