@@ -160,7 +160,6 @@ function report(summary) {
     "- No sealed product became a card-print candidate.",
     "- No future or presale row became current-promotion eligible.",
     "- No active MTG ingestion file, process, or worktree was touched.",
-    "",
   ];
   return `${lines.join("\n")}\n`;
 }

@@ -63,4 +63,3 @@ Exact next gate: design a service-only immutable staging schema and generate a o
 - No sealed product became a card-print candidate.
 - No future or presale row became current-promotion eligible.
 - No active MTG ingestion file, process, or worktree was touched.
-
