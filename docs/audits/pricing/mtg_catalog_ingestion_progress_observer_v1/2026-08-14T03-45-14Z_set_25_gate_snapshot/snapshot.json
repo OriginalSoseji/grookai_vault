@@ -1,0 +1,125 @@
+{
+  "version": "MTG_CATALOG_INGESTION_PROGRESS_OBSERVER_V1",
+  "observed_at": "2026-08-14T03:45:41.351Z",
+  "run_dir": "C:\\grookai_vault_mtg_pricing_readiness\\docs\\audits\\pricing\\mtg_canonical_catalog_ingestion_v1\\2026-08-14T02-53-11Z_durable_apply",
+  "source_run": {
+    "mode": "apply",
+    "created_at": "2026-08-14T02:53:50.834Z",
+    "envelope_sha256": "caeba0d49ea1fe81e4db045fb0c7f050abc3e25ac22b1f72cd4d9f3d209d24c6",
+    "manifest_sha256": "1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1",
+    "governing_commit_sha": "7867a25905c72efec65c30b12eee9caf76d96f98",
+    "state_status": "running",
+    "summary_status": "not_available"
+  },
+  "progress": {
+    "selected_sets": 952,
+    "completed_sets": 25,
+    "in_flight_sets": 1,
+    "in_flight": [
+      {
+        "source_set_id": "005f56a5-9661-4bd1-bf05-cf133ccdcdcf",
+        "code": "tdd1",
+        "execution_ordinal": 25,
+        "started_at": "2026-08-14T03:45:14.467Z"
+      }
+    ],
+    "deferred_sets": 0,
+    "remaining_sets": 927,
+    "retries": 0,
+    "failures": 0,
+    "completed_plan_row_totals": {
+      "sets": 25,
+      "card_prints": 1162,
+      "card_print_identity": 1162,
+      "card_printings": 1632,
+      "external_mappings": 1162,
+      "external_printing_mappings": 1353
+    },
+    "durable_applied_row_totals": {
+      "sets": 25,
+      "card_prints": 1162,
+      "card_print_identity": 1162,
+      "card_printings": 1632,
+      "external_mappings": 1162,
+      "external_printing_mappings": 1353
+    }
+  },
+  "timing": {
+    "basis": "completed_timestamps",
+    "sample_completed_sets": 25,
+    "sets_per_hour": 29.561,
+    "average_seconds_per_set": 121.783,
+    "eta_seconds": 112893,
+    "eta_at": "2026-08-15T11:07:14.307Z",
+    "last_event_at": "2026-08-14T03:45:14.467Z",
+    "last_event": "set_started",
+    "last_event_age_seconds": 27
+  },
+  "automatic_gates": {
+    "gates": [
+      {
+        "completed_set_target": 1,
+        "status": "passed"
+      },
+      {
+        "completed_set_target": 25,
+        "status": "passed"
+      },
+      {
+        "completed_set_target": 952,
+        "status": "pending"
+      }
+    ],
+    "passed": [
+      1,
+      25
+    ],
+    "missing": [],
+    "next_pending": 952
+  },
+  "process_liveness": {
+    "status": "not_found",
+    "inspection_performed": true,
+    "reason": "no matching local executor process found",
+    "matching_processes": []
+  },
+  "concurrent_read": {
+    "incomplete_trailing_progress_line_ignored": false
+  },
+  "source_files": {
+    "run_plan.json": {
+      "present": true,
+      "byte_length": 540731,
+      "sha256": "abab7ccd395b73bc2925508314d84ea412c5715254fc88d468a7f700db49cd55"
+    },
+    "progress.jsonl": {
+      "present": true,
+      "byte_length": 25900,
+      "sha256": "d2f80ad2569126fa54d40d70326022f53b0d0e0ad0730eaa58859df8f22cea4e"
+    },
+    "state.json": {
+      "present": true,
+      "byte_length": 21602,
+      "sha256": "52465fbc53d8d4467e35610052e15b3347c598d422ce8b0f23e55d246de39632"
+    },
+    "failure.json": {
+      "present": false,
+      "byte_length": null,
+      "sha256": null
+    },
+    "summary.json": {
+      "present": false,
+      "byte_length": null,
+      "sha256": null
+    }
+  },
+  "warnings": [],
+  "boundaries": {
+    "database_access": false,
+    "network_access": false,
+    "storage_access": false,
+    "release_changes": false,
+    "ingestion_writes": false,
+    "source_artifacts_modified": false
+  }
+}
