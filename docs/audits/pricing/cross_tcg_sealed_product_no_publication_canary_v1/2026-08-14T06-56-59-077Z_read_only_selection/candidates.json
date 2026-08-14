@@ -1,0 +1,1141 @@
+{
+  "version": "CROSS_TCG_SEALED_PRODUCT_NO_PUBLICATION_CANARY_PLAN_V1",
+  "selected_source_product_ids": [
+    96138,
+    496072,
+    502983,
+    521160,
+    561689,
+    591147,
+    637680,
+    643132,
+    644352,
+    683774
+  ],
+  "candidates": [
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 1,
+        "source_category_name": "Magic: The Gathering",
+        "source_group_id": 1515,
+        "source_group_name": "Dragons of Tarkir",
+        "source_product_id": 96138,
+        "source_product_name": "Dragons of Tarkir - Booster Box Case (6 boxes)",
+        "source_clean_name": "Dragons of Tarkir Booster Box Case 6 boxes",
+        "source_url": "https://www.tcgplayer.com/product/96138/magic-dragons-of-tarkir-dragons-of-tarkir-booster-box-case-6-boxes",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": "2015-03-27T00:00:00"
+        },
+        "extended_data": [],
+        "source_payload_sha256": "0c21dd8e4195a74c4e2e6fedab674fa60cbafcac275df7ef3628af23647d1266"
+      },
+      "game_key": "magic",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.92,
+      "package_form": "case",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 1,
+          "source_category_name": "Magic: The Gathering"
+        },
+        "product_line_set": {
+          "source_group_id": 1515,
+          "source_group_name": "Dragons of Tarkir"
+        },
+        "canonical_product_family": null,
+        "package_form": "case",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [],
+        "quantity_contents": [],
+        "release_presale_state": {
+          "state": "release_date_stated",
+          "is_presale": false,
+          "released_on": "2015-03-27T00:00:00",
+          "evidence": [
+            {
+              "code": "source_presale_info",
+              "field": "presale_info",
+              "value": "{\"is_presale\":false,\"released_on\":\"2015-03-27T00:00:00\"}",
+              "strength": "strong"
+            }
+          ]
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 1,
+          "source_group_id": 1515,
+          "source_product_id": 96138,
+          "source_product_name": "Dragons of Tarkir - Booster Box Case (6 boxes)",
+          "source_url": "https://www.tcgplayer.com/product/96138/magic-dragons-of-tarkir-dragons-of-tarkir-booster-box-case-6-boxes"
+        }
+      },
+      "evidence": [
+        {
+          "code": "structural_case_phrase",
+          "field": "name",
+          "value": "Dragons of Tarkir - Booster Box Case (6 boxes)",
+          "strength": "strong"
+        },
+        {
+          "code": "exact_case_phrase",
+          "field": "name",
+          "value": "booster box case",
+          "strength": "strong"
+        },
+        {
+          "code": "exact_booster_box_phrase",
+          "field": "name",
+          "value": "booster box",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "box",
+          "strength": "weak"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "case",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 1,
+        "source_category_name": "Magic: The Gathering",
+        "source_group_id": 23165,
+        "source_group_name": "Universes Beyond: Doctor Who",
+        "source_product_id": 496072,
+        "source_product_name": "Universes Beyond: Doctor Who - Timey-Wimey Commander Deck",
+        "source_clean_name": "Universes Beyond Doctor Who Timey Wimey Commander Deck",
+        "source_url": "https://www.tcgplayer.com/product/496072/magic-universes-beyond-doctor-who-universes-beyond-doctor-who-timey-wimey-commander-deck",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": "2023-10-13T00:00:00"
+        },
+        "extended_data": [
+          {
+            "name": "OracleText",
+            "value": "Travel across the universe with the Doctor and their companions in the little blue box—the TARDIS—and help them protect the universe from threats of all kinds; or take on the role of the villain and vie for intergalactic domination.\r\n<br>\r\nIn Commander, four players come together to show their strength and strategy, with one player coming out on top. Each 100-card ready-to-play Magic: The Gathering Universes Beyond: Doctor Who™ Commander Deck makes it easy for Commander fans in your store to grab a deck and play right away.\r\n<br>\r\nThis Commander Deck set includes 1 ready-to-play deck of 100 Magic cards (2 Traditional Foil Legendary cards, 98 nonfoil cards), 10 Planechase cards, a 2-card Collector Booster Sample Pack, 1 Foil-Etched Display Commander (a thick cardstock copy of the commander card with foil etched into the card’s border and art), 10 double-sided tokens, 1 deck box (can hold 100 sleeved cards), 1 Life Wheel, 1 Planar die, 1 strategy insert, and 1 reference card.\r\n<br>\r\nContents:\r\n<br>\r\n• 1 Foil-Etched Display commander\r\n<br>\r\n• 2 Rainbow Foils + 98 nonfoil cards\r\n<br>\r\n• 10 Planechase cards\r\n<br>\r\n• 2-card Collector Booster Sample Pack\r\n<br>\r\n• 10 double-sided tokens\r\n<br>\r\n• 1 Life Tracker\r\n<br>\r\n• 1 Planar Die\r\n<br>\r\n• 1 Deck Box\r\n<br>\r\n• 1 strategy insert\r\n<br>\r\n• 1 reference card",
+            "displayName": "Rules Text Contains"
+          },
+          {
+            "name": "UPC",
+            "value": "195166228815",
+            "displayName": "UPC"
+          }
+        ],
+        "source_payload_sha256": "53e6b10da64276f8225ef11ca5122c2341d643c4f79c3ea836c9c75eb8713f8e"
+      },
+      "game_key": "magic",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.97,
+      "package_form": "deck",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 1,
+          "source_category_name": "Magic: The Gathering"
+        },
+        "product_line_set": {
+          "source_group_id": 23165,
+          "source_group_name": "Universes Beyond: Doctor Who"
+        },
+        "canonical_product_family": null,
+        "package_form": "deck",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [],
+        "quantity_contents": [
+          {
+            "quantity": 1,
+            "unit": "deck",
+            "source_field": "extended_data.OracleText",
+            "matched_text": "1 deck"
+          }
+        ],
+        "release_presale_state": {
+          "state": "release_date_stated",
+          "is_presale": false,
+          "released_on": "2023-10-13T00:00:00",
+          "evidence": [
+            {
+              "code": "source_presale_info",
+              "field": "presale_info",
+              "value": "{\"is_presale\":false,\"released_on\":\"2023-10-13T00:00:00\"}",
+              "strength": "strong"
+            }
+          ]
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 1,
+          "source_group_id": 23165,
+          "source_product_id": 496072,
+          "source_product_name": "Universes Beyond: Doctor Who - Timey-Wimey Commander Deck",
+          "source_url": "https://www.tcgplayer.com/product/496072/magic-universes-beyond-doctor-who-universes-beyond-doctor-who-timey-wimey-commander-deck"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_deck_product_phrase",
+          "field": "name",
+          "value": "commander deck",
+          "strength": "strong"
+        },
+        {
+          "code": "explicit_tcg_contents",
+          "field": "extended_data",
+          "value": "contents statement",
+          "strength": "strong"
+        },
+        {
+          "code": "accessory_signal",
+          "field": "name_or_extended_data",
+          "value": "deck box",
+          "strength": "moderate"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "deck",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 68,
+        "source_category_name": "One Piece Card Game",
+        "source_group_id": 23243,
+        "source_group_name": "Ultra Deck: The Three Captains",
+        "source_product_id": 502983,
+        "source_product_name": "Ultra Deck: The Three Captains Display",
+        "source_clean_name": "Ultra Deck The Three Captains Display",
+        "source_url": "https://www.tcgplayer.com/product/502983/one-piece-card-game-ultra-deck-the-three-captains-ultra-deck-the-three-captains-display",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [],
+        "source_payload_sha256": "1e4ebafea5e34c278d8d353227c8ff09f25e3c61b882617dfa3d72628d180260"
+      },
+      "game_key": "one_piece",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.92,
+      "package_form": "deck_display",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 68,
+          "source_category_name": "One Piece Card Game"
+        },
+        "product_line_set": {
+          "source_group_id": 23243,
+          "source_group_name": "Ultra Deck: The Three Captains"
+        },
+        "canonical_product_family": null,
+        "package_form": "deck_display",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [],
+        "quantity_contents": [],
+        "release_presale_state": {
+          "state": "not_stated",
+          "is_presale": false,
+          "released_on": null,
+          "evidence": []
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 68,
+          "source_group_id": 23243,
+          "source_product_id": 502983,
+          "source_product_name": "Ultra Deck: The Three Captains Display",
+          "source_url": "https://www.tcgplayer.com/product/502983/one-piece-card-game-ultra-deck-the-three-captains-ultra-deck-the-three-captains-display"
+        }
+      },
+      "evidence": [
+        {
+          "code": "structural_deck_display_phrase",
+          "field": "name",
+          "value": "Ultra Deck: The Three Captains Display",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "deck",
+          "strength": "weak"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "display",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 68,
+        "source_category_name": "One Piece Card Game",
+        "source_group_id": 23333,
+        "source_group_name": "Extra Booster: Memorial Collection",
+        "source_product_id": 521160,
+        "source_product_name": "Memorial Collection - Booster Pack",
+        "source_clean_name": "Memorial Collection Booster Pack",
+        "source_url": "https://www.tcgplayer.com/product/521160/one-piece-card-game-extra-booster-memorial-collection-memorial-collection-booster-pack",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": "2024-05-03T00:00:00"
+        },
+        "extended_data": [],
+        "source_payload_sha256": "4055273f27ca6ab5c87ae7f028fbf24c54a4385faa14a4d93015cec86d99f78e"
+      },
+      "game_key": "one_piece",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.92,
+      "package_form": "pack",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 68,
+          "source_category_name": "One Piece Card Game"
+        },
+        "product_line_set": {
+          "source_group_id": 23333,
+          "source_group_name": "Extra Booster: Memorial Collection"
+        },
+        "canonical_product_family": null,
+        "package_form": "pack",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [],
+        "quantity_contents": [],
+        "release_presale_state": {
+          "state": "release_date_stated",
+          "is_presale": false,
+          "released_on": "2024-05-03T00:00:00",
+          "evidence": [
+            {
+              "code": "source_presale_info",
+              "field": "presale_info",
+              "value": "{\"is_presale\":false,\"released_on\":\"2024-05-03T00:00:00\"}",
+              "strength": "strong"
+            }
+          ]
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 68,
+          "source_group_id": 23333,
+          "source_product_id": 521160,
+          "source_product_name": "Memorial Collection - Booster Pack",
+          "source_url": "https://www.tcgplayer.com/product/521160/one-piece-card-game-extra-booster-memorial-collection-memorial-collection-booster-pack"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_booster_pack_phrase",
+          "field": "name",
+          "value": "booster pack",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "collection",
+          "strength": "weak"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "pack",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 68,
+        "source_category_name": "One Piece Card Game",
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "source_product_id": 561689,
+        "source_product_name": "Double Pack Set Volume 5",
+        "source_clean_name": "Double Pack Set Volume 5",
+        "source_url": "https://www.tcgplayer.com/product/561689/one-piece-card-game-two-legends-double-pack-set-volume-5",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [],
+        "source_payload_sha256": "ec2e6267361c043c8c002f34f80ff9a8dce07cf2349a3d0c325cd76fdf6e6ba1"
+      },
+      "game_key": "one_piece",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.92,
+      "package_form": "bundle",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 68,
+          "source_category_name": "One Piece Card Game"
+        },
+        "product_line_set": {
+          "source_group_id": 23462,
+          "source_group_name": "Two Legends"
+        },
+        "canonical_product_family": null,
+        "package_form": "bundle",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [
+          "Volume"
+        ],
+        "quantity_contents": [],
+        "release_presale_state": {
+          "state": "not_stated",
+          "is_presale": false,
+          "released_on": null,
+          "evidence": []
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 68,
+          "source_group_id": 23462,
+          "source_product_id": 561689,
+          "source_product_name": "Double Pack Set Volume 5",
+          "source_url": "https://www.tcgplayer.com/product/561689/one-piece-card-game-two-legends-double-pack-set-volume-5"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_bundle_phrase",
+          "field": "name",
+          "value": "double pack set",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "pack",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 3,
+        "source_category_name": "Pokemon",
+        "source_group_id": 2374,
+        "source_group_name": "Miscellaneous Cards & Products",
+        "source_product_id": 591147,
+        "source_product_name": "Triple Whammy Tin [Slaking]",
+        "source_clean_name": "Triple Whammy Tin Slaking",
+        "source_url": "https://www.tcgplayer.com/product/591147/pokemon-miscellaneous-cards-and-products-triple-whammy-tin-slaking",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "CardText",
+            "value": "A Triple Header of Pokémon Power!\r\n <br>\r\n\r\nJump right into the action with a trio of Pokémon who are ready for battle! In this tin, you’ll find three featured Pokémon as foil cards, along with three Pokémon TCG booster packs with even more cards inside.\r\n\r\n<br><br>This Pokémon TCG: Triple Whammy Tin includes:\r\n<br>• A set of 3 foil cards: either Larvitar, Pupitar, and Tyranitar; Sableye, Spiritomb, and Darkrai; or Slakoth, Vigoroth, and Slaking\r\n<br>• 3 Pokémon TCG booster packs\r\n<br>• A code card for Pokémon TCG Live",
+            "displayName": "Card Text"
+          }
+        ],
+        "source_payload_sha256": "3dcd0026758dc766aed02ad4bbd30c63102868ac3826e6db87103fe9bd9d36a5"
+      },
+      "game_key": "pokemon",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.97,
+      "package_form": "tin",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 3,
+          "source_category_name": "Pokemon"
+        },
+        "product_line_set": {
+          "source_group_id": 2374,
+          "source_group_name": "Miscellaneous Cards & Products"
+        },
+        "canonical_product_family": null,
+        "package_form": "tin",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [],
+        "quantity_contents": [],
+        "release_presale_state": {
+          "state": "not_stated",
+          "is_presale": false,
+          "released_on": null,
+          "evidence": []
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 3,
+          "source_group_id": 2374,
+          "source_product_id": 591147,
+          "source_product_name": "Triple Whammy Tin [Slaking]",
+          "source_url": "https://www.tcgplayer.com/product/591147/pokemon-miscellaneous-cards-and-products-triple-whammy-tin-slaking"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_tin_phrase",
+          "field": "name",
+          "value": "tin",
+          "strength": "strong"
+        },
+        {
+          "code": "explicit_tcg_contents",
+          "field": "extended_data",
+          "value": "contents statement",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "tin",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 1,
+        "source_category_name": "Magic: The Gathering",
+        "source_group_id": 2576,
+        "source_group_name": "Secret Lair Drop Series",
+        "source_product_id": 637680,
+        "source_product_name": "Secret Lair Drop: Summer Superdrop 2025 - The English FINAL FANTASY Bundle",
+        "source_clean_name": "Secret Lair Drop Summer Superdrop 2025 The English FINAL FANTASY Bundle",
+        "source_url": "https://www.tcgplayer.com/product/637680/magic-secret-lair-drop-series-secret-lair-drop-summer-superdrop-2025-the-english-final-fantasy-bundle",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "OracleText",
+            "value": "<strong>Contents</strong>:\r\n<br>• Secret Lair x FINAL FANTASY: Game Over (Non-Foil Edition)\r\n<br>• Secret Lair x FINAL FANTASY: Grimoire (Non-Foil Edition)\r\n<br>• Secret Lair x FINAL FANTASY: Weapons (Non-Foil Edition)\r\n<br>• Secret Lair x FINAL FANTASY: Game Over (Rainbow Foil Edition)\r\n<br>• Secret Lair x FINAL FANTASY: Grimoire (Rainbow Foil Edition)\r\n<br>• Secret Lair x FINAL FANTASY: Weapons (Rainbow Foil Edition)",
+            "displayName": "Rules Text Contains"
+          }
+        ],
+        "source_payload_sha256": "ee925cdd2ea7773106fe3d89101709d956ec3a8955979e2080c62760c87fd739"
+      },
+      "game_key": "magic",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.92,
+      "package_form": "collection",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 1,
+          "source_category_name": "Magic: The Gathering"
+        },
+        "product_line_set": {
+          "source_group_id": 2576,
+          "source_group_name": "Secret Lair Drop Series"
+        },
+        "canonical_product_family": null,
+        "package_form": "collection",
+        "language_region": {
+          "language": "English",
+          "region": null,
+          "evidence": [
+            {
+              "code": "explicit_language_marker",
+              "field": "name",
+              "value": "english",
+              "strength": "strong"
+            }
+          ]
+        },
+        "edition_wave": [],
+        "quantity_contents": [],
+        "release_presale_state": {
+          "state": "not_stated",
+          "is_presale": false,
+          "released_on": null,
+          "evidence": []
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 1,
+          "source_group_id": 2576,
+          "source_product_id": 637680,
+          "source_product_name": "Secret Lair Drop: Summer Superdrop 2025 - The English FINAL FANTASY Bundle",
+          "source_url": "https://www.tcgplayer.com/product/637680/magic-secret-lair-drop-series-secret-lair-drop-summer-superdrop-2025-the-english-final-fantasy-bundle"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_collection_phrase",
+          "field": "name",
+          "value": "secret lair drop",
+          "strength": "strong"
+        },
+        {
+          "code": "exact_bundle_phrase",
+          "field": "name",
+          "value": "bundle",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "bundle",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 85,
+        "source_category_name": "Pokemon Japan",
+        "source_group_id": 24324,
+        "source_group_name": "SVM: Generations Start Decks",
+        "source_product_id": 643132,
+        "source_product_name": "Generations Start Deck - Pikachu ex & Snorlax ex",
+        "source_clean_name": "Generations Start Deck Pikachu ex and Snorlax ex",
+        "source_url": "https://www.tcgplayer.com/product/643132/pokemon-japan-svm-generations-start-decks-generations-start-deck-pikachu-ex-and-snorlax-ex",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Description",
+            "value": "Deck Contents:<br>\r\n• Contains 60 cards<br>\r\n• 1 Damage counter<br>\r\n• 1 paper playmat<br>\r\n<em>Due to the nature of the construction deck, it contains multiple copies of the same card</em>",
+            "displayName": "Description"
+          }
+        ],
+        "source_payload_sha256": "b40fd881bdaebde10db1aedf606e8170e272ed06551946e8f89062a236c3db2f"
+      },
+      "game_key": "pokemon_japan",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.97,
+      "package_form": "deck",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 85,
+          "source_category_name": "Pokemon Japan"
+        },
+        "product_line_set": {
+          "source_group_id": 24324,
+          "source_group_name": "SVM: Generations Start Decks"
+        },
+        "canonical_product_family": null,
+        "package_form": "deck",
+        "language_region": {
+          "language": "Japanese",
+          "region": "Japan",
+          "evidence": [
+            {
+              "code": "source_category_language_region",
+              "field": "category",
+              "value": "Pokemon Japan",
+              "strength": "strong"
+            }
+          ]
+        },
+        "edition_wave": [],
+        "quantity_contents": [
+          {
+            "quantity": 60,
+            "unit": "card",
+            "source_field": "extended_data.Description",
+            "matched_text": "60 cards"
+          }
+        ],
+        "release_presale_state": {
+          "state": "not_stated",
+          "is_presale": false,
+          "released_on": null,
+          "evidence": []
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 85,
+          "source_group_id": 24324,
+          "source_product_id": 643132,
+          "source_product_name": "Generations Start Deck - Pikachu ex & Snorlax ex",
+          "source_url": "https://www.tcgplayer.com/product/643132/pokemon-japan-svm-generations-start-decks-generations-start-deck-pikachu-ex-and-snorlax-ex"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_deck_product_phrase",
+          "field": "name",
+          "value": "start deck",
+          "strength": "strong"
+        },
+        {
+          "code": "explicit_tcg_contents",
+          "field": "extended_data",
+          "value": "contents statement",
+          "strength": "strong"
+        },
+        {
+          "code": "accessory_signal",
+          "field": "name_or_extended_data",
+          "value": "playmat",
+          "strength": "moderate"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "deck",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 3,
+        "source_category_name": "Pokemon",
+        "source_group_id": 24380,
+        "source_group_name": "ME01: Mega Evolution",
+        "source_product_id": 644352,
+        "source_product_name": "Mega Evolution Booster Pack",
+        "source_clean_name": "Mega Evolution Booster Pack",
+        "source_url": "https://www.tcgplayer.com/product/644352/pokemon-me01-mega-evolution-mega-evolution-booster-pack",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": "2025-09-26T00:00:00"
+        },
+        "extended_data": [
+          {
+            "name": "CardText",
+            "value": "Mega Evolve Your Strength to the Next Stage!<br>\r\nStriving to become stronger, Pokémon of all types are putting everything on the line to become Mega Evolution Pokémon ex! Harness the strong aura of Mega Lucario ex, embrace the overflowing power of Mega Gardevoir ex, and team up with more of these powerful Pokémon that boast devastating attacks and massive HP. But consider your strategy carefully—extra power brings extra risks! Choose your Pokémon partners and prepare for the biggest battles you’ve ever seen in the Pokémon TCG: Mega Evolution expansion!\r\n<br><br>\r\nEach pack contains 10 cards.",
+            "displayName": "Card Text"
+          },
+          {
+            "name": "UPC",
+            "value": "0196214136113",
+            "displayName": "UPC"
+          }
+        ],
+        "source_payload_sha256": "fce44117e75ed187cbe6f5eddc906598b2e809a5255d2512eff1b5f7b1eec41c"
+      },
+      "game_key": "pokemon",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.97,
+      "package_form": "pack",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 3,
+          "source_category_name": "Pokemon"
+        },
+        "product_line_set": {
+          "source_group_id": 24380,
+          "source_group_name": "ME01: Mega Evolution"
+        },
+        "canonical_product_family": null,
+        "package_form": "pack",
+        "language_region": {
+          "language": null,
+          "region": null,
+          "evidence": []
+        },
+        "edition_wave": [],
+        "quantity_contents": [
+          {
+            "quantity": 10,
+            "unit": "card",
+            "source_field": "extended_data.CardText",
+            "matched_text": "10 cards"
+          }
+        ],
+        "release_presale_state": {
+          "state": "release_date_stated",
+          "is_presale": false,
+          "released_on": "2025-09-26T00:00:00",
+          "evidence": [
+            {
+              "code": "source_presale_info",
+              "field": "presale_info",
+              "value": "{\"is_presale\":false,\"released_on\":\"2025-09-26T00:00:00\"}",
+              "strength": "strong"
+            }
+          ]
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 3,
+          "source_group_id": 24380,
+          "source_product_id": 644352,
+          "source_product_name": "Mega Evolution Booster Pack",
+          "source_url": "https://www.tcgplayer.com/product/644352/pokemon-me01-mega-evolution-mega-evolution-booster-pack"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_booster_pack_phrase",
+          "field": "name",
+          "value": "booster pack",
+          "strength": "strong"
+        },
+        {
+          "code": "explicit_tcg_contents",
+          "field": "extended_data",
+          "value": "contents statement",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "pack",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    },
+    {
+      "source": {
+        "source_provider": "tcgplayer",
+        "source_category_id": 85,
+        "source_category_name": "Pokemon Japan",
+        "source_group_id": 24653,
+        "source_group_name": "M4: Ninja Spinner",
+        "source_product_id": 683774,
+        "source_product_name": "Ninja Spinner Booster Box",
+        "source_clean_name": "Ninja Spinner Booster Box",
+        "source_url": "https://www.tcgplayer.com/product/683774/pokemon-japan-m4-ninja-spinner-ninja-spinner-booster-box",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Description",
+            "value": "Each sealed <em>Japanese</em> Ninja Spinner Booster Box contains 30 booster packs containing 5 random cards each.",
+            "displayName": "Description"
+          }
+        ],
+        "source_payload_sha256": "2074ddaa464a0f2d85b4fce180c7841eaceb46d5c29f730ae4acd35038d6be00"
+      },
+      "game_key": "pokemon_japan",
+      "classification": "sealed_candidate",
+      "classification_confidence": 0.99,
+      "package_form": "booster_box",
+      "candidate_identity": {
+        "game_category": {
+          "source_category_id": 85,
+          "source_category_name": "Pokemon Japan"
+        },
+        "product_line_set": {
+          "source_group_id": 24653,
+          "source_group_name": "M4: Ninja Spinner"
+        },
+        "canonical_product_family": null,
+        "package_form": "booster_box",
+        "language_region": {
+          "language": "Japanese",
+          "region": "Japan",
+          "evidence": [
+            {
+              "code": "source_category_language_region",
+              "field": "category",
+              "value": "Pokemon Japan",
+              "strength": "strong"
+            }
+          ]
+        },
+        "edition_wave": [],
+        "quantity_contents": [
+          {
+            "quantity": 30,
+            "unit": "booster_pack",
+            "source_field": "extended_data.Description",
+            "matched_text": "30 booster packs"
+          },
+          {
+            "quantity": 5,
+            "unit": "card",
+            "source_field": "extended_data.Description",
+            "matched_text": "5 random cards"
+          }
+        ],
+        "release_presale_state": {
+          "state": "not_stated",
+          "is_presale": false,
+          "released_on": null,
+          "evidence": []
+        },
+        "exact_source_mapping": {
+          "provider": "tcgplayer",
+          "source_category_id": 85,
+          "source_group_id": 24653,
+          "source_product_id": 683774,
+          "source_product_name": "Ninja Spinner Booster Box",
+          "source_url": "https://www.tcgplayer.com/product/683774/pokemon-japan-m4-ninja-spinner-ninja-spinner-booster-box"
+        }
+      },
+      "evidence": [
+        {
+          "code": "exact_booster_box_phrase",
+          "field": "name",
+          "value": "booster box",
+          "strength": "strong"
+        },
+        {
+          "code": "explicit_sealed_wording",
+          "field": "extended_data",
+          "value": "sealed",
+          "strength": "strong"
+        },
+        {
+          "code": "explicit_tcg_contents",
+          "field": "extended_data",
+          "value": "contents statement",
+          "strength": "strong"
+        },
+        {
+          "code": "generic_package_word",
+          "field": "name",
+          "value": "box",
+          "strength": "weak"
+        }
+      ],
+      "reasons": [
+        "A precise package-form phrase provides positive sealed-product evidence."
+      ],
+      "authority": {
+        "candidate_only": true,
+        "canonical_authority": false,
+        "publication_authority": false,
+        "review_status": "unreviewed"
+      }
+    }
+  ],
+  "schema_state": {
+    "transaction_read_only": "on",
+    "transaction_closed_before_artifacts": true,
+    "migration_ledger_present": true,
+    "active_release_pointer_count": 0,
+    "row_counts": {
+      "sealed_product_families": 0,
+      "sealed_product_variants": 0,
+      "sealed_product_candidates": 0,
+      "sealed_product_candidate_reviews": 0,
+      "sealed_product_source_mappings": 0,
+      "sealed_product_variant_evidence": 0,
+      "sealed_product_pricing_lane_qualifications": 0,
+      "sealed_product_releases": 0,
+      "sealed_product_release_members": 0,
+      "sealed_product_release_pointer": 0
+    }
+  },
+  "coverage_plan": {
+    "candidates": [
+      {
+        "source_product_id": 96138
+      },
+      {
+        "source_product_id": 496072
+      },
+      {
+        "source_product_id": 502983
+      },
+      {
+        "source_product_id": 521160
+      },
+      {
+        "source_product_id": 561689
+      },
+      {
+        "source_product_id": 591147
+      },
+      {
+        "source_product_id": 637680
+      },
+      {
+        "source_product_id": 643132
+      },
+      {
+        "source_product_id": 644352
+      },
+      {
+        "source_product_id": 683774
+      }
+    ],
+    "variants": [
+      {
+        "game_key": "magic",
+        "package_form": "case"
+      },
+      {
+        "game_key": "magic",
+        "package_form": "deck"
+      },
+      {
+        "game_key": "one_piece",
+        "package_form": "deck_display"
+      },
+      {
+        "game_key": "one_piece",
+        "package_form": "pack"
+      },
+      {
+        "game_key": "one_piece",
+        "package_form": "bundle"
+      },
+      {
+        "game_key": "pokemon",
+        "package_form": "tin"
+      },
+      {
+        "game_key": "magic",
+        "package_form": "collection"
+      },
+      {
+        "game_key": "pokemon_japan",
+        "package_form": "deck"
+      },
+      {
+        "game_key": "pokemon",
+        "package_form": "pack"
+      },
+      {
+        "game_key": "pokemon_japan",
+        "package_form": "booster_box"
+      }
+    ],
+    "release_state": "draft",
+    "change_active_release_pointer": false,
+    "publication_authority": false
+  },
+  "boundaries": {
+    "database_writes": false,
+    "canonical_rows_constructed": false,
+    "founder_review_recorded": false,
+    "publication_authority": false,
+    "active_release_pointer_change": false,
+    "card_domain_writes": false,
+    "pricing_values": false
+  },
+  "plan_sha256": "8077bdc2c9368a62ff302517666c69c5462b4594d8752047e310228a5ac2cc09",
+  "findings": [],
+  "status": "candidate_selection_frozen_review_required"
+}
