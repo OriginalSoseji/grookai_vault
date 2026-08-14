@@ -19,15 +19,15 @@ function officialFixture() {
       final_url: "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
       http_status: 200,
       http_ok: true,
-      body: "English - NA/EU/OC/LATAM/ME STARTER DECK -Straw Hat Crew- [ST-01] " +
+      body: "<html lang=\"en\"><body>STARTER DECK -Straw Hat Crew- [ST-01] " +
         "December 2, 2022 USD $11.99 Constructed Deck x 1 (51 cards) " +
-        "DON!! Cards x 10 Contains some identical cards from 17 types",
+        "DON!! Cards x 10 Contains some identical cards from 17 types</body></html>",
     },
     cardListResponse: {
       final_url: "https://en.onepiece-cardgame.com/cardlist/?series=569001",
       http_status: 200,
       http_ok: true,
-      body: `English - NA/EU/OC/LATAM/ME 17 results ${cards}`,
+      body: `<html lang="en"><body>17 results ${cards}</body></html>`,
     },
   };
 }

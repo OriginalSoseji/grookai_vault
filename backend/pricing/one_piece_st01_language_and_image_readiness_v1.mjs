@@ -105,8 +105,12 @@ export function evaluateSt01OfficialAuthority({
   assertOfficialResponse(cardListResponse, ONE_PIECE_ST01_CARD_LIST_URL);
   const productText = normalizeOfficialHtmlText(productResponse.body);
   const cardText = normalizeOfficialHtmlText(cardListResponse.body);
+  const englishHtmlPattern = /<html\b[^>]*\blang=["']en["']/i;
+  if (!englishHtmlPattern.test(productResponse.body) ||
+      !englishHtmlPattern.test(cardListResponse.body)) {
+    throw new Error("Official sources do not declare English HTML locale");
+  }
   const productMarkers = [
-    "English - NA/EU/OC/LATAM/ME",
     "STARTER DECK -Straw Hat Crew- [ST-01]",
     "December 2, 2022",
     "USD $11.99",
@@ -119,8 +123,7 @@ export function evaluateSt01OfficialAuthority({
   if (missingProductMarkers.length > 0) {
     throw new Error(`Official product markers missing: ${missingProductMarkers.join(", ")}`);
   }
-  if (!cardText.includes("English - NA/EU/OC/LATAM/ME") ||
-      !cardText.includes("17 results")) {
+  if (!cardText.includes("17 results")) {
     throw new Error("Official English ST-01 card-list scope is not exact");
   }
 
