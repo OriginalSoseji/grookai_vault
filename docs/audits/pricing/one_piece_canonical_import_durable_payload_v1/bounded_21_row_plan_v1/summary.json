@@ -1,0 +1,30 @@
+{
+  "status": "bounded_payload_plan_frozen_no_database_access",
+  "repository": {
+    "commit_sha": "e4ce9994865af958cfce37b62d3355eba4c0c638",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "plan_fingerprint_sha256": "fc9b66a2ef637a62d13c46e23b09e815e923d8d7b19ff14c2e9dfaff5c5cb804",
+  "payload_fingerprint_sha256": "3af8e474e2bf8036bcb6683c6bdb82c0f81a94015851f148b5a7f8e7c60b4a00",
+  "source_manifest_logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9",
+  "schema_apply_plan_fingerprint_sha256": "ee4b70bbfbda797cede83706cccc5234dc9dba619fc23053d02cff6aaad09e58",
+  "batch_rows": 1,
+  "staging_rows": 21,
+  "counts": {
+    "source_products": 21,
+    "exact_single_card_candidates": 18,
+    "numbered_cards": 17,
+    "don_cards": 1,
+    "sealed_product_candidates": 3,
+    "ambiguous_quarantined": 0,
+    "future_or_presale_holds": 0,
+    "source_price_lanes": 21
+  },
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "database_connections": 0,
+  "database_writes": 0,
+  "exact_next_gate": "fresh production source/schema preflight, then exact 1-batch/21-row service-only staging apply and independent readback"
+}

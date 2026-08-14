@@ -875,6 +875,11 @@ Recommended reading order for future maintainers:
       apply, independent zero-finding readback, empty private staging state,
       and the still-closed payload-staging boundary
 
+57. `PRICING_CHECKPOINT_59_ONE_PIECE_DURABLE_PAYLOAD_PLAN_FROZEN.md`
+    - then read the exact offline 1-batch/21-row Starter Deck 1 payload, its
+      zero-mismatch evidence binding, zero promotion authority, and the fresh
+      source/schema preflight still required before any staging append
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
