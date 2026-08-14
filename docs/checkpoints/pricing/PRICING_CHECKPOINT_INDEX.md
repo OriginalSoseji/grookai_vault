@@ -901,6 +901,11 @@ Recommended reading order for future maintainers:
       card/DON paths, three deliberately undefined sealed paths, and the
       still-closed Storage and promotion boundaries
 
+62. `PRICING_CHECKPOINT_64_ONE_PIECE_ST01_STORAGE_COLLISION_PREFLIGHT_PASSED.md`
+    - then read the frozen 18-object read-only Storage collision proof, exact
+      local hash readback, zero existing targets, explicit sealed exclusion,
+      and the still-closed permanent-upload and pointer-mutation boundaries
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

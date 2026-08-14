@@ -1,0 +1,35 @@
+{
+  "version": "ONE_PIECE_ST01_STORAGE_COLLISION_PREFLIGHT_V1",
+  "status": "storage_collision_preflight_passed_no_writes",
+  "repository": {
+    "commit_sha": "d20217eb9de3d899b30715833737701341b852a3",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "run_plan_fingerprint_sha256": "c8bba7c126aaf70f30f83c8e8cf844e66df6e1356435253c19d769ce97005d42",
+  "source_readiness_rows_sha256": "6fd5b77b764bf1a8400bc02f271781499321759b6a45d108e5f18571c7555c89",
+  "target": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "storage_bucket": "user-card-images"
+  },
+  "counts": {
+    "selected_assets": 18,
+    "local_cache_verified": 18,
+    "storage_list_requests": 18,
+    "storage_collisions": 0,
+    "ready_for_future_upload": 18
+  },
+  "boundaries": {
+    "run_plan_written_before_storage_access": true,
+    "storage_reads": 18,
+    "storage_downloads": 0,
+    "storage_uploads": 0,
+    "storage_removals": 0,
+    "database_connections": 0,
+    "database_writes": 0,
+    "pointer_updates": 0,
+    "canonical_mutations": 0,
+    "sealed_assets_included": 0
+  },
+  "exact_next_gate": "freeze a separately guarded permanent upload writer for these exact 18 objects with upsert false and exact post-upload readback",
+  "preflight_fingerprint_sha256": "760733af1a85a828b56206334fdebab8acd3d8246cd938a9d82f05632c4be01b"
+}
