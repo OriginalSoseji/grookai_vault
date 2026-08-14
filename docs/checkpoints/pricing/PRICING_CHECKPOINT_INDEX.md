@@ -885,6 +885,11 @@ Recommended reading order for future maintainers:
       zero-collision empty staging state, exact evidence fingerprints, and the
       separately guarded 1-batch/21-row writer still required
 
+59. `PRICING_CHECKPOINT_61_ONE_PIECE_DURABLE_PAYLOAD_STAGED.md`
+    - then read the exact service-role append, 1-batch/21-row transaction and
+      independent readback proofs, fully closed promotion authority, and the
+      read-only identity review required before any canonical or sealed apply
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
