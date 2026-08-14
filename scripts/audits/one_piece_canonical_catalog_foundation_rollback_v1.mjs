@@ -555,6 +555,7 @@ export {
   PINNED_MIGRATION_SHA256,
   PINNED_PREFLIGHT_FINGERPRINT,
   PINNED_PREFLIGHT_SUMMARY_SHA256,
+  captureFoundationState,
   evaluatePostRollback,
   parseArgs,
   verifyInputs,
