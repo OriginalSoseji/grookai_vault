@@ -38,6 +38,34 @@ const LANGUAGE_MARKERS = [
   ["spanish", "Spanish"],
 ];
 
+const NON_TCG_NONSEALED_LABELS = new Set([
+  "card & die",
+  "event kits",
+  "figures",
+  "miniatures",
+  "non-sealed products",
+  "unopened games",
+]);
+
+const NON_TCG_CATEGORY_NAMES = new Set([
+  "boardgames",
+  "bulk lots",
+  "card sleeves",
+  "card storage tins",
+  "citadel paints",
+  "citadel tools",
+  "collectible storage",
+  "deck boxes",
+  "life counters",
+  "organizers and stores",
+  "playmats",
+  "protective pages",
+  "storage albums",
+  "supply bundles",
+  "tcgplayer",
+  "tcgplayer supplies",
+]);
+
 const PACKAGE_RULES = [
   {
     form: "case",
@@ -52,6 +80,8 @@ const PACKAGE_RULES = [
       "case of boxes",
       "deck display case",
       "starter deck case",
+      "collection case",
+      "collector chest case",
     ],
   },
   {
@@ -98,6 +128,7 @@ const PACKAGE_RULES = [
       "promo pack",
       "promotional pack",
       "event pack",
+      "participation pack",
       "winner pack",
       "prize pack",
       "tournament pack",
@@ -122,6 +153,8 @@ const PACKAGE_RULES = [
     code: "exact_deck_product_phrase",
     phrases: [
       "starter deck",
+      "start deck",
+      "starter set",
       "structure deck",
       "commander deck",
       "theme deck",
@@ -139,9 +172,17 @@ const PACKAGE_RULES = [
     phrases: [
       "prerelease kit",
       "pre release kit",
+      "prerelease pack",
+      "pre release pack",
       "starter kit",
       "build and battle box",
       "build & battle box",
+      "build and battle stadium",
+      "build & battle stadium",
+      "deck builder's toolkit",
+      "deck builders toolkit",
+      "deck build box",
+      "elite trainer box",
       "trainer toolkit",
     ],
   },
@@ -160,6 +201,8 @@ const PACKAGE_RULES = [
       "collection set",
       "poster collection",
       "figure collection",
+      "premium card collection",
+      "secret lair drop",
     ],
   },
   {
@@ -167,6 +210,7 @@ const PACKAGE_RULES = [
     code: "exact_bundle_phrase",
     phrases: [
       "sealed promotional bundle",
+      "double pack set",
       "gift bundle",
       "fat pack bundle",
       "booster bundle",
@@ -296,12 +340,37 @@ function cardEvidence(product, fields) {
   ) {
     results.push(evidence("protected_one_piece_don_card", "name+extended_data", product.name));
   }
+  if (/^\s*(?:online\s+)?code card\b/i.test(clean(product?.name))) {
+    results.push(evidence("explicit_code_card_name", "name", product.name));
+  }
   return results;
 }
 
 function packageEvidence(product, combinedText) {
   const matches = [];
   for (const rule of PACKAGE_RULES) {
+    if (
+      rule.form === "case" &&
+      /\b(?:booster|display|box|bundle|collection|tin|chest|deck)\b.*\bcase\b/i.test(
+        clean(product?.name),
+      )
+    ) {
+      matches.push({
+        package_form: "case",
+        evidence: evidence("structural_case_phrase", "name", product.name),
+      });
+    }
+    if (
+      rule.form === "deck_display" &&
+      /\b(?:start(?:er)?|structure|theme|commander|battle)?\s*deck\b.*\bdisplay\b/i.test(
+        clean(product?.name),
+      )
+    ) {
+      matches.push({
+        package_form: "deck_display",
+        evidence: evidence("structural_deck_display_phrase", "name", product.name),
+      });
+    }
     const matchedPhrase = rule.phrases.find((phrase) => hasPhrase(product?.name, phrase));
     if (matchedPhrase) {
       matches.push({
@@ -471,11 +540,24 @@ export function classifyCrossTcgSealedProductV1(product = {}) {
   const combinedText = `${name}\n${extendedText}`;
   const cards = cardEvidence({ ...product, name }, fields);
   const packages = packageEvidence({ ...product, name }, combinedText);
+  const categoryName = lower(product?.category_display_name ?? product?.category_name);
+  const nonSealedLabel = lower(product?.non_sealed_label);
+  const outsideTcgCardDomain =
+    NON_TCG_CATEGORY_NAMES.has(categoryName) ||
+    NON_TCG_NONSEALED_LABELS.has(nonSealedLabel);
   const customSignals = CUSTOM_PRODUCT_PHRASES.filter((phrase) => hasPhrase(combinedText, phrase));
   const accessorySignals = ACCESSORY_PHRASES.filter((phrase) => hasPhrase(combinedText, phrase));
+  const nameAccessorySignals = ACCESSORY_PHRASES.filter((phrase) => hasPhrase(name, phrase));
   const genericSignals = GENERIC_PACKAGE_WORDS.filter((phrase) => hasPhrase(name, phrase));
-  const explicitCardContents = /\b(?:contains?|includes?|contents?)\b[^\n.]{0,100}\b\d+\s*(?:x\s*)?cards?\b/i.test(extendedText)
-    || /\b\d+\s*(?:x\s*)?cards?\s+(?:included|inside|per|in)\b/i.test(extendedText);
+  const explicitCardContents = /\b\d+\s*(?:x\s*)?(?:(?!cards?\b|lands?\b)[a-z]+(?:-[a-z]+)?[\s-]+){0,3}[-\s]*(?:cards?|lands?)\b/i.test(extendedText);
+  const explicitPackOrDeckContents =
+    /\b\d+\s*(?:x\s*)?(?:(?!booster\b|packs?\b)[a-z]+[\s-]+){0,3}(?:booster\s+packs?|packs?)\b/i.test(extendedText) ||
+    /\b\d+\s*(?:x\s*)?(?:(?!decks?\b)[a-z]+[\s-]+){0,3}decks?\b(?!\s+(?:box|protector))/i.test(extendedText);
+  const explicitAccessoryOnlyContents =
+    accessorySignals.length > 0 &&
+    !explicitCardContents &&
+    !explicitPackOrDeckContents &&
+    (/\bcontents?\b/i.test(extendedText) || hasPhrase(name, "merch bundle"));
 
   let classification = "ambiguous_review";
   let confidence = 0.5;
@@ -489,12 +571,32 @@ export function classifyCrossTcgSealedProductV1(product = {}) {
     ...genericSignals.map((value) => evidence("generic_package_word", "name", value, "weak")),
   ];
 
-  if (cards.length > 0) {
+  if (outsideTcgCardDomain) {
+    allEvidence.unshift(
+      evidence(
+        "source_category_outside_tcg_card_domain",
+        "category",
+        `${product?.category_display_name ?? product?.category_name ?? "unknown"} | ${product?.non_sealed_label ?? ""}`,
+      ),
+    );
+  }
+
+  if (outsideTcgCardDomain) {
+    classification = "excluded_non_tcg_product";
+    confidence = 0.99;
+    packageForm = null;
+    reasons.push("The source category is outside the TCG card-product domain.");
+  } else if (cards.length > 0) {
     classification = "nonsealed_card";
     confidence = cards.some((entry) => entry.code === "explicit_card_number") ? 0.99 : 0.97;
     packageForm = null;
     reasons.push("Individual-card source fields take precedence over packaging-like name text.");
-  } else if (accessorySignals.length > 0 && !explicitCardContents) {
+  } else if (
+    nameAccessorySignals.length > 0 &&
+    !packages.some((entry) => entry.package_form) &&
+    !explicitCardContents &&
+    !explicitPackOrDeckContents
+  ) {
     classification = "excluded_non_tcg_product";
     confidence = 0.94;
     packageForm = null;
@@ -504,11 +606,26 @@ export function classifyCrossTcgSealedProductV1(product = {}) {
     confidence = 0.62;
     reasons.push("Custom, repack, lot, or retailer-bundle language requires human review.");
   } else if (packages.some((entry) => entry.package_form)) {
-    classification = "sealed_candidate";
-    const hasContents = packages.some((entry) => entry.evidence.code === "explicit_tcg_contents");
-    const hasSealed = packages.some((entry) => entry.evidence.code === "explicit_sealed_wording");
-    confidence = hasContents && hasSealed ? 0.99 : hasContents || hasSealed ? 0.97 : 0.92;
-    reasons.push("A precise package-form phrase provides positive sealed-product evidence.");
+    if (explicitAccessoryOnlyContents) {
+      classification = "excluded_non_tcg_product";
+      confidence = 0.94;
+      packageForm = null;
+      reasons.push("An explicit contents list contains accessories or merchandise but no TCG card, pack, or deck contents.");
+    } else if (
+      nameAccessorySignals.length > 0 &&
+      !explicitCardContents &&
+      !explicitPackOrDeckContents
+    ) {
+      classification = "ambiguous_review";
+      confidence = 0.6;
+      reasons.push("A package-form phrase is combined with an accessory name but has no explicit TCG contents evidence.");
+    } else {
+      classification = "sealed_candidate";
+      const hasContents = packages.some((entry) => entry.evidence.code === "explicit_tcg_contents");
+      const hasSealed = packages.some((entry) => entry.evidence.code === "explicit_sealed_wording");
+      confidence = hasContents && hasSealed ? 0.99 : hasContents || hasSealed ? 0.97 : 0.92;
+      reasons.push("A precise package-form phrase provides positive sealed-product evidence.");
+    }
   } else if (packages.length > 0) {
     classification = "ambiguous_review";
     confidence = 0.66;

@@ -77,9 +77,37 @@ test("booster display case is a case candidate", () => {
 
 test("starter deck is a deck candidate and deck display stays separate", () => {
   const deck = classify("One Piece Starter Deck ST-01");
-  const display = classify("One Piece Starter Deck Display ST-01");
+  const display = classify("Starter Deck 14: 3D2Y Display");
   assert.equal(deck.candidate_identity.package_form, "deck");
   assert.equal(display.candidate_identity.package_form, "deck_display");
+});
+
+test("cross-TCG product families normalize to explicit package forms", () => {
+  const cases = [
+    ["Secrets of Strixhaven - Witherbloom Prerelease Pack", "kit"],
+    ["Theros Beyond Death - Deck Builder's Toolkit", "kit"],
+    ["Astral Radiance Build & Battle Stadium", "kit"],
+    ["XY Roaring Skies Elite Trainer Box", "kit"],
+    ["Ruler of the Black Flame Deck Build Box", "kit"],
+    ["ex Start Deck Fire Victini", "deck"],
+    ["Double Pack Set Volume 2", "bundle"],
+    ["Premium Card Collection -Live Action Edition-", "collection"],
+    ["Offline Regional Participation Pack 2025 Vol. 2", "promo_pack"],
+    ["Secret Lair Drop: Purr Majesty - Non-Foil Edition", "collection"],
+  ];
+  for (const [name, form] of cases) {
+    const result = classify(name);
+    assert.equal(result.classification, "sealed_candidate", name);
+    assert.equal(result.candidate_identity.package_form, form, name);
+  }
+});
+
+test("fixed deck remains sealed when explicit contents mention a deck box", () => {
+  const result = classify("Commander Deck - Example", [
+    field("Description", "Contents: 1x ready-to-play 100-card Commander deck and 1x deck box."),
+  ], { category_id: 1, category_display_name: "Magic: The Gathering" });
+  assert.equal(result.classification, "sealed_candidate");
+  assert.equal(result.candidate_identity.package_form, "deck");
 });
 
 test("kits, tins, collections, bundles, and promo packs are typed", () => {
@@ -142,6 +170,12 @@ test("special DON card pack without card fields remains a promo pack candidate",
   assert.equal(result.candidate_identity.package_form, "promo_pack");
 });
 
+test("code card remains an individual card even when its name names a tin", () => {
+  const result = classify("Code Card - Paldea Partners Tin (Quaquaval)");
+  assert.equal(result.classification, "nonsealed_card");
+  assert.equal(result.candidate_identity.package_form, null);
+});
+
 test("an unnumbered card with multiple card fields remains a card", () => {
   const result = classify("Monkey.D.Luffy (Sealed Battle 2024 Vol. 2)", [
     field("Rarity", "L"),
@@ -193,6 +227,23 @@ test("accessory-only merchandise bundle is excluded", () => {
     field("Description", "Contents: 1x playmat, 1x deck box, 1x deck protector sleeves."),
   ]);
   assert.equal(result.classification, "excluded_non_tcg_product");
+});
+
+test("accessory package without contents evidence stays in review", () => {
+  const result = classify("Seven Warlords Binder Set (Bundle)");
+  assert.equal(result.classification, "ambiguous_review");
+  assert.equal(result.candidate_identity.package_form, "bundle");
+});
+
+test("non-TCG source category is explicitly excluded", () => {
+  const result = classify("Example Booster Box", [], {
+    category_id: 5,
+    category_display_name: "Boardgames",
+    non_sealed_label: "Unopened Games",
+  });
+  assert.equal(result.classification, "excluded_non_tcg_product");
+  assert.equal(result.candidate_identity.package_form, null);
+  assert.ok(result.evidence.some((entry) => entry.code === "source_category_outside_tcg_card_domain"));
 });
 
 test("custom and repack products require review", () => {

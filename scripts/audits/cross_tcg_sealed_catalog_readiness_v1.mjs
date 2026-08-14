@@ -187,6 +187,7 @@ async function readPortfolio(args) {
            product.extended_data,
            category.name as category_name,
            category.display_name as category_display_name,
+           category.non_sealed_label,
            source_group.name as group_name
          from public.tcgcsv_source_products product
          join public.tcgcsv_source_categories category

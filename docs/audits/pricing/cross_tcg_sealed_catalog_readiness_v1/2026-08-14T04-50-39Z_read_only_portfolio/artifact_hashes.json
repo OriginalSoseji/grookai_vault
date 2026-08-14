@@ -1,0 +1,30 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "44b51d9a604d9f15b6865e30c1b6eafc3f5de6d4",
+  "artifacts": {
+    "ambiguity_summary.json": {
+      "sha256": "8697308abcdc54afe4d3f8464ca146aee6f30c1bbaf141cbe6c68f857ff887e7",
+      "bytes": 543
+    },
+    "classification_counts_by_category.json": {
+      "sha256": "405e5883d3ad36469e9f990cae0fb878adb347bce37a93622f3d648b7ee20329",
+      "bytes": 41669
+    },
+    "deterministic_samples.json.gz": {
+      "sha256": "01b2b085528b37fad3e60167e4d1ef15cd87f38e18084b10d4f78d95445d7858",
+      "bytes": 114627
+    },
+    "REPORT.md": {
+      "sha256": "2c3633f04d6fc0f977a71176bcf23bffb2c33053dfa76d3b0a22c99717ca8e45",
+      "bytes": 2473
+    },
+    "run_plan.json": {
+      "sha256": "aa4d380ba18d5efbc9cecb0935fe97981e04aec0ae44103b4addb3da8ca6c2d3",
+      "bytes": 821
+    },
+    "summary.json": {
+      "sha256": "3baf163a78e289e364ce5f964ca3ed67aad9525a1b777f89170a2baef78d89d4",
+      "bytes": 72191
+    }
+  }
+}
