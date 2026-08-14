@@ -271,7 +271,8 @@ evidence authority.
 
 ## Exact Next Gate
 
-After the V1 readiness artifact is reviewed, build a service-only staging
-schema and a one-group rollback canary plan. That later gate must use the frozen
-manifest fingerprint, include no sealed or ambiguous rows, keep One Piece
-hidden, and stop before any durable canonical apply.
+The service-only staging design and rollback canary plan are governed by
+`ONE_PIECE_CANONICAL_IMPORT_STAGING_AND_ROLLBACK_CANARY_V1.md`. The plan must use
+the frozen manifest fingerprint, preserve singles, DON!!, sealed, quarantine,
+language, and release states as distinct evidence lanes, keep One Piece hidden,
+and stop before any database execution or durable apply.
