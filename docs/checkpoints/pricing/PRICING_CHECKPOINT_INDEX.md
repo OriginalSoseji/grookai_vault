@@ -922,6 +922,12 @@ Recommended reading order for future maintainers:
       independent zero-residue readback, preserved 21-row staging scope, and
       the still-closed durable foundation apply and card-promotion boundaries
 
+66. `PRICING_CHECKPOINT_68_ONE_PIECE_CANONICAL_FOUNDATION_APPLY_READY.md`
+    - then read the frozen hidden-foundation apply fingerprint, guarded writer,
+      final fresh production preflight, exact two-row public-table attribution,
+      failure-evidence contract, and the explicit authorization still required
+      before durable migration apply
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
