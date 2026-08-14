@@ -371,7 +371,6 @@ function reportMarkdown(summary) {
     "This gate proves source classification readiness only. It does not authorize a canonical sealed-domain schema or publication.",
     "",
     "Exact next gate: design a bounded canonical sealed-domain schema and migration plan, then review it before any canary apply.",
-    "",
   ].join("\n")}\n`;
 }
 
