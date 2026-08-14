@@ -1,0 +1,8 @@
+{
+  "version": "MTG_CATALOG_INGESTION_PROGRESS_OBSERVER_V1",
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "snapshot.json": "d410c398e8f08c690d8d235434e36d6e154b9213bedd4288f54fe6df04e0eac0",
+    "REPORT.md": "8ad755efaa63276656920d642b04e6915266c641559878df31c66cd1e6e925e0"
+  }
+}
