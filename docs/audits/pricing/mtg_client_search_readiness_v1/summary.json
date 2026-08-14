@@ -1,0 +1,756 @@
+{
+  "audit_version": "MTG_CLIENT_SEARCH_READINESS_AUDIT_V1",
+  "status": "blocked_before_mtg_client_release",
+  "fixture_validation": {
+    "ok": true,
+    "issues": []
+  },
+  "summary": {
+    "surface_count": 8,
+    "capability_check_count": 68,
+    "ready": 35,
+    "partial": 8,
+    "blocked": 25,
+    "not_applicable": 0,
+    "release_blocker_count": 4
+  },
+  "release_blockers": [
+    {
+      "id": "game_scoped_client_read_model",
+      "status": "blocked",
+      "reason": "Search and catalog queries need an explicit game scope before MTG can be released beside Pokemon."
+    },
+    {
+      "id": "multiface_identity_and_image_model",
+      "status": "blocked",
+      "reason": "Structured face names and face images are absent from the frozen payload and both clients."
+    },
+    {
+      "id": "exact_mtg_collector_number_search",
+      "status": "blocked",
+      "reason": "Exact search must preserve suffix, symbol, dagger, and other nonnumeric collector tokens."
+    },
+    {
+      "id": "explicit_language_contract",
+      "status": "blocked",
+      "reason": "Current language scope relies on Pokemon identity conventions instead of a canonical language field."
+    },
+    {
+      "id": "hidden_release_boundary",
+      "status": "ready",
+      "reason": "Restrictive RLS and the wrapped search RPC must remain the authority."
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "web_catalog",
+      "client": "web",
+      "label": "Web set catalog",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "apps/web/src/lib/publicSearchResolver.ts",
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "partial",
+          "evidence": [
+            "apps/web/src/lib/publicLanguageScope.ts"
+          ],
+          "gap": "Language is inferred from Pokemon-specific IDs instead of carried as canonical card language. English MTG V1 can render, but language truth is not generic."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "web_search",
+      "client": "web",
+      "label": "Web catalog search",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "apps/web/src/lib/publicSearchResolver.ts",
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": null
+        },
+        "collector_number": {
+          "label": "Exact collector number",
+          "status": "partial",
+          "evidence": [
+            "apps/web/src/lib/publicSearchResolver.ts"
+          ],
+          "gap": "Structured search only recognizes numeric or prefix-numeric tokens; suffix, symbol, dagger, and other MTG collector numbers are not exact-search safe."
+        },
+        "finishes": {
+          "label": "Normal, foil, and etched finishes",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/cards/displayDiscriminator.ts",
+            "apps/web/src/lib/search/smartSearchIntent.ts"
+          ],
+          "gap": null
+        },
+        "multiface_names": {
+          "label": "Multi-face names",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "apps/web/src/types/cards.ts"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "multiface_images": {
+          "label": "Multi-face images",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "apps/web/src/types/cards.ts"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "artist": {
+          "label": "Artist",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/getPublicCardByGvId.ts"
+          ],
+          "gap": null
+        },
+        "rarity": {
+          "label": "Rarity",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/getPublicCardByGvId.ts"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "partial",
+          "evidence": [
+            "apps/web/src/lib/publicLanguageScope.ts"
+          ],
+          "gap": "Language is inferred from Pokemon-specific IDs instead of carried as canonical card language. English MTG V1 can render, but language truth is not generic."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "web_card_detail",
+      "client": "web",
+      "label": "Web card detail",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "partial",
+          "evidence": [
+            "apps/web/src/lib/getPublicCardByGvId.ts"
+          ],
+          "gap": "Identity domain is visible in part of the path, but the client has no first-class game scope."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": null
+        },
+        "collector_number": {
+          "label": "Exact collector number",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/app/card/[gv_id]/page.tsx"
+          ],
+          "gap": null
+        },
+        "finishes": {
+          "label": "Normal, foil, and etched finishes",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/cards/displayDiscriminator.ts",
+            "apps/web/src/lib/search/smartSearchIntent.ts"
+          ],
+          "gap": null
+        },
+        "multiface_names": {
+          "label": "Multi-face names",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "apps/web/src/types/cards.ts"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "multiface_images": {
+          "label": "Multi-face images",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "apps/web/src/types/cards.ts"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "artist": {
+          "label": "Artist",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/getPublicCardByGvId.ts"
+          ],
+          "gap": null
+        },
+        "rarity": {
+          "label": "Rarity",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/getPublicCardByGvId.ts"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "blocked",
+          "evidence": [],
+          "gap": "The surface carries no explicit or safely inferred language."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "web_set_grid",
+      "client": "web",
+      "label": "Web set card grid",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "apps/web/src/lib/publicSearchResolver.ts",
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/publicSets.ts"
+          ],
+          "gap": null
+        },
+        "collector_number": {
+          "label": "Exact collector number",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/app/card/[gv_id]/page.tsx"
+          ],
+          "gap": null
+        },
+        "finishes": {
+          "label": "Normal, foil, and etched finishes",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/cards/displayDiscriminator.ts",
+            "apps/web/src/lib/search/smartSearchIntent.ts"
+          ],
+          "gap": null
+        },
+        "multiface_names": {
+          "label": "Multi-face names",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "apps/web/src/types/cards.ts"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "multiface_images": {
+          "label": "Multi-face images",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "apps/web/src/types/cards.ts"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "artist": {
+          "label": "Artist",
+          "status": "blocked",
+          "evidence": [],
+          "gap": "Artist is not carried or rendered by this surface."
+        },
+        "rarity": {
+          "label": "Rarity",
+          "status": "ready",
+          "evidence": [
+            "apps/web/src/lib/getPublicCardByGvId.ts"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "blocked",
+          "evidence": [],
+          "gap": "The surface carries no explicit or safely inferred language."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "flutter_catalog",
+      "client": "flutter",
+      "label": "Flutter set catalog",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "lib/models/card_print.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "partial",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": "Language is inferred from Pokemon-specific IDs instead of carried as canonical card language. English MTG V1 can render, but language truth is not generic."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "flutter_search",
+      "client": "flutter",
+      "label": "Flutter catalog search",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "lib/models/card_print.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "collector_number": {
+          "label": "Exact collector number",
+          "status": "partial",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": "Structured search only recognizes numeric or prefix-numeric tokens; suffix, symbol, dagger, and other MTG collector numbers are not exact-search safe."
+        },
+        "finishes": {
+          "label": "Normal, foil, and etched finishes",
+          "status": "ready",
+          "evidence": [
+            "lib/services/identity/display_identity.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "multiface_names": {
+          "label": "Multi-face names",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "lib/models/card_print.dart"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "multiface_images": {
+          "label": "Multi-face images",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "lib/models/card_print.dart"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "artist": {
+          "label": "Artist",
+          "status": "blocked",
+          "evidence": [],
+          "gap": "Artist is not carried or rendered by this surface."
+        },
+        "rarity": {
+          "label": "Rarity",
+          "status": "ready",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "partial",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": "Language is inferred from Pokemon-specific IDs instead of carried as canonical card language. English MTG V1 can render, but language truth is not generic."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "flutter_card_detail",
+      "client": "flutter",
+      "label": "Flutter card detail",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "lib/models/card_print.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "collector_number": {
+          "label": "Exact collector number",
+          "status": "ready",
+          "evidence": [
+            "lib/card_detail_screen.dart"
+          ],
+          "gap": null
+        },
+        "finishes": {
+          "label": "Normal, foil, and etched finishes",
+          "status": "ready",
+          "evidence": [
+            "lib/services/identity/display_identity.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "multiface_names": {
+          "label": "Multi-face names",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "lib/models/card_print.dart"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "multiface_images": {
+          "label": "Multi-face images",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "lib/models/card_print.dart"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "artist": {
+          "label": "Artist",
+          "status": "ready",
+          "evidence": [
+            "lib/card_detail_screen.dart"
+          ],
+          "gap": null
+        },
+        "rarity": {
+          "label": "Rarity",
+          "status": "ready",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "blocked",
+          "evidence": [],
+          "gap": "The surface carries no explicit or safely inferred language."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    },
+    {
+      "id": "flutter_set_grid",
+      "client": "flutter",
+      "label": "Flutter set card grid",
+      "capabilities": {
+        "game_scope": {
+          "label": "Game-scoped identity",
+          "status": "blocked",
+          "evidence": [
+            "lib/models/card_print.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": "The surface cannot distinguish MTG from another game before matching or grouping rows."
+        },
+        "set_code": {
+          "label": "Set code",
+          "status": "ready",
+          "evidence": [
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "collector_number": {
+          "label": "Exact collector number",
+          "status": "ready",
+          "evidence": [
+            "lib/card_detail_screen.dart"
+          ],
+          "gap": null
+        },
+        "finishes": {
+          "label": "Normal, foil, and etched finishes",
+          "status": "ready",
+          "evidence": [
+            "lib/services/identity/display_identity.dart",
+            "lib/services/public/public_sets_service.dart"
+          ],
+          "gap": null
+        },
+        "multiface_names": {
+          "label": "Multi-face names",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "lib/models/card_print.dart"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "multiface_images": {
+          "label": "Multi-face images",
+          "status": "blocked",
+          "evidence": [
+            "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+            "lib/models/card_print.dart"
+          ],
+          "gap": "The frozen payload preserves a combined name and layout but no structured face names or face images, so the client cannot render a trustworthy multi-face model."
+        },
+        "artist": {
+          "label": "Artist",
+          "status": "blocked",
+          "evidence": [],
+          "gap": "Artist is not carried or rendered by this surface."
+        },
+        "rarity": {
+          "label": "Rarity",
+          "status": "ready",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": null
+        },
+        "language": {
+          "label": "Explicit language",
+          "status": "partial",
+          "evidence": [
+            "lib/models/card_print.dart"
+          ],
+          "gap": "Language is inferred from Pokemon-specific IDs instead of carried as canonical card language. English MTG V1 can render, but language truth is not generic."
+        },
+        "hidden_release": {
+          "label": "Hidden-release fallback",
+          "status": "ready",
+          "evidence": [
+            "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+          ],
+          "gap": null
+        }
+      }
+    }
+  ],
+  "boundaries": {
+    "mode": "offline_source_audit",
+    "database_access": false,
+    "database_writes": false,
+    "release_control_changes": false,
+    "mtg_visibility_activation": false,
+    "deployment": false,
+    "vercel": false,
+    "active_ingestion_worktree_touched": false
+  },
+  "next_gate": "build_game_scoped_client_read_model_and_multiface_contract_offline",
+  "source_evidence": {
+    "frozen_contract": {
+      "path": "docs/contracts/MTG_CANONICAL_CATALOG_IMPORT_CONTRACT_V1.md",
+      "sha256": "5516a8d685a09d1119140bbd5f297b5956d9df5eb024e3a28d39ec7518ca07bb"
+    },
+    "frozen_canary_payload": {
+      "path": "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+      "sha256": "37b6973d48edbf19966dae12d76cc6e6dfd556a9c52155332f71d4faddbb4b1b"
+    },
+    "visibility_boundary": {
+      "path": "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql",
+      "sha256": "925b31fcf1ba0895f2ed276bb77b45c948d3f1f0c2ef147843487be7ba7125a4"
+    },
+    "web_types": {
+      "path": "apps/web/src/types/cards.ts",
+      "sha256": "491f7eac6ab2f7ec582aee5cc1709a315da29079df247f3467a0a82b660dda8e"
+    },
+    "web_search": {
+      "path": "apps/web/src/lib/publicSearchResolver.ts",
+      "sha256": "3519af35594694b57cd9e7f7860eb9ede9c4f80bf0e4b3eadcb93b601c7433d5"
+    },
+    "web_search_intent": {
+      "path": "apps/web/src/lib/search/smartSearchIntent.ts",
+      "sha256": "8aabf3a6c057d2b45a4f33aff7f91a6f340b9fb9f4bf6daff5cea7d6a7487f33"
+    },
+    "web_explore": {
+      "path": "apps/web/src/lib/explore/getExploreRows.ts",
+      "sha256": "c1aa692209d17c6dc7f3f2e9bf793e672101a3cfa408717a3b3de2e18d31bb9a"
+    },
+    "web_card_detail": {
+      "path": "apps/web/src/lib/getPublicCardByGvId.ts",
+      "sha256": "6b6c3a14a0794f00d5c6bace0159b80768774f2410e8580c3397727f5ba3969f"
+    },
+    "web_card_page": {
+      "path": "apps/web/src/app/card/[gv_id]/page.tsx",
+      "sha256": "bdc506f0461314e055e75550673d0986e2a3edef2fe6e200331e44c0b42d9478"
+    },
+    "web_sets": {
+      "path": "apps/web/src/lib/publicSets.ts",
+      "sha256": "2ee8ac8d7da85125472701fb37a6f0c5acbabf8489fefd32924095869d04f6fc"
+    },
+    "web_set_types": {
+      "path": "apps/web/src/lib/publicSets.shared.ts",
+      "sha256": "4fb714096cc6f2087a91fbbd8b0d90282b0616bd9754089be276109a0772f7d6"
+    },
+    "web_set_grid": {
+      "path": "apps/web/src/components/PublicSetCardGrid.tsx",
+      "sha256": "6282fa3fd78dc5735e857c8ec6a9902b650714b1776f1060407c376a0c80a9d1"
+    },
+    "web_language": {
+      "path": "apps/web/src/lib/publicLanguageScope.ts",
+      "sha256": "ea04494f018c320ff0cd532a2bdace8f56cbd53ace7a99fffd46481ea9f358f4"
+    },
+    "web_finish": {
+      "path": "apps/web/src/lib/cards/displayDiscriminator.ts",
+      "sha256": "7c7f6640c9a12f44fb677967c38dc4588ac06f002c0db1d1b2afe2440faba9e2"
+    },
+    "flutter_model": {
+      "path": "lib/models/card_print.dart",
+      "sha256": "dec72fafdf052e0d223d00e242249495e8406f5f99fc187880026d6fb58b2afc"
+    },
+    "flutter_search_identity": {
+      "path": "lib/services/identity/identity_search.dart",
+      "sha256": "3fe302f9b4acc20d300bbbde4de7f7498f20d09191df639b2ebb092bc331d77b"
+    },
+    "flutter_card_detail": {
+      "path": "lib/card_detail_screen.dart",
+      "sha256": "a64645947f87ce4b694e7d12afd381468cce17c6b20a2cd7de7601dc34292e3b"
+    },
+    "flutter_sets": {
+      "path": "lib/services/public/public_sets_service.dart",
+      "sha256": "54a035db20104b68c5315f69be34b6a91b04467c8d56ca9b76a161866f62bc86"
+    },
+    "flutter_set_grid": {
+      "path": "lib/screens/sets/public_set_detail_screen.dart",
+      "sha256": "d3f29d2fcd6a76470945f00596c6a3142bf40f1d0ad124f60e4f728782c2328f"
+    },
+    "flutter_finish": {
+      "path": "lib/services/identity/display_identity.dart",
+      "sha256": "b7b860687e4a000a9abc5f7bd288a4fab86dd309119ee9948bf30349327e2278"
+    },
+    "fixture": {
+      "path": "tests/fixtures/mtg_client_search_readiness_v1.json",
+      "sha256": "d28ec0df3e434dced2abfa3e05a6957a1837cab417f6d0507ba34339ae75fa05"
+    }
+  }
+}

@@ -158,7 +158,8 @@
     "mee:reference-warehouse-delta-writer:run": "node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --run",
     "pricing:ebay:self": "node backend/ebay/ebay_self_orders_worker.mjs",
     "pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs",
-    "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs"
+    "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs",
+    "mtg:client-readiness:audit": "node scripts/audits/mtg_client_search_readiness_v1.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
