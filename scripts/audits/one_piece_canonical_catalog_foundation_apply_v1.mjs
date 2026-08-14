@@ -86,6 +86,12 @@ async function writeJson(file, value) {
   return body;
 }
 
+function cleanError(error) {
+  return String(error?.message ?? error)
+    .replace(/postgres(?:ql)?:\/\/[^\s]+/gi, "[REDACTED_DATABASE_URL]")
+    .slice(0, 4000);
+}
+
 async function loadFrozenInputs() {
   const [migration, preflight, rollback, independent] = await Promise.all([
     read(ONE_PIECE_FOUNDATION_MIGRATION_PATH),
@@ -381,17 +387,51 @@ async function executeFoundationApply({ args, inputs, connectionString }) {
       await client.query("rollback").catch(() => {});
       throw error;
     }
+  } catch (error) {
+    error.executionProof = {
+      repository,
+      committed,
+      baseline,
+      protected_counts_before: protectedBefore,
+      inside_transaction_readback: inside,
+      attributable_writes: attributableWrites,
+    };
+    throw error;
   } finally {
     await client.end();
   }
   if (!committed) throw new Error("Foundation transaction did not commit");
-  const postApply = await captureFreshReadOnly(connectionString);
+  let postApply;
+  try {
+    postApply = await captureFreshReadOnly(connectionString);
+  } catch (error) {
+    error.executionProof = {
+      repository,
+      committed,
+      baseline,
+      protected_counts_before: protectedBefore,
+      inside_transaction_readback: inside,
+      attributable_writes: attributableWrites,
+      fresh_post_apply_readback: null,
+    };
+    throw error;
+  }
   const postFindings = evaluateOnePieceFoundationDurableReadbackV1({
     plan: inputs.plan,
     readback: postApply,
   });
   if (postFindings.length) {
-    throw new Error(`Fresh post-apply verification failed: ${postFindings.join(",")}`);
+    const error = new Error(`Fresh post-apply verification failed: ${postFindings.join(",")}`);
+    error.executionProof = {
+      repository,
+      committed,
+      baseline,
+      protected_counts_before: protectedBefore,
+      inside_transaction_readback: inside,
+      attributable_writes: attributableWrites,
+      fresh_post_apply_readback: postApply,
+    };
+    throw error;
   }
   return {
     status: "foundation_applied_hidden_and_readback_passed",
@@ -431,13 +471,40 @@ async function writeExecutionArtifacts({ result, outDir }) {
     `- Canonical card rows: \`0\`\n` +
     `- App visibility enabled: \`false\`\n`;
   await fs.writeFile(path.join(outDir, "REPORT.md"), reportBody, "utf8");
+  const runPlanBody = await fs.readFile(path.join(outDir, "run_plan.json"));
   await writeJson(path.join(outDir, "artifact_hashes.json"), {
     hash_algorithm: "sha256",
     artifacts: [
+      { path: "run_plan.json", sha256: sha256(runPlanBody) },
       { path: "summary.json", sha256: sha256(summaryBody) },
       { path: "fresh_post_apply_readback.json", sha256: sha256(readbackBody) },
       { path: "REPORT.md", sha256: sha256(reportBody) },
     ],
+  });
+}
+
+async function writeFailureArtifacts({ error, plan, outDir }) {
+  await fs.mkdir(outDir, { recursive: true });
+  const failure = {
+    version: ONE_PIECE_FOUNDATION_APPLY_VERSION,
+    recorded_at: new Date().toISOString(),
+    status: "blocked",
+    apply_plan_fingerprint_sha256: plan.apply_plan_fingerprint_sha256,
+    migration_sha256: plan.migration.sha256,
+    error: cleanError(error),
+    execution_proof: error.executionProof ?? null,
+  };
+  const failureBody = await writeJson(path.join(outDir, "failure.json"), failure);
+  const artifacts = [{ path: "failure.json", sha256: sha256(failureBody) }];
+  try {
+    const runPlanBody = await fs.readFile(path.join(outDir, "run_plan.json"));
+    artifacts.unshift({ path: "run_plan.json", sha256: sha256(runPlanBody) });
+  } catch (readError) {
+    if (readError.code !== "ENOENT") throw readError;
+  }
+  await writeJson(path.join(outDir, "artifact_hashes.json"), {
+    hash_algorithm: "sha256",
+    artifacts,
   });
 }
 
@@ -463,7 +530,13 @@ async function main() {
       stableJsonFoundationApplyV1(inputs.plan)) {
     throw new Error("Checked-in foundation apply plan does not reproduce exactly");
   }
-  const result = await executeFoundationApply({ args, inputs, connectionString });
+  let result;
+  try {
+    result = await executeFoundationApply({ args, inputs, connectionString });
+  } catch (error) {
+    await writeFailureArtifacts({ error, plan: inputs.plan, outDir: args.outDir });
+    throw error;
+  }
   await writeExecutionArtifacts({ result, outDir: args.outDir });
   process.stdout.write(`${JSON.stringify({
     status: result.status,

@@ -147,6 +147,8 @@ test("writer and verifier preserve the durable boundary", async () => {
   assert.match(writer, /await client\.query\("commit"\)/);
   assert.match(writer, /await client\.query\("rollback"\)/);
   assert.match(writer, /pg_stat_xact_user_tables/);
+  assert.match(writer, /writeFailureArtifacts/);
+  assert.match(writer, /run_plan\.json/);
   assert.doesNotMatch(writer, /supabase\s+db\s+push/i);
   assert.match(verifier, /fresh_read_only_post_apply_verification/);
   assert.match(verifier, /database_writes:\s*0/);

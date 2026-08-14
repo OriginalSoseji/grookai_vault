@@ -40,8 +40,8 @@
     },
     {
       "path": "scripts/audits/one_piece_canonical_catalog_foundation_apply_v1.mjs",
-      "bytes": 21267,
-      "sha256": "e3de873326253144c4e0225861e971b40ad5e98d38c7787b867309ff8f93159f"
+      "bytes": 23570,
+      "sha256": "d730e53fe86058cb6656bcebcb467740573e23f214afc27fd233d836d012b325"
     }
   ]
 }
