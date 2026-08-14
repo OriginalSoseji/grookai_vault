@@ -123,9 +123,9 @@ Validation rejects:
 
 ## Exact Next Gate
 
-Request separate authorization to execute the exact draft and exact canary plan
-in one production database transaction as a rollback-only proof. The execution
-must end with zero durable schema objects and zero durable rows, plus independent
-readback that canonical, sealed, publication, pricing, Vault, release-control,
-and MTG state did not change. Stop before any durable staging migration or
-canonical promotion.
+The exact production rollback execution and independent verification behavior
+is frozen in
+`ONE_PIECE_CANONICAL_IMPORT_PRODUCTION_ROLLBACK_CANARY_V1.md`. Execute it only
+through its exact hash-bound local commands. A passing run must end with zero
+durable schema objects and zero durable rows. Stop before any durable staging
+migration or canonical promotion.
