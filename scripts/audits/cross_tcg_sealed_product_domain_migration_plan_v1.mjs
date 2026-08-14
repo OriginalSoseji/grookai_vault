@@ -136,7 +136,7 @@ const planCore = {
     relative_path: SOURCE_AUDIT_RELATIVE.replaceAll("\\", "/"),
     producer_commit_sha: SOURCE_PRODUCER_SHA,
     sample_logical_sha256: SOURCE_SAMPLE_LOGICAL_SHA256,
-    active_source_products: sourceSummary.overall?.active_source_products,
+    active_source_products: sourceSummary.overall?.active_products_classified,
     classifications: sourceSummary.overall?.classifications,
   },
   migration: {

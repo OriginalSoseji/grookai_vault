@@ -230,5 +230,6 @@ test("migration audit source binding matches the final sealed readiness evidence
   ));
   assert.equal(summary.repository.producer_commit_sha, "c2337c94b63f87700a4efc8e1b8e114653659609");
   assert.equal(summary.sample_artifact.logical_sha256, "1d788df0260d598ad2e99496989361af9edb68f1538ff88e5455b802e278a948");
+  assert.equal(summary.overall.active_products_classified, 499872);
   assert.equal(summary.overall.classifications.sealed_candidate, 10007);
 });
