@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-08-14T06:56:59.077Z",
+  "producer_commit_sha": "74bd8915dcd5a625ebe9370e773c438f02eeaa0a",
+  "selected_source_product_ids": [
+    96138,
+    496072,
+    502983,
+    521160,
+    561689,
+    591147,
+    637680,
+    643132,
+    644352,
+    683774
+  ],
+  "boundaries": {
+    "database_writes": false,
+    "canonical_rows_constructed": false,
+    "founder_review_recorded": false,
+    "publication_authority": false,
+    "active_release_pointer_change": false,
+    "card_domain_writes": false,
+    "pricing_values": false
+  }
+}

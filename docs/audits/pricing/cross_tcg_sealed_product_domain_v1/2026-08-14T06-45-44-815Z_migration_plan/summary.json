@@ -1,0 +1,60 @@
+{
+  "audit_version": "CROSS_TCG_SEALED_PRODUCT_DOMAIN_MIGRATION_PLAN_AUDIT_V1",
+  "recorded_at": "2026-08-14T06:45:44.815Z",
+  "result": "design_gate_complete_unapplied",
+  "implementation_producer": {
+    "branch": "agent/sealed-catalog-readiness-v1",
+    "commit_sha": "93bee04eb4d0d04568f2a10525d94bdc3580b18b"
+  },
+  "source_audit_binding": {
+    "relative_path": "docs/audits/pricing/cross_tcg_sealed_catalog_readiness_v1/2026-08-14T05-04-00-104Z_read_only_portfolio/summary.json",
+    "producer_commit_sha": "c2337c94b63f87700a4efc8e1b8e114653659609",
+    "sample_logical_sha256": "1d788df0260d598ad2e99496989361af9edb68f1538ff88e5455b802e278a948",
+    "active_source_products": 499872,
+    "classifications": {
+      "sealed_candidate": 10007,
+      "nonsealed_card": 427052,
+      "ambiguous_review": 9836,
+      "excluded_non_tcg_product": 52977
+    }
+  },
+  "migration_plan_fingerprint": "9ba9803731eac32e3fd63dc4bdf3e07b781f3a71d9f919cf15b0f2b552ab225b",
+  "contract_bundle_sha256": "a0ea667bf6591e7d9b9ea88e93ab2af67b9b77380710dbdc9a6d05ebefdbae99",
+  "mutation_contract_sha256": "e5f52b77a4f74c168434b26eb21f81cb4e99088c8a317d88952877259c843844",
+  "migration": {
+    "status": "unapplied_design_candidate",
+    "relative_path": "docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql",
+    "sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
+    "rollback_relative_path": "docs/sql/cross_tcg_sealed_product_domain_v1_schema_only_rollback_candidate.sql",
+    "rollback_sha256": "5a87967acb8c3f610807daa023eb94920aa393c6a64d123c46e113f225af9a7e",
+    "table_count": 10,
+    "tables": [
+      "sealed_product_families",
+      "sealed_product_variants",
+      "sealed_product_candidates",
+      "sealed_product_candidate_reviews",
+      "sealed_product_source_mappings",
+      "sealed_product_variant_evidence",
+      "sealed_product_pricing_lane_qualifications",
+      "sealed_product_releases",
+      "sealed_product_release_members",
+      "sealed_product_release_pointer"
+    ],
+    "append_only_trigger_count": 8,
+    "forced_rls_table_count": 10,
+    "index_count": 8,
+    "service_only_release_control": "sealed_product_set_active_release_v1"
+  },
+  "boundaries_verified": {
+    "database_connection": false,
+    "database_apply": false,
+    "storage_write": false,
+    "pricing_write": false,
+    "publication": false,
+    "app_visibility": false,
+    "deployment": false,
+    "active_mtg_change": false,
+    "card_identity_table_reference": false
+  },
+  "exact_next_gate": "Review and explicitly approve the migration candidate plus a separate pre-apply schema/security preflight; do not run the future no-publication canary until the schema apply and readback are independently approved and proven."
+}

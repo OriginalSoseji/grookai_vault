@@ -1,0 +1,27 @@
+{
+  "audit_version": "CROSS_TCG_SEALED_CATALOG_READINESS_AUDIT_V1",
+  "producer_commit_sha": "44b51d9a604d9f15b6865e30c1b6eafc3f5de6d4",
+  "branch": "agent/sealed-catalog-readiness-v1",
+  "exact_policy_version": "CROSS_TCG_SEALED_PRODUCT_IDENTITY_POLICY_V1",
+  "mode": "read_only",
+  "page_size": 5000,
+  "sample_limit_per_category_and_classification": 5,
+  "required_portfolios": [
+    "Magic: The Gathering",
+    "Pokemon",
+    "Pokemon Japan",
+    "One Piece Card Game"
+  ],
+  "boundaries": {
+    "database_mutations": false,
+    "migrations": false,
+    "storage_or_network_acquisition": false,
+    "image_changes": false,
+    "pricing_publication": false,
+    "app_visibility": false,
+    "release_changes": false,
+    "vault_actions": false,
+    "deployment": false,
+    "active_mtg_ingestion_changes": false
+  }
+}

@@ -130,6 +130,8 @@
     "tcgcsv:warehouse:current:apply": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=current --apply",
     "tcgcsv:warehouse:historical:dry-run": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=historical --dry-run",
     "tcgcsv:warehouse:historical:apply": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=historical --apply",
+    "sealed:catalog:readiness:v1": "node scripts/audits/cross_tcg_sealed_catalog_readiness_v1.mjs",
+    "sealed:domain:schema-preflight:v1": "node scripts/audits/cross_tcg_sealed_product_schema_preflight_v1.mjs",
     "jpn-master-index:finalize": "node scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
     "pricing:market:publish:dry-run": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --dry-run",
     "pricing:market:publish:apply": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --apply",

@@ -1,0 +1,4757 @@
+{
+  "version": "CROSS_TCG_SEALED_PRODUCT_SCHEMA_SECURITY_PREFLIGHT_V1",
+  "recorded_at": "2026-08-14T06:47:57.483Z",
+  "producer_commit_sha": "111314c537cb0b05673e4fc521dd8a7d91875835",
+  "reserved_migration_version": "20260814060000",
+  "migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
+  "rollback_sha256": "5a87967acb8c3f610807daa023eb94920aa393c6a64d123c46e113f225af9a7e",
+  "migration_plan_fingerprint": "9ba9803731eac32e3fd63dc4bdf3e07b781f3a71d9f919cf15b0f2b552ab225b",
+  "boundaries": {
+    "database_transaction_read_only": true,
+    "database_writes": false,
+    "ddl_or_migration_apply": false,
+    "storage_or_publication": false,
+    "deployment_or_app_visibility": false,
+    "active_mtg_worktree_touched": false
+  },
+  "preflight_fingerprint_sha256": "e8e7915888865e5b227f6b09b7a1a144d4780ae15ea0aebe552e6b0c232da740",
+  "status": "pass",
+  "local": {
+    "branch": "agent/sealed-catalog-readiness-v1",
+    "producer_commit_sha": "111314c537cb0b05673e4fc521dd8a7d91875835",
+    "starting_commit_sha": "6ddc84135521c7fc2531668d1614b751354b82fb",
+    "migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
+    "rollback_sha256": "5a87967acb8c3f610807daa023eb94920aa393c6a64d123c46e113f225af9a7e",
+    "migration_plan_fingerprint": "9ba9803731eac32e3fd63dc4bdf3e07b781f3a71d9f919cf15b0f2b552ab225b",
+    "candidate_in_applied_migration_path": true,
+    "reserved_migration_present": true,
+    "reserved_migration_filename": "20260814060000_cross_tcg_sealed_product_domain_v1.sql",
+    "reserved_migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
+    "duplicate_migration_versions": 0,
+    "migration_file_count": 335,
+    "latest_migration_version": "20260814060000",
+    "reserved_migration_version": "20260814060000",
+    "reserved_migration_name": "cross_tcg_sealed_product_domain_v1",
+    "migration_relative_path": "docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql",
+    "rollback_relative_path": "docs/sql/cross_tcg_sealed_product_domain_v1_schema_only_rollback_candidate.sql"
+  },
+  "production": {
+    "environment": {
+      "environment_label": "production-read-only",
+      "environment_key_sha256": "61d459daf5f223a85616f5fd30307724e62e19ba1e987225bb7d759f39ea9226"
+    },
+    "guard": {
+      "transaction_read_only": "on",
+      "default_transaction_read_only": "on",
+      "transaction_closed_before_artifacts": true
+    },
+    "migration_history": {
+      "schema_present": true,
+      "table_present": true,
+      "columns": [
+        "version",
+        "statements",
+        "name"
+      ],
+      "row_count": 336,
+      "latest_version": "20260813200000",
+      "reserved_version_rows": 0,
+      "sealed_history_rows": 0,
+      "duplicate_versions": 0,
+      "recent": [
+        {
+          "version": "20260813200000",
+          "name": "mtg_catalog_app_visibility_boundary_v1"
+        },
+        {
+          "version": "20260813190000",
+          "name": "mtg_canonical_catalog_foundation_v1"
+        },
+        {
+          "version": "20260813185000",
+          "name": "mtg_canonical_import_staging_v1"
+        },
+        {
+          "version": "20260812183000",
+          "name": "collector_memory_printing_identity_v1"
+        },
+        {
+          "version": "20260811213000",
+          "name": "collector_memory_share_route_v1"
+        },
+        {
+          "version": "20260811170000",
+          "name": "collector_memory_public_pulse_v1"
+        },
+        {
+          "version": "20260807133000",
+          "name": "security_advisor_view_authority_hardening_v1"
+        },
+        {
+          "version": "20260807043000",
+          "name": "want_match_current_want_truth_boundary_v1"
+        },
+        {
+          "version": "20260807023000",
+          "name": "card_interactions_exact_instance_authorization_v2"
+        },
+        {
+          "version": "20260806220000",
+          "name": "card_interactions_exact_printing_v1"
+        },
+        {
+          "version": "20260806170000",
+          "name": "card_print_app_visibility_quarantine_resolution_v1"
+        },
+        {
+          "version": "20260806153000",
+          "name": "vault_archive_wrappers_include_slab_only_v1"
+        },
+        {
+          "version": "20260806143000",
+          "name": "vault_mobile_collector_rows_include_slab_only_v1"
+        },
+        {
+          "version": "20260805100000",
+          "name": "master_identity_graph_jpn_review_surfaces_schema_repair_v1"
+        },
+        {
+          "version": "20260804220000",
+          "name": "tcgplayer_market_printing_truth_quarantine_v1"
+        },
+        {
+          "version": "20260804210000",
+          "name": "public_card_printing_options_truth_boundary_v1"
+        },
+        {
+          "version": "20260804203000",
+          "name": "public_collector_relationship_security_repair_v1"
+        },
+        {
+          "version": "20260803220000",
+          "name": "vault_mobile_printing_identity_status_v1"
+        },
+        {
+          "version": "20260803210000",
+          "name": "card_print_app_visibility_guard_v1"
+        },
+        {
+          "version": "20260803203000",
+          "name": "card_interactions_contact_target_alignment_v3"
+        }
+      ]
+    },
+    "collisions": {
+      "expected_counts": {
+        "tables": 10,
+        "functions": 5,
+        "indexes": 8,
+        "policies": 10,
+        "triggers": 10
+      },
+      "expected_function_signatures": [
+        "sealed_product_reject_row_mutation_v1()",
+        "sealed_product_guard_release_mutation_v1()",
+        "sealed_product_guard_release_member_insert_v1()",
+        "sealed_product_freeze_release_v1(uuid,text,uuid)",
+        "sealed_product_set_active_release_v1(uuid,uuid,uuid)"
+      ],
+      "tables": [],
+      "functions": [],
+      "indexes": [],
+      "policies": [],
+      "triggers": []
+    },
+    "requirements": {
+      "roles": [
+        {
+          "role_name": "anon",
+          "rolcanlogin": false,
+          "rolsuper": false,
+          "rolbypassrls": false
+        },
+        {
+          "role_name": "authenticated",
+          "rolcanlogin": false,
+          "rolsuper": false,
+          "rolbypassrls": false
+        },
+        {
+          "role_name": "authenticator",
+          "rolcanlogin": true,
+          "rolsuper": false,
+          "rolbypassrls": false
+        },
+        {
+          "role_name": "service_role",
+          "rolcanlogin": false,
+          "rolsuper": false,
+          "rolbypassrls": true
+        }
+      ],
+      "extensions": [
+        {
+          "extension_name": "pgcrypto",
+          "schema_name": "extensions",
+          "version": "1.3"
+        },
+        {
+          "extension_name": "plpgsql",
+          "schema_name": "pg_catalog",
+          "version": "1.0"
+        }
+      ],
+      "database_user": "postgres",
+      "gen_random_uuid_available": true,
+      "current_user_can_create_public": true,
+      "current_user_superuser": false,
+      "current_user_bypassrls": true
+    },
+    "security_boundary": {
+      "schema_create_privileges": [
+        {
+          "role_name": "anon",
+          "schema_name": "extensions",
+          "role_exists": true,
+          "schema_exists": true,
+          "has_create": false
+        },
+        {
+          "role_name": "anon",
+          "schema_name": "public",
+          "role_exists": true,
+          "schema_exists": true,
+          "has_create": false
+        },
+        {
+          "role_name": "authenticated",
+          "schema_name": "extensions",
+          "role_exists": true,
+          "schema_exists": true,
+          "has_create": false
+        },
+        {
+          "role_name": "authenticated",
+          "schema_name": "public",
+          "role_exists": true,
+          "schema_exists": true,
+          "has_create": false
+        },
+        {
+          "role_name": "service_role",
+          "schema_name": "extensions",
+          "role_exists": true,
+          "schema_exists": true,
+          "has_create": false
+        },
+        {
+          "role_name": "service_role",
+          "schema_name": "public",
+          "role_exists": true,
+          "schema_exists": true,
+          "has_create": false
+        }
+      ],
+      "candidate_object_grants": [],
+      "relevant_default_acl": [
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "anon",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "anon",
+          "privilege_type": "USAGE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "authenticated",
+          "privilege_type": "USAGE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "f",
+          "grantee": "anon",
+          "privilege_type": "EXECUTE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "f",
+          "grantee": "authenticated",
+          "privilege_type": "EXECUTE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "DELETE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "INSERT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "MAINTAIN",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "MAINTAIN",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "postgres",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "anon",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "anon",
+          "privilege_type": "USAGE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "S",
+          "grantee": "authenticated",
+          "privilege_type": "USAGE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "f",
+          "grantee": "anon",
+          "privilege_type": "EXECUTE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "f",
+          "grantee": "authenticated",
+          "privilege_type": "EXECUTE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "DELETE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "INSERT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "MAINTAIN",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "anon",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "MAINTAIN",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE",
+          "is_grantable": false
+        },
+        {
+          "owner_name": "supabase_admin",
+          "schema_name": "public",
+          "object_type": "r",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE",
+          "is_grantable": false
+        }
+      ]
+    },
+    "baselines": {
+      "missing_relations": [],
+      "schema_contract": {
+        "relations": [
+          {
+            "relation_name": "card_printings",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "card_prints",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "catalog_game_release_controls",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "games",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "market_price_current_publication",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "market_price_pipeline_runs",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "market_price_publication_sets",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "market_price_publication_snapshots",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "market_price_qualification_decisions",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "mtg_canonical_import_batches",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "mtg_canonical_import_rows",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "sets",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "vault_item_instances",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          },
+          {
+            "relation_name": "vault_owners",
+            "present": true,
+            "relation_kind": "r",
+            "rls_enabled": true,
+            "rls_forced": false
+          }
+        ],
+        "columns": [
+          {
+            "table_name": "card_printings",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "finish_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "is_provisional",
+            "data_type": "boolean",
+            "udt_name": "bool",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "provenance_source",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "provenance_ref",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "created_by",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "printing_gv_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "image_source",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "image_path",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "image_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "image_alt_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "image_status",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_printings",
+            "column_name": "image_note",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "game_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "set_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "number",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "variant_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "rarity",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "tcgplayer_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "external_ids",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "set_code",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "artist",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "regulation_mark",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_alt_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_source",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "variants",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "last_synced_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "print_identity_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "ai_metadata",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_hash",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "data_quality_flags",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_status",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_res",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_last_checked_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "printed_set_abbrev",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "printed_total",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "number_plain",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "gv_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_path",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "identity_domain",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "printed_identity_modifier",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "set_identity_model",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "representative_image_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "card_prints",
+            "column_name": "image_note",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "game_code",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "release_status",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "release_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "evidence",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "activated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "activated_by",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "games",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "games",
+            "column_name": "code",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "games",
+            "column_name": "name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "games",
+            "column_name": "slug",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "column_name": "singleton",
+            "data_type": "boolean",
+            "udt_name": "bool",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "column_name": "publication_set_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "column_name": "run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "column_name": "previous_publication_set_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "column_name": "activated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "run_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "pipeline_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "policy_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "run_mode",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "source_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "source_observed_on",
+            "data_type": "date",
+            "udt_name": "date",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "source_sync_run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "source_artifact_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "source_artifact_hash",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "source_marker",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "state",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "current_phase",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "reconciliation_state",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "selected_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "mapped_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "excluded_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "quarantined_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "delayed_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "suppressed_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "eligible_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "snapshot_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "required_phase_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "succeeded_phase_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "git_commit_sha",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "worker_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "schema_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "started_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "completed_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "failed_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "error_classification",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "error",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "resumability_data",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "reconciliation",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "run_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "publication_state",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "expected_snapshot_count",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "previous_publication_set_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "published_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "superseded_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "rolled_back_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "rollback_reason",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "reconciliation",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "provenance_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "publication_set_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "phase_attempt_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "qualification_decision_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "policy_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "snapshot_schema_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_label",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_observation_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_sync_run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_artifact_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_artifact_date",
+            "data_type": "date",
+            "udt_name": "date",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_artifact_hash",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_price_row_identity",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_row_hash",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_mapping_id",
+            "data_type": "bigint",
+            "udt_name": "int8",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "variant_assignment_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_product_id",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_subtype_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_observed_on",
+            "data_type": "date",
+            "udt_name": "date",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "source_sync_finished_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "card_printing_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "gv_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "printing_gv_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "finish_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "currency",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "market_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "low_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "mid_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "high_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "direct_low_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "observed_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "qualified_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "published_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "freshness_state",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "publication_state",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "column_name": "code_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "decision_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "pipeline_candidate_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "run_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "phase_attempt_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "policy_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_observation_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_sync_run_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_artifact_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_artifact_date",
+            "data_type": "date",
+            "udt_name": "date",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_artifact_hash",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_price_row_identity",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_row_hash",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_mapping_id",
+            "data_type": "bigint",
+            "udt_name": "int8",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "candidate_mapping_identity",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "variant_assignment_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "variant_assignment_status",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "variant_assignment_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "mapping_method",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "mapping_confidence",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "card_printing_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "gv_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "printing_gv_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "finish_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_product_id",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_subtype_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_observed_on",
+            "data_type": "date",
+            "udt_name": "date",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_sync_finished_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "currency",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "market_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "decision",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "eligible",
+            "data_type": "boolean",
+            "udt_name": "bool",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "publication_lane",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "language_result",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "finish_result",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "source_integrity_result",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "duplicate_product_result",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "freshness_result",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "reason_codes",
+            "data_type": "ARRAY",
+            "udt_name": "_text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "evidence",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "observed_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "evaluated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "code_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "column_name": "migration_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "payload_fingerprint_sha256",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "plan_version",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "source_bulk_sha256",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "foundation_migration_sha256",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "producing_commit_sha",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "producing_branch",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "selected_set_code",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "selected_set_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "status",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "row_counts",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "execution_boundaries",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "batch_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "entity_type",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "row_key",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "row_ordinal",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "payload",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "payload_sha256",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "game",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "code",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "release_date",
+            "data_type": "date",
+            "udt_name": "date",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "source",
+            "data_type": "jsonb",
+            "udt_name": "jsonb",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "logo_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "symbol_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "last_synced_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "printed_total",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "printed_set_abbrev",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "set_role",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "identity_domain_default",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "hero_image_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "hero_image_source",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "sets",
+            "column_name": "identity_model",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "user_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "gv_vi_id",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "card_print_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "slab_cert_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "legacy_vault_item_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "acquisition_cost",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "condition_label",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "condition_score",
+            "data_type": "integer",
+            "udt_name": "int4",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "is_graded",
+            "data_type": "boolean",
+            "udt_name": "bool",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "grade_company",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "grade_value",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "grade_label",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "notes",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "set_name",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "photo_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "market_price",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "last_price_update",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "image_source",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "image_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "image_back_source",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "image_back_url",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "archived_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "intent",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "pricing_mode",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "asking_price_amount",
+            "data_type": "numeric",
+            "udt_name": "numeric",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "asking_price_currency",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "asking_price_note",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "image_display_mode",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "column_name": "card_printing_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "YES"
+          },
+          {
+            "table_name": "vault_owners",
+            "column_name": "user_id",
+            "data_type": "uuid",
+            "udt_name": "uuid",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "column_name": "owner_code",
+            "data_type": "text",
+            "udt_name": "text",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "column_name": "next_instance_index",
+            "data_type": "bigint",
+            "udt_name": "int8",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "column_name": "created_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "column_name": "updated_at",
+            "data_type": "timestamp with time zone",
+            "udt_name": "timestamptz",
+            "is_nullable": "NO"
+          }
+        ],
+        "constraints": [
+          {
+            "table_name": "card_printings",
+            "conname": "card_printings_card_print_id_finish_key_key",
+            "contype": "u",
+            "definition": "UNIQUE (card_print_id, finish_key)"
+          },
+          {
+            "table_name": "card_printings",
+            "conname": "card_printings_card_print_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "card_printings",
+            "conname": "card_printings_finish_key_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (finish_key) REFERENCES finish_keys(key) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "card_printings",
+            "conname": "card_printings_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "card_prints_game_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "card_prints_image_source_check",
+            "contype": "c",
+            "definition": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['tcgdex'::text, 'ptcg'::text, 'pokemonapi'::text, 'identity'::text, 'user_photo'::text, 'scryfall'::text]))))"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "card_prints_image_status_check",
+            "contype": "c",
+            "definition": "CHECK (((image_status IS NULL) OR (image_status = ANY (ARRAY['exact'::text, 'representative_shared'::text, 'representative_shared_collision'::text, 'representative_shared_stamp'::text, 'missing'::text, 'unresolved'::text, 'ok'::text, 'placeholder'::text, 'user_uploaded'::text]))))"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "card_prints_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "card_prints_set_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (set_id) REFERENCES sets(id) ON DELETE SET NULL"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "ck_card_prints_reprint_anthology_requires_pik_v1",
+            "contype": "c",
+            "definition": "CHECK (((set_identity_model <> 'reprint_anthology'::text) OR (NULLIF(btrim(print_identity_key), ''::text) IS NOT NULL)))"
+          },
+          {
+            "table_name": "card_prints",
+            "conname": "ck_card_prints_set_identity_model_v1",
+            "contype": "c",
+            "definition": "CHECK ((set_identity_model = ANY (ARRAY['standard'::text, 'reprint_anthology'::text])))"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "conname": "catalog_game_release_controls_evidence_check",
+            "contype": "c",
+            "definition": "CHECK ((jsonb_typeof(evidence) = 'object'::text))"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "conname": "catalog_game_release_controls_game_code_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (game_code) REFERENCES games(code) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "conname": "catalog_game_release_controls_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (game_code)"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "conname": "catalog_game_release_controls_release_status_check",
+            "contype": "c",
+            "definition": "CHECK ((release_status = ANY (ARRAY['hidden'::text, 'signed_in'::text, 'public'::text])))"
+          },
+          {
+            "table_name": "games",
+            "conname": "games_code_key",
+            "contype": "u",
+            "definition": "UNIQUE (code)"
+          },
+          {
+            "table_name": "games",
+            "conname": "games_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "games",
+            "conname": "games_slug_key",
+            "contype": "u",
+            "definition": "UNIQUE (slug)"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "conname": "market_price_current_publicati_previous_publication_set_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (previous_publication_set_id) REFERENCES market_price_publication_sets(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "conname": "market_price_current_publication_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (singleton)"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "conname": "market_price_current_publication_publication_set_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (publication_set_id) REFERENCES market_price_publication_sets(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "conname": "market_price_current_publication_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (run_id) REFERENCES market_price_pipeline_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "conname": "market_price_current_publication_singleton_check",
+            "contype": "c",
+            "definition": "CHECK (singleton)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_counts_check",
+            "contype": "c",
+            "definition": "CHECK (((selected_count >= 0) AND (mapped_count >= 0) AND (excluded_count >= 0) AND (quarantined_count >= 0) AND (delayed_count >= 0) AND (suppressed_count >= 0) AND (eligible_count >= 0) AND (snapshot_count >= 0) AND (required_phase_count >= 0) AND (succeeded_phase_count >= 0) AND (succeeded_phase_count <= required_phase_count)))"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_mode_check",
+            "contype": "c",
+            "definition": "CHECK ((run_mode = ANY (ARRAY['dry_run'::text, 'shadow'::text, 'canary'::text, 'production'::text])))"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_reconciliation_check",
+            "contype": "c",
+            "definition": "CHECK ((reconciliation_state = ANY (ARRAY['pending'::text, 'reconciled'::text, 'mismatch'::text])))"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_run_key_key",
+            "contype": "u",
+            "definition": "UNIQUE (run_key)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_source_artifact_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_artifact_id) REFERENCES tcgcsv_source_artifacts(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_source_check",
+            "contype": "c",
+            "definition": "CHECK ((source_name = 'tcgplayer'::text))"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_source_sync_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_sync_run_id) REFERENCES tcgcsv_source_sync_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "conname": "market_price_pipeline_runs_state_check",
+            "contype": "c",
+            "definition": "CHECK ((state = ANY (ARRAY['planned'::text, 'running'::text, 'qualified'::text, 'reconciled'::text, 'shadow_verified'::text, 'published'::text, 'verified'::text, 'failed'::text, 'rolled_back'::text])))"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_count_check",
+            "contype": "c",
+            "definition": "CHECK ((expected_snapshot_count >= 0))"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_previous_publication_set_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (previous_publication_set_id) REFERENCES market_price_publication_sets(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (run_id) REFERENCES market_price_pipeline_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_run_id_key",
+            "contype": "u",
+            "definition": "UNIQUE (run_id)"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_run_key_key",
+            "contype": "u",
+            "definition": "UNIQUE (run_key)"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "conname": "market_price_publication_sets_state_check",
+            "contype": "c",
+            "definition": "CHECK ((publication_state = ANY (ARRAY['staging'::text, 'published'::text, 'superseded'::text, 'rolled_back'::text, 'failed'::text])))"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_currency_check",
+            "contype": "c",
+            "definition": "CHECK ((currency = 'USD'::text))"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_freshness_check",
+            "contype": "c",
+            "definition": "CHECK ((freshness_state = 'fresh'::text))"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_market_price_check",
+            "contype": "c",
+            "definition": "CHECK ((market_price > (0)::numeric))"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapsho_qualification_decision_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (qualification_decision_id) REFERENCES market_price_qualification_decisions(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_card_print_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_card_printing_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_phase_attempt_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (phase_attempt_id) REFERENCES market_price_pipeline_phase_attempts(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_provenance_id_key",
+            "contype": "u",
+            "definition": "UNIQUE (provenance_id)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_publication_set_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (publication_set_id) REFERENCES market_price_publication_sets(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (run_id) REFERENCES market_price_pipeline_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_source_artifact_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_artifact_id) REFERENCES tcgcsv_source_artifacts(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_source_mapping_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_mapping_id) REFERENCES external_mappings(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_source_observation_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_observation_id) REFERENCES tcgcsv_source_price_daily_observations(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_source_sync_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_sync_run_id) REFERENCES tcgcsv_source_sync_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_snapshots_variant_assignment_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (variant_assignment_id) REFERENCES market_evidence_variant_assignments(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_source_check",
+            "contype": "c",
+            "definition": "CHECK (((source_name = 'tcgplayer'::text) AND (source_label = 'TCGPlayer Market'::text)))"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_source_printing_policy_key",
+            "contype": "u",
+            "definition": "UNIQUE (publication_set_id, source_observation_id, card_printing_id, policy_version)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_state_check",
+            "contype": "c",
+            "definition": "CHECK ((publication_state = 'published'::text))"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "conname": "market_price_publication_supporting_prices_check",
+            "contype": "c",
+            "definition": "CHECK ((((low_price IS NULL) OR (low_price >= (0)::numeric)) AND ((mid_price IS NULL) OR (mid_price >= (0)::numeric)) AND ((high_price IS NULL) OR (high_price >= (0)::numeric)) AND ((direct_low_price IS NULL) OR (direct_low_price >= (0)::numeric))))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_card_print_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_card_printing_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_decision_check",
+            "contype": "c",
+            "definition": "CHECK ((decision = ANY (ARRAY['publish'::text, 'delay'::text, 'quarantine'::text, 'exclude'::text, 'suppress_stale'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_decision_key_key",
+            "contype": "u",
+            "definition": "UNIQUE (decision_key)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_duplicate_check",
+            "contype": "c",
+            "definition": "CHECK ((duplicate_product_result = ANY (ARRAY['unique'::text, 'duplicate'::text, 'ambiguous'::text, 'missing'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_eligibility_check",
+            "contype": "c",
+            "definition": "CHECK ((((decision = 'publish'::text) AND (publication_lane = 'current'::text) AND (freshness_result = 'fresh'::text) AND (eligible = true) AND (cardinality(reason_codes) = 0)) OR ((decision <> 'publish'::text) AND (publication_lane <> 'current'::text) AND (eligible = false) AND (cardinality(reason_codes) > 0))))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_finish_check",
+            "contype": "c",
+            "definition": "CHECK ((finish_result = ANY (ARRAY['exact_child_finish'::text, 'unsupported'::text, 'ambiguous'::text, 'missing'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_freshness_check",
+            "contype": "c",
+            "definition": "CHECK ((freshness_result = ANY (ARRAY['fresh'::text, 'delayed'::text, 'suppressed_stale'::text, 'missing'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_integrity_check",
+            "contype": "c",
+            "definition": "CHECK ((source_integrity_result = ANY (ARRAY['passed'::text, 'failed'::text, 'missing'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_lane_check",
+            "contype": "c",
+            "definition": "CHECK ((publication_lane = ANY (ARRAY['current'::text, 'freshness_delayed'::text, 'quarantine'::text, 'excluded'::text, 'suppressed_stale'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_language_check",
+            "contype": "c",
+            "definition": "CHECK ((language_result = ANY (ARRAY['english'::text, 'non_english'::text, 'ambiguous'::text, 'missing'::text])))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_phase_attempt_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (phase_attempt_id) REFERENCES market_price_pipeline_phase_attempts(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_pipeline_candidate_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (pipeline_candidate_id) REFERENCES market_price_pipeline_candidates(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (run_id) REFERENCES market_price_pipeline_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_source_artifact_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_artifact_id) REFERENCES tcgcsv_source_artifacts(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_source_check",
+            "contype": "c",
+            "definition": "CHECK ((source_name = 'tcgplayer'::text))"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_source_mapping_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_mapping_id) REFERENCES external_mappings(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_source_observation_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_observation_id) REFERENCES tcgcsv_source_price_daily_observations(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_source_sync_run_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (source_sync_run_id) REFERENCES tcgcsv_source_sync_runs(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "conname": "market_price_qualification_decisions_variant_assignment_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (variant_assignment_id) REFERENCES market_evidence_variant_assignments(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_commit_check",
+            "contype": "c",
+            "definition": "CHECK ((producing_commit_sha ~ '^[0-9a-f]{40}$'::text))"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_foundation_hash_check",
+            "contype": "c",
+            "definition": "CHECK ((foundation_migration_sha256 ~ '^[0-9a-f]{64}$'::text))"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_payload_fingerprint_sha256_key",
+            "contype": "u",
+            "definition": "UNIQUE (payload_fingerprint_sha256)"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_payload_hash_check",
+            "contype": "c",
+            "definition": "CHECK ((payload_fingerprint_sha256 ~ '^[0-9a-f]{64}$'::text))"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_source_hash_check",
+            "contype": "c",
+            "definition": "CHECK ((source_bulk_sha256 ~ '^[0-9a-f]{64}$'::text))"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "conname": "mtg_canonical_import_batches_status_check",
+            "contype": "c",
+            "definition": "CHECK ((status = ANY (ARRAY['staged'::text, 'promotion_ready'::text, 'promoted'::text, 'superseded'::text])))"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_batch_entity_key_key",
+            "contype": "u",
+            "definition": "UNIQUE (batch_id, entity_type, row_key)"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_batch_entity_ordinal_key",
+            "contype": "u",
+            "definition": "UNIQUE (batch_id, entity_type, row_ordinal)"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_batch_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (batch_id) REFERENCES mtg_canonical_import_batches(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_entity_type_check",
+            "contype": "c",
+            "definition": "CHECK ((entity_type = ANY (ARRAY['sets'::text, 'card_prints'::text, 'card_print_identity'::text, 'card_printings'::text, 'external_mappings'::text, 'external_printing_mappings'::text])))"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_ordinal_check",
+            "contype": "c",
+            "definition": "CHECK ((row_ordinal >= 0))"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_payload_hash_check",
+            "contype": "c",
+            "definition": "CHECK ((payload_sha256 ~ '^[0-9a-f]{64}$'::text))"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "conname": "mtg_canonical_import_rows_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "sets",
+            "conname": "ck_sets_identity_model_v1",
+            "contype": "c",
+            "definition": "CHECK ((identity_model = ANY (ARRAY['standard'::text, 'reprint_anthology'::text])))"
+          },
+          {
+            "table_name": "sets",
+            "conname": "sets_game_code_key",
+            "contype": "u",
+            "definition": "UNIQUE (game, code)"
+          },
+          {
+            "table_name": "sets",
+            "conname": "sets_hero_image_source_allowed_chk",
+            "contype": "c",
+            "definition": "CHECK (((hero_image_source IS NULL) OR (hero_image_source = ANY (ARRAY['tcgdex'::text, 'pokemontcgapi'::text, 'manual'::text]))))"
+          },
+          {
+            "table_name": "sets",
+            "conname": "sets_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "sets",
+            "conname": "sets_set_role_allowed_chk",
+            "contype": "c",
+            "definition": "CHECK (((set_role IS NULL) OR (set_role = ANY (ARRAY['expansion'::text, 'promotion_umbrella'::text, 'promo_single'::text, 'product_insert'::text, 'magazine'::text, 'tournament'::text]))))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_acquisition_cost_nonnegative",
+            "contype": "c",
+            "definition": "CHECK (((acquisition_cost IS NULL) OR (acquisition_cost >= (0)::numeric)))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_asking_price_amount_nonnegative",
+            "contype": "c",
+            "definition": "CHECK (((asking_price_amount IS NULL) OR (asking_price_amount >= (0)::numeric)))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_asking_price_currency_check",
+            "contype": "c",
+            "definition": "CHECK (((asking_price_currency IS NULL) OR ((asking_price_currency = upper(asking_price_currency)) AND (char_length(asking_price_currency) = 3))))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_card_print_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_card_printing_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_gv_vi_id_key",
+            "contype": "u",
+            "definition": "UNIQUE (gv_vi_id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_gv_vi_id_normalized",
+            "contype": "c",
+            "definition": "CHECK (((gv_vi_id IS NULL) OR ((btrim(gv_vi_id) <> ''::text) AND (gv_vi_id = upper(btrim(gv_vi_id))))))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_identity_anchor_exactly_one",
+            "contype": "c",
+            "definition": "CHECK (((((card_print_id IS NOT NULL))::integer + ((slab_cert_id IS NOT NULL))::integer) = 1))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_image_back_source_check",
+            "contype": "c",
+            "definition": "CHECK (((image_back_source IS NULL) OR (image_back_source = ANY (ARRAY['user_photo'::text, 'official'::text, 'identity'::text]))))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_image_display_mode_check",
+            "contype": "c",
+            "definition": "CHECK ((image_display_mode = ANY (ARRAY['canonical'::text, 'uploaded'::text])))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_image_source_check",
+            "contype": "c",
+            "definition": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['user_photo'::text, 'official'::text, 'identity'::text]))))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_intent_check",
+            "contype": "c",
+            "definition": "CHECK ((intent = ANY (ARRAY['hold'::text, 'trade'::text, 'sell'::text, 'showcase'::text])))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_legacy_vault_item_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (legacy_vault_item_id) REFERENCES vault_items(id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_market_price_nonnegative",
+            "contype": "c",
+            "definition": "CHECK (((market_price IS NULL) OR (market_price >= (0)::numeric)))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_pricing_mode_check",
+            "contype": "c",
+            "definition": "CHECK ((pricing_mode = ANY (ARRAY['market'::text, 'asking'::text])))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_pricing_mode_state_check",
+            "contype": "c",
+            "definition": "CHECK ((((pricing_mode = 'market'::text) AND (asking_price_amount IS NULL) AND (asking_price_currency IS NULL) AND (asking_price_note IS NULL)) OR ((pricing_mode = 'asking'::text) AND (asking_price_amount IS NOT NULL) AND (asking_price_currency IS NOT NULL))))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_slab_cert_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (slab_cert_id) REFERENCES slab_certs(id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_slab_rows_are_graded",
+            "contype": "c",
+            "definition": "CHECK (((slab_cert_id IS NULL) OR (is_graded = true)))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "conname": "vault_item_instances_user_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+          },
+          {
+            "table_name": "vault_owners",
+            "conname": "vault_owners_next_instance_index_positive",
+            "contype": "c",
+            "definition": "CHECK ((next_instance_index >= 1))"
+          },
+          {
+            "table_name": "vault_owners",
+            "conname": "vault_owners_owner_code_key",
+            "contype": "u",
+            "definition": "UNIQUE (owner_code)"
+          },
+          {
+            "table_name": "vault_owners",
+            "conname": "vault_owners_owner_code_normalized",
+            "contype": "c",
+            "definition": "CHECK ((owner_code = upper(btrim(owner_code))))"
+          },
+          {
+            "table_name": "vault_owners",
+            "conname": "vault_owners_owner_code_not_blank",
+            "contype": "c",
+            "definition": "CHECK ((btrim(owner_code) <> ''::text))"
+          },
+          {
+            "table_name": "vault_owners",
+            "conname": "vault_owners_pkey",
+            "contype": "p",
+            "definition": "PRIMARY KEY (user_id)"
+          },
+          {
+            "table_name": "vault_owners",
+            "conname": "vault_owners_user_id_fkey",
+            "contype": "f",
+            "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+          }
+        ],
+        "indexes": [
+          {
+            "table_name": "card_printings",
+            "indexname": "card_printings_card_print_id_finish_key_key",
+            "indexdef": "CREATE UNIQUE INDEX card_printings_card_print_id_finish_key_key ON public.card_printings USING btree (card_print_id, finish_key)"
+          },
+          {
+            "table_name": "card_printings",
+            "indexname": "card_printings_pkey",
+            "indexdef": "CREATE UNIQUE INDEX card_printings_pkey ON public.card_printings USING btree (id)"
+          },
+          {
+            "table_name": "card_printings",
+            "indexname": "card_printings_printing_gv_id_key",
+            "indexdef": "CREATE UNIQUE INDEX card_printings_printing_gv_id_key ON public.card_printings USING btree (printing_gv_id) WHERE (printing_gv_id IS NOT NULL)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_gv_id_unique_idx",
+            "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_unique_idx ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_gv_id_uq",
+            "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_uq ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_name_ci",
+            "indexdef": "CREATE INDEX card_prints_name_ci ON public.card_prints USING btree (lower(name))"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_name_gin",
+            "indexdef": "CREATE INDEX card_prints_name_gin ON public.card_prints USING gin (to_tsvector('simple'::regconfig, COALESCE(name, ''::text)))"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_name_trgm_idx",
+            "indexdef": "CREATE INDEX card_prints_name_trgm_idx ON public.card_prints USING gin (lower(name) gin_trgm_ops)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_pkey",
+            "indexdef": "CREATE UNIQUE INDEX card_prints_pkey ON public.card_prints USING btree (id)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_set_code_ci",
+            "indexdef": "CREATE INDEX card_prints_set_code_ci ON public.card_prints USING btree (lower(set_code))"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_set_code_number_plain_idx",
+            "indexdef": "CREATE INDEX card_prints_set_code_number_plain_idx ON public.card_prints USING btree (set_code, number_plain)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_set_id_idx",
+            "indexdef": "CREATE INDEX card_prints_set_id_idx ON public.card_prints USING btree (set_id)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "card_prints_tcgplayer_id_idx",
+            "indexdef": "CREATE INDEX card_prints_tcgplayer_id_idx ON public.card_prints USING btree (tcgplayer_id)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "cp_setnum_idx",
+            "indexdef": "CREATE INDEX cp_setnum_idx ON public.card_prints USING btree (set_code, number)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "idx_card_prints_identity_domain",
+            "indexdef": "CREATE INDEX idx_card_prints_identity_domain ON public.card_prints USING btree (identity_domain)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "idx_card_prints_name",
+            "indexdef": "CREATE INDEX idx_card_prints_name ON public.card_prints USING btree (name)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "idx_card_prints_name_trgm",
+            "indexdef": "CREATE INDEX idx_card_prints_name_trgm ON public.card_prints USING gin (name gin_trgm_ops)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "idx_card_prints_set_no",
+            "indexdef": "CREATE INDEX idx_card_prints_set_no ON public.card_prints USING btree (set_id, number)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "idx_card_prints_setnum",
+            "indexdef": "CREATE INDEX idx_card_prints_setnum ON public.card_prints USING btree (set_code, number)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "idx_card_prints_setnumplain",
+            "indexdef": "CREATE INDEX idx_card_prints_setnumplain ON public.card_prints USING btree (set_code, number_plain)"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "uq_card_prints_identity_v2_standard_sets",
+            "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity_v2_standard_sets ON public.card_prints USING btree (set_id, number_plain, COALESCE(printed_identity_modifier, ''::text), COALESCE(variant_key, ''::text)) WHERE ((set_id IS NOT NULL) AND (number_plain IS NOT NULL) AND (set_identity_model = 'standard'::text))"
+          },
+          {
+            "table_name": "card_prints",
+            "indexname": "uq_card_prints_identity_v3_print_identity",
+            "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity_v3_print_identity ON public.card_prints USING btree (set_id, number_plain, print_identity_key, COALESCE(variant_key, ''::text)) WHERE ((set_id IS NOT NULL) AND (number_plain IS NOT NULL) AND (print_identity_key IS NOT NULL) AND (set_identity_model = 'reprint_anthology'::text))"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "indexname": "catalog_game_release_controls_pkey",
+            "indexdef": "CREATE UNIQUE INDEX catalog_game_release_controls_pkey ON public.catalog_game_release_controls USING btree (game_code)"
+          },
+          {
+            "table_name": "games",
+            "indexname": "games_code_key",
+            "indexdef": "CREATE UNIQUE INDEX games_code_key ON public.games USING btree (code)"
+          },
+          {
+            "table_name": "games",
+            "indexname": "games_pkey",
+            "indexdef": "CREATE UNIQUE INDEX games_pkey ON public.games USING btree (id)"
+          },
+          {
+            "table_name": "games",
+            "indexname": "games_slug_key",
+            "indexdef": "CREATE UNIQUE INDEX games_slug_key ON public.games USING btree (slug)"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "indexname": "market_price_current_publication_pkey",
+            "indexdef": "CREATE UNIQUE INDEX market_price_current_publication_pkey ON public.market_price_current_publication USING btree (singleton)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "indexname": "market_price_pipeline_runs_latest_idx",
+            "indexdef": "CREATE INDEX market_price_pipeline_runs_latest_idx ON public.market_price_pipeline_runs USING btree (created_at DESC, id DESC)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "indexname": "market_price_pipeline_runs_pkey",
+            "indexdef": "CREATE UNIQUE INDEX market_price_pipeline_runs_pkey ON public.market_price_pipeline_runs USING btree (id)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "indexname": "market_price_pipeline_runs_run_key_key",
+            "indexdef": "CREATE UNIQUE INDEX market_price_pipeline_runs_run_key_key ON public.market_price_pipeline_runs USING btree (run_key)"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "indexname": "market_price_pipeline_runs_state_idx",
+            "indexdef": "CREATE INDEX market_price_pipeline_runs_state_idx ON public.market_price_pipeline_runs USING btree (state, created_at DESC)"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "indexname": "market_price_publication_sets_pkey",
+            "indexdef": "CREATE UNIQUE INDEX market_price_publication_sets_pkey ON public.market_price_publication_sets USING btree (id)"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "indexname": "market_price_publication_sets_run_id_key",
+            "indexdef": "CREATE UNIQUE INDEX market_price_publication_sets_run_id_key ON public.market_price_publication_sets USING btree (run_id)"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "indexname": "market_price_publication_sets_run_key_key",
+            "indexdef": "CREATE UNIQUE INDEX market_price_publication_sets_run_key_key ON public.market_price_publication_sets USING btree (run_key)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "indexname": "market_price_publication_card_current_idx",
+            "indexdef": "CREATE INDEX market_price_publication_card_current_idx ON public.market_price_publication_snapshots USING btree (card_print_id, source_sync_finished_at DESC, published_at DESC)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "indexname": "market_price_publication_history_idx",
+            "indexdef": "CREATE INDEX market_price_publication_history_idx ON public.market_price_publication_snapshots USING btree (card_printing_id, source_observed_on DESC, published_at DESC)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "indexname": "market_price_publication_printing_current_idx",
+            "indexdef": "CREATE INDEX market_price_publication_printing_current_idx ON public.market_price_publication_snapshots USING btree (card_printing_id, source_sync_finished_at DESC, published_at DESC)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "indexname": "market_price_publication_snapshots_pkey",
+            "indexdef": "CREATE UNIQUE INDEX market_price_publication_snapshots_pkey ON public.market_price_publication_snapshots USING btree (id)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "indexname": "market_price_publication_snapshots_provenance_id_key",
+            "indexdef": "CREATE UNIQUE INDEX market_price_publication_snapshots_provenance_id_key ON public.market_price_publication_snapshots USING btree (provenance_id)"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "indexname": "market_price_publication_source_printing_policy_key",
+            "indexdef": "CREATE UNIQUE INDEX market_price_publication_source_printing_policy_key ON public.market_price_publication_snapshots USING btree (publication_set_id, source_observation_id, card_printing_id, policy_version)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_decisions_decision_key_key",
+            "indexdef": "CREATE UNIQUE INDEX market_price_qualification_decisions_decision_key_key ON public.market_price_qualification_decisions USING btree (decision_key)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_decisions_pkey",
+            "indexdef": "CREATE UNIQUE INDEX market_price_qualification_decisions_pkey ON public.market_price_qualification_decisions USING btree (id)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_parent_idx",
+            "indexdef": "CREATE INDEX market_price_qualification_parent_idx ON public.market_price_qualification_decisions USING btree (card_print_id, evaluated_at DESC, id DESC) WHERE (card_print_id IS NOT NULL)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_printing_idx",
+            "indexdef": "CREATE INDEX market_price_qualification_printing_idx ON public.market_price_qualification_decisions USING btree (card_printing_id, evaluated_at DESC, id DESC) WHERE (card_printing_id IS NOT NULL)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_reasons_idx",
+            "indexdef": "CREATE INDEX market_price_qualification_reasons_idx ON public.market_price_qualification_decisions USING gin (reason_codes)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_run_idx",
+            "indexdef": "CREATE INDEX market_price_qualification_run_idx ON public.market_price_qualification_decisions USING btree (run_id, evaluated_at DESC)"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "indexname": "market_price_qualification_source_idx",
+            "indexdef": "CREATE INDEX market_price_qualification_source_idx ON public.market_price_qualification_decisions USING btree (source_observation_id, policy_version)"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "indexname": "mtg_canonical_import_batches_payload_fingerprint_sha256_key",
+            "indexdef": "CREATE UNIQUE INDEX mtg_canonical_import_batches_payload_fingerprint_sha256_key ON public.mtg_canonical_import_batches USING btree (payload_fingerprint_sha256)"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "indexname": "mtg_canonical_import_batches_pkey",
+            "indexdef": "CREATE UNIQUE INDEX mtg_canonical_import_batches_pkey ON public.mtg_canonical_import_batches USING btree (id)"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "indexname": "mtg_canonical_import_rows_batch_entity_key_key",
+            "indexdef": "CREATE UNIQUE INDEX mtg_canonical_import_rows_batch_entity_key_key ON public.mtg_canonical_import_rows USING btree (batch_id, entity_type, row_key)"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "indexname": "mtg_canonical_import_rows_batch_entity_ordinal_key",
+            "indexdef": "CREATE UNIQUE INDEX mtg_canonical_import_rows_batch_entity_ordinal_key ON public.mtg_canonical_import_rows USING btree (batch_id, entity_type, row_ordinal)"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "indexname": "mtg_canonical_import_rows_batch_idx",
+            "indexdef": "CREATE INDEX mtg_canonical_import_rows_batch_idx ON public.mtg_canonical_import_rows USING btree (batch_id, entity_type, row_ordinal)"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "indexname": "mtg_canonical_import_rows_pkey",
+            "indexdef": "CREATE UNIQUE INDEX mtg_canonical_import_rows_pkey ON public.mtg_canonical_import_rows USING btree (id)"
+          },
+          {
+            "table_name": "sets",
+            "indexname": "idx_sets_code",
+            "indexdef": "CREATE INDEX idx_sets_code ON public.sets USING btree (code)"
+          },
+          {
+            "table_name": "sets",
+            "indexname": "idx_sets_set_role",
+            "indexdef": "CREATE INDEX idx_sets_set_role ON public.sets USING btree (set_role)"
+          },
+          {
+            "table_name": "sets",
+            "indexname": "sets_game_code_key",
+            "indexdef": "CREATE UNIQUE INDEX sets_game_code_key ON public.sets USING btree (game, code)"
+          },
+          {
+            "table_name": "sets",
+            "indexname": "sets_pkey",
+            "indexdef": "CREATE UNIQUE INDEX sets_pkey ON public.sets USING btree (id)"
+          },
+          {
+            "table_name": "sets",
+            "indexname": "sets_unique_game_code",
+            "indexdef": "CREATE UNIQUE INDEX sets_unique_game_code ON public.sets USING btree (game, code)"
+          },
+          {
+            "table_name": "sets",
+            "indexname": "uq_sets_code",
+            "indexdef": "CREATE UNIQUE INDEX uq_sets_code ON public.sets USING btree (code)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "idx_vault_item_instances_active_user_card_created",
+            "indexdef": "CREATE INDEX idx_vault_item_instances_active_user_card_created ON public.vault_item_instances USING btree (user_id, card_print_id, created_at DESC) WHERE (archived_at IS NULL)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "idx_vault_item_instances_anchor_archived_at",
+            "indexdef": "CREATE INDEX idx_vault_item_instances_anchor_archived_at ON public.vault_item_instances USING btree (legacy_vault_item_id, archived_at)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "idx_vault_item_instances_card_archived_at",
+            "indexdef": "CREATE INDEX idx_vault_item_instances_card_archived_at ON public.vault_item_instances USING btree (card_print_id, archived_at)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "idx_vault_item_instances_intent_archived_at",
+            "indexdef": "CREATE INDEX idx_vault_item_instances_intent_archived_at ON public.vault_item_instances USING btree (intent, archived_at)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_active_pricing_mode_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_active_pricing_mode_idx ON public.vault_item_instances USING btree (pricing_mode, archived_at) WHERE (archived_at IS NULL)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_active_user_card_printing_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_active_user_card_printing_idx ON public.vault_item_instances USING btree (user_id, card_printing_id, created_at DESC) WHERE ((archived_at IS NULL) AND (card_printing_id IS NOT NULL))"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_active_user_created_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_active_user_created_idx ON public.vault_item_instances USING btree (user_id, created_at DESC) WHERE (archived_at IS NULL)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_archived_at_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_archived_at_idx ON public.vault_item_instances USING btree (archived_at)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_card_print_id_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_card_print_id_idx ON public.vault_item_instances USING btree (card_print_id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_card_printing_id_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_card_printing_id_idx ON public.vault_item_instances USING btree (card_printing_id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_gv_vi_id_key",
+            "indexdef": "CREATE UNIQUE INDEX vault_item_instances_gv_vi_id_key ON public.vault_item_instances USING btree (gv_vi_id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_legacy_vault_item_id_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_legacy_vault_item_id_idx ON public.vault_item_instances USING btree (legacy_vault_item_id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_pkey",
+            "indexdef": "CREATE UNIQUE INDEX vault_item_instances_pkey ON public.vault_item_instances USING btree (id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_slab_cert_id_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_slab_cert_id_idx ON public.vault_item_instances USING btree (slab_cert_id)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_user_archived_at_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_user_archived_at_idx ON public.vault_item_instances USING btree (user_id, archived_at)"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "indexname": "vault_item_instances_user_id_idx",
+            "indexdef": "CREATE INDEX vault_item_instances_user_id_idx ON public.vault_item_instances USING btree (user_id)"
+          },
+          {
+            "table_name": "vault_owners",
+            "indexname": "vault_owners_owner_code_key",
+            "indexdef": "CREATE UNIQUE INDEX vault_owners_owner_code_key ON public.vault_owners USING btree (owner_code)"
+          },
+          {
+            "table_name": "vault_owners",
+            "indexname": "vault_owners_pkey",
+            "indexdef": "CREATE UNIQUE INDEX vault_owners_pkey ON public.vault_owners USING btree (user_id)"
+          }
+        ],
+        "grants": [
+          {
+            "table_name": "card_printings",
+            "grantee": "anon",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "anon",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "anon",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "anon",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "authenticated",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "authenticated",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "authenticated",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "authenticated",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_printings",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "anon",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "authenticated",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "card_prints",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "catalog_game_release_controls",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "anon",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "authenticated",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "games",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_current_publication",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_pipeline_runs",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_sets",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_publication_snapshots",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "market_price_qualification_decisions",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_batches",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "mtg_canonical_import_rows",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "anon",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "authenticated",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "sets",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "authenticated",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "authenticated",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_item_instances",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "anon",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "authenticated",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "DELETE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "INSERT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "REFERENCES",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "SELECT",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "TRIGGER",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "TRUNCATE",
+            "is_grantable": "NO"
+          },
+          {
+            "table_name": "vault_owners",
+            "grantee": "service_role",
+            "privilege_type": "UPDATE",
+            "is_grantable": "NO"
+          }
+        ]
+      },
+      "schema_fingerprint_sha256": "1224bc0fa350de813e0055b22ed95080b381a0986ed040b1823b9cdb3349bccb",
+      "rows": {
+        "sets": 1987,
+        "games": 3,
+        "card_prints": 68833,
+        "vault_owners": 25,
+        "card_printings": 86291,
+        "vault_item_instances": 3385,
+        "mtg_canonical_import_rows": 61540,
+        "market_price_pipeline_runs": 38,
+        "mtg_canonical_import_batches": 103,
+        "catalog_game_release_controls": 1,
+        "market_price_publication_sets": 31,
+        "market_price_current_publication": 1,
+        "market_price_publication_snapshots": 317263,
+        "market_price_qualification_decisions": 497889
+      },
+      "row_fingerprint_sha256": "5ca9245bb483aad2cbf1a8a9eb2f11e2ca02e4a985e2e486b83d40871ce7a7ba",
+      "mtg": {
+        "game_count": 1,
+        "set_count": 102,
+        "card_count": 10061,
+        "printing_count": 16102,
+        "release_status": "hidden",
+        "required_migrations": {
+          "20260813185000": true,
+          "20260813190000": true,
+          "20260813200000": true
+        }
+      }
+    },
+    "lock_risk": {
+      "client_connections": 31,
+      "waiting_sessions": 37,
+      "long_transactions": 0,
+      "max_connections": 60,
+      "ungranted_locks": 0,
+      "protected_access_exclusive_locks": 0,
+      "prepared_transactions": 0,
+      "connection_utilization": 0.516667,
+      "thresholds": {
+        "long_transaction_minutes": 15,
+        "connection_utilization_block": 0.8
+      }
+    }
+  },
+  "findings": [],
+  "exact_next_gate": "Produce a schema-only apply plan bound to this preflight, then execute one atomic schema apply plus schema/RLS/grant readback. Do not run the no-publication data canary."
+}

@@ -1,0 +1,21 @@
+{
+  "total": 29450,
+  "reasons": [
+    {
+      "reason": "No positive individual-card or sealed-product evidence was found.",
+      "count": 18776
+    },
+    {
+      "reason": "Generic packaging language is insufficient without a precise form or contents evidence.",
+      "count": 6092
+    },
+    {
+      "reason": "Sealed or contents wording exists, but the package form is unresolved.",
+      "count": 4580
+    },
+    {
+      "reason": "Custom, repack, lot, or retailer-bundle language requires human review.",
+      "count": 2
+    }
+  ]
+}
