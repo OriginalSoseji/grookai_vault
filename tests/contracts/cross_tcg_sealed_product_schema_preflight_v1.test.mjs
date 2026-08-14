@@ -57,6 +57,18 @@ test("migration history collisions and stale reservation block", () => {
   ]);
 });
 
+test("reserved local migration must exist at the exact frozen hash", () => {
+  const value = fixture();
+  value.local.reserved_migration_present = false;
+  value.local.reserved_migration_sha256 = "0".repeat(64);
+  value.local.latest_migration_version = "20260814070000";
+  assert.deepEqual(evaluateSealedSchemaSecurityPreflightV1(value), [
+    "reserved_migration_file_missing",
+    "reserved_migration_file_sha256_mismatch",
+    "reserved_migration_version_not_after_local_history",
+  ]);
+});
+
 test("missing requirements and unsafe client schema privilege block", () => {
   const value = fixture();
   value.production.requirements.roles = value.production.requirements.roles

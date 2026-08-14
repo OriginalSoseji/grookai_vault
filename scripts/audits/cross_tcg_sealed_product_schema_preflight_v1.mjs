@@ -141,6 +141,13 @@ async function captureLocal(args) {
   const duplicateVersions = versions.filter(
     (version, index) => versions.indexOf(version) !== index,
   );
+  const reservedMigrationFilename =
+    `${SEALED_RESERVED_MIGRATION_VERSION}_${SEALED_RESERVED_MIGRATION_NAME}.sql`;
+  const reservedMigrationPath = path.join(migrationDirectory, reservedMigrationFilename);
+  const reservedMigrationPresent = migrationFiles.includes(reservedMigrationFilename);
+  const reservedMigrationSha256 = reservedMigrationPresent
+    ? sha256(await fs.readFile(reservedMigrationPath))
+    : null;
   return {
     branch,
     producer_commit_sha: headSha,
@@ -150,6 +157,9 @@ async function captureLocal(args) {
     migration_plan_fingerprint: plan.migration_plan_fingerprint,
     candidate_in_applied_migration_path: migrationFiles.some((name) =>
       name.includes(SEALED_RESERVED_MIGRATION_NAME)),
+    reserved_migration_present: reservedMigrationPresent,
+    reserved_migration_filename: reservedMigrationFilename,
+    reserved_migration_sha256: reservedMigrationSha256,
     duplicate_migration_versions: new Set(duplicateVersions).size,
     migration_file_count: migrationFiles.length,
     latest_migration_version: versions.at(-1) ?? null,
@@ -591,7 +601,7 @@ async function main() {
   const findings = evaluateSealedSchemaSecurityPreflightV1({ local, production });
   const status = findings.length === 0 ? "pass" : "blocked";
   const exactNextGate = status === "pass"
-    ? "Create the reserved Supabase migration from the exact candidate bytes, produce a schema-only apply plan bound to this preflight, and request explicit approval for one atomic schema apply plus schema/RLS/grant readback. Do not run the no-publication data canary."
+    ? "Produce a schema-only apply plan bound to this preflight, then execute one atomic schema apply plus schema/RLS/grant readback. Do not run the no-publication data canary."
     : "Stop before migration apply. Resolve the reported preflight findings, rerun this exact read-only gate from a new frozen producer, and do not create the reserved migration file yet.";
   const recordedAt = new Date().toISOString();
   const preflightCore = {

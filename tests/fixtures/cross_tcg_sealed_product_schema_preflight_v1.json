@@ -3,9 +3,12 @@
     "migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
     "rollback_sha256": "5a87967acb8c3f610807daa023eb94920aa393c6a64d123c46e113f225af9a7e",
     "migration_plan_fingerprint": "9ba9803731eac32e3fd63dc4bdf3e07b781f3a71d9f919cf15b0f2b552ab225b",
-    "candidate_in_applied_migration_path": false,
+    "candidate_in_applied_migration_path": true,
+    "reserved_migration_present": true,
+    "reserved_migration_filename": "20260814060000_cross_tcg_sealed_product_domain_v1.sql",
+    "reserved_migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
     "duplicate_migration_versions": 0,
-    "latest_migration_version": "20260813200000"
+    "latest_migration_version": "20260814060000"
   },
   "production": {
     "guard": {

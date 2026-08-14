@@ -61,6 +61,8 @@ gate.
 
 The gate verifies:
 
+- the reserved local migration exists at the exact frozen path and SHA-256;
+- no later local migration version or duplicate reserved version exists;
 - roles `anon`, `authenticated`, `authenticator`, and `service_role`;
 - extensions `plpgsql` and `pgcrypto`;
 - availability of `gen_random_uuid()`;
@@ -100,7 +102,6 @@ reported condition without applying the migration.
 
 ## Exact Next Gate
 
-If this preflight passes, create the reserved Supabase migration from the exact
-candidate bytes, produce a schema-only apply plan bound to this preflight, and
-request explicit approval for one atomic schema apply plus schema/RLS/grant
-readback. Do not run the no-publication data canary in that gate.
+If this preflight passes, produce a schema-only apply plan bound to this
+preflight, then execute one atomic schema apply plus schema/RLS/grant readback.
+Do not run the no-publication data canary in that gate.

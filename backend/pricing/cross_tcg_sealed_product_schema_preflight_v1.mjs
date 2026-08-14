@@ -139,12 +139,14 @@ export function evaluateSealedSchemaSecurityPreflightV1(input) {
   addWhen(findings,
     local.migration_plan_fingerprint !== SEALED_MIGRATION_PLAN_FINGERPRINT,
     "migration_plan_fingerprint_mismatch");
-  addWhen(findings, local.candidate_in_applied_migration_path === true,
-    "candidate_already_in_applied_migration_path");
+  addWhen(findings, local.reserved_migration_present !== true,
+    "reserved_migration_file_missing");
+  addWhen(findings, local.reserved_migration_sha256 !== SEALED_MIGRATION_SHA256,
+    "reserved_migration_file_sha256_mismatch");
   addWhen(findings, Number(local.duplicate_migration_versions) !== 0,
     "local_duplicate_migration_versions");
   addWhen(findings,
-    String(local.latest_migration_version ?? "") >= SEALED_RESERVED_MIGRATION_VERSION,
+    String(local.latest_migration_version ?? "") > SEALED_RESERVED_MIGRATION_VERSION,
     "reserved_migration_version_not_after_local_history");
 
   addWhen(findings, production.guard?.transaction_read_only !== "on",
