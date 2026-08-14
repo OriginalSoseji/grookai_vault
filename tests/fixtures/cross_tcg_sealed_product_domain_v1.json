@@ -1,0 +1,107 @@
+{
+  "families": [
+    {
+      "game_key": "pokemon",
+      "family_key": "scarlet-violet-base-booster",
+      "canonical_name": "Scarlet & Violet Base Set Booster",
+      "manufacturer_name": "The Pokemon Company International",
+      "product_line_key": "scarlet-violet-base"
+    },
+    {
+      "game_key": "one_piece",
+      "family_key": "starter-deck-st01",
+      "canonical_name": "Starter Deck ST-01",
+      "manufacturer_name": "Bandai",
+      "product_line_key": "starter-deck"
+    }
+  ],
+  "variants": [
+    {
+      "family_index": 0,
+      "variant_key": "english-us-booster-box",
+      "canonical_name": "Scarlet & Violet Base Set Booster Box",
+      "package_form": "booster_box",
+      "language_code": "en",
+      "region_code": "US",
+      "explicit_contents": [
+        { "unit": "booster_pack", "quantity": 36 }
+      ]
+    },
+    {
+      "family_index": 1,
+      "variant_key": "english-us-starter-deck",
+      "canonical_name": "Starter Deck ST-01",
+      "package_form": "deck",
+      "language_code": "en",
+      "region_code": "US",
+      "explicit_contents": [
+        { "unit": "card", "quantity": 51 }
+      ]
+    }
+  ],
+  "valid_promotion": {
+    "classification": "sealed_candidate",
+    "review": {
+      "decision": "confirmed_sealed",
+      "promotion_authorized": true
+    },
+    "source_mapping": {
+      "source_provider": "tcgplayer",
+      "source_category_id": 3,
+      "source_group_id": 22873,
+      "source_product_id": 451834,
+      "source_payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "variant": {
+      "package_form": "booster_box",
+      "language_code": "en",
+      "region_code": "US",
+      "explicit_contents": [
+        { "unit": "booster_pack", "quantity": 36 }
+      ]
+    },
+    "evidence": [
+      { "dimension": "package_form" },
+      { "dimension": "language" },
+      { "dimension": "region" },
+      { "dimension": "contents" }
+    ]
+  },
+  "ambiguous_promotion": {
+    "classification": "ambiguous_review",
+    "review": {
+      "decision": "needs_more_evidence",
+      "promotion_authorized": false
+    },
+    "source_mapping": {
+      "source_provider": "tcgplayer",
+      "source_category_id": 68,
+      "source_group_id": 17675,
+      "source_product_id": 527060,
+      "source_payload_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "variant": {
+      "package_form": "bundle"
+    },
+    "evidence": [
+      { "dimension": "package_form" }
+    ]
+  },
+  "future_canary": {
+    "candidates": [
+      { "source_product_id": 1 },
+      { "source_product_id": 2 },
+      { "source_product_id": 3 },
+      { "source_product_id": 4 }
+    ],
+    "variants": [
+      { "game_key": "pokemon", "package_form": "pack" },
+      { "game_key": "pokemon_japan", "package_form": "booster_box" },
+      { "game_key": "magic", "package_form": "collection" },
+      { "game_key": "one_piece", "package_form": "deck" }
+    ],
+    "release_state": "draft",
+    "change_active_release_pointer": false,
+    "publication_authority": false
+  }
+}
