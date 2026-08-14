@@ -838,6 +838,11 @@ Recommended reading order for future maintainers:
       transactional rollback proof, independent zero-finding readback, and the
       still-closed fail-closed durable writer gate
 
+50. `PRICING_CHECKPOINT_52_MTG_MSH_HIDDEN_CANONICAL_APPLY_READY.md`
+    - then read the frozen fail-closed writer, exact approval contract, writer
+      rollback proof, independent production readback, and the one bounded MSH
+      hidden canonical apply that remains pending
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -874,3 +879,5 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mtg_canonical_catalog_set_stage_post_apply_readback_v1/2026-08-13T22-27-42Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_set_promotion_rollback_proof_v1/2026-08-13T22-57-44Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_set_promotion_post_rollback_readback_v1/2026-08-13T22-58-45Z/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_promotion_writer_v1/2026-08-13T23-49-32Z_dry_run/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_set_promotion_post_rollback_readback_v1/2026-08-14T00-02-04Z_writer_dry_run/REPORT.md`

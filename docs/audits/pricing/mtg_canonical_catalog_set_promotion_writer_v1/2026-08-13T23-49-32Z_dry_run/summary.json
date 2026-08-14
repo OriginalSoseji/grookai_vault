@@ -1,0 +1,324 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_SET_PROMOTION_WRITER_V1",
+  "recorded_at": "2026-08-13T23:50:25.410Z",
+  "mode": "dry-run",
+  "status": "promotion_writer_rollback_proof_passed",
+  "repository": {
+    "head_commit_sha": "3d52514250805260186599efa0c4153e718b67fb",
+    "governing_commit_sha": "3d52514250805260186599efa0c4153e718b67fb",
+    "branch": "agent/mtg-pricing-readiness-v1",
+    "tracked_worktree_clean": true,
+    "governing_files_sha256": "4f3e96ff6157962e7f123a7fcfe87443e753f64c6b02163e62d1b32d50216ebd",
+    "governing_files": {
+      "scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs": "12a4eb9d72903d9e72c0e22306da90a39281db7888e48b5a1651fb9c26853743",
+      "scripts/audits/mtg_canonical_catalog_set_promotion_contract_v1.mjs": "0df0b738869023b6800505385c97106a9d2c3c6a90b874d4235fff1b50b18280",
+      "scripts/audits/mtg_canonical_catalog_set_promotion_rollback_proof_v1.mjs": "daffc0db1025293a92afcbcd67032413a70ff81ac0681250318bf9440ebdbdf2",
+      "scripts/audits/mtg_canonical_catalog_promotion_rollback_proof_v1.mjs": "1c1bcb8badc529b9ccb23351ea51d12cd399c3123fcfa6ca312406ddb296eabd",
+      "scripts/audits/mtg_canonical_catalog_promotion_contract_v1.mjs": "30993e4243946c6da3465891f318cfc43b937dfe3506c54288c653ff5eddc6c1",
+      "scripts/audits/mtg_canonical_catalog_canary_preflight_v1.mjs": "14a4d241348176c86a7e728530aaa79b6741b8f05de924f8871cf7037d9954e5",
+      "scripts/audits/mtg_canonical_catalog_canary_stage_v1.mjs": "3fb1562ac9d09f155ab3df0b6f8ec94ebc6865e4c569bc0ae04c11826c4e562b",
+      "scripts/audits/mtg_canonical_catalog_stage_readback_v1.mjs": "c4a9d9a600c54a075ec333917e0fb9a11f74f226a73ffece3b1dcd97bd9b8e3b"
+    }
+  },
+  "payload_sha256": "e49748977f8688aa852b9f5366cfb68c8b2f6ed92ab2db284f8b1ec9ad96a12f",
+  "plan": {
+    "version": "MTG_CANONICAL_CATALOG_SET_PROMOTION_CONTRACT_V1",
+    "source_plan_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+    "writer_payload_fingerprint": "73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38",
+    "staging_batch_id": "276cc9f7-0159-5df3-874c-73ea04e741a4",
+    "staging_rows_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+    "selected_set": {
+      "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+      "code": "msh",
+      "name": "Marvel Super Heroes",
+      "set_type": "expansion",
+      "released_at": "2026-06-26"
+    },
+    "foundation_migration_sha256": "d4085f0dab4c9d5724dcda5644b1774ab48bb3535f94b42f0ca3cea1786de082",
+    "mutation_contract_sha256": "9ac75a734957bc25901805e51a9a6a8787b8a982cc76db771a90c934d737ebac",
+    "promotion_rows_sha256": "2b3cb12453146bea1bf9adfe793ad8f62d237bb720f3946e4603d028a19b275e",
+    "row_counts": {
+      "sets": 1,
+      "card_prints": 453,
+      "card_print_identity": 453,
+      "card_printings": 865,
+      "external_mappings": 453,
+      "external_printing_mappings": 864
+    },
+    "total_rows": 3089,
+    "boundaries": {
+      "version": "MTG_CANONICAL_CATALOG_SET_PROMOTION_CONTRACT_V1",
+      "accepted_payload_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+      "source": "immutable_service_only_staging_batch",
+      "allowed_inserts": [
+        "sets",
+        "card_prints",
+        "card_print_identity",
+        "card_printings",
+        "external_mappings",
+        "external_printing_mappings"
+      ],
+      "required_release_status": "hidden",
+      "migration_writes": false,
+      "release_control_writes": false,
+      "canonical_updates": false,
+      "deletes": false,
+      "truncates": false,
+      "image_pointer_writes": false,
+      "storage_writes": false,
+      "pricing_writes": false,
+      "publication_writes": false,
+      "pokemon_mutation": false
+    },
+    "promotion_plan_sha256": "b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba",
+    "staging_contract": {
+      "version": "MTG_CANONICAL_CATALOG_CANARY_STAGE_V1",
+      "batch_id": "276cc9f7-0159-5df3-874c-73ea04e741a4",
+      "staged_row_count": 3089,
+      "entity_counts": {
+        "sets": 1,
+        "card_prints": 453,
+        "card_print_identity": 453,
+        "card_printings": 865,
+        "external_mappings": 453,
+        "external_printing_mappings": 864
+      },
+      "staged_rows_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+      "mutation_contract_sha256": "0bb200c5e273f99fcb3090d54b2accfa0b781d26d985584fbbe59882e04a387c",
+      "required_approval_message": "I approve the service-only MTG canonical staging canary only: staging migration 20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8, payload 73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38, mutation contract 0bb200c5e273f99fcb3090d54b2accfa0b781d26d985584fbbe59882e04a387c, one immutable batch and 3089 immutable staged rows. I do not approve canonical game, set, card, printing, mapping, image, Storage, pricing, publication, app-visibility, Pokemon, update, delete, truncate, cleanup, or promotion writes."
+    }
+  },
+  "approval_sha256": "7f7086ed5e04f3faa9dcc61c91ef3524c90cda2d275be7ef12b339c632dd6014",
+  "required_approval_message": "I approve only the hidden canonical promotion of MTG set msh (Marvel Super Heroes) under plan b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba, writer payload 73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38, staging batch 276cc9f7-0159-5df3-874c-73ea04e741a4, staged rows 788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c, promotion rows 2b3cb12453146bea1bf9adfe793ad8f62d237bb720f3946e4603d028a19b275e, mutation contract 9ac75a734957bc25901805e51a9a6a8787b8a982cc76db771a90c934d737ebac, governing code commit 3d52514250805260186599efa0c4153e718b67fb, and governing source hash 4f3e96ff6157962e7f123a7fcfe87443e753f64c6b02163e62d1b32d50216ebd. This may insert exactly 1 set, 453 card_prints, 453 card_print_identity rows, 865 card_printings, 453 Scryfall mappings, and 864 TCGPlayer printing mappings. I do not approve migrations, release-control changes, signed-in or public MTG visibility, images, Storage, image pointers, pricing, publication, Vault writes, another set, Pokemon mutation, updates, deletes, truncates, cleanup, or global db push.",
+  "database_proof": {
+    "before": {
+      "dsk_set_count": 1,
+      "mtg_set_count": 1,
+      "dsk_card_count": 417,
+      "mtg_card_count": 417,
+      "mtg_game_count": 1,
+      "release_status": "hidden",
+      "staging_row_count": 3089,
+      "dsk_identity_count": 417,
+      "dsk_printing_count": 807,
+      "mtg_identity_count": 417,
+      "mtg_printing_count": 807,
+      "pokemon_card_count": 58769,
+      "selected_set_count": 0,
+      "selected_card_count": 0,
+      "staging_batch_count": 1,
+      "selected_identity_count": 0,
+      "selected_printing_count": 0,
+      "mtg_parent_mapping_count": 417,
+      "visibility_table_present": true,
+      "mtg_printing_mapping_count": 807,
+      "foundation_migration_present": true,
+      "visibility_migration_present": true,
+      "selected_parent_mapping_count": 0,
+      "selected_printing_mapping_count": 0
+    },
+    "staging_reconciliation": {
+      "findings": [],
+      "actual_hash_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+      "row_count": 3089
+    },
+    "collisions": {
+      "set_ids": 0,
+      "set_codes": 0,
+      "identity_ids": 0,
+      "printing_ids": 0,
+      "parent_gv_ids": 0,
+      "card_print_ids": 0,
+      "identity_hashes": 0,
+      "parent_mappings": 0,
+      "printing_gv_ids": 0,
+      "printing_mappings": 0
+    },
+    "security_before": {
+      "release_table_rls": true,
+      "anon_release_select": false,
+      "service_release_insert": true,
+      "service_release_select": true,
+      "service_release_update": true,
+      "restrictive_policy_count": 5,
+      "wrapper_search_anon_execute": true,
+      "authenticated_release_select": false,
+      "internal_search_anon_execute": false,
+      "wrapper_search_authenticated_execute": true,
+      "internal_search_authenticated_execute": false
+    },
+    "source_before": {
+      "planned_count": 864,
+      "source_row_count": 864,
+      "positive_market_price_count": 864,
+      "observed_on": "2026-08-13T06:00:00.000Z"
+    },
+    "authenticated_pokemon_before": 58768,
+    "inserted": {
+      "sets": 1,
+      "card_prints": 453,
+      "card_print_identity": 453,
+      "card_printings": 865,
+      "external_mappings": 453,
+      "external_printing_mappings": 864
+    },
+    "transaction": {
+      "state": {
+        "dsk_set_count": 1,
+        "mtg_set_count": 2,
+        "dsk_card_count": 417,
+        "mtg_card_count": 870,
+        "mtg_game_count": 1,
+        "release_status": "hidden",
+        "staging_row_count": 3089,
+        "dsk_identity_count": 417,
+        "dsk_printing_count": 807,
+        "mtg_identity_count": 870,
+        "mtg_printing_count": 1672,
+        "pokemon_card_count": 58769,
+        "selected_set_count": 1,
+        "selected_card_count": 453,
+        "staging_batch_count": 1,
+        "selected_identity_count": 453,
+        "selected_printing_count": 865,
+        "mtg_parent_mapping_count": 870,
+        "visibility_table_present": true,
+        "mtg_printing_mapping_count": 1671,
+        "foundation_migration_present": true,
+        "visibility_migration_present": true,
+        "selected_parent_mapping_count": 453,
+        "selected_printing_mapping_count": 864
+      },
+      "exact": {
+        "sets": {
+          "planned_count": 1,
+          "actual_count": 1,
+          "exact_count": 1
+        },
+        "card_prints": {
+          "planned_count": 453,
+          "actual_count": 453,
+          "exact_count": 453
+        },
+        "card_print_identity": {
+          "planned_count": 453,
+          "actual_count": 453,
+          "exact_count": 453
+        },
+        "card_printings": {
+          "planned_count": 865,
+          "actual_count": 865,
+          "exact_count": 865
+        },
+        "external_mappings": {
+          "planned_count": 453,
+          "actual_count": 453,
+          "exact_count": 453
+        },
+        "external_printing_mappings": {
+          "planned_count": 864,
+          "actual_count": 864,
+          "exact_count": 864
+        }
+      },
+      "security": {
+        "release_table_rls": true,
+        "anon_release_select": false,
+        "service_release_insert": true,
+        "service_release_select": true,
+        "service_release_update": true,
+        "restrictive_policy_count": 5,
+        "wrapper_search_anon_execute": true,
+        "authenticated_release_select": false,
+        "internal_search_anon_execute": false,
+        "wrapper_search_authenticated_execute": true,
+        "internal_search_authenticated_execute": false
+      },
+      "source": {
+        "planned_count": 864,
+        "source_row_count": 864,
+        "positive_market_price_count": 864,
+        "observed_on": "2026-08-13T06:00:00.000Z"
+      },
+      "client_visibility": {
+        "anon": {
+          "set_count": 0,
+          "card_count": 0,
+          "game_count": 0,
+          "identity_count": 0,
+          "printing_count": 0,
+          "pokemon_card_count": 0,
+          "print_search_count": 0,
+          "legacy_search_count": 0
+        },
+        "authenticated": {
+          "set_count": 0,
+          "card_count": 0,
+          "game_count": 0,
+          "identity_count": 0,
+          "printing_count": 0,
+          "pokemon_card_count": 58768,
+          "print_search_count": 0,
+          "legacy_search_count": 0
+        }
+      }
+    },
+    "after_rollback": {
+      "dsk_set_count": 1,
+      "mtg_set_count": 1,
+      "dsk_card_count": 417,
+      "mtg_card_count": 417,
+      "mtg_game_count": 1,
+      "release_status": "hidden",
+      "staging_row_count": 3089,
+      "dsk_identity_count": 417,
+      "dsk_printing_count": 807,
+      "mtg_identity_count": 417,
+      "mtg_printing_count": 807,
+      "pokemon_card_count": 58769,
+      "selected_set_count": 0,
+      "selected_card_count": 0,
+      "staging_batch_count": 1,
+      "selected_identity_count": 0,
+      "selected_printing_count": 0,
+      "mtg_parent_mapping_count": 417,
+      "visibility_table_present": true,
+      "mtg_printing_mapping_count": 807,
+      "foundation_migration_present": true,
+      "visibility_migration_present": true,
+      "selected_parent_mapping_count": 0,
+      "selected_printing_mapping_count": 0
+    },
+    "post_rollback_staging_reconciliation": {
+      "findings": [],
+      "actual_hash_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+      "row_count": 3089
+    },
+    "post_rollback_collisions": {
+      "set_ids": 0,
+      "set_codes": 0,
+      "identity_ids": 0,
+      "printing_ids": 0,
+      "parent_gv_ids": 0,
+      "card_print_ids": 0,
+      "identity_hashes": 0,
+      "parent_mappings": 0,
+      "printing_gv_ids": 0,
+      "printing_mappings": 0
+    },
+    "authenticated_pokemon_after": 58768
+  },
+  "boundaries": {
+    "database_writes": false,
+    "transaction_rolled_back": true,
+    "migration_writes": false,
+    "release_control_writes": false,
+    "release_status": "hidden",
+    "app_visibility_activation": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "pokemon_mutation": false,
+    "global_db_push": false
+  }
+}
