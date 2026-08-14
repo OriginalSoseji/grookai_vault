@@ -13,6 +13,7 @@ import {
   ONE_PIECE_ST01_READINESS_VERSION,
   evaluateSt01OfficialAuthority,
   inspectOnePieceImage,
+  parseOfficialSt01CardImageSources,
   parseTcgplayerImageReference,
   proposedImageTarget,
   sha256,
@@ -133,8 +134,12 @@ async function fetchOfficial(url, timeoutMs) {
 
 async function fetchImage(url, timeoutMs) {
   const parsed = new URL(url);
+  const allowedHosts = new Set([
+    ONE_PIECE_IMAGE_SOURCE_HOST,
+    ONE_PIECE_ST01_OFFICIAL_HOST,
+  ]);
   if (parsed.protocol !== "https:" ||
-      parsed.hostname.toLowerCase() !== ONE_PIECE_IMAGE_SOURCE_HOST) {
+      !allowedHosts.has(parsed.hostname.toLowerCase())) {
     throw new Error(`Image URL outside allowlist: ${url}`);
   }
   const response = await fetch(parsed, {
@@ -142,12 +147,12 @@ async function fetchImage(url, timeoutMs) {
     signal: AbortSignal.timeout(timeoutMs),
     headers: {
       "user-agent": USER_AGENT,
-      accept: "image/jpeg,image/*;q=0.8,*/*;q=0.1",
+      accept: "image/png,image/jpeg,image/*;q=0.8,*/*;q=0.1",
     },
   });
   const final = new URL(response.url);
   if (final.protocol !== "https:" ||
-      final.hostname.toLowerCase() !== ONE_PIECE_IMAGE_SOURCE_HOST) {
+      !allowedHosts.has(final.hostname.toLowerCase())) {
     throw new Error(`Image redirect outside allowlist: ${response.url}`);
   }
   const buffer = await readResponseBuffer(response);
@@ -180,17 +185,21 @@ async function mapLimit(values, limit, mapper) {
   return output;
 }
 
-async function acquireImage(row, options) {
+async function acquireImage(row, options, officialImageSource) {
   const source = parseTcgplayerImageReference(
     row.source_image_reference,
     row.source_product_id,
   );
   const attempts = [];
   let selected = null;
-  for (const candidate of [
+  const candidates = [
+    ...(officialImageSource
+      ? [["official_card_list_exact", officialImageSource.url]]
+      : []),
     ["derived_high_resolution", source.high_resolution_candidate_url],
     ["exact_staged_reference", source.exact_reference_url],
-  ]) {
+  ];
+  for (const candidate of candidates) {
     const [role, url] = candidate;
     try {
       const result = await fetchImage(url, options.timeoutMs);
@@ -294,10 +303,14 @@ async function main() {
     cardListResponse,
     stagedRows,
   });
+  const officialCardImages = parseOfficialSt01CardImageSources(
+    cardListResponse.body,
+    cardListResponse.final_url,
+  );
   const languageByProduct = new Map(authority.rows.map((row) =>
     [row.source_product_id, row]));
   const imageResults = await mapLimit(stagedRows, options.concurrency,
-    (row) => acquireImage(row, options));
+    (row) => acquireImage(row, options, officialCardImages.get(row.card_number)));
   const rows = stagedRows.map((row, index) => ({
     row_ordinal: row.row_ordinal,
     staging_row_id: row.staging_row_id,
@@ -377,6 +390,7 @@ async function main() {
     card_list: { ...cardListResponse, body: undefined },
     official_product_markers: authority.official_product_markers,
     official_card_matches: authority.official_card_matches,
+    official_card_image_sources: [...officialCardImages.values()],
     raw_source_content_persisted: false,
   });
   const table = rows.map((row) =>

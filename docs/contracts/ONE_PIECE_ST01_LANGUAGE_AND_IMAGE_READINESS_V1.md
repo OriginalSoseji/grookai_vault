@@ -21,9 +21,11 @@ no canonical, sealed, pricing, publication, Storage, or image-pointer authority.
 
 - Every staged image reference must be HTTPS, use the allowlisted TCGPlayer CDN,
   and bind to the same source product ID.
+- Numbered cards may use the exact image attached to their number/name entry on
+  Bandai's official English ST-01 card list. This is the preferred source.
 - The downloader may try the same product's `in_1000x1000` image before the exact
   staged `200w` reference.
-- Response host, HTTP status, content type, byte signature, byte size,
+- Response host, HTTP status, content type, JPEG/PNG byte signature, byte size,
   dimensions, and SHA-256 are verified.
 - Downloaded bytes may exist only under ignored `.tmp` during this gate.
 - Card and DON paths are content-addressed proposals under the established

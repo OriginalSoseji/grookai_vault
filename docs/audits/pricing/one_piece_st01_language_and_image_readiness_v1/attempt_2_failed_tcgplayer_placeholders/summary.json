@@ -1,0 +1,51 @@
+{
+  "version": "ONE_PIECE_ST01_LANGUAGE_AND_IMAGE_READINESS_V1",
+  "status": "language_or_image_acquisition_readiness_failed",
+  "repository": {
+    "commit_sha": "069e24dfca18d40c23c11d4c176424cc4255e70f",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "source_review_sha256": "effc4ccc2e71be5cab7a30356763a2ca09d2d14b73bee48203ef3766dc97927b",
+  "authority_summary": {
+    "staged_rows": 21,
+    "exact_language_authority_rows": 18,
+    "context_only_rows": 3,
+    "official_numbered_card_matches": 17,
+    "blanket_category_authority_granted": false
+  },
+  "counts": {
+    "selected_rows": 21,
+    "accepted_images": 15,
+    "preferred_resolution_images": 13,
+    "card_or_don_proposed_paths": 12,
+    "sealed_paths_pending_contract": 3,
+    "duplicate_image_hash_groups": 0,
+    "findings": 6
+  },
+  "findings": [
+    "image_not_accepted:288234",
+    "image_not_accepted:288236",
+    "image_not_accepted:288243",
+    "image_not_accepted:288244",
+    "image_not_accepted:288245",
+    "image_not_accepted:288246"
+  ],
+  "duplicate_image_hashes": [],
+  "boundaries": {
+    "source_scope": "tcgplayer_category_68_group_3189_st01_only",
+    "blanket_tcgplayer_category_language_authority": false,
+    "downloaded_bytes_cache_only": true,
+    "cache_root": ".tmp/one_piece_st01_language_and_image_readiness_v1",
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_connections": 0,
+    "storage_writes": 0,
+    "pointer_updates": 0,
+    "canonical_mutations": 0,
+    "sealed_mutations": 0,
+    "pricing_mutations": 0,
+    "publication_mutations": 0
+  },
+  "exact_next_gate": "freeze a separate storage collision-preflight/upload plan for 18 card/DON objects and define the sealed image contract before any sealed upload",
+  "readiness_fingerprint_sha256": "86e648f0f6b1317c0fe5fc7b8315818b350bbd52774439b839fbccf8205561ad"
+}

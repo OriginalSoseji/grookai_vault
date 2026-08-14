@@ -225,6 +225,50 @@ export function parseTcgplayerImageReference(value, productId) {
   };
 }
 
+export function parseOfficialSt01CardImageSources(cardListHtml, cardListUrl) {
+  const sources = new Map();
+  const expectedNames = new Map(ST01_OFFICIAL_CARDS);
+  const pattern = /data-src=["']#(ST01-\d{3})["'][\s\S]{0,300}?data-src=["']([^"']+)["'][\s\S]{0,120}?alt=["']([^"']+)["']/gi;
+  for (const match of String(cardListHtml ?? "").matchAll(pattern)) {
+    const [, cardNumber, rawUrl, altName] = match;
+    const expectedName = expectedNames.get(cardNumber);
+    if (!expectedName || altName.trim() !== expectedName) {
+      throw new Error(`Official card-image identity mismatch: ${cardNumber}`);
+    }
+    const resolved = new URL(rawUrl, cardListUrl);
+    if (resolved.protocol !== "https:" ||
+        resolved.hostname.toLowerCase() !== ONE_PIECE_ST01_OFFICIAL_HOST) {
+      throw new Error(`Official card-image source outside authority: ${resolved}`);
+    }
+    if (sources.has(cardNumber)) {
+      throw new Error(`Duplicate official card-image source: ${cardNumber}`);
+    }
+    sources.set(cardNumber, {
+      card_number: cardNumber,
+      official_name: expectedName,
+      url: resolved.toString(),
+      source_host: ONE_PIECE_ST01_OFFICIAL_HOST,
+      source_authority: "official_english_st01_card_list_image",
+    });
+  }
+  if (sources.size !== ST01_OFFICIAL_CARDS.length) {
+    throw new Error(`Official ST-01 image count is not 17: ${sources.size}`);
+  }
+  return sources;
+}
+
+function pngDimensions(buffer) {
+  if (buffer.length < 24 ||
+      buffer.subarray(0, 8).toString("hex") !== "89504e470d0a1a0a") {
+    return null;
+  }
+  return {
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+    format: "png",
+  };
+}
+
 function jpegDimensions(buffer) {
   if (buffer.length < 4 || buffer[0] !== 0xff || buffer[1] !== 0xd8) {
     return null;
@@ -257,10 +301,12 @@ function jpegDimensions(buffer) {
 
 export function inspectOnePieceImage(buffer, contentType) {
   const normalizedType = clean(contentType)?.split(";")[0].toLowerCase();
-  const dimensions = jpegDimensions(buffer);
+  const dimensions = pngDimensions(buffer) ?? jpegDimensions(buffer);
   const diagnostics = [];
-  if (normalizedType !== "image/jpeg") diagnostics.push("content_type_not_jpeg");
-  if (!dimensions) diagnostics.push("unrecognized_jpeg_bytes");
+  if (!["image/jpeg", "image/png"].includes(normalizedType)) {
+    diagnostics.push("content_type_not_supported_image");
+  }
+  if (!dimensions) diagnostics.push("unrecognized_image_bytes");
   if (buffer.length < MIN_IMAGE_BYTES) diagnostics.push("below_minimum_bytes");
   if (buffer.length > MAX_IMAGE_BYTES) diagnostics.push("above_maximum_bytes");
   if (dimensions && (dimensions.width < 600 || dimensions.height < 600)) {
@@ -275,8 +321,8 @@ export function inspectOnePieceImage(buffer, contentType) {
     format: dimensions?.format ?? null,
     diagnostics,
     valid_image: !diagnostics.some((item) => [
-      "content_type_not_jpeg",
-      "unrecognized_jpeg_bytes",
+      "content_type_not_supported_image",
+      "unrecognized_image_bytes",
       "below_minimum_bytes",
       "above_maximum_bytes",
     ].includes(item)),

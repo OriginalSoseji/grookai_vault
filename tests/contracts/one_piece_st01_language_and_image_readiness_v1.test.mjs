@@ -6,6 +6,7 @@ import {
   ST01_OFFICIAL_CARDS,
   evaluateSt01OfficialAuthority,
   inspectOnePieceImage,
+  parseOfficialSt01CardImageSources,
   parseTcgplayerImageReference,
   proposedImageTarget,
   validateReadinessRows,
@@ -68,6 +69,19 @@ test("TCGPlayer source binding derives only the same product high-resolution URL
   ));
 });
 
+test("official card images bind all 17 card numbers to their exact names", () => {
+  const html = ST01_OFFICIAL_CARDS.map(([number, name]) =>
+    `<a data-src="#${number}"><img data-src="../images/cardlist/card/${number}.png?1" alt="${name}"></a>`).join("\n");
+  const sources = parseOfficialSt01CardImageSources(
+    html,
+    "https://en.onepiece-cardgame.com/cardlist/?series=569001",
+  );
+  assert.equal(sources.size, 17);
+  assert.equal(sources.get("ST01-005").official_name, "Jinbe");
+  assert.equal(sources.get("ST01-005").url,
+    "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-005.png?1");
+});
+
 test("image inspection verifies JPEG bytes and reports preferred resolution", () => {
   const jpeg = Buffer.alloc(6_000, 0);
   jpeg[0] = 0xff;
@@ -81,6 +95,17 @@ test("image inspection verifies JPEG bytes and reports preferred resolution", ()
   assert.equal(observed.valid_image, true);
   assert.equal(observed.width, 715);
   assert.equal(observed.height, 1000);
+  assert.equal(observed.preferred_self_hosted_resolution, true);
+});
+
+test("image inspection accepts official PNG dimensions", () => {
+  const png = Buffer.alloc(6_000, 0);
+  Buffer.from("89504e470d0a1a0a", "hex").copy(png, 0);
+  png.writeUInt32BE(600, 16);
+  png.writeUInt32BE(840, 20);
+  const observed = inspectOnePieceImage(png, "image/png");
+  assert.equal(observed.valid_image, true);
+  assert.equal(observed.format, "png");
   assert.equal(observed.preferred_self_hosted_resolution, true);
 });
 
