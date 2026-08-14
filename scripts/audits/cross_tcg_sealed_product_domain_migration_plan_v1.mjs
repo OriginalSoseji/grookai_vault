@@ -262,7 +262,7 @@ const report = `# Cross-TCG Sealed Product Domain V1 Migration Plan Audit\n\n` +
   `## Boundaries\n\n` +
   `No database connection or apply, Storage write, pricing write, publication, app visibility, deployment, active MTG change, or card identity table reference occurred.\n\n` +
   `## Source Evidence\n\n` +
-  `The plan is bound to ${sourceSummary.overall?.active_source_products?.toLocaleString("en-US")} active source products and ${sourceSummary.overall?.classifications?.sealed_candidate?.toLocaleString("en-US")} sealed candidates from the final read-only portfolio audit.\n\n` +
+  `The plan is bound to ${planCore.source_audit_binding.active_source_products.toLocaleString("en-US")} active source products and ${planCore.source_audit_binding.classifications.sealed_candidate.toLocaleString("en-US")} sealed candidates from the final read-only portfolio audit.\n\n` +
   `## Exact Next Gate\n\n` +
   `${summary.exact_next_gate}\n`;
 
