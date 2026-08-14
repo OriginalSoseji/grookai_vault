@@ -54,7 +54,7 @@ const PLAN_SUMMARY_PATH = path.join(
   "audits",
   "pricing",
   "cross_tcg_sealed_product_domain_v1",
-  "2026-08-14T05-44-31-490Z_migration_plan",
+  "2026-08-14T06-45-44-815Z_migration_plan",
   "summary.json",
 );
 const CONTRACT_PATH = path.join(

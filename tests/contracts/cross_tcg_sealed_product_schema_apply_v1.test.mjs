@@ -140,7 +140,7 @@ test("migration is the exact reviewed byte payload", async () => {
   assert.equal(Buffer.from(migrationSql).equals(Buffer.from(candidateSql)), true);
   assert.equal(
     sealedSchemaApplySha256V1(migrationSql),
-    "794ba84ce5fcd57568d7b94536ec06dbdb7d8b4d171a0f2895e6e0b808f895d4",
+    "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
   );
 });
 
