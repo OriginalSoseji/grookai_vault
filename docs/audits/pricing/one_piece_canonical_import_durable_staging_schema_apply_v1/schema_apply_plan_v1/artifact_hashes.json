@@ -1,0 +1,42 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "plan.json",
+      "bytes": 10732,
+      "sha256": "55a29ccdab252add1733afa76c6ee11f5a08bf43d0b981037005232e0c2437cb"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 1101,
+      "sha256": "bd4b1c406620a699e942151fde324196cb2cb41346f80ba066c1fe29227f26c8"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "supabase/migrations/20260814120000_one_piece_canonical_import_durable_staging_v1.sql",
+      "bytes": 6456,
+      "sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a"
+    },
+    {
+      "path": "docs/sql/one_piece_canonical_import_durable_staging_schema_v1_migration_candidate.sql",
+      "bytes": 6456,
+      "sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_import_durable_staging_preflight_v1/2026-08-14T07-12-41-222Z_production_read_only/summary.json",
+      "bytes": 52514,
+      "sha256": "a7c69d338f6bd46327681441a05f9a075bed745f3634bbc13d8d6206b43539da"
+    },
+    {
+      "path": "backend/pricing/one_piece_canonical_import_durable_staging_schema_apply_v1.mjs",
+      "bytes": 13421,
+      "sha256": "de156902d58491895e0cce99185080970083fe5886bb22cf59d701f74ddc82fb"
+    },
+    {
+      "path": "scripts/audits/one_piece_canonical_import_durable_staging_schema_apply_v1.mjs",
+      "bytes": 27163,
+      "sha256": "8fd22805181f33c63919846091eaa744164b2fec1742eb485a0b0d9afb7c1684"
+    }
+  ]
+}

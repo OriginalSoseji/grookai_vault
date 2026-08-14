@@ -64,19 +64,17 @@ test("passed rollback-only One Piece migration draft remains byte-identical", ()
   );
 });
 
-test("durable candidate remains unapplied and separate from the passed canary draft", () => {
-  assert.equal(fs.existsSync(MIGRATION_FILE), true);
-  assert.equal(
-    fs.existsSync(
-      path.join(
-        ROOT,
-        "supabase",
-        "migrations",
-        "20260814120000_one_piece_canonical_import_durable_staging_v1.sql",
-      ),
-    ),
-    false,
+test("durable candidate is promoted byte-identically after preflight", () => {
+  const reservedMigration = path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260814120000_one_piece_canonical_import_durable_staging_v1.sql",
   );
+  assert.equal(fs.existsSync(MIGRATION_FILE), true);
+  assert.equal(fs.existsSync(reservedMigration), true);
+  assert.equal(Buffer.from(fs.readFileSync(reservedMigration)).equals(
+    Buffer.from(MIGRATION_SQL)), true);
   assert.notEqual(sha256(MIGRATION_SQL), sha256(fs.readFileSync(OLD_DRAFT)));
 });
 
