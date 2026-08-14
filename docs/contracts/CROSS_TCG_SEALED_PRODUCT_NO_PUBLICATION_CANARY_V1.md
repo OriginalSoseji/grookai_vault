@@ -26,18 +26,22 @@ Future contract only. This file does not authorize execution.
 
 ## Apply Sequence
 
-1. Write a frozen plan with IDs, payload hashes, classifier version, expected
+1. Write a read-only selection plan with IDs, payload hashes, classifier
+   evidence, exact empty-schema state, and no mutation authority.
+2. Review all selected candidates as one bounded packet. Selection is not
+   founder review and cannot construct canonical rows.
+3. Write a separately fingerprinted mutation plan with expected
    identities, and rollback scope.
-2. Insert candidate staging rows only.
-3. Read back all candidate evidence and classifications.
-4. Append founder-reviewed decisions for the bounded sealed candidates.
-5. Insert family, variant, evidence, and exact source mapping rows for confirmed
+4. Insert candidate staging rows only.
+5. Read back all candidate evidence and classifications.
+6. Append founder-reviewed decisions for the bounded sealed candidates.
+7. Insert family, variant, evidence, and exact source mapping rows for confirmed
    candidates only.
-6. Insert `pending` pricing-lane qualification hooks without price values.
-7. Build a `draft` release membership manifest.
-8. Prove the active release pointer did not change.
-9. Reconcile every planned, written, and read-back row and artifact hash.
-10. Stop without publication or client integration.
+8. Insert `pending` pricing-lane qualification hooks without price values.
+9. Build a `draft` release membership manifest.
+10. Prove the active release pointer did not change.
+11. Reconcile every planned, written, and read-back row and artifact hash.
+12. Stop without publication or client integration.
 
 ## Stop Conditions
 
