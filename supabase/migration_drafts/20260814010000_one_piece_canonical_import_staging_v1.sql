@@ -136,11 +136,11 @@ create policy one_piece_import_rows_service_insert
   with check (auth.role() = 'service_role');
 
 revoke all on table public.one_piece_canonical_import_batches
-  from public, anon, authenticated;
+  from public, anon, authenticated, service_role;
 revoke all on table public.one_piece_canonical_import_rows
-  from public, anon, authenticated;
+  from public, anon, authenticated, service_role;
 revoke all on function public.one_piece_canonical_import_reject_mutation_v1()
-  from public, anon, authenticated;
+  from public, anon, authenticated, service_role;
 
 grant select, insert on table public.one_piece_canonical_import_batches
   to service_role;

@@ -35,11 +35,15 @@ test("One Piece staging draft is service-only and insert/read-only", () => {
   assert.match(SQL, /enable row level security/g);
   assert.match(
     SQL,
-    /revoke all on table public\.one_piece_canonical_import_batches[\s\S]*from public, anon, authenticated/i,
+    /revoke all on table public\.one_piece_canonical_import_batches[\s\S]*from public, anon, authenticated, service_role/i,
   );
   assert.match(
     SQL,
-    /revoke all on table public\.one_piece_canonical_import_rows[\s\S]*from public, anon, authenticated/i,
+    /revoke all on table public\.one_piece_canonical_import_rows[\s\S]*from public, anon, authenticated, service_role/i,
+  );
+  assert.match(
+    SQL,
+    /revoke all on function public\.one_piece_canonical_import_reject_mutation_v1\(\)[\s\S]*from public, anon, authenticated, service_role/i,
   );
   assert.match(
     SQL,
