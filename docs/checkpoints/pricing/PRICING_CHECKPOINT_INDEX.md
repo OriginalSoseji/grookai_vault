@@ -934,6 +934,12 @@ Recommended reading order for future maintainers:
       readback, independent hidden-visibility proof, zero canonical card rows,
       and the next separate 17-card rollback-canary gate
 
+68. `PRICING_CHECKPOINT_70_ONE_PIECE_ST01_PROMOTION_ROLLBACK_PROVED.md`
+    - then read the frozen 17-card English ST-01 parent payload, exact durable
+      staging and self-hosted-image evidence binding, zero-collision production
+      preflight, exact rollback-only write attribution, reproduced zero-residue
+      proof, and the still-closed durable card-promotion boundary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
