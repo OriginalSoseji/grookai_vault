@@ -145,7 +145,9 @@ async function captureReadback(connectionString, productIds, gvIds) {
         'sealed_variants', (select count(*) from public.sealed_product_variants),
         'sealed_candidates', (select count(*) from public.sealed_product_candidates),
         'sealed_releases', (select count(*) from public.sealed_product_releases),
-        'vault_cards', (select count(*) from public.vault_cards)
+        'vault_items', (select count(*) from public.vault_items),
+        'vault_item_instances', (select count(*) from public.vault_item_instances),
+        'vault_owners', (select count(*) from public.vault_owners)
       )
     ) as value`, [
       ONE_PIECE_FOUNDATION_MIGRATION_VERSION,
