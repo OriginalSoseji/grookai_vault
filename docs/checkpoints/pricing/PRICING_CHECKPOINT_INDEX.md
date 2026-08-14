@@ -849,6 +849,11 @@ Recommended reading order for future maintainers:
       all-type production rollback canary locked the durable ingestion safety
       boundary without changing production data
 
+52. `PRICING_CHECKPOINT_54_CROSS_TCG_SEALED_SCHEMA_APPLIED_CANARY_SELECTION_READY.md`
+    - then read the independently verified private sealed-product schema,
+      exact effective-privilege boundary, zero-row production state, and the
+      ten-product read-only review packet that remains non-authoritative
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
