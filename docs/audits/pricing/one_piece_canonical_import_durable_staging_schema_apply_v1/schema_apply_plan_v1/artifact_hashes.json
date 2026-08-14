@@ -3,13 +3,13 @@
   "artifacts": [
     {
       "path": "plan.json",
-      "bytes": 10732,
-      "sha256": "55a29ccdab252add1733afa76c6ee11f5a08bf43d0b981037005232e0c2437cb"
+      "bytes": 10712,
+      "sha256": "3bbd6456187ffb7b6f94329356fbccd47f03e8db337ab9f7fae7866f19b15f75"
     },
     {
       "path": "REPORT.md",
       "bytes": 1101,
-      "sha256": "bd4b1c406620a699e942151fde324196cb2cb41346f80ba066c1fe29227f26c8"
+      "sha256": "2b83de441d4f09cbb275b75b4f99c2441401d0312a7808788afe42d61b7e7fa6"
     }
   ],
   "bound_inputs": [
@@ -30,8 +30,8 @@
     },
     {
       "path": "backend/pricing/one_piece_canonical_import_durable_staging_schema_apply_v1.mjs",
-      "bytes": 13421,
-      "sha256": "de156902d58491895e0cce99185080970083fe5886bb22cf59d701f74ddc82fb"
+      "bytes": 13401,
+      "sha256": "77730edbb0caf6c69e82da5f9101f45691e7f53dba676400b26ecb50cd9bea67"
     },
     {
       "path": "scripts/audits/one_piece_canonical_import_durable_staging_schema_apply_v1.mjs",

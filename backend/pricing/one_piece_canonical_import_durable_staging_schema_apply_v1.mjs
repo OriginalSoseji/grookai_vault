@@ -46,9 +46,9 @@ const REQUIRED_INDEXES = Object.freeze([
   "one_piece_canonical_import_batches_group_idx",
   "one_piece_canonical_import_batches_pkey",
   "one_piece_canonical_import_rows_batch_idx",
-  "one_piece_canonical_import_rows_batch_ordinal_key",
-  "one_piece_canonical_import_rows_batch_product_key",
   "one_piece_canonical_import_rows_pkey",
+  "one_piece_import_rows_batch_ordinal_key",
+  "one_piece_import_rows_batch_product_key",
 ]);
 const NAMED_CONSTRAINTS = Object.freeze([
   "one_piece_import_batches_payload_hash_check",

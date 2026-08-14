@@ -136,7 +136,7 @@ test("frozen plan binds preflight, ledger, inventory, and guard token", async ()
   assert.equal(plan.ledger_fingerprint_sha256,
     "6895ee219cc369ebb29e0cd66e7f30d41ab805e3c8e6d6b02a74db4ac0ef185f");
   assert.equal(plan.apply_plan_fingerprint_sha256,
-    "e8186bf58f0be3f9796733a29de361814b242e253c508e96cec360025770eb58");
+    "ee4b70bbfbda797cede83706cccc5234dc9dba619fc23053d02cff6aaad09e58");
   assert.equal(plan.inventory.tables.length, 2);
   assert.equal(plan.inventory.total_index_count, 7);
   assert.deepEqual(plan.inventory.constraint_type_counts, { c: 13, f: 1, p: 2, u: 3 });
