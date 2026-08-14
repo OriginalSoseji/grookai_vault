@@ -855,6 +855,11 @@ Recommended reading order for future maintainers:
       the explicit effective-privilege boundary, and the production read-only
       preflight that remains required before migration placement or apply
 
+54. `PRICING_CHECKPOINT_56_ONE_PIECE_DURABLE_STAGING_PREFLIGHT_PASSED.md`
+    - then read the zero-finding production read-only preflight, its frozen
+      producer and artifact fingerprints, the 7,261-row source warehouse
+      baseline, and the still-closed schema-only apply boundary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
