@@ -141,7 +141,10 @@ async function captureReadback(connectionString, productIds, gvIds) {
         'printing_rows', (select count(*) from public.card_printings),
         'external_mappings', (select count(*) from public.external_mappings),
         'external_printing_mappings', (select count(*) from public.external_printing_mappings),
-        'sealed_products', (select count(*) from public.sealed_products),
+        'sealed_families', (select count(*) from public.sealed_product_families),
+        'sealed_variants', (select count(*) from public.sealed_product_variants),
+        'sealed_candidates', (select count(*) from public.sealed_product_candidates),
+        'sealed_releases', (select count(*) from public.sealed_product_releases),
         'vault_cards', (select count(*) from public.vault_cards)
       )
     ) as value`, [
