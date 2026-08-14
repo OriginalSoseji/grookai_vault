@@ -1,0 +1,221 @@
+{
+  "authority_version": "ONE_PIECE_ST01_LANGUAGE_AND_IMAGE_READINESS_V1",
+  "product": {
+    "requested_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+    "final_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+    "http_status": 200,
+    "http_ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "bytes": 52884,
+    "sha256": "2342c568cc1759a9cf78ecadc417494b9d34650fddd3d5b9ac7644c470afadca"
+  },
+  "card_list": {
+    "requested_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001",
+    "final_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001",
+    "http_status": 200,
+    "http_ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "bytes": 92288,
+    "sha256": "96cf0055f7b3e42cd48eb69584dff53b70f7a3728b7bc249f8650163fe574acb"
+  },
+  "official_product_markers": [
+    "STARTER DECK -Straw Hat Crew- [ST-01]",
+    "December 2, 2022",
+    "USD $11.99",
+    "Constructed Deck x 1 (51 cards)",
+    "DON!! Cards x 10",
+    "17 types"
+  ],
+  "official_card_matches": [
+    {
+      "card_number": "ST01-001",
+      "official_name": "Monkey.D.Luffy"
+    },
+    {
+      "card_number": "ST01-002",
+      "official_name": "Usopp"
+    },
+    {
+      "card_number": "ST01-003",
+      "official_name": "Karoo"
+    },
+    {
+      "card_number": "ST01-004",
+      "official_name": "Sanji"
+    },
+    {
+      "card_number": "ST01-005",
+      "official_name": "Jinbe"
+    },
+    {
+      "card_number": "ST01-006",
+      "official_name": "Tony Tony.Chopper"
+    },
+    {
+      "card_number": "ST01-007",
+      "official_name": "Nami"
+    },
+    {
+      "card_number": "ST01-008",
+      "official_name": "Nico Robin"
+    },
+    {
+      "card_number": "ST01-009",
+      "official_name": "Nefeltari Vivi"
+    },
+    {
+      "card_number": "ST01-010",
+      "official_name": "Franky"
+    },
+    {
+      "card_number": "ST01-011",
+      "official_name": "Brook"
+    },
+    {
+      "card_number": "ST01-012",
+      "official_name": "Monkey.D.Luffy"
+    },
+    {
+      "card_number": "ST01-013",
+      "official_name": "Roronoa Zoro"
+    },
+    {
+      "card_number": "ST01-014",
+      "official_name": "Guard Point"
+    },
+    {
+      "card_number": "ST01-015",
+      "official_name": "Gum-Gum Jet Pistol"
+    },
+    {
+      "card_number": "ST01-016",
+      "official_name": "Diable Jambe"
+    },
+    {
+      "card_number": "ST01-017",
+      "official_name": "Thousand Sunny"
+    }
+  ],
+  "official_card_image_sources": [
+    {
+      "card_number": "ST01-001",
+      "official_name": "Monkey.D.Luffy",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-001.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-002",
+      "official_name": "Usopp",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-002.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-003",
+      "official_name": "Karoo",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-003.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-004",
+      "official_name": "Sanji",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-004.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-005",
+      "official_name": "Jinbe",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-005.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-006",
+      "official_name": "Tony Tony.Chopper",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-006.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-007",
+      "official_name": "Nami",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-007.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-008",
+      "official_name": "Nico Robin",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-008.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-009",
+      "official_name": "Nefeltari Vivi",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-009.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-010",
+      "official_name": "Franky",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-010.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-011",
+      "official_name": "Brook",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-011.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-012",
+      "official_name": "Monkey.D.Luffy",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-012.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-013",
+      "official_name": "Roronoa Zoro",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-013.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-014",
+      "official_name": "Guard Point",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-014.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-015",
+      "official_name": "Gum-Gum Jet Pistol",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-015.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-016",
+      "official_name": "Diable Jambe",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-016.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    },
+    {
+      "card_number": "ST01-017",
+      "official_name": "Thousand Sunny",
+      "url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-017.png?260806",
+      "source_host": "en.onepiece-cardgame.com",
+      "source_authority": "official_english_st01_card_list_image"
+    }
+  ],
+  "raw_source_content_persisted": false
+}

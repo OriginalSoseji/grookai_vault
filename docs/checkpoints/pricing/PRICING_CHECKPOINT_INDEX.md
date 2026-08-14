@@ -895,6 +895,12 @@ Recommended reading order for future maintainers:
       lanes, the two shared language/image evidence blockers, and the still
       closed canonical and sealed promotion boundaries
 
+61. `PRICING_CHECKPOINT_63_ONE_PIECE_ST01_LANGUAGE_IMAGE_READINESS_PASSED.md`
+    - then read the exact official English ST-01 authority, 21/21 verified
+      image acquisition, rejected CDN placeholder evidence, 18 proposed
+      card/DON paths, three deliberately undefined sealed paths, and the
+      still-closed Storage and promotion boundaries
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
