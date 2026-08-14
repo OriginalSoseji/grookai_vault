@@ -19,6 +19,16 @@ import { marketEvidenceDbUrl } from "../lib/market_evidence_db_query_v1.mjs";
 
 const { Client } = pg;
 
+export function onePieceDatabaseSslConfigV1(connectionString) {
+  if (!connectionString) {
+    throw new Error("SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required");
+  }
+  const host = new URL(connectionString).hostname.toLowerCase();
+  return host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]"
+    ? false
+    : { rejectUnauthorized: false };
+}
+
 function quoteIdentifier(value) {
   if (!/^[a-z_][a-z0-9_]*$/i.test(value)) {
     throw new Error(`Unsafe SQL identifier: ${value}`);
@@ -33,9 +43,10 @@ function qualifiedIdentifier(relation) {
 }
 
 export function createOnePieceProductionClientV1(applicationName) {
+  const connectionString = marketEvidenceDbUrl();
   return new Client({
-    connectionString: marketEvidenceDbUrl(),
-    ssl: { rejectUnauthorized: false },
+    connectionString,
+    ssl: onePieceDatabaseSslConfigV1(connectionString),
     connectionTimeoutMillis: 15_000,
     query_timeout: 240_000,
     statement_timeout: 240_000,

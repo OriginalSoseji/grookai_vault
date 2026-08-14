@@ -22,6 +22,7 @@ import {
   verifyOnePieceRollbackExecutionInputsV1,
 } from "../../backend/pricing/one_piece_canonical_import_rollback_canary_v1.mjs";
 import { executeOnePieceProductionRollbackCanaryV1 } from "../../scripts/audits/one_piece_canonical_import_rollback_canary_v1.mjs";
+import { onePieceDatabaseSslConfigV1 } from "../../scripts/audits/one_piece_canonical_import_rollback_db_v1.mjs";
 import {
   evaluateIndependentOnePiecePostRollbackV1,
   independentlyVerifyOnePieceRollbackV1,
@@ -110,6 +111,17 @@ function executorArgs(outDir) {
     outDir,
   };
 }
+
+test("database SSL policy supports local tunnels without weakening remote TLS", () => {
+  assert.equal(onePieceDatabaseSslConfigV1("postgresql://user:pass@localhost:5432/db"), false);
+  assert.equal(onePieceDatabaseSslConfigV1("postgresql://user:pass@127.0.0.1:6543/db"), false);
+  assert.equal(onePieceDatabaseSslConfigV1("postgresql://user:pass@[::1]:5432/db"), false);
+  assert.deepEqual(
+    onePieceDatabaseSslConfigV1("postgresql://user:pass@db.example.com:5432/db"),
+    { rejectUnauthorized: false },
+  );
+  assert.throws(() => onePieceDatabaseSslConfigV1(null), /required/);
+});
 
 test("frozen migration, plan, and full manifest pass exact local preflight", () => {
   const result = verifyOnePieceRollbackExecutionInputsV1({
