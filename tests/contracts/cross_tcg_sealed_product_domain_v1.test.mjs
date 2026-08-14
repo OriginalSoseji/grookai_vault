@@ -17,6 +17,8 @@ function source(path) {
 
 const fixture = JSON.parse(source("tests/fixtures/cross_tcg_sealed_product_domain_v1.json"));
 const migrationPath = "docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql";
+const promotedMigrationPath =
+  "supabase/migrations/20260814060000_cross_tcg_sealed_product_domain_v1.sql";
 const rollbackPath = "docs/sql/cross_tcg_sealed_product_domain_v1_schema_only_rollback_candidate.sql";
 const migration = source(migrationPath);
 const rollback = source(rollbackPath);
@@ -128,12 +130,16 @@ test("future canary refuses oversized or pointer-changing plans", () => {
   assert.ok(result.errors.includes("active release pointer must remain unchanged"));
 });
 
-test("migration remains an unapplied docs-only candidate", () => {
+test("reviewed migration is promoted byte-for-byte but remains execution-gated", () => {
   const migrations = readdirSync(new URL("../../supabase/migrations/", import.meta.url));
   assert.match(migration, /Review artifact only/);
   assert.match(stripComments(migration), /^\s*begin\s*;/i);
   assert.match(stripComments(migration), /commit\s*;\s*$/i);
-  assert.equal(migrations.some((name) => /sealed_product_domain/i.test(name)), false);
+  assert.deepEqual(source(promotedMigrationPath), migration);
+  assert.deepEqual(
+    migrations.filter((name) => /sealed_product_domain/i.test(name)),
+    ["20260814060000_cross_tcg_sealed_product_domain_v1.sql"],
+  );
 });
 
 test("migration creates only the separate ten-table sealed domain", () => {

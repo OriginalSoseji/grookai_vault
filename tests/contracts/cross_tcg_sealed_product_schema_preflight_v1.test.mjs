@@ -109,7 +109,14 @@ test("live reader is fail-closed and writes only after transaction capture", () 
   assert.doesNotMatch(script, /\bclient\.query\([`'"](?:insert|update|delete|create|alter|drop|grant|revoke|truncate)\b/i);
 });
 
-test("candidate remains outside applied migration history", () => {
+test("candidate is promoted only at the exact reserved migration path", () => {
   const migrations = readdirSync(new URL("../../supabase/migrations", import.meta.url));
-  assert.equal(migrations.some((name) => name.includes("sealed_product_domain")), false);
+  assert.deepEqual(
+    migrations.filter((name) => name.includes("sealed_product_domain")),
+    ["20260814060000_cross_tcg_sealed_product_domain_v1.sql"],
+  );
+  assert.equal(
+    source("supabase/migrations/20260814060000_cross_tcg_sealed_product_domain_v1.sql"),
+    source("docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql"),
+  );
 });
