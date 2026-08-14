@@ -916,6 +916,12 @@ Recommended reading order for future maintainers:
       download/hash readbacks, zero overwrite or rollback result, preserved
       database boundary, and the next numbered-card canonical preflight gate
 
+65. `PRICING_CHECKPOINT_67_ONE_PIECE_CANONICAL_FOUNDATION_ROLLBACK_PROVED.md`
+    - then read the hidden One Piece game/identity-domain foundation design,
+      exact production preflight, successful rollback-only migration proof,
+      independent zero-residue readback, preserved 21-row staging scope, and
+      the still-closed durable foundation apply and card-promotion boundaries
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

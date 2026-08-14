@@ -1,0 +1,27 @@
+{
+  "version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_POST_ROLLBACK_V1",
+  "recorded_at": "2026-08-14T15:13:53.541Z",
+  "repository": {
+    "commit_sha": "0a6039552c040a8cb2cda964ab034482ce9a3d88",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "authority": {
+    "execution_summary": "docs/audits/pricing/one_piece_canonical_catalog_foundation_rollback_v1/production_rollback_attempt_2_v1/summary.json",
+    "execution_summary_sha256": "5ce5f0b841ab3639ec9c2d8c17ad9bf8d0f6bbe5dfdaaf66a06a63f0190b1637",
+    "rollback_proof_sha256": "c055c08d0231ad99b7958afc5e915b5bb9841a5169628d8523f5c3fa29472fe1",
+    "execution_producer_sha": "6238188779763f996787c867aff4c7fb487cc0ba"
+  },
+  "mode": "fresh_read_only_post_rollback_verification",
+  "boundaries": {
+    "database_writes": 0,
+    "migration_apply": 0,
+    "canonical_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  },
+  "run_plan_fingerprint_sha256": "05d9be52282fb204824970cc96d4176944710bfae5efc3107bf3572353ed4f72"
+}
