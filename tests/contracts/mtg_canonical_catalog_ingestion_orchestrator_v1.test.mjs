@@ -55,6 +55,13 @@ test("orchestrator preserves evidence after every transition", () => {
   assert.match(SOURCE, /stopped_before_next_set/);
 });
 
+test("image boundary uses only deployed parent and printing columns", () => {
+  assert.match(SOURCE, /parent_image_alt_url_count/);
+  assert.match(SOURCE, /printing_image_path_count/);
+  assert.match(SOURCE, /printing_image_alt_url_count/);
+  assert.doesNotMatch(SOURCE, /image_source_ref/);
+});
+
 test("apply requires one exact manifest-level approval", () => {
   assert.match(SOURCE, /MTG_CATALOG_INGESTION_APPROVAL_ENV/);
   assert.match(SOURCE, /Exact catalog envelope approval missing/);

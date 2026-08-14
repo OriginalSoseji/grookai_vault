@@ -373,12 +373,20 @@ async function assertHiddenClients(client, setCode, expectedPokemon) {
 async function captureImagePointerCounts(client, plan) {
   const result = await client.query(
     `select jsonb_build_object(
-       'parent_image_url', count(*) filter (where image_url is not null),
-       'parent_image_source', count(*) filter (where image_source is not null),
-       'parent_image_source_ref', count(*) filter (where image_source_ref is not null),
-       'printing_image_url', (
+       'parent_image_url_count', count(*) filter (where image_url is not null),
+       'parent_image_alt_url_count', count(*) filter (where image_alt_url is not null),
+       'parent_image_source_count', count(*) filter (where image_source is not null),
+       'printing_image_path_count', (
+         select count(*) from public.card_printings printing
+         where printing.card_print_id = any($1::uuid[]) and printing.image_path is not null
+       ),
+       'printing_image_url_count', (
          select count(*) from public.card_printings printing
          where printing.card_print_id = any($1::uuid[]) and printing.image_url is not null
+       ),
+       'printing_image_alt_url_count', (
+         select count(*) from public.card_printings printing
+         where printing.card_print_id = any($1::uuid[]) and printing.image_alt_url is not null
        )
      ) as value
      from public.card_prints where id = any($1::uuid[])`,
