@@ -113,7 +113,8 @@ export async function captureOnePieceSourceSnapshotV1(client, expectation) {
     [expectation.category_id],
   );
   const groupResult = await client.query(
-    `select group_id, name, published_on, source_active, catalog_metadata_status
+    `select group_id, name, published_on::date::text as published_on,
+            source_active, catalog_metadata_status
      from public.tcgcsv_source_groups
      where category_id = $1 and group_id = $2`,
     [expectation.category_id, expectation.group.group_id],
@@ -139,7 +140,7 @@ export async function captureOnePieceSourceSnapshotV1(client, expectation) {
                 source_price_row_identity,
                 subtype_name_normalized,
                 observed_on::text,
-                (market_price > 0) as positive_market_signal
+                coalesce(market_price > 0, false) as positive_market_signal
          from public.tcgcsv_source_price_daily_observations
          where category_id = $1
            and product_id = any($2::integer[])
@@ -417,11 +418,9 @@ export async function captureOnePieceReadOnlyProofV1({
     ) {
       throw new Error("Fresh verifier connection is not provably read-only");
     }
-    const [protectedBoundaries, source, footprint] = await Promise.all([
-      captureOnePieceProtectedBoundariesV1(client),
-      captureOnePieceSourceSnapshotV1(client, sourceExpectation),
-      captureOnePieceStagingFootprintV1(client),
-    ]);
+    const protectedBoundaries = await captureOnePieceProtectedBoundariesV1(client);
+    const source = await captureOnePieceSourceSnapshotV1(client, sourceExpectation);
+    const footprint = await captureOnePieceStagingFootprintV1(client);
     await client.query("rollback");
     rolledBack = true;
     transactionStarted = false;

@@ -123,6 +123,16 @@ test("database SSL policy supports local tunnels without weakening remote TLS", 
   assert.throws(() => onePieceDatabaseSslConfigV1(null), /required/);
 });
 
+test("production source readback normalizes date and missing price evidence", () => {
+  const databaseSource = fs.readFileSync(
+    path.join(ROOT, "scripts", "audits", "one_piece_canonical_import_rollback_db_v1.mjs"),
+    "utf8",
+  );
+  assert.match(databaseSource, /published_on::date::text as published_on/);
+  assert.match(databaseSource, /coalesce\(market_price > 0, false\) as positive_market_signal/);
+  assert.doesNotMatch(databaseSource, /Promise\.all\(\[\s*captureOnePieceProtectedBoundariesV1/);
+});
+
 test("frozen migration, plan, and full manifest pass exact local preflight", () => {
   const result = verifyOnePieceRollbackExecutionInputsV1({
     plan: PLAN,
