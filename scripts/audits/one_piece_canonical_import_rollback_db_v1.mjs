@@ -95,6 +95,21 @@ export async function captureOnePieceProtectedBoundariesV1(client) {
         join public.games game on game.id = card.game_id
         where game.code = 'mtg'
       ),
+      'external_mapping_count', (
+        select count(*)::text
+        from public.external_mappings mapping
+        join public.card_prints card on card.id = mapping.card_print_id
+        join public.games game on game.id = card.game_id
+        where game.code = 'mtg'
+      ),
+      'external_printing_mapping_count', (
+        select count(*)::text
+        from public.external_printing_mappings mapping
+        join public.card_printings printing on printing.id = mapping.card_printing_id
+        join public.card_prints card on card.id = printing.card_print_id
+        join public.games game on game.id = card.game_id
+        where game.code = 'mtg'
+      ),
       'canonical_scope', 'mtg'
     ) as value
   `);

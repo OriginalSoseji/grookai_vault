@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import {
   buildOnePieceSourceExpectationV1,
   compareOnePieceProtectedSnapshotsV1,
+  compareOnePieceProtectedSnapshotsAllowingMtgProgressV1,
   evaluateOnePieceSourceSnapshotV1,
   evaluateOnePieceStagingFootprintAbsentV1,
   evaluateOnePieceTransactionSecurityV1,
@@ -94,7 +95,7 @@ function readOnlyProof(expectation) {
         "public.games": { present: true, row_count: "2" },
         "public.vault_items": { present: true, row_count: "100" },
       },
-      mtg_scope: { game_count: "1", card_count: "3000" },
+      mtg_scope: { canonical_scope: "mtg", game_count: "1", card_count: "3000" },
     },
     source: sourceSnapshot(expectation),
     staging_footprint: absentFootprint(),
@@ -217,6 +218,48 @@ test("post-rollback footprint and protected snapshots fail on any residue or cou
   assert.deepEqual(compareOnePieceProtectedSnapshotsV1(before, changed), [
     "protected_table_counts_changed",
   ]);
+});
+
+test("independent proof allows only globally reconciled monotonic MTG progress", () => {
+  const before = {
+    tables: {
+      "public.card_prints": { present: true, row_count: "100" },
+      "public.mtg_canonical_import_rows": { present: true, row_count: "500" },
+      "public.vault_item_instances": { present: true, row_count: "20" },
+    },
+    mtg_scope: {
+      canonical_scope: "mtg",
+      game_count: "1",
+      card_count: "40",
+      staging_row_count: "500",
+    },
+  };
+  const after = structuredClone(before);
+  after.tables["public.card_prints"].row_count = "110";
+  after.tables["public.mtg_canonical_import_rows"].row_count = "525";
+  after.mtg_scope.card_count = "50";
+  after.mtg_scope.staging_row_count = "525";
+  assert.deepEqual(compareOnePieceProtectedSnapshotsAllowingMtgProgressV1(before, after), []);
+
+  const unattributed = structuredClone(after);
+  unattributed.tables["public.card_prints"].row_count = "111";
+  assert.match(
+    compareOnePieceProtectedSnapshotsAllowingMtgProgressV1(before, unattributed).join("\n"),
+    /unattributed/,
+  );
+  const vaultDrift = structuredClone(after);
+  vaultDrift.tables["public.vault_item_instances"].row_count = "21";
+  assert.match(
+    compareOnePieceProtectedSnapshotsAllowingMtgProgressV1(before, vaultDrift).join("\n"),
+    /non_mtg/,
+  );
+  const decrease = structuredClone(before);
+  decrease.tables["public.mtg_canonical_import_rows"].row_count = "499";
+  decrease.mtg_scope.staging_row_count = "499";
+  assert.match(
+    compareOnePieceProtectedSnapshotsAllowingMtgProgressV1(before, decrease).join("\n"),
+    /decreased/,
+  );
 });
 
 test("protected snapshot inventory spans every required production domain", () => {

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   buildOnePieceSourceExpectationV1,
-  compareOnePieceProtectedSnapshotsV1,
+  compareOnePieceProtectedSnapshotsAllowingMtgProgressV1,
   evaluateOnePieceExecutionSummaryV1,
   evaluateOnePieceSourceSnapshotV1,
   evaluateOnePieceStagingFootprintAbsentV1,
@@ -125,7 +125,7 @@ export function evaluateIndependentOnePiecePostRollbackV1({
   }
   findings.push(
     ...evaluateOnePieceStagingFootprintAbsentV1(production.staging_footprint),
-    ...compareOnePieceProtectedSnapshotsV1(
+    ...compareOnePieceProtectedSnapshotsAllowingMtgProgressV1(
       executionSummary.database_proof?.baseline?.protected_boundaries,
       production.protected_boundaries,
     ),

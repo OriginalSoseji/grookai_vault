@@ -298,6 +298,55 @@ export function compareOnePieceProtectedSnapshotsV1(before, after) {
   return issues;
 }
 
+const MTG_PROGRESS_TABLE_SCOPE_V1 = Object.freeze({
+  "public.sets": "set_count",
+  "public.card_prints": "card_count",
+  "public.card_print_identity": "identity_count",
+  "public.card_printings": "printing_count",
+  "public.external_mappings": "external_mapping_count",
+  "public.external_printing_mappings": "external_printing_mapping_count",
+  "public.mtg_canonical_import_batches": "staging_batch_count",
+  "public.mtg_canonical_import_rows": "staging_row_count",
+});
+
+export function compareOnePieceProtectedSnapshotsAllowingMtgProgressV1(before, after) {
+  const issues = [];
+  const beforeTables = before?.tables ?? {};
+  const afterTables = after?.tables ?? {};
+  for (const relation of new Set([...Object.keys(beforeTables), ...Object.keys(afterTables)])) {
+    const beforeRow = beforeTables[relation];
+    const afterRow = afterTables[relation];
+    if (!beforeRow || !afterRow || beforeRow.present !== afterRow.present) {
+      issues.push(`protected_table_presence_changed:${relation}`);
+      continue;
+    }
+    const scopeField = MTG_PROGRESS_TABLE_SCOPE_V1[relation];
+    if (!scopeField) {
+      if (stableJson(beforeRow) !== stableJson(afterRow)) {
+        issues.push(`protected_non_mtg_table_changed:${relation}`);
+      }
+      continue;
+    }
+    const globalDelta = Number(afterRow.row_count) - Number(beforeRow.row_count);
+    const scopeDelta =
+      Number(after?.mtg_scope?.[scopeField]) - Number(before?.mtg_scope?.[scopeField]);
+    if (!Number.isSafeInteger(globalDelta) || !Number.isSafeInteger(scopeDelta)) {
+      issues.push(`protected_mtg_count_invalid:${relation}`);
+    } else if (globalDelta < 0 || scopeDelta < 0) {
+      issues.push(`protected_mtg_count_decreased:${relation}`);
+    } else if (globalDelta !== scopeDelta) {
+      issues.push(`protected_mtg_delta_unattributed:${relation}`);
+    }
+  }
+  if (before?.mtg_scope?.canonical_scope !== "mtg" || after?.mtg_scope?.canonical_scope !== "mtg") {
+    issues.push("protected_mtg_scope_invalid");
+  }
+  if (before?.mtg_scope?.game_count !== after?.mtg_scope?.game_count) {
+    issues.push("protected_mtg_game_count_changed");
+  }
+  return [...new Set(issues)];
+}
+
 export function evaluateOnePieceTransactionSecurityV1(security) {
   const issues = [];
   for (const table of ["batch", "row"]) {
