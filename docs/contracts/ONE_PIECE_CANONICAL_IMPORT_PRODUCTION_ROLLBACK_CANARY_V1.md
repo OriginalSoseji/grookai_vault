@@ -11,9 +11,9 @@ local command in this contract after the implementation commit is reviewed.
 - Manifest logical SHA-256:
   `e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9`
 - Migration draft SHA-256:
-  `e7a9f3afeb1ac1355955960f2ef5c5346fcd8988418c04ef1f75fcfc38ef74a9`
+  `7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591`
 - Canary plan fingerprint:
-  `98bf6bfa61fdd38b8c3cadfccb0b64b4e6607381d66182226b34aff997deccef`
+  `174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90`
 - Selected group: `3189`, Starter Deck 1: Straw Hat Crew
 - Exact transaction-local rows: one batch and 21 source rows
 - Authorized durable rows: zero
@@ -94,7 +94,7 @@ Run from `C:\grookai_vault_one_piece_readiness` with the production database URL
 available through the repository's existing local environment configuration.
 
 ```powershell
-$env:ONE_PIECE_ROLLBACK_CANARY_APPROVAL='EXECUTE_ROLLBACK_ONLY_ONE_PIECE_CANARY:98bf6bfa61fdd38b8c3cadfccb0b64b4e6607381d66182226b34aff997deccef:e7a9f3afeb1ac1355955960f2ef5c5346fcd8988418c04ef1f75fcfc38ef74a9:ZERO_DURABLE_ROWS'
+$env:ONE_PIECE_ROLLBACK_CANARY_APPROVAL='EXECUTE_ROLLBACK_ONLY_ONE_PIECE_CANARY:174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90:7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591:ZERO_DURABLE_ROWS'
 node scripts/audits/one_piece_canonical_import_rollback_canary_v1.mjs --execute-rollback-canary --out-dir=docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/production_rollback_manual
 ```
 

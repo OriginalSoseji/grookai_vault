@@ -1,0 +1,7 @@
+{
+  "recorded_at": "2026-08-14T06:27:55.535Z",
+  "error": "Transaction-local proof failed: service_role_batch_update_privilege_present, service_role_batch_delete_privilege_present, service_role_row_update_privilege_present, service_role_row_delete_privilege_present",
+  "rollback_attempted": true,
+  "rollback_succeeded": true,
+  "fresh_post_rollback_attempted": true
+}

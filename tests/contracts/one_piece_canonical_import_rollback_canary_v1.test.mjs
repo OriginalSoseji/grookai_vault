@@ -35,7 +35,7 @@ const PLAN_FILE = path.join(
   "audits",
   "pricing",
   "one_piece_canonical_import_staging_and_canary_v1",
-  "e55e334b828db7b3",
+  "e55e334b828db7b3_security_hardened",
   "canary_plan.json",
 );
 const MANIFEST_FILE = path.join(

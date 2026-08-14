@@ -1,0 +1,1951 @@
+{
+  "plan_version": "ONE_PIECE_CANONICAL_CATALOG_ONE_GROUP_ROLLBACK_CANARY_V1",
+  "schema_version": "ONE_PIECE_CANONICAL_IMPORT_STAGING_SCHEMA_V1",
+  "repository": {
+    "commit_sha": "0844f2d3a0e9625650929cc850216eb016f8ed60",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "as_of_date": "2026-08-13",
+  "manifest_logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9",
+  "migration_draft_sha256": "7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591",
+  "selected_group": {
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_product_count": 21,
+    "exact_single_count": 18,
+    "numbered_card_count": 17,
+    "don_card_count": 1,
+    "sealed_product_count": 3,
+    "quarantine_count": 0,
+    "future_or_presale_count": 0,
+    "inactive_count": 0,
+    "source_price_lane_count": 21,
+    "released_on": [
+      "2022-12-02"
+    ],
+    "languages": [
+      "en"
+    ]
+  },
+  "batch": {
+    "id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+    "execution_mode": "rollback_only",
+    "authorized_durable_batch_rows": 0,
+    "authorized_durable_staging_rows": 0
+  },
+  "staging_rows": [
+    {
+      "id": "8745a70c-487e-5b53-84a6-23ab3602aab5",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288221,
+      "source_group_id": 3189,
+      "record_class": "sealed_product_candidate",
+      "single_card_kind": null,
+      "language_key": "en",
+      "promotion_state": "separate_sealed_catalog",
+      "row_ordinal": 0,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288221,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Starter Deck 1: Straw Hat Crew",
+        "source_active": true,
+        "classification": "sealed_product_candidate",
+        "classification_reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ],
+        "single_card_kind": null,
+        "promotion_state": "separate_sealed_catalog",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": null,
+          "number_format": null,
+          "card_type": null,
+          "raw_card_type": null,
+          "rarity": null,
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [
+            "starter_deck"
+          ],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_payload": null,
+        "identity_key_hash": null,
+        "parent_gv_id": null,
+        "exact_source_product_mapping": null,
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288221:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288221_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "b505b69e0632343dd036b4da21faaa5875e894967140faf95f8758e311fced1f",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "b32098875474eae383762b782bb8280d261187a04ae639f248f183df4f0a5bba"
+    },
+    {
+      "id": "7b37a078-5813-53d5-a717-ad20ce033628",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288222,
+      "source_group_id": 3189,
+      "record_class": "sealed_product_candidate",
+      "single_card_kind": null,
+      "language_key": "en",
+      "promotion_state": "separate_sealed_catalog",
+      "row_ordinal": 1,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288222,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Starter Deck 1: Straw Hat Crew Display",
+        "source_active": true,
+        "classification": "sealed_product_candidate",
+        "classification_reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ],
+        "single_card_kind": null,
+        "promotion_state": "separate_sealed_catalog",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": null,
+          "number_format": null,
+          "card_type": null,
+          "raw_card_type": null,
+          "rarity": null,
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [
+            "display",
+            "starter_deck"
+          ],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_payload": null,
+        "identity_key_hash": null,
+        "parent_gv_id": null,
+        "exact_source_product_mapping": null,
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288222:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": false
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288222_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "cc9a2d3cd5f633799ce0d3f134d62052a8e9afd85014eca350c1f563642f8c77",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "cd28d62b5c8fd8b4db5ac0371f22e9408794a4159ae0a354960f06e0836f5426"
+    },
+    {
+      "id": "c01b03c2-538b-590d-a0d9-82818f688ea7",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288225,
+      "source_group_id": 3189,
+      "record_class": "sealed_product_candidate",
+      "single_card_kind": null,
+      "language_key": "en",
+      "promotion_state": "separate_sealed_catalog",
+      "row_ordinal": 2,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288225,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Starter Decks 1-4 [Set of 4]",
+        "source_active": true,
+        "classification": "sealed_product_candidate",
+        "classification_reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ],
+        "single_card_kind": null,
+        "promotion_state": "separate_sealed_catalog",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": null,
+          "number_format": null,
+          "card_type": null,
+          "raw_card_type": null,
+          "rarity": null,
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [
+            "set_of_multiple",
+            "starter_deck"
+          ],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": null,
+        "identity_key_version": null,
+        "identity_payload": null,
+        "identity_key_hash": null,
+        "parent_gv_id": null,
+        "exact_source_product_mapping": null,
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288225:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288225_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "627f805268372ca1fc953742971c634f58dfe32f6289ee3cd5a07f7173e1b97c",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "e360b430f02c5985eedb85547f2df3635211dce2506f4bf183fc09963c1e1ffb"
+    },
+    {
+      "id": "1d343d87-d405-5e17-9133-a85acdf22231",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288228,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 3,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288228,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Monkey.D.Luffy (001)",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-001",
+          "number_format": "starter",
+          "card_type": "leader",
+          "raw_card_type": "Leader",
+          "rarity": "L",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288228,
+          "group_id": 3189,
+          "product_name": "Monkey.D.Luffy (001)",
+          "card_number": "ST01-001",
+          "card_number_format": "starter",
+          "card_type": "leader",
+          "rarity": "L",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "d0092111d79ad10194076762e7489ceb073e897ea19df7e966111d1897c8c128",
+        "parent_gv_id": "GV-OP-TCGP-288228",
+        "exact_source_product_mapping": "tcgplayer:288228",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288228:foil",
+            "subtype_name_normalized": "foil",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288228_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "d93c10ae4609f4025e0a2014eb77301b10aa52ecfd11fe66f811eba82034da3b",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "414f19547b3b8d31f12062abcbf74700759ed4be6b4ca867724c6dd548c6e961"
+    },
+    {
+      "id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288229,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 4,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288229,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Usopp",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-002",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288229,
+          "group_id": 3189,
+          "product_name": "Usopp",
+          "card_number": "ST01-002",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "470bcc61e2e8ec92c8c8e5fc6fd3ddb452db63530e96184c611a89050edc2e10",
+        "parent_gv_id": "GV-OP-TCGP-288229",
+        "exact_source_product_mapping": "tcgplayer:288229",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288229:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288229_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "c9741b7e2437a2871cf8eb790a9af967258077206dfefbb87751a7dcb458f023",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "9a58559b061b8f603d634fce5c429fb579c724b395764c7d7e3589a542b56b34"
+    },
+    {
+      "id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288230,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 5,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288230,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Karoo",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-003",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288230,
+          "group_id": 3189,
+          "product_name": "Karoo",
+          "card_number": "ST01-003",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "d1883f8d3545f82543fd21f534d1e7104e48136cf018ef8fe083b85589c86110",
+        "parent_gv_id": "GV-OP-TCGP-288230",
+        "exact_source_product_mapping": "tcgplayer:288230",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288230:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288230_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "4e7bb00068fd70026bc4405dd77f24e56170c4306f404f4fbdbac36ea588eef5",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "fcccaa5f35269672ad32173e517b1f91e744e777b16b0374e013dfebde38b437"
+    },
+    {
+      "id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288232,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 6,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288232,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Sanji",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-004",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288232,
+          "group_id": 3189,
+          "product_name": "Sanji",
+          "card_number": "ST01-004",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "fc88365291f5914f74f3a9205fb33b9e8c52864c35058ccdb1e84b2104ecd94d",
+        "parent_gv_id": "GV-OP-TCGP-288232",
+        "exact_source_product_mapping": "tcgplayer:288232",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288232:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288232_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "f0a602ba9a7d24622627ff8cc2c8c9693553ef175d1f586f488819f239e5bc7e",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "2c70bcbbd7b89065ecceec5281fb3d27d0f12781693c99dd19b4ebe00469ea7c"
+    },
+    {
+      "id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288234,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 7,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288234,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Jinbe",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-005",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288234,
+          "group_id": 3189,
+          "product_name": "Jinbe",
+          "card_number": "ST01-005",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "ad34605ee876ea119b205d0f7409cba619b526cfa2281f0ec802373567ea7a19",
+        "parent_gv_id": "GV-OP-TCGP-288234",
+        "exact_source_product_mapping": "tcgplayer:288234",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288234:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288234_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "e79b1cfc4e4b27f4db220374abf171ee72252de33d6f523999ae4b689006614a",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "68810750a25be1cb438f0fa9ff561ea08921f265eacb5b2f71109883cd9cae4b"
+    },
+    {
+      "id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288235,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 8,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288235,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Tony Tony.Chopper",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-006",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288235,
+          "group_id": 3189,
+          "product_name": "Tony Tony.Chopper",
+          "card_number": "ST01-006",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "0519070d0ebe90276f8e6a6843bc3f8defc55c620889c44b084214a4274fd826",
+        "parent_gv_id": "GV-OP-TCGP-288235",
+        "exact_source_product_mapping": "tcgplayer:288235",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288235:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288235_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "a2ddf09f850c10379148ac20bdca14dfa2250d48462f722a72c66e79436b9093",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "36a5dc8211357d73902aa1ff424aaf985a0e0d167220ad09fa1b928c6c6db641"
+    },
+    {
+      "id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288236,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 9,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288236,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Nami",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-007",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288236,
+          "group_id": 3189,
+          "product_name": "Nami",
+          "card_number": "ST01-007",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "aba96b5c5950e4e46d8e4180872552e2181895d331aacc2cea8fbbacf83bb197",
+        "parent_gv_id": "GV-OP-TCGP-288236",
+        "exact_source_product_mapping": "tcgplayer:288236",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288236:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288236_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "381f202a231738735c8f9acdca323d87b2ecd313ef2f1154166c33749e02a9ee",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "85bc743058710949f37e711ca8f5442ddc7bf39d6c6721a495aeb032ee9468e0"
+    },
+    {
+      "id": "04a742ab-a987-54cc-8e41-cbb837948729",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288237,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 10,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288237,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Nico Robin",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-008",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288237,
+          "group_id": 3189,
+          "product_name": "Nico Robin",
+          "card_number": "ST01-008",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "5c76e23c316d5ff3f11a577965ebe7f4f47b7b226ea68446ae6da6578bceb7f5",
+        "parent_gv_id": "GV-OP-TCGP-288237",
+        "exact_source_product_mapping": "tcgplayer:288237",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288237:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288237_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "1ba16e7e710a6ca955e7d98bfc2c43ef2099acd7e16ef2a866390be0b7b23464",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "45a3b145ea52fe7e543cbbbb0f8d5e0cbf6472d83586cfba207528e68e3a2f97"
+    },
+    {
+      "id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288238,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 11,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288238,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Nefeltari Vivi",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-009",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288238,
+          "group_id": 3189,
+          "product_name": "Nefeltari Vivi",
+          "card_number": "ST01-009",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "cb1caa336f3226c9f221d1f69422129b26c3c9d7b367ebf454e5186fc7a215a7",
+        "parent_gv_id": "GV-OP-TCGP-288238",
+        "exact_source_product_mapping": "tcgplayer:288238",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288238:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288238_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "eac2c15db9d835fb8dd8518d3bfb96d8c1ad128affc9b80c806d6e1b49fd1f43",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "c0514f1345c5ffc03f6752945285806db4932cf67cc6cefc0df983e776e21e4f"
+    },
+    {
+      "id": "5b18a562-74e1-5605-998f-db7652d60052",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288239,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 12,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288239,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Franky",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-010",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288239,
+          "group_id": 3189,
+          "product_name": "Franky",
+          "card_number": "ST01-010",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "710c10e619c6596a2d20499fa428e1f379fb458a1a67fe546731060f28c1b24e",
+        "parent_gv_id": "GV-OP-TCGP-288239",
+        "exact_source_product_mapping": "tcgplayer:288239",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288239:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288239_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "c352f97bebf7e6479a2d3f9978252c553916a1ccac30c12e3add07ed77346a93",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "c4efe89d36de17566a518fb11fe0a66b45f5df803c3fd726fbae3812fe1094a8"
+    },
+    {
+      "id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288240,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 13,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288240,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Brook",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-011",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288240,
+          "group_id": 3189,
+          "product_name": "Brook",
+          "card_number": "ST01-011",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "b578fef8ca79623916657929401ef4810e04317bd343d8793b14009c937fd55c",
+        "parent_gv_id": "GV-OP-TCGP-288240",
+        "exact_source_product_mapping": "tcgplayer:288240",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288240:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288240_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "24b00965dcbb85d432dd7066afff60c76c9614f9de06d2be844ba2733c51d550",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "91b27d866c6dabb867369c9c4fb8a00d8dcabe84fec2d551195f704196bb170e"
+    },
+    {
+      "id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288241,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 14,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288241,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Monkey.D.Luffy (012)",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-012",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "SR",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288241,
+          "group_id": 3189,
+          "product_name": "Monkey.D.Luffy (012)",
+          "card_number": "ST01-012",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "SR",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "b3962c93960da0a56c8318db3db0518154536c78dde6116a6e06f407f617edd7",
+        "parent_gv_id": "GV-OP-TCGP-288241",
+        "exact_source_product_mapping": "tcgplayer:288241",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288241:foil",
+            "subtype_name_normalized": "foil",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288241_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "85150d3c855bf45a6c2c70b0b941798edf85d518b04557c53fd5dd5488c1415f",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "10064ec1da87392a807a57494b84ce24690db389290651e6a51937a46048689b"
+    },
+    {
+      "id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288242,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 15,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288242,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Roronoa Zoro",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-013",
+          "number_format": "starter",
+          "card_type": "character",
+          "raw_card_type": "Character",
+          "rarity": "SR",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288242,
+          "group_id": 3189,
+          "product_name": "Roronoa Zoro",
+          "card_number": "ST01-013",
+          "card_number_format": "starter",
+          "card_type": "character",
+          "rarity": "SR",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "474bed62b79c21ec6945e0ffc92ee4a96099cabcb325d67d735c7036c395bbc2",
+        "parent_gv_id": "GV-OP-TCGP-288242",
+        "exact_source_product_mapping": "tcgplayer:288242",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288242:foil",
+            "subtype_name_normalized": "foil",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288242_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "68c2b087e8ddba98a482517ab588868d3e203e71b4697285658281c868649a7d",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "a1f873908897b846a2cf5c4297d2c855dc914b68bf323c615cf511e33a9a7e1a"
+    },
+    {
+      "id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288243,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 16,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288243,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Guard Point",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-014",
+          "number_format": "starter",
+          "card_type": "event",
+          "raw_card_type": "Event",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288243,
+          "group_id": 3189,
+          "product_name": "Guard Point",
+          "card_number": "ST01-014",
+          "card_number_format": "starter",
+          "card_type": "event",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "e77e45b7ab0a58e623bc53c1567293ccd2034dd6bf82aeffcde43028b1c87e6c",
+        "parent_gv_id": "GV-OP-TCGP-288243",
+        "exact_source_product_mapping": "tcgplayer:288243",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288243:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288243_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "c845b3f1adc6147f235783188ba237643448fd8a1a189e4dbd2f6e7d94c2e616",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "8f1f14b53341a589e65fbab92776a3d04a484a7c85f1e5dd68866ab0b7c9ee2e"
+    },
+    {
+      "id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288244,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 17,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288244,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Gum-Gum Jet Pistol",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-015",
+          "number_format": "starter",
+          "card_type": "event",
+          "raw_card_type": "Event",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288244,
+          "group_id": 3189,
+          "product_name": "Gum-Gum Jet Pistol",
+          "card_number": "ST01-015",
+          "card_number_format": "starter",
+          "card_type": "event",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "5b07b6bf601cca2eae1807a242ed70014997744606bdff4adff32e2f48d1f842",
+        "parent_gv_id": "GV-OP-TCGP-288244",
+        "exact_source_product_mapping": "tcgplayer:288244",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288244:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288244_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "8d63aad8c303b6bfed9f240ecbf1c7cc09bab88639e20c33a669003870f71a95",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "cfdc693f6c17432b2fe31e833ea12a3fa997637ff36b361eb232767df9143786"
+    },
+    {
+      "id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288245,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 18,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288245,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Diable Jambe",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-016",
+          "number_format": "starter",
+          "card_type": "event",
+          "raw_card_type": "Event",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288245,
+          "group_id": 3189,
+          "product_name": "Diable Jambe",
+          "card_number": "ST01-016",
+          "card_number_format": "starter",
+          "card_type": "event",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "8f829a79d7682f55faf82959ce01a273af6c3f8e4665e54f1f0cccf672750711",
+        "parent_gv_id": "GV-OP-TCGP-288245",
+        "exact_source_product_mapping": "tcgplayer:288245",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288245:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288245_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "7e27905f5b0287d82f4936eb600406954af3e66af6666f08164f78189f0f0822",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "9492326f10995b0ed1bdd6634dc1396a36a2cd7126815c3870f76d8edf016bbb"
+    },
+    {
+      "id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 288246,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "numbered_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 19,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 288246,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "Thousand Sunny",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "explicit_number_and_cardtype"
+        ],
+        "single_card_kind": "numbered_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": "ST01-017",
+          "number_format": "starter",
+          "card_type": "stage",
+          "raw_card_type": "Stage",
+          "rarity": "C",
+          "structured_don": false,
+          "title_don": false
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 288246,
+          "group_id": 3189,
+          "product_name": "Thousand Sunny",
+          "card_number": "ST01-017",
+          "card_number_format": "starter",
+          "card_type": "stage",
+          "rarity": "C",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "351b6d6e7310f7e2366562cfabd8550db8b2545ab3a4736663a2ffb49d0f6f5e",
+        "parent_gv_id": "GV-OP-TCGP-288246",
+        "exact_source_product_mapping": "tcgplayer:288246",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:288246:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288246_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "98a7a1cd30a2d7292a176477d8ad08f729779c92a4970909da69098d170d7efe",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T03:58:48.921Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "29741a112287f3dd7adac0ff278fe513d61ec4ddab0722df56c460dad742f930"
+    },
+    {
+      "id": "56985174-dcf2-543d-ab12-793ce46b2e1c",
+      "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+      "source_product_id": 549343,
+      "source_group_id": 3189,
+      "record_class": "exact_single_card_candidate",
+      "single_card_kind": "don_card",
+      "language_key": "en",
+      "promotion_state": "current_candidate",
+      "row_ordinal": 20,
+      "payload": {
+        "candidate_version": "ONE_PIECE_CANONICAL_CATALOG_CANDIDATE_V1",
+        "source_product_id": 549343,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "source_product_name": "DON!! Card // Green Compass",
+        "source_active": true,
+        "classification": "exact_single_card_candidate",
+        "classification_reasons": [
+          "structured_don_card_evidence"
+        ],
+        "single_card_kind": "don_card",
+        "promotion_state": "current_candidate",
+        "release": {
+          "explicit_presale": false,
+          "released_on": "2022-12-02",
+          "future_release": false,
+          "current_release_eligible": true
+        },
+        "language": {
+          "normalized": "en",
+          "authority": "tcgplayer_category_68_default_unverified",
+          "explicit": false
+        },
+        "card_evidence": {
+          "number": null,
+          "number_format": null,
+          "card_type": "don",
+          "raw_card_type": "DON!!",
+          "rarity": "DON!!",
+          "structured_don": true,
+          "title_don": true
+        },
+        "product_signals": {
+          "sealed": [],
+          "accessory": [],
+          "treatments": []
+        },
+        "identity_domain": "one_piece_tcgplayer_print",
+        "identity_key_version": "ONE_PIECE_TCGPLAYER_PRINT_IDENTITY_V1",
+        "identity_payload": {
+          "source": "tcgplayer",
+          "category_id": 68,
+          "product_id": 549343,
+          "group_id": 3189,
+          "product_name": "DON!! Card // Green Compass",
+          "card_number": null,
+          "card_number_format": null,
+          "card_type": "don",
+          "rarity": "DON!!",
+          "language": {
+            "normalized": "en",
+            "authority": "tcgplayer_category_68_default_unverified",
+            "explicit": false
+          },
+          "treatment_claims": []
+        },
+        "identity_key_hash": "0cdf68cd627f140d8bf44e4a04fe51c758788567f542eb49013c7bbce1be6a9f",
+        "parent_gv_id": "GV-OP-TCGP-549343",
+        "exact_source_product_mapping": "tcgplayer:549343",
+        "source_price_lanes": [
+          {
+            "source_price_row_identity": "tcgplayer:549343:normal",
+            "subtype_name_normalized": "normal",
+            "observed_on": "2026-08-13",
+            "positive_market_signal": true
+          }
+        ],
+        "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/549343_200w.jpg",
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "canonical_write_authorized": false,
+        "sealed_write_authorized": false,
+        "source_payload_hash": "19ae4337acf47644d4c9880e8dcc6f7e54aff5a41a60d831bffe79740c259789",
+        "source_catalog_metadata_status": "current",
+        "source_first_seen_at": "2026-07-15T06:18:52.119Z",
+        "source_last_seen_at": "2026-08-13T09:28:10.710Z"
+      },
+      "payload_sha256": "458775d340fb29062842721554e6e277b7c760177b07002d455a055b20bdb358"
+    }
+  ],
+  "counts": {
+    "source_products": 21,
+    "exact_single_card_candidates": 18,
+    "numbered_cards": 17,
+    "don_cards": 1,
+    "sealed_product_candidates": 3,
+    "ambiguous_quarantined": 0,
+    "future_or_presale_holds": 0,
+    "source_price_lanes": 21
+  },
+  "rollback_proof_contract": {
+    "transaction_sequence": [
+      "begin",
+      "apply_exact_migration_draft_inside_transaction",
+      "insert_one_batch_and_selected_source_rows",
+      "verify_exact_transaction_local_readback",
+      "verify_rls_grants_and_immutability",
+      "verify_protected_domain_counts_unchanged",
+      "rollback",
+      "verify_staging_schema_and_rows_absent",
+      "verify_protected_domain_counts_unchanged_after_rollback"
+    ],
+    "expected_transaction_local_batch_rows": 1,
+    "expected_transaction_local_staging_rows": 21,
+    "expected_durable_batch_rows": 0,
+    "expected_durable_staging_rows": 0,
+    "rollback_required": true
+  },
+  "boundaries": {
+    "current_gate_database_connection": false,
+    "current_gate_migration_apply": false,
+    "current_gate_database_writes": false,
+    "durable_staging_rows_authorized": false,
+    "canonical_writes": false,
+    "sealed_catalog_writes": false,
+    "publication": false,
+    "storage_or_image_work": false,
+    "pricing_or_vault_writes": false,
+    "deployment": false,
+    "active_mtg_worktree_changes": false
+  },
+  "canary_plan_fingerprint_sha256": "174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90"
+}

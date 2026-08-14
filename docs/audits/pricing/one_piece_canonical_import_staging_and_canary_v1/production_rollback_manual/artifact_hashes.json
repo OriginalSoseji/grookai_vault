@@ -1,0 +1,9 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "failure.json": "ef98625ab0c09b740fdb8aa34750e9970dba510502e7bedd5db5886b14d841cf",
+    "REPORT.md": "87085ac7160f56b5d938592def06356e9c2ca9053b8f20e04879be7b88babf68",
+    "run_plan.json": "c34d2ca70c0f57658582995f7f9be37acaec578fd81532667ab663a051148c15",
+    "summary.json": "479d1b966753f74feaf36b537db3608b76bd9de356c68f8bc2250ed9e4a99413"
+  }
+}

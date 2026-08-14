@@ -1,0 +1,10 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "canary_plan.json": "3506201aaaa7a0dbd9bee236387b2dd6926b48f02fca4f2a5425db8915f225db",
+    "REPORT.md": "3309fa041df989942b7bb10370fa258fdedb0380e858a74abddefd5ee7aae4ed",
+    "run_plan.json": "f5801a20c4e58cff4a41a5a37351344a9b621995baec35ab74b0947b9e8502cd",
+    "selected_group_source_rows.jsonl.gz": "d1e53f09d77ccc5840caba1f190ea6b5fe3e63dec63ac7e9e0c972727c33c793",
+    "summary.json": "73f7f72d3c2bfa90bd8cdc5eb65e0d207b42396eab2669b6414100f188ed8918"
+  }
+}
