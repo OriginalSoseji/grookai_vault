@@ -865,6 +865,11 @@ Recommended reading order for future maintainers:
       producer and artifact fingerprints, the 7,261-row source warehouse
       baseline, and the still-closed schema-only apply boundary
 
+55. `PRICING_CHECKPOINT_57_ONE_PIECE_MIGRATION_HISTORY_INTEGRATED_PREFLIGHT_REFRESHED.md`
+    - then read why the applied sealed migration lineage was integrated before
+      One Piece planning, the refreshed zero-finding preflight, and the exact
+      schema-only boundary that remains closed
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
