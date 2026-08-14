@@ -104,6 +104,7 @@ test("live reader is fail-closed and writes only after transaction capture", () 
   assert.match(script, /show transaction_read_only/i);
   assert.match(script, /assertReadOnlySql/);
   assert.match(script, /await client\.query\("rollback"\)/);
+  assert.doesNotMatch(script, /from pg_constraint constraint\b/i);
   assert.ok(script.indexOf("captureProduction(databaseUrl)") < script.indexOf("fs.mkdir(outDir"));
   assert.doesNotMatch(script, /\bclient\.query\([`'"](?:insert|update|delete|create|alter|drop|grant|revoke|truncate)\b/i);
 });

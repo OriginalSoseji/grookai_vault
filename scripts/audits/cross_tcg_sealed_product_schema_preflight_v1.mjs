@@ -384,14 +384,15 @@ async function captureBaselines(query, migrationHistory) {
     [SEALED_PROTECTED_RELATIONS_V1],
   )).rows;
   const constraints = (await query(
-    `select relation.relname as table_name, constraint.conname,
-            constraint.contype, pg_get_constraintdef(constraint.oid) as definition
-       from pg_constraint constraint
-       join pg_class relation on relation.oid = constraint.conrelid
+    `select relation.relname as table_name, constraint_row.conname,
+            constraint_row.contype,
+            pg_get_constraintdef(constraint_row.oid) as definition
+       from pg_constraint constraint_row
+       join pg_class relation on relation.oid = constraint_row.conrelid
        join pg_namespace namespace on namespace.oid = relation.relnamespace
       where namespace.nspname = 'public'
         and relation.relname = any($1::text[])
-      order by relation.relname, constraint.conname`,
+      order by relation.relname, constraint_row.conname`,
     [SEALED_PROTECTED_RELATIONS_V1],
   )).rows;
   const indexes = (await query(
