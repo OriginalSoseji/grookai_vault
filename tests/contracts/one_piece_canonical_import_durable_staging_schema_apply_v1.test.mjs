@@ -173,7 +173,9 @@ test("row, RLS, grant, function, ledger, and protected drift fail closed", async
   readback.migration_ledger[0].name = "wrong";
   readback.protected_schema_fingerprint_sha256 = "0".repeat(64);
   const findings = evaluateOnePieceSchemaReadbackV1({ plan, readback });
-  assert.ok(findings.includes("one_piece_staging_rows_present"));
+  assert.ok(findings.includes(
+    "one_piece_staging_row_count_mismatch:one_piece_canonical_import_batches",
+  ));
   assert.ok(findings.includes("rls_not_forced"));
   assert.ok(findings.some((value) => value.startsWith("service_role_excess:")));
   assert.ok(findings.includes("function_effective_execute_boundary_mismatch"));

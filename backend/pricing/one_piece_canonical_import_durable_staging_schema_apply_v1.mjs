@@ -174,6 +174,7 @@ export function evaluateOnePieceSchemaReadbackV1({
   readback,
   requireReadOnly = true,
   requireClosed = true,
+  expectedTableRowCounts = null,
 }) {
   const findings = [];
   const inventory = plan.inventory;
@@ -186,8 +187,13 @@ export function evaluateOnePieceSchemaReadbackV1({
   if ((readback.tables ?? []).some((row) => !row.rls_forced)) {
     findings.push("rls_not_forced");
   }
-  if ((readback.tables ?? []).some((row) => Number(row.row_count) !== 0)) {
-    findings.push("one_piece_staging_rows_present");
+  const expectedRows = expectedTableRowCounts ?? Object.fromEntries(
+    inventory.tables.map((table) => [table, 0]),
+  );
+  for (const row of readback.tables ?? []) {
+    if (Number(row.row_count) !== Number(expectedRows[row.table_name])) {
+      findings.push(`one_piece_staging_row_count_mismatch:${row.table_name}`);
+    }
   }
 
   const constraintCounts = Object.fromEntries(Object.keys(
