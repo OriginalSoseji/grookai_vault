@@ -1,0 +1,101 @@
+{
+  "version": "MTG_SELF_HOSTED_IMAGE_READINESS_V1",
+  "status": "offline_readiness_plan_complete",
+  "source_recorded_at": "2026-08-13T22:10:21.275Z",
+  "plan_fingerprint_sha256": "9803b4345b1ab5670a4475aac94c999efbb1f4de5561f335b64eefb1a52de857",
+  "inputs": {
+    "manifest_path": "C:\\grookai_vault_mtg_pricing_readiness\\docs\\audits\\pricing\\mtg_canonical_catalog_batch_manifest_v1\\2026-08-13T22-10-07Z\\manifest.json",
+    "manifest_sha256": "1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1",
+    "manifest_set_count": 953,
+    "payload_directory": "C:\\grookai_vault_mtg_pricing_readiness\\.tmp\\mtg_canonical_catalog_set_batches_v1\\payloads",
+    "payload_file_count": 953,
+    "payload_inventory_logical_sha256": "7a21fed5df243d099ecb900a950a3a3d765a2bc2c9b2fdd2d83f55898ab0daf9"
+  },
+  "target": {
+    "storage_bucket": "user-card-images",
+    "path_root": "warehouse-derived/self-hosted-images-v1/card_prints/mtg",
+    "compatibility_contract": "CANON_IMAGE_RESOLUTION_CONTRACT_V1",
+    "existing_tooling_environment_key": "SELF_HOSTED_IMAGES_STORAGE_BUCKET"
+  },
+  "coverage": {
+    "card_prints": 104712,
+    "cards_with_planned_images": 104550,
+    "cards_with_image_gaps": 162,
+    "planned_face_assets": 108487,
+    "faces_by_role": {
+      "back": 3937,
+      "front": 104550
+    },
+    "sets": 953,
+    "card_coverage_ratio": 0.9984528993811598
+  },
+  "gaps": {
+    "total": 162,
+    "by_code": {
+      "missing_source_images": 162
+    }
+  },
+  "issues": {
+    "total": 0,
+    "blocking": 0,
+    "by_code": {}
+  },
+  "collisions": {
+    "proposed_path_collisions": 0
+  },
+  "datasets": {
+    "image_assets": {
+      "row_count": 108487,
+      "logical_sha256": "d4c9a1c422df66ea1fd37fa7237f8951e70590b71acd7ffe2cc316aec3e3af77",
+      "compressed_sha256": "ec384a63110f99f6053c7a0ea2b4545dec6f434caad957c0997c992a2359a85d",
+      "uncompressed_bytes": 173058923,
+      "compressed_bytes": 20584824
+    },
+    "set_coverage": {
+      "row_count": 953,
+      "logical_sha256": "fd911e1e0db4c34732c53dc39984333f367a5dda20e2ead488cda63889f05f33"
+    },
+    "image_gaps": {
+      "row_count": 162,
+      "logical_sha256": "43111483d6da21b2690a97e30d87722ddf6cdc7196dbc185adc8e02dbe393741"
+    },
+    "url_and_identity_issues": {
+      "row_count": 0,
+      "logical_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "path_collisions": {
+      "row_count": 0,
+      "logical_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "payload_inventory": {
+      "row_count": 953,
+      "logical_sha256": "7a21fed5df243d099ecb900a950a3a3d765a2bc2c9b2fdd2d83f55898ab0daf9"
+    }
+  },
+  "dedupe_policy": {
+    "source_url_dedupe_performed": false,
+    "cross_print_dedupe_allowed": false,
+    "content_hash_dedupe_performed": false,
+    "next_gate": "download_inspect_hash_exact_readback_then_review_content_hash_equivalence"
+  },
+  "source_format_policy": {
+    "current_preference_order": [
+      "png",
+      "large",
+      "normal"
+    ],
+    "preference_frozen_without_economic_claim": true,
+    "permanent_acquisition_requires_bounded_png_vs_large_jpeg_canary": true
+  },
+  "execution_boundaries": {
+    "network_reads": 0,
+    "network_writes": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "image_pointer_updates": 0,
+    "pricing_writes": 0,
+    "release_control_writes": 0
+  }
+}
