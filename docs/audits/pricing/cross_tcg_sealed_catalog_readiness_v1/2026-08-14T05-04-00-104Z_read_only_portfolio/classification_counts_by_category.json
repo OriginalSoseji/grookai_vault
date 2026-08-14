@@ -1,0 +1,1564 @@
+{
+  "policy_version": "CROSS_TCG_SEALED_PRODUCT_IDENTITY_POLICY_V1",
+  "categories": [
+    {
+      "source_category_id": 1,
+      "source_category_name": "Magic: The Gathering",
+      "source_active": true,
+      "source_product_count": 117267,
+      "source_active_product_count": 117267,
+      "classifications": {
+        "sealed_candidate": 2887,
+        "nonsealed_card": 113463,
+        "ambiguous_review": 900,
+        "excluded_non_tcg_product": 17
+      },
+      "package_forms": {
+        "booster_box": 159,
+        "pack": 470,
+        "deck": 544,
+        "case": 303,
+        "display": 141,
+        "promo_pack": 44,
+        "kit": 177,
+        "deck_display": 43,
+        "tin": 13,
+        "bundle": 129,
+        "collection": 838,
+        "sleeved_pack": 27
+      },
+      "presale_products": 942
+    },
+    {
+      "source_category_id": 2,
+      "source_category_name": "YuGiOh",
+      "source_active": true,
+      "source_product_count": 47379,
+      "source_active_product_count": 47379,
+      "classifications": {
+        "sealed_candidate": 904,
+        "nonsealed_card": 46171,
+        "ambiguous_review": 300,
+        "excluded_non_tcg_product": 4
+      },
+      "package_forms": {
+        "booster_box": 278,
+        "pack": 317,
+        "tin": 103,
+        "display": 4,
+        "deck": 116,
+        "deck_display": 46,
+        "case": 16,
+        "promo_pack": 13,
+        "collection": 1,
+        "sleeved_pack": 8,
+        "bundle": 2
+      },
+      "presale_products": 5
+    },
+    {
+      "source_category_id": 3,
+      "source_category_name": "Pokemon",
+      "source_active": true,
+      "source_product_count": 32549,
+      "source_active_product_count": 32547,
+      "classifications": {
+        "sealed_candidate": 1902,
+        "nonsealed_card": 29651,
+        "ambiguous_review": 990,
+        "excluded_non_tcg_product": 4
+      },
+      "package_forms": {
+        "booster_box": 129,
+        "pack": 200,
+        "deck": 223,
+        "tin": 470,
+        "bundle": 53,
+        "kit": 214,
+        "collection": 224,
+        "sleeved_pack": 112,
+        "deck_display": 13,
+        "case": 255,
+        "promo_pack": 11
+      },
+      "presale_products": 81
+    },
+    {
+      "source_category_id": 4,
+      "source_category_name": "Axis & Allies",
+      "source_active": true,
+      "source_product_count": 532,
+      "source_active_product_count": 532,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 532
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 5,
+      "source_category_name": "Boardgames",
+      "source_active": true,
+      "source_product_count": 3689,
+      "source_active_product_count": 3689,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 3689
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 6,
+      "source_category_name": "D & D Miniatures",
+      "source_active": true,
+      "source_product_count": 1273,
+      "source_active_product_count": 1273,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 1273
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 7,
+      "source_category_name": "Epic",
+      "source_active": true,
+      "source_product_count": 322,
+      "source_active_product_count": 322,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 322,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 8,
+      "source_category_name": "Heroclix",
+      "source_active": true,
+      "source_product_count": 8278,
+      "source_active_product_count": 8278,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 8278
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 11,
+      "source_category_name": "Star Wars Miniatures",
+      "source_active": true,
+      "source_product_count": 957,
+      "source_active_product_count": 957,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 957
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 13,
+      "source_category_name": "WoW",
+      "source_active": true,
+      "source_product_count": 4735,
+      "source_active_product_count": 4735,
+      "classifications": {
+        "sealed_candidate": 42,
+        "nonsealed_card": 0,
+        "ambiguous_review": 4685,
+        "excluded_non_tcg_product": 8
+      },
+      "package_forms": {
+        "booster_box": 18,
+        "pack": 11,
+        "display": 5,
+        "deck": 8,
+        "collection": 6
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 15,
+      "source_category_name": "Organizers and Stores",
+      "source_active": true,
+      "source_product_count": 2,
+      "source_active_product_count": 2,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 2
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 16,
+      "source_category_name": "Cardfight Vanguard",
+      "source_active": true,
+      "source_product_count": 26132,
+      "source_active_product_count": 26132,
+      "classifications": {
+        "sealed_candidate": 418,
+        "nonsealed_card": 25590,
+        "ambiguous_review": 124,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 154,
+        "pack": 159,
+        "deck": 16,
+        "promo_pack": 1,
+        "case": 56,
+        "deck_display": 24,
+        "display": 8
+      },
+      "presale_products": 15
+    },
+    {
+      "source_category_id": 17,
+      "source_category_name": "Force of Will",
+      "source_active": true,
+      "source_product_count": 13973,
+      "source_active_product_count": 13973,
+      "classifications": {
+        "sealed_candidate": 201,
+        "nonsealed_card": 13749,
+        "ambiguous_review": 23,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 54,
+        "deck": 35,
+        "pack": 51,
+        "case": 24,
+        "kit": 19,
+        "deck_display": 16,
+        "collection": 1,
+        "promo_pack": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 18,
+      "source_category_name": "Dice Masters",
+      "source_active": true,
+      "source_product_count": 2723,
+      "source_active_product_count": 2723,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 2723
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 19,
+      "source_category_name": "Future Card BuddyFight",
+      "source_active": true,
+      "source_product_count": 7763,
+      "source_active_product_count": 7763,
+      "classifications": {
+        "sealed_candidate": 113,
+        "nonsealed_card": 7625,
+        "ambiguous_review": 25,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 56,
+        "deck": 8,
+        "pack": 47,
+        "display": 2
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 20,
+      "source_category_name": "Weiss Schwarz",
+      "source_active": true,
+      "source_product_count": 31539,
+      "source_active_product_count": 31539,
+      "classifications": {
+        "sealed_candidate": 508,
+        "nonsealed_card": 30660,
+        "ambiguous_review": 371,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 171,
+        "pack": 160,
+        "case": 115,
+        "deck_display": 61,
+        "display": 1
+      },
+      "presale_products": 12
+    },
+    {
+      "source_category_id": 22,
+      "source_category_name": "TCGplayer",
+      "source_active": true,
+      "source_product_count": 1,
+      "source_active_product_count": 1,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 1
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 23,
+      "source_category_name": "Dragon Ball Z TCG",
+      "source_active": true,
+      "source_product_count": 1820,
+      "source_active_product_count": 1820,
+      "classifications": {
+        "sealed_candidate": 20,
+        "nonsealed_card": 1800,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 10,
+        "pack": 7,
+        "deck": 3
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 24,
+      "source_category_name": "Final Fantasy TCG",
+      "source_active": true,
+      "source_product_count": 5661,
+      "source_active_product_count": 5652,
+      "classifications": {
+        "sealed_candidate": 145,
+        "nonsealed_card": 5500,
+        "ambiguous_review": 7,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 29,
+        "pack": 31,
+        "deck": 29,
+        "kit": 26,
+        "case": 24,
+        "collection": 3,
+        "promo_pack": 1,
+        "display": 2
+      },
+      "presale_products": 6
+    },
+    {
+      "source_category_id": 25,
+      "source_category_name": "UniVersus",
+      "source_active": true,
+      "source_product_count": 8290,
+      "source_active_product_count": 8290,
+      "classifications": {
+        "sealed_candidate": 140,
+        "nonsealed_card": 8085,
+        "ambiguous_review": 65,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 34,
+        "pack": 42,
+        "tin": 6,
+        "deck": 17,
+        "deck_display": 18,
+        "case": 17,
+        "collection": 1,
+        "sleeved_pack": 1,
+        "promo_pack": 1,
+        "bundle": 1,
+        "kit": 2
+      },
+      "presale_products": 107
+    },
+    {
+      "source_category_id": 26,
+      "source_category_name": "Star Wars: Destiny",
+      "source_active": true,
+      "source_product_count": 2267,
+      "source_active_product_count": 2267,
+      "classifications": {
+        "sealed_candidate": 24,
+        "nonsealed_card": 2240,
+        "ambiguous_review": 3,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 9,
+        "pack": 9,
+        "deck": 6
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 27,
+      "source_category_name": "Dragon Ball Super: Masters",
+      "source_active": true,
+      "source_product_count": 12019,
+      "source_active_product_count": 12019,
+      "classifications": {
+        "sealed_candidate": 231,
+        "nonsealed_card": 11621,
+        "ambiguous_review": 163,
+        "excluded_non_tcg_product": 4
+      },
+      "package_forms": {
+        "booster_box": 41,
+        "pack": 46,
+        "deck": 23,
+        "case": 34,
+        "kit": 13,
+        "deck_display": 10,
+        "promo_pack": 62,
+        "bundle": 5
+      },
+      "presale_products": 3
+    },
+    {
+      "source_category_id": 28,
+      "source_category_name": "Dragoborne",
+      "source_active": true,
+      "source_product_count": 686,
+      "source_active_product_count": 686,
+      "classifications": {
+        "sealed_candidate": 10,
+        "nonsealed_card": 671,
+        "ambiguous_review": 5,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 5,
+        "pack": 5
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 29,
+      "source_category_name": "Funko",
+      "source_active": true,
+      "source_product_count": 4304,
+      "source_active_product_count": 4304,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 4304
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 30,
+      "source_category_name": "MetaX TCG",
+      "source_active": true,
+      "source_product_count": 766,
+      "source_active_product_count": 766,
+      "classifications": {
+        "sealed_candidate": 9,
+        "nonsealed_card": 746,
+        "ambiguous_review": 11,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 4,
+        "deck": 1,
+        "booster_box": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 31,
+      "source_category_name": "Card Sleeves",
+      "source_active": true,
+      "source_product_count": 10196,
+      "source_active_product_count": 10196,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 10196
+      },
+      "package_forms": {},
+      "presale_products": 20
+    },
+    {
+      "source_category_id": 32,
+      "source_category_name": "Deck Boxes",
+      "source_active": true,
+      "source_product_count": 6483,
+      "source_active_product_count": 6483,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 6483
+      },
+      "package_forms": {},
+      "presale_products": 10
+    },
+    {
+      "source_category_id": 33,
+      "source_category_name": "Card Storage Tins",
+      "source_active": true,
+      "source_product_count": 10,
+      "source_active_product_count": 10,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 10
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 34,
+      "source_category_name": "Life Counters",
+      "source_active": true,
+      "source_product_count": 917,
+      "source_active_product_count": 917,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 917
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 35,
+      "source_category_name": "Playmats",
+      "source_active": true,
+      "source_product_count": 6520,
+      "source_active_product_count": 6519,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 6519
+      },
+      "package_forms": {},
+      "presale_products": 2
+    },
+    {
+      "source_category_id": 36,
+      "source_category_name": "Zombie World Order TCG",
+      "source_active": true,
+      "source_product_count": 72,
+      "source_active_product_count": 72,
+      "classifications": {
+        "sealed_candidate": 2,
+        "nonsealed_card": 69,
+        "ambiguous_review": 1,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 1,
+        "booster_box": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 37,
+      "source_category_name": "The Caster Chronicles",
+      "source_active": true,
+      "source_product_count": 854,
+      "source_active_product_count": 854,
+      "classifications": {
+        "sealed_candidate": 16,
+        "nonsealed_card": 837,
+        "ambiguous_review": 1,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 6,
+        "pack": 6,
+        "deck": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 38,
+      "source_category_name": "My Little Pony CCG",
+      "source_active": true,
+      "source_product_count": 38,
+      "source_active_product_count": 38,
+      "classifications": {
+        "sealed_candidate": 34,
+        "nonsealed_card": 0,
+        "ambiguous_review": 4,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 9,
+        "pack": 8,
+        "deck": 17
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 39,
+      "source_category_name": "Warhammer Books",
+      "source_active": true,
+      "source_product_count": 466,
+      "source_active_product_count": 466,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 466
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 40,
+      "source_category_name": "Warhammer Big Box Games",
+      "source_active": true,
+      "source_product_count": 61,
+      "source_active_product_count": 61,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 61
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 41,
+      "source_category_name": "Warhammer Box Sets",
+      "source_active": true,
+      "source_product_count": 907,
+      "source_active_product_count": 907,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 907
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 42,
+      "source_category_name": "Warhammer Clampacks",
+      "source_active": true,
+      "source_product_count": 131,
+      "source_active_product_count": 131,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 131
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 43,
+      "source_category_name": "Citadel Paints",
+      "source_active": true,
+      "source_product_count": 453,
+      "source_active_product_count": 453,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 453
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 44,
+      "source_category_name": "Citadel Tools",
+      "source_active": true,
+      "source_product_count": 42,
+      "source_active_product_count": 42,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 42
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 45,
+      "source_category_name": "Warhammer Game Accessories",
+      "source_active": true,
+      "source_product_count": 394,
+      "source_active_product_count": 394,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 394
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 46,
+      "source_category_name": "Books",
+      "source_active": true,
+      "source_product_count": 1934,
+      "source_active_product_count": 1934,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 1934
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 47,
+      "source_category_name": "Exodus TCG",
+      "source_active": true,
+      "source_product_count": 709,
+      "source_active_product_count": 709,
+      "classifications": {
+        "sealed_candidate": 18,
+        "nonsealed_card": 687,
+        "ambiguous_review": 4,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck_display": 4,
+        "deck": 6,
+        "booster_box": 4,
+        "pack": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 48,
+      "source_category_name": "Lightseekers TCG",
+      "source_active": true,
+      "source_product_count": 1955,
+      "source_active_product_count": 1955,
+      "classifications": {
+        "sealed_candidate": 22,
+        "nonsealed_card": 1922,
+        "ambiguous_review": 11,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 13,
+        "booster_box": 4,
+        "pack": 3,
+        "deck_display": 1,
+        "case": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 49,
+      "source_category_name": "Protective Pages",
+      "source_active": true,
+      "source_product_count": 94,
+      "source_active_product_count": 94,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 94
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 50,
+      "source_category_name": "Storage Albums",
+      "source_active": true,
+      "source_product_count": 1405,
+      "source_active_product_count": 1405,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 1405
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 51,
+      "source_category_name": "Collectible Storage",
+      "source_active": true,
+      "source_product_count": 990,
+      "source_active_product_count": 990,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 990
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 52,
+      "source_category_name": "Supply Bundles",
+      "source_active": true,
+      "source_product_count": 38,
+      "source_active_product_count": 38,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 38
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 53,
+      "source_category_name": "Munchkin CCG",
+      "source_active": true,
+      "source_product_count": 603,
+      "source_active_product_count": 603,
+      "classifications": {
+        "sealed_candidate": 11,
+        "nonsealed_card": 590,
+        "ambiguous_review": 2,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 3,
+        "pack": 4,
+        "booster_box": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 54,
+      "source_category_name": "Warhammer Age of Sigmar Champions TCG",
+      "source_active": true,
+      "source_product_count": 1184,
+      "source_active_product_count": 1184,
+      "classifications": {
+        "sealed_candidate": 8,
+        "nonsealed_card": 1169,
+        "ambiguous_review": 7,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 3,
+        "booster_box": 3,
+        "case": 1,
+        "deck_display": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 56,
+      "source_category_name": "Bulk Lots",
+      "source_active": true,
+      "source_product_count": 135,
+      "source_active_product_count": 135,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 135
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 57,
+      "source_category_name": "Transformers TCG",
+      "source_active": true,
+      "source_product_count": 733,
+      "source_active_product_count": 733,
+      "classifications": {
+        "sealed_candidate": 12,
+        "nonsealed_card": 716,
+        "ambiguous_review": 5,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 5,
+        "pack": 5,
+        "deck": 2
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 58,
+      "source_category_name": "Bakugan TCG",
+      "source_active": true,
+      "source_product_count": 1650,
+      "source_active_product_count": 1650,
+      "classifications": {
+        "sealed_candidate": 31,
+        "nonsealed_card": 1166,
+        "ambiguous_review": 453,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 5,
+        "deck": 20,
+        "booster_box": 3,
+        "tin": 3
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 59,
+      "source_category_name": "KeyForge",
+      "source_active": true,
+      "source_product_count": 25,
+      "source_active_product_count": 25,
+      "classifications": {
+        "sealed_candidate": 14,
+        "nonsealed_card": 0,
+        "ambiguous_review": 11,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 5,
+        "deck_display": 8,
+        "kit": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 60,
+      "source_category_name": "Chrono Clash System",
+      "source_active": true,
+      "source_product_count": 107,
+      "source_active_product_count": 107,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 98,
+        "ambiguous_review": 9,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 61,
+      "source_category_name": "Argent Saga TCG",
+      "source_active": true,
+      "source_product_count": 1000,
+      "source_active_product_count": 1000,
+      "classifications": {
+        "sealed_candidate": 13,
+        "nonsealed_card": 973,
+        "ambiguous_review": 14,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 5,
+        "pack": 4,
+        "deck_display": 1,
+        "display": 3
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 62,
+      "source_category_name": "Flesh and Blood TCG",
+      "source_active": true,
+      "source_product_count": 10423,
+      "source_active_product_count": 10422,
+      "classifications": {
+        "sealed_candidate": 121,
+        "nonsealed_card": 10065,
+        "ambiguous_review": 236,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 28,
+        "pack": 29,
+        "case": 46,
+        "deck_display": 11,
+        "collection": 3,
+        "kit": 3,
+        "promo_pack": 1
+      },
+      "presale_products": 102
+    },
+    {
+      "source_category_id": 63,
+      "source_category_name": "Digimon Card Game",
+      "source_active": true,
+      "source_product_count": 9465,
+      "source_active_product_count": 9457,
+      "classifications": {
+        "sealed_candidate": 242,
+        "nonsealed_card": 9144,
+        "ambiguous_review": 68,
+        "excluded_non_tcg_product": 3
+      },
+      "package_forms": {
+        "booster_box": 37,
+        "case": 41,
+        "pack": 38,
+        "deck": 23,
+        "bundle": 10,
+        "promo_pack": 57,
+        "kit": 17,
+        "deck_display": 15,
+        "sleeved_pack": 2,
+        "collection": 2
+      },
+      "presale_products": 137
+    },
+    {
+      "source_category_id": 64,
+      "source_category_name": "Alternate Souls",
+      "source_active": true,
+      "source_product_count": 14,
+      "source_active_product_count": 14,
+      "classifications": {
+        "sealed_candidate": 9,
+        "nonsealed_card": 0,
+        "ambiguous_review": 5,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "display": 2,
+        "pack": 2,
+        "deck_display": 5
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 65,
+      "source_category_name": "Gate Ruler",
+      "source_active": true,
+      "source_product_count": 1184,
+      "source_active_product_count": 1184,
+      "classifications": {
+        "sealed_candidate": 19,
+        "nonsealed_card": 1163,
+        "ambiguous_review": 2,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 4,
+        "booster_box": 5,
+        "pack": 5,
+        "case": 5
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 66,
+      "source_category_name": "MetaZoo",
+      "source_active": true,
+      "source_product_count": 3456,
+      "source_active_product_count": 3456,
+      "classifications": {
+        "sealed_candidate": 88,
+        "nonsealed_card": 3026,
+        "ambiguous_review": 342,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 11,
+        "pack": 15,
+        "deck": 46,
+        "case": 9,
+        "collection": 1,
+        "deck_display": 4,
+        "promo_pack": 2
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 67,
+      "source_category_name": "WIXOSS",
+      "source_active": true,
+      "source_product_count": 4673,
+      "source_active_product_count": 4673,
+      "classifications": {
+        "sealed_candidate": 64,
+        "nonsealed_card": 4594,
+        "ambiguous_review": 15,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 19,
+        "case": 19,
+        "pack": 19,
+        "deck_display": 7
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 68,
+      "source_category_name": "One Piece Card Game",
+      "source_active": true,
+      "source_product_count": 7261,
+      "source_active_product_count": 7261,
+      "classifications": {
+        "sealed_candidate": 338,
+        "nonsealed_card": 6857,
+        "ambiguous_review": 66,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 41,
+        "deck_display": 42,
+        "pack": 20,
+        "booster_box": 21,
+        "case": 51,
+        "promo_pack": 82,
+        "kit": 6,
+        "collection": 16,
+        "bundle": 31,
+        "sleeved_pack": 20,
+        "tin": 9
+      },
+      "presale_products": 90
+    },
+    {
+      "source_category_id": 71,
+      "source_category_name": "Disney Lorcana",
+      "source_active": true,
+      "source_product_count": 3612,
+      "source_active_product_count": 3612,
+      "classifications": {
+        "sealed_candidate": 125,
+        "nonsealed_card": 3288,
+        "ambiguous_review": 199,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 16,
+        "deck": 36,
+        "booster_box": 14,
+        "deck_display": 10,
+        "case": 21,
+        "sleeved_pack": 25,
+        "bundle": 4
+      },
+      "presale_products": 12
+    },
+    {
+      "source_category_id": 72,
+      "source_category_name": "Battle Spirits Saga",
+      "source_active": true,
+      "source_product_count": 1947,
+      "source_active_product_count": 1947,
+      "classifications": {
+        "sealed_candidate": 52,
+        "nonsealed_card": 1855,
+        "ambiguous_review": 40,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 6,
+        "booster_box": 6,
+        "case": 9,
+        "deck": 7,
+        "deck_display": 7,
+        "promo_pack": 14,
+        "kit": 2,
+        "collection": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 73,
+      "source_category_name": "Shadowverse: Evolve",
+      "source_active": true,
+      "source_product_count": 6713,
+      "source_active_product_count": 6713,
+      "classifications": {
+        "sealed_candidate": 96,
+        "nonsealed_card": 6595,
+        "ambiguous_review": 22,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 26,
+        "deck": 9,
+        "pack": 25,
+        "case": 27,
+        "bundle": 2,
+        "deck_display": 7
+      },
+      "presale_products": 10
+    },
+    {
+      "source_category_id": 74,
+      "source_category_name": "Grand Archive TCG",
+      "source_active": true,
+      "source_product_count": 4791,
+      "source_active_product_count": 4791,
+      "classifications": {
+        "sealed_candidate": 79,
+        "nonsealed_card": 4693,
+        "ambiguous_review": 19,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 14,
+        "pack": 15,
+        "deck_display": 8,
+        "deck": 12,
+        "kit": 1,
+        "case": 29
+      },
+      "presale_products": 9
+    },
+    {
+      "source_category_id": 75,
+      "source_category_name": "Akora TCG",
+      "source_active": true,
+      "source_product_count": 2285,
+      "source_active_product_count": 2285,
+      "classifications": {
+        "sealed_candidate": 48,
+        "nonsealed_card": 2219,
+        "ambiguous_review": 18,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 7,
+        "pack": 8,
+        "deck_display": 6,
+        "deck": 27
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 76,
+      "source_category_name": "Kryptik TCG",
+      "source_active": true,
+      "source_product_count": 3208,
+      "source_active_product_count": 3208,
+      "classifications": {
+        "sealed_candidate": 14,
+        "nonsealed_card": 3194,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 4,
+        "deck": 10
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 77,
+      "source_category_name": "Sorcery: Contested Realm",
+      "source_active": true,
+      "source_product_count": 3184,
+      "source_active_product_count": 3184,
+      "classifications": {
+        "sealed_candidate": 17,
+        "nonsealed_card": 3150,
+        "ambiguous_review": 17,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 7,
+        "booster_box": 4,
+        "case": 4,
+        "pack": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 78,
+      "source_category_name": "Alpha Clash",
+      "source_active": true,
+      "source_product_count": 2118,
+      "source_active_product_count": 2118,
+      "classifications": {
+        "sealed_candidate": 28,
+        "nonsealed_card": 2064,
+        "ambiguous_review": 26,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 10,
+        "case": 10,
+        "pack": 8
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 79,
+      "source_category_name": "Star Wars: Unlimited",
+      "source_active": true,
+      "source_product_count": 8084,
+      "source_active_product_count": 8084,
+      "classifications": {
+        "sealed_candidate": 72,
+        "nonsealed_card": 7985,
+        "ambiguous_review": 27,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "display": 14,
+        "pack": 15,
+        "case": 15,
+        "kit": 11,
+        "promo_pack": 8,
+        "deck_display": 5,
+        "booster_box": 1,
+        "sleeved_pack": 2,
+        "bundle": 1
+      },
+      "presale_products": 8
+    },
+    {
+      "source_category_id": 80,
+      "source_category_name": "Dragon Ball Super: Fusion World",
+      "source_active": true,
+      "source_product_count": 4286,
+      "source_active_product_count": 4285,
+      "classifications": {
+        "sealed_candidate": 122,
+        "nonsealed_card": 4122,
+        "ambiguous_review": 41,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 15,
+        "case": 15,
+        "pack": 15,
+        "deck": 13,
+        "deck_display": 12,
+        "promo_pack": 32,
+        "kit": 1,
+        "sleeved_pack": 14,
+        "collection": 3,
+        "bundle": 2
+      },
+      "presale_products": 181
+    },
+    {
+      "source_category_id": 81,
+      "source_category_name": "Union Arena",
+      "source_active": true,
+      "source_product_count": 6734,
+      "source_active_product_count": 6734,
+      "classifications": {
+        "sealed_candidate": 179,
+        "nonsealed_card": 6508,
+        "ambiguous_review": 47,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 34,
+        "booster_box": 32,
+        "case": 47,
+        "deck": 15,
+        "deck_display": 14,
+        "promo_pack": 35,
+        "display": 2
+      },
+      "presale_products": 152
+    },
+    {
+      "source_category_id": 82,
+      "source_category_name": "TCGplayer Supplies",
+      "source_active": true,
+      "source_product_count": 2,
+      "source_active_product_count": 2,
+      "classifications": {
+        "sealed_candidate": 0,
+        "nonsealed_card": 0,
+        "ambiguous_review": 0,
+        "excluded_non_tcg_product": 2
+      },
+      "package_forms": {},
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 83,
+      "source_category_name": "Elestrals",
+      "source_active": true,
+      "source_product_count": 2704,
+      "source_active_product_count": 2704,
+      "classifications": {
+        "sealed_candidate": 47,
+        "nonsealed_card": 2625,
+        "ambiguous_review": 32,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "booster_box": 8,
+        "deck": 24,
+        "bundle": 9,
+        "pack": 4,
+        "promo_pack": 1,
+        "display": 1
+      },
+      "presale_products": 1
+    },
+    {
+      "source_category_id": 85,
+      "source_category_name": "Pokemon Japan",
+      "source_active": true,
+      "source_product_count": 30360,
+      "source_active_product_count": 30360,
+      "classifications": {
+        "sealed_candidate": 261,
+        "nonsealed_card": 30039,
+        "ambiguous_review": 60,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "kit": 4,
+        "pack": 104,
+        "booster_box": 105,
+        "deck": 46,
+        "case": 1,
+        "deck_display": 1
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 86,
+      "source_category_name": "Gundam Card Game",
+      "source_active": true,
+      "source_product_count": 1966,
+      "source_active_product_count": 1965,
+      "classifications": {
+        "sealed_candidate": 113,
+        "nonsealed_card": 1845,
+        "ambiguous_review": 6,
+        "excluded_non_tcg_product": 1
+      },
+      "package_forms": {
+        "pack": 7,
+        "booster_box": 7,
+        "case": 28,
+        "deck": 27,
+        "deck_display": 18,
+        "sleeved_pack": 10,
+        "promo_pack": 10,
+        "collection": 5,
+        "kit": 1
+      },
+      "presale_products": 16
+    },
+    {
+      "source_category_id": 87,
+      "source_category_name": "hololive OFFICIAL CARD GAME",
+      "source_active": true,
+      "source_product_count": 1795,
+      "source_active_product_count": 1795,
+      "classifications": {
+        "sealed_candidate": 58,
+        "nonsealed_card": 1735,
+        "ambiguous_review": 2,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 8,
+        "booster_box": 9,
+        "case": 24,
+        "deck": 15,
+        "deck_display": 2
+      },
+      "presale_products": 18
+    },
+    {
+      "source_category_id": 88,
+      "source_category_name": "Godzilla Card Game",
+      "source_active": true,
+      "source_product_count": 959,
+      "source_active_product_count": 959,
+      "classifications": {
+        "sealed_candidate": 18,
+        "nonsealed_card": 934,
+        "ambiguous_review": 7,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 3,
+        "booster_box": 4,
+        "case": 5,
+        "deck_display": 2,
+        "pack": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 89,
+      "source_category_name": "Riftbound: League of Legends Trading Card Game",
+      "source_active": true,
+      "source_product_count": 1534,
+      "source_active_product_count": 1534,
+      "classifications": {
+        "sealed_candidate": 35,
+        "nonsealed_card": 1479,
+        "ambiguous_review": 20,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "pack": 4,
+        "display": 4,
+        "case": 5,
+        "deck_display": 7,
+        "sleeved_pack": 8,
+        "bundle": 3,
+        "promo_pack": 4
+      },
+      "presale_products": 0
+    },
+    {
+      "source_category_id": 90,
+      "source_category_name": "CookieRun: Braverse TCG",
+      "source_active": true,
+      "source_product_count": 2104,
+      "source_active_product_count": 2104,
+      "classifications": {
+        "sealed_candidate": 27,
+        "nonsealed_card": 2074,
+        "ambiguous_review": 3,
+        "excluded_non_tcg_product": 0
+      },
+      "package_forms": {
+        "deck": 10,
+        "display": 5,
+        "case": 7,
+        "pack": 5
+      },
+      "presale_products": 0
+    }
+  ]
+}

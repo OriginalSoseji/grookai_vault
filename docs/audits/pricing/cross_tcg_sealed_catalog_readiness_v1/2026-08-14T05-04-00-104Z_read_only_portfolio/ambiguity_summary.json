@@ -1,0 +1,25 @@
+{
+  "total": 9836,
+  "reasons": [
+    {
+      "reason": "No positive individual-card or sealed-product evidence was found.",
+      "count": 6273
+    },
+    {
+      "reason": "Sealed or contents wording exists, but the package form is unresolved.",
+      "count": 2234
+    },
+    {
+      "reason": "Generic packaging language is insufficient without a precise form or contents evidence.",
+      "count": 1312
+    },
+    {
+      "reason": "A package-form phrase is combined with an accessory name but has no explicit TCG contents evidence.",
+      "count": 15
+    },
+    {
+      "reason": "Custom, repack, lot, or retailer-bundle language requires human review.",
+      "count": 2
+    }
+  ]
+}
