@@ -1,0 +1,123 @@
+{
+  "version": "MTG_EXACT_PRINTING_PRICING_RECONCILIATION_V1",
+  "result_fingerprint": "e8c9af33c308187b6b191894212816bf2d40748bddeb7239ce8f01edcd42ee52",
+  "artifacts": {
+    "run_plan.json": {
+      "sha256": "0e0ea9414cfaacaecd56286fd841d48fe5093a2cc0ccf2c4fb9da59a91bced6e",
+      "byte_size": 1349
+    },
+    "summary.json": {
+      "sha256": "7460ee8eb9d0b9bac8e574a2684cb25427b520fccb6abd7b6fc54f32e54b020f",
+      "byte_size": 2576
+    },
+    "reconciled_exact_lanes_index.json": {
+      "sha256": "ffb6a23417352fc5770e4a2e845db814fc292505c1096943e6662ebaea990291",
+      "byte_size": 3733
+    },
+    "reconciled_exact_lanes_part_0001.jsonl.gz": {
+      "sha256": "70fe9c52d05ba4be23de4f7a8e95bf63f0ddc798622e597b975b30513d25f535",
+      "byte_size": 2095458,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "0646c1297399d587caf409b92b3c3fb84d8356adffea0fa76eea6b57d4478140",
+      "compressed_sha256": "70fe9c52d05ba4be23de4f7a8e95bf63f0ddc798622e597b975b30513d25f535",
+      "compressed_byte_size": 2095458
+    },
+    "reconciled_exact_lanes_part_0002.jsonl.gz": {
+      "sha256": "408a37fa50a3bdc0b64f47e38af0e9715939ecdebba7fba9896ab2ddc90f5763",
+      "byte_size": 2115434,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "2a54193db602b12d08c516bfa386a5d956067901f4d5728f000a75f46f68aac6",
+      "compressed_sha256": "408a37fa50a3bdc0b64f47e38af0e9715939ecdebba7fba9896ab2ddc90f5763",
+      "compressed_byte_size": 2115434
+    },
+    "reconciled_exact_lanes_part_0003.jsonl.gz": {
+      "sha256": "ed7d50f3e02edfd9c86b923801e9e97df7a3a4b4a20e6fba51218a9e4a106633",
+      "byte_size": 2128535,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "648e9e888b405fe6a6e7824fe87f92736e4b21845f1d9076b48ec30a55312c50",
+      "compressed_sha256": "ed7d50f3e02edfd9c86b923801e9e97df7a3a4b4a20e6fba51218a9e4a106633",
+      "compressed_byte_size": 2128535
+    },
+    "reconciled_exact_lanes_part_0004.jsonl.gz": {
+      "sha256": "91e0644550f7784479929b290b346d4e3f00f0a0508909d9a7e8ea6fc6896bb0",
+      "byte_size": 2121119,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "684d2b1ddd427876411e661b96b115f3cc4ae2b188513aa10047e4920fe6aa62",
+      "compressed_sha256": "91e0644550f7784479929b290b346d4e3f00f0a0508909d9a7e8ea6fc6896bb0",
+      "compressed_byte_size": 2121119
+    },
+    "reconciled_exact_lanes_part_0005.jsonl.gz": {
+      "sha256": "527c7ba141f42fc1b93924bfa1e08341f9c158c402d700d2ff2479fae1dbfadd",
+      "byte_size": 2106991,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "e7a0b6cc5d823b4d75e37318cade43fe954b11985b9106b0069483fd679abb66",
+      "compressed_sha256": "527c7ba141f42fc1b93924bfa1e08341f9c158c402d700d2ff2479fae1dbfadd",
+      "compressed_byte_size": 2106991
+    },
+    "reconciled_exact_lanes_part_0006.jsonl.gz": {
+      "sha256": "d7be374981ccdbbf23805ab5d74abb44f05f5fe0deb3f15fb33d52f4e0f7a650",
+      "byte_size": 2094698,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "4ec3c4aad3d97ebaa1e568cc0e74ff02fcb1e5ac3de8bbea1fabeb63d6b12bbf",
+      "compressed_sha256": "d7be374981ccdbbf23805ab5d74abb44f05f5fe0deb3f15fb33d52f4e0f7a650",
+      "compressed_byte_size": 2094698
+    },
+    "reconciled_exact_lanes_part_0007.jsonl.gz": {
+      "sha256": "4f3283665e346fb4d2d9ac5633ea8331ce3bbb12c94c8ef8ea3de7694252c74b",
+      "byte_size": 2100033,
+      "content_encoding": "gzip",
+      "logical_row_count": 20000,
+      "logical_jsonl_sha256": "f481ef2719d313d7ee3c804def1fa9c4ec71c2563fdb16f8576ee7ee570a720a",
+      "compressed_sha256": "4f3283665e346fb4d2d9ac5633ea8331ce3bbb12c94c8ef8ea3de7694252c74b",
+      "compressed_byte_size": 2100033
+    },
+    "reconciled_exact_lanes_part_0008.jsonl.gz": {
+      "sha256": "d836a4230409b3cddf51edd441979cf46cd72ffc422907a209882485c1ad6cc4",
+      "byte_size": 466226,
+      "content_encoding": "gzip",
+      "logical_row_count": 4462,
+      "logical_jsonl_sha256": "40149220f8445ff63969ec9b849868b3e91012c6fc40f14787e7d8bd4c8c9e99",
+      "compressed_sha256": "d836a4230409b3cddf51edd441979cf46cd72ffc422907a209882485c1ad6cc4",
+      "compressed_byte_size": 466226
+    },
+    "publication_blocked_gap_ledger_index.json": {
+      "sha256": "1015fc0036bebab6b11c1580e01055ce0342db68006af1cb690246cacc0e159e",
+      "byte_size": 734
+    },
+    "publication_blocked_gap_ledger_part_0001.jsonl.gz": {
+      "sha256": "4a60301bfcaceaae6aef27be95aec89c6afd0a4d5331a2ef2cfe52b0be97223b",
+      "byte_size": 1303142,
+      "content_encoding": "gzip",
+      "logical_row_count": 15607,
+      "logical_jsonl_sha256": "33bc0db50a359cea540d8bc02dbd8503abe5159f37fec381cd20dd65de833ba8",
+      "compressed_sha256": "4a60301bfcaceaae6aef27be95aec89c6afd0a4d5331a2ef2cfe52b0be97223b",
+      "compressed_byte_size": 1303142
+    },
+    "set_finish_coverage.jsonl": {
+      "sha256": "553d26ddbf06adaa9604973bf03b6060b8553c96626ea154a38567dcc5149fdb",
+      "byte_size": 768659
+    },
+    "missing_warehouse_lanes.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_size": 0
+    },
+    "collision_conditions.jsonl": {
+      "sha256": "fece8b842453106c4805e91911ec72c13c127778b7d1ce70deabe26f86c13996",
+      "byte_size": 3215
+    },
+    "zero_map_sets.json": {
+      "sha256": "e5055a77a0264a704b27e9336036365b1cad38f27c2ede6736a91658472d8d5e",
+      "byte_size": 62978
+    },
+    "REPORT.md": {
+      "sha256": "d57be79e87db57a6e666e720fa922afa2a34542fd6d1143550ebf0b7dfdb9618",
+      "byte_size": 1957
+    }
+  }
+}
