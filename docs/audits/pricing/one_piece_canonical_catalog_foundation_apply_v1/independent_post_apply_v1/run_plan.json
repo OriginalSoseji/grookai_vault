@@ -1,0 +1,23 @@
+{
+  "version": "ONE_PIECE_CANONICAL_FOUNDATION_POST_APPLY_V1",
+  "recorded_at": "2026-08-14T19:15:06.727Z",
+  "repository": {
+    "commit_sha": "8a74925370b0a3ae453992573a5e5dfeeb933e6a",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "execution_summary_path": "docs/audits/pricing/one_piece_canonical_catalog_foundation_apply_v1/production_apply_v1/summary.json",
+  "execution_summary_sha256": "f2fad0398968fa09a5cba22197508a2eb7cbb62d2b4e0ac9f68f62cc2257391f",
+  "apply_plan_fingerprint_sha256": "7a4458002aa0f30133b875e784ee4050b4209605797701aae92ef6e994842aec",
+  "mode": "fresh_read_only_post_apply_verification",
+  "boundaries": {
+    "database_writes": 0,
+    "migration_apply": 0,
+    "canonical_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  }
+}

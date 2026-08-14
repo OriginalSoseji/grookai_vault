@@ -928,6 +928,12 @@ Recommended reading order for future maintainers:
       failure-evidence contract, and the explicit authorization still required
       before durable migration apply
 
+67. `PRICING_CHECKPOINT_69_ONE_PIECE_CANONICAL_FOUNDATION_APPLIED_VERIFIED.md`
+    - then read the authorized durable foundation transaction, exact game and
+      hidden release inserts, migration-ledger and six-domain constraint
+      readback, independent hidden-visibility proof, zero canonical card rows,
+      and the next separate 17-card rollback-canary gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
