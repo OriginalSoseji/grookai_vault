@@ -1,0 +1,56 @@
+{
+  "version": "ONE_PIECE_ST01_LANGUAGE_AND_IMAGE_READINESS_V1",
+  "status": "language_and_image_acquisition_readiness_passed_no_writes",
+  "repository": {
+    "commit_sha": "e9880b4ed87ebf27a9f628c754087aef7776ceac",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "source_review_sha256": "effc4ccc2e71be5cab7a30356763a2ca09d2d14b73bee48203ef3766dc97927b",
+  "authority_summary": {
+    "staged_rows": 21,
+    "exact_language_authority_rows": 18,
+    "context_only_rows": 3,
+    "official_numbered_card_matches": 17,
+    "blanket_category_authority_granted": false
+  },
+  "counts": {
+    "selected_rows": 21,
+    "accepted_images": 21,
+    "preferred_resolution_images": 13,
+    "card_or_don_proposed_paths": 18,
+    "sealed_paths_pending_contract": 3,
+    "duplicate_image_hash_groups": 1,
+    "findings": 0
+  },
+  "findings": [],
+  "duplicate_image_hashes": [
+    {
+      "image_sha256": "4ff019368c7dec906850276302dfe0b548c00c94d90657919ba37e2ee86465ca",
+      "source_product_ids": [
+        288234,
+        288236,
+        288243,
+        288244,
+        288245,
+        288246
+      ]
+    }
+  ],
+  "boundaries": {
+    "source_scope": "tcgplayer_category_68_group_3189_st01_only",
+    "blanket_tcgplayer_category_language_authority": false,
+    "downloaded_bytes_cache_only": true,
+    "cache_root": ".tmp/one_piece_st01_language_and_image_readiness_v1",
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_connections": 0,
+    "storage_writes": 0,
+    "pointer_updates": 0,
+    "canonical_mutations": 0,
+    "sealed_mutations": 0,
+    "pricing_mutations": 0,
+    "publication_mutations": 0
+  },
+  "exact_next_gate": "freeze a separate storage collision-preflight/upload plan for 18 card/DON objects and define the sealed image contract before any sealed upload",
+  "readiness_fingerprint_sha256": "ac52ef86bc8a82e2f98ac78d8fed9623c2fc8a2809ff90788c8adcd6ec08319c"
+}

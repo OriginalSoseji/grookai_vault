@@ -194,9 +194,25 @@ async function acquireImage(row, options) {
     const [role, url] = candidate;
     try {
       const result = await fetchImage(url, options.timeoutMs);
-      attempts.push({ role, ...result.observation });
-      if (result.observation.accepted) {
-        selected = { role, ...result.observation, buffer: result.buffer };
+      const aspectRatio = result.observation.width && result.observation.height
+        ? result.observation.width / result.observation.height
+        : null;
+      const requiresCardAspect = row.review_lane !== "sealed_product_identity_review";
+      const cardAspectAccepted = !requiresCardAspect ||
+        (aspectRatio !== null && aspectRatio >= 0.55 && aspectRatio <= 0.85);
+      const acceptedForRow = result.observation.accepted && cardAspectAccepted;
+      const attempt = {
+        role,
+        ...result.observation,
+        aspect_ratio: aspectRatio,
+        accepted_for_row: acceptedForRow,
+        row_rejection_reason: result.observation.accepted && !cardAspectAccepted
+          ? "non_card_aspect_ratio_for_card_or_don_lane"
+          : null,
+      };
+      attempts.push(attempt);
+      if (acceptedForRow) {
+        selected = { ...attempt, buffer: result.buffer };
         break;
       }
     } catch (error) {
@@ -304,6 +320,10 @@ async function main() {
     return acc;
   }, {})).filter(([, ids]) => ids.length > 1)
     .map(([image_sha256, source_product_ids]) => ({ image_sha256, source_product_ids }));
+  if (duplicateImageHashes.length > 0 &&
+      !findings.includes("duplicate_selected_image_sha256")) {
+    throw new Error("Duplicate-image reconciliation did not fail closed");
+  }
   const summaryCore = {
     version: ONE_PIECE_ST01_READINESS_VERSION,
     status: findings.length === 0

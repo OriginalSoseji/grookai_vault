@@ -313,6 +313,11 @@ export function validateReadinessRows(rows) {
   if (new Set(targets).size !== targets.length) {
     findings.push("duplicate_target_storage_path");
   }
+  const selectedHashes = rows.map((row) => row.image.selected_source?.sha256)
+    .filter(Boolean);
+  if (new Set(selectedHashes).size !== selectedHashes.length) {
+    findings.push("duplicate_selected_image_sha256");
+  }
   for (const row of rows) {
     if (!row.image.selected_source?.accepted) {
       findings.push(`image_not_accepted:${row.source_product_id}`);

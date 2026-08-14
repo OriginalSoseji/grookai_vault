@@ -100,7 +100,7 @@ test("readiness validator rejects duplicate targets and write-boundary drift", (
     source_product_id: id,
     review_lane: "numbered_card_parent_identity_review",
     image: {
-      selected_source: { accepted: true },
+      selected_source: { accepted: true, sha256: "a".repeat(64) },
       target_storage_path: "same/path.jpg",
       target_path_status: "proposed_content_addressed_card_path",
       storage_write_performed: false,
@@ -111,6 +111,17 @@ test("readiness validator rejects duplicate targets and write-boundary drift", (
   const findings = validateReadinessRows([base(1), base(2)]);
   assert.ok(findings.includes("row_count_not_21"));
   assert.ok(findings.includes("duplicate_target_storage_path"));
+  assert.ok(findings.includes("duplicate_selected_image_sha256"));
+});
+
+test("audit runner requires card-like aspect ratio for card and DON lanes", async () => {
+  const source = await fs.readFile(
+    "scripts/audits/one_piece_st01_language_and_image_readiness_v1.mjs",
+    "utf8",
+  );
+  assert.match(source, /requiresCardAspect/);
+  assert.match(source, /aspectRatio >= 0\.55 && aspectRatio <= 0\.85/);
+  assert.match(source, /non_card_aspect_ratio_for_card_or_don_lane/);
 });
 
 test("audit runner has no Supabase, database, or Storage client", async () => {
