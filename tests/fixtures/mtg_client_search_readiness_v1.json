@@ -1,0 +1,91 @@
+{
+  "fixture_version": "MTG_CLIENT_SEARCH_READINESS_FIXTURE_V1",
+  "authority": "synthetic_offline_contract_fixture",
+  "cards": [
+    {
+      "fixture_id": "single_face_normal_foil",
+      "game_code": "mtg",
+      "identity_domain": "mtg_eng_paper_print",
+      "language": "en",
+      "set_code": "tst",
+      "collector_number": "146",
+      "name": "Fixture Bolt",
+      "layout": "normal",
+      "rarity": "uncommon",
+      "artist": "Fixture Artist",
+      "finishes": ["normal", "foil"],
+      "faces": [
+        {
+          "name": "Fixture Bolt",
+          "image_url": "/fixtures/mtg/fixture-bolt-front.jpg"
+        }
+      ]
+    },
+    {
+      "fixture_id": "double_face_etched",
+      "game_code": "mtg",
+      "identity_domain": "mtg_eng_paper_print",
+      "language": "en",
+      "set_code": "tst",
+      "collector_number": "123a",
+      "name": "Fixture Front // Fixture Back",
+      "layout": "transform",
+      "rarity": "rare",
+      "artist": "Fixture Artist Two",
+      "finishes": ["normal", "foil", "etched"],
+      "faces": [
+        {
+          "name": "Fixture Front",
+          "image_url": "/fixtures/mtg/fixture-front.jpg"
+        },
+        {
+          "name": "Fixture Back",
+          "image_url": "/fixtures/mtg/fixture-back.jpg"
+        }
+      ]
+    },
+    {
+      "fixture_id": "symbol_collector_number",
+      "game_code": "mtg",
+      "identity_domain": "mtg_eng_paper_print",
+      "language": "en",
+      "set_code": "tst",
+      "collector_number": "\u2605",
+      "name": "Fixture Symbol Card",
+      "layout": "normal",
+      "rarity": "special",
+      "artist": "Fixture Artist Three",
+      "finishes": ["normal"],
+      "faces": [
+        {
+          "name": "Fixture Symbol Card",
+          "image_url": "/fixtures/mtg/fixture-symbol.jpg"
+        }
+      ]
+    }
+  ],
+  "search_cases": [
+    {
+      "query": "tst 123a etched",
+      "required": {
+        "game_code": "mtg",
+        "set_code": "tst",
+        "collector_number": "123a",
+        "finish": "etched"
+      }
+    },
+    {
+      "query": "Fixture Artist foil",
+      "required": {
+        "game_code": "mtg",
+        "artist": "Fixture Artist",
+        "finish": "foil"
+      }
+    }
+  ],
+  "hidden_release_case": {
+    "release_status": "hidden",
+    "expected_visible_card_ids": [],
+    "expected_public_state": "not_found_without_identity_leak"
+  }
+}

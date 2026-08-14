@@ -28,6 +28,8 @@ const FILLER_PHRASES = [
 ];
 
 const FINISH_PATTERNS: Array<{ pattern: RegExp; key: string; label: string; residual: string }> = [
+  { pattern: /\betched(?:\s+foils?)?\b/gi, key: "etched", label: "Etched Foil", residual: "etched foil" },
+  { pattern: /\bfoils?\b/gi, key: "foil", label: "Foil", residual: "foil" },
   { pattern: /\brocket\s+reverse\s+holos?\b/gi, key: "rocket_reverse", label: "Rocket Reverse", residual: "rocket reverse" },
   { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
   { pattern: /\bcosmos\s+holos?\b/gi, key: "cosmos", label: "Cosmos Holo", residual: "cosmos holo" },

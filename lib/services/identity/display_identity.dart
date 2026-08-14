@@ -75,6 +75,8 @@ const Map<String, String> _printedIdentityModifierMap = <String, String>{
 
 const Map<String, String> _finishKeyMap = <String, String>{
   'normal': 'Normal',
+  'foil': 'Foil',
+  'etched': 'Etched Foil',
   'holo': 'Holo',
   'reverse': 'Reverse Holo',
   'pokeball': 'Poké Ball',

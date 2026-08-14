@@ -16,6 +16,8 @@ const NON_MEANINGFUL_VARIANT_KEYS = new Set(["", "base", "default", "normal", "s
 
 const FINISH_LABELS: Record<string, string> = {
   normal: "Normal",
+  foil: "Foil",
+  etched: "Etched Foil",
   holo: "Holo",
   reverse: "Reverse Holo",
   pokeball: "Poké Ball",

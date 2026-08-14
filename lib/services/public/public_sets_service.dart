@@ -1085,6 +1085,10 @@ class PublicSetsService {
     switch (_cleanText(finishKey).toLowerCase()) {
       case 'normal':
         return 'Normal';
+      case 'foil':
+        return 'Foil';
+      case 'etched':
+        return 'Etched Foil';
       case 'holo':
         return 'Holo';
       case 'reverse':
