@@ -1,0 +1,47 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "plan.json",
+      "bytes": 6089,
+      "sha256": "e1d34cd6df572b0cb36cf31b34f8707a79e488158934cabb18738cda8a9f4aee"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 1248,
+      "sha256": "ac861c597fbca78505f79f34e0bfaaaa8454b3e413a89dec279f26159aa28437"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "supabase/migrations/20260814150000_one_piece_canonical_catalog_foundation_v1.sql",
+      "bytes": 3078,
+      "sha256": "a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_foundation_preflight_v1/production_read_only_v1/summary.json",
+      "bytes": 2680,
+      "sha256": "2ed57f833c7baca377d1df04da7185b3c8ace13c3553918b14ed96d60a4b7287"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_foundation_rollback_v1/production_rollback_attempt_2_v1/summary.json",
+      "bytes": 1331,
+      "sha256": "5ce5f0b841ab3639ec9c2d8c17ad9bf8d0f6bbe5dfdaaf66a06a63f0190b1637"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_foundation_rollback_v1/independent_post_rollback_v1/summary.json",
+      "bytes": 2523,
+      "sha256": "c37f423114e5af3aab5a7a97755508a1bf53dd54a916f5af153f8a177f9f0c91"
+    },
+    {
+      "path": "backend/pricing/one_piece_canonical_catalog_foundation_apply_v1.mjs",
+      "bytes": 10118,
+      "sha256": "e9ad33b060e65220bb80b54ab18693613a1f508f05954214e3c0413f3e336eb1"
+    },
+    {
+      "path": "scripts/audits/one_piece_canonical_catalog_foundation_apply_v1.mjs",
+      "bytes": 21267,
+      "sha256": "e3de873326253144c4e0225861e971b40ad5e98d38c7787b867309ff8f93159f"
+    }
+  ]
+}
