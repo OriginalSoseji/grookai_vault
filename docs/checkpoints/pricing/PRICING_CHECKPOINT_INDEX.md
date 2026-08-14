@@ -911,6 +911,11 @@ Recommended reading order for future maintainers:
       authorization fingerprints, failure-atomic rollback contract, zero-access
       planning proof, and the still-closed durable upload boundary
 
+64. `PRICING_CHECKPOINT_66_ONE_PIECE_ST01_STORAGE_UPLOAD_VERIFIED.md`
+    - then read the exact 18-object durable upload, writer and independent
+      download/hash readbacks, zero overwrite or rollback result, preserved
+      database boundary, and the next numbered-card canonical preflight gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
