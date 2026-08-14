@@ -890,6 +890,11 @@ Recommended reading order for future maintainers:
       independent readback proofs, fully closed promotion authority, and the
       read-only identity review required before any canonical or sealed apply
 
+60. `PRICING_CHECKPOINT_62_ONE_PIECE_STAGED_IDENTITY_REVIEW_COMPLETE.md`
+    - then read the separate numbered-card, DON, sealed, and bundle review
+      lanes, the two shared language/image evidence blockers, and the still
+      closed canonical and sealed promotion boundaries
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

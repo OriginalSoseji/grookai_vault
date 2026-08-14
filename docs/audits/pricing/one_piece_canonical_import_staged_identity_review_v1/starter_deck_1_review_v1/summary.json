@@ -1,0 +1,21 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_STAGED_IDENTITY_REVIEW_V1",
+  "status": "review_packet_complete_no_promotion_authority",
+  "repository": {
+    "commit_sha": "cf9085ee9c2bc5f0c7faa205e0236a1f54c09ad9",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "source_readback_sha256": "ffd53870da7602ad8e3ca703c343696bf3510d64a7caf70270f9f44d7e67dc18",
+  "counts": {
+    "total": 21,
+    "numbered_cards": 17,
+    "don_cards": 1,
+    "sealed_products": 3,
+    "inferred_language": 21,
+    "images_not_self_hosted": 21
+  },
+  "promotion_ready_rows": 0,
+  "database_connections": 0,
+  "database_writes": 0,
+  "exact_next_gate": "define language authority, self-host images, and freeze separate numbered-card, DON, and sealed identity contracts"
+}
