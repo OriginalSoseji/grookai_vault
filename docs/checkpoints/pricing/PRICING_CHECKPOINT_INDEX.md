@@ -906,6 +906,11 @@ Recommended reading order for future maintainers:
       local hash readback, zero existing targets, explicit sealed exclusion,
       and the still-closed permanent-upload and pointer-mutation boundaries
 
+63. `PRICING_CHECKPOINT_65_ONE_PIECE_ST01_PERMANENT_STORAGE_PLAN_FROZEN.md`
+    - then read the exact 18-object permanent plan, frozen code bundle and
+      authorization fingerprints, failure-atomic rollback contract, zero-access
+      planning proof, and the still-closed durable upload boundary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
