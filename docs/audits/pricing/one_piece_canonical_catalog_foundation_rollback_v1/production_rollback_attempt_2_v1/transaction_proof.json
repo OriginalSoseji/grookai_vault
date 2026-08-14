@@ -1,0 +1,34 @@
+{
+  "transaction_started": true,
+  "statements_planned": 9,
+  "statements_executed": 9,
+  "applied_readback": {
+    "game_row": {
+      "id": "4f504300-0000-4000-8000-000000000001",
+      "code": "one_piece",
+      "name": "One Piece Card Game",
+      "slug": "one-piece"
+    },
+    "game_count": 1,
+    "canonical_counts": {
+      "sets": 0,
+      "cards": 0,
+      "printings": 0,
+      "identities": 0
+    },
+    "anon_game_visible": false,
+    "release_control_row": {
+      "game_code": "one_piece",
+      "release_status": "hidden",
+      "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1"
+    },
+    "service_game_visible": false,
+    "release_control_count": 1,
+    "authenticated_game_visible": false,
+    "identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))"
+  },
+  "applied_findings": [],
+  "protected_count_findings": [],
+  "rollback_attempted": true,
+  "rollback_succeeded": true
+}
