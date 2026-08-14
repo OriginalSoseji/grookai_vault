@@ -39,7 +39,7 @@ const DEFAULT_PLAN_DIR = path.join(
   "audits",
   "pricing",
   "cross_tcg_sealed_product_schema_apply_v1",
-  "schema_apply_plan_v1",
+  "schema_apply_plan_effective_privileges_v2",
 );
 
 function parseArgs(argv) {

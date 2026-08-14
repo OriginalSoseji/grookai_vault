@@ -21,7 +21,7 @@ const CANDIDATE =
   "docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql";
 const PREFLIGHT =
   "docs/audits/pricing/cross_tcg_sealed_product_schema_security_preflight_v1/" +
-  "2026-08-14T06-09-28-890Z_production_read_only/summary.json";
+  "2026-08-14T06-47-57-484Z_production_read_only/summary.json";
 const WRITER = "scripts/audits/cross_tcg_sealed_product_schema_apply_v1.mjs";
 const VERIFIER =
   "scripts/audits/cross_tcg_sealed_product_schema_post_apply_readback_v1.mjs";
@@ -149,9 +149,9 @@ test("frozen plan binds exact preflight, ledger, inventory, and guard token", as
   assert.equal(plan.preflight_fingerprint_sha256, SEALED_SCHEMA_PREFLIGHT_FINGERPRINT);
   assert.equal(plan.ledger_statement_count, 93);
   assert.equal(plan.ledger_fingerprint_sha256,
-    "a6eda9822abe8a0f7a684107ad0ac2c63a35a75f13f7c6bcdc932ea48e2ffd99");
+    "560b00d18395741a2636e2437656165a8c648bb50d50e035f2635349fa1b2314");
   assert.equal(plan.apply_plan_fingerprint_sha256,
-    "c908fe55a4459b0b0e80bdd375ff8090ee84ad71d552ee21f9b8aaa195d14221");
+    "0325db8d8a4328cacba7026e2e37d3ac8a15d3cb107e98de866645e793b7942b");
   assert.equal(plan.inventory.tables.length, 10);
   assert.equal(plan.inventory.constraints.length, 89);
   assert.equal(plan.inventory.all_indexes.length, 34);
@@ -264,7 +264,7 @@ test("checked-in frozen plan is reproducible", async () => {
   const { plan } = await planFixture();
   const checkedIn = JSON.parse(await fs.readFile(
     "docs/audits/pricing/cross_tcg_sealed_product_schema_apply_v1/" +
-      "schema_apply_plan_v1/plan.json",
+      "schema_apply_plan_effective_privileges_v2/plan.json",
     "utf8",
   ));
   assert.equal(stableJsonSealedSchemaApplyV1(checkedIn),

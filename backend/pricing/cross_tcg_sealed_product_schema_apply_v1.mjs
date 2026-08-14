@@ -16,7 +16,7 @@ import {
 export const SEALED_SCHEMA_APPLY_VERSION =
   "CROSS_TCG_SEALED_PRODUCT_SCHEMA_APPLY_READBACK_V1";
 export const SEALED_SCHEMA_PREFLIGHT_FINGERPRINT =
-  "791bfb677a432b8ec9f7d8d027830fc96b21f40ccfbd0c0a528f1833baca28f7";
+  "e8e7915888865e5b227f6b09b7a1a144d4780ae15ea0aebe552e6b0c232da740";
 export const SEALED_PROTECTED_SCHEMA_FINGERPRINT =
   "1224bc0fa350de813e0055b22ed95080b381a0986ed040b1823b9cdb3349bccb";
 export const SEALED_SCHEMA_APPLY_APPROVAL_ENV =
@@ -28,10 +28,10 @@ export const SEALED_SCHEMA_CANDIDATE_PATH =
   "docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql";
 export const SEALED_SCHEMA_PREFLIGHT_SUMMARY_PATH =
   "docs/audits/pricing/cross_tcg_sealed_product_schema_security_preflight_v1/" +
-  "2026-08-14T06-09-28-890Z_production_read_only/summary.json";
+  "2026-08-14T06-47-57-484Z_production_read_only/summary.json";
 export const SEALED_SCHEMA_PLAN_PATH =
   "docs/audits/pricing/cross_tcg_sealed_product_schema_apply_v1/" +
-  "schema_apply_plan_v1/plan.json";
+  "schema_apply_plan_effective_privileges_v2/plan.json";
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
