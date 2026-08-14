@@ -1,0 +1,2 @@
+{"recorded_at":"2026-08-14T00:38:55.636Z","event":"set_started","execution_ordinal":0,"source_set_id":"ba9bf625-681c-4a4e-ab48-399b2fecac6b","code":"msh","plan_sha256":"b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba"}
+{"recorded_at":"2026-08-14T00:39:34.536Z","event":"execution_stopped","status":"stopped_before_next_set","error_code":"42703","error_message":"column \"image_source_ref\" does not exist","transient":false,"completed_set_count":0}

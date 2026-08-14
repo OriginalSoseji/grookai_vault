@@ -1,0 +1,784 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_INGESTION_ORCHESTRATOR_V1",
+  "completed": [
+    {
+      "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+      "code": "msh",
+      "completed_at": "2026-08-14T00:49:13.485Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "staged_exact",
+        "staged_rows": 3089,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 453,
+          "card_print_identity": 453,
+          "card_printings": 865,
+          "external_mappings": 453,
+          "external_printing_mappings": 864
+        },
+        "after_classification": "staged_exact"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 453,
+          "card_print_identity": 453,
+          "card_printings": 865,
+          "external_mappings": 453,
+          "external_printing_mappings": 864
+        },
+        "promotion_plan_sha256": "b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba"
+      }
+    },
+    {
+      "source_set_id": "aa50a66a-0eb3-4bb5-acad-bc6c96f98663",
+      "code": "oe01",
+      "completed_at": "2026-08-14T00:50:43.126Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 101,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "promotion_plan_sha256": "003048ecf19e0d3aaac6bc25382fdebc83016488921450412752f7d9f4652562"
+      }
+    },
+    {
+      "source_set_id": "4de7b6af-43e2-4cd8-990e-3927b65ba62f",
+      "code": "cc1",
+      "completed_at": "2026-08-14T00:51:38.265Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 57,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "promotion_plan_sha256": "e9613d78d80ade50814404ed3914d9cf4de0d465f1ca0f1815c62ff8f536010c"
+      }
+    },
+    {
+      "source_set_id": "05fccc6b-1c39-46b6-a492-ac9383a5abfe",
+      "code": "q07",
+      "completed_at": "2026-08-14T00:52:35.243Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 5,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "25b52fd83a43ff297dd21ab14eea2748b2ab69f8c723c5dfd331464bdf080f1b"
+      }
+    },
+    {
+      "source_set_id": "2a0b24ac-7614-4a08-b58a-b64f7c173361",
+      "code": "fdc",
+      "completed_at": "2026-08-14T00:53:29.799Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 16,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "promotion_plan_sha256": "a19a2df683a23bb7bd6c40c6f28ac7c94d82328f86b445d977d46a66d3bf6275"
+      }
+    },
+    {
+      "source_set_id": "7993c591-1361-4dcb-b2af-ac94dd8e86e8",
+      "code": "sum",
+      "completed_at": "2026-08-14T00:54:29.110Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 1262,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 306,
+          "card_print_identity": 306,
+          "card_printings": 306,
+          "external_mappings": 306,
+          "external_printing_mappings": 37
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 306,
+          "card_print_identity": 306,
+          "card_printings": 306,
+          "external_mappings": 306,
+          "external_printing_mappings": 37
+        },
+        "promotion_plan_sha256": "f22fed3c98c8eb2f2e479ed8549ab33d2fc68427bfb38ba39835e9c7cce0eb24"
+      }
+    },
+    {
+      "source_set_id": "20e53d4f-2ce8-4d82-9c7c-e6378a0134ad",
+      "code": "h2r",
+      "completed_at": "2026-08-14T00:55:24.152Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 113,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 16,
+          "card_print_identity": 16,
+          "card_printings": 32,
+          "external_mappings": 16,
+          "external_printing_mappings": 32
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 16,
+          "card_print_identity": 16,
+          "card_printings": 32,
+          "external_mappings": 16,
+          "external_printing_mappings": 32
+        },
+        "promotion_plan_sha256": "c56eb2160fa02682a9c133dab7fa8fbb97563bca3a185f640e6e909a8a0586a8"
+      }
+    },
+    {
+      "source_set_id": "19c285e9-68e0-45e1-b82b-ac6051eb43be",
+      "code": "gs1",
+      "completed_at": "2026-08-14T00:56:20.741Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 206,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 41,
+          "card_print_identity": 41,
+          "card_printings": 41,
+          "external_mappings": 41,
+          "external_printing_mappings": 41
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 41,
+          "card_print_identity": 41,
+          "card_printings": 41,
+          "external_mappings": 41,
+          "external_printing_mappings": 41
+        },
+        "promotion_plan_sha256": "6074835d8a66adbad3df78535fefd70c203c616944d9b71fd712e9a6c2a81ecb"
+      }
+    },
+    {
+      "source_set_id": "57f25bcf-c541-418d-87c2-57361d57d35e",
+      "code": "spe",
+      "completed_at": "2026-08-14T00:57:16.101Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 183,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 26,
+          "card_print_identity": 26,
+          "card_printings": 52,
+          "external_mappings": 26,
+          "external_printing_mappings": 52
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 26,
+          "card_print_identity": 26,
+          "card_printings": 52,
+          "external_mappings": 26,
+          "external_printing_mappings": 52
+        },
+        "promotion_plan_sha256": "e37b92ee48520c96d415eec059ce6fce30c656e3c770c057354ae83cb6578b55"
+      }
+    },
+    {
+      "source_set_id": "856f63eb-e056-43e5-8a56-7a58e1608940",
+      "code": "arn",
+      "completed_at": "2026-08-14T00:58:13.583Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 458,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 92,
+          "card_print_identity": 92,
+          "card_printings": 92,
+          "external_mappings": 92,
+          "external_printing_mappings": 89
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 92,
+          "card_print_identity": 92,
+          "card_printings": 92,
+          "external_mappings": 92,
+          "external_printing_mappings": 89
+        },
+        "promotion_plan_sha256": "92ab90ac32043660930a1db801e1261519dc7f63aa6bd0eb6cda5670194b5d7f"
+      }
+    },
+    {
+      "source_set_id": "21dd7ae2-1196-46d4-9acf-4ff9d82797be",
+      "code": "v14",
+      "completed_at": "2026-08-14T00:59:07.972Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 76,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 15,
+          "card_print_identity": 15,
+          "card_printings": 15,
+          "external_mappings": 15,
+          "external_printing_mappings": 15
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 15,
+          "card_print_identity": 15,
+          "card_printings": 15,
+          "external_mappings": 15,
+          "external_printing_mappings": 15
+        },
+        "promotion_plan_sha256": "b9ce87073d8ee1cca06aefede56532febceeb738202297b8358af24bc29d62a4"
+      }
+    },
+    {
+      "source_set_id": "ecbf5a1a-ccdd-4279-856c-928977171f05",
+      "code": "ph23",
+      "completed_at": "2026-08-14T01:00:04.071Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 9,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 0
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "1dc1dc9a5e7a11c2055b256dadcd927c350591b0a75da0de48da2a9129046f21"
+      }
+    },
+    {
+      "source_set_id": "08aabe3a-7c0e-4c48-b2c2-57dcb5a266a4",
+      "code": "med",
+      "completed_at": "2026-08-14T01:01:00.494Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 121,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 24,
+          "card_print_identity": 24,
+          "card_printings": 24,
+          "external_mappings": 24,
+          "external_printing_mappings": 24
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 24,
+          "card_print_identity": 24,
+          "card_printings": 24,
+          "external_mappings": 24,
+          "external_printing_mappings": 24
+        },
+        "promotion_plan_sha256": "fec8a60e06f6d603cc4cf5e1c369e9d4b83c766eb5419c1df9a6d3301471719f"
+      }
+    },
+    {
+      "source_set_id": "3c318e12-9152-4300-a096-4f58a6438897",
+      "code": "slx",
+      "completed_at": "2026-08-14T01:01:56.475Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 151,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 30
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 30
+        },
+        "promotion_plan_sha256": "61da6c6f20b2d6e38b97526e3632e410b2a8b9221d59ea9dcca283ab36de3406"
+      }
+    },
+    {
+      "source_set_id": "3b93026e-537b-4190-a4d4-64ad4bc29403",
+      "code": "pmic",
+      "completed_at": "2026-08-14T01:02:50.250Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 6,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "2554a665228a731856ad20f836c7d1f6c1f7812ddd2da632d6202224767fa55c"
+      }
+    },
+    {
+      "source_set_id": "2e22cc80-7a77-4719-8807-4d63f832c585",
+      "code": "mltr",
+      "completed_at": "2026-08-14T01:03:47.719Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 5,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "3446fbdcc4f374e09756ef2953cdb6f4c76635931d54f43548ccdf3c75ec9e86"
+      }
+    },
+    {
+      "source_set_id": "7079031b-c5b0-4353-87af-a63a0f204f47",
+      "code": "opc2",
+      "completed_at": "2026-08-14T01:04:45.180Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 201,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 40,
+          "card_print_identity": 40,
+          "card_printings": 40,
+          "external_mappings": 40,
+          "external_printing_mappings": 40
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 40,
+          "card_print_identity": 40,
+          "card_printings": 40,
+          "external_mappings": 40,
+          "external_printing_mappings": 40
+        },
+        "promotion_plan_sha256": "2c75589e76d04bc7b9d17144d3a2bf74e057f8643f6671a9fbff6ff6ddf6524d"
+      }
+    },
+    {
+      "source_set_id": "b6d6ba83-3b91-4203-8103-320cfa50f848",
+      "code": "pd3",
+      "completed_at": "2026-08-14T01:05:40.385Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 151,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 30
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 30
+        },
+        "promotion_plan_sha256": "12a903041cf8b18115b24df40367fda5ea5d10491762cdd07478caa69733c6d7"
+      }
+    },
+    {
+      "source_set_id": "08041686-693b-4b57-9e87-76ba81f3b1a3",
+      "code": "g99",
+      "completed_at": "2026-08-14T01:06:34.300Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 6,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "3daa1853e0890d95bc3b303965ad7a7c754af18712bec9ee48bdeb43a61795d8"
+      }
+    },
+    {
+      "source_set_id": "4887d21f-71e7-4d7a-a079-e9521fd7e6d7",
+      "code": "ss3",
+      "completed_at": "2026-08-14T01:07:28.711Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 57,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "promotion_plan_sha256": "01aebbd523fab75865ca1cf61fa2892879896aadbb9a4e08913f8639bfeacca1"
+      }
+    },
+    {
+      "source_set_id": "a1bcdc11-74b2-4c86-880f-ae193857ae54",
+      "code": "cp2",
+      "completed_at": "2026-08-14T01:08:23.464Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 31,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 6,
+          "external_mappings": 6,
+          "external_printing_mappings": 6
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 6,
+          "external_mappings": 6,
+          "external_printing_mappings": 6
+        },
+        "promotion_plan_sha256": "aabcfd2f734caa3505310a7098fc6096fb88a10d61f6162af3adbc44272d4b09"
+      }
+    },
+    {
+      "source_set_id": "440c0aa1-45ce-4323-a74b-b9d3d9f0513c",
+      "code": "sbro",
+      "completed_at": "2026-08-14T01:09:17.446Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 5,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "076f87eb7aab302b0d517bab4dad721310e0085ace9de91f8487674f64fd4e1c"
+      }
+    },
+    {
+      "source_set_id": "3c098543-7919-46d5-b14d-aa0444fd6573",
+      "code": "pvan",
+      "completed_at": "2026-08-14T01:10:16.435Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 161,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 32,
+          "card_print_identity": 32,
+          "card_printings": 32,
+          "external_mappings": 32,
+          "external_printing_mappings": 32
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 32,
+          "card_print_identity": 32,
+          "card_printings": 32,
+          "external_mappings": 32,
+          "external_printing_mappings": 32
+        },
+        "promotion_plan_sha256": "441fa8eca25770b25fc8ea869e4cdbd105ed0683384b17c8d579ddc6bc8389ca"
+      }
+    },
+    {
+      "source_set_id": "0ce7fd53-7c14-4d16-a4c3-5c47ad8a8e5b",
+      "code": "pcon",
+      "completed_at": "2026-08-14T01:11:11.837Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 11,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 2
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "0e67b86ecd26fe9efb3e3186637d8d2fbf6795815549e128bee90dff41ab7438"
+      }
+    },
+    {
+      "source_set_id": "9d2617b0-2953-477b-bd9f-c9f9e47ee71f",
+      "code": "oafr",
+      "completed_at": "2026-08-14T01:12:06.095Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 15,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 2
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "df3f3d52d69120d0bb10581c13efa48c93014c1cdc7f83b0c495da890125e304"
+      }
+    }
+  ],
+  "deferred": [],
+  "retries": [],
+  "findings": [],
+  "status": "selected_full_cycle_rollbacks_proven"
+}

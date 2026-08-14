@@ -843,6 +843,12 @@ Recommended reading order for future maintainers:
       rollback proof, independent production readback, and the one bounded MSH
       hidden canonical apply that remains pending
 
+51. `PRICING_CHECKPOINT_53_MTG_FULL_CATALOG_INGESTION_SAFETY_LOCKED.md`
+    - then read how per-set approvals were replaced by one frozen full-catalog
+      envelope, how resume and retries remain fail-closed, and how the 25-set
+      all-type production rollback canary locked the durable ingestion safety
+      boundary without changing production data
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
@@ -881,3 +887,7 @@ After those checkpoints, read the supporting audits in this order:
 - `docs/audits/pricing/mtg_canonical_catalog_set_promotion_post_rollback_readback_v1/2026-08-13T22-58-45Z/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_set_promotion_writer_v1/2026-08-13T23-49-32Z_dry_run/REPORT.md`
 - `docs/audits/pricing/mtg_canonical_catalog_set_promotion_post_rollback_readback_v1/2026-08-14T00-02-04Z_writer_dry_run/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_ingestion_v1/2026-08-14T00-38-13Z_two_set_rollback_canary/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_ingestion_v1/2026-08-14T00-47-08Z_frozen_plan/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_ingestion_v1/2026-08-14T00-41-00Z_two_set_rollback_canary/REPORT.md`
+- `docs/audits/pricing/mtg_canonical_catalog_ingestion_v1/2026-08-14T00-47-31Z_stratified_25_rollback_canary/REPORT.md`

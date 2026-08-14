@@ -1,0 +1,146 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_INGESTION_ORCHESTRATOR_V1",
+  "created_at": "2026-08-14T00:38:54.792Z",
+  "mode": "rollback-canary",
+  "repository": {
+    "head_commit_sha": "7cf8f02d347cee73def3d3cb9732fa805be60994",
+    "governing_commit_sha": "7cf8f02d347cee73def3d3cb9732fa805be60994",
+    "branch": "agent/mtg-pricing-readiness-v1",
+    "tracked_worktree_clean": true,
+    "governing_files_sha256": "29c66b9557b700b812d42b64c7b4b4d0841b2d6e62c813fc531b38e2d4251336",
+    "governing_files": {
+      "scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs": "619cb6f0c5b576f88d5abf30430ee84a459fa2ae8c633ce76808c92587b6e0c3",
+      "scripts/audits/mtg_canonical_catalog_ingestion_envelope_v1.mjs": "809c2baaa5f75a1271d1098e53d6d93e6cd2fe2194b7699bdd80db2e50b9afb6",
+      "scripts/audits/mtg_canonical_catalog_canary_preflight_v1.mjs": "14a4d241348176c86a7e728530aaa79b6741b8f05de924f8871cf7037d9954e5",
+      "scripts/audits/mtg_canonical_catalog_canary_stage_v1.mjs": "3fb1562ac9d09f155ab3df0b6f8ec94ebc6865e4c569bc0ae04c11826c4e562b",
+      "scripts/audits/mtg_canonical_catalog_stage_readback_v1.mjs": "c4a9d9a600c54a075ec333917e0fb9a11f74f226a73ffece3b1dcd97bd9b8e3b",
+      "scripts/audits/mtg_canonical_catalog_promotion_rollback_proof_v1.mjs": "1c1bcb8badc529b9ccb23351ea51d12cd399c3123fcfa6ca312406ddb296eabd",
+      "scripts/audits/mtg_canonical_catalog_set_promotion_contract_v1.mjs": "0df0b738869023b6800505385c97106a9d2c3c6a90b874d4235fff1b50b18280",
+      "scripts/audits/mtg_canonical_catalog_set_promotion_rollback_proof_v1.mjs": "daffc0db1025293a92afcbcd67032413a70ff81ac0681250318bf9440ebdbdf2",
+      "scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs": "12a4eb9d72903d9e72c0e22306da90a39281db7888e48b5a1651fb9c26853743"
+    }
+  },
+  "envelope_sha256": "f2ea6deba21986e11932cd65c0f34bc701bede918e8e6a87e607e2835ac24f7b",
+  "approval_sha256": "2ea7c65497802ee7a6d016f1ccbc0ca8575014100a40fa4c9eedf05e21dadc7f",
+  "manifest_sha256": "1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1",
+  "payload_inventory_sha256": "15028fc75a2d0dbfe56e494f07cfcf97c43994f475dcb73e416bdf88e287b5f4",
+  "selected_set_ids": [
+    "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+    "aa50a66a-0eb3-4bb5-acad-bc6c96f98663"
+  ],
+  "selected_sets": [
+    {
+      "execution_ordinal": 0,
+      "code": "msh",
+      "name": "Marvel Super Heroes",
+      "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+      "set_type": "expansion",
+      "safety_phase": "additive_proof",
+      "safety_ramp_reason": "previously_rollback_proven_additive_set",
+      "payload_file_sha256": "e49748977f8688aa852b9f5366cfb68c8b2f6ed92ab2db284f8b1ec9ad96a12f",
+      "writer_payload_fingerprint": "73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38",
+      "total_staging_rows": 3089
+    },
+    {
+      "execution_ordinal": 1,
+      "code": "oe01",
+      "name": "Archenemy: Nicol Bolas Schemes",
+      "source_set_id": "aa50a66a-0eb3-4bb5-acad-bc6c96f98663",
+      "set_type": "archenemy",
+      "safety_phase": "stratified_canary",
+      "safety_ramp_reason": "smallest_payload_for_set_type:archenemy",
+      "payload_file_sha256": "933f134908d5f834c4094bafe132400a58d6d2ad7e5864104aa31e01e8ab776b",
+      "writer_payload_fingerprint": "1da5eee2e41cefb801c6f88f48c4ed0b0ee625a04b8b593e1d9fbc4cccb45ecc",
+      "total_staging_rows": 101
+    }
+  ],
+  "retry_limit": 3,
+  "as_of": "2026-08-13",
+  "baseline": {
+    "mtg_set_count": 1,
+    "dsk_card_count": 417,
+    "mtg_card_count": 417,
+    "release_status": "hidden",
+    "staging_row_count": 5955,
+    "dsk_printing_count": 807,
+    "mtg_identity_count": 417,
+    "mtg_printing_count": 807,
+    "pokemon_card_count": 58769,
+    "staging_batch_count": 2,
+    "mtg_parent_mapping_count": 417,
+    "mtg_printing_mapping_count": 807,
+    "authenticated_pokemon_count": 58768,
+    "client_visibility": {
+      "anon": {
+        "set_count": 0,
+        "card_count": 0,
+        "game_count": 0,
+        "identity_count": 0,
+        "printing_count": 0,
+        "pokemon_card_count": 0,
+        "print_search_count": 0,
+        "legacy_search_count": 0
+      },
+      "authenticated": {
+        "set_count": 0,
+        "card_count": 0,
+        "game_count": 0,
+        "identity_count": 0,
+        "printing_count": 0,
+        "pokemon_card_count": 58768,
+        "print_search_count": 0,
+        "legacy_search_count": 0
+      }
+    },
+    "promotion_security": {
+      "release_table_rls": true,
+      "anon_release_select": false,
+      "service_release_insert": true,
+      "service_release_select": true,
+      "service_release_update": true,
+      "restrictive_policy_count": 5,
+      "wrapper_search_anon_execute": true,
+      "authenticated_release_select": false,
+      "internal_search_anon_execute": false,
+      "wrapper_search_authenticated_execute": true,
+      "internal_search_authenticated_execute": false
+    },
+    "staging_security": {
+      "anon_row_select": false,
+      "row_rls_enabled": true,
+      "anon_batch_select": false,
+      "batch_rls_enabled": true,
+      "service_row_insert": true,
+      "service_row_select": true,
+      "service_batch_insert": true,
+      "service_batch_select": true,
+      "authenticated_row_select": false,
+      "authenticated_batch_select": false
+    }
+  },
+  "boundaries": {
+    "source": "frozen_full_catalog_manifest_and_exact_payload_inventory",
+    "execution_order": "deterministic_safety_ramp_then_manifest_ordinal",
+    "release_date_policy": "future_dated_sets_deferred_before_database_access",
+    "transaction_unit": "one_set_one_stage_transaction_then_one_promotion_transaction",
+    "concurrency": 1,
+    "resume_authority": "database_exact_readback",
+    "automatic_transient_retries": 3,
+    "structural_failure_behavior": "stop_before_next_set",
+    "required_release_status": "hidden",
+    "staging_inserts": true,
+    "canonical_inserts": true,
+    "canonical_updates": false,
+    "deletes": false,
+    "truncates": false,
+    "migrations": false,
+    "release_control_writes": false,
+    "app_visibility_activation": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false,
+    "pokemon_mutation": false
+  }
+}

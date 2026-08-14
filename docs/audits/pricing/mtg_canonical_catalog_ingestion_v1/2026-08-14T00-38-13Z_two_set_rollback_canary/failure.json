@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-08-14T00:39:34.536Z",
+  "status": "stopped_before_next_set",
+  "error_code": "42703",
+  "error_message": "column \"image_source_ref\" does not exist",
+  "transient": false,
+  "completed_set_count": 0
+}
