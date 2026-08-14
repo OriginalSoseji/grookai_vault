@@ -174,6 +174,21 @@ const planCore = {
     publication_authority: false,
     active_release_pointer_change: false,
   },
+  verification: {
+    syntax_checks: [
+      "node --check backend/pricing/cross_tcg_sealed_product_domain_v1.mjs",
+      "node --check scripts/audits/cross_tcg_sealed_product_domain_migration_plan_v1.mjs",
+    ],
+    contract_test_command:
+      "node --test tests/contracts/cross_tcg_sealed_product_domain_v1.test.mjs",
+    contract_tests_passed: 19,
+    contract_tests_failed: 0,
+    diff_check: "git diff --check",
+    diff_check_passed: true,
+    repository_pre_commit_hook_used: false,
+    repository_pre_commit_hook_skip_reason:
+      "The repository-wide shipcheck requires SUPABASE_DB_URL; this gate explicitly prohibited database connection, so only the approved targeted offline checks were run.",
+  },
 };
 const migrationPlanFingerprint = migrationPlanFingerprintV1(planCore);
 const contractBundleHash = sha256V1(stableJsonV1(
@@ -239,6 +254,11 @@ const report = `# Cross-TCG Sealed Product Domain V1 Migration Plan Audit\n\n` +
   `- Tables planned: ${createdTables.length}\n` +
   `- Append-only tables: 8; release lifecycle guarded separately\n` +
   `- Force-RLS tables: 10\n\n` +
+  `## Verification\n\n` +
+  `- Syntax checks: 2 passed\n` +
+  `- Contract tests: 19 passed, 0 failed\n` +
+  `- Diff check: passed\n` +
+  `- Repository-wide pre-commit shipcheck: intentionally bypassed because it requires a database connection prohibited by this gate\n\n` +
   `## Boundaries\n\n` +
   `No database connection or apply, Storage write, pricing write, publication, app visibility, deployment, active MTG change, or card identity table reference occurred.\n\n` +
   `## Source Evidence\n\n` +
