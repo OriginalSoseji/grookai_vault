@@ -956,6 +956,12 @@ Recommended reading order for future maintainers:
       candidates, three source-foil taxonomy blockers, zero child-image claims,
       and the still-closed rollback and durable mutation boundaries
 
+72. `PRICING_CHECKPOINT_74_ONE_PIECE_ST01_PRINTING_IMAGE_MUTATION_PLAN_FROZEN.md`
+    - then read the immutable offline `17 / 14 / 14` mutation package, exact
+      three-table transaction attribution, preserved foil blockers, zero child
+      image claims, rollback and zero-residue contracts, and the still-closed
+      production canary and durable apply boundaries
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
