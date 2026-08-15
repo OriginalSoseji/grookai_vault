@@ -58,7 +58,7 @@ export function parseArgs(argv) {
   return args;
 }
 
-function clientOptions(connectionString, applicationName) {
+export function clientOptions(connectionString, applicationName) {
   return {
     connectionString,
     ssl: pgSslConfig(connectionString),
@@ -205,7 +205,7 @@ export function evaluateOnePieceSt01PrintingImageFreshPreflightV1({
   return [...new Set(findings)];
 }
 
-async function updateParentPointers(client, plan) {
+export async function updateParentPointers(client, plan) {
   const payload = plan.mutation_payload.parent_pointer_updates.map((row) => ({
     card_print_id: row.card_print_id,
     gv_id: row.gv_id,
@@ -249,7 +249,7 @@ async function updateParentPointers(client, plan) {
     returning target.id::text`, [JSON.stringify(payload)])).rows;
 }
 
-async function insertNormalChildren(client, plan) {
+export async function insertNormalChildren(client, plan) {
   const rows = plan.mutation_payload.normal_child_inserts;
   return (await client.query(`insert into public.card_printings (
       id, card_print_id, printing_gv_id, finish_key, is_provisional,
@@ -266,7 +266,7 @@ async function insertNormalChildren(client, plan) {
     returning id::text`, [JSON.stringify(rows)])).rows;
 }
 
-async function insertPrintingMappings(client, plan) {
+export async function insertPrintingMappings(client, plan) {
   const rows = plan.mutation_payload.external_printing_mapping_inserts;
   return (await client.query(`insert into public.external_printing_mappings (
       id, card_printing_id, source, external_id, active, meta)
@@ -277,7 +277,7 @@ async function insertPrintingMappings(client, plan) {
     returning id::text`, [JSON.stringify(rows)])).rows;
 }
 
-async function transactionReadback(client, plan) {
+export async function transactionReadback(client, plan) {
   const scope = exactScope(plan);
   const parentRows = await readParentRows(client, scope.parent_ids);
   const normalChildRows = (await client.query(`select id::text,
@@ -298,7 +298,7 @@ async function transactionReadback(client, plan) {
   };
 }
 
-async function attributableWrites(client) {
+export async function attributableWrites(client) {
   return (await client.query(`select relname as table_name,
     coalesce(n_tup_ins,0)::bigint as inserted,
     coalesce(n_tup_upd,0)::bigint as updated,

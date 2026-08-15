@@ -97,7 +97,7 @@ $timeout = Invoke-LocalContained \`
 [Console]::Error.WriteLine('before-timeout-err')
 Start-Sleep -Seconds 30
 '@ \`
-  -TimeoutSeconds 1
+  -TimeoutSeconds 5
 
 $descendant = Invoke-LocalContained \`
   -Script @'
