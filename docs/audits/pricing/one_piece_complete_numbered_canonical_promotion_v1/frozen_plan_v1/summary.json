@@ -1,0 +1,43 @@
+{
+  "version": "ONE_PIECE_COMPLETE_ENGLISH_NUMBERED_PARENT_PROMOTION_PLAN_V1",
+  "recorded_at": "2026-08-15T07:49:07.063Z",
+  "status": "complete_hidden_numbered_promotion_plan_frozen_no_writes",
+  "repository": {
+    "commit_sha": "72deafc0aca31299ed872fd00edc66d3d1c6e4d6",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "253b16ea9032d44149923d88214aa84d68e7ec77b658e2a4e9e7d3f4ea7c1395",
+  "payload_fingerprint_sha256": "0e59db0c98454eecec0aefd366a38b4a42fe81ca0cae9173cf7f8e294e5ad358",
+  "logical_plan_sha256": "24b2cd9f78a6bf46edecea300e9679fb39563951137c2606ebbe344e3166d7f2",
+  "compressed_plan_sha256": "8c37351abd6d32643bddb5172d7eb661ad474201a9ec96436434c0046e11fd1f",
+  "counts": {
+    "source_numbered_products": 6547,
+    "authority_eligible_products": 6530,
+    "retained_existing_products": 17,
+    "new_set_rows": 58,
+    "new_card_prints": 6513,
+    "new_identity_rows": 6513,
+    "new_source_evidence_rows": 6513,
+    "new_external_mappings": 6513,
+    "official_catalog_gap_holds": 17
+  },
+  "findings": [],
+  "boundaries": {
+    "plan_only": true,
+    "database_connections": 0,
+    "database_writes": 0,
+    "updates": 0,
+    "deletes": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "run fresh read-only production collision and durable-staging preflight"
+}
