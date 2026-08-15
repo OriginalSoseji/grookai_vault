@@ -29,10 +29,13 @@ function jsonl(body, compressed = false) {
   return text.trim().split(/\r?\n/).map(JSON.parse);
 }
 
+let cachedPlan;
+
 function fixture() {
+  if (cachedPlan) return cachedPlan;
   const bodies = Object.fromEntries(Object.entries(paths).map(([key, file]) =>
     [key, fs.readFileSync(file)]));
-  return buildOnePieceCompleteNumberedPromotionPlanV1({
+  cachedPlan = buildOnePieceCompleteNumberedPromotionPlanV1({
     repository: {
       commit_sha: "a".repeat(40),
       branch: "agent/one-piece-ingestion-readiness-v1",
@@ -53,6 +56,7 @@ function fixture() {
     manifestRows: jsonl(bodies.manifest, true),
     existingSt01Plan: JSON.parse(bodies.existingSt01Plan),
   });
+  return cachedPlan;
 }
 
 test("complete promotion plan accounts for every current numbered product", () => {
@@ -105,7 +109,7 @@ test("tampering with identity, evidence, or boundaries fails closed", () => {
     (plan) => { plan.boundaries.image_pointer_writes = 1; },
     (plan) => { plan.payload.authority_holds.pop(); },
   ]) {
-    const plan = fixture();
+    const plan = structuredClone(fixture());
     mutate(plan);
     assert.equal(validateOnePieceCompleteNumberedPromotionPlanV1(plan).valid, false);
   }
@@ -140,4 +144,3 @@ test("staging binding changes when source evidence changes", () => {
   assert.equal(first.staging_row_id, second.staging_row_id);
   assert.notEqual(first.staging_payload_sha256, second.staging_payload_sha256);
 });
-
