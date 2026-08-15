@@ -1041,6 +1041,13 @@ Recommended reading order for future maintainers:
       missing-observation holds, strict TCGPlayer marketPrice authority,
       zero-write proof, and the rollback-only qualification insertion gate next
 
+86. `PRICING_CHECKPOINT_88_ONE_PIECE_SEALED_QUALIFICATION_ROLLBACK_PROVEN.md`
+    - then read the frozen database-shaped 374-row qualification payload,
+      separate 16-row missing-observation hold list, fresh 374/374 production
+      lineage and security preflight, three-status rollback insertion proof,
+      exact write attribution, zero residue, and the still-unexecuted durable
+      qualification apply-plan gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
