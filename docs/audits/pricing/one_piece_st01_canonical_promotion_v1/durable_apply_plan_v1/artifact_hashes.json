@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "apply_plan.json",
+      "sha256": "0dd66ce8eb2753a7423b163fd586f9d53ace7fe0aff54c6e0ed4967eca8de7e2"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "2fe88b2f8063c33666f198aca3bfdd9409ee3016002ad76c2ca3974c42029813"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "key": "promotion_plan",
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/frozen_plan_v1/plan.json",
+      "sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3"
+    },
+    {
+      "key": "rollback_summary",
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/production_rollback_canary_v1/summary.json",
+      "sha256": "d6fdcd97ffe87ba41b1f88d02e2643330a6929733448f05b38c2c0a9a8013135"
+    },
+    {
+      "key": "transaction_proof",
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/production_rollback_canary_v1/transaction_proof.json",
+      "sha256": "f083e7d644457afc1f2e18971445a5fea70f7f5614f7be88209813faff4de9a0"
+    },
+    {
+      "key": "post_rollback_summary",
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/post_rollback_read_only_v1/summary.json",
+      "sha256": "eca1577dfbed43a392d0e0509fcc7b0d11505c14e46e00eb66c5f8563d9cca28"
+    }
+  ]
+}
