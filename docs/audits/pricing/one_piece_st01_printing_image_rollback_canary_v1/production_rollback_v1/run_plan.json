@@ -1,0 +1,100 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-15T04:42:59.322Z",
+  "repository": {
+    "commit_sha": "293434a672d2b0b1838a118793e48e7fb63dc5ad",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "mutation_plan_sha256": "a66452042df00e0ea2673cbeb0845040619de3ea85fbbc2c3a138eaa15e3382c",
+  "mutation_plan_fingerprint_sha256": "3aef93b51bb1c376ead251a8dc0e8422795573215abe01f250bbdb734fb2587c",
+  "mutation_payload_fingerprint_sha256": "a4eadd4738aaa515579733bdbd66fa7ae73a0412cf8e43c4efa0004e74bef6c7",
+  "exact_scope": {
+    "parent_ids": [
+      "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+      "2aec02e4-5c10-5352-ba63-bd972b975c72",
+      "aa0153d2-30dc-582b-b474-c458975adc5c",
+      "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+      "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+      "949e3028-406a-56cb-8cfa-89699039f0b4",
+      "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+      "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+      "1bd3b678-88a4-539d-af42-0fa598731ae2",
+      "9d6e1d07-644f-532d-a556-cee305304e59",
+      "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+      "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+      "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+      "eef89a54-e584-563d-9eea-4593eaebf829",
+      "3e18a26f-61f9-5e26-a272-9c9658541b7e"
+    ],
+    "child_ids": [
+      "a2b4c674-9373-555c-ab14-8439bb329e56",
+      "f0a0c456-4ce1-50a2-adcd-47b813b49fe8",
+      "66705f1b-d6cd-5158-9667-9f43de33d6bc",
+      "c8d78dff-5fbf-501e-9d93-27e32f4bb63c",
+      "a66a5acf-158c-5dc3-b14a-6e0cf1e4c7e3",
+      "1f6e43e5-6dee-5ec5-bbf7-15bb316b4e83",
+      "ac7886cf-e0ca-5936-8460-b426222beea4",
+      "4d84994a-7edf-5edb-b951-6394dc1ec426",
+      "5bfaec57-b7be-5831-aed5-eda7adf93548",
+      "b41d3b8f-6e17-57db-8895-b6c07eaf269b",
+      "d02b9ab6-531c-5f6c-8724-b74b27010d45",
+      "73d47a16-804e-5ada-94ca-1a113b769b72",
+      "40481ab6-b5a5-5070-82dd-28055c7655bc",
+      "71dd9e4f-e351-5c91-9c7a-c2677157ae2d"
+    ],
+    "mapping_ids": [
+      "730dbd16-723a-500d-99c7-3a710500b65d",
+      "efc338f0-9639-5996-a4bc-cee4016b34af",
+      "092408d5-07c3-583a-9be5-48727727e862",
+      "363af1f9-adf9-5a86-b6a3-390d16d1c42a",
+      "f314733a-3fcb-5859-8449-ee52f17065f0",
+      "40749cf6-4602-563e-80e0-ba15a56d06ef",
+      "e5400fc3-f63b-5d70-be6e-fd94567d8f61",
+      "d061bbf3-4fc8-583f-9dea-768e77527f3f",
+      "b33df36f-44cb-5f08-b638-c6e9f539814c",
+      "586d5ef7-e196-5261-b734-d83609ee99b4",
+      "bbf3afa8-670a-5bc1-80e5-47f70dbeefa5",
+      "f51d0923-22ae-5edf-8679-7282927590b5",
+      "a1da71e0-efc2-5220-b0ca-544a42c6f0c4",
+      "74b33c25-cc79-5cab-bbbd-d6aff66115b0"
+    ],
+    "external_ids": [
+      "288229",
+      "288230",
+      "288232",
+      "288234",
+      "288235",
+      "288236",
+      "288237",
+      "288238",
+      "288239",
+      "288240",
+      "288243",
+      "288244",
+      "288245",
+      "288246"
+    ],
+    "foil_parent_ids": [
+      "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "e543c802-2857-54b5-b855-4dcc8dedf1c8"
+    ]
+  },
+  "mode": "production_rollback_only",
+  "boundaries": {
+    "durable_database_writes": 0,
+    "transaction_rollback_required": true,
+    "parent_pointer_updates_in_transaction": 17,
+    "normal_child_inserts_in_transaction": 14,
+    "printing_mapping_inserts_in_transaction": 14,
+    "foil_child_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

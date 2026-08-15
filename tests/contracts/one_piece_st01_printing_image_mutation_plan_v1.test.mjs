@@ -15,7 +15,7 @@ import {
 } from "../../backend/pricing/one_piece_st01_printing_image_mutation_plan_v1.mjs";
 
 const root =
-  "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/production_read_only_v1";
+  "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/identity_source_candidate_v1";
 const paths = {
   evidencePlan: `${root}/evidence_plan.json`,
   readinessRows: `${root}/readiness_rows.jsonl`,

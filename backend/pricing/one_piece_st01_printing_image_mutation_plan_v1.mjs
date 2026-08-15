@@ -9,11 +9,11 @@ export const ONE_PIECE_ST01_PRINTING_IMAGE_MUTATION_PLAN_VERSION =
 export const ONE_PIECE_ST01_PRINTING_IMAGE_MUTATION_PINNED_INPUTS =
   Object.freeze({
     evidence_plan_sha256:
-      "03555a96673106898ba66840a642402201c9a2a61e7037d70bf9f9a68b2a0a6e",
+      "8e9d62125d2a18497cb4b8800309a44f693cfc3545c9c7539541eb6f8883520a",
     readiness_rows_sha256:
-      "99fa8c771087d30cfa4485acb36416894e61f22854213fd204de6ae795a38035",
+      "93f9a63a1b6464b91e3340c984e74e44ad7631887aebc1454a490388c6c1e885",
     readiness_summary_sha256:
-      "b08b96c320b0c509bf3061729091265339ccc51c10b4cb7d026f12a973997578",
+      "6d3264e053bb4603cfbb9126cb60c92c7d1006091f917d2c7ea100da0a60418c",
     production_readback_sha256:
       "114281953ff2fb57834dbfc5db7c15369e72b35b8514feceacb1c5f1c8de3b04",
   });
@@ -102,7 +102,7 @@ export function buildOnePieceSt01PrintingImageMutationPlanV1({
       readinessSummary?.status !== "pass_with_expected_finish_taxonomy_blockers" ||
       readinessSummary?.findings?.length !== 0 ||
       readinessSummary?.readiness_fingerprint_sha256 !==
-        "430a9b54a5820078934fbf6900cc6ebc7073c86514ed912cb10af26a679251b1") {
+        "82688d19509238acd1649d0b3f27fb8f86eb676d9f98a58df1d824901aabf1a0") {
     throw new Error("Readiness proof is not the exact passing producer");
   }
   if (productionReadback?.transaction_read_only !== true ||

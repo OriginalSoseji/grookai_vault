@@ -12,7 +12,7 @@ import {
 import { sha256 } from "../../backend/pricing/one_piece_canonical_import_staging_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
-const READINESS_ROOT = "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/production_read_only_v1";
+const READINESS_ROOT = "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/identity_source_candidate_v1";
 export const INPUTS = Object.freeze({
   evidence_plan: `${READINESS_ROOT}/evidence_plan.json`,
   readiness_rows: `${READINESS_ROOT}/readiness_rows.jsonl`,

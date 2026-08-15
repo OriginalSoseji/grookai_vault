@@ -1,0 +1,15 @@
+{
+  "mutation_counts": {
+    "parent_pointer_updates": 0,
+    "normal_child_inserts": 0,
+    "external_printing_mapping_inserts": 0
+  },
+  "readback": null,
+  "attributable_writes": [],
+  "findings": [
+    "transaction_execution_failed"
+  ],
+  "rollback_attempted": true,
+  "rollback_succeeded": true,
+  "execution_error": "new row for relation \"card_prints\" violates check constraint \"card_prints_image_source_check\""
+}
