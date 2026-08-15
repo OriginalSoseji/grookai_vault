@@ -950,6 +950,12 @@ Recommended reading order for future maintainers:
       transaction-local attribution, writer and independent durable readbacks,
       preserved hidden visibility, and the separate printing/pointer audit next
 
+71. `PRICING_CHECKPOINT_73_ONE_PIECE_ST01_PRINTING_IMAGE_READINESS_PASSED.md`
+    - then read the zero-finding production read-only audit, exact 17 parent
+      artwork-pointer candidates, 14 normal child and printing-mapping
+      candidates, three source-foil taxonomy blockers, zero child-image claims,
+      and the still-closed rollback and durable mutation boundaries
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
