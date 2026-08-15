@@ -1,0 +1,158 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_APPLY_V1",
+  "recorded_at": "2026-08-15T14:03:57.284Z",
+  "status": "durable_apply_committed_and_readback_passed",
+  "repository": {
+    "commit_sha": "183a34479a82504ba9c473f88ef787bf797ff44d",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "apply_plan_fingerprint_sha256": "06481bf852288a61e92d3ba1e1d66bcb315ffa5885060c4dd731f9559c8f22e9",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "committed": true,
+  "fresh_preflight": {
+    "baseline": {
+      "sets": 1,
+      "card_prints": 17,
+      "card_print_identity": 17,
+      "card_print_identity_source_evidence": 17,
+      "external_mappings": 17,
+      "card_printings": 14,
+      "external_printing_mappings": 14,
+      "set_codes": [
+        "ST01"
+      ]
+    },
+    "collisions": {
+      "set_ids": 0,
+      "set_codes": 0,
+      "card_print_ids": 0,
+      "card_print_gv_ids": 0,
+      "card_print_tcgplayer_ids": 0,
+      "card_external_ids": 0,
+      "identity_ids": 0,
+      "identity_hashes": 0,
+      "identity_card_print_ids": 0,
+      "evidence_ids": 0,
+      "evidence_hashes": 0,
+      "evidence_acquisition_keys": 0,
+      "external_mappings": 0
+    }
+  },
+  "transaction_readback": {
+    "set_rows": {
+      "row_count": 58,
+      "rows_sha256": "9c31b269e9b67e4a18ec10a4739960e6eb5c18bc253d2a61777307362f36c318"
+    },
+    "card_rows": {
+      "row_count": 6491,
+      "rows_sha256": "cbe9eb012e8ed84939d6e38a8608e9d106bb1ac6b526b01fd764e15ffd8b6405"
+    },
+    "identity_rows": {
+      "row_count": 6491,
+      "rows_sha256": "5a3ac1b4003086ccc797c8341b867719c0d60865d760806368fce23ef2b01703"
+    },
+    "evidence_rows": {
+      "row_count": 6491,
+      "rows_sha256": "b52e4ea74eaf9a2c92795ac845c50c94bd9b6353099aad28384b59dd0224c522"
+    },
+    "mapping_rows": {
+      "row_count": 6491,
+      "rows_sha256": "9df4ef02de8bff224150defcf683119d979b1a96822e9638b4749127fda635d4"
+    },
+    "visibility": {
+      "release_status": "hidden",
+      "anon_visible": false,
+      "authenticated_visible": false,
+      "service_role_visible": false
+    },
+    "readback_sha256": "d8b50f75aeca335b1afc78aac76ffe4b7ce71753f1372f01f31e8f918861dd73"
+  },
+  "attributable_writes": [
+    {
+      "table_name": "card_print_identity",
+      "inserted": "6491",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_print_identity_source_evidence",
+      "inserted": "6491",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_prints",
+      "inserted": "6491",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "external_mappings",
+      "inserted": "6491",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sets",
+      "inserted": "58",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "durable_readback": {
+    "set_rows": {
+      "row_count": 58,
+      "rows_sha256": "9c31b269e9b67e4a18ec10a4739960e6eb5c18bc253d2a61777307362f36c318"
+    },
+    "card_rows": {
+      "row_count": 6491,
+      "rows_sha256": "cbe9eb012e8ed84939d6e38a8608e9d106bb1ac6b526b01fd764e15ffd8b6405"
+    },
+    "identity_rows": {
+      "row_count": 6491,
+      "rows_sha256": "5a3ac1b4003086ccc797c8341b867719c0d60865d760806368fce23ef2b01703"
+    },
+    "evidence_rows": {
+      "row_count": 6491,
+      "rows_sha256": "b52e4ea74eaf9a2c92795ac845c50c94bd9b6353099aad28384b59dd0224c522"
+    },
+    "mapping_rows": {
+      "row_count": 6491,
+      "rows_sha256": "9df4ef02de8bff224150defcf683119d979b1a96822e9638b4749127fda635d4"
+    },
+    "visibility": {
+      "release_status": "hidden",
+      "anon_visible": false,
+      "authenticated_visible": false,
+      "service_role_visible": false
+    },
+    "readback_sha256": "d8b50f75aeca335b1afc78aac76ffe4b7ce71753f1372f01f31e8f918861dd73"
+  },
+  "findings": [],
+  "boundaries": {
+    "insert_only": true,
+    "exact_set_rows": 58,
+    "exact_card_print_rows": 6491,
+    "exact_identity_rows": 6491,
+    "exact_source_evidence_rows": 6491,
+    "exact_external_mapping_rows": 6491,
+    "update_rows": 0,
+    "delete_rows": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "run an independent fresh read-only post-apply verification"
+}

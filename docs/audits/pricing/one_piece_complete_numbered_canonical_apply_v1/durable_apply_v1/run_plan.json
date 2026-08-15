@@ -1,0 +1,54 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_APPLY_V1",
+  "recorded_at": "2026-08-15T14:03:19.064Z",
+  "repository": {
+    "commit_sha": "183a34479a82504ba9c473f88ef787bf797ff44d",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "mode": "apply",
+  "promotion_plan_gzip_sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084",
+  "apply_plan_sha256": "f16a599a540de5d656d297d71c9ee3b4ca5e6f71c945d8eed249eb319d0e2e5f",
+  "apply_plan_fingerprint_sha256": "06481bf852288a61e92d3ba1e1d66bcb315ffa5885060c4dd731f9559c8f22e9",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "target_binding": {
+    "counts": {
+      "sets": 58,
+      "card_prints": 6491,
+      "card_print_identity": 6491,
+      "card_print_identity_source_evidence": 6491,
+      "external_mappings": 6491
+    },
+    "set_ids_sha256": "27f8368badf7c45f8f610352ffa67d9ecdc76d232150de1d8bfa125a54a8ef22",
+    "card_print_ids_sha256": "78d33f77ef4b5c1febee8283621abc07d7eae4b0fddc3ca89d448affec4108f4",
+    "identity_ids_sha256": "a74daa0598f4def209cdc9f8c81eccf46e618e4df97baa44ea8ee330760114bb",
+    "evidence_ids_sha256": "685f0e4f1494c3072aa8762b41b8bebe1194c7e6b47bc3dcca7952050f5b1be7",
+    "external_product_ids_sha256": "194c1dc14cdf1f2223529b320ff22b5e5c211e689214bdd74cdeb06c37356555"
+  },
+  "execution": {
+    "chunk_size": 250,
+    "advisory_lock_key": "one_piece_complete_numbered_canonical_apply_v1",
+    "lock_timeout": "5s",
+    "statement_timeout": "300s",
+    "idle_in_transaction_session_timeout": "120s"
+  },
+  "boundaries": {
+    "insert_only": true,
+    "exact_set_rows": 58,
+    "exact_card_print_rows": 6491,
+    "exact_identity_rows": 6491,
+    "exact_source_evidence_rows": 6491,
+    "exact_external_mapping_rows": 6491,
+    "update_rows": 0,
+    "delete_rows": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  }
+}
