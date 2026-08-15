@@ -16,8 +16,8 @@ const indexHtml = `<!doctype html><html lang="en"><body>
     <img data-src="/images/products/decks/st27/item.webp" alt="">
     <span class="linkListColCat">DECKS</span>
     <h4 class="linkListColTitle">STARTER DECK -BLACK Marshall.D.Teach- [ST-27]</h4>
-    <p class="linkListColDate">Release Date June 6, 2025</p>
-    <p class="linkListColPrice">MSRP USD $11.99</p>
+    <p class="linkListColDate"><span class="head">Release Date</span><time>June 6, 2025</time></p>
+    <p class="linkListColPrice"><span class="head">MSRP</span><span class="data">USD $11.99</span></p>
   </a>
 </li>
 <a href="?page=1">1</a><a href="?page=17">17</a>
@@ -42,6 +42,16 @@ const legacyDetailHtml = `<!doctype html><html lang="en"><body>
 <div class="prodStatusContents"><p>December 8, 2023</p></div></div>
 </body></html>`;
 
+const combinedLegacyDetailHtml = `<!doctype html><html lang="en"><body>
+<div class="prodStatusBox"><h4 class="prodStatusTit">Product Name</h4>
+<div class="prodStatusContents"><ul>
+<li>STARTER DECK -Straw Hat Crew- [ST-01]</li>
+<li>STARTER DECK -Animal Kingdom Pirates- [ST-04]</li>
+</ul></div></div>
+<div class="prodStatusBox"><h4 class="prodStatusTit">Release Date</h4>
+<div>December 2, 2022</div></div>
+</body></html>`;
+
 test("official index parser preserves primary-source links and pagination", () => {
   const result = parseOnePieceOfficialProductIndexV1({
     html: indexHtml,
@@ -52,6 +62,8 @@ test("official index parser preserves primary-source links and pagination", () =
   assert.equal(result.entries[0].index_category, "decks");
   assert.equal(result.entries[0].official_index_title,
     "STARTER DECK -BLACK Marshall.D.Teach- [ST-27]");
+  assert.equal(result.entries[0].release_date_text, "June 6, 2025");
+  assert.equal(result.entries[0].msrp_text, "USD $11.99");
   assert.equal(new URL(result.entries[0].image_url).hostname,
     "en.onepiece-cardgame.com");
 });
@@ -92,6 +104,41 @@ test("legacy product detail parser extracts canonical name and contents", () => 
   assert.deepEqual(result.contents_text,
     ["Booster Pack [OP-05] x2 DON!! Card x1"]);
   assert.equal(result.release_date, "2023-12-08");
+});
+
+test("combined legacy pages preserve each official product name and bare date value", () => {
+  const result = parseOnePieceOfficialProductDetailV1({
+    html: combinedLegacyDetailHtml,
+    finalUrl: "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+    indexEntry: {
+      official_index_title: "STARTER DECK -Straw Hat Crew- [ST-01]",
+      index_category: "decks",
+      index_label: "DECKS",
+      index_tag: null,
+      release_date_text: null,
+      msrp_text: null,
+      image_url: null,
+    },
+  });
+  assert.deepEqual(result.official_product_names, [
+    "STARTER DECK -Straw Hat Crew- [ST-01]",
+    "STARTER DECK -Animal Kingdom Pirates- [ST-04]",
+  ]);
+  assert.equal(result.release_date, "2022-12-02");
+
+  const binding = bindOnePieceSealedReviewToOfficialV1({
+    candidate_id: "candidate-st04",
+    source_product_id: 288224,
+    source_product_name: "Starter Deck 4: Animal Kingdom Pirates",
+    source_identity: { group_name: "Starter Deck 4: Animal Kingdom Pirates" },
+    proposed_family: {
+      proposed_family_key: "starter_deck_4_animal_kingdom_pirates",
+      proposed_canonical_name: "Starter Deck 4: Animal Kingdom Pirates",
+    },
+    proposed_variant: { proposed_package_form: "deck" },
+  }, [result]);
+  assert.equal(binding.binding_status,
+    "official_family_support_candidate_unique");
 });
 
 test("normalization aligns starter deck numbers and official codes", () => {

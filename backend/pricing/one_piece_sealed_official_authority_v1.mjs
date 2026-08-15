@@ -61,10 +61,14 @@ export function normalizeOnePieceSealedOfficialTextV1(value) {
 
 function classText(block, className) {
   const pattern = new RegExp(
-    `<[^>]+class=["'][^"']*\\b${className}\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`,
+    `<([a-z][a-z0-9]*)\\b[^>]*class=["'][^"']*\\b${className}\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/\\1>`,
     "i",
   );
-  return textFromHtml(block.match(pattern)?.[1] ?? "");
+  return textFromHtml(block.match(pattern)?.[2] ?? "");
+}
+
+function withoutLeadingLabel(value, label) {
+  return clean(value).replace(new RegExp(`^${label}\\s*`, "i"), "");
 }
 
 export function parseOnePieceOfficialProductIndexV1({ html, pageUrl }) {
@@ -85,8 +89,10 @@ export function parseOnePieceOfficialProductIndexV1({ html, pageUrl }) {
       index_label: classText(block, "linkListColCat") || null,
       index_tag: classText(block, "linkListColTag") || null,
       official_index_title: title,
-      release_date_text: classText(block, "linkListColDate") || null,
-      msrp_text: classText(block, "linkListColPrice") || null,
+      release_date_text: withoutLeadingLabel(
+        classText(block, "linkListColDate"), "Release Date") || null,
+      msrp_text: withoutLeadingLabel(
+        classText(block, "linkListColPrice"), "MSRP") || null,
       image_url: image ? officialUrl(image, pageUrl) : null,
       source_index_url: pageUrl,
     });
@@ -99,19 +105,33 @@ export function parseOnePieceOfficialProductIndexV1({ html, pageUrl }) {
   };
 }
 
-function fieldValue(html, label) {
+function fieldHtml(html, label) {
   const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const legacy = String(html).match(new RegExp(
     `<h4\\b[^>]*class=["'][^"']*\\bprodStatusTit\\b[^"']*["'][^>]*>\\s*${escaped}\\s*<\\/h4>\\s*` +
-    `<div\\b[^>]*class=["'][^"']*\\bprodStatusContents\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/div>`,
+    `<div\\b[^>]*>([\\s\\S]*?)<\\/div>`,
     "i",
   ))?.[1];
-  if (legacy) return textFromHtml(legacy);
+  if (legacy) return legacy;
   const current = String(html).match(new RegExp(
     `<dt\\b[^>]*>\\s*${escaped}\\s*<\\/dt>\\s*<dd\\b[^>]*>([\\s\\S]*?)<\\/dd>`,
     "i",
   ))?.[1];
-  return current ? textFromHtml(current) : null;
+  return current || null;
+}
+
+function fieldValue(html, label) {
+  const value = fieldHtml(html, label);
+  return value ? textFromHtml(value) : null;
+}
+
+function fieldListValues(html, label) {
+  const value = fieldHtml(html, label);
+  if (!value) return [];
+  const structured = [...String(value).matchAll(
+    /<(?:li|p)\b[^>]*>([\s\S]*?)<\/(?:li|p)>/gi,
+  )].map((match) => textFromHtml(match[1])).filter(Boolean);
+  return structured.length > 0 ? structured : [textFromHtml(value)].filter(Boolean);
 }
 
 function contentsValues(html) {
@@ -143,8 +163,12 @@ export function parseOnePieceOfficialProductDetailV1({
   if (!/<html\b[^>]*\blang=["']en["']/i.test(html)) {
     throw new Error(`Official product detail is not English HTML: ${finalUrl}`);
   }
-  const canonicalName = fieldValue(html, "Product Name") ||
-    detailHeading(html) || indexEntry.official_index_title;
+  const productNames = fieldListValues(html, "Product Name");
+  const headingName = detailHeading(html);
+  const officialProductNames = productNames.length > 0
+    ? productNames
+    : [headingName || indexEntry.official_index_title];
+  const canonicalName = officialProductNames.join(" | ");
   const releaseDateText = fieldValue(html, "Release Date") ||
     fieldValue(html, "Delivery Month") || indexEntry.release_date_text;
   const images = [];
@@ -162,6 +186,7 @@ export function parseOnePieceOfficialProductDetailV1({
     official_url: officialUrl(finalUrl, ONE_PIECE_OFFICIAL_PRODUCT_ROOT),
     official_index_title: indexEntry.official_index_title,
     official_canonical_name: canonicalName,
+    official_product_names: officialProductNames,
     normalized_official_name: normalizeOnePieceSealedOfficialTextV1(canonicalName),
     index_category: indexEntry.index_category,
     index_label: indexEntry.index_label,
@@ -225,6 +250,8 @@ export function bindOnePieceSealedReviewToOfficialV1(reviewRow, records) {
     score: Math.max(...sourceNames.flatMap((sourceName) => [
       similarity(sourceName, record.official_canonical_name),
       similarity(sourceName, record.official_index_title),
+      ...(record.official_product_names ?? []).map((officialName) =>
+        similarity(sourceName, officialName)),
     ])),
   })).filter((entry) => entry.score > 0)
     .sort((left, right) => right.score - left.score ||
