@@ -962,6 +962,12 @@ Recommended reading order for future maintainers:
       image claims, rollback and zero-residue contracts, and the still-closed
       production canary and durable apply boundaries
 
+73. `PRICING_CHECKPOINT_75_ONE_PIECE_ST01_PRINTING_IMAGE_ROLLBACK_PROVED.md`
+    - then read the two preserved zero-residue repair attempts, corrected
+      self-hosted `identity` image-source contract, HOT-aware write attribution,
+      exact `17 / 14 / 14` passing rollback proof, independent read-only
+      verification, and the still-closed durable apply boundary
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

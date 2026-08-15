@@ -1,0 +1,299 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_POST_ROLLBACK_V1",
+  "recorded_at": "2026-08-15T05:08:05.256Z",
+  "status": "rollback_independently_verified_zero_residue",
+  "repository": {
+    "commit_sha": "d2c27323e0cf88320e26f0979fa1ddc9823a4429",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "execution_summary_sha256": "d2b2a8020b280111c75b71f33eb0667723ff29ae2023f5e0a17992f7d7d0b659",
+  "execution_producer_sha": "d2c27323e0cf88320e26f0979fa1ddc9823a4429",
+  "rollback_proof_sha256": "5981125e7746b174cef093274b70c1fbb301ddaf6b732eef40b3728fd489eddb",
+  "production": {
+    "parent_pointer_rows": [
+      {
+        "id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+        "gv_id": "GV-OP-TCGP-288228",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+        "gv_id": "GV-OP-TCGP-288229",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+        "gv_id": "GV-OP-TCGP-288230",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+        "gv_id": "GV-OP-TCGP-288232",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+        "gv_id": "GV-OP-TCGP-288234",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+        "gv_id": "GV-OP-TCGP-288235",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+        "gv_id": "GV-OP-TCGP-288236",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+        "gv_id": "GV-OP-TCGP-288237",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+        "gv_id": "GV-OP-TCGP-288238",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+        "gv_id": "GV-OP-TCGP-288239",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "9d6e1d07-644f-532d-a556-cee305304e59",
+        "gv_id": "GV-OP-TCGP-288240",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+        "gv_id": "GV-OP-TCGP-288241",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+        "gv_id": "GV-OP-TCGP-288242",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+        "gv_id": "GV-OP-TCGP-288243",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+        "gv_id": "GV-OP-TCGP-288244",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "eef89a54-e584-563d-9eea-4593eaebf829",
+        "gv_id": "GV-OP-TCGP-288245",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      },
+      {
+        "id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+        "gv_id": "GV-OP-TCGP-288246",
+        "image_source": null,
+        "image_path": null,
+        "image_url": null,
+        "image_alt_url": null,
+        "image_status": null,
+        "image_note": null,
+        "data_quality_flags": {
+          "app_visibility": "hidden_by_game_release_control",
+          "image_pointer_deferred": true,
+          "exact_printing_children_deferred": true
+        }
+      }
+    ],
+    "child_rows": [],
+    "external_printing_mapping_rows": [],
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_visible": false,
+    "image_constraints": {
+      "card_prints_image_source_check": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['tcgdex'::text, 'ptcg'::text, 'pokemonapi'::text, 'identity'::text, 'user_photo'::text, 'scryfall'::text]))))",
+      "card_prints_image_status_check": "CHECK (((image_status IS NULL) OR (image_status = ANY (ARRAY['exact'::text, 'representative_shared'::text, 'representative_shared_collision'::text, 'representative_shared_stamp'::text, 'missing'::text, 'unresolved'::text, 'ok'::text, 'placeholder'::text, 'user_uploaded'::text]))))"
+    },
+    "blocking_pids": [],
+    "transaction_read_only": true
+  },
+  "findings": [],
+  "boundaries": {
+    "run_plan_written_before_database_access": true,
+    "fresh_read_only_connection": true,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "child_printing_writes": 0,
+    "printing_mapping_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "independent_proof_sha256": "683812fc19d5d10aabdfe0b641058025e0aa4071f6b1cbd839eb56d8f9e85482"
+}
