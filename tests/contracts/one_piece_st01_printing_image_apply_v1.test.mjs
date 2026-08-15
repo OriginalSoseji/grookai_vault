@@ -86,6 +86,24 @@ test("durable apply plan freezes the exact hidden 17/14/14 scope", async () => {
   });
 });
 
+test("checked-in durable apply plan reproduces from its bound proof", async () => {
+  const value = await fixture();
+  const checkedIn = JSON.parse(await fs.readFile(
+    "docs/audits/pricing/one_piece_st01_printing_image_durable_apply_v1/frozen_apply_plan_v1/apply_plan.json",
+    "utf8",
+  ));
+  const reproduced = buildOnePieceSt01PrintingImageDurableApplyPlanV1({
+    repository: checkedIn.repository,
+    inputHashes: ONE_PIECE_ST01_PRINTING_IMAGE_DURABLE_PINNED_INPUTS,
+    mutationPlan: value.mutationPlan,
+    rollbackSummary: value.rollbackSummary,
+    transactionProof: value.transactionProof,
+    independentSummary: value.independentSummary,
+    independentReadback: value.independentReadback,
+  });
+  assert.deepEqual(reproduced, checkedIn);
+});
+
 test("durable plan fails closed on proof, target, or boundary drift", async () => {
   const value = await fixture();
   const changed = structuredClone(value.applyPlan);
@@ -202,7 +220,11 @@ test("writer and verifier require exact execution bindings", () => {
 });
 
 test("writer has one guarded commit and verifier is read-only", async () => {
-  const [writer, verifier, rollback] = await Promise.all([
+  const [planner, writer, verifier, rollback] = await Promise.all([
+    fs.readFile(
+      "scripts/audits/one_piece_st01_printing_image_apply_plan_v1.mjs",
+      "utf8",
+    ),
     fs.readFile(
       "scripts/audits/one_piece_st01_printing_image_apply_v1.mjs",
       "utf8",
@@ -216,6 +238,8 @@ test("writer has one guarded commit and verifier is read-only", async () => {
       "utf8",
     ),
   ]);
+  assert.doesNotMatch(planner,
+    /from ["']pg["']|dotenv|marketEvidenceDbUrl|supabase/i);
   assert.match(writer, /mode:\s*"plan"/);
   assert.match(writer, /Exact approval missing/);
   assert.equal(writer.match(/client\.query\("commit"\)/g)?.length, 1);
