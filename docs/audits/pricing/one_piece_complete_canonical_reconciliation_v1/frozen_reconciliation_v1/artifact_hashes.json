@@ -1,0 +1,73 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "summary.json",
+      "bytes": 2085,
+      "sha256": "830418974b7eea09ce92f9197d0b39f643b40bd79029fcc4a84ed4e1f09d72f3"
+    },
+    {
+      "path": "set_families.json",
+      "bytes": 105013,
+      "sha256": "7f551aff93f2293836a0c8c966ffec8d31f5c190034518a70c280263a22a5f47"
+    },
+    {
+      "path": "current_numbered_candidates.jsonl.gz",
+      "bytes": 893916,
+      "sha256": "65efafcb6715787c724b5ecd2fa23fa6064216d5d0b3e44e96a28dbd77b9dfb7"
+    },
+    {
+      "path": "don_lane.jsonl",
+      "bytes": 158938,
+      "sha256": "941c24025dafbdd705a9c373d8977eac9d818cd02e14cbfc386f226cd918a825"
+    },
+    {
+      "path": "sealed_lane.jsonl",
+      "bytes": 277555,
+      "sha256": "c2516e5396745c8b37ecc979b32c2045033656510479a60cc686be25259f54c4"
+    },
+    {
+      "path": "future_holds.jsonl",
+      "bytes": 39451,
+      "sha256": "32c51e10724f5d09602959d446a1f447ce68b907f485c739f897f31c173305f4"
+    },
+    {
+      "path": "quarantine.jsonl",
+      "bytes": 2975,
+      "sha256": "808b7d705460797acfd27f0846b9e2df232b10111e7431178ce43e1ce622f167"
+    },
+    {
+      "path": "existing_st01_reconciliation.json",
+      "bytes": 47311,
+      "sha256": "d472b336c718e6c53c4cede61ac46c0e90224f1786b816dcb64493d5964f76a7"
+    },
+    {
+      "path": "collision_report.json",
+      "bytes": 351,
+      "sha256": "184b24eb2e78eae3e7807b334656bb51fd7101947465f01c0bf75d7ddd1699e1"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 625,
+      "sha256": "688fa86abe44b3b606e191fe77197c268f6f7d75acc9c3be83cafb1b27b1ba20"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_readiness_v1/current_complete_source_2026-08-14_v1/source_product_manifest.jsonl.gz",
+      "sha256": "973bec5c186adc8853dcff91218e1057772aea384f9a3318919fb03b9c39bc0e"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_complete_staging_release_v1/frozen_plan_v1/plan.json",
+      "sha256": "95cf972ed658dcb1bf2b237901d3d18f3d9e87e2190c035aa5c0198fc755f359"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_complete_staging_release_v1/independent_post_apply_v1/summary.json",
+      "sha256": "35ef83b826c52e09c14025599eeade2b8f093336f13f8ac399cd746b3495e762"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/frozen_plan_v1/plan.json",
+      "sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3"
+    }
+  ]
+}

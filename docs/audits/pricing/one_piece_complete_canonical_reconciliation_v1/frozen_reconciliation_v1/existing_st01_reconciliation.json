@@ -1,0 +1,1328 @@
+[
+  {
+    "source_product_id": 288228,
+    "source_product_name": "Monkey.D.Luffy (001)",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-001",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "leader",
+    "rarity": "L",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288228",
+    "exact_source_product_mapping": "tcgplayer:288228",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288228:foil",
+        "subtype_name_normalized": "foil",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288228_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "d0092111d79ad10194076762e7489ceb073e897ea19df7e966111d1897c8c128",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288228,
+      "group_id": 3189,
+      "product_name": "Monkey.D.Luffy (001)",
+      "card_number": "ST01-001",
+      "card_number_format": "starter",
+      "card_type": "leader",
+      "rarity": "L",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288228,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "d93c10ae4609f4025e0a2014eb77301b10aa52ecfd11fe66f811eba82034da3b",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288228,
+      "card_number": "ST01-001",
+      "card_print_id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "card_print_identity_id": "9143eb13-999d-5479-b3ad-2393885c858b",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288228",
+      "gv_id": "GV-OP-TCGP-288228",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288229,
+    "source_product_name": "Usopp",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-002",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288229",
+    "exact_source_product_mapping": "tcgplayer:288229",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288229:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288229_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "470bcc61e2e8ec92c8c8e5fc6fd3ddb452db63530e96184c611a89050edc2e10",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288229,
+      "group_id": 3189,
+      "product_name": "Usopp",
+      "card_number": "ST01-002",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288229,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "c9741b7e2437a2871cf8eb790a9af967258077206dfefbb87751a7dcb458f023",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288229,
+      "card_number": "ST01-002",
+      "card_print_id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+      "card_print_identity_id": "4b741109-e533-5a68-9a8b-40e8ec020389",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288229",
+      "gv_id": "GV-OP-TCGP-288229",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288230,
+    "source_product_name": "Karoo",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-003",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288230",
+    "exact_source_product_mapping": "tcgplayer:288230",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288230:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288230_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "d1883f8d3545f82543fd21f534d1e7104e48136cf018ef8fe083b85589c86110",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288230,
+      "group_id": 3189,
+      "product_name": "Karoo",
+      "card_number": "ST01-003",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288230,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "4e7bb00068fd70026bc4405dd77f24e56170c4306f404f4fbdbac36ea588eef5",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288230,
+      "card_number": "ST01-003",
+      "card_print_id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+      "card_print_identity_id": "9214c5e7-b421-55e2-a1c2-bc85d0e316f3",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288230",
+      "gv_id": "GV-OP-TCGP-288230",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288232,
+    "source_product_name": "Sanji",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-004",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288232",
+    "exact_source_product_mapping": "tcgplayer:288232",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288232:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288232_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "fc88365291f5914f74f3a9205fb33b9e8c52864c35058ccdb1e84b2104ecd94d",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288232,
+      "group_id": 3189,
+      "product_name": "Sanji",
+      "card_number": "ST01-004",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288232,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "f0a602ba9a7d24622627ff8cc2c8c9693553ef175d1f586f488819f239e5bc7e",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288232,
+      "card_number": "ST01-004",
+      "card_print_id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+      "card_print_identity_id": "fce55f79-6b62-5085-8d07-5e34256c9e19",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288232",
+      "gv_id": "GV-OP-TCGP-288232",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288234,
+    "source_product_name": "Jinbe",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-005",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288234",
+    "exact_source_product_mapping": "tcgplayer:288234",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288234:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288234_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "ad34605ee876ea119b205d0f7409cba619b526cfa2281f0ec802373567ea7a19",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288234,
+      "group_id": 3189,
+      "product_name": "Jinbe",
+      "card_number": "ST01-005",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288234,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "e79b1cfc4e4b27f4db220374abf171ee72252de33d6f523999ae4b689006614a",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288234,
+      "card_number": "ST01-005",
+      "card_print_id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+      "card_print_identity_id": "0c5c2e8a-4405-5d2b-b3ed-4feae418062d",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288234",
+      "gv_id": "GV-OP-TCGP-288234",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288235,
+    "source_product_name": "Tony Tony.Chopper",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-006",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288235",
+    "exact_source_product_mapping": "tcgplayer:288235",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288235:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288235_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "0519070d0ebe90276f8e6a6843bc3f8defc55c620889c44b084214a4274fd826",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288235,
+      "group_id": 3189,
+      "product_name": "Tony Tony.Chopper",
+      "card_number": "ST01-006",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288235,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "a2ddf09f850c10379148ac20bdca14dfa2250d48462f722a72c66e79436b9093",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288235,
+      "card_number": "ST01-006",
+      "card_print_id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+      "card_print_identity_id": "22da17ba-6068-5931-a113-82303508f92f",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288235",
+      "gv_id": "GV-OP-TCGP-288235",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288236,
+    "source_product_name": "Nami",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-007",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288236",
+    "exact_source_product_mapping": "tcgplayer:288236",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288236:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288236_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "aba96b5c5950e4e46d8e4180872552e2181895d331aacc2cea8fbbacf83bb197",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288236,
+      "group_id": 3189,
+      "product_name": "Nami",
+      "card_number": "ST01-007",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288236,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "381f202a231738735c8f9acdca323d87b2ecd313ef2f1154166c33749e02a9ee",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288236,
+      "card_number": "ST01-007",
+      "card_print_id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+      "card_print_identity_id": "2c55c367-c161-5ec0-9f57-322a53aaf7a4",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288236",
+      "gv_id": "GV-OP-TCGP-288236",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288237,
+    "source_product_name": "Nico Robin",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-008",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288237",
+    "exact_source_product_mapping": "tcgplayer:288237",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288237:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288237_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "5c76e23c316d5ff3f11a577965ebe7f4f47b7b226ea68446ae6da6578bceb7f5",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288237,
+      "group_id": 3189,
+      "product_name": "Nico Robin",
+      "card_number": "ST01-008",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288237,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "1ba16e7e710a6ca955e7d98bfc2c43ef2099acd7e16ef2a866390be0b7b23464",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288237,
+      "card_number": "ST01-008",
+      "card_print_id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+      "card_print_identity_id": "18769d53-5233-546c-a0f8-abe89fb5deb4",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288237",
+      "gv_id": "GV-OP-TCGP-288237",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288238,
+    "source_product_name": "Nefeltari Vivi",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-009",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288238",
+    "exact_source_product_mapping": "tcgplayer:288238",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288238:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288238_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "cb1caa336f3226c9f221d1f69422129b26c3c9d7b367ebf454e5186fc7a215a7",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288238,
+      "group_id": 3189,
+      "product_name": "Nefeltari Vivi",
+      "card_number": "ST01-009",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288238,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "eac2c15db9d835fb8dd8518d3bfb96d8c1ad128affc9b80c806d6e1b49fd1f43",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288238,
+      "card_number": "ST01-009",
+      "card_print_id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+      "card_print_identity_id": "a2d2f0c3-b48f-5497-97b4-49e2d01c417c",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288238",
+      "gv_id": "GV-OP-TCGP-288238",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288239,
+    "source_product_name": "Franky",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-010",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288239",
+    "exact_source_product_mapping": "tcgplayer:288239",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288239:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288239_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "710c10e619c6596a2d20499fa428e1f379fb458a1a67fe546731060f28c1b24e",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288239,
+      "group_id": 3189,
+      "product_name": "Franky",
+      "card_number": "ST01-010",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288239,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "c352f97bebf7e6479a2d3f9978252c553916a1ccac30c12e3add07ed77346a93",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288239,
+      "card_number": "ST01-010",
+      "card_print_id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+      "card_print_identity_id": "bfd9b5b7-6f90-5240-918f-26d0fe9c21d8",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288239",
+      "gv_id": "GV-OP-TCGP-288239",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288240,
+    "source_product_name": "Brook",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-011",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288240",
+    "exact_source_product_mapping": "tcgplayer:288240",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288240:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288240_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "b578fef8ca79623916657929401ef4810e04317bd343d8793b14009c937fd55c",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288240,
+      "group_id": 3189,
+      "product_name": "Brook",
+      "card_number": "ST01-011",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288240,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "24b00965dcbb85d432dd7066afff60c76c9614f9de06d2be844ba2733c51d550",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288240,
+      "card_number": "ST01-011",
+      "card_print_id": "9d6e1d07-644f-532d-a556-cee305304e59",
+      "card_print_identity_id": "227e935b-f32c-5c74-91bd-e57733adafb6",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288240",
+      "gv_id": "GV-OP-TCGP-288240",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288241,
+    "source_product_name": "Monkey.D.Luffy (012)",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-012",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "SR",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288241",
+    "exact_source_product_mapping": "tcgplayer:288241",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288241:foil",
+        "subtype_name_normalized": "foil",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288241_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "b3962c93960da0a56c8318db3db0518154536c78dde6116a6e06f407f617edd7",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288241,
+      "group_id": 3189,
+      "product_name": "Monkey.D.Luffy (012)",
+      "card_number": "ST01-012",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "SR",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288241,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "85150d3c855bf45a6c2c70b0b941798edf85d518b04557c53fd5dd5488c1415f",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288241,
+      "card_number": "ST01-012",
+      "card_print_id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "card_print_identity_id": "7ae97f5c-7be3-506f-bd79-465191cb6f42",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288241",
+      "gv_id": "GV-OP-TCGP-288241",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288242,
+    "source_product_name": "Roronoa Zoro",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-013",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "character",
+    "rarity": "SR",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288242",
+    "exact_source_product_mapping": "tcgplayer:288242",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288242:foil",
+        "subtype_name_normalized": "foil",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288242_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "474bed62b79c21ec6945e0ffc92ee4a96099cabcb325d67d735c7036c395bbc2",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288242,
+      "group_id": 3189,
+      "product_name": "Roronoa Zoro",
+      "card_number": "ST01-013",
+      "card_number_format": "starter",
+      "card_type": "character",
+      "rarity": "SR",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288242,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "68c2b087e8ddba98a482517ab588868d3e203e71b4697285658281c868649a7d",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288242,
+      "card_number": "ST01-013",
+      "card_print_id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+      "card_print_identity_id": "d18c0e53-118a-58e8-b158-439136b54f08",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288242",
+      "gv_id": "GV-OP-TCGP-288242",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288243,
+    "source_product_name": "Guard Point",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-014",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "event",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288243",
+    "exact_source_product_mapping": "tcgplayer:288243",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288243:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288243_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "e77e45b7ab0a58e623bc53c1567293ccd2034dd6bf82aeffcde43028b1c87e6c",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288243,
+      "group_id": 3189,
+      "product_name": "Guard Point",
+      "card_number": "ST01-014",
+      "card_number_format": "starter",
+      "card_type": "event",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288243,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "c845b3f1adc6147f235783188ba237643448fd8a1a189e4dbd2f6e7d94c2e616",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288243,
+      "card_number": "ST01-014",
+      "card_print_id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+      "card_print_identity_id": "f5dc58cb-072f-543d-a313-a248db643f02",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288243",
+      "gv_id": "GV-OP-TCGP-288243",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288244,
+    "source_product_name": "Gum-Gum Jet Pistol",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-015",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "event",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288244",
+    "exact_source_product_mapping": "tcgplayer:288244",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288244:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288244_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "5b07b6bf601cca2eae1807a242ed70014997744606bdff4adff32e2f48d1f842",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288244,
+      "group_id": 3189,
+      "product_name": "Gum-Gum Jet Pistol",
+      "card_number": "ST01-015",
+      "card_number_format": "starter",
+      "card_type": "event",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288244,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "8d63aad8c303b6bfed9f240ecbf1c7cc09bab88639e20c33a669003870f71a95",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288244,
+      "card_number": "ST01-015",
+      "card_print_id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+      "card_print_identity_id": "5370dfa6-c802-51b4-aa4f-85db09aae484",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288244",
+      "gv_id": "GV-OP-TCGP-288244",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288245,
+    "source_product_name": "Diable Jambe",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-016",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "event",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288245",
+    "exact_source_product_mapping": "tcgplayer:288245",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288245:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288245_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "8f829a79d7682f55faf82959ce01a273af6c3f8e4665e54f1f0cccf672750711",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288245,
+      "group_id": 3189,
+      "product_name": "Diable Jambe",
+      "card_number": "ST01-016",
+      "card_number_format": "starter",
+      "card_type": "event",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288245,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "7e27905f5b0287d82f4936eb600406954af3e66af6666f08164f78189f0f0822",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288245,
+      "card_number": "ST01-016",
+      "card_print_id": "eef89a54-e584-563d-9eea-4593eaebf829",
+      "card_print_identity_id": "9a022565-b518-57cc-a49a-eba231a2db17",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288245",
+      "gv_id": "GV-OP-TCGP-288245",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  },
+  {
+    "source_product_id": 288246,
+    "source_product_name": "Thousand Sunny",
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_active": true,
+    "promotion_state": "current_candidate",
+    "card_number": "ST01-017",
+    "set_code": "ST01",
+    "card_number_format": "starter",
+    "card_type": "stage",
+    "rarity": "C",
+    "language": {
+      "normalized": "en",
+      "authority": "tcgplayer_category_68_default_unverified",
+      "explicit": false
+    },
+    "treatment_claims": [],
+    "release": {
+      "explicit_presale": false,
+      "released_on": "2022-12-02",
+      "future_release": false,
+      "current_release_eligible": true
+    },
+    "parent_gv_id": "GV-OP-TCGP-288246",
+    "exact_source_product_mapping": "tcgplayer:288246",
+    "source_price_lanes": [
+      {
+        "source_price_row_identity": "tcgplayer:288246:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-14",
+        "positive_market_signal": true
+      }
+    ],
+    "source_image_reference": "https://tcgplayer-cdn.tcgplayer.com/product/288246_200w.jpg",
+    "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+    "source_identity_key_hash": "351b6d6e7310f7e2366562cfabd8550db8b2545ab3a4736663a2ffb49d0f6f5e",
+    "source_identity_payload": {
+      "source": "tcgplayer",
+      "category_id": 68,
+      "product_id": 288246,
+      "group_id": 3189,
+      "product_name": "Thousand Sunny",
+      "card_number": "ST01-017",
+      "card_number_format": "starter",
+      "card_type": "stage",
+      "rarity": "C",
+      "language": {
+        "normalized": "en",
+        "authority": "tcgplayer_category_68_default_unverified",
+        "explicit": false
+      },
+      "treatment_claims": []
+    },
+    "source_binding": {
+      "staging_row_id": null,
+      "staging_batch_id": null,
+      "source_product_id": 288246,
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "source_payload_hash": "98a7a1cd30a2d7292a176477d8ad08f729779c92a4970909da69098d170d7efe",
+      "staging_payload_sha256": null
+    },
+    "existing_canonical": {
+      "source_product_id": 288246,
+      "card_number": "ST01-017",
+      "card_print_id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+      "card_print_identity_id": "af6a36e4-9fbc-5f31-8f26-5254b40f053c",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288246",
+      "gv_id": "GV-OP-TCGP-288246",
+      "authority": "one_piece_st01_canonical_promotion_v1"
+    },
+    "reconciliation_action": "retain_existing_exact_canonical_binding",
+    "official_authority_status": "already_bound_by_st01_official_authority",
+    "canonical_promotion_eligible": false,
+    "publishable": false
+  }
+]
