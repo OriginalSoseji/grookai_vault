@@ -8,6 +8,7 @@ import {
   buildOnePieceCompleteNumberedApplyPlanV1,
   evaluateOnePieceCompleteNumberedAttributableWritesV1,
   evaluateOnePieceCompleteNumberedDurableReadbackV1,
+  evaluateOnePieceCompleteNumberedPostApplyV1,
   expectedOnePieceCompleteNumberedDurableReadbackV1,
   summarizeOnePieceCompleteNumberedDurableReadbackV1,
   validateOnePieceCompleteNumberedApplyPlanV1,
@@ -130,4 +131,55 @@ test("durable writer has one guarded commit and no destructive SQL", () => {
   assert.match(source, /Fresh apply preflight failed/);
   assert.doesNotMatch(source,
     /\bupdate\s+public\.|\bdelete\s+from\s+public\.|\btruncate\b/i);
+});
+
+test("independent post-apply evaluator binds exact global state", () => {
+  const { promotionPlan, applyPlan } = fixture();
+  const freshReadback = expectedOnePieceCompleteNumberedDurableReadbackV1(
+    promotionPlan);
+  const digest = summarizeOnePieceCompleteNumberedDurableReadbackV1(
+    freshReadback);
+  const writes = Object.entries({ sets: 58, card_prints: 6491,
+    card_print_identity: 6491, card_print_identity_source_evidence: 6491,
+    external_mappings: 6491 }).map(([table_name, inserted]) => ({
+    table_name, inserted, updated: 0, deleted: 0, hot_updated: 0,
+  }));
+  const applySummary = {
+    version: "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_APPLY_V1",
+    status: "durable_apply_committed_and_readback_passed",
+    committed: true,
+    findings: [],
+    apply_plan_fingerprint_sha256: applyPlan.apply_plan_fingerprint_sha256,
+    payload_fingerprint_sha256: promotionPlan.payload_fingerprint_sha256,
+    attributable_writes: writes,
+    transaction_readback: digest,
+    durable_readback: digest,
+  };
+  const globalReadback = {
+    transaction_read_only: true, sets: 59, card_prints: 6508,
+    card_print_identity: 6508, card_print_identity_source_evidence: 6508,
+    external_mappings: 6508, card_printings: 14,
+    external_printing_mappings: 14, target_child_printings: 0,
+    target_image_pointers: 0, held_external_mappings: 0,
+    release_status: "hidden", anon_visible: false,
+    authenticated_visible: false, service_role_visible: false,
+  };
+  assert.deepEqual(evaluateOnePieceCompleteNumberedPostApplyV1({
+    promotionPlan, applyPlan, applySummary, freshReadback, globalReadback,
+  }), []);
+  globalReadback.held_external_mappings = 1;
+  assert.deepEqual(evaluateOnePieceCompleteNumberedPostApplyV1({
+    promotionPlan, applyPlan, applySummary, freshReadback, globalReadback,
+  }), ["global_readback_mismatch"]);
+});
+
+test("independent verifier is read-only", () => {
+  const source = fs.readFileSync(
+    "scripts/audits/one_piece_complete_numbered_canonical_post_apply_v1.mjs",
+    "utf8",
+  );
+  assert.match(source, /repeatable read read only/);
+  assert.doesNotMatch(source, /client\.query\(["']commit["']\)/i);
+  assert.doesNotMatch(source,
+    /\binsert\s+into\s+public\.|\bupdate\s+public\.|\bdelete\s+from\s+public\.|\btruncate\b/i);
 });

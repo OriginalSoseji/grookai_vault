@@ -281,4 +281,61 @@ export function evaluateOnePieceCompleteNumberedAttributableWritesV1(rows) {
     : ["attributable_writes_mismatch"];
 }
 
+export function evaluateOnePieceCompleteNumberedPostApplyV1({
+  promotionPlan,
+  applyPlan,
+  applySummary,
+  freshReadback,
+  globalReadback,
+}) {
+  const findings = [
+    ...validateOnePieceCompleteNumberedApplyPlanV1(
+      applyPlan, promotionPlan).findings.map((finding) => `apply_plan:${finding}`),
+    ...evaluateOnePieceCompleteNumberedDurableReadbackV1({
+      promotionPlan,
+      readback: freshReadback,
+    }).map((finding) => `fresh_readback:${finding}`),
+    ...evaluateOnePieceCompleteNumberedAttributableWritesV1(
+      applySummary?.attributable_writes,
+    ).map((finding) => `apply_attribution:${finding}`),
+  ];
+  const add = (condition, code) => {
+    if (condition) findings.push(code);
+  };
+  add(applySummary?.version !== ONE_PIECE_COMPLETE_NUMBERED_APPLY_VERSION ||
+    applySummary?.status !== "durable_apply_committed_and_readback_passed" ||
+    applySummary?.committed !== true || applySummary?.findings?.length !== 0,
+  "apply_summary_not_passing");
+  add(applySummary?.apply_plan_fingerprint_sha256 !==
+      applyPlan?.apply_plan_fingerprint_sha256 ||
+      applySummary?.payload_fingerprint_sha256 !==
+      promotionPlan?.payload_fingerprint_sha256,
+  "apply_summary_binding_mismatch");
+  const digest = summarizeOnePieceCompleteNumberedDurableReadbackV1(
+    freshReadback);
+  add(stableJson(digest) !== stableJson(applySummary?.transaction_readback) ||
+    stableJson(digest) !== stableJson(applySummary?.durable_readback),
+  "apply_readback_digest_mismatch");
+  const expectedGlobal = {
+    transaction_read_only: true,
+    sets: 59,
+    card_prints: 6508,
+    card_print_identity: 6508,
+    card_print_identity_source_evidence: 6508,
+    external_mappings: 6508,
+    card_printings: 14,
+    external_printing_mappings: 14,
+    target_child_printings: 0,
+    target_image_pointers: 0,
+    held_external_mappings: 0,
+    release_status: "hidden",
+    anon_visible: false,
+    authenticated_visible: false,
+    service_role_visible: false,
+  };
+  add(stableJson(globalReadback) !== stableJson(expectedGlobal),
+    "global_readback_mismatch");
+  return [...new Set(findings)];
+}
+
 export { validateProofs as validateOnePieceCompleteNumberedApplyProofsV1 };
