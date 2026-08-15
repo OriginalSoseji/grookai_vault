@@ -1,0 +1,47 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "apply_plan.json",
+      "bytes": 2734,
+      "sha256": "f16a599a540de5d656d297d71c9ee3b4ca5e6f71c945d8eed249eb319d0e2e5f"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2166,
+      "sha256": "049b10bee9133da393e5b0458fcd6ec90352176eb1029909120c2339113c1983"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 408,
+      "sha256": "31e080f7b42c4cee0285d20a296df69250dfdc9b098a4dd2b32504c36c813d69"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "name": "promotionPlan",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
+      "sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084"
+    },
+    {
+      "name": "preflightSummary",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_preflight_v1/production_read_only_v1/summary.json",
+      "sha256": "800c70a0e84077b708a79d1a739b66f163b42b10f9a5c7d313b2046b7222e25c"
+    },
+    {
+      "name": "rollbackSummary",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_rollback_canary_v1/production_rollback_v1/summary.json",
+      "sha256": "4858932db5b639b54c42951a68e78542984409ccad585ea0c1ca8b3ae31bcf2e"
+    },
+    {
+      "name": "rollbackTransaction",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_rollback_canary_v1/production_rollback_v1/transaction_proof.json",
+      "sha256": "6f1d5a620888c08c9197fb1482177a6f24987d166585ab6a5cfee1b7397fad28"
+    },
+    {
+      "name": "postRollbackReadback",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_rollback_canary_v1/production_rollback_v1/post_rollback_readback.json",
+      "sha256": "39477e67a5a532c7273ffbd5da7d4d1bb3ecc7121525a908540ef1e8c1361d0e"
+    }
+  ]
+}
