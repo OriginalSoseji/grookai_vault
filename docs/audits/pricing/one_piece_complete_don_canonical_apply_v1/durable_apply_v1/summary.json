@@ -1,0 +1,122 @@
+{
+  "version": "ONE_PIECE_COMPLETE_DON_CANONICAL_APPLY_V1",
+  "recorded_at": "2026-08-15T14:36:44.945Z",
+  "status": "durable_apply_committed_and_readback_passed",
+  "repository": {
+    "commit_sha": "508092e192be6aa932b6fee5a8efa9f45ef9100f",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "committed": true,
+  "apply_plan_fingerprint_sha256": "405ad42cfe276bf3c6a37bca3d1a3c62ac6aae99cb08961140110fa1d1d3228c",
+  "payload_fingerprint_sha256": "9aad9b82042c73a2220171309350fe351e1b7e0b886b825d9ecb70cf8f68a147",
+  "attributable_writes": [
+    {
+      "table_name": "card_print_identity",
+      "inserted": "222",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_print_identity_source_evidence",
+      "inserted": "222",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_prints",
+      "inserted": "222",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "external_mappings",
+      "inserted": "222",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sets",
+      "inserted": "1",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "transaction_readback": {
+    "set_rows": {
+      "row_count": 1,
+      "rows_sha256": "7e44e330b82c5d35f71effba35791dd9bbf1c00fe587b8bcd16744a42d90126b"
+    },
+    "card_rows": {
+      "row_count": 222,
+      "rows_sha256": "89b62c8f8a01359df66ab998dc986db3042675044228331dc09997cb9dd4a0f5"
+    },
+    "identity_rows": {
+      "row_count": 222,
+      "rows_sha256": "7ab3f36c2fb2cf6e424d30084a055ceef143ab218621af6d9524480f6f1eb849"
+    },
+    "evidence_rows": {
+      "row_count": 222,
+      "rows_sha256": "28acad672a9bc0d5feb2ecb1a986a3f40dd32f0673bdc7c6005ad4c70685e8ba"
+    },
+    "mapping_rows": {
+      "row_count": 222,
+      "rows_sha256": "378b147fe52d444ed1963b703dc0f02f6cdd4ce06d5ff9a9a65e6c7891589495"
+    },
+    "visibility": {
+      "release_status": "hidden",
+      "anon_visible": false,
+      "authenticated_visible": false,
+      "service_role_visible": false
+    },
+    "readback_sha256": "0263e91a3acf1b908d0fd92cb3ce51a7b87971610eda1af25345b1462b9752a5"
+  },
+  "durable_readback": {
+    "set_rows": {
+      "row_count": 1,
+      "rows_sha256": "7e44e330b82c5d35f71effba35791dd9bbf1c00fe587b8bcd16744a42d90126b"
+    },
+    "card_rows": {
+      "row_count": 222,
+      "rows_sha256": "89b62c8f8a01359df66ab998dc986db3042675044228331dc09997cb9dd4a0f5"
+    },
+    "identity_rows": {
+      "row_count": 222,
+      "rows_sha256": "7ab3f36c2fb2cf6e424d30084a055ceef143ab218621af6d9524480f6f1eb849"
+    },
+    "evidence_rows": {
+      "row_count": 222,
+      "rows_sha256": "28acad672a9bc0d5feb2ecb1a986a3f40dd32f0673bdc7c6005ad4c70685e8ba"
+    },
+    "mapping_rows": {
+      "row_count": 222,
+      "rows_sha256": "378b147fe52d444ed1963b703dc0f02f6cdd4ce06d5ff9a9a65e6c7891589495"
+    },
+    "visibility": {
+      "release_status": "hidden",
+      "anon_visible": false,
+      "authenticated_visible": false,
+      "service_role_visible": false
+    },
+    "readback_sha256": "0263e91a3acf1b908d0fd92cb3ce51a7b87971610eda1af25345b1462b9752a5"
+  },
+  "findings": [],
+  "boundaries": {
+    "durable_database_transaction_committed": true,
+    "updates": 0,
+    "deletes": 0,
+    "child_printing_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  }
+}

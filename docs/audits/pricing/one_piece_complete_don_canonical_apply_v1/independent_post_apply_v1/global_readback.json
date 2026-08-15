@@ -1,0 +1,16 @@
+{
+  "sets": 60,
+  "card_prints": 6730,
+  "card_print_identity": 6730,
+  "card_print_identity_source_evidence": 6730,
+  "external_mappings": 6730,
+  "card_printings": 14,
+  "external_printing_mappings": 14,
+  "don_set_rows": 1,
+  "don_card_rows": 222,
+  "don_child_printings": 0,
+  "release_status": "hidden",
+  "anon_visible": false,
+  "authenticated_visible": false,
+  "service_role_visible": false
+}

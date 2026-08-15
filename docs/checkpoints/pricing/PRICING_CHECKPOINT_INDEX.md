@@ -991,6 +991,12 @@ Recommended reading order for future maintainers:
       rollback proof, exact 26,022-row insert-only apply, independent durable
       readback, hidden visibility, and the separate DON and sealed gates next
 
+78. `PRICING_CHECKPOINT_80_ONE_PIECE_DON_CANON_APPLIED.md`
+    - then read the 222-product English DON promotion, one Japanese and two
+      future holds, product-specific identity policy, five-form rollback proof,
+      exact 889-row insert-only apply, independent durable readback, hidden
+      visibility, and the sealed candidate warehouse gate next
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

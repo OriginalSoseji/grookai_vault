@@ -1,0 +1,37 @@
+[
+  {
+    "table_name": "card_print_identity",
+    "inserted": "222",
+    "updated": "0",
+    "deleted": "0",
+    "hot_updated": "0"
+  },
+  {
+    "table_name": "card_print_identity_source_evidence",
+    "inserted": "222",
+    "updated": "0",
+    "deleted": "0",
+    "hot_updated": "0"
+  },
+  {
+    "table_name": "card_prints",
+    "inserted": "222",
+    "updated": "0",
+    "deleted": "0",
+    "hot_updated": "0"
+  },
+  {
+    "table_name": "external_mappings",
+    "inserted": "222",
+    "updated": "0",
+    "deleted": "0",
+    "hot_updated": "0"
+  },
+  {
+    "table_name": "sets",
+    "inserted": "1",
+    "updated": "0",
+    "deleted": "0",
+    "hot_updated": "0"
+  }
+]
