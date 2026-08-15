@@ -979,6 +979,12 @@ Recommended reading order for future maintainers:
       complete source preservation proof, current single/DON/sealed/quarantine
       counts, immutable manifest hashes, and service-only full-staging gate
 
+76. `PRICING_CHECKPOINT_78_ONE_PIECE_COMPLETE_STAGING_APPLIED.md`
+    - then read the immutable 83-batch, 7,261-row service-only staging apply,
+      exact source and collision preflight, 1,382-row rollback proof, writer and
+      independent durable readbacks, hidden visibility, preserved holds and
+      quarantines, and the bulk canonical reconciliation gate that follows
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

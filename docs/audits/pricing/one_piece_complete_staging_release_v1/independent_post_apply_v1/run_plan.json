@@ -1,0 +1,12 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_INDEPENDENT_READBACK_V1",
+  "recorded_at": "2026-08-15T06:32:40.994Z",
+  "apply_producer_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+  "apply_summary_sha256": "7cdcf41bc3944ec7ac00e736d3b019ac1ffdfc11ac27b94b07a237cd2616f4d0",
+  "mode": "fresh_read_only_independent_verification",
+  "boundaries": {
+    "database_writes": false,
+    "canonical_or_public_writes": false,
+    "pricing_storage_pointer_or_vault_writes": false
+  }
+}

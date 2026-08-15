@@ -1,0 +1,36 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_RELEASE_APPLY_V1",
+  "recorded_at": "2026-08-15T06:32:27.617Z",
+  "status": "durable_apply_committed_and_fresh_readback_passed",
+  "repository": {
+    "commit_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+  "release_payload_fingerprint_sha256": "890b5d0c3a3a2f9d842e280baec1323b3d780d78565c40ebd10dba04e78787fc",
+  "preflight_fingerprint_sha256": "0385f61e0d1551edb616b348f92cf7952dc0c36644847c2239c8fa921260eb62",
+  "rollback_canary_summary_sha256": "6954de4ec3494ed6113278de29eb4bfbef75b1ea124e0315cb6864b199a3faa0",
+  "committed": true,
+  "service_role_write_path": true,
+  "batch_rows_written": 83,
+  "staging_rows_written": 7261,
+  "final_total_batch_rows": 84,
+  "final_total_staging_rows": 7282,
+  "transaction_findings": [],
+  "fresh_findings": [],
+  "failure": null,
+  "environment": {
+    "environment_label": "production",
+    "environment_key_sha256": "7e10225244ba6678eade7287a14f9537954bc55b55d39e65058f025883826d59"
+  },
+  "boundaries": {
+    "durable_service_only_staging": true,
+    "canonical_writes": 0,
+    "sealed_catalog_writes": 0,
+    "pricing_writes": 0,
+    "storage_or_pointer_writes": 0,
+    "vault_writes": 0,
+    "publication_or_deployment": false
+  }
+}

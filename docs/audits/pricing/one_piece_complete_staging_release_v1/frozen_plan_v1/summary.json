@@ -1,0 +1,45 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_RELEASE_PLAN_V1",
+  "recorded_at": "2026-08-15T06:29:38.837Z",
+  "status": "frozen_offline_plan_passed",
+  "repository": {
+    "commit_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+  "release_payload_fingerprint_sha256": "890b5d0c3a3a2f9d842e280baec1323b3d780d78565c40ebd10dba04e78787fc",
+  "aggregate_counts": {
+    "warehouse_source_groups": 84,
+    "materialized_source_groups": 83,
+    "source_products": 7261,
+    "exact_single_card_candidates": 6852,
+    "numbered_cards": 6627,
+    "don_cards": 225,
+    "sealed_product_candidates": 403,
+    "ambiguous_quarantined": 6,
+    "future_or_presale_holds": 82,
+    "source_price_lanes": 7053
+  },
+  "empty_source_group_policy": {
+    "positive_row_batches_only": true,
+    "warehouse_group_count": 84,
+    "materialized_group_count": 83,
+    "empty_group_count": 1,
+    "empty_groups_are_source_coverage_diagnostics_not_missing_products": true
+  },
+  "findings": [],
+  "boundaries": {
+    "durable_service_only": true,
+    "canonical_promotion": false,
+    "sealed_promotion": false,
+    "pricing_publication": false,
+    "app_or_public_visibility": false,
+    "storage_or_image_writes": false,
+    "image_pointer_writes": false,
+    "vault_writes": false,
+    "mtg_writes": false,
+    "one_piece_release_activation": false
+  },
+  "exact_next_gate": "read-only collision/schema/source preflight"
+}

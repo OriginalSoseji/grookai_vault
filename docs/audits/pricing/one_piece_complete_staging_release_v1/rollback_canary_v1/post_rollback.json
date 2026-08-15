@@ -1,0 +1,16 @@
+{
+  "collision_state": {
+    "batch_ids": 0,
+    "batch_payload_fingerprints": 0,
+    "staging_row_ids": 0,
+    "historical_source_product_overlaps": 21,
+    "existing_batch_rows": 1,
+    "existing_staging_rows": 21,
+    "evaluation": {
+      "valid": true,
+      "findings": []
+    }
+  },
+  "protected_snapshot_sha256": "15cd2bfb6562c8211a2e52b9383bd7f6d08249780dd9fb3927ed87006af5d668",
+  "findings": []
+}
