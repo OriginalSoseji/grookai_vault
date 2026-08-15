@@ -132,6 +132,8 @@ test("official image evidence proposes parent artwork only", async () => {
       true);
     assert.equal(row.parent_artwork_pointer_readiness.proposed_values.image_status,
       "exact");
+    assert.equal(row.parent_artwork_pointer_readiness.proposed_values.image_source,
+      "identity");
     assert.match(row.parent_artwork_pointer_readiness.proposed_values.image_path,
       /^warehouse-derived\/self-hosted-images-v1\/card_prints\/one-piece\/st01\//);
     assert.equal(row.child_image_policy.proposed_child_image_fields, null);

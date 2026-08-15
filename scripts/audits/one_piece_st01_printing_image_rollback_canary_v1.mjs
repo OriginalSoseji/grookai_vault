@@ -102,6 +102,17 @@ async function captureVisibility(client) {
   };
 }
 
+async function readImageConstraints(client) {
+  const rows = (await client.query(`select conname,
+    pg_get_constraintdef(oid) as definition from pg_constraint
+    where conrelid='public.card_prints'::regclass
+      and conname=any($1::text[]) order by conname`, [[
+    "card_prints_image_source_check",
+    "card_prints_image_status_check",
+  ]])).rows;
+  return Object.fromEntries(rows.map((row) => [row.conname, row.definition]));
+}
+
 async function readParentRows(client, parentIds) {
   return (await client.query(`select id::text, gv_id, image_source, image_path,
     image_url, image_alt_url, image_status, image_note, data_quality_flags
@@ -142,14 +153,14 @@ export async function captureOnePieceSt01PrintingImageStateV1(
     await client.query("begin transaction isolation level repeatable read read only");
     open = true;
     const scope = exactScope(plan);
-    const [parentRows, childRows, mappingRows, visibility, blocking] =
-      await Promise.all([
-        readParentRows(client, scope.parent_ids),
-        readChildRows(client, scope.parent_ids),
-        readMappingRows(client, scope),
-        captureVisibility(client),
-        client.query("select unnest(pg_blocking_pids(pg_backend_pid()))::integer as pid"),
-      ]);
+    const parentRows = await readParentRows(client, scope.parent_ids);
+    const childRows = await readChildRows(client, scope.parent_ids);
+    const mappingRows = await readMappingRows(client, scope);
+    const imageConstraints = await readImageConstraints(client);
+    const visibility = await captureVisibility(client);
+    const blocking = await client.query(
+      "select unnest(pg_blocking_pids(pg_backend_pid()))::integer as pid",
+    );
     const transactionReadOnly = (await client.query("show transaction_read_only"))
       .rows[0]?.transaction_read_only === "on";
     await client.query("rollback");
@@ -159,6 +170,7 @@ export async function captureOnePieceSt01PrintingImageStateV1(
       child_rows: childRows,
       external_printing_mapping_rows: mappingRows,
       ...visibility,
+      image_constraints: imageConstraints,
       blocking_pids: blocking.rows.map((row) => Number(row.pid)),
       transaction_read_only: transactionReadOnly,
     };
@@ -181,6 +193,14 @@ export function evaluateOnePieceSt01PrintingImageFreshPreflightV1({
   }
   if ((readback?.blocking_pids ?? []).length !== 0) {
     findings.push("preflight_blocked");
+  }
+  if (!readback?.image_constraints?.card_prints_image_source_check
+    ?.includes("'identity'::text")) {
+    findings.push("preflight_identity_image_source_not_allowed");
+  }
+  if (!readback?.image_constraints?.card_prints_image_status_check
+    ?.includes("'exact'::text")) {
+    findings.push("preflight_exact_image_status_not_allowed");
   }
   return [...new Set(findings)];
 }
@@ -259,20 +279,16 @@ async function insertPrintingMappings(client, plan) {
 
 async function transactionReadback(client, plan) {
   const scope = exactScope(plan);
-  const [parentRows, normalChildRows, mappingRows, foilChildRows, visibility] =
-    await Promise.all([
-      readParentRows(client, scope.parent_ids),
-      client.query(`select id::text, card_print_id::text, printing_gv_id,
-        finish_key, is_provisional, provenance_source, provenance_ref,
-        created_by, image_source, image_path, image_url, image_alt_url,
-        image_status, image_note from public.card_printings
-        where id=any($1::uuid[])
-        order by array_position($1::uuid[], id)`, [scope.child_ids])
-        .then((result) => result.rows),
-      readMappingRows(client, scope),
-      readChildRows(client, scope.foil_parent_ids),
-      captureVisibility(client),
-    ]);
+  const parentRows = await readParentRows(client, scope.parent_ids);
+  const normalChildRows = (await client.query(`select id::text,
+    card_print_id::text, printing_gv_id, finish_key, is_provisional,
+    provenance_source, provenance_ref, created_by, image_source, image_path,
+    image_url, image_alt_url, image_status, image_note
+    from public.card_printings where id=any($1::uuid[])
+    order by array_position($1::uuid[], id)`, [scope.child_ids])).rows;
+  const mappingRows = await readMappingRows(client, scope);
+  const foilChildRows = await readChildRows(client, scope.foil_parent_ids);
+  const visibility = await captureVisibility(client);
   return {
     parent_pointer_rows: parentRows,
     normal_child_rows: normalChildRows,

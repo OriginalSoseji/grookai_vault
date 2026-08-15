@@ -58,7 +58,7 @@ function buildPointerUpdate(row, liveParent) {
       data_quality_flags: liveParent.data_quality_flags,
     },
     proposed_values: {
-      image_source: proposed.image_source,
+      image_source: "identity",
       image_path: proposed.image_path,
       image_status: proposed.image_status,
       image_note: proposed.image_note,
@@ -316,6 +316,8 @@ export function validateOnePieceSt01PrintingImageMutationPlanV1(plan) {
       update.proposed_values?.data_quality_flags
         ?.exact_printing_children_deferred !== true,
     `pointer_flag_transition_mismatch:${update.card_number}`);
+    add(update.proposed_values?.image_source !== "identity",
+      `pointer_image_source_mismatch:${update.card_number}`);
     add(update.expected_before?.image_path !== null ||
       update.expected_before?.image_url !== null ||
       update.expected_before?.image_alt_url !== null,

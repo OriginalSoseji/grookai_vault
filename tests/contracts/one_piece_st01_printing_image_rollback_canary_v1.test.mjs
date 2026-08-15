@@ -23,6 +23,12 @@ function zeroState(value) {
   );
   state.blocking_pids = [];
   state.transaction_read_only = true;
+  state.image_constraints = {
+    card_prints_image_source_check:
+      "CHECK (image_source IS NULL OR image_source = 'identity'::text)",
+    card_prints_image_status_check:
+      "CHECK (image_status IS NULL OR image_status = 'exact'::text)",
+  };
   return state;
 }
 
@@ -56,6 +62,17 @@ test("fresh preflight accepts only the exact zero-residue baseline", async () =>
     plan: value,
     readback: state,
   }), ["post_rollback_residue:child_rows"]);
+});
+
+test("fresh preflight rejects an incompatible image vocabulary", async () => {
+  const value = await plan();
+  const state = zeroState(value);
+  state.image_constraints.card_prints_image_source_check =
+    "CHECK (image_source = 'tcgdex'::text)";
+  assert.ok(evaluateOnePieceSt01PrintingImageFreshPreflightV1({
+    plan: value,
+    readback: state,
+  }).includes("preflight_identity_image_source_not_allowed"));
 });
 
 test("independent verifier detects execution or later production drift", async () => {

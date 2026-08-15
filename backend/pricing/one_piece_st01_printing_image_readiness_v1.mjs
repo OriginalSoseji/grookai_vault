@@ -168,7 +168,7 @@ export function buildOnePieceSt01PrintingImageEvidenceV1({
         evidence_role: "exact_parent_artwork_identity",
         does_not_prove_physical_finish: true,
         proposed_values: {
-          image_source: "official_one_piece_card_game",
+          image_source: "identity",
           image_path: storage.target_storage_path,
           image_url: null,
           image_alt_url: null,

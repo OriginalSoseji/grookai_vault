@@ -75,7 +75,7 @@ test("parent pointer updates preserve identity and exact-child deferral", async 
     assert.equal(row.expected_before.image_url, null);
     assert.equal(row.expected_before.image_alt_url, null);
     assert.equal(row.proposed_values.image_source,
-      "official_one_piece_card_game");
+      "identity");
     assert.equal(row.proposed_values.image_status, "exact");
     assert.equal(row.proposed_values.data_quality_flags.image_pointer_deferred,
       false);
@@ -110,6 +110,8 @@ test("plan validation fails closed on scope, image, foil, or fingerprint drift",
   for (const mutate of [
     (copy) => copy.mutation_payload.parent_pointer_updates.pop(),
     (copy) => { copy.mutation_payload.normal_child_inserts[0].image_path = "x"; },
+    (copy) => { copy.mutation_payload.parent_pointer_updates[0]
+      .proposed_values.image_source = "official_one_piece_card_game"; },
     (copy) => { copy.mutation_payload.foil_taxonomy_blockers[0]
       .proposed_child_row = {}; },
     (copy) => { copy.boundaries.durable_database_writes = true; },
