@@ -78,9 +78,7 @@ async function baseline(client) {
     (select count(*) from public.sealed_product_pricing_lane_qualifications) as sealed_product_pricing_lane_qualifications,
     (select count(*) from public.sealed_product_releases) as sealed_product_releases,
     (select count(*) from public.sealed_product_release_members) as sealed_product_release_members,
-    (select count(*) from public.sealed_product_release_pointer) as sealed_product_release_pointer,
-    (select count(*) from public.tcgcsv_source_price_daily_observations) as tcgcsv_source_price_daily_observations,
-    (select count(*) from public.market_price_current_publication) as market_price_current_publication`))
+    (select count(*) from public.sealed_product_release_pointer) as sealed_product_release_pointer`))
     .rows[0]);
 }
 

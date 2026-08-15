@@ -92,6 +92,8 @@ test("pricing-lineage audit is statically read-only", () => {
   assert.doesNotMatch(source, /insert\s+into\s+public\./i);
   assert.doesNotMatch(source, /update\s+public\./i);
   assert.doesNotMatch(source, /delete\s+from\s+public\./i);
+  assert.doesNotMatch(source,
+    /count\(\*\)\s+from\s+public\.tcgcsv_source_price_daily_observations/i);
   assert.match(source, /default_transaction_read_only=on/i);
   assert.match(source, /repeatable read read only/i);
 });
