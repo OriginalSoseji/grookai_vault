@@ -1,0 +1,33 @@
+{
+  "version": "ONE_PIECE_COMPLETE_SEALED_CANDIDATE_CANARY_V1",
+  "recorded_at": "2026-08-15T14:55:00.024Z",
+  "status": "production_rollback_canary_passed",
+  "repository": {
+    "commit_sha": "736faa0b6ea1254cf64ed067cc72afb7702fb01b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+  "payload_fingerprint_sha256": "ff26c514511b9184d8ba91c793b40a249818c2bc5b3ca4778f6b253b6a27cbb2",
+  "preflight_fingerprint_sha256": "8a10f9a1e127ebabb345527a3f40427b37b9b28fbc39d6c1b21c02bbb84416d2",
+  "canary_fingerprint_sha256": "2889bcd450ea4465696af16f30217215fbef0cdb01fb16d4f587b2ce2cf88b02",
+  "sample_source_product_ids": [
+    288221,
+    450085,
+    450086,
+    457043,
+    484943,
+    485271,
+    493752,
+    620141,
+    536154,
+    690658
+  ],
+  "rolled_back": true,
+  "post_rollback_zero_residue": true,
+  "findings": [],
+  "boundaries": {
+    "committed": false,
+    "durable_database_writes": 0
+  }
+}
