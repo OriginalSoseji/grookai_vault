@@ -11,7 +11,7 @@ import {
   parseArgs as parseVerifierArgs,
 } from "../../scripts/audits/one_piece_st01_printing_image_post_rollback_v1.mjs";
 
-const planPath = "docs/audits/pricing/one_piece_st01_printing_image_mutation_plan_v1/frozen_offline_plan_v1/mutation_plan.json";
+const planPath = "docs/audits/pricing/one_piece_st01_printing_image_mutation_plan_v1/identity_source_frozen_plan_v1/mutation_plan.json";
 
 async function plan() {
   return JSON.parse(await fs.readFile(planPath, "utf8"));

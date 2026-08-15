@@ -26,8 +26,8 @@ const BRANCH = "agent/one-piece-ingestion-readiness-v1";
 export const CANARY_VERSION =
   "ONE_PIECE_ST01_PRINTING_IMAGE_ROLLBACK_CANARY_V1";
 export const PLAN_PATH = path.join(ROOT, "docs", "audits", "pricing",
-  "one_piece_st01_printing_image_mutation_plan_v1", "frozen_offline_plan_v1",
-  "mutation_plan.json");
+  "one_piece_st01_printing_image_mutation_plan_v1",
+  "identity_source_frozen_plan_v1", "mutation_plan.json");
 const DEFAULT_OUT = path.join(ROOT, "docs", "audits", "pricing",
   "one_piece_st01_printing_image_rollback_canary_v1", "production_rollback_v1");
 
