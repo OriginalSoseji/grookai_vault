@@ -8,7 +8,15 @@ export const revalidate = 300;
 
 export async function GET() {
   const origin = getSitemapOrigin();
-  const cardPageCount = await getPublicCardSitemapPageCount();
+  let cardPageCount = 1;
+  try {
+    cardPageCount = await getPublicCardSitemapPageCount();
+  } catch (error) {
+    console.error(
+      "[sitemap-index] Using the bounded card sitemap fallback after count lookup failure.",
+      error instanceof Error ? error.message : "unknown_error",
+    );
+  }
   const now = new Date().toISOString();
 
   return sitemapIndexResponse([
