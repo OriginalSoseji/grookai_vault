@@ -1035,6 +1035,12 @@ Recommended reading order for future maintainers:
       matching payload readback hash, independent read-only verification,
       hidden client visibility, and the separately gated pricing-lineage audit
 
+85. `PRICING_CHECKPOINT_87_ONE_PIECE_SEALED_PRICING_LINEAGE_READY.md`
+    - then read the production read-only 390-variant pricing reconciliation,
+      332 fresh exact release candidates, 4 stale, 38 null-market, 16
+      missing-observation holds, strict TCGPlayer marketPrice authority,
+      zero-write proof, and the rollback-only qualification insertion gate next
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
