@@ -1,0 +1,70 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-15T13:48:38.675Z",
+  "repository": {
+    "commit_sha": "207978891bc5e9da22f8521e7fab0fb150aa6d38",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5c39be2b0798a30d0c17c5e9ad46ad095bf8adaa956b68010975f26b72f937f6",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "preflight_fingerprint_sha256": "24d000d22f88f22804844a30581a7963ada2441cc3db5396d06575a008445736",
+  "sample": [
+    {
+      "role": "booster",
+      "set_code": "OP01",
+      "set_id": "441bd929-b669-5840-801a-786e602e6939",
+      "source_product_id": 453505,
+      "card_print_id": "b1357692-da65-53c4-8a5b-f893a20a1b53",
+      "gv_id": "GV-OP-TCGP-453505"
+    },
+    {
+      "role": "starter",
+      "set_code": "ST02",
+      "set_id": "aff0d54e-a703-595b-8294-64e42996b400",
+      "source_product_id": 288249,
+      "card_print_id": "6f74f74e-07b3-5740-bc2d-5f2366d83ef2",
+      "gv_id": "GV-OP-TCGP-288249"
+    },
+    {
+      "role": "extra_booster",
+      "set_code": "EB01",
+      "set_id": "85e040d2-22f0-539e-9e1e-82e79ee3ba83",
+      "source_product_id": 544523,
+      "card_print_id": "fe6112cf-f2ea-5465-9fda-47bb2cb9ff11",
+      "gv_id": "GV-OP-TCGP-544523"
+    },
+    {
+      "role": "premium_booster",
+      "set_code": "PRB01",
+      "set_id": "5aa7ece2-c1f8-5881-bb16-9b0816670d50",
+      "source_product_id": 586607,
+      "card_print_id": "57891362-1307-5acc-b921-babb8ebebcf5",
+      "gv_id": "GV-OP-TCGP-586607"
+    },
+    {
+      "role": "promotion",
+      "set_code": "P",
+      "set_id": "60055c1e-5c46-5c72-bf3c-2bc8d479c837",
+      "source_product_id": 450299,
+      "card_print_id": "9be99b1c-7c41-56fb-99a3-2253922d9b4e",
+      "gv_id": "GV-OP-TCGP-450299"
+    }
+  ],
+  "mode": "production_transaction_rollback_only",
+  "boundaries": {
+    "durable_database_writes": 0,
+    "transaction_rollback_required": true,
+    "updates": 0,
+    "deletes": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  }
+}

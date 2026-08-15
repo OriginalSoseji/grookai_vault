@@ -1,0 +1,45 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 2325,
+      "sha256": "3e0e4edd2bea3c60f4aa50f77bf0f1178f6dec4417257d36206d813c88297072"
+    },
+    {
+      "path": "protected_before.json",
+      "bytes": 3564040,
+      "sha256": "39477e67a5a532c7273ffbd5da7d4d1bb3ecc7121525a908540ef1e8c1361d0e"
+    },
+    {
+      "path": "transaction_proof.json",
+      "bytes": 6052,
+      "sha256": "da194b18b90c9fefe0c358aebdbe7da0893f4b25e73b5f35b64def0e4bfca042"
+    },
+    {
+      "path": "post_rollback_readback.json",
+      "bytes": 3564040,
+      "sha256": "39477e67a5a532c7273ffbd5da7d4d1bb3ecc7121525a908540ef1e8c1361d0e"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 9809,
+      "sha256": "2333885d30503fefae2013cbbad96575c379da7d69e792f9ab2c5235d588c87c"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 422,
+      "sha256": "d5f229e033f344773053064d1df29addb3472fa4fb7186d5e6dba4c141904d42"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
+      "sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_preflight_v1/production_read_only_v1/summary.json",
+      "sha256": "800c70a0e84077b708a79d1a739b66f163b42b10f9a5c7d313b2046b7222e25c"
+    }
+  ]
+}
