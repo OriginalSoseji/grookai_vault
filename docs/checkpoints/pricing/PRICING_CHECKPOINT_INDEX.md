@@ -968,6 +968,12 @@ Recommended reading order for future maintainers:
       exact `17 / 14 / 14` passing rollback proof, independent read-only
       verification, and the still-closed durable apply boundary
 
+74. `PRICING_CHECKPOINT_76_ONE_PIECE_ST01_PRINTING_IMAGE_DURABLE_APPLIED.md`
+    - then read the exact hidden `17 / 14 / 14` durable apply, complete-row
+      compare-and-set proof, writer and independent readbacks, zero findings,
+      preserved foil and child-image deferrals, and the catalog-wide
+      reconciliation gate that follows
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

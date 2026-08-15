@@ -1,0 +1,34 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_DURABLE_APPLY_V1",
+  "recorded_at": "2026-08-15T05:44:04.229Z",
+  "mode": "apply",
+  "repository": {
+    "commit_sha": "3e38c15b260dfc415f89f7051e4cab3fccead60b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "mutation_plan_sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4",
+  "apply_plan_sha256": "e7a1e9b2bfe4726b781f7b608214214704515e4bf1223a0c906083b176c8658d",
+  "mutation_plan_fingerprint_sha256": "52d48812803ede0db3a536f0a08346a12aa1461cef128ab5b55a0224f089e13f",
+  "mutation_payload_fingerprint_sha256": "1916b0279e007648b55244543a25530b631d4f69a0b4ad74333fb84ee87cb1ec",
+  "apply_plan_fingerprint_sha256": "4e8762052370315c75402f5dd7c42763dd1f6558efe44c2d6e2b35306139ec36",
+  "required_approval_message": "I approve the hidden durable One Piece ST-01 printing and image apply only: 17 exact parent image-pointer updates, 14 normal child card_printing inserts, and 14 exact TCGPlayer printing-mapping inserts, using apply-plan fingerprint 4e8762052370315c75402f5dd7c42763dd1f6558efe44c2d6e2b35306139ec36, mutation payload fingerprint 1916b0279e007648b55244543a25530b631d4f69a0b4ad74333fb84ee87cb1ec, and rollback proof 5981125e7746b174cef093274b70c1fbb301ddaf6b732eef40b3728fd489eddb. I do not approve foil child writes, child image pointers, Storage writes, DON!! writes, sealed writes, pricing writes, publication writes, Vault writes, app visibility, deletes, cleanup, or rows outside this exact ST-01 payload.",
+  "boundaries": {
+    "exact_parent_pointer_updates": 17,
+    "exact_normal_child_inserts": 14,
+    "exact_printing_mapping_inserts": 14,
+    "exact_total_updates": 17,
+    "exact_total_inserts": 28,
+    "delete_rows": 0,
+    "foil_child_writes": 0,
+    "child_image_pointer_writes": 0,
+    "storage_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false,
+    "release_status": "hidden"
+  }
+}
