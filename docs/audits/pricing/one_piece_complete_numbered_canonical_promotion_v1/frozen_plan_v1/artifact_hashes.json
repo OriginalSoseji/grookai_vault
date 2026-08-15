@@ -3,13 +3,13 @@
   "artifacts": [
     {
       "path": "promotion_plan.json.gz",
-      "bytes": 3244170,
-      "sha256": "8c37351abd6d32643bddb5172d7eb661ad474201a9ec96436434c0046e11fd1f"
+      "bytes": 3232194,
+      "sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084"
     },
     {
       "path": "summary.json",
-      "bytes": 1587,
-      "sha256": "cd352c039bd996df596666639ff05a639b2f9ae45a10057510546b7fd25041a9"
+      "bytes": 1662,
+      "sha256": "11c12c2d10de0ed8388d5aa75a90fc81db3e8dacd998671f14193d34634eb79d"
     },
     {
       "path": "set_rows.json",
@@ -27,9 +27,14 @@
       "sha256": "369cc05938a53dd2a45606d18a9840aa018e23dd33fe30fcc03cbc2d02abd474"
     },
     {
+      "path": "non_english_language_holds.jsonl",
+      "bytes": 4897,
+      "sha256": "2fde01ff36123c01000dc5c0e97eb371c2eb3bbdec7c5af538d1745e0ec56333"
+    },
+    {
       "path": "REPORT.md",
-      "bytes": 451,
-      "sha256": "fb49b89adb333b2e0b2c4d8199fbc54a23206233d5d339a8aa772157eb16a782"
+      "bytes": 493,
+      "sha256": "3c667aa72a7f22d92c5b5ad06ab9e9cf60cec4197c84e1b2bb1b7d270b8208b0"
     }
   ],
   "bound_inputs": [

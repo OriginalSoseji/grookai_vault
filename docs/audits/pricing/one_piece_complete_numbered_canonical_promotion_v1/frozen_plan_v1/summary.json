@@ -1,26 +1,28 @@
 {
   "version": "ONE_PIECE_COMPLETE_ENGLISH_NUMBERED_PARENT_PROMOTION_PLAN_V1",
-  "recorded_at": "2026-08-15T07:49:07.063Z",
+  "recorded_at": "2026-08-15T13:31:50.180Z",
   "status": "complete_hidden_numbered_promotion_plan_frozen_no_writes",
   "repository": {
-    "commit_sha": "72deafc0aca31299ed872fd00edc66d3d1c6e4d6",
+    "commit_sha": "87549499c11b248e4d80be1e6976d9e5b733ccc1",
     "branch": "agent/one-piece-ingestion-readiness-v1",
     "tracked_worktree_clean": true
   },
-  "plan_fingerprint_sha256": "253b16ea9032d44149923d88214aa84d68e7ec77b658e2a4e9e7d3f4ea7c1395",
-  "payload_fingerprint_sha256": "0e59db0c98454eecec0aefd366a38b4a42fe81ca0cae9173cf7f8e294e5ad358",
-  "logical_plan_sha256": "24b2cd9f78a6bf46edecea300e9679fb39563951137c2606ebbe344e3166d7f2",
-  "compressed_plan_sha256": "8c37351abd6d32643bddb5172d7eb661ad474201a9ec96436434c0046e11fd1f",
+  "plan_fingerprint_sha256": "5c39be2b0798a30d0c17c5e9ad46ad095bf8adaa956b68010975f26b72f937f6",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "logical_plan_sha256": "7ce6fcaf920d233ee709eeb2575a23717fb3b511a8737a10aac8b44135aee659",
+  "compressed_plan_sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084",
   "counts": {
     "source_numbered_products": 6547,
-    "authority_eligible_products": 6530,
+    "english_source_products": 6525,
+    "authority_eligible_products": 6508,
     "retained_existing_products": 17,
     "new_set_rows": 58,
-    "new_card_prints": 6513,
-    "new_identity_rows": 6513,
-    "new_source_evidence_rows": 6513,
-    "new_external_mappings": 6513,
-    "official_catalog_gap_holds": 17
+    "new_card_prints": 6491,
+    "new_identity_rows": 6491,
+    "new_source_evidence_rows": 6491,
+    "new_external_mappings": 6491,
+    "official_catalog_gap_holds": 17,
+    "non_english_language_holds": 22
   },
   "findings": [],
   "boundaries": {
