@@ -1,0 +1,30 @@
+{
+  "version": "ONE_PIECE_COMPLETE_DON_CANONICAL_APPLY_V1",
+  "recorded_at": "2026-08-15T14:34:08.382Z",
+  "status": "frozen_don_apply_plan_passed_no_writes",
+  "repository": {
+    "commit_sha": "aa806543b3af76f57500e7525eb32d1e357b001b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "apply_plan_fingerprint_sha256": "405ad42cfe276bf3c6a37bca3d1a3c62ac6aae99cb08961140110fa1d1d3228c",
+  "payload_fingerprint_sha256": "9aad9b82042c73a2220171309350fe351e1b7e0b886b825d9ecb70cf8f68a147",
+  "target_binding": {
+    "plan_fingerprint_sha256": "3adebfb80803c147bc83bad6887418593c221f9e1cf090291819817505833bba",
+    "payload_fingerprint_sha256": "9aad9b82042c73a2220171309350fe351e1b7e0b886b825d9ecb70cf8f68a147",
+    "preflight_fingerprint_sha256": "e5213391f4afa0be085b6aed365629f2a56380aadbe4632fd174683800fcee8e",
+    "canary_fingerprint_sha256": "e2bfa38a5fd1cfe817780bf6e30cb9c44e79cf4dd12c62baac7cba7ed7d10309",
+    "counts": {
+      "sets": 1,
+      "card_prints": 222,
+      "card_print_identity": 222,
+      "card_print_identity_source_evidence": 222,
+      "external_mappings": 222
+    },
+    "set_ids_sha256": "ae07559ee89de2dbfe0c17d7cc71bb8bbc8382c689f2d6cc89e87f2d51865e44",
+    "card_print_ids_sha256": "f38aaf5d3c16ed45bf8523c6cf4c1af04a234a86145e59bfb3fe06bbfcb40e89",
+    "source_product_ids_sha256": "32c6d7bbe456a9ca1cdd5e6c0c5449b8e3a919a3126910d93cfcbcfe0158d6f0"
+  },
+  "findings": [],
+  "exact_next_gate": "durable hidden insert-only DON apply"
+}
