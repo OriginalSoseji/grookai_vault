@@ -974,6 +974,11 @@ Recommended reading order for future maintainers:
       preserved foil and child-image deferrals, and the catalog-wide
       reconciliation gate that follows
 
+75. `PRICING_CHECKPOINT_77_ONE_PIECE_COMPLETE_SOURCE_MANIFEST_FROZEN.md`
+    - then read the refreshed 84-group, 7,261-product source inventory,
+      complete source preservation proof, current single/DON/sealed/quarantine
+      counts, immutable manifest hashes, and service-only full-staging gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
