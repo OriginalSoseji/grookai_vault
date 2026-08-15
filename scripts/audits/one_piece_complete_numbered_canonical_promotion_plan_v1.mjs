@@ -144,6 +144,11 @@ async function main() {
     .map(JSON.stringify).join("\n")}\n`, "utf8");
   await fs.writeFile(path.join(args.outDir, "authority_holds.jsonl"), holdsBody);
   artifacts["authority_holds.jsonl"] = holdsBody;
+  const languageHoldsBody = Buffer.from(`${plan.payload.non_english_language_holds
+    .map(JSON.stringify).join("\n")}\n`, "utf8");
+  await fs.writeFile(path.join(args.outDir, "non_english_language_holds.jsonl"),
+    languageHoldsBody);
+  artifacts["non_english_language_holds.jsonl"] = languageHoldsBody;
   const report = `# Complete One Piece Numbered Canonical Promotion Plan V1\n\n` +
     `- Status: \`${summary.status}\`\n` +
     `- Producer commit: \`${repository.commit_sha}\`\n` +
@@ -154,6 +159,7 @@ async function main() {
     `${plan.counts.new_identity_rows} / ${plan.counts.new_source_evidence_rows} / ` +
     `${plan.counts.new_external_mappings}\`\n` +
     `- Official catalog gap holds: \`${plan.counts.official_catalog_gap_holds}\`\n` +
+    `- Non-English source-language holds: \`${plan.counts.non_english_language_holds}\`\n` +
     `- Database/Storage/image/pricing/publication/Vault writes: \`0\`\n`;
   await fs.writeFile(path.join(args.outDir, "REPORT.md"), report, "utf8");
   artifacts["REPORT.md"] = Buffer.from(report, "utf8");
@@ -182,4 +188,3 @@ if (invoked === fileURLToPath(import.meta.url)) {
 }
 
 export { PATHS, parseArgs };
-

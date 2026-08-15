@@ -11,10 +11,49 @@ import {
   expectedOnePieceCompleteNumberedStagingRowsV1,
   summarizeOnePieceCompleteNumberedStagingV1,
 } from "../../backend/pricing/one_piece_complete_numbered_canonical_preflight_v1.mjs";
+import {
+  buildOnePieceCompleteNumberedPromotionPlanV1,
+} from "../../backend/pricing/one_piece_complete_numbered_canonical_promotion_v1.mjs";
+import { sha256 } from
+  "../../backend/pricing/one_piece_canonical_import_staging_v1.mjs";
 
-const plan = JSON.parse(gunzipSync(fs.readFileSync(
-  "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
-)).toString("utf8"));
+function jsonl(buffer, compressed = false) {
+  const body = compressed ? gunzipSync(buffer).toString("utf8") :
+    buffer.toString("utf8");
+  return body.trim().split(/\r?\n/).map(JSON.parse);
+}
+
+const fixturePaths = {
+  authoritySummary: "docs/audits/pricing/one_piece_complete_official_catalog_authority_v1/official_english_v1/summary.json",
+  bindings: "docs/audits/pricing/one_piece_complete_official_catalog_authority_v1/official_english_v1/numbered_product_bindings.jsonl.gz",
+  seriesSources: "docs/audits/pricing/one_piece_complete_official_catalog_authority_v1/official_english_v1/series_sources.json",
+  reconciliationSummary: "docs/audits/pricing/one_piece_complete_canonical_reconciliation_v1/frozen_reconciliation_v1/summary.json",
+  manifest: "docs/audits/pricing/one_piece_canonical_catalog_readiness_v1/current_complete_source_2026-08-14_v1/source_product_manifest.jsonl.gz",
+  existingSt01Plan: "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/frozen_plan_v1/plan.json",
+};
+const fixtureBodies = Object.fromEntries(Object.entries(fixturePaths)
+  .map(([key, file]) => [key, fs.readFileSync(file)]));
+const plan = buildOnePieceCompleteNumberedPromotionPlanV1({
+  repository: {
+    commit_sha: "a".repeat(40),
+    branch: "agent/one-piece-ingestion-readiness-v1",
+    tracked_worktree_clean: true,
+  },
+  inputHashes: {
+    authority_summary_sha256: sha256(fixtureBodies.authoritySummary),
+    numbered_bindings_gzip_sha256: sha256(fixtureBodies.bindings),
+    official_series_sources_sha256: sha256(fixtureBodies.seriesSources),
+    reconciliation_summary_sha256: sha256(fixtureBodies.reconciliationSummary),
+    source_manifest_gzip_sha256: sha256(fixtureBodies.manifest),
+    existing_st01_plan_sha256: sha256(fixtureBodies.existingSt01Plan),
+  },
+  authoritySummary: JSON.parse(fixtureBodies.authoritySummary),
+  bindings: jsonl(fixtureBodies.bindings, true),
+  seriesSources: JSON.parse(fixtureBodies.seriesSources),
+  reconciliationSummary: JSON.parse(fixtureBodies.reconciliationSummary),
+  manifestRows: jsonl(fixtureBodies.manifest, true),
+  existingSt01Plan: JSON.parse(fixtureBodies.existingSt01Plan),
+});
 
 function cleanSnapshot() {
   return {
@@ -68,7 +107,7 @@ test("staging, retained rows, collisions, visibility, and baseline drift fail cl
     ["collision:card_print_ids", (value) => { value.collisions.card_print_ids = 1; }],
     ["foundation_visibility_open:authenticated",
       (value) => { value.foundation.authenticated_visible = true; }],
-    ["protected_st01_baseline_mismatch", (value) => { value.baseline.card_prints = 30; }],
+    ["protected_st01_baseline_mismatch", (value) => { value.baseline.card_prints = 16; }],
   ]) {
     const snapshot = cleanSnapshot();
     mutate(snapshot);
@@ -83,7 +122,7 @@ test("staging summary is stable and binds all evidence hashes", () => {
   const first = summarizeOnePieceCompleteNumberedStagingV1(rows);
   const second = summarizeOnePieceCompleteNumberedStagingV1([...rows].reverse());
   assert.deepEqual(first, second);
-  assert.equal(first.row_count, 6513);
+  assert.equal(first.row_count, 6491);
 });
 
 test("preflight runner writes its plan before opening a read-only transaction", () => {

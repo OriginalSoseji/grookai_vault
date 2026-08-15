@@ -10,7 +10,7 @@ export const ONE_PIECE_COMPLETE_NUMBERED_PREFLIGHT_VERSION =
   "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_PREFLIGHT_V1";
 export const ONE_PIECE_COMPLETE_NUMBERED_BASELINE = Object.freeze({
   sets: 1,
-  card_prints: 31,
+  card_prints: 17,
   card_print_identity: 17,
   card_print_identity_source_evidence: 17,
   external_mappings: 17,

@@ -24,14 +24,16 @@ export const ONE_PIECE_COMPLETE_NUMBERED_IDENTITY_KEY_VERSION =
   "ONE_PIECE_ENG_PRODUCT_PARENT_IDENTITY_V1";
 export const ONE_PIECE_COMPLETE_NUMBERED_EXPECTED = Object.freeze({
   source_numbered_products: 6547,
-  authority_eligible_products: 6530,
+  english_source_products: 6525,
+  authority_eligible_products: 6508,
   retained_existing_products: 17,
   new_set_rows: 58,
-  new_card_prints: 6513,
-  new_identity_rows: 6513,
-  new_source_evidence_rows: 6513,
-  new_external_mappings: 6513,
+  new_card_prints: 6491,
+  new_identity_rows: 6491,
+  new_source_evidence_rows: 6491,
+  new_external_mappings: 6491,
   official_catalog_gap_holds: 17,
+  non_english_language_holds: 22,
 });
 export const ONE_PIECE_COMPLETE_NUMBERED_PINNED_INPUTS = Object.freeze({
   authority_summary_sha256:
@@ -395,12 +397,18 @@ export function buildOnePieceCompleteNumberedPromotionPlanV1(input) {
 
   const bindings = structuredClone(input.bindings ?? []).sort((left, right) =>
     Number(left.source_product_id) - Number(right.source_product_id));
-  const eligible = bindings.filter((row) => row.canonical_promotion_eligible);
-  const retainedBindings = eligible.filter((row) => row.existing_canonical);
-  const newBindings = eligible.filter((row) => !row.existing_canonical);
-  const holds = bindings.filter((row) => !row.canonical_promotion_eligible);
   const manifestByProduct = new Map((input.manifestRows ?? []).map((row) =>
     [Number(row.source_product_id), row]));
+  const languageHolds = bindings.filter((row) =>
+    manifestByProduct.get(Number(row.source_product_id))?.language?.normalized !==
+      "en");
+  const englishBindings = bindings.filter((row) =>
+    manifestByProduct.get(Number(row.source_product_id))?.language?.normalized ===
+      "en");
+  const eligible = englishBindings.filter((row) => row.canonical_promotion_eligible);
+  const retainedBindings = eligible.filter((row) => row.existing_canonical);
+  const newBindings = eligible.filter((row) => !row.existing_canonical);
+  const holds = englishBindings.filter((row) => !row.canonical_promotion_eligible);
   const numberedCards = newBindings.map((binding) => {
     const manifestRow = manifestByProduct.get(Number(binding.source_product_id));
     if (!manifestRow || manifestRow.classification !== "exact_single_card_candidate" ||
@@ -421,15 +429,28 @@ export function buildOnePieceCompleteNumberedPromotionPlanV1(input) {
     official_authority_status: row.official_authority_status,
     action: "hold_outside_canonical_apply",
   })).sort((left, right) => left.source_product_id - right.source_product_id);
+  const nonEnglishLanguageHolds = languageHolds.map((row) => {
+    const manifestRow = manifestByProduct.get(Number(row.source_product_id));
+    return {
+      source_product_id: Number(row.source_product_id),
+      source_product_name: row.source_product_name,
+      card_number: row.card_number,
+      set_code: row.set_code,
+      language_key: manifestRow?.language?.normalized ?? null,
+      action: "hold_outside_english_canonical_apply",
+    };
+  }).sort((left, right) => left.source_product_id - right.source_product_id);
 
   const payload = {
     set_rows: setRows,
     numbered_cards: numberedCards,
     retained_existing_rows: retained,
     authority_holds: authorityHolds,
+    non_english_language_holds: nonEnglishLanguageHolds,
   };
   const counts = {
     source_numbered_products: bindings.length,
+    english_source_products: englishBindings.length,
     authority_eligible_products: eligible.length,
     retained_existing_products: retained.length,
     new_set_rows: setRows.length,
@@ -438,6 +459,7 @@ export function buildOnePieceCompleteNumberedPromotionPlanV1(input) {
     new_source_evidence_rows: numberedCards.length,
     new_external_mappings: numberedCards.length,
     official_catalog_gap_holds: authorityHolds.length,
+    non_english_language_holds: nonEnglishLanguageHolds.length,
   };
   const core = {
     version: ONE_PIECE_COMPLETE_NUMBERED_PROMOTION_VERSION,
@@ -495,10 +517,12 @@ export function validateOnePieceCompleteNumberedPromotionPlanV1(plan) {
   const rows = plan?.payload?.numbered_cards ?? [];
   const retained = plan?.payload?.retained_existing_rows ?? [];
   const holds = plan?.payload?.authority_holds ?? [];
+  const languageHolds = plan?.payload?.non_english_language_holds ?? [];
   add(sets.length !== 58, "set_count_mismatch");
-  add(rows.length !== 6513, "new_card_count_mismatch");
+  add(rows.length !== 6491, "new_card_count_mismatch");
   add(retained.length !== 17, "retained_count_mismatch");
   add(holds.length !== 17, "hold_count_mismatch");
+  add(languageHolds.length !== 22, "language_hold_count_mismatch");
   const setIds = new Set(sets.map((row) => row.id));
   const setCodes = new Set(sets.map((row) => row.code));
   add(setCodes.has("ST01") || setIds.has(ONE_PIECE_ST01_SET_ID),
@@ -576,8 +600,14 @@ export function validateOnePieceCompleteNumberedPromotionPlanV1(plan) {
     "retained_product_reinserted");
   add(holds.some((row) => newProducts.has(Number(row.source_product_id))),
     "held_product_in_payload");
+  add(languageHolds.some((row) =>
+    newProducts.has(Number(row.source_product_id))),
+  "language_held_product_in_payload");
+  add(languageHolds.some((row) => row.language_key === "en"),
+    "english_product_in_language_holds");
   add(new Set([...newProducts, ...retained.map((row) =>
     Number(row.source_product_id)), ...holds.map((row) =>
+    Number(row.source_product_id)), ...languageHolds.map((row) =>
     Number(row.source_product_id))]).size !== 6547,
   "source_product_accounting_mismatch");
   return { valid: findings.length === 0, findings: [...new Set(findings)] };
@@ -586,9 +616,9 @@ export function validateOnePieceCompleteNumberedPromotionPlanV1(plan) {
 export function expectedOnePieceCompleteNumberedAttributableWritesV1() {
   return {
     sets: 58,
-    card_prints: 6513,
-    card_print_identity: 6513,
-    card_print_identity_source_evidence: 6513,
-    external_mappings: 6513,
+    card_prints: 6491,
+    card_print_identity: 6491,
+    card_print_identity_source_evidence: 6491,
+    external_mappings: 6491,
   };
 }

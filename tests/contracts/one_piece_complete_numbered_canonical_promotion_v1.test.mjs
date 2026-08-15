@@ -63,9 +63,10 @@ test("complete promotion plan accounts for every current numbered product", () =
   const plan = fixture();
   assert.deepEqual(plan.counts, ONE_PIECE_COMPLETE_NUMBERED_EXPECTED);
   assert.equal(validateOnePieceCompleteNumberedPromotionPlanV1(plan).valid, true);
-  assert.equal(plan.payload.numbered_cards.length, 6513);
+  assert.equal(plan.payload.numbered_cards.length, 6491);
   assert.equal(plan.payload.retained_existing_rows.length, 17);
   assert.equal(plan.payload.authority_holds.length, 17);
+  assert.equal(plan.payload.non_english_language_holds.length, 22);
 });
 
 test("new parent identities remain product-specific without collapsing numbers", () => {
@@ -98,6 +99,8 @@ test("official holds, ST-01 rows, and images remain outside the write payload", 
     !newProducts.has(row.source_product_id)));
   assert.ok(plan.payload.authority_holds.every((row) =>
     !newProducts.has(row.source_product_id)));
+  assert.ok(plan.payload.non_english_language_holds.every((row) =>
+    !newProducts.has(row.source_product_id) && row.language_key !== "en"));
   assert.ok(plan.payload.numbered_cards.every((row) =>
     row.card_print.image_url === null && row.card_print.image_alt_url === null));
 });
@@ -137,10 +140,10 @@ test("pinned inputs and attributable write contract remain exact", () => {
   });
   assert.deepEqual(expectedOnePieceCompleteNumberedAttributableWritesV1(), {
     sets: 58,
-    card_prints: 6513,
-    card_print_identity: 6513,
-    card_print_identity_source_evidence: 6513,
-    external_mappings: 6513,
+    card_prints: 6491,
+    card_print_identity: 6491,
+    card_print_identity_source_evidence: 6491,
+    external_mappings: 6491,
   });
 });
 
