@@ -7,7 +7,12 @@ import {
   ONE_PIECE_COMPLETE_SEALED_EXPECTED,
   ONE_PIECE_COMPLETE_SEALED_PINNED_INPUTS,
   buildOnePieceCompleteSealedCandidatePlanV1,
+  buildOnePieceCompleteSealedApplyPlanV1,
+  evaluateOnePieceCompleteSealedCandidateReadbackV1,
+  evaluateOnePieceCompleteSealedCandidateWritesV1,
   expectedOnePieceCompleteSealedCandidateWritesV1,
+  selectOnePieceCompleteSealedCanaryV1,
+  validateOnePieceCompleteSealedApplyPlanV1,
   validateOnePieceCompleteSealedCandidatePlanV1,
 } from "../../backend/pricing/one_piece_complete_sealed_candidate_v1.mjs";
 import { sha256 } from
@@ -92,4 +97,49 @@ test("sealed plan pins the complete source release", () => {
     sealed_lane_sha256:
       "c2516e5396745c8b37ecc979b32c2045033656510479a60cc686be25259f54c4",
   });
+});
+
+test("ten-row canary spans product forms, Japanese, and future evidence", () => {
+  const rows = selectOnePieceCompleteSealedCanaryV1(fixture());
+  assert.equal(rows.length, 10);
+  assert.equal(new Set(rows.map((row) => row.source_product_id)).size, 10);
+  assert.ok(rows.some((row) => row.candidate_identity.language.normalized === "ja"));
+  assert.ok(rows.some((row) => row.candidate_identity.release.future_release));
+});
+
+test("candidate readback, write attribution, and apply scope remain exact", () => {
+  const plan = fixture();
+  assert.deepEqual(evaluateOnePieceCompleteSealedCandidateReadbackV1({
+    candidates: plan.payload.candidates, readback: plan.payload.candidates,
+  }), []);
+  assert.deepEqual(evaluateOnePieceCompleteSealedCandidateWritesV1([{
+    table_name: "sealed_product_candidates", inserted: 403, updated: 0,
+    deleted: 0, hot_updated: 0,
+  }]), []);
+  const preflight = { status: "production_read_only_preflight_passed",
+    plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
+    preflight_fingerprint_sha256: "b".repeat(64), findings: [] };
+  const canary = { status: "production_rollback_canary_passed",
+    plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
+    canary_fingerprint_sha256: "c".repeat(64), findings: [] };
+  const applyPlan = buildOnePieceCompleteSealedApplyPlanV1({
+    repository: { commit_sha: "a".repeat(40) }, candidatePlan: plan,
+    preflightSummary: preflight, canarySummary: canary,
+    proofHashes: { preflight: "d".repeat(64), canary: "e".repeat(64) },
+  });
+  assert.equal(validateOnePieceCompleteSealedApplyPlanV1(applyPlan, plan).valid,
+    true);
+  applyPlan.boundaries.variant_writes = 1;
+  assert.equal(validateOnePieceCompleteSealedApplyPlanV1(applyPlan, plan).valid,
+    false);
+});
+
+test("sealed gate runner is read-only before one guarded insert-only commit", () => {
+  const source = fs.readFileSync(
+    "scripts/audits/one_piece_complete_sealed_candidate_gate_v1.mjs", "utf8");
+  assert.match(source, /begin transaction isolation level repeatable read read only/);
+  assert.match(source, /pg_advisory_xact_lock/);
+  assert.equal(source.match(/client\.query\("commit"\)/g)?.length, 1);
+  assert.doesNotMatch(source,
+    /\bupdate\s+public\.|\bdelete\s+from\s+public\.|\btruncate\b/i);
 });

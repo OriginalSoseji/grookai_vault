@@ -215,3 +215,197 @@ export function validateOnePieceCompleteSealedCandidatePlanV1(plan) {
 export function expectedOnePieceCompleteSealedCandidateWritesV1() {
   return { sealed_product_candidates: 403 };
 }
+
+export const ONE_PIECE_COMPLETE_SEALED_TABLES = Object.freeze([
+  "sealed_product_families",
+  "sealed_product_variants",
+  "sealed_product_candidates",
+  "sealed_product_candidate_reviews",
+  "sealed_product_source_mappings",
+  "sealed_product_variant_evidence",
+  "sealed_product_pricing_lane_qualifications",
+  "sealed_product_releases",
+  "sealed_product_release_members",
+  "sealed_product_release_pointer",
+]);
+
+export const ONE_PIECE_COMPLETE_SEALED_PREFLIGHT_VERSION =
+  "ONE_PIECE_COMPLETE_SEALED_CANDIDATE_PREFLIGHT_V1";
+export const ONE_PIECE_COMPLETE_SEALED_APPLY_VERSION =
+  "ONE_PIECE_COMPLETE_SEALED_CANDIDATE_APPLY_V1";
+export const ONE_PIECE_COMPLETE_SEALED_CARD_BASELINE = Object.freeze({
+  sets: 60,
+  card_prints: 6730,
+  card_print_identity: 6730,
+  card_print_identity_source_evidence: 6730,
+  external_mappings: 6730,
+  card_printings: 14,
+  external_printing_mappings: 14,
+});
+export const ONE_PIECE_COMPLETE_SEALED_EMPTY_BASELINE = Object.freeze(
+  Object.fromEntries(ONE_PIECE_COMPLETE_SEALED_TABLES.map((table) => [table, 0])),
+);
+
+export function expectedOnePieceCompleteSealedStagingV1(plan) {
+  return plan.payload.candidates.map((row) => ({
+    source_product_id: row.source_product_id,
+    source_group_id: row.source_group_id,
+    record_class: "sealed_product_candidate",
+    single_card_kind: null,
+    language_key: row.candidate_identity.language.normalized,
+    promotion_state: "separate_sealed_catalog",
+    source_payload_hash: row.source_payload_hash,
+  }));
+}
+
+export function evaluateOnePieceCompleteSealedPreflightV1({ plan, snapshot }) {
+  const findings = validateOnePieceCompleteSealedCandidatePlanV1(plan).findings
+    .map((finding) => `plan:${finding}`);
+  const add = (condition, code) => { if (condition) findings.push(code); };
+  add(snapshot?.transaction_read_only !== true, "transaction_not_read_only");
+  add(snapshot?.release_status !== "hidden" ||
+    snapshot?.anon_visible !== false ||
+    snapshot?.authenticated_visible !== false ||
+    snapshot?.service_role_visible !== false, "one_piece_visibility_mismatch");
+  add(stableJson(snapshot?.card_baseline) !==
+    stableJson(ONE_PIECE_COMPLETE_SEALED_CARD_BASELINE),
+  "card_baseline_mismatch");
+  add(stableJson(snapshot?.sealed_baseline) !==
+    stableJson(ONE_PIECE_COMPLETE_SEALED_EMPTY_BASELINE),
+  "sealed_baseline_not_empty");
+  for (const table of ONE_PIECE_COMPLETE_SEALED_TABLES) {
+    const schema = snapshot?.schema?.[table];
+    add(schema?.present !== true || schema?.rls_enabled !== true ||
+      schema?.rls_forced !== true || schema?.anon_select !== false ||
+      schema?.authenticated_select !== false ||
+      schema?.service_select !== true || schema?.service_insert !== true,
+    `sealed_schema_security_mismatch:${table}`);
+  }
+  add(stableJson(snapshot?.staging_rows) !==
+    stableJson(expectedOnePieceCompleteSealedStagingV1(plan)),
+  "staging_readback_mismatch");
+  add(Object.values(snapshot?.collisions ?? {}).some((value) =>
+    Number(value) !== 0), "candidate_collision_detected");
+  add((snapshot?.blocking_pids ?? []).length !== 0, "blocking_session_detected");
+  return { valid: findings.length === 0, findings };
+}
+
+export function buildOnePieceCompleteSealedPreflightFingerprintV1({
+  plan,
+  snapshot,
+}) {
+  return sha256(stableJson({ version: ONE_PIECE_COMPLETE_SEALED_PREFLIGHT_VERSION,
+    plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
+    payload_fingerprint_sha256: plan.payload_fingerprint_sha256, snapshot }));
+}
+
+export function selectOnePieceCompleteSealedCanaryV1(plan) {
+  const rows = plan.payload.candidates;
+  const selected = [];
+  const take = (predicate) => {
+    const row = rows.find((candidate) =>
+      !selected.includes(candidate) && predicate(candidate));
+    if (row) selected.push(row);
+  };
+  for (const signal of ["starter_deck", "booster_pack", "booster_box",
+    "promotion_pack", "gift_collection", "premium_card_collection",
+    "double_pack", "special_don_set"]) {
+    take((row) => row.candidate_identity.sealed_signals.includes(signal));
+  }
+  take((row) => row.candidate_identity.language.normalized === "ja");
+  take((row) => row.candidate_identity.release.future_release === true);
+  if (selected.length !== 10) {
+    throw new Error("Unable to select ten sealed candidate canary rows");
+  }
+  return selected;
+}
+
+export function evaluateOnePieceCompleteSealedCandidateReadbackV1({
+  candidates,
+  readback,
+}) {
+  return stableJson(readback) === stableJson(candidates)
+    ? []
+    : ["candidate_readback_mismatch"];
+}
+
+export function evaluateOnePieceCompleteSealedCandidateWritesV1(rows, canary = false) {
+  const expected = [{ table_name: "sealed_product_candidates",
+    inserted: canary ? 10 : 403, updated: 0, deleted: 0, hot_updated: 0 }];
+  const actual = (rows ?? []).map((row) => ({ table_name: row.table_name,
+    inserted: Number(row.inserted), updated: Number(row.updated),
+    deleted: Number(row.deleted), hot_updated: Number(row.hot_updated) }));
+  return stableJson(actual) === stableJson(expected)
+    ? []
+    : ["attributable_writes_mismatch"];
+}
+
+export function buildOnePieceCompleteSealedApplyPlanV1({
+  repository,
+  candidatePlan,
+  preflightSummary,
+  canarySummary,
+  proofHashes,
+}) {
+  if (!validateOnePieceCompleteSealedCandidatePlanV1(candidatePlan).valid ||
+      preflightSummary?.status !== "production_read_only_preflight_passed" ||
+      preflightSummary?.plan_fingerprint_sha256 !==
+        candidatePlan.plan_fingerprint_sha256 ||
+      preflightSummary?.findings?.length !== 0 ||
+      canarySummary?.status !== "production_rollback_canary_passed" ||
+      canarySummary?.plan_fingerprint_sha256 !==
+        candidatePlan.plan_fingerprint_sha256 ||
+      canarySummary?.findings?.length !== 0) {
+    throw new Error("Sealed candidate apply proof chain is not eligible");
+  }
+  const rows = candidatePlan.payload.candidates;
+  const core = { version: ONE_PIECE_COMPLETE_SEALED_APPLY_VERSION,
+    repository, proof_hashes: proofHashes,
+    target_binding: {
+      plan_fingerprint_sha256: candidatePlan.plan_fingerprint_sha256,
+      payload_fingerprint_sha256: candidatePlan.payload_fingerprint_sha256,
+      preflight_fingerprint_sha256:
+        preflightSummary.preflight_fingerprint_sha256,
+      canary_fingerprint_sha256: canarySummary.canary_fingerprint_sha256,
+      candidate_rows: rows.length,
+      candidate_ids_sha256: sha256(stableJson(rows.map((row) => row.id))),
+      source_product_ids_sha256: sha256(stableJson(rows.map((row) =>
+        row.source_product_id))),
+    },
+    execution: { chunk_size: 100, lock_timeout: "5s",
+      statement_timeout: "300s",
+      advisory_lock_key: "one_piece_complete_sealed_candidate_apply_v1" },
+    boundaries: { candidate_insert_only: true, updates: 0, deletes: 0,
+      family_writes: 0, variant_writes: 0, review_writes: 0,
+      mapping_writes: 0, evidence_writes: 0, pricing_writes: 0,
+      release_writes: 0, release_pointer_writes: 0, card_writes: 0,
+      storage_writes: 0, publication_writes: 0,
+      app_visibility_enabled: false } };
+  return { ...core, apply_plan_fingerprint_sha256: sha256(stableJson(core)) };
+}
+
+export function validateOnePieceCompleteSealedApplyPlanV1(plan, candidatePlan) {
+  const findings = [];
+  const { apply_plan_fingerprint_sha256: ignored, ...core } = plan ?? {};
+  if (plan?.version !== ONE_PIECE_COMPLETE_SEALED_APPLY_VERSION) {
+    findings.push("version_mismatch");
+  }
+  if (plan?.apply_plan_fingerprint_sha256 !== sha256(stableJson(core))) {
+    findings.push("apply_plan_fingerprint_mismatch");
+  }
+  if (plan?.target_binding?.plan_fingerprint_sha256 !==
+      candidatePlan?.plan_fingerprint_sha256 ||
+      plan?.target_binding?.payload_fingerprint_sha256 !==
+      candidatePlan?.payload_fingerprint_sha256 ||
+      plan?.target_binding?.candidate_rows !== 403) {
+    findings.push("candidate_binding_mismatch");
+  }
+  if (plan?.boundaries?.candidate_insert_only !== true ||
+      plan?.boundaries?.app_visibility_enabled !== false ||
+      Object.entries(plan?.boundaries ?? {}).some(([key, value]) =>
+        !["candidate_insert_only", "app_visibility_enabled"].includes(key) &&
+        value !== 0)) {
+    findings.push("boundaries_mismatch");
+  }
+  return { valid: findings.length === 0, findings };
+}
