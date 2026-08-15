@@ -1022,6 +1022,13 @@ Recommended reading order for future maintainers:
       references, 84/84 available official Bandai images, zero promotion
       authority, and the human review export-validation gate that follows
 
+83. `PRICING_CHECKPOINT_85_ONE_PIECE_SEALED_AUTOMATED_APPLY_READY.md`
+    - then read the exact 403/403 online source proof, 390 current English
+      auto-resolutions, 13 scope holds, zero human-review residual, schema-safe
+      family repair, zero-collision production preflight, 12-form rollback
+      canary with zero residue, frozen 242/390/390/390/1,731 insert-only apply
+      plan, and the still-unexecuted durable writer gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

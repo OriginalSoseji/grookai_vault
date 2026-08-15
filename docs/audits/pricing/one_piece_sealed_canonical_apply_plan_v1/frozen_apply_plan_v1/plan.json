@@ -1,0 +1,58 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_APPLY_PLAN_V1",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "7d27cc16ed3ce6bd4b23c9cf2fe42b60d3b9c3e6",
+    "tracked_worktree_clean": true
+  },
+  "resolution_fingerprint_sha256": "f4232cbdd644b8b8b89a0b1be7fbf59507dc20f2b7f971282ac27d08615c841d",
+  "canonical_plan_sha256": "c4c4fa550ed38c16610599abb534cdc89ba4e3c3cae1d9a7e00cb13f5be7f59b",
+  "canonical_payload_fingerprint_sha256": "d70fc8b74ebd84ff8da19170e7ccc49d55ab362eb212c3438a3ee68050476e41",
+  "preflight_fingerprint_sha256": "b9e7db56f49b8213662e7c5013c1f4caece257caacf17ebda5e7db81d22e44c3",
+  "rollback_sample_fingerprint_sha256": "57a3f62dd22be933443c90ca4805c16ad04d90309ce5bb0886ec975b0fdc2590",
+  "source_gate_status": "online_evidence_resolution_passed_no_writes",
+  "preflight_status": "production_read_only_preflight_passed",
+  "rollback_canary_status": "production_rollback_canary_passed_zero_residue",
+  "mutation_contract": {
+    "operation": "single_transaction_insert_only",
+    "insert_order": [
+      "sealed_product_families",
+      "sealed_product_variants",
+      "sealed_product_candidate_reviews",
+      "sealed_product_source_mappings",
+      "sealed_product_variant_evidence"
+    ],
+    "expected_inserts": {
+      "sealed_product_families": 242,
+      "sealed_product_variants": 390,
+      "sealed_product_candidate_reviews": 390,
+      "sealed_product_source_mappings": 390,
+      "sealed_product_variant_evidence": 1731
+    },
+    "updates": 0,
+    "deletes": 0,
+    "candidate_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "mutation_contract_sha256": "259cef61e3efccbe5df168b0cb9bb654f36da148dead482a979113b4b2817c0d",
+  "execution_requirements": {
+    "exact_clean_commit_required": true,
+    "fresh_zero_collision_preflight_required": true,
+    "exact_candidate_lineage_required": true,
+    "transaction_local_exact_readback_required": true,
+    "exact_write_attribution_required": true,
+    "independent_post_commit_readback_required": true,
+    "hidden_release_status_required": true,
+    "failure_rolls_back_entire_transaction": true
+  },
+  "plan_only": true,
+  "database_writes": 0,
+  "apply_executed": false,
+  "apply_plan_fingerprint_sha256": "93189f92e9cfea5db9eabb22b1de0062938b29a4491204f8b81e88c14d81db10"
+}
