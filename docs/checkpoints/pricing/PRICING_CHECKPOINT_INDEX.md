@@ -945,6 +945,11 @@ Recommended reading order for future maintainers:
       plan, fresh zero-collision production preflight, independent post-apply
       verifier, exact authorization text, and the still-unexecuted durable gate
 
+70. `PRICING_CHECKPOINT_72_ONE_PIECE_ST01_DURABLE_APPLIED_VERIFIED.md`
+    - then read the authorized 1/17/17/17/17 production inserts, exact
+      transaction-local attribution, writer and independent durable readbacks,
+      preserved hidden visibility, and the separate printing/pointer audit next
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
