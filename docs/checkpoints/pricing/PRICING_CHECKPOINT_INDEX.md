@@ -940,6 +940,11 @@ Recommended reading order for future maintainers:
       preflight, exact rollback-only write attribution, reproduced zero-residue
       proof, and the still-closed durable card-promotion boundary
 
+69. `PRICING_CHECKPOINT_71_ONE_PIECE_ST01_DURABLE_APPLY_READY.md`
+    - then read the guarded insert-only writer, immutable 1/17/17/17/17 apply
+      plan, fresh zero-collision production preflight, independent post-apply
+      verifier, exact authorization text, and the still-unexecuted durable gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
