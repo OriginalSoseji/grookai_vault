@@ -20,10 +20,9 @@ export const ONE_PIECE_COMPLETE_NUMBERED_CANARY_WRITES = Object.freeze({
 });
 
 function compareText(left, right) {
-  return String(left).localeCompare(String(right), undefined, {
-    numeric: true,
-    sensitivity: "base",
-  });
+  const first = String(left);
+  const second = String(right);
+  return first < second ? -1 : first > second ? 1 : 0;
 }
 
 export function selectOnePieceCompleteNumberedCanaryV1(plan) {
