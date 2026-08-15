@@ -6,8 +6,14 @@ import { gunzipSync } from "node:zlib";
 import {
   ONE_PIECE_COMPLETE_NUMBERED_APPLY_PINNED_INPUTS,
   buildOnePieceCompleteNumberedApplyPlanV1,
+  evaluateOnePieceCompleteNumberedAttributableWritesV1,
+  evaluateOnePieceCompleteNumberedDurableReadbackV1,
+  expectedOnePieceCompleteNumberedDurableReadbackV1,
+  summarizeOnePieceCompleteNumberedDurableReadbackV1,
   validateOnePieceCompleteNumberedApplyPlanV1,
 } from "../../backend/pricing/one_piece_complete_numbered_canonical_apply_v1.mjs";
+import { parseArgs } from
+  "../../scripts/audits/one_piece_complete_numbered_canonical_apply_v1.mjs";
 
 function load(file, compressed = false) {
   const body = fs.readFileSync(file);
@@ -75,4 +81,53 @@ test("apply-plan generator is offline", () => {
     "utf8",
   );
   assert.doesNotMatch(source, /from ["']pg["']|dotenv|marketEvidenceDbUrl/);
+});
+
+test("durable readback and attribution require exact hidden payload", () => {
+  const { promotionPlan } = fixture();
+  const readback = expectedOnePieceCompleteNumberedDurableReadbackV1(
+    promotionPlan);
+  assert.deepEqual(evaluateOnePieceCompleteNumberedDurableReadbackV1({
+    promotionPlan, readback,
+  }), []);
+  const digest = summarizeOnePieceCompleteNumberedDurableReadbackV1(readback);
+  assert.equal(digest.card_rows.row_count, 6491);
+  readback.authenticated_visible = true;
+  assert.deepEqual(evaluateOnePieceCompleteNumberedDurableReadbackV1({
+    promotionPlan, readback,
+  }), ["durable_visibility_mismatch:authenticated_visible"]);
+  const writes = Object.entries({ sets: 58, card_prints: 6491,
+    card_print_identity: 6491, card_print_identity_source_evidence: 6491,
+    external_mappings: 6491 }).map(([table_name, inserted]) => ({
+    table_name, inserted, updated: 0, deleted: 0, hot_updated: 0,
+  }));
+  assert.deepEqual(evaluateOnePieceCompleteNumberedAttributableWritesV1(
+    writes), []);
+  writes[0].updated = 1;
+  assert.deepEqual(evaluateOnePieceCompleteNumberedAttributableWritesV1(
+    writes), ["attributable_writes_mismatch"]);
+});
+
+test("durable writer requires exact execution fingerprints", () => {
+  assert.throws(() => parseArgs([]), /--apply/);
+  assert.throws(() => parseArgs(["--apply"]), /expected-head-sha/);
+  const args = parseArgs([
+    "--apply",
+    `--expected-head-sha=${"a".repeat(40)}`,
+    `--expected-apply-plan-fingerprint=${"b".repeat(64)}`,
+    `--expected-payload-fingerprint=${"c".repeat(64)}`,
+  ]);
+  assert.equal(args.apply, true);
+});
+
+test("durable writer has one guarded commit and no destructive SQL", () => {
+  const source = fs.readFileSync(
+    "scripts/audits/one_piece_complete_numbered_canonical_apply_v1.mjs",
+    "utf8",
+  );
+  assert.equal(source.match(/client\.query\("commit"\)/g)?.length, 1);
+  assert.match(source, /pg_advisory_xact_lock/);
+  assert.match(source, /Fresh apply preflight failed/);
+  assert.doesNotMatch(source,
+    /\bupdate\s+public\.|\bdelete\s+from\s+public\.|\btruncate\b/i);
 });
