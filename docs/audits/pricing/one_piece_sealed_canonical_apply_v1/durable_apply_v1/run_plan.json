@@ -1,0 +1,34 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_DURABLE_APPLY_V1",
+  "recorded_at": "2026-08-15T18:57:32.933Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "0fea3b661f4ce94211901b6eb84ad59a39f79b29",
+    "tracked_worktree_clean": true
+  },
+  "mode": "apply",
+  "apply_plan_fingerprint_sha256": "93189f92e9cfea5db9eabb22b1de0062938b29a4491204f8b81e88c14d81db10",
+  "canonical_payload_fingerprint_sha256": "d70fc8b74ebd84ff8da19170e7ccc49d55ab362eb212c3438a3ee68050476e41",
+  "mutation_contract_sha256": "259cef61e3efccbe5df168b0cb9bb654f36da148dead482a979113b4b2817c0d",
+  "fresh_preflight_fingerprint_sha256": "b9e7db56f49b8213662e7c5013c1f4caece257caacf17ebda5e7db81d22e44c3",
+  "expected_inserts": {
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_candidate_reviews": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_variant_evidence": 1731
+  },
+  "boundaries": {
+    "transaction_insert_only": true,
+    "updates": 0,
+    "deletes": 0,
+    "candidate_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

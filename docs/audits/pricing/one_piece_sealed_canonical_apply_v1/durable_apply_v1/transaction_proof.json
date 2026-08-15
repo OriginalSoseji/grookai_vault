@@ -1,0 +1,125 @@
+{
+  "transaction": {
+    "started": true,
+    "committed": false
+  },
+  "prior_target_rows": 0,
+  "candidate_lineage": {
+    "expected": 390,
+    "found": 390,
+    "mismatches": []
+  },
+  "collisions": {
+    "family_ids": 0,
+    "family_keys": 0,
+    "family_fingerprints": 0,
+    "variant_ids": 0,
+    "variant_keys": 0,
+    "variant_fingerprints": 0,
+    "review_ids": 0,
+    "mapping_ids": 0,
+    "mapping_sources": 0,
+    "mapping_fingerprints": 0,
+    "evidence_ids": 0,
+    "evidence_fingerprints": 0
+  },
+  "baseline_before": {
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0,
+    "card_prints": 77882,
+    "card_printings": 90243,
+    "external_mappings": 90047,
+    "vault_item_instances": 3385,
+    "market_price_current_publication": 1,
+    "catalog_game_release_controls": 2
+  },
+  "visibility_before": {
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false
+  },
+  "readback": {
+    "counts": {
+      "families": 242,
+      "variants": 390,
+      "automated_reviews": 390,
+      "source_mappings": 390,
+      "variant_evidence": 1731
+    },
+    "expected_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "actual_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "exact": true
+  },
+  "baseline_after_transaction": {
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_variant_evidence": 1731,
+    "card_prints": 77882,
+    "card_printings": 90243,
+    "external_mappings": 90047,
+    "vault_item_instances": 3385,
+    "market_price_current_publication": 1,
+    "catalog_game_release_controls": 2
+  },
+  "visibility_after_transaction": {
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false
+  },
+  "write_attribution": [
+    {
+      "table_name": "sealed_product_candidate_reviews",
+      "inserted": 390,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_families",
+      "inserted": 242,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_source_mappings",
+      "inserted": 390,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variant_evidence",
+      "inserted": 1731,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variants",
+      "inserted": 390,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "boundaries": {
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "card_writes": 0,
+    "vault_writes": 0
+  },
+  "validation": {
+    "valid": true,
+    "findings": []
+  }
+}

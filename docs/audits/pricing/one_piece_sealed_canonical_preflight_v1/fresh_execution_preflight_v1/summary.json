@@ -1,0 +1,61 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T18:57:19.905Z",
+  "status": "production_read_only_preflight_passed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "0fea3b661f4ce94211901b6eb84ad59a39f79b29",
+    "tracked_worktree_clean": true
+  },
+  "evidence_producer_commit_sha": "05f804751fba6d5aeed71cc01d1bce15411c8dba",
+  "resolution_fingerprint_sha256": "f4232cbdd644b8b8b89a0b1be7fbf59507dc20f2b7f971282ac27d08615c841d",
+  "canonical_plan_sha256": "c4c4fa550ed38c16610599abb534cdc89ba4e3c3cae1d9a7e00cb13f5be7f59b",
+  "preflight_fingerprint_sha256": "b9e7db56f49b8213662e7c5013c1f4caece257caacf17ebda5e7db81d22e44c3",
+  "plan_counts": {
+    "families": 242,
+    "variants": 390,
+    "reviews": 390,
+    "source_mappings": 390,
+    "evidence": 1731
+  },
+  "candidate_lineage": {
+    "expected": 390,
+    "found": 390,
+    "mismatches": []
+  },
+  "collision_counts": {
+    "family_ids": 0,
+    "family_keys": 0,
+    "family_fingerprints": 0,
+    "variant_ids": 0,
+    "variant_keys": 0,
+    "variant_fingerprints": 0,
+    "review_ids": 0,
+    "mapping_ids": 0,
+    "mapping_sources": 0,
+    "mapping_fingerprints": 0,
+    "evidence_ids": 0,
+    "evidence_fingerprints": 0
+  },
+  "sealed_baseline": {
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0
+  },
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "boundaries": {
+    "transaction_read_only": true,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "apply_authority": false
+  },
+  "exact_next_gate": "rollback-only canonical sealed insertion canary bound to this preflight fingerprint"
+}

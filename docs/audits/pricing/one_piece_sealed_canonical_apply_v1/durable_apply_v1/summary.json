@@ -1,0 +1,111 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_DURABLE_APPLY_V1",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "0fea3b661f4ce94211901b6eb84ad59a39f79b29",
+    "tracked_worktree_clean": true
+  },
+  "apply_plan_fingerprint_sha256": "93189f92e9cfea5db9eabb22b1de0062938b29a4491204f8b81e88c14d81db10",
+  "canonical_payload_fingerprint_sha256": "d70fc8b74ebd84ff8da19170e7ccc49d55ab362eb212c3438a3ee68050476e41",
+  "mutation_contract_sha256": "259cef61e3efccbe5df168b0cb9bb654f36da148dead482a979113b4b2817c0d",
+  "fresh_preflight_fingerprint_sha256": "b9e7db56f49b8213662e7c5013c1f4caece257caacf17ebda5e7db81d22e44c3",
+  "committed": true,
+  "transaction_readback": {
+    "counts": {
+      "families": 242,
+      "variants": 390,
+      "automated_reviews": 390,
+      "source_mappings": 390,
+      "variant_evidence": 1731
+    },
+    "expected_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "actual_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "exact": true
+  },
+  "write_attribution": [
+    {
+      "table_name": "sealed_product_candidate_reviews",
+      "inserted": 390,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_families",
+      "inserted": 242,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_source_mappings",
+      "inserted": 390,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variant_evidence",
+      "inserted": 1731,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variants",
+      "inserted": 390,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "immediate_durable_readback": {
+    "counts": {
+      "families": 242,
+      "variants": 390,
+      "automated_reviews": 390,
+      "source_mappings": 390,
+      "variant_evidence": 1731
+    },
+    "expected_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "actual_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "exact": true
+  },
+  "recorded_at": "2026-08-15T18:57:40.824Z",
+  "status": "durable_apply_committed_and_exact_readback_passed",
+  "apply_execution_fingerprint_sha256": "a57f9f79c1337b517d5cf211eabf2d0ce37b4f78537bbd16ff82028deca77445",
+  "validation": {
+    "precommit": {
+      "valid": true,
+      "findings": []
+    },
+    "immediate_post_commit": {
+      "valid": true,
+      "findings": []
+    }
+  },
+  "visibility": {
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false
+  },
+  "candidate_lineage": {
+    "expected": 390,
+    "found": 390,
+    "mismatches": []
+  },
+  "boundaries": {
+    "transaction_insert_only": true,
+    "updates": 0,
+    "deletes": 0,
+    "candidate_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "exact_next_gate": "run the independent read-only verifier in a new process"
+}

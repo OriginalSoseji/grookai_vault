@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 484,
+      "sha256": "6f7a12b6654261e9af15652ca11b9d1e940168e077f4849ab28a803ff3bd9576"
+    },
+    {
+      "path": "production_readback.json",
+      "bytes": 1315,
+      "sha256": "a2e61794d9350528bdef6996f1537b4548d4723fccbb3b9e23aab8a2ce82263a"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2064,
+      "sha256": "c2ed0b29b7eed734f7fa3e0f46868d215084213d1224eafaac790b4b41510f20"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 245,
+      "sha256": "ce41270fdcac42e8cfc84a8471db5e896390e06d92b0fcbaa66a5e3be5a7f216"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_canonical_apply_v1/durable_apply_v1/summary.json",
+      "sha256": "62c25248b85fcc1e88eca8c89abee69e4f3b6b5d9b336de3625855ccb63a0606"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_online_evidence_resolution_v1/frozen_live_resolution_v1/canonical_plan.json.gz",
+      "sha256": "c4c4fa550ed38c16610599abb534cdc89ba4e3c3cae1d9a7e00cb13f5be7f59b"
+    }
+  ]
+}

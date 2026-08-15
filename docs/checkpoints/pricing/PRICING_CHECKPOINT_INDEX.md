@@ -1029,6 +1029,12 @@ Recommended reading order for future maintainers:
       canary with zero residue, frozen 242/390/390/390/1,731 insert-only apply
       plan, and the still-unexecuted durable writer gate
 
+84. `PRICING_CHECKPOINT_86_ONE_PIECE_SEALED_CANON_APPLIED.md`
+    - then read the frozen writer, fresh 390/390 lineage and zero-collision
+      preflight, exact 242/390/390/390/1,731 durable insert attribution,
+      matching payload readback hash, independent read-only verification,
+      hidden client visibility, and the separately gated pricing-lineage audit
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
