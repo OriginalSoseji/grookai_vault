@@ -48,6 +48,7 @@ export function normalizeOnePieceSealedOfficialTextV1(value) {
     .replace(/[‘’]/g, "'")
     .replace(/[“”]/g, '"')
     .toLowerCase()
+    .replace(/\bvol(?:ume)?\.?\s*(\d+)\b/g, "volume $1")
     .replace(/\bvol\.?\b/g, "volume")
     .replace(/\bstarter\s+deck\s+(\d+)\s*:/g, "starter deck $1 ")
     .replace(/\[(st)-?(\d{2})\]/g, (_, prefix, number) =>
@@ -243,7 +244,6 @@ export function bindOnePieceSealedReviewToOfficialV1(reviewRow, records) {
   const sourceNames = [
     reviewRow.proposed_family.proposed_canonical_name,
     reviewRow.source_product_name,
-    reviewRow.source_identity.group_name,
   ].filter(Boolean);
   const scored = records.map((record) => ({
     record,

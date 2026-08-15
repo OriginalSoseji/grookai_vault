@@ -152,6 +152,11 @@ test("normalization aligns starter deck numbers and official codes", () => {
       "Starter Deck 27: BLACK Marshall.D.Teach"),
     "starter deck 27 black marshall d teach",
   );
+  assert.equal(
+    normalizeOnePieceSealedOfficialTextV1(
+      "Premium Card Collection -Best Selection Vol.2-"),
+    "premium card collection best selection volume 2",
+  );
 });
 
 test("official binding supports a family candidate but never an exact variant", () => {
@@ -179,6 +184,38 @@ test("official binding supports a family candidate but never an exact variant", 
   assert.equal(binding.exact_variant_authority, false);
   assert.equal(binding.exact_source_mapping_authority, false);
   assert.equal(binding.promotion_eligible, false);
+});
+
+test("broad source groups cannot override the candidate product identity", () => {
+  const record = parseOnePieceOfficialProductDetailV1({
+    html: `<!doctype html><html lang="en"><body>
+      <div class="detailColStatus">
+        <h4>BOOSTER PACK -AWAKENING OF THE NEW ERA- [OP-05]</h4>
+      </div></body></html>`,
+    finalUrl: "https://en.onepiece-cardgame.com/products/boosters/op05/",
+    indexEntry: {
+      official_index_title: "BOOSTER PACK -AWAKENING OF THE NEW ERA- [OP-05]",
+      index_category: "boosters",
+      index_label: "BOOSTERS",
+      index_tag: null,
+      release_date_text: null,
+      msrp_text: null,
+      image_url: null,
+    },
+  });
+  const binding = bindOnePieceSealedReviewToOfficialV1({
+    candidate_id: "candidate-dp02",
+    source_product_id: 527060,
+    source_product_name: "Double Pack Set Volume 2",
+    source_identity: { group_name: "Awakening of the New Era" },
+    proposed_family: {
+      proposed_family_key: "double_pack_set_volume_2",
+      proposed_canonical_name: "Double Pack Set Volume 2",
+    },
+    proposed_variant: { proposed_package_form: "bundle" },
+  }, [record]);
+  assert.equal(binding.binding_status, "official_family_support_not_found");
+  assert.equal(binding.official_record, null);
 });
 
 test("authority result validates 403 review rows without promotion authority", () => {
