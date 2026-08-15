@@ -985,6 +985,12 @@ Recommended reading order for future maintainers:
       independent durable readbacks, hidden visibility, preserved holds and
       quarantines, and the bulk canonical reconciliation gate that follows
 
+77. `PRICING_CHECKPOINT_79_ONE_PIECE_COMPLETE_NUMBERED_CANON_APPLIED.md`
+    - then read the corrected English-only 6,491-parent promotion, explicit 22
+      Japanese and 17 authority holds, zero-collision preflight, five-family
+      rollback proof, exact 26,022-row insert-only apply, independent durable
+      readback, hidden visibility, and the separate DON and sealed gates next
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

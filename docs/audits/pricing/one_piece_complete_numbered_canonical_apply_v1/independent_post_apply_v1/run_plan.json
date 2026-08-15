@@ -1,0 +1,13 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_POST_APPLY_V1",
+  "recorded_at": "2026-08-15T14:10:36.250Z",
+  "repository": {
+    "commit_sha": "d60df4631b7d4a3a2d154c9f41b04ca3bfb71743",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "mode": "fresh_read_only_post_apply_verification",
+  "apply_plan_fingerprint_sha256": "06481bf852288a61e92d3ba1e1d66bcb315ffa5885060c4dd731f9559c8f22e9",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "database_writes": 0
+}
