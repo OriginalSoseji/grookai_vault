@@ -1016,6 +1016,12 @@ Recommended reading order for future maintainers:
       unsupported residual rows, corrected legacy/combined-page matching,
       zero exact variant authority, and the image-assisted review gate next
 
+82. `PRICING_CHECKPOINT_84_ONE_PIECE_SEALED_IMAGE_REVIEW_PACKET.md`
+    - then read the complete 403-row local image-review packet, 487-URL
+      availability reconciliation, 476 available and 11 explicitly unavailable
+      references, 84/84 available official Bandai images, zero promotion
+      authority, and the human review export-validation gate that follows
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

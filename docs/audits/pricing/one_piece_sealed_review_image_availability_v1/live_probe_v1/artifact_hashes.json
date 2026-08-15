@@ -1,0 +1,32 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "b52311d1f10901f319dfedd66302505242afa483",
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_image_review_packet_v1/frozen_review_packet_v1/summary.json",
+      "sha256": "45967ea425946d50ed828ab988ba1c4b7c0f7c66d6713f9c3dc44a045fcc55f7"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_image_review_packet_v1/frozen_review_packet_v1/review_items.jsonl.gz",
+      "sha256": "54d552cbd63f5b5ca50d629a70ef6bbe83bedbe07b2eac648102b00873a8417e"
+    }
+  ],
+  "artifacts": {
+    "image_probe_results.jsonl.gz": {
+      "sha256": "fe8794591125f2e33dba321dc5f46fa8896402922f505f1a0be161917743e9ed",
+      "bytes": 40006
+    },
+    "REPORT.md": {
+      "sha256": "31855b20e9744a60fcb14b31e01ea26f70f2b34305ede56769196545afc42e61",
+      "bytes": 547
+    },
+    "summary.json": {
+      "sha256": "a1b3a837d43f3e0cd543046d1f4a107e0dab574f682fbe53dcff9ac791c0fed5",
+      "bytes": 1412
+    },
+    "unavailable_images.json": {
+      "sha256": "ca6d75148aa59954cdab506de26e39f0ab29e97fc93a2f91065a5d9bec8420b6",
+      "bytes": 7571
+    }
+  }
+}
