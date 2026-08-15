@@ -34,11 +34,11 @@ function mapBy(rows, key) {
 export function expectedOnePieceSt01PrintingImageAttributionV1() {
   return [
     { table_name: "card_prints", inserted: 0, updated: 17, deleted: 0,
-      hot_updated: 0 },
+      hot_updated_min: 0, hot_updated_max: 17 },
     { table_name: "card_printings", inserted: 14, updated: 0, deleted: 0,
-      hot_updated: 0 },
+      hot_updated_min: 0, hot_updated_max: 0 },
     { table_name: "external_printing_mappings", inserted: 14, updated: 0,
-      deleted: 0, hot_updated: 0 },
+      deleted: 0, hot_updated_min: 0, hot_updated_max: 0 },
   ];
 }
 
@@ -348,7 +348,11 @@ export function evaluateOnePieceSt01PrintingImageAttributionV1(rows) {
   for (const expectedRow of expected) {
     const actual = normalized.find((row) =>
       row.table_name === expectedRow.table_name);
-    if (stableJson(actual) !== stableJson(expectedRow)) {
+    if (!actual || actual.inserted !== expectedRow.inserted ||
+        actual.updated !== expectedRow.updated ||
+        actual.deleted !== expectedRow.deleted ||
+        actual.hot_updated < expectedRow.hot_updated_min ||
+        actual.hot_updated > expectedRow.hot_updated_max) {
       findings.push(`attributable_write_mismatch:${expectedRow.table_name}`);
     }
   }

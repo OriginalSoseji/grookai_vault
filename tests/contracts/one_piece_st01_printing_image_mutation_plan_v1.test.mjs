@@ -126,17 +126,43 @@ test("plan validation fails closed on scope, image, foil, or fingerprint drift",
 
 test("rollback attribution accepts only the exact three-table footprint", () => {
   const expected = expectedOnePieceSt01PrintingImageAttributionV1();
-  assert.deepEqual(evaluateOnePieceSt01PrintingImageAttributionV1(expected), []);
-  const updateDrift = structuredClone(expected);
+  const actual = expected.map((row) => ({
+    table_name: row.table_name,
+    inserted: row.inserted,
+    updated: row.updated,
+    deleted: row.deleted,
+    hot_updated: row.table_name === "card_prints" ? 4 : 0,
+  }));
+  assert.deepEqual(evaluateOnePieceSt01PrintingImageAttributionV1(actual), []);
+  const updateDrift = structuredClone(actual);
   updateDrift[0].updated = 18;
   assert.deepEqual(evaluateOnePieceSt01PrintingImageAttributionV1(updateDrift),
     ["attributable_write_mismatch:card_prints"]);
-  const extra = [...expected, {
+  const hotDrift = structuredClone(actual);
+  hotDrift[0].hot_updated = 18;
+  assert.deepEqual(evaluateOnePieceSt01PrintingImageAttributionV1(hotDrift),
+    ["attributable_write_mismatch:card_prints"]);
+  const extra = [...actual, {
     table_name: "card_prices", inserted: 1, updated: 0, deleted: 0,
     hot_updated: 0,
   }];
   assert.deepEqual(evaluateOnePieceSt01PrintingImageAttributionV1(extra),
     ["unexpected_attributable_write:card_prices"]);
+});
+
+test("live identity-source rollback attribution replays with HOT updates", async () => {
+  const proof = JSON.parse(await fs.readFile(
+    "docs/audits/pricing/one_piece_st01_printing_image_rollback_canary_v1/production_rollback_identity_source_v1/transaction_proof.json",
+    "utf8",
+  ));
+  assert.equal(proof.mutation_counts.parent_pointer_updates, 17);
+  assert.equal(proof.mutation_counts.normal_child_inserts, 14);
+  assert.equal(proof.mutation_counts.external_printing_mapping_inserts, 14);
+  assert.equal(Number(proof.attributable_writes.find((row) =>
+    row.table_name === "card_prints")?.hot_updated), 4);
+  assert.deepEqual(evaluateOnePieceSt01PrintingImageAttributionV1(
+    proof.attributable_writes,
+  ), []);
 });
 
 test("transaction readback must match the exact proposed state", async () => {
