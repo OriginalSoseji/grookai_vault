@@ -1,0 +1,34 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "05f804751fba6d5aeed71cc01d1bce15411c8dba",
+  "bound_inputs": {
+    "candidate_plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+    "source_declaration_response_sha256": "19128e8b27c310930eec4fdaa98cc4211093b9331d736f10a870291837fa0c38"
+  },
+  "artifacts": {
+    "summary.json": {
+      "sha256": "94d4e7f0c3ce0e69133f7322a70b7fa4510a1490a9a075bef35371c8912ab4dd",
+      "bytes": 2258
+    },
+    "REPORT.md": {
+      "sha256": "cb8b6b241f070a9a1d863b496176f2715d83dfa4e37df561bffd64c2dba3deab",
+      "bytes": 1132
+    },
+    "source_group_snapshots.jsonl.gz": {
+      "sha256": "5ec71f165afd1cc4429f6688b5f4f0335eb8faaba7333467536a77613250ab45",
+      "bytes": 23674
+    },
+    "resolutions.jsonl.gz": {
+      "sha256": "d62f1cafa6f9250107534cfac75f5a88a071f61f58296a2b447670157642df08",
+      "bytes": 100167
+    },
+    "canonical_plan.json.gz": {
+      "sha256": "c4c4fa550ed38c16610599abb534cdc89ba4e3c3cae1d9a7e00cb13f5be7f59b",
+      "bytes": 491196
+    },
+    "held_or_residual.jsonl.gz": {
+      "sha256": "219be6db417e82c6c97f3da8b75ac7dc6863d62f056c9634b5863bee036220b9",
+      "bytes": 4578
+    }
+  }
+}
