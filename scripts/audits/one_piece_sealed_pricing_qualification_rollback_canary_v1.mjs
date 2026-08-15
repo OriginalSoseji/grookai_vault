@@ -212,10 +212,12 @@ async function readOnlyPreflight(connectionString, rows) {
     await client.query("begin transaction isolation level repeatable read read only");
     const transactionReadOnly = (await client.query("show transaction_read_only"))
       .rows[0].transaction_read_only === "on";
-    const [state, schema, lineage, collisions] = await Promise.all([
-      baseline(client), schemaProof(client), lineageProof(client, rows),
-      collisionProof(client, rows),
-    ]);
+    // A single pg client is intentionally sequential. Concurrent query calls on
+    // one connection are deprecated and provide no snapshot benefit.
+    const state = await baseline(client);
+    const schema = await schemaProof(client);
+    const lineage = await lineageProof(client, rows);
+    const collisions = await collisionProof(client, rows);
     await client.query("rollback");
     const evaluation = evaluatePreflight({ baseline: state, schema, lineage,
       collisions, expectedRows: rows.length });
