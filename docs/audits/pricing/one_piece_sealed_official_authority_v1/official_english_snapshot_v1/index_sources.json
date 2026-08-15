@@ -1,0 +1,176 @@
+{
+  "maximum_page": 17,
+  "unique_index_entries": 176,
+  "sources": [
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=1",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=1",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60484,
+      "sha256": "932cb9bd8e0a39d3ecbd30c1abf50456362d06ba6abc473674cf30539f216f62",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=2",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=2",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60689,
+      "sha256": "a6eadd043e12fa9dd41b8292aa6f24cb10f4fd579b375eff2d33abefda238973",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=3",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=3",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60984,
+      "sha256": "7f33bc0f6a2dfbc53876dfc1e62cdc8590aedc6e8cfc144326aa58a57ad6182c",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=4",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=4",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61295,
+      "sha256": "3d54cb86f9e7124510ee7b8b315dd9a8ccea499489ff724ebe661d942dc4a267",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=5",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=5",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61316,
+      "sha256": "bf46bc3ab68bc1b9c5a20d40ea0563362260257284832bee0df09d23a84ead70",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=6",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=6",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60924,
+      "sha256": "094abe1a74bdab2e55ef9a4e964154a2502e4f3d337ebd3c6c42f01f9fb020fb",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=7",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=7",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 62101,
+      "sha256": "162deef77fe49f4635c917543b389b2ee019734694b43c297ce6419ec8a8df1d",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=8",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=8",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61345,
+      "sha256": "c2dd9fc6595e5a4bc2e8a7c8843a429b037b4afe6fd14e8cba3d2e00e52c62ff",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=9",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=9",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61464,
+      "sha256": "b46cce8eada3646d8dec6a676d24720b7e3f5929904abc3cfbcdb9cfa3aecc42",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=10",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=10",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60716,
+      "sha256": "a3d008c4e791ea4de0a1f29251281d2eae0b9dd0131b9fdb8023d92c2308feac",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=11",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=11",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61450,
+      "sha256": "0704a88ca0a9ef381f4a3385cd81ff25f48bc4d7d7ba68bb3a781bf05f9fe8c7",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=12",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=12",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61608,
+      "sha256": "b35d401dccd5d866a16da82a20adb31ce7dd20676a8794676a5c9f2d61becb05",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=13",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=13",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 60946,
+      "sha256": "1dc87d554bc627dc374cdccc583e5178714701481f476b4b6f420c248893b09a",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=14",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=14",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61550,
+      "sha256": "4d8e1cc45cc9cadc38a227d1e9e74cc50cf4c753dae47131361d370c89719502",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=15",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=15",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61353,
+      "sha256": "477c75df6feb02458cdbdd7c23ffdd8aefb8120056b8b97d6a4fde905498fb3c",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=16",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=16",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 61683,
+      "sha256": "b8f5efc608173e48a3810b8e7d6f89d0857b56a6ca6a5e2e253dbfcf17e90835",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "requested_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=17",
+      "final_url": "https://en.onepiece-cardgame.com/products/?subcategory=all&page=17",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 47165,
+      "sha256": "5ba01d74a59bd694ad5568653286741fd2e398be0740765091f1d3465a618346",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    }
+  ]
+}

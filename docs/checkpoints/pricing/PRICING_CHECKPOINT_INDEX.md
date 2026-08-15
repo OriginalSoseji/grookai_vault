@@ -1010,6 +1010,12 @@ Recommended reading order for future maintainers:
       evidence blockers, zero promotion authority, and the official product
       authority plus residual human-review gate that follows
 
+81. `PRICING_CHECKPOINT_83_ONE_PIECE_SEALED_OFFICIAL_AUTHORITY.md`
+    - then read the 17-page official Bandai product crawl, 176 hashed official
+      records, 215 unique family-support candidates, one ambiguous and 187
+      unsupported residual rows, corrected legacy/combined-page matching,
+      zero exact variant authority, and the image-assisted review gate next
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

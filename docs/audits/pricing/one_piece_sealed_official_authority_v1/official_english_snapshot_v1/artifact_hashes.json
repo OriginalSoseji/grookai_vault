@@ -1,0 +1,44 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "3355ea8e1218135893d53723b4c387521febe7e9",
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_identity_review_v1/frozen_offline_review_v1/summary.json",
+      "sha256": "6bed5bf70b6f0e70b045b06733f1b74d1e8398420d2067ba3544fe644e4691d0"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_identity_review_v1/frozen_offline_review_v1/review_rows.jsonl.gz",
+      "sha256": "80783b567bcfd9ac2ecdc90188961e0fb7d3547f10ab9741f5709ea8df46527e"
+    }
+  ],
+  "artifacts": {
+    "candidate_official_bindings.jsonl.gz": {
+      "sha256": "b065fa046312dd01689d43862f850891480fea21204b88e34405f51eb38488f2",
+      "bytes": 64777
+    },
+    "detail_failures.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "index_sources.json": {
+      "sha256": "5d667b6dcc6a8838822ef3810d83a1d52e2959a277e65fecdd6bea6fbc398c81",
+      "bytes": 7741
+    },
+    "official_product_records.jsonl.gz": {
+      "sha256": "7a47818ea293858a797e3b88ce9e35e46b6dcb2b94ed3d87bae66fb8253fa6bd",
+      "bytes": 39462
+    },
+    "REPORT.md": {
+      "sha256": "95fff73c4aac31ad5ceed0e5515002b2d3913040ff3b6b1506064229cfa6e81f",
+      "bytes": 1067
+    },
+    "residual_review_queue.jsonl.gz": {
+      "sha256": "e94daf4f46f4ac9167bdb22d233031b80a3ecbedf2fc7cfc504a47b3a39b1456",
+      "bytes": 14731
+    },
+    "summary.json": {
+      "sha256": "2413adde367d3409d0af5512bfd6888c46f996b0b7e435ec87bf83a07297c69f",
+      "bytes": 1386
+    }
+  }
+}
