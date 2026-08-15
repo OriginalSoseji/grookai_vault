@@ -176,7 +176,7 @@ async function visibility(client) {
 
 async function stagingRows(client, plan) {
   const ids = plan.payload.candidates.map((row) => row.source_product_id);
-  return (await client.query(`select source_product_id::bigint,
+  return (await client.query(`select distinct source_product_id::bigint,
     source_group_id::bigint,record_class,single_card_kind,language_key,
     promotion_state,payload->>'source_payload_hash' as source_payload_hash
     from public.one_piece_canonical_import_rows

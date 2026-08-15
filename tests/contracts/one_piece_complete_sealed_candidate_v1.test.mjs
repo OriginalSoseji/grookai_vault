@@ -8,6 +8,7 @@ import {
   ONE_PIECE_COMPLETE_SEALED_PINNED_INPUTS,
   buildOnePieceCompleteSealedCandidatePlanV1,
   buildOnePieceCompleteSealedApplyPlanV1,
+  evaluateOnePieceCompleteSealedPreflightV1,
   evaluateOnePieceCompleteSealedCandidateReadbackV1,
   evaluateOnePieceCompleteSealedCandidateWritesV1,
   expectedOnePieceCompleteSealedCandidateWritesV1,
@@ -142,4 +143,40 @@ test("sealed gate runner is read-only before one guarded insert-only commit", ()
   assert.equal(source.match(/client\.query\("commit"\)/g)?.length, 1);
   assert.doesNotMatch(source,
     /\bupdate\s+public\.|\bdelete\s+from\s+public\.|\btruncate\b/i);
+  assert.match(source, /select distinct source_product_id/);
+});
+
+test("release pointer remains service-read-only while candidate tables allow insert", () => {
+  const plan = fixture();
+  const schema = Object.fromEntries([
+    "sealed_product_families", "sealed_product_variants",
+    "sealed_product_candidates", "sealed_product_candidate_reviews",
+    "sealed_product_source_mappings", "sealed_product_variant_evidence",
+    "sealed_product_pricing_lane_qualifications", "sealed_product_releases",
+    "sealed_product_release_members", "sealed_product_release_pointer",
+  ].map((table) => [table, { present: true, rls_enabled: true,
+    rls_forced: true, anon_select: false, authenticated_select: false,
+    service_select: true, service_insert: table !==
+      "sealed_product_release_pointer" }]));
+  const empty = Object.fromEntries(Object.keys(schema).map((key) => [key, 0]));
+  const snapshot = { transaction_read_only: true, release_status: "hidden",
+    anon_visible: false, authenticated_visible: false, service_role_visible: false,
+    card_baseline: { sets: 60, card_prints: 6730,
+      card_print_identity: 6730, card_print_identity_source_evidence: 6730,
+      external_mappings: 6730, card_printings: 14,
+      external_printing_mappings: 14 }, sealed_baseline: empty, schema,
+    staging_rows: plan.payload.candidates.map((row) => ({
+      source_product_id: row.source_product_id,
+      source_group_id: row.source_group_id,
+      record_class: "sealed_product_candidate", single_card_kind: null,
+      language_key: row.candidate_identity.language.normalized,
+      promotion_state: "separate_sealed_catalog",
+      source_payload_hash: row.source_payload_hash })),
+    collisions: { candidate_ids: 0, source_products: 0, source_payloads: 0 },
+    blocking_pids: [] };
+  assert.equal(evaluateOnePieceCompleteSealedPreflightV1({ plan, snapshot }).valid,
+    true);
+  snapshot.schema.sealed_product_release_pointer.service_insert = true;
+  assert.equal(evaluateOnePieceCompleteSealedPreflightV1({ plan, snapshot }).valid,
+    false);
 });

@@ -275,10 +275,12 @@ export function evaluateOnePieceCompleteSealedPreflightV1({ plan, snapshot }) {
   "sealed_baseline_not_empty");
   for (const table of ONE_PIECE_COMPLETE_SEALED_TABLES) {
     const schema = snapshot?.schema?.[table];
+    const expectedServiceInsert = table !== "sealed_product_release_pointer";
     add(schema?.present !== true || schema?.rls_enabled !== true ||
       schema?.rls_forced !== true || schema?.anon_select !== false ||
       schema?.authenticated_select !== false ||
-      schema?.service_select !== true || schema?.service_insert !== true,
+      schema?.service_select !== true ||
+      schema?.service_insert !== expectedServiceInsert,
     `sealed_schema_security_mismatch:${table}`);
   }
   add(stableJson(snapshot?.staging_rows) !==
