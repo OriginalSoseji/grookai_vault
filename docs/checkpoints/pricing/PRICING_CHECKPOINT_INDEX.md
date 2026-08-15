@@ -997,6 +997,13 @@ Recommended reading order for future maintainers:
       exact 889-row insert-only apply, independent durable readback, hidden
       visibility, and the sealed candidate warehouse gate next
 
+79. `PRICING_CHECKPOINT_81_ONE_PIECE_SEALED_CANDIDATES_APPLIED.md`
+    - then read the complete 403-product service-only sealed candidate apply,
+      preserved failed-first preflight, ten-product rollback proof, exact
+      durable and independent readbacks, zero canonical sealed rows, unchanged
+      card baseline, hidden visibility, and the reviewed family/variant gate
+      that must precede sealed pricing or publication
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
