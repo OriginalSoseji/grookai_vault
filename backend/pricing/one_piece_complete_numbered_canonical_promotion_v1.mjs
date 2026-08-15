@@ -118,13 +118,48 @@ function officialSeriesBySet(seriesSources) {
   return result;
 }
 
-function releaseDateForSet(setCode, bindings) {
-  if (setCode === "P" || setCode === "EB04") return null;
-  const dates = [...new Set(bindings
-    .filter((row) => row.set_code === setCode)
-    .map((row) => row.release?.released_on)
-    .filter(Boolean))].sort();
-  return dates[0] ?? null;
+function releaseAuthorityForSet(setCode, bindings) {
+  if (setCode === "P" || setCode === "EB04") {
+    return {
+      release_date: null,
+      policy: "null_multi_release_family",
+      source_group: null,
+    };
+  }
+  const groups = new Map();
+  for (const row of bindings.filter((item) => item.set_code === setCode)) {
+    const groupId = Number(row.source_group_id);
+    const group = groups.get(groupId) ?? {
+      source_group_id: groupId,
+      source_group_name: row.source_group_name,
+      product_count: 0,
+      printed_numbers: new Set(),
+      release_dates: new Set(),
+    };
+    group.product_count += 1;
+    group.printed_numbers.add(row.card_number);
+    if (row.release?.released_on) group.release_dates.add(row.release.released_on);
+    groups.set(groupId, group);
+  }
+  const ranked = [...groups.values()].sort((left, right) =>
+    right.printed_numbers.size - left.printed_numbers.size ||
+    right.product_count - left.product_count ||
+    left.source_group_id - right.source_group_id);
+  const selected = ranked[0] ?? null;
+  const releaseDates = [...(selected?.release_dates ?? [])].sort();
+  return {
+    release_date: releaseDates.length === 1 ? releaseDates[0] : null,
+    policy: releaseDates.length === 1
+      ? "strongest_source_group_unique_number_coverage"
+      : "null_ambiguous_source_group_release",
+    source_group: selected ? {
+      source_group_id: selected.source_group_id,
+      source_group_name: selected.source_group_name,
+      product_count: selected.product_count,
+      unique_printed_number_count: selected.printed_numbers.size,
+      release_dates: releaseDates,
+    } : null,
+  };
 }
 
 function displayNameForSet(setCode, seriesRows) {
@@ -144,19 +179,19 @@ function buildSetRows(bindings, seriesSources) {
     if (series.length === 0) {
       throw new Error(`Official series authority missing for ${code}`);
     }
+    const releaseAuthority = releaseAuthorityForSet(code, bindings);
     return {
       id: setId(code),
       game: ONE_PIECE_GAME_CODE,
       code,
       name: displayNameForSet(code, series),
-      release_date: releaseDateForSet(code, bindings),
+      release_date: releaseAuthority.release_date,
       identity_domain_default: ONE_PIECE_ST01_IDENTITY_DOMAIN,
       source: {
         canonical_authority: "official_one_piece_card_game_english_card_list",
         official_series: series,
-        source_release_date_policy: code === "P" || code === "EB04"
-          ? "null_multi_release_family"
-          : "earliest_current_source_product_release",
+        source_release_date_policy: releaseAuthority.policy,
+        source_release_authority: releaseAuthority.source_group,
         visibility_authority: "catalog_game_release_controls:hidden",
       },
     };
@@ -557,4 +592,3 @@ export function expectedOnePieceCompleteNumberedAttributableWritesV1() {
     external_mappings: 6513,
   };
 }
-

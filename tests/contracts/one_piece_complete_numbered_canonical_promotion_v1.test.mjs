@@ -102,6 +102,17 @@ test("official holds, ST-01 rows, and images remain outside the write payload", 
     row.card_print.image_url === null && row.card_print.image_alt_url === null));
 });
 
+test("set release dates use the strongest source family instead of promo variants", () => {
+  const plan = fixture();
+  const sets = new Map(plan.payload.set_rows.map((row) => [row.code, row]));
+  assert.equal(sets.get("OP01").release_date, "2022-12-02");
+  assert.equal(sets.get("EB01").release_date, "2024-05-03");
+  assert.equal(sets.get("P").release_date, null);
+  assert.equal(sets.get("EB04").release_date, null);
+  assert.equal(sets.get("OP01").source.source_release_date_policy,
+    "strongest_source_group_unique_number_coverage");
+});
+
 test("tampering with identity, evidence, or boundaries fails closed", () => {
   for (const mutate of [
     (plan) => { plan.payload.numbered_cards[0].identity.identity_key_hash = "0".repeat(64); },
