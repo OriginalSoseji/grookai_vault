@@ -1,0 +1,223 @@
+{
+  "transaction_read_only": true,
+  "foundation": {
+    "game_count": 1,
+    "game_id": "4f504300-0000-4000-8000-000000000001",
+    "release_count": 1,
+    "release_status": "hidden",
+    "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_role_visible": false
+  },
+  "baseline": {
+    "sets": 1,
+    "card_prints": 17,
+    "card_print_identity": 17,
+    "card_print_identity_source_evidence": 17,
+    "external_mappings": 17,
+    "card_printings": 14,
+    "external_printing_mappings": 14,
+    "set_codes": [
+      "ST01"
+    ]
+  },
+  "schema": {
+    "sets": true,
+    "card_prints": true,
+    "card_print_identity": true,
+    "card_print_identity_source_evidence": true,
+    "external_mappings": true,
+    "card_printings": true,
+    "external_printing_mappings": true,
+    "one_piece_canonical_import_batches": true,
+    "one_piece_canonical_import_rows": true,
+    "games": true,
+    "catalog_game_release_controls": true
+  },
+  "retained_rows": [
+    {
+      "source_product_id": 288228,
+      "card_number": "ST01-001",
+      "card_print_id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "card_print_identity_id": "9143eb13-999d-5479-b3ad-2393885c858b",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288228",
+      "gv_id": "GV-OP-TCGP-288228"
+    },
+    {
+      "source_product_id": 288229,
+      "card_number": "ST01-002",
+      "card_print_id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+      "card_print_identity_id": "4b741109-e533-5a68-9a8b-40e8ec020389",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288229",
+      "gv_id": "GV-OP-TCGP-288229"
+    },
+    {
+      "source_product_id": 288230,
+      "card_number": "ST01-003",
+      "card_print_id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+      "card_print_identity_id": "9214c5e7-b421-55e2-a1c2-bc85d0e316f3",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288230",
+      "gv_id": "GV-OP-TCGP-288230"
+    },
+    {
+      "source_product_id": 288232,
+      "card_number": "ST01-004",
+      "card_print_id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+      "card_print_identity_id": "fce55f79-6b62-5085-8d07-5e34256c9e19",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288232",
+      "gv_id": "GV-OP-TCGP-288232"
+    },
+    {
+      "source_product_id": 288234,
+      "card_number": "ST01-005",
+      "card_print_id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+      "card_print_identity_id": "0c5c2e8a-4405-5d2b-b3ed-4feae418062d",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288234",
+      "gv_id": "GV-OP-TCGP-288234"
+    },
+    {
+      "source_product_id": 288235,
+      "card_number": "ST01-006",
+      "card_print_id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+      "card_print_identity_id": "22da17ba-6068-5931-a113-82303508f92f",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288235",
+      "gv_id": "GV-OP-TCGP-288235"
+    },
+    {
+      "source_product_id": 288236,
+      "card_number": "ST01-007",
+      "card_print_id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+      "card_print_identity_id": "2c55c367-c161-5ec0-9f57-322a53aaf7a4",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288236",
+      "gv_id": "GV-OP-TCGP-288236"
+    },
+    {
+      "source_product_id": 288237,
+      "card_number": "ST01-008",
+      "card_print_id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+      "card_print_identity_id": "18769d53-5233-546c-a0f8-abe89fb5deb4",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288237",
+      "gv_id": "GV-OP-TCGP-288237"
+    },
+    {
+      "source_product_id": 288238,
+      "card_number": "ST01-009",
+      "card_print_id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+      "card_print_identity_id": "a2d2f0c3-b48f-5497-97b4-49e2d01c417c",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288238",
+      "gv_id": "GV-OP-TCGP-288238"
+    },
+    {
+      "source_product_id": 288239,
+      "card_number": "ST01-010",
+      "card_print_id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+      "card_print_identity_id": "bfd9b5b7-6f90-5240-918f-26d0fe9c21d8",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288239",
+      "gv_id": "GV-OP-TCGP-288239"
+    },
+    {
+      "source_product_id": 288240,
+      "card_number": "ST01-011",
+      "card_print_id": "9d6e1d07-644f-532d-a556-cee305304e59",
+      "card_print_identity_id": "227e935b-f32c-5c74-91bd-e57733adafb6",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288240",
+      "gv_id": "GV-OP-TCGP-288240"
+    },
+    {
+      "source_product_id": 288241,
+      "card_number": "ST01-012",
+      "card_print_id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "card_print_identity_id": "7ae97f5c-7be3-506f-bd79-465191cb6f42",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288241",
+      "gv_id": "GV-OP-TCGP-288241"
+    },
+    {
+      "source_product_id": 288242,
+      "card_number": "ST01-013",
+      "card_print_id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+      "card_print_identity_id": "d18c0e53-118a-58e8-b158-439136b54f08",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288242",
+      "gv_id": "GV-OP-TCGP-288242"
+    },
+    {
+      "source_product_id": 288243,
+      "card_number": "ST01-014",
+      "card_print_id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+      "card_print_identity_id": "f5dc58cb-072f-543d-a313-a248db643f02",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288243",
+      "gv_id": "GV-OP-TCGP-288243"
+    },
+    {
+      "source_product_id": 288244,
+      "card_number": "ST01-015",
+      "card_print_id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+      "card_print_identity_id": "5370dfa6-c802-51b4-aa4f-85db09aae484",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288244",
+      "gv_id": "GV-OP-TCGP-288244"
+    },
+    {
+      "source_product_id": 288245,
+      "card_number": "ST01-016",
+      "card_print_id": "eef89a54-e584-563d-9eea-4593eaebf829",
+      "card_print_identity_id": "9a022565-b518-57cc-a49a-eba231a2db17",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288245",
+      "gv_id": "GV-OP-TCGP-288245"
+    },
+    {
+      "source_product_id": 288246,
+      "card_number": "ST01-017",
+      "card_print_id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+      "card_print_identity_id": "af6a36e4-9fbc-5f31-8f26-5254b40f053c",
+      "external_mapping_source": "tcgplayer",
+      "external_mapping_id": "288246",
+      "gv_id": "GV-OP-TCGP-288246"
+    }
+  ],
+  "expected_staging": {
+    "row_count": 6513,
+    "rows_sha256": "9ce71219a18390cbdaa4c38ebe35090da28faf16f7c62f85de4b99185e93b5da",
+    "source_product_ids_sha256": "c1d00cc1e2c62935cd64de6ebd3ef4d4242e1f1c64e58ea578d92ce3e2ef69aa",
+    "staging_row_ids_sha256": "edd6e0c224a7f251834f5111e4e5b3dbe6c6863e9c7fd3f67dfdf0299a2ae74c",
+    "payload_hashes_sha256": "cceb63c4d18425d4b0535cd1385c9f5679d28121b9c588896906601426409898"
+  },
+  "actual_staging": {
+    "row_count": 6513,
+    "rows_sha256": "2c7ebe6d619895fd0f44b59c80ee0ddbc23eade83cf25ea96346c855d9601f88",
+    "source_product_ids_sha256": "c1d00cc1e2c62935cd64de6ebd3ef4d4242e1f1c64e58ea578d92ce3e2ef69aa",
+    "staging_row_ids_sha256": "edd6e0c224a7f251834f5111e4e5b3dbe6c6863e9c7fd3f67dfdf0299a2ae74c",
+    "payload_hashes_sha256": "cceb63c4d18425d4b0535cd1385c9f5679d28121b9c588896906601426409898"
+  },
+  "collisions": {
+    "set_ids": 0,
+    "set_codes": 0,
+    "card_print_ids": 0,
+    "card_print_gv_ids": 0,
+    "card_print_tcgplayer_ids": 0,
+    "card_external_ids": 0,
+    "identity_ids": 0,
+    "identity_hashes": 0,
+    "identity_card_print_ids": 0,
+    "evidence_ids": 0,
+    "evidence_hashes": 0,
+    "evidence_acquisition_keys": 0,
+    "external_mappings": 0
+  },
+  "blocking_pids": []
+}

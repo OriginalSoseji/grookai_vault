@@ -1,0 +1,71 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T13:34:43.293Z",
+  "status": "production_read_only_preflight_passed",
+  "repository": {
+    "commit_sha": "9e36f4d659f7cd9dacb5d42a75a5f676cdc1d0cb",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5c39be2b0798a30d0c17c5e9ad46ad095bf8adaa956b68010975f26b72f937f6",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "preflight_fingerprint_sha256": "24d000d22f88f22804844a30581a7963ada2441cc3db5396d06575a008445736",
+  "counts": {
+    "source_numbered_products": 6547,
+    "english_source_products": 6525,
+    "authority_eligible_products": 6508,
+    "retained_existing_products": 17,
+    "new_set_rows": 58,
+    "new_card_prints": 6491,
+    "new_identity_rows": 6491,
+    "new_source_evidence_rows": 6491,
+    "new_external_mappings": 6491,
+    "official_catalog_gap_holds": 17,
+    "non_english_language_holds": 22
+  },
+  "baseline": {
+    "sets": 1,
+    "card_prints": 17,
+    "card_print_identity": 17,
+    "card_print_identity_source_evidence": 17,
+    "external_mappings": 17,
+    "card_printings": 14,
+    "external_printing_mappings": 14,
+    "set_codes": [
+      "ST01"
+    ]
+  },
+  "staging_readback": {
+    "row_count": 6491,
+    "rows_sha256": "34b0fc4ee8e860c487566a6568aa6e97620ae2544192b35dfcd2e26d11f5fe2c",
+    "source_product_ids_sha256": "20622d86351cb17b38768fab4aeef895d50bd8055b9e10475b7556a0467e4c7a",
+    "staging_row_ids_sha256": "f9db5ca94686f9adcbb464622848320c07144baab807ec6fa0725f09d09e439b",
+    "payload_hashes_sha256": "948a2293ef4494c4378cf5d2a7f85d063449602429f143a5f959d395caf38aa0"
+  },
+  "collisions": {
+    "set_ids": 0,
+    "set_codes": 0,
+    "card_print_ids": 0,
+    "card_print_gv_ids": 0,
+    "card_print_tcgplayer_ids": 0,
+    "card_external_ids": 0,
+    "identity_ids": 0,
+    "identity_hashes": 0,
+    "identity_card_print_ids": 0,
+    "evidence_ids": 0,
+    "evidence_hashes": 0,
+    "evidence_acquisition_keys": 0,
+    "external_mappings": 0
+  },
+  "findings": [],
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "exact_next_gate": "run a representative transaction rollback canary from this frozen plan"
+}
