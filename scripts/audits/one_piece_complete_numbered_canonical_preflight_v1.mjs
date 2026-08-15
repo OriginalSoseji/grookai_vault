@@ -74,8 +74,8 @@ function normalizeNumbers(row) {
 
 async function captureFoundation(client) {
   const row = (await client.query(`select
-    (select count(*)::int from public.catalog_games where code='one_piece') as game_count,
-    (select id::text from public.catalog_games where code='one_piece') as game_id,
+    (select count(*)::int from public.games where code='one_piece') as game_count,
+    (select id::text from public.games where code='one_piece') as game_id,
     (select count(*)::int from public.catalog_game_release_controls
       where game_code='one_piece') as release_count,
     (select release_status from public.catalog_game_release_controls
@@ -392,4 +392,3 @@ if (invoked === fileURLToPath(import.meta.url)) {
 }
 
 export { PLAN_PATH, parseArgs };
-

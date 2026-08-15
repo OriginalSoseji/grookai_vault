@@ -94,5 +94,7 @@ test("preflight runner writes its plan before opening a read-only transaction", 
   assert.ok(source.indexOf('writeJson(path.join(args.outDir, "run_plan.json")') <
     source.indexOf("const snapshot = await captureOnePieceCompleteNumberedPreflightV1("));
   assert.match(source, /client\.query\("begin read only"\)/);
+  assert.match(source, /from public\.games where code='one_piece'/);
+  assert.doesNotMatch(source, /public\.catalog_games/);
   assert.doesNotMatch(source, /client\.query\(`\s*(?:insert|update|delete|truncate|alter|create|drop)\b/i);
 });

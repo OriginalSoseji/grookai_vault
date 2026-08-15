@@ -29,7 +29,7 @@ const REQUIRED_SCHEMA = Object.freeze([
   "external_printing_mappings",
   "one_piece_canonical_import_batches",
   "one_piece_canonical_import_rows",
-  "catalog_games",
+  "games",
   "catalog_game_release_controls",
 ]);
 
@@ -131,4 +131,3 @@ export function buildOnePieceCompleteNumberedPreflightFingerprintV1({
 }
 
 export { REQUIRED_SCHEMA as ONE_PIECE_COMPLETE_NUMBERED_REQUIRED_SCHEMA };
-
