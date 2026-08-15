@@ -1,0 +1,24 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "d502e483d0ff8810e688e15bf34148b252f89b6b",
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_complete_sealed_candidate_v1/frozen_plan_v1/candidate_plan.json.gz",
+      "sha256": "4ef502f32dcc8dac420ebbf934d2f63a033fa184210c086d0b0846aeed4d64ec"
+    }
+  ],
+  "artifacts": {
+    "REPORT.md": {
+      "sha256": "e9626228cf992c44d34de3afb59606421d70902b6a9212aba931faea80f6b1af",
+      "bytes": 1145
+    },
+    "review_rows.jsonl.gz": {
+      "sha256": "80783b567bcfd9ac2ecdc90188961e0fb7d3547f10ab9741f5709ea8df46527e",
+      "bytes": 76936
+    },
+    "summary.json": {
+      "sha256": "6bed5bf70b6f0e70b045b06733f1b74d1e8398420d2067ba3544fe644e4691d0",
+      "bytes": 1802
+    }
+  }
+}

@@ -1004,6 +1004,12 @@ Recommended reading order for future maintainers:
       card baseline, hidden visibility, and the reviewed family/variant gate
       that must precede sealed pricing or publication
 
+80. `PRICING_CHECKPOINT_82_ONE_PIECE_SEALED_IDENTITY_REVIEW_PLAN.md`
+    - then read the offline 403-row identity review plan, complete package-form
+      proposal coverage, product-specific variant preservation, explicit
+      evidence blockers, zero promotion authority, and the official product
+      authority plus residual human-review gate that follows
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
