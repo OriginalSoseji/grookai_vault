@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { v5 as uuidV5 } from "uuid";
 
 export const ONE_PIECE_STAGING_SCHEMA_VERSION =
   "ONE_PIECE_CANONICAL_IMPORT_STAGING_SCHEMA_V1";
@@ -42,24 +43,8 @@ export function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
-function parseUuid(value) {
-  const hex = String(value).replaceAll("-", "");
-  if (!/^[0-9a-f]{32}$/i.test(hex)) throw new Error(`Invalid UUID: ${value}`);
-  return Buffer.from(hex, "hex");
-}
-
 export function deterministicUuidV5(name, namespace = UUID_NAMESPACE) {
-  // RFC 4122 UUIDv5 requires SHA-1 for stable identity, not for security.
-  // lgtm[js/weak-cryptographic-algorithm]
-  const hash = createHash("sha1")
-    .update(parseUuid(namespace))
-    .update(String(name), "utf8")
-    .digest()
-    .subarray(0, 16);
-  hash[6] = (hash[6] & 0x0f) | 0x50;
-  hash[8] = (hash[8] & 0x3f) | 0x80;
-  const hex = hash.toString("hex");
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  return uuidV5(String(name), namespace);
 }
 
 function numericCompare(left, right) {

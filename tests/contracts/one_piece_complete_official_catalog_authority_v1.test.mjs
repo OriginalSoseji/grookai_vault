@@ -10,6 +10,8 @@ import {
 } from "../../backend/pricing/one_piece_complete_official_catalog_authority_v1.mjs";
 import { decodeOnePieceOfficialHtmlEntitiesV1 } from
   "../../backend/pricing/one_piece_official_html_v1.mjs";
+import { deterministicUuidV5 as deterministicOnePieceUuidV5 } from
+  "../../backend/pricing/one_piece_canonical_import_staging_v1.mjs";
 
 const html = `<!doctype html><html lang="en"><body>
 <select>
@@ -34,6 +36,13 @@ test("official HTML entities decode once without recursive unescaping", () => {
   assert.equal(
     decodeOnePieceOfficialHtmlEntitiesV1("&amp;lt;script&amp;gt;"),
     "&lt;script&gt;",
+  );
+});
+
+test("maintained UUIDv5 implementation preserves frozen One Piece identities", () => {
+  assert.equal(
+    deterministicOnePieceUuidV5("compatibility-probe"),
+    "8486bed5-7ed6-5c80-b142-9b06ee7caa95",
   );
 });
 

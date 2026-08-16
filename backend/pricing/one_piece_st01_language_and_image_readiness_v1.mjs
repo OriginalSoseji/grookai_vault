@@ -1,5 +1,8 @@
 import crypto from "node:crypto";
-import { decodeOnePieceOfficialHtmlEntitiesV1 } from
+import {
+  decodeOnePieceOfficialHtmlEntitiesV1,
+  removeOnePieceOfficialExecutableHtmlV1,
+} from
   "./one_piece_official_html_v1.mjs";
 
 export const ONE_PIECE_ST01_READINESS_VERSION =
@@ -66,9 +69,7 @@ export function normalizePathSegment(value, fallback = "unknown") {
 }
 
 export function normalizeOfficialHtmlText(html) {
-  const visibleHtml = String(html ?? "")
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ");
+  const visibleHtml = removeOnePieceOfficialExecutableHtmlV1(html);
   return decodeOnePieceOfficialHtmlEntitiesV1(visibleHtml)
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")

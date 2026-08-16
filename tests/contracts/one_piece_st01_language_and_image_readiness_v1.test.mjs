@@ -15,7 +15,7 @@ import {
 
 test("official text normalization removes case-insensitive script and style blocks", () => {
   const text = normalizeOfficialHtmlText(
-    "<DIV>Visible &amp; safe</DIV><SCRIPT>alert(1)</SCRIPT ><STYLE>x{}</STYLE >",
+    "<DIV>Visible &amp; safe</DIV><SCRIPT data-x='>'>alert(1)</SCRIPT\t\n ignored><STYLE>x{}</STYLE >",
   );
   assert.equal(text, "Visible & safe");
 });
