@@ -402,11 +402,10 @@ export function assertMtgCurrentSourceEvidenceV1(source, payload, plan) {
     "current source lanes",
   );
   const positive = Number(source.positive_market_price_count);
-  const frozenPositive = Number(payload.counts.positive_market_lanes);
   const mappedLaneCount = Number(plan.row_counts.external_printing_mappings);
-  if (positive < frozenPositive) {
+  if (!Number.isInteger(positive) || positive < 0) {
     throw new Error(
-      `positive source lanes decreased: expected at least ${frozenPositive}, got ${positive}`,
+      `positive source lanes invalid: expected a non-negative integer, got ${source.positive_market_price_count}`,
     );
   }
   if (positive > mappedLaneCount) {

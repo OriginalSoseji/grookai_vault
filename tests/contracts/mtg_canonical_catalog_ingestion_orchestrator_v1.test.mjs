@@ -161,16 +161,28 @@ test("current source evidence accepts newly populated price lanes within the fro
   ));
 });
 
-test("current source evidence still blocks evidence loss and impossible overcounts", () => {
+test("current source evidence allows price availability drift without losing exact source rows", () => {
   const payload = { counts: { positive_market_lanes: 308 } };
   const plan = { row_counts: { external_printing_mappings: 309 } };
-  assert.throws(
+  assert.doesNotThrow(
     () => assertMtgCurrentSourceEvidenceV1({
       planned_count: 309,
       source_row_count: 309,
       positive_market_price_count: 307,
     }, payload, plan),
-    /positive source lanes decreased/,
+  );
+});
+
+test("current source evidence still blocks missing rows and impossible price counts", () => {
+  const payload = { counts: { positive_market_lanes: 308 } };
+  const plan = { row_counts: { external_printing_mappings: 309 } };
+  assert.throws(
+    () => assertMtgCurrentSourceEvidenceV1({
+      planned_count: 309,
+      source_row_count: 308,
+      positive_market_price_count: 307,
+    }, payload, plan),
+    /current source lanes/,
   );
   assert.throws(
     () => assertMtgCurrentSourceEvidenceV1({
@@ -179,5 +191,13 @@ test("current source evidence still blocks evidence loss and impossible overcoun
       positive_market_price_count: 310,
     }, payload, plan),
     /positive source lanes exceeded mapped lanes/,
+  );
+  assert.throws(
+    () => assertMtgCurrentSourceEvidenceV1({
+      planned_count: 309,
+      source_row_count: 309,
+      positive_market_price_count: -1,
+    }, payload, plan),
+    /positive source lanes invalid/,
   );
 });

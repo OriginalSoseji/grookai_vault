@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   assertMtgSetPromotionSecurityV1,
+  assertMtgSetPromotionSourceLanesV1,
   buildMtgCanonicalSetPromotionApprovalV1,
   captureMtgSetPromotionCurrentSourceLanesV1,
 } from "../../scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs";
@@ -116,4 +117,23 @@ test("source verification uses the newest complete planned-lane day", async () =
     { product_id: 101, subtype: "normal" },
     { product_id: 102, subtype: "foil" },
   ]);
+});
+
+test("set writer separates exact source identity from current price availability", () => {
+  const plan = { row_counts: { external_printing_mappings: 237 } };
+  assert.doesNotThrow(() => assertMtgSetPromotionSourceLanesV1({
+    planned_count: 237,
+    source_row_count: 237,
+    positive_market_price_count: 236,
+  }, plan));
+  assert.throws(() => assertMtgSetPromotionSourceLanesV1({
+    planned_count: 237,
+    source_row_count: 236,
+    positive_market_price_count: 236,
+  }, plan), /current source lanes/);
+  assert.throws(() => assertMtgSetPromotionSourceLanesV1({
+    planned_count: 237,
+    source_row_count: 237,
+    positive_market_price_count: 238,
+  }, plan), /positive source lanes exceeded mapped lanes/);
 });

@@ -247,11 +247,18 @@ export function assertMtgSetPromotionSourceLanesV1(source, plan) {
     plan.row_counts.external_printing_mappings,
     "current source lanes",
   );
-  expectCount(
-    source.positive_market_price_count,
-    plan.row_counts.external_printing_mappings,
-    "positive source lanes",
-  );
+  const positive = Number(source.positive_market_price_count);
+  const mappedLaneCount = Number(plan.row_counts.external_printing_mappings);
+  if (!Number.isInteger(positive) || positive < 0) {
+    throw new Error(
+      `positive source lanes invalid: expected a non-negative integer, got ${source.positive_market_price_count}`,
+    );
+  }
+  if (positive > mappedLaneCount) {
+    throw new Error(
+      `positive source lanes exceeded mapped lanes: expected at most ${mappedLaneCount}, got ${positive}`,
+    );
+  }
 }
 
 function assertClientHidden(evidence, role) {
