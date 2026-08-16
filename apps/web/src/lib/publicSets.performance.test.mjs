@@ -22,6 +22,13 @@ const countMigrationSource = fs.readFileSync(
   path.resolve(here, "../../../../supabase/migrations/20260816120000_public_set_card_counts_v1.sql"),
   "utf8",
 );
+const countVisibilityMigrationSource = fs.readFileSync(
+  path.resolve(
+    here,
+    "../../../../supabase/migrations/20260816123000_public_set_card_counts_visibility_v2.sql",
+  ),
+  "utf8",
+);
 const manifest = JSON.parse(fs.readFileSync(path.join(here, "publicSetCardCounts.generated.json"), "utf8"));
 const webPackage = JSON.parse(fs.readFileSync(path.resolve(here, "../../package.json"), "utf8"));
 const listFunctionSource = source.slice(
@@ -43,6 +50,7 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.doesNotMatch(listFunctionSource, /card_prints\(count\)/);
   assert.match(listFunctionSource, /getManifestCardPrintCount/);
   assert.match(listFunctionSource, /getDynamicPublicSetCardCounts/);
+  assert.doesNotMatch(listFunctionSource, /getManifestCardPrintCount[\s\S]*?=== 0/);
   assert.match(source, /rpc\("get_public_set_card_counts_v1"/);
   assert.match(generatorSource, /group by lower\(trim\(set_code\)\)/);
   assert.match(generatorSource, /const PAGE_SIZE = 1000/);
@@ -106,6 +114,11 @@ test("dynamic set counts are bounded and enforce catalog visibility", () => {
   assert.match(countMigrationSource, /cardinality\(p_set_codes\) > 1000/);
   assert.match(countMigrationSource, /card\.gv_id is not null/);
   assert.match(countMigrationSource, /grant execute[\s\S]*to anon, authenticated, service_role/);
+  assert.match(
+    countVisibilityMigrationSource,
+    /data_quality_flags #>> '\{app_visibility_v1,status\}'/,
+  );
+  assert.match(countVisibilityMigrationSource, /<> 'suppressed'/);
 });
 
 test("case-equivalent Japanese set rows prefer descriptive metadata", () => {

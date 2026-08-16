@@ -285,9 +285,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   const visibleRows = (setRows ?? []) as SetRow[];
   const dynamicCounts = await getDynamicPublicSetCardCounts(
     supabase,
-    visibleRows
-      .filter((row) => getManifestCardPrintCount(publicSetCardCounts, row.code) === 0)
-      .map((row) => row.code ?? ""),
+    visibleRows.map((row) => row.code ?? ""),
   );
 
   const equivalentSetsByCode = new Map<string, { row: SetRow; cardCount: number }>();
