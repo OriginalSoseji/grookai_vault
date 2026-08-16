@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
   evaluateTcgplayerMarketQualificationV1,
   normalizeTcgplayerMarketSubtypeV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
@@ -402,10 +402,11 @@ function validCandidate(overrides = {}) {
   };
 }
 
-test("normalizes only unambiguous ordinary TCGPlayer subtypes", () => {
+test("normalizes only unambiguous ordinary Pokemon and MTG subtypes", () => {
   assert.equal(normalizeTcgplayerMarketSubtypeV1("Normal"), "normal");
   assert.equal(normalizeTcgplayerMarketSubtypeV1("Holofoil"), "holo");
   assert.equal(normalizeTcgplayerMarketSubtypeV1("Reverse Holofoil"), "reverse");
+  assert.equal(normalizeTcgplayerMarketSubtypeV1("Foil"), "foil");
   assert.equal(normalizeTcgplayerMarketSubtypeV1("1st Edition Holofoil"), null);
   assert.equal(normalizeTcgplayerMarketSubtypeV1("Cosmos Holofoil"), null);
 });
@@ -414,7 +415,7 @@ test("publishes an exact fresh English Pokemon printing", () => {
   const result = evaluateTcgplayerMarketQualificationV1(validCandidate(), {
     now: NOW,
   });
-  assert.equal(result.policy_version, TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2);
+  assert.equal(result.policy_version, TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3);
   assert.equal(result.decision, "publish");
   assert.equal(result.eligible, true);
   assert.deepEqual(result.reason_codes, []);
@@ -543,7 +544,7 @@ test("publication V1.2 scope is evidence-aware and keeps numbered card names", (
   assert.ok(special.reason_codes.includes("special_variant_v1_1"));
   assert.equal(
     special.evidence.product_scope_policy_version,
-    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2",
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3",
   );
   assert.equal(special.evidence.product_scope_rule_id, "ball_pattern_print");
 
