@@ -33,7 +33,14 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   assert.match(lookup, /\.eq\("game_id", gameId\)/);
   assert.match(lookup, /\.eq\("code", gameScope\)/);
   assert.match(lookup, /\.ilike\("set_code", inferredSetCode\)/);
-  assert.match(lookup, /return nameMatches && collectorMatches/);
+  assert.match(lookup, /return nameMatches && collectorMatches && illustratorMatches && identityMatches/);
+  assert.match(route, /exactReleaseYear,/);
+  assert.match(route, /exactIllustrator,/);
+  assert.match(route, /releaseYearMin: effectiveSmartSearchIntent\.releaseYearMin/);
+  assert.match(route, /finishKeys: effectiveSmartSearchIntent\.finishKeys/);
+  assert.match(lookup, /fetchSmartDiscoveryChildRows\(options, parentRows\)/);
+  assert.match(lookup, /\.replace\(\/\^#\//);
+  assert.match(lookup, /\.split\("\/", 1\)/);
 });
 
 test("Flutter exposes MTG and preserves exact collector-number identity", () => {
@@ -44,6 +51,8 @@ test("Flutter exposes MTG and preserves exact collector-number identity", () => 
   assert.match(service, /enum PublicCatalogGame \{ pokemon, onePiece, mtg \}/);
   assert.match(service, /PublicCatalogGame\.mtg => 'mtg'/);
   assert.match(cardModel, /normalizeMtgCollectorNumberToken/);
+  assert.match(cardModel, /preferMtgCollectorNumberToken/);
+  assert.match(cardModel, /exactSetCodeExists: exactSetRows\.isNotEmpty/);
   assert.ok(
     cardModel.includes("RegExp(r'^[a-z0-9★†]+(?:-[a-z0-9★†]+)*$')"),
   );

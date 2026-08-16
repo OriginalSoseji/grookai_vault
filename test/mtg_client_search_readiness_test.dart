@@ -41,4 +41,18 @@ void main() {
     expect(normalizeMtgCollectorNumberToken('Lotus'), isEmpty);
     expect(normalizeMtgCollectorNumberToken(''), isEmpty);
   });
+
+  test(
+    'ambiguous MTG tokens prefer collector numbers only without a real set',
+    () {
+      expect(
+        preferMtgCollectorNumberToken('BL6', exactSetCodeExists: false),
+        isTrue,
+      );
+      expect(
+        preferMtgCollectorNumberToken('2XM', exactSetCodeExists: true),
+        isFalse,
+      );
+    },
+  );
 }

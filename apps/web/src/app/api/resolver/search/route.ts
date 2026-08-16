@@ -487,6 +487,14 @@ export async function GET(request: NextRequest) {
     const resolvedSearchPromise = gameScope !== "pokemon"
       ? getExploreRowsForGameScopedTextSearch(query, gameScope, sortMode, {
           exactSetCode,
+          exactReleaseYear,
+          exactIllustrator,
+          identityFilter,
+          releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+          releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+          finishKeys: effectiveSmartSearchIntent.finishKeys,
+          stampLabels: effectiveSmartSearchIntent.stampLabels,
+          imageState: effectiveSmartSearchIntent.imageState,
           includePricing: includePricingDuringResolution,
         }).then((rows) => ({
           rows,

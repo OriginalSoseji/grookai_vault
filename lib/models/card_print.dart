@@ -318,6 +318,15 @@ String normalizeMtgCollectorNumberToken(String raw) {
   return normalized;
 }
 
+bool preferMtgCollectorNumberToken(
+  String raw, {
+  required bool exactSetCodeExists,
+}) {
+  return !exactSetCodeExists &&
+      !raw.trim().contains(RegExp(r'\s')) &&
+      normalizeMtgCollectorNumberToken(raw).isNotEmpty;
+}
+
 enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
 
 ResolverSearchState? _parseResolverSearchState(String? value) {
@@ -656,7 +665,24 @@ class CardPrintRepository {
     }
 
     final tokens = _tokenize(trimmed, preserveHyphens: gameScope == 'mtg');
-    final setIndex = _extractSetIndex(tokens);
+    var setIndex = _extractSetIndex(tokens);
+    if (gameScope == 'mtg' &&
+        setIndex != null &&
+        normalizeMtgCollectorNumberToken(trimmed).isNotEmpty) {
+      final candidateSetCode = tokens.lowerTokens[setIndex];
+      final exactSetRows = await client
+          .from('sets')
+          .select('code')
+          .eq('game', gameScope)
+          .ilike('code', candidateSetCode)
+          .limit(1);
+      if (preferMtgCollectorNumberToken(
+        trimmed,
+        exactSetCodeExists: exactSetRows.isNotEmpty,
+      )) {
+        setIndex = null;
+      }
+    }
     final numberInfo = _extractNumberCandidate(
       tokens,
       isNumberWithTotal: isNumberWithTotal,
