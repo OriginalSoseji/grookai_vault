@@ -1,4 +1,4 @@
-export type PublicGameScope = "pokemon" | "one_piece";
+export type PublicGameScope = "pokemon" | "one_piece" | "mtg";
 
 export const PUBLIC_GAME_SCOPE_OPTIONS: Array<{
   value: PublicGameScope;
@@ -6,12 +6,13 @@ export const PUBLIC_GAME_SCOPE_OPTIONS: Array<{
 }> = [
   { value: "pokemon", label: "Pokemon" },
   { value: "one_piece", label: "One Piece" },
+  { value: "mtg", label: "Magic: The Gathering" },
 ];
 
 export function normalizePublicGameScope(
   value?: string | null,
 ): PublicGameScope {
-  return value === "one_piece" ? "one_piece" : "pokemon";
+  return value === "one_piece" || value === "mtg" ? value : "pokemon";
 }
 
 export function matchesPublicGameScope(

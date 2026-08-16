@@ -9,6 +9,7 @@ import {
 import {
   getExploreRowsForOwnedSmartFilterDiscovery,
   getExploreRowsForLanguageScopedTextSearch,
+  getExploreRowsForGameScopedTextSearch,
   getExploreRowsForSmartFilterDiscovery,
   getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
@@ -21,6 +22,7 @@ import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { classifySmartVariantResolverState } from "@/lib/search/smartVariantSearchPolicy";
 import { resolveSmartSearchQuery } from "@/lib/search/resolveSmartSearchQuery";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -354,6 +356,7 @@ export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const languageScope = normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
+  const gameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
   const smartSearchIntent = buildSmartSearchIntent(rawQuery);
   const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
@@ -404,6 +407,7 @@ export async function GET(request: NextRequest) {
     Boolean(query) &&
     (hasSmartFinishIntent || hasSmartImageIntent || hasSmartStampIntent);
   const hasCatalogDiscoveryScope =
+    gameScope !== "pokemon" ||
     Boolean(exactSetCode) ||
     typeof exactReleaseYear === "number" ||
     typeof exactIllustrator === "string" ||
@@ -421,7 +425,7 @@ export async function GET(request: NextRequest) {
     !hasCatalogDiscoveryScope &&
     !hasSmartOwnershipIntent;
 
-  if (!query && !exactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
+  if (!query && gameScope === "pokemon" && !exactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
       {
         ok: false,
@@ -435,12 +439,18 @@ export async function GET(request: NextRequest) {
     let userId: string | null = null;
     let requestSupabase: Awaited<ReturnType<typeof createServerComponentClient>> | null = null;
 
-    if (hasSmartOwnershipIntent || pricingRequested) {
+    if (hasSmartOwnershipIntent || pricingRequested || gameScope !== "pokemon") {
       requestSupabase = await createServerComponentClient();
       const {
         data: { user },
       } = await requestSupabase.auth.getUser();
       userId = user?.id ?? null;
+    }
+    if (gameScope !== "pokemon" && !userId) {
+      return NextResponse.json(
+        { ok: false, error: "Sign in to search this catalog.", game_scope: gameScope },
+        { status: 401, headers: { "Cache-Control": "private, no-store" } },
+      );
     }
     if (valueSortRequested && !userId) {
       return NextResponse.json(
@@ -467,13 +477,24 @@ export async function GET(request: NextRequest) {
       authenticatedIncludePricing && valueSortRequested;
 
     const includeProvisional =
+      gameScope === "pokemon" &&
       languageScope !== "ja" &&
       !exactReleaseYear &&
       !hasSmartYearRange &&
       !exactIllustrator &&
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
-    const resolvedSearchPromise = !query && effectiveSmartSearchIntent.ownedState === "owned" && userId
+    const resolvedSearchPromise = gameScope !== "pokemon"
+      ? getExploreRowsForGameScopedTextSearch(query, gameScope, sortMode, {
+          exactSetCode,
+          includePricing: includePricingDuringResolution,
+        }).then((rows) => ({
+          rows,
+          meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+          smartSearchIntent: effectiveSmartSearchIntent,
+          degraded: false,
+        }))
+      : !query && effectiveSmartSearchIntent.ownedState === "owned" && userId
       ? getOwnedCardPrintIdsForUser(userId).then((ownedCardPrintIds) =>
           getExploreRowsForOwnedSmartFilterDiscovery(ownedCardPrintIds, {
             sortMode,
@@ -597,9 +618,9 @@ export async function GET(request: NextRequest) {
         },
       );
     }
-    const canonicalResults = resolved.rows.filter((row) =>
-      matchesPublicLanguageScope(row, languageScope),
-    );
+    const canonicalResults = gameScope === "pokemon"
+      ? resolved.rows.filter((row) => matchesPublicLanguageScope(row, languageScope))
+      : resolved.rows;
     const promotionTransitions = await getPromotionTransitionStateForCanonicalCards(
       canonicalResults.map((row) => row.id),
     );
@@ -658,6 +679,7 @@ export async function GET(request: NextRequest) {
       {
         ok: true,
         query,
+        game_scope: gameScope,
         smart_search: responseSmartSearchIntent,
         rows: limitedCanonicalResults,
         provisional: provisionalResultsForResponse,
@@ -674,7 +696,7 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           "Cache-Control":
-            pricingRequested || effectiveSmartSearchIntent.ownedState
+            pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
         },

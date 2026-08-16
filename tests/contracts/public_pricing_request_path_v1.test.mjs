@@ -155,7 +155,7 @@ test("ordinary Explore pricing is auth-gated and deferred until after result lim
 
   assert.match(
     searchRoute,
-    /if \(hasSmartOwnershipIntent \|\| pricingRequested\)/,
+    /if \(hasSmartOwnershipIntent \|\| pricingRequested \|\| gameScope !== "pokemon"\)/,
   );
   assert.match(
     searchRoute,

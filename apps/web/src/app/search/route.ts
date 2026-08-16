@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizePublicLanguageScope } from "@/lib/publicLanguageScope";
+import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import { createRouteHandlerClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
@@ -20,6 +21,11 @@ function applyLanguageScopeParam(request: NextRequest, nextUrl: URL) {
   if (languageScope !== "all") {
     nextUrl.searchParams.set("lang", languageScope);
   }
+}
+
+function applyGameScopeParam(request: NextRequest, nextUrl: URL) {
+  const gameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
+  if (gameScope !== "pokemon") nextUrl.searchParams.set("game", gameScope);
 }
 
 function buildExploreUrl(request: NextRequest, query: string, defaultSort?: "relevance") {
@@ -44,6 +50,7 @@ function buildExploreUrl(request: NextRequest, query: string, defaultSort?: "rel
 
   applyCompareCardsParam(request, nextUrl);
   applyLanguageScopeParam(request, nextUrl);
+  applyGameScopeParam(request, nextUrl);
   return nextUrl;
 }
 
@@ -56,12 +63,14 @@ function buildSetsUrl(request: NextRequest, query: string) {
 
   applyCompareCardsParam(request, nextUrl);
   applyLanguageScopeParam(request, nextUrl);
+  applyGameScopeParam(request, nextUrl);
   return nextUrl;
 }
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   const normalizedQuery = rawQuery.trim().replace(/\s+/g, " ");
+  const gameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
 
   if (normalizedQuery) {
     const authResponse = NextResponse.next();
@@ -80,6 +89,9 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    if (gameScope !== "pokemon") {
+      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery, "relevance"));
+    }
     const resolved = await resolveQueryWithMeta(rawQuery, { mode: "direct" });
     const result = resolved.result;
     const defaultSort = resolved.meta.resolverState !== "NO_MATCH" ? "relevance" : undefined;

@@ -37,17 +37,19 @@ class PublicSetSummary {
   }
 }
 
-enum PublicCatalogGame { pokemon, onePiece }
+enum PublicCatalogGame { pokemon, onePiece, mtg }
 
 extension PublicCatalogGamePresentation on PublicCatalogGame {
   String get databaseCode => switch (this) {
     PublicCatalogGame.pokemon => 'pokemon',
     PublicCatalogGame.onePiece => 'one_piece',
+    PublicCatalogGame.mtg => 'mtg',
   };
 
   String get label => switch (this) {
     PublicCatalogGame.pokemon => 'Pokemon',
     PublicCatalogGame.onePiece => 'One Piece',
+    PublicCatalogGame.mtg => 'Magic: The Gathering',
   };
 }
 
@@ -1270,9 +1272,11 @@ class PublicSetsService {
   }
 
   static PublicCatalogGame _parseCatalogGame(dynamic value) {
-    return _cleanText(value).toLowerCase() == 'one_piece'
-        ? PublicCatalogGame.onePiece
-        : PublicCatalogGame.pokemon;
+    return switch (_cleanText(value).toLowerCase()) {
+      'one_piece' => PublicCatalogGame.onePiece,
+      'mtg' => PublicCatalogGame.mtg,
+      _ => PublicCatalogGame.pokemon,
+    };
   }
 
   static String _normalizeCode(dynamic value) {

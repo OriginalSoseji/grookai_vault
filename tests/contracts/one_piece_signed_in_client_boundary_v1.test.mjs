@@ -57,7 +57,7 @@ test("web set browse is dynamic and exposes an explicit game scope", () => {
   assert.match(toolbar, /PUBLIC_GAME_SCOPE_OPTIONS/);
   assert.match(toolbar, /aria-label="Filter sets by game"/);
   assert.match(results, /matchesPublicGameScope/);
-  assert.match(gameScope, /"pokemon" \| "one_piece"/);
+  assert.match(gameScope, /"pokemon" \| "one_piece" \| "mtg"/);
   assert.match(gameScope, /value: "one_piece", label: "One Piece"/);
 });
 
@@ -65,7 +65,7 @@ test("Flutter set browse defaults to Pokemon and isolates One Piece explicitly",
   const service = source("lib/services/public/public_sets_service.dart");
   const screen = source("lib/screens/sets/public_sets_screen.dart");
 
-  assert.match(service, /enum PublicCatalogGame \{ pokemon, onePiece \}/);
+  assert.match(service, /enum PublicCatalogGame \{ pokemon, onePiece, mtg \}/);
   assert.match(service, /PublicCatalogGame game = PublicCatalogGame\.pokemon/);
   assert.match(service, /\.where\(\(setInfo\) => setInfo\.game == game\)/);
   assert.match(service, /'game,code,name,/);
