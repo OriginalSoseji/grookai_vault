@@ -14,6 +14,25 @@ require "uri"
 API_BASE = "https://api.appstoreconnect.apple.com"
 DEFAULT_CONFIG = "docs/release/app_store_connect_ios_1_0.json"
 DEFAULT_ENV = ".env.appstoreconnect.local"
+APP_STORE_CONNECT_AUTH_ENV_KEYS = %w[
+  ASC_KEY_ID
+  ASC_ISSUER_ID
+  ASC_KEY_PATH
+  APP_STORE_CONNECT_API_KEY_ID
+  APP_STORE_CONNECT_API_ISSUER_ID
+  APP_STORE_CONNECT_API_KEY_PATH
+].freeze
+APP_REVIEW_ENV_KEYS = %w[
+  ASC_REVIEW_CONTACT_PHONE
+  ASC_DEMO_USERNAME
+  ASC_DEMO_PASSWORD
+  APP_REVIEW_CONTACT_PHONE
+  APP_REVIEW_DEMO_USERNAME
+  APP_REVIEW_DEMO_PASSWORD
+].freeze
+RELEASE_BUILD_SENSITIVE_ENV_KEYS = (
+  APP_STORE_CONNECT_AUTH_ENV_KEYS + APP_REVIEW_ENV_KEYS
+).freeze
 
 class AppStoreConnectError < StandardError; end
 
@@ -149,27 +168,36 @@ class IosReleaseAutomation
 
   def archive
     puts "Generating ignored iOS secret xcconfig files..."
-    run(["ruby", "scripts/write_ios_xcode_secrets.rb"])
+    run(
+      ["ruby", "scripts/write_ios_xcode_secrets.rb"],
+      unset_env: RELEASE_BUILD_SENSITIVE_ENV_KEYS
+    )
 
     puts "Building Flutter release app..."
-    run([
-      "flutter", "build", "ios", "--release", "--no-pub",
-      "--build-name=#{build_marketing_version}",
-      "--build-number=#{build_number}"
-    ])
+    run(
+      [
+        "flutter", "build", "ios", "--release", "--no-pub",
+        "--build-name=#{build_marketing_version}",
+        "--build-number=#{build_number}"
+      ],
+      unset_env: RELEASE_BUILD_SENSITIVE_ENV_KEYS
+    )
 
     FileUtils.mkdir_p(File.dirname(archive_path))
     puts "Archiving #{version_string}+#{build_number} to #{archive_path}..."
-    run([
-      "xcodebuild",
-      "-workspace", "ios/Runner.xcworkspace",
-      "-scheme", "Runner",
-      "-configuration", "Release",
-      "-destination", "generic/platform=iOS",
-      "-archivePath", archive_path,
-      "-allowProvisioningUpdates",
-      "archive"
-    ])
+    run(
+      [
+        "xcodebuild",
+        "-workspace", "ios/Runner.xcworkspace",
+        "-scheme", "Runner",
+        "-configuration", "Release",
+        "-destination", "generic/platform=iOS",
+        "-archivePath", archive_path,
+        "-allowProvisioningUpdates",
+        "archive"
+      ],
+      unset_env: RELEASE_BUILD_SENSITIVE_ENV_KEYS
+    )
   end
 
   def upload_archive
@@ -187,7 +215,7 @@ class IosReleaseAutomation
       "-allowProvisioningUpdates"
     ]
     command.concat(xcodebuild_authentication_args)
-    run(command)
+    run(command, unset_env: APP_REVIEW_ENV_KEYS)
   end
 
   def apply_metadata(wait_build: false, wait_seconds: 1800, skip_review: false, skip_attach_build: false, skip_beta: false)
@@ -424,10 +452,11 @@ class IosReleaseAutomation
     app_info
   end
 
-  def run(command)
+  def run(command, unset_env: [])
     printable = redact_command(command)
     puts "$ #{printable.join(" ")}"
-    ok = system(*command)
+    environment = unset_env.each_with_object({}) { |key, values| values[key] = nil }
+    ok = system(environment, *command)
     raise AppStoreConnectError, "Command failed: #{printable.join(" ")}" unless ok
   end
 
@@ -1003,7 +1032,6 @@ end
 
 begin
   parser.parse!(ARGV)
-  load_env_file(DEFAULT_ENV)
   config = JSON.parse(File.read(options.fetch(:config)))
   automation = IosReleaseAutomation.new(config)
 
@@ -1011,8 +1039,10 @@ begin
   when "archive"
     automation.archive
   when "upload"
+    load_env_file(DEFAULT_ENV)
     automation.upload_archive
   when "apply"
+    load_env_file(DEFAULT_ENV)
     automation.apply_metadata(
       wait_build: options.fetch(:wait_build),
       wait_seconds: options.fetch(:wait_seconds),
@@ -1021,9 +1051,11 @@ begin
       skip_beta: options.fetch(:skip_beta)
     )
   when "screenshots"
+    load_env_file(DEFAULT_ENV)
     automation.upload_screenshots(replace: options.fetch(:replace_screenshots, true))
   when "release"
     automation.archive
+    load_env_file(DEFAULT_ENV)
     automation.upload_archive
     automation.apply_metadata(
       wait_build: true,
@@ -1033,6 +1065,7 @@ begin
       skip_beta: options.fetch(:skip_beta)
     )
   when "status"
+    load_env_file(DEFAULT_ENV)
     automation.status
   else
     warn usage
