@@ -1,0 +1,128 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_APPLY_V1",
+  "preflight_fingerprint_sha256": "636c05c066bb51a80b02b4a84776590d3971ade109e8efa9958ddc6581e81bae",
+  "migration_sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a",
+  "migration_version": "20260814120000",
+  "migration_name": "one_piece_canonical_import_durable_staging_v1",
+  "ledger_fingerprint_sha256": "6895ee219cc369ebb29e0cd66e7f30d41ab805e3c8e6d6b02a74db4ac0ef185f",
+  "ledger_statement_count": 26,
+  "protected_schema_fingerprint_sha256": "fe7c2af6c85d2c65752f2492177ec5e55c65891480ab368714d89f059a383411",
+  "inventory": {
+    "tables": [
+      "one_piece_canonical_import_batches",
+      "one_piece_canonical_import_rows"
+    ],
+    "functions": [
+      "one_piece_canonical_import_reject_mutation_v1()"
+    ],
+    "triggers": [
+      "one_piece_canonical_import_batches_immutable",
+      "one_piece_canonical_import_rows_immutable"
+    ],
+    "required_indexes": [
+      "one_piece_canonical_import_batches_group_idx",
+      "one_piece_canonical_import_batches_pkey",
+      "one_piece_canonical_import_rows_batch_idx",
+      "one_piece_canonical_import_rows_pkey",
+      "one_piece_import_rows_batch_ordinal_key",
+      "one_piece_import_rows_batch_product_key"
+    ],
+    "total_index_count": 7,
+    "named_constraints": [
+      "one_piece_import_batches_payload_hash_check",
+      "one_piece_import_batches_manifest_hash_check",
+      "one_piece_import_batches_migration_hash_check",
+      "one_piece_import_batches_commit_check",
+      "one_piece_import_batches_category_check",
+      "one_piece_import_batches_mode_check",
+      "one_piece_import_batches_one_batch_check",
+      "one_piece_import_batches_positive_rows_check",
+      "one_piece_import_rows_record_class_check",
+      "one_piece_import_rows_single_kind_check",
+      "one_piece_import_rows_promotion_state_check",
+      "one_piece_import_rows_payload_hash_check",
+      "one_piece_import_rows_ordinal_check",
+      "one_piece_import_rows_batch_product_key",
+      "one_piece_import_rows_batch_ordinal_key"
+    ],
+    "constraint_type_counts": {
+      "c": 13,
+      "f": 1,
+      "p": 2,
+      "u": 3
+    },
+    "policies": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "policy_name": "one_piece_import_batches_service_select",
+        "command": "SELECT"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "policy_name": "one_piece_import_batches_service_insert",
+        "command": "INSERT"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "policy_name": "one_piece_import_rows_service_select",
+        "command": "SELECT"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "policy_name": "one_piece_import_rows_service_insert",
+        "command": "INSERT"
+      }
+    ]
+  },
+  "timeouts": {
+    "lock_timeout": "5s",
+    "statement_timeout": "180s",
+    "idle_in_transaction_session_timeout": "60s"
+  },
+  "boundaries": {
+    "schema_only": true,
+    "one_piece_staging_rows": 0,
+    "protected_table_dml": 0,
+    "app_roles_with_table_access": 0,
+    "canonical_or_pricing_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": false,
+    "publication_or_deployment": false,
+    "mtg_progress_is_external": true
+  },
+  "apply_plan_fingerprint_sha256": "ee4b70bbfbda797cede83706cccc5234dc9dba619fc23053d02cff6aaad09e58",
+  "approval_env": "ONE_PIECE_DURABLE_STAGING_SCHEMA_APPLY_APPROVAL",
+  "guard_token": "EXECUTE_ONE_PIECE_DURABLE_STAGING_SCHEMA_ONLY:636c05c066bb51a80b02b4a84776590d3971ade109e8efa9958ddc6581e81bae:7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a:ee4b70bbfbda797cede83706cccc5234dc9dba619fc23053d02cff6aaad09e58:ZERO_ONE_PIECE_STAGING_ROWS",
+  "ledger_row": {
+    "version": "20260814120000",
+    "name": "one_piece_canonical_import_durable_staging_v1",
+    "statements": [
+      "-- ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_V1 migration candidate.\n-- Unapplied. This creates service-only evidence staging and no canonical or public rows.\n\nbegin",
+      "set local lock_timeout = '5s'",
+      "set local statement_timeout = '60s'",
+      "create table public.one_piece_canonical_import_batches (\n  id uuid primary key,\n  payload_fingerprint_sha256 text not null unique,\n  source_manifest_logical_sha256 text not null,\n  migration_candidate_sha256 text not null,\n  plan_version text not null,\n  schema_version text not null,\n  producing_commit_sha text not null,\n  producing_branch text not null,\n  source_category_id bigint not null,\n  source_group_id bigint not null,\n  source_group_name text not null,\n  source_group_released_on date,\n  staging_mode text not null,\n  authorized_durable_batch_rows integer not null,\n  authorized_durable_staging_rows integer not null,\n  row_counts jsonb not null,\n  execution_boundaries jsonb not null,\n  created_at timestamptz not null default now(),\n  constraint one_piece_import_batches_payload_hash_check\n    check (payload_fingerprint_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_manifest_hash_check\n    check (source_manifest_logical_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_migration_hash_check\n    check (migration_candidate_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_commit_check\n    check (producing_commit_sha ~ '^[0-9a-f]{40}$'),\n  constraint one_piece_import_batches_category_check\n    check (source_category_id = 68),\n  constraint one_piece_import_batches_mode_check\n    check (staging_mode = 'durable_service_only'),\n  constraint one_piece_import_batches_one_batch_check\n    check (authorized_durable_batch_rows = 1),\n  constraint one_piece_import_batches_positive_rows_check\n    check (authorized_durable_staging_rows > 0)\n)",
+      "create table public.one_piece_canonical_import_rows (\n  id uuid primary key,\n  batch_id uuid not null references public.one_piece_canonical_import_batches(id)\n    on delete restrict,\n  source_product_id bigint not null,\n  source_group_id bigint not null,\n  record_class text not null,\n  single_card_kind text,\n  language_key text not null,\n  promotion_state text not null,\n  row_ordinal integer not null,\n  payload jsonb not null,\n  payload_sha256 text not null,\n  created_at timestamptz not null default now(),\n  constraint one_piece_import_rows_record_class_check\n    check (\n      record_class in (\n        'exact_single_card_candidate',\n        'sealed_product_candidate',\n        'ambiguous_quarantine'\n      )\n    ),\n  constraint one_piece_import_rows_single_kind_check\n    check (\n      (record_class = 'exact_single_card_candidate'\n        and single_card_kind in ('numbered_card', 'don_card'))\n      or\n      (record_class <> 'exact_single_card_candidate' and single_card_kind is null)\n    ),\n  constraint one_piece_import_rows_promotion_state_check\n    check (\n      promotion_state in (\n        'current_candidate',\n        'future_or_presale_hold',\n        'inactive_source_hold',\n        'separate_sealed_catalog',\n        'quarantine'\n      )\n    ),\n  constraint one_piece_import_rows_payload_hash_check\n    check (payload_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_rows_ordinal_check\n    check (row_ordinal >= 0),\n  constraint one_piece_import_rows_batch_product_key\n    unique (batch_id, source_product_id),\n  constraint one_piece_import_rows_batch_ordinal_key\n    unique (batch_id, row_ordinal)\n)",
+      "create index one_piece_canonical_import_batches_group_idx\n  on public.one_piece_canonical_import_batches (source_category_id, source_group_id, created_at)",
+      "create index one_piece_canonical_import_rows_batch_idx\n  on public.one_piece_canonical_import_rows (batch_id, row_ordinal)",
+      "create or replace function public.one_piece_canonical_import_reject_mutation_v1()\nreturns trigger\nlanguage plpgsql\nsecurity definer\nset search_path = pg_catalog, public\nas $$\nbegin\n  raise exception 'One Piece canonical import staging rows are immutable';\nend;\n$$",
+      "create trigger one_piece_canonical_import_batches_immutable\nbefore update or delete on public.one_piece_canonical_import_batches\nfor each row execute function public.one_piece_canonical_import_reject_mutation_v1()",
+      "create trigger one_piece_canonical_import_rows_immutable\nbefore update or delete on public.one_piece_canonical_import_rows\nfor each row execute function public.one_piece_canonical_import_reject_mutation_v1()",
+      "alter table public.one_piece_canonical_import_batches enable row level security",
+      "alter table public.one_piece_canonical_import_batches force row level security",
+      "alter table public.one_piece_canonical_import_rows enable row level security",
+      "alter table public.one_piece_canonical_import_rows force row level security",
+      "create policy one_piece_import_batches_service_select\n  on public.one_piece_canonical_import_batches\n  for select\n  to service_role\n  using ((select auth.role()) = 'service_role')",
+      "create policy one_piece_import_batches_service_insert\n  on public.one_piece_canonical_import_batches\n  for insert\n  to service_role\n  with check ((select auth.role()) = 'service_role')",
+      "create policy one_piece_import_rows_service_select\n  on public.one_piece_canonical_import_rows\n  for select\n  to service_role\n  using ((select auth.role()) = 'service_role')",
+      "create policy one_piece_import_rows_service_insert\n  on public.one_piece_canonical_import_rows\n  for insert\n  to service_role\n  with check ((select auth.role()) = 'service_role')",
+      "revoke all on table public.one_piece_canonical_import_batches\n  from public, anon, authenticated, service_role",
+      "revoke all on table public.one_piece_canonical_import_rows\n  from public, anon, authenticated, service_role",
+      "revoke all on function public.one_piece_canonical_import_reject_mutation_v1()\n  from public, anon, authenticated, service_role",
+      "grant select, insert on table public.one_piece_canonical_import_batches\n  to service_role",
+      "grant select, insert on table public.one_piece_canonical_import_rows\n  to service_role",
+      "comment on table public.one_piece_canonical_import_batches is\n  'Service-only immutable One Piece source-evidence batches. Staging grants no canonical identity, promotion, pricing, or publication authority.'",
+      "comment on table public.one_piece_canonical_import_rows is\n  'Exact One Piece source payloads preserving singles, DON, sealed, quarantine, language, release, and pricing-evidence lanes for separate review.'",
+      "commit"
+    ]
+  }
+}

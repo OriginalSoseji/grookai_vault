@@ -103,7 +103,9 @@ export default async function ExplorePage(
   if (isDiscoveryMode) {
     const [featuredCardRows, allSets, recentlyConfirmedCards, provisionalCards] = await Promise.all([
       getFeaturedExploreCards().catch(() => []),
-      getPublicSets().catch(() => []),
+      getPublicSets()
+        .then((sets) => sets.filter((setInfo) => setInfo.game_code === "pokemon"))
+        .catch(() => []),
       getRecentlyConfirmedCanonicalCards().catch(() => []),
       getDiscoveryProvisionalCards().catch(() => []),
     ]);

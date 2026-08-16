@@ -1,0 +1,39 @@
+{
+  "version": "ONE_PIECE_COMPLETE_SEALED_CANDIDATE_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T14:51:06.409Z",
+  "status": "production_read_only_preflight_failed",
+  "repository": {
+    "commit_sha": "597f86317d877960ea5cc411e9bc735f0477f8d7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+  "payload_fingerprint_sha256": "ff26c514511b9184d8ba91c793b40a249818c2bc5b3ca4778f6b253b6a27cbb2",
+  "preflight_fingerprint_sha256": "4dec9c9b829cd9cf74f2671213453d877151273343a349ec991503b24cbef48c",
+  "staging_row_count": 406,
+  "collision_counts": {
+    "candidate_ids": 0,
+    "source_products": 0,
+    "source_payloads": 0
+  },
+  "sealed_baseline": {
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 0,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0
+  },
+  "findings": [
+    "sealed_schema_security_mismatch:sealed_product_release_pointer",
+    "staging_readback_mismatch"
+  ],
+  "boundaries": {
+    "transaction_read_only": true,
+    "database_writes": 0
+  }
+}

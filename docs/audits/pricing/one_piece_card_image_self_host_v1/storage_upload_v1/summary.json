@@ -1,0 +1,22 @@
+{
+  "status": "storage_upload_complete_and_verified",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "2a02df2bb954e84e6bf26e0277fc149523493f0f",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5a05e6058f41987b81a41507745201114efb847602ab974daefea0a065982664",
+  "planned": 6730,
+  "available_planned": 6553,
+  "coverage_gaps": 177,
+  "verified": 6553,
+  "created": 6553,
+  "reused_verified": 0,
+  "failures": [],
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "database_writes": 0,
+  "pointer_writes": 0
+}

@@ -1,0 +1,17 @@
+{
+  "group_count": 84,
+  "active_group_count": 84,
+  "product_count": 7261,
+  "active_product_count": 7261,
+  "selected_product_count": 7261,
+  "empty_groups": [
+    {
+      "group_id": 24775,
+      "name": "The World's Strongest Warriors Release Event Cards",
+      "source_active": true,
+      "product_count": 0
+    }
+  ],
+  "products_sha256": "2083b10493001ab72277f65b2751b73c82b465db2d09e81ac208dce96162f00e",
+  "groups_sha256": "4aa79b4e198fbf3ff77f44fa1682f82f3f75278344e496b1f1288732b4ec90f3"
+}

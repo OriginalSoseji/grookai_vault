@@ -1,0 +1,12 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_INDEPENDENT_POST_APPLY_V1",
+  "recorded_at": "2026-08-15T18:57:51.850Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "0fea3b661f4ce94211901b6eb84ad59a39f79b29",
+    "tracked_worktree_clean": true
+  },
+  "mode": "independent_read_only_post_apply_verification",
+  "apply_execution_fingerprint_sha256": "a57f9f79c1337b517d5cf211eabf2d0ce37b4f78537bbd16ff82028deca77445",
+  "database_writes": 0
+}

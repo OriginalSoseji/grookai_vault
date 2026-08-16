@@ -1,0 +1,60 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_APPLY_PLAN_V1",
+  "repository": {
+    "commit_sha": "9cb25ddac2632bf67e29349d2d3e1475556931bc",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "input_hashes": {
+    "promotion_plan_gzip_sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084",
+    "preflight_summary_sha256": "800c70a0e84077b708a79d1a739b66f163b42b10f9a5c7d313b2046b7222e25c",
+    "rollback_summary_sha256": "4858932db5b639b54c42951a68e78542984409ccad585ea0c1ca8b3ae31bcf2e",
+    "rollback_transaction_sha256": "6f1d5a620888c08c9197fb1482177a6f24987d166585ab6a5cfee1b7397fad28",
+    "post_rollback_readback_sha256": "39477e67a5a532c7273ffbd5da7d4d1bb3ecc7121525a908540ef1e8c1361d0e"
+  },
+  "promotion_plan_fingerprint_sha256": "5c39be2b0798a30d0c17c5e9ad46ad095bf8adaa956b68010975f26b72f937f6",
+  "payload_fingerprint_sha256": "481c1fe823ff988301675e38024e4cb52985d7b783f77b0bfadd38c1eafb3fbf",
+  "preflight_fingerprint_sha256": "24d000d22f88f22804844a30581a7963ada2441cc3db5396d06575a008445736",
+  "rollback_canary_fingerprint_sha256": "a21f02d3140889bb96fdf9bcefb8e6e67352bdb031eb1553e1859730496ae245",
+  "target_binding": {
+    "counts": {
+      "sets": 58,
+      "card_prints": 6491,
+      "card_print_identity": 6491,
+      "card_print_identity_source_evidence": 6491,
+      "external_mappings": 6491
+    },
+    "set_ids_sha256": "27f8368badf7c45f8f610352ffa67d9ecdc76d232150de1d8bfa125a54a8ef22",
+    "card_print_ids_sha256": "78d33f77ef4b5c1febee8283621abc07d7eae4b0fddc3ca89d448affec4108f4",
+    "identity_ids_sha256": "a74daa0598f4def209cdc9f8c81eccf46e618e4df97baa44ea8ee330760114bb",
+    "evidence_ids_sha256": "685f0e4f1494c3072aa8762b41b8bebe1194c7e6b47bc3dcca7952050f5b1be7",
+    "external_product_ids_sha256": "194c1dc14cdf1f2223529b320ff22b5e5c211e689214bdd74cdeb06c37356555"
+  },
+  "execution": {
+    "chunk_size": 250,
+    "advisory_lock_key": "one_piece_complete_numbered_canonical_apply_v1",
+    "lock_timeout": "5s",
+    "statement_timeout": "300s",
+    "idle_in_transaction_session_timeout": "120s"
+  },
+  "boundaries": {
+    "insert_only": true,
+    "exact_set_rows": 58,
+    "exact_card_print_rows": 6491,
+    "exact_identity_rows": 6491,
+    "exact_source_evidence_rows": 6491,
+    "exact_external_mapping_rows": 6491,
+    "update_rows": 0,
+    "delete_rows": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "apply_plan_fingerprint_sha256": "06481bf852288a61e92d3ba1e1d66bcb315ffa5885060c4dd731f9559c8f22e9"
+}

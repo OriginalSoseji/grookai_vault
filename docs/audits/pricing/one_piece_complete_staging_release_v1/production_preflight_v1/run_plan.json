@@ -1,0 +1,19 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_RELEASE_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T06:29:48.006Z",
+  "repository": {
+    "commit_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+  "release_payload_fingerprint_sha256": "890b5d0c3a3a2f9d842e280baec1323b3d780d78565c40ebd10dba04e78787fc",
+  "mode": "read_only_preflight",
+  "expected_batches": 83,
+  "expected_rows": 7261,
+  "boundaries": {
+    "database_writes": false,
+    "canonical_or_public_writes": false,
+    "pricing_storage_pointer_or_vault_writes": false
+  }
+}

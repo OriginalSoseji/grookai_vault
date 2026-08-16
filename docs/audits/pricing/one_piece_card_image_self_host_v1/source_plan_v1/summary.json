@@ -1,0 +1,14 @@
+{
+  "status": "source_plan_frozen_read_only",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "2a02df2bb954e84e6bf26e0277fc149523493f0f",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5a05e6058f41987b81a41507745201114efb847602ab974daefea0a065982664",
+  "item_count": 6730,
+  "available_images": 6553,
+  "coverage_gaps": 177,
+  "database_writes": 0,
+  "storage_writes": 0
+}

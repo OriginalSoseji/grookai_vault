@@ -1,0 +1,49 @@
+{
+  "version": "ONE_PIECE_COMPLETE_DON_CANONICAL_APPLY_V1",
+  "repository": {
+    "commit_sha": "aa806543b3af76f57500e7525eb32d1e357b001b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "proof_hashes": {
+    "preflight_summary_sha256": "8009b68a19a20789af496cb34ddb07956e7318aac122322696cada6e3de2ed17",
+    "canary_summary_sha256": "22482e3cc7b04fa323a47b784f0a88ca35e9955bcec027407446b9e9f019d6c4"
+  },
+  "target_binding": {
+    "plan_fingerprint_sha256": "3adebfb80803c147bc83bad6887418593c221f9e1cf090291819817505833bba",
+    "payload_fingerprint_sha256": "9aad9b82042c73a2220171309350fe351e1b7e0b886b825d9ecb70cf8f68a147",
+    "preflight_fingerprint_sha256": "e5213391f4afa0be085b6aed365629f2a56380aadbe4632fd174683800fcee8e",
+    "canary_fingerprint_sha256": "e2bfa38a5fd1cfe817780bf6e30cb9c44e79cf4dd12c62baac7cba7ed7d10309",
+    "counts": {
+      "sets": 1,
+      "card_prints": 222,
+      "card_print_identity": 222,
+      "card_print_identity_source_evidence": 222,
+      "external_mappings": 222
+    },
+    "set_ids_sha256": "ae07559ee89de2dbfe0c17d7cc71bb8bbc8382c689f2d6cc89e87f2d51865e44",
+    "card_print_ids_sha256": "f38aaf5d3c16ed45bf8523c6cf4c1af04a234a86145e59bfb3fe06bbfcb40e89",
+    "source_product_ids_sha256": "32c6d7bbe456a9ca1cdd5e6c0c5449b8e3a919a3126910d93cfcbcfe0158d6f0"
+  },
+  "execution": {
+    "chunk_size": 100,
+    "lock_timeout": "5s",
+    "statement_timeout": "300s",
+    "idle_in_transaction_session_timeout": "300s",
+    "advisory_lock_key": "one_piece_complete_don_canonical_apply_v1"
+  },
+  "boundaries": {
+    "insert_only": true,
+    "updates": 0,
+    "deletes": 0,
+    "child_printing_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "apply_plan_fingerprint_sha256": "405ad42cfe276bf3c6a37bca3d1a3c62ac6aae99cb08961140110fa1d1d3228c"
+}

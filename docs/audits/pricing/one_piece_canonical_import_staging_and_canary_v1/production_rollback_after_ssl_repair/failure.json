@@ -1,0 +1,7 @@
+{
+  "recorded_at": "2026-08-14T06:21:48.863Z",
+  "error": "SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required",
+  "rollback_attempted": false,
+  "rollback_succeeded": false,
+  "fresh_post_rollback_attempted": false
+}

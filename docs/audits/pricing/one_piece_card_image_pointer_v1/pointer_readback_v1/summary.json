@@ -1,0 +1,17 @@
+{
+  "status": "independent_pointer_readback_passed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "6f4ed218e590854ff5f9d3554bf516fe31a40f92",
+    "tracked_worktree_clean": true
+  },
+  "pointer_plan_fingerprint_sha256": "22f2b56070e43392c38ea33c4ad06f0013707e5e1eafb672b965cfee868388a4",
+  "pointer_payload_fingerprint_sha256": "dad6ab8990ff38f2b72816a6aea72188d38ca974137c44a65598d1b9624ea82a",
+  "pointer_rows": 6553,
+  "coverage_gaps": 177,
+  "mutation": null,
+  "readback_rows": 6730,
+  "findings": [],
+  "database_writes": 0,
+  "committed": false
+}

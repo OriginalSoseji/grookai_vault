@@ -1,0 +1,40 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "apply_plan.json",
+      "sha256": "e7a1e9b2bfe4726b781f7b608214214704515e4bf1223a0c906083b176c8658d"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "46314632a882e56a526811bfbb569f742733bb37572272bf521a5f23b87b3307"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "key": "mutation_plan",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_mutation_plan_v1/hot_update_policy_frozen_plan_v1/mutation_plan.json",
+      "sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4"
+    },
+    {
+      "key": "rollback_summary",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_rollback_canary_v1/production_rollback_hot_policy_v1/summary.json",
+      "sha256": "d2b2a8020b280111c75b71f33eb0667723ff29ae2023f5e0a17992f7d7d0b659"
+    },
+    {
+      "key": "transaction_proof",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_rollback_canary_v1/production_rollback_hot_policy_v1/transaction_proof.json",
+      "sha256": "8ade2f07c024887af9cc7fcaf2d56f64d41c36d6cc6dacb169aa2c931f12cd09"
+    },
+    {
+      "key": "independent_summary",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_rollback_canary_v1/independent_post_rollback_hot_policy_v1/summary.json",
+      "sha256": "5640a4ecac6d7a5b68eda46a3878b17250e0c9b054ab8cbc425e1c07ed851de5"
+    },
+    {
+      "key": "independent_readback",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_rollback_canary_v1/independent_post_rollback_hot_policy_v1/production_readback.json",
+      "sha256": "8a6e9a916a37e7df64179affeb4e47df3d329909540f36ed7b85b9604c2fb06c"
+    }
+  ]
+}

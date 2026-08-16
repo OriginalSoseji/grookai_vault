@@ -1,0 +1,57 @@
+{
+  "version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_APPLY_V1",
+  "recorded_at": "2026-08-14T19:14:03.197Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "8a74925370b0a3ae453992573a5e5dfeeb933e6a",
+    "tracked_worktree_clean": true
+  },
+  "apply_plan_fingerprint_sha256": "7a4458002aa0f30133b875e784ee4050b4209605797701aae92ef6e994842aec",
+  "migration_sha256": "a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba",
+  "authority": {
+    "expected_migration_parent": "20260814120000",
+    "preflight_fingerprint_sha256": "c3dc1ab6bdc2d6d1c434cddbc4c6a47fd447d65d396c1eec6feaf2bfb9978a1b",
+    "preflight_summary_sha256": "2ed57f833c7baca377d1df04da7185b3c8ace13c3553918b14ed96d60a4b7287",
+    "rollback_proof_sha256": "c055c08d0231ad99b7958afc5e915b5bb9841a5169628d8523f5c3fa29472fe1",
+    "rollback_summary_sha256": "5ce5f0b841ab3639ec9c2d8c17ad9bf8d0f6bbe5dfdaaf66a06a63f0190b1637",
+    "independent_proof_sha256": "42fa494f412c03395a39bc3bd63b8ab9956fcdff4e8263f61ccea734c720eec5",
+    "independent_summary_sha256": "c37f423114e5af3aab5a7a97755508a1bf53dd54a916f5af153f8a177f9f0c91"
+  },
+  "target": {
+    "game": {
+      "id": "4f504300-0000-4000-8000-000000000001",
+      "code": "one_piece",
+      "name": "One Piece Card Game",
+      "slug": "one-piece"
+    },
+    "release_status": "hidden",
+    "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1",
+    "identity_domains": [
+      "mtg_eng_paper_print",
+      "one_piece_eng_print",
+      "pokemon_ba",
+      "pokemon_eng_special_print",
+      "pokemon_eng_standard",
+      "pokemon_jpn"
+    ]
+  },
+  "boundaries": {
+    "foundation_schema_and_seed_only": true,
+    "migration_ledger_rows": 1,
+    "game_rows": 1,
+    "hidden_release_control_rows": 1,
+    "identity_constraint_replacements": 1,
+    "set_rows": 0,
+    "card_rows": 0,
+    "identity_rows": 0,
+    "printing_rows": 0,
+    "mapping_rows": 0,
+    "sealed_rows": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  }
+}

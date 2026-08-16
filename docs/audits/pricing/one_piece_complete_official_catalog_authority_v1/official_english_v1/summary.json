@@ -1,0 +1,39 @@
+{
+  "version": "ONE_PIECE_COMPLETE_OFFICIAL_ENGLISH_CATALOG_AUTHORITY_V1",
+  "recorded_at": "2026-08-15T07:06:58.256Z",
+  "status": "official_english_catalog_authority_passed_no_writes",
+  "repository": {
+    "commit_sha": "69b800a043b7102487086d6e8115465110d73136",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "authority_fingerprint_sha256": "2de1958ea535c4dd65e3c4896bbe9a27df0f00199a7b2e69a82eb123071489f8",
+  "source_reconciliation_fingerprint_sha256": "6adf668587e16b34179950d01ea15ca3041244ed85047a37d2edfd6103a10584",
+  "counts": {
+    "selected_series": 59,
+    "supplemental_searches": 11,
+    "covered_set_codes": 59,
+    "official_variant_records": 4673,
+    "official_number_authorities": 2665,
+    "official_conflicts": 0,
+    "selected_products": 6547,
+    "exact_official_bindings": 6530,
+    "retained_existing_bindings": 0,
+    "source_name_mismatches": 0,
+    "official_number_missing": 0,
+    "official_catalog_gap_holds": 17,
+    "promotion_eligible_products": 6530
+  },
+  "findings": [],
+  "boundaries": {
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_downloads": 0,
+    "image_urls_reference_only": true,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "freeze the complete hidden numbered-card canonical promotion payload"
+}

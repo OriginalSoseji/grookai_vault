@@ -1,0 +1,11 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_POST_ROLLBACK_VERIFIER_V1",
+  "repository": {
+    "commit_sha": "21d0be60708d7ceff1c26136f051b50b60ee199e",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "execution_summary_file": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/production_rollback_attribution_v2/summary.json",
+  "execution_summary_sha256": "a85b2a60bef1227bcf061e5a802d35a82a42b30671dc40793adf4de97994f76b",
+  "plan_fingerprint": "174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90",
+  "mode": "fresh_read_only_post_rollback_verification"
+}

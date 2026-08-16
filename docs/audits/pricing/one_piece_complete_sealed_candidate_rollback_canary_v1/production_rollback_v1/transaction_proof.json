@@ -1,0 +1,26 @@
+{
+  "sample_source_product_ids": [
+    288221,
+    450085,
+    450086,
+    457043,
+    484943,
+    485271,
+    493752,
+    620141,
+    536154,
+    690658
+  ],
+  "candidate_readback_sha256": "5251f6ed887a27351da59159322e8918afa1fa1befb062566d5b6dffbc9e2146",
+  "attributable_writes": [
+    {
+      "table_name": "sealed_product_candidates",
+      "inserted": "10",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "findings": [],
+  "rolled_back": true
+}

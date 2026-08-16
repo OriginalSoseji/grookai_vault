@@ -1,0 +1,55 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CANONICAL_RECONCILIATION_V1",
+  "recorded_at": "2026-08-15T07:06:46.394Z",
+  "status": "complete_offline_reconciliation_passed_no_writes",
+  "repository": {
+    "commit_sha": "69b800a043b7102487086d6e8115465110d73136",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "reconciliation_fingerprint_sha256": "6adf668587e16b34179950d01ea15ca3041244ed85047a37d2edfd6103a10584",
+  "source_authority": {
+    "immutable_staging_release_plan_fingerprint": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+    "immutable_staging_release_payload_fingerprint": "890b5d0c3a3a2f9d842e280baec1323b3d780d78565c40ebd10dba04e78787fc",
+    "source_manifest_logical_sha256": "4cf38876576da399747dc8d5d0925c143812f89ecf4a75e6f9ced7a220828824",
+    "source_manifest_row_count": 7261
+  },
+  "counts": {
+    "source_products": 7261,
+    "current_numbered_products": 6547,
+    "current_don_products": 223,
+    "future_numbered_products": 80,
+    "future_don_products": 2,
+    "sealed_products": 403,
+    "quarantined_products": 6,
+    "current_numbered_set_families": 59,
+    "existing_st01_products": 17,
+    "proposed_new_numbered_products": 6530
+  },
+  "diagnostics": {
+    "collision_count": 0,
+    "collisions": [],
+    "invalid_card_number_count": 0,
+    "invalid_card_number_product_ids": [],
+    "existing_binding_mismatch_count": 0,
+    "existing_binding_mismatches": [],
+    "duplicate_printed_numbers_are_expected_product_variants": true,
+    "unique_printed_number_count": 2676,
+    "multi_product_printed_number_count": 2115
+  },
+  "boundaries": {
+    "database_connections": 0,
+    "database_writes": 0,
+    "canonical_writes": 0,
+    "mapping_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "acquire and bind official English series/card authority to the 59 numbered-card set families"
+}

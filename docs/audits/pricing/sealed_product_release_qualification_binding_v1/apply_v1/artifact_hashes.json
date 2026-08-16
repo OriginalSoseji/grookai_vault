@@ -1,0 +1,9 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "summary.json": {
+      "bytes": 1086,
+      "sha256": "637ac859b1e8c88b3da8cce8910d79765c6cb83f236aa48f1178fcdadd3f86f0"
+    }
+  }
+}

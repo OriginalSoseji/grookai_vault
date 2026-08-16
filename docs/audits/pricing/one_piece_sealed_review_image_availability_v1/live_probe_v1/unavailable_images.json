@@ -1,0 +1,244 @@
+[
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/657215_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "941ab7de-ca87-53c6-a01f-8da6adefad5c"
+    ],
+    "source_product_ids": [
+      657215
+    ],
+    "url_sha256": "a1a58c7e78ea76f4163ff020c6db7bd2a044d07906ca9c1cb7bc9adad1b01c92",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/657215_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/657218_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "eabcffae-af6d-5339-b9c0-557e9f6740cd"
+    ],
+    "source_product_ids": [
+      657218
+    ],
+    "url_sha256": "2819414ecf7ca9a1e0f58fed54b464e1d0956a83f3f78b6a7fb9fe3a9490268b",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/657218_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/657219_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "6a36c210-8e60-5fe3-abb8-f0ba553c2891"
+    ],
+    "source_product_ids": [
+      657219
+    ],
+    "url_sha256": "00417d8ae079ccdec021ec5dbf7d48952388bb8e2073af7bf1a8ba998cac0753",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/657219_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/672894_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "31fd2949-0820-5c27-bf53-7334b483d6b1"
+    ],
+    "source_product_ids": [
+      672894
+    ],
+    "url_sha256": "b18fe9c1d6b65be938449553ba643e32589174dd72d177da6bcbde530c1e13c7",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/672894_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/679503_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "42c63f4c-bc4d-5d65-b8c8-33da3fd09b91"
+    ],
+    "source_product_ids": [
+      679503
+    ],
+    "url_sha256": "abe3aa3ebb17187a72a86a48789ab7d9d0cd44dd512f9ec4c70e057812b0567b",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/679503_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/686290_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "191c04c1-c70f-5f0a-9938-73fb4dc5317d"
+    ],
+    "source_product_ids": [
+      686290
+    ],
+    "url_sha256": "1dbb50a91aa04fbee091e2ff597ab076604f56e288b7380487b86ed1527a9455",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/686290_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/694893_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "464adf98-f238-5ffb-884c-00a9a91b23cf"
+    ],
+    "source_product_ids": [
+      694893
+    ],
+    "url_sha256": "a951ee052a1c237038d4c8a752c31c8e60cee6e78c34e3a1dd1428922d98c323",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/694893_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/694894_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "b657be0a-b144-5d3f-93ce-c172cc9b38b1"
+    ],
+    "source_product_ids": [
+      694894
+    ],
+    "url_sha256": "9b177a8c4ab37840f4d74cb5145156ec2e02538529a8a8290fe7e8b19b6f3301",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/694894_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/704755_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "688ff124-1572-56a3-a662-e8a5f806dc90"
+    ],
+    "source_product_ids": [
+      704755
+    ],
+    "url_sha256": "fbaf9ea590b6077583513471d24ca641cc0d57dc19908b92d878634cbb255f32",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/704755_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/704757_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "cd82831b-892a-5dda-a845-66db7285c88a"
+    ],
+    "source_product_ids": [
+      704757
+    ],
+    "url_sha256": "754dd12336b810db41fab4c83bf84aae93d7d3fe2e5f7b734689a937b749ff1b",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/704757_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  },
+  {
+    "url": "https://tcgplayer-cdn.tcgplayer.com/product/704878_200w.jpg",
+    "roles": [
+      "tcgplayer_source_reference"
+    ],
+    "candidate_ids": [
+      "2d79eb44-3c2e-5f39-98de-c195ff7f69c7"
+    ],
+    "source_product_ids": [
+      704878
+    ],
+    "url_sha256": "1412559ae7f9a141b81fbe0940838b2511d177a67b289ddcbc64f63364947dc0",
+    "status": "http_error",
+    "http_status": 403,
+    "final_url": "https://tcgplayer-cdn.tcgplayer.com/product/704878_200w.jpg",
+    "final_host_allowed": true,
+    "content_type": "application/xml",
+    "content_length": null,
+    "response_body_persisted": false,
+    "identity_authority": false,
+    "image_pointer_authority": false
+  }
+]

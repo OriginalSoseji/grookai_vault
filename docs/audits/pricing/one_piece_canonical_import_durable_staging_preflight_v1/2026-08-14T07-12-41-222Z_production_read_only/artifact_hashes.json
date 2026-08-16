@@ -1,0 +1,25 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 327,
+      "sha256": "8ef46f4e9ba7a951898cefd022af5358a409ab8965b0c8c4345b59580726a07b"
+    },
+    {
+      "path": "production_readback.json",
+      "bytes": 47737,
+      "sha256": "90e65fc8c55a2b9385fc97dac3ce7cec8e99bf3038de6bea208e715e0cfa3f46"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 52514,
+      "sha256": "a7c69d338f6bd46327681441a05f9a075bed745f3634bbc13d8d6206b43539da"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 436,
+      "sha256": "e613ab21286a8537d6cb8b6c5ca82c2b186c43d955b264d1ec2511cf711a5660"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_RELEASE_PREFLIGHT_V1",
+  "producer_commit_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+  "plan_fingerprint_sha256": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+  "release_payload_fingerprint_sha256": "890b5d0c3a3a2f9d842e280baec1323b3d780d78565c40ebd10dba04e78787fc",
+  "collision_state": {
+    "batch_ids": 0,
+    "batch_payload_fingerprints": 0,
+    "staging_row_ids": 0,
+    "historical_source_product_overlaps": 21,
+    "existing_batch_rows": 1,
+    "existing_staging_rows": 21,
+    "evaluation": {
+      "valid": true,
+      "findings": []
+    }
+  },
+  "source_proof": {
+    "group_count": 84,
+    "active_group_count": 84,
+    "product_count": 7261,
+    "active_product_count": 7261,
+    "selected_product_count": 7261,
+    "empty_groups": [
+      {
+        "group_id": 24775,
+        "name": "The World's Strongest Warriors Release Event Cards",
+        "source_active": true,
+        "product_count": 0
+      }
+    ],
+    "selected_products_sha256": "2083b10493001ab72277f65b2751b73c82b465db2d09e81ac208dce96162f00e",
+    "selected_groups_sha256": "4aa79b4e198fbf3ff77f44fa1682f82f3f75278344e496b1f1288732b4ec90f3"
+  },
+  "schema_readback_sha256": "cc7800ea8e3e31eea94763f82dfd420d71e44b65786f9ab52e3c09a6c0e191c4",
+  "protected_snapshot_sha256": "15cd2bfb6562c8211a2e52b9383bd7f6d08249780dd9fb3927ed87006af5d668",
+  "rollback_canary_batches": [
+    {
+      "id": "a49bd850-3c0b-58cf-8040-ca81d229d4e0",
+      "source_group_id": 24708,
+      "source_group_name": "Set Sail Deck Set",
+      "row_count": 2,
+      "row_counts": {
+        "source_products": 2,
+        "exact_single_card_candidates": 0,
+        "numbered_cards": 0,
+        "don_cards": 0,
+        "sealed_product_candidates": 2,
+        "ambiguous_quarantined": 0,
+        "future_or_presale_holds": 0,
+        "source_price_lanes": 1,
+        "release_dates": [
+          "2026-09-18"
+        ]
+      }
+    },
+    {
+      "id": "656404f3-37e6-57a5-aea6-b05edab725c3",
+      "source_group_id": 17675,
+      "source_group_name": "One Piece Promotion Cards",
+      "row_count": 1372,
+      "row_counts": {
+        "source_products": 1372,
+        "exact_single_card_candidates": 1233,
+        "numbered_cards": 1189,
+        "don_cards": 44,
+        "sealed_product_candidates": 134,
+        "ambiguous_quarantined": 5,
+        "future_or_presale_holds": 14,
+        "source_price_lanes": 1159,
+        "release_dates": [
+          "2022-09-30",
+          "2023-07-28",
+          "2023-10-27",
+          "2023-11-22",
+          "2024-03-29",
+          "2024-04-26",
+          "2024-08-30",
+          "2024-10-25",
+          "2024-11-15",
+          "2025-03-01",
+          "2025-03-07",
+          "2025-03-08",
+          "2025-04-18",
+          "2025-08-22",
+          "2025-09-01",
+          "2025-12-05",
+          "2026-01-16",
+          "2026-01-30",
+          "2026-02-06",
+          "2026-07-03",
+          "2026-07-14",
+          "2026-07-31",
+          "2026-11-27"
+        ]
+      }
+    },
+    {
+      "id": "b67dd936-006f-5659-9431-0b8022a61d52",
+      "source_group_id": 23250,
+      "source_group_name": "Starter Deck 11: Uta",
+      "row_count": 8,
+      "row_counts": {
+        "source_products": 8,
+        "exact_single_card_candidates": 5,
+        "numbered_cards": 5,
+        "don_cards": 0,
+        "sealed_product_candidates": 3,
+        "ambiguous_quarantined": 0,
+        "future_or_presale_holds": 0,
+        "source_price_lanes": 7,
+        "release_dates": [
+          "2024-02-02"
+        ]
+      }
+    }
+  ],
+  "findings": [],
+  "recorded_at": "2026-08-15T06:30:07.275Z",
+  "status": "pass",
+  "preflight_fingerprint_sha256": "0385f61e0d1551edb616b348f92cf7952dc0c36644847c2239c8fa921260eb62",
+  "environment": {
+    "environment_label": "production",
+    "environment_key_sha256": "7e10225244ba6678eade7287a14f9537954bc55b55d39e65058f025883826d59"
+  },
+  "read_only_proof": {
+    "transaction_read_only": "on",
+    "transaction_closed_before_artifacts": true
+  },
+  "boundaries": {
+    "database_writes": false,
+    "canonical_or_public_writes": false,
+    "pricing_storage_pointer_or_vault_writes": false
+  },
+  "exact_next_gate": "rollback-only representative multi-group canary"
+}

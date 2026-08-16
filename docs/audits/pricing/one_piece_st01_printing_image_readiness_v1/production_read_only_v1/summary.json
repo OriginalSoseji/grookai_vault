@@ -1,0 +1,32 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_READINESS_V1",
+  "recorded_at": "2026-08-15T02:49:04.380Z",
+  "status": "pass_with_expected_finish_taxonomy_blockers",
+  "repository": {
+    "commit_sha": "2d40da1cb78bd5d3f53f30924ced7e4abefc136e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "evidence_plan_fingerprint_sha256": "ed64eb0c2c7496816640811ff41739b017778415e8446611cde9e4db8b421980",
+  "readiness_fingerprint_sha256": "430a9b54a5820078934fbf6900cc6ebc7073c86514ed912cb10af26a679251b1",
+  "counts": {
+    "selected_parents": 17,
+    "parent_artwork_pointers_ready": 17,
+    "normal_child_printings_ready": 14,
+    "external_printing_mappings_ready": 14,
+    "foil_children_blocked_by_taxonomy": 3,
+    "child_image_pointers_ready": 0
+  },
+  "findings": [],
+  "next_gate": "separately_authorized_guarded_plan_for_17_parent_artwork_pointers_and_14_normal_children",
+  "boundaries": {
+    "mode": "read_only_plan",
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

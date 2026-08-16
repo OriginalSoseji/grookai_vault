@@ -1,0 +1,45 @@
+{
+  "version": "ONE_PIECE_SEALED_IMAGE_REVIEW_PACKET_V1",
+  "recorded_at": "2026-08-15T16:38:21.297Z",
+  "status": "sealed_image_review_packet_passed_no_writes",
+  "repository": {
+    "commit_sha": "b06c8206251dad589a10d41d37adef0d24895cbd",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "packet_fingerprint_sha256": "a66df06f1189b7242b29f5c163aef3e3a57a8259af4609919b983b1b801ea798",
+  "candidate_plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+  "review_plan_fingerprint_sha256": "ea4a5f2281b78bf71bcbb6fcebcbb37754d4c126ba7a3fa20e94920126fbbc90",
+  "official_authority_fingerprint_sha256": "b2a8119e448ebd637d8f447c5aad8575b0e6a56a25e38f58d1d3f7b4b2a5ebae",
+  "counts": {
+    "review_items": 403,
+    "unique_candidate_ids": 403,
+    "unique_source_product_ids": 403,
+    "source_image_references": 403,
+    "official_reference_images": 215,
+    "official_family_support": 215,
+    "lanes": {
+      "official_supported_visual_review": 204,
+      "ambiguous_official_family_review": 1,
+      "residual_source_only_review": 185,
+      "held_scope_review": 13
+    },
+    "default_unreviewed": 403,
+    "promotion_authorized": 0
+  },
+  "findings": [],
+  "boundaries": {
+    "offline_review_artifact_only": true,
+    "browser_local_state_only": true,
+    "network_requests_during_generation": 0,
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "canonical_authority": false,
+    "source_mapping_authority": false,
+    "pricing_authority": false,
+    "publication_authority": false,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "human image review export validation and no-write reconciliation"
+}

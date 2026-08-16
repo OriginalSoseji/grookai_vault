@@ -1,0 +1,26 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-15T06:30:20.055Z",
+  "repository": {
+    "commit_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "preflight_summary_sha256": "effead276c14d344acef614ed6e4fda7f60e84e318fb89dcdaa97aae901745cf",
+  "preflight_fingerprint_sha256": "0385f61e0d1551edb616b348f92cf7952dc0c36644847c2239c8fa921260eb62",
+  "plan_fingerprint_sha256": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+  "selected_batch_ids": [
+    "a49bd850-3c0b-58cf-8040-ca81d229d4e0",
+    "656404f3-37e6-57a5-aea6-b05edab725c3",
+    "b67dd936-006f-5659-9431-0b8022a61d52"
+  ],
+  "expected_transaction_batch_rows": 3,
+  "expected_transaction_staging_rows": 1382,
+  "expected_durable_batch_rows": 0,
+  "expected_durable_staging_rows": 0,
+  "rollback_required": true,
+  "boundaries": {
+    "canonical_or_public_writes": false,
+    "pricing_storage_pointer_or_vault_writes": false
+  }
+}

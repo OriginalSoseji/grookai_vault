@@ -1,0 +1,1012 @@
+{
+  "version": "ONE_PIECE_ST01_STORAGE_PERMANENT_V1",
+  "status": "permanent_upload_plan_frozen_no_storage_access",
+  "generated_at": "2026-08-14T12:10:17.806Z",
+  "repository": {
+    "commit_sha": "eb03b176db42cd468664a94fd767f48584728d5a",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "source_preflight": {
+    "fingerprint_sha256": "760733af1a85a828b56206334fdebab8acd3d8246cd938a9d82f05632c4be01b",
+    "run_plan_sha256": "de07430b33e079675d0f04ba2ecb8e5d18eacc01c6c739c4b9c5c507952ca4a8",
+    "collision_rows_sha256": "46aecb10a27b73cff095790564c3cf064fa4adc9f559a7f36285459b4b4927da",
+    "cache_readback_sha256": "8105b3e808a141a7666eb092b207564569e03e81014733910b74f390b9c9782d",
+    "summary_sha256": "42bc07db978c58cc061c79f080c880831e6bf0d78e6112b0b6fc8612413478b2"
+  },
+  "target": {
+    "supabase_project_ref": "ycdxbpibncqcchqiihfz",
+    "storage_bucket": "user-card-images"
+  },
+  "assets": [
+    {
+      "position": 1,
+      "row_ordinal": 3,
+      "staging_row_id": "1d343d87-d405-5e17-9133-a85acdf22231",
+      "source_product_id": 288228,
+      "source_product_name": "Monkey.D.Luffy (001)",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-001",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288228",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-001.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 223541,
+        "sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288228/e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7.png",
+      "local_cache_sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288228/e9587b994cf7216bfd20513c.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 2,
+      "row_ordinal": 4,
+      "staging_row_id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+      "source_product_id": 288229,
+      "source_product_name": "Usopp",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-002",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288229",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-002.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 175080,
+        "sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288229/8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8.png",
+      "local_cache_sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288229/8bb4e4bd2b3a72eeef261030.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 3,
+      "row_ordinal": 5,
+      "staging_row_id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+      "source_product_id": 288230,
+      "source_product_name": "Karoo",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-003",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288230",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-003.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 140479,
+        "sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288230/56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76.png",
+      "local_cache_sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288230/56ec9017ad4230dec4d8fc7c.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 4,
+      "row_ordinal": 6,
+      "staging_row_id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+      "source_product_id": 288232,
+      "source_product_name": "Sanji",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-004",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288232",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-004.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 185142,
+        "sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288232/7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3.png",
+      "local_cache_sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288232/7c23ed2f3427401eb5f1e3f0.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 5,
+      "row_ordinal": 7,
+      "staging_row_id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+      "source_product_id": 288234,
+      "source_product_name": "Jinbe",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-005",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288234",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-005.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 177433,
+        "sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288234/139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527.png",
+      "local_cache_sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288234/139f0e0b38f00c6581e82f82.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 6,
+      "row_ordinal": 8,
+      "staging_row_id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+      "source_product_id": 288235,
+      "source_product_name": "Tony Tony.Chopper",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-006",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288235",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-006.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 169365,
+        "sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288235/7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab.png",
+      "local_cache_sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288235/7b2db081c81b1497862ba791.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 7,
+      "row_ordinal": 9,
+      "staging_row_id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+      "source_product_id": 288236,
+      "source_product_name": "Nami",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-007",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288236",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-007.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 184939,
+        "sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288236/b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce.png",
+      "local_cache_sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288236/b24dd930f7e1db46850b874c.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 8,
+      "row_ordinal": 10,
+      "staging_row_id": "04a742ab-a987-54cc-8e41-cbb837948729",
+      "source_product_id": 288237,
+      "source_product_name": "Nico Robin",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-008",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288237",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-008.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 199935,
+        "sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288237/d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030.png",
+      "local_cache_sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288237/d6dd83126548779b0663f082.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 9,
+      "row_ordinal": 11,
+      "staging_row_id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+      "source_product_id": 288238,
+      "source_product_name": "Nefeltari Vivi",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-009",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288238",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-009.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 167507,
+        "sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288238/e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad.png",
+      "local_cache_sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288238/e8d3cffd90b4c2bdf6651636.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 10,
+      "row_ordinal": 12,
+      "staging_row_id": "5b18a562-74e1-5605-998f-db7652d60052",
+      "source_product_id": 288239,
+      "source_product_name": "Franky",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-010",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288239",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-010.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 186532,
+        "sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288239/129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42.png",
+      "local_cache_sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288239/129318d163163be6f90ef374.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 11,
+      "row_ordinal": 13,
+      "staging_row_id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+      "source_product_id": 288240,
+      "source_product_name": "Brook",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-011",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288240",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-011.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 189913,
+        "sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288240/a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0.png",
+      "local_cache_sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288240/a3e9b8c9e5e96413a0985d1f.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 12,
+      "row_ordinal": 14,
+      "staging_row_id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+      "source_product_id": 288241,
+      "source_product_name": "Monkey.D.Luffy (012)",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-012",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288241",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-012.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 198877,
+        "sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288241/bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071.png",
+      "local_cache_sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288241/bd29d2719dac892311bfe03b.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 13,
+      "row_ordinal": 15,
+      "staging_row_id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+      "source_product_id": 288242,
+      "source_product_name": "Roronoa Zoro",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-013",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288242",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-013.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 204835,
+        "sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288242/dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877.png",
+      "local_cache_sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288242/dcc715bcf733d6822a92e970.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 14,
+      "row_ordinal": 16,
+      "staging_row_id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+      "source_product_id": 288243,
+      "source_product_name": "Guard Point",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-014",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288243",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-014.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 165175,
+        "sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288243/3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f.png",
+      "local_cache_sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288243/3f4c7e900e99ed64fae42193.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 15,
+      "row_ordinal": 17,
+      "staging_row_id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+      "source_product_id": 288244,
+      "source_product_name": "Gum-Gum Jet Pistol",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-015",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288244",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-015.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 177591,
+        "sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288244/c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a.png",
+      "local_cache_sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288244/c9e6bc2f0f14f41af4717d47.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 16,
+      "row_ordinal": 18,
+      "staging_row_id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+      "source_product_id": 288245,
+      "source_product_name": "Diable Jambe",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-016",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288245",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-016.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 194814,
+        "sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288245/af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba.png",
+      "local_cache_sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288245/af650ea34b40b6318e4d869f.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 17,
+      "row_ordinal": 19,
+      "staging_row_id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+      "source_product_id": 288246,
+      "source_product_name": "Thousand Sunny",
+      "review_lane": "numbered_card_parent_identity_review",
+      "card_number": "ST01-017",
+      "proposed_parent_gv_id": "GV-OP-TCGP-288246",
+      "source_url": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-017.png?260806",
+      "source_role": "official_card_list_exact",
+      "source_expected": {
+        "content_type": "image/png",
+        "size_bytes": 191843,
+        "sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+        "width": 600,
+        "height": 838,
+        "format": "png"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288246/2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead.png",
+      "local_cache_sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288246/2ad4365090e78b581f14c5b3.png",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    },
+    {
+      "position": 18,
+      "row_ordinal": 20,
+      "staging_row_id": "56985174-dcf2-543d-ab12-793ce46b2e1c",
+      "source_product_id": 549343,
+      "source_product_name": "DON!! Card // Green Compass",
+      "review_lane": "don_card_variant_identity_review",
+      "card_number": null,
+      "proposed_parent_gv_id": "GV-OP-TCGP-549343",
+      "source_url": "https://tcgplayer-cdn.tcgplayer.com/product/549343_in_1000x1000.jpg",
+      "source_role": "derived_high_resolution",
+      "source_expected": {
+        "content_type": "image/jpeg",
+        "size_bytes": 58016,
+        "sha256": "335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224",
+        "width": 500,
+        "height": 702,
+        "format": "jpg"
+      },
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/549343/335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224.jpg",
+      "local_cache_sha256": "335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224",
+      "target_storage_bucket": "user-card-images",
+      "target_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-549343/335045912d57b5fabcf31183.jpg",
+      "upload_policy": {
+        "upsert": false,
+        "overwrite_allowed": false,
+        "cache_control": "31536000"
+      },
+      "database_reads_allowed": false,
+      "database_writes_allowed": false,
+      "pointer_writes_allowed": false,
+      "success_lifecycle": "upload_readback_verify_and_retain",
+      "failure_recovery": "remove_only_objects_created_by_this_execution"
+    }
+  ],
+  "code_bundle": {
+    "files": [
+      {
+        "path": "backend/pricing/one_piece_st01_language_and_image_readiness_v1.mjs",
+        "bytes": 13839,
+        "sha256": "3651bcfb0845bf696646835bfb4d5119b5d9e5d3ab5752cbc980a26c2d45d978"
+      },
+      {
+        "path": "backend/pricing/one_piece_st01_storage_collision_preflight_v1.mjs",
+        "bytes": 6540,
+        "sha256": "d7fa07b69f07a82378e6675f0de3ca9ad78094ff4a37c7145bffd2dde8a97ab8"
+      },
+      {
+        "path": "backend/pricing/one_piece_st01_storage_permanent_v1.mjs",
+        "bytes": 6139,
+        "sha256": "dce404e7a731df0092bd7bdc0c734a0cf675ad6904dede5464db1a08ee7f8572"
+      },
+      {
+        "path": "scripts/audits/one_piece_st01_storage_permanent_plan_v1.mjs",
+        "bytes": 8793,
+        "sha256": "c197afb028d6a4b8a7917cc2a265e1562a8110233f197c2d0926d31912ee40cd"
+      },
+      {
+        "path": "scripts/audits/one_piece_st01_storage_permanent_apply_v1.mjs",
+        "bytes": 10368,
+        "sha256": "799a61695df769899af0acf1787c26c9e16428dfb3faff27f67d75cc9b9f4b67"
+      }
+    ],
+    "sha256": "d4d1c83b938c9bb2017fde64a3fc681eebabbb905fecb07e564f65351fa03bb9"
+  },
+  "approval_fingerprint_sha256": "902fa50d2377a68634674f10556f97c8692c387ab0b8cc5f164ad96ca5429b5c",
+  "storage_plan_hash_sha256": "2e4bc3f6588d2d252a63adb93b6a3115fe35f605cbd34312c728936d75b77811",
+  "execution_policy": {
+    "exact_assets": 18,
+    "source_bytes_staged_before_first_storage_access": true,
+    "fresh_collision_check_before_first_upload": true,
+    "all_target_objects_must_be_absent_before_first_upload": true,
+    "existing_target_object_is_hard_stop": true,
+    "upsert": false,
+    "overwrite_allowed": false,
+    "post_upload_download_required": true,
+    "exact_readback_hash_size_dimensions_format_required": true,
+    "successful_uploads_are_retained": true,
+    "rollback_on_any_failure": true,
+    "rollback_scope": "only_objects_created_by_this_execution",
+    "post_rollback_absence_verification_required": true,
+    "durable_objects_expected_on_success": 18,
+    "durable_objects_expected_on_failure": 0,
+    "sealed_assets_allowed": false,
+    "database_connections_allowed": false,
+    "database_reads_allowed": false,
+    "database_writes_allowed": false,
+    "image_pointer_writes_allowed": false,
+    "canonical_mutations_allowed": false
+  },
+  "local_cache_readback": {
+    "verified_assets": 18,
+    "rows": [
+      {
+        "source_product_id": 288228,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288228/e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 223541,
+          "sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288229,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288229/8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 175080,
+          "sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288230,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288230/56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 140479,
+          "sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288232,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288232/7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 185142,
+          "sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288234,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288234/139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 177433,
+          "sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288235,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288235/7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 169365,
+          "sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288236,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288236/b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 184939,
+          "sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288237,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288237/d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 199935,
+          "sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288238,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288238/e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 167507,
+          "sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288239,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288239/129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 186532,
+          "sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288240,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288240/a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 189913,
+          "sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288241,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288241/bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 198877,
+          "sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288242,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288242/dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 204835,
+          "sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288243,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288243/3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 165175,
+          "sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288244,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288244/c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 177591,
+          "sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288245,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288245/af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 194814,
+          "sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 288246,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288246/2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead.png",
+        "observed": {
+          "content_type": "image/png",
+          "size_bytes": 191843,
+          "sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+          "width": 600,
+          "height": 838,
+          "format": "png",
+          "diagnostics": [],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": true
+        },
+        "verified": true,
+        "mismatches": []
+      },
+      {
+        "source_product_id": 549343,
+        "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/549343/335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224.jpg",
+        "observed": {
+          "content_type": "image/jpeg",
+          "size_bytes": 58016,
+          "sha256": "335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224",
+          "width": 500,
+          "height": 702,
+          "format": "jpg",
+          "diagnostics": [
+            "below_preferred_self_hosted_resolution"
+          ],
+          "valid_image": true,
+          "preferred_self_hosted_resolution": false
+        },
+        "verified": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "execution_boundary": {
+    "storage_access": false,
+    "storage_writes": false,
+    "database_connections": false,
+    "database_writes": false,
+    "pointer_writes": false,
+    "sealed_assets": 0,
+    "durable_objects_created": 0
+  },
+  "ready_for_separate_permanent_upload_authorization": true
+}

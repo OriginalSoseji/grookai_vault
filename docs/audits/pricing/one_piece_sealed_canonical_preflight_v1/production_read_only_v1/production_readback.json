@@ -1,0 +1,198 @@
+{
+  "guard": {
+    "transaction_read_only": true,
+    "default_transaction_read_only": true,
+    "transaction_closed_before_artifacts": true
+  },
+  "schema": {
+    "tables": {
+      "sealed_product_families": {
+        "present": true,
+        "rls_enabled": true,
+        "anon_select": false,
+        "authenticated_select": false,
+        "service_select": true,
+        "service_insert": true
+      },
+      "sealed_product_variants": {
+        "present": true,
+        "rls_enabled": true,
+        "anon_select": false,
+        "authenticated_select": false,
+        "service_select": true,
+        "service_insert": true
+      },
+      "sealed_product_candidate_reviews": {
+        "present": true,
+        "rls_enabled": true,
+        "anon_select": false,
+        "authenticated_select": false,
+        "service_select": true,
+        "service_insert": true
+      },
+      "sealed_product_source_mappings": {
+        "present": true,
+        "rls_enabled": true,
+        "anon_select": false,
+        "authenticated_select": false,
+        "service_select": true,
+        "service_insert": true
+      },
+      "sealed_product_variant_evidence": {
+        "present": true,
+        "rls_enabled": true,
+        "anon_select": false,
+        "authenticated_select": false,
+        "service_select": true,
+        "service_insert": true
+      }
+    },
+    "columns": {
+      "sealed_product_families": [
+        "id",
+        "game_key",
+        "family_key",
+        "canonical_name",
+        "manufacturer_name",
+        "product_line_key",
+        "identity_contract_version",
+        "identity_fingerprint",
+        "created_at"
+      ],
+      "sealed_product_variants": [
+        "id",
+        "family_id",
+        "variant_key",
+        "canonical_name",
+        "package_form",
+        "language_code",
+        "region_code",
+        "edition",
+        "wave",
+        "explicit_contents",
+        "manufacturer_sku",
+        "upc",
+        "release_date",
+        "identity_contract_version",
+        "identity_fingerprint",
+        "created_at"
+      ],
+      "sealed_product_candidate_reviews": [
+        "id",
+        "candidate_id",
+        "decision",
+        "promotion_authorized",
+        "reviewed_by",
+        "decision_evidence",
+        "review_contract_version",
+        "created_at"
+      ],
+      "sealed_product_source_mappings": [
+        "id",
+        "variant_id",
+        "candidate_id",
+        "review_id",
+        "candidate_classification",
+        "review_decision",
+        "promotion_authorized",
+        "source_provider",
+        "source_category_id",
+        "source_group_id",
+        "source_product_id",
+        "source_product_name",
+        "source_url",
+        "source_payload_hash",
+        "classifier_version",
+        "mapping_contract_version",
+        "mapping_status",
+        "mapping_fingerprint",
+        "created_at"
+      ],
+      "sealed_product_variant_evidence": [
+        "id",
+        "variant_id",
+        "source_mapping_id",
+        "evidence_dimension",
+        "source_provider",
+        "source_object_identity",
+        "source_field",
+        "source_value",
+        "normalized_value",
+        "evidence_strength",
+        "confidence",
+        "source_payload_hash",
+        "evidence_fingerprint",
+        "observed_at",
+        "created_at"
+      ]
+    },
+    "constraints": [
+      "sealed_product_candidate_reviews_mapping_binding_unique",
+      "sealed_product_families_fingerprint_unique",
+      "sealed_product_families_game_family_unique",
+      "sealed_product_source_mappings_candidate_binding_fk",
+      "sealed_product_source_mappings_exact_source_unique",
+      "sealed_product_source_mappings_fingerprint_unique",
+      "sealed_product_source_mappings_review_binding_fk",
+      "sealed_product_source_mappings_variant_binding_unique",
+      "sealed_product_variant_evidence_fingerprint_unique",
+      "sealed_product_variant_evidence_mapping_binding_fk",
+      "sealed_product_variants_family_key_unique",
+      "sealed_product_variants_fingerprint_unique"
+    ],
+    "triggers": [
+      "sealed_product_candidate_reviews_append_only",
+      "sealed_product_families_append_only",
+      "sealed_product_source_mappings_append_only",
+      "sealed_product_variant_evidence_append_only",
+      "sealed_product_variants_append_only"
+    ]
+  },
+  "baseline_before": {
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0,
+    "card_prints": 77882,
+    "card_printings": 90243,
+    "external_mappings": 90047,
+    "vault_item_instances": 3385,
+    "market_price_current_publication": 1
+  },
+  "candidate_lineage": {
+    "expected": 390,
+    "found": 390,
+    "mismatches": []
+  },
+  "collisions": {
+    "family_ids": 0,
+    "family_keys": 0,
+    "family_fingerprints": 0,
+    "variant_ids": 0,
+    "variant_keys": 0,
+    "variant_fingerprints": 0,
+    "review_ids": 0,
+    "mapping_ids": 0,
+    "mapping_sources": 0,
+    "mapping_fingerprints": 0,
+    "evidence_ids": 0,
+    "evidence_fingerprints": 0
+  },
+  "blocking_pids": [],
+  "write_attribution": [],
+  "baseline_after": {
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0,
+    "card_prints": 77882,
+    "card_printings": 90243,
+    "external_mappings": 90047,
+    "vault_item_instances": 3385,
+    "market_price_current_publication": 1
+  }
+}

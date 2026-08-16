@@ -1,0 +1,29 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "post_rollback_readback.json",
+      "sha256": "778110bee9dcec94b61c69a5a9c1710a39206f2bf1b1a9d31cb13d0376e578de"
+    },
+    {
+      "path": "protected_before.json",
+      "sha256": "778110bee9dcec94b61c69a5a9c1710a39206f2bf1b1a9d31cb13d0376e578de"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "2316b2e9ceba0c6c9b16236301ed5b498577168cede94e06b41db6248fd8f0dd"
+    },
+    {
+      "path": "run_plan.json",
+      "sha256": "8f485297242236bbcad2041f2547f5e5ccb7d1e32a2e99a2b76b1af4eefd26a4"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "5ce5f0b841ab3639ec9c2d8c17ad9bf8d0f6bbe5dfdaaf66a06a63f0190b1637"
+    },
+    {
+      "path": "transaction_proof.json",
+      "sha256": "64f46c0fe46cb2d9901a000936bc2411b8a80b4396367ce678fd6f239434f3a1"
+    }
+  ]
+}

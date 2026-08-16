@@ -1,0 +1,734 @@
+{
+  "schema": {
+    "card_prints": [
+      "id",
+      "game_id",
+      "set_id",
+      "name",
+      "number",
+      "variant_key",
+      "rarity",
+      "image_url",
+      "tcgplayer_id",
+      "external_ids",
+      "updated_at",
+      "set_code",
+      "artist",
+      "regulation_mark",
+      "image_alt_url",
+      "image_source",
+      "variants",
+      "created_at",
+      "last_synced_at",
+      "print_identity_key",
+      "ai_metadata",
+      "image_hash",
+      "data_quality_flags",
+      "image_status",
+      "image_res",
+      "image_last_checked_at",
+      "printed_set_abbrev",
+      "printed_total",
+      "number_plain",
+      "gv_id",
+      "image_path",
+      "identity_domain",
+      "printed_identity_modifier",
+      "set_identity_model",
+      "representative_image_url",
+      "image_note"
+    ],
+    "card_printings": [
+      "id",
+      "card_print_id",
+      "finish_key",
+      "created_at",
+      "is_provisional",
+      "provenance_source",
+      "provenance_ref",
+      "created_by",
+      "printing_gv_id",
+      "image_source",
+      "image_path",
+      "image_url",
+      "image_alt_url",
+      "image_status",
+      "image_note"
+    ],
+    "external_printing_mappings": [
+      "id",
+      "card_printing_id",
+      "source",
+      "external_id",
+      "active",
+      "synced_at",
+      "meta"
+    ]
+  },
+  "finish_keys": [
+    {
+      "key": "foil",
+      "label": "Foil",
+      "sort_order": 60,
+      "is_active": true,
+      "meta": {
+        "game_scope": [
+          "mtg"
+        ],
+        "source_contract": "MTG_CANONICAL_CATALOG_IMPORT_CONTRACT_V1",
+        "publication_scope": "mtg_v1"
+      }
+    },
+    {
+      "key": "holo",
+      "label": "Holo",
+      "sort_order": 30,
+      "is_active": true,
+      "meta": {}
+    },
+    {
+      "key": "normal",
+      "label": "Normal",
+      "sort_order": 10,
+      "is_active": true,
+      "meta": {}
+    }
+  ],
+  "parents": [
+    {
+      "id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "gv_id": "GV-OP-TCGP-288228",
+      "name": "Monkey.D.Luffy",
+      "number": "ST01-001",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+      "gv_id": "GV-OP-TCGP-288229",
+      "name": "Usopp",
+      "number": "ST01-002",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+      "gv_id": "GV-OP-TCGP-288230",
+      "name": "Karoo",
+      "number": "ST01-003",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+      "gv_id": "GV-OP-TCGP-288232",
+      "name": "Sanji",
+      "number": "ST01-004",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+      "gv_id": "GV-OP-TCGP-288234",
+      "name": "Jinbe",
+      "number": "ST01-005",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+      "gv_id": "GV-OP-TCGP-288235",
+      "name": "Tony Tony.Chopper",
+      "number": "ST01-006",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+      "gv_id": "GV-OP-TCGP-288236",
+      "name": "Nami",
+      "number": "ST01-007",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+      "gv_id": "GV-OP-TCGP-288237",
+      "name": "Nico Robin",
+      "number": "ST01-008",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+      "gv_id": "GV-OP-TCGP-288238",
+      "name": "Nefeltari Vivi",
+      "number": "ST01-009",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+      "gv_id": "GV-OP-TCGP-288239",
+      "name": "Franky",
+      "number": "ST01-010",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "9d6e1d07-644f-532d-a556-cee305304e59",
+      "gv_id": "GV-OP-TCGP-288240",
+      "name": "Brook",
+      "number": "ST01-011",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "gv_id": "GV-OP-TCGP-288241",
+      "name": "Monkey.D.Luffy",
+      "number": "ST01-012",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+      "gv_id": "GV-OP-TCGP-288242",
+      "name": "Roronoa Zoro",
+      "number": "ST01-013",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+      "gv_id": "GV-OP-TCGP-288243",
+      "name": "Guard Point",
+      "number": "ST01-014",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+      "gv_id": "GV-OP-TCGP-288244",
+      "name": "Gum-Gum Jet Pistol",
+      "number": "ST01-015",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "eef89a54-e584-563d-9eea-4593eaebf829",
+      "gv_id": "GV-OP-TCGP-288245",
+      "name": "Diable Jambe",
+      "number": "ST01-016",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+      "gv_id": "GV-OP-TCGP-288246",
+      "name": "Thousand Sunny",
+      "number": "ST01-017",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    }
+  ],
+  "parent_mappings": [
+    {
+      "card_print_id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "source": "tcgplayer",
+      "external_id": "288228",
+      "active": true,
+      "meta": {
+        "staging_row_id": "1d343d87-d405-5e17-9133-a85acdf22231",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+      "source": "tcgplayer",
+      "external_id": "288229",
+      "active": true,
+      "meta": {
+        "staging_row_id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+      "source": "tcgplayer",
+      "external_id": "288230",
+      "active": true,
+      "meta": {
+        "staging_row_id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+      "source": "tcgplayer",
+      "external_id": "288232",
+      "active": true,
+      "meta": {
+        "staging_row_id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+      "source": "tcgplayer",
+      "external_id": "288234",
+      "active": true,
+      "meta": {
+        "staging_row_id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+      "source": "tcgplayer",
+      "external_id": "288235",
+      "active": true,
+      "meta": {
+        "staging_row_id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+      "source": "tcgplayer",
+      "external_id": "288236",
+      "active": true,
+      "meta": {
+        "staging_row_id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+      "source": "tcgplayer",
+      "external_id": "288237",
+      "active": true,
+      "meta": {
+        "staging_row_id": "04a742ab-a987-54cc-8e41-cbb837948729",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+      "source": "tcgplayer",
+      "external_id": "288238",
+      "active": true,
+      "meta": {
+        "staging_row_id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+      "source": "tcgplayer",
+      "external_id": "288239",
+      "active": true,
+      "meta": {
+        "staging_row_id": "5b18a562-74e1-5605-998f-db7652d60052",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "9d6e1d07-644f-532d-a556-cee305304e59",
+      "source": "tcgplayer",
+      "external_id": "288240",
+      "active": true,
+      "meta": {
+        "staging_row_id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "source": "tcgplayer",
+      "external_id": "288241",
+      "active": true,
+      "meta": {
+        "staging_row_id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+      "source": "tcgplayer",
+      "external_id": "288242",
+      "active": true,
+      "meta": {
+        "staging_row_id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+      "source": "tcgplayer",
+      "external_id": "288243",
+      "active": true,
+      "meta": {
+        "staging_row_id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+      "source": "tcgplayer",
+      "external_id": "288244",
+      "active": true,
+      "meta": {
+        "staging_row_id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "eef89a54-e584-563d-9eea-4593eaebf829",
+      "source": "tcgplayer",
+      "external_id": "288245",
+      "active": true,
+      "meta": {
+        "staging_row_id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    },
+    {
+      "card_print_id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+      "source": "tcgplayer",
+      "external_id": "288246",
+      "active": true,
+      "meta": {
+        "staging_row_id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+        "source_group_id": 3189,
+        "mapping_authority": "exact_durable_source_product",
+        "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+      }
+    }
+  ],
+  "existing_children": [],
+  "existing_printing_mappings": [],
+  "source_price_lanes": [
+    {
+      "source_product_id": 288228,
+      "source_price_row_identity": "tcgplayer:288228:foil",
+      "subtype_name_normalized": "foil",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288229,
+      "source_price_row_identity": "tcgplayer:288229:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288230,
+      "source_price_row_identity": "tcgplayer:288230:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288232,
+      "source_price_row_identity": "tcgplayer:288232:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288234,
+      "source_price_row_identity": "tcgplayer:288234:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288235,
+      "source_price_row_identity": "tcgplayer:288235:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288236,
+      "source_price_row_identity": "tcgplayer:288236:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288237,
+      "source_price_row_identity": "tcgplayer:288237:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288238,
+      "source_price_row_identity": "tcgplayer:288238:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288239,
+      "source_price_row_identity": "tcgplayer:288239:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288240,
+      "source_price_row_identity": "tcgplayer:288240:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288241,
+      "source_price_row_identity": "tcgplayer:288241:foil",
+      "subtype_name_normalized": "foil",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288242,
+      "source_price_row_identity": "tcgplayer:288242:foil",
+      "subtype_name_normalized": "foil",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288243,
+      "source_price_row_identity": "tcgplayer:288243:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288244,
+      "source_price_row_identity": "tcgplayer:288244:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288245,
+      "source_price_row_identity": "tcgplayer:288245:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    },
+    {
+      "source_product_id": 288246,
+      "source_price_row_identity": "tcgplayer:288246:normal",
+      "subtype_name_normalized": "normal",
+      "observed_on": "2026-08-14",
+      "positive_market_signal": true
+    }
+  ],
+  "collisions": {
+    "child_id": 0,
+    "printing_gv_id": 0,
+    "parent_finish": 0,
+    "printing_mapping_id": 0,
+    "printing_mapping_source": 0,
+    "image_path_reference": 0
+  },
+  "release": {
+    "release_status": "hidden",
+    "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_visible": false
+  },
+  "blocking_pids": [],
+  "transaction_read_only": true
+}

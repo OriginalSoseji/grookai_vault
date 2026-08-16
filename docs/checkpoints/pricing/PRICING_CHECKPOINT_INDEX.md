@@ -849,6 +849,231 @@ Recommended reading order for future maintainers:
       all-type production rollback canary locked the durable ingestion safety
       boundary without changing production data
 
+52. `PRICING_CHECKPOINT_54_CROSS_TCG_SEALED_SCHEMA_APPLIED_CANARY_SELECTION_READY.md`
+    - then read the independently verified private sealed-product schema,
+      exact effective-privilege boundary, zero-row production state, and the
+      ten-product read-only review packet that remains non-authoritative
+
+53. `PRICING_CHECKPOINT_55_ONE_PIECE_DURABLE_STAGING_SCHEMA_OFFLINE_READY.md`
+    - then read the passed One Piece production rollback proof, the new
+      unapplied durable service-only staging and zero-row rollback candidates,
+      the explicit effective-privilege boundary, and the production read-only
+      preflight that remains required before migration placement or apply
+
+54. `PRICING_CHECKPOINT_56_ONE_PIECE_DURABLE_STAGING_PREFLIGHT_PASSED.md`
+    - then read the zero-finding production read-only preflight, its frozen
+      producer and artifact fingerprints, the 7,261-row source warehouse
+      baseline, and the still-closed schema-only apply boundary
+
+55. `PRICING_CHECKPOINT_57_ONE_PIECE_MIGRATION_HISTORY_INTEGRATED_PREFLIGHT_REFRESHED.md`
+    - then read why the applied sealed migration lineage was integrated before
+      One Piece planning, the refreshed zero-finding preflight, and the exact
+      schema-only boundary that remains closed
+
+56. `PRICING_CHECKPOINT_58_ONE_PIECE_DURABLE_STAGING_SCHEMA_APPLIED.md`
+    - then read the safely rolled-back verifier repair, exact successful schema
+      apply, independent zero-finding readback, empty private staging state,
+      and the still-closed payload-staging boundary
+
+57. `PRICING_CHECKPOINT_59_ONE_PIECE_DURABLE_PAYLOAD_PLAN_FROZEN.md`
+    - then read the exact offline 1-batch/21-row Starter Deck 1 payload, its
+      zero-mismatch evidence binding, zero promotion authority, and the fresh
+      source/schema preflight still required before any staging append
+
+58. `PRICING_CHECKPOINT_60_ONE_PIECE_DURABLE_PAYLOAD_PREFLIGHT_PASSED.md`
+    - then read the fresh zero-finding production source/schema preflight,
+      zero-collision empty staging state, exact evidence fingerprints, and the
+      separately guarded 1-batch/21-row writer still required
+
+59. `PRICING_CHECKPOINT_61_ONE_PIECE_DURABLE_PAYLOAD_STAGED.md`
+    - then read the exact service-role append, 1-batch/21-row transaction and
+      independent readback proofs, fully closed promotion authority, and the
+      read-only identity review required before any canonical or sealed apply
+
+60. `PRICING_CHECKPOINT_62_ONE_PIECE_STAGED_IDENTITY_REVIEW_COMPLETE.md`
+    - then read the separate numbered-card, DON, sealed, and bundle review
+      lanes, the two shared language/image evidence blockers, and the still
+      closed canonical and sealed promotion boundaries
+
+61. `PRICING_CHECKPOINT_63_ONE_PIECE_ST01_LANGUAGE_IMAGE_READINESS_PASSED.md`
+    - then read the exact official English ST-01 authority, 21/21 verified
+      image acquisition, rejected CDN placeholder evidence, 18 proposed
+      card/DON paths, three deliberately undefined sealed paths, and the
+      still-closed Storage and promotion boundaries
+
+62. `PRICING_CHECKPOINT_64_ONE_PIECE_ST01_STORAGE_COLLISION_PREFLIGHT_PASSED.md`
+    - then read the frozen 18-object read-only Storage collision proof, exact
+      local hash readback, zero existing targets, explicit sealed exclusion,
+      and the still-closed permanent-upload and pointer-mutation boundaries
+
+63. `PRICING_CHECKPOINT_65_ONE_PIECE_ST01_PERMANENT_STORAGE_PLAN_FROZEN.md`
+    - then read the exact 18-object permanent plan, frozen code bundle and
+      authorization fingerprints, failure-atomic rollback contract, zero-access
+      planning proof, and the still-closed durable upload boundary
+
+64. `PRICING_CHECKPOINT_66_ONE_PIECE_ST01_STORAGE_UPLOAD_VERIFIED.md`
+    - then read the exact 18-object durable upload, writer and independent
+      download/hash readbacks, zero overwrite or rollback result, preserved
+      database boundary, and the next numbered-card canonical preflight gate
+
+65. `PRICING_CHECKPOINT_67_ONE_PIECE_CANONICAL_FOUNDATION_ROLLBACK_PROVED.md`
+    - then read the hidden One Piece game/identity-domain foundation design,
+      exact production preflight, successful rollback-only migration proof,
+      independent zero-residue readback, preserved 21-row staging scope, and
+      the still-closed durable foundation apply and card-promotion boundaries
+
+66. `PRICING_CHECKPOINT_68_ONE_PIECE_CANONICAL_FOUNDATION_APPLY_READY.md`
+    - then read the frozen hidden-foundation apply fingerprint, guarded writer,
+      final fresh production preflight, exact two-row public-table attribution,
+      failure-evidence contract, and the explicit authorization still required
+      before durable migration apply
+
+67. `PRICING_CHECKPOINT_69_ONE_PIECE_CANONICAL_FOUNDATION_APPLIED_VERIFIED.md`
+    - then read the authorized durable foundation transaction, exact game and
+      hidden release inserts, migration-ledger and six-domain constraint
+      readback, independent hidden-visibility proof, zero canonical card rows,
+      and the next separate 17-card rollback-canary gate
+
+68. `PRICING_CHECKPOINT_70_ONE_PIECE_ST01_PROMOTION_ROLLBACK_PROVED.md`
+    - then read the frozen 17-card English ST-01 parent payload, exact durable
+      staging and self-hosted-image evidence binding, zero-collision production
+      preflight, exact rollback-only write attribution, reproduced zero-residue
+      proof, and the still-closed durable card-promotion boundary
+
+69. `PRICING_CHECKPOINT_71_ONE_PIECE_ST01_DURABLE_APPLY_READY.md`
+    - then read the guarded insert-only writer, immutable 1/17/17/17/17 apply
+      plan, fresh zero-collision production preflight, independent post-apply
+      verifier, exact authorization text, and the still-unexecuted durable gate
+
+70. `PRICING_CHECKPOINT_72_ONE_PIECE_ST01_DURABLE_APPLIED_VERIFIED.md`
+    - then read the authorized 1/17/17/17/17 production inserts, exact
+      transaction-local attribution, writer and independent durable readbacks,
+      preserved hidden visibility, and the separate printing/pointer audit next
+
+71. `PRICING_CHECKPOINT_73_ONE_PIECE_ST01_PRINTING_IMAGE_READINESS_PASSED.md`
+    - then read the zero-finding production read-only audit, exact 17 parent
+      artwork-pointer candidates, 14 normal child and printing-mapping
+      candidates, three source-foil taxonomy blockers, zero child-image claims,
+      and the still-closed rollback and durable mutation boundaries
+
+72. `PRICING_CHECKPOINT_74_ONE_PIECE_ST01_PRINTING_IMAGE_MUTATION_PLAN_FROZEN.md`
+    - then read the immutable offline `17 / 14 / 14` mutation package, exact
+      three-table transaction attribution, preserved foil blockers, zero child
+      image claims, rollback and zero-residue contracts, and the still-closed
+      production canary and durable apply boundaries
+
+73. `PRICING_CHECKPOINT_75_ONE_PIECE_ST01_PRINTING_IMAGE_ROLLBACK_PROVED.md`
+    - then read the two preserved zero-residue repair attempts, corrected
+      self-hosted `identity` image-source contract, HOT-aware write attribution,
+      exact `17 / 14 / 14` passing rollback proof, independent read-only
+      verification, and the still-closed durable apply boundary
+
+74. `PRICING_CHECKPOINT_76_ONE_PIECE_ST01_PRINTING_IMAGE_DURABLE_APPLIED.md`
+    - then read the exact hidden `17 / 14 / 14` durable apply, complete-row
+      compare-and-set proof, writer and independent readbacks, zero findings,
+      preserved foil and child-image deferrals, and the catalog-wide
+      reconciliation gate that follows
+
+75. `PRICING_CHECKPOINT_77_ONE_PIECE_COMPLETE_SOURCE_MANIFEST_FROZEN.md`
+    - then read the refreshed 84-group, 7,261-product source inventory,
+      complete source preservation proof, current single/DON/sealed/quarantine
+      counts, immutable manifest hashes, and service-only full-staging gate
+
+76. `PRICING_CHECKPOINT_78_ONE_PIECE_COMPLETE_STAGING_APPLIED.md`
+    - then read the immutable 83-batch, 7,261-row service-only staging apply,
+      exact source and collision preflight, 1,382-row rollback proof, writer and
+      independent durable readbacks, hidden visibility, preserved holds and
+      quarantines, and the bulk canonical reconciliation gate that follows
+
+77. `PRICING_CHECKPOINT_79_ONE_PIECE_COMPLETE_NUMBERED_CANON_APPLIED.md`
+    - then read the corrected English-only 6,491-parent promotion, explicit 22
+      Japanese and 17 authority holds, zero-collision preflight, five-family
+      rollback proof, exact 26,022-row insert-only apply, independent durable
+      readback, hidden visibility, and the separate DON and sealed gates next
+
+78. `PRICING_CHECKPOINT_80_ONE_PIECE_DON_CANON_APPLIED.md`
+    - then read the 222-product English DON promotion, one Japanese and two
+      future holds, product-specific identity policy, five-form rollback proof,
+      exact 889-row insert-only apply, independent durable readback, hidden
+      visibility, and the sealed candidate warehouse gate next
+
+79. `PRICING_CHECKPOINT_81_ONE_PIECE_SEALED_CANDIDATES_APPLIED.md`
+    - then read the complete 403-product service-only sealed candidate apply,
+      preserved failed-first preflight, ten-product rollback proof, exact
+      durable and independent readbacks, zero canonical sealed rows, unchanged
+      card baseline, hidden visibility, and the reviewed family/variant gate
+      that must precede sealed pricing or publication
+
+80. `PRICING_CHECKPOINT_82_ONE_PIECE_SEALED_IDENTITY_REVIEW_PLAN.md`
+    - then read the offline 403-row identity review plan, complete package-form
+      proposal coverage, product-specific variant preservation, explicit
+      evidence blockers, zero promotion authority, and the official product
+      authority plus residual human-review gate that follows
+
+81. `PRICING_CHECKPOINT_83_ONE_PIECE_SEALED_OFFICIAL_AUTHORITY.md`
+    - then read the 17-page official Bandai product crawl, 176 hashed official
+      records, 215 unique family-support candidates, one ambiguous and 187
+      unsupported residual rows, corrected legacy/combined-page matching,
+      zero exact variant authority, and the image-assisted review gate next
+
+82. `PRICING_CHECKPOINT_84_ONE_PIECE_SEALED_IMAGE_REVIEW_PACKET.md`
+    - then read the complete 403-row local image-review packet, 487-URL
+      availability reconciliation, 476 available and 11 explicitly unavailable
+      references, 84/84 available official Bandai images, zero promotion
+      authority, and the human review export-validation gate that follows
+
+83. `PRICING_CHECKPOINT_85_ONE_PIECE_SEALED_AUTOMATED_APPLY_READY.md`
+    - then read the exact 403/403 online source proof, 390 current English
+      auto-resolutions, 13 scope holds, zero human-review residual, schema-safe
+      family repair, zero-collision production preflight, 12-form rollback
+      canary with zero residue, frozen 242/390/390/390/1,731 insert-only apply
+      plan, and the still-unexecuted durable writer gate
+
+84. `PRICING_CHECKPOINT_86_ONE_PIECE_SEALED_CANON_APPLIED.md`
+    - then read the frozen writer, fresh 390/390 lineage and zero-collision
+      preflight, exact 242/390/390/390/1,731 durable insert attribution,
+      matching payload readback hash, independent read-only verification,
+      hidden client visibility, and the separately gated pricing-lineage audit
+
+85. `PRICING_CHECKPOINT_87_ONE_PIECE_SEALED_PRICING_LINEAGE_READY.md`
+    - then read the production read-only 390-variant pricing reconciliation,
+      332 fresh exact release candidates, 4 stale, 38 null-market, 16
+      missing-observation holds, strict TCGPlayer marketPrice authority,
+      zero-write proof, and the rollback-only qualification insertion gate next
+
+86. `PRICING_CHECKPOINT_88_ONE_PIECE_SEALED_QUALIFICATION_ROLLBACK_PROVEN.md`
+    - then read the frozen database-shaped 374-row qualification payload,
+      separate 16-row missing-observation hold list, fresh 374/374 production
+      lineage and security preflight, three-status rollback insertion proof,
+      exact write attribution, zero residue, and the still-unexecuted durable
+      qualification apply-plan gate
+
+87. `PRICING_CHECKPOINT_89_ONE_PIECE_SEALED_QUALIFICATION_APPLY_PLAN_FROZEN.md`
+    - then read the exact one-table 374-row durable mutation contract, guarded
+      dry-run/preflight/apply/verify writer, 16 excluded missing-observation
+      holds, zero-connection writer dry run, immutable fingerprints, and the
+      still-unexecuted production read-only apply preflight gate
+
+88. `PRICING_CHECKPOINT_90_ONE_PIECE_SEALED_QUALIFICATIONS_APPLIED_RELEASE_GATE_READY.md`
+    - then read the exact 374-row qualification apply and independent readback,
+      332 qualified exact members, 58 explicit release exclusions, unchanged
+      hidden visibility, and the database-bound immutable release gate next
+
+89. `PRICING_CHECKPOINT_91_ONE_PIECE_SEALED_RELEASE_ACTIVE_INTERNAL.md`
+    - then read the qualification-bound schema hardening, full 332-member
+      rollback proof, frozen active internal release, signed-in rollback smoke,
+      unchanged hidden catalog boundary, and the 6,730-image self-hosting gate
+
+90. `PRICING_CHECKPOINT_92_ONE_PIECE_CARD_IMAGES_APPLIED_VERIFIED.md`
+    - then read the exact 6,553-image self-host and pointer apply, independent
+      readback, 177 explicit provider gaps, unchanged non-One Piece boundary,
+      and the prohibition against substituting representative artwork
+
+91. `PRICING_CHECKPOINT_93_ONE_PIECE_SIGNED_IN_CATALOG_READY.md`
+    - then read the zero-residue signed-in simulation, complete authenticated
+      catalog/search/sealed-price proof, anonymous denial, request-role client
+      repair, deferred child-printing expansion, and guarded deployment gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

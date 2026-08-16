@@ -24,7 +24,7 @@ test("selected child printings receive a stable Grookai-hosted image route", () 
   assert.match(route, /\.from\("card_printings"\)/);
   assert.match(route, /\.eq\("printing_gv_id", gvId\)/);
   assert.match(route, /\.eq\("id", cardPrinting\.card_print_id\)/);
-  assert.match(route, /parentImagePath/);
+  assert.match(route, /parentImageLocation/);
 });
 
 test("set thumbnails try child and parent hosted art before provider URLs", () => {

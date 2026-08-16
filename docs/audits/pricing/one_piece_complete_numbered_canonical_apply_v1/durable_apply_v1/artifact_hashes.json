@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 2134,
+      "sha256": "2bec68a053c3f1aef4457f229a099130110b91af3aacbc0a31c400703a78a728"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 4656,
+      "sha256": "9a995a830f34bc6f67259ff08e12aaee584bf5e39311c57719e43f0285d4ecce"
+    },
+    {
+      "path": "attributable_writes.json",
+      "bytes": 677,
+      "sha256": "9eda294132930e457241c09ae7633454728767e4cca319f5148f04fc10acbd48"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 427,
+      "sha256": "8e1031ad1fb1f47e085c4491b25a580bf260fe4327af9bc5e8f6654e634be0de"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
+      "sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_apply_v1/frozen_apply_plan_v1/apply_plan.json",
+      "sha256": "f16a599a540de5d656d297d71c9ee3b4ca5e6f71c945d8eed249eb319d0e2e5f"
+    }
+  ]
+}

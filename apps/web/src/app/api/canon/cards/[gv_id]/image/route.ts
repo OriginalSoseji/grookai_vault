@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import {
   normalizeCanonImageGvId,
-  normalizeWarehouseCanonImagePath,
+  resolveCanonCardImageStorageLocation,
+  type CanonCardImageStorageLocation,
 } from "@/lib/canon/canonImageProxy";
 import { isIdentityCardImageSource } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
-import { VAULT_INSTANCE_MEDIA_BUCKET } from "@/lib/vaultInstanceMedia";
+import { getSupabaseServerConfig } from "@/lib/supabase/config";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -19,8 +22,88 @@ function getContentTypeForPath(path: string) {
   return "image/jpeg";
 }
 
+type CardImageRow = {
+  id?: string | null;
+  game_id?: string | null;
+  card_print_id?: string | null;
+  image_source?: string | null;
+  image_path?: string | null;
+};
+
+function resolveIdentityImageLocation(
+  row: CardImageRow | null | undefined,
+): CanonCardImageStorageLocation | null {
+  if (!isIdentityCardImageSource(row?.image_source)) {
+    return null;
+  }
+
+  return resolveCanonCardImageStorageLocation(row?.image_path);
+}
+
+async function createCatalogRequestClient(request: NextRequest) {
+  const authorization = request.headers.get("authorization")?.trim() ?? "";
+  if (/^Bearer\s+\S+$/i.test(authorization)) {
+    const { url, publishableKey } = getSupabaseServerConfig();
+    return createSupabaseClient(url, publishableKey, {
+      global: { headers: { Authorization: authorization } },
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+        detectSessionInUrl: false,
+      },
+    });
+  }
+
+  return createServerComponentClient();
+}
+
+async function catalogCardVisibleToRequest(
+  request: NextRequest,
+  cardPrintId: string,
+) {
+  const requestClient = await createCatalogRequestClient(request);
+  const { data, error } = await requestClient.rpc(
+    "catalog_card_print_visible_to_request_v1",
+    { p_card_print_id: cardPrintId },
+  );
+
+  return !error && data === true;
+}
+
+async function catalogImageCacheScope(
+  admin: ReturnType<typeof createServerAdminClient>,
+  gameId?: string | null,
+) {
+  if (!gameId) {
+    return "private" as const;
+  }
+
+  const { data: game, error: gameError } = await admin
+    .from("games")
+    .select("code")
+    .eq("id", gameId)
+    .maybeSingle();
+  const gameCode = game?.code?.trim().toLowerCase();
+  if (gameError || !gameCode) {
+    return "private" as const;
+  }
+  if (gameCode === "pokemon") {
+    return "public" as const;
+  }
+
+  const { data: control, error: controlError } = await admin
+    .from("catalog_game_release_controls")
+    .select("release_status")
+    .eq("game_code", gameCode)
+    .maybeSingle();
+
+  return !controlError && control?.release_status === "public"
+    ? ("public" as const)
+    : ("private" as const);
+}
+
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   props: {
     params: Promise<{ gv_id: string }>;
   }
@@ -34,7 +117,7 @@ export async function GET(
   const admin = createServerAdminClient();
   let cardPrintResult = await admin
     .from("card_prints")
-    .select("gv_id,image_source,image_path")
+    .select("id,game_id,gv_id,image_source,image_path")
     .eq("gv_id", gvId)
     .maybeSingle();
   if (!cardPrintResult.error && !cardPrintResult.data) {
@@ -43,7 +126,7 @@ export async function GET(
     // recovering those stale URLs during the cache transition.
     cardPrintResult = await admin
       .from("card_prints")
-      .select("gv_id,image_source,image_path")
+      .select("id,game_id,gv_id,image_source,image_path")
       .ilike("gv_id", gvId)
       .maybeSingle();
   }
@@ -53,8 +136,10 @@ export async function GET(
     return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
   }
 
-  let imagePath = normalizeWarehouseCanonImagePath(cardPrint?.image_path);
-  if (!cardPrint || !isIdentityCardImageSource(cardPrint.image_source) || !imagePath) {
+  let cardPrintId = cardPrint?.id ?? null;
+  let gameId = cardPrint?.game_id ?? null;
+  let imageLocation = resolveIdentityImageLocation(cardPrint);
+  if (!cardPrint || !imageLocation) {
     let cardPrintingResult = await admin
       .from("card_printings")
       .select("card_print_id,printing_gv_id,image_source,image_path")
@@ -73,36 +158,59 @@ export async function GET(
       return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
     }
 
-    imagePath = normalizeWarehouseCanonImagePath(cardPrinting.image_path);
-    if (!isIdentityCardImageSource(cardPrinting.image_source) || !imagePath) {
+    cardPrintId = cardPrinting.card_print_id;
+    imageLocation = resolveIdentityImageLocation(cardPrinting);
+    if (!imageLocation) {
       // Most finish/stamp child identities intentionally inherit their
       // parent's visual instead of storing a duplicate object. Keep that
       // inheritance inside Grookai's canonical image boundary.
       const parentResult = await admin
         .from("card_prints")
-        .select("image_source,image_path")
+        .select("id,game_id,image_source,image_path")
         .eq("id", cardPrinting.card_print_id)
         .maybeSingle();
-      const parentImagePath = normalizeWarehouseCanonImagePath(
-        parentResult.data?.image_path,
+      const parentImageLocation = resolveIdentityImageLocation(
+        parentResult.data,
       );
       if (
         parentResult.error ||
-        !isIdentityCardImageSource(parentResult.data?.image_source) ||
-        !parentImagePath
+        !parentResult.data?.id ||
+        !parentImageLocation
       ) {
         return NextResponse.json(
           { error: "Image unavailable." },
           { status: 404 },
         );
       }
-      imagePath = parentImagePath;
+      cardPrintId = parentResult.data.id;
+      gameId = parentResult.data.game_id;
+      imageLocation = parentImageLocation;
+    } else {
+      const parentResult = await admin
+        .from("card_prints")
+        .select("game_id")
+        .eq("id", cardPrinting.card_print_id)
+        .maybeSingle();
+      if (parentResult.error) {
+        return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
+      }
+      gameId = parentResult.data?.game_id ?? null;
     }
   }
 
+  if (
+    !cardPrintId ||
+    !imageLocation ||
+    !(await catalogCardVisibleToRequest(request, cardPrintId))
+  ) {
+    return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
+  }
+
+  const cacheScope = await catalogImageCacheScope(admin, gameId);
+
   const { data, error } = await admin.storage
-    .from(VAULT_INSTANCE_MEDIA_BUCKET)
-    .download(imagePath);
+    .from(imageLocation.bucket)
+    .download(imageLocation.path);
 
   if (error || !data) {
     return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
@@ -110,10 +218,16 @@ export async function GET(
 
   return new NextResponse(await data.arrayBuffer(), {
     headers: {
-      "Cache-Control": "public, max-age=0, s-maxage=300, stale-while-revalidate=600",
-      "CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
-      "Vercel-CDN-Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
-      "Content-Type": data.type || getContentTypeForPath(imagePath),
+      "Cache-Control": cacheScope === "public"
+        ? "public, max-age=0, s-maxage=300, stale-while-revalidate=600"
+        : "private, no-store",
+      "CDN-Cache-Control": cacheScope === "public"
+        ? "public, s-maxage=300, stale-while-revalidate=600"
+        : "private, no-store",
+      "Vercel-CDN-Cache-Control": cacheScope === "public"
+        ? "public, s-maxage=300, stale-while-revalidate=600"
+        : "private, no-store",
+      "Content-Type": data.type || getContentTypeForPath(imageLocation.path),
     },
   });
 }

@@ -1,0 +1,32 @@
+{
+  "audit_version": "ONE_PIECE_CANONICAL_CATALOG_READINESS_AUDIT_V1",
+  "recorded_at": "2026-08-15T05:51:25.448Z",
+  "producer_commit_sha": "55ae2b75f7d267bb843bfd66a3bda3eca7b2a254",
+  "branch": "agent/one-piece-ingestion-readiness-v1",
+  "as_of_date": "2026-08-14",
+  "source": {
+    "provider": "tcgcsv_tcgplayer",
+    "category_id": 68,
+    "tables": [
+      "tcgcsv_source_categories",
+      "tcgcsv_source_groups",
+      "tcgcsv_source_products",
+      "tcgcsv_source_price_daily_observations"
+    ]
+  },
+  "mode": "production_read_only_inventory_and_local_planning",
+  "boundaries": {
+    "database_writes": false,
+    "migrations": false,
+    "canonical_rows": false,
+    "sealed_rows": false,
+    "storage_or_network_acquisition": false,
+    "image_repoints": false,
+    "release_control_changes": false,
+    "app_visibility": false,
+    "pricing_publication": false,
+    "vault_writes": false,
+    "deployments": false,
+    "active_mtg_ingestion_changes": false
+  }
+}

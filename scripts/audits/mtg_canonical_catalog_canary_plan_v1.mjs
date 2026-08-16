@@ -6,6 +6,7 @@ import path from "node:path";
 import readline from "node:readline";
 import { createGunzip } from "node:zlib";
 import { fileURLToPath } from "node:url";
+import { v5 as uuidV5 } from "uuid";
 
 import { buildMtgCanonicalCandidateV1 } from "../../backend/pricing/mtg_canonical_catalog_candidate_v1.mjs";
 
@@ -16,22 +17,8 @@ const PLAN_VERSION = "MTG_CANONICAL_CATALOG_CANARY_PLAN_V1";
 const MTG_GAME_ID = "4d544700-0000-4000-8000-000000000001";
 const UUID_NAMESPACE = "0f00c5f8-f663-50c4-98f7-b9b5316628d6";
 
-function parseUuid(value) {
-  const hex = String(value).replaceAll("-", "");
-  if (!/^[0-9a-f]{32}$/i.test(hex)) throw new Error(`Invalid UUID: ${value}`);
-  return Buffer.from(hex, "hex");
-}
-
 export function deterministicUuidV5(name, namespace = UUID_NAMESPACE) {
-  const hash = createHash("sha1")
-    .update(parseUuid(namespace))
-    .update(String(name), "utf8")
-    .digest()
-    .subarray(0, 16);
-  hash[6] = (hash[6] & 0x0f) | 0x50;
-  hash[8] = (hash[8] & 0x3f) | 0x80;
-  const hex = hash.toString("hex");
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  return uuidV5(String(name), namespace);
 }
 
 function sha256(value) {

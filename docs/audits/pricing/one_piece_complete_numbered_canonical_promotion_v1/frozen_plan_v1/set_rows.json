@@ -1,0 +1,1913 @@
+[
+  {
+    "id": "85e040d2-22f0-539e-9e1e-82e79ee3ba83",
+    "game": "one_piece",
+    "code": "EB01",
+    "name": "EXTRA BOOSTER -MEMORIAL COLLECTION- [EB-01]",
+    "release_date": "2024-05-03",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569201",
+          "label": "EXTRA BOOSTER -MEMORIAL COLLECTION- [EB-01]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569201",
+          "source_sha256": "09135c45350fda0c997897edad0e56bf3b0ebbcc56750a68ea284088a5575b71",
+          "set_codes": [
+            "EB01"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23333,
+        "source_group_name": "Extra Booster: Memorial Collection",
+        "product_count": 80,
+        "unique_printed_number_count": 61,
+        "release_dates": [
+          "2024-05-03"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "ffc321ce-a5e9-5aa7-a857-81820a698881",
+    "game": "one_piece",
+    "code": "EB02",
+    "name": "EXTRA BOOSTER -Anime 25th Collection- [EB-02]",
+    "release_date": "2025-05-09",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569202",
+          "label": "EXTRA BOOSTER -Anime 25th Collection- [EB-02]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569202",
+          "source_sha256": "c67516a87dd97f04b39dba37b9b36d704b525d070d50ca87e708c53e4b630ac4",
+          "set_codes": [
+            "EB02"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 79,
+        "unique_printed_number_count": 61,
+        "release_dates": [
+          "2025-05-09"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "c906a379-8f09-5954-9ea7-f34eeb0d8ade",
+    "game": "one_piece",
+    "code": "EB03",
+    "name": "EXTRA BOOSTER -ONE PIECE HEROINES EDITION- [EB-03]",
+    "release_date": "2026-02-20",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569203",
+          "label": "EXTRA BOOSTER -ONE PIECE HEROINES EDITION- [EB-03]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569203",
+          "source_sha256": "c965814b38161c2ad13905720ab3a333aaba284abe785cc25bb7d3e145ab5164",
+          "set_codes": [
+            "EB03"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "product_count": 90,
+        "unique_printed_number_count": 62,
+        "release_dates": [
+          "2026-02-20"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "3fbf2210-2de0-5548-878b-3bb36e918a2c",
+    "game": "one_piece",
+    "code": "EB04",
+    "name": "Extra Booster [EB-04]",
+    "release_date": null,
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569114",
+          "label": "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569114",
+          "source_sha256": "78793a4f7c9f66ded63b7b21f1d6c3660a00dc7bb4fd0066758542fbd50e4d1b",
+          "set_codes": [
+            "EB04",
+            "OP14"
+          ]
+        },
+        {
+          "series_id": "569115",
+          "label": "BOOSTER PACK -ADVENTURE ON KAMI’S ISLAND- [OP15-EB04]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569115",
+          "source_sha256": "a295c0b094fa568f11723c8d258ddf323eb7abe67e720ba4349b214a18fd7865",
+          "set_codes": [
+            "EB04",
+            "OP15"
+          ]
+        }
+      ],
+      "source_release_date_policy": "null_multi_release_family",
+      "source_release_authority": null,
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "441bd929-b669-5840-801a-786e602e6939",
+    "game": "one_piece",
+    "code": "OP01",
+    "name": "BOOSTER PACK -ROMANCE DAWN- [OP-01]",
+    "release_date": "2022-12-02",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569101",
+          "label": "BOOSTER PACK -ROMANCE DAWN- [OP-01]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569101",
+          "source_sha256": "16cb9e0a843c98e016d47e4d87321e8317eeddfb376f467336e0e2c6656d48d7",
+          "set_codes": [
+            "OP01"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 3188,
+        "source_group_name": "Romance Dawn",
+        "product_count": 154,
+        "unique_printed_number_count": 121,
+        "release_dates": [
+          "2022-12-02"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "80e957fa-8548-5aa0-8670-2e1cb28b84ea",
+    "game": "one_piece",
+    "code": "OP02",
+    "name": "BOOSTER PACK -PARAMOUNT WAR- [OP-02]",
+    "release_date": "2023-03-10",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569102",
+          "label": "BOOSTER PACK -PARAMOUNT WAR- [OP-02]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569102",
+          "source_sha256": "0275e9e8d76b414fa56c690de874d22dfa0c1d220315a8dde5e87930806e96b8",
+          "set_codes": [
+            "OP02"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 17698,
+        "source_group_name": "Paramount War",
+        "product_count": 154,
+        "unique_printed_number_count": 121,
+        "release_dates": [
+          "2023-03-10"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "7dda2e93-b4e2-5297-b5bf-f64b5253b27d",
+    "game": "one_piece",
+    "code": "OP03",
+    "name": "BOOSTER PACK -PILLARS OF STRENGTH- [OP-03]",
+    "release_date": "2023-06-30",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569103",
+          "label": "BOOSTER PACK -PILLARS OF STRENGTH- [OP-03]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569103",
+          "source_sha256": "3869ef3b8379178beb584aa228d14653ead4499162f49f83d8b28d0c2ade4226",
+          "set_codes": [
+            "OP03"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "product_count": 150,
+        "unique_printed_number_count": 123,
+        "release_dates": [
+          "2023-06-30"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "836fb765-0a93-56ed-a679-ac901f1bf52f",
+    "game": "one_piece",
+    "code": "OP04",
+    "name": "BOOSTER PACK -KINGDOMS OF INTRIGUE- [OP-04]",
+    "release_date": "2023-09-22",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569104",
+          "label": "BOOSTER PACK -KINGDOMS OF INTRIGUE- [OP-04]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569104",
+          "source_sha256": "7a5a9469c02736c48e7e605499a165c8eb0be77162f30cd36379fe0ed7edf16c",
+          "set_codes": [
+            "OP04"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23024,
+        "source_group_name": "Kingdoms of Intrigue",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2023-09-22"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "3ac46b11-0086-5d90-b72a-ab3c5a3eff64",
+    "game": "one_piece",
+    "code": "OP05",
+    "name": "BOOSTER PACK -AWAKENING OF THE NEW ERA- [OP-05]",
+    "release_date": "2023-12-08",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569105",
+          "label": "BOOSTER PACK -AWAKENING OF THE NEW ERA- [OP-05]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569105",
+          "source_sha256": "5f14831625de6aed8f86004e68ee353c3dddb12bc77a3b31a58996debabaab87",
+          "set_codes": [
+            "OP05"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 147,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2023-12-08"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "5b995981-b632-54c2-b91b-05925c3b61d8",
+    "game": "one_piece",
+    "code": "OP06",
+    "name": "BOOSTER PACK -WINGS OF THE CAPTAIN- [OP-06]",
+    "release_date": "2024-03-15",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569106",
+          "label": "BOOSTER PACK -WINGS OF THE CAPTAIN- [OP-06]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569106",
+          "source_sha256": "2e5af201641717dab68d020d6dcbf71746cb91a1b2e6f2f3af275aa97172249a",
+          "set_codes": [
+            "OP06"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2024-03-15"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "d63e1333-5462-5b76-b63f-909b56990136",
+    "game": "one_piece",
+    "code": "OP07",
+    "name": "BOOSTER PACK -500 YEARS IN THE FUTURE- [OP-07]",
+    "release_date": "2024-06-28",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569107",
+          "label": "BOOSTER PACK -500 YEARS IN THE FUTURE- [OP-07]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569107",
+          "source_sha256": "507cee2239fa4e5ecde5f137fc48e8bba8fcea0ae66b1eb3dce58273b10da1dc",
+          "set_codes": [
+            "OP07"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2024-06-28"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "58e456c2-f7b0-5d78-adbb-9385be8444d2",
+    "game": "one_piece",
+    "code": "OP08",
+    "name": "BOOSTER PACK -TWO LEGENDS- [OP-08]",
+    "release_date": "2024-09-13",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569108",
+          "label": "BOOSTER PACK -TWO LEGENDS- [OP-08]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569108",
+          "source_sha256": "ec0b78441bbd3524871ac78f57b5bd2f77083bc5d9369977b2cb975039e4c2fe",
+          "set_codes": [
+            "OP08"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2024-09-13"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "b2a39d35-fe63-5288-bc2a-db25cacac5c2",
+    "game": "one_piece",
+    "code": "OP09",
+    "name": "BOOSTER PACK -EMPERORS IN THE NEW WORLD- [OP-09]",
+    "release_date": "2024-12-13",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569109",
+          "label": "BOOSTER PACK -EMPERORS IN THE NEW WORLD- [OP-09]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569109",
+          "source_sha256": "36531b18eed6cfe934b9beafc66470d45610235c68d643ade7ba16b8075a20f7",
+          "set_codes": [
+            "OP09"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 151,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2024-12-13"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "b915baa4-8ee7-5f99-bddf-e2cdfc90896b",
+    "game": "one_piece",
+    "code": "OP10",
+    "name": "BOOSTER PACK -ROYAL BLOOD- [OP-10]",
+    "release_date": "2025-03-21",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569110",
+          "label": "BOOSTER PACK -ROYAL BLOOD- [OP-10]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569110",
+          "source_sha256": "d8f548c97895721b6579a1ac964618474f7d3e1e8e1099fb7c367805500b05fe",
+          "set_codes": [
+            "OP10"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2025-03-21"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "0b5358e7-c597-5b0c-89c3-a2e6a56a92d0",
+    "game": "one_piece",
+    "code": "OP11",
+    "name": "BOOSTER PACK -A FIST OF DIVINE SPEED- [OP-11]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569111",
+          "label": "BOOSTER PACK -A FIST OF DIVINE SPEED- [OP-11]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569111",
+          "source_sha256": "dc2a6b470fa5243afce36705d7f579a1c1630b43ae3ef724c50f28f4298f3d82",
+          "set_codes": [
+            "OP11"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 147,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "e2d86dc2-1e6c-5abf-bbca-6bc48ab1b4f6",
+    "game": "one_piece",
+    "code": "OP12",
+    "name": "BOOSTER PACK -LEGACY OF THE MASTER- [OP-12]",
+    "release_date": "2025-08-22",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569112",
+          "label": "BOOSTER PACK -LEGACY OF THE MASTER- [OP-12]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569112",
+          "source_sha256": "b3860fd6563166e9269d83f987bf479742a4dec633996ba69ede78e3367e96ac",
+          "set_codes": [
+            "OP12"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 146,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2025-08-22"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "3166d858-d224-5b62-b92a-ec496d1861f9",
+    "game": "one_piece",
+    "code": "OP13",
+    "name": "BOOSTER PACK -CARRYING ON HIS WILL- [OP-13]",
+    "release_date": "2025-11-07",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569113",
+          "label": "BOOSTER PACK -CARRYING ON HIS WILL- [OP-13]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569113",
+          "source_sha256": "58f05560efb1948eab73d088bae751456250381cc17756e61991c95792fdcdc4",
+          "set_codes": [
+            "OP13"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 165,
+        "unique_printed_number_count": 120,
+        "release_dates": [
+          "2025-11-07"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "8b567c8d-3e94-5c2f-80b6-5c866b6c9fcc",
+    "game": "one_piece",
+    "code": "OP14",
+    "name": "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]",
+    "release_date": "2026-01-16",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569114",
+          "label": "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569114",
+          "source_sha256": "78793a4f7c9f66ded63b7b21f1d6c3660a00dc7bb4fd0066758542fbd50e4d1b",
+          "set_codes": [
+            "EB04",
+            "OP14"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 155,
+        "unique_printed_number_count": 120,
+        "release_dates": [
+          "2026-01-16"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "504931fc-7c9f-5fad-8b9d-88322f4fe64f",
+    "game": "one_piece",
+    "code": "OP15",
+    "name": "BOOSTER PACK -ADVENTURE ON KAMI’S ISLAND- [OP15-EB04]",
+    "release_date": "2026-04-03",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569115",
+          "label": "BOOSTER PACK -ADVENTURE ON KAMI’S ISLAND- [OP15-EB04]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569115",
+          "source_sha256": "a295c0b094fa568f11723c8d258ddf323eb7abe67e720ba4349b214a18fd7865",
+          "set_codes": [
+            "EB04",
+            "OP15"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 153,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2026-04-03"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "e7cfe71a-6aac-55b7-96fd-cecf6628b909",
+    "game": "one_piece",
+    "code": "OP16",
+    "name": "BOOSTER PACK -THE TIME OF BATTLE- [OP-16]",
+    "release_date": "2026-06-12",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569116",
+          "label": "BOOSTER PACK -THE TIME OF BATTLE- [OP-16]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569116",
+          "source_sha256": "3c4738014c31d87d725d76c347b1dfc2d7988e8a18e65f577a760fb951009dfa",
+          "set_codes": [
+            "OP16"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 149,
+        "unique_printed_number_count": 119,
+        "release_dates": [
+          "2026-06-12"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "60055c1e-5c46-5c72-bf3c-2bc8d479c837",
+    "game": "one_piece",
+    "code": "P",
+    "name": "Promotion card",
+    "release_date": null,
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569901",
+          "label": "Promotion card",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569901",
+          "source_sha256": "953731c0dc0b8125188984be4094227ae5266ba0eae308af77db145d0bc5412c",
+          "set_codes": [
+            "P"
+          ]
+        }
+      ],
+      "source_release_date_policy": "null_multi_release_family",
+      "source_release_authority": null,
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "5aa7ece2-c1f8-5881-bb16-9b0816670d50",
+    "game": "one_piece",
+    "code": "PRB01",
+    "name": "PREMIUM BOOSTER -ONE PIECE CARD THE BEST- [PRB-01]",
+    "release_date": "2024-11-08",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569301",
+          "label": "PREMIUM BOOSTER -ONE PIECE CARD THE BEST- [PRB-01]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569301",
+          "source_sha256": "0f84bc3b9a6e5e776e9c36a6c86639b4a036bb9ff40a8a5effff2e03bdbb69be",
+          "set_codes": [
+            "PRB01"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "release_dates": [
+          "2024-11-08"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "39646179-006b-5fbc-875e-2711c533d3eb",
+    "game": "one_piece",
+    "code": "PRB02",
+    "name": "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]",
+    "release_date": "2025-10-03",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569302",
+          "label": "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569302",
+          "source_sha256": "84cba68f7cb3e135d8155ceb00609965f606b4910b48db1f83ad7f8273f57a5a",
+          "set_codes": [
+            "PRB02"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 36,
+        "unique_printed_number_count": 18,
+        "release_dates": [
+          "2025-10-03"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "aff0d54e-a703-595b-8294-64e42996b400",
+    "game": "one_piece",
+    "code": "ST02",
+    "name": "STARTER DECK -Worst Generation- [ST-02]",
+    "release_date": "2022-12-02",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569002",
+          "label": "STARTER DECK -Worst Generation- [ST-02]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569002",
+          "source_sha256": "33ec9b8e8d63cd7799627f0a1b87f9be8275ba7ccaa5ab03107cbcb70de19997",
+          "set_codes": [
+            "ST02"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 3191,
+        "source_group_name": "Starter Deck 2: Worst Generation",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2022-12-02"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "c418d920-1fe8-5cd7-ae88-77acf3aee3f2",
+    "game": "one_piece",
+    "code": "ST03",
+    "name": "STARTER DECK -The Seven Warlords of the Sea- [ST-03]",
+    "release_date": "2022-12-02",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569003",
+          "label": "STARTER DECK -The Seven Warlords of the Sea- [ST-03]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569003",
+          "source_sha256": "e1d5ca3cf5f1419fec583db4b14c7e8fc613ee8f308f79e692e34663b0baa260",
+          "set_codes": [
+            "ST03"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 3192,
+        "source_group_name": "Starter Deck 3: The Seven Warlords of The Sea",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2022-12-02"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "29038522-d1d2-5bb5-99ca-272767820f66",
+    "game": "one_piece",
+    "code": "ST04",
+    "name": "STARTER DECK -Animal Kingdom Pirates- [ST-04]",
+    "release_date": "2022-12-02",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569004",
+          "label": "STARTER DECK -Animal Kingdom Pirates- [ST-04]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569004",
+          "source_sha256": "8799bbe84c9096b041c8c68834a0d2eed4c8d8ebfe882ca9a55fb2ccd95ebc1d",
+          "set_codes": [
+            "ST04"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 3190,
+        "source_group_name": "Starter Deck 4: Animal Kingdom Pirates",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2022-12-02"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "05638c7e-3376-5201-b97f-e41badbe6e31",
+    "game": "one_piece",
+    "code": "ST05",
+    "name": "STARTER DECK -ONE PIECE FILM edition- [ST-05]",
+    "release_date": "2023-02-03",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569005",
+          "label": "STARTER DECK -ONE PIECE FILM edition- [ST-05]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569005",
+          "source_sha256": "a3f571a606bbc4a85c8059dac5799a4e566c18f60539e3fdb023c7da2882411e",
+          "set_codes": [
+            "ST05"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 17687,
+        "source_group_name": "Starter Deck 5: Film Edition",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2023-02-03"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "6003b99a-dc48-5640-9f67-d0f7686c960e",
+    "game": "one_piece",
+    "code": "ST06",
+    "name": "STARTER DECK -Absolute Justice- [ST-06]",
+    "release_date": "2023-03-10",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569006",
+          "label": "STARTER DECK -Absolute Justice- [ST-06]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569006",
+          "source_sha256": "6288a475a2b3b8d7c07a2d71fbe39a117db3472db78ea5cfed8c299fc785df7e",
+          "set_codes": [
+            "ST06"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 17699,
+        "source_group_name": "Starter Deck 6: Absolute Justice",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2023-03-10"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "177793a7-2929-5d80-8093-bb1abb68ab03",
+    "game": "one_piece",
+    "code": "ST07",
+    "name": "STARTER DECK -Big Mom Pirates- [ST-07]",
+    "release_date": "2023-06-30",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569007",
+          "label": "STARTER DECK -Big Mom Pirates- [ST-07]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569007",
+          "source_sha256": "2ac7fa2b02cd1f5de3cc8eec7689c5c586f31dabc7affd7afd1d509a1952317b",
+          "set_codes": [
+            "ST07"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 22930,
+        "source_group_name": "Starter Deck 7: Big Mom Pirates",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2023-06-30"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "63583dbd-9b59-514c-a404-1978d694f98d",
+    "game": "one_piece",
+    "code": "ST08",
+    "name": "STARTER DECK -Monkey D. Luffy- [ST-08]",
+    "release_date": "2023-08-11",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569008",
+          "label": "STARTER DECK -Monkey D. Luffy- [ST-08]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569008",
+          "source_sha256": "431a0039bb1bd24e22a03a596b2d6771da24b889c8a84bee0480c175ac3427cd",
+          "set_codes": [
+            "ST08"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 22956,
+        "source_group_name": "Starter Deck 8: Monkey.D.Luffy",
+        "product_count": 15,
+        "unique_printed_number_count": 15,
+        "release_dates": [
+          "2023-08-11"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "fa43ccd2-0e62-5882-98f9-a3ee246004b4",
+    "game": "one_piece",
+    "code": "ST09",
+    "name": "STARTER DECK -Yamato- [ST-09]",
+    "release_date": "2023-08-11",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569009",
+          "label": "STARTER DECK -Yamato- [ST-09]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569009",
+          "source_sha256": "eed33545ca85e3c064a15212cb4ba8ec8711e380eab66ce4372c86c3a9004a09",
+          "set_codes": [
+            "ST09"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 22957,
+        "source_group_name": "Starter Deck 9: Yamato",
+        "product_count": 15,
+        "unique_printed_number_count": 15,
+        "release_dates": [
+          "2023-08-11"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "a34c1a18-84af-5ed1-b4f2-7e6e066e23a0",
+    "game": "one_piece",
+    "code": "ST10",
+    "name": "ULTRA DECK -The Three Captains- [ST-10]",
+    "release_date": "2023-11-10",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569010",
+          "label": "ULTRA DECK -The Three Captains- [ST-10]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569010",
+          "source_sha256": "a8d2b76c0d0bfe741d8d10c9cdeddde38a37e50888bf8da80fb9ae8639c076da",
+          "set_codes": [
+            "ST10"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23243,
+        "source_group_name": "Ultra Deck: The Three Captains",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2023-11-10"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "90d4acff-17d3-5b36-828e-4d21cdf7f077",
+    "game": "one_piece",
+    "code": "ST11",
+    "name": "STARTER DECK -Uta- [ST-11]",
+    "release_date": "2024-02-02",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569011",
+          "label": "STARTER DECK -Uta- [ST-11]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569011",
+          "source_sha256": "00b937ad3a428ce6305bed2cfab4d3fc6bc10a7a1adf190276513347c48f47ba",
+          "set_codes": [
+            "ST11"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23250,
+        "source_group_name": "Starter Deck 11: Uta",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-02-02"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "97a4d50e-3fab-565f-8fc0-a746b238250a",
+    "game": "one_piece",
+    "code": "ST12",
+    "name": "STARTER DECK -Zoro and Sanji- [ST-12]",
+    "release_date": "2024-03-15",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569012",
+          "label": "STARTER DECK -Zoro and Sanji- [ST-12]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569012",
+          "source_sha256": "f37225215f806e88ee331a0e8878f62a6e802e480524df1b4aa40bfce0b212f7",
+          "set_codes": [
+            "ST12"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23348,
+        "source_group_name": "Starter Deck 12: Zoro and Sanji",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2024-03-15"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "5865b33f-4f75-57b0-ba40-38487267c1e5",
+    "game": "one_piece",
+    "code": "ST13",
+    "name": "ULTRA DECK -The Three Brothers- [ST-13]",
+    "release_date": "2024-04-19",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569013",
+          "label": "ULTRA DECK -The Three Brothers- [ST-13]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569013",
+          "source_sha256": "ce60ec323633c66136572ae747a7082c297c6dc7ed915d017bc625f9dd6a9fc2",
+          "set_codes": [
+            "ST13"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23349,
+        "source_group_name": "Ultra Deck: The Three Brothers",
+        "product_count": 35,
+        "unique_printed_number_count": 19,
+        "release_dates": [
+          "2024-04-19"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "4897124b-1015-5e43-bd8a-95bc4a4fea66",
+    "game": "one_piece",
+    "code": "ST14",
+    "name": "STARTER DECK -3D2Y- [ST-14]",
+    "release_date": "2024-08-16",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569014",
+          "label": "STARTER DECK -3D2Y- [ST-14]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569014",
+          "source_sha256": "0e440cfc04460e95be18624d50621975031d37ff5753de438dfb8a42068c34f4",
+          "set_codes": [
+            "ST14"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23489,
+        "source_group_name": "Starter Deck 14: 3D2Y",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2024-08-16"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "e7f455c0-e0f1-5a98-8ca0-184184c7e368",
+    "game": "one_piece",
+    "code": "ST15",
+    "name": "STARTER DECK -Red Edward.Newgate- [ST-15]",
+    "release_date": "2024-10-25",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569015",
+          "label": "STARTER DECK -Red Edward.Newgate- [ST-15]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569015",
+          "source_sha256": "0c6bbb5ec3328b3147cd37928854dc9bb0e01b42a1891e2f404a2f6f43706e81",
+          "set_codes": [
+            "ST15"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23490,
+        "source_group_name": "Starter Deck 15: RED Edward.Newgate",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-10-25"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "1f8bd445-1710-5c81-ad31-01d7a145c924",
+    "game": "one_piece",
+    "code": "ST16",
+    "name": "STARTER DECK -Green Uta- [ST-16]",
+    "release_date": "2024-10-25",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569016",
+          "label": "STARTER DECK -Green Uta- [ST-16]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569016",
+          "source_sha256": "05e26a9548f53b937f5dc5a5341b70bb07e225e4c4728ef8c27dcf9386de0239",
+          "set_codes": [
+            "ST16"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23491,
+        "source_group_name": "Starter Deck 16: GREEN Uta",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-10-25"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "49afba8e-6d94-5c16-9b99-2a2aa1db63d6",
+    "game": "one_piece",
+    "code": "ST17",
+    "name": "STARTER DECK -Blue Donquixote Doflamingo- [ST-17]",
+    "release_date": "2024-10-25",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569017",
+          "label": "STARTER DECK -Blue Donquixote Doflamingo- [ST-17]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569017",
+          "source_sha256": "e31bc5aa348dd26d4abfc9601a776ef39d27ede5a967daaea10908ee9e5bd987",
+          "set_codes": [
+            "ST17"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23492,
+        "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-10-25"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "5990d9dc-5f0e-5433-b4f5-fe37a3f376a3",
+    "game": "one_piece",
+    "code": "ST18",
+    "name": "STARTER DECK -Purple Monkey.D.Luffy- [ST-18]",
+    "release_date": "2024-10-25",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569018",
+          "label": "STARTER DECK -Purple Monkey.D.Luffy- [ST-18]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569018",
+          "source_sha256": "2abaaaf63ccf853cdedc0ad7b010698b5bf66c81296a3c7cc3263b66afe4bff8",
+          "set_codes": [
+            "ST18"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23493,
+        "source_group_name": "Starter Deck 18: PURPLE Monkey.D.Luffy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-10-25"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "a0efd2ec-8681-5f05-a2ac-db417d8b06ad",
+    "game": "one_piece",
+    "code": "ST19",
+    "name": "STARTER DECK -Black Smoker- [ST-19]",
+    "release_date": "2024-10-25",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569019",
+          "label": "STARTER DECK -Black Smoker- [ST-19]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569019",
+          "source_sha256": "7ba066e986feced069b5decdad30909a350b947cb26702472c564d10a0ac18ab",
+          "set_codes": [
+            "ST19"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23494,
+        "source_group_name": "Starter Deck 19: BLACK Smoker",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-10-25"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "67027adc-c711-5299-b823-dd1b02003f20",
+    "game": "one_piece",
+    "code": "ST20",
+    "name": "STARTER DECK -Yellow Charlotte Katakuri- [ST-20]",
+    "release_date": "2024-10-25",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569020",
+          "label": "STARTER DECK -Yellow Charlotte Katakuri- [ST-20]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569020",
+          "source_sha256": "1a79a395baa09b486ce5394b7f7a1e2203b8d1d4e919364ac358e9d7cd18de04",
+          "set_codes": [
+            "ST20"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23495,
+        "source_group_name": "Starter Deck 20: YELLOW Charlotte Katakuri",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2024-10-25"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "4a967b20-31b6-5fe6-ab9f-7afba8184a61",
+    "game": "one_piece",
+    "code": "ST21",
+    "name": "STARTER DECK EX -GEAR5- [ST-21]",
+    "release_date": "2025-03-14",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569021",
+          "label": "STARTER DECK EX -GEAR5- [ST-21]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569021",
+          "source_sha256": "fcffa9e40d13b75dcd9f7b491661485edf05d9987c7702049db5b558406d53a1",
+          "set_codes": [
+            "ST21"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 23991,
+        "source_group_name": "Starter Deck EX: Gear 5",
+        "product_count": 32,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2025-03-14"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "09dc3fba-3fc0-5624-90c9-f6178ec3bc5f",
+    "game": "one_piece",
+    "code": "ST22",
+    "name": "STARTER DECK -Ace & Newgate- [ST-22]",
+    "release_date": "2025-09-05",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569022",
+          "label": "STARTER DECK -Ace & Newgate- [ST-22]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569022",
+          "source_sha256": "945d71f10c8f111779781cc55546123e5ac389311e9df489b29aa04fdbd597f5",
+          "set_codes": [
+            "ST22"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24304,
+        "source_group_name": "Starter Deck 22: Ace & Newgate",
+        "product_count": 31,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2025-09-05"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "077f22ba-d9ec-5b94-8683-8a151be97b8c",
+    "game": "one_piece",
+    "code": "ST23",
+    "name": "STARTER DECK -RED Shanks- [ST-23]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569023",
+          "label": "STARTER DECK -RED Shanks- [ST-23]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569023",
+          "source_sha256": "bc9f536abe14e6ff3b15f15d6c34da491d9e05bb5ef356fa09af6012a6437f89",
+          "set_codes": [
+            "ST23"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24282,
+        "source_group_name": "Starter Deck 23: RED Shanks",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "a7392678-2548-5167-a9bc-2c4a220e33c3",
+    "game": "one_piece",
+    "code": "ST24",
+    "name": "STARTER DECK -GREEN Jewelry Bonney- [ST-24]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569024",
+          "label": "STARTER DECK -GREEN Jewelry Bonney- [ST-24]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569024",
+          "source_sha256": "ab1bbafc4dbaa3456b3ac52531c200337e519fd4211583f0f80bed59f3e136c0",
+          "set_codes": [
+            "ST24"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24283,
+        "source_group_name": "Starter Deck 24: GREEN Jewelry Bonney",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "fba52b9a-2962-50e5-a519-72dccda9203e",
+    "game": "one_piece",
+    "code": "ST25",
+    "name": "STARTER DECK -BLUE Buggy- [ST-25]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569025",
+          "label": "STARTER DECK -BLUE Buggy- [ST-25]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569025",
+          "source_sha256": "4a04477cff308efc3830de2ecaead3edb7e790591d82dbbbecd49accd8fb0ef4",
+          "set_codes": [
+            "ST25"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24284,
+        "source_group_name": "Starter Deck 25: BLUE Buggy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "67ee192a-d9cb-504f-a080-4f351f213515",
+    "game": "one_piece",
+    "code": "ST26",
+    "name": "STARTER DECK -PURPLE/BLACK Monkey.D.Luffy- [ST-26]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569026",
+          "label": "STARTER DECK -PURPLE/BLACK Monkey.D.Luffy- [ST-26]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569026",
+          "source_sha256": "ea2c13e130aa4beb1190cf154d1bf8e2adfe4bc4b5ecc0611817f1cdc8a67425",
+          "set_codes": [
+            "ST26"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24285,
+        "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "ab8556c3-13bf-5db5-8b6c-63b3eab53517",
+    "game": "one_piece",
+    "code": "ST27",
+    "name": "STARTER DECK -BLACK Marshall.D.Teach- [ST-27]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569027",
+          "label": "STARTER DECK -BLACK Marshall.D.Teach- [ST-27]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569027",
+          "source_sha256": "792b6c1fd7a807d15da444a0bb14ee3b9ed1e5ae989c3ce8232b66d3cab3523c",
+          "set_codes": [
+            "ST27"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24286,
+        "source_group_name": "Starter Deck 27: BLACK Marshall.D.Teach",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "ec5614b2-9b96-50e2-877b-fa957764c94e",
+    "game": "one_piece",
+    "code": "ST28",
+    "name": "STARTER DECK -GREEN/YELLOW Yamato- [ST-28]",
+    "release_date": "2025-06-06",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569028",
+          "label": "STARTER DECK -GREEN/YELLOW Yamato- [ST-28]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569028",
+          "source_sha256": "9b31893a60e034ab8b20c368074d14faf536125ad829bc5982dcbbe3cf4eb958",
+          "set_codes": [
+            "ST28"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2025-06-06"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "79f4f1e3-d390-5c2a-b3e7-99e5d3332bc4",
+    "game": "one_piece",
+    "code": "ST29",
+    "name": "STARTER DECK -Egghead- [ST-29]",
+    "release_date": "2026-01-16",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569029",
+          "label": "STARTER DECK -Egghead- [ST-29]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569029",
+          "source_sha256": "27b763201d5f9f5b31f52f8de61e30aa2a9cbda53a7a4ea8efdda56fa564b617",
+          "set_codes": [
+            "ST29"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24575,
+        "source_group_name": "Starter Deck 29: Egghead",
+        "product_count": 31,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2026-01-16"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "bce528e1-50f7-53ad-8b5f-06403e3d8652",
+    "game": "one_piece",
+    "code": "ST30",
+    "name": "STARTER DECK EX -Luffy & Ace- [ST-30]",
+    "release_date": "2026-06-12",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569030",
+          "label": "STARTER DECK EX -Luffy & Ace- [ST-30]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569030",
+          "source_sha256": "460f3479cd93b41b3589d03463f0f1693c17712fd15d33fc5d44803f1dab4383",
+          "set_codes": [
+            "ST30"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24678,
+        "source_group_name": "Starter Deck EX: Luffy & Ace",
+        "product_count": 34,
+        "unique_printed_number_count": 17,
+        "release_dates": [
+          "2026-06-12"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "c285a209-45f8-5560-9b11-09a01bce62c0",
+    "game": "one_piece",
+    "code": "ST31",
+    "name": "STARTER DECK -RED Monkey.D.Luffy- [ST-31]",
+    "release_date": "2026-07-31",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569031",
+          "label": "STARTER DECK -RED Monkey.D.Luffy- [ST-31]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569031",
+          "source_sha256": "e1e96c50e54c0873638eb545117948ade0432fe11fac0c078675236fa3432671",
+          "set_codes": [
+            "ST31"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2026-07-31"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "e22b0e72-a172-517a-b283-ab6a1a41ceaf",
+    "game": "one_piece",
+    "code": "ST32",
+    "name": "STARTER DECK -GREEN Roronoa Zoro- [ST-32]",
+    "release_date": "2026-07-31",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569032",
+          "label": "STARTER DECK -GREEN Roronoa Zoro- [ST-32]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569032",
+          "source_sha256": "1d4e4fb016c587e8b6bbf1f91353c60901e892a920391652d210dc34e92b2d61",
+          "set_codes": [
+            "ST32"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24750,
+        "source_group_name": "Starter Deck 32: GREEN Roronoa Zoro",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2026-07-31"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "e7c18171-69b8-5ea4-96f1-f8637138508d",
+    "game": "one_piece",
+    "code": "ST33",
+    "name": "STARTER DECK -BLUE Kuzan- [ST-33]",
+    "release_date": "2026-07-31",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569033",
+          "label": "STARTER DECK -BLUE Kuzan- [ST-33]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569033",
+          "source_sha256": "a0e773c63b942da39cf695ac5b2294b69c80ce4304b64fbe1e7804a60999ee78",
+          "set_codes": [
+            "ST33"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24751,
+        "source_group_name": "Starter Deck 33: BLUE Kuzan",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2026-07-31"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "3d51f708-2666-5805-a21b-3f18cc5c145f",
+    "game": "one_piece",
+    "code": "ST34",
+    "name": "STARTER DECK -PURPLE Charlotte Katakuri- [ST-34]",
+    "release_date": "2026-07-31",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569034",
+          "label": "STARTER DECK -PURPLE Charlotte Katakuri- [ST-34]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569034",
+          "source_sha256": "097a9b9f8d7546761d2fc8d728102656878c1ff4f4dc166cbde1a2921314497f",
+          "set_codes": [
+            "ST34"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24752,
+        "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2026-07-31"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "dca6d500-3a6c-5919-b94a-17e90d1f4267",
+    "game": "one_piece",
+    "code": "ST35",
+    "name": "STARTER DECK -RED/BLACK Sabo- [ST-35]",
+    "release_date": "2026-07-31",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569035",
+          "label": "STARTER DECK -RED/BLACK Sabo- [ST-35]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569035",
+          "source_sha256": "1c3b59571572c054570c873e30dbe4725cbf332d4242f553375b432b8f7ef5c2",
+          "set_codes": [
+            "ST35"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24753,
+        "source_group_name": "Starter Deck 35: RED/BLACK Sabo",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2026-07-31"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  },
+  {
+    "id": "917dd162-da5e-53d0-ae90-3db91d404c61",
+    "game": "one_piece",
+    "code": "ST36",
+    "name": "STARTER DECK -YELLOW Eustass\"Captain\"Kid- [ST-36]",
+    "release_date": "2026-07-31",
+    "identity_domain_default": "one_piece_eng_print",
+    "source": {
+      "canonical_authority": "official_one_piece_card_game_english_card_list",
+      "official_series": [
+        {
+          "series_id": "569036",
+          "label": "STARTER DECK -YELLOW Eustass\"Captain\"Kid- [ST-36]",
+          "url": "https://en.onepiece-cardgame.com/cardlist/?series=569036",
+          "source_sha256": "b9296c8e4b2637dc58f00ecc1363655f173254a2c7843f530486bce9645a4b02",
+          "set_codes": [
+            "ST36"
+          ]
+        }
+      ],
+      "source_release_date_policy": "strongest_source_group_unique_number_coverage",
+      "source_release_authority": {
+        "source_group_id": 24754,
+        "source_group_name": "Starter Deck 36: YELLOW Eustass\"Captain\"Kid",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "release_dates": [
+          "2026-07-31"
+        ]
+      },
+      "visibility_authority": "catalog_game_release_controls:hidden"
+    }
+  }
+]

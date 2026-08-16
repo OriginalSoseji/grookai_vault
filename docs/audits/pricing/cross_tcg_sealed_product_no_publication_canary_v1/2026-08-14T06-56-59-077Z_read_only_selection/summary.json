@@ -1,0 +1,11 @@
+{
+  "version": "CROSS_TCG_SEALED_PRODUCT_NO_PUBLICATION_CANARY_PLAN_V1",
+  "recorded_at": "2026-08-14T06:56:59.077Z",
+  "producer_commit_sha": "74bd8915dcd5a625ebe9370e773c438f02eeaa0a",
+  "status": "candidate_selection_frozen_review_required",
+  "plan_sha256": "8077bdc2c9368a62ff302517666c69c5462b4594d8752047e310228a5ac2cc09",
+  "selected_source_product_count": 10,
+  "findings": [],
+  "database_writes": false,
+  "exact_next_gate": "Review the ten candidates as one packet, then construct a separately fingerprinted no-publication mutation payload. Do not write from this selection artifact."
+}

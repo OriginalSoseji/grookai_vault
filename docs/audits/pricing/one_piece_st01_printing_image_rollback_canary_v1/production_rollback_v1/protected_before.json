@@ -1,0 +1,267 @@
+{
+  "parent_pointer_rows": [
+    {
+      "id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+      "gv_id": "GV-OP-TCGP-288228",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+      "gv_id": "GV-OP-TCGP-288229",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+      "gv_id": "GV-OP-TCGP-288230",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+      "gv_id": "GV-OP-TCGP-288232",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+      "gv_id": "GV-OP-TCGP-288234",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+      "gv_id": "GV-OP-TCGP-288235",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+      "gv_id": "GV-OP-TCGP-288236",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+      "gv_id": "GV-OP-TCGP-288237",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+      "gv_id": "GV-OP-TCGP-288238",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+      "gv_id": "GV-OP-TCGP-288239",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "9d6e1d07-644f-532d-a556-cee305304e59",
+      "gv_id": "GV-OP-TCGP-288240",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+      "gv_id": "GV-OP-TCGP-288241",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+      "gv_id": "GV-OP-TCGP-288242",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+      "gv_id": "GV-OP-TCGP-288243",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+      "gv_id": "GV-OP-TCGP-288244",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "eef89a54-e584-563d-9eea-4593eaebf829",
+      "gv_id": "GV-OP-TCGP-288245",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    },
+    {
+      "id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+      "gv_id": "GV-OP-TCGP-288246",
+      "image_source": null,
+      "image_path": null,
+      "image_url": null,
+      "image_alt_url": null,
+      "image_status": null,
+      "image_note": null,
+      "data_quality_flags": {
+        "app_visibility": "hidden_by_game_release_control",
+        "image_pointer_deferred": true,
+        "exact_printing_children_deferred": true
+      }
+    }
+  ],
+  "child_rows": [],
+  "external_printing_mapping_rows": [],
+  "release_status": "hidden",
+  "anon_visible": false,
+  "authenticated_visible": false,
+  "service_visible": false,
+  "blocking_pids": [],
+  "transaction_read_only": true
+}

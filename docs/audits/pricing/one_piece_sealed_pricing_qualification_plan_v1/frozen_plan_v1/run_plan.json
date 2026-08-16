@@ -1,0 +1,18 @@
+{
+  "version": "ONE_PIECE_SEALED_PRICING_QUALIFICATION_DATABASE_PLAN_V1",
+  "recorded_at": "2026-08-15T22:07:08.086Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "0102cf5a7a7031be52b1804db7728a920b4c6cb1",
+    "tracked_worktree_clean": true
+  },
+  "mode": "offline_database_shaped_plan",
+  "source_qualification_artifact_sha256": "dda99124915753128c54b075f7a281b487456d72ba9e6cc67e8e71df125c597a",
+  "boundaries": {
+    "database_connections": 0,
+    "database_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

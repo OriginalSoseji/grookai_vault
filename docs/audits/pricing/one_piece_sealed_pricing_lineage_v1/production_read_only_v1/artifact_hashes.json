@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 727,
+      "sha256": "22d42cd6c3d841e14abc5c17a0e72b6c437aec61cc501a30026f293420aa4363"
+    },
+    {
+      "path": "production_proof.json",
+      "bytes": 1028,
+      "sha256": "5c2c7392994d0501ce8c2135bd47a161b58a5f99d2075ef231e1aa6c559d1150"
+    },
+    {
+      "path": "pricing_lineage_audit.json.gz",
+      "bytes": 59092,
+      "sha256": "dc925129e534a17b7a53e8102c540758cc4714f4759f0df6b954187ef355f826"
+    },
+    {
+      "path": "qualification_plan.json.gz",
+      "bytes": 65052,
+      "sha256": "dda99124915753128c54b075f7a281b487456d72ba9e6cc67e8e71df125c597a"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2116,
+      "sha256": "c65ee28b92d6f6c850185ed9262840ce726dd78a3082185b18942eb7b0a7aef5"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 617,
+      "sha256": "93896e7d4efa3cbfaf22b4429ebdb43733af97883a79f18b1266a6578575f87c"
+    }
+  ]
+}

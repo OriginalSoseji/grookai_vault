@@ -1,0 +1,23 @@
+{
+  "version": "ONE_PIECE_SEALED_PRICING_LINEAGE_READINESS_V1",
+  "recorded_at": "2026-08-15T19:30:11.742Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "ad1050768f1ae28266e9f15b2419f583672610d8",
+    "tracked_worktree_clean": true
+  },
+  "mode": "production_repeatable_read_read_only",
+  "target": "390 durable current-English One Piece sealed variants",
+  "pricing_authority": "TCGPlayer marketPrice only",
+  "freshness_days_inclusive": 7,
+  "boundaries": {
+    "database_writes": 0,
+    "qualification_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "storage_writes": 0,
+    "card_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

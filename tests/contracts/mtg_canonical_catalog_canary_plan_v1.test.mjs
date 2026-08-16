@@ -39,6 +39,7 @@ function candidate(overrides = {}) {
 test("UUID V5 generation is deterministic and standards-shaped", () => {
   const first = deterministicUuidV5("mtg:test");
   assert.equal(first, deterministicUuidV5("mtg:test"));
+  assert.equal(first, "59c6bc59-4917-561c-92ce-a5dcbc83a0e0");
   assert.match(first, /^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
 });
 

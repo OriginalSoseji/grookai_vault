@@ -1,0 +1,54 @@
+{
+  "version": "ONE_PIECE_SEALED_IDENTITY_REVIEW_V1",
+  "recorded_at": "2026-08-15T15:42:53.459Z",
+  "status": "sealed_identity_review_plan_passed_no_writes",
+  "repository": {
+    "commit_sha": "d502e483d0ff8810e688e15bf34148b252f89b6b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "candidate_plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+  "candidate_payload_fingerprint_sha256": "ff26c514511b9184d8ba91c793b40a249818c2bc5b3ca4778f6b253b6a27cbb2",
+  "plan_fingerprint_sha256": "ea4a5f2281b78bf71bcbb6fcebcbb37754d4c126ba7a3fa20e94920126fbbc90",
+  "payload_fingerprint_sha256": "808c8f5a5870394a168447e6ab70d576b8832316146207c1015aeadbc2de8b3b",
+  "counts": {
+    "candidate_rows": 403,
+    "review_rows": 403,
+    "proposed_family_keys": 246,
+    "package_forms": {
+      "pack": 21,
+      "sleeved_pack": 20,
+      "booster_box": 23,
+      "display": 15,
+      "case": 51,
+      "deck": 40,
+      "deck_display": 42,
+      "kit": 1,
+      "tin": 5,
+      "collection": 32,
+      "bundle": 28,
+      "promo_pack": 125
+    },
+    "unresolved_package_forms": 0,
+    "current_english_structured_first": 390,
+    "held_or_unresolved": 13,
+    "canonical_rows": 0,
+    "mapping_rows": 0,
+    "pricing_rows": 0,
+    "release_rows": 0
+  },
+  "findings": [],
+  "boundaries": {
+    "offline_proposals_only": true,
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "network_requests": 0,
+    "canonical_authority": false,
+    "source_mapping_authority": false,
+    "pricing_authority": false,
+    "publication_authority": false,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "official product-page authority acquisition and residual human review packet"
+}

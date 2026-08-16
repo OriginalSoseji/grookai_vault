@@ -1,0 +1,40 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "b06c8206251dad589a10d41d37adef0d24895cbd",
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_complete_sealed_candidate_v1/frozen_plan_v1/candidate_plan.json.gz",
+      "sha256": "4ef502f32dcc8dac420ebbf934d2f63a033fa184210c086d0b0846aeed4d64ec"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_identity_review_v1/frozen_offline_review_v1/review_rows.jsonl.gz",
+      "sha256": "80783b567bcfd9ac2ecdc90188961e0fb7d3547f10ab9741f5709ea8df46527e"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_official_authority_v1/official_english_snapshot_v1/summary.json",
+      "sha256": "2413adde367d3409d0af5512bfd6888c46f996b0b7e435ec87bf83a07297c69f"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_official_authority_v1/official_english_snapshot_v1/candidate_official_bindings.jsonl.gz",
+      "sha256": "b065fa046312dd01689d43862f850891480fea21204b88e34405f51eb38488f2"
+    }
+  ],
+  "artifacts": {
+    "REPORT.md": {
+      "sha256": "01dd39f35586f12cfd3daf8399d4295261e812c4232776ff0424f2eff2700e43",
+      "bytes": 1013
+    },
+    "review_items.jsonl.gz": {
+      "sha256": "54d552cbd63f5b5ca50d629a70ef6bbe83bedbe07b2eac648102b00873a8417e",
+      "bytes": 113731
+    },
+    "REVIEW_PACKET.html": {
+      "sha256": "cfdc2536c93a514b2474c67f55d97bbd6b8666a37482f93840c53c1e288af1e7",
+      "bytes": 1668150
+    },
+    "summary.json": {
+      "sha256": "45967ea425946d50ed828ab988ba1c4b7c0f7c66d6713f9c3dc44a045fcc55f7",
+      "bytes": 1746
+    }
+  }
+}

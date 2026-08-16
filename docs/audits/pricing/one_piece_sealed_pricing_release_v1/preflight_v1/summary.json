@@ -1,0 +1,33 @@
+{
+  "status": "production_preflight_passed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "1002f0218b9ffacef84273a1e98a984ea0aafdb1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "03a7ab9dee1f0bd35dc2db6e838341b174baa90302a240ee2026a41b003b2e5d",
+  "preflight_fingerprint_sha256": "c3110065efbef8dd56f917cb740e77de84b7472dd201d3a50f8957478836a37c",
+  "proof": {
+    "valid": true,
+    "state": {
+      "qualification_rows": 374,
+      "release_rows": 0,
+      "member_rows": 0,
+      "pointer_rows": 0,
+      "one_piece_status": "hidden",
+      "qualification_binding_present": true
+    },
+    "lineage": {
+      "expected_rows": 332,
+      "matched_qualifications": 332,
+      "matched_variants": 332,
+      "matched_mappings": 332,
+      "qualified_exact": 332
+    },
+    "collisions": {
+      "release_collisions": 0,
+      "member_collisions": 0
+    }
+  },
+  "database_writes": 0
+}

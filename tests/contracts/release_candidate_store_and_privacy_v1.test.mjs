@@ -48,10 +48,10 @@ test("mobile release metadata uses one monotonic synchronized build number", () 
   const buildMatch = pubspec.match(/^version:\s*1\.0\.0\+(\d+)$/m);
 
   assert.ok(buildMatch, "pubspec must declare a 1.0.0 release build number");
-  assert.equal(buildMatch[1], "289");
+  assert.equal(buildMatch[1], "297");
   assert.equal(metadata.build_number, buildMatch[1]);
-  assert.match(metadata.archive_path, /build289\.xcarchive$/);
-  assert.match(metadata.export_path, /build289$/);
+  assert.match(metadata.archive_path, new RegExp(`build${buildMatch[1]}\\.xcarchive$`));
+  assert.match(metadata.export_path, new RegExp(`build${buildMatch[1]}$`));
 });
 
 test("web release resolves Nano ID to the supported patched branch", () => {
@@ -110,12 +110,23 @@ test("App Store upload authenticates xcodebuild without logging API identifiers"
   assert.match(automation, /\[REDACTED\]/);
 });
 
+test("App Store archive excludes release credentials from build subprocesses", () => {
+  const automation = read("scripts/app_store_connect/ios_release_automation.rb");
+  const commandDispatch = automation.slice(automation.indexOf("case command"));
+  const archiveDispatch = commandDispatch.match(/when "archive"([\s\S]*?)when "upload"/)?.[1];
+
+  assert.ok(archiveDispatch);
+  assert.match(archiveDispatch, /load_env_file\(DEFAULT_ENV, only: RELEASE_BUILD_ENV_KEYS\)/);
+  assert.match(automation, /next if only && !only\.include\?\(key\)/);
+  assert.match(automation, /RELEASE_BUILD_SENSITIVE_ENV_KEYS/);
+  assert.match(automation, /run\(command, unset_env: APP_REVIEW_ENV_KEYS\)/);
+  assert.match(automation, /def run\(command, unset_env: \[\]\)/);
+  assert.match(automation, /system\(environment, \*command\)/);
+});
+
 test("App Store status requests only supported app-info fields", () => {
   const automation = read("scripts/app_store_connect/ios_release_automation.rb");
 
-  assert.match(
-    automation,
-    /fields\[appInfos\].*appStoreAgeRating,state,ageRatingDeclaration,appInfoLocalizations/,
-  );
+  assert.match(automation, /fields\[appInfos\].*appStoreAgeRating,state,ageRatingDeclaration,appInfoLocalizations/);
   assert.doesNotMatch(automation, /kidsAgeBand/);
 });

@@ -1,0 +1,1003 @@
+{
+  "root": {
+    "requested_url": "https://en.onepiece-cardgame.com/cardlist/",
+    "final_url": "https://en.onepiece-cardgame.com/cardlist/?series=569116",
+    "http_status": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "bytes": 414557,
+    "sha256": "3c4738014c31d87d725d76c347b1dfc2d7988e8a18e65f577a760fb951009dfa"
+  },
+  "series": [
+    {
+      "series_id": "569001",
+      "label": "STARTER DECK -Straw Hat Crew- [ST-01]",
+      "set_codes": [
+        "ST01"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569001",
+      "http_status": 200,
+      "bytes": 92288,
+      "sha256": "96cf0055f7b3e42cd48eb69584dff53b70f7a3728b7bc249f8650163fe574acb",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569002",
+      "label": "STARTER DECK -Worst Generation- [ST-02]",
+      "set_codes": [
+        "ST02"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569002",
+      "http_status": 200,
+      "bytes": 92818,
+      "sha256": "33ec9b8e8d63cd7799627f0a1b87f9be8275ba7ccaa5ab03107cbcb70de19997",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569003",
+      "label": "STARTER DECK -The Seven Warlords of the Sea- [ST-03]",
+      "set_codes": [
+        "ST03"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569003",
+      "http_status": 200,
+      "bytes": 93498,
+      "sha256": "e1d5ca3cf5f1419fec583db4b14c7e8fc613ee8f308f79e692e34663b0baa260",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569004",
+      "label": "STARTER DECK -Animal Kingdom Pirates- [ST-04]",
+      "set_codes": [
+        "ST04"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569004",
+      "http_status": 200,
+      "bytes": 93638,
+      "sha256": "8799bbe84c9096b041c8c68834a0d2eed4c8d8ebfe882ca9a55fb2ccd95ebc1d",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569005",
+      "label": "STARTER DECK -ONE PIECE FILM edition- [ST-05]",
+      "set_codes": [
+        "ST05"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569005",
+      "http_status": 200,
+      "bytes": 92614,
+      "sha256": "a3f571a606bbc4a85c8059dac5799a4e566c18f60539e3fdb023c7da2882411e",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569006",
+      "label": "STARTER DECK -Absolute Justice- [ST-06]",
+      "set_codes": [
+        "ST06"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569006",
+      "http_status": 200,
+      "bytes": 91487,
+      "sha256": "6288a475a2b3b8d7c07a2d71fbe39a117db3472db78ea5cfed8c299fc785df7e",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569007",
+      "label": "STARTER DECK -Big Mom Pirates- [ST-07]",
+      "set_codes": [
+        "ST07"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569007",
+      "http_status": 200,
+      "bytes": 93197,
+      "sha256": "2ac7fa2b02cd1f5de3cc8eec7689c5c586f31dabc7affd7afd1d509a1952317b",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569008",
+      "label": "STARTER DECK -Monkey D. Luffy- [ST-08]",
+      "set_codes": [
+        "ST08"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569008",
+      "http_status": 200,
+      "bytes": 87170,
+      "sha256": "431a0039bb1bd24e22a03a596b2d6771da24b889c8a84bee0480c175ac3427cd",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569009",
+      "label": "STARTER DECK -Yamato- [ST-09]",
+      "set_codes": [
+        "ST09"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569009",
+      "http_status": 200,
+      "bytes": 87661,
+      "sha256": "eed33545ca85e3c064a15212cb4ba8ec8711e380eab66ce4372c86c3a9004a09",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569010",
+      "label": "ULTRA DECK -The Three Captains- [ST-10]",
+      "set_codes": [
+        "ST10"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569010",
+      "http_status": 200,
+      "bytes": 97849,
+      "sha256": "a8d2b76c0d0bfe741d8d10c9cdeddde38a37e50888bf8da80fb9ae8639c076da",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569011",
+      "label": "STARTER DECK -Uta- [ST-11]",
+      "set_codes": [
+        "ST11"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569011",
+      "http_status": 200,
+      "bytes": 87632,
+      "sha256": "00b937ad3a428ce6305bed2cfab4d3fc6bc10a7a1adf190276513347c48f47ba",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569012",
+      "label": "STARTER DECK -Zoro and Sanji- [ST-12]",
+      "set_codes": [
+        "ST12"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569012",
+      "http_status": 200,
+      "bytes": 92546,
+      "sha256": "f37225215f806e88ee331a0e8878f62a6e802e480524df1b4aa40bfce0b212f7",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569013",
+      "label": "ULTRA DECK -The Three Brothers- [ST-13]",
+      "set_codes": [
+        "ST13"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569013",
+      "http_status": 200,
+      "bytes": 136946,
+      "sha256": "ce60ec323633c66136572ae747a7082c297c6dc7ed915d017bc625f9dd6a9fc2",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569014",
+      "label": "STARTER DECK -3D2Y- [ST-14]",
+      "set_codes": [
+        "ST14"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569014",
+      "http_status": 200,
+      "bytes": 92416,
+      "sha256": "0e440cfc04460e95be18624d50621975031d37ff5753de438dfb8a42068c34f4",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569015",
+      "label": "STARTER DECK -Red Edward.Newgate- [ST-15]",
+      "set_codes": [
+        "ST15"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569015",
+      "http_status": 200,
+      "bytes": 88375,
+      "sha256": "0c6bbb5ec3328b3147cd37928854dc9bb0e01b42a1891e2f404a2f6f43706e81",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569016",
+      "label": "STARTER DECK -Green Uta- [ST-16]",
+      "set_codes": [
+        "ST16"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569016",
+      "http_status": 200,
+      "bytes": 87809,
+      "sha256": "05e26a9548f53b937f5dc5a5341b70bb07e225e4c4728ef8c27dcf9386de0239",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569017",
+      "label": "STARTER DECK -Blue Donquixote Doflamingo- [ST-17]",
+      "set_codes": [
+        "ST17"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569017",
+      "http_status": 200,
+      "bytes": 89011,
+      "sha256": "e31bc5aa348dd26d4abfc9601a776ef39d27ede5a967daaea10908ee9e5bd987",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569018",
+      "label": "STARTER DECK -Purple Monkey.D.Luffy- [ST-18]",
+      "set_codes": [
+        "ST18"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569018",
+      "http_status": 200,
+      "bytes": 88461,
+      "sha256": "2abaaaf63ccf853cdedc0ad7b010698b5bf66c81296a3c7cc3263b66afe4bff8",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569019",
+      "label": "STARTER DECK -Black Smoker- [ST-19]",
+      "set_codes": [
+        "ST19"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569019",
+      "http_status": 200,
+      "bytes": 87849,
+      "sha256": "7ba066e986feced069b5decdad30909a350b947cb26702472c564d10a0ac18ab",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569020",
+      "label": "STARTER DECK -Yellow Charlotte Katakuri- [ST-20]",
+      "set_codes": [
+        "ST20"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569020",
+      "http_status": 200,
+      "bytes": 89054,
+      "sha256": "1a79a395baa09b486ce5394b7f7a1e2203b8d1d4e919364ac358e9d7cd18de04",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569021",
+      "label": "STARTER DECK EX -GEAR5- [ST-21]",
+      "set_codes": [
+        "ST21"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569021",
+      "http_status": 200,
+      "bytes": 124731,
+      "sha256": "fcffa9e40d13b75dcd9f7b491661485edf05d9987c7702049db5b558406d53a1",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569022",
+      "label": "STARTER DECK -Ace & Newgate- [ST-22]",
+      "set_codes": [
+        "ST22"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569022",
+      "http_status": 200,
+      "bytes": 124945,
+      "sha256": "945d71f10c8f111779781cc55546123e5ac389311e9df489b29aa04fdbd597f5",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569023",
+      "label": "STARTER DECK -RED Shanks- [ST-23]",
+      "set_codes": [
+        "ST23"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569023",
+      "http_status": 200,
+      "bytes": 88144,
+      "sha256": "bc9f536abe14e6ff3b15f15d6c34da491d9e05bb5ef356fa09af6012a6437f89",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569024",
+      "label": "STARTER DECK -GREEN Jewelry Bonney- [ST-24]",
+      "set_codes": [
+        "ST24"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569024",
+      "http_status": 200,
+      "bytes": 89047,
+      "sha256": "ab1bbafc4dbaa3456b3ac52531c200337e519fd4211583f0f80bed59f3e136c0",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569025",
+      "label": "STARTER DECK -BLUE Buggy- [ST-25]",
+      "set_codes": [
+        "ST25"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569025",
+      "http_status": 200,
+      "bytes": 88629,
+      "sha256": "4a04477cff308efc3830de2ecaead3edb7e790591d82dbbbecd49accd8fb0ef4",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569026",
+      "label": "STARTER DECK -PURPLE/BLACK Monkey.D.Luffy- [ST-26]",
+      "set_codes": [
+        "ST26"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569026",
+      "http_status": 200,
+      "bytes": 88599,
+      "sha256": "ea2c13e130aa4beb1190cf154d1bf8e2adfe4bc4b5ecc0611817f1cdc8a67425",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569027",
+      "label": "STARTER DECK -BLACK Marshall.D.Teach- [ST-27]",
+      "set_codes": [
+        "ST27"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569027",
+      "http_status": 200,
+      "bytes": 88815,
+      "sha256": "792b6c1fd7a807d15da444a0bb14ee3b9ed1e5ae989c3ce8232b66d3cab3523c",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569028",
+      "label": "STARTER DECK -GREEN/YELLOW Yamato- [ST-28]",
+      "set_codes": [
+        "ST28"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569028",
+      "http_status": 200,
+      "bytes": 89309,
+      "sha256": "9b31893a60e034ab8b20c368074d14faf536125ad829bc5982dcbbe3cf4eb958",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569029",
+      "label": "STARTER DECK -Egghead- [ST-29]",
+      "set_codes": [
+        "ST29"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569029",
+      "http_status": 200,
+      "bytes": 125357,
+      "sha256": "27b763201d5f9f5b31f52f8de61e30aa2a9cbda53a7a4ea8efdda56fa564b617",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569030",
+      "label": "STARTER DECK EX -Luffy & Ace- [ST-30]",
+      "set_codes": [
+        "ST30"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569030",
+      "http_status": 200,
+      "bytes": 132739,
+      "sha256": "460f3479cd93b41b3589d03463f0f1693c17712fd15d33fc5d44803f1dab4383",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569031",
+      "label": "STARTER DECK -RED Monkey.D.Luffy- [ST-31]",
+      "set_codes": [
+        "ST31"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569031",
+      "http_status": 200,
+      "bytes": 88838,
+      "sha256": "e1e96c50e54c0873638eb545117948ade0432fe11fac0c078675236fa3432671",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569032",
+      "label": "STARTER DECK -GREEN Roronoa Zoro- [ST-32]",
+      "set_codes": [
+        "ST32"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569032",
+      "http_status": 200,
+      "bytes": 89036,
+      "sha256": "1d4e4fb016c587e8b6bbf1f91353c60901e892a920391652d210dc34e92b2d61",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569033",
+      "label": "STARTER DECK -BLUE Kuzan- [ST-33]",
+      "set_codes": [
+        "ST33"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569033",
+      "http_status": 200,
+      "bytes": 88244,
+      "sha256": "a0e773c63b942da39cf695ac5b2294b69c80ce4304b64fbe1e7804a60999ee78",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569034",
+      "label": "STARTER DECK -PURPLE Charlotte Katakuri- [ST-34]",
+      "set_codes": [
+        "ST34"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569034",
+      "http_status": 200,
+      "bytes": 89704,
+      "sha256": "097a9b9f8d7546761d2fc8d728102656878c1ff4f4dc166cbde1a2921314497f",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569035",
+      "label": "STARTER DECK -RED/BLACK Sabo- [ST-35]",
+      "set_codes": [
+        "ST35"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569035",
+      "http_status": 200,
+      "bytes": 88839,
+      "sha256": "1c3b59571572c054570c873e30dbe4725cbf332d4242f553375b432b8f7ef5c2",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569036",
+      "label": "STARTER DECK -YELLOW Eustass\"Captain\"Kid- [ST-36]",
+      "set_codes": [
+        "ST36"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569036",
+      "http_status": 200,
+      "bytes": 89816,
+      "sha256": "b9296c8e4b2637dc58f00ecc1363655f173254a2c7843f530486bce9645a4b02",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569101",
+      "label": "BOOSTER PACK -ROMANCE DAWN- [OP-01]",
+      "set_codes": [
+        "OP01"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569101",
+      "http_status": 200,
+      "bytes": 412367,
+      "sha256": "16cb9e0a843c98e016d47e4d87321e8317eeddfb376f467336e0e2c6656d48d7",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569102",
+      "label": "BOOSTER PACK -PARAMOUNT WAR- [OP-02]",
+      "set_codes": [
+        "OP02"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569102",
+      "http_status": 200,
+      "bytes": 404239,
+      "sha256": "0275e9e8d76b414fa56c690de874d22dfa0c1d220315a8dde5e87930806e96b8",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569103",
+      "label": "BOOSTER PACK -PILLARS OF STRENGTH- [OP-03]",
+      "set_codes": [
+        "OP03"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569103",
+      "http_status": 200,
+      "bytes": 407449,
+      "sha256": "3869ef3b8379178beb584aa228d14653ead4499162f49f83d8b28d0c2ade4226",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569104",
+      "label": "BOOSTER PACK -KINGDOMS OF INTRIGUE- [OP-04]",
+      "set_codes": [
+        "OP04"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569104",
+      "http_status": 200,
+      "bytes": 400802,
+      "sha256": "7a5a9469c02736c48e7e605499a165c8eb0be77162f30cd36379fe0ed7edf16c",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569105",
+      "label": "BOOSTER PACK -AWAKENING OF THE NEW ERA- [OP-05]",
+      "set_codes": [
+        "OP05"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569105",
+      "http_status": 200,
+      "bytes": 409969,
+      "sha256": "5f14831625de6aed8f86004e68ee353c3dddb12bc77a3b31a58996debabaab87",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569106",
+      "label": "BOOSTER PACK -WINGS OF THE CAPTAIN- [OP-06]",
+      "set_codes": [
+        "OP06"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569106",
+      "http_status": 200,
+      "bytes": 404933,
+      "sha256": "2e5af201641717dab68d020d6dcbf71746cb91a1b2e6f2f3af275aa97172249a",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569107",
+      "label": "BOOSTER PACK -500 YEARS IN THE FUTURE- [OP-07]",
+      "set_codes": [
+        "OP07"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569107",
+      "http_status": 200,
+      "bytes": 405646,
+      "sha256": "507cee2239fa4e5ecde5f137fc48e8bba8fcea0ae66b1eb3dce58273b10da1dc",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569108",
+      "label": "BOOSTER PACK -TWO LEGENDS- [OP-08]",
+      "set_codes": [
+        "OP08"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569108",
+      "http_status": 200,
+      "bytes": 403512,
+      "sha256": "ec0b78441bbd3524871ac78f57b5bd2f77083bc5d9369977b2cb975039e4c2fe",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569109",
+      "label": "BOOSTER PACK -EMPERORS IN THE NEW WORLD- [OP-09]",
+      "set_codes": [
+        "OP09"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569109",
+      "http_status": 200,
+      "bytes": 423002,
+      "sha256": "36531b18eed6cfe934b9beafc66470d45610235c68d643ade7ba16b8075a20f7",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569110",
+      "label": "BOOSTER PACK -ROYAL BLOOD- [OP-10]",
+      "set_codes": [
+        "OP10"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569110",
+      "http_status": 200,
+      "bytes": 402923,
+      "sha256": "d8f548c97895721b6579a1ac964618474f7d3e1e8e1099fb7c367805500b05fe",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569111",
+      "label": "BOOSTER PACK -A FIST OF DIVINE SPEED- [OP-11]",
+      "set_codes": [
+        "OP11"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569111",
+      "http_status": 200,
+      "bytes": 417459,
+      "sha256": "dc2a6b470fa5243afce36705d7f579a1c1630b43ae3ef724c50f28f4298f3d82",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569112",
+      "label": "BOOSTER PACK -LEGACY OF THE MASTER- [OP-12]",
+      "set_codes": [
+        "OP12"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569112",
+      "http_status": 200,
+      "bytes": 413661,
+      "sha256": "b3860fd6563166e9269d83f987bf479742a4dec633996ba69ede78e3367e96ac",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569113",
+      "label": "BOOSTER PACK -CARRYING ON HIS WILL- [OP-13]",
+      "set_codes": [
+        "OP13"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569113",
+      "http_status": 200,
+      "bytes": 460522,
+      "sha256": "58f05560efb1948eab73d088bae751456250381cc17756e61991c95792fdcdc4",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569114",
+      "label": "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]",
+      "set_codes": [
+        "EB04",
+        "OP14"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569114",
+      "http_status": 200,
+      "bytes": 522865,
+      "sha256": "78793a4f7c9f66ded63b7b21f1d6c3660a00dc7bb4fd0066758542fbd50e4d1b",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569115",
+      "label": "BOOSTER PACK -ADVENTURE ON KAMI’S ISLAND- [OP15-EB04]",
+      "set_codes": [
+        "EB04",
+        "OP15"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569115",
+      "http_status": 200,
+      "bytes": 514512,
+      "sha256": "a295c0b094fa568f11723c8d258ddf323eb7abe67e720ba4349b214a18fd7865",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569116",
+      "label": "BOOSTER PACK -THE TIME OF BATTLE- [OP-16]",
+      "set_codes": [
+        "OP16"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569116",
+      "http_status": 200,
+      "bytes": 414557,
+      "sha256": "3c4738014c31d87d725d76c347b1dfc2d7988e8a18e65f577a760fb951009dfa",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569201",
+      "label": "EXTRA BOOSTER -MEMORIAL COLLECTION- [EB-01]",
+      "set_codes": [
+        "EB01"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569201",
+      "http_status": 200,
+      "bytes": 238397,
+      "sha256": "09135c45350fda0c997897edad0e56bf3b0ebbcc56750a68ea284088a5575b71",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569202",
+      "label": "EXTRA BOOSTER -Anime 25th Collection- [EB-02]",
+      "set_codes": [
+        "EB02"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569202",
+      "http_status": 200,
+      "bytes": 298513,
+      "sha256": "c67516a87dd97f04b39dba37b9b36d704b525d070d50ca87e708c53e4b630ac4",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569203",
+      "label": "EXTRA BOOSTER -ONE PIECE HEROINES EDITION- [EB-03]",
+      "set_codes": [
+        "EB03"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569203",
+      "http_status": 200,
+      "bytes": 264838,
+      "sha256": "c965814b38161c2ad13905720ab3a333aaba284abe785cc25bb7d3e145ab5164",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569301",
+      "label": "PREMIUM BOOSTER -ONE PIECE CARD THE BEST- [PRB-01]",
+      "set_codes": [
+        "PRB01"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569301",
+      "http_status": 200,
+      "bytes": 800784,
+      "sha256": "0f84bc3b9a6e5e776e9c36a6c86639b4a036bb9ff40a8a5effff2e03bdbb69be",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569302",
+      "label": "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]",
+      "set_codes": [
+        "PRB02"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569302",
+      "http_status": 200,
+      "bytes": 791192,
+      "sha256": "84cba68f7cb3e135d8155ceb00609965f606b4910b48db1f83ad7f8273f57a5a",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569801",
+      "label": "Other Product Card",
+      "set_codes": [],
+      "supplemental_scope": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569801",
+      "http_status": 200,
+      "bytes": 463331,
+      "sha256": "c94e58f32e70d260e49a7b428434955370bbe8ecd011b07cc269ef89804b7305",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "569901",
+      "label": "Promotion card",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": false,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?series=569901",
+      "http_status": 200,
+      "bytes": 910084,
+      "sha256": "953731c0dc0b8125188984be4094227ae5266ba0eae308af77db145d0bc5412c",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-038",
+      "label": "Official card-list search: P-038",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-038",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "146ca1632fc42c74ca209ade50abb6da813ba5d747f794fddf020e8cc9746677",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-040",
+      "label": "Official card-list search: P-040",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-040",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "0df78e4f70b0d541a267e9e8147d6b42a353906726e0b13bc249106ae98ceea0",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-064",
+      "label": "Official card-list search: P-064",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-064",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "e26c7140b7b4947bbfc1d31b2e3066681dd902efab4138f6651df019fd059ddf",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-066",
+      "label": "Official card-list search: P-066",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-066",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "0191d414dd22585bc32b7d0fc94bdeaab6fbcb604aa769e10286a87e1f5b0ce0",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-067",
+      "label": "Official card-list search: P-067",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-067",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "251632b5d47b803809768bb036101fd49c86677b5c34d2437dee8406ffa5c4c7",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-080",
+      "label": "Official card-list search: P-080",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-080",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "0224313e8a2ddef05c5ba07b9f196918d134d567e019074154a82b63e02571e9",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-086",
+      "label": "Official card-list search: P-086",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-086",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "35728058cc3b3095ee299f64dd33a0529f5d4f6ece6aa2b7f2d72a2e3f449319",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-108",
+      "label": "Official card-list search: P-108",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-108",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "536a8ecb946e3258791aebf239607e5deb064a3cb401a89848f836a228e95bff",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-114",
+      "label": "Official card-list search: P-114",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-114",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "ec3b27d355ce4c1ba749287cd664d52ce82799ae2073027dedf63ebe736abc8e",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-116",
+      "label": "Official card-list search: P-116",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-116",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "588f6119145527184326f7d1b055044f9cf42b7b8a0752cb2ba914dc4378e526",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    },
+    {
+      "series_id": "search-P-118",
+      "label": "Official card-list search: P-118",
+      "set_codes": [
+        "P"
+      ],
+      "supplemental_scope": true,
+      "supplemental_search": true,
+      "url": "https://en.onepiece-cardgame.com/cardlist/?freewords=P-118",
+      "http_status": 200,
+      "bytes": 53057,
+      "sha256": "8cafc24d38b54adf8e1293dd74a8e8eae2d439e5fd866f40c1ea44e780f14712",
+      "cache_status": "reused",
+      "raw_html_persisted_in_audit": false
+    }
+  ]
+}

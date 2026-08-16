@@ -1,5 +1,4 @@
 import { cache } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import {
@@ -12,6 +11,7 @@ import {
 } from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { normalizePublicSetDisplayName } from "@/lib/publicSets.shared";
+import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   getChildDisplayImageFallbacks,
   type ChildDisplayImageFallback,
@@ -35,6 +35,7 @@ type TraitRow = {
 
 type PublicCardRow = {
   id: string | null;
+  game_id: string | null;
   gv_id: string | null;
   name: string | null;
   number: string | null;
@@ -53,8 +54,11 @@ type PublicCardRow = {
   variant_key: string | null;
   printed_identity_modifier: string | null;
   variants: VariantFlags;
+  games?:
+    | { code: string | null; name: string | null }
+    | { code: string | null; name: string | null }[]
+    | null;
   external_ids?: { tcgdex?: string | null } | null;
-  card_print_traits?: TraitRow | TraitRow[] | null;
   card_printings?:
     | {
         id: string | null;
@@ -270,7 +274,7 @@ function resolveDisplayPrintings(
 }
 
 function mapTraitRecord(
-  record?: PublicCardRow["card_print_traits"],
+  record?: TraitRow | TraitRow[] | null,
 ): TraitRow | undefined {
   const traitRecord = Array.isArray(record) ? record[0] : record;
 
@@ -292,6 +296,26 @@ function mapTraitRecord(
     supertype: traitRecord.supertype?.trim() || null,
     card_category: traitRecord.card_category?.trim() || null,
   };
+}
+
+async function getPublicCardTraits(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  cardPrintId?: string | null,
+): Promise<TraitRow | undefined> {
+  const normalizedCardPrintId = cardPrintId?.trim();
+  if (!normalizedCardPrintId) {
+    return undefined;
+  }
+
+  const { data, error } = await supabase.rpc("card_print_public_traits_v1", {
+    p_card_print_id: normalizedCardPrintId,
+  });
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  return mapTraitRecord(data as TraitRow | TraitRow[]);
 }
 
 async function mapRelatedPrints(
@@ -364,41 +388,10 @@ async function mapRelatedPrints(
   return result.length > 0 ? result : undefined;
 }
 
-function createServerSupabase() {
-  const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key =
-    process.env.SUPABASE_SECRET_KEY ??
-    process.env.SUPABASE_PUBLISHABLE_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !key) {
-    throw new Error(
-      "Missing SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY/SUPABASE_PUBLISHABLE_KEY.",
-    );
-  }
-
-  const cachedFetch: typeof fetch = (input, init) =>
-    fetch(input, {
-      ...init,
-      next: {
-        ...((init as { next?: Record<string, unknown> } | undefined)?.next ??
-          {}),
-        revalidate: 120,
-      },
-    } as RequestInit & { next: { revalidate: number } });
-
-  // LOCK: Public read helpers should be cacheable by default.
-  // LOCK: Prefer bounded revalidation over request-by-request dynamic rendering.
-  return createClient(url, key, {
-    global: {
-      fetch: cachedFetch,
-    },
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-      detectSessionInUrl: false,
-    },
-  });
+async function createServerSupabase() {
+  // Catalog release controls are request-role aware. A service-key fallback
+  // would bypass RLS and expose hidden or signed-in-only game catalogs.
+  return createServerComponentClient();
 }
 
 const getSetDetailsByCode = cache(async (setCode?: string | null) => {
@@ -412,7 +405,7 @@ const getSetDetailsByCode = cache(async (setCode?: string | null) => {
     };
   }
 
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("sets")
     .select("name,printed_total,printed_set_abbrev,release_date")
@@ -441,7 +434,7 @@ const getSetDetailsByCode = cache(async (setCode?: string | null) => {
 });
 
 async function getActiveIdentityByCardPrintId(
-  supabase: ReturnType<typeof createServerSupabase>,
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
   cardPrintId?: string | null,
   parentIdentityDomain?: string | null,
 ): Promise<ActiveCardPrintIdentity | null> {
@@ -508,12 +501,14 @@ async function getActiveIdentityByCardPrintId(
 }
 
 async function getRelatedPrintsByName(
-  supabase: ReturnType<typeof createServerSupabase>,
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
   name?: string | null,
   excludeId?: string | null,
+  gameId?: string | null,
 ) {
   const normalizedName = name?.trim();
-  if (!normalizedName) {
+  const normalizedGameId = gameId?.trim();
+  if (!normalizedName || !normalizedGameId) {
     return undefined;
   }
 
@@ -544,6 +539,7 @@ async function getRelatedPrintsByName(
       `,
     )
     .eq("name", normalizedName)
+    .eq("game_id", normalizedGameId)
     .limit(10)
     .order("set_code", { ascending: true })
     .order("number_plain", { ascending: true, nullsFirst: false });
@@ -567,7 +563,7 @@ async function getRelatedPrintsByName(
 }
 
 async function getCameosByGvId(
-  supabase: ReturnType<typeof createServerSupabase>,
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
   gvId?: string | null,
 ): Promise<CardCameo[] | undefined> {
   const normalizedGvId = gvId?.trim();
@@ -630,12 +626,13 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   const includePricing = options.includePricing ?? false;
   const includeRelatedPrints = options.includeRelatedPrints ?? true;
   const includeCameos = options.includeCameos ?? true;
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
     .select(
       `
         id,
+        game_id,
         gv_id,
         name,
         number,
@@ -655,13 +652,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
         variant_key,
         printed_identity_modifier,
         variants,
-        card_print_traits(
-          hp,
-          national_dex,
-          types,
-          supertype,
-          card_category
-        ),
+        games(code,name),
         sets(name,printed_total,printed_set_abbrev,release_date,identity_model)
       `,
     )
@@ -681,6 +672,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   }
   assertCanonicalCardRouteRow(row, gv_id);
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+  const gameRecord = Array.isArray(row.games) ? row.games[0] : row.games;
   const [
     fallbackSet,
     relatedPrints,
@@ -688,11 +680,12 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     activeIdentity,
     cameos,
     printingRows,
+    traitRecord,
   ] =
     await Promise.all([
       getSetDetailsByCode(row.set_code),
       includeRelatedPrints
-        ? getRelatedPrintsByName(supabase, row.name, row.id)
+        ? getRelatedPrintsByName(supabase, row.name, row.id, row.game_id)
         : Promise.resolve(undefined),
       resolveCardImageFieldsV1(row),
       getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
@@ -700,13 +693,13 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
       row.id
         ? getPublicCardPrintingOptions(supabase, [row.id])
         : Promise.resolve([]),
+      getPublicCardTraits(supabase, row.id),
     ]);
   // Public pricing is resolved by the governed TCGPlayer market read model.
   const pricingByCardId = includePricing && row.id
     ? await getPublicPricingByCardIds(supabase, [row.id])
     : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
-  const traitRecord = mapTraitRecord(row.card_print_traits);
   const printings = await mapCardPrintings(printingRows);
   const setName = normalizePublicSetDisplayName(
     setRecord?.name ?? fallbackSet.name,
@@ -722,6 +715,8 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
   return {
     id: row.id ?? "",
     gv_id: row.gv_id ?? gv_id,
+    game_code: gameRecord?.code?.trim().toLowerCase() || undefined,
+    game_name: gameRecord?.name?.trim() || undefined,
     name: row.name ?? "Unknown",
     number: row.number ?? "",
     number_plain: row.number_plain ?? undefined,
@@ -780,10 +775,10 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
 export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelatedPrintsByGvId(
   gvId: string,
 ): Promise<RelatedCardPrint[] | undefined> {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("id,gv_id,name")
+    .select("id,gv_id,name,game_id")
     .in("gv_id", getCompatiblePublicGvIdCandidates(gvId))
     .limit(2);
 
@@ -792,7 +787,10 @@ export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelate
   }
 
   const row = pickResolvedPublicGvIdRow(
-    data as unknown as Pick<PublicCardRow, "id" | "gv_id" | "name">[],
+    data as unknown as Pick<
+      PublicCardRow,
+      "id" | "gv_id" | "name" | "game_id"
+    >[],
     gvId,
   );
   if (!row) {
@@ -800,20 +798,20 @@ export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelate
   }
   assertCanonicalCardRouteRow(row, gvId);
 
-  return getRelatedPrintsByName(supabase, row.name, row.id);
+  return getRelatedPrintsByName(supabase, row.name, row.id, row.game_id);
 });
 
 export const getPublicCameosByGvId = cache(async function getPublicCameosByGvId(
   gvId: string,
 ): Promise<CardCameo[] | undefined> {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   return getCameosByGvId(supabase, gvId);
 });
 
 export async function getStaticCardParams(
   limit = 100,
 ): Promise<Array<{ gv_id: string }>> {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
     .select("gv_id")

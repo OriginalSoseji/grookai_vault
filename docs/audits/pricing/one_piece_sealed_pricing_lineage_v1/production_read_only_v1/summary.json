@@ -1,0 +1,59 @@
+{
+  "version": "ONE_PIECE_SEALED_PRICING_LINEAGE_READINESS_V1",
+  "recorded_at": "2026-08-15T19:30:11.742Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "ad1050768f1ae28266e9f15b2419f583672610d8",
+    "tracked_worktree_clean": true
+  },
+  "mode": "production_repeatable_read_read_only",
+  "target": "390 durable current-English One Piece sealed variants",
+  "pricing_authority": "TCGPlayer marketPrice only",
+  "freshness_days_inclusive": 7,
+  "boundaries": {
+    "database_writes": 0,
+    "qualification_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "storage_writes": 0,
+    "card_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "status": "production_read_only_pricing_lineage_audit_passed",
+  "latest_sync": {
+    "id": "68862ffe-f272-4654-b826-ff3f6ea5c251",
+    "run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-15-warehouse",
+    "status": "completed",
+    "observed_on": "2026-08-15",
+    "product_count": 500193,
+    "price_row_count": 543669,
+    "finished_at": "2026-08-15T09:43:46.184Z",
+    "worker_version": "TCGCSV_FULL_SOURCE_WAREHOUSE_WORKER_V1",
+    "parser_version": "TCGCSV_FULL_SOURCE_PARSER_V1",
+    "schema_contract_version": "TCGCSV_FULL_SOURCE_WAREHOUSE_V1",
+    "artifact_hash": "ae7141664b4a878fab9617dd86fbf2821e241bf73174af05412b09840262bded"
+  },
+  "canonical_variants": 390,
+  "status_counts": {
+    "blocked_missing_observation": 16,
+    "blocked_missing_price": 38,
+    "blocked_stale": 4,
+    "qualified_exact": 332
+  },
+  "qualified_release_candidates": 332,
+  "persistable_blocked_qualifications": 42,
+  "unpersistable_missing_observation_holds": 16,
+  "audit_fingerprint_sha256": "a22c8ea9d2a84ab63ac9c90d558a5749cf0f402ae79f947aeb6ac752a20db5ae",
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "sealed_target_baseline": {
+    "qualifications": 0,
+    "releases": 0,
+    "release_members": 0,
+    "release_pointer": 0
+  },
+  "exact_next_gate": "freeze a zero-write qualification apply plan for observed rows; keep missing-observation products as explicit holds"
+}

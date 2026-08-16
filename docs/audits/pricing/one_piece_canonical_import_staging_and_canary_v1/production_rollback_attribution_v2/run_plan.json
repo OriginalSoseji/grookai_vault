@@ -1,0 +1,35 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_ROLLBACK_CANARY_EXECUTOR_V1",
+  "recorded_at": "2026-08-14T06:38:08.384Z",
+  "repository": {
+    "commit_sha": "21d0be60708d7ceff1c26136f051b50b60ee199e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "inputs": {
+    "plan_file": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/e55e334b828db7b3_security_hardened/canary_plan.json",
+    "plan_file_sha256": "3506201aaaa7a0dbd9bee236387b2dd6926b48f02fca4f2a5425db8915f225db",
+    "canary_plan_fingerprint_sha256": "174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90",
+    "migration_draft_file": "supabase/migration_drafts/20260814010000_one_piece_canonical_import_staging_v1.sql",
+    "migration_draft_sha256": "7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591",
+    "manifest_file": "docs/audits/pricing/one_piece_canonical_catalog_readiness_v1/2026-08-14T04-53-27-691Z/source_product_manifest.jsonl.gz",
+    "manifest_logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9"
+  },
+  "selected_group_id": 3189,
+  "selected_source_rows": 21,
+  "execution_mode": "rollback_only",
+  "authorized_durable_rows": 0,
+  "boundaries": {
+    "current_gate_database_connection": false,
+    "current_gate_migration_apply": false,
+    "current_gate_database_writes": false,
+    "durable_staging_rows_authorized": false,
+    "canonical_writes": false,
+    "sealed_catalog_writes": false,
+    "publication": false,
+    "storage_or_image_work": false,
+    "pricing_or_vault_writes": false,
+    "deployment": false,
+    "active_mtg_worktree_changes": false
+  }
+}

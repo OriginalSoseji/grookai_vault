@@ -1,0 +1,124 @@
+{
+  "before": {
+    "counts": {
+      "sets": 60,
+      "games": 1,
+      "card_prints": 6730,
+      "card_printings": 14,
+      "self_hosted_images": 6553,
+      "card_print_identity": 6730,
+      "image_coverage_gaps": 177
+    },
+    "release_control": {
+      "evidence": {
+        "default": "fail_closed",
+        "storage_upload_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "game_code": "one_piece",
+      "updated_at": "2026-08-14T19:14:11.441126+00:00",
+      "activated_at": null,
+      "activated_by": null,
+      "release_status": "hidden",
+      "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1"
+    },
+    "catalog_fingerprint": "8b0c0a65cfbf7b24115a131fc8bba109",
+    "non_one_piece_fingerprint": "8501d820ba8c2980237e08dbdbc34e6a",
+    "release_fingerprint": "0a4cbf48f8e37964d25e0cb2c14c2a8bfa8b32ecb5d400557cb7fab1907ff310"
+  },
+  "simulated_control": {
+    "evidence": {
+      "default": "fail_closed",
+      "rollback_only": true,
+      "pointer_plan_fingerprint_sha256": "22f2b56070e43392c38ea33c4ad06f0013707e5e1eafb672b965cfee868388a4",
+      "pointer_payload_fingerprint_sha256": "dad6ab8990ff38f2b72816a6aea72188d38ca974137c44a65598d1b9624ea82a",
+      "storage_upload_authorizes_visibility": false,
+      "price_publication_authorizes_visibility": false,
+      "canonical_promotion_authorizes_visibility": false
+    },
+    "game_code": "one_piece",
+    "updated_at": "2026-08-16T04:01:28.797732+00:00",
+    "activated_at": "2026-08-16T04:01:28.797732+00:00",
+    "activated_by": "one_piece_signed_in_catalog_readiness_v1",
+    "release_status": "signed_in",
+    "release_version": "ONE_PIECE_SIGNED_IN_CATALOG_READINESS_V1"
+  },
+  "anonymous": {
+    "role": "anon",
+    "counts": {
+      "sets": 0,
+      "games": 0,
+      "card_prints": 0,
+      "card_printings": 0,
+      "self_hosted_images": 0,
+      "card_print_identity": 0,
+      "direct_card_matches": 0,
+      "image_coverage_gaps": 0,
+      "legacy_search_matches": 0,
+      "print_identity_search_matches": 0,
+      "sealed_pricing_rows": 0,
+      "sealed_release_members": 0
+    },
+    "sample": null
+  },
+  "authenticated": {
+    "role": "authenticated",
+    "counts": {
+      "sets": 60,
+      "games": 1,
+      "card_prints": 6730,
+      "card_printings": 14,
+      "self_hosted_images": 6553,
+      "card_print_identity": 6730,
+      "direct_card_matches": 1,
+      "image_coverage_gaps": 177,
+      "legacy_search_matches": 1,
+      "print_identity_search_matches": 1,
+      "sealed_pricing_rows": 100,
+      "sealed_release_members": 332
+    },
+    "sample": {
+      "gv_id": "GV-OP-TCGP-520776",
+      "name": "DON!! Card (Monkey.D.Luffy) (1st Anniversary DON!! Card Pack)",
+      "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/external-card-images/one-piece/card-prints/tcgplayer/520776/0f658e6c44b195d4dffd35ac64416f64.jpg",
+      "image_path": "one-piece/card-prints/tcgplayer/520776/0f658e6c44b195d4dffd35ac64416f64.jpg",
+      "image_status": "exact",
+      "image_source": "identity",
+      "image_url_self_hosted": true
+    }
+  },
+  "privileges": {
+    "anonymous_sealed_rpc_execute": false,
+    "authenticated_sealed_rpc_execute": true,
+    "active_sealed_release_members": 332
+  },
+  "after_rollback": {
+    "counts": {
+      "sets": 60,
+      "games": 1,
+      "card_prints": 6730,
+      "card_printings": 14,
+      "self_hosted_images": 6553,
+      "card_print_identity": 6730,
+      "image_coverage_gaps": 177
+    },
+    "release_control": {
+      "evidence": {
+        "default": "fail_closed",
+        "storage_upload_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "game_code": "one_piece",
+      "updated_at": "2026-08-14T19:14:11.441126+00:00",
+      "activated_at": null,
+      "activated_by": null,
+      "release_status": "hidden",
+      "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1"
+    },
+    "catalog_fingerprint": "8b0c0a65cfbf7b24115a131fc8bba109",
+    "non_one_piece_fingerprint": "8501d820ba8c2980237e08dbdbc34e6a",
+    "release_fingerprint": "0a4cbf48f8e37964d25e0cb2c14c2a8bfa8b32ecb5d400557cb7fab1907ff310"
+  }
+}

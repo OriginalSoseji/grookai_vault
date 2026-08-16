@@ -21,6 +21,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   bool _loading = true;
   String? _error;
   List<PublicSetSummary> _sets = const [];
+  PublicCatalogGame _activeGame = PublicCatalogGame.pokemon;
   PublicSetFilter _activeFilter = PublicSetFilter.all;
   PublicSetEra _activeEra = PublicSetEra.all;
   PublicSetLane _activeLane = PublicSetLane.all;
@@ -76,6 +77,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       sets: _sets,
       query: _searchController.text,
       filter: _activeFilter,
+      game: _activeGame,
       era: _activeEra,
       lane: _activeLane,
     );
@@ -83,12 +85,14 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       sets: _sets,
       query: _searchController.text,
       filter: PublicSetFilter.all,
+      game: _activeGame,
       lane: _activeLane,
     );
     final eraScopedSets = PublicSetsService.filterAndSortSets(
       sets: _sets,
       query: _searchController.text,
       filter: PublicSetFilter.all,
+      game: _activeGame,
       era: _activeEra,
     );
     final eraCounts = PublicSetsService.countSetsByEra(queryMatchedSets);
@@ -96,6 +100,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
     final groupedSets = PublicSetsService.groupSetsByEra(filteredSets);
     final shouldGroupByEra =
         trimmedQuery.isEmpty &&
+        _activeGame == PublicCatalogGame.pokemon &&
         _activeEra == PublicSetEra.all &&
         _activeFilter != PublicSetFilter.alphabetical &&
         _activeFilter != PublicSetFilter.oldest;
@@ -129,7 +134,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      'Browse ${_sets.length} sets by era, language, and release lane.',
+                      'Browse ${filteredSets.length} ${_activeGame.label} sets.',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurface.withValues(
                           alpha: 0.66,
@@ -180,21 +185,42 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
-                      label: 'Era',
-                      values: PublicSetsService.eraOptions,
-                      selectedValue: _activeEra,
-                      countFor: (value) => value == PublicSetEra.all
-                          ? queryMatchedSets.length
-                          : eraCounts[value] ?? 0,
-                      valueFor: (option) => option.value,
-                      labelFor: (option) => option.shortLabel,
-                      onSelected: (value) {
+                    SegmentedButton<PublicCatalogGame>(
+                      segments: PublicCatalogGame.values
+                          .map(
+                            (game) => ButtonSegment<PublicCatalogGame>(
+                              value: game,
+                              label: Text(game.label),
+                            ),
+                          )
+                          .toList(growable: false),
+                      selected: <PublicCatalogGame>{_activeGame},
+                      showSelectedIcon: false,
+                      onSelectionChanged: (selection) {
                         setState(() {
-                          _activeEra = value;
+                          _activeGame = selection.first;
+                          _activeEra = PublicSetEra.all;
                         });
                       },
                     ),
+                    if (_activeGame == PublicCatalogGame.pokemon) ...[
+                      const SizedBox(height: 12),
+                      _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
+                        label: 'Era',
+                        values: PublicSetsService.eraOptions,
+                        selectedValue: _activeEra,
+                        countFor: (value) => value == PublicSetEra.all
+                            ? queryMatchedSets.length
+                            : eraCounts[value] ?? 0,
+                        valueFor: (option) => option.value,
+                        labelFor: (option) => option.shortLabel,
+                        onSelected: (value) {
+                          setState(() {
+                            _activeEra = value;
+                          });
+                        },
+                      ),
+                    ],
                     const SizedBox(height: 12),
                     _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
                       label: 'Lane',

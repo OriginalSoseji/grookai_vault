@@ -18,8 +18,7 @@ test("species detail deduplicates card mappings and cameo rows", () => {
   assert.match(source, /dedupeCameoAppearances\(\[\.\.\.cameoAppearances, \.\.\.cameoPage\]\)/);
   assert.match(source, /SUPABASE_IN_FILTER_CHUNK_SIZE\s*=\s*250/);
   assert.match(source, /mapWithBoundedConcurrency/);
-  assert.match(source, /\.range\(printingFrom, printingTo\)/);
-  assert.match(source, /printingPageRows|pageRows\.length < SUPABASE_DETAIL_PAGE_SIZE/);
+  assert.match(source, /getPublicCardPrintingOptions\(admin, cardPrintIds\)/);
   assert.match(source, /\.range\(cameoFrom, cameoTo\)/);
   assert.match(source, /cameoRawPage\.length < CAMEO_PAGE_SIZE/);
   assert.match(source, /getOwnedPrintingOwnershipByCardPrintIds/);

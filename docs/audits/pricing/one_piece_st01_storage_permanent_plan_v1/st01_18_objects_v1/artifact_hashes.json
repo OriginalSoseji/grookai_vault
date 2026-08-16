@@ -1,0 +1,16 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "permanent_upload_plan.json",
+      "bytes": 43885,
+      "sha256": "1b32e73a35f059955f940d92e40cbc4a0a03774d8e3f9bee46714036e870c7e9"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 713,
+      "sha256": "e18618ebdc84e763d4d27a936dcc4e15ab561f8177c59e50da91b82c789c1185"
+    }
+  ],
+  "plan_evidence_fingerprint_sha256": "59adf0f7f318b46f8a6769a91161f2d71831378894b4bd0b9c325393cc064807"
+}

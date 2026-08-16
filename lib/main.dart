@@ -3465,6 +3465,7 @@ class HomePageState extends State<HomePage> {
   _RarityFilter _rarityFilter = _RarityFilter.all;
   String _identityFilter = kIdentityFilterAll;
   String _languageScope = 'all';
+  String _gameScope = 'pokemon';
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
   bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
@@ -3575,7 +3576,8 @@ class HomePageState extends State<HomePage> {
     return trimmed.isEmpty &&
         _rarityFilter == _RarityFilter.all &&
         !isIdentityFilterActive(_identityFilter) &&
-        _languageScope == 'all';
+        _languageScope == 'all' &&
+        _gameScope == 'pokemon';
   }
 
   void _resetCuratedLandingState() {
@@ -3778,6 +3780,9 @@ class HomePageState extends State<HomePage> {
 
   int get _activeSearchFilterCount {
     var count = 0;
+    if (_gameScope != 'pokemon') {
+      count += 1;
+    }
     if (_normalizeSearchLanguageScope(_languageScope) != 'all') {
       count += 1;
     }
@@ -3874,9 +3879,27 @@ class HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Refine by language, identity, and rarity.',
+                      'Refine by game, language, identity, and rarity.',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.64),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    SegmentedButton<String>(
+                      segments: const <ButtonSegment<String>>[
+                        ButtonSegment<String>(
+                          value: 'pokemon',
+                          label: Text('Pokemon'),
+                        ),
+                        ButtonSegment<String>(
+                          value: 'one_piece',
+                          label: Text('One Piece'),
+                        ),
+                      ],
+                      selected: <String>{_gameScope},
+                      showSelectedIcon: false,
+                      onSelectionChanged: (selection) => refreshSheet(
+                        () => _handleGameScopeChanged(selection.first),
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -3886,31 +3909,33 @@ class HomePageState extends State<HomePage> {
                         () => _handleLanguageScopeChanged(value),
                       ),
                     ),
-                    const SizedBox(height: 18),
-                    Text(
-                      'Identity',
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.58),
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.2,
+                    if (_gameScope == 'pokemon') ...[
+                      const SizedBox(height: 18),
+                      Text(
+                        'Identity',
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.58),
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.2,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 6,
-                      children: [
-                        for (final option in visibleIdentityFilters)
-                          GvChip(
-                            label: option.label,
-                            count: identityFilterCounts[option.key] ?? 0,
-                            selected: _identityFilter == option.key,
-                            onSelected: (_) => refreshSheet(
-                              () => _handleIdentityFilterChanged(option.key),
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          for (final option in visibleIdentityFilters)
+                            GvChip(
+                              label: option.label,
+                              count: identityFilterCounts[option.key] ?? 0,
+                              selected: _identityFilter == option.key,
+                              onSelected: (_) => refreshSheet(
+                                () => _handleIdentityFilterChanged(option.key),
+                              ),
                             ),
-                          ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
                     const SizedBox(height: 18),
                     Text(
                       'Rarity',
@@ -4046,6 +4071,7 @@ class HomePageState extends State<HomePage> {
           limit: _kSearchResolverLimit,
           identityFilter: _identityFilter,
           languageScope: _languageScope,
+          gameScope: _gameScope,
         ),
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
@@ -4228,6 +4254,30 @@ class HomePageState extends State<HomePage> {
       _searchError = null;
     });
     _runSearch(_searchCtrl.text);
+  }
+
+  void _handleGameScopeChanged(String scope) {
+    final normalized = scope == 'one_piece' ? 'one_piece' : 'pokemon';
+    if (_gameScope == normalized) {
+      return;
+    }
+
+    setState(() {
+      _gameScope = normalized;
+      _identityFilter = kIdentityFilterAll;
+      _results = const [];
+      _visibleResults = const [];
+      _provisionalResults = const <PublicProvisionalCard>[];
+      _resultPricing = const {};
+      _resolverMeta = null;
+      _hasMoreVisibleResults = false;
+      _searchError = null;
+    });
+    if (_shouldShowCuratedLanding()) {
+      _resetCuratedLandingState();
+    } else {
+      _runSearch(_searchCtrl.text);
+    }
   }
 
   void _loadMoreSearchResults() {

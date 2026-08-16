@@ -1,0 +1,36 @@
+{
+  "valid": true,
+  "findings": [],
+  "transaction_read_only": true,
+  "baseline": {
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0,
+    "one_piece_release_control_rows": 1,
+    "one_piece_release_status": "hidden"
+  },
+  "schema": {
+    "rls_enabled": true,
+    "rls_forced": true,
+    "append_only_trigger_enabled": true,
+    "service_role_policy_present": true,
+    "service_role_select": true,
+    "service_role_insert": true,
+    "anon_select": false,
+    "authenticated_select": false
+  },
+  "lineage": {
+    "expected_rows": 374,
+    "matched_variants": 374,
+    "matched_exact_mappings": 374,
+    "matched_source_observations": 374
+  },
+  "collisions": {
+    "id_collisions": 0,
+    "unique_key_collisions": 0
+  }
+}

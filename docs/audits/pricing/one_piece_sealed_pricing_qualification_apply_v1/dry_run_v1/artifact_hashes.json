@@ -1,0 +1,28 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "67ce198157676658898245ddefc08405a758d2c6",
+  "dependencies": [
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_pricing_qualification_apply_plan_v1/frozen_apply_plan_v1/plan.json",
+      "sha256": "4ce4290e1082499c7a084d57c6ff2b6bbe30b46621997a997ec5cb3ce2c657a0"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_sealed_pricing_qualification_plan_v1/frozen_plan_v1/qualification_plan.json.gz",
+      "sha256": "7c99984ada61c186c2a70ea7aeb7a573b5e879c0790e2499ce4151425472a222"
+    }
+  ],
+  "artifacts": {
+    "run_plan.json": {
+      "bytes": 892,
+      "sha256": "efa43d4624e7147f3d4814193b38dd3538cce43cfba7d17b81bab3800a1982dd"
+    },
+    "summary.json": {
+      "bytes": 1202,
+      "sha256": "3ee201df78b79de042269efbefe69841586993445a748aac7a8fd4fa34b632f7"
+    },
+    "REPORT.md": {
+      "bytes": 218,
+      "sha256": "151f29dd253a36938f5582252dc4bffbe36947a3cf56ba2e41ef9c1d360e00f2"
+    }
+  }
+}

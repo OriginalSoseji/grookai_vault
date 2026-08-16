@@ -1,0 +1,77 @@
+{
+  "sample_source_product_ids": [
+    434340,
+    456059,
+    482236,
+    456320,
+    482237
+  ],
+  "transaction_readback": {
+    "set_rows": {
+      "row_count": 1,
+      "rows_sha256": "7e44e330b82c5d35f71effba35791dd9bbf1c00fe587b8bcd16744a42d90126b"
+    },
+    "card_rows": {
+      "row_count": 5,
+      "rows_sha256": "5a9c1f95b88adb2348b2c23cb1dceec748c646458af36d2313dd5aa3a9d837c8"
+    },
+    "identity_rows": {
+      "row_count": 5,
+      "rows_sha256": "e1dc022938d89c81ceb9d72202a72f045a050ca417cd564e4feb1641316fe13d"
+    },
+    "evidence_rows": {
+      "row_count": 5,
+      "rows_sha256": "d32826aeb282031607bc7e7aae73819565d553af12c72d5692f1c1a41ff4a3bf"
+    },
+    "mapping_rows": {
+      "row_count": 5,
+      "rows_sha256": "1e05e4f193133325135459c64aaa63bbf79716850eb2ac51bae15bd15afd55d1"
+    },
+    "visibility": {
+      "release_status": "hidden",
+      "anon_visible": false,
+      "authenticated_visible": false,
+      "service_role_visible": false
+    },
+    "readback_sha256": "3a66babfe985bd4e48ee90f62e04a477567a9a694c5e644d8204485654983ded"
+  },
+  "attributable_writes": [
+    {
+      "table_name": "card_print_identity",
+      "inserted": "5",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_print_identity_source_evidence",
+      "inserted": "5",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_prints",
+      "inserted": "5",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "external_mappings",
+      "inserted": "5",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sets",
+      "inserted": "1",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "findings": [],
+  "rolled_back": true
+}

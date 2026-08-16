@@ -35,7 +35,12 @@ export async function generateMetadata(
 
   const siteOrigin = getSiteOrigin();
   const canonicalUrl = `${siteOrigin}/sets/${encodeURIComponent(setDetail.code)}`;
-  const title = `${setDetail.name} Pokemon Card Set | Grookai Vault`;
+  const gameLabel = setDetail.game_code === "one_piece"
+    ? "One Piece Card Game"
+    : setDetail.game_code === "mtg"
+      ? "Magic: The Gathering"
+      : "Pokemon Trading Card Game";
+  const title = `${setDetail.name} ${gameLabel} Set | Grookai Vault`;
   const description = `Browse ${setDetail.card_count.toLocaleString()} reconciled card identities from ${setDetail.name} on Grookai Vault.`;
 
   return {
@@ -94,8 +99,14 @@ async function SetPageContent({
     getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK),
   ]);
   const user = authResponse.data.user;
+  const requestScopedCatalogClient =
+    user?.id && setDetail.game_code !== "pokemon" ? supabase : undefined;
 
-  const masterSetStats = await getPublicSetMasterSetStats(setDetail.code, user?.id ?? null);
+  const masterSetStats = await getPublicSetMasterSetStats(
+    setDetail.code,
+    user?.id ?? null,
+    requestScopedCatalogClient,
+  );
   const [setLogoPath, worldChampionshipDecklist] = await Promise.all([
     getSetLogoAssetPathMap([setDetail.code]).then((logos) => logos.get(setDetail.code)),
     getPublicWorldChampionshipDecklist(setDetail.code),

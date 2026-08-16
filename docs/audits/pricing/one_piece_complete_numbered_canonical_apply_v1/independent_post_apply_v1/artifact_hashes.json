@@ -1,0 +1,42 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 572,
+      "sha256": "481543e2eafc48d1cc740f667bdfa277f634d970d49737c2d027b2aad4030256"
+    },
+    {
+      "path": "readback.json",
+      "bytes": 1478,
+      "sha256": "3b266e0b8b64ff287eff182f4b91184e3d25562f1a3b4bd3a3a0f3d4917691ec"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2290,
+      "sha256": "c7d8eb5f64aedb8ed15bd012208ea6c2b5d3c1e1db4d5c615301970f5077b162"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 371,
+      "sha256": "c852486f13127dc923be39614c3230fd2580656ccb9ede7d9c1f4fc0dfa981d6"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "name": "promotionPlan",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
+      "sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084"
+    },
+    {
+      "name": "applyPlan",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_apply_v1/frozen_apply_plan_v1/apply_plan.json",
+      "sha256": "f16a599a540de5d656d297d71c9ee3b4ca5e6f71c945d8eed249eb319d0e2e5f"
+    },
+    {
+      "name": "applySummary",
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_apply_v1/durable_apply_v1/summary.json",
+      "sha256": "9a995a830f34bc6f67259ff08e12aaee584bf5e39311c57719e43f0285d4ecce"
+    }
+  ]
+}

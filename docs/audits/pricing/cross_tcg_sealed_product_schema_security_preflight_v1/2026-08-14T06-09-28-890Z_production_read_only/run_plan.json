@@ -1,0 +1,41 @@
+{
+  "version": "CROSS_TCG_SEALED_PRODUCT_SCHEMA_SECURITY_PREFLIGHT_V1",
+  "recorded_at": "2026-08-14T06:09:28.889Z",
+  "producer_commit_sha": "3644fa14146b06325044bc0c5d0ce45bf8962e69",
+  "reserved_migration_version": "20260814060000",
+  "migration_sha256": "794ba84ce5fcd57568d7b94536ec06dbdb7d8b4d171a0f2895e6e0b808f895d4",
+  "rollback_sha256": "5a87967acb8c3f610807daa023eb94920aa393c6a64d123c46e113f225af9a7e",
+  "migration_plan_fingerprint": "f95ee1e0787f14801ba3b24f313f40a391325d2169eda0798f0fe32dfe948643",
+  "boundaries": {
+    "database_transaction_read_only": true,
+    "database_writes": false,
+    "ddl_or_migration_apply": false,
+    "storage_or_publication": false,
+    "deployment_or_app_visibility": false,
+    "active_mtg_worktree_touched": false
+  },
+  "preflight_fingerprint_sha256": "791bfb677a432b8ec9f7d8d027830fc96b21f40ccfbd0c0a528f1833baca28f7",
+  "expected_collision_inventory": {
+    "tables": 10,
+    "functions": 5,
+    "indexes": 8,
+    "policies": 10,
+    "triggers": 10
+  },
+  "protected_relations": [
+    "card_prints",
+    "card_printings",
+    "vault_item_instances",
+    "vault_owners",
+    "market_price_pipeline_runs",
+    "market_price_publication_sets",
+    "market_price_current_publication",
+    "market_price_publication_snapshots",
+    "market_price_qualification_decisions",
+    "catalog_game_release_controls",
+    "games",
+    "sets",
+    "mtg_canonical_import_batches",
+    "mtg_canonical_import_rows"
+  ]
+}

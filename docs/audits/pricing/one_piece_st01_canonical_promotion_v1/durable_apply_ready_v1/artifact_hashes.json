@@ -1,0 +1,17 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "sha256": "20387739f2e3b2853138eb538b4578bb7fa832df9ac9ec9b7f4881231a68202a"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "eba786dc4539f071733fa6ee328d08a0247740f57abde3412da0fb13bdc08ba6"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "41444678aa36629c66a4c1e4cec1d2549971566d6f4170e9c3ec8b5f56fff766"
+    }
+  ]
+}

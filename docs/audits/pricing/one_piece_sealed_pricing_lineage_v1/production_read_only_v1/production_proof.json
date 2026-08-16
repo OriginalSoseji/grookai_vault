@@ -1,0 +1,30 @@
+{
+  "transaction_read_only": true,
+  "default_transaction_read_only": true,
+  "transaction_closed_before_artifacts": true,
+  "baseline_before": {
+    "sealed_product_candidates": 403,
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_candidate_reviews": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_variant_evidence": 1731,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0
+  },
+  "baseline_after": {
+    "sealed_product_candidates": 403,
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_candidate_reviews": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_variant_evidence": 1731,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0
+  },
+  "write_attribution": []
+}

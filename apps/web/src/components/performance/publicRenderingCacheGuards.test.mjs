@@ -23,22 +23,26 @@ test("root chrome does not perform server auth reads during public render", () =
   );
 });
 
-test("primary public routes use bounded revalidation instead of force-dynamic", () => {
-  const publicRouteSources = [
+test("public routes cache only when they do not depend on request-scoped state", () => {
+  const cacheableRouteSources = [
     readSource("app", "page.tsx"),
+    readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx"),
+  ].join("\n");
+  const requestScopedRouteSources = [
     readSource("app", "network", "page.tsx"),
     readSource("app", "network", "discover", "page.tsx"),
     readSource("app", "u", "[slug]", "page.tsx"),
-    readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx"),
     readSource("app", "gvvi", "[gvvi_id]", "page.tsx"),
     readSource("app", "sets", "page.tsx"),
     readSource("app", "compare", "page.tsx"),
-  ].join("\n");
+  ];
 
-  assert.doesNotMatch(publicRouteSources, /force-dynamic|revalidate\s*=\s*0/);
-  assert.match(publicRouteSources, /export const revalidate = 60/);
-  assert.match(publicRouteSources, /export const revalidate = 120/);
-  assert.match(publicRouteSources, /export const revalidate = 300/);
+  assert.doesNotMatch(cacheableRouteSources, /force-dynamic|revalidate\s*=\s*0/);
+  assert.match(cacheableRouteSources, /export const revalidate = 60/);
+  assert.match(cacheableRouteSources, /export const revalidate = 300/);
+  for (const routeSource of requestScopedRouteSources) {
+    assert.match(routeSource, /export const dynamic = "force-dynamic"/);
+  }
 });
 
 test("public read helpers use the anonymous public server client", () => {
@@ -93,10 +97,14 @@ test("canonical catalog image routes use safe cache policies and do not redirect
   assert.match(canonImageRoute, /normalizeWarehouseCanonImagePath/);
   assert.match(canonImageRoute, /download\(path\)/);
   assert.match(canonImageRoute, /max-age=31536000, immutable/);
-  assert.match(canonCardImageRoute, /download\(imagePath\)/);
+  assert.match(canonCardImageRoute, /resolveCanonCardImageStorageLocation/);
+  assert.match(canonCardImageRoute, /catalog_card_print_visible_to_request_v1/);
+  assert.match(canonCardImageRoute, /\.from\(imageLocation\.bucket\)/);
+  assert.match(canonCardImageRoute, /\.download\(imageLocation\.path\)/);
   assert.match(canonCardImageRoute, /CDN-Cache-Control/);
   assert.match(canonCardImageRoute, /Vercel-CDN-Cache-Control/);
   assert.match(canonCardImageRoute, /s-maxage=300, stale-while-revalidate=600/);
+  assert.match(canonCardImageRoute, /private, no-store/);
   assert.doesNotMatch(canonCardImageRoute, /31536000, immutable/);
   assert.match(publicCardImageHelper, /normalizeCanonCardImageProxyUrl\(normalized\)/);
   assert.doesNotMatch(canonImageRoute, /NextResponse\.redirect/);
@@ -150,8 +158,8 @@ test("explore search keeps results compact and cards above supporting tools", ()
   assert.match(gridItem, /variant="floating"/);
   assert.match(gridItem, /gv-search-result-card/);
   assert.match(gridItem, /max-w-\[160px\]/);
-  assert.match(gridTile, /compact: "p-2"/);
-  assert.match(gridTile, /compact: "p-1\.5"/);
+  assert.match(gridTile, /const TILE_PADDING_BY_DENSITY[\s\S]*compact: "p-0"/);
+  assert.match(gridTile, /const IMAGE_PADDING_BY_DENSITY[\s\S]*compact: "p-0"/);
   assert.match(compareButton, /variant\?: "default" \| "compact" \| "floating"/);
   assert.match(compareButton, /gv-card-compare-floating/);
   assert.match(globals, /\.gv-search-result-card\.gv-visual-card/);
@@ -250,7 +258,8 @@ test("card detail streams lower panels after exact card information", () => {
     cardPage.indexOf("<h2>Card information</h2>") < cardPage.indexOf("<StreamedRelatedPrintsSection"),
     "card detail information should render before streamed other versions",
   );
-  assert.match(pricingRail, /function PricingLoadingState/);
+  assert.match(pricingRail, /<AuthenticatedPricingState/);
+  assert.match(pricingRail, /isLoading=\{isLoadingPricing && !selectedPricing\}/);
   assert.match(pricingRail, /isLoadingPricing && !selectedPricing/);
   assert.doesNotMatch(pricingRail, /No pricing data available/);
 });
@@ -258,12 +267,17 @@ test("card detail streams lower panels after exact card information", () => {
 test("card SEO exposes full sitemap index and product identifiers", () => {
   const sitemapIndexRoute = readSource("app", "sitemap.xml", "route.ts");
   const cardSitemapRoute = readSource("app", "sitemaps", "cards", "[page]", "sitemap.xml", "route.ts");
+  const profileSitemapRoute = readSource("app", "sitemaps", "profiles", "sitemap.xml", "route.ts");
   const sitemapHelpers = readSource("lib", "seo", "sitemaps.ts");
   const robots = readSource("app", "robots.ts");
   const cardPage = readSource("app", "card", "[gv_id]", "page.tsx");
 
   assert.match(sitemapIndexRoute, /sitemapIndexResponse/);
   assert.match(sitemapIndexRoute, /getPublicCardSitemapPageCount/);
+  assert.match(sitemapIndexRoute, /let cardPageCount = 1/);
+  assert.match(sitemapIndexRoute, /catch \(error\)/);
+  assert.match(profileSitemapRoute, /catch \(error\)/);
+  assert.match(profileSitemapRoute, /urlSetResponse\(\[\]\)/);
   assert.match(cardSitemapRoute, /getCardSitemapEntries/);
   assert.match(sitemapHelpers, /CARD_SITEMAP_PAGE_SIZE = 45_000/);
   assert.match(sitemapHelpers, /SUPABASE_SITEMAP_FETCH_CHUNK_SIZE = 1_000/);

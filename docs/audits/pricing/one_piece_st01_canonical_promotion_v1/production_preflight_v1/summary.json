@@ -1,0 +1,191 @@
+{
+  "version": "ONE_PIECE_ST01_CANONICAL_PROMOTION_PREFLIGHT_V1",
+  "recorded_at": "2026-08-14T20:12:09.787Z",
+  "status": "pass",
+  "repository": {
+    "commit_sha": "c5d3b4ad75fcc225e3cfe23d9f36cde22cbd756e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "promotion_plan_fingerprint_sha256": "fad134878a6f42872e1eec22fd7680e932a0b2fc59edba1c0d9b06ada4be1446",
+  "preflight_fingerprint_sha256": "a1ec0e958d746a8b39bf69accffc8558a6abc9799a5ed7197c6a1c149696887c",
+  "selected_numbered_cards": 17,
+  "snapshot": {
+    "foundation": {
+      "game_count": 1,
+      "game_id": "4f504300-0000-4000-8000-000000000001",
+      "release_count": 1,
+      "release_status": "hidden",
+      "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1",
+      "anon_visible": false,
+      "authenticated_visible": false,
+      "service_visible": false,
+      "migration_count": 1,
+      "one_piece_set_count": 0,
+      "one_piece_card_count": 0
+    },
+    "schema": {
+      "sets": true,
+      "card_prints": true,
+      "card_print_identity": true,
+      "card_print_identity_source_evidence": true,
+      "external_mappings": true
+    },
+    "staging_rows": [
+      {
+        "id": "1d343d87-d405-5e17-9133-a85acdf22231",
+        "source_product_id": 288228,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "414f19547b3b8d31f12062abcbf74700759ed4be6b4ca867724c6dd548c6e961"
+      },
+      {
+        "id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+        "source_product_id": 288229,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "9a58559b061b8f603d634fce5c429fb579c724b395764c7d7e3589a542b56b34"
+      },
+      {
+        "id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+        "source_product_id": 288230,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "fcccaa5f35269672ad32173e517b1f91e744e777b16b0374e013dfebde38b437"
+      },
+      {
+        "id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+        "source_product_id": 288232,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "2c70bcbbd7b89065ecceec5281fb3d27d0f12781693c99dd19b4ebe00469ea7c"
+      },
+      {
+        "id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+        "source_product_id": 288234,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "68810750a25be1cb438f0fa9ff561ea08921f265eacb5b2f71109883cd9cae4b"
+      },
+      {
+        "id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+        "source_product_id": 288235,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "36a5dc8211357d73902aa1ff424aaf985a0e0d167220ad09fa1b928c6c6db641"
+      },
+      {
+        "id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+        "source_product_id": 288236,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "85bc743058710949f37e711ca8f5442ddc7bf39d6c6721a495aeb032ee9468e0"
+      },
+      {
+        "id": "04a742ab-a987-54cc-8e41-cbb837948729",
+        "source_product_id": 288237,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "45a3b145ea52fe7e543cbbbb0f8d5e0cbf6472d83586cfba207528e68e3a2f97"
+      },
+      {
+        "id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+        "source_product_id": 288238,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "c0514f1345c5ffc03f6752945285806db4932cf67cc6cefc0df983e776e21e4f"
+      },
+      {
+        "id": "5b18a562-74e1-5605-998f-db7652d60052",
+        "source_product_id": 288239,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "c4efe89d36de17566a518fb11fe0a66b45f5df803c3fd726fbae3812fe1094a8"
+      },
+      {
+        "id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+        "source_product_id": 288240,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "91b27d866c6dabb867369c9c4fb8a00d8dcabe84fec2d551195f704196bb170e"
+      },
+      {
+        "id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+        "source_product_id": 288241,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "10064ec1da87392a807a57494b84ce24690db389290651e6a51937a46048689b"
+      },
+      {
+        "id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+        "source_product_id": 288242,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "a1f873908897b846a2cf5c4297d2c855dc914b68bf323c615cf511e33a9a7e1a"
+      },
+      {
+        "id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+        "source_product_id": 288243,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "8f1f14b53341a589e65fbab92776a3d04a484a7c85f1e5dd68866ab0b7c9ee2e"
+      },
+      {
+        "id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+        "source_product_id": 288244,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "cfdc693f6c17432b2fe31e833ea12a3fa997637ff36b361eb232767df9143786"
+      },
+      {
+        "id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+        "source_product_id": 288245,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "9492326f10995b0ed1bdd6634dc1396a36a2cd7126815c3870f76d8edf016bbb"
+      },
+      {
+        "id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+        "source_product_id": 288246,
+        "source_group_id": 3189,
+        "record_class": "exact_single_card_candidate",
+        "single_card_kind": "numbered_card",
+        "payload_sha256": "29741a112287f3dd7adac0ff278fe513d61ec4ddab0722df56c460dad742f930"
+      }
+    ],
+    "collisions": {
+      "set_identity": 0,
+      "card_identity": 0,
+      "print_identity": 0,
+      "source_evidence": 0,
+      "external_mapping": 0
+    },
+    "blocking_pids": [],
+    "transaction_read_only": true
+  },
+  "findings": [],
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  }
+}

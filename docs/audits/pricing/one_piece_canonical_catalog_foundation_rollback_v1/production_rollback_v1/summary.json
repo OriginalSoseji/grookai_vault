@@ -1,0 +1,42 @@
+{
+  "version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_ROLLBACK_V1",
+  "recorded_at": "2026-08-14T15:09:53.443Z",
+  "status": "blocked",
+  "repository": {
+    "commit_sha": "6238188779763f996787c867aff4c7fb487cc0ba",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "run_plan_fingerprint_sha256": "a273e1dd145981e6f3a1ddbe311933855640c23fa6599981f20685aef3d9fc86",
+  "preflight_fingerprint_sha256": "c3dc1ab6bdc2d6d1c434cddbc4c6a47fd447d65d396c1eec6feaf2bfb9978a1b",
+  "migration_sha256": "a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba",
+  "transaction": {
+    "statements_planned": 9,
+    "statements_executed": 0,
+    "rollback_attempted": false,
+    "rollback_succeeded": false
+  },
+  "post_rollback": {
+    "fresh_read_only_connection": false,
+    "candidate_migration_count": -1,
+    "game_count": -1,
+    "release_control_count": -1
+  },
+  "findings": [
+    "rollback_not_proven",
+    "fresh_post_rollback_readback_missing",
+    "read ECONNRESET"
+  ],
+  "boundaries": {
+    "execution_mode": "rollback_only",
+    "durable_database_writes": 0,
+    "migration_ledger_writes": 0,
+    "canonical_card_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  },
+  "rollback_proof_sha256": "0f95ab36d49d9b8f0f64ef2503ac17d97ddba7e8ec337ba1de0bd63c9515f09e"
+}

@@ -43,6 +43,8 @@ export type CardCameo = {
 export interface CardSummary {
   id: string;
   gv_id: string;
+  game_code?: string;
+  game_name?: string;
   name: string;
   number: string;
   set_name?: string;

@@ -1,0 +1,8 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_PREFLIGHT_V1",
+  "recorded_at": "2026-08-14T07:12:41.222Z",
+  "producer_commit_sha": "13052afa3b412ad7a653346cd8c18ee76c2140b6",
+  "migration_version": "20260814120000",
+  "migration_name": "one_piece_canonical_import_durable_staging_v1",
+  "database_writes": false
+}

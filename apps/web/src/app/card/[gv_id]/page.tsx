@@ -124,6 +124,13 @@ function getCardLanguageLabel(gvId: string) {
   return /^GV-PK-JPN-/i.test(gvId) ? "Japanese" : "English";
 }
 
+function getCardGameLabel(card: Pick<CardDetail, "game_code" | "game_name">) {
+  if (card.game_name?.trim()) return card.game_name.trim();
+  if (card.game_code === "one_piece") return "One Piece Card Game";
+  if (card.game_code === "mtg") return "Magic: The Gathering";
+  return "Pokemon Trading Card Game";
+}
+
 function buildPokemonTcgHiresImageUrl(card: { set_code?: string; number?: string; number_plain?: string }) {
   const setCode = card.set_code?.trim().toLowerCase();
   const printedNumber = card.number?.trim();
@@ -210,6 +217,7 @@ function buildCardProductJsonLd({
   finishLabels,
   imageUrl,
   illustratorName,
+  gameLabel,
   languageLabel,
   printedName,
   setName,
@@ -221,6 +229,7 @@ function buildCardProductJsonLd({
   finishLabels: string[];
   imageUrl?: string;
   illustratorName?: string;
+  gameLabel: string;
   languageLabel: string;
   printedName?: string;
   setName?: string;
@@ -262,9 +271,9 @@ function buildCardProductJsonLd({
     mpn: card.gv_id,
     brand: {
       "@type": "Brand",
-      name: "Pokemon",
+      name: gameLabel,
     },
-    category: "Pokemon trading card",
+    category: `${gameLabel} card`,
     image: imageUrl,
     url: canonicalUrl,
     identifier: {
@@ -905,6 +914,7 @@ async function CardPageContent({
     ),
   );
   const detailItems: DetailItem[] = [
+    { label: "Game", value: getCardGameLabel(resolvedCard) },
     { label: "Language", value: getCardLanguageLabel(resolvedCard.gv_id) },
     collectorNumberLine ? { label: "Collector No.", value: collectorNumberLine } : null,
     resolvedCard.rarity ? { label: "Rarity", value: resolvedCard.rarity } : null,
@@ -937,6 +947,7 @@ async function CardPageContent({
     finishLabels,
     imageUrl: asAbsoluteUrl(resolvedCardImageSrc ?? resolvedCardImageFallbacks[0], siteOrigin),
     illustratorName,
+    gameLabel: getCardGameLabel(resolvedCard),
     languageLabel: getCardLanguageLabel(resolvedCard.gv_id),
     printedName: resolvedDisplayIdentity.printed_name ?? undefined,
     setName,

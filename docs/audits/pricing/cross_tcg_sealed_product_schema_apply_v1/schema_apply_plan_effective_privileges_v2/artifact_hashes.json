@@ -1,0 +1,42 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "plan.json",
+      "bytes": 41920,
+      "sha256": "044158fee4ab7918da6a145c051cbe63c4ffc786fce23a86a917a648939347f2"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 1324,
+      "sha256": "ae3aa53bb19a52571156dce9dffbbfe9f3a8ea9b21a8a2442c79555a11186cc0"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "supabase/migrations/20260814060000_cross_tcg_sealed_product_domain_v1.sql",
+      "bytes": 29265,
+      "sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0"
+    },
+    {
+      "path": "docs/sql/cross_tcg_sealed_product_domain_v1_migration_candidate.sql",
+      "bytes": 29265,
+      "sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0"
+    },
+    {
+      "path": "docs/audits/pricing/cross_tcg_sealed_product_schema_security_preflight_v1/2026-08-14T06-47-57-484Z_production_read_only/summary.json",
+      "bytes": 170698,
+      "sha256": "f5c23a12a1d8ef3e30b2d6cb290a96ec052984743d3cad6352e53b6d01592c0b"
+    },
+    {
+      "path": "backend/pricing/cross_tcg_sealed_product_schema_apply_v1.mjs",
+      "bytes": 17636,
+      "sha256": "a830781f6b0f5dce891f558c7e5b67ed24b64148b2469fa6789d223e6118cbb8"
+    },
+    {
+      "path": "scripts/audits/cross_tcg_sealed_product_schema_apply_v1.mjs",
+      "bytes": 29131,
+      "sha256": "0696381def97fefb508d355a1babb0c4a9b04c9bd5aa3617517c84180f942c4e"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "readback.json",
+      "bytes": 143343,
+      "sha256": "ffd53870da7602ad8e3ca703c343696bf3510d64a7caf70270f9f44d7e67dc18"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 667,
+      "sha256": "4abc27cb62c12c71f827e3a2544f74876d44af0408015aa15368b20efa6f8bf9"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 127,
+      "sha256": "40cc5fc3348e9ce89753207b0a589faa43d3d6c9a96df73afb98b0cea444d6b6"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_PAYLOAD_APPLY_V1",
+  "recorded_at": "2026-08-14T07:46:34.682Z",
+  "repository": {
+    "commit_sha": "953cbebebb2be2862270c2d568e2b269a36382e7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "preflight_fingerprint_sha256": "6ad9563bdfde6a62c50acf2eef00d7e6f4b7267d419a4e34b27fc68f7a26407d",
+  "preflight_summary_sha256": "9b2dfdbf3a2cda8a3989721c2215e82bbdc61f9d13ce685c711bc43119416301",
+  "payload_plan_fingerprint_sha256": "fc9b66a2ef637a62d13c46e23b09e815e923d8d7b19ff14c2e9dfaff5c5cb804",
+  "payload_fingerprint_sha256": "3af8e474e2bf8036bcb6683c6bdb82c0f81a94015851f148b5a7f8e7c60b4a00",
+  "authorized_batch_rows": 1,
+  "authorized_staging_rows": 21,
+  "boundaries": {
+    "private_staging_only": true,
+    "canonical_writes": 0,
+    "sealed_writes": 0,
+    "pricing_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "publication_or_deployment": false,
+    "mtg_writes": 0
+  }
+}

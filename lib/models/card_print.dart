@@ -21,6 +21,7 @@ class CardSearchOptions {
     this.number,
     this.identityFilter,
     this.languageScope = 'all',
+    this.gameScope = 'pokemon',
   });
 
   final String query;
@@ -31,6 +32,7 @@ class CardSearchOptions {
   final String? number;
   final String? identityFilter;
   final String languageScope;
+  final String gameScope;
 
   CardSearchOptions copyWith({
     String? query,
@@ -41,6 +43,7 @@ class CardSearchOptions {
     String? number,
     String? identityFilter,
     String? languageScope,
+    String? gameScope,
   }) {
     return CardSearchOptions(
       query: query ?? this.query,
@@ -51,6 +54,7 @@ class CardSearchOptions {
       number: number ?? this.number,
       identityFilter: identityFilter ?? this.identityFilter,
       languageScope: languageScope ?? this.languageScope,
+      gameScope: gameScope ?? this.gameScope,
     );
   }
 }
@@ -289,6 +293,12 @@ String _normalizeLanguageScope(String? value) {
   return normalized == 'en' || normalized == 'ja' ? normalized : 'all';
 }
 
+String _normalizeCatalogGameScope(String? value) {
+  return (value ?? '').trim().toLowerCase() == 'one_piece'
+      ? 'one_piece'
+      : 'pokemon';
+}
+
 enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
 
 ResolverSearchState? _parseResolverSearchState(String? value) {
@@ -391,6 +401,19 @@ const _cardPrintSelect =
     'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model)';
 
 class CardPrintRepository {
+  static Future<String?> _resolveCatalogGameId(
+    SupabaseClient client,
+    String gameScope,
+  ) async {
+    final row = await client
+        .from('games')
+        .select('id')
+        .eq('code', _normalizeCatalogGameScope(gameScope))
+        .maybeSingle();
+    final gameId = (row?['id'] ?? '').toString().trim();
+    return gameId.isEmpty ? null : gameId;
+  }
+
   static Future<CardPrintSearchResult> searchCardPrintsResolved({
     required SupabaseClient client,
     required CardSearchOptions options,
@@ -399,6 +422,7 @@ class CardPrintRepository {
   }) async {
     final trimmed = options.query.trim();
     final identityFilter = _normalizeIdentityFilter(options.identityFilter);
+    final gameScope = _normalizeCatalogGameScope(options.gameScope);
 
     if (trimmed.isEmpty && identityFilter == null) {
       final rows = await searchCardPrints(
@@ -413,6 +437,15 @@ class CardPrintRepository {
         provisionalRows: const <PublicProvisionalCard>[],
         meta: null,
         source: 'local_browse',
+      );
+    }
+
+    if (gameScope == 'one_piece') {
+      return _searchCardPrintsResolvedFallback(
+        client: client,
+        options: options.copyWith(gameScope: gameScope),
+        defaultLimit: defaultLimit,
+        searchLimit: searchLimit,
       );
     }
 
@@ -586,11 +619,17 @@ class CardPrintRepository {
 
     final trimmed = options.query.trim();
     final isNumberWithTotal = RegExp(r'^\d+/\d+$').hasMatch(trimmed);
+    final gameScope = _normalizeCatalogGameScope(options.gameScope);
+    final gameId = await _resolveCatalogGameId(client, gameScope);
+    if (gameId == null) {
+      return const <CardPrint>[];
+    }
 
     if (trimmed.isEmpty) {
       final List<dynamic> data = await client
           .from('card_prints')
           .select(_cardPrintSelect)
+          .eq('game_id', gameId)
           .order(options.sort, ascending: true)
           .limit(options.limit.clamp(1, defaultLimit));
 
@@ -622,6 +661,7 @@ class CardPrintRepository {
     final resolvedSet = await _resolveSetByName(
       client,
       tokens.rawTokens,
+      gameScope: gameScope,
       shouldAttempt:
           !isSetPlusNumber &&
           !isSetOnly &&
@@ -637,6 +677,7 @@ class CardPrintRepository {
         mode = 'set+number';
         final qb = _buildSetNumberQuery(
           client: client,
+          gameId: gameId,
           setCode: maybeSet,
           normNum: numberInfo.norm!,
           pad3: numberInfo.pad3,
@@ -651,6 +692,7 @@ class CardPrintRepository {
         mode = 'set';
         final qb = _buildSetOnlyQuery(
           client: client,
+          gameId: gameId,
           setCode: maybeSet,
           sort: options.sort,
         );
@@ -665,6 +707,7 @@ class CardPrintRepository {
           mode = 'number';
           final qb = _buildNumberOnlyQuery(
             client: client,
+            gameId: gameId,
             normNum: numPart,
             pad3: numberInfo.pad3,
           );
@@ -681,6 +724,7 @@ class CardPrintRepository {
 
           final qb = _buildNameNumberQuery(
             client: client,
+            gameId: gameId,
             normNum: numPart,
             pad3: numberInfo.pad3,
             namePattern: pattern,
@@ -707,6 +751,7 @@ class CardPrintRepository {
               : '%$trimmed%';
           final qb = _buildSetNameQuery(
             client: client,
+            gameId: gameId,
             setCode: setCode,
             namePattern: pattern,
             sort: options.sort,
@@ -719,6 +764,7 @@ class CardPrintRepository {
         } else {
           final qb = _buildNameOnlyQuery(
             client: client,
+            gameId: gameId,
             namePattern: '%$trimmed%',
             sort: options.sort,
           );
@@ -732,6 +778,7 @@ class CardPrintRepository {
         mode = 'name';
         final qb = _buildNameOnlyQuery(
           client: client,
+          gameId: gameId,
           namePattern: '%$trimmed%',
           sort: options.sort,
         );
@@ -753,6 +800,7 @@ class CardPrintRepository {
           final List<dynamic> data2 = await client
               .from('card_prints')
               .select(_cardPrintSelect)
+              .eq('game_id', gameId)
               .ilike('name', relaxedPattern)
               .order('name', ascending: true)
               .limit(searchLimit);
@@ -765,7 +813,7 @@ class CardPrintRepository {
     }
 
     // Prefer deterministic SEARCH_CONTRACT_V1; fall back to legacy query path on error/empty.
-    if (trimmed.isNotEmpty) {
+    if (trimmed.isNotEmpty && gameScope == 'pokemon') {
       try {
         final rpcResp = await client.rpc(
           'search_card_prints_v1',
@@ -952,6 +1000,7 @@ class CardPrintRepository {
   static Future<Map<String, String>?> _resolveSetByName(
     SupabaseClient client,
     List<String> tokens, {
+    required String gameScope,
     required bool shouldAttempt,
   }) async {
     if (!shouldAttempt) return null;
@@ -962,6 +1011,7 @@ class CardPrintRepository {
       final matches = await client
           .from('sets')
           .select('name,code')
+          .eq('game', gameScope)
           .ilike('name', '%$prefix%')
           .limit(5);
       if (matches.length == 1) {
@@ -1001,41 +1051,48 @@ class CardPrintRepository {
 
   static dynamic _buildSetNumberQuery({
     required SupabaseClient client,
+    required String gameId,
     required String setCode,
     required String normNum,
     required String pad3,
     required String sort,
   }) {
+    final fullSetNumber = _escapePostgrestLikePattern('$setCode-$pad3');
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
-        .eq('set_code', setCode)
+        .eq('game_id', gameId)
+        .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .or(
-          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3,number.ilike.$fullSetNumber',
         )
         .order(sort, ascending: true);
   }
 
   static dynamic _buildSetOnlyQuery({
     required SupabaseClient client,
+    required String gameId,
     required String setCode,
     required String sort,
   }) {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
-        .eq('set_code', setCode)
+        .eq('game_id', gameId)
+        .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .order(sort, ascending: true);
   }
 
   static dynamic _buildNumberOnlyQuery({
     required SupabaseClient client,
+    required String gameId,
     required String normNum,
     required String pad3,
   }) {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
+        .eq('game_id', gameId)
         .or(
           'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
         )
@@ -1045,6 +1102,7 @@ class CardPrintRepository {
 
   static dynamic _buildNameNumberQuery({
     required SupabaseClient client,
+    required String gameId,
     required String normNum,
     required String pad3,
     required String namePattern,
@@ -1052,6 +1110,7 @@ class CardPrintRepository {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
+        .eq('game_id', gameId)
         .ilike('name', namePattern)
         .or(
           'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
@@ -1061,6 +1120,7 @@ class CardPrintRepository {
 
   static dynamic _buildSetNameQuery({
     required SupabaseClient client,
+    required String gameId,
     required String setCode,
     required String namePattern,
     required String sort,
@@ -1068,21 +1128,31 @@ class CardPrintRepository {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
-        .eq('set_code', setCode)
+        .eq('game_id', gameId)
+        .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .ilike('name', namePattern)
         .order(sort, ascending: true);
   }
 
   static dynamic _buildNameOnlyQuery({
     required SupabaseClient client,
+    required String gameId,
     required String namePattern,
     required String sort,
   }) {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
+        .eq('game_id', gameId)
         .ilike('name', namePattern)
         .order(sort, ascending: true);
+  }
+
+  static String _escapePostgrestLikePattern(String value) {
+    return value
+        .replaceAll(r'\', r'\\')
+        .replaceAll('%', r'\%')
+        .replaceAll('_', r'\_');
   }
 
   /// Dev-only parser harness: call manually when debugging search parsing.

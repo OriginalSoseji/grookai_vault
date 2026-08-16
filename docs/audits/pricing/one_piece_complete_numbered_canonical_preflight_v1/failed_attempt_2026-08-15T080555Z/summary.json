@@ -1,0 +1,72 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T08:05:55.472Z",
+  "status": "production_read_only_preflight_failed",
+  "repository": {
+    "commit_sha": "33d0f8137d87041e6c6e45c0e06b9827624d91e7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "253b16ea9032d44149923d88214aa84d68e7ec77b658e2a4e9e7d3f4ea7c1395",
+  "payload_fingerprint_sha256": "0e59db0c98454eecec0aefd366a38b4a42fe81ca0cae9173cf7f8e294e5ad358",
+  "preflight_fingerprint_sha256": "ec2b6743bee53edf51afeba147268d6159ccca0f49304536c57c7c304e2a0e5c",
+  "counts": {
+    "source_numbered_products": 6547,
+    "authority_eligible_products": 6530,
+    "retained_existing_products": 17,
+    "new_set_rows": 58,
+    "new_card_prints": 6513,
+    "new_identity_rows": 6513,
+    "new_source_evidence_rows": 6513,
+    "new_external_mappings": 6513,
+    "official_catalog_gap_holds": 17
+  },
+  "baseline": {
+    "sets": 1,
+    "card_prints": 17,
+    "card_print_identity": 17,
+    "card_print_identity_source_evidence": 17,
+    "external_mappings": 17,
+    "card_printings": 14,
+    "external_printing_mappings": 14,
+    "set_codes": [
+      "ST01"
+    ]
+  },
+  "staging_readback": {
+    "row_count": 6513,
+    "rows_sha256": "2c7ebe6d619895fd0f44b59c80ee0ddbc23eade83cf25ea96346c855d9601f88",
+    "source_product_ids_sha256": "c1d00cc1e2c62935cd64de6ebd3ef4d4242e1f1c64e58ea578d92ce3e2ef69aa",
+    "staging_row_ids_sha256": "edd6e0c224a7f251834f5111e4e5b3dbe6c6863e9c7fd3f67dfdf0299a2ae74c",
+    "payload_hashes_sha256": "cceb63c4d18425d4b0535cd1385c9f5679d28121b9c588896906601426409898"
+  },
+  "collisions": {
+    "set_ids": 0,
+    "set_codes": 0,
+    "card_print_ids": 0,
+    "card_print_gv_ids": 0,
+    "card_print_tcgplayer_ids": 0,
+    "card_external_ids": 0,
+    "identity_ids": 0,
+    "identity_hashes": 0,
+    "identity_card_print_ids": 0,
+    "evidence_ids": 0,
+    "evidence_hashes": 0,
+    "evidence_acquisition_keys": 0,
+    "external_mappings": 0
+  },
+  "findings": [
+    "protected_st01_baseline_mismatch",
+    "durable_staging_readback_mismatch"
+  ],
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "exact_next_gate": "stop and resolve only the recorded preflight drift without writing"
+}

@@ -1,0 +1,39 @@
+{
+  "version": "ONE_PIECE_COMPLETE_CATALOG_STAGING_INDEPENDENT_READBACK_V1",
+  "recorded_at": "2026-08-15T06:32:48.049Z",
+  "status": "pass",
+  "apply_producer_sha": "4b42a484063ecc532d2392c706a365d165c5ecc7",
+  "apply_summary_sha256": "7cdcf41bc3944ec7ac00e736d3b019ac1ffdfc11ac27b94b07a237cd2616f4d0",
+  "plan_fingerprint_sha256": "80bb5b09f654fcc403a34f21655f2840d1a72beb98cd71f1287934626ba029ad",
+  "release_payload_fingerprint_sha256": "890b5d0c3a3a2f9d842e280baec1323b3d780d78565c40ebd10dba04e78787fc",
+  "batch_rows": 83,
+  "staging_rows": 7261,
+  "total_batch_rows": 84,
+  "total_staging_rows": 7282,
+  "selected_batches_sha256": "84a9d29a59f84295429f73627b6dc9c282cf51cbf8861c39054a3452b6ecfc9c",
+  "selected_rows_sha256": "376e2aee355d17314bba8729298f3246fbf6de9540e96027688e6e786771f454",
+  "source_product_ids_sha256": "7e64929715941b7cdb73e141392102e47663e6d1e76bed0bd4352c3b3c5cae84",
+  "visibility": {
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_role_visible": false
+  },
+  "schema_readback_sha256": "e550f5f2480623c900e4e86ce6a071a781537f940c0b3e6e3ff0492cd83ce955",
+  "source_readback_sha256": "dd26272c9362ad80b7b73e09d6bbea2ce14945eb1053a6aeebd0d99578791fca",
+  "findings": [],
+  "environment": {
+    "environment_label": "production",
+    "environment_key_sha256": "7e10225244ba6678eade7287a14f9537954bc55b55d39e65058f025883826d59"
+  },
+  "read_only_proof": {
+    "transaction_read_only": "on",
+    "database_user": "postgres",
+    "rolled_back_and_closed": true
+  },
+  "boundaries": {
+    "database_writes": false,
+    "canonical_or_public_writes": false,
+    "pricing_storage_pointer_or_vault_writes": false
+  }
+}

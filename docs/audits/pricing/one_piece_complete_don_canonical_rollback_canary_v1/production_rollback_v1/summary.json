@@ -1,0 +1,30 @@
+{
+  "version": "ONE_PIECE_COMPLETE_DON_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-15T14:34:03.130Z",
+  "status": "production_rollback_canary_passed",
+  "repository": {
+    "commit_sha": "aa806543b3af76f57500e7525eb32d1e357b001b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "3adebfb80803c147bc83bad6887418593c221f9e1cf090291819817505833bba",
+  "payload_fingerprint_sha256": "9aad9b82042c73a2220171309350fe351e1b7e0b886b825d9ecb70cf8f68a147",
+  "preflight_fingerprint_sha256": "e5213391f4afa0be085b6aed365629f2a56380aadbe4632fd174683800fcee8e",
+  "canary_fingerprint_sha256": "e2bfa38a5fd1cfe817780bf6e30cb9c44e79cf4dd12c62baac7cba7ed7d10309",
+  "sample_source_product_ids": [
+    434340,
+    456059,
+    482236,
+    456320,
+    482237
+  ],
+  "rolled_back": true,
+  "post_rollback_zero_residue": true,
+  "findings": [],
+  "boundaries": {
+    "committed": false,
+    "durable_database_writes": 0,
+    "updates": 0,
+    "deletes": 0
+  }
+}

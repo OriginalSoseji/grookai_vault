@@ -1,0 +1,36 @@
+{
+  "version": "ONE_PIECE_ST01_CANONICAL_PROMOTION_DURABLE_APPLY_V1",
+  "recorded_at": "2026-08-15T01:52:25.794Z",
+  "mode": "plan",
+  "repository": {
+    "commit_sha": "608fb21f52a1b0aef2819e14dd58dd531a77460f",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "promotion_plan_sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3",
+  "apply_plan_sha256": "0dd66ce8eb2753a7423b163fd586f9d53ace7fe0aff54c6e0ed4967eca8de7e2",
+  "apply_plan_fingerprint_sha256": "6c09e30e1982b24f0eccf1437269db7747e31190669671f0a753413567cf3d7a",
+  "payload_fingerprint_sha256": "2cc2e7b308796cc681c0c863f08ada835806d6cbb4596d7880f5cd25ac78cb86",
+  "fresh_preflight_sha256": "34f65e3ce3245b8cd957d52ebcc8a2cc3bb0dd6152363a4ef203dd3ca41eccfa",
+  "fresh_preflight_fingerprint_sha256": "41204a27e7c487e20dbc731d848c547ed531f019483f7eb82d3f7113d984e630",
+  "required_approval_message": "I approve the durable One Piece ST-01 numbered-card canonical apply only: 1 hidden set row, 17 parent card_print rows, 17 active card_print_identity rows, 17 card_print_identity_source_evidence rows, and 17 exact TCGPlayer external_mappings, using apply-plan fingerprint 6c09e30e1982b24f0eccf1437269db7747e31190669671f0a753413567cf3d7a, payload fingerprint 2cc2e7b308796cc681c0c863f08ada835806d6cbb4596d7880f5cd25ac78cb86, and fresh preflight fingerprint 41204a27e7c487e20dbc731d848c547ed531f019483f7eb82d3f7113d984e630. I do not approve child printing writes, DON!! writes, sealed writes, Storage writes, image-pointer writes, pricing writes, publication writes, Vault writes, updates, deletes, app visibility, or rows outside this exact 17-card ST-01 payload.",
+  "boundaries": {
+    "insert_only": true,
+    "exact_set_rows": 1,
+    "exact_card_print_rows": 17,
+    "exact_identity_rows": 17,
+    "exact_source_evidence_rows": 17,
+    "exact_external_mapping_rows": 17,
+    "update_rows": 0,
+    "delete_rows": 0,
+    "card_printing_child_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  }
+}

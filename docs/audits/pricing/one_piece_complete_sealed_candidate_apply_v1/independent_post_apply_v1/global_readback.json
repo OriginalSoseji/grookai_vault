@@ -1,0 +1,28 @@
+{
+  "transaction_read_only": true,
+  "card_baseline": {
+    "sets": 60,
+    "card_prints": 6730,
+    "card_print_identity": 6730,
+    "card_print_identity_source_evidence": 6730,
+    "external_mappings": 6730,
+    "card_printings": 14,
+    "external_printing_mappings": 14
+  },
+  "sealed_counts": {
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0
+  },
+  "release_status": "hidden",
+  "anon_visible": false,
+  "authenticated_visible": false,
+  "service_role_visible": false
+}

@@ -1,0 +1,81 @@
+{
+  "version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_APPLY_V1",
+  "migration": {
+    "version": "20260814150000",
+    "name": "one_piece_canonical_catalog_foundation_v1",
+    "path": "supabase/migrations/20260814150000_one_piece_canonical_catalog_foundation_v1.sql",
+    "sha256": "a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba",
+    "statement_count": 11
+  },
+  "authority": {
+    "expected_migration_parent": "20260814120000",
+    "preflight_fingerprint_sha256": "c3dc1ab6bdc2d6d1c434cddbc4c6a47fd447d65d396c1eec6feaf2bfb9978a1b",
+    "preflight_summary_sha256": "2ed57f833c7baca377d1df04da7185b3c8ace13c3553918b14ed96d60a4b7287",
+    "rollback_proof_sha256": "c055c08d0231ad99b7958afc5e915b5bb9841a5169628d8523f5c3fa29472fe1",
+    "rollback_summary_sha256": "5ce5f0b841ab3639ec9c2d8c17ad9bf8d0f6bbe5dfdaaf66a06a63f0190b1637",
+    "independent_proof_sha256": "42fa494f412c03395a39bc3bd63b8ab9956fcdff4e8263f61ccea734c720eec5",
+    "independent_summary_sha256": "c37f423114e5af3aab5a7a97755508a1bf53dd54a916f5af153f8a177f9f0c91"
+  },
+  "target": {
+    "game": {
+      "id": "4f504300-0000-4000-8000-000000000001",
+      "code": "one_piece",
+      "name": "One Piece Card Game",
+      "slug": "one-piece"
+    },
+    "release_status": "hidden",
+    "release_version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1",
+    "identity_domains": [
+      "mtg_eng_paper_print",
+      "one_piece_eng_print",
+      "pokemon_ba",
+      "pokemon_eng_special_print",
+      "pokemon_eng_standard",
+      "pokemon_jpn"
+    ]
+  },
+  "ledger_row": {
+    "version": "20260814150000",
+    "name": "one_piece_canonical_catalog_foundation_v1",
+    "statements": [
+      "-- ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1\n-- Adds only the hidden One Piece game foundation and identity-domain support.\n\nbegin",
+      "set local lock_timeout = '5s'",
+      "set local statement_timeout = '60s'",
+      "do $$\ndeclare\n  current_identity_constraint text;\nbegin\n  if exists (\n    select 1\n    from public.games\n    where code = 'one_piece'\n      and (\n        id <> '4f504300-0000-4000-8000-000000000001'::uuid\n        or name <> 'One Piece Card Game'\n        or coalesce(slug, '') <> 'one-piece'\n      )\n  ) then\n    raise exception 'One Piece canonical game seed conflicts with an existing row';\n  end if;\n\n  if exists (\n    select 1\n    from public.games\n    where id = '4f504300-0000-4000-8000-000000000001'::uuid\n      and code <> 'one_piece'\n  ) then\n    raise exception 'One Piece canonical game UUID conflicts with an existing row';\n  end if;\n\n  if exists (\n    select 1\n    from public.catalog_game_release_controls\n    where game_code = 'one_piece'\n      and (\n        release_status <> 'hidden'\n        or release_version <> 'ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1'\n      )\n  ) then\n    raise exception 'One Piece release control conflicts with the hidden foundation';\n  end if;\n\n  select pg_get_constraintdef(oid)\n  into current_identity_constraint\n  from pg_constraint\n  where conrelid = 'public.card_print_identity'::regclass\n    and conname = 'card_print_identity_identity_domain_check';\n\n  if current_identity_constraint is null\n    or position('mtg_eng_paper_print' in current_identity_constraint) = 0\n    or position('one_piece_eng_print' in current_identity_constraint) > 0\n  then\n    raise exception 'Canonical identity-domain constraint is not the expected pre-migration version';\n  end if;\nend;\n$$",
+      "insert into public.games (id, code, name, slug)\nvalues (\n  '4f504300-0000-4000-8000-000000000001'::uuid,\n  'one_piece',\n  'One Piece Card Game',\n  'one-piece'\n)\non conflict (code) do nothing",
+      "insert into public.catalog_game_release_controls (\n  game_code,\n  release_status,\n  release_version,\n  evidence\n)\nvalues (\n  'one_piece',\n  'hidden',\n  'ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1',\n  jsonb_build_object(\n    'default', 'fail_closed',\n    'canonical_promotion_authorizes_visibility', false,\n    'price_publication_authorizes_visibility', false,\n    'storage_upload_authorizes_visibility', false\n  )\n)\non conflict (game_code) do nothing",
+      "alter table public.card_print_identity\n  drop constraint card_print_identity_identity_domain_check",
+      "alter table public.card_print_identity\n  add constraint card_print_identity_identity_domain_check\n  check (\n    identity_domain = any (\n      array[\n        'pokemon_eng_standard'::text,\n        'pokemon_ba'::text,\n        'pokemon_eng_special_print'::text,\n        'pokemon_jpn'::text,\n        'mtg_eng_paper_print'::text,\n        'one_piece_eng_print'::text\n      ]\n    )\n  )",
+      "comment on constraint card_print_identity_identity_domain_check\n  on public.card_print_identity is\n  'Versioned canonical print domains, including hidden English One Piece print identity.'",
+      "notify pgrst, 'reload schema'",
+      "commit"
+    ]
+  },
+  "timeouts": {
+    "lock_timeout": "5s",
+    "statement_timeout": "180s",
+    "idle_in_transaction_session_timeout": "60s"
+  },
+  "boundaries": {
+    "foundation_schema_and_seed_only": true,
+    "migration_ledger_rows": 1,
+    "game_rows": 1,
+    "hidden_release_control_rows": 1,
+    "identity_constraint_replacements": 1,
+    "set_rows": 0,
+    "card_rows": 0,
+    "identity_rows": 0,
+    "printing_rows": 0,
+    "mapping_rows": 0,
+    "sealed_rows": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "apply_plan_fingerprint_sha256": "7a4458002aa0f30133b875e784ee4050b4209605797701aae92ef6e994842aec",
+  "approval_env": "ONE_PIECE_CANONICAL_FOUNDATION_APPLY_APPROVAL",
+  "guard_token": "EXECUTE_ONE_PIECE_CANONICAL_FOUNDATION_ONLY:a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba:c055c08d0231ad99b7958afc5e915b5bb9841a5169628d8523f5c3fa29472fe1:42fa494f412c03395a39bc3bd63b8ab9956fcdff4e8263f61ccea734c720eec5:7a4458002aa0f30133b875e784ee4050b4209605797701aae92ef6e994842aec:KEEP_ONE_PIECE_HIDDEN:ZERO_CANONICAL_CARD_ROWS"
+}

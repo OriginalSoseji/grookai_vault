@@ -1,0 +1,25 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "55ae2b75f7d267bb843bfd66a3bda3eca7b2a254",
+  "artifacts": {
+    "run_plan.json": {
+      "sha256": "5fbbdae2c0d6d0fa4e5024a86e05a2475d233172354d0895a53a5ab2c5e3241a",
+      "bytes": 979
+    },
+    "summary.json": {
+      "sha256": "49e0e7d9230f23692df9d9d739ccbf18f2e959722d1cfa52fcc6f3fc50021060",
+      "bytes": 18252
+    },
+    "REPORT.md": {
+      "sha256": "cb98288714c4e6b0eba051ed19e32ce881ede600537871862ee5908a32951a91",
+      "bytes": 2648
+    },
+    "source_product_manifest.jsonl.gz": {
+      "sha256": "973bec5c186adc8853dcff91218e1057772aea384f9a3318919fb03b9c39bc0e",
+      "bytes": 971758,
+      "logical_sha256": "4cf38876576da399747dc8d5d0925c143812f89ecf4a75e6f9ced7a220828824",
+      "logical_bytes": 15551947,
+      "row_count": 7261
+    }
+  }
+}
