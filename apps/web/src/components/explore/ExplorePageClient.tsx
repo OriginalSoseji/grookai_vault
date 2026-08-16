@@ -40,6 +40,12 @@ import {
   type PublicLanguageScope,
 } from "@/lib/publicLanguageScope";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
+import {
+  getPublicGameScopeLabel,
+  normalizePublicGameScope,
+  PUBLIC_GAME_SCOPE_OPTIONS,
+  type PublicGameScope,
+} from "@/lib/publicGameScope";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import {
@@ -521,6 +527,7 @@ export default function ExplorePageClient({
   const sortMode = parseSortMode(searchParams.get("sort"));
   const imageConfidenceFilter = parseImageConfidenceFilter(searchParams.get("image"));
   const languageScope = normalizePublicLanguageScope(searchParams.get("lang"));
+  const gameScope = normalizePublicGameScope(searchParams.get("game"));
   const smartYearMin = (searchParams.get("year_min") ?? "").trim();
   const smartYearMax = (searchParams.get("year_max") ?? "").trim();
   const smartFinish = (searchParams.get("finish") ?? "").trim();
@@ -546,6 +553,7 @@ export default function ExplorePageClient({
     !exactReleaseYear &&
     !exactIllustrator;
   const isDiscoveryMode =
+    gameScope === "pokemon" &&
     !normalizedQuery &&
     !exactSetCode &&
     !exactReleaseYear &&
@@ -579,7 +587,8 @@ export default function ExplorePageClient({
         !exactReleaseYear &&
         !exactIllustrator &&
         !isIdentityFilterActive(identityFilter) &&
-        !hasExplicitSmartFilters
+        !hasExplicitSmartFilters &&
+        gameScope === "pokemon"
       ) {
         setRows([]);
         setProvisionalRows([]);
@@ -654,6 +663,10 @@ export default function ExplorePageClient({
           params.set("lang", languageScope);
         }
 
+        if (gameScope !== "pokemon") {
+          params.set("game", gameScope);
+        }
+
         params.set("limit", String(SEARCH_API_RESULT_LIMIT));
 
         if (shouldServerFilterByIdentity) {
@@ -726,6 +739,7 @@ export default function ExplorePageClient({
     smartOwned,
     smartImageState,
     languageScope,
+    gameScope,
     hasExplicitSmartFilters,
     identityFilter,
     shouldServerFilterByIdentity,
@@ -749,6 +763,7 @@ export default function ExplorePageClient({
     identityFilter,
     imageConfidenceFilter,
     languageScope,
+    gameScope,
   ]);
 
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
@@ -821,6 +836,19 @@ export default function ExplorePageClient({
       params.set("lang", nextScope);
     }
 
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
+  const commitGameScope = (nextScope: PublicGameScope) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (nextScope === "pokemon") {
+      params.delete("game");
+    } else {
+      params.set("game", nextScope);
+    }
     const nextUrl = params.toString()
       ? `${pathname}?${params.toString()}`
       : pathname;
@@ -1121,6 +1149,14 @@ export default function ExplorePageClient({
           href: buildRemoveFilterHref(["lang"]),
         }
       : null,
+    gameScope !== "pokemon"
+      ? {
+          key: "game",
+          label: "Game",
+          value: getPublicGameScopeLabel(gameScope),
+          href: buildRemoveFilterHref(["game"]),
+        }
+      : null,
   ].filter(
     (
       chip,
@@ -1302,6 +1338,9 @@ export default function ExplorePageClient({
     if (languageScope !== "all" && !params.has("lang")) {
       params.set("lang", languageScope);
     }
+    if (gameScope !== "pokemon" && !params.has("game")) {
+      params.set("game", gameScope);
+    }
     return buildPathWithCompareCards("/explore", params.toString(), compareCards);
   };
   const languageScopeControl = (
@@ -1330,6 +1369,38 @@ export default function ExplorePageClient({
               }`}
             >
               {option.shortLabel}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+  const gameScopeControl = (
+    <div className="flex flex-wrap items-center gap-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+        Game
+      </p>
+      <div
+        className="inline-flex rounded-full border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
+        role="radiogroup"
+        aria-label="Game scope"
+      >
+        {PUBLIC_GAME_SCOPE_OPTIONS.map((option) => {
+          const active = gameScope === option.value;
+          return (
+            <button
+              key={option.value}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => commitGameScope(option.value)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                active
+                  ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
+                  : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              }`}
+            >
+              {option.label}
             </button>
           );
         })}
@@ -1459,6 +1530,7 @@ export default function ExplorePageClient({
             params.delete("image");
             params.delete("illustrator");
             params.delete("identity");
+            params.delete("game");
           })}
           className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
         >
@@ -1566,12 +1638,18 @@ export default function ExplorePageClient({
               </p>
             </div>
             <div className="shrink-0">
-              {languageScopeControl}
+              <div className="flex flex-col items-end gap-2">
+                {gameScopeControl}
+                {languageScopeControl}
+              </div>
             </div>
           </div>
 
           <div className="mt-4 border-t border-slate-200/70 pt-3 dark:border-slate-800/70 md:hidden">
-            {languageScopeControl}
+            <div className="space-y-3">
+              {gameScopeControl}
+              {languageScopeControl}
+            </div>
           </div>
         </div>
       ) : (
@@ -1606,7 +1684,10 @@ export default function ExplorePageClient({
               </div>
             </div>
             <div className="shrink-0">
-              {languageScopeControl}
+              <div className="flex flex-col items-end gap-2">
+                {gameScopeControl}
+                {languageScopeControl}
+              </div>
             </div>
           </div>
           {activeFilterStrip}
@@ -1824,6 +1905,7 @@ export default function ExplorePageClient({
             <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
               {q ? <input type="hidden" name="q" value={q} /> : null}
               {languageScope !== "all" ? <input type="hidden" name="lang" value={languageScope} /> : null}
+              {gameScope !== "pokemon" ? <input type="hidden" name="game" value={gameScope} /> : null}
               {sortMode !== "relevance" ? <input type="hidden" name="sort" value={sortMode} /> : null}
               {viewMode !== "thumb" ? <input type="hidden" name="view" value={viewMode} /> : null}
               {compareCards.length > 0 ? (

@@ -38,6 +38,7 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
+import type { PublicGameScope } from "@/lib/publicGameScope";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 
@@ -207,6 +208,7 @@ type CardPrintLookupRow = {
   gv_id: string | null;
   name: string | null;
   number: string | null;
+  number_plain?: string | null;
   rarity: string | null;
   artist?: string | null;
   image_url: string | null;
@@ -3828,6 +3830,180 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   );
 
   return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
+}
+
+export async function getExploreRowsForGameScopedTextSearch(
+  rawQuery: string,
+  gameScope: Exclude<PublicGameScope, "pokemon">,
+  sortMode: SortMode,
+  options: Omit<
+    SmartFilterDiscoveryOptions,
+    "sortMode" | "textQuery" | "languageScope"
+  > = {},
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(sortMode, options.includePricing ?? false);
+  const supabase = await createServerComponentClient();
+  const { data: gameRow, error: gameError } = await supabase
+    .from("games")
+    .select("id")
+    .eq("code", gameScope)
+    .maybeSingle();
+  if (gameError) throw new Error(gameError.message);
+  const gameId = typeof gameRow?.id === "string" ? gameRow.id.trim() : "";
+  if (!gameId) return [];
+
+  const selectClause =
+    "id,gv_id,name,number,number_plain,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const normalizedSetCode = options.exactSetCode?.trim().toLowerCase() ?? "";
+  let searchText = rawQuery.trim().replace(/\s+/g, " ");
+  let inferredSetCode = normalizedSetCode;
+  if (!inferredSetCode && searchText.includes(" ")) {
+    const [firstToken, ...remainder] = searchText.split(" ");
+    const { data: setRows, error: setError } = await supabase
+      .from("sets")
+      .select("code")
+      .eq("game", gameScope)
+      .ilike("code", firstToken)
+      .limit(2);
+    if (setError) throw new Error(setError.message);
+    if ((setRows ?? []).length === 1) {
+      inferredSetCode = String(setRows?.[0]?.code ?? "").trim().toLowerCase();
+      searchText = remainder.join(" ").trim();
+    }
+  }
+
+  const normalizeCollectorToken = (value: string) => {
+    const normalized =
+      value.trim().replace(/^#/, "").split("/", 1)[0]?.trim().toLowerCase() ?? "";
+    return /^[a-z0-9★†]+(?:-[a-z0-9★†]+)*$/i.test(normalized) &&
+      /[0-9★†]/.test(normalized)
+      ? normalized
+      : "";
+  };
+  const searchTokens = searchText.split(/\s+/).filter(Boolean);
+  const collectorSourceToken = [...searchTokens]
+    .reverse()
+    .find((token) => Boolean(normalizeCollectorToken(token)));
+  const collectorToken = collectorSourceToken
+    ? normalizeCollectorToken(collectorSourceToken)
+    : "";
+  const nameText = collectorSourceToken
+    ? searchTokens.filter((token) => token !== collectorSourceToken).join(" ").trim()
+    : searchText;
+
+  const exactIllustrator = options.exactIllustrator?.trim() ?? "";
+  const identityFilter = normalizeIdentityFilterKey(options.identityFilter);
+  const variantKey = getVariantKeyForFilter(identityFilter);
+  const exactReleaseYear = options.exactReleaseYear;
+  const releaseYearMin = exactReleaseYear ?? options.releaseYearMin;
+  const releaseYearMax = exactReleaseYear ?? options.releaseYearMax;
+  let releaseScopedSetCodes: string[] | null = null;
+  if (typeof releaseYearMin === "number" || typeof releaseYearMax === "number") {
+    let setQuery = supabase.from("sets").select("code").eq("game", gameScope);
+    if (typeof releaseYearMin === "number") {
+      setQuery = setQuery.gte("release_date", `${releaseYearMin}-01-01`);
+    }
+    if (typeof releaseYearMax === "number") {
+      setQuery = setQuery.lt("release_date", `${releaseYearMax + 1}-01-01`);
+    }
+    const { data: releaseSets, error: releaseSetError } = await setQuery.limit(2000);
+    if (releaseSetError) throw new Error(releaseSetError.message);
+    releaseScopedSetCodes = uniqueValues(
+      (releaseSets ?? [])
+        .map((row) => String(row.code ?? "").trim())
+        .filter(Boolean),
+    );
+    if (releaseScopedSetCodes.length === 0) return [];
+  }
+
+  if (
+    inferredSetCode &&
+    releaseScopedSetCodes &&
+    !releaseScopedSetCodes.some(
+      (setCode) => setCode.toLowerCase() === inferredSetCode,
+    )
+  ) {
+    return [];
+  }
+
+  const runLookup = async (field?: "name" | "number" | "number_plain" | "gv_id", value?: string,
+    contains = false) => {
+    const releaseSetChunks =
+      !inferredSetCode && releaseScopedSetCodes
+        ? chunkArray(releaseScopedSetCodes, 200)
+        : [null];
+    const resultRows: CardPrintLookupRow[] = [];
+    for (const releaseSetChunk of releaseSetChunks) {
+      let query = supabase.from("card_prints").select(selectClause).eq("game_id", gameId);
+      if (inferredSetCode) query = query.ilike("set_code", inferredSetCode);
+      if (releaseSetChunk) query = query.in("set_code", releaseSetChunk);
+      if (exactIllustrator) query = query.ilike("artist", exactIllustrator);
+      if (variantKey) query = query.eq("variant_key", variantKey);
+      if (identityFilter === "classic_collection") query = query.eq("variant_key", "cc");
+      if (field && value) {
+        query = query.ilike(field, contains ? `%${value}%` : value);
+      }
+      const { data, error } = await query.order("name", { ascending: true }).limit(SEARCH_LIMIT);
+      if (error) throw new Error(error.message);
+      resultRows.push(...((data ?? []) as CardPrintLookupRow[]));
+    }
+    return resultRows;
+  };
+
+  const lookups: Array<Promise<CardPrintLookupRow[]>> = [];
+  if (nameText) lookups.push(runLookup("name", nameText, true));
+  if (collectorToken) {
+    lookups.push(runLookup("number", collectorToken));
+    lookups.push(runLookup("number_plain", collectorToken));
+  }
+  if (searchText.toUpperCase().startsWith("GV-")) {
+    lookups.push(runLookup("gv_id", searchText, true));
+  }
+  if (lookups.length === 0) lookups.push(runLookup());
+
+  const rowsById = new Map<string, CardPrintLookupRow>();
+  for (const rows of await Promise.all(lookups)) {
+    for (const row of rows) rowsById.set(row.id, row);
+  }
+  const normalizedNameText = nameText.toLowerCase();
+  const normalizedCollectorToken = collectorToken.toLowerCase();
+  const parentRows = [...rowsById.values()].filter((row) => {
+    const nameMatches =
+      !normalizedNameText ||
+      (row.name ?? "").trim().toLowerCase().includes(normalizedNameText);
+    const collectorMatches =
+      !normalizedCollectorToken ||
+      [row.number, row.number_plain].some(
+        (value) => normalizeCollectorToken(value ?? "") === normalizedCollectorToken,
+      );
+    const illustratorMatches =
+      !exactIllustrator ||
+      normalizeIllustrator(row.artist) === normalizeIllustrator(exactIllustrator);
+    const identityMatches = matchesIdentityFilter(row, identityFilter);
+    return nameMatches && collectorMatches && illustratorMatches && identityMatches;
+  });
+  const shouldRequireChildScope =
+    normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const lookupRows = shouldRequireChildScope
+    ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
+    : parentRows;
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(lookupRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const pricingByCardId = options.includePricing
+    ? await getPublicPricingByCardIds(supabase, lookupRows.map((row) => row.id), {
+        requireComplete: sortMode === "value_high" || sortMode === "value_low",
+      })
+    : new Map<string, PublicPricingRecord>();
+  const rows = await buildExploreRows(
+    lookupRows,
+    new Map<string, string>(),
+    setMetadataByCode,
+    pricingByCardId,
+  );
+  const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
+  return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
 }
 
 async function fetchCardRowsBySmartText(textQuery?: string) {

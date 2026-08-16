@@ -8,9 +8,10 @@ const vault = fs.readFileSync("lib/main_vault.dart", "utf8");
 const artwork = fs.readFileSync("lib/widgets/card_surface_artwork.dart", "utf8");
 const zoom = fs.readFileSync("lib/widgets/card_zoom_viewer.dart", "utf8");
 
-test("mobile catalog search defaults to Pokemon and explicitly scopes One Piece", () => {
+test("mobile catalog search defaults to Pokemon and explicitly scopes other games", () => {
   assert.match(cardModel, /this\.gameScope = 'pokemon'/);
-  assert.match(cardModel, /gameScope == 'one_piece'/);
+  assert.match(cardModel, /gameScope == 'mtg'/);
+  assert.match(cardModel, /_normalizeCatalogGameScope\(gameScope\)/);
   assert.match(cardModel, /\.from\('games'\)[\s\S]*\.eq\('code', _normalizeCatalogGameScope\(gameScope\)\)/);
   assert.ok(
     cardModel.match(/\.eq\('game_id', gameId\)/g)?.length >= 8,

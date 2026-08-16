@@ -143,6 +143,7 @@ type ActiveIdentityRow = {
   set_code_identity: string | null;
   printed_number: string | null;
   identity_key_version: string | null;
+  identity_payload: Record<string, unknown> | null;
 };
 
 type CameoRow = {
@@ -446,7 +447,7 @@ async function getActiveIdentityByCardPrintId(
   const { data, error } = await supabase
     .from("card_print_identity")
     .select(
-      "identity_domain,set_code_identity,printed_number,identity_key_version",
+      "identity_domain,set_code_identity,printed_number,identity_key_version,identity_payload",
     )
     .eq("card_print_id", normalizedCardPrintId)
     .eq("is_active", true)
@@ -472,6 +473,21 @@ async function getActiveIdentityByCardPrintId(
   }
 
   const row = rows[0];
+  const identityPayload = row.identity_payload;
+  const languageCode =
+    typeof identityPayload?.language === "string"
+      ? identityPayload.language.trim().toLowerCase()
+      : "";
+  const layout =
+    typeof identityPayload?.layout === "string"
+      ? identityPayload.layout.trim().toLowerCase()
+      : "";
+  const payloadName =
+    typeof identityPayload?.name === "string" ? identityPayload.name.trim() : "";
+  const faceNames = payloadName
+    .split(/\s+\/\/\s+/)
+    .map((name) => name.trim())
+    .filter(Boolean);
   const activeIdentity =
     row.identity_domain?.trim() &&
     row.printed_number?.trim() &&
@@ -481,6 +497,9 @@ async function getActiveIdentityByCardPrintId(
           set_code_identity: row.set_code_identity?.trim() || undefined,
           printed_number: row.printed_number.trim(),
           identity_key_version: row.identity_key_version.trim(),
+          language_code: languageCode || undefined,
+          layout: layout || undefined,
+          face_names: faceNames.length > 1 ? faceNames : undefined,
         }
       : null;
 
@@ -724,6 +743,9 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     set_name: setName,
     set_code: row.set_code ?? undefined,
     active_identity: activeIdentity,
+    language_code: activeIdentity?.language_code,
+    layout: activeIdentity?.layout,
+    face_names: activeIdentity?.face_names,
     rarity: row.rarity ?? undefined,
     image_url: imageFields.image_url ?? undefined,
     representative_image_url: imageFields.representative_image_url ?? undefined,

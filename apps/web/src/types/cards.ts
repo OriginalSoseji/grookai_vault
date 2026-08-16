@@ -21,6 +21,9 @@ export type ActiveCardPrintIdentity = {
   set_code_identity?: string;
   printed_number: string;
   identity_key_version: string;
+  language_code?: string;
+  layout?: string;
+  face_names?: string[];
 };
 
 export type DisplayPrintedIdentitySource = "card_print_identity" | "card_prints" | "missing";
@@ -90,6 +93,9 @@ export interface RelatedCardPrint extends CardSummary {
 
 export interface CardDetail extends CardSummary {
   artist?: string;
+  language_code?: string;
+  layout?: string;
+  face_names?: string[];
   number_plain?: string;
   printed_total?: number;
   printed_set_abbrev?: string;

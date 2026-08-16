@@ -294,9 +294,37 @@ String _normalizeLanguageScope(String? value) {
 }
 
 String _normalizeCatalogGameScope(String? value) {
-  return (value ?? '').trim().toLowerCase() == 'one_piece'
-      ? 'one_piece'
-      : 'pokemon';
+  return switch ((value ?? '').trim().toLowerCase()) {
+    'one_piece' => 'one_piece',
+    'mtg' => 'mtg',
+    _ => 'pokemon',
+  };
+}
+
+String normalizeMtgCollectorNumberToken(String raw) {
+  final normalized = raw
+      .trim()
+      .replaceFirst(RegExp(r'^#'), '')
+      .split('/')
+      .first
+      .trim()
+      .toLowerCase();
+  if (!RegExp(r'^[a-z0-9★†]+(?:-[a-z0-9★†]+)*$').hasMatch(normalized)) {
+    return '';
+  }
+  if (!RegExp(r'[0-9★†]').hasMatch(normalized)) {
+    return '';
+  }
+  return normalized;
+}
+
+bool preferMtgCollectorNumberToken(
+  String raw, {
+  required bool exactSetCodeExists,
+}) {
+  return !exactSetCodeExists &&
+      !raw.trim().contains(RegExp(r'\s')) &&
+      normalizeMtgCollectorNumberToken(raw).isNotEmpty;
 }
 
 enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
@@ -440,7 +468,7 @@ class CardPrintRepository {
       );
     }
 
-    if (gameScope == 'one_piece') {
+    if (gameScope != 'pokemon') {
       return _searchCardPrintsResolvedFallback(
         client: client,
         options: options.copyWith(gameScope: gameScope),
@@ -636,13 +664,32 @@ class CardPrintRepository {
       return _fromRowsWithCanonImages(data);
     }
 
-    final tokens = _tokenize(trimmed);
+    final tokens = _tokenize(trimmed, preserveHyphens: gameScope == 'mtg');
+    var setIndex = _extractSetIndex(tokens);
+    if (gameScope == 'mtg' &&
+        setIndex != null &&
+        normalizeMtgCollectorNumberToken(trimmed).isNotEmpty) {
+      final candidateSetCode = tokens.lowerTokens[setIndex];
+      final exactSetRows = await client
+          .from('sets')
+          .select('code')
+          .eq('game', gameScope)
+          .ilike('code', candidateSetCode)
+          .limit(1);
+      if (preferMtgCollectorNumberToken(
+        trimmed,
+        exactSetCodeExists: exactSetRows.isNotEmpty,
+      )) {
+        setIndex = null;
+      }
+    }
     final numberInfo = _extractNumberCandidate(
       tokens,
       isNumberWithTotal: isNumberWithTotal,
       rawQuery: trimmed,
+      gameScope: gameScope,
+      excludedIndex: setIndex,
     );
-    final setIndex = _extractSetIndex(tokens);
     final maybeSet = setIndex != null ? tokens.lowerTokens[setIndex] : '';
     final nameTokens = _extractNameTokens(
       tokens,
@@ -682,6 +729,7 @@ class CardPrintRepository {
           normNum: numberInfo.norm!,
           pad3: numberInfo.pad3,
           sort: options.sort,
+          exactCollectorToken: gameScope == 'mtg',
         );
         final limited = _applyRarity(
           qb,
@@ -710,6 +758,7 @@ class CardPrintRepository {
             gameId: gameId,
             normNum: numPart,
             pad3: numberInfo.pad3,
+            exactCollectorToken: gameScope == 'mtg',
           );
           final limited = _applyRarity(
             qb,
@@ -728,6 +777,7 @@ class CardPrintRepository {
             normNum: numPart,
             pad3: numberInfo.pad3,
             namePattern: pattern,
+            exactCollectorToken: gameScope == 'mtg',
           );
           final limited = _applyRarity(
             qb,
@@ -872,14 +922,15 @@ class CardPrintRepository {
     return rows.where((row) => matchesRarity(row.rarity)).toList();
   }
 
-  static _TokenizedQuery _tokenize(String raw) {
+  static _TokenizedQuery _tokenize(String raw, {bool preserveHyphens = false}) {
     final lower = raw.toLowerCase();
+    final separator = preserveHyphens ? RegExp(r'\s+') : RegExp(r'\s+|-');
     List<String> rawTokens = raw
-        .split(RegExp(r'\s+|-'))
+        .split(separator)
         .where((p) => p.isNotEmpty)
         .toList();
     List<String> lowerTokens = lower
-        .split(RegExp(r'\s+|-'))
+        .split(separator)
         .where((p) => p.isNotEmpty)
         .toList();
 
@@ -928,7 +979,11 @@ class CardPrintRepository {
     return match?.group(1) ?? '';
   }
 
-  static String _normalizeCardNumber(String raw) {
+  static String _normalizeCardNumber(
+    String raw, {
+    String gameScope = 'pokemon',
+  }) {
+    if (gameScope == 'mtg') return normalizeMtgCollectorNumberToken(raw);
     final digits = _rawNumberDigits(raw);
     if (digits.isEmpty) return '';
     final normalized = digits.replaceFirst(RegExp(r'^0+'), '');
@@ -942,11 +997,17 @@ class CardPrintRepository {
     _TokenizedQuery tokens, {
     required bool isNumberWithTotal,
     required String rawQuery,
+    required String gameScope,
+    int? excludedIndex,
   }) {
     for (var i = 0; i < tokens.rawTokens.length; i++) {
-      final norm = _normalizeCardNumber(tokens.rawTokens[i]);
+      if (i == excludedIndex) continue;
+      final norm = _normalizeCardNumber(
+        tokens.rawTokens[i],
+        gameScope: gameScope,
+      );
       if (norm.isNotEmpty) {
-        final pad3 = norm.padLeft(3, '0');
+        final pad3 = gameScope == 'mtg' ? norm : norm.padLeft(3, '0');
         final rawDigits = _rawNumberDigits(tokens.rawTokens[i]);
         return _NumberCandidateInfo(
           index: i,
@@ -957,8 +1018,10 @@ class CardPrintRepository {
       }
     }
     if (isNumberWithTotal) {
-      final norm = _normalizeCardNumber(rawQuery);
-      final pad3 = norm.isNotEmpty ? norm.padLeft(3, '0') : '';
+      final norm = _normalizeCardNumber(rawQuery, gameScope: gameScope);
+      final pad3 = norm.isNotEmpty
+          ? (gameScope == 'mtg' ? norm : norm.padLeft(3, '0'))
+          : '';
       final rawDigits = _rawNumberDigits(rawQuery);
       return _NumberCandidateInfo(
         index: null,
@@ -1056,6 +1119,7 @@ class CardPrintRepository {
     required String normNum,
     required String pad3,
     required String sort,
+    bool exactCollectorToken = false,
   }) {
     final fullSetNumber = _escapePostgrestLikePattern('$setCode-$pad3');
     return client
@@ -1064,7 +1128,9 @@ class CardPrintRepository {
         .eq('game_id', gameId)
         .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .or(
-          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3,number.ilike.$fullSetNumber',
+          exactCollectorToken
+              ? _exactCollectorNumberOrFilter(normNum)
+              : 'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3,number.ilike.$fullSetNumber',
         )
         .order(sort, ascending: true);
   }
@@ -1088,13 +1154,16 @@ class CardPrintRepository {
     required String gameId,
     required String normNum,
     required String pad3,
+    bool exactCollectorToken = false,
   }) {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .or(
-          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+          exactCollectorToken
+              ? _exactCollectorNumberOrFilter(normNum)
+              : 'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
         )
         .order('set_code', ascending: true)
         .order('number_plain', ascending: true);
@@ -1106,6 +1175,7 @@ class CardPrintRepository {
     required String normNum,
     required String pad3,
     required String namePattern,
+    bool exactCollectorToken = false,
   }) {
     return client
         .from('card_prints')
@@ -1113,7 +1183,9 @@ class CardPrintRepository {
         .eq('game_id', gameId)
         .ilike('name', namePattern)
         .or(
-          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+          exactCollectorToken
+              ? _exactCollectorNumberOrFilter(normNum)
+              : 'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
         )
         .order('name', ascending: true);
   }
@@ -1155,6 +1227,11 @@ class CardPrintRepository {
         .replaceAll('_', r'\_');
   }
 
+  static String _exactCollectorNumberOrFilter(String value) {
+    final escaped = _escapePostgrestLikePattern(value);
+    return 'number_plain.ilike.$escaped,number.ilike.$escaped';
+  }
+
   /// Dev-only parser harness: call manually when debugging search parsing.
   static void debugPrintSearchParsingSamples() {
     const samples = [
@@ -1173,6 +1250,7 @@ class CardPrintRepository {
         tokenized,
         isNumberWithTotal: RegExp(r'^\d+/\d+$').hasMatch(trimmed),
         rawQuery: trimmed,
+        gameScope: 'pokemon',
       );
       final setIndex = _extractSetIndex(tokenized);
       final setToken = setIndex != null ? tokenized.rawTokens[setIndex] : '';

@@ -5,6 +5,7 @@ import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton
 import { getFeaturedExploreCards } from "@/lib/cards/getFeaturedExploreCards";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
+import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { getDiscoveryProvisionalCards } from "@/lib/provisional/getDiscoveryProvisionalCards";
 import {
   matchesPublicLanguageScope,
@@ -79,7 +80,7 @@ function getNotableExploreSets(sets: PublicSetSummary[]) {
 
 export default async function ExplorePage(
   props: {
-    searchParams?: Promise<{ q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string }>;
+    searchParams?: Promise<{ q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string; game?: string }>;
   }
 ) {
   const searchParams = await props.searchParams;
@@ -92,7 +93,9 @@ export default async function ExplorePage(
   const canViewPricing = Boolean(user);
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
+  const gameScope = normalizePublicGameScope(searchParams?.game);
   const isDiscoveryMode =
+    gameScope === "pokemon" &&
     !normalizeFreeTextQuery(searchParams?.q) &&
     !normalizeSetCode(searchParams?.set) &&
     !parseReleaseYear(searchParams?.year) &&

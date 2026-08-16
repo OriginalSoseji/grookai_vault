@@ -23,4 +23,36 @@ void main() {
     expect(card.number, '123a');
     expect(card.displayNumber, '123a');
   });
+
+  test(
+    'MTG collector search preserves suffix, prefix, hyphen, and symbol tokens',
+    () {
+      expect(normalizeMtgCollectorNumberToken('78s'), '78s');
+      expect(normalizeMtgCollectorNumberToken('BL6'), 'bl6');
+      expect(normalizeMtgCollectorNumberToken('A-123'), 'a-123');
+      expect(normalizeMtgCollectorNumberToken('#123a/281'), '123a');
+      expect(normalizeMtgCollectorNumberToken('★'), '★');
+      expect(normalizeMtgCollectorNumberToken('†'), '†');
+    },
+  );
+
+  test('ordinary card names cannot be reclassified as collector numbers', () {
+    expect(normalizeMtgCollectorNumberToken('Black'), isEmpty);
+    expect(normalizeMtgCollectorNumberToken('Lotus'), isEmpty);
+    expect(normalizeMtgCollectorNumberToken(''), isEmpty);
+  });
+
+  test(
+    'ambiguous MTG tokens prefer collector numbers only without a real set',
+    () {
+      expect(
+        preferMtgCollectorNumberToken('BL6', exactSetCodeExists: false),
+        isTrue,
+      );
+      expect(
+        preferMtgCollectorNumberToken('2XM', exactSetCodeExists: true),
+        isFalse,
+      );
+    },
+  );
 }

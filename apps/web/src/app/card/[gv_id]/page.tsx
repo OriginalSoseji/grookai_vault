@@ -120,8 +120,33 @@ function getPrintedTotalFallback(card: { set_code?: string }) {
   return normalizedSetCode ? PRINTED_TOTAL_FALLBACK_BY_SET_CODE[normalizedSetCode] : undefined;
 }
 
-function getCardLanguageLabel(gvId: string) {
-  return /^GV-PK-JPN-/i.test(gvId) ? "Japanese" : "English";
+function getCardLanguageLabel(
+  card: Pick<CardDetail, "gv_id" | "language_code">,
+) {
+  const languageCode = card.language_code?.trim().toLowerCase();
+  const labels: Record<string, string> = {
+    en: "English",
+    ja: "Japanese",
+    de: "German",
+    es: "Spanish",
+    fr: "French",
+    it: "Italian",
+    ko: "Korean",
+    pt: "Portuguese",
+    ru: "Russian",
+    zhs: "Simplified Chinese",
+    zht: "Traditional Chinese",
+  };
+  if (languageCode) return labels[languageCode] ?? languageCode.toUpperCase();
+  return /^GV-PK-JPN-/i.test(card.gv_id) ? "Japanese" : "English";
+}
+
+function formatCardLayout(layout?: string) {
+  const normalized = layout?.trim();
+  if (!normalized || normalized === "normal") return undefined;
+  return normalized
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
 }
 
 function getCardGameLabel(card: Pick<CardDetail, "game_code" | "game_name">) {
@@ -915,7 +940,13 @@ async function CardPageContent({
   );
   const detailItems: DetailItem[] = [
     { label: "Game", value: getCardGameLabel(resolvedCard) },
-    { label: "Language", value: getCardLanguageLabel(resolvedCard.gv_id) },
+    { label: "Language", value: getCardLanguageLabel(resolvedCard) },
+    resolvedCard.face_names?.length
+      ? { label: "Faces", value: resolvedCard.face_names.join(" / ") }
+      : null,
+    formatCardLayout(resolvedCard.layout)
+      ? { label: "Layout", value: formatCardLayout(resolvedCard.layout) }
+      : null,
     collectorNumberLine ? { label: "Collector No.", value: collectorNumberLine } : null,
     resolvedCard.rarity ? { label: "Rarity", value: resolvedCard.rarity } : null,
     finishLabels.length > 0 ? { label: "Finishes", value: finishLabels.slice(0, 4).join(" • ") } : null,
@@ -948,7 +979,7 @@ async function CardPageContent({
     imageUrl: asAbsoluteUrl(resolvedCardImageSrc ?? resolvedCardImageFallbacks[0], siteOrigin),
     illustratorName,
     gameLabel: getCardGameLabel(resolvedCard),
-    languageLabel: getCardLanguageLabel(resolvedCard.gv_id),
+    languageLabel: getCardLanguageLabel(resolvedCard),
     printedName: resolvedDisplayIdentity.printed_name ?? undefined,
     setName,
   });
