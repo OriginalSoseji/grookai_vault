@@ -1,8 +1,7 @@
 import { ONE_PIECE_EXPECTED_COUNTS_V1 } from "./one_piece_signed_in_catalog_readiness_v1.mjs";
 
-export const ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_VERSION_V1 =
-  "ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_V1";
-export const ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1 = "295";
+export const ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_VERSION_V1 = "ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_V1";
+export const ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1 = "296";
 
 function numeric(value) {
   const parsed = Number(value);
@@ -14,9 +13,7 @@ function finding(findings, condition, code, actual, expected) {
 }
 
 function validateCatalogCounts(findings, label, counts) {
-  for (const [field, expected] of Object.entries(
-    ONE_PIECE_EXPECTED_COUNTS_V1,
-  )) {
+  for (const [field, expected] of Object.entries(ONE_PIECE_EXPECTED_COUNTS_V1)) {
     if (field === "active_sealed_release_members") continue;
     finding(
       findings,
@@ -28,10 +25,7 @@ function validateCatalogCounts(findings, label, counts) {
   }
 }
 
-export function evaluateOnePieceSignedInCatalogReleasePlanV1({
-  before,
-  deployment,
-}) {
+export function evaluateOnePieceSignedInCatalogReleasePlanV1({ before, deployment }) {
   const findings = [];
   finding(
     findings,
@@ -43,8 +37,7 @@ export function evaluateOnePieceSignedInCatalogReleasePlanV1({
   validateCatalogCounts(findings, "baseline", before?.counts);
   finding(
     findings,
-    deployment?.web?.production_status === "ready" &&
-      /^[0-9a-f]{40}$/.test(deployment?.web?.commit_sha ?? ""),
+    deployment?.web?.production_status === "ready" && /^[0-9a-f]{40}$/.test(deployment?.web?.commit_sha ?? ""),
     "production_web_not_ready",
     deployment?.web ?? null,
     "ready deployment from an exact 40-character commit SHA",
@@ -54,8 +47,7 @@ export function evaluateOnePieceSignedInCatalogReleasePlanV1({
     deployment?.android?.artifact_status === "signed" &&
       /^[0-9a-f]{64}$/.test(deployment?.android?.artifact_sha256 ?? "") &&
       deployment?.android?.commit_sha === deployment?.web?.commit_sha &&
-      String(deployment?.android?.version_code ?? "") ===
-        ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
+      String(deployment?.android?.version_code ?? "") === ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
     "signed_android_artifact_not_ready",
     deployment?.android ?? null,
     `signed artifact with exact SHA-256 from committed build ${ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1}`,
@@ -65,10 +57,8 @@ export function evaluateOnePieceSignedInCatalogReleasePlanV1({
     deployment?.ios?.distribution_status === "in_beta_testing" &&
       /^\d+$/.test(String(deployment?.ios?.build_number ?? "")) &&
       deployment?.ios?.commit_sha === deployment?.web?.commit_sha &&
-      String(deployment?.ios?.build_number) ===
-        String(deployment?.android?.version_code) &&
-      String(deployment?.ios?.build_number) ===
-        ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
+      String(deployment?.ios?.build_number) === String(deployment?.android?.version_code) &&
+      String(deployment?.ios?.build_number) === ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
     "testflight_build_not_ready",
     deployment?.ios ?? null,
     `processed build ${ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1} in beta testing from the same commit and version as Android`,
@@ -108,8 +98,7 @@ export function evaluateOnePieceSignedInCatalogReleaseReadbackV1({
   );
   finding(
     findings,
-    after?.release_control?.evidence?.activation_plan_fingerprint_sha256 ===
-      activationPlanFingerprint,
+    after?.release_control?.evidence?.activation_plan_fingerprint_sha256 === activationPlanFingerprint,
     "activation_fingerprint_mismatch",
     after?.release_control?.evidence?.activation_plan_fingerprint_sha256 ?? null,
     activationPlanFingerprint,
@@ -158,8 +147,7 @@ export function evaluateOnePieceSignedInCatalogReleaseReadbackV1({
   );
   finding(
     findings,
-    numeric(privileges?.active_sealed_release_members) ===
-      ONE_PIECE_EXPECTED_COUNTS_V1.active_sealed_release_members,
+    numeric(privileges?.active_sealed_release_members) === ONE_PIECE_EXPECTED_COUNTS_V1.active_sealed_release_members,
     "sealed_release_member_count_mismatch",
     privileges?.active_sealed_release_members ?? null,
     ONE_PIECE_EXPECTED_COUNTS_V1.active_sealed_release_members,

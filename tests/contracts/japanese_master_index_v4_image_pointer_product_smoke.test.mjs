@@ -255,17 +255,21 @@ test('web and Flutter set loaders preserve mixed-case canonical set codes', () =
     'apps/web/src/lib/publicSetMasterSetStats.ts',
     'utf8',
   );
+  const webExactCodeResolver = fs.readFileSync(
+    'apps/web/src/lib/publicSetExactCodes.ts',
+    'utf8',
+  );
   const flutterSetLoader = fs.readFileSync(
     'lib/services/public/public_sets_service.dart',
     'utf8',
   );
-  assert.match(webSetLoader, /\.ilike\("set_code", setCodePattern\)/);
+  assert.match(webExactCodeResolver, /\.ilike\("code"/);
+  assert.match(webSetLoader, /\.in\("set_code", exactSetCodes\)/);
   assert.doesNotMatch(webSetLoader, /\.eq\("set_code", normalizedCode\)/);
-  assert.match(webSetStats, /\.ilike\("set_code", setCodePattern\)/);
-  assert.match(
-    flutterSetLoader,
-    /\.ilike\('set_code', _escapePostgrestLikePattern\(normalizedCode\)\)/,
-  );
+  assert.match(webSetStats, /\.in\("set_code", exactSetCodes\)/);
+  assert.match(flutterSetLoader, /_resolveVisibleExactSetCodes/);
+  assert.match(flutterSetLoader, /\.inFilter\('set_code', exactSetCodes\)/);
+  assert.doesNotMatch(flutterSetLoader, /\.ilike\('set_code'/);
   assert.doesNotMatch(flutterSetLoader, /\.eq\('set_code', normalizedCode\)/);
 });
 

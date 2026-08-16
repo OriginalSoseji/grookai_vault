@@ -4,7 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
-import { escapePostgrestLikePattern } from "@/lib/publicSetCanonicalization";
+import { resolveVisiblePublicSetCodes } from "@/lib/publicSetExactCodes";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
@@ -44,16 +44,16 @@ function chunkValues<T>(values: T[], size = QUERY_CHUNK_SIZE) {
   return chunks;
 }
 
-async function fetchSetCardPrintIds(
-  supabase: SupabaseClient,
-  setCode: string,
-) {
+async function fetchSetCardPrintIds(supabase: SupabaseClient, setCode: string) {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode) {
     return [];
   }
 
-  const setCodePattern = escapePostgrestLikePattern(normalizedCode);
+  const exactSetCodes = await resolveVisiblePublicSetCodes(supabase, normalizedCode);
+  if (exactSetCodes.length === 0) {
+    return [];
+  }
   const ids: string[] = [];
   const pageSize = 1000;
   let offset = 0;
@@ -62,7 +62,7 @@ async function fetchSetCardPrintIds(
     const { data, error } = await supabase
       .from("card_prints")
       .select("id")
-      .ilike("set_code", setCodePattern)
+      .in("set_code", exactSetCodes)
       .not("gv_id", "is", null)
       .range(offset, offset + pageSize - 1);
 
@@ -80,8 +80,7 @@ async function fetchSetCardPrintIds(
     offset += pageSize;
   }
 
-  const specialVariantKeys =
-    getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
+  const specialVariantKeys = getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
   if (specialVariantKeys.length > 0) {
     const { data, error } = await supabase
       .from("card_prints")
@@ -94,18 +93,13 @@ async function fetchSetCardPrintIds(
       throw new Error(`[card_prints.master-set-special-ids] ${error.message}`);
     }
 
-    ids.push(
-      ...normalizeIds(((data ?? []) as CardPrintIdRow[]).map((row) => row.id)),
-    );
+    ids.push(...normalizeIds(((data ?? []) as CardPrintIdRow[]).map((row) => row.id)));
   }
 
   return normalizeIds(ids);
 }
 
-async function fetchCardPrintings(
-  supabase: SupabaseClient,
-  cardPrintIds: string[],
-) {
+async function fetchCardPrintings(supabase: SupabaseClient, cardPrintIds: string[]) {
   if (cardPrintIds.length === 0) {
     return [];
   }
@@ -130,7 +124,10 @@ async function fetchOwnedInstances(userId: string, cardPrintIds: string[]) {
   }
 
   const supabase = createServerAdminClient();
-  const instances: Array<{ cardPrintId: string; cardPrintingId: string | null }> = [];
+  const instances: Array<{
+    cardPrintId: string;
+    cardPrintingId: string | null;
+  }> = [];
 
   for (const chunk of chunkValues(cardPrintIds)) {
     const { data, error } = await supabase

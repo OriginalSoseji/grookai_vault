@@ -239,6 +239,7 @@ class PublicSetLaneOption {
 }
 
 class PublicSetsService {
+  static const _setCountChunkSize = 500;
   static const _publicSetRouteAliases = <String, String>{
     'shiny vault': 'sma',
     'shiny-vault': 'sma',
@@ -347,16 +348,17 @@ class PublicSetsService {
     final rawRows = await client
         .from('sets')
         .select(
-          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
-        )
-        .not('card_prints.gv_id', 'is', null)
-        .not('card_prints.set_code', 'is', null);
+          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
+        );
     final setRows = (rawRows as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
         .toList();
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
-    final cardCountsByCode = <String, int>{};
+    final cardCountsByCode = await _fetchExactSetCardCounts(
+      client: client,
+      exactSetCodes: setRows.map((row) => _cleanText(row['code'])),
+    );
     for (final row in setRows) {
       final code = _normalizeCode(row['code']);
       final name = _cleanText(row['name']);
@@ -364,8 +366,6 @@ class PublicSetsService {
         continue;
       }
 
-      cardCountsByCode[code] =
-          (cardCountsByCode[code] ?? 0) + _embeddedCount(row['card_prints']);
       final existingRow = preferredRowsByCode[code];
       preferredRowsByCode[code] = existingRow == null
           ? row
@@ -437,11 +437,9 @@ class PublicSetsService {
     final rawRows = await client
         .from('sets')
         .select(
-          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
+          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
         )
-        .ilike('code', _escapePostgrestLikePattern(normalizedCode))
-        .not('card_prints.gv_id', 'is', null)
-        .not('card_prints.set_code', 'is', null);
+        .ilike('code', _escapePostgrestLikePattern(normalizedCode));
     final rows = (rawRows as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
         .toList();
@@ -455,9 +453,13 @@ class PublicSetsService {
           rows.first,
           _choosePreferredEquivalentSetRow,
         );
-    final cardCount = rows.fold<int>(
+    final cardCountsByCode = await _fetchExactSetCardCounts(
+      client: client,
+      exactSetCodes: rows.map((candidate) => _cleanText(candidate['code'])),
+    );
+    final cardCount = cardCountsByCode.values.fold<int>(
       0,
-      (sum, candidate) => sum + _embeddedCount(candidate['card_prints']),
+      (sum, count) => sum + count,
     );
     if (cardCount <= 0) {
       return null;
@@ -484,12 +486,20 @@ class PublicSetsService {
       return const [];
     }
 
+    final exactSetCodes = await _resolveVisibleExactSetCodes(
+      client: client,
+      normalizedCode: normalizedCode,
+    );
+    if (exactSetCodes.isEmpty) {
+      return const [];
+    }
+
     final rows = await client
         .from('card_prints')
         .select(
           'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)',
         )
-        .ilike('set_code', _escapePostgrestLikePattern(normalizedCode))
+        .inFilter('set_code', exactSetCodes)
         .not('gv_id', 'is', null)
         .order('number_plain', ascending: true, nullsFirst: false)
         .order('number', ascending: true)
@@ -661,10 +671,18 @@ class PublicSetsService {
       return null;
     }
 
+    final exactSetCodes = await _resolveVisibleExactSetCodes(
+      client: client,
+      normalizedCode: normalizedCode,
+    );
+    if (exactSetCodes.isEmpty) {
+      return null;
+    }
+
     final rows = await client
         .from('card_prints')
         .select('id,gv_id,name,number,number_plain,rarity,external_ids')
-        .ilike('set_code', _escapePostgrestLikePattern(normalizedCode))
+        .inFilter('set_code', exactSetCodes)
         .eq('variant_key', 'world_championship_deck_replica')
         .not('gv_id', 'is', null)
         .order('number_plain', ascending: true, nullsFirst: false)
@@ -1040,16 +1058,6 @@ class PublicSetsService {
     });
   }
 
-  static Map<String, dynamic>? _firstNestedRecord(dynamic value) {
-    if (value is Map) {
-      return Map<String, dynamic>.from(value);
-    }
-    if (value is List && value.isNotEmpty && value.first is Map) {
-      return Map<String, dynamic>.from(value.first as Map);
-    }
-    return null;
-  }
-
   static Map<String, dynamic>? _nestedRecord(dynamic value) {
     if (value is Map) {
       return Map<String, dynamic>.from(value);
@@ -1198,13 +1206,47 @@ class PublicSetsService {
     );
   }
 
-  static int _embeddedCount(dynamic value) {
-    if (value is num) {
-      return value.toInt();
-    }
+  static Future<List<String>> _resolveVisibleExactSetCodes({
+    required SupabaseClient client,
+    required String normalizedCode,
+  }) async {
+    final rawRows = await client
+        .from('sets')
+        .select('code')
+        .ilike('code', _escapePostgrestLikePattern(normalizedCode));
+    return (rawRows as List<dynamic>)
+        .map((raw) => _cleanText((raw as Map)['code']))
+        .where((code) => code.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+  }
 
-    final record = _firstNestedRecord(value);
-    return _intValue(record?['count']);
+  static Future<Map<String, int>> _fetchExactSetCardCounts({
+    required SupabaseClient client,
+    required Iterable<String> exactSetCodes,
+  }) async {
+    final codes = exactSetCodes
+        .map(_cleanText)
+        .where((code) => code.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    final counts = <String, int>{};
+    for (var offset = 0; offset < codes.length; offset += _setCountChunkSize) {
+      final end = (offset + _setCountChunkSize).clamp(0, codes.length);
+      final rawRows = await client.rpc(
+        'get_public_set_card_counts_v1',
+        params: {'p_set_codes': codes.sublist(offset, end)},
+      );
+      for (final raw in rawRows as List<dynamic>) {
+        final row = Map<String, dynamic>.from(raw as Map);
+        final code = _normalizeCode(row['set_code']);
+        if (code.isEmpty) {
+          continue;
+        }
+        counts[code] = (counts[code] ?? 0) + _intValue(row['card_count']);
+      }
+    }
+    return counts;
   }
 
   static PublicCatalogGame _parseCatalogGame(dynamic value) {

@@ -17,6 +17,17 @@ void main() {
         'public-anon-key',
         httpClient: MockClient((request) async {
           requests.add(request);
+          if (request.url.path ==
+              '/rest/v1/rpc/get_public_set_card_counts_v1') {
+            return http.Response(
+              jsonEncode([
+                {'set_code': 'cel25', 'card_count': 25},
+              ]),
+              200,
+              request: request,
+              headers: {'content-type': 'application/json'},
+            );
+          }
           return http.Response(
             jsonEncode([
               {
@@ -27,9 +38,6 @@ void main() {
                 'printed_total': 25,
                 'release_date': '2021-10-08',
                 'created_at': '2021-10-08T00:00:00Z',
-                'card_prints': [
-                  {'count': 25},
-                ],
               },
             ]),
             200,
@@ -49,17 +57,20 @@ void main() {
       expect(summary?.name, 'Celebrations');
       expect(summary?.cardCount, 25);
       expect(summary?.printedSetAbbrev, 'CEL');
-      expect(requests, hasLength(1));
+      expect(requests, hasLength(2));
 
-      final request = requests.single;
+      final request = requests.first;
       expect(request.url.path, '/rest/v1/sets');
       expect(request.url.queryParameters['code'], 'ilike.cel25');
       expect(request.url.queryParameters.containsKey('limit'), isFalse);
       expect(
         request.url.queryParameters['select'],
-        contains('card_prints(count)'),
+        isNot(contains('card_prints(count)')),
       );
-      expect(request.url.queryParameters['card_prints.gv_id'], 'not.is.null');
+      expect(
+        requests.last.url.path,
+        '/rest/v1/rpc/get_public_set_card_counts_v1',
+      );
     },
   );
 
@@ -70,23 +81,29 @@ void main() {
         'https://example.supabase.co',
         'public-anon-key',
         httpClient: MockClient((request) async {
+          if (request.url.path ==
+              '/rest/v1/rpc/get_public_set_card_counts_v1') {
+            return http.Response(
+              jsonEncode([
+                {'set_code': 'jpn-s8b', 'card_count': 261},
+                {'set_code': 'jpn-S8b', 'card_count': 26},
+              ]),
+              200,
+              request: request,
+              headers: {'content-type': 'application/json'},
+            );
+          }
           return http.Response(
             jsonEncode([
               {
                 'code': 'jpn-s8b',
                 'name': 'Japanese S8b',
                 'release_date': '2021-12-03',
-                'card_prints': [
-                  {'count': 261},
-                ],
               },
               {
                 'code': 'jpn-S8b',
                 'name': 'VMAX Climax',
                 'release_date': '2021-12-03',
-                'card_prints': [
-                  {'count': 26},
-                ],
               },
             ]),
             200,
@@ -115,6 +132,17 @@ void main() {
       'public-anon-key',
       httpClient: MockClient((request) async {
         requests.add(request);
+        if (request.url.path == '/rest/v1/rpc/get_public_set_card_counts_v1') {
+          return http.Response(
+            jsonEncode([
+              {'set_code': 'duplicate-short', 'card_count': 10},
+              {'set_code': 'duplicate-complete', 'card_count': 12},
+            ]),
+            200,
+            request: request,
+            headers: {'content-type': 'application/json'},
+          );
+        }
         return http.Response(
           jsonEncode([
             {
@@ -122,26 +150,14 @@ void main() {
               'name': 'Duplicate Set',
               'release_date': '2020-01-01',
               'created_at': '2020-01-01T00:00:00Z',
-              'card_prints': [
-                {'count': 10},
-              ],
             },
             {
               'code': 'duplicate-complete',
               'name': 'Duplicate Set',
               'release_date': '2020-01-01',
               'created_at': '2020-01-01T00:00:00Z',
-              'card_prints': [
-                {'count': 12},
-              ],
             },
-            {
-              'code': 'empty',
-              'name': 'Empty Set',
-              'card_prints': [
-                {'count': 0},
-              ],
-            },
+            {'code': 'empty', 'name': 'Empty Set'},
           ]),
           200,
           request: request,
@@ -156,11 +172,11 @@ void main() {
     expect(sets, hasLength(1));
     expect(sets.single.code, 'duplicate-complete');
     expect(sets.single.cardCount, 12);
-    expect(requests, hasLength(1));
-    expect(requests.single.url.path, '/rest/v1/sets');
+    expect(requests, hasLength(2));
+    expect(requests.first.url.path, '/rest/v1/sets');
     expect(
-      requests.single.url.queryParameters['select'],
-      contains('card_prints(count)'),
+      requests.first.url.queryParameters['select'],
+      isNot(contains('card_prints(count)')),
     );
   });
 
@@ -178,22 +194,25 @@ void main() {
     final client = SupabaseClient(
       'https://example.supabase.co',
       'public-anon-key',
-      httpClient: MockClient(
-        (request) async => http.Response(
-          jsonEncode([
-            {
-              'code': 'jpn-product-test',
-              'name': 'Trainer Box <big>ex</big>',
-              'card_prints': [
-                {'count': 25},
-              ],
-            },
-          ]),
+      httpClient: MockClient((request) async {
+        final payload =
+            request.url.path == '/rest/v1/rpc/get_public_set_card_counts_v1'
+            ? [
+                {'set_code': 'jpn-product-test', 'card_count': 25},
+              ]
+            : [
+                {
+                  'code': 'jpn-product-test',
+                  'name': 'Trainer Box <big>ex</big>',
+                },
+              ];
+        return http.Response(
+          jsonEncode(payload),
           200,
           request: request,
           headers: {'content-type': 'application/json'},
-        ),
-      ),
+        );
+      }),
     );
     addTearDown(client.dispose);
 

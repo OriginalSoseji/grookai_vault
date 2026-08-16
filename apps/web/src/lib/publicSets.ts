@@ -18,10 +18,9 @@ import {
   chooseCanonicalSetRow,
   choosePreferredEquivalentSetRow,
   escapePostgrestLikePattern,
-  getEmbeddedCardPrintCount,
   getManifestCardPrintCount,
-  type EmbeddedCardPrintCount,
 } from "@/lib/publicSetCanonicalization";
+import { resolveVisiblePublicSetCodes } from "@/lib/publicSetExactCodes";
 import publicSetCardCountManifest from "@/lib/publicSetCardCounts.generated.json";
 import {
   matchesPublicSetSearch,
@@ -47,7 +46,11 @@ type SetRow = {
   printed_total: number | null;
   release_date: string | null;
   created_at: string | null;
-  card_prints?: EmbeddedCardPrintCount;
+};
+
+type PublicSetCardCountRow = {
+  set_code: string | null;
+  card_count: number | string | null;
 };
 
 type PublicSetCardRow = {
@@ -113,9 +116,7 @@ function normalizeSetCode(value?: string | null) {
 }
 
 function asRecord(value: unknown): Record<string, unknown> | null {
-  return value && typeof value === "object" && !Array.isArray(value)
-    ? (value as Record<string, unknown>)
-    : null;
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
 }
 
 function getNestedString(record: Record<string, unknown> | null, key: string) {
@@ -155,9 +156,7 @@ function getSetSortDate(row: Pick<SetRow, "release_date" | "created_at">) {
   return row.release_date ?? row.created_at ?? undefined;
 }
 
-async function mapPublicSetCardPrintings(
-  rows?: PublicCardPrintingOptionRow[],
-) {
+async function mapPublicSetCardPrintings(rows?: PublicCardPrintingOptionRow[]) {
   const mapped = (
     await Promise.all(
       (rows ?? []).map(async (printing) => {
@@ -177,13 +176,10 @@ async function mapPublicSetCardPrintings(
           image_note: imageFields.image_note ?? undefined,
           image_source: imageFields.image_source ?? undefined,
           display_image_url: imageFields.display_image_url ?? undefined,
-          external_image_fallback_url:
-            imageFields.external_image_fallback_url ?? undefined,
+          external_image_fallback_url: imageFields.external_image_fallback_url ?? undefined,
           display_image_kind: imageFields.display_image_kind,
           finish_sort_order:
-            typeof printing.finish_sort_order === "number"
-              ? printing.finish_sort_order
-              : Number.MAX_SAFE_INTEGER,
+            typeof printing.finish_sort_order === "number" ? printing.finish_sort_order : Number.MAX_SAFE_INTEGER,
         };
       }),
     )
@@ -197,9 +193,7 @@ async function mapPublicSetCardPrintings(
     return (left.finish_name ?? "").localeCompare(right.finish_name ?? "");
   });
 
-  return mapped.map(
-    ({ finish_sort_order: _finishSortOrder, ...printing }) => printing,
-  );
+  return mapped.map(({ finish_sort_order: _finishSortOrder, ...printing }) => printing);
 }
 
 function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
@@ -217,20 +211,45 @@ const PUBLIC_SET_LIST_SELECT = `
   printed_set_abbrev,
   printed_total,
   release_date,
-  created_at,
-  card_prints(count)
+  created_at
 `;
 
 const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
 
-const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<
-  Record<string, number>
->;
+const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<Record<string, number>>;
+const PUBLIC_SET_COUNT_CHUNK_SIZE = 500;
 
-function mapSetRowToSummary(
-  row: SetRow,
-  canonicalCardCount: number,
-): PublicSetSummary | null {
+async function getDynamicPublicSetCardCounts(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  setCodes: string[],
+) {
+  const exactCodes = Array.from(new Set(setCodes.map((code) => code.trim()).filter(Boolean)));
+  if (exactCodes.length === 0) {
+    return new Map<string, number>();
+  }
+
+  const counts = new Map<string, number>();
+  for (let offset = 0; offset < exactCodes.length; offset += PUBLIC_SET_COUNT_CHUNK_SIZE) {
+    const { data, error } = await supabase.rpc("get_public_set_card_counts_v1", {
+      p_set_codes: exactCodes.slice(offset, offset + PUBLIC_SET_COUNT_CHUNK_SIZE),
+    });
+    if (error) {
+      throw new Error(`[sets.card-counts] ${error.message}`);
+    }
+
+    for (const row of (data ?? []) as PublicSetCardCountRow[]) {
+      const normalizedCode = normalizeSetCode(row.set_code);
+      const parsedCount = Number(row.card_count ?? 0);
+      if (!normalizedCode || !Number.isFinite(parsedCount) || parsedCount < 0) {
+        continue;
+      }
+      counts.set(normalizedCode, (counts.get(normalizedCode) ?? 0) + parsedCount);
+    }
+  }
+  return counts;
+}
+
+function mapSetRowToSummary(row: SetRow, canonicalCardCount: number): PublicSetSummary | null {
   if (!row.code || !row.name) {
     return null;
   }
@@ -242,41 +261,38 @@ function mapSetRowToSummary(
     game_code: row.game?.trim().toLowerCase() || "pokemon",
     code,
     name: displayName,
-    printed_set_abbrev:
-      row.printed_set_abbrev?.trim().toUpperCase() || undefined,
-    printed_total:
-      typeof row.printed_total === "number" ? row.printed_total : undefined,
+    printed_set_abbrev: row.printed_set_abbrev?.trim().toUpperCase() || undefined,
+    printed_total: typeof row.printed_total === "number" ? row.printed_total : undefined,
     release_date: row.release_date ?? undefined,
     sort_date: getSetSortDate(row),
     release_year: getReleaseYear(row.release_date),
-    card_count:
-      canonicalCardCount +
-      getBaseSetPrintRunLaneCardCountAdjustment(code),
+    card_count: canonicalCardCount + getBaseSetPrintRunLaneCardCountAdjustment(code),
     normalized_code: normalizeSetCode(code),
     normalized_name: normalizeSetQuery(displayName),
     normalized_tokens: tokenizeSetWords(displayName),
-    normalized_printed_set_abbrev: normalizeSetQuery(
-      row.printed_set_abbrev ?? "",
-    ),
+    normalized_printed_set_abbrev: normalizeSetQuery(row.printed_set_abbrev ?? ""),
   };
 }
 
 export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   const supabase = await createServerSupabase();
-  const { data: setRows, error: setError } = await supabase
-    .from("sets")
-    .select(PUBLIC_SET_LIST_SELECT);
+  const { data: setRows, error: setError } = await supabase.from("sets").select(PUBLIC_SET_LIST_SELECT);
 
   if (setError) {
     throw new Error(setError.message);
   }
 
-  const equivalentSetsByCode = new Map<
-    string,
-    { row: SetRow; cardCount: number }
-  >();
+  const visibleRows = (setRows ?? []) as SetRow[];
+  const dynamicCounts = await getDynamicPublicSetCardCounts(
+    supabase,
+    visibleRows
+      .filter((row) => getManifestCardPrintCount(publicSetCardCounts, row.code) === 0)
+      .map((row) => row.code ?? ""),
+  );
 
-  for (const row of (setRows ?? []) as SetRow[]) {
+  const equivalentSetsByCode = new Map<string, { row: SetRow; cardCount: number }>();
+
+  for (const row of visibleRows) {
     const normalizedCode = normalizeSetCode(row.code);
     if (!normalizedCode || !row.name) {
       continue;
@@ -284,13 +300,11 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
 
     const cardCount = Math.max(
       getManifestCardPrintCount(publicSetCardCounts, normalizedCode),
-      getEmbeddedCardPrintCount(row.card_prints),
+      dynamicCounts.get(normalizedCode) ?? 0,
     );
     const existing = equivalentSetsByCode.get(normalizedCode);
     equivalentSetsByCode.set(normalizedCode, {
-      row: existing
-        ? choosePreferredEquivalentSetRow(existing.row, row)
-        : row,
+      row: existing ? choosePreferredEquivalentSetRow(existing.row, row) : row,
       cardCount: Math.max(existing?.cardCount ?? 0, cardCount),
     });
   }
@@ -309,10 +323,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
       continue;
     }
 
-    canonicalSetsByName.set(
-      canonicalNameKey,
-      chooseCanonicalSetRow(existing, candidate),
-    );
+    canonicalSetsByName.set(canonicalNameKey, chooseCanonicalSetRow(existing, candidate));
   }
 
   return [...canonicalSetsByName.values()]
@@ -347,9 +358,7 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   const { data, error } = await supabase
     .from("sets")
     .select(PUBLIC_SET_DETAIL_SELECT)
-    .ilike("code", escapePostgrestLikePattern(normalizedCode))
-    .not("card_prints.gv_id", "is", null)
-    .not("card_prints.set_code", "is", null);
+    .ilike("code", escapePostgrestLikePattern(normalizedCode));
 
   if (error) {
     throw new Error(error.message);
@@ -357,17 +366,15 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
 
   const rows = (data ?? []) as SetRow[];
   const preferredRow = rows.reduce<SetRow | null>(
-    (preferred, row) =>
-      preferred ? choosePreferredEquivalentSetRow(preferred, row) : row,
+    (preferred, row) => (preferred ? choosePreferredEquivalentSetRow(preferred, row) : row),
     null,
   );
-  const combinedCardCount = rows.reduce(
-    (sum, row) => sum + getEmbeddedCardPrintCount(row.card_prints),
-    0,
+  const dynamicCounts = await getDynamicPublicSetCardCounts(
+    supabase,
+    rows.map((row) => row.code ?? ""),
   );
-  const setInfo = preferredRow
-    ? mapSetRowToSummary(preferredRow, combinedCardCount)
-    : null;
+  const combinedCardCount = [...dynamicCounts.values()].reduce((sum, count) => sum + count, 0);
+  const setInfo = preferredRow ? mapSetRowToSummary(preferredRow, combinedCardCount) : null;
   return setInfo && setInfo.card_count > 0 ? setInfo : null;
 });
 
@@ -382,7 +389,10 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   }
 
   const supabase = await createServerSupabase();
-  const setCodePattern = escapePostgrestLikePattern(normalizedCode);
+  const exactSetCodes = await resolveVisiblePublicSetCodes(supabase, normalizedCode);
+  if (exactSetCodes.length === 0) {
+    return [];
+  }
 
   const selectClause = `
       id,
@@ -403,15 +413,14 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       image_note,
       sets(identity_model)
     `;
-  const specialVariantKeys =
-    getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
+  const specialVariantKeys = getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
 
   if (specialVariantKeys.length > 0) {
     const [primaryResult, specialResult] = await Promise.all([
       supabase
         .from("card_prints")
         .select(selectClause)
-        .ilike("set_code", setCodePattern)
+        .in("set_code", exactSetCodes)
         .not("gv_id", "is", null)
         .order("number_plain", { ascending: true, nullsFirst: false })
         .order("number", { ascending: true })
@@ -438,9 +447,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       ...((primaryResult.data ?? []) as unknown as PublicSetCardRow[]),
       ...((specialResult.data ?? []) as unknown as PublicSetCardRow[]),
     ]
-      .filter((row): row is PublicSetCardRow & { gv_id: string } =>
-        Boolean(row.gv_id),
-      )
+      .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id))
       .sort(comparePublicSetCardRows)
       .slice(offset, offset + limit);
 
@@ -448,16 +455,13 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       supabase,
       rows.map((row) => row.id ?? ""),
     );
-    return mapPublicSetCardRows(
-      rows,
-      groupPublicCardPrintingOptionsByCardPrintId(printingRows),
-    );
+    return mapPublicSetCardRows(rows, groupPublicCardPrintingOptionsByCardPrintId(printingRows));
   }
 
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
-    .ilike("set_code", setCodePattern)
+    .in("set_code", exactSetCodes)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
     .order("number", { ascending: true })
@@ -476,83 +480,77 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     supabase,
     rows.map((row) => row.id ?? ""),
   );
-  return mapPublicSetCardRows(
-    rows,
-    groupPublicCardPrintingOptionsByCardPrintId(printingRows),
-  );
+  return mapPublicSetCardRows(rows, groupPublicCardPrintingOptionsByCardPrintId(printingRows));
 });
 
-export const getPublicWorldChampionshipDecklist = cache(
-  async function getPublicWorldChampionshipDecklist(
-    setCode: string,
-  ): Promise<PublicWorldChampionshipDecklist | null> {
-    const normalizedCode = resolvePublicSetRouteCode(setCode);
-    if (!normalizedCode || !normalizedCode.startsWith("wcd")) {
-      return null;
-    }
+export const getPublicWorldChampionshipDecklist = cache(async function getPublicWorldChampionshipDecklist(
+  setCode: string,
+): Promise<PublicWorldChampionshipDecklist | null> {
+  const normalizedCode = resolvePublicSetRouteCode(setCode);
+  if (!normalizedCode || !normalizedCode.startsWith("wcd")) {
+    return null;
+  }
 
-    const supabase = await createServerSupabase();
-    const setCodePattern = escapePostgrestLikePattern(normalizedCode);
-    const { data, error } = await supabase
-      .from("card_prints")
-      .select("id,gv_id,name,number,number_plain,rarity,external_ids")
-      .ilike("set_code", setCodePattern)
-      .eq("variant_key", "world_championship_deck_replica")
-      .not("gv_id", "is", null)
-      .order("number_plain", { ascending: true, nullsFirst: false })
-      .order("number", { ascending: true })
-      .order("name", { ascending: true });
+  const supabase = await createServerSupabase();
+  const exactSetCodes = await resolveVisiblePublicSetCodes(supabase, normalizedCode);
+  if (exactSetCodes.length === 0) {
+    return null;
+  }
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select("id,gv_id,name,number,number_plain,rarity,external_ids")
+    .in("set_code", exactSetCodes)
+    .eq("variant_key", "world_championship_deck_replica")
+    .not("gv_id", "is", null)
+    .order("number_plain", { ascending: true, nullsFirst: false })
+    .order("number", { ascending: true })
+    .order("name", { ascending: true });
 
-    if (error) {
-      throw new Error(error.message);
-    }
+  if (error) {
+    throw new Error(error.message);
+  }
 
-    const rows = ((data ?? []) as WorldChampionshipDecklistRow[]).filter(
-      (row): row is WorldChampionshipDecklistRow & { gv_id: string } =>
-        Boolean(row.gv_id),
-    );
+  const rows = ((data ?? []) as WorldChampionshipDecklistRow[]).filter(
+    (row): row is WorldChampionshipDecklistRow & { gv_id: string } => Boolean(row.gv_id),
+  );
 
-    if (rows.length === 0) {
-      return null;
-    }
+  if (rows.length === 0) {
+    return null;
+  }
 
-    let deckName: string | undefined;
-    let deckYear: number | undefined;
-    let playerName: string | undefined;
-    const entries: PublicWorldChampionshipDecklistEntry[] = rows.map((row) => {
-      const grookai = asRecord(asRecord(row.external_ids)?.grookai);
-      deckName ??= getNestedString(grookai, "deck_name");
-      deckYear ??= getNestedNumber(grookai, "deck_year") ?? undefined;
-      playerName ??= getNestedString(grookai, "player_name");
-
-      return {
-        id: row.id ?? undefined,
-        gv_id: row.gv_id,
-        name: row.name ?? "Unknown",
-        number: row.number ?? "",
-        quantity: getNestedNumber(grookai, "deck_quantity"),
-        source_set_name: getNestedString(grookai, "source_set_name"),
-        source_card_number: getNestedString(grookai, "source_card_number"),
-        rarity: row.rarity ?? undefined,
-      };
-    });
-
-    const totalQuantity = entries.reduce(
-      (sum, entry) => sum + (entry.quantity ?? 0),
-      0,
-    );
+  let deckName: string | undefined;
+  let deckYear: number | undefined;
+  let playerName: string | undefined;
+  const entries: PublicWorldChampionshipDecklistEntry[] = rows.map((row) => {
+    const grookai = asRecord(asRecord(row.external_ids)?.grookai);
+    deckName ??= getNestedString(grookai, "deck_name");
+    deckYear ??= getNestedNumber(grookai, "deck_year") ?? undefined;
+    playerName ??= getNestedString(grookai, "player_name");
 
     return {
-      set_code: normalizedCode,
-      deck_name: deckName,
-      deck_year: deckYear,
-      player_name: playerName,
-      total_quantity: totalQuantity,
-      unique_card_count: entries.length,
-      entries,
+      id: row.id ?? undefined,
+      gv_id: row.gv_id,
+      name: row.name ?? "Unknown",
+      number: row.number ?? "",
+      quantity: getNestedNumber(grookai, "deck_quantity"),
+      source_set_name: getNestedString(grookai, "source_set_name"),
+      source_card_number: getNestedString(grookai, "source_card_number"),
+      rarity: row.rarity ?? undefined,
     };
-  },
-);
+  });
+
+  const totalQuantity = entries.reduce((sum, entry) => sum + (entry.quantity ?? 0), 0);
+
+  return {
+    set_code: normalizedCode,
+    deck_name: deckName,
+    deck_year: deckYear,
+    player_name: playerName,
+    total_quantity: totalQuantity,
+    unique_card_count: entries.length,
+    entries,
+  };
+});
 
 function getCardRowSortNumber(row: PublicSetCardRow) {
   const parsed = Number.parseInt(row.number_plain ?? row.number ?? "", 10);
@@ -565,13 +563,15 @@ function comparePublicSetCardRows(left: PublicSetCardRow, right: PublicSetCardRo
     return numberCompare;
   }
 
-  return [
-    (left.number ?? "").localeCompare(right.number ?? ""),
-    (left.name ?? "").localeCompare(right.name ?? ""),
-    (left.variant_key ?? "").localeCompare(right.variant_key ?? ""),
-    (left.gv_id ?? "").localeCompare(right.gv_id ?? ""),
-    (left.id ?? "").localeCompare(right.id ?? ""),
-  ].find((value) => value !== 0) ?? 0;
+  return (
+    [
+      (left.number ?? "").localeCompare(right.number ?? ""),
+      (left.name ?? "").localeCompare(right.name ?? ""),
+      (left.variant_key ?? "").localeCompare(right.variant_key ?? ""),
+      (left.gv_id ?? "").localeCompare(right.gv_id ?? ""),
+      (left.id ?? "").localeCompare(right.id ?? ""),
+    ].find((value) => value !== 0) ?? 0
+  );
 }
 
 async function mapPublicSetCardRows(
@@ -590,23 +590,18 @@ async function mapPublicSetCardRows(
         number: row.number ?? "",
         set_code: row.set_code?.trim() || undefined,
         variant_key: row.variant_key?.trim() || undefined,
-        printed_identity_modifier:
-          row.printed_identity_modifier?.trim() || undefined,
+        printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
         set_identity_model: setRecord?.identity_model?.trim() || undefined,
         rarity: row.rarity ?? undefined,
         image_url: imageFields.image_url ?? undefined,
-        representative_image_url:
-          imageFields.representative_image_url ?? undefined,
+        representative_image_url: imageFields.representative_image_url ?? undefined,
         image_status: imageFields.image_status ?? undefined,
         image_note: imageFields.image_note ?? undefined,
         image_source: imageFields.image_source ?? undefined,
         display_image_url: imageFields.display_image_url ?? undefined,
-        external_image_fallback_url:
-          imageFields.external_image_fallback_url ?? undefined,
+        external_image_fallback_url: imageFields.external_image_fallback_url ?? undefined,
         display_image_kind: imageFields.display_image_kind,
-        printings: await mapPublicSetCardPrintings(
-          printingRowsByCardPrintId.get(row.id ?? ""),
-        ),
+        printings: await mapPublicSetCardPrintings(printingRowsByCardPrintId.get(row.id ?? "")),
       };
     }),
   );
@@ -649,10 +644,7 @@ function compareByName(left: PublicSetSummary, right: PublicSetSummary) {
   return left.name.localeCompare(right.name);
 }
 
-function compareByReleaseYearDesc(
-  left: PublicSetSummary,
-  right: PublicSetSummary,
-) {
+function compareByReleaseYearDesc(left: PublicSetSummary, right: PublicSetSummary) {
   const leftDate = parseSetSortTimestamp(left);
   const rightDate = parseSetSortTimestamp(right);
   const leftHasDate = Number.isFinite(leftDate);
@@ -669,10 +661,7 @@ function compareByReleaseYearDesc(
   return compareByName(left, right);
 }
 
-function compareByReleaseYearAsc(
-  left: PublicSetSummary,
-  right: PublicSetSummary,
-) {
+function compareByReleaseYearAsc(left: PublicSetSummary, right: PublicSetSummary) {
   const leftDate = parseSetSortTimestamp(left);
   const rightDate = parseSetSortTimestamp(right);
   const leftHasDate = Number.isFinite(leftDate);
@@ -689,10 +678,7 @@ function compareByReleaseYearAsc(
   return compareByName(left, right);
 }
 
-export function applyPublicSetFilterAndSort(
-  sets: PublicSetSummary[],
-  rawFilter?: string | null,
-) {
+export function applyPublicSetFilterAndSort(sets: PublicSetSummary[], rawFilter?: string | null) {
   const filter = normalizePublicSetFilter(rawFilter);
   const baseSets = [...sets];
 
