@@ -196,19 +196,28 @@ async function loadPayloadInventory(manifest, payloadDir) {
   return { inventory, payloadPaths };
 }
 
-function createClient() {
-  return new Client({
+function createClient(onConnectionError = null) {
+  const client = new Client({
     connectionString: marketEvidenceDbUrl(),
     ssl: { rejectUnauthorized: false },
     connectionTimeoutMillis: 15_000,
+    keepAlive: true,
+    keepAliveInitialDelayMillis: 10_000,
     query_timeout: 300_000,
     statement_timeout: 300_000,
     application_name: VERSION,
   });
+  client.on("error", (error) => {
+    client.grookaiConnectionError = error;
+    if (onConnectionError) onConnectionError(error);
+  });
+  return client;
 }
 
 async function acquireExecutionLock() {
-  const client = createClient();
+  const lease = { client: null, heartbeat: null, heartbeatPending: false, lostError: null };
+  const client = createClient((error) => { lease.lostError ??= error; });
+  lease.client = client;
   await client.connect();
   const result = await client.query(
     "select pg_try_advisory_lock(hashtext($1)) as acquired",
@@ -218,13 +227,35 @@ async function acquireExecutionLock() {
     await client.end();
     throw new Error("Another MTG catalog ingestion executor holds the advisory lock");
   }
-  return client;
+  lease.heartbeat = setInterval(async () => {
+    if (lease.heartbeatPending || lease.lostError) return;
+    lease.heartbeatPending = true;
+    try {
+      await client.query("select 1");
+    } catch (error) {
+      lease.lostError ??= error;
+    } finally {
+      lease.heartbeatPending = false;
+    }
+  }, 30_000);
+  lease.heartbeat.unref();
+  return lease;
 }
 
-async function releaseExecutionLock(client) {
-  if (!client) return;
-  await client.query("select pg_advisory_unlock(hashtext($1))", [LOCK_NAME]).catch(() => {});
-  await client.end().catch(() => {});
+async function releaseExecutionLock(lease) {
+  if (!lease?.client) return;
+  if (lease.heartbeat) clearInterval(lease.heartbeat);
+  if (!lease.lostError) {
+    await lease.client.query("select pg_advisory_unlock(hashtext($1))", [LOCK_NAME]).catch(() => {});
+  }
+  await lease.client.end().catch(() => {});
+}
+
+async function ensureExecutionLock(lease) {
+  if (!lease?.lostError) return { lease, reacquired: false, prior_error: null };
+  const priorError = String(lease.lostError?.message ?? lease.lostError);
+  await releaseExecutionLock(lease);
+  return { lease: await acquireExecutionLock(), reacquired: true, prior_error: priorError };
 }
 
 async function captureStagingSecurity(client) {
@@ -963,7 +994,7 @@ async function main() {
     throw new Error(`Exact catalog envelope approval missing from ${MTG_CATALOG_INGESTION_APPROVAL_ENV}`);
   }
 
-  const lockClient = await acquireExecutionLock();
+  let lockLease = await acquireExecutionLock();
   const stateFile = path.join(outDir, "state.json");
   let durableState = args.resume
     ? JSON.parse(await fs.readFile(stateFile, "utf8"))
@@ -993,6 +1024,15 @@ async function main() {
     for (const batch of selected) {
       if (stopRequested) throw new Error("Graceful stop requested before next set");
       if (completedById.has(batch.source_set_id)) continue;
+      const lockCheck = await ensureExecutionLock(lockLease);
+      lockLease = lockCheck.lease;
+      if (lockCheck.reacquired) {
+        await appendProgress(outDir, {
+          event: "execution_lock_reacquired",
+          prior_error: lockCheck.prior_error,
+          before_source_set_id: batch.source_set_id,
+        });
+      }
       if (!isMtgCatalogBatchEligibleAsOfV1(batch, runPlan.as_of)) {
         if (!durableState.deferred.some((row) => row.source_set_id === batch.source_set_id)) {
           const deferred = {
@@ -1106,7 +1146,7 @@ async function main() {
     await appendProgress(outDir, { event: "execution_stopped", ...failure });
     throw error;
   } finally {
-    await releaseExecutionLock(lockClient);
+    await releaseExecutionLock(lockLease);
   }
 
   const finalGlobalState = await captureGlobalState();

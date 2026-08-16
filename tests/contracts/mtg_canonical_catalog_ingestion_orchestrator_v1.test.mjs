@@ -25,8 +25,18 @@ test("orchestrator freezes plan before database execution", () => {
   assert.match(SOURCE, /acquireExecutionLock/);
   assert.ok(
     SOURCE.indexOf("await atomicWriteJson(runPlanFile, runPlan)") <
-      SOURCE.indexOf("await acquireExecutionLock()"),
+      SOURCE.indexOf("let lockLease = await acquireExecutionLock()"),
   );
+});
+
+test("orchestrator survives idle advisory-lock connection termination safely", () => {
+  assert.match(SOURCE, /keepAlive: true/);
+  assert.match(SOURCE, /client\.on\("error"/);
+  assert.match(SOURCE, /lease\.lostError/);
+  assert.match(SOURCE, /setInterval\(async \(\) =>/);
+  assert.match(SOURCE, /await client\.query\("select 1"\)/);
+  assert.match(SOURCE, /ensureExecutionLock/);
+  assert.match(SOURCE, /execution_lock_reacquired/);
 });
 
 test("orchestrator uses isolated stage and promotion transactions", () => {
