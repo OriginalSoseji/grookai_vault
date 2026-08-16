@@ -6,6 +6,7 @@ import {
   groupMtgImagePointersV1,
   inspectImageBytesV1,
   inspectMtgImagePlanRowV1,
+  inspectMtgImageSourceUrlV1,
   mtgHostedImagePathV1,
   selectMtgImageCanaryV1,
 } from '../../backend/pricing/mtg_card_image_self_host_v1.mjs';
@@ -45,6 +46,30 @@ test('wrong host and face identity fail', () => {
   assert.equal(result.valid, false);
   assert.ok(result.findings.includes('large_authority'));
   assert.ok(result.findings.includes('large_identity'));
+});
+
+test('redirect destination must retain exact protocol, quality, face, and print identity', () => {
+  const value = row();
+  assert.equal(inspectMtgImageSourceUrlV1(value, 'large', value.source_urls.large).valid, true);
+  for (const redirected of [
+    value.source_urls.large.replace('https:', 'http:'),
+    value.source_urls.large.replace('/large/front/', '/normal/front/'),
+    value.source_urls.large.replace('/large/front/', '/large/back/'),
+    value.source_urls.large.replace(value.scryfall_print_id,
+      'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee'),
+    'https://cards.scryfall.io/large/front/placeholder.jpg',
+  ]) {
+    assert.equal(inspectMtgImageSourceUrlV1(value, 'large', redirected).valid, false);
+  }
+});
+
+test('storage canary records created paths before exact readback', async () => {
+  const script = await import('node:fs/promises').then(({ readFile }) => readFile(
+    new URL('../../scripts/audits/mtg_card_image_storage_v1.mjs', import.meta.url), 'utf8'));
+  assert.match(script,
+    /if \(onCreated\) await onCreated\(pointer\);[\s\S]{0,40}await downloadAndInspect/);
+  assert.match(script, /createdByPath\.set\(pointer\.image_path, pointer\)/);
+  assert.match(script, /\.remove\(created\.map\(\(row\) => row\.image_path\)\)/);
 });
 
 test('PNG inspection and pointer retain exact face identity', () => {

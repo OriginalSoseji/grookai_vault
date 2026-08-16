@@ -13,9 +13,9 @@ import {
   MTG_CARD_IMAGE_PLAN_ROWS,
   MTG_CARD_IMAGE_PLAN_SHA256,
   MTG_CARD_IMAGE_SELF_HOST_VERSION,
-  MTG_CARD_IMAGE_SOURCE_HOST,
   buildMtgHostedImagePointerV1,
   inspectImageBytesV1,
+  inspectMtgImageSourceUrlV1,
   inspectMtgImagePlanRowV1,
   selectMtgImageCanaryV1,
   sha256MtgImageV1,
@@ -175,10 +175,10 @@ async function fetchExact(row, quality, limiter, timeoutMs) {
       const response = await fetch(url, { redirect: 'follow',
         signal: AbortSignal.timeout(timeoutMs),
         headers: { 'user-agent': USER_AGENT, accept: 'image/jpeg,image/png' } });
-      if (!response.ok
-        || new URL(response.url).hostname.toLowerCase() !== MTG_CARD_IMAGE_SOURCE_HOST) {
-        throw new Error(`source_http_or_redirect:${response.status}`);
-      }
+      const finalIdentity = inspectMtgImageSourceUrlV1(row, quality, response.url);
+      if (!response.ok || !finalIdentity.valid) throw new Error(
+        `source_http_or_redirect:${response.status}:${finalIdentity.findings.join(',')}`,
+      );
       const buffer = await readResponse(response);
       const image = inspectImageBytesV1(buffer, response.headers.get('content-type'));
       if (!image.valid) throw new Error(`invalid_image:${image.findings.join(',')}`);
@@ -228,7 +228,8 @@ async function mapLimit(values, limit, mapper) {
   return results;
 }
 
-async function storeOne(client, publicBase, row, quality, limiter, timeoutMs, allowExisting) {
+async function storeOne(client, publicBase, row, quality, limiter, timeoutMs, allowExisting,
+  onCreated = null) {
   const fetched = await fetchExact(row, quality, limiter, timeoutMs);
   const pointer = buildMtgHostedImagePointerV1(row, fetched.image, quality, publicBase);
   const present = await exists(client, pointer.image_path);
@@ -240,6 +241,7 @@ async function storeOne(client, publicBase, row, quality, limiter, timeoutMs, al
         contentType: pointer.content_type, cacheControl: '31536000' });
     if (error) throw new Error(`storage_upload:${error.message}`);
     created = true;
+    if (onCreated) await onCreated(pointer);
   }
   await downloadAndInspect(client, pointer);
   return { pointer, created, reused_verified: present };
@@ -302,10 +304,12 @@ async function main() {
 
   const { client, publicBase } = storageClient();
   if (args.mode === 'storage-canary') {
+    const createdByPath = new Map();
     const results = await mapLimit(canaryRows, args.concurrency,
-      (row) => storeOne(client, publicBase, row, args.quality, limiter, args.timeoutMs, false));
-    const created = results.filter((row) => row.ok && row.value.created)
-      .map((row) => row.value.pointer);
+      (row) => storeOne(client, publicBase, row, args.quality, limiter, args.timeoutMs, false,
+        (pointer) => { createdByPath.set(pointer.image_path, pointer); }));
+    const created = [...createdByPath.values()];
+    const readbackVerified = results.filter((row) => row.ok && row.value.created).length;
     let removeError = null;
     if (created.length) {
       const { error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
@@ -314,11 +318,12 @@ async function main() {
     }
     const absent = await Promise.all(created.map(async (row) => !(await exists(client, row.image_path))));
     const failures = results.filter((row) => !row.ok);
-    const passed = !failures.length && !removeError && created.length === canaryRows.length
+    const passed = !failures.length && !removeError && readbackVerified === canaryRows.length
       && absent.every(Boolean);
     const summary = { status: passed ? 'storage_canary_passed_zero_residue'
       : 'storage_canary_failed', ...frozenPlan, selected_assets: canaryRows.length,
-    uploaded_and_readback_verified: created.length, removed_verified_absent:
+    uploaded_and_readback_verified: readbackVerified, uploaded_cleanup_candidates: created.length,
+    removed_verified_absent:
       absent.filter(Boolean).length, failures, remove_error: removeError, database_writes: 0 };
     await writeArtifacts(args.outDir, { 'run_plan.json': { ...frozenPlan,
       selected_asset_keys: canaryRows.map((row) => `${row.scryfall_print_id}:${row.face_index}`) },

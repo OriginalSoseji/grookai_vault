@@ -35,16 +35,23 @@ export function inspectMtgImagePlanRowV1(row) {
     ? 'back' : `additional_${row?.face_index}`)) findings.push('face_role');
   if (row?.source_identity_status !== 'exact_scryfall_print') findings.push('identity_status');
   for (const quality of ['png', 'large', 'normal']) {
-    let parsed;
-    try { parsed = new URL(row?.source_urls?.[quality]); } catch { findings.push(`${quality}_url`); continue; }
-    if (parsed.protocol !== 'https:' || parsed.hostname.toLowerCase() !== MTG_CARD_IMAGE_SOURCE_HOST) {
-      findings.push(`${quality}_authority`);
-    }
-    const face = row.face_index === 0 ? 'front' : 'back';
-    const extension = quality === 'png' ? 'png' : 'jpg';
-    if (!parsed.pathname.endsWith(`/${row.scryfall_print_id}.${extension}`)
-      || !parsed.pathname.startsWith(`/${quality}/${face}/`)) findings.push(`${quality}_identity`);
+    const inspected = inspectMtgImageSourceUrlV1(row, quality, row?.source_urls?.[quality]);
+    findings.push(...inspected.findings);
   }
+  return { valid: findings.length === 0, findings };
+}
+
+export function inspectMtgImageSourceUrlV1(row, quality, url) {
+  const findings = [];
+  let parsed;
+  try { parsed = new URL(url); } catch { return { valid: false, findings: [`${quality}_url`] }; }
+  if (parsed.protocol !== 'https:' || parsed.hostname.toLowerCase() !== MTG_CARD_IMAGE_SOURCE_HOST) {
+    findings.push(`${quality}_authority`);
+  }
+  const face = row?.face_index === 0 ? 'front' : 'back';
+  const extension = quality === 'png' ? 'png' : 'jpg';
+  if (!parsed.pathname.endsWith(`/${row?.scryfall_print_id}.${extension}`)
+    || !parsed.pathname.startsWith(`/${quality}/${face}/`)) findings.push(`${quality}_identity`);
   return { valid: findings.length === 0, findings };
 }
 
