@@ -22,18 +22,18 @@ function deployment() {
       artifact_status: "signed",
       artifact_sha256: "b".repeat(64),
       commit_sha: "a".repeat(40),
-      version_code: "290",
+      version_code: "293",
     },
     ios: {
       distribution_status: "in_beta_testing",
-      build_number: "290",
+      build_number: "293",
       commit_sha: "a".repeat(40),
     },
   };
 }
 
 test("release plan requires all three exact deployed client proofs", () => {
-  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "290");
+  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "293");
   const ready = evaluateOnePieceSignedInCatalogReleasePlanV1({
     before: { release_control: { release_status: "hidden" }, counts },
     deployment: deployment(),
@@ -52,7 +52,7 @@ test("release plan requires all three exact deployed client proofs", () => {
     );
   }
 
-  for (const buildNumber of ["289", "999"]) {
+  for (const buildNumber of ["289", "290", "291", "292", "999"]) {
     const stale = deployment();
     stale.android.version_code = buildNumber;
     stale.ios.build_number = buildNumber;
