@@ -10,6 +10,7 @@ import {
   mtgHostedImagePathV1,
   selectMtgImageCanaryV1,
 } from '../../backend/pricing/mtg_card_image_self_host_v1.mjs';
+import { downloadAndInspect } from '../../scripts/audits/mtg_card_image_storage_v1.mjs';
 
 function row(index = 0, faceIndex = 0) {
   const id = `31f173fc-112c-4aec-b464-3f81e2ee21${String(index).padStart(2, '0')}`;
@@ -70,6 +71,38 @@ test('storage canary records created paths before exact readback', async () => {
     /if \(onCreated\) await onCreated\(pointer\);[\s\S]{0,40}await downloadAndInspect/);
   assert.match(script, /createdByPath\.set\(pointer\.image_path, pointer\)/);
   assert.match(script, /\.remove\(created\.map\(\(row\) => row\.image_path\)\)/);
+});
+
+test('storage readback retries transient failures without weakening verification', async () => {
+  const bytes = Buffer.alloc(1280);
+  Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]).copy(bytes);
+  bytes.writeUInt32BE(745, 16);
+  bytes.writeUInt32BE(1040, 20);
+  const inspected = inspectImageBytesV1(bytes, 'image/png');
+  let calls = 0;
+  const client = {
+    storage: {
+      from: () => ({
+        download: async () => {
+          calls += 1;
+          if (calls < 3) {
+            return { data: null, error: { message: 'transient' } };
+          }
+          return { data: new Blob([bytes]), error: null };
+        },
+      }),
+    },
+  };
+  const readback = await downloadAndInspect(client, {
+    image_path: 'fixture/front.png',
+    content_type: 'image/png',
+    image_hash: inspected.sha256,
+    size_bytes: inspected.size_bytes,
+    width: inspected.width,
+    height: inspected.height,
+  }, { retryDelayMs: 0 });
+  assert.equal(calls, 3);
+  assert.equal(readback.sha256, inspected.sha256);
 });
 
 test('PNG inspection and pointer retain exact face identity', () => {

@@ -201,17 +201,34 @@ async function exists(client, imagePath) {
   return (data ?? []).some((row) => row.name === name);
 }
 
-async function downloadAndInspect(client, pointer) {
-  const { data, error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
-    .download(pointer.image_path);
-  if (error || !data) throw new Error(`storage_download:${error?.message ?? 'missing'}`);
-  const buffer = Buffer.from(await data.arrayBuffer());
-  const image = inspectImageBytesV1(buffer, pointer.content_type);
-  if (!image.valid || image.sha256 !== pointer.image_hash || image.size_bytes !== pointer.size_bytes
-    || image.width !== pointer.width || image.height !== pointer.height) {
-    throw new Error(`storage_readback_mismatch:${pointer.image_path}`);
+export async function downloadAndInspect(client, pointer, {
+  attempts = 3,
+  retryDelayMs = 750,
+} = {}) {
+  const failures = [];
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const { data, error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
+        .download(pointer.image_path);
+      if (error || !data) {
+        throw new Error(`storage_download:${error?.message ?? 'missing'}`);
+      }
+      const buffer = Buffer.from(await data.arrayBuffer());
+      const image = inspectImageBytesV1(buffer, pointer.content_type);
+      if (!image.valid || image.sha256 !== pointer.image_hash
+        || image.size_bytes !== pointer.size_bytes || image.width !== pointer.width
+        || image.height !== pointer.height) {
+        throw new Error(`storage_readback_mismatch:${pointer.image_path}`);
+      }
+      return image;
+    } catch (error) {
+      failures.push(error.message);
+      if (attempt < attempts) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * retryDelayMs));
+      }
+    }
   }
-  return image;
+  throw new Error(`storage_readback_exhausted:${failures.join('|')}`);
 }
 
 async function mapLimit(values, limit, mapper) {
@@ -356,4 +373,6 @@ async function main() {
   throw new Error('Verify requires a bound pointer manifest and is implemented by the aggregate gate');
 }
 
-await main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  await main();
+}
