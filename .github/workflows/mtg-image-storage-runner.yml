@@ -1,0 +1,99 @@
+name: MTG Image Storage Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Governed image operation
+        required: true
+        type: choice
+        options:
+          - plan
+          - measure-canary
+          - storage-canary
+          - upload
+      start_index:
+        description: Zero-based asset index
+        required: true
+        default: "0"
+        type: string
+      max_assets:
+        description: Exact maximum assets in the bounded range
+        required: true
+        default: "20"
+        type: string
+      quality:
+        description: Permanent hosted source quality
+        required: true
+        default: large
+        type: choice
+        options:
+          - large
+          - normal
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-image-storage-v1
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      OPERATION: ${{ inputs.operation }}
+      START_INDEX: ${{ inputs.start_index }}
+      MAX_ASSETS: ${{ inputs.max_assets }}
+      QUALITY: ${{ inputs.quality }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Validate frozen producer
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$START_INDEX" =~ ^[0-9]+$ ]]
+          [[ "$MAX_ASSETS" =~ ^[1-9][0-9]*$ ]]
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/pricing/mtg_card_image_self_host_v1.mjs
+          node --check scripts/audits/mtg_card_image_storage_v1.mjs
+          node --test tests/contracts/mtg_card_image_self_host_v1.test.mjs
+          git diff --check
+      - name: Execute bounded image operation
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/mtg-image-$OPERATION-$START_INDEX-$MAX_ASSETS"
+          args=(
+            "--mode=$OPERATION"
+            "--start-index=$START_INDEX"
+            "--max-assets=$MAX_ASSETS"
+            "--quality=$QUALITY"
+            "--concurrency=10"
+            "--source-delay-ms=120"
+            "--expected-head-sha=$GITHUB_SHA"
+            "--out-dir=$out"
+          )
+          if [[ "$OPERATION" != "plan" ]]; then
+            test -n "$SUPABASE_URL"
+            test -n "$SUPABASE_SECRET_KEY"
+          fi
+          node scripts/audits/mtg_card_image_storage_v1.mjs "${args[@]}"
+      - name: Upload immutable evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-image-${{ inputs.operation }}-${{ inputs.start_index }}-${{ inputs.max_assets }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/mtg-image-*
+          if-no-files-found: warn
+          retention-days: 90
