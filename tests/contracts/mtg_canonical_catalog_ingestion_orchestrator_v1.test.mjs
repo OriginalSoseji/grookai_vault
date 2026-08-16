@@ -14,6 +14,11 @@ const SOURCE = fs.readFileSync(
   "utf8",
 );
 
+const WORKFLOW = fs.readFileSync(
+  new URL("../../.github/workflows/mtg-hidden-catalog-runner.yml", import.meta.url),
+  "utf8",
+);
+
 test("orchestrator freezes plan before database execution", () => {
   assert.match(SOURCE, /run_plan\.json/);
   assert.match(SOURCE, /await atomicWriteJson\(runPlanFile, runPlan\)/);
@@ -71,6 +76,11 @@ test("apply requires one exact manifest-level approval", () => {
   assert.match(SOURCE, /Exact catalog envelope approval missing/);
   assert.doesNotMatch(SOURCE, /MTG_CANONICAL_SET_PROMOTION_APPROVAL/);
   assert.doesNotMatch(SOURCE, /MTG_CANONICAL_CANARY_STAGE_APPROVAL/);
+});
+
+test("remote runner exports the orchestrator's exact approval variable", () => {
+  assert.match(WORKFLOW, /export MTG_CANONICAL_CATALOG_INGESTION_APPROVAL=/);
+  assert.doesNotMatch(WORKFLOW, /export MTG_CATALOG_INGESTION_APPROVAL=/);
 });
 
 test("orchestrator selects deterministic non-overlapping execution ranges", () => {
