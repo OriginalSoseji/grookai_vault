@@ -62,7 +62,7 @@ function parseArgs(argv) {
 
 function createStorageClient() {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY;
   if (!url || !key) throw new Error("Supabase Storage credentials are unavailable");
   const parsed = new URL(url);
   const projectRef = parsed.hostname.match(/^([a-z0-9]+)\.supabase\.co$/)?.[1];

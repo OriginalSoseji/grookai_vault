@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 
 import {
@@ -9,6 +10,16 @@ import {
   retryOnePieceCardImageReadV1,
   validateOnePieceCardImageSourcePlanV1,
 } from "../../backend/pricing/one_piece_card_image_self_host_v1.mjs";
+
+const STORAGE_RUNNER =
+  "scripts/audits/one_piece_card_image_storage_v1.mjs";
+
+test("Storage runner requires the current secret-key contract", () => {
+  const source = fs.readFileSync(STORAGE_RUNNER, "utf8");
+  const legacyKey = new RegExp(["SUPABASE", "SERVICE", "ROLE", "KEY"].join("_"));
+  assert.match(source, /process\.env\.SUPABASE_SECRET_KEY/);
+  assert.doesNotMatch(source, legacyKey);
+});
 
 test("audit phase directories match their frozen manifest consumers", () => {
   assert.equal(onePieceCardImageAuditDirectoryV1("plan"), "source_plan_v1");

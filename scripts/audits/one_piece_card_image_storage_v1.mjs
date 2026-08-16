@@ -189,8 +189,7 @@ async function readBoundPlan(args) {
 
 function storageClient() {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY ??
-    process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY;
   if (!url || !key || new URL(url).hostname !==
       "ycdxbpibncqcchqiihfz.supabase.co") {
     throw new Error("Exact production Storage credentials are required");

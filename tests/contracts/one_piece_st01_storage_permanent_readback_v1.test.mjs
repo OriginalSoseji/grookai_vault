@@ -21,6 +21,9 @@ test("independent verifier binds the exact successful apply proof", () => {
 
 test("independent verifier permits only list and download Storage access", () => {
   const source = fs.readFileSync(SOURCE, "utf8");
+  const legacyKey = new RegExp(["SUPABASE", "SERVICE", "ROLE", "KEY"].join("_"));
+  assert.match(source, /process\.env\.SUPABASE_SECRET_KEY/);
+  assert.doesNotMatch(source, legacyKey);
   assert.match(source, /\.list\(/);
   assert.match(source, /\.download\(/);
   assert.doesNotMatch(source, /\.upload\(/);

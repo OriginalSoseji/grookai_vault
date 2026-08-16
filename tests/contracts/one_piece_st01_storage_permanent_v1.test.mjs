@@ -64,6 +64,9 @@ test("plan generator is offline and cannot access Storage or database", () => {
 
 test("apply runner is inert by default and failure-atomic when authorized", () => {
   const source = fs.readFileSync(APPLY_SOURCE, "utf8");
+  const legacyKey = new RegExp(["SUPABASE", "SERVICE", "ROLE", "KEY"].join("_"));
+  assert.match(source, /process\.env\.SUPABASE_SECRET_KEY/);
+  assert.doesNotMatch(source, legacyKey);
   assert.match(source, /argument === "--apply"/);
   assert.match(source, /Explicit permanent Storage approval fingerprint or plan hash mismatch/);
   assert.match(source, /Permanent Storage code bundle changed after plan generation/);
