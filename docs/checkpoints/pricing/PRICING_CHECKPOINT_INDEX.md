@@ -1048,6 +1048,12 @@ Recommended reading order for future maintainers:
       exact write attribution, zero residue, and the still-unexecuted durable
       qualification apply-plan gate
 
+87. `PRICING_CHECKPOINT_89_ONE_PIECE_SEALED_QUALIFICATION_APPLY_PLAN_FROZEN.md`
+    - then read the exact one-table 374-row durable mutation contract, guarded
+      dry-run/preflight/apply/verify writer, 16 excluded missing-observation
+      holds, zero-connection writer dry run, immutable fingerprints, and the
+      still-unexecuted production read-only apply preflight gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
