@@ -39,6 +39,7 @@ import {
 } from "@/lib/publicSets.shared";
 
 type SetRow = {
+  id: string | null;
   game: string | null;
   code: string | null;
   name: string | null;
@@ -205,6 +206,7 @@ function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
 }
 
 const PUBLIC_SET_LIST_SELECT = `
+  id,
   game,
   code,
   name,
@@ -217,7 +219,30 @@ const PUBLIC_SET_LIST_SELECT = `
 const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
 
 const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<Record<string, number>>;
+const PUBLIC_SET_ROW_PAGE_SIZE = 1000;
 const PUBLIC_SET_COUNT_CHUNK_SIZE = 500;
+
+async function getAllVisibleSetRows(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+) {
+  const rows: SetRow[] = [];
+  for (let offset = 0; ; offset += PUBLIC_SET_ROW_PAGE_SIZE) {
+    const { data, error } = await supabase
+      .from("sets")
+      .select(PUBLIC_SET_LIST_SELECT)
+      .order("id", { ascending: true })
+      .range(offset, offset + PUBLIC_SET_ROW_PAGE_SIZE - 1);
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    const page = (data ?? []) as SetRow[];
+    rows.push(...page);
+    if (page.length < PUBLIC_SET_ROW_PAGE_SIZE) {
+      return rows;
+    }
+  }
+}
 
 async function getDynamicPublicSetCardCounts(
   supabase: Awaited<ReturnType<typeof createServerSupabase>>,
@@ -276,13 +301,7 @@ function mapSetRowToSummary(row: SetRow, canonicalCardCount: number): PublicSetS
 
 export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   const supabase = await createServerSupabase();
-  const { data: setRows, error: setError } = await supabase.from("sets").select(PUBLIC_SET_LIST_SELECT);
-
-  if (setError) {
-    throw new Error(setError.message);
-  }
-
-  const visibleRows = (setRows ?? []) as SetRow[];
+  const visibleRows = await getAllVisibleSetRows(supabase);
   const dynamicCounts = await getDynamicPublicSetCardCounts(
     supabase,
     visibleRows.map((row) => row.code ?? ""),

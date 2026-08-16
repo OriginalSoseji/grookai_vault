@@ -67,6 +67,14 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.doesNotMatch(source, /Math\.max\(row\.printed_total \?\? 0, 1\)/);
 });
 
+test("set discovery paginates beyond the PostgREST row ceiling", () => {
+  assert.match(source, /const PUBLIC_SET_ROW_PAGE_SIZE = 1000/);
+  assert.match(source, /async function getAllVisibleSetRows/);
+  assert.match(source, /\.order\("id", \{ ascending: true \}\)/);
+  assert.match(source, /\.range\(offset, offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1\)/);
+  assert.match(listFunctionSource, /getAllVisibleSetRows\(supabase\)/);
+});
+
 test("canonical aliases are selected by reconciled catalog rows, not printed total", () => {
   const alias = {
     code: "sv3",
