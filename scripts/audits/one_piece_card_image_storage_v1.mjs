@@ -11,7 +11,9 @@ import pg from "pg";
 
 import {
   ONE_PIECE_CARD_IMAGE_BUCKET,
+  ONE_PIECE_CARD_IMAGE_AVAILABLE_STATUSES,
   ONE_PIECE_CARD_IMAGE_COUNT,
+  ONE_PIECE_CARD_IMAGE_GAP_STATUS,
   ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION,
   buildOnePieceCardImagePointerV1,
   buildOnePieceCardImageSourcePlanV1,
@@ -127,6 +129,38 @@ async function sourceRows(connectionString) {
   } finally {
     await client.end();
   }
+}
+
+async function probeSourceUrl(url, timeoutMs) {
+  try {
+    const response = await fetch(url, { method: "HEAD",
+      redirect: "follow", signal: AbortSignal.timeout(timeoutMs),
+      headers: { "user-agent": USER_AGENT, accept: "image/*" } });
+    return { status: response.status,
+      content_type: response.headers.get("content-type"),
+      final_url: response.url };
+  } catch (error) {
+    return { status: null, content_type: null, final_url: null,
+      error: error.message };
+  }
+}
+
+async function annotateSourceAvailability(rows, args) {
+  return (await mapLimit(rows, args.concurrency, async (row) => {
+    if (row.existing_image_path) return row;
+    const highResolutionUrl = row.source_image_url.replace(
+      /_200w\.jpg$/i, "_in_1000x1000.jpg");
+    const high = await probeSourceUrl(highResolutionUrl, args.timeoutMs);
+    const fallback = high.status === 200 ? null
+      : await probeSourceUrl(row.source_image_url, args.timeoutMs);
+    const available = high.status === 200 || fallback?.status === 200;
+    return { ...row, source_availability_status: available
+      ? "available_exact_tcgplayer" : ONE_PIECE_CARD_IMAGE_GAP_STATUS,
+    availability_probe: { high_resolution: high, fallback } };
+  })).map((result) => {
+    if (!result.ok) throw new Error(`Availability probe failed: ${result.error}`);
+    return result.value;
+  });
 }
 
 async function writeArtifacts(dir, files, producer) {
@@ -289,25 +323,38 @@ async function main() {
   dotenv.config({ path: args.envFile, quiet: true });
   if (args.mode === "plan") {
     if (!process.env.SUPABASE_DB_URL) throw new Error("SUPABASE_DB_URL required");
-    const rows = await sourceRows(process.env.SUPABASE_DB_URL);
+    const source = await sourceRows(process.env.SUPABASE_DB_URL);
+    const rows = await annotateSourceAvailability(source, args);
     const plan = buildOnePieceCardImageSourcePlanV1(rows);
     const validation = validateOnePieceCardImageSourcePlanV1(plan);
     if (!validation.valid) throw new Error(validation.findings.join(","));
     const compressed = gzipSync(Buffer.from(`${JSON.stringify(plan)}\n`));
     const summary = { status: "source_plan_frozen_read_only", repository: repo,
       plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
-      item_count: plan.items.length, database_writes: 0, storage_writes: 0 };
+      item_count: plan.items.length,
+      available_images: plan.counts.available_images,
+      coverage_gaps: plan.counts.coverage_gaps,
+      database_writes: 0, storage_writes: 0 };
     await writeArtifacts(args.outDir, { "source_plan.json.gz": compressed,
       "summary.json": summary, "REPORT.md":
-        `# One Piece Card Image Source Plan V1\n\n- Status: \`${summary.status}\`\n- Images: \`6730\`\n` }, repo.commit_sha);
+        `# One Piece Card Image Source Plan V1\n\n- Status: \`${summary.status}\`\n- Catalog rows: \`6730\`\n- Available exact images: \`${summary.available_images}\`\n- Explicit coverage gaps: \`${summary.coverage_gaps}\`\n` }, repo.commit_sha);
     process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
     return;
   }
   const { plan } = await readBoundPlan(args);
   const { client, publicBase } = storageClient();
   if (args.mode === "canary") {
-    const selected = plan.items.filter((_, index) => index % 269 === 0)
-      .slice(0, 25);
+    const available = plan.items.filter((row) =>
+      ONE_PIECE_CARD_IMAGE_AVAILABLE_STATUSES.includes(
+        row.source_availability_status));
+    const official = available.find((row) =>
+      row.source_availability_status === "available_existing_official");
+    const tcgplayer = available.filter((row) =>
+      row.source_availability_status === "available_exact_tcgplayer");
+    const step = Math.max(1, Math.floor(tcgplayer.length / 24));
+    const selected = [official, ...tcgplayer.filter((_, index) =>
+      index % step === 0)].filter(Boolean).slice(0, 25);
+    if (selected.length !== 25) throw new Error("Canary scope is not 25");
     const results = await mapLimit(selected, Math.min(args.concurrency, 10),
       (source) => processOne(client, publicBase, source, args, false));
     const created = results.filter((row) => row.ok && row.value.created)
@@ -337,7 +384,12 @@ async function main() {
   }
   if (args.mode === "upload") {
     await fs.mkdir(CACHE_ROOT, { recursive: true });
-    const results = await mapLimit(plan.items, args.concurrency, async (source) => {
+    const available = plan.items.filter((row) =>
+      ONE_PIECE_CARD_IMAGE_AVAILABLE_STATUSES.includes(
+        row.source_availability_status));
+    const coverageGaps = plan.items.filter((row) =>
+      row.source_availability_status === ONE_PIECE_CARD_IMAGE_GAP_STATUS);
+    const results = await mapLimit(available, args.concurrency, async (source) => {
       const cachedPath = path.join(CACHE_ROOT, `${source.source_product_id}.json`);
       try {
         const pointer = JSON.parse(await fs.readFile(cachedPath, "utf8"));
@@ -351,26 +403,31 @@ async function main() {
     const failures = results.filter((row) => !row.ok);
     const pointers = results.filter((row) => row.ok).map((row) => row.value.pointer)
       .sort((left, right) => left.source_product_id - right.source_product_id);
-    const validation = validateOnePieceCardImagePointersV1(pointers);
+    const validation = validateOnePieceCardImagePointersV1(pointers,
+      available.length);
     const valid = failures.length === 0 && validation.valid;
     const compressed = gzipSync(Buffer.from(`${JSON.stringify({
       version: ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION,
       source_plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
       pointers,
+      coverage_gaps: coverageGaps,
+      counts: { catalog_rows: plan.items.length,
+        image_pointers: pointers.length, coverage_gaps: coverageGaps.length },
       pointer_payload_fingerprint_sha256:
         hashOnePieceCardImageV1(pointers),
     })}\n`));
     const summary = { status: valid ? "storage_upload_complete_and_verified" :
       "storage_upload_incomplete", repository: repo,
     plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
-    planned: plan.items.length, verified: pointers.length,
+    planned: plan.items.length, available_planned: available.length,
+    coverage_gaps: coverageGaps.length, verified: pointers.length,
     created: results.filter((row) => row.ok && row.value.created).length,
     reused_verified: results.filter((row) => row.ok &&
       row.value.reused_verified).length, failures, validation,
     database_writes: 0, pointer_writes: 0 };
     await writeArtifacts(args.outDir, { "asset_manifest.json.gz": compressed,
       "summary.json": summary, "REPORT.md":
-        `# One Piece Card Image Storage Upload V1\n\n- Status: \`${summary.status}\`\n- Verified: \`${pointers.length}/6730\`\n` }, repo.commit_sha);
+        `# One Piece Card Image Storage Upload V1\n\n- Status: \`${summary.status}\`\n- Verified exact images: \`${pointers.length}\`\n- Explicit provider coverage gaps: \`${coverageGaps.length}\`\n` }, repo.commit_sha);
     process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
     if (!valid) throw new Error("Storage upload incomplete");
     return;
@@ -379,7 +436,12 @@ async function main() {
   if (manifest.source_plan_fingerprint_sha256 !== plan.plan_fingerprint_sha256 ||
       manifest.pointer_payload_fingerprint_sha256 !==
         hashOnePieceCardImageV1(manifest.pointers) ||
-      !validateOnePieceCardImagePointersV1(manifest.pointers).valid) {
+      !validateOnePieceCardImagePointersV1(manifest.pointers,
+        manifest.counts?.image_pointers).valid ||
+      manifest.counts?.catalog_rows !== ONE_PIECE_CARD_IMAGE_COUNT ||
+      manifest.counts?.image_pointers + manifest.counts?.coverage_gaps !==
+        ONE_PIECE_CARD_IMAGE_COUNT ||
+      manifest.coverage_gaps?.length !== manifest.counts?.coverage_gaps) {
     throw new Error("Asset manifest binding failed");
   }
   const results = await mapLimit(manifest.pointers, args.concurrency,

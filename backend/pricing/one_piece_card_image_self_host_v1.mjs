@@ -6,6 +6,12 @@ export const ONE_PIECE_CARD_IMAGE_COUNT = 6730;
 export const ONE_PIECE_CARD_IMAGE_BUCKET = "external-card-images";
 export const ONE_PIECE_CARD_IMAGE_SOURCE_HOST =
   "tcgplayer-cdn.tcgplayer.com";
+export const ONE_PIECE_CARD_IMAGE_AVAILABLE_STATUSES = Object.freeze([
+  "available_exact_tcgplayer",
+  "available_existing_official",
+]);
+export const ONE_PIECE_CARD_IMAGE_GAP_STATUS =
+  "unavailable_exact_tcgplayer";
 
 const ONE_PIECE_CARD_IMAGE_AUDIT_DIRECTORIES_V1 = Object.freeze({
   plan: "source_plan_v1",
@@ -64,7 +70,17 @@ export function buildOnePieceCardImageSourcePlanV1(rows) {
       existing_image_bucket: row.existing_image_path ? "user-card-images" : null,
       existing_image_path: row.existing_image_path ?? null,
       existing_image_note: row.existing_image_note ?? null,
+      source_availability_status: row.existing_image_path
+        ? "available_existing_official"
+        : row.source_availability_status ?? "unverified",
+      availability_probe: row.existing_image_path ? null
+        : row.availability_probe ?? null,
     }));
+  const availableImages = items.filter((row) =>
+    ONE_PIECE_CARD_IMAGE_AVAILABLE_STATUSES.includes(
+      row.source_availability_status)).length;
+  const coverageGaps = items.filter((row) =>
+    row.source_availability_status === ONE_PIECE_CARD_IMAGE_GAP_STATUS).length;
   const core = { version: ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION,
     bucket: ONE_PIECE_CARD_IMAGE_BUCKET, items,
     counts: { card_prints: items.length, unique_card_print_ids:
@@ -73,7 +89,9 @@ export function buildOnePieceCardImageSourcePlanV1(rows) {
     unique_source_products: new Set(items.map((row) =>
       row.source_product_id)).size,
     unique_source_urls: new Set(items.map((row) =>
-      row.source_image_url)).size },
+      row.source_image_url)).size,
+    available_images: availableImages,
+    coverage_gaps: coverageGaps },
   boundaries: { database_writes: 0, storage_writes: 0,
     pointer_writes: 0, release_writes: 0, vault_writes: 0 } };
   return { ...core, plan_fingerprint_sha256:
@@ -111,7 +129,23 @@ export function validateOnePieceCardImageSourcePlanV1(plan) {
         "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/") ||
        row.existing_image_bucket !== "user-card-images"),
     `existing_official_binding_mismatch:${row.gv_id}`);
+    add(!ONE_PIECE_CARD_IMAGE_AVAILABLE_STATUSES.includes(
+      row.source_availability_status) &&
+      row.source_availability_status !== ONE_PIECE_CARD_IMAGE_GAP_STATUS,
+    `source_availability_unresolved:${row.gv_id}`);
+    add(row.evidence_role === "existing_official_self_hosted_image" &&
+      row.source_availability_status !== "available_existing_official",
+    `official_availability_mismatch:${row.gv_id}`);
+    add(row.evidence_role === "exact_tcgplayer_product_image" &&
+      !["available_exact_tcgplayer",
+        ONE_PIECE_CARD_IMAGE_GAP_STATUS].includes(
+        row.source_availability_status),
+    `tcgplayer_availability_mismatch:${row.gv_id}`);
   }
+  add(Number(plan?.counts?.available_images ?? -1) +
+      Number(plan?.counts?.coverage_gaps ?? -1) !==
+      ONE_PIECE_CARD_IMAGE_COUNT,
+  "availability_reconciliation_mismatch");
   for (const [key, value] of Object.entries(plan?.boundaries ?? {})) {
     add(value !== 0, `boundary_overclaim:${key}`);
   }
@@ -145,9 +179,12 @@ export function buildOnePieceCardImagePointerV1(source, image, publicUrl) {
   source_download_role: image.source_download_role };
 }
 
-export function validateOnePieceCardImagePointersV1(rows) {
+export function validateOnePieceCardImagePointersV1(
+  rows,
+  expectedCount = ONE_PIECE_CARD_IMAGE_COUNT,
+) {
   const findings = [];
-  if ((rows ?? []).length !== ONE_PIECE_CARD_IMAGE_COUNT) {
+  if ((rows ?? []).length !== expectedCount) {
     findings.push("pointer_count_mismatch");
   }
   for (const row of rows ?? []) {

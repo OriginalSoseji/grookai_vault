@@ -36,6 +36,7 @@ test("source plan preserves exact product and card identity", () => {
     source_product_id: index + 1,
     source_image_url:
       `https://tcgplayer-cdn.tcgplayer.com/product/${index + 1}_200w.jpg`,
+    source_availability_status: "available_exact_tcgplayer",
   }));
   const plan = buildOnePieceCardImageSourcePlanV1(rows);
   assert.deepEqual(validateOnePieceCardImageSourcePlanV1(plan),
@@ -64,6 +65,7 @@ test("existing official image evidence is preserved as a separate authority", ()
     source_product_id: index + 1,
     source_image_url:
       `https://tcgplayer-cdn.tcgplayer.com/product/${index + 1}_200w.jpg`,
+    source_availability_status: "available_exact_tcgplayer",
     existing_image_path: index === 0
       ? "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/card/image.png"
       : null,
@@ -73,4 +75,25 @@ test("existing official image evidence is preserved as a separate authority", ()
   assert.equal(plan.items[0].evidence_role,
     "existing_official_self_hosted_image");
   assert.equal(validateOnePieceCardImageSourcePlanV1(plan).valid, true);
+});
+
+test("provider image gaps remain explicit without substituting artwork", () => {
+  const rows = Array.from({ length: 6730 }, (_, index) => ({
+    card_print_id: `00000000-0000-4000-8000-${String(index).padStart(12, "0")}`,
+    gv_id: `GV-OP-TCGP-${index}`,
+    canonical_name: `Card ${index}`,
+    source_product_id: index + 1,
+    source_image_url:
+      `https://tcgplayer-cdn.tcgplayer.com/product/${index + 1}_200w.jpg`,
+    source_availability_status: index < 177
+      ? "unavailable_exact_tcgplayer" : "available_exact_tcgplayer",
+    availability_probe: index < 177 ? {
+      high_resolution: { status: 403 }, fallback: { status: 403 },
+    } : { high_resolution: { status: 200 }, fallback: null },
+  }));
+  const plan = buildOnePieceCardImageSourcePlanV1(rows);
+  assert.equal(plan.counts.available_images, 6553);
+  assert.equal(plan.counts.coverage_gaps, 177);
+  assert.deepEqual(validateOnePieceCardImageSourcePlanV1(plan),
+    { valid: true, findings: [] });
 });
