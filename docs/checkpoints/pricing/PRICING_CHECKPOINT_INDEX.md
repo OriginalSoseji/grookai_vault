@@ -1054,6 +1054,11 @@ Recommended reading order for future maintainers:
       holds, zero-connection writer dry run, immutable fingerprints, and the
       still-unexecuted production read-only apply preflight gate
 
+88. `PRICING_CHECKPOINT_90_ONE_PIECE_SEALED_QUALIFICATIONS_APPLIED_RELEASE_GATE_READY.md`
+    - then read the exact 374-row qualification apply and independent readback,
+      332 qualified exact members, 58 explicit release exclusions, unchanged
+      hidden visibility, and the database-bound immutable release gate next
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

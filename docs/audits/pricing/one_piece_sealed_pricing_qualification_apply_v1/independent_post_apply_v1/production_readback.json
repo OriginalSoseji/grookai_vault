@@ -1,0 +1,37 @@
+{
+  "transaction_read_only": true,
+  "baseline": {
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_pricing_lane_qualifications": 374,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0,
+    "one_piece_release_control_rows": 1,
+    "one_piece_release_status": "hidden"
+  },
+  "readback": {
+    "count": 374,
+    "status_counts": {
+      "qualified_exact": 332,
+      "blocked_stale": 4,
+      "blocked_missing_price": 38
+    },
+    "expected_sha256": "1145f3cc1ce1345e9f75819af52d2d2f08949649fddd4dcca7153b8ea5db51ac",
+    "actual_sha256": "1145f3cc1ce1345e9f75819af52d2d2f08949649fddd4dcca7153b8ea5db51ac",
+    "exact": true
+  },
+  "write_attribution": [],
+  "boundaries": {
+    "database_writes": 0,
+    "release_writes": 0,
+    "release_member_writes": 0,
+    "release_pointer_writes": 0,
+    "publication_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}
