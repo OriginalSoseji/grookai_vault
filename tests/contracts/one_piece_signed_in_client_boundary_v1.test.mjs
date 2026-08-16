@@ -30,16 +30,24 @@ test("card and set loaders preserve request-role catalog visibility", () => {
   assert.match(setLoader, /game,/);
   assert.match(setLoader, /card_prints\(count\)/);
   assert.match(setLoader, /candidate\.game_code/);
-  assert.doesNotMatch(setStatsLoader, /createPublicServerClient/);
+  assert.match(setStatsLoader, /createPublicServerClient/);
   assert.match(
     setStatsLoader,
-    /getPublicSetMasterSetStats\(\s*supabase: SupabaseClient,\s*setCode:/,
+    /getPublicSetMasterSetStats\(\s*setCode:\s*string,\s*userId:[\s\S]*requestScopedCatalogClient\?: SupabaseClient/,
+  );
+  assert.match(
+    setStatsLoader,
+    /requestScopedCatalogClient \?\? createPublicServerClient\(\)/,
   );
   assert.match(setStatsLoader, /fetchSetCardPrintIds\(supabase, setCode\)/);
   assert.match(setStatsLoader, /fetchCardPrintings\(supabase, cardPrintIds\)/);
   assert.match(
     setPage,
-    /getPublicSetMasterSetStats\(\s*supabase,\s*setDetail\.code,/,
+    /user\?\.id && setDetail\.game_code !== "pokemon" \? supabase : undefined/,
+  );
+  assert.match(
+    setPage,
+    /getPublicSetMasterSetStats\(\s*setDetail\.code,\s*user\?\.id \?\? null,\s*requestScopedCatalogClient,/,
   );
 });
 

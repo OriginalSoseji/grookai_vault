@@ -2,6 +2,7 @@ import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { escapePostgrestLikePattern } from "@/lib/publicSetCanonicalization";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
@@ -160,10 +161,11 @@ async function fetchOwnedInstances(userId: string, cardPrintIds: string[]) {
 }
 
 export async function getPublicSetMasterSetStats(
-  supabase: SupabaseClient,
   setCode: string,
   userId: string | null | undefined,
+  requestScopedCatalogClient?: SupabaseClient,
 ): Promise<PublicSetMasterSetStats> {
+  const supabase = requestScopedCatalogClient ?? createPublicServerClient();
   const cardPrintIds = await fetchSetCardPrintIds(supabase, setCode);
   const printings = await fetchCardPrintings(supabase, cardPrintIds);
   const parentIdsWithChildPrintings = new Set(printings.map((printing) => printing.cardPrintId));

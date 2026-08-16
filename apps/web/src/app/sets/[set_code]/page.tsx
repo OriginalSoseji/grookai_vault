@@ -99,11 +99,13 @@ async function SetPageContent({
     getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK),
   ]);
   const user = authResponse.data.user;
+  const requestScopedCatalogClient =
+    user?.id && setDetail.game_code !== "pokemon" ? supabase : undefined;
 
   const masterSetStats = await getPublicSetMasterSetStats(
-    supabase,
     setDetail.code,
     user?.id ?? null,
+    requestScopedCatalogClient,
   );
   const [setLogoPath, worldChampionshipDecklist] = await Promise.all([
     getSetLogoAssetPathMap([setDetail.code]).then((logos) => logos.get(setDetail.code)),
