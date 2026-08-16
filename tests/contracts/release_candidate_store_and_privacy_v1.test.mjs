@@ -118,7 +118,11 @@ test("App Store archive excludes release credentials from build subprocesses", (
   )?.[1];
 
   assert.ok(archiveDispatch);
-  assert.doesNotMatch(archiveDispatch, /load_env_file/);
+  assert.match(
+    archiveDispatch,
+    /load_env_file\(DEFAULT_ENV, only: RELEASE_BUILD_ENV_KEYS\)/,
+  );
+  assert.match(automation, /next if only && !only\.include\?\(key\)/);
   assert.match(automation, /RELEASE_BUILD_SENSITIVE_ENV_KEYS/);
   assert.match(automation, /run\(command, unset_env: APP_REVIEW_ENV_KEYS\)/);
   assert.match(automation, /def run\(command, unset_env: \[\]\)/);

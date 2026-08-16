@@ -14,6 +14,14 @@ require "uri"
 API_BASE = "https://api.appstoreconnect.apple.com"
 DEFAULT_CONFIG = "docs/release/app_store_connect_ios_1_0.json"
 DEFAULT_ENV = ".env.appstoreconnect.local"
+RELEASE_BUILD_ENV_KEYS = %w[
+  ASC_BUILD_NUMBER
+  ASC_ARCHIVE_PATH
+  ASC_EXPORT_PATH
+  APP_STORE_CONNECT_BUILD_NUMBER
+  APP_STORE_CONNECT_ARCHIVE_PATH
+  APP_STORE_CONNECT_EXPORT_PATH
+].freeze
 APP_STORE_CONNECT_AUTH_ENV_KEYS = %w[
   ASC_KEY_ID
   ASC_ISSUER_ID
@@ -36,7 +44,7 @@ RELEASE_BUILD_SENSITIVE_ENV_KEYS = (
 
 class AppStoreConnectError < StandardError; end
 
-def load_env_file(path)
+def load_env_file(path, only: nil)
   return unless File.exist?(path)
 
   File.readlines(path, chomp: true).each do |line|
@@ -45,6 +53,7 @@ def load_env_file(path)
 
     key, value = stripped.split("=", 2)
     key = key.strip
+    next if only && !only.include?(key)
     next if key.empty? || ENV.key?(key)
 
     value = value.strip
@@ -1037,6 +1046,7 @@ begin
 
   case command
   when "archive"
+    load_env_file(DEFAULT_ENV, only: RELEASE_BUILD_ENV_KEYS)
     automation.archive
   when "upload"
     load_env_file(DEFAULT_ENV)
@@ -1054,6 +1064,7 @@ begin
     load_env_file(DEFAULT_ENV)
     automation.upload_screenshots(replace: options.fetch(:replace_screenshots, true))
   when "release"
+    load_env_file(DEFAULT_ENV, only: RELEASE_BUILD_ENV_KEYS)
     automation.archive
     load_env_file(DEFAULT_ENV)
     automation.upload_archive
