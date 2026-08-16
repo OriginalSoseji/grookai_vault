@@ -72,6 +72,20 @@ String? buildCanonicalCardImageUrl(dynamic gvId) {
       .toString();
 }
 
+bool isCanonicalCardImageUrl(dynamic value) {
+  final candidate = normalizeDisplayImageUrl(value);
+  final parsed = candidate == null ? null : Uri.tryParse(candidate);
+  final appOrigin = Uri.tryParse(grookaiWebBaseUrl);
+  if (parsed == null || appOrigin == null) {
+    return false;
+  }
+
+  return parsed.scheme == appOrigin.scheme &&
+      parsed.host.toLowerCase() == appOrigin.host.toLowerCase() &&
+      parsed.port == appOrigin.port &&
+      RegExp(r'^/api/canon/cards/GV-[A-Z0-9-]+/image$').hasMatch(parsed.path);
+}
+
 String? buildHostedSetLogoUrl(dynamic setCode) {
   final normalized = (setCode ?? '').toString().trim().toLowerCase();
   if (normalized.isEmpty ||

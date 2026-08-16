@@ -6,6 +6,9 @@ export const WAREHOUSE_CANON_IMAGE_PREFIXES = [
 export const WAREHOUSE_CANON_IMAGE_PREFIX = WAREHOUSE_CANON_IMAGE_PREFIXES[0];
 
 const PRIVATE_CARD_IMAGE_BUCKET = "user-card-images";
+const EXTERNAL_CARD_IMAGE_BUCKET = "external-card-images";
+const ONE_PIECE_CARD_IMAGE_PATH =
+  /^one-piece\/card-prints\/(?:official|tcgplayer)\/[1-9]\d*\/[0-9a-f]{32}\.(?:png|jpe?g|webp)$/i;
 const SUPABASE_STORAGE_OBJECT_PREFIXES = [
   `/storage/v1/object/public/${PRIVATE_CARD_IMAGE_BUCKET}/`,
   `/storage/v1/object/sign/${PRIVATE_CARD_IMAGE_BUCKET}/`,
@@ -27,6 +30,36 @@ export function normalizeWarehouseCanonImagePath(value: unknown) {
   }
 
   return normalized;
+}
+
+export type CanonCardImageStorageLocation = {
+  bucket: string;
+  path: string;
+};
+
+export function resolveCanonCardImageStorageLocation(
+  value: unknown,
+): CanonCardImageStorageLocation | null {
+  const warehousePath = normalizeWarehouseCanonImagePath(value);
+  if (warehousePath) {
+    return { bucket: PRIVATE_CARD_IMAGE_BUCKET, path: warehousePath };
+  }
+
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim().replace(/^\/+/, "");
+  if (
+    !normalized ||
+    normalized.length > 512 ||
+    normalized.includes("..") ||
+    !ONE_PIECE_CARD_IMAGE_PATH.test(normalized)
+  ) {
+    return null;
+  }
+
+  return { bucket: EXTERNAL_CARD_IMAGE_BUCKET, path: normalized };
 }
 
 export function buildCanonImageProxyUrl(path: string | null | undefined) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/display_image_contract.dart';
 
@@ -23,6 +24,22 @@ class CardZoomGalleryItem {
     final fallback = normalizeDisplayImageUrl(fallbackImageUrl) ?? '';
     return fallback == resolvedImageUrl ? '' : fallback;
   }
+}
+
+Map<String, String>? _canonicalCardImageHeaders(String imageUrl) {
+  if (!isCanonicalCardImageUrl(imageUrl)) {
+    return null;
+  }
+  String token;
+  try {
+    token =
+        Supabase.instance.client.auth.currentSession?.accessToken.trim() ?? '';
+  } catch (_) {
+    token = '';
+  }
+  return token.isEmpty
+      ? null
+      : <String, String>{'Authorization': 'Bearer $token'};
 }
 
 Future<void> showCardImageZoom(
@@ -121,7 +138,10 @@ class _CardZoomDialogState extends State<_CardZoomDialog> {
         ResizeImage.resizeIfNeeded(
           cacheWidth,
           null,
-          CachedNetworkImageProvider(imageUrl),
+          CachedNetworkImageProvider(
+            imageUrl,
+            headers: _canonicalCardImageHeaders(imageUrl),
+          ),
         ),
         context,
       );
@@ -377,6 +397,7 @@ class _CardZoomNetworkImage extends StatelessWidget {
     }) {
       return CachedNetworkImage(
         imageUrl: url,
+        httpHeaders: _canonicalCardImageHeaders(url),
         fit: BoxFit.contain,
         memCacheWidth: cacheWidth,
         maxWidthDiskCache: cacheWidth,
