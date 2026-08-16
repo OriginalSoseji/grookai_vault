@@ -5,9 +5,9 @@
   "locale": "en-US",
   "version_string": "1.0",
   "build_marketing_version": "1.0.0",
-  "build_number": "289",
-  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build289.xcarchive",
-  "export_path": "build/ios/export/GrookaiVault-1.0.0-build289",
+  "build_number": "290",
+  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build290.xcarchive",
+  "export_path": "build/ios/export/GrookaiVault-1.0.0-build290",
   "export_options_plist": "ios/ExportOptionsAppStore.plist",
   "app_info_localization": {
     "subtitle": "Your Pokemon card vault",
@@ -69,7 +69,7 @@
     "privacyPolicyUrl": "https://grookaivault.com/privacy"
   },
   "beta_build_localization": {
-    "whatsNew": "Verify exact-card search and scanning, printing-aware Vault organization, Binders, Wall, Grookai Dex and set progress, collector discovery, Following, and card-centered messaging."
+    "whatsNew": "Browse the signed-in One Piece catalog alongside Pokemon, including scoped search, sets, exact self-hosted card images, and sealed market pricing."
   },
   "screenshot_sets": [
     {
