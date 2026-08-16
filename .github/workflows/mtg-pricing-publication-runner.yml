@@ -131,9 +131,10 @@ jobs:
         run: |
           set -euo pipefail
           mode="${OPERATION#publication_}"
+          shadow_source_sync_run_id=""
           if [[ "$mode" = "production" ]]; then
             test -n "$EXPECTED_SHADOW_RUN_KEY"
-            node --input-type=module - <<'NODE'
+            shadow_source_sync_run_id="$(node --input-type=module - <<'NODE'
           import pg from 'pg';
           const client = new pg.Client({
             connectionString: process.env.SUPABASE_DB_URL,
@@ -204,10 +205,17 @@ jobs:
             ) {
               throw new Error('Shadow run would reduce current Pokemon publication');
             }
+            process.stdout.write(String((await client.query(
+              `select source_sync_run_id
+                 from public.market_price_pipeline_runs
+                where run_key = $1`,
+              [process.env.EXPECTED_SHADOW_RUN_KEY],
+            )).rows[0].source_sync_run_id));
           } finally {
             await client.end();
           }
           NODE
+            )"
           fi
           out="$RUNNER_TEMP/mtg-pricing-$mode"
           run_key="mtg-global-market-$mode-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
@@ -217,12 +225,18 @@ jobs:
             production) flag="--production" ;;
             *) exit 2 ;;
           esac
-          node scripts/workers/tcgplayer_market_publication_worker_v1.mjs \
-            "$flag" \
-            --run-key="$run_key" \
-            --out-root="$out" \
-            --batch-size=1000 \
-            --database-timeout-minutes=180
+          args=(
+            "$flag"
+            "--run-key=$run_key"
+            "--out-root=$out"
+            "--batch-size=1000"
+            "--database-timeout-minutes=180"
+          )
+          if [[ "$mode" = "production" ]]; then
+            test -n "$shadow_source_sync_run_id"
+            args+=("--expected-source-sync-run-id=$shadow_source_sync_run_id")
+          fi
+          node scripts/workers/tcgplayer_market_publication_worker_v1.mjs "${args[@]}"
 
       - name: Upload immutable evidence
         if: ${{ always() }}

@@ -50,6 +50,7 @@ function parseArgs(argv) {
   const args = {
     runMode: "dry_run",
     runKey: null,
+    expectedSourceSyncRunId: null,
     outRoot: DEFAULT_OUT_ROOT,
     limit: null,
     canaryDefinitionPath: null,
@@ -78,6 +79,10 @@ function parseArgs(argv) {
       args.runKey = arg.slice("--run-key=".length).trim();
     } else if (arg.startsWith("--resume-run-key=")) {
       args.runKey = arg.slice("--resume-run-key=".length).trim();
+    } else if (arg.startsWith("--expected-source-sync-run-id=")) {
+      args.expectedSourceSyncRunId = arg
+        .slice("--expected-source-sync-run-id=".length)
+        .trim();
     } else if (arg.startsWith("--out-root=")) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
     } else if (arg.startsWith("--limit=")) {
@@ -112,6 +117,14 @@ function parseArgs(argv) {
     throw new Error(
       "production mode forbids --limit; full rollout must evaluate the complete eligible scope",
     );
+  }
+  if (
+    args.expectedSourceSyncRunId &&
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      args.expectedSourceSyncRunId,
+    )
+  ) {
+    throw new Error("--expected-source-sync-run-id must be a UUID");
   }
   if (!Number.isFinite(args.freshnessHours) || args.freshnessHours <= 0) {
     throw new Error("--freshness-hours must be positive");
@@ -1573,6 +1586,14 @@ async function main() {
   );
   try {
     const sourceRun = await latestSourceRun(client);
+    if (
+      args.expectedSourceSyncRunId &&
+      sourceRun.id !== args.expectedSourceSyncRunId
+    ) {
+      throw new Error(
+        `Latest source run ${sourceRun.id} does not match shadow-proven source run ${args.expectedSourceSyncRunId}`,
+      );
+    }
     const runPlan = {
       pipeline_version: PIPELINE_VERSION,
       worker_version: WORKER_VERSION,
@@ -1604,6 +1625,7 @@ async function main() {
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
         database_timeout_minutes: args.databaseTimeoutMinutes,
+        expected_source_sync_run_id: args.expectedSourceSyncRunId,
       },
       boundaries: {
         source_warehouse_writes: false,

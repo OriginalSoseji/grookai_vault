@@ -118,6 +118,8 @@ test("migration preserves one global Pokemon and MTG candidate generation", () =
   assert.match(MIGRATION, /printing_mapping\.source = 'tcgplayer_market'/i);
   assert.match(MIGRATION, /ambiguous_printing_parents/i);
   assert.match(MIGRATION, /conflicting_existing_mapping/i);
+  assert.match(MIGRATION, /inactive_existing_mapping/i);
+  assert.match(MIGRATION, /bool_or\(mapping\.active\)/i);
   assert.match(MIGRATION, /when 'foil' then 'foil'/i);
   assert.doesNotMatch(MIGRATION, /when 'etched' then/i);
   assert.match(
@@ -180,5 +182,7 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3'/);
   assert.match(WORKFLOW, /Shadow run did not prove eligible MTG pricing/);
   assert.match(WORKFLOW, /Shadow run would reduce current Pokemon publication/);
+  assert.match(WORKFLOW, /--expected-source-sync-run-id=\$shadow_source_sync_run_id/);
+  assert.match(WORKER, /does not match shadow-proven source run/);
   assert.match(WORKFLOW, /--database-timeout-minutes=180/);
 });

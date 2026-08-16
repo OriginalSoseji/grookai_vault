@@ -59,7 +59,14 @@ export function buildMtgParentMappingPlanV1(rows, repository = {}) {
           Number(left.source_product_id) - Number(right.source_product_id) ||
           left.card_print_id.localeCompare(right.card_print_id),
       );
-  const blockingUnsafe = normalizeIssueRows("conflicting_existing_mapping");
+  const blockingUnsafe = [
+    ...normalizeIssueRows("conflicting_existing_mapping"),
+    ...normalizeIssueRows("inactive_existing_mapping"),
+  ].sort(
+    (left, right) =>
+      Number(left.source_product_id) - Number(right.source_product_id) ||
+      left.card_print_id.localeCompare(right.card_print_id),
+  );
   const reviewOnly = normalizeIssueRows("ambiguous_printing_parents");
   const core = {
     version: MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1,

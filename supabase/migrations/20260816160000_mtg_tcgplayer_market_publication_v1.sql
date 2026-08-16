@@ -57,10 +57,10 @@ existing as (
     mapping.external_id as source_product_id,
     count(*)::integer as mapping_count,
     count(distinct mapping.card_print_id)::integer as mapped_parent_count,
-    min(mapping.card_print_id::text)::uuid as mapped_card_print_id
+    min(mapping.card_print_id::text)::uuid as mapped_card_print_id,
+    bool_or(mapping.active) as has_active_mapping
   from public.external_mappings mapping
   where mapping.source = 'tcgplayer'
-    and mapping.active = true
     and mapping.external_id ~ '^[1-9][0-9]*$'
   group by mapping.external_id
 )
@@ -72,6 +72,7 @@ select
   coalesce(existing.mapping_count, 0) as existing_mapping_count,
   coalesce(existing.mapped_parent_count, 0) as existing_mapped_parent_count,
   existing.mapped_card_print_id,
+  coalesce(existing.has_active_mapping, false) as existing_active_mapping,
   product.category_id as source_category_id,
   product.source_active,
   case
@@ -82,7 +83,12 @@ select
     when existing.mapping_count = 1
       and existing.mapped_parent_count = 1
       and existing.mapped_card_print_id = summarized.card_print_id
+      and existing.has_active_mapping is true
       then 'already_exact'
+    when existing.mapping_count = 1
+      and existing.mapped_parent_count = 1
+      and existing.mapped_card_print_id = summarized.card_print_id
+      then 'inactive_existing_mapping'
     else 'conflicting_existing_mapping'
   end as resolution
 from summarized

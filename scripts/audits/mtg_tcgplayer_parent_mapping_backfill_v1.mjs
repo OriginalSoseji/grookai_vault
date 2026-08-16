@@ -48,6 +48,7 @@ async function candidateRows(client) {
     select source_product_id, card_print_id, canonical_parent_count,
            supporting_printing_mapping_count, existing_mapping_count,
            existing_mapped_parent_count, mapped_card_print_id,
+           existing_active_mapping,
            source_category_id, source_active, resolution
       from public.v_mtg_tcgplayer_parent_mapping_candidates_v1
      order by source_product_id::bigint, card_print_id
