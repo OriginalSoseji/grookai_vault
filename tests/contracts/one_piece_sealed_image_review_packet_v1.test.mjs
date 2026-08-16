@@ -133,7 +133,11 @@ test("review website is local-only and exports non-authoritative decisions", () 
   assert.doesNotMatch(html, /fetch\s*\(/);
   assert.doesNotMatch(html, /\/api\//);
   assert.doesNotMatch(html, /supabase/i);
-  const script = html.match(/<script>([\s\S]*)<\/script>/)?.[1];
+  const scriptStart = html.indexOf("<script>");
+  const scriptEnd = html.lastIndexOf("</script>");
+  const script = scriptStart >= 0 && scriptEnd > scriptStart
+    ? html.slice(scriptStart + "<script>".length, scriptEnd)
+    : null;
   assert.ok(script);
   assert.doesNotThrow(() => new vm.Script(script));
 });

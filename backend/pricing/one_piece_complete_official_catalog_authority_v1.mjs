@@ -1,5 +1,7 @@
 import { sha256, stableJson } from
   "./one_piece_canonical_import_staging_v1.mjs";
+import { decodeOnePieceOfficialHtmlEntitiesV1 } from
+  "./one_piece_official_html_v1.mjs";
 
 export const ONE_PIECE_COMPLETE_OFFICIAL_CATALOG_AUTHORITY_VERSION =
   "ONE_PIECE_COMPLETE_OFFICIAL_ENGLISH_CATALOG_AUTHORITY_V1";
@@ -19,21 +21,11 @@ function clean(value) {
   return String(value ?? "").trim();
 }
 
-function decodeHtml(value) {
-  return String(value ?? "")
-    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, code) =>
-      String.fromCodePoint(Number.parseInt(code, 16)))
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;/gi, '"')
-    .replace(/&apos;|&#39;/gi, "'")
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">");
-}
-
 function textFromHtml(value) {
-  return decodeHtml(value).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  return decodeOnePieceOfficialHtmlEntitiesV1(value)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function normalizeSetCode(value) {
@@ -44,7 +36,7 @@ function normalizeSetCode(value) {
 }
 
 export function normalizeOnePieceOfficialNameV1(value) {
-  return decodeHtml(value)
+  return decodeOnePieceOfficialHtmlEntitiesV1(value)
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[‘’]/g, "'")
@@ -114,10 +106,13 @@ export function parseOnePieceOfficialCardListHtmlV1({
   const records = [];
   const anchorPattern = /<a\b[^>]*\bdata-src=["']#([^"']+)["'][^>]*>[\s\S]{0,500}?<img\b[^>]*\bdata-src=["']([^"']+)["'][^>]*\balt=["']([^"']*)["'][^>]*>[\s\S]{0,80}?<\/a>/gi;
   for (const match of String(html).matchAll(anchorPattern)) {
-    const officialVariantId = decodeHtml(match[1]);
+    const officialVariantId = decodeOnePieceOfficialHtmlEntitiesV1(match[1]);
     const cardNumber = cardNumberFromVariantId(officialVariantId);
     if (!cardNumber) continue;
-    const imageUrl = new URL(decodeHtml(match[2]), finalUrl).toString();
+    const imageUrl = new URL(
+      decodeOnePieceOfficialHtmlEntitiesV1(match[2]),
+      finalUrl,
+    ).toString();
     const imageHost = new URL(imageUrl).hostname.toLowerCase();
     if (imageHost !== ONE_PIECE_OFFICIAL_CARD_LIST_HOST) {
       throw new Error(`Official image redirected outside authority: ${imageUrl}`);

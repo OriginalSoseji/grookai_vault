@@ -8,6 +8,8 @@ import {
   parseOnePieceOfficialCardListHtmlV1,
   parseOnePieceOfficialSeriesOptionsV1,
 } from "../../backend/pricing/one_piece_complete_official_catalog_authority_v1.mjs";
+import { decodeOnePieceOfficialHtmlEntitiesV1 } from
+  "../../backend/pricing/one_piece_official_html_v1.mjs";
 
 const html = `<!doctype html><html lang="en"><body>
 <select>
@@ -23,6 +25,17 @@ const html = `<!doctype html><html lang="en"><body>
 <a class="modalOpen" data-src="#OP01-001_r1"><img data-src="../images/cardlist/card/OP01-001_r1.png?1" alt="Roronoa Zoro"></a>
 <dl class="modalCol" id="OP01-001_r1"><span>OP01-001</span> | <span>L</span> | <span>LEADER</span></dl>
 </body></html>`;
+
+test("official HTML entities decode once without recursive unescaping", () => {
+  assert.equal(
+    decodeOnePieceOfficialHtmlEntitiesV1("A&amp;B &#39;C&#39; &#x44;"),
+    "A&B 'C' D",
+  );
+  assert.equal(
+    decodeOnePieceOfficialHtmlEntitiesV1("&amp;lt;script&amp;gt;"),
+    "&lt;script&gt;",
+  );
+});
 
 test("official series parser normalizes single and combined code families", () => {
   const options = parseOnePieceOfficialSeriesOptionsV1(html);

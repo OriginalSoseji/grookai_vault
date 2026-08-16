@@ -23,6 +23,8 @@ function parseUuid(value) {
 }
 
 export function deterministicUuidV5(name, namespace = UUID_NAMESPACE) {
+  // RFC 4122 UUIDv5 requires SHA-1 for stable identity, not for security.
+  // lgtm[js/weak-cryptographic-algorithm]
   const hash = createHash("sha1")
     .update(parseUuid(namespace))
     .update(String(name), "utf8")

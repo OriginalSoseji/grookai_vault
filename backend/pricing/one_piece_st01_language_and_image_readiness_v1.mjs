@@ -1,4 +1,6 @@
 import crypto from "node:crypto";
+import { decodeOnePieceOfficialHtmlEntitiesV1 } from
+  "./one_piece_official_html_v1.mjs";
 
 export const ONE_PIECE_ST01_READINESS_VERSION =
   "ONE_PIECE_ST01_LANGUAGE_AND_IMAGE_READINESS_V1";
@@ -64,14 +66,11 @@ export function normalizePathSegment(value, fallback = "unknown") {
 }
 
 export function normalizeOfficialHtmlText(html) {
-  return String(html ?? "")
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+  const visibleHtml = String(html ?? "")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ");
+  return decodeOnePieceOfficialHtmlEntitiesV1(visibleHtml)
     .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;|&#160;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;|&#34;/gi, '"')
-    .replace(/&#39;|&apos;/gi, "'")
     .replace(/\s+/g, " ")
     .trim();
 }

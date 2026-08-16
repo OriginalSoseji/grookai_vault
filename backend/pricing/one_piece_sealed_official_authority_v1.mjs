@@ -2,6 +2,8 @@ import {
   sha256V1,
   stableJsonV1,
 } from "./cross_tcg_sealed_product_domain_v1.mjs";
+import { decodeOnePieceOfficialHtmlEntitiesV1 } from
+  "./one_piece_official_html_v1.mjs";
 
 export const ONE_PIECE_SEALED_OFFICIAL_AUTHORITY_VERSION =
   "ONE_PIECE_SEALED_OFFICIAL_PRODUCT_AUTHORITY_V1";
@@ -13,26 +15,14 @@ function clean(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
 }
 
-function decodeHtml(value) {
-  return String(value ?? "")
-    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, code) =>
-      String.fromCodePoint(Number.parseInt(code, 16)))
-    .replace(/&nbsp;|&#160;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;/gi, '"')
-    .replace(/&apos;|&#39;/gi, "'")
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">");
-}
-
 function textFromHtml(value) {
-  return clean(decodeHtml(value).replace(/<br\s*\/?\s*>/gi, " | ")
+  return clean(decodeOnePieceOfficialHtmlEntitiesV1(value)
+    .replace(/<br\s*\/?\s*>/gi, " | ")
     .replace(/<[^>]+>/g, " "));
 }
 
 function officialUrl(value, baseUrl) {
-  const parsed = new URL(decodeHtml(value), baseUrl);
+  const parsed = new URL(decodeOnePieceOfficialHtmlEntitiesV1(value), baseUrl);
   if (parsed.protocol !== "https:" ||
       parsed.hostname.toLowerCase() !== ONE_PIECE_OFFICIAL_PRODUCT_HOST) {
     throw new Error(`Official product URL outside allowlist: ${parsed}`);
@@ -42,7 +32,7 @@ function officialUrl(value, baseUrl) {
 }
 
 export function normalizeOnePieceSealedOfficialTextV1(value) {
-  return decodeHtml(value)
+  return decodeOnePieceOfficialHtmlEntitiesV1(value)
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[‘’]/g, "'")
@@ -174,7 +164,7 @@ export function parseOnePieceOfficialProductDetailV1({
     fieldValue(html, "Delivery Month") || indexEntry.release_date_text;
   const images = [];
   for (const match of String(html).matchAll(/<img\b[^>]*(?:data-src|src)=["']([^"']+)["']/gi)) {
-    const raw = decodeHtml(match[1]);
+    const raw = decodeOnePieceOfficialHtmlEntitiesV1(match[1]);
     if (!/products\//i.test(raw) || /(?:common|logo|icon|bnr|banner)/i.test(raw)) continue;
     try {
       images.push(officialUrl(raw, finalUrl));

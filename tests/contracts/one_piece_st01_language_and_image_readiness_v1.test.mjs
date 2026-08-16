@@ -6,11 +6,19 @@ import {
   ST01_OFFICIAL_CARDS,
   evaluateSt01OfficialAuthority,
   inspectOnePieceImage,
+  normalizeOfficialHtmlText,
   parseOfficialSt01CardImageSources,
   parseTcgplayerImageReference,
   proposedImageTarget,
   validateReadinessRows,
 } from "../../backend/pricing/one_piece_st01_language_and_image_readiness_v1.mjs";
+
+test("official text normalization removes case-insensitive script and style blocks", () => {
+  const text = normalizeOfficialHtmlText(
+    "<DIV>Visible &amp; safe</DIV><SCRIPT>alert(1)</SCRIPT ><STYLE>x{}</STYLE >",
+  );
+  assert.equal(text, "Visible & safe");
+});
 
 function officialFixture() {
   const cards = ST01_OFFICIAL_CARDS.map(([number, name]) =>
