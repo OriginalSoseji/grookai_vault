@@ -2,6 +2,7 @@ import { ONE_PIECE_EXPECTED_COUNTS_V1 } from "./one_piece_signed_in_catalog_read
 
 export const ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_VERSION_V1 =
   "ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_V1";
+export const ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1 = "290";
 
 function numeric(value) {
   const parsed = Number(value);
@@ -53,10 +54,11 @@ export function evaluateOnePieceSignedInCatalogReleasePlanV1({
     deployment?.android?.artifact_status === "signed" &&
       /^[0-9a-f]{64}$/.test(deployment?.android?.artifact_sha256 ?? "") &&
       deployment?.android?.commit_sha === deployment?.web?.commit_sha &&
-      /^\d+$/.test(String(deployment?.android?.version_code ?? "")),
+      String(deployment?.android?.version_code ?? "") ===
+        ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
     "signed_android_artifact_not_ready",
     deployment?.android ?? null,
-    "signed artifact with exact SHA-256",
+    `signed artifact with exact SHA-256 from committed build ${ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1}`,
   );
   finding(
     findings,
@@ -64,10 +66,12 @@ export function evaluateOnePieceSignedInCatalogReleasePlanV1({
       /^\d+$/.test(String(deployment?.ios?.build_number ?? "")) &&
       deployment?.ios?.commit_sha === deployment?.web?.commit_sha &&
       String(deployment?.ios?.build_number) ===
-        String(deployment?.android?.version_code),
+        String(deployment?.android?.version_code) &&
+      String(deployment?.ios?.build_number) ===
+        ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
     "testflight_build_not_ready",
     deployment?.ios ?? null,
-    "processed build in beta testing from the same commit and version as Android",
+    `processed build ${ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1} in beta testing from the same commit and version as Android`,
   );
 
   return {

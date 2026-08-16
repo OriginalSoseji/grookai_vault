@@ -326,7 +326,7 @@ async function main() {
         pricing_writes: 0,
         storage_writes: 0,
         vault_writes: 0,
-        release_control_updates: args.mode === "apply" ? 1 : 0,
+        release_control_updates: 1,
       },
     };
     const planFingerprint = sha256(JSON.stringify(stable(planPayload)));
@@ -345,6 +345,7 @@ async function main() {
     }
     const runPlan = {
       ...planPayload,
+      execution_mode: args.mode,
       recorded_at: new Date().toISOString(),
       activation_plan_fingerprint_sha256: planFingerprint,
       decision,

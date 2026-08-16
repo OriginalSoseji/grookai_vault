@@ -5,6 +5,7 @@ import test from "node:test";
 import {
   evaluateOnePieceSignedInCatalogReleasePlanV1,
   evaluateOnePieceSignedInCatalogReleaseReadbackV1,
+  ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1,
 } from "../../backend/pricing/one_piece_signed_in_catalog_release_v1.mjs";
 import { ONE_PIECE_EXPECTED_COUNTS_V1 } from "../../backend/pricing/one_piece_signed_in_catalog_readiness_v1.mjs";
 
@@ -32,6 +33,7 @@ function deployment() {
 }
 
 test("release plan requires all three exact deployed client proofs", () => {
+  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "290");
   const ready = evaluateOnePieceSignedInCatalogReleasePlanV1({
     before: { release_control: { release_status: "hidden" }, counts },
     deployment: deployment(),
@@ -45,6 +47,19 @@ test("release plan requires all three exact deployed client proofs", () => {
       evaluateOnePieceSignedInCatalogReleasePlanV1({
         before: { release_control: { release_status: "hidden" }, counts },
         deployment: broken,
+      }).ready_for_apply,
+      false,
+    );
+  }
+
+  for (const buildNumber of ["289", "999"]) {
+    const stale = deployment();
+    stale.android.version_code = buildNumber;
+    stale.ios.build_number = buildNumber;
+    assert.equal(
+      evaluateOnePieceSignedInCatalogReleasePlanV1({
+        before: { release_control: { release_status: "hidden" }, counts },
+        deployment: stale,
       }).ready_for_apply,
       false,
     );
@@ -116,6 +131,8 @@ test("durable runner is restricted to the single release-control row", () => {
   assert.match(source, /activation_plan_fingerprint_sha256/i);
   assert.match(source, /testflight_build_not_ready/);
   assert.match(source, /deployment_commit_mismatch/);
+  assert.match(runner, /release_control_updates: 1/);
+  assert.doesNotMatch(runner, /release_control_updates: args\.mode/);
   assert.match(runner, /if \(committed\) \{[\s\S]*restoreReleaseControl/);
   assert.doesNotMatch(source, /insert\s+into/i);
   assert.doesNotMatch(source, /delete\s+from/i);
