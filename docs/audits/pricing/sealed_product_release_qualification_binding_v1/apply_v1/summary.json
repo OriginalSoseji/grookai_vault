@@ -1,0 +1,35 @@
+{
+  "status": "migration_applied_and_verified",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "1002f0218b9ffacef84273a1e98a984ea0aafdb1",
+    "tracked_worktree_clean": true
+  },
+  "migration_sha256": "ab6a6b0ba759e86dde6a812998164e6bed1aa71f847768f975cd788273f0a1c1",
+  "proof": {
+    "valid": true,
+    "state": {
+      "qualification_rows": 374,
+      "release_rows": 0,
+      "member_rows": 0,
+      "pointer_rows": 0,
+      "ledger_rows": 1,
+      "qualification_column": true,
+      "read_function": true,
+      "one_piece_status": "hidden"
+    },
+    "constraints": [
+      "sealed_product_pricing_release_binding_unique",
+      "sealed_product_release_members_qualification_binding_fk",
+      "sealed_product_release_members_qualified_status_check",
+      "sealed_product_release_members_release_qualification_unique"
+    ],
+    "privileges": {
+      "anon_execute": false,
+      "authenticated_execute": true,
+      "service_execute": true
+    }
+  },
+  "database_writes": 1,
+  "mutation_scope": "schema_and_migration_ledger_only"
+}

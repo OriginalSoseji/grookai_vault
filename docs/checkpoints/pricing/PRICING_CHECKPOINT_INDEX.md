@@ -1059,6 +1059,11 @@ Recommended reading order for future maintainers:
       332 qualified exact members, 58 explicit release exclusions, unchanged
       hidden visibility, and the database-bound immutable release gate next
 
+89. `PRICING_CHECKPOINT_91_ONE_PIECE_SEALED_RELEASE_ACTIVE_INTERNAL.md`
+    - then read the qualification-bound schema hardening, full 332-member
+      rollback proof, frozen active internal release, signed-in rollback smoke,
+      unchanged hidden catalog boundary, and the 6,730-image self-hosting gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
