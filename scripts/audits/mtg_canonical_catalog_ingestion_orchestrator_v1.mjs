@@ -47,7 +47,7 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..", "..");
 const VERSION = "MTG_CANONICAL_CATALOG_INGESTION_ORCHESTRATOR_V1";
 const REQUIRED_BRANCH = "agent/mtg-pricing-readiness-v1";
-const LOCK_NAME = "grookai:mtg:canonical_catalog_ingestion_v1";
+const LOCK_NAME = "grookai:mtg:canonical_catalog_ingestion_xact_v2";
 const GOVERNING_FILES = Object.freeze([
   "scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs",
   "scripts/audits/mtg_canonical_catalog_ingestion_envelope_v1.mjs",
@@ -219,11 +219,13 @@ async function acquireExecutionLock() {
   const client = createClient((error) => { lease.lostError ??= error; });
   lease.client = client;
   await client.connect();
+  await client.query("begin");
   const result = await client.query(
-    "select pg_try_advisory_lock(hashtext($1)) as acquired",
+    "select pg_try_advisory_xact_lock(hashtext($1)) as acquired",
     [LOCK_NAME],
   );
   if (result.rows[0].acquired !== true) {
+    await client.query("rollback").catch(() => {});
     await client.end();
     throw new Error("Another MTG catalog ingestion executor holds the advisory lock");
   }
@@ -246,7 +248,7 @@ async function releaseExecutionLock(lease) {
   if (!lease?.client) return;
   if (lease.heartbeat) clearInterval(lease.heartbeat);
   if (!lease.lostError) {
-    await lease.client.query("select pg_advisory_unlock(hashtext($1))", [LOCK_NAME]).catch(() => {});
+    await lease.client.query("rollback").catch(() => {});
   }
   await lease.client.end().catch(() => {});
 }

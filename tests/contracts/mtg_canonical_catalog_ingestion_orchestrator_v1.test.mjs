@@ -39,6 +39,16 @@ test("orchestrator survives idle advisory-lock connection termination safely", (
   assert.match(SOURCE, /execution_lock_reacquired/);
 });
 
+test("remote and local runners share a pool-safe transaction advisory lock", () => {
+  assert.match(WORKFLOW, /group: mtg-hidden-catalog-ingestion-v1/);
+  assert.match(WORKFLOW, /cancel-in-progress: false/);
+  assert.match(SOURCE, /canonical_catalog_ingestion_xact_v2/);
+  assert.match(SOURCE, /await client\.query\("begin"\)/);
+  assert.match(SOURCE, /pg_try_advisory_xact_lock/);
+  assert.match(SOURCE, /await lease\.client\.query\("rollback"\)/);
+  assert.doesNotMatch(SOURCE, /MTG_CATALOG_EXECUTION_LOCK_MODE/);
+});
+
 test("orchestrator uses isolated stage and promotion transactions", () => {
   assert.match(SOURCE, /async function stageSetDurably/);
   assert.match(SOURCE, /async function promoteSetDurably/);
