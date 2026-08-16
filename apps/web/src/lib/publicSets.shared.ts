@@ -130,6 +130,7 @@ export const STRUCTURED_CARD_SET_ALIAS_MAP: Record<string, string[]> = {
 };
 
 export type PublicSetSummary = {
+  game_code: string;
   code: string;
   name: string;
   printed_set_abbrev?: string;

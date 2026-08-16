@@ -1,0 +1,166 @@
+{
+  "rows": [
+    {
+      "source_product_id": 288228,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288228/e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7.png",
+      "expected_sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+      "observed_sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+      "expected_size_bytes": 223541,
+      "observed_size_bytes": 223541,
+      "verified": true
+    },
+    {
+      "source_product_id": 288229,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288229/8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8.png",
+      "expected_sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+      "observed_sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+      "expected_size_bytes": 175080,
+      "observed_size_bytes": 175080,
+      "verified": true
+    },
+    {
+      "source_product_id": 288230,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288230/56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76.png",
+      "expected_sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+      "observed_sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+      "expected_size_bytes": 140479,
+      "observed_size_bytes": 140479,
+      "verified": true
+    },
+    {
+      "source_product_id": 288232,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288232/7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3.png",
+      "expected_sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+      "observed_sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+      "expected_size_bytes": 185142,
+      "observed_size_bytes": 185142,
+      "verified": true
+    },
+    {
+      "source_product_id": 288234,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288234/139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527.png",
+      "expected_sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+      "observed_sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+      "expected_size_bytes": 177433,
+      "observed_size_bytes": 177433,
+      "verified": true
+    },
+    {
+      "source_product_id": 288235,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288235/7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab.png",
+      "expected_sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+      "observed_sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+      "expected_size_bytes": 169365,
+      "observed_size_bytes": 169365,
+      "verified": true
+    },
+    {
+      "source_product_id": 288236,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288236/b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce.png",
+      "expected_sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+      "observed_sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+      "expected_size_bytes": 184939,
+      "observed_size_bytes": 184939,
+      "verified": true
+    },
+    {
+      "source_product_id": 288237,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288237/d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030.png",
+      "expected_sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+      "observed_sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+      "expected_size_bytes": 199935,
+      "observed_size_bytes": 199935,
+      "verified": true
+    },
+    {
+      "source_product_id": 288238,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288238/e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad.png",
+      "expected_sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+      "observed_sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+      "expected_size_bytes": 167507,
+      "observed_size_bytes": 167507,
+      "verified": true
+    },
+    {
+      "source_product_id": 288239,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288239/129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42.png",
+      "expected_sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+      "observed_sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+      "expected_size_bytes": 186532,
+      "observed_size_bytes": 186532,
+      "verified": true
+    },
+    {
+      "source_product_id": 288240,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288240/a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0.png",
+      "expected_sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+      "observed_sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+      "expected_size_bytes": 189913,
+      "observed_size_bytes": 189913,
+      "verified": true
+    },
+    {
+      "source_product_id": 288241,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288241/bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071.png",
+      "expected_sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+      "observed_sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+      "expected_size_bytes": 198877,
+      "observed_size_bytes": 198877,
+      "verified": true
+    },
+    {
+      "source_product_id": 288242,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288242/dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877.png",
+      "expected_sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+      "observed_sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+      "expected_size_bytes": 204835,
+      "observed_size_bytes": 204835,
+      "verified": true
+    },
+    {
+      "source_product_id": 288243,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288243/3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f.png",
+      "expected_sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+      "observed_sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+      "expected_size_bytes": 165175,
+      "observed_size_bytes": 165175,
+      "verified": true
+    },
+    {
+      "source_product_id": 288244,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288244/c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a.png",
+      "expected_sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+      "observed_sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+      "expected_size_bytes": 177591,
+      "observed_size_bytes": 177591,
+      "verified": true
+    },
+    {
+      "source_product_id": 288245,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288245/af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba.png",
+      "expected_sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+      "observed_sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+      "expected_size_bytes": 194814,
+      "observed_size_bytes": 194814,
+      "verified": true
+    },
+    {
+      "source_product_id": 288246,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/288246/2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead.png",
+      "expected_sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+      "observed_sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+      "expected_size_bytes": 191843,
+      "observed_size_bytes": 191843,
+      "verified": true
+    },
+    {
+      "source_product_id": 549343,
+      "local_cache_path": ".tmp/one_piece_st01_language_and_image_readiness_v1/549343/335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224.jpg",
+      "expected_sha256": "335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224",
+      "observed_sha256": "335045912d57b5fabcf31183b8a31678f4668167fd1ca2a211b2b7b5ce792224",
+      "expected_size_bytes": 58016,
+      "observed_size_bytes": 58016,
+      "verified": true
+    }
+  ]
+}

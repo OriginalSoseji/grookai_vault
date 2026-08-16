@@ -1,0 +1,32 @@
+{
+  "status": "storage_canary_failed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "53ed97e2cccd0495fa85056e2b937d4e896087a7",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "c813db117ce6aa6d9ee3ad0a1f696a9ac5b1a4d638bb86a6203091a55d4ecb1f",
+  "selected": 25,
+  "uploaded_verified": 24,
+  "removed_verified_absent": 24,
+  "failures": [
+    {
+      "ok": false,
+      "error": "high_resolution:http_or_redirect:403|exact_200w_fallback:http_or_redirect:403",
+      "source": {
+        "card_print_id": "57e68b8b-5ed1-5490-bccc-6a069169120c",
+        "gv_id": "GV-OP-TCGP-602797",
+        "canonical_name": "Franky",
+        "source_product_id": 602797,
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/602797_200w.jpg",
+        "high_resolution_url": "https://tcgplayer-cdn.tcgplayer.com/product/602797_in_1000x1000.jpg",
+        "evidence_role": "exact_tcgplayer_product_image",
+        "existing_image_bucket": null,
+        "existing_image_path": null,
+        "existing_image_note": null
+      }
+    }
+  ],
+  "rollback_error": null,
+  "database_writes": 0
+}

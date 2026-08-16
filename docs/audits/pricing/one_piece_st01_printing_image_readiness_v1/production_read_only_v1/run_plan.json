@@ -1,0 +1,59 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_READINESS_V1",
+  "recorded_at": "2026-08-15T02:48:59.852Z",
+  "repository": {
+    "commit_sha": "2d40da1cb78bd5d3f53f30924ced7e4abefc136e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "selected_parent_card_print_ids": [
+    "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+    "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+    "2aec02e4-5c10-5352-ba63-bd972b975c72",
+    "aa0153d2-30dc-582b-b474-c458975adc5c",
+    "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+    "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+    "949e3028-406a-56cb-8cfa-89699039f0b4",
+    "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+    "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+    "1bd3b678-88a4-539d-af42-0fa598731ae2",
+    "9d6e1d07-644f-532d-a556-cee305304e59",
+    "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+    "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+    "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+    "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+    "eef89a54-e584-563d-9eea-4593eaebf829",
+    "3e18a26f-61f9-5e26-a272-9c9658541b7e"
+  ],
+  "selected_source_product_ids": [
+    288228,
+    288229,
+    288230,
+    288232,
+    288234,
+    288235,
+    288236,
+    288237,
+    288238,
+    288239,
+    288240,
+    288241,
+    288242,
+    288243,
+    288244,
+    288245,
+    288246
+  ],
+  "evidence_plan_fingerprint_sha256": "ed64eb0c2c7496816640811ff41739b017778415e8446611cde9e4db8b421980",
+  "mode": "production_read_only",
+  "boundaries": {
+    "mode": "read_only_plan",
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

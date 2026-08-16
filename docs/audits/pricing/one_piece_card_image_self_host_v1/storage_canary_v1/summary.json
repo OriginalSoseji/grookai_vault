@@ -1,0 +1,15 @@
+{
+  "status": "storage_canary_passed_zero_residue",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "2a02df2bb954e84e6bf26e0277fc149523493f0f",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5a05e6058f41987b81a41507745201114efb847602ab974daefea0a065982664",
+  "selected": 25,
+  "uploaded_verified": 25,
+  "removed_verified_absent": 25,
+  "failures": [],
+  "rollback_error": null,
+  "database_writes": 0
+}

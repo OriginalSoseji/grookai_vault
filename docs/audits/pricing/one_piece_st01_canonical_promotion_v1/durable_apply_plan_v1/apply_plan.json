@@ -1,0 +1,1990 @@
+{
+  "version": "ONE_PIECE_ST01_CANONICAL_PROMOTION_DURABLE_APPLY_PLAN_V1",
+  "repository": {
+    "commit_sha": "252b2a81b1cc729d40f016b1b898b0b57d6bba14",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "input_hashes": {
+    "promotion_plan_sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3",
+    "rollback_summary_sha256": "d6fdcd97ffe87ba41b1f88d02e2643330a6929733448f05b38c2c0a9a8013135",
+    "transaction_proof_sha256": "f083e7d644457afc1f2e18971445a5fea70f7f5614f7be88209813faff4de9a0",
+    "post_rollback_summary_sha256": "eca1577dfbed43a392d0e0509fcc7b0d11505c14e46e00eb66c5f8563d9cca28"
+  },
+  "promotion_plan_fingerprint_sha256": "fad134878a6f42872e1eec22fd7680e932a0b2fc59edba1c0d9b06ada4be1446",
+  "payload_fingerprint_sha256": "2cc2e7b308796cc681c0c863f08ada835806d6cbb4596d7880f5cd25ac78cb86",
+  "rollback_preflight_fingerprint_sha256": "a1ec0e958d746a8b39bf69accffc8558a6abc9799a5ed7197c6a1c149696887c",
+  "authorized_rows": {
+    "sets": 1,
+    "card_prints": 17,
+    "card_print_identity": 17,
+    "card_print_identity_source_evidence": 17,
+    "external_mappings": 17
+  },
+  "target": {
+    "set_row": {
+      "id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+      "game": "one_piece",
+      "code": "ST01",
+      "name": "Starter Deck -Straw Hat Crew- [ST-01]",
+      "release_date": "2022-12-02",
+      "identity_domain_default": "one_piece_eng_print",
+      "source": {
+        "canonical_authority": "official_one_piece_card_game",
+        "official_product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+        "official_card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001",
+        "tcgplayer_group_id": 3189,
+        "visibility_authority": "catalog_game_release_controls:hidden"
+      }
+    },
+    "numbered_cards": [
+      {
+        "card_number": "ST01-001",
+        "source_product_id": 288228,
+        "staging_row_id": "1d343d87-d405-5e17-9133-a85acdf22231",
+        "staging_payload_sha256": "414f19547b3b8d31f12062abcbf74700759ed4be6b4ca867724c6dd548c6e961",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288228/e9587b994cf7216bfd20513c.png",
+        "image_sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+        "card_print": {
+          "id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Monkey.D.Luffy",
+          "number": "ST01-001",
+          "variant_key": "",
+          "rarity": "L",
+          "gv_id": "GV-OP-TCGP-288228",
+          "tcgplayer_id": "288228",
+          "external_ids": {
+            "tcgplayer": "288228"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:28c6e0d2a9082fbb1b438b70b5c47c3f185f308688a30bf546a803cd070d2779",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "leader",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "1d343d87-d405-5e17-9133-a85acdf22231"
+          }
+        },
+        "identity": {
+          "id": "9143eb13-999d-5479-b3ad-2393885c858b",
+          "card_print_id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-001",
+          "normalized_printed_name": "monkey.d.luffy",
+          "source_name_raw": "Monkey.D.Luffy",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-001",
+            "normalized_printed_name": "monkey.d.luffy",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "28c6e0d2a9082fbb1b438b70b5c47c3f185f308688a30bf546a803cd070d2779",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "e7cf55eb-535c-5b45-b757-ec9b3e435a8e",
+          "card_print_identity_id": "9143eb13-999d-5479-b3ad-2393885c858b",
+          "card_print_id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+          "acquisition_key": "one_piece:tcgplayer:product:288228",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "a3485a424637660e2281ddb14dbc8606d47a45b51a9dd157995239df9e9b7210",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-001",
+            "printed_name": "Monkey.D.Luffy"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "1d343d87-d405-5e17-9133-a85acdf22231",
+              "payload_sha256": "414f19547b3b8d31f12062abcbf74700759ed4be6b4ca867724c6dd548c6e961",
+              "source_group_id": 3189,
+              "source_product_id": 288228
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288228/e9587b994cf7216bfd20513c.png",
+              "sha256": "e9587b994cf7216bfd20513cc55f602421097ea30781aeb6bad9c8f948a664e7",
+              "size_bytes": 223541,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "leader",
+              "rarity": "L"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "f8638cec-2c6a-5ed8-97a2-c1620b744acc",
+          "source": "tcgplayer",
+          "external_id": "288228",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "1d343d87-d405-5e17-9133-a85acdf22231",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-002",
+        "source_product_id": 288229,
+        "staging_row_id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+        "staging_payload_sha256": "9a58559b061b8f603d634fce5c429fb579c724b395764c7d7e3589a542b56b34",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288229/8bb4e4bd2b3a72eeef261030.png",
+        "image_sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+        "card_print": {
+          "id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Usopp",
+          "number": "ST01-002",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288229",
+          "tcgplayer_id": "288229",
+          "external_ids": {
+            "tcgplayer": "288229"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:e91a712d9852fd543638c78a4f22e749877b53fb45bbe848045bd5414635e3bf",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f"
+          }
+        },
+        "identity": {
+          "id": "4b741109-e533-5a68-9a8b-40e8ec020389",
+          "card_print_id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-002",
+          "normalized_printed_name": "usopp",
+          "source_name_raw": "Usopp",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-002",
+            "normalized_printed_name": "usopp",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "e91a712d9852fd543638c78a4f22e749877b53fb45bbe848045bd5414635e3bf",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "617e1082-f4b4-5971-a803-b13610c48b22",
+          "card_print_identity_id": "4b741109-e533-5a68-9a8b-40e8ec020389",
+          "card_print_id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+          "acquisition_key": "one_piece:tcgplayer:product:288229",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "8ba9542e12548325a7b218e42074f721614711d3c32a4aaf8f15b73179735626",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-002",
+            "printed_name": "Usopp"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+              "payload_sha256": "9a58559b061b8f603d634fce5c429fb579c724b395764c7d7e3589a542b56b34",
+              "source_group_id": 3189,
+              "source_product_id": 288229
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288229/8bb4e4bd2b3a72eeef261030.png",
+              "sha256": "8bb4e4bd2b3a72eeef261030fefe5e2d98d0018d82aa786e41c23670b2d20ad8",
+              "size_bytes": 175080,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "11b6382b-1d3c-5abb-acb9-ebf715db0736",
+          "source": "tcgplayer",
+          "external_id": "288229",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "44bb3655-b4df-5cf2-bf18-c2b5d20d412f",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-003",
+        "source_product_id": 288230,
+        "staging_row_id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+        "staging_payload_sha256": "fcccaa5f35269672ad32173e517b1f91e744e777b16b0374e013dfebde38b437",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288230/56ec9017ad4230dec4d8fc7c.png",
+        "image_sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+        "card_print": {
+          "id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Karoo",
+          "number": "ST01-003",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288230",
+          "tcgplayer_id": "288230",
+          "external_ids": {
+            "tcgplayer": "288230"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:36a907ed3ce55804e87e6c4725fd62779545566cf42abce1ac06f8de999ae899",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524"
+          }
+        },
+        "identity": {
+          "id": "9214c5e7-b421-55e2-a1c2-bc85d0e316f3",
+          "card_print_id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-003",
+          "normalized_printed_name": "karoo",
+          "source_name_raw": "Karoo",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-003",
+            "normalized_printed_name": "karoo",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "36a907ed3ce55804e87e6c4725fd62779545566cf42abce1ac06f8de999ae899",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "1147be46-4614-5636-af26-8f5417aac1bd",
+          "card_print_identity_id": "9214c5e7-b421-55e2-a1c2-bc85d0e316f3",
+          "card_print_id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+          "acquisition_key": "one_piece:tcgplayer:product:288230",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "b1c4f9fa32f8bdf19108976a9fe807e02b299b47a00bb0568d27020705c14f09",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-003",
+            "printed_name": "Karoo"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+              "payload_sha256": "fcccaa5f35269672ad32173e517b1f91e744e777b16b0374e013dfebde38b437",
+              "source_group_id": 3189,
+              "source_product_id": 288230
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288230/56ec9017ad4230dec4d8fc7c.png",
+              "sha256": "56ec9017ad4230dec4d8fc7c6ffbc4c3b5b2d47d71296d8dcc174b47af1d2c76",
+              "size_bytes": 140479,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "2aec02e4-5c10-5352-ba63-bd972b975c72",
+          "source": "tcgplayer",
+          "external_id": "288230",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "a05f1a0a-71ec-5720-b1da-8e56d8aaa524",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-004",
+        "source_product_id": 288232,
+        "staging_row_id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+        "staging_payload_sha256": "2c70bcbbd7b89065ecceec5281fb3d27d0f12781693c99dd19b4ebe00469ea7c",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288232/7c23ed2f3427401eb5f1e3f0.png",
+        "image_sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+        "card_print": {
+          "id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Sanji",
+          "number": "ST01-004",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288232",
+          "tcgplayer_id": "288232",
+          "external_ids": {
+            "tcgplayer": "288232"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:348993bfe91acccf23ad6e85f0f298817be6d5aaf1c34fd25197b25ddb4cf266",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "49b7760c-0a62-51b1-8c84-f8e2b7070144"
+          }
+        },
+        "identity": {
+          "id": "fce55f79-6b62-5085-8d07-5e34256c9e19",
+          "card_print_id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-004",
+          "normalized_printed_name": "sanji",
+          "source_name_raw": "Sanji",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-004",
+            "normalized_printed_name": "sanji",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "348993bfe91acccf23ad6e85f0f298817be6d5aaf1c34fd25197b25ddb4cf266",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "533ba7b2-a7a8-5798-941d-62c19f31e94e",
+          "card_print_identity_id": "fce55f79-6b62-5085-8d07-5e34256c9e19",
+          "card_print_id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+          "acquisition_key": "one_piece:tcgplayer:product:288232",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "78f5af6529c32a22de6194012c7a1703952182b6d075dbc72616ea8f059e7d78",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-004",
+            "printed_name": "Sanji"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+              "payload_sha256": "2c70bcbbd7b89065ecceec5281fb3d27d0f12781693c99dd19b4ebe00469ea7c",
+              "source_group_id": 3189,
+              "source_product_id": 288232
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288232/7c23ed2f3427401eb5f1e3f0.png",
+              "sha256": "7c23ed2f3427401eb5f1e3f0b0edc555b48908204aea7163725e39df358055b3",
+              "size_bytes": 185142,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "aa0153d2-30dc-582b-b474-c458975adc5c",
+          "source": "tcgplayer",
+          "external_id": "288232",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "49b7760c-0a62-51b1-8c84-f8e2b7070144",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-005",
+        "source_product_id": 288234,
+        "staging_row_id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+        "staging_payload_sha256": "68810750a25be1cb438f0fa9ff561ea08921f265eacb5b2f71109883cd9cae4b",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288234/139f0e0b38f00c6581e82f82.png",
+        "image_sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+        "card_print": {
+          "id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Jinbe",
+          "number": "ST01-005",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288234",
+          "tcgplayer_id": "288234",
+          "external_ids": {
+            "tcgplayer": "288234"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:56652a68a63d84206b11f377debeb94c6f1d1712f0df7a4b84f8ef419777743e",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010"
+          }
+        },
+        "identity": {
+          "id": "0c5c2e8a-4405-5d2b-b3ed-4feae418062d",
+          "card_print_id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-005",
+          "normalized_printed_name": "jinbe",
+          "source_name_raw": "Jinbe",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-005",
+            "normalized_printed_name": "jinbe",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "56652a68a63d84206b11f377debeb94c6f1d1712f0df7a4b84f8ef419777743e",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "869aa612-bf01-5012-8b06-0be02e3da2e5",
+          "card_print_identity_id": "0c5c2e8a-4405-5d2b-b3ed-4feae418062d",
+          "card_print_id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+          "acquisition_key": "one_piece:tcgplayer:product:288234",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "94abc91d02c04c76e369876ae326911d129b1c483136fd20778fb8f962b3ff0c",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-005",
+            "printed_name": "Jinbe"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+              "payload_sha256": "68810750a25be1cb438f0fa9ff561ea08921f265eacb5b2f71109883cd9cae4b",
+              "source_group_id": 3189,
+              "source_product_id": 288234
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288234/139f0e0b38f00c6581e82f82.png",
+              "sha256": "139f0e0b38f00c6581e82f82f68b7e557588fdd97b9efff04efe84dfae191527",
+              "size_bytes": 177433,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "d563e013-5a30-5a34-8a77-77a3d9fe8bdf",
+          "source": "tcgplayer",
+          "external_id": "288234",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "a865d3f0-644d-5a14-b9cb-ce0f8908c010",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-006",
+        "source_product_id": 288235,
+        "staging_row_id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+        "staging_payload_sha256": "36a5dc8211357d73902aa1ff424aaf985a0e0d167220ad09fa1b928c6c6db641",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288235/7b2db081c81b1497862ba791.png",
+        "image_sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+        "card_print": {
+          "id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Tony Tony.Chopper",
+          "number": "ST01-006",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288235",
+          "tcgplayer_id": "288235",
+          "external_ids": {
+            "tcgplayer": "288235"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:8587f1aeea6cf10cce12dceb0a604fb5184b6f91b3b821a25c1479fd288ce239",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "38dd9663-e514-5727-9870-79b05fb4c6b1"
+          }
+        },
+        "identity": {
+          "id": "22da17ba-6068-5931-a113-82303508f92f",
+          "card_print_id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-006",
+          "normalized_printed_name": "tony tony.chopper",
+          "source_name_raw": "Tony Tony.Chopper",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-006",
+            "normalized_printed_name": "tony tony.chopper",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "8587f1aeea6cf10cce12dceb0a604fb5184b6f91b3b821a25c1479fd288ce239",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "2037fcdb-881b-5a1d-b786-79fabd2b70c7",
+          "card_print_identity_id": "22da17ba-6068-5931-a113-82303508f92f",
+          "card_print_id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+          "acquisition_key": "one_piece:tcgplayer:product:288235",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "0ae2610a6d9d026a1fb5f79cfdf93f5aaf134432ffd893b928f359835c1602f0",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-006",
+            "printed_name": "Tony Tony.Chopper"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+              "payload_sha256": "36a5dc8211357d73902aa1ff424aaf985a0e0d167220ad09fa1b928c6c6db641",
+              "source_group_id": 3189,
+              "source_product_id": 288235
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288235/7b2db081c81b1497862ba791.png",
+              "sha256": "7b2db081c81b1497862ba791c0065ce896ae2831948b91ce411d8c2aa50c25ab",
+              "size_bytes": 169365,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "a529527b-4eb5-5c64-9d2a-50b7ecb74c73",
+          "source": "tcgplayer",
+          "external_id": "288235",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "38dd9663-e514-5727-9870-79b05fb4c6b1",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-007",
+        "source_product_id": 288236,
+        "staging_row_id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+        "staging_payload_sha256": "85bc743058710949f37e711ca8f5442ddc7bf39d6c6721a495aeb032ee9468e0",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288236/b24dd930f7e1db46850b874c.png",
+        "image_sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+        "card_print": {
+          "id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Nami",
+          "number": "ST01-007",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288236",
+          "tcgplayer_id": "288236",
+          "external_ids": {
+            "tcgplayer": "288236"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:30894058eeb92749ae0df308b33e7bf590713b88f26c259f7ff6e92add19d5c0",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44"
+          }
+        },
+        "identity": {
+          "id": "2c55c367-c161-5ec0-9f57-322a53aaf7a4",
+          "card_print_id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-007",
+          "normalized_printed_name": "nami",
+          "source_name_raw": "Nami",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-007",
+            "normalized_printed_name": "nami",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "30894058eeb92749ae0df308b33e7bf590713b88f26c259f7ff6e92add19d5c0",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "1d755019-c3b7-5e77-8ba8-7bc7ca74e2b8",
+          "card_print_identity_id": "2c55c367-c161-5ec0-9f57-322a53aaf7a4",
+          "card_print_id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+          "acquisition_key": "one_piece:tcgplayer:product:288236",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "6f67baa8b9d0694bcb5477110069009af5eefd09e32a5c64883ab171b17d78fc",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-007",
+            "printed_name": "Nami"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+              "payload_sha256": "85bc743058710949f37e711ca8f5442ddc7bf39d6c6721a495aeb032ee9468e0",
+              "source_group_id": 3189,
+              "source_product_id": 288236
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288236/b24dd930f7e1db46850b874c.png",
+              "sha256": "b24dd930f7e1db46850b874c75f48718d554db16afcfdf2b598e44070d860dce",
+              "size_bytes": 184939,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "949e3028-406a-56cb-8cfa-89699039f0b4",
+          "source": "tcgplayer",
+          "external_id": "288236",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "10b930fc-0d6e-5f83-ba96-7b8b30c33d44",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-008",
+        "source_product_id": 288237,
+        "staging_row_id": "04a742ab-a987-54cc-8e41-cbb837948729",
+        "staging_payload_sha256": "45a3b145ea52fe7e543cbbbb0f8d5e0cbf6472d83586cfba207528e68e3a2f97",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288237/d6dd83126548779b0663f082.png",
+        "image_sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+        "card_print": {
+          "id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Nico Robin",
+          "number": "ST01-008",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288237",
+          "tcgplayer_id": "288237",
+          "external_ids": {
+            "tcgplayer": "288237"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:cb3e9536c6c2bb0daaccde9954fc98100dd7d708423b0c65e9b0f88dd8723c42",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "04a742ab-a987-54cc-8e41-cbb837948729"
+          }
+        },
+        "identity": {
+          "id": "18769d53-5233-546c-a0f8-abe89fb5deb4",
+          "card_print_id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-008",
+          "normalized_printed_name": "nico robin",
+          "source_name_raw": "Nico Robin",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-008",
+            "normalized_printed_name": "nico robin",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "cb3e9536c6c2bb0daaccde9954fc98100dd7d708423b0c65e9b0f88dd8723c42",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "7ca6a2f2-d8d4-5f9c-a5a7-3e1813a6e81f",
+          "card_print_identity_id": "18769d53-5233-546c-a0f8-abe89fb5deb4",
+          "card_print_id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+          "acquisition_key": "one_piece:tcgplayer:product:288237",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "341e8bc2d7c0c60da48144f393535f38c79360bb377ff6ad2c7543a127fb09cc",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-008",
+            "printed_name": "Nico Robin"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "04a742ab-a987-54cc-8e41-cbb837948729",
+              "payload_sha256": "45a3b145ea52fe7e543cbbbb0f8d5e0cbf6472d83586cfba207528e68e3a2f97",
+              "source_group_id": 3189,
+              "source_product_id": 288237
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288237/d6dd83126548779b0663f082.png",
+              "sha256": "d6dd83126548779b0663f082487677c38279128ec0abb4dbc840cdb3ed551030",
+              "size_bytes": 199935,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "0664b278-3e93-5f3a-b6d2-cae050c3f51f",
+          "source": "tcgplayer",
+          "external_id": "288237",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "04a742ab-a987-54cc-8e41-cbb837948729",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-009",
+        "source_product_id": 288238,
+        "staging_row_id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+        "staging_payload_sha256": "c0514f1345c5ffc03f6752945285806db4932cf67cc6cefc0df983e776e21e4f",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288238/e8d3cffd90b4c2bdf6651636.png",
+        "image_sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+        "card_print": {
+          "id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Nefeltari Vivi",
+          "number": "ST01-009",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288238",
+          "tcgplayer_id": "288238",
+          "external_ids": {
+            "tcgplayer": "288238"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:3df09a11e4ce7cb74020bfc4e6cc4f60a40502dea66d98fc9a4dda714008ee21",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "c1cf8335-8f17-5fd2-9410-25439e081625"
+          }
+        },
+        "identity": {
+          "id": "a2d2f0c3-b48f-5497-97b4-49e2d01c417c",
+          "card_print_id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-009",
+          "normalized_printed_name": "nefeltari vivi",
+          "source_name_raw": "Nefeltari Vivi",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-009",
+            "normalized_printed_name": "nefeltari vivi",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "3df09a11e4ce7cb74020bfc4e6cc4f60a40502dea66d98fc9a4dda714008ee21",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "fe0c3029-f290-53e8-9e3e-01d65f88452c",
+          "card_print_identity_id": "a2d2f0c3-b48f-5497-97b4-49e2d01c417c",
+          "card_print_id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+          "acquisition_key": "one_piece:tcgplayer:product:288238",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "b4612597c04bb3a8eb1674bd483de910e26099f0b22696f42dea0bd8a01f7b88",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-009",
+            "printed_name": "Nefeltari Vivi"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+              "payload_sha256": "c0514f1345c5ffc03f6752945285806db4932cf67cc6cefc0df983e776e21e4f",
+              "source_group_id": 3189,
+              "source_product_id": 288238
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288238/e8d3cffd90b4c2bdf6651636.png",
+              "sha256": "e8d3cffd90b4c2bdf665163671afa7bceec20a9ff7c5ffa5a3fe8ab1b9d07aad",
+              "size_bytes": 167507,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "6fe6e6ae-c546-5b30-9a33-226e04efb6be",
+          "source": "tcgplayer",
+          "external_id": "288238",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "c1cf8335-8f17-5fd2-9410-25439e081625",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-010",
+        "source_product_id": 288239,
+        "staging_row_id": "5b18a562-74e1-5605-998f-db7652d60052",
+        "staging_payload_sha256": "c4efe89d36de17566a518fb11fe0a66b45f5df803c3fd726fbae3812fe1094a8",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288239/129318d163163be6f90ef374.png",
+        "image_sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+        "card_print": {
+          "id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Franky",
+          "number": "ST01-010",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288239",
+          "tcgplayer_id": "288239",
+          "external_ids": {
+            "tcgplayer": "288239"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:edb96f51c935bd7437ec601d168ba95fda11613201c09c1b444a72191b5ce56c",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "5b18a562-74e1-5605-998f-db7652d60052"
+          }
+        },
+        "identity": {
+          "id": "bfd9b5b7-6f90-5240-918f-26d0fe9c21d8",
+          "card_print_id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-010",
+          "normalized_printed_name": "franky",
+          "source_name_raw": "Franky",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-010",
+            "normalized_printed_name": "franky",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "edb96f51c935bd7437ec601d168ba95fda11613201c09c1b444a72191b5ce56c",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "0eb83e50-9282-59d7-b969-cce351f858c3",
+          "card_print_identity_id": "bfd9b5b7-6f90-5240-918f-26d0fe9c21d8",
+          "card_print_id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+          "acquisition_key": "one_piece:tcgplayer:product:288239",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "493d0df237eec02bfb7cc289e79039c94127301ef7c1ae52049f6d007727e396",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-010",
+            "printed_name": "Franky"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "5b18a562-74e1-5605-998f-db7652d60052",
+              "payload_sha256": "c4efe89d36de17566a518fb11fe0a66b45f5df803c3fd726fbae3812fe1094a8",
+              "source_group_id": 3189,
+              "source_product_id": 288239
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288239/129318d163163be6f90ef374.png",
+              "sha256": "129318d163163be6f90ef3740ca4d5615687d3cff4eedd89c155ec3847092e42",
+              "size_bytes": 186532,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "1bd3b678-88a4-539d-af42-0fa598731ae2",
+          "source": "tcgplayer",
+          "external_id": "288239",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "5b18a562-74e1-5605-998f-db7652d60052",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-011",
+        "source_product_id": 288240,
+        "staging_row_id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+        "staging_payload_sha256": "91b27d866c6dabb867369c9c4fb8a00d8dcabe84fec2d551195f704196bb170e",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288240/a3e9b8c9e5e96413a0985d1f.png",
+        "image_sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+        "card_print": {
+          "id": "9d6e1d07-644f-532d-a556-cee305304e59",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Brook",
+          "number": "ST01-011",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288240",
+          "tcgplayer_id": "288240",
+          "external_ids": {
+            "tcgplayer": "288240"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:e61e920042ad85d67345bc98e6bdeb8905812d517a3bf49ec6d632da9b388750",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde"
+          }
+        },
+        "identity": {
+          "id": "227e935b-f32c-5c74-91bd-e57733adafb6",
+          "card_print_id": "9d6e1d07-644f-532d-a556-cee305304e59",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-011",
+          "normalized_printed_name": "brook",
+          "source_name_raw": "Brook",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-011",
+            "normalized_printed_name": "brook",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "e61e920042ad85d67345bc98e6bdeb8905812d517a3bf49ec6d632da9b388750",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "15ac0b95-209e-5248-ae4f-9bb6864a6ab2",
+          "card_print_identity_id": "227e935b-f32c-5c74-91bd-e57733adafb6",
+          "card_print_id": "9d6e1d07-644f-532d-a556-cee305304e59",
+          "acquisition_key": "one_piece:tcgplayer:product:288240",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "1151324ddbbfd7d82e3f601b05ad83a9c7d4e62dcd77e102ce506393dc7af4ad",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-011",
+            "printed_name": "Brook"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+              "payload_sha256": "91b27d866c6dabb867369c9c4fb8a00d8dcabe84fec2d551195f704196bb170e",
+              "source_group_id": 3189,
+              "source_product_id": 288240
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288240/a3e9b8c9e5e96413a0985d1f.png",
+              "sha256": "a3e9b8c9e5e96413a0985d1f017a4526145fd0b8073c60877fa1939111126cd0",
+              "size_bytes": 189913,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "9d6e1d07-644f-532d-a556-cee305304e59",
+          "source": "tcgplayer",
+          "external_id": "288240",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "a7e60b23-0ae5-5eda-bdcb-7be0113f8cde",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-012",
+        "source_product_id": 288241,
+        "staging_row_id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+        "staging_payload_sha256": "10064ec1da87392a807a57494b84ce24690db389290651e6a51937a46048689b",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288241/bd29d2719dac892311bfe03b.png",
+        "image_sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+        "card_print": {
+          "id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Monkey.D.Luffy",
+          "number": "ST01-012",
+          "variant_key": "",
+          "rarity": "SR",
+          "gv_id": "GV-OP-TCGP-288241",
+          "tcgplayer_id": "288241",
+          "external_ids": {
+            "tcgplayer": "288241"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:c596eb761779306743d15ca52d3fc0e8833d28bf526c7a126abeb5455392bf41",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "3522192a-eae4-50b8-b93a-c1316497e43b"
+          }
+        },
+        "identity": {
+          "id": "7ae97f5c-7be3-506f-bd79-465191cb6f42",
+          "card_print_id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-012",
+          "normalized_printed_name": "monkey.d.luffy",
+          "source_name_raw": "Monkey.D.Luffy",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-012",
+            "normalized_printed_name": "monkey.d.luffy",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "c596eb761779306743d15ca52d3fc0e8833d28bf526c7a126abeb5455392bf41",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "360276ba-d4a5-543f-910d-b4426263e5b9",
+          "card_print_identity_id": "7ae97f5c-7be3-506f-bd79-465191cb6f42",
+          "card_print_id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+          "acquisition_key": "one_piece:tcgplayer:product:288241",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "5aaacb332a39b2f38cda0182d3717e22357102f0968ffacfaebd16ca58490bee",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-012",
+            "printed_name": "Monkey.D.Luffy"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+              "payload_sha256": "10064ec1da87392a807a57494b84ce24690db389290651e6a51937a46048689b",
+              "source_group_id": 3189,
+              "source_product_id": 288241
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288241/bd29d2719dac892311bfe03b.png",
+              "sha256": "bd29d2719dac892311bfe03b460f8b2de83fb3882b1659a5eea3f1bc89666071",
+              "size_bytes": 198877,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "SR"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "3c0a9224-7dcf-59b7-a8d4-7fa56014ac9c",
+          "source": "tcgplayer",
+          "external_id": "288241",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "3522192a-eae4-50b8-b93a-c1316497e43b",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-013",
+        "source_product_id": 288242,
+        "staging_row_id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+        "staging_payload_sha256": "a1f873908897b846a2cf5c4297d2c855dc914b68bf323c615cf511e33a9a7e1a",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288242/dcc715bcf733d6822a92e970.png",
+        "image_sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+        "card_print": {
+          "id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Roronoa Zoro",
+          "number": "ST01-013",
+          "variant_key": "",
+          "rarity": "SR",
+          "gv_id": "GV-OP-TCGP-288242",
+          "tcgplayer_id": "288242",
+          "external_ids": {
+            "tcgplayer": "288242"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:24947bfbaf0810dd265ea1f08d25ddfd235f4a64069b4fb3aa9fea64052fcaf1",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "character",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "31f788fc-e8f7-5bc3-9539-984f60875622"
+          }
+        },
+        "identity": {
+          "id": "d18c0e53-118a-58e8-b158-439136b54f08",
+          "card_print_id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-013",
+          "normalized_printed_name": "roronoa zoro",
+          "source_name_raw": "Roronoa Zoro",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-013",
+            "normalized_printed_name": "roronoa zoro",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "24947bfbaf0810dd265ea1f08d25ddfd235f4a64069b4fb3aa9fea64052fcaf1",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "da423e6a-b16f-59e5-9015-198bcd5e23f3",
+          "card_print_identity_id": "d18c0e53-118a-58e8-b158-439136b54f08",
+          "card_print_id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+          "acquisition_key": "one_piece:tcgplayer:product:288242",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "ec35448cb72be0a8b37b6e2017573a5951c18871a3e8f6521a275b542cc2cd91",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-013",
+            "printed_name": "Roronoa Zoro"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+              "payload_sha256": "a1f873908897b846a2cf5c4297d2c855dc914b68bf323c615cf511e33a9a7e1a",
+              "source_group_id": 3189,
+              "source_product_id": 288242
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288242/dcc715bcf733d6822a92e970.png",
+              "sha256": "dcc715bcf733d6822a92e970cbaca61372b4481ef183bac4056fe85d1f3fc877",
+              "size_bytes": 204835,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "character",
+              "rarity": "SR"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "e543c802-2857-54b5-b855-4dcc8dedf1c8",
+          "source": "tcgplayer",
+          "external_id": "288242",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "31f788fc-e8f7-5bc3-9539-984f60875622",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-014",
+        "source_product_id": 288243,
+        "staging_row_id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+        "staging_payload_sha256": "8f1f14b53341a589e65fbab92776a3d04a484a7c85f1e5dd68866ab0b7c9ee2e",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288243/3f4c7e900e99ed64fae42193.png",
+        "image_sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+        "card_print": {
+          "id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Guard Point",
+          "number": "ST01-014",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288243",
+          "tcgplayer_id": "288243",
+          "external_ids": {
+            "tcgplayer": "288243"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:f87e26e54b4213532f8433cc40b0a88158c1ad6c59d3a9233fe1e2c1501cd482",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "event",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "d80051e2-4c42-5d35-845a-d85a5474da03"
+          }
+        },
+        "identity": {
+          "id": "f5dc58cb-072f-543d-a313-a248db643f02",
+          "card_print_id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-014",
+          "normalized_printed_name": "guard point",
+          "source_name_raw": "Guard Point",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-014",
+            "normalized_printed_name": "guard point",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "f87e26e54b4213532f8433cc40b0a88158c1ad6c59d3a9233fe1e2c1501cd482",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "376566b7-8e7f-557e-8d96-bc002f9ce706",
+          "card_print_identity_id": "f5dc58cb-072f-543d-a313-a248db643f02",
+          "card_print_id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+          "acquisition_key": "one_piece:tcgplayer:product:288243",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "9b73422ba216de9b91136113b8a70bc6500195cdddb4f4760963115ac348a34a",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-014",
+            "printed_name": "Guard Point"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+              "payload_sha256": "8f1f14b53341a589e65fbab92776a3d04a484a7c85f1e5dd68866ab0b7c9ee2e",
+              "source_group_id": 3189,
+              "source_product_id": 288243
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288243/3f4c7e900e99ed64fae42193.png",
+              "sha256": "3f4c7e900e99ed64fae42193c7ee4c7f970f8e889e81db2e45e8752d8a739f6f",
+              "size_bytes": 165175,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "event",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "ec8f43d7-c22b-5d3d-ad12-eea983ca3779",
+          "source": "tcgplayer",
+          "external_id": "288243",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "d80051e2-4c42-5d35-845a-d85a5474da03",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-015",
+        "source_product_id": 288244,
+        "staging_row_id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+        "staging_payload_sha256": "cfdc693f6c17432b2fe31e833ea12a3fa997637ff36b361eb232767df9143786",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288244/c9e6bc2f0f14f41af4717d47.png",
+        "image_sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+        "card_print": {
+          "id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Gum-Gum Jet Pistol",
+          "number": "ST01-015",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288244",
+          "tcgplayer_id": "288244",
+          "external_ids": {
+            "tcgplayer": "288244"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:2033d40362c403572e82b9d8aa1ef5a5d65831b5508bd28bb1e3135ef4008f89",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "event",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6"
+          }
+        },
+        "identity": {
+          "id": "5370dfa6-c802-51b4-aa4f-85db09aae484",
+          "card_print_id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-015",
+          "normalized_printed_name": "gum-gum jet pistol",
+          "source_name_raw": "Gum-Gum Jet Pistol",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-015",
+            "normalized_printed_name": "gum-gum jet pistol",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "2033d40362c403572e82b9d8aa1ef5a5d65831b5508bd28bb1e3135ef4008f89",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "a44e02dd-15b2-5703-aa2e-19fca343fdf1",
+          "card_print_identity_id": "5370dfa6-c802-51b4-aa4f-85db09aae484",
+          "card_print_id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+          "acquisition_key": "one_piece:tcgplayer:product:288244",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "cff2a5ca6e715d4e0c736409f4aaba13e698f94c25303649051678ac5ee7d834",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-015",
+            "printed_name": "Gum-Gum Jet Pistol"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+              "payload_sha256": "cfdc693f6c17432b2fe31e833ea12a3fa997637ff36b361eb232767df9143786",
+              "source_group_id": 3189,
+              "source_product_id": 288244
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288244/c9e6bc2f0f14f41af4717d47.png",
+              "sha256": "c9e6bc2f0f14f41af4717d47d745cae46603e8a33114d9e7e52b7b322b0a159a",
+              "size_bytes": 177591,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "event",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "3245a1ff-a98a-5c4e-b744-5bb1c407d694",
+          "source": "tcgplayer",
+          "external_id": "288244",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "c3318e4a-ae1a-5bdb-9686-8dbb8e82d5a6",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-016",
+        "source_product_id": 288245,
+        "staging_row_id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+        "staging_payload_sha256": "9492326f10995b0ed1bdd6634dc1396a36a2cd7126815c3870f76d8edf016bbb",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288245/af650ea34b40b6318e4d869f.png",
+        "image_sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+        "card_print": {
+          "id": "eef89a54-e584-563d-9eea-4593eaebf829",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Diable Jambe",
+          "number": "ST01-016",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288245",
+          "tcgplayer_id": "288245",
+          "external_ids": {
+            "tcgplayer": "288245"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:46fa660dc42bc2d5d41b76023f2536c5a0eb592f8bb2390b15f132ca5c8782c3",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "event",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80"
+          }
+        },
+        "identity": {
+          "id": "9a022565-b518-57cc-a49a-eba231a2db17",
+          "card_print_id": "eef89a54-e584-563d-9eea-4593eaebf829",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-016",
+          "normalized_printed_name": "diable jambe",
+          "source_name_raw": "Diable Jambe",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-016",
+            "normalized_printed_name": "diable jambe",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "46fa660dc42bc2d5d41b76023f2536c5a0eb592f8bb2390b15f132ca5c8782c3",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "2f817501-50ff-5260-b22a-b84897894baf",
+          "card_print_identity_id": "9a022565-b518-57cc-a49a-eba231a2db17",
+          "card_print_id": "eef89a54-e584-563d-9eea-4593eaebf829",
+          "acquisition_key": "one_piece:tcgplayer:product:288245",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "4a236e4d2acf0dee89937cf876193eca9356c9f769dd1990d99c7e9c95ec06eb",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-016",
+            "printed_name": "Diable Jambe"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+              "payload_sha256": "9492326f10995b0ed1bdd6634dc1396a36a2cd7126815c3870f76d8edf016bbb",
+              "source_group_id": 3189,
+              "source_product_id": 288245
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288245/af650ea34b40b6318e4d869f.png",
+              "sha256": "af650ea34b40b6318e4d869f50b575bc9a93f62de72a7cf0e0bb29282c5d0dba",
+              "size_bytes": 194814,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "event",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "eef89a54-e584-563d-9eea-4593eaebf829",
+          "source": "tcgplayer",
+          "external_id": "288245",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "d5822bb3-3202-54c1-b887-9ba23d4b5f80",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      },
+      {
+        "card_number": "ST01-017",
+        "source_product_id": 288246,
+        "staging_row_id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+        "staging_payload_sha256": "29741a112287f3dd7adac0ff278fe513d61ec4ddab0722df56c460dad742f930",
+        "image_storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288246/2ad4365090e78b581f14c5b3.png",
+        "image_sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+        "card_print": {
+          "id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+          "game_id": "4f504300-0000-4000-8000-000000000001",
+          "set_id": "0c200843-98c2-5274-aa48-c914c73e66a7",
+          "set_code": "ST01",
+          "name": "Thousand Sunny",
+          "number": "ST01-017",
+          "variant_key": "",
+          "rarity": "C",
+          "gv_id": "GV-OP-TCGP-288246",
+          "tcgplayer_id": "288246",
+          "external_ids": {
+            "tcgplayer": "288246"
+          },
+          "identity_domain": "one_piece_eng_print",
+          "print_identity_key": "one_piece_eng_print:e1135eb2404f701901dead6983aff00e1ff84423d4ee70749210af070804d510",
+          "image_url": null,
+          "image_alt_url": null,
+          "data_quality_flags": {
+            "app_visibility": "hidden_by_game_release_control",
+            "exact_printing_children_deferred": true,
+            "image_pointer_deferred": true
+          },
+          "ai_metadata": {
+            "source_card_type": "stage",
+            "canonical_authority": "official_english_st01_card_list",
+            "durable_staging_row_id": "98a602c2-a995-5ef2-af1a-61dd44c364b5"
+          }
+        },
+        "identity": {
+          "id": "af6a36e4-9fbc-5f31-8f26-5254b40f053c",
+          "card_print_id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+          "identity_domain": "one_piece_eng_print",
+          "set_code_identity": "ST01",
+          "printed_number": "ST01-017",
+          "normalized_printed_name": "thousand sunny",
+          "source_name_raw": "Thousand Sunny",
+          "identity_payload": {
+            "game_code": "one_piece",
+            "language_code": "en",
+            "set_code": "ST01",
+            "printed_number": "ST01-017",
+            "normalized_printed_name": "thousand sunny",
+            "variant_key": "base"
+          },
+          "identity_key_version": "ONE_PIECE_ENG_PRINT_IDENTITY_V1",
+          "identity_key_hash": "e1135eb2404f701901dead6983aff00e1ff84423d4ee70749210af070804d510",
+          "is_active": true
+        },
+        "source_evidence": {
+          "id": "0896b247-4ff9-5e9a-bffd-d5e4501c517c",
+          "card_print_identity_id": "af6a36e4-9fbc-5f31-8f26-5254b40f053c",
+          "card_print_id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+          "acquisition_key": "one_piece:tcgplayer:product:288246",
+          "source_key": "tcgplayer",
+          "evidence_key_hash": "e53f5eb39c808bdd6ec17a08ba1318a66e9f7247295c80ab7be3e5c36ef6bf75",
+          "evidence_subject": {
+            "identity_domain": "one_piece_eng_print",
+            "set_code": "ST01",
+            "printed_number": "ST01-017",
+            "printed_name": "Thousand Sunny"
+          },
+          "evidence_payload": {
+            "durable_staging": {
+              "batch_id": "998e9eb3-bc80-5306-aa69-61f6d1d4362b",
+              "staging_row_id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+              "payload_sha256": "29741a112287f3dd7adac0ff278fe513d61ec4ddab0722df56c460dad742f930",
+              "source_group_id": 3189,
+              "source_product_id": 288246
+            },
+            "official_authority": {
+              "language_code": "en",
+              "authority_status": "exact_official_english_st01_card_match",
+              "product_url": "https://en.onepiece-cardgame.com/products/decks/st01-04.php",
+              "card_list_url": "https://en.onepiece-cardgame.com/cardlist/?series=569001"
+            },
+            "self_hosted_image_evidence": {
+              "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/gv-op-tcgp-288246/2ad4365090e78b581f14c5b3.png",
+              "sha256": "2ad4365090e78b581f14c5b332240456117f8db8a21fd7ffe6abfba13aa6cead",
+              "size_bytes": 191843,
+              "width": 600,
+              "height": 838,
+              "format": "png",
+              "independently_verified": true,
+              "pointer_authorized": false
+            },
+            "source_card_facts": {
+              "card_type": "stage",
+              "rarity": "C"
+            }
+          },
+          "active": true
+        },
+        "external_mapping": {
+          "card_print_id": "3e18a26f-61f9-5e26-a272-9c9658541b7e",
+          "source": "tcgplayer",
+          "external_id": "288246",
+          "meta": {
+            "source_group_id": 3189,
+            "staging_row_id": "98a602c2-a995-5ef2-af1a-61dd44c364b5",
+            "mapping_authority": "exact_durable_source_product",
+            "promotion_plan_version": "ONE_PIECE_ST01_CANONICAL_PARENT_PROMOTION_PLAN_V1"
+          },
+          "active": true
+        }
+      }
+    ]
+  },
+  "timeouts": {
+    "lock_timeout": "5s",
+    "statement_timeout": "120s",
+    "idle_in_transaction_session_timeout": "60s"
+  },
+  "boundaries": {
+    "insert_only": true,
+    "exact_set_rows": 1,
+    "exact_card_print_rows": 17,
+    "exact_identity_rows": 17,
+    "exact_source_evidence_rows": 17,
+    "exact_external_mapping_rows": 17,
+    "update_rows": 0,
+    "delete_rows": 0,
+    "card_printing_child_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "apply_plan_fingerprint_sha256": "6c09e30e1982b24f0eccf1437269db7747e31190669671f0a753413567cf3d7a",
+  "approval_env": "ONE_PIECE_ST01_DURABLE_APPLY_APPROVAL"
+}

@@ -1,0 +1,44 @@
+{
+  "version": "ONE_PIECE_ST01_LANGUAGE_AND_IMAGE_READINESS_V1",
+  "status": "language_and_image_acquisition_readiness_passed_no_writes",
+  "repository": {
+    "commit_sha": "c8b01d27bb6541857cd1b0220b2a13f92cf31b1e",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "source_review_sha256": "effc4ccc2e71be5cab7a30356763a2ca09d2d14b73bee48203ef3766dc97927b",
+  "authority_summary": {
+    "staged_rows": 21,
+    "exact_language_authority_rows": 18,
+    "context_only_rows": 3,
+    "official_numbered_card_matches": 17,
+    "blanket_category_authority_granted": false
+  },
+  "counts": {
+    "selected_rows": 21,
+    "accepted_images": 21,
+    "preferred_resolution_images": 19,
+    "card_or_don_proposed_paths": 18,
+    "sealed_paths_pending_contract": 3,
+    "duplicate_image_hash_groups": 0,
+    "findings": 0
+  },
+  "findings": [],
+  "duplicate_image_hashes": [],
+  "boundaries": {
+    "source_scope": "tcgplayer_category_68_group_3189_st01_only",
+    "blanket_tcgplayer_category_language_authority": false,
+    "downloaded_bytes_cache_only": true,
+    "cache_root": ".tmp/one_piece_st01_language_and_image_readiness_v1",
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_connections": 0,
+    "storage_writes": 0,
+    "pointer_updates": 0,
+    "canonical_mutations": 0,
+    "sealed_mutations": 0,
+    "pricing_mutations": 0,
+    "publication_mutations": 0
+  },
+  "exact_next_gate": "freeze a separate storage collision-preflight/upload plan for 18 card/DON objects and define the sealed image contract before any sealed upload",
+  "readiness_fingerprint_sha256": "e98d7e21fd828765165f6fde5a897c24104e8d9dabaeebe3808950a886190468"
+}

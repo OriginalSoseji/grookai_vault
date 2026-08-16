@@ -1,0 +1,85 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-15T17:58:51.756Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "8eb7ea83f1d928bdbaa4378d8740c8c4bd7decb5",
+    "tracked_worktree_clean": true
+  },
+  "resolution_fingerprint_sha256": "f4232cbdd644b8b8b89a0b1be7fbf59507dc20f2b7f971282ac27d08615c841d",
+  "preflight_fingerprint_sha256": "b9e7db56f49b8213662e7c5013c1f4caece257caacf17ebda5e7db81d22e44c3",
+  "sample_fingerprint_sha256": "57a3f62dd22be933443c90ca4805c16ad04d90309ce5bb0886ec975b0fdc2590",
+  "sample_counts": {
+    "families": 13,
+    "variants": 18,
+    "automated_reviews": 18,
+    "source_mappings": 18,
+    "variant_evidence": 79
+  },
+  "package_forms": [
+    "booster_box",
+    "bundle",
+    "case",
+    "collection",
+    "deck",
+    "deck_display",
+    "display",
+    "kit",
+    "pack",
+    "promo_pack",
+    "sleeved_pack",
+    "tin"
+  ],
+  "boundaries": {
+    "rollback_only": true,
+    "durable_database_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0
+  },
+  "status": "production_rollback_canary_passed_zero_residue",
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "write_attribution": [
+    {
+      "table_name": "sealed_product_candidate_reviews",
+      "inserted": 18,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_families",
+      "inserted": 13,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_source_mappings",
+      "inserted": 18,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variant_evidence",
+      "inserted": 79,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variants",
+      "inserted": 18,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "post_rollback_remaining_rows": 0,
+  "exact_readback": true,
+  "exact_next_gate": "freeze the complete insert-only apply plan; durable apply remains separately gated"
+}

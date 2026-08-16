@@ -1,0 +1,24 @@
+{
+  "version": "ONE_PIECE_SEALED_PRICING_QUALIFICATION_DURABLE_APPLY_V1",
+  "recorded_at": "2026-08-16T01:44:51.605Z",
+  "mode": "dry-run",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "67ce198157676658898245ddefc08405a758d2c6",
+    "tracked_worktree_clean": true
+  },
+  "apply_plan_fingerprint_sha256": "1861e6779f78cee8ab967ece05b1a0354beb8c329f074041f809e58cc9e01998",
+  "source_payload_fingerprint_sha256": "be884db80e24e0dfd7963234e4187994456ed439cb2c0cfe149101e92c29287e",
+  "mutation_contract_sha256": "9035abb51704978d47d37254a3d315280f33a98a78e46bba1edcac6dc4d9558d",
+  "planned_rows": 374,
+  "boundaries": {
+    "release_writes": 0,
+    "release_member_writes": 0,
+    "release_pointer_writes": 0,
+    "publication_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

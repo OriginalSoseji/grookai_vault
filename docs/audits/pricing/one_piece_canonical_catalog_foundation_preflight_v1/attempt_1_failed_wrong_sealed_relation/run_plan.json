@@ -1,0 +1,71 @@
+{
+  "version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_V1",
+  "repository": {
+    "commit_sha": "60c19f9050c57619127a4253a1a6926400a184f1",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "migration": {
+    "version": "20260814150000",
+    "path": "supabase/migrations/20260814150000_one_piece_canonical_catalog_foundation_v1.sql",
+    "sha256": "a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba"
+  },
+  "target_game": {
+    "id": "4f504300-0000-4000-8000-000000000001",
+    "code": "one_piece",
+    "name": "One Piece Card Game",
+    "slug": "one-piece"
+  },
+  "numbered_card_scope": {
+    "count": 17,
+    "product_ids": [
+      "288228",
+      "288229",
+      "288230",
+      "288232",
+      "288234",
+      "288235",
+      "288236",
+      "288237",
+      "288238",
+      "288239",
+      "288240",
+      "288241",
+      "288242",
+      "288243",
+      "288244",
+      "288245",
+      "288246"
+    ],
+    "gv_ids": [
+      "GV-OP-TCGP-288228",
+      "GV-OP-TCGP-288229",
+      "GV-OP-TCGP-288230",
+      "GV-OP-TCGP-288232",
+      "GV-OP-TCGP-288234",
+      "GV-OP-TCGP-288235",
+      "GV-OP-TCGP-288236",
+      "GV-OP-TCGP-288237",
+      "GV-OP-TCGP-288238",
+      "GV-OP-TCGP-288239",
+      "GV-OP-TCGP-288240",
+      "GV-OP-TCGP-288241",
+      "GV-OP-TCGP-288242",
+      "GV-OP-TCGP-288243",
+      "GV-OP-TCGP-288244",
+      "GV-OP-TCGP-288245",
+      "GV-OP-TCGP-288246"
+    ]
+  },
+  "boundaries": {
+    "transaction_read_only": true,
+    "database_writes": false,
+    "migration_apply": false,
+    "canonical_writes": false,
+    "sealed_writes": false,
+    "storage_writes": false,
+    "pointer_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false
+  },
+  "run_plan_fingerprint_sha256": "3ecb85acf77e6bd8b1c2e77adfcf8990a86d8b63a36ed6d3458c2ac295bd7802"
+}

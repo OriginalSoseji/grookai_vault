@@ -1,0 +1,74 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_CANARY_STAGE_V1",
+  "recorded_at": "2026-08-13T22:16:23.126Z",
+  "mode": "dry-run",
+  "status": "rollback_dry_run_passed_no_durable_change",
+  "writer_payload_fingerprint": "73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38",
+  "staging_migration_sha256": "20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8",
+  "foundation_migration_sha256": "d4085f0dab4c9d5724dcda5644b1774ab48bb3535f94b42f0ca3cea1786de082",
+  "contract": {
+    "version": "MTG_CANONICAL_CATALOG_CANARY_STAGE_V1",
+    "batch_id": "276cc9f7-0159-5df3-874c-73ea04e741a4",
+    "staged_row_count": 3089,
+    "entity_counts": {
+      "sets": 1,
+      "card_prints": 453,
+      "card_print_identity": 453,
+      "card_printings": 865,
+      "external_mappings": 453,
+      "external_printing_mappings": 864
+    },
+    "staged_rows_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+    "mutation_contract_sha256": "0bb200c5e273f99fcb3090d54b2accfa0b781d26d985584fbbe59882e04a387c",
+    "required_approval_message": "I approve the service-only MTG canonical staging canary only: staging migration 20d449155373d423a4ea0feb5ba7d0a604270aedf1211c064776edf78f5301b8, payload 73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38, mutation contract 0bb200c5e273f99fcb3090d54b2accfa0b781d26d985584fbbe59882e04a387c, one immutable batch and 3089 immutable staged rows. I do not approve canonical game, set, card, printing, mapping, image, Storage, pricing, publication, app-visibility, Pokemon, update, delete, truncate, cleanup, or promotion writes."
+  },
+  "database_proof": {
+    "before": {
+      "mtg_set_count": 1,
+      "mtg_game_count": 1,
+      "row_table_present": true,
+      "pokemon_card_count": 58769,
+      "batch_table_present": true,
+      "staging_migration_recorded": true
+    },
+    "transaction_readback": {
+      "batch_count": 1,
+      "row_count": 3089,
+      "issues": []
+    },
+    "transaction_security": {
+      "anon_row_select": false,
+      "row_rls_enabled": true,
+      "anon_batch_select": false,
+      "batch_rls_enabled": true,
+      "service_row_insert": true,
+      "service_row_select": true,
+      "service_batch_insert": true,
+      "service_batch_select": true,
+      "authenticated_row_select": false,
+      "authenticated_batch_select": false
+    },
+    "after": {
+      "mtg_set_count": 1,
+      "mtg_game_count": 1,
+      "row_table_present": true,
+      "pokemon_card_count": 58769,
+      "batch_table_present": true,
+      "staging_migration_recorded": true
+    },
+    "durable_readback": {
+      "batch_count": 0,
+      "row_count": 0,
+      "issues": []
+    }
+  },
+  "boundaries": {
+    "database_writes": false,
+    "transaction_rolled_back": true,
+    "canonical_writes": false,
+    "app_visibility": false,
+    "storage_writes": false,
+    "price_publication": false,
+    "pokemon_mutation": false
+  }
+}

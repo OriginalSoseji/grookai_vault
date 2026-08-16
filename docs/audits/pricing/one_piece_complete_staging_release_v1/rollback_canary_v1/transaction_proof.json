@@ -1,0 +1,378 @@
+{
+  "transaction_started": false,
+  "rolled_back": true,
+  "service_role_write_path": true,
+  "collision_before": {
+    "batch_ids": 0,
+    "batch_payload_fingerprints": 0,
+    "staging_row_ids": 0,
+    "historical_source_product_overlaps": 21,
+    "existing_batch_rows": 1,
+    "existing_staging_rows": 21,
+    "evaluation": {
+      "valid": true,
+      "findings": []
+    }
+  },
+  "protected_before": {
+    "tables": {
+      "public.games": {
+        "present": true,
+        "row_count": "4"
+      },
+      "public.sets": {
+        "present": true,
+        "row_count": "2019"
+      },
+      "public.card_prints": {
+        "present": true,
+        "row_count": "71169"
+      },
+      "public.card_print_identity": {
+        "present": true,
+        "row_count": "66965"
+      },
+      "public.card_print_identity_source_evidence": {
+        "present": true,
+        "row_count": "122067"
+      },
+      "public.card_printings": {
+        "present": true,
+        "row_count": "90243"
+      },
+      "public.external_mappings": {
+        "present": true,
+        "row_count": "83334"
+      },
+      "public.external_printing_mappings": {
+        "present": true,
+        "row_count": "18655"
+      },
+      "public.sealed_products": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_printings": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_external_mappings": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_prices": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_price_observations": {
+        "present": false,
+        "row_count": null
+      },
+      "public.market_price_publication_sets": {
+        "present": true,
+        "row_count": "32"
+      },
+      "public.market_price_current_publication": {
+        "present": true,
+        "row_count": "1"
+      },
+      "public.market_price_publication_events": {
+        "present": true,
+        "row_count": "41"
+      },
+      "public.market_price_publication_snapshots": {
+        "present": true,
+        "row_count": "317362"
+      },
+      "public.market_price_pipeline_candidates": {
+        "present": true,
+        "row_count": "543070"
+      },
+      "public.market_price_qualification_decisions": {
+        "present": true,
+        "row_count": "497988"
+      },
+      "public.catalog_game_release_controls": {
+        "present": true,
+        "row_count": "2"
+      },
+      "public.card_prices": {
+        "present": true,
+        "row_count": "1886"
+      },
+      "public.card_price_observations": {
+        "present": true,
+        "row_count": "322"
+      },
+      "public.card_price_rollups": {
+        "present": true,
+        "row_count": "321"
+      },
+      "public.card_price_ticks": {
+        "present": true,
+        "row_count": "1886"
+      },
+      "public.market_prices": {
+        "present": true,
+        "row_count": "0"
+      },
+      "public.prices": {
+        "present": true,
+        "row_count": "1662"
+      },
+      "public.pricing_observations": {
+        "present": true,
+        "row_count": "0"
+      },
+      "public.pricing_jobs": {
+        "present": true,
+        "row_count": "2626"
+      },
+      "public.pricing_watch": {
+        "present": true,
+        "row_count": "375"
+      },
+      "public.vault_items": {
+        "present": true,
+        "row_count": "437"
+      },
+      "public.vault_item_instances": {
+        "present": true,
+        "row_count": "3385"
+      },
+      "public.vault_owners": {
+        "present": true,
+        "row_count": "25"
+      },
+      "public.mtg_canonical_import_batches": {
+        "present": true,
+        "row_count": "134"
+      },
+      "public.mtg_canonical_import_rows": {
+        "present": true,
+        "row_count": "75945"
+      },
+      "supabase_migrations.schema_migrations": {
+        "present": true,
+        "row_count": "339"
+      }
+    },
+    "mtg_scope": {
+      "set_count": "133",
+      "card_count": "12380",
+      "game_count": "1",
+      "identity_count": "12380",
+      "printing_count": "20040",
+      "canonical_scope": "mtg",
+      "external_mapping_count": "12380",
+      "external_printing_mapping_count": "18481",
+      "staging_batch_count": "134",
+      "staging_row_count": "75945"
+    }
+  },
+  "protected_inside": {
+    "tables": {
+      "public.games": {
+        "present": true,
+        "row_count": "4"
+      },
+      "public.sets": {
+        "present": true,
+        "row_count": "2019"
+      },
+      "public.card_prints": {
+        "present": true,
+        "row_count": "71169"
+      },
+      "public.card_print_identity": {
+        "present": true,
+        "row_count": "66965"
+      },
+      "public.card_print_identity_source_evidence": {
+        "present": true,
+        "row_count": "122067"
+      },
+      "public.card_printings": {
+        "present": true,
+        "row_count": "90243"
+      },
+      "public.external_mappings": {
+        "present": true,
+        "row_count": "83334"
+      },
+      "public.external_printing_mappings": {
+        "present": true,
+        "row_count": "18655"
+      },
+      "public.sealed_products": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_printings": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_external_mappings": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_prices": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_price_observations": {
+        "present": false,
+        "row_count": null
+      },
+      "public.market_price_publication_sets": {
+        "present": true,
+        "row_count": "32"
+      },
+      "public.market_price_current_publication": {
+        "present": true,
+        "row_count": "1"
+      },
+      "public.market_price_publication_events": {
+        "present": true,
+        "row_count": "41"
+      },
+      "public.market_price_publication_snapshots": {
+        "present": true,
+        "row_count": "317362"
+      },
+      "public.market_price_pipeline_candidates": {
+        "present": true,
+        "row_count": "543070"
+      },
+      "public.market_price_qualification_decisions": {
+        "present": true,
+        "row_count": "497988"
+      },
+      "public.catalog_game_release_controls": {
+        "present": true,
+        "row_count": "2"
+      },
+      "public.card_prices": {
+        "present": true,
+        "row_count": "1886"
+      },
+      "public.card_price_observations": {
+        "present": true,
+        "row_count": "322"
+      },
+      "public.card_price_rollups": {
+        "present": true,
+        "row_count": "321"
+      },
+      "public.card_price_ticks": {
+        "present": true,
+        "row_count": "1886"
+      },
+      "public.market_prices": {
+        "present": true,
+        "row_count": "0"
+      },
+      "public.prices": {
+        "present": true,
+        "row_count": "1662"
+      },
+      "public.pricing_observations": {
+        "present": true,
+        "row_count": "0"
+      },
+      "public.pricing_jobs": {
+        "present": true,
+        "row_count": "2626"
+      },
+      "public.pricing_watch": {
+        "present": true,
+        "row_count": "375"
+      },
+      "public.vault_items": {
+        "present": true,
+        "row_count": "437"
+      },
+      "public.vault_item_instances": {
+        "present": true,
+        "row_count": "3385"
+      },
+      "public.vault_owners": {
+        "present": true,
+        "row_count": "25"
+      },
+      "public.mtg_canonical_import_batches": {
+        "present": true,
+        "row_count": "134"
+      },
+      "public.mtg_canonical_import_rows": {
+        "present": true,
+        "row_count": "75945"
+      },
+      "supabase_migrations.schema_migrations": {
+        "present": true,
+        "row_count": "339"
+      }
+    },
+    "mtg_scope": {
+      "set_count": "133",
+      "card_count": "12380",
+      "game_count": "1",
+      "identity_count": "12380",
+      "printing_count": "20040",
+      "canonical_scope": "mtg",
+      "external_mapping_count": "12380",
+      "external_printing_mapping_count": "18481",
+      "staging_batch_count": "134",
+      "staging_row_count": "75945"
+    }
+  },
+  "transaction_readback": {
+    "total_batch_count": 4,
+    "total_row_count": 1403,
+    "selected_batch_count": 3,
+    "selected_row_count": 1382,
+    "selected_batches_sha256": "7c2c47fa489ff33ec08a2362a943b37afe1989463e97da85e08c0fd3ecb8378b",
+    "selected_rows_sha256": "1225d2425362cd6e0e9650febedf38becfed53f635a4aaadc1b7149d8bea34eb",
+    "source_product_ids_sha256": "8def282a5cd7d6676093764ddcf325abeaaca8a19474f8bea84206b56f2762f7",
+    "per_batch": [
+      {
+        "id": "656404f3-37e6-57a5-aea6-b05edab725c3",
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "payload_fingerprint_sha256": "af90d020d966d8e9c9bcff7cf1e817bd9e85c72532246cc1b534ce484b7b9362",
+        "row_count": 1372
+      },
+      {
+        "id": "b67dd936-006f-5659-9431-0b8022a61d52",
+        "source_group_id": 23250,
+        "source_group_name": "Starter Deck 11: Uta",
+        "payload_fingerprint_sha256": "8fe1c1d2a2801d23804e8fc43c68ef1bd2e6902ed3fce15a20a5ccb4b9b80e55",
+        "row_count": 8
+      },
+      {
+        "id": "a49bd850-3c0b-58cf-8040-ca81d229d4e0",
+        "source_group_id": 24708,
+        "source_group_name": "Set Sail Deck Set",
+        "payload_fingerprint_sha256": "e478edc6827302c15765092f895047909ed7852c035acce63dfa976c7952f7ee",
+        "row_count": 2
+      }
+    ]
+  },
+  "attributable_writes": [
+    {
+      "table_name": "one_piece_canonical_import_batches",
+      "inserted": 3,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "one_piece_canonical_import_rows",
+      "inserted": 1382,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "findings": []
+}

@@ -11,6 +11,11 @@ import {
   normalizePublicLanguageScope,
 } from "@/lib/publicLanguageScope";
 import {
+  getPublicGameScopeLabel,
+  matchesPublicGameScope,
+  normalizePublicGameScope,
+} from "@/lib/publicGameScope";
+import {
   getPublicSetEra,
   getPublicSetEraLabel,
   getPublicSetLane,
@@ -166,6 +171,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const rawEra = searchParams.get("era") ?? "all";
   const rawLane = searchParams.get("lane") ?? "all";
   const rawLanguageScope = searchParams.get("lang") ?? "all";
+  const rawGameScope = searchParams.get("game") ?? "pokemon";
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const [visibleSetCount, setVisibleSetCount] = useState(INITIAL_VISIBLE_SET_COUNT);
   const normalizedQuery = normalizeSetQuery(rawQuery);
@@ -173,9 +179,14 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const activeEra = normalizePublicSetEra(rawEra);
   const activeLane = normalizePublicSetLane(rawLane);
   const activeLanguageScope = normalizePublicLanguageScope(rawLanguageScope);
+  const activeGameScope = normalizePublicGameScope(rawGameScope);
+  const gameScopedSets = useMemo(
+    () => sets.filter((setInfo) => matchesPublicGameScope(setInfo, activeGameScope)),
+    [sets, activeGameScope],
+  );
   const languageScopedSets = useMemo(
-    () => sets.filter((setInfo) => matchesPublicSetLanguageScope(setInfo, activeLanguageScope)),
-    [sets, activeLanguageScope],
+    () => gameScopedSets.filter((setInfo) => matchesPublicSetLanguageScope(setInfo, activeLanguageScope)),
+    [gameScopedSets, activeLanguageScope],
   );
   const searchedSets = useMemo(
     () => filterPublicSetsClient(languageScopedSets, rawQuery),
@@ -195,6 +206,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const activeEraLabel = getPublicSetEraLabel(activeEra);
   const activeLaneLabel = getPublicSetLaneLabel(activeLane);
   const activeLanguageScopeLabel = getPublicLanguageScopeLabel(activeLanguageScope);
+  const activeGameScopeLabel = getPublicGameScopeLabel(activeGameScope);
   const setLogoPathByCode = new Map(logoEntries);
   const laneScopedSets = searchedSets.filter((setInfo) => activeLane === "all" || getPublicSetLane(setInfo) === activeLane);
   const eraScopedSets = searchedSets.filter((setInfo) => activeEra === "all" || getPublicSetEra(setInfo) === activeEra);
@@ -202,6 +214,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const laneCounts = countByValue(eraScopedSets, getPublicSetLane);
   const groupedVisibleSets = groupSetsByEra(visibleSets);
   const shouldGroupByEra =
+    activeGameScope === "pokemon" &&
     !normalizedQuery &&
     activeEra === "all" &&
     activeFilter !== "a-z" &&
@@ -212,7 +225,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
 
   useEffect(() => {
     setVisibleSetCount(INITIAL_VISIBLE_SET_COUNT);
-  }, [normalizedQuery, activeFilter, activeEra, activeLane, activeLanguageScope]);
+  }, [normalizedQuery, activeFilter, activeEra, activeLane, activeLanguageScope, activeGameScope]);
 
   function buildFacetHref(updates: Record<string, string | null>) {
     const params = new URLSearchParams(searchParams.toString());
@@ -235,6 +248,9 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
         description={resultLabel}
         actions={(
           <>
+            <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+              {activeGameScopeLabel}
+            </span>
             {activeFilter !== "all" ? (
               <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
                 {activeFilterLabel}
@@ -262,6 +278,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
         )}
       />
 
+      {activeGameScope === "pokemon" ? (
       <div className="gv-premium-surface space-y-4 px-4 py-4 sm:px-5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
           <div>
@@ -330,6 +347,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
           })}
         </div>
       </div>
+      ) : null}
 
       {filteredAndSortedSets.length > 0 ? (
         <div className="space-y-5">

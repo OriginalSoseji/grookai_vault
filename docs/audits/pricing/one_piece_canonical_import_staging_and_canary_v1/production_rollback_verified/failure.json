@@ -1,0 +1,7 @@
+{
+  "recorded_at": "2026-08-14T06:24:35.852Z",
+  "error": "Production baseline failed: source_group_drift, source_price_lane_drift",
+  "rollback_attempted": false,
+  "rollback_succeeded": false,
+  "fresh_post_rollback_attempted": false
+}

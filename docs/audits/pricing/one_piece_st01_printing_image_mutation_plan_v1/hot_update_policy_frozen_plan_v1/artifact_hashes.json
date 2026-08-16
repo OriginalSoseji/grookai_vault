@@ -1,0 +1,39 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "mutation_plan.json",
+      "sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "3065a0eceffedce45e4107d2a9c650268763ace32568388b1b2ee8834eb410d3"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "1c7ae8f706865183ac2c289634e00d56f6157ab0d44e210f3d04d01c4cf29d17"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "key": "evidence_plan",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/identity_source_candidate_v1/evidence_plan.json",
+      "sha256": "8e9d62125d2a18497cb4b8800309a44f693cfc3545c9c7539541eb6f8883520a"
+    },
+    {
+      "key": "readiness_rows",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/identity_source_candidate_v1/readiness_rows.jsonl",
+      "sha256": "93f9a63a1b6464b91e3340c984e74e44ad7631887aebc1454a490388c6c1e885"
+    },
+    {
+      "key": "readiness_summary",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/identity_source_candidate_v1/summary.json",
+      "sha256": "6d3264e053bb4603cfbb9126cb60c92c7d1006091f917d2c7ea100da0a60418c"
+    },
+    {
+      "key": "production_readback",
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_readiness_v1/identity_source_candidate_v1/production_readback.json",
+      "sha256": "114281953ff2fb57834dbfc5db7c15369e72b35b8514feceacb1c5f1c8de3b04"
+    }
+  ]
+}

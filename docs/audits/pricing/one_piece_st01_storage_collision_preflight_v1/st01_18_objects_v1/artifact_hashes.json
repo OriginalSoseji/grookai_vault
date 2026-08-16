@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 27141,
+      "sha256": "de07430b33e079675d0f04ba2ecb8e5d18eacc01c6c739c4b9c5c507952ca4a8"
+    },
+    {
+      "path": "collision_rows.jsonl",
+      "bytes": 7587,
+      "sha256": "46aecb10a27b73cff095790564c3cf064fa4adc9f559a7f36285459b4b4927da"
+    },
+    {
+      "path": "local_cache_readback.json",
+      "bytes": 8801,
+      "sha256": "8105b3e808a141a7666eb092b207564569e03e81014733910b74f390b9c9782d"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1334,
+      "sha256": "42bc07db978c58cc061c79f080c880831e6bf0d78e6112b0b6fc8612413478b2"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 3293,
+      "sha256": "1dea56e7e0035e6449ffabbe9e5a619b3cf9cd64c57486fed0eeac32ee755348"
+    }
+  ],
+  "bound_input": {
+    "path": "docs/audits/pricing/one_piece_st01_language_and_image_readiness_v1/st01_group_3189_v1/readiness_rows.jsonl",
+    "bytes": 66913,
+    "sha256": "6fd5b77b764bf1a8400bc02f271781499321759b6a45d108e5f18571c7555c89"
+  }
+}

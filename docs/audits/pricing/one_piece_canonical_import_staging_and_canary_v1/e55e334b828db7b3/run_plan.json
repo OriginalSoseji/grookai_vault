@@ -1,0 +1,51 @@
+{
+  "plan_version": "ONE_PIECE_CANONICAL_CATALOG_ONE_GROUP_ROLLBACK_CANARY_V1",
+  "repository": {
+    "commit_sha": "d6bcdc1338a41ea0ed5d06bb28b409b1dbf2c8d8",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "source_manifest": {
+    "file": "docs/audits/pricing/one_piece_canonical_catalog_readiness_v1/2026-08-14T04-53-27-691Z/source_product_manifest.jsonl.gz",
+    "logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9",
+    "row_count": 7261
+  },
+  "migration_draft": {
+    "file": "supabase/migration_drafts/20260814010000_one_piece_canonical_import_staging_v1.sql",
+    "sha256": "e7a9f3afeb1ac1355955960f2ef5c5346fcd8988418c04ef1f75fcfc38ef74a9",
+    "applied": false
+  },
+  "selected_group": {
+    "source_group_id": 3189,
+    "source_group_name": "Starter Deck 1: Straw Hat Crew",
+    "source_product_count": 21,
+    "exact_single_count": 18,
+    "numbered_card_count": 17,
+    "don_card_count": 1,
+    "sealed_product_count": 3,
+    "quarantine_count": 0,
+    "future_or_presale_count": 0,
+    "inactive_count": 0,
+    "source_price_lane_count": 21,
+    "released_on": [
+      "2022-12-02"
+    ],
+    "languages": [
+      "en"
+    ]
+  },
+  "mode": "local_artifact_generation_only",
+  "authorized_durable_rows": 0,
+  "boundaries": {
+    "current_gate_database_connection": false,
+    "current_gate_migration_apply": false,
+    "current_gate_database_writes": false,
+    "durable_staging_rows_authorized": false,
+    "canonical_writes": false,
+    "sealed_catalog_writes": false,
+    "publication": false,
+    "storage_or_image_work": false,
+    "pricing_or_vault_writes": false,
+    "deployment": false,
+    "active_mtg_worktree_changes": false
+  }
+}

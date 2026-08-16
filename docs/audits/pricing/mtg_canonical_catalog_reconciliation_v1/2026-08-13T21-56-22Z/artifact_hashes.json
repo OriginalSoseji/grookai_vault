@@ -1,0 +1,9 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "summary.json": "0f2b93f5509959a33581f0554bc1b4b1139f1b1ff6c0177e39a571248aea5d27",
+    "REPORT.md": "f414e5f3bc637d8bb37940874b273d720fd6dc41f33416a23d6af3df938839f8",
+    "candidate_samples.json": "ea6d714a44c43860a3bfaf03665cca6a84b7f194d48631cdd830c2ccc6a84914",
+    "migration_requirements.json": "ee78b42b86c9c053ed54e6f3df4afa7ccd6c722d0d68422bdd2b30b4efd8fa75"
+  }
+}

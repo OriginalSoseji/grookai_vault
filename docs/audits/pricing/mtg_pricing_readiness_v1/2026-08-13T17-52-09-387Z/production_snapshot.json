@@ -1,0 +1,595 @@
+{
+  "source": {
+    "category_id": 1,
+    "group_count": 453,
+    "category_name": "Magic",
+    "product_count": 117267,
+    "source_active": true,
+    "active_group_count": 453,
+    "latest_observed_on": "2026-08-13",
+    "product_image_count": 117267,
+    "active_product_count": 117267,
+    "category_display_name": "Magic: The Gathering",
+    "category_last_seen_at": "2026-08-13T08:15:12.343305+00:00",
+    "latest_price_row_count": 160858,
+    "product_with_number_count": 103714,
+    "product_with_rarity_count": 113623,
+    "raw_single_candidate_count": 103714,
+    "latest_priced_product_count": 111866,
+    "latest_positive_market_price_count": 158310
+  },
+  "mappings": {
+    "exact_mapping_count": 0,
+    "published_snapshot_count": 0
+  },
+  "canonical": {
+    "set_count": 0,
+    "game_count": 0,
+    "finish_keys": [
+      {
+        "key": "normal",
+        "label": "Normal",
+        "is_active": true
+      },
+      {
+        "key": "reverse",
+        "label": "Reverse Holo",
+        "is_active": true
+      },
+      {
+        "key": "holo",
+        "label": "Holo",
+        "is_active": true
+      },
+      {
+        "key": "cosmos",
+        "label": "Cosmos Holo",
+        "is_active": true
+      },
+      {
+        "key": "cracked_ice",
+        "label": "Cracked Ice Holo",
+        "is_active": true
+      },
+      {
+        "key": "pokeball",
+        "label": "Poké Ball",
+        "is_active": true
+      },
+      {
+        "key": "rocket_reverse",
+        "label": "Rocket Reverse",
+        "is_active": true
+      },
+      {
+        "key": "masterball",
+        "label": "Master Ball",
+        "is_active": true
+      }
+    ],
+    "card_print_count": 0,
+    "card_printing_count": 0,
+    "set_game_distribution": [
+      {
+        "game": "pokemon",
+        "set_count": 1380
+      },
+      {
+        "game": "pokemon_jpn",
+        "set_count": 504
+      },
+      {
+        "game": "e7pokemon",
+        "set_count": 1
+      }
+    ]
+  },
+  "recorded_at": "2026-08-13T17:55:59.319501+00:00",
+  "source_signals": {
+    "language_name_signals": {
+      "french": 618,
+      "german": 126,
+      "korean": 1,
+      "chinese": 2,
+      "italian": 686,
+      "russian": 2,
+      "spanish": 736,
+      "japanese": 24,
+      "portuguese": 1
+    },
+    "treatment_name_signals": {
+      "etched": 1211,
+      "showcase": 2243,
+      "halo_foil": 163,
+      "borderless": 2983,
+      "serialized": 0,
+      "surge_foil": 2564,
+      "galaxy_foil": 382,
+      "retro_frame": 1416,
+      "extended_art": 4175
+    },
+    "packaged_product_name_signals": {
+      "bundle": 432,
+      "booster_box": 246,
+      "starter_kit": 16,
+      "booster_pack": 371,
+      "commander_deck": 220,
+      "prerelease_pack": 113
+    }
+  },
+  "read_only_proof": {
+    "database_user": "postgres",
+    "transaction_read_only": true
+  },
+  "source_subtypes": [
+    {
+      "source_label": "Foil",
+      "product_count": 64281,
+      "price_row_count": 64281,
+      "subtype_name_normalized": "foil",
+      "positive_market_price_count": 63424
+    },
+    {
+      "source_label": "Normal",
+      "product_count": 96577,
+      "price_row_count": 96577,
+      "subtype_name_normalized": "normal",
+      "positive_market_price_count": 94886
+    }
+  ],
+  "snapshot_version": "MTG_PRICING_READINESS_PRODUCTION_SNAPSHOT_V1",
+  "recent_source_groups": [
+    {
+      "name": "Mystery Booster Commander Edition",
+      "group_id": 24777,
+      "abbreviation": "",
+      "published_on": "2026-10-01T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Star Trek: Stardates",
+      "group_id": 24771,
+      "abbreviation": "SDS",
+      "published_on": "2026-11-13T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Commander: Star Trek",
+      "group_id": 24770,
+      "abbreviation": "TRC",
+      "published_on": "2026-11-13T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Star Trek",
+      "group_id": 24766,
+      "abbreviation": "TRK",
+      "published_on": "2026-11-13T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Art Series: Marvel Super Heroes",
+      "group_id": 24725,
+      "abbreviation": "AAMSH",
+      "published_on": "2026-06-26T00:00:00",
+      "source_active": true,
+      "is_supplemental": true
+    },
+    {
+      "name": "The Hobbit: Eternal-Legal",
+      "group_id": 24691,
+      "abbreviation": "HOC",
+      "published_on": "2026-08-14T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Art Series: The Hobbit",
+      "group_id": 24690,
+      "abbreviation": "ASHOB",
+      "published_on": "2026-11-13T00:00:00",
+      "source_active": true,
+      "is_supplemental": true
+    },
+    {
+      "name": "Commander: Reality Fracture",
+      "group_id": 24689,
+      "abbreviation": "",
+      "published_on": "2026-10-02T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Reality Fracture",
+      "group_id": 24684,
+      "abbreviation": "FRA",
+      "published_on": "2026-10-02T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "The Hobbit",
+      "group_id": 24683,
+      "abbreviation": "HOB",
+      "published_on": "2026-08-14T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Art Series: Secrets of Strixhaven",
+      "group_id": 24665,
+      "abbreviation": "ASSOS",
+      "published_on": "2026-04-24T00:00:00",
+      "source_active": true,
+      "is_supplemental": true
+    },
+    {
+      "name": "Promo Pack: Secrets of Strixhaven",
+      "group_id": 24661,
+      "abbreviation": "PPSOS",
+      "published_on": "2026-04-24T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Art Series: Teenage Mutant Ninja Turtles",
+      "group_id": 24626,
+      "abbreviation": "ASTMT",
+      "published_on": "2026-03-06T00:00:00",
+      "source_active": true,
+      "is_supplemental": true
+    },
+    {
+      "name": "Secrets of Strixhaven: Mystical Archive",
+      "group_id": 24603,
+      "abbreviation": "SOA",
+      "published_on": "2026-04-24T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Commander: Secrets of Strixhaven",
+      "group_id": 24602,
+      "abbreviation": "SOC",
+      "published_on": "2026-04-24T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Secrets of Strixhaven",
+      "group_id": 24601,
+      "abbreviation": "SOS",
+      "published_on": "2026-04-24T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Commander: Marvel Super Heroes",
+      "group_id": 24554,
+      "abbreviation": "MSC",
+      "published_on": "2026-06-26T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Marvel Super Heroes",
+      "group_id": 24553,
+      "abbreviation": "MSH",
+      "published_on": "2026-06-26T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Art Series: Avatar: The Last Airbender",
+      "group_id": 24527,
+      "abbreviation": "ASTLA",
+      "published_on": "2025-11-21T00:00:00",
+      "source_active": true,
+      "is_supplemental": true
+    },
+    {
+      "name": "Teenage Mutant Ninja Turtles Source Material",
+      "group_id": 24497,
+      "abbreviation": "PZA",
+      "published_on": "2026-03-06T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Commander: Teenage Mutant Ninja Turtles",
+      "group_id": 24496,
+      "abbreviation": "TMC",
+      "published_on": "2026-03-06T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Teenage Mutant Ninja Turtles",
+      "group_id": 24495,
+      "abbreviation": "TMT",
+      "published_on": "2026-03-06T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Promo Pack: Lorwyn Eclipsed",
+      "group_id": 24465,
+      "abbreviation": "PPECL",
+      "published_on": "2026-01-23T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Commander: Lorwyn Eclipsed",
+      "group_id": 24464,
+      "abbreviation": "ECC",
+      "published_on": "2026-01-23T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    },
+    {
+      "name": "Lorwyn Eclipsed",
+      "group_id": 24463,
+      "abbreviation": "ECL",
+      "published_on": "2026-01-23T00:00:00",
+      "source_active": true,
+      "is_supplemental": false
+    }
+  ],
+  "representative_source_products": [
+    {
+      "name": "Junimo Farmhands - Sylvan Caryatid",
+      "group_id": 2576,
+      "has_image": true,
+      "clean_name": "Junimo Farmhands Sylvan Caryatid",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710993,
+      "has_subtype": true
+    },
+    {
+      "name": "Big Score (7190)",
+      "group_id": 2576,
+      "has_image": true,
+      "clean_name": "Big Score 7190",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710946,
+      "has_subtype": true
+    },
+    {
+      "name": "Secret Lair Miku Fan Merch Bundle",
+      "group_id": 2576,
+      "has_image": true,
+      "clean_name": "Secret Lair Miku Fan Merch Bundle",
+      "has_number": false,
+      "has_rarity": false,
+      "product_id": 710781,
+      "has_subtype": false
+    },
+    {
+      "name": "The Brothers' War - Collector Booster Omega Pack",
+      "group_id": 3157,
+      "has_image": true,
+      "clean_name": "The Brothers War Collector Booster Omega Pack",
+      "has_number": false,
+      "has_rarity": false,
+      "product_id": 710765,
+      "has_subtype": false
+    },
+    {
+      "name": "Secret Lair Drop: Secret Lair x Stardew Valley - Puca's Mischief As \"Lucky Purple Memento\"  - Traditional Foil Edition",
+      "group_id": 2576,
+      "has_image": true,
+      "clean_name": "Secret Lair Drop Secret Lair x Stardew Valley Pucas Mischief As Lucky Purple Memento Traditional Foil Edition",
+      "has_number": false,
+      "has_rarity": false,
+      "product_id": 710751,
+      "has_subtype": false
+    },
+    {
+      "name": "Krobus - Academy Manufactor",
+      "group_id": 2576,
+      "has_image": true,
+      "clean_name": "Krobus Academy Manufactor",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710750,
+      "has_subtype": true
+    },
+    {
+      "name": "Theros Beyond Death - Sleeved Collector Booster Pack",
+      "group_id": 2568,
+      "has_image": true,
+      "clean_name": "Theros Beyond Death Sleeved Collector Booster Pack",
+      "has_number": false,
+      "has_rarity": false,
+      "product_id": 710749,
+      "has_subtype": false
+    },
+    {
+      "name": "Avatar: The Last Airbender - Sleeved Play Booster Pack",
+      "group_id": 24421,
+      "has_image": true,
+      "clean_name": "Avatar The Last Airbender Sleeved Play Booster Pack",
+      "has_number": false,
+      "has_rarity": false,
+      "product_id": 710682,
+      "has_subtype": false
+    },
+    {
+      "name": "Secret Lair Drop: Secret Lair x Garfield - Lasagna Food Token - Traditional Foil Edition",
+      "group_id": 2576,
+      "has_image": true,
+      "clean_name": "Secret Lair Drop Secret Lair x Garfield Lasagna Food Token Traditional Foil Edition",
+      "has_number": false,
+      "has_rarity": false,
+      "product_id": 710672,
+      "has_subtype": false
+    },
+    {
+      "name": "Pest // Angel Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Pest Angel Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710670,
+      "has_subtype": true
+    },
+    {
+      "name": "Treasure // Spider Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Treasure Spider Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710669,
+      "has_subtype": true
+    },
+    {
+      "name": "Fanatic of Rhonas // Elemental Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Fanatic of Rhonas Elemental Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710667,
+      "has_subtype": true
+    },
+    {
+      "name": "Vampire // Elemental Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Vampire Elemental Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710665,
+      "has_subtype": true
+    },
+    {
+      "name": "Vampire // Horse Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Vampire Horse Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710663,
+      "has_subtype": true
+    },
+    {
+      "name": "Eldrazi // Elf Warrior Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Eldrazi Elf Warrior Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710662,
+      "has_subtype": true
+    },
+    {
+      "name": "Citizen // Dinosaur Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Citizen Dinosaur Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710661,
+      "has_subtype": true
+    },
+    {
+      "name": "Citizen // Angel Double-Sided Token",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Citizen Angel Double Sided Token",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710658,
+      "has_subtype": true
+    },
+    {
+      "name": "Voice of the Blessed",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Voice of the Blessed",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710630,
+      "has_subtype": true
+    },
+    {
+      "name": "Voice of Resurgence",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Voice of Resurgence",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710629,
+      "has_subtype": true
+    },
+    {
+      "name": "Temple of Plenty",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Temple of Plenty",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710627,
+      "has_subtype": true
+    },
+    {
+      "name": "Swords to Plowshares (DSC)",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Swords to Plowshares DSC",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710625,
+      "has_subtype": true
+    },
+    {
+      "name": "Suture Priest (MOC)",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Suture Priest MOC",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710624,
+      "has_subtype": true
+    },
+    {
+      "name": "Sunpetal Grove (BLC)",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Sunpetal Grove BLC",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710623,
+      "has_subtype": true
+    },
+    {
+      "name": "Sungrass Prairie (BLC)",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Sungrass Prairie BLC",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710622,
+      "has_subtype": true
+    },
+    {
+      "name": "Sundering Growth",
+      "group_id": 2715,
+      "has_image": true,
+      "clean_name": "Sundering Growth",
+      "has_number": true,
+      "has_rarity": true,
+      "product_id": 710621,
+      "has_subtype": true
+    }
+  ]
+}

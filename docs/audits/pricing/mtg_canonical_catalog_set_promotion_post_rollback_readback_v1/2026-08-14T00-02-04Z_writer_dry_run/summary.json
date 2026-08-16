@@ -1,0 +1,144 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_SET_PROMOTION_POST_ROLLBACK_READBACK_V1",
+  "recorded_at": "2026-08-14T00:02:46.696Z",
+  "status": "rollback_independently_verified",
+  "repository": {
+    "commit_sha": "e77ce1e831cc9a142a1eeca38941884e0a05d6ef",
+    "branch": "agent/mtg-pricing-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "payload_sha256": "e49748977f8688aa852b9f5366cfb68c8b2f6ed92ab2db284f8b1ec9ad96a12f",
+  "rollback_summary_sha256": "9388fd71358e1128c8ea78edf5ee42ef3e395126fc81a30a7b2666ca8bf15f7e",
+  "promotion_plan_sha256": "b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba",
+  "selected_set": {
+    "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+    "code": "msh",
+    "name": "Marvel Super Heroes",
+    "set_type": "expansion",
+    "released_at": "2026-06-26"
+  },
+  "row_counts": {
+    "sets": 1,
+    "card_prints": 453,
+    "card_print_identity": 453,
+    "card_printings": 865,
+    "external_mappings": 453,
+    "external_printing_mappings": 864
+  },
+  "reconciliation": {
+    "findings": [],
+    "actual_hash_sha256": "788eaf7637311ce021f531d70430f05700594eb03fd48a0c00bd8e0e4b7f0e6c",
+    "row_count": 3089
+  },
+  "production": {
+    "transaction_read_only": true,
+    "state": {
+      "dsk_set_count": 1,
+      "mtg_set_count": 1,
+      "dsk_card_count": 417,
+      "mtg_card_count": 417,
+      "mtg_game_count": 1,
+      "release_status": "hidden",
+      "staging_row_count": 3089,
+      "dsk_identity_count": 417,
+      "dsk_printing_count": 807,
+      "mtg_identity_count": 417,
+      "mtg_printing_count": 807,
+      "pokemon_card_count": 58769,
+      "selected_set_count": 0,
+      "selected_card_count": 0,
+      "staging_batch_count": 1,
+      "selected_identity_count": 0,
+      "selected_printing_count": 0,
+      "mtg_parent_mapping_count": 417,
+      "visibility_table_present": true,
+      "mtg_printing_mapping_count": 807,
+      "foundation_migration_present": true,
+      "visibility_migration_present": true,
+      "selected_parent_mapping_count": 0,
+      "selected_printing_mapping_count": 0
+    },
+    "stage": {
+      "batch": [
+        {
+          "id": "276cc9f7-0159-5df3-874c-73ea04e741a4",
+          "payload_fingerprint_sha256": "73d0b68c08ff462cc2f853520faa491a73d9d7e27db9c93afcc95bfc06c00e38",
+          "plan_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+          "source_bulk_sha256": "4d74b3827c1de6cc882dede2f6a75e74f67974f2bc49054693ba7e3413fb6c7c",
+          "foundation_migration_sha256": "d4085f0dab4c9d5724dcda5644b1774ab48bb3535f94b42f0ca3cea1786de082",
+          "producing_commit_sha": "eeaadbcb2e35b81aac94d8286635b7e730208fa4",
+          "producing_branch": "agent/mtg-pricing-readiness-v1",
+          "selected_set_code": "msh",
+          "selected_set_name": "Marvel Super Heroes",
+          "status": "staged",
+          "row_counts": {
+            "sets": 1,
+            "card_prints": 453,
+            "card_printings": 865,
+            "external_mappings": 453,
+            "exact_market_lanes": 864,
+            "card_print_identity": 453,
+            "positive_market_lanes": 864,
+            "external_printing_mappings": 864,
+            "quarantined_collision_lanes": 0
+          },
+          "execution_boundaries": {
+            "apply_target": "service_only_mtg_import_staging",
+            "app_visibility": false,
+            "storage_writes": false,
+            "database_writes": false,
+            "pokemon_mutation": false,
+            "price_publication": false,
+            "image_pointer_updates": false
+          }
+        }
+      ]
+    },
+    "collisions": {
+      "set_ids": 0,
+      "set_codes": 0,
+      "identity_ids": 0,
+      "printing_ids": 0,
+      "parent_gv_ids": 0,
+      "card_print_ids": 0,
+      "identity_hashes": 0,
+      "parent_mappings": 0,
+      "printing_gv_ids": 0,
+      "printing_mappings": 0
+    },
+    "client_visibility": {
+      "anon": {
+        "set_count": 0,
+        "card_count": 0,
+        "game_count": 0,
+        "identity_count": 0,
+        "printing_count": 0,
+        "pokemon_card_count": 0,
+        "print_search_count": 0,
+        "legacy_search_count": 0
+      },
+      "authenticated": {
+        "set_count": 0,
+        "card_count": 0,
+        "game_count": 0,
+        "identity_count": 0,
+        "printing_count": 0,
+        "pokemon_card_count": 58768,
+        "print_search_count": 0,
+        "legacy_search_count": 0
+      }
+    },
+    "authenticated_pokemon_count": 58768
+  },
+  "findings": [],
+  "boundaries": {
+    "transaction_read_only": true,
+    "database_writes": false,
+    "canonical_writes": false,
+    "app_visibility": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "pokemon_mutation": false
+  }
+}

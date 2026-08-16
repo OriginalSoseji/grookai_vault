@@ -1,0 +1,87 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_STAGE_READBACK_V1",
+  "recorded_at": "2026-08-13T19:06:25.093Z",
+  "status": "staging_apply_verified",
+  "writer_payload_fingerprint": "83d491f692c6544ad7602e06dc6acce4c6cfc2895aabb9aabcf93735ed1d2ad7",
+  "contract": {
+    "batch_id": "60ea72dd-df1c-5ef8-9270-2dcbefc4adfe",
+    "staged_row_count": 2866,
+    "staged_rows_sha256": "f8d5da47f8fa8c9e454b76dc5ddfd93bd0b2cfbe7681a4b0ad68565ec6a13ce0"
+  },
+  "reconciliation": {
+    "findings": [],
+    "actual_hash_sha256": "f8d5da47f8fa8c9e454b76dc5ddfd93bd0b2cfbe7681a4b0ad68565ec6a13ce0",
+    "row_count": 2866
+  },
+  "production": {
+    "ledger": [
+      {
+        "version": "20260813185000",
+        "name": "mtg_canonical_import_staging_v1"
+      }
+    ],
+    "batch": [
+      {
+        "id": "60ea72dd-df1c-5ef8-9270-2dcbefc4adfe",
+        "payload_fingerprint_sha256": "83d491f692c6544ad7602e06dc6acce4c6cfc2895aabb9aabcf93735ed1d2ad7",
+        "plan_version": "MTG_CANONICAL_CATALOG_CANARY_PLAN_V1",
+        "source_bulk_sha256": "4d74b3827c1de6cc882dede2f6a75e74f67974f2bc49054693ba7e3413fb6c7c",
+        "foundation_migration_sha256": "d4085f0dab4c9d5724dcda5644b1774ab48bb3535f94b42f0ca3cea1786de082",
+        "producing_commit_sha": "64a2b627cb76072c2e1910510e4035f7caf45a67",
+        "producing_branch": "agent/mtg-pricing-readiness-v1",
+        "selected_set_code": "dsk",
+        "selected_set_name": "Duskmourn: House of Horror",
+        "status": "staged",
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 417,
+          "card_printings": 807,
+          "external_mappings": 417,
+          "exact_market_lanes": 807,
+          "card_print_identity": 417,
+          "positive_market_lanes": 807,
+          "external_printing_mappings": 807,
+          "quarantined_collision_lanes": 0
+        },
+        "execution_boundaries": {
+          "apply_target": "service_only_mtg_import_staging",
+          "app_visibility": false,
+          "storage_writes": false,
+          "database_writes": false,
+          "pokemon_mutation": false,
+          "price_publication": false,
+          "image_pointer_updates": false
+        }
+      }
+    ],
+    "boundaries": {
+      "mtg_set_count": 0,
+      "mtg_card_count": 0,
+      "mtg_game_count": 0,
+      "anon_row_select": false,
+      "anon_batch_select": false,
+      "pokemon_card_count": 58769,
+      "transaction_read_only": true,
+      "authenticated_row_select": false,
+      "authenticated_batch_select": false
+    },
+    "app_search": {
+      "legacy_search_count": 0,
+      "print_identity_search_count": 0
+    },
+    "source": {
+      "planned_count": 807,
+      "source_row_count": 807,
+      "positive_market_price_count": 807,
+      "observed_on": "2026-08-13T06:00:00.000Z"
+    }
+  },
+  "findings": [],
+  "boundaries": {
+    "database_writes": false,
+    "canonical_writes": false,
+    "app_visibility": false,
+    "storage_writes": false,
+    "pricing_writes": false
+  }
+}

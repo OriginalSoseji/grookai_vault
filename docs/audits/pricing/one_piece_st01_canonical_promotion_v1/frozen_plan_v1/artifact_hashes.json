@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "plan.json",
+      "sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "4fe2bb7cfef56b7c5c6fa2f4f650fece4eba8690030ffdb2965ec3672d8ed4cb"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "key": "staged_readback",
+      "path": "docs/audits/pricing/one_piece_canonical_import_durable_payload_apply_v1/production_apply_v1_independent_verify/readback.json",
+      "sha256": "ffd53870da7602ad8e3ca703c343696bf3510d64a7caf70270f9f44d7e67dc18"
+    },
+    {
+      "key": "readiness_rows",
+      "path": "docs/audits/pricing/one_piece_st01_language_and_image_readiness_v1/st01_group_3189_v1/readiness_rows.jsonl",
+      "sha256": "6fd5b77b764bf1a8400bc02f271781499321759b6a45d108e5f18571c7555c89"
+    },
+    {
+      "key": "storage_readback_rows",
+      "path": "docs/audits/pricing/one_piece_st01_storage_permanent_readback_v1/st01_18_objects_v1/readback_rows.jsonl",
+      "sha256": "8aa7e0a573e8efe3ae48415670b971d09ee27c37a78e6eff330f7486e4370f3d"
+    },
+    {
+      "key": "foundation_summary",
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_foundation_apply_v1/independent_post_apply_v1/summary.json",
+      "sha256": "a045fb5bb624262a5a432f5a47ec74f397d652191946a9d766c8dd6bc2b8fa89"
+    }
+  ]
+}

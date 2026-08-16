@@ -1,0 +1,63 @@
+{
+  "version": "ONE_PIECE_SEALED_ONLINE_EVIDENCE_RESOLUTION_V1",
+  "recorded_at": "2026-08-15T17:43:16.719Z",
+  "status": "online_evidence_resolution_passed_no_writes",
+  "repository": {
+    "commit_sha": "05f804751fba6d5aeed71cc01d1bce15411c8dba",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "resolution_fingerprint_sha256": "f4232cbdd644b8b8b89a0b1be7fbf59507dc20f2b7f971282ac27d08615c841d",
+  "candidate_plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+  "source_declaration": {
+    "source_url": "https://tcgcsv.com/docs",
+    "response_sha256": "19128e8b27c310930eec4fdaa98cc4211093b9331d736f10a870291837fa0c38",
+    "fetched_at": "2026-08-15T17:43:13.557Z",
+    "transport": "curl_windows_revocation_workaround_tls_verified",
+    "direct_tcgplayer_api_export": true,
+    "declaration_key": "tcgcsv_bulk_tcgplayer_data_direct_api_export",
+    "raw_body_persisted": false
+  },
+  "source_summary": {
+    "group_count": 81,
+    "failures": 0,
+    "candidate_products": 403,
+    "tls_fallback_requests": 82,
+    "raw_response_bodies_persisted": 0
+  },
+  "counts": {
+    "candidates": 403,
+    "group_snapshots": 81,
+    "exact_source_identities": 403,
+    "statuses": {
+      "auto_resolved_current_english": 390,
+      "scope_held_non_english": 3,
+      "scope_held_future_or_presale": 10,
+      "evidence_gap_requires_review": 0
+    },
+    "human_review_required": 0,
+    "canonical_families_planned": 242,
+    "canonical_variants_planned": 390,
+    "automated_reviews_planned": 390,
+    "exact_source_mappings_planned": 390,
+    "variant_evidence_rows_planned": 1731,
+    "held_or_residual": 13
+  },
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "boundaries": {
+    "network_reads": true,
+    "automated_evidence_adjudication": true,
+    "human_review_required_for_exact_source_match": false,
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "apply_authority": false,
+    "pricing_authority": false,
+    "publication_authority": false,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "production read-only collision/schema preflight, then separately frozen rollback-tested apply plan"
+}

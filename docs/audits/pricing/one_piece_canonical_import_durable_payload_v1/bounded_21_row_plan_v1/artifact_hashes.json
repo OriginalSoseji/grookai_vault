@@ -1,0 +1,47 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "plan.json",
+      "bytes": 75233,
+      "sha256": "863c294262df66fc3a7cc2a51bf8c206df1fe1e67ea5633b92012e6453f2a729"
+    },
+    {
+      "path": "payload.json",
+      "bytes": 73265,
+      "sha256": "b8f773cb36258cbe4637f03cbf8524956a04a30512e729b1344715f0ac32d316"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1178,
+      "sha256": "a226a114d76e19638a700bc78478d999f6038396ee6a06849eeed80561ab0a1d"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 493,
+      "sha256": "1197248cff73233f4830a4bed4919897c05a6b2745f01d2678c449ac216ac7b5"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_import_staging_and_canary_v1/e55e334b828db7b3_security_hardened/canary_plan.json",
+      "bytes": 74276,
+      "sha256": "3506201aaaa7a0dbd9bee236387b2dd6926b48f02fca4f2a5425db8915f225db"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_readiness_v1/2026-08-14T04-53-27-691Z/source_product_manifest.jsonl.gz",
+      "bytes": 971829,
+      "sha256": "16f06525f1c7f6749637b1bd1f92368b772a6bcbafa97d47f23e24f1bdd7ac6b"
+    },
+    {
+      "path": "supabase/migration_drafts/20260814010000_one_piece_canonical_import_staging_v1.sql",
+      "bytes": 5775,
+      "sha256": "7eece6ff093de56b5cbea6a0a1f03a5a9b469789f11de233ac9fab90b4e80591"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_import_durable_staging_schema_apply_v1/production_schema_apply_v1/summary.json",
+      "bytes": 127407,
+      "sha256": "dff4e23d0d33773787f9829f847ae26f666a10cdd80b99f0929abf1600def8e9"
+    }
+  ]
+}

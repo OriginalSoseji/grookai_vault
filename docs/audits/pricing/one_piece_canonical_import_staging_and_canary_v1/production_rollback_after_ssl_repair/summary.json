@@ -1,0 +1,32 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_ROLLBACK_CANARY_EXECUTOR_V1",
+  "recorded_at": "2026-08-14T06:21:48.782Z",
+  "status": "blocked",
+  "repository": {
+    "commit_sha": "d1e9da5b4fffe42a98f23aa55417b5e36a4b645a",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "canary_plan_fingerprint_sha256": "98bf6bfa61fdd38b8c3cadfccb0b64b4e6607381d66182226b34aff997deccef",
+  "migration_draft_sha256": "e7a9f3afeb1ac1355955960f2ef5c5346fcd8988418c04ef1f75fcfc38ef74a9",
+  "manifest_logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9",
+  "selected_group_id": 3189,
+  "selected_source_rows": 21,
+  "local_preflight": {
+    "valid": true,
+    "issues": [],
+    "migration_draft_sha256": "e7a9f3afeb1ac1355955960f2ef5c5346fcd8988418c04ef1f75fcfc38ef74a9",
+    "manifest_logical_sha256": "e55e334b828db7b3a45e4b09cb34a51c81731cf309f3959c08052edb5cf4abf9",
+    "manifest_row_count": 7261,
+    "selected_manifest_row_count": 21
+  },
+  "database_proof": {
+    "baseline": null,
+    "transaction": null,
+    "post_rollback": null
+  },
+  "findings": [
+    "SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required"
+  ],
+  "authorized_durable_rows": 0
+}

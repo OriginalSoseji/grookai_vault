@@ -1,0 +1,25 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "review_rows.jsonl",
+      "bytes": 27938,
+      "sha256": "effc4ccc2e71be5cab7a30356763a2ca09d2d14b73bee48203ef3766dc97927b"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 760,
+      "sha256": "1d4559900a2aeb33a3c9bfd60183fb22d018b1c18cb7bc4eacf2e7fe43f76dcf"
+    },
+    {
+      "path": "REVIEW_PACKET.md",
+      "bytes": 3556,
+      "sha256": "d4b03cfc510cbe762bb486dbd4c41e1daa68c3367f54596fde6049575e053292"
+    }
+  ],
+  "bound_input": {
+    "path": "docs/audits/pricing/one_piece_canonical_import_durable_payload_apply_v1/production_apply_v1_independent_verify/readback.json",
+    "bytes": 143343,
+    "sha256": "ffd53870da7602ad8e3ca703c343696bf3510d64a7caf70270f9f44d7e67dc18"
+  }
+}

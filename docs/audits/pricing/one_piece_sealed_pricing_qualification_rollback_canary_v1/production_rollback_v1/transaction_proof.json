@@ -1,0 +1,217 @@
+{
+  "preflight": {
+    "valid": true,
+    "findings": [],
+    "transaction_read_only": true,
+    "baseline": {
+      "sealed_product_families": 242,
+      "sealed_product_variants": 390,
+      "sealed_product_source_mappings": 390,
+      "sealed_product_pricing_lane_qualifications": 0,
+      "sealed_product_releases": 0,
+      "sealed_product_release_members": 0,
+      "sealed_product_release_pointer": 0,
+      "one_piece_release_control_rows": 1,
+      "one_piece_release_status": "hidden"
+    },
+    "schema": {
+      "rls_enabled": true,
+      "rls_forced": true,
+      "append_only_trigger_enabled": true,
+      "service_role_policy_present": true,
+      "service_role_select": true,
+      "service_role_insert": true,
+      "anon_select": false,
+      "authenticated_select": false
+    },
+    "lineage": {
+      "expected_rows": 374,
+      "matched_variants": 374,
+      "matched_exact_mappings": 374,
+      "matched_source_observations": 374
+    },
+    "collisions": {
+      "id_collisions": 0,
+      "unique_key_collisions": 0
+    }
+  },
+  "transaction": {
+    "committed": false,
+    "rolled_back": true
+  },
+  "baseline_before": {
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0,
+    "one_piece_release_control_rows": 1,
+    "one_piece_release_status": "hidden"
+  },
+  "transaction_readback": [
+    {
+      "id": "0135661f-134f-58bd-a783-8234362897bd",
+      "variant_id": "44d0c9ea-420f-5b59-9f3a-cd95b054790b",
+      "source_mapping_id": "d369a2c9-f443-5af8-99b7-7f5f1edde01b",
+      "source_price_row_identity": "tcgplayer:704897:normal",
+      "source_subtype_name_normalized": "normal",
+      "observed_on": "2026-08-15",
+      "currency": "USD",
+      "qualification_status": "qualified_exact",
+      "qualification_evidence": {
+        "decision": {
+          "reason": "exact_product_single_normal_fresh_usd_market_price",
+          "status": "qualified_exact",
+          "publication_authority": false
+        },
+        "authority": {
+          "provider": "tcgplayer",
+          "price_field": "market_price",
+          "authority_observed_on": "2026-08-15",
+          "freshness_days_inclusive": 7,
+          "fallback_price_authorized": false
+        },
+        "observation": {
+          "low_price": 18.99,
+          "market_price": 22.21,
+          "observation_age_days": 0,
+          "latest_price_row_count": 1
+        },
+        "canonical_lineage": {
+          "family_id": "81e333b5-dfdb-5262-ad75-38379e19dca0",
+          "package_form": "deck",
+          "language_code": "en",
+          "source_active": true,
+          "source_product_id": 704897,
+          "source_product_name": "Starter Deck 36: YELLOW Eustass”Captain”Kid",
+          "canonical_lineage_exact": true,
+          "catalog_metadata_status": "current"
+        },
+        "source_audit_fingerprint_sha256": "a22c8ea9d2a84ab63ac9c90d558a5749cf0f402ae79f947aeb6ac752a20db5ae"
+      },
+      "source_observation_fingerprint": "db54e35edf2a45e76f602213573cad1009ffb664bfcdb0def47099812eb12bf5",
+      "qualification_contract_version": "ONE_PIECE_SEALED_PRICING_QUALIFICATION_V1",
+      "publication_authority": false
+    },
+    {
+      "id": "0428b2ae-79dc-5afe-bf1d-0d3261bcabff",
+      "variant_id": "5a61fe7d-aea1-5fc5-a28f-69d425cb7ec1",
+      "source_mapping_id": "e132aedc-fb01-5d4b-bf35-a5a77ee2f5ad",
+      "source_price_row_identity": "tcgplayer:545040:normal",
+      "source_subtype_name_normalized": "normal",
+      "observed_on": "2026-08-15",
+      "currency": "USD",
+      "qualification_status": "blocked_missing_price",
+      "qualification_evidence": {
+        "decision": {
+          "reason": "tcgplayer_market_price_null",
+          "status": "blocked_missing_price",
+          "publication_authority": false
+        },
+        "authority": {
+          "provider": "tcgplayer",
+          "price_field": "market_price",
+          "authority_observed_on": "2026-08-15",
+          "freshness_days_inclusive": 7,
+          "fallback_price_authorized": false
+        },
+        "observation": {
+          "low_price": 999.95,
+          "market_price": null,
+          "observation_age_days": 0,
+          "latest_price_row_count": 1
+        },
+        "canonical_lineage": {
+          "family_id": "671b7d86-16ae-50f2-af55-9e4f522c9e55",
+          "package_form": "deck_display",
+          "language_code": "en",
+          "source_active": true,
+          "source_product_id": 545040,
+          "source_product_name": "Starter Deck 17: BLUE Donquixote Doflamingo Display",
+          "canonical_lineage_exact": true,
+          "catalog_metadata_status": "current"
+        },
+        "source_audit_fingerprint_sha256": "a22c8ea9d2a84ab63ac9c90d558a5749cf0f402ae79f947aeb6ac752a20db5ae"
+      },
+      "source_observation_fingerprint": "4763527a1f322a2a9727b30294b6757a1093ae554af4d9146e50538716681afc",
+      "qualification_contract_version": "ONE_PIECE_SEALED_PRICING_QUALIFICATION_V1",
+      "publication_authority": false
+    },
+    {
+      "id": "42ab4c7a-54e3-5a30-a6d7-6251e7cef304",
+      "variant_id": "12b08e5f-f036-566b-bc40-01a899bcc127",
+      "source_mapping_id": "fb954d4d-dd9d-5741-b2cf-155bbc5ffd15",
+      "source_price_row_identity": "tcgplayer:514054:normal",
+      "source_subtype_name_normalized": "normal",
+      "observed_on": "2024-02-20",
+      "currency": "USD",
+      "qualification_status": "blocked_stale",
+      "qualification_evidence": {
+        "decision": {
+          "reason": "source_market_price_outside_freshness_window",
+          "status": "blocked_stale",
+          "publication_authority": false
+        },
+        "authority": {
+          "provider": "tcgplayer",
+          "price_field": "market_price",
+          "authority_observed_on": "2026-08-15",
+          "freshness_days_inclusive": 7,
+          "fallback_price_authorized": false
+        },
+        "observation": {
+          "low_price": 50,
+          "market_price": 50,
+          "observation_age_days": 907,
+          "latest_price_row_count": 1
+        },
+        "canonical_lineage": {
+          "family_id": "d53681e4-f052-5f0a-b429-d35774d82bcd",
+          "package_form": "promo_pack",
+          "language_code": "en",
+          "source_active": true,
+          "source_product_id": 514054,
+          "source_product_name": "Online Regional Participation Pack Vol. 2",
+          "canonical_lineage_exact": true,
+          "catalog_metadata_status": "current"
+        },
+        "source_audit_fingerprint_sha256": "a22c8ea9d2a84ab63ac9c90d558a5749cf0f402ae79f947aeb6ac752a20db5ae"
+      },
+      "source_observation_fingerprint": "6b187756e29237eb25f8981813829b448a7d1f89f2b34de09c23bd19bb64a360",
+      "qualification_contract_version": "ONE_PIECE_SEALED_PRICING_QUALIFICATION_V1",
+      "publication_authority": false
+    }
+  ],
+  "write_attribution": [
+    {
+      "table_name": "sealed_product_pricing_lane_qualifications",
+      "inserted": 3,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "post_rollback": {
+    "transaction_read_only": true,
+    "remaining_target_rows": 0,
+    "baseline": {
+      "sealed_product_families": 242,
+      "sealed_product_variants": 390,
+      "sealed_product_source_mappings": 390,
+      "sealed_product_pricing_lane_qualifications": 0,
+      "sealed_product_releases": 0,
+      "sealed_product_release_members": 0,
+      "sealed_product_release_pointer": 0,
+      "one_piece_release_control_rows": 1,
+      "one_piece_release_status": "hidden"
+    }
+  },
+  "boundaries": {
+    "durable_database_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

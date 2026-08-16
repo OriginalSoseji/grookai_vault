@@ -1,0 +1,17 @@
+{
+  "version": "ONE_PIECE_COMPLETE_NUMBERED_CANONICAL_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T08:05:45.395Z",
+  "repository": {
+    "commit_sha": "33d0f8137d87041e6c6e45c0e06b9827624d91e7",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "plan_path": "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
+  "plan_sha256": "8c37351abd6d32643bddb5172d7eb661ad474201a9ec96436434c0046e11fd1f",
+  "plan_fingerprint_sha256": "253b16ea9032d44149923d88214aa84d68e7ec77b658e2a4e9e7d3f4ea7c1395",
+  "payload_fingerprint_sha256": "0e59db0c98454eecec0aefd366a38b4a42fe81ca0cae9173cf7f8e294e5ad358",
+  "mode": "production_read_only",
+  "authorized_database_writes": 0,
+  "authorized_storage_writes": 0,
+  "authorized_visibility_changes": 0
+}

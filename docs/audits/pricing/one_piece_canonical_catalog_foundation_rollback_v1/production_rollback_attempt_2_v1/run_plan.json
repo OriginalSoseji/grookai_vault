@@ -1,0 +1,73 @@
+{
+  "version": "ONE_PIECE_CANONICAL_CATALOG_FOUNDATION_ROLLBACK_V1",
+  "recorded_at": "2026-08-14T15:10:18.608Z",
+  "repository": {
+    "commit_sha": "6238188779763f996787c867aff4c7fb487cc0ba",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "migration": {
+    "version": "20260814150000",
+    "path": "supabase/migrations/20260814150000_one_piece_canonical_catalog_foundation_v1.sql",
+    "sha256": "a072e55f5bf3362aefcf1056b37e93a4e861b64ffeb529e0fd554d046586fbba",
+    "statement_count": 9
+  },
+  "authority": {
+    "preflight_summary": "docs/audits/pricing/one_piece_canonical_catalog_foundation_preflight_v1/production_read_only_v1/summary.json",
+    "preflight_summary_sha256": "2ed57f833c7baca377d1df04da7185b3c8ace13c3553918b14ed96d60a4b7287",
+    "preflight_fingerprint_sha256": "c3dc1ab6bdc2d6d1c434cddbc4c6a47fd447d65d396c1eec6feaf2bfb9978a1b"
+  },
+  "exact_scope": {
+    "count": 17,
+    "product_ids": [
+      "288228",
+      "288229",
+      "288230",
+      "288232",
+      "288234",
+      "288235",
+      "288236",
+      "288237",
+      "288238",
+      "288239",
+      "288240",
+      "288241",
+      "288242",
+      "288243",
+      "288244",
+      "288245",
+      "288246"
+    ],
+    "gv_ids": [
+      "GV-OP-TCGP-288228",
+      "GV-OP-TCGP-288229",
+      "GV-OP-TCGP-288230",
+      "GV-OP-TCGP-288232",
+      "GV-OP-TCGP-288234",
+      "GV-OP-TCGP-288235",
+      "GV-OP-TCGP-288236",
+      "GV-OP-TCGP-288237",
+      "GV-OP-TCGP-288238",
+      "GV-OP-TCGP-288239",
+      "GV-OP-TCGP-288240",
+      "GV-OP-TCGP-288241",
+      "GV-OP-TCGP-288242",
+      "GV-OP-TCGP-288243",
+      "GV-OP-TCGP-288244",
+      "GV-OP-TCGP-288245",
+      "GV-OP-TCGP-288246"
+    ]
+  },
+  "boundaries": {
+    "execution_mode": "rollback_only",
+    "durable_database_writes": 0,
+    "migration_ledger_writes": 0,
+    "canonical_card_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  },
+  "run_plan_fingerprint_sha256": "6422f6d2e2481293f6ab6d8f32d8dce373e69aff4e14bb324ec70f68283821ef"
+}

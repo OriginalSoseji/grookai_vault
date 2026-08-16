@@ -1,0 +1,2835 @@
+{
+  "reconciliation_version": "MTG_CANONICAL_CATALOG_RECONCILIATION_V1",
+  "recorded_at": "2026-08-13T18:18:36.271Z",
+  "repository": {
+    "commit_sha": "d21f1bef316b26cbb68c42e6c941dddac3f8dcc7",
+    "branch": "agent/mtg-pricing-readiness-v1"
+  },
+  "source_bulk": {
+    "type": "default_cards",
+    "name": "Default Cards",
+    "updated_at": "2026-08-13T09:05:26.070+00:00",
+    "uri": "https://api.scryfall.com/bulk-data/e2ef41e3-5778-4bc2-af3f-78eca4dd9c23",
+    "jsonl_download_uri": "https://data.scryfall.io/default-cards/default-cards-20260813090526.jsonl.gz",
+    "compressed_size": 77512052,
+    "local_byte_size": 77512052,
+    "downloaded_by_this_run": false,
+    "sha256": "4d74b3827c1de6cc882dede2f6a75e74f67974f2bc49054693ba7e3413fb6c7c"
+  },
+  "warehouse_snapshot": {
+    "row_count": 117267,
+    "sha256": "795957d0c93e836cc09000d5032bcec250346a45f6e710e2f25d53b0adf33b41"
+  },
+  "reconciliation": {
+    "bulk_card_count": 116703,
+    "eligible_candidate_count": 104712,
+    "candidate_with_image_count": 104550,
+    "candidate_without_tcgplayer_link_count": 5845,
+    "planned_card_printing_count": 158262,
+    "canonical_set_candidate_count": 953,
+    "warehouse_product_count": 117267,
+    "exact_tcgplayer_product_link_count": 97918,
+    "exact_tcgplayer_price_lane_link_count": 148346,
+    "warehouse_exact_product_count": 97917,
+    "warehouse_missing_product_count": 1,
+    "warehouse_unlinked_product_count": 19350,
+    "exact_standard_price_lane_count": 144482,
+    "exact_positive_market_price_lane_count": 142690,
+    "warehouse_missing_or_unsupported_price_lane_count": 3864,
+    "exact_etched_product_count": 1150,
+    "exact_product_collision_count": 26,
+    "exclusions": [
+      {
+        "key": "digital_only",
+        "count": 9357
+      },
+      {
+        "key": "not_paper",
+        "count": 9357
+      },
+      {
+        "key": "not_english",
+        "count": 2644
+      }
+    ],
+    "finishes": [
+      {
+        "key": "nonfoil",
+        "count": 91755
+      },
+      {
+        "key": "foil",
+        "count": 65359
+      },
+      {
+        "key": "etched",
+        "count": 1148
+      }
+    ],
+    "finish_combinations": [
+      {
+        "key": "foil+nonfoil",
+        "count": 53110
+      },
+      {
+        "key": "nonfoil",
+        "count": 38427
+      },
+      {
+        "key": "foil",
+        "count": 12027
+      },
+      {
+        "key": "etched",
+        "count": 890
+      },
+      {
+        "key": "etched+foil+nonfoil",
+        "count": 182
+      },
+      {
+        "key": "etched+foil",
+        "count": 40
+      },
+      {
+        "key": "etched+nonfoil",
+        "count": 36
+      }
+    ],
+    "set_types": [
+      {
+        "key": "expansion",
+        "count": 31428
+      },
+      {
+        "key": "commander",
+        "count": 15609
+      },
+      {
+        "key": "masters",
+        "count": 11307
+      },
+      {
+        "key": "core",
+        "count": 8961
+      },
+      {
+        "key": "promo",
+        "count": 8185
+      },
+      {
+        "key": "draft_innovation",
+        "count": 7833
+      },
+      {
+        "key": "memorabilia",
+        "count": 5827
+      },
+      {
+        "key": "box",
+        "count": 4043
+      },
+      {
+        "key": "token",
+        "count": 2916
+      },
+      {
+        "key": "funny",
+        "count": 2236
+      },
+      {
+        "key": "duel_deck",
+        "count": 1855
+      },
+      {
+        "key": "masterpiece",
+        "count": 1537
+      },
+      {
+        "key": "starter",
+        "count": 897
+      },
+      {
+        "key": "eternal",
+        "count": 702
+      },
+      {
+        "key": "planechase",
+        "count": 647
+      },
+      {
+        "key": "archenemy",
+        "count": 321
+      },
+      {
+        "key": "from_the_vault",
+        "count": 157
+      },
+      {
+        "key": "premium_deck",
+        "count": 105
+      },
+      {
+        "key": "minigame",
+        "count": 55
+      },
+      {
+        "key": "arsenal",
+        "count": 35
+      },
+      {
+        "key": "vanguard",
+        "count": 32
+      },
+      {
+        "key": "spellbook",
+        "count": 24
+      }
+    ],
+    "layouts": [
+      {
+        "key": "normal",
+        "count": 95118
+      },
+      {
+        "key": "token",
+        "count": 2952
+      },
+      {
+        "key": "art_series",
+        "count": 2650
+      },
+      {
+        "key": "transform",
+        "count": 989
+      },
+      {
+        "key": "saga",
+        "count": 401
+      },
+      {
+        "key": "adventure",
+        "count": 386
+      },
+      {
+        "key": "planar",
+        "count": 324
+      },
+      {
+        "key": "front_card",
+        "count": 315
+      },
+      {
+        "key": "split",
+        "count": 302
+      },
+      {
+        "key": "modal_dfc",
+        "count": 259
+      },
+      {
+        "key": "emblem",
+        "count": 137
+      },
+      {
+        "key": "double_faced_token",
+        "count": 120
+      },
+      {
+        "key": "scheme",
+        "count": 110
+      },
+      {
+        "key": "mutate",
+        "count": 102
+      },
+      {
+        "key": "prepare",
+        "count": 91
+      },
+      {
+        "key": "reversible_card",
+        "count": 81
+      },
+      {
+        "key": "class",
+        "count": 69
+      },
+      {
+        "key": "meld",
+        "count": 63
+      },
+      {
+        "key": "leveler",
+        "count": 61
+      },
+      {
+        "key": "flip",
+        "count": 40
+      },
+      {
+        "key": "prototype",
+        "count": 38
+      },
+      {
+        "key": "vanguard",
+        "count": 34
+      },
+      {
+        "key": "host",
+        "count": 29
+      },
+      {
+        "key": "case",
+        "count": 24
+      },
+      {
+        "key": "augment",
+        "count": 17
+      }
+    ],
+    "treatment_signals": [
+      {
+        "key": "frame_effect:legendary",
+        "count": 10906
+      },
+      {
+        "key": "promo",
+        "count": 8574
+      },
+      {
+        "key": "frame_effect:inverted",
+        "count": 7789
+      },
+      {
+        "key": "full_art",
+        "count": 6067
+      },
+      {
+        "key": "frame_effect:extendedart",
+        "count": 4210
+      },
+      {
+        "key": "frame_effect:showcase",
+        "count": 2994
+      },
+      {
+        "key": "frame_effect:enchantment",
+        "count": 1529
+      },
+      {
+        "key": "frame_effect:etched",
+        "count": 849
+      },
+      {
+        "key": "frame_effect:sunmoondfc",
+        "count": 381
+      },
+      {
+        "key": "textless",
+        "count": 220
+      },
+      {
+        "key": "frame_effect:devoid",
+        "count": 197
+      },
+      {
+        "key": "frame_effect:tombstone",
+        "count": 186
+      },
+      {
+        "key": "frame_effect:snow",
+        "count": 122
+      },
+      {
+        "key": "frame_effect:fullart",
+        "count": 115
+      },
+      {
+        "key": "frame_effect:lesson",
+        "count": 98
+      },
+      {
+        "key": "variation",
+        "count": 83
+      },
+      {
+        "key": "frame_effect:colorshifted",
+        "count": 62
+      },
+      {
+        "key": "frame_effect:companion",
+        "count": 54
+      },
+      {
+        "key": "frame_effect:compasslanddfc",
+        "count": 54
+      },
+      {
+        "key": "frame_effect:fandfc",
+        "count": 50
+      },
+      {
+        "key": "frame_effect:miracle",
+        "count": 49
+      },
+      {
+        "key": "frame_effect:mooneldrazidfc",
+        "count": 35
+      },
+      {
+        "key": "frame_effect:convertdfc",
+        "count": 29
+      },
+      {
+        "key": "frame_effect:originpwdfc",
+        "count": 29
+      },
+      {
+        "key": "frame_effect:spree",
+        "count": 29
+      },
+      {
+        "key": "frame_effect:draft",
+        "count": 28
+      },
+      {
+        "key": "frame_effect:shatteredglass",
+        "count": 14
+      },
+      {
+        "key": "frame_effect:borderless",
+        "count": 1
+      },
+      {
+        "key": "frame_effect:upsidedowndfc",
+        "count": 1
+      },
+      {
+        "key": "frame_effect:waxingandwaningmoondfc",
+        "count": 1
+      }
+    ],
+    "collision_samples": [
+      {
+        "source_price_row_identity": "245106:normal",
+        "product_id": 245106,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "0202cf00-cbdd-499f-809d-cb0b8c085550",
+          "6f509dbe-6ec7-4438-ab36-e20be46c9922"
+        ],
+        "owners": [
+          {
+            "source_print_id": "0202cf00-cbdd-499f-809d-cb0b8c085550",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Dungeon of the Mad Mage",
+            "set_code": "oafr",
+            "collector_number": "20",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "6f509dbe-6ec7-4438-ab36-e20be46c9922",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Dungeon of the Mad Mage",
+            "set_code": "tafr",
+            "collector_number": "20",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "13769:foil",
+        "product_id": 13769,
+        "source_subtype": "foil",
+        "source_print_ids": [
+          "02b5590f-d964-49cb-8e2e-94b067112c8e",
+          "924863b6-6d7b-441b-90cc-4e98e1c41aa9"
+        ],
+        "owners": [
+          {
+            "source_print_id": "02b5590f-d964-49cb-8e2e-94b067112c8e",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Shadow Lance",
+            "set_code": "gpt",
+            "collector_number": "14",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "924863b6-6d7b-441b-90cc-4e98e1c41aa9",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Shadow Lance",
+            "set_code": "gpt",
+            "collector_number": "14★",
+            "variation": true,
+            "variation_of": "02b5590f-d964-49cb-8e2e-94b067112c8e"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "122885:normal",
+        "product_id": 122885,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "07997554-9fd7-4d6f-abaf-6c3fda9644d2",
+          "32b89e5c-ffb4-406f-99d1-ec2797aca061"
+        ],
+        "owners": [
+          {
+            "source_print_id": "07997554-9fd7-4d6f-abaf-6c3fda9644d2",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Terrain Elemental",
+            "set_code": "kld",
+            "collector_number": "272†",
+            "variation": true,
+            "variation_of": "32b89e5c-ffb4-406f-99d1-ec2797aca061"
+          },
+          {
+            "source_print_id": "32b89e5c-ffb4-406f-99d1-ec2797aca061",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Terrain Elemental",
+            "set_code": "kld",
+            "collector_number": "272",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "3520:normal",
+        "product_id": 3520,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "0e1ae3d6-6d96-4db6-bbc4-cee91bae6cf7",
+          "b7705328-4b5d-4383-9abe-75fca9c32c09"
+        ],
+        "owners": [
+          {
+            "source_print_id": "0e1ae3d6-6d96-4db6-bbc4-cee91bae6cf7",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Gaea's Touch",
+            "set_code": "drk",
+            "collector_number": "77",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "b7705328-4b5d-4383-9abe-75fca9c32c09",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Gaea's Touch",
+            "set_code": "drk",
+            "collector_number": "77†",
+            "variation": true,
+            "variation_of": "0e1ae3d6-6d96-4db6-bbc4-cee91bae6cf7"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "9347:foil",
+        "product_id": 9347,
+        "source_subtype": "foil",
+        "source_print_ids": [
+          "1ae87f9d-d6eb-4178-a99d-76a9dffacf28",
+          "cb6f1c4e-4fbc-4474-8dd2-5846d417b6ab"
+        ],
+        "owners": [
+          {
+            "source_print_id": "1ae87f9d-d6eb-4178-a99d-76a9dffacf28",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Cephalid Looter",
+            "set_code": "ody",
+            "collector_number": "72†",
+            "variation": true,
+            "variation_of": "cb6f1c4e-4fbc-4474-8dd2-5846d417b6ab"
+          },
+          {
+            "source_print_id": "cb6f1c4e-4fbc-4474-8dd2-5846d417b6ab",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Cephalid Looter",
+            "set_code": "ody",
+            "collector_number": "72",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "9347:normal",
+        "product_id": 9347,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "1ae87f9d-d6eb-4178-a99d-76a9dffacf28",
+          "cb6f1c4e-4fbc-4474-8dd2-5846d417b6ab"
+        ],
+        "owners": [
+          {
+            "source_print_id": "1ae87f9d-d6eb-4178-a99d-76a9dffacf28",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Cephalid Looter",
+            "set_code": "ody",
+            "collector_number": "72†",
+            "variation": true,
+            "variation_of": "cb6f1c4e-4fbc-4474-8dd2-5846d417b6ab"
+          },
+          {
+            "source_print_id": "cb6f1c4e-4fbc-4474-8dd2-5846d417b6ab",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Cephalid Looter",
+            "set_code": "ody",
+            "collector_number": "72",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "251773:etched",
+        "product_id": 251773,
+        "source_subtype": "etched",
+        "source_print_ids": [
+          "27197660-8489-419b-9ad6-29a8713e4673",
+          "5d58cb4d-2091-40c8-b97c-09bf9c022a8b"
+        ],
+        "owners": [
+          {
+            "source_print_id": "27197660-8489-419b-9ad6-29a8713e4673",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Demonlord Belzenlok",
+            "set_code": "sld",
+            "collector_number": "159",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "5d58cb4d-2091-40c8-b97c-09bf9c022a8b",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Demonlord Belzenlok",
+            "set_code": "sld",
+            "collector_number": "159★",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "3518:normal",
+        "product_id": 3518,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "2b60eb23-cb9a-4203-86fb-60e47dbd870b",
+          "d56cca55-1ea7-4a11-8c5d-3d84c9af862f"
+        ],
+        "owners": [
+          {
+            "source_print_id": "2b60eb23-cb9a-4203-86fb-60e47dbd870b",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Fountain of Youth",
+            "set_code": "drk",
+            "collector_number": "103",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "d56cca55-1ea7-4a11-8c5d-3d84c9af862f",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Fountain of Youth",
+            "set_code": "drk",
+            "collector_number": "103†",
+            "variation": true,
+            "variation_of": "2b60eb23-cb9a-4203-86fb-60e47dbd870b"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "3326:normal",
+        "product_id": 3326,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "3035cead-a501-4204-9154-5fd648577d32",
+          "cca371f0-e7c9-4154-8e1d-47576c0202bc"
+        ],
+        "owners": [
+          {
+            "source_print_id": "3035cead-a501-4204-9154-5fd648577d32",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Tawnos's Weaponry",
+            "set_code": "atq",
+            "collector_number": "70",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "cca371f0-e7c9-4154-8e1d-47576c0202bc",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Tawnos's Weaponry",
+            "set_code": "atq",
+            "collector_number": "70†",
+            "variation": true,
+            "variation_of": "3035cead-a501-4204-9154-5fd648577d32"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "2217:normal",
+        "product_id": 2217,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "346eef90-35c3-4153-a64a-55f4d7b232e2",
+          "6ed35d03-80fd-421d-a8be-6708a5570a85"
+        ],
+        "owners": [
+          {
+            "source_print_id": "346eef90-35c3-4153-a64a-55f4d7b232e2",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Ironclaw Curse",
+            "set_code": "5ed",
+            "collector_number": "244†",
+            "variation": true,
+            "variation_of": "6ed35d03-80fd-421d-a8be-6708a5570a85"
+          },
+          {
+            "source_print_id": "6ed35d03-80fd-421d-a8be-6708a5570a85",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Ironclaw Curse",
+            "set_code": "5ed",
+            "collector_number": "244",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "206016:normal",
+        "product_id": 206016,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "52e39cb4-2f92-42cc-bd15-75b01bb66252",
+          "9acbbb54-f08d-4926-acdb-db376d4b46cd"
+        ],
+        "owners": [
+          {
+            "source_print_id": "52e39cb4-2f92-42cc-bd15-75b01bb66252",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "The Legend of Arena",
+            "set_code": "ph18",
+            "collector_number": "4†",
+            "variation": true,
+            "variation_of": "9acbbb54-f08d-4926-acdb-db376d4b46cd"
+          },
+          {
+            "source_print_id": "9acbbb54-f08d-4926-acdb-db376d4b46cd",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "The Legend of Arena",
+            "set_code": "ph18",
+            "collector_number": "4",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "240150:normal",
+        "product_id": 240150,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "5b209759-6215-49e8-a6a0-a6c94040adb2",
+          "62d881f3-32d0-482c-99d2-73c79e57700a"
+        ],
+        "owners": [
+          {
+            "source_print_id": "5b209759-6215-49e8-a6a0-a6c94040adb2",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Fast // Furious",
+            "set_code": "mh2",
+            "collector_number": "123",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "62d881f3-32d0-482c-99d2-73c79e57700a",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Fast // Furious",
+            "set_code": "unk",
+            "collector_number": "CR15a",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "533867:foil",
+        "product_id": 533867,
+        "source_subtype": "foil",
+        "source_print_ids": [
+          "5c53bf06-f681-4d5c-b303-cc7c050f5b01",
+          "e5d07ad5-0701-4696-91fd-87451997ef23"
+        ],
+        "owners": [
+          {
+            "source_print_id": "5c53bf06-f681-4d5c-b303-cc7c050f5b01",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Cat",
+            "set_code": "sld",
+            "collector_number": "1517",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "e5d07ad5-0701-4696-91fd-87451997ef23",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Dog",
+            "set_code": "sld",
+            "collector_number": "1516",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "251779:etched",
+        "product_id": 251779,
+        "source_subtype": "etched",
+        "source_print_ids": [
+          "60e5c89f-e181-4a77-8127-6afad5354004",
+          "f57c5ab1-3a36-47eb-8cf9-66b0c59d3e03"
+        ],
+        "owners": [
+          {
+            "source_print_id": "60e5c89f-e181-4a77-8127-6afad5354004",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Liliana's Contract",
+            "set_code": "sld",
+            "collector_number": "161★",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "f57c5ab1-3a36-47eb-8cf9-66b0c59d3e03",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Liliana's Contract",
+            "set_code": "sld",
+            "collector_number": "161",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "251782:etched",
+        "product_id": 251782,
+        "source_subtype": "etched",
+        "source_print_ids": [
+          "615a6845-f58a-4ee5-aa83-a5747b890140",
+          "f37f93d4-166a-41cd-86b2-0eeeae33ff9d"
+        ],
+        "owners": [
+          {
+            "source_print_id": "615a6845-f58a-4ee5-aa83-a5747b890140",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Kothophed, Soul Hoarder",
+            "set_code": "sld",
+            "collector_number": "162",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "f37f93d4-166a-41cd-86b2-0eeeae33ff9d",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Kothophed, Soul Hoarder",
+            "set_code": "sld",
+            "collector_number": "162★",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "2372:normal",
+        "product_id": 2372,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "64b05edd-4128-4150-9457-8aff895bd0b7",
+          "b97e7318-f916-4556-9f89-dda7914359c1"
+        ],
+        "owners": [
+          {
+            "source_print_id": "64b05edd-4128-4150-9457-8aff895bd0b7",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Shivan Dragon",
+            "set_code": "5ed",
+            "collector_number": "267",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "b97e7318-f916-4556-9f89-dda7914359c1",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Shivan Dragon",
+            "set_code": "5ed",
+            "collector_number": "267†",
+            "variation": true,
+            "variation_of": "64b05edd-4128-4150-9457-8aff895bd0b7"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "38221:foil",
+        "product_id": 38221,
+        "source_subtype": "foil",
+        "source_print_ids": [
+          "65195553-a7a0-414f-b945-25d93dc76395",
+          "f630b943-4ca2-4168-8522-3fd2cfacab5a"
+        ],
+        "owners": [
+          {
+            "source_print_id": "65195553-a7a0-414f-b945-25d93dc76395",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Sakura-Tribe Elder",
+            "set_code": "pjse",
+            "collector_number": "1E06",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "f630b943-4ca2-4168-8522-3fd2cfacab5a",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Sakura-Tribe Elder",
+            "set_code": "psus",
+            "collector_number": "12",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "2212:normal",
+        "product_id": 2212,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "68d04a75-647f-400f-b0dc-c4544f7db2d4",
+          "cc2850e8-f135-4a51-905b-ae30b83913a6"
+        ],
+        "owners": [
+          {
+            "source_print_id": "68d04a75-647f-400f-b0dc-c4544f7db2d4",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Inferno",
+            "set_code": "5ed",
+            "collector_number": "243",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "cc2850e8-f135-4a51-905b-ae30b83913a6",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Inferno",
+            "set_code": "5ed",
+            "collector_number": "243†",
+            "variation": true,
+            "variation_of": "68d04a75-647f-400f-b0dc-c4544f7db2d4"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "3563:normal",
+        "product_id": 3563,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "741dbcf2-3372-45a8-b66f-d2ae12b4aac6",
+          "bf27955f-015b-4d86-99b9-4c4f6fe2fa73"
+        ],
+        "owners": [
+          {
+            "source_print_id": "741dbcf2-3372-45a8-b66f-d2ae12b4aac6",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Runesword",
+            "set_code": "drk",
+            "collector_number": "107",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "bf27955f-015b-4d86-99b9-4c4f6fe2fa73",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Runesword",
+            "set_code": "drk",
+            "collector_number": "107†",
+            "variation": true,
+            "variation_of": "741dbcf2-3372-45a8-b66f-d2ae12b4aac6"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "641692:normal",
+        "product_id": 641692,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "7773cb71-59b5-47d6-8acd-964cd4d9de48",
+          "ceffdd07-ff67-4a44-bf4e-bb0b29b750b8"
+        ],
+        "owners": [
+          {
+            "source_print_id": "7773cb71-59b5-47d6-8acd-964cd4d9de48",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "The Sprinkler of Stardust",
+            "set_code": "unk",
+            "collector_number": "RZ04r",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "ceffdd07-ff67-4a44-bf4e-bb0b29b750b8",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "The Sprinkler of Stardust",
+            "set_code": "unk",
+            "collector_number": "RZ04k",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "126471:normal",
+        "product_id": 126471,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "7ccd6864-1404-43c2-aa59-ccc8b3529a62",
+          "f7113ddc-cb3c-46da-a6c7-2567bd0affa9"
+        ],
+        "owners": [
+          {
+            "source_print_id": "7ccd6864-1404-43c2-aa59-ccc8b3529a62",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Dawnfeather Eagle",
+            "set_code": "aer",
+            "collector_number": "14†",
+            "variation": true,
+            "variation_of": "f7113ddc-cb3c-46da-a6c7-2567bd0affa9"
+          },
+          {
+            "source_print_id": "f7113ddc-cb3c-46da-a6c7-2567bd0affa9",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Dawnfeather Eagle",
+            "set_code": "aer",
+            "collector_number": "14",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "126455:normal",
+        "product_id": 126455,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "a131d558-5f6b-448b-a378-1882e2d02bd2",
+          "d0b97fa0-4c5b-4211-9c8d-99197dc20636"
+        ],
+        "owners": [
+          {
+            "source_print_id": "a131d558-5f6b-448b-a378-1882e2d02bd2",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Alley Strangler",
+            "set_code": "aer",
+            "collector_number": "52",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "d0b97fa0-4c5b-4211-9c8d-99197dc20636",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Alley Strangler",
+            "set_code": "aer",
+            "collector_number": "52†",
+            "variation": true,
+            "variation_of": "a131d558-5f6b-448b-a378-1882e2d02bd2"
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "251776:etched",
+        "product_id": 251776,
+        "source_subtype": "etched",
+        "source_print_ids": [
+          "a624eff1-9347-4a99-8986-a2312258791c",
+          "c506f57a-e8b9-410f-9b7e-086900e26e46"
+        ],
+        "owners": [
+          {
+            "source_print_id": "a624eff1-9347-4a99-8986-a2312258791c",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Griselbrand",
+            "set_code": "sld",
+            "collector_number": "160",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "c506f57a-e8b9-410f-9b7e-086900e26e46",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Griselbrand",
+            "set_code": "sld",
+            "collector_number": "160★",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "251784:etched",
+        "product_id": 251784,
+        "source_subtype": "etched",
+        "source_print_ids": [
+          "e0bc7380-e417-4f30-a4aa-356d782b5e4d",
+          "ecb98f5c-9ef2-4549-9603-814726f1ffcc"
+        ],
+        "owners": [
+          {
+            "source_print_id": "e0bc7380-e417-4f30-a4aa-356d782b5e4d",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Razaketh, the Foulblooded",
+            "set_code": "sld",
+            "collector_number": "163★",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "ecb98f5c-9ef2-4549-9603-814726f1ffcc",
+            "source_role": "tcgplayer_etched_product",
+            "source_subtype": "etched",
+            "name": "Razaketh, the Foulblooded",
+            "set_code": "sld",
+            "collector_number": "163",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "263739:foil",
+        "product_id": 263739,
+        "source_subtype": "foil",
+        "source_print_ids": [
+          "eb35ff06-c5bf-460e-8a79-422bda257cfe",
+          "feb949a6-9261-4175-bcf1-5519d82f9dc3"
+        ],
+        "owners": [
+          {
+            "source_print_id": "eb35ff06-c5bf-460e-8a79-422bda257cfe",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Battlefield Forge",
+            "set_code": "sld",
+            "collector_number": "669",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "feb949a6-9261-4175-bcf1-5519d82f9dc3",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Plains",
+            "set_code": "sld",
+            "collector_number": "670",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "source_price_row_identity": "2268:normal",
+        "product_id": 2268,
+        "source_subtype": "normal",
+        "source_print_ids": [
+          "f55a2d1d-0964-44a9-9f32-09804f2c7445",
+          "ffef6ac8-a42c-4025-b4ef-3f772129b8f7"
+        ],
+        "owners": [
+          {
+            "source_print_id": "f55a2d1d-0964-44a9-9f32-09804f2c7445",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Manabarbs",
+            "set_code": "5ed",
+            "collector_number": "250",
+            "variation": false,
+            "variation_of": null
+          },
+          {
+            "source_print_id": "ffef6ac8-a42c-4025-b4ef-3f772129b8f7",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Manabarbs",
+            "set_code": "5ed",
+            "collector_number": "250†",
+            "variation": true,
+            "variation_of": "f55a2d1d-0964-44a9-9f32-09804f2c7445"
+          }
+        ]
+      }
+    ],
+    "missing_product_samples": [
+      {
+        "product_id": 77445,
+        "owners": [
+          {
+            "source_print_id": "c1995b46-cd88-470d-89ec-37ffb6596348",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "foil",
+            "name": "Bruna, Light of Alabaster",
+            "set_code": "phel",
+            "collector_number": "208",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      },
+      {
+        "product_id": 77445,
+        "owners": [
+          {
+            "source_print_id": "c1995b46-cd88-470d-89ec-37ffb6596348",
+            "source_role": "tcgplayer_standard_product",
+            "source_subtype": "normal",
+            "name": "Bruna, Light of Alabaster",
+            "set_code": "phel",
+            "collector_number": "208",
+            "variation": false,
+            "variation_of": null
+          }
+        ]
+      }
+    ],
+    "candidate_samples": [
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "337da47f185ab0619e00384397dc0888ea97bc3966635a67a92d79326c1b7887",
+        "identity_payload": {
+          "scryfall_print_id": "0000419b-0bba-4488-8f7a-6194544ce91e",
+          "scryfall_oracle_id": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+          "scryfall_set_id": "a2f58272-bba6-439d-871e-7a46686ac018",
+          "set_code": "blb",
+          "collector_number": "280",
+          "language": "en",
+          "name": "Forest",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": true,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "a2f58272-bba6-439d-871e-7a46686ac018",
+          "code": "blb",
+          "name": "Bloomburrow",
+          "set_type": "expansion",
+          "released_at": "2024-08-02"
+        },
+        "card": {
+          "source_print_id": "0000419b-0bba-4488-8f7a-6194544ce91e",
+          "source_oracle_id": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+          "name": "Forest",
+          "collector_number": "280",
+          "language": "en",
+          "rarity": "common",
+          "artist": "David Robert Hovey",
+          "layout": "normal",
+          "type_line": "Basic Land — Forest"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 558404,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0000419b-0bba-4488-8f7a-6194544ce91e.jpg?1783910776",
+            "large": "https://cards.scryfall.io/large/front/0/0/0000419b-0bba-4488-8f7a-6194544ce91e.jpg?1783910776",
+            "png": "https://cards.scryfall.io/png/front/0/0/0000419b-0bba-4488-8f7a-6194544ce91e.png?1783910776"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "4f274f613e1617773d2bd79ebc319c760e44191ecd7470ef1c5e93a0fb84f38b",
+        "identity_payload": {
+          "scryfall_print_id": "0000579f-7b35-4ed3-b44c-db2a538066fe",
+          "scryfall_oracle_id": "44623693-51d6-49ad-8cd7-140505caf02f",
+          "scryfall_set_id": "c1d109bc-ffd8-428f-8d7d-3f8d7e648046",
+          "set_code": "tsp",
+          "collector_number": "157",
+          "language": "en",
+          "name": "Fury Sliver",
+          "layout": "normal",
+          "frame": "2003",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "c1d109bc-ffd8-428f-8d7d-3f8d7e648046",
+          "code": "tsp",
+          "name": "Time Spiral",
+          "set_type": "expansion",
+          "released_at": "2006-10-06"
+        },
+        "card": {
+          "source_print_id": "0000579f-7b35-4ed3-b44c-db2a538066fe",
+          "source_oracle_id": "44623693-51d6-49ad-8cd7-140505caf02f",
+          "name": "Fury Sliver",
+          "collector_number": "157",
+          "language": "en",
+          "rarity": "uncommon",
+          "artist": "Paolo Parente",
+          "layout": "normal",
+          "type_line": "Creature — Sliver"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 14240,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1783943221",
+            "large": "https://cards.scryfall.io/large/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.jpg?1783943221",
+            "png": "https://cards.scryfall.io/png/front/0/0/0000579f-7b35-4ed3-b44c-db2a538066fe.png?1783943221"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "2917ef79f4587c161fb23e990374021145df4403c4717dbd658e1b498876081f",
+        "identity_payload": {
+          "scryfall_print_id": "00006596-1166-4a79-8443-ca9f82e6db4e",
+          "scryfall_oracle_id": "8ae3562f-28b7-4462-96ed-be0cf7052ccc",
+          "scryfall_set_id": "eb16a2bd-a218-4e4e-8339-4aa1afc0c8d2",
+          "set_code": "zen",
+          "collector_number": "21",
+          "language": "en",
+          "name": "Kor Outfitter",
+          "layout": "normal",
+          "frame": "2003",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "eb16a2bd-a218-4e4e-8339-4aa1afc0c8d2",
+          "code": "zen",
+          "name": "Zendikar",
+          "set_type": "expansion",
+          "released_at": "2009-10-02"
+        },
+        "card": {
+          "source_print_id": "00006596-1166-4a79-8443-ca9f82e6db4e",
+          "source_oracle_id": "8ae3562f-28b7-4462-96ed-be0cf7052ccc",
+          "name": "Kor Outfitter",
+          "collector_number": "21",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Kieran Yanner",
+          "layout": "normal",
+          "type_line": "Creature — Kor Soldier"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 33347,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/00006596-1166-4a79-8443-ca9f82e6db4e.jpg?1783942171",
+            "large": "https://cards.scryfall.io/large/front/0/0/00006596-1166-4a79-8443-ca9f82e6db4e.jpg?1783942171",
+            "png": "https://cards.scryfall.io/png/front/0/0/00006596-1166-4a79-8443-ca9f82e6db4e.png?1783942171"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "d8ebdbf6a2bc9d07306061e2a463a58d3d3b8497699ed2183090a1901bb154f5",
+        "identity_payload": {
+          "scryfall_print_id": "0000a54c-a511-4925-92dc-01b937f9afad",
+          "scryfall_oracle_id": "dc4e2134-f0c2-49aa-9ea3-ebf83af1445c",
+          "scryfall_set_id": "f7aa47c6-c1e2-4de5-9a68-4406d84bd6bb",
+          "set_code": "tmm2",
+          "collector_number": "5",
+          "language": "en",
+          "name": "Spirit",
+          "layout": "token",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [
+            "setpromo"
+          ],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "f7aa47c6-c1e2-4de5-9a68-4406d84bd6bb",
+          "code": "tmm2",
+          "name": "Modern Masters 2015 Tokens",
+          "set_type": "token",
+          "released_at": "2015-05-22"
+        },
+        "card": {
+          "source_print_id": "0000a54c-a511-4925-92dc-01b937f9afad",
+          "source_oracle_id": "dc4e2134-f0c2-49aa-9ea3-ebf83af1445c",
+          "name": "Spirit",
+          "collector_number": "5",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Mike Sass",
+          "layout": "token",
+          "type_line": "Token Creature — Spirit"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 98659,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0000a54c-a511-4925-92dc-01b937f9afad.jpg?1783938374",
+            "large": "https://cards.scryfall.io/large/front/0/0/0000a54c-a511-4925-92dc-01b937f9afad.jpg?1783938374",
+            "png": "https://cards.scryfall.io/png/front/0/0/0000a54c-a511-4925-92dc-01b937f9afad.png?1783938374"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "3919e3959d1606eb32eebac85b19a4f690e7ead189ed0a717f9964203f96468c",
+        "identity_payload": {
+          "scryfall_print_id": "0000cd57-91fe-411f-b798-646e965eec37",
+          "scryfall_oracle_id": "9f0d82ae-38bf-45d8-8cda-982b6ead1d72",
+          "scryfall_set_id": "fe0dad85-54bc-4151-9200-d68da84dd0f2",
+          "set_code": "xln",
+          "collector_number": "78",
+          "language": "en",
+          "name": "Siren Lookout",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "fe0dad85-54bc-4151-9200-d68da84dd0f2",
+          "code": "xln",
+          "name": "Ixalan",
+          "set_type": "expansion",
+          "released_at": "2017-09-29"
+        },
+        "card": {
+          "source_print_id": "0000cd57-91fe-411f-b798-646e965eec37",
+          "source_oracle_id": "9f0d82ae-38bf-45d8-8cda-982b6ead1d72",
+          "name": "Siren Lookout",
+          "collector_number": "78",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Chris Rallis",
+          "layout": "normal",
+          "type_line": "Creature — Siren Pirate"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 145764,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0000cd57-91fe-411f-b798-646e965eec37.jpg?1783935773",
+            "large": "https://cards.scryfall.io/large/front/0/0/0000cd57-91fe-411f-b798-646e965eec37.jpg?1783935773",
+            "png": "https://cards.scryfall.io/png/front/0/0/0000cd57-91fe-411f-b798-646e965eec37.png?1783935773"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "afa362403c3ebde593f3864f97530e3c1e33253da5a50a3111d4965e38ab1c83",
+        "identity_payload": {
+          "scryfall_print_id": "00012bd8-ed68-4978-a22d-f450c8a6e048",
+          "scryfall_oracle_id": "5aa12aff-db3c-4be5-822b-3afdf536b33e",
+          "scryfall_set_id": "45a69797-8adf-468e-a4e1-ba81fd9d66ac",
+          "set_code": "3ed",
+          "collector_number": "229",
+          "language": "en",
+          "name": "Web",
+          "layout": "normal",
+          "frame": "1993",
+          "frame_effects": [],
+          "border_color": "white",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "45a69797-8adf-468e-a4e1-ba81fd9d66ac",
+          "code": "3ed",
+          "name": "Revised Edition",
+          "set_type": "core",
+          "released_at": "1994-04-11"
+        },
+        "card": {
+          "source_print_id": "00012bd8-ed68-4978-a22d-f450c8a6e048",
+          "source_oracle_id": "5aa12aff-db3c-4be5-822b-3afdf536b33e",
+          "name": "Web",
+          "collector_number": "229",
+          "language": "en",
+          "rarity": "rare",
+          "artist": "Rob Alexander",
+          "layout": "normal",
+          "type_line": "Enchantment — Aura"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 1623,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/00012bd8-ed68-4978-a22d-f450c8a6e048.jpg?1783948293",
+            "large": "https://cards.scryfall.io/large/front/0/0/00012bd8-ed68-4978-a22d-f450c8a6e048.jpg?1783948293",
+            "png": "https://cards.scryfall.io/png/front/0/0/00012bd8-ed68-4978-a22d-f450c8a6e048.png?1783948293"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "fe08339611131d0dad8dfe9e173f74276ed658f91685a77427b6757db27f746d",
+        "identity_payload": {
+          "scryfall_print_id": "0001b4a6-10bf-4bdd-a9da-fe78d9d39a82",
+          "scryfall_oracle_id": "c6e0574c-3e2b-4c40-b17a-05bce3d49309",
+          "scryfall_set_id": "cc05a3a1-fb38-4d6d-b3d3-032e90b49d00",
+          "set_code": "pdft",
+          "collector_number": "268p",
+          "language": "en",
+          "name": "Wastewood Verge",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": "oval",
+          "full_art": false,
+          "textless": false,
+          "promo": true,
+          "promo_types": [
+            "promopack",
+            "stamped"
+          ],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "cc05a3a1-fb38-4d6d-b3d3-032e90b49d00",
+          "code": "pdft",
+          "name": "Aetherdrift Promos",
+          "set_type": "promo",
+          "released_at": "2025-02-14"
+        },
+        "card": {
+          "source_print_id": "0001b4a6-10bf-4bdd-a9da-fe78d9d39a82",
+          "source_oracle_id": "c6e0574c-3e2b-4c40-b17a-05bce3d49309",
+          "name": "Wastewood Verge",
+          "collector_number": "268p",
+          "language": "en",
+          "rarity": "rare",
+          "artist": "Bartek Fedyczak",
+          "layout": "normal",
+          "type_line": "Land"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 616918,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0001b4a6-10bf-4bdd-a9da-fe78d9d39a82.jpg?1783907586",
+            "large": "https://cards.scryfall.io/large/front/0/0/0001b4a6-10bf-4bdd-a9da-fe78d9d39a82.jpg?1783907586",
+            "png": "https://cards.scryfall.io/png/front/0/0/0001b4a6-10bf-4bdd-a9da-fe78d9d39a82.png?1783907586"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "cf545b8a7267e1efd2037512a3d79041250d38e4fb74401c62bc88a8fc2d8746",
+        "identity_payload": {
+          "scryfall_print_id": "0001c639-8bd0-426f-89cb-4ca61f3cc054",
+          "scryfall_oracle_id": "4d720849-56cd-4b78-b9a7-7b9484702f0f",
+          "scryfall_set_id": "efdfdd99-cee7-4c11-a5e9-03d60f88bdd6",
+          "set_code": "who",
+          "collector_number": "57",
+          "language": "en",
+          "name": "Surge of Brilliance",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": "triangle",
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [
+            "universesbeyond"
+          ],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "efdfdd99-cee7-4c11-a5e9-03d60f88bdd6",
+          "code": "who",
+          "name": "Doctor Who",
+          "set_type": "commander",
+          "released_at": "2023-10-13"
+        },
+        "card": {
+          "source_print_id": "0001c639-8bd0-426f-89cb-4ca61f3cc054",
+          "source_oracle_id": "4d720849-56cd-4b78-b9a7-7b9484702f0f",
+          "name": "Surge of Brilliance",
+          "collector_number": "57",
+          "language": "en",
+          "rarity": "uncommon",
+          "artist": "Alice Xia Zhang",
+          "layout": "normal",
+          "type_line": "Instant"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 519582,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0001c639-8bd0-426f-89cb-4ca61f3cc054.jpg?1783914665",
+            "large": "https://cards.scryfall.io/large/front/0/0/0001c639-8bd0-426f-89cb-4ca61f3cc054.jpg?1783914665",
+            "png": "https://cards.scryfall.io/png/front/0/0/0001c639-8bd0-426f-89cb-4ca61f3cc054.png?1783914665"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "2e56e7e9561c1e9894421ed37c8adff2e0dfd54dedbec825941a31214529940b",
+        "identity_payload": {
+          "scryfall_print_id": "0001e77a-7fff-49d2-a55c-42f6fdf6db08",
+          "scryfall_oracle_id": "396b088d-f9af-4ee1-843f-dbe1633f9cc8",
+          "scryfall_set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+          "set_code": "woe",
+          "collector_number": "63",
+          "language": "en",
+          "name": "Obyra's Attendants // Desperate Parry",
+          "layout": "adventure",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+          "code": "woe",
+          "name": "Wilds of Eldraine",
+          "set_type": "expansion",
+          "released_at": "2023-09-08"
+        },
+        "card": {
+          "source_print_id": "0001e77a-7fff-49d2-a55c-42f6fdf6db08",
+          "source_oracle_id": "396b088d-f9af-4ee1-843f-dbe1633f9cc8",
+          "name": "Obyra's Attendants // Desperate Parry",
+          "collector_number": "63",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Andreas Zafiratos",
+          "layout": "adventure",
+          "type_line": "Creature — Faerie Wizard // Instant — Adventure"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 513888,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0001e77a-7fff-49d2-a55c-42f6fdf6db08.jpg?1783915116",
+            "large": "https://cards.scryfall.io/large/front/0/0/0001e77a-7fff-49d2-a55c-42f6fdf6db08.jpg?1783915116",
+            "png": "https://cards.scryfall.io/png/front/0/0/0001e77a-7fff-49d2-a55c-42f6fdf6db08.png?1783915116"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "9b485b6ac98e191fb2a88f05aed5756778a0719296d53c1e8155aee034c6e9a7",
+        "identity_payload": {
+          "scryfall_print_id": "0001f1ef-b957-4a55-b47f-14839cdbab6f",
+          "scryfall_oracle_id": "ef027846-be81-4959-a6b5-56bd01b1e68a",
+          "scryfall_set_id": "a90a7b2f-9dd8-4fc7-9f7d-8ea2797ec782",
+          "set_code": "eld",
+          "collector_number": "35",
+          "language": "en",
+          "name": "Venerable Knight",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "a90a7b2f-9dd8-4fc7-9f7d-8ea2797ec782",
+          "code": "eld",
+          "name": "Throne of Eldraine",
+          "set_type": "expansion",
+          "released_at": "2019-10-04"
+        },
+        "card": {
+          "source_print_id": "0001f1ef-b957-4a55-b47f-14839cdbab6f",
+          "source_oracle_id": "ef027846-be81-4959-a6b5-56bd01b1e68a",
+          "name": "Venerable Knight",
+          "collector_number": "35",
+          "language": "en",
+          "rarity": "uncommon",
+          "artist": "Colin Boyer",
+          "layout": "normal",
+          "type_line": "Creature — Human Knight"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 198861,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0001f1ef-b957-4a55-b47f-14839cdbab6f.jpg?1783932664",
+            "large": "https://cards.scryfall.io/large/front/0/0/0001f1ef-b957-4a55-b47f-14839cdbab6f.jpg?1783932664",
+            "png": "https://cards.scryfall.io/png/front/0/0/0001f1ef-b957-4a55-b47f-14839cdbab6f.png?1783932664"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "64a238047a763ec0587779de07d720045c8fd06fd781de04f5d3d83ba59674f2",
+        "identity_payload": {
+          "scryfall_print_id": "00020b05-ecb9-4603-8cc1-8cfa7a14befc",
+          "scryfall_oracle_id": "d96ac790-428b-4a64-8dbd-6baa73eb6210",
+          "scryfall_set_id": "fc7ea025-628e-45f4-9e0b-73681b1f68b7",
+          "set_code": "ugin",
+          "collector_number": "146",
+          "language": "en",
+          "name": "Wildcall",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": "oval",
+          "full_art": false,
+          "textless": false,
+          "promo": true,
+          "promo_types": [
+            "setpromo"
+          ],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "fc7ea025-628e-45f4-9e0b-73681b1f68b7",
+          "code": "ugin",
+          "name": "Ugin's Fate",
+          "set_type": "promo",
+          "released_at": "2015-01-17"
+        },
+        "card": {
+          "source_print_id": "00020b05-ecb9-4603-8cc1-8cfa7a14befc",
+          "source_oracle_id": "d96ac790-428b-4a64-8dbd-6baa73eb6210",
+          "name": "Wildcall",
+          "collector_number": "146",
+          "language": "en",
+          "rarity": "rare",
+          "artist": "Adam Paquette",
+          "layout": "normal",
+          "type_line": "Sorcery"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 95585,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/00020b05-ecb9-4603-8cc1-8cfa7a14befc.jpg?1783938718",
+            "large": "https://cards.scryfall.io/large/front/0/0/00020b05-ecb9-4603-8cc1-8cfa7a14befc.jpg?1783938718",
+            "png": "https://cards.scryfall.io/png/front/0/0/00020b05-ecb9-4603-8cc1-8cfa7a14befc.png?1783938718"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "4a4d174f0dca63ac7e5807bde289b565828618162b4aeb8f603fc45d4c550172",
+        "identity_payload": {
+          "scryfall_print_id": "000225fc-9bc3-4eb3-905e-02c19c873b0b",
+          "scryfall_oracle_id": "5bac5225-70e4-4614-bb2f-49518ad93646",
+          "scryfall_set_id": "32dcab1f-9781-4cb5-9ed3-3d1881f906be",
+          "set_code": "altc",
+          "collector_number": "18",
+          "language": "en",
+          "name": "Fell Beast's Shriek // Fell Beast's Shriek",
+          "layout": "art_series",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "borderless",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "32dcab1f-9781-4cb5-9ed3-3d1881f906be",
+          "code": "altc",
+          "name": "Tales of Middle-earth Scene Box",
+          "set_type": "memorabilia",
+          "released_at": "2023-11-04"
+        },
+        "card": {
+          "source_print_id": "000225fc-9bc3-4eb3-905e-02c19c873b0b",
+          "source_oracle_id": "5bac5225-70e4-4614-bb2f-49518ad93646",
+          "name": "Fell Beast's Shriek // Fell Beast's Shriek",
+          "collector_number": "18",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Matt Stewart",
+          "layout": "art_series",
+          "type_line": "Card // Card"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 531559,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/000225fc-9bc3-4eb3-905e-02c19c873b0b.jpg?1783913949",
+            "large": "https://cards.scryfall.io/large/front/0/0/000225fc-9bc3-4eb3-905e-02c19c873b0b.jpg?1783913949",
+            "png": "https://cards.scryfall.io/png/front/0/0/000225fc-9bc3-4eb3-905e-02c19c873b0b.png?1783913949"
+          },
+          {
+            "face_index": 1,
+            "normal": "https://cards.scryfall.io/normal/back/0/0/000225fc-9bc3-4eb3-905e-02c19c873b0b.jpg?1783913949",
+            "large": "https://cards.scryfall.io/large/back/0/0/000225fc-9bc3-4eb3-905e-02c19c873b0b.jpg?1783913949",
+            "png": "https://cards.scryfall.io/png/back/0/0/000225fc-9bc3-4eb3-905e-02c19c873b0b.png?1783913949"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "b45c15dc2fa2d2e6a8b1e5606a489f445e89aea1b1f1136833d4528a5bfa2916",
+        "identity_payload": {
+          "scryfall_print_id": "0002ab72-834b-4c81-82b1-0d2760ea96b0",
+          "scryfall_oracle_id": "645b5784-a6f7-4cf3-966a-e1a51420b96b",
+          "scryfall_set_id": "bc94aba1-7376-4e02-a12d-3a2efb66ab0f",
+          "set_code": "m21",
+          "collector_number": "326",
+          "language": "en",
+          "name": "Mystic Skyfish",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [
+            "planeswalkerdeck"
+          ],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "bc94aba1-7376-4e02-a12d-3a2efb66ab0f",
+          "code": "m21",
+          "name": "Core Set 2021",
+          "set_type": "core",
+          "released_at": "2020-07-03"
+        },
+        "card": {
+          "source_print_id": "0002ab72-834b-4c81-82b1-0d2760ea96b0",
+          "source_oracle_id": "645b5784-a6f7-4cf3-966a-e1a51420b96b",
+          "name": "Mystic Skyfish",
+          "collector_number": "326",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Alayna Danner",
+          "layout": "normal",
+          "type_line": "Creature — Fish"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 215418,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0002ab72-834b-4c81-82b1-0d2760ea96b0.jpg?1783930623",
+            "large": "https://cards.scryfall.io/large/front/0/0/0002ab72-834b-4c81-82b1-0d2760ea96b0.jpg?1783930623",
+            "png": "https://cards.scryfall.io/png/front/0/0/0002ab72-834b-4c81-82b1-0d2760ea96b0.png?1783930623"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "620f76348f4cc1558b1738daffadc090f16289caa74a12b0dda8f639686b93b7",
+        "identity_payload": {
+          "scryfall_print_id": "00030770-5e99-4943-819d-8d807c24cc14",
+          "scryfall_oracle_id": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+          "scryfall_set_id": "0f6ccf25-a627-4263-86df-5757137f1696",
+          "set_code": "jmp",
+          "collector_number": "59",
+          "language": "en",
+          "name": "Swamp",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "0f6ccf25-a627-4263-86df-5757137f1696",
+          "code": "jmp",
+          "name": "Jumpstart",
+          "set_type": "draft_innovation",
+          "released_at": "2020-07-17"
+        },
+        "card": {
+          "source_print_id": "00030770-5e99-4943-819d-8d807c24cc14",
+          "source_oracle_id": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+          "name": "Swamp",
+          "collector_number": "59",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Adam Paquette",
+          "layout": "normal",
+          "type_line": "Basic Land — Swamp"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 215984,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/00030770-5e99-4943-819d-8d807c24cc14.jpg?1783930489",
+            "large": "https://cards.scryfall.io/large/front/0/0/00030770-5e99-4943-819d-8d807c24cc14.jpg?1783930489",
+            "png": "https://cards.scryfall.io/png/front/0/0/00030770-5e99-4943-819d-8d807c24cc14.png?1783930489"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "677b1d9fd6b1489d58fdce95d97e17bc71557ebabed2ace117afe34d2912783a",
+        "identity_payload": {
+          "scryfall_print_id": "000366c8-7a43-49d7-a103-ac5bd7efd9aa",
+          "scryfall_oracle_id": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+          "scryfall_set_id": "10df3a67-178e-4363-8668-34f0e6edf2a7",
+          "set_code": "tmp",
+          "collector_number": "340",
+          "language": "en",
+          "name": "Swamp",
+          "layout": "normal",
+          "frame": "1997",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "10df3a67-178e-4363-8668-34f0e6edf2a7",
+          "code": "tmp",
+          "name": "Tempest",
+          "set_type": "expansion",
+          "released_at": "1997-10-14"
+        },
+        "card": {
+          "source_print_id": "000366c8-7a43-49d7-a103-ac5bd7efd9aa",
+          "source_oracle_id": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+          "name": "Swamp",
+          "collector_number": "340",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Brom",
+          "layout": "normal",
+          "type_line": "Basic Land — Swamp"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 18500,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/000366c8-7a43-49d7-a103-ac5bd7efd9aa.jpg?1783946591",
+            "large": "https://cards.scryfall.io/large/front/0/0/000366c8-7a43-49d7-a103-ac5bd7efd9aa.jpg?1783946591",
+            "png": "https://cards.scryfall.io/png/front/0/0/000366c8-7a43-49d7-a103-ac5bd7efd9aa.png?1783946591"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "75b90ea6476f557adc64397bda1c37a12152a19c0ddd7959a80eadde3507e610",
+        "identity_payload": {
+          "scryfall_print_id": "000376ef-8b6c-490d-98cb-d6de15b2e585",
+          "scryfall_oracle_id": "49f0b317-6b06-482e-ab64-e02713e6c7e8",
+          "scryfall_set_id": "4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+          "set_code": "dmu",
+          "collector_number": "43",
+          "language": "en",
+          "name": "Battlewing Mystic",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+          "code": "dmu",
+          "name": "Dominaria United",
+          "set_type": "expansion",
+          "released_at": "2022-09-09"
+        },
+        "card": {
+          "source_print_id": "000376ef-8b6c-490d-98cb-d6de15b2e585",
+          "source_oracle_id": "49f0b317-6b06-482e-ab64-e02713e6c7e8",
+          "name": "Battlewing Mystic",
+          "collector_number": "43",
+          "language": "en",
+          "rarity": "uncommon",
+          "artist": "Borja Pindado",
+          "layout": "normal",
+          "type_line": "Creature — Bird Wizard"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 283405,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/000376ef-8b6c-490d-98cb-d6de15b2e585.jpg?1783921354",
+            "large": "https://cards.scryfall.io/large/front/0/0/000376ef-8b6c-490d-98cb-d6de15b2e585.jpg?1783921354",
+            "png": "https://cards.scryfall.io/png/front/0/0/000376ef-8b6c-490d-98cb-d6de15b2e585.png?1783921354"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "58ff4ccc00559d53958586d4b52b7e787fccfb8de197db70ee1274a6b9a57c5e",
+        "identity_payload": {
+          "scryfall_print_id": "0003aa31-d42e-4972-9fb9-086aefe29a2c",
+          "scryfall_oracle_id": "d3a0b660-358c-41bd-9cd2-41fbf3491b1a",
+          "scryfall_set_id": "4d92a8a7-ccb0-437d-abdc-9d70fc5ed672",
+          "set_code": "sld",
+          "collector_number": "176",
+          "language": "en",
+          "name": "Birds of Paradise",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": "oval",
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "4d92a8a7-ccb0-437d-abdc-9d70fc5ed672",
+          "code": "sld",
+          "name": "Secret Lair Drop",
+          "set_type": "box",
+          "released_at": "2021-06-21"
+        },
+        "card": {
+          "source_print_id": "0003aa31-d42e-4972-9fb9-086aefe29a2c",
+          "source_oracle_id": "d3a0b660-358c-41bd-9cd2-41fbf3491b1a",
+          "name": "Birds of Paradise",
+          "collector_number": "176",
+          "language": "en",
+          "rarity": "rare",
+          "artist": "Mark Poole",
+          "layout": "normal",
+          "type_line": "Creature — Bird"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 242360,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0003aa31-d42e-4972-9fb9-086aefe29a2c.jpg?1783926562",
+            "large": "https://cards.scryfall.io/large/front/0/0/0003aa31-d42e-4972-9fb9-086aefe29a2c.jpg?1783926562",
+            "png": "https://cards.scryfall.io/png/front/0/0/0003aa31-d42e-4972-9fb9-086aefe29a2c.png?1783926562"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "c4953dd8c30e8e05406887b6b7020460a02f5ad7de49b862dd4364c48881fcb9",
+        "identity_payload": {
+          "scryfall_print_id": "00042443-4d4e-4087-b4e5-5e781e7cc5fa",
+          "scryfall_oracle_id": "4fcfe370-ba33-438f-bd96-2ae560f59df9",
+          "scryfall_set_id": "c233bd36-57c0-4aa2-ae6c-7aeabfb4e3ce",
+          "set_code": "pcy",
+          "collector_number": "80",
+          "language": "en",
+          "name": "Wall of Vipers",
+          "layout": "normal",
+          "frame": "1997",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "c233bd36-57c0-4aa2-ae6c-7aeabfb4e3ce",
+          "code": "pcy",
+          "name": "Prophecy",
+          "set_type": "expansion",
+          "released_at": "2000-06-05"
+        },
+        "card": {
+          "source_print_id": "00042443-4d4e-4087-b4e5-5e781e7cc5fa",
+          "source_oracle_id": "4fcfe370-ba33-438f-bd96-2ae560f59df9",
+          "name": "Wall of Vipers",
+          "collector_number": "80",
+          "language": "en",
+          "rarity": "uncommon",
+          "artist": "Marc Fishman",
+          "layout": "normal",
+          "type_line": "Creature — Snake Wall"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 7396,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/00042443-4d4e-4087-b4e5-5e781e7cc5fa.jpg?1783945781",
+            "large": "https://cards.scryfall.io/large/front/0/0/00042443-4d4e-4087-b4e5-5e781e7cc5fa.jpg?1783945781",
+            "png": "https://cards.scryfall.io/png/front/0/0/00042443-4d4e-4087-b4e5-5e781e7cc5fa.png?1783945781"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "3e475d6b89cd5e61f687bbf36af97ca9a1cc4a34fc97ea31a40b7bd6a6d74617",
+        "identity_payload": {
+          "scryfall_print_id": "0004311b-646a-4df8-a4b4-9171642e9ef4",
+          "scryfall_oracle_id": "43b5e462-d860-473d-828f-6c513fc7768a",
+          "scryfall_set_id": "67e47ba2-b019-4181-9005-fe9fc021de44",
+          "set_code": "plst",
+          "collector_number": "XLN-217",
+          "language": "en",
+          "name": "Admiral Beckett Brass",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": "oval",
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "67e47ba2-b019-4181-9005-fe9fc021de44",
+          "code": "plst",
+          "name": "The List",
+          "set_type": "masters",
+          "released_at": "2022-04-29"
+        },
+        "card": {
+          "source_print_id": "0004311b-646a-4df8-a4b4-9171642e9ef4",
+          "source_oracle_id": "43b5e462-d860-473d-828f-6c513fc7768a",
+          "name": "Admiral Beckett Brass",
+          "collector_number": "XLN-217",
+          "language": "en",
+          "rarity": "mythic",
+          "artist": "Jason Rainville",
+          "layout": "normal",
+          "type_line": "Legendary Creature — Human Pirate"
+        },
+        "printing_finishes": [
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 269127,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/0004311b-646a-4df8-a4b4-9171642e9ef4.jpg?1783923460",
+            "large": "https://cards.scryfall.io/large/front/0/0/0004311b-646a-4df8-a4b4-9171642e9ef4.jpg?1783923460",
+            "png": "https://cards.scryfall.io/png/front/0/0/0004311b-646a-4df8-a4b4-9171642e9ef4.png?1783923460"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      },
+      {
+        "status": "candidate",
+        "candidate_version": "MTG_CANONICAL_CATALOG_CANDIDATE_V1",
+        "identity_domain": "mtg_eng_paper_print",
+        "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+        "identity_key_hash": "1390566e560dba2f4e97c96f7838e1a09855f81bd2021900c69e50ff6ff60bfd",
+        "identity_payload": {
+          "scryfall_print_id": "000499a4-3f39-4d25-a2a2-b2f014e30754",
+          "scryfall_oracle_id": "d0732ebf-91ad-4e3c-a09a-f410d20587fc",
+          "scryfall_set_id": "a111d8a9-b647-48ec-afab-2b78f92173f5",
+          "set_code": "dsk",
+          "collector_number": "150",
+          "language": "en",
+          "name": "Ragged Playmate",
+          "layout": "normal",
+          "frame": "2015",
+          "frame_effects": [],
+          "border_color": "black",
+          "security_stamp": null,
+          "full_art": false,
+          "textless": false,
+          "promo": false,
+          "promo_types": [],
+          "variation": false,
+          "variation_of": null,
+          "finishes": [
+            "foil",
+            "nonfoil"
+          ]
+        },
+        "set": {
+          "source_set_id": "a111d8a9-b647-48ec-afab-2b78f92173f5",
+          "code": "dsk",
+          "name": "Duskmourn: House of Horror",
+          "set_type": "expansion",
+          "released_at": "2024-09-27"
+        },
+        "card": {
+          "source_print_id": "000499a4-3f39-4d25-a2a2-b2f014e30754",
+          "source_oracle_id": "d0732ebf-91ad-4e3c-a09a-f410d20587fc",
+          "name": "Ragged Playmate",
+          "collector_number": "150",
+          "language": "en",
+          "rarity": "common",
+          "artist": "Kaitlyn McCulley",
+          "layout": "normal",
+          "type_line": "Artifact Creature — Toy"
+        },
+        "printing_finishes": [
+          "foil",
+          "nonfoil"
+        ],
+        "exact_source_links": [
+          {
+            "product_id": 577678,
+            "source_role": "tcgplayer_standard_product",
+            "expected_finish_family": [
+              "foil",
+              "nonfoil"
+            ],
+            "expected_source_subtypes": [
+              "foil",
+              "normal"
+            ]
+          }
+        ],
+        "source_images": [
+          {
+            "face_index": 0,
+            "normal": "https://cards.scryfall.io/normal/front/0/0/000499a4-3f39-4d25-a2a2-b2f014e30754.jpg?1783909464",
+            "large": "https://cards.scryfall.io/large/front/0/0/000499a4-3f39-4d25-a2a2-b2f014e30754.jpg?1783909464",
+            "png": "https://cards.scryfall.io/png/front/0/0/000499a4-3f39-4d25-a2a2-b2f014e30754.png?1783909464"
+          }
+        ],
+        "source_image_policy": "reference_only_until_self_hosted_and_hashed",
+        "publishable": false,
+        "requires_schema_gate": true,
+        "requires_apply_gate": true
+      }
+    ],
+    "candidate_payload_sha256": "857fd2246f75965a57922b6fc12ddb99b8d433e156edf4c17052b32b68a32b4c",
+    "exact_mapping_plan_sha256": "233120f9f3b75b82e59741edd5613c76f2bb99c47b37578848f8b61cb649668c",
+    "publishable": false
+  },
+  "boundaries": {
+    "database_writes": false,
+    "storage_writes": false,
+    "canonical_import": false,
+    "exact_mapping_apply": false,
+    "price_publication": false
+  }
+}

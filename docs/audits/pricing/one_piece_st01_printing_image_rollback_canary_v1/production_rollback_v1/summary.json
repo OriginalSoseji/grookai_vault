@@ -1,0 +1,44 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-15T04:43:04.719Z",
+  "status": "blocked_with_zero_residue_proof",
+  "repository": {
+    "commit_sha": "293434a672d2b0b1838a118793e48e7fb63dc5ad",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "mutation_plan_fingerprint_sha256": "3aef93b51bb1c376ead251a8dc0e8422795573215abe01f250bbdb734fb2587c",
+  "mutation_payload_fingerprint_sha256": "a4eadd4738aaa515579733bdbd66fa7ae73a0412cf8e43c4efa0004e74bef6c7",
+  "rollback_proof_sha256": "d6a89d232f7f80255cd8db36216bdc41be8082e68a1877129b245f7be3a5be4a",
+  "transaction": {
+    "mutation_counts": {
+      "parent_pointer_updates": 0,
+      "normal_child_inserts": 0,
+      "external_printing_mapping_inserts": 0
+    },
+    "readback": null,
+    "attributable_writes": [],
+    "findings": [
+      "transaction_execution_failed"
+    ],
+    "rollback_attempted": true,
+    "rollback_succeeded": true,
+    "execution_error": "new row for relation \"card_prints\" violates check constraint \"card_prints_image_source_check\""
+  },
+  "findings": [
+    "transaction_execution_failed"
+  ],
+  "boundaries": {
+    "durable_database_writes": 0,
+    "transaction_rollback_required": true,
+    "parent_pointer_updates_in_transaction": 17,
+    "normal_child_inserts_in_transaction": 14,
+    "printing_mapping_inserts_in_transaction": 14,
+    "foil_child_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

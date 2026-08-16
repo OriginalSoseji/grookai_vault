@@ -1,0 +1,3290 @@
+[
+  {
+    "set_code": "EB01",
+    "current_product_count": 136,
+    "unique_printed_number_count": 61,
+    "source_group_count": 10,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23333,
+      "source_group_name": "Extra Booster: Memorial Collection",
+      "product_count": 80,
+      "unique_printed_number_count": 61,
+      "released_on": "2024-05-03"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23333,
+        "source_group_name": "Extra Booster: Memorial Collection",
+        "product_count": 80,
+        "unique_printed_number_count": 61,
+        "released_on": "2024-05-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 28,
+        "unique_printed_number_count": 11,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 17,
+        "unique_printed_number_count": 11,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-05-09"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24283,
+        "source_group_name": "Starter Deck 24: GREEN Jewelry Bonney",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "EB02",
+    "current_product_count": 97,
+    "unique_printed_number_count": 61,
+    "source_group_count": 7,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23834,
+      "source_group_name": "Extra Booster: Anime 25th Collection",
+      "product_count": 79,
+      "unique_printed_number_count": 61,
+      "released_on": "2025-05-09"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 79,
+        "unique_printed_number_count": 61,
+        "released_on": "2025-05-09"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 11,
+        "unique_printed_number_count": 5,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-11-07"
+      },
+      {
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-02-20"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-04-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "EB03",
+    "current_product_count": 92,
+    "unique_printed_number_count": 62,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24545,
+      "source_group_name": "Extra Booster: One Piece Heroines Edition",
+      "product_count": 90,
+      "unique_printed_number_count": 62,
+      "released_on": "2026-02-20"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "product_count": 90,
+        "unique_printed_number_count": 62,
+        "released_on": "2026-02-20"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24752,
+        "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "EB04",
+    "current_product_count": 116,
+    "unique_printed_number_count": 61,
+    "source_group_count": 7,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24537,
+      "source_group_name": "The Azure Sea's Seven",
+      "product_count": 40,
+      "unique_printed_number_count": 31,
+      "released_on": "2026-01-16"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 40,
+        "unique_printed_number_count": 31,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 41,
+        "unique_printed_number_count": 30,
+        "released_on": "2026-04-03"
+      },
+      {
+        "source_group_id": 24638,
+        "source_group_name": "Adventure on Kami's Island Release Event Cards",
+        "product_count": 15,
+        "unique_printed_number_count": 15,
+        "released_on": "2026-03-27"
+      },
+      {
+        "source_group_id": 24579,
+        "source_group_name": "The Azure Sea's Seven Release Event Cards",
+        "product_count": 14,
+        "unique_printed_number_count": 14,
+        "released_on": "2026-01-09"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 4,
+        "unique_printed_number_count": 3,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-06-12"
+      },
+      {
+        "source_group_id": 24751,
+        "source_group_name": "Starter Deck 33: BLUE Kuzan",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP01",
+    "current_product_count": 301,
+    "unique_printed_number_count": 121,
+    "source_group_count": 12,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 3188,
+      "source_group_name": "Romance Dawn",
+      "product_count": 154,
+      "unique_printed_number_count": 121,
+      "released_on": "2022-12-02"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 3188,
+        "source_group_name": "Romance Dawn",
+        "product_count": 154,
+        "unique_printed_number_count": 121,
+        "released_on": "2022-12-02"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 91,
+        "unique_printed_number_count": 34,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 28,
+        "unique_printed_number_count": 13,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23907,
+        "source_group_name": "One Piece Demo Deck Cards",
+        "product_count": 13,
+        "unique_printed_number_count": 13,
+        "released_on": "2024-12-05"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 4,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23024,
+        "source_group_name": "Kingdoms of Intrigue",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2023-09-22"
+      },
+      {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-06-28"
+      },
+      {
+        "source_group_id": 23492,
+        "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP02",
+    "current_product_count": 335,
+    "unique_printed_number_count": 121,
+    "source_group_count": 12,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 17698,
+      "source_group_name": "Paramount War",
+      "product_count": 154,
+      "unique_printed_number_count": 121,
+      "released_on": "2023-03-10"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 17698,
+        "source_group_name": "Paramount War",
+        "product_count": 154,
+        "unique_printed_number_count": 121,
+        "released_on": "2023-03-10"
+      },
+      {
+        "source_group_id": 22934,
+        "source_group_name": "Paramount War Pre-Release Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2023-03-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 58,
+        "unique_printed_number_count": 25,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 25,
+        "unique_printed_number_count": 11,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23494,
+        "source_group_name": "Starter Deck 19: BLACK Smoker",
+        "product_count": 7,
+        "unique_printed_number_count": 7,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23490,
+        "source_group_name": "Starter Deck 15: RED Edward.Newgate",
+        "product_count": 4,
+        "unique_printed_number_count": 4,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23024,
+        "source_group_name": "Kingdoms of Intrigue",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2023-09-22"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 4,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23492,
+        "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      },
+      {
+        "source_group_id": 23907,
+        "source_group_name": "One Piece Demo Deck Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-12-05"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP03",
+    "current_product_count": 375,
+    "unique_printed_number_count": 123,
+    "source_group_count": 13,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 22890,
+      "source_group_name": "Pillars of Strength",
+      "product_count": 150,
+      "unique_printed_number_count": 123,
+      "released_on": "2023-06-30"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "product_count": 150,
+        "unique_printed_number_count": 123,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 23232,
+        "source_group_name": "Pillars of Strength Pre-Release Cards",
+        "product_count": 77,
+        "unique_printed_number_count": 77,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 77,
+        "unique_printed_number_count": 25,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 40,
+        "unique_printed_number_count": 15,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23024,
+        "source_group_name": "Kingdoms of Intrigue",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2023-09-22"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 8,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23495,
+        "source_group_name": "Starter Deck 20: YELLOW Charlotte Katakuri",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23490,
+        "source_group_name": "Starter Deck 15: RED Edward.Newgate",
+        "product_count": 4,
+        "unique_printed_number_count": 4,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-03-15"
+      },
+      {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-06-28"
+      },
+      {
+        "source_group_id": 23494,
+        "source_group_name": "Starter Deck 19: BLACK Smoker",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP04",
+    "current_product_count": 285,
+    "unique_printed_number_count": 119,
+    "source_group_count": 9,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23024,
+      "source_group_name": "Kingdoms of Intrigue",
+      "product_count": 144,
+      "unique_printed_number_count": 119,
+      "released_on": "2023-09-22"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23024,
+        "source_group_name": "Kingdoms of Intrigue",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "released_on": "2023-09-22"
+      },
+      {
+        "source_group_id": 23297,
+        "source_group_name": "Kingdoms of Intrigue Pre-Release Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2023-09-15"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 24,
+        "unique_printed_number_count": 14,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 30,
+        "unique_printed_number_count": 12,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 7,
+        "unique_printed_number_count": 4,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-03-15"
+      },
+      {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-12-13"
+      },
+      {
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP05",
+    "current_product_count": 368,
+    "unique_printed_number_count": 119,
+    "source_group_count": 13,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23213,
+      "source_group_name": "Awakening of the New Era",
+      "product_count": 147,
+      "unique_printed_number_count": 119,
+      "released_on": "2023-12-08"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 147,
+        "unique_printed_number_count": 119,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 23368,
+        "source_group_name": "Awakening of the New Era: 1st Anniversary Tournament Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 49,
+        "unique_printed_number_count": 31,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 52,
+        "unique_printed_number_count": 18,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 19,
+        "unique_printed_number_count": 10,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23493,
+        "source_group_name": "Starter Deck 18: PURPLE Monkey.D.Luffy",
+        "product_count": 9,
+        "unique_printed_number_count": 9,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-05-09"
+      },
+      {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2024-12-13"
+      },
+      {
+        "source_group_id": 24285,
+        "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-03-15"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-06-28"
+      },
+      {
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-02-20"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP06",
+    "current_product_count": 353,
+    "unique_printed_number_count": 119,
+    "source_group_count": 12,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23272,
+      "source_group_name": "Wings of the Captain",
+      "product_count": 144,
+      "unique_printed_number_count": 119,
+      "released_on": "2024-03-15"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "released_on": "2024-03-15"
+      },
+      {
+        "source_group_id": 23424,
+        "source_group_name": "Wings of the Captain Pre-Release Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2024-03-08"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 42,
+        "unique_printed_number_count": 21,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 43,
+        "unique_printed_number_count": 19,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 28,
+        "unique_printed_number_count": 15,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "product_count": 7,
+        "unique_printed_number_count": 7,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2025-05-09"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 4,
+        "unique_printed_number_count": 4,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-06-28"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-08-22"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-01-16"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP07",
+    "current_product_count": 345,
+    "unique_printed_number_count": 119,
+    "source_group_count": 15,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23387,
+      "source_group_name": "500 Years in the Future",
+      "product_count": 144,
+      "unique_printed_number_count": 119,
+      "released_on": "2024-06-28"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "released_on": "2024-06-28"
+      },
+      {
+        "source_group_id": 23512,
+        "source_group_name": "500 Years in the Future Pre-Release Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2024-06-21"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 74,
+        "unique_printed_number_count": 26,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 25,
+        "unique_printed_number_count": 16,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24283,
+        "source_group_name": "Starter Deck 24: GREEN Jewelry Bonney",
+        "product_count": 9,
+        "unique_printed_number_count": 9,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2025-05-09"
+      },
+      {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-12-13"
+      },
+      {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-11-07"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24498,
+        "source_group_name": "Carrying On His Will: 3rd Anniversary Tournament Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-31"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-01-16"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP08",
+    "current_product_count": 260,
+    "unique_printed_number_count": 119,
+    "source_group_count": 8,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23462,
+      "source_group_name": "Two Legends",
+      "product_count": 144,
+      "unique_printed_number_count": 119,
+      "released_on": "2024-09-13"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "released_on": "2024-09-13"
+      },
+      {
+        "source_group_id": 23737,
+        "source_group_name": "Two Legends Pre-Release Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2024-09-06"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 21,
+        "unique_printed_number_count": 12,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 11,
+        "unique_printed_number_count": 7,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2025-05-09"
+      },
+      {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-12-13"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP09",
+    "current_product_count": 373,
+    "unique_printed_number_count": 119,
+    "source_group_count": 16,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23589,
+      "source_group_name": "Emperors in the New World",
+      "product_count": 151,
+      "unique_printed_number_count": 119,
+      "released_on": "2024-12-13"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 151,
+        "unique_printed_number_count": 119,
+        "released_on": "2024-12-13"
+      },
+      {
+        "source_group_id": 23590,
+        "source_group_name": "Emperors in the New World: 2nd Anniversary Tournament Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2024-12-06"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 54,
+        "unique_printed_number_count": 31,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 41,
+        "unique_printed_number_count": 25,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24282,
+        "source_group_name": "Starter Deck 23: RED Shanks",
+        "product_count": 10,
+        "unique_printed_number_count": 10,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24284,
+        "source_group_name": "Starter Deck 25: BLUE Buggy",
+        "product_count": 9,
+        "unique_printed_number_count": 9,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24286,
+        "source_group_name": "Starter Deck 27: BLACK Marshall.D.Teach",
+        "product_count": 9,
+        "unique_printed_number_count": 9,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24285,
+        "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 5,
+        "unique_printed_number_count": 4,
+        "released_on": "2025-11-07"
+      },
+      {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 4,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-08-22"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24498,
+        "source_group_name": "Carrying On His Will: 3rd Anniversary Tournament Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-31"
+      },
+      {
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-02-20"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP10",
+    "current_product_count": 286,
+    "unique_printed_number_count": 119,
+    "source_group_count": 11,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23766,
+      "source_group_name": "Royal Blood",
+      "product_count": 144,
+      "unique_printed_number_count": 119,
+      "released_on": "2025-03-21"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 144,
+        "unique_printed_number_count": 119,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24068,
+        "source_group_name": "Royal Blood Release Event Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2025-03-14"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 30,
+        "unique_printed_number_count": 19,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 22,
+        "unique_printed_number_count": 12,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24754,
+        "source_group_name": "Starter Deck 36: YELLOW Eustass\"Captain\"Kid",
+        "product_count": 4,
+        "unique_printed_number_count": 4,
+        "released_on": "2026-07-31"
+      },
+      {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-08-22"
+      },
+      {
+        "source_group_id": 24286,
+        "source_group_name": "Starter Deck 27: BLACK Marshall.D.Teach",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-11-07"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-06-12"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP11",
+    "current_product_count": 257,
+    "unique_printed_number_count": 119,
+    "source_group_count": 8,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24241,
+      "source_group_name": "A Fist of Divine Speed",
+      "product_count": 147,
+      "unique_printed_number_count": 119,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 147,
+        "unique_printed_number_count": 119,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24242,
+        "source_group_name": "A Fist of Divine Speed Release Event Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2025-05-30"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 19,
+        "unique_printed_number_count": 19,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 10,
+        "unique_printed_number_count": 10,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24752,
+        "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2026-07-31"
+      },
+      {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-11-07"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-04-03"
+      },
+      {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-06-12"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP12",
+    "current_product_count": 273,
+    "unique_printed_number_count": 119,
+    "source_group_count": 8,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24302,
+      "source_group_name": "Legacy of the Master",
+      "product_count": 146,
+      "unique_printed_number_count": 119,
+      "released_on": "2025-08-22"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 146,
+        "unique_printed_number_count": 119,
+        "released_on": "2025-08-22"
+      },
+      {
+        "source_group_id": 24406,
+        "source_group_name": "Legacy of the Master Release Event Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2025-08-15"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 32,
+        "unique_printed_number_count": 21,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 10,
+        "unique_printed_number_count": 10,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24750,
+        "source_group_name": "Starter Deck 32: GREEN Roronoa Zoro",
+        "product_count": 4,
+        "unique_printed_number_count": 4,
+        "released_on": "2026-07-31"
+      },
+      {
+        "source_group_id": 24751,
+        "source_group_name": "Starter Deck 33: BLUE Kuzan",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2026-07-31"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-04-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP13",
+    "current_product_count": 273,
+    "unique_printed_number_count": 120,
+    "source_group_count": 5,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24303,
+      "source_group_name": "Carrying On His Will",
+      "product_count": 165,
+      "unique_printed_number_count": 120,
+      "released_on": "2025-11-07"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "product_count": 165,
+        "unique_printed_number_count": 120,
+        "released_on": "2025-11-07"
+      },
+      {
+        "source_group_id": 24498,
+        "source_group_name": "Carrying On His Will: 3rd Anniversary Tournament Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2025-10-31"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 27,
+        "unique_printed_number_count": 19,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2026-04-03"
+      },
+      {
+        "source_group_id": 24753,
+        "source_group_name": "Starter Deck 35: RED/BLACK Sabo",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP14",
+    "current_product_count": 258,
+    "unique_printed_number_count": 120,
+    "source_group_count": 5,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24537,
+      "source_group_name": "The Azure Sea's Seven",
+      "product_count": 155,
+      "unique_printed_number_count": 120,
+      "released_on": "2026-01-16"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 155,
+        "unique_printed_number_count": 120,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 24579,
+        "source_group_name": "The Azure Sea's Seven Release Event Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2026-01-09"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 25,
+        "unique_printed_number_count": 16,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2026-06-12"
+      },
+      {
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP15",
+    "current_product_count": 234,
+    "unique_printed_number_count": 119,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24637,
+      "source_group_name": "Adventure on Kami's Island",
+      "product_count": 153,
+      "unique_printed_number_count": 119,
+      "released_on": "2026-04-03"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 153,
+        "unique_printed_number_count": 119,
+        "released_on": "2026-04-03"
+      },
+      {
+        "source_group_id": 24638,
+        "source_group_name": "Adventure on Kami's Island Release Event Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2026-03-27"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2022-09-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "OP16",
+    "current_product_count": 225,
+    "unique_printed_number_count": 119,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24664,
+      "source_group_name": "The Time of Battle",
+      "product_count": 149,
+      "unique_printed_number_count": 119,
+      "released_on": "2026-06-12"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 149,
+        "unique_printed_number_count": 119,
+        "released_on": "2026-06-12"
+      },
+      {
+        "source_group_id": 24677,
+        "source_group_name": "The Time of Battle Release Event Cards",
+        "product_count": 75,
+        "unique_printed_number_count": 75,
+        "released_on": "2026-06-05"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "P",
+    "current_product_count": 338,
+    "unique_printed_number_count": 116,
+    "source_group_count": 13,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 17675,
+      "source_group_name": "One Piece Promotion Cards",
+      "product_count": 275,
+      "unique_printed_number_count": 116,
+      "released_on": "2022-09-30"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 275,
+        "unique_printed_number_count": 116,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 31,
+        "unique_printed_number_count": 15,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23491,
+        "source_group_name": "Starter Deck 16: GREEN Uta",
+        "product_count": 6,
+        "unique_printed_number_count": 6,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 12,
+        "unique_printed_number_count": 4,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23907,
+        "source_group_name": "One Piece Demo Deck Cards",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2024-12-05"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 3,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24754,
+        "source_group_name": "Starter Deck 36: YELLOW Eustass\"Captain\"Kid",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2026-07-31"
+      },
+      {
+        "source_group_id": 23492,
+        "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 23493,
+        "source_group_name": "Starter Deck 18: PURPLE Monkey.D.Luffy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 24284,
+        "source_group_name": "Starter Deck 25: BLUE Buggy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-04-03"
+      },
+      {
+        "source_group_id": 24752,
+        "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      },
+      {
+        "source_group_id": 24753,
+        "source_group_name": "Starter Deck 35: RED/BLACK Sabo",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "PRB01",
+    "current_product_count": 2,
+    "unique_printed_number_count": 1,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23496,
+      "source_group_name": "Premium Booster -The Best-",
+      "product_count": 2,
+      "unique_printed_number_count": 1,
+      "released_on": "2024-11-08"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "PRB02",
+    "current_product_count": 44,
+    "unique_printed_number_count": 18,
+    "source_group_count": 4,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24305,
+      "source_group_name": "Premium Booster -The Best- Vol. 2",
+      "product_count": 36,
+      "unique_printed_number_count": 18,
+      "released_on": "2025-10-03"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 36,
+        "unique_printed_number_count": 18,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 6,
+        "unique_printed_number_count": 3,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-04-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST01",
+    "current_product_count": 113,
+    "unique_printed_number_count": 17,
+    "source_group_count": 11,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 3189,
+      "source_group_name": "Starter Deck 1: Straw Hat Crew",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2022-12-02"
+    },
+    "strongest_source_group_status": "source_group_owner_tied_or_ambiguous",
+    "source_groups": [
+      {
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-12-02"
+      },
+      {
+        "source_group_id": 17659,
+        "source_group_name": "Super Pre-Release Starter Deck 1: Straw Hat Crew",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 52,
+        "unique_printed_number_count": 13,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23907,
+        "source_group_name": "One Piece Demo Deck Cards",
+        "product_count": 8,
+        "unique_printed_number_count": 8,
+        "released_on": "2024-12-05"
+      },
+      {
+        "source_group_id": 23890,
+        "source_group_name": "Revision Pack Cards",
+        "product_count": 7,
+        "unique_printed_number_count": 7,
+        "released_on": "2024-11-26"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 5,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-12-08"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-03-15"
+      },
+      {
+        "source_group_id": 24498,
+        "source_group_name": "Carrying On His Will: 3rd Anniversary Tournament Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-31"
+      }
+    ],
+    "canonical_set_name_status": "existing_canonical_set",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST02",
+    "current_product_count": 65,
+    "unique_printed_number_count": 17,
+    "source_group_count": 7,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 3191,
+      "source_group_name": "Starter Deck 2: Worst Generation",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2022-12-02"
+    },
+    "strongest_source_group_status": "source_group_owner_tied_or_ambiguous",
+    "source_groups": [
+      {
+        "source_group_id": 3191,
+        "source_group_name": "Starter Deck 2: Worst Generation",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-12-02"
+      },
+      {
+        "source_group_id": 17658,
+        "source_group_name": "Super Pre-Release Starter Deck 2: Worst Generation",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 18,
+        "unique_printed_number_count": 7,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23890,
+        "source_group_name": "Revision Pack Cards",
+        "product_count": 7,
+        "unique_printed_number_count": 7,
+        "released_on": "2024-11-26"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 3,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST03",
+    "current_product_count": 88,
+    "unique_printed_number_count": 17,
+    "source_group_count": 7,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 3192,
+      "source_group_name": "Starter Deck 3: The Seven Warlords of The Sea",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2022-12-02"
+    },
+    "strongest_source_group_status": "source_group_owner_tied_or_ambiguous",
+    "source_groups": [
+      {
+        "source_group_id": 3192,
+        "source_group_name": "Starter Deck 3: The Seven Warlords of The Sea",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-12-02"
+      },
+      {
+        "source_group_id": 17660,
+        "source_group_name": "Super Pre-Release Starter Deck 3: The Seven Warlords of the Sea",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 36,
+        "unique_printed_number_count": 10,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23890,
+        "source_group_name": "Revision Pack Cards",
+        "product_count": 9,
+        "unique_printed_number_count": 9,
+        "released_on": "2024-11-26"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 7,
+        "unique_printed_number_count": 3,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST04",
+    "current_product_count": 77,
+    "unique_printed_number_count": 17,
+    "source_group_count": 7,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 3190,
+      "source_group_name": "Starter Deck 4: Animal Kingdom Pirates",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2022-12-02"
+    },
+    "strongest_source_group_status": "source_group_owner_tied_or_ambiguous",
+    "source_groups": [
+      {
+        "source_group_id": 3190,
+        "source_group_name": "Starter Deck 4: Animal Kingdom Pirates",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-12-02"
+      },
+      {
+        "source_group_id": 17661,
+        "source_group_name": "Super Pre-Release Starter Deck 4: Animal Kingdom Pirates",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23890,
+        "source_group_name": "Revision Pack Cards",
+        "product_count": 10,
+        "unique_printed_number_count": 10,
+        "released_on": "2024-11-26"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 26,
+        "unique_printed_number_count": 9,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 5,
+        "unique_printed_number_count": 3,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST05",
+    "current_product_count": 22,
+    "unique_printed_number_count": 17,
+    "source_group_count": 2,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 17687,
+      "source_group_name": "Starter Deck 5: Film Edition",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2023-02-03"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 17687,
+        "source_group_name": "Starter Deck 5: Film Edition",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2023-02-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 5,
+        "unique_printed_number_count": 4,
+        "released_on": "2022-09-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST06",
+    "current_product_count": 36,
+    "unique_printed_number_count": 17,
+    "source_group_count": 5,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 17699,
+      "source_group_name": "Starter Deck 6: Absolute Justice",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2023-03-10"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 17699,
+        "source_group_name": "Starter Deck 6: Absolute Justice",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2023-03-10"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 11,
+        "unique_printed_number_count": 5,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 5,
+        "unique_printed_number_count": 2,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-09-13"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST07",
+    "current_product_count": 28,
+    "unique_printed_number_count": 17,
+    "source_group_count": 4,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 22930,
+      "source_group_name": "Starter Deck 7: Big Mom Pirates",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2023-06-30"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 22930,
+        "source_group_name": "Starter Deck 7: Big Mom Pirates",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2023-06-30"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 8,
+        "unique_printed_number_count": 3,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23495,
+        "source_group_name": "Starter Deck 20: YELLOW Charlotte Katakuri",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-10-25"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST08",
+    "current_product_count": 16,
+    "unique_printed_number_count": 15,
+    "source_group_count": 2,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 22956,
+      "source_group_name": "Starter Deck 8: Monkey.D.Luffy",
+      "product_count": 15,
+      "unique_printed_number_count": 15,
+      "released_on": "2023-08-11"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 22956,
+        "source_group_name": "Starter Deck 8: Monkey.D.Luffy",
+        "product_count": 15,
+        "unique_printed_number_count": 15,
+        "released_on": "2023-08-11"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-08-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST09",
+    "current_product_count": 18,
+    "unique_printed_number_count": 15,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 22957,
+      "source_group_name": "Starter Deck 9: Yamato",
+      "product_count": 15,
+      "unique_printed_number_count": 15,
+      "released_on": "2023-08-11"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 22957,
+        "source_group_name": "Starter Deck 9: Yamato",
+        "product_count": 15,
+        "unique_printed_number_count": 15,
+        "released_on": "2023-08-11"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2023-10-27"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST10",
+    "current_product_count": 38,
+    "unique_printed_number_count": 17,
+    "source_group_count": 6,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23243,
+      "source_group_name": "Ultra Deck: The Three Captains",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2023-11-10"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23243,
+        "source_group_name": "Ultra Deck: The Three Captains",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2023-11-10"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 13,
+        "unique_printed_number_count": 5,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 4,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-06-28"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST11",
+    "current_product_count": 13,
+    "unique_printed_number_count": 5,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23250,
+      "source_group_name": "Starter Deck 11: Uta",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-02-02"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23250,
+        "source_group_name": "Starter Deck 11: Uta",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-02-02"
+      },
+      {
+        "source_group_id": 23491,
+        "source_group_name": "Starter Deck 16: GREEN Uta",
+        "product_count": 4,
+        "unique_printed_number_count": 4,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 4,
+        "unique_printed_number_count": 3,
+        "released_on": "2022-09-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST12",
+    "current_product_count": 30,
+    "unique_printed_number_count": 17,
+    "source_group_count": 6,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23348,
+      "source_group_name": "Starter Deck 12: Zoro and Sanji",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2024-03-15"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23348,
+        "source_group_name": "Starter Deck 12: Zoro and Sanji",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2024-03-15"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 5,
+        "unique_printed_number_count": 2,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 4,
+        "unique_printed_number_count": 2,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-11-08"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST13",
+    "current_product_count": 58,
+    "unique_printed_number_count": 19,
+    "source_group_count": 5,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23349,
+      "source_group_name": "Ultra Deck: The Three Brothers",
+      "product_count": 35,
+      "unique_printed_number_count": 19,
+      "released_on": "2024-04-19"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23349,
+        "source_group_name": "Ultra Deck: The Three Brothers",
+        "product_count": 35,
+        "unique_printed_number_count": 19,
+        "released_on": "2024-04-19"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 11,
+        "unique_printed_number_count": 6,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 10,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-08-22"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST14",
+    "current_product_count": 29,
+    "unique_printed_number_count": 17,
+    "source_group_count": 4,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23489,
+      "source_group_name": "Starter Deck 14: 3D2Y",
+      "product_count": 17,
+      "unique_printed_number_count": 17,
+      "released_on": "2024-08-16"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23489,
+        "source_group_name": "Starter Deck 14: 3D2Y",
+        "product_count": 17,
+        "unique_printed_number_count": 17,
+        "released_on": "2024-08-16"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 10,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24285,
+        "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST15",
+    "current_product_count": 13,
+    "unique_printed_number_count": 5,
+    "source_group_count": 5,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23490,
+      "source_group_name": "Starter Deck 15: RED Edward.Newgate",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-10-25"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23490,
+        "source_group_name": "Starter Deck 15: RED Edward.Newgate",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 4,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-06-12"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST16",
+    "current_product_count": 15,
+    "unique_printed_number_count": 5,
+    "source_group_count": 4,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23491,
+      "source_group_name": "Starter Deck 16: GREEN Uta",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-10-25"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23491,
+        "source_group_name": "Starter Deck 16: GREEN Uta",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 6,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 3,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST17",
+    "current_product_count": 18,
+    "unique_printed_number_count": 5,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23492,
+      "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-10-25"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23492,
+        "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 7,
+        "unique_printed_number_count": 3,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 6,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-10-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST18",
+    "current_product_count": 18,
+    "unique_printed_number_count": 5,
+    "source_group_count": 8,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23493,
+      "source_group_name": "Starter Deck 18: PURPLE Monkey.D.Luffy",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-10-25"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23493,
+        "source_group_name": "Starter Deck 18: PURPLE Monkey.D.Luffy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 7,
+        "unique_printed_number_count": 3,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2024-12-13"
+      },
+      {
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-03-21"
+      },
+      {
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-08-22"
+      },
+      {
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-02-20"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST19",
+    "current_product_count": 9,
+    "unique_printed_number_count": 5,
+    "source_group_count": 3,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23494,
+      "source_group_name": "Starter Deck 19: BLACK Smoker",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-10-25"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23494,
+        "source_group_name": "Starter Deck 19: BLACK Smoker",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST20",
+    "current_product_count": 7,
+    "unique_printed_number_count": 5,
+    "source_group_count": 2,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23495,
+      "source_group_name": "Starter Deck 20: YELLOW Charlotte Katakuri",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2024-10-25"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23495,
+        "source_group_name": "Starter Deck 20: YELLOW Charlotte Katakuri",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2024-10-25"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST21",
+    "current_product_count": 50,
+    "unique_printed_number_count": 17,
+    "source_group_count": 5,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 23991,
+      "source_group_name": "Starter Deck EX: Gear 5",
+      "product_count": 32,
+      "unique_printed_number_count": 17,
+      "released_on": "2025-03-14"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 23991,
+        "source_group_name": "Starter Deck EX: Gear 5",
+        "product_count": 32,
+        "unique_printed_number_count": 17,
+        "released_on": "2025-03-14"
+      },
+      {
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "product_count": 7,
+        "unique_printed_number_count": 7,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 8,
+        "unique_printed_number_count": 5,
+        "released_on": "2022-09-30"
+      },
+      {
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "product_count": 2,
+        "unique_printed_number_count": 1,
+        "released_on": "2025-10-03"
+      },
+      {
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST22",
+    "current_product_count": 32,
+    "unique_printed_number_count": 17,
+    "source_group_count": 2,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24304,
+      "source_group_name": "Starter Deck 22: Ace & Newgate",
+      "product_count": 31,
+      "unique_printed_number_count": 17,
+      "released_on": "2025-09-05"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24304,
+        "source_group_name": "Starter Deck 22: Ace & Newgate",
+        "product_count": 31,
+        "unique_printed_number_count": 17,
+        "released_on": "2025-09-05"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2022-09-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST23",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24282,
+      "source_group_name": "Starter Deck 23: RED Shanks",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24282,
+        "source_group_name": "Starter Deck 23: RED Shanks",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST24",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24283,
+      "source_group_name": "Starter Deck 24: GREEN Jewelry Bonney",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24283,
+        "source_group_name": "Starter Deck 24: GREEN Jewelry Bonney",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST25",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24284,
+      "source_group_name": "Starter Deck 25: BLUE Buggy",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24284,
+        "source_group_name": "Starter Deck 25: BLUE Buggy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST26",
+    "current_product_count": 6,
+    "unique_printed_number_count": 5,
+    "source_group_count": 2,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24285,
+      "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24285,
+        "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-06-06"
+      },
+      {
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "product_count": 1,
+        "unique_printed_number_count": 1,
+        "released_on": "2026-04-03"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST27",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24286,
+      "source_group_name": "Starter Deck 27: BLACK Marshall.D.Teach",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24286,
+        "source_group_name": "Starter Deck 27: BLACK Marshall.D.Teach",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST28",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24287,
+      "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2025-06-06"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2025-06-06"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST29",
+    "current_product_count": 33,
+    "unique_printed_number_count": 17,
+    "source_group_count": 2,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24575,
+      "source_group_name": "Starter Deck 29: Egghead",
+      "product_count": 31,
+      "unique_printed_number_count": 17,
+      "released_on": "2026-01-16"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24575,
+        "source_group_name": "Starter Deck 29: Egghead",
+        "product_count": 31,
+        "unique_printed_number_count": 17,
+        "released_on": "2026-01-16"
+      },
+      {
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "product_count": 2,
+        "unique_printed_number_count": 2,
+        "released_on": "2022-09-30"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST30",
+    "current_product_count": 34,
+    "unique_printed_number_count": 17,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24678,
+      "source_group_name": "Starter Deck EX: Luffy & Ace",
+      "product_count": 34,
+      "unique_printed_number_count": 17,
+      "released_on": "2026-06-12"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24678,
+        "source_group_name": "Starter Deck EX: Luffy & Ace",
+        "product_count": 34,
+        "unique_printed_number_count": 17,
+        "released_on": "2026-06-12"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST31",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24749,
+      "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2026-07-31"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST32",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24750,
+      "source_group_name": "Starter Deck 32: GREEN Roronoa Zoro",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2026-07-31"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24750,
+        "source_group_name": "Starter Deck 32: GREEN Roronoa Zoro",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST33",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24751,
+      "source_group_name": "Starter Deck 33: BLUE Kuzan",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2026-07-31"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24751,
+        "source_group_name": "Starter Deck 33: BLUE Kuzan",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST34",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24752,
+      "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2026-07-31"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24752,
+        "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST35",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24753,
+      "source_group_name": "Starter Deck 35: RED/BLACK Sabo",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2026-07-31"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24753,
+        "source_group_name": "Starter Deck 35: RED/BLACK Sabo",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  },
+  {
+    "set_code": "ST36",
+    "current_product_count": 5,
+    "unique_printed_number_count": 5,
+    "source_group_count": 1,
+    "strongest_source_group_diagnostic": {
+      "source_group_id": 24754,
+      "source_group_name": "Starter Deck 36: YELLOW Eustass\"Captain\"Kid",
+      "product_count": 5,
+      "unique_printed_number_count": 5,
+      "released_on": "2026-07-31"
+    },
+    "strongest_source_group_status": "single_strongest_source_group_diagnostic",
+    "source_groups": [
+      {
+        "source_group_id": 24754,
+        "source_group_name": "Starter Deck 36: YELLOW Eustass\"Captain\"Kid",
+        "product_count": 5,
+        "unique_printed_number_count": 5,
+        "released_on": "2026-07-31"
+      }
+    ],
+    "canonical_set_name_status": "pending_official_series_authority",
+    "canonical_set_write_eligible": false
+  }
+]

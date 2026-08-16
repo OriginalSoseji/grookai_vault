@@ -1,0 +1,635 @@
+{
+  "audit_version": "ONE_PIECE_CANONICAL_CATALOG_READINESS_AUDIT_V1",
+  "recorded_at": "2026-08-15T05:51:25.448Z",
+  "repository": {
+    "commit_sha": "55ae2b75f7d267bb843bfd66a3bda3eca7b2a254",
+    "branch": "agent/one-piece-ingestion-readiness-v1"
+  },
+  "as_of_date": "2026-08-14",
+  "status": "ready_for_service_only_staging_design",
+  "read_only_proof": {
+    "transaction_read_only": "on",
+    "default_transaction_read_only": "on",
+    "database_user": "postgres",
+    "rolled_back_and_closed": true
+  },
+  "source": {
+    "category_id": 68,
+    "category_name": "One Piece Card Game",
+    "category_display_name": "One Piece Card Game",
+    "category_source_active": true,
+    "category_last_seen_at": "2026-08-14T08:15:12.636Z",
+    "group_count": 84,
+    "active_group_count": 84,
+    "product_count": 7261,
+    "active_product_count": 7261,
+    "product_image_reference_count": 7261,
+    "latest_observed_on": "2026-08-14T06:00:00.000Z",
+    "latest_price_lane_count": 7053,
+    "latest_priced_product_count": 6963
+  },
+  "classifications": {
+    "source_products": 7261,
+    "exact_single_card_candidates": 6852,
+    "numbered_card_candidates": 6627,
+    "don_card_candidates": 225,
+    "sealed_product_candidates": 403,
+    "ambiguous_quarantined": 6,
+    "current_single_candidates": 6770,
+    "future_or_presale_holds": 82,
+    "inactive_source_holds": 0,
+    "source_price_lanes": 7053,
+    "exact_single_source_price_lanes": 6683
+  },
+  "distributions": {
+    "classification_reasons": [
+      {
+        "value": "explicit_number_and_cardtype",
+        "count": 6627
+      },
+      {
+        "value": "explicit_packaged_product_name_without_card_metadata",
+        "count": 403
+      },
+      {
+        "value": "structured_don_card_evidence",
+        "count": 225
+      },
+      {
+        "value": "unnumbered_non_don_card",
+        "count": 4
+      },
+      {
+        "value": "non_card_accessory_signal",
+        "count": 1
+      },
+      {
+        "value": "number_without_supported_cardtype",
+        "count": 1
+      }
+    ],
+    "card_number_formats": [
+      {
+        "value": "booster",
+        "count": 4863
+      },
+      {
+        "value": "starter",
+        "count": 922
+      },
+      {
+        "value": "extra_booster",
+        "count": 443
+      },
+      {
+        "value": "promo",
+        "count": 353
+      },
+      {
+        "value": "explicit_nonstandard",
+        "count": 47
+      }
+    ],
+    "treatment_claims": [
+      {
+        "value": "alternate_art",
+        "count": 521
+      },
+      {
+        "value": "parallel",
+        "count": 182
+      },
+      {
+        "value": "winner",
+        "count": 181
+      },
+      {
+        "value": "tournament",
+        "count": 115
+      },
+      {
+        "value": "anniversary",
+        "count": 86
+      },
+      {
+        "value": "gold",
+        "count": 77
+      },
+      {
+        "value": "championship",
+        "count": 68
+      },
+      {
+        "value": "manga",
+        "count": 42
+      },
+      {
+        "value": "treasure_cup",
+        "count": 41
+      },
+      {
+        "value": "pre_release",
+        "count": 29
+      },
+      {
+        "value": "serialized",
+        "count": 3
+      }
+    ],
+    "sealed_signals": [
+      {
+        "value": "pack",
+        "count": 736
+      },
+      {
+        "value": "premium_card_collection",
+        "count": 152
+      },
+      {
+        "value": "event_pack",
+        "count": 120
+      },
+      {
+        "value": "starter_deck",
+        "count": 106
+      },
+      {
+        "value": "tournament_pack",
+        "count": 89
+      },
+      {
+        "value": "winner_pack",
+        "count": 87
+      },
+      {
+        "value": "display",
+        "count": 80
+      },
+      {
+        "value": "double_pack",
+        "count": 48
+      },
+      {
+        "value": "booster_box",
+        "count": 42
+      },
+      {
+        "value": "booster_pack",
+        "count": 40
+      },
+      {
+        "value": "collection_box",
+        "count": 31
+      },
+      {
+        "value": "gift_collection",
+        "count": 16
+      },
+      {
+        "value": "promotion_pack",
+        "count": 16
+      },
+      {
+        "value": "devil_fruits_collection",
+        "count": 12
+      },
+      {
+        "value": "kit",
+        "count": 11
+      },
+      {
+        "value": "ultra_deck",
+        "count": 8
+      },
+      {
+        "value": "set_of_multiple",
+        "count": 7
+      },
+      {
+        "value": "special_don_set",
+        "count": 7
+      },
+      {
+        "value": "deck_set",
+        "count": 6
+      },
+      {
+        "value": "sealed_bundle",
+        "count": 6
+      },
+      {
+        "value": "booster_set",
+        "count": 3
+      },
+      {
+        "value": "edition_box",
+        "count": 2
+      }
+    ],
+    "source_price_subtypes": [
+      {
+        "value": "normal",
+        "count": 3873
+      },
+      {
+        "value": "foil",
+        "count": 3180
+      }
+    ]
+  },
+  "samples": {
+    "exact_numbered": [
+      {
+        "product_id": 288228,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Monkey.D.Luffy (001)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "numbered_card",
+        "number": "ST01-001",
+        "card_type": "leader",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 288229,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Usopp",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "numbered_card",
+        "number": "ST01-002",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 288230,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Karoo",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "numbered_card",
+        "number": "ST01-003",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 288232,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Sanji",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "numbered_card",
+        "number": "ST01-004",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 288234,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Jinbe",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "numbered_card",
+        "number": "ST01-005",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      }
+    ],
+    "exact_don": [
+      {
+        "product_id": 434340,
+        "group_id": 17659,
+        "group_name": "Super Pre-Release Starter Deck 1: Straw Hat Crew",
+        "product_name": "DON!! Card",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "don_card",
+        "number": null,
+        "card_type": "don",
+        "reasons": [
+          "structured_don_card_evidence"
+        ]
+      },
+      {
+        "product_id": 456059,
+        "group_id": 3188,
+        "group_name": "Romance Dawn",
+        "product_name": "DON!! Card (Manga) (Alternate Art)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "don_card",
+        "number": null,
+        "card_type": "don",
+        "reasons": [
+          "structured_don_card_evidence"
+        ]
+      },
+      {
+        "product_id": 456320,
+        "group_id": 3188,
+        "group_name": "Romance Dawn",
+        "product_name": "DON!! Card // One Piece Film RED Promo",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "don_card",
+        "number": null,
+        "card_type": "don",
+        "reasons": [
+          "structured_don_card_evidence"
+        ]
+      },
+      {
+        "product_id": 482236,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "DON!! Card (Gold)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "don_card",
+        "number": null,
+        "card_type": "don",
+        "reasons": [
+          "structured_don_card_evidence"
+        ]
+      },
+      {
+        "product_id": 482237,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "DON!! Card (Red)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "current_candidate",
+        "single_card_kind": "don_card",
+        "number": null,
+        "card_type": "don",
+        "reasons": [
+          "structured_don_card_evidence"
+        ]
+      }
+    ],
+    "sealed": [
+      {
+        "product_id": 288221,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Starter Deck 1: Straw Hat Crew",
+        "classification": "sealed_product_candidate",
+        "promotion_state": "separate_sealed_catalog",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": null,
+        "reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ]
+      },
+      {
+        "product_id": 288222,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Starter Deck 1: Straw Hat Crew Display",
+        "classification": "sealed_product_candidate",
+        "promotion_state": "separate_sealed_catalog",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": null,
+        "reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ]
+      },
+      {
+        "product_id": 288223,
+        "group_id": 3190,
+        "group_name": "Starter Deck 4: Animal Kingdom Pirates",
+        "product_name": "Starter Deck 4: Animal Kingdom Pirates Display",
+        "classification": "sealed_product_candidate",
+        "promotion_state": "separate_sealed_catalog",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": null,
+        "reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ]
+      },
+      {
+        "product_id": 288224,
+        "group_id": 3190,
+        "group_name": "Starter Deck 4: Animal Kingdom Pirates",
+        "product_name": "Starter Deck 4: Animal Kingdom Pirates",
+        "classification": "sealed_product_candidate",
+        "promotion_state": "separate_sealed_catalog",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": null,
+        "reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ]
+      },
+      {
+        "product_id": 288225,
+        "group_id": 3189,
+        "group_name": "Starter Deck 1: Straw Hat Crew",
+        "product_name": "Starter Decks 1-4 [Set of 4]",
+        "classification": "sealed_product_candidate",
+        "promotion_state": "separate_sealed_catalog",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": null,
+        "reasons": [
+          "explicit_packaged_product_name_without_card_metadata"
+        ]
+      }
+    ],
+    "ambiguous": [
+      {
+        "product_id": 518691,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Monkey.D.Luffy (Leader Pack) (Sealed Battle 2023 Vol. 1)",
+        "classification": "ambiguous_quarantine",
+        "promotion_state": "quarantine",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": "leader",
+        "reasons": [
+          "unnumbered_non_don_card"
+        ]
+      },
+      {
+        "product_id": 518692,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Monkey.D.Luffy (Leader Pack - Live Action) (Sealed Battle 2023 Vol. 1)",
+        "classification": "ambiguous_quarantine",
+        "promotion_state": "quarantine",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": "leader",
+        "reasons": [
+          "unnumbered_non_don_card"
+        ]
+      },
+      {
+        "product_id": 552137,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Monkey.D.Luffy (Sealed Battle 2024 Vol. 2)",
+        "classification": "ambiguous_quarantine",
+        "promotion_state": "quarantine",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": "leader",
+        "reasons": [
+          "unnumbered_non_don_card"
+        ]
+      },
+      {
+        "product_id": 661879,
+        "group_id": 24498,
+        "group_name": "Carrying On His Will: 3rd Anniversary Tournament Cards",
+        "product_name": "Monkey.D.Luffy (3rd Anniversary Tournament 3 Brothers Pack)",
+        "classification": "ambiguous_quarantine",
+        "promotion_state": "quarantine",
+        "single_card_kind": null,
+        "number": null,
+        "card_type": "leader",
+        "reasons": [
+          "unnumbered_non_don_card"
+        ]
+      },
+      {
+        "product_id": 695310,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Monkey.D.Luffy (Certificate of our crew) (Oversized)",
+        "classification": "ambiguous_quarantine",
+        "promotion_state": "quarantine",
+        "single_card_kind": null,
+        "number": "1/1000",
+        "card_type": null,
+        "reasons": [
+          "number_without_supported_cardtype"
+        ]
+      }
+    ],
+    "future_or_presale": [
+      {
+        "product_id": 690662,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Crocodile - P-143 (Premium Card Collection -Live Action Edition Vol.2 Baroque Works-)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "future_or_presale_hold",
+        "single_card_kind": "numbered_card",
+        "number": "P-143",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 690663,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Mr.3 (Galdino) - P-148 (Premium Card Collection -Live Action Edition Vol.2 Baroque Works-)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "future_or_presale_hold",
+        "single_card_kind": "numbered_card",
+        "number": "P-148",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 690664,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Mr.5 (Gem) - P-149 (Premium Card Collection -Live Action Edition Vol.2 Baroque Works-)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "future_or_presale_hold",
+        "single_card_kind": "numbered_card",
+        "number": "P-149",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 690665,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Ms. All Sunday - P-144 (Premium Card Collection -Live Action Edition Vol.2 Baroque Works-)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "future_or_presale_hold",
+        "single_card_kind": "numbered_card",
+        "number": "P-144",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      },
+      {
+        "product_id": 690666,
+        "group_id": 17675,
+        "group_name": "One Piece Promotion Cards",
+        "product_name": "Ms. Wednesday - P-145 (Premium Card Collection -Live Action Edition Vol.2 Baroque Works-)",
+        "classification": "exact_single_card_candidate",
+        "promotion_state": "future_or_presale_hold",
+        "single_card_kind": "numbered_card",
+        "number": "P-145",
+        "card_type": "character",
+        "reasons": [
+          "explicit_number_and_cardtype"
+        ]
+      }
+    ]
+  },
+  "integrity": {
+    "manifest_row_count": 7261,
+    "every_source_product_preserved_once": true,
+    "duplicate_source_product_id_count": 0,
+    "source_price_lane_collision_count": 0,
+    "publishable_row_count": 0,
+    "canonical_write_authorized_row_count": 0
+  },
+  "manifest": {
+    "file": "source_product_manifest.jsonl.gz",
+    "fingerprint": "4cf38876576da399747dc8d5d0925c143812f89ecf4a75e6f9ced7a220828824",
+    "format": "jsonl+gzip",
+    "row_count": 7261,
+    "logical_bytes": 15551947,
+    "compressed_bytes": 971758,
+    "logical_sha256": "4cf38876576da399747dc8d5d0925c143812f89ecf4a75e6f9ced7a220828824",
+    "compressed_sha256": "973bec5c186adc8853dcff91218e1057772aea384f9a3318919fb03b9c39bc0e"
+  },
+  "boundaries": {
+    "database_writes": false,
+    "migrations": false,
+    "canonical_rows": false,
+    "sealed_rows": false,
+    "storage_or_network_acquisition": false,
+    "image_repoints": false,
+    "release_control_changes": false,
+    "app_visibility": false,
+    "pricing_publication": false,
+    "vault_writes": false,
+    "deployments": false,
+    "active_mtg_ingestion_changes": false
+  },
+  "exact_next_gate": "service-only immutable staging schema plus one-group rollback canary plan from this exact manifest fingerprint; no durable canonical apply"
+}

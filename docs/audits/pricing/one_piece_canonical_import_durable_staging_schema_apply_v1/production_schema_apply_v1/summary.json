@@ -1,0 +1,3974 @@
+{
+  "version": "ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_APPLY_V1",
+  "recorded_at": "2026-08-14T07:25:49.215Z",
+  "status": "schema_only_applied_and_fresh_readback_passed",
+  "local": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "head_sha": "b9f7c458c3eaf6876031fdc4c1015d5b788e51b3",
+    "tracked_worktree_clean": true
+  },
+  "environment": {
+    "environment_label": "production-schema-only",
+    "environment_key_sha256": "9d774d3d46a7d4125b708213364217e0a20cd9e44166e66ce3c078b672fb779d"
+  },
+  "plan_fingerprint_sha256": "ee4b70bbfbda797cede83706cccc5234dc9dba619fc23053d02cff6aaad09e58",
+  "migration_sha256": "7bef0427bcdf9bc4bcf9814c1a29b409ea3c8f6815f66f0b17bd5faf56ff829a",
+  "committed": true,
+  "collision_state_before": {
+    "tables_and_indexes": [],
+    "functions": [],
+    "policies": [],
+    "triggers": [],
+    "ledger": {
+      "version_rows": 0,
+      "name_rows": 0,
+      "later_rows": 0
+    }
+  },
+  "attributable_protected_writes": [
+    {
+      "table_name": "card_printings",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_prints",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "catalog_game_release_controls",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "games",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "market_price_current_publication",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "market_price_pipeline_runs",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "market_price_publication_sets",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "market_price_publication_snapshots",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "market_price_qualification_decisions",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "mtg_canonical_import_batches",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "mtg_canonical_import_rows",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_candidate_reviews",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_candidates",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_families",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_pricing_lane_qualifications",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_release_members",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_release_pointer",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_releases",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_source_mappings",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_variant_evidence",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sealed_product_variants",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sets",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "vault_item_instances",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "vault_owners",
+      "inserted": "0",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "protected_counts_before": {
+    "card_prints": 69636,
+    "card_printings": 87717,
+    "vault_item_instances": 3385,
+    "vault_owners": 25,
+    "market_price_pipeline_runs": 38,
+    "market_price_publication_sets": 31,
+    "market_price_current_publication": 1,
+    "market_price_publication_snapshots": 317263,
+    "market_price_qualification_decisions": 497889,
+    "catalog_game_release_controls": 1,
+    "games": 3,
+    "sets": 2001,
+    "mtg_canonical_import_batches": 116,
+    "mtg_canonical_import_rows": 66324,
+    "sealed_product_families": 0,
+    "sealed_product_variants": 0,
+    "sealed_product_candidates": 0,
+    "sealed_product_candidate_reviews": 0,
+    "sealed_product_source_mappings": 0,
+    "sealed_product_variant_evidence": 0,
+    "sealed_product_pricing_lane_qualifications": 0,
+    "sealed_product_releases": 0,
+    "sealed_product_release_members": 0,
+    "sealed_product_release_pointer": 0
+  },
+  "protected_schema_before": {
+    "relations": [
+      {
+        "relation_name": "card_printings",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "card_prints",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "catalog_game_release_controls",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "games",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "market_price_current_publication",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "market_price_pipeline_runs",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "market_price_publication_sets",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "market_price_publication_snapshots",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "market_price_qualification_decisions",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "mtg_canonical_import_batches",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "mtg_canonical_import_rows",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "sealed_product_candidate_reviews",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_candidates",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_families",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_pricing_lane_qualifications",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_release_members",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_release_pointer",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_releases",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_source_mappings",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_variant_evidence",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sealed_product_variants",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": true
+      },
+      {
+        "relation_name": "sets",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "vault_item_instances",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "relation_name": "vault_owners",
+        "present": true,
+        "relkind": "r",
+        "rls_enabled": true,
+        "rls_forced": false
+      }
+    ],
+    "grants": [
+      {
+        "table_name": "card_printings",
+        "grantee": "anon",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "anon",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "anon",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "anon",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "authenticated",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "authenticated",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "authenticated",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "authenticated",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "card_printings",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "anon",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "authenticated",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "card_prints",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "catalog_game_release_controls",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "anon",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "authenticated",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "games",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "market_price_current_publication",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "market_price_current_publication",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "market_price_current_publication",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "market_price_pipeline_runs",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "market_price_pipeline_runs",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "market_price_pipeline_runs",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "market_price_publication_sets",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "market_price_publication_sets",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "market_price_publication_sets",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "market_price_publication_snapshots",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "market_price_publication_snapshots",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "market_price_qualification_decisions",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "market_price_qualification_decisions",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "mtg_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "mtg_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "sealed_product_candidate_reviews",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_candidate_reviews",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_candidates",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_candidates",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_families",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_families",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_pricing_lane_qualifications",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_pricing_lane_qualifications",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_release_members",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_release_members",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_release_pointer",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_releases",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_releases",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_source_mappings",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_source_mappings",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_variant_evidence",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_variant_evidence",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_variants",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_variants",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "anon",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "authenticated",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "sets",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "authenticated",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "authenticated",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "anon",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "authenticated",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "DELETE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "REFERENCES"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "TRIGGER"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "TRUNCATE"
+      },
+      {
+        "table_name": "vault_owners",
+        "grantee": "service_role",
+        "privilege_type": "UPDATE"
+      }
+    ]
+  },
+  "inside_transaction_readback": {
+    "transaction_read_only": "off",
+    "transaction_closed_before_artifacts": false,
+    "tables": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "owner_name": "postgres",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "owner_name": "postgres",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      }
+    ],
+    "constraints": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_canonical_import_batch_payload_fingerprint_sha256_key",
+        "constraint_type": "u",
+        "validated": true,
+        "definition": "UNIQUE (payload_fingerprint_sha256)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_canonical_import_batches_pkey",
+        "constraint_type": "p",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_category_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (source_category_id = 68)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_commit_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (producing_commit_sha ~ '^[0-9a-f]{40}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_manifest_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (source_manifest_logical_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_migration_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (migration_candidate_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_mode_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (staging_mode = 'durable_service_only'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_one_batch_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (authorized_durable_batch_rows = 1)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_payload_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (payload_fingerprint_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_positive_rows_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (authorized_durable_staging_rows > 0)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_canonical_import_rows_batch_id_fkey",
+        "constraint_type": "f",
+        "validated": true,
+        "definition": "FOREIGN KEY (batch_id) REFERENCES one_piece_canonical_import_batches(id) ON DELETE RESTRICT"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_canonical_import_rows_pkey",
+        "constraint_type": "p",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_batch_ordinal_key",
+        "constraint_type": "u",
+        "validated": true,
+        "definition": "UNIQUE (batch_id, row_ordinal)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_batch_product_key",
+        "constraint_type": "u",
+        "validated": true,
+        "definition": "UNIQUE (batch_id, source_product_id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_ordinal_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (row_ordinal >= 0)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_payload_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (payload_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_promotion_state_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (promotion_state = ANY (ARRAY['current_candidate'::text, 'future_or_presale_hold'::text, 'inactive_source_hold'::text, 'separate_sealed_catalog'::text, 'quarantine'::text]))"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_record_class_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (record_class = ANY (ARRAY['exact_single_card_candidate'::text, 'sealed_product_candidate'::text, 'ambiguous_quarantine'::text]))"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_single_kind_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (record_class = 'exact_single_card_candidate'::text AND (single_card_kind = ANY (ARRAY['numbered_card'::text, 'don_card'::text])) OR record_class <> 'exact_single_card_candidate'::text AND single_card_kind IS NULL)"
+      }
+    ],
+    "indexes": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "index_name": "one_piece_canonical_import_batch_payload_fingerprint_sha256_key",
+        "is_unique": true,
+        "is_primary": false,
+        "definition": "CREATE UNIQUE INDEX one_piece_canonical_import_batch_payload_fingerprint_sha256_key ON public.one_piece_canonical_import_batches USING btree (payload_fingerprint_sha256)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "index_name": "one_piece_canonical_import_batches_group_idx",
+        "is_unique": false,
+        "is_primary": false,
+        "definition": "CREATE INDEX one_piece_canonical_import_batches_group_idx ON public.one_piece_canonical_import_batches USING btree (source_category_id, source_group_id, created_at)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "index_name": "one_piece_canonical_import_batches_pkey",
+        "is_unique": true,
+        "is_primary": true,
+        "definition": "CREATE UNIQUE INDEX one_piece_canonical_import_batches_pkey ON public.one_piece_canonical_import_batches USING btree (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_canonical_import_rows_batch_idx",
+        "is_unique": false,
+        "is_primary": false,
+        "definition": "CREATE INDEX one_piece_canonical_import_rows_batch_idx ON public.one_piece_canonical_import_rows USING btree (batch_id, row_ordinal)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_canonical_import_rows_pkey",
+        "is_unique": true,
+        "is_primary": true,
+        "definition": "CREATE UNIQUE INDEX one_piece_canonical_import_rows_pkey ON public.one_piece_canonical_import_rows USING btree (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_import_rows_batch_ordinal_key",
+        "is_unique": true,
+        "is_primary": false,
+        "definition": "CREATE UNIQUE INDEX one_piece_import_rows_batch_ordinal_key ON public.one_piece_canonical_import_rows USING btree (batch_id, row_ordinal)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_import_rows_batch_product_key",
+        "is_unique": true,
+        "is_primary": false,
+        "definition": "CREATE UNIQUE INDEX one_piece_import_rows_batch_product_key ON public.one_piece_canonical_import_rows USING btree (batch_id, source_product_id)"
+      }
+    ],
+    "functions": [
+      {
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "security_definer": true,
+        "configuration": [
+          "search_path=pg_catalog, public"
+        ],
+        "result_type": "trigger",
+        "source": "\nbegin\n  raise exception 'One Piece canonical import staging rows are immutable';\nend;\n"
+      }
+    ],
+    "triggers": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "trigger_name": "one_piece_canonical_import_batches_immutable",
+        "definition": "CREATE TRIGGER one_piece_canonical_import_batches_immutable BEFORE DELETE OR UPDATE ON one_piece_canonical_import_batches FOR EACH ROW EXECUTE FUNCTION one_piece_canonical_import_reject_mutation_v1()"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "trigger_name": "one_piece_canonical_import_rows_immutable",
+        "definition": "CREATE TRIGGER one_piece_canonical_import_rows_immutable BEFORE DELETE OR UPDATE ON one_piece_canonical_import_rows FOR EACH ROW EXECUTE FUNCTION one_piece_canonical_import_reject_mutation_v1()"
+      }
+    ],
+    "policies": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "policy_name": "one_piece_import_batches_service_insert",
+        "roles": "{service_role}",
+        "command": "INSERT",
+        "using_expression": null,
+        "check_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "policy_name": "one_piece_import_batches_service_select",
+        "roles": "{service_role}",
+        "command": "SELECT",
+        "using_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)",
+        "check_expression": null
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "policy_name": "one_piece_import_rows_service_insert",
+        "roles": "{service_role}",
+        "command": "INSERT",
+        "using_expression": null,
+        "check_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "policy_name": "one_piece_import_rows_service_select",
+        "roles": "{service_role}",
+        "command": "SELECT",
+        "using_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)",
+        "check_expression": null
+      }
+    ],
+    "table_grants": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "INSERT",
+        "is_grantable": "NO"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "SELECT",
+        "is_grantable": "NO"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "INSERT",
+        "is_grantable": "NO"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "SELECT",
+        "is_grantable": "NO"
+      }
+    ],
+    "routine_grants": [],
+    "app_role_privileges": [
+      {
+        "role_name": "anon",
+        "table_name": "one_piece_canonical_import_batches",
+        "has_any_privilege": false
+      },
+      {
+        "role_name": "anon",
+        "table_name": "one_piece_canonical_import_rows",
+        "has_any_privilege": false
+      },
+      {
+        "role_name": "authenticated",
+        "table_name": "one_piece_canonical_import_batches",
+        "has_any_privilege": false
+      },
+      {
+        "role_name": "authenticated",
+        "table_name": "one_piece_canonical_import_rows",
+        "has_any_privilege": false
+      }
+    ],
+    "service_role_effective_table_privileges": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "has_select": true,
+        "has_insert": true,
+        "has_update": false,
+        "has_delete": false,
+        "has_truncate": false,
+        "has_references": false,
+        "has_trigger": false
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "has_select": true,
+        "has_insert": true,
+        "has_update": false,
+        "has_delete": false,
+        "has_truncate": false,
+        "has_references": false,
+        "has_trigger": false
+      }
+    ],
+    "effective_function_privileges": [
+      {
+        "role_name": "anon",
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "has_execute": false
+      },
+      {
+        "role_name": "authenticated",
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "has_execute": false
+      },
+      {
+        "role_name": "service_role",
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "has_execute": false
+      }
+    ],
+    "migration_ledger": [
+      {
+        "version": "20260814120000",
+        "name": "one_piece_canonical_import_durable_staging_v1",
+        "statements": [
+          "-- ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_V1 migration candidate.\n-- Unapplied. This creates service-only evidence staging and no canonical or public rows.\n\nbegin",
+          "set local lock_timeout = '5s'",
+          "set local statement_timeout = '60s'",
+          "create table public.one_piece_canonical_import_batches (\n  id uuid primary key,\n  payload_fingerprint_sha256 text not null unique,\n  source_manifest_logical_sha256 text not null,\n  migration_candidate_sha256 text not null,\n  plan_version text not null,\n  schema_version text not null,\n  producing_commit_sha text not null,\n  producing_branch text not null,\n  source_category_id bigint not null,\n  source_group_id bigint not null,\n  source_group_name text not null,\n  source_group_released_on date,\n  staging_mode text not null,\n  authorized_durable_batch_rows integer not null,\n  authorized_durable_staging_rows integer not null,\n  row_counts jsonb not null,\n  execution_boundaries jsonb not null,\n  created_at timestamptz not null default now(),\n  constraint one_piece_import_batches_payload_hash_check\n    check (payload_fingerprint_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_manifest_hash_check\n    check (source_manifest_logical_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_migration_hash_check\n    check (migration_candidate_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_commit_check\n    check (producing_commit_sha ~ '^[0-9a-f]{40}$'),\n  constraint one_piece_import_batches_category_check\n    check (source_category_id = 68),\n  constraint one_piece_import_batches_mode_check\n    check (staging_mode = 'durable_service_only'),\n  constraint one_piece_import_batches_one_batch_check\n    check (authorized_durable_batch_rows = 1),\n  constraint one_piece_import_batches_positive_rows_check\n    check (authorized_durable_staging_rows > 0)\n)",
+          "create table public.one_piece_canonical_import_rows (\n  id uuid primary key,\n  batch_id uuid not null references public.one_piece_canonical_import_batches(id)\n    on delete restrict,\n  source_product_id bigint not null,\n  source_group_id bigint not null,\n  record_class text not null,\n  single_card_kind text,\n  language_key text not null,\n  promotion_state text not null,\n  row_ordinal integer not null,\n  payload jsonb not null,\n  payload_sha256 text not null,\n  created_at timestamptz not null default now(),\n  constraint one_piece_import_rows_record_class_check\n    check (\n      record_class in (\n        'exact_single_card_candidate',\n        'sealed_product_candidate',\n        'ambiguous_quarantine'\n      )\n    ),\n  constraint one_piece_import_rows_single_kind_check\n    check (\n      (record_class = 'exact_single_card_candidate'\n        and single_card_kind in ('numbered_card', 'don_card'))\n      or\n      (record_class <> 'exact_single_card_candidate' and single_card_kind is null)\n    ),\n  constraint one_piece_import_rows_promotion_state_check\n    check (\n      promotion_state in (\n        'current_candidate',\n        'future_or_presale_hold',\n        'inactive_source_hold',\n        'separate_sealed_catalog',\n        'quarantine'\n      )\n    ),\n  constraint one_piece_import_rows_payload_hash_check\n    check (payload_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_rows_ordinal_check\n    check (row_ordinal >= 0),\n  constraint one_piece_import_rows_batch_product_key\n    unique (batch_id, source_product_id),\n  constraint one_piece_import_rows_batch_ordinal_key\n    unique (batch_id, row_ordinal)\n)",
+          "create index one_piece_canonical_import_batches_group_idx\n  on public.one_piece_canonical_import_batches (source_category_id, source_group_id, created_at)",
+          "create index one_piece_canonical_import_rows_batch_idx\n  on public.one_piece_canonical_import_rows (batch_id, row_ordinal)",
+          "create or replace function public.one_piece_canonical_import_reject_mutation_v1()\nreturns trigger\nlanguage plpgsql\nsecurity definer\nset search_path = pg_catalog, public\nas $$\nbegin\n  raise exception 'One Piece canonical import staging rows are immutable';\nend;\n$$",
+          "create trigger one_piece_canonical_import_batches_immutable\nbefore update or delete on public.one_piece_canonical_import_batches\nfor each row execute function public.one_piece_canonical_import_reject_mutation_v1()",
+          "create trigger one_piece_canonical_import_rows_immutable\nbefore update or delete on public.one_piece_canonical_import_rows\nfor each row execute function public.one_piece_canonical_import_reject_mutation_v1()",
+          "alter table public.one_piece_canonical_import_batches enable row level security",
+          "alter table public.one_piece_canonical_import_batches force row level security",
+          "alter table public.one_piece_canonical_import_rows enable row level security",
+          "alter table public.one_piece_canonical_import_rows force row level security",
+          "create policy one_piece_import_batches_service_select\n  on public.one_piece_canonical_import_batches\n  for select\n  to service_role\n  using ((select auth.role()) = 'service_role')",
+          "create policy one_piece_import_batches_service_insert\n  on public.one_piece_canonical_import_batches\n  for insert\n  to service_role\n  with check ((select auth.role()) = 'service_role')",
+          "create policy one_piece_import_rows_service_select\n  on public.one_piece_canonical_import_rows\n  for select\n  to service_role\n  using ((select auth.role()) = 'service_role')",
+          "create policy one_piece_import_rows_service_insert\n  on public.one_piece_canonical_import_rows\n  for insert\n  to service_role\n  with check ((select auth.role()) = 'service_role')",
+          "revoke all on table public.one_piece_canonical_import_batches\n  from public, anon, authenticated, service_role",
+          "revoke all on table public.one_piece_canonical_import_rows\n  from public, anon, authenticated, service_role",
+          "revoke all on function public.one_piece_canonical_import_reject_mutation_v1()\n  from public, anon, authenticated, service_role",
+          "grant select, insert on table public.one_piece_canonical_import_batches\n  to service_role",
+          "grant select, insert on table public.one_piece_canonical_import_rows\n  to service_role",
+          "comment on table public.one_piece_canonical_import_batches is\n  'Service-only immutable One Piece source-evidence batches. Staging grants no canonical identity, promotion, pricing, or publication authority.'",
+          "comment on table public.one_piece_canonical_import_rows is\n  'Exact One Piece source payloads preserving singles, DON, sealed, quarantine, language, release, and pricing-evidence lanes for separate review.'",
+          "commit"
+        ]
+      }
+    ],
+    "protected_schema_contract": {
+      "relations": [
+        {
+          "relation_name": "card_printings",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "card_prints",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "catalog_game_release_controls",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "games",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_current_publication",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_pipeline_runs",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_publication_sets",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_publication_snapshots",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_qualification_decisions",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "mtg_canonical_import_batches",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "mtg_canonical_import_rows",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "sealed_product_candidate_reviews",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_candidates",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_families",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_pricing_lane_qualifications",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_release_members",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_release_pointer",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_releases",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_source_mappings",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_variant_evidence",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_variants",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sets",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "vault_item_instances",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "vault_owners",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        }
+      ],
+      "grants": [
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_current_publication",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_current_publication",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_current_publication",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_pipeline_runs",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_pipeline_runs",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_pipeline_runs",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_publication_sets",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_publication_sets",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_publication_sets",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_publication_snapshots",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_publication_snapshots",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_qualification_decisions",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_qualification_decisions",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "sealed_product_candidate_reviews",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_candidate_reviews",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_candidates",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_candidates",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_families",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_families",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_pricing_lane_qualifications",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_pricing_lane_qualifications",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_release_members",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_release_members",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_release_pointer",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_releases",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_releases",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_source_mappings",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_source_mappings",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variant_evidence",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variant_evidence",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variants",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variants",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        }
+      ]
+    },
+    "protected_schema_fingerprint_sha256": "fe7c2af6c85d2c65752f2492177ec5e55c65891480ab368714d89f059a383411",
+    "mtg": {
+      "game_count": 1,
+      "set_count": 116,
+      "card_count": 10864,
+      "printing_count": 17528,
+      "import_batch_count": 116,
+      "import_row_count": 66324,
+      "release_status": "hidden"
+    }
+  },
+  "fresh_post_apply_readback": {
+    "transaction_read_only": "on",
+    "transaction_closed_before_artifacts": true,
+    "tables": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "owner_name": "postgres",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "owner_name": "postgres",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      }
+    ],
+    "constraints": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_canonical_import_batch_payload_fingerprint_sha256_key",
+        "constraint_type": "u",
+        "validated": true,
+        "definition": "UNIQUE (payload_fingerprint_sha256)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_canonical_import_batches_pkey",
+        "constraint_type": "p",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_category_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (source_category_id = 68)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_commit_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (producing_commit_sha ~ '^[0-9a-f]{40}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_manifest_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (source_manifest_logical_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_migration_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (migration_candidate_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_mode_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (staging_mode = 'durable_service_only'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_one_batch_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (authorized_durable_batch_rows = 1)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_payload_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (payload_fingerprint_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "constraint_name": "one_piece_import_batches_positive_rows_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (authorized_durable_staging_rows > 0)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_canonical_import_rows_batch_id_fkey",
+        "constraint_type": "f",
+        "validated": true,
+        "definition": "FOREIGN KEY (batch_id) REFERENCES one_piece_canonical_import_batches(id) ON DELETE RESTRICT"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_canonical_import_rows_pkey",
+        "constraint_type": "p",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_batch_ordinal_key",
+        "constraint_type": "u",
+        "validated": true,
+        "definition": "UNIQUE (batch_id, row_ordinal)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_batch_product_key",
+        "constraint_type": "u",
+        "validated": true,
+        "definition": "UNIQUE (batch_id, source_product_id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_ordinal_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (row_ordinal >= 0)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_payload_hash_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (payload_sha256 ~ '^[0-9a-f]{64}$'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_promotion_state_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (promotion_state = ANY (ARRAY['current_candidate'::text, 'future_or_presale_hold'::text, 'inactive_source_hold'::text, 'separate_sealed_catalog'::text, 'quarantine'::text]))"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_record_class_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (record_class = ANY (ARRAY['exact_single_card_candidate'::text, 'sealed_product_candidate'::text, 'ambiguous_quarantine'::text]))"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "constraint_name": "one_piece_import_rows_single_kind_check",
+        "constraint_type": "c",
+        "validated": true,
+        "definition": "CHECK (record_class = 'exact_single_card_candidate'::text AND (single_card_kind = ANY (ARRAY['numbered_card'::text, 'don_card'::text])) OR record_class <> 'exact_single_card_candidate'::text AND single_card_kind IS NULL)"
+      }
+    ],
+    "indexes": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "index_name": "one_piece_canonical_import_batch_payload_fingerprint_sha256_key",
+        "is_unique": true,
+        "is_primary": false,
+        "definition": "CREATE UNIQUE INDEX one_piece_canonical_import_batch_payload_fingerprint_sha256_key ON public.one_piece_canonical_import_batches USING btree (payload_fingerprint_sha256)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "index_name": "one_piece_canonical_import_batches_group_idx",
+        "is_unique": false,
+        "is_primary": false,
+        "definition": "CREATE INDEX one_piece_canonical_import_batches_group_idx ON public.one_piece_canonical_import_batches USING btree (source_category_id, source_group_id, created_at)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "index_name": "one_piece_canonical_import_batches_pkey",
+        "is_unique": true,
+        "is_primary": true,
+        "definition": "CREATE UNIQUE INDEX one_piece_canonical_import_batches_pkey ON public.one_piece_canonical_import_batches USING btree (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_canonical_import_rows_batch_idx",
+        "is_unique": false,
+        "is_primary": false,
+        "definition": "CREATE INDEX one_piece_canonical_import_rows_batch_idx ON public.one_piece_canonical_import_rows USING btree (batch_id, row_ordinal)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_canonical_import_rows_pkey",
+        "is_unique": true,
+        "is_primary": true,
+        "definition": "CREATE UNIQUE INDEX one_piece_canonical_import_rows_pkey ON public.one_piece_canonical_import_rows USING btree (id)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_import_rows_batch_ordinal_key",
+        "is_unique": true,
+        "is_primary": false,
+        "definition": "CREATE UNIQUE INDEX one_piece_import_rows_batch_ordinal_key ON public.one_piece_canonical_import_rows USING btree (batch_id, row_ordinal)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "index_name": "one_piece_import_rows_batch_product_key",
+        "is_unique": true,
+        "is_primary": false,
+        "definition": "CREATE UNIQUE INDEX one_piece_import_rows_batch_product_key ON public.one_piece_canonical_import_rows USING btree (batch_id, source_product_id)"
+      }
+    ],
+    "functions": [
+      {
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "security_definer": true,
+        "configuration": [
+          "search_path=pg_catalog, public"
+        ],
+        "result_type": "trigger",
+        "source": "\nbegin\n  raise exception 'One Piece canonical import staging rows are immutable';\nend;\n"
+      }
+    ],
+    "triggers": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "trigger_name": "one_piece_canonical_import_batches_immutable",
+        "definition": "CREATE TRIGGER one_piece_canonical_import_batches_immutable BEFORE DELETE OR UPDATE ON one_piece_canonical_import_batches FOR EACH ROW EXECUTE FUNCTION one_piece_canonical_import_reject_mutation_v1()"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "trigger_name": "one_piece_canonical_import_rows_immutable",
+        "definition": "CREATE TRIGGER one_piece_canonical_import_rows_immutable BEFORE DELETE OR UPDATE ON one_piece_canonical_import_rows FOR EACH ROW EXECUTE FUNCTION one_piece_canonical_import_reject_mutation_v1()"
+      }
+    ],
+    "policies": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "policy_name": "one_piece_import_batches_service_insert",
+        "roles": "{service_role}",
+        "command": "INSERT",
+        "using_expression": null,
+        "check_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "policy_name": "one_piece_import_batches_service_select",
+        "roles": "{service_role}",
+        "command": "SELECT",
+        "using_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)",
+        "check_expression": null
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "policy_name": "one_piece_import_rows_service_insert",
+        "roles": "{service_role}",
+        "command": "INSERT",
+        "using_expression": null,
+        "check_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "policy_name": "one_piece_import_rows_service_select",
+        "roles": "{service_role}",
+        "command": "SELECT",
+        "using_expression": "(( SELECT auth.role() AS role) = 'service_role'::text)",
+        "check_expression": null
+      }
+    ],
+    "table_grants": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "INSERT",
+        "is_grantable": "NO"
+      },
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "grantee": "service_role",
+        "privilege_type": "SELECT",
+        "is_grantable": "NO"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "INSERT",
+        "is_grantable": "NO"
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "grantee": "service_role",
+        "privilege_type": "SELECT",
+        "is_grantable": "NO"
+      }
+    ],
+    "routine_grants": [],
+    "app_role_privileges": [
+      {
+        "role_name": "anon",
+        "table_name": "one_piece_canonical_import_batches",
+        "has_any_privilege": false
+      },
+      {
+        "role_name": "anon",
+        "table_name": "one_piece_canonical_import_rows",
+        "has_any_privilege": false
+      },
+      {
+        "role_name": "authenticated",
+        "table_name": "one_piece_canonical_import_batches",
+        "has_any_privilege": false
+      },
+      {
+        "role_name": "authenticated",
+        "table_name": "one_piece_canonical_import_rows",
+        "has_any_privilege": false
+      }
+    ],
+    "service_role_effective_table_privileges": [
+      {
+        "table_name": "one_piece_canonical_import_batches",
+        "has_select": true,
+        "has_insert": true,
+        "has_update": false,
+        "has_delete": false,
+        "has_truncate": false,
+        "has_references": false,
+        "has_trigger": false
+      },
+      {
+        "table_name": "one_piece_canonical_import_rows",
+        "has_select": true,
+        "has_insert": true,
+        "has_update": false,
+        "has_delete": false,
+        "has_truncate": false,
+        "has_references": false,
+        "has_trigger": false
+      }
+    ],
+    "effective_function_privileges": [
+      {
+        "role_name": "anon",
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "has_execute": false
+      },
+      {
+        "role_name": "authenticated",
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "has_execute": false
+      },
+      {
+        "role_name": "service_role",
+        "signature": "one_piece_canonical_import_reject_mutation_v1()",
+        "has_execute": false
+      }
+    ],
+    "migration_ledger": [
+      {
+        "version": "20260814120000",
+        "name": "one_piece_canonical_import_durable_staging_v1",
+        "statements": [
+          "-- ONE_PIECE_CANONICAL_IMPORT_DURABLE_STAGING_SCHEMA_V1 migration candidate.\n-- Unapplied. This creates service-only evidence staging and no canonical or public rows.\n\nbegin",
+          "set local lock_timeout = '5s'",
+          "set local statement_timeout = '60s'",
+          "create table public.one_piece_canonical_import_batches (\n  id uuid primary key,\n  payload_fingerprint_sha256 text not null unique,\n  source_manifest_logical_sha256 text not null,\n  migration_candidate_sha256 text not null,\n  plan_version text not null,\n  schema_version text not null,\n  producing_commit_sha text not null,\n  producing_branch text not null,\n  source_category_id bigint not null,\n  source_group_id bigint not null,\n  source_group_name text not null,\n  source_group_released_on date,\n  staging_mode text not null,\n  authorized_durable_batch_rows integer not null,\n  authorized_durable_staging_rows integer not null,\n  row_counts jsonb not null,\n  execution_boundaries jsonb not null,\n  created_at timestamptz not null default now(),\n  constraint one_piece_import_batches_payload_hash_check\n    check (payload_fingerprint_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_manifest_hash_check\n    check (source_manifest_logical_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_migration_hash_check\n    check (migration_candidate_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_batches_commit_check\n    check (producing_commit_sha ~ '^[0-9a-f]{40}$'),\n  constraint one_piece_import_batches_category_check\n    check (source_category_id = 68),\n  constraint one_piece_import_batches_mode_check\n    check (staging_mode = 'durable_service_only'),\n  constraint one_piece_import_batches_one_batch_check\n    check (authorized_durable_batch_rows = 1),\n  constraint one_piece_import_batches_positive_rows_check\n    check (authorized_durable_staging_rows > 0)\n)",
+          "create table public.one_piece_canonical_import_rows (\n  id uuid primary key,\n  batch_id uuid not null references public.one_piece_canonical_import_batches(id)\n    on delete restrict,\n  source_product_id bigint not null,\n  source_group_id bigint not null,\n  record_class text not null,\n  single_card_kind text,\n  language_key text not null,\n  promotion_state text not null,\n  row_ordinal integer not null,\n  payload jsonb not null,\n  payload_sha256 text not null,\n  created_at timestamptz not null default now(),\n  constraint one_piece_import_rows_record_class_check\n    check (\n      record_class in (\n        'exact_single_card_candidate',\n        'sealed_product_candidate',\n        'ambiguous_quarantine'\n      )\n    ),\n  constraint one_piece_import_rows_single_kind_check\n    check (\n      (record_class = 'exact_single_card_candidate'\n        and single_card_kind in ('numbered_card', 'don_card'))\n      or\n      (record_class <> 'exact_single_card_candidate' and single_card_kind is null)\n    ),\n  constraint one_piece_import_rows_promotion_state_check\n    check (\n      promotion_state in (\n        'current_candidate',\n        'future_or_presale_hold',\n        'inactive_source_hold',\n        'separate_sealed_catalog',\n        'quarantine'\n      )\n    ),\n  constraint one_piece_import_rows_payload_hash_check\n    check (payload_sha256 ~ '^[0-9a-f]{64}$'),\n  constraint one_piece_import_rows_ordinal_check\n    check (row_ordinal >= 0),\n  constraint one_piece_import_rows_batch_product_key\n    unique (batch_id, source_product_id),\n  constraint one_piece_import_rows_batch_ordinal_key\n    unique (batch_id, row_ordinal)\n)",
+          "create index one_piece_canonical_import_batches_group_idx\n  on public.one_piece_canonical_import_batches (source_category_id, source_group_id, created_at)",
+          "create index one_piece_canonical_import_rows_batch_idx\n  on public.one_piece_canonical_import_rows (batch_id, row_ordinal)",
+          "create or replace function public.one_piece_canonical_import_reject_mutation_v1()\nreturns trigger\nlanguage plpgsql\nsecurity definer\nset search_path = pg_catalog, public\nas $$\nbegin\n  raise exception 'One Piece canonical import staging rows are immutable';\nend;\n$$",
+          "create trigger one_piece_canonical_import_batches_immutable\nbefore update or delete on public.one_piece_canonical_import_batches\nfor each row execute function public.one_piece_canonical_import_reject_mutation_v1()",
+          "create trigger one_piece_canonical_import_rows_immutable\nbefore update or delete on public.one_piece_canonical_import_rows\nfor each row execute function public.one_piece_canonical_import_reject_mutation_v1()",
+          "alter table public.one_piece_canonical_import_batches enable row level security",
+          "alter table public.one_piece_canonical_import_batches force row level security",
+          "alter table public.one_piece_canonical_import_rows enable row level security",
+          "alter table public.one_piece_canonical_import_rows force row level security",
+          "create policy one_piece_import_batches_service_select\n  on public.one_piece_canonical_import_batches\n  for select\n  to service_role\n  using ((select auth.role()) = 'service_role')",
+          "create policy one_piece_import_batches_service_insert\n  on public.one_piece_canonical_import_batches\n  for insert\n  to service_role\n  with check ((select auth.role()) = 'service_role')",
+          "create policy one_piece_import_rows_service_select\n  on public.one_piece_canonical_import_rows\n  for select\n  to service_role\n  using ((select auth.role()) = 'service_role')",
+          "create policy one_piece_import_rows_service_insert\n  on public.one_piece_canonical_import_rows\n  for insert\n  to service_role\n  with check ((select auth.role()) = 'service_role')",
+          "revoke all on table public.one_piece_canonical_import_batches\n  from public, anon, authenticated, service_role",
+          "revoke all on table public.one_piece_canonical_import_rows\n  from public, anon, authenticated, service_role",
+          "revoke all on function public.one_piece_canonical_import_reject_mutation_v1()\n  from public, anon, authenticated, service_role",
+          "grant select, insert on table public.one_piece_canonical_import_batches\n  to service_role",
+          "grant select, insert on table public.one_piece_canonical_import_rows\n  to service_role",
+          "comment on table public.one_piece_canonical_import_batches is\n  'Service-only immutable One Piece source-evidence batches. Staging grants no canonical identity, promotion, pricing, or publication authority.'",
+          "comment on table public.one_piece_canonical_import_rows is\n  'Exact One Piece source payloads preserving singles, DON, sealed, quarantine, language, release, and pricing-evidence lanes for separate review.'",
+          "commit"
+        ]
+      }
+    ],
+    "protected_schema_contract": {
+      "relations": [
+        {
+          "relation_name": "card_printings",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "card_prints",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "catalog_game_release_controls",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "games",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_current_publication",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_pipeline_runs",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_publication_sets",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_publication_snapshots",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "market_price_qualification_decisions",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "mtg_canonical_import_batches",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "mtg_canonical_import_rows",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "sealed_product_candidate_reviews",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_candidates",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_families",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_pricing_lane_qualifications",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_release_members",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_release_pointer",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_releases",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_source_mappings",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_variant_evidence",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sealed_product_variants",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": true
+        },
+        {
+          "relation_name": "sets",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "vault_item_instances",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        },
+        {
+          "relation_name": "vault_owners",
+          "present": true,
+          "relkind": "r",
+          "rls_enabled": true,
+          "rls_forced": false
+        }
+      ],
+      "grants": [
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_printings",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "card_prints",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "catalog_game_release_controls",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "games",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_current_publication",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_current_publication",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_current_publication",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_pipeline_runs",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_pipeline_runs",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_pipeline_runs",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_publication_sets",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_publication_sets",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_publication_sets",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "market_price_publication_snapshots",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_publication_snapshots",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "market_price_qualification_decisions",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "market_price_qualification_decisions",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "mtg_canonical_import_batches",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "mtg_canonical_import_rows",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "sealed_product_candidate_reviews",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_candidate_reviews",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_candidates",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_candidates",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_families",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_families",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_pricing_lane_qualifications",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_pricing_lane_qualifications",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_release_members",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_release_members",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_release_pointer",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_releases",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_releases",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_source_mappings",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_source_mappings",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variant_evidence",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variant_evidence",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variants",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variants",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "sets",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_item_instances",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "anon",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "authenticated",
+          "privilege_type": "UPDATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "DELETE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "REFERENCES"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "TRIGGER"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "TRUNCATE"
+        },
+        {
+          "table_name": "vault_owners",
+          "grantee": "service_role",
+          "privilege_type": "UPDATE"
+        }
+      ]
+    },
+    "protected_schema_fingerprint_sha256": "fe7c2af6c85d2c65752f2492177ec5e55c65891480ab368714d89f059a383411",
+    "mtg": {
+      "game_count": 1,
+      "set_count": 116,
+      "card_count": 10864,
+      "printing_count": 17528,
+      "import_batch_count": 116,
+      "import_row_count": 66324,
+      "release_status": "hidden"
+    }
+  },
+  "concurrent_mtg_progress": {
+    "delta": {
+      "game_count": 0,
+      "set_count": 0,
+      "card_count": 0,
+      "printing_count": 0,
+      "import_batch_count": 0,
+      "import_row_count": 0
+    },
+    "nondecreasing": true,
+    "release_status_before": "hidden",
+    "release_status_after": "hidden",
+    "attribution": "external_concurrent_mtg_pipeline_not_one_piece_schema_apply"
+  },
+  "boundaries": {
+    "one_piece_staging_rows_written": 0,
+    "protected_table_dml_attributable_to_execution": 0,
+    "canonical_or_pricing_writes": 0,
+    "sealed_writes": 0,
+    "app_access_enabled": false,
+    "storage_or_publication": false,
+    "deployment": false
+  }
+}

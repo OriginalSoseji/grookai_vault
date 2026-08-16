@@ -1,0 +1,11 @@
+{
+  "collision_count": 0,
+  "collisions": [],
+  "invalid_card_number_count": 0,
+  "invalid_card_number_product_ids": [],
+  "existing_binding_mismatch_count": 0,
+  "existing_binding_mismatches": [],
+  "duplicate_printed_numbers_are_expected_product_variants": true,
+  "unique_printed_number_count": 2676,
+  "multi_product_printed_number_count": 2115
+}

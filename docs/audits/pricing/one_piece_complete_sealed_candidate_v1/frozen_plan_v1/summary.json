@@ -1,0 +1,55 @@
+{
+  "version": "ONE_PIECE_COMPLETE_SEALED_CANDIDATE_WAREHOUSE_V1",
+  "recorded_at": "2026-08-15T14:44:32.915Z",
+  "status": "frozen_sealed_candidate_plan_passed_no_writes",
+  "repository": {
+    "commit_sha": "2647144ec1298700e95081a6fec194bc2ae1e3e4",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "counts": {
+    "source_products": 403,
+    "english_products": 400,
+    "japanese_products": 3,
+    "current_release_products": 393,
+    "future_or_presale_products": 10,
+    "products_with_price_lanes": 363,
+    "products_without_price_lanes": 40,
+    "candidate_rows": 403,
+    "family_rows": 0,
+    "variant_rows": 0,
+    "review_rows": 0,
+    "mapping_rows": 0,
+    "evidence_rows": 0,
+    "pricing_rows": 0,
+    "release_rows": 0,
+    "release_member_rows": 0,
+    "release_pointer_rows": 0
+  },
+  "plan_fingerprint_sha256": "32188b31a64abe81635e2c6133f17eff9c38628dbdc7cdd21b9d64a9dba325bd",
+  "payload_fingerprint_sha256": "ff26c514511b9184d8ba91c793b40a249818c2bc5b3ca4778f6b253b6a27cbb2",
+  "input_hashes": {
+    "source_manifest_gzip_sha256": "973bec5c186adc8853dcff91218e1057772aea384f9a3318919fb03b9c39bc0e",
+    "reconciliation_summary_sha256": "830418974b7eea09ce92f9197d0b39f643b40bd79029fcc4a84ed4e1f09d72f3",
+    "sealed_lane_sha256": "c2516e5396745c8b37ecc979b32c2045033656510479a60cc686be25259f54c4"
+  },
+  "boundaries": {
+    "candidate_warehouse_only": true,
+    "database_connections": 0,
+    "database_writes": 0,
+    "family_writes": 0,
+    "variant_writes": 0,
+    "review_writes": 0,
+    "mapping_writes": 0,
+    "evidence_writes": 0,
+    "pricing_writes": 0,
+    "release_writes": 0,
+    "release_pointer_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "publication_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "findings": [],
+  "exact_next_gate": "production read-only sealed candidate collision preflight"
+}

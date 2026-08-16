@@ -1,0 +1,94 @@
+{
+  "local": {
+    "migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
+    "rollback_sha256": "5a87967acb8c3f610807daa023eb94920aa393c6a64d123c46e113f225af9a7e",
+    "migration_plan_fingerprint": "9ba9803731eac32e3fd63dc4bdf3e07b781f3a71d9f919cf15b0f2b552ab225b",
+    "candidate_in_applied_migration_path": true,
+    "reserved_migration_present": true,
+    "reserved_migration_filename": "20260814060000_cross_tcg_sealed_product_domain_v1.sql",
+    "reserved_migration_sha256": "f588987c10cdb80f641d6da8ca0f4892afdb6b0d7175fe6e2c0cdc2c6be972d0",
+    "duplicate_migration_versions": 0,
+    "latest_migration_version": "20260814060000"
+  },
+  "production": {
+    "guard": {
+      "transaction_read_only": "on",
+      "default_transaction_read_only": "on",
+      "transaction_closed_before_artifacts": true
+    },
+    "collisions": {
+      "expected_counts": {
+        "tables": 10,
+        "functions": 5,
+        "indexes": 8,
+        "policies": 10,
+        "triggers": 10
+      },
+      "tables": [],
+      "functions": [],
+      "indexes": [],
+      "policies": [],
+      "triggers": []
+    },
+    "migration_history": {
+      "schema_present": true,
+      "table_present": true,
+      "columns": ["version", "statements", "name"],
+      "duplicate_versions": 0,
+      "reserved_version_rows": 0,
+      "sealed_history_rows": 0,
+      "latest_version": "20260813200000"
+    },
+    "requirements": {
+      "roles": [
+        { "role_name": "anon" },
+        { "role_name": "authenticated" },
+        { "role_name": "authenticator" },
+        { "role_name": "service_role" }
+      ],
+      "extensions": [
+        { "extension_name": "pgcrypto" },
+        { "extension_name": "plpgsql" }
+      ],
+      "gen_random_uuid_available": true,
+      "current_user_can_create_public": true
+    },
+    "security_boundary": {
+      "schema_create_privileges": [
+        { "role_name": "anon", "schema_name": "public", "has_create": false },
+        { "role_name": "anon", "schema_name": "extensions", "has_create": false },
+        { "role_name": "authenticated", "schema_name": "public", "has_create": false },
+        { "role_name": "authenticated", "schema_name": "extensions", "has_create": false }
+      ],
+      "candidate_object_grants": []
+    },
+    "baselines": {
+      "missing_relations": [],
+      "schema_fingerprint_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "row_fingerprint_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "rows": {
+        "card_prints": 60000,
+        "card_printings": 90000,
+        "market_price_current_publication": 1
+      },
+      "mtg": {
+        "game_count": 1,
+        "set_count": 2,
+        "card_count": 800,
+        "release_status": "hidden",
+        "required_migrations": {
+          "20260813185000": true,
+          "20260813190000": true,
+          "20260813200000": true
+        }
+      }
+    },
+    "lock_risk": {
+      "ungranted_locks": 0,
+      "protected_access_exclusive_locks": 0,
+      "long_transactions": 0,
+      "prepared_transactions": 0,
+      "connection_utilization": 0.1
+    }
+  }
+}

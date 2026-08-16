@@ -1,0 +1,19 @@
+{
+  "status": "offline_release_plan_frozen",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "1002f0218b9ffacef84273a1e98a984ea0aafdb1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "03a7ab9dee1f0bd35dc2db6e838341b174baa90302a240ee2026a41b003b2e5d",
+  "manifest_fingerprint_sha256": "b0047c787e0d02b1679133307bdd906b64a11bbb20e53f4a94f7130f798659ad",
+  "member_count": 332,
+  "exclusions": {
+    "blocked_stale": 4,
+    "blocked_missing_price": 38,
+    "blocked_missing_observation": 16,
+    "total": 58
+  },
+  "database_connections": 0,
+  "database_writes": 0
+}

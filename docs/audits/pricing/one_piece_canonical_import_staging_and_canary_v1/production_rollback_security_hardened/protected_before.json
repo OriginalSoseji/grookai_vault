@@ -1,0 +1,501 @@
+{
+  "transaction_read_only": true,
+  "default_transaction_read_only": true,
+  "protected_boundaries": {
+    "tables": {
+      "public.games": {
+        "present": true,
+        "row_count": "3"
+      },
+      "public.sets": {
+        "present": true,
+        "row_count": "1982"
+      },
+      "public.card_prints": {
+        "present": true,
+        "row_count": "68278"
+      },
+      "public.card_print_identity": {
+        "present": true,
+        "row_count": "64074"
+      },
+      "public.card_print_identity_source_evidence": {
+        "present": true,
+        "row_count": "122050"
+      },
+      "public.card_printings": {
+        "present": true,
+        "row_count": "85328"
+      },
+      "public.external_mappings": {
+        "present": true,
+        "row_count": "80443"
+      },
+      "public.external_printing_mappings": {
+        "present": true,
+        "row_count": "14344"
+      },
+      "public.sealed_products": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_printings": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_external_mappings": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_prices": {
+        "present": false,
+        "row_count": null
+      },
+      "public.sealed_product_price_observations": {
+        "present": false,
+        "row_count": null
+      },
+      "public.market_price_publication_sets": {
+        "present": true,
+        "row_count": "31"
+      },
+      "public.market_price_current_publication": {
+        "present": true,
+        "row_count": "1"
+      },
+      "public.market_price_publication_events": {
+        "present": true,
+        "row_count": "39"
+      },
+      "public.market_price_publication_snapshots": {
+        "present": true,
+        "row_count": "317263"
+      },
+      "public.market_price_pipeline_candidates": {
+        "present": true,
+        "row_count": "542971"
+      },
+      "public.market_price_qualification_decisions": {
+        "present": true,
+        "row_count": "497889"
+      },
+      "public.catalog_game_release_controls": {
+        "present": true,
+        "row_count": "1"
+      },
+      "public.card_prices": {
+        "present": true,
+        "row_count": "1886"
+      },
+      "public.card_price_observations": {
+        "present": true,
+        "row_count": "322"
+      },
+      "public.card_price_rollups": {
+        "present": true,
+        "row_count": "321"
+      },
+      "public.card_price_ticks": {
+        "present": true,
+        "row_count": "1886"
+      },
+      "public.market_prices": {
+        "present": true,
+        "row_count": "0"
+      },
+      "public.prices": {
+        "present": true,
+        "row_count": "1662"
+      },
+      "public.pricing_observations": {
+        "present": true,
+        "row_count": "0"
+      },
+      "public.pricing_jobs": {
+        "present": true,
+        "row_count": "2626"
+      },
+      "public.pricing_watch": {
+        "present": true,
+        "row_count": "375"
+      },
+      "public.vault_items": {
+        "present": true,
+        "row_count": "437"
+      },
+      "public.vault_item_instances": {
+        "present": true,
+        "row_count": "3385"
+      },
+      "public.vault_owners": {
+        "present": true,
+        "row_count": "25"
+      },
+      "public.mtg_canonical_import_batches": {
+        "present": true,
+        "row_count": "97"
+      },
+      "public.mtg_canonical_import_rows": {
+        "present": true,
+        "row_count": "57938"
+      },
+      "supabase_migrations.schema_migrations": {
+        "present": true,
+        "row_count": "336"
+      }
+    },
+    "mtg_scope": {
+      "set_count": "97",
+      "card_count": "9506",
+      "game_count": "1",
+      "identity_count": "9506",
+      "printing_count": "15139",
+      "canonical_scope": "mtg",
+      "staging_batch_count": "97",
+      "staging_row_count": "57938"
+    }
+  },
+  "source": {
+    "category": {
+      "category_id": 68
+    },
+    "group": {
+      "group_id": 3189,
+      "name": "Starter Deck 1: Straw Hat Crew",
+      "published_on": "2022-12-02",
+      "source_active": true,
+      "catalog_metadata_status": "current"
+    },
+    "products": [
+      {
+        "source_product_id": 288221,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "b505b69e0632343dd036b4da21faaa5875e894967140faf95f8758e311fced1f",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288222,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "cc9a2d3cd5f633799ce0d3f134d62052a8e9afd85014eca350c1f563642f8c77",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288225,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "627f805268372ca1fc953742971c634f58dfe32f6289ee3cd5a07f7173e1b97c",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288228,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "d93c10ae4609f4025e0a2014eb77301b10aa52ecfd11fe66f811eba82034da3b",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288229,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "c9741b7e2437a2871cf8eb790a9af967258077206dfefbb87751a7dcb458f023",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288230,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "4e7bb00068fd70026bc4405dd77f24e56170c4306f404f4fbdbac36ea588eef5",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288232,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "f0a602ba9a7d24622627ff8cc2c8c9693553ef175d1f586f488819f239e5bc7e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288234,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "e79b1cfc4e4b27f4db220374abf171ee72252de33d6f523999ae4b689006614a",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288235,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "a2ddf09f850c10379148ac20bdca14dfa2250d48462f722a72c66e79436b9093",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288236,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "381f202a231738735c8f9acdca323d87b2ecd313ef2f1154166c33749e02a9ee",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288237,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "1ba16e7e710a6ca955e7d98bfc2c43ef2099acd7e16ef2a866390be0b7b23464",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288238,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "eac2c15db9d835fb8dd8518d3bfb96d8c1ad128affc9b80c806d6e1b49fd1f43",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288239,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "c352f97bebf7e6479a2d3f9978252c553916a1ccac30c12e3add07ed77346a93",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288240,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "24b00965dcbb85d432dd7066afff60c76c9614f9de06d2be844ba2733c51d550",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288241,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "85150d3c855bf45a6c2c70b0b941798edf85d518b04557c53fd5dd5488c1415f",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288242,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "68c2b087e8ddba98a482517ab588868d3e203e71b4697285658281c868649a7d",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288243,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "c845b3f1adc6147f235783188ba237643448fd8a1a189e4dbd2f6e7d94c2e616",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288244,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "8d63aad8c303b6bfed9f240ecbf1c7cc09bab88639e20c33a669003870f71a95",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288245,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "7e27905f5b0287d82f4936eb600406954af3e66af6666f08164f78189f0f0822",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 288246,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "98a7a1cd30a2d7292a176477d8ad08f729779c92a4970909da69098d170d7efe",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "source_product_id": 549343,
+        "source_category_id": 68,
+        "source_group_id": 3189,
+        "payload_hash": "19ae4337acf47644d4c9880e8dcc6f7e54aff5a41a60d831bffe79740c259789",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      }
+    ],
+    "price_lanes": [
+      {
+        "source_product_id": 288221,
+        "source_price_row_identity": "tcgplayer:288221:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288222,
+        "source_price_row_identity": "tcgplayer:288222:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": false
+      },
+      {
+        "source_product_id": 288225,
+        "source_price_row_identity": "tcgplayer:288225:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288228,
+        "source_price_row_identity": "tcgplayer:288228:foil",
+        "subtype_name_normalized": "foil",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288229,
+        "source_price_row_identity": "tcgplayer:288229:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288230,
+        "source_price_row_identity": "tcgplayer:288230:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288232,
+        "source_price_row_identity": "tcgplayer:288232:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288234,
+        "source_price_row_identity": "tcgplayer:288234:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288235,
+        "source_price_row_identity": "tcgplayer:288235:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288236,
+        "source_price_row_identity": "tcgplayer:288236:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288237,
+        "source_price_row_identity": "tcgplayer:288237:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288238,
+        "source_price_row_identity": "tcgplayer:288238:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288239,
+        "source_price_row_identity": "tcgplayer:288239:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288240,
+        "source_price_row_identity": "tcgplayer:288240:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288241,
+        "source_price_row_identity": "tcgplayer:288241:foil",
+        "subtype_name_normalized": "foil",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288242,
+        "source_price_row_identity": "tcgplayer:288242:foil",
+        "subtype_name_normalized": "foil",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288243,
+        "source_price_row_identity": "tcgplayer:288243:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288244,
+        "source_price_row_identity": "tcgplayer:288244:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288245,
+        "source_price_row_identity": "tcgplayer:288245:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 288246,
+        "source_price_row_identity": "tcgplayer:288246:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      },
+      {
+        "source_product_id": 549343,
+        "source_price_row_identity": "tcgplayer:549343:normal",
+        "subtype_name_normalized": "normal",
+        "observed_on": "2026-08-13",
+        "positive_market_signal": true
+      }
+    ]
+  },
+  "staging_footprint": {
+    "tables": {
+      "public.one_piece_canonical_import_batches": false,
+      "public.one_piece_canonical_import_rows": false
+    },
+    "function_present": false,
+    "policies": [],
+    "triggers": [],
+    "indexes": [],
+    "migration_recorded": false
+  },
+  "plan_fingerprint": "174be939b52f300dc9bab110d1a5fed59a85fc5e676a1ef24379da0bc3639a90"
+}

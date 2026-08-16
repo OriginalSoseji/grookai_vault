@@ -1,0 +1,51 @@
+{
+  "readback": {
+    "sets": 1,
+    "card_prints": 17,
+    "card_print_identity": 17,
+    "card_print_identity_source_evidence": 17,
+    "external_mappings": 17,
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_visible": false
+  },
+  "attributable_writes": [
+    {
+      "table_name": "card_print_identity",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_print_identity_source_evidence",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_prints",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "external_mappings",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sets",
+      "inserted": "1",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "findings": []
+}

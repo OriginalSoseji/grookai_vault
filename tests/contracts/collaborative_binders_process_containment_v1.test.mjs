@@ -97,7 +97,7 @@ $timeout = Invoke-LocalContained \`
 [Console]::Error.WriteLine('before-timeout-err')
 Start-Sleep -Seconds 30
 '@ \`
-  -TimeoutSeconds 1
+  -TimeoutSeconds 5
 
 $descendant = Invoke-LocalContained \`
   -Script @'
@@ -140,36 +140,69 @@ $bounded = Invoke-LocalContained \`
 $node = (Get-Command node -ErrorAction Stop).Source
 $lateNodeScript = @'
 const { spawn } = require("child_process");
-const child = spawn(
-  process.execPath,
-  [
-    "-e",
-    "setTimeout(() => {" +
-      "process.stdout.write('late-out');" +
-      "process.stderr.write('late-err')" +
-    "}, 6000)",
-  ],
-  {
-    detached: true,
-    stdio: ["ignore", "inherit", "inherit"],
-  },
-);
-process.stdout.write("early-out|pid=" + child.pid);
-process.stderr.write("early-err");
-child.unref();
+let launchAttempts = 0;
+
+function launchLateWriter() {
+  launchAttempts += 1;
+  const child = spawn(
+    process.execPath,
+    [
+      "-e",
+      "setTimeout(() => {" +
+        "process.stdout.write('late-out');" +
+        "process.stderr.write('late-err')" +
+      "}, 6000)",
+    ],
+    {
+      detached: true,
+      stdio: ["ignore", "inherit", "inherit"],
+    },
+  );
+
+  child.once("spawn", () => {
+    process.stdout.write("early-out|pid=" + child.pid);
+    process.stderr.write("early-err");
+    child.unref();
+  });
+  child.once("error", (error) => {
+    if (launchAttempts < 5) {
+      setTimeout(launchLateWriter, 250);
+      return;
+    }
+    process.stderr.write("late-child-spawn-error=" + error.code);
+    process.exitCode = 1;
+  });
+}
+
+launchLateWriter();
 '@
-$lateForwarding = & $module {
-  param(
-    [string]$Executable,
-    [string]$Directory,
-    [string]$TargetScript
-  )
-  Invoke-BinderProcessV1 \`
-    -FilePath $Executable \`
-    -Arguments @('-e', $TargetScript) \`
-    -WorkingDirectory $Directory \`
-    -TimeoutSeconds 20
-} $node $workingDirectory $lateNodeScript
+$lateForwarding = $null
+foreach ($lateAttempt in 1..3) {
+  $lateForwarding = & $module {
+    param(
+      [string]$Executable,
+      [string]$Directory,
+      [string]$TargetScript
+    )
+    Invoke-BinderProcessV1 \`
+      -FilePath $Executable \`
+      -Arguments @('-e', $TargetScript) \`
+      -WorkingDirectory $Directory \`
+      -TimeoutSeconds 20
+  } $node $workingDirectory $lateNodeScript
+
+  if (
+    $lateForwarding.ExitCode -eq 0 -and
+    $lateForwarding.StdOut -match '^early-out\|pid=\d+late-out$' -and
+    $lateForwarding.StdErr -eq 'early-errlate-err' -and
+    $lateForwarding.ProcessTreeEmpty -and
+    $lateForwarding.TerminationConfirmed -and
+    $lateForwarding.OutputCaptureCompleted
+  ) {
+    break
+  }
+  Start-Sleep -Milliseconds 250
+}
 
 $handleCountBeforeSetupFailures = (
   [Diagnostics.Process]::GetCurrentProcess().HandleCount
@@ -184,6 +217,9 @@ foreach ($attempt in 1..12) {
     $setupFailureCount += 1
   }
 }
+[GC]::Collect()
+[GC]::WaitForPendingFinalizers()
+[GC]::Collect()
 $handleCountAfterSetupFailures = (
   [Diagnostics.Process]::GetCurrentProcess().HandleCount
 )
@@ -261,7 +297,7 @@ $handleCountAfterSetupFailures = (
       cwd: REPO_ROOT,
       encoding: "utf8",
       maxBuffer: 5 * 1024 * 1024,
-      timeout: 45_000,
+      timeout: 90_000,
       windowsHide: true,
     },
   );

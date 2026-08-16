@@ -1,0 +1,22 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_POST_APPLY_V1",
+  "recorded_at": "2026-08-15T05:44:21.015Z",
+  "repository": {
+    "commit_sha": "3e38c15b260dfc415f89f7051e4cab3fccead60b",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "execution_producer_sha": "3e38c15b260dfc415f89f7051e4cab3fccead60b",
+  "execution_summary_sha256": "923ac5111469636c8b706df9cff4fe0fd7442ed94304dba317a4da7ee2ef473c",
+  "mutation_plan_sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4",
+  "apply_plan_sha256": "e7a1e9b2bfe4726b781f7b608214214704515e4bf1223a0c906083b176c8658d",
+  "mode": "fresh_read_only_production_verification",
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

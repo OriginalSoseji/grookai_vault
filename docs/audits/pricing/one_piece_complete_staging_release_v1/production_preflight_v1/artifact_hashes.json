@@ -1,0 +1,40 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 732,
+      "sha256": "b94bacae3d2ed1824ad76666ccac0badb63b4a3122c9c3eeafd6a8db37948936"
+    },
+    {
+      "path": "collision_state.json",
+      "bytes": 244,
+      "sha256": "aaafff25fabc8d89fb8b1ce85f4e9362c1c53cca08e37225f4df6364a56daf63"
+    },
+    {
+      "path": "source_proof.json",
+      "bytes": 521,
+      "sha256": "2b061e104ee88f0f0912f25ddf01a1547e0c873ac0963fd3973a876ce4e6319d"
+    },
+    {
+      "path": "schema_readback.json",
+      "bytes": 45283,
+      "sha256": "dc20f52e2dd363758768ba8ff7032c9d646ec870c565179fde9b683d4bba2248"
+    },
+    {
+      "path": "protected_snapshot.json",
+      "bytes": 3629,
+      "sha256": "807da8a38873f5b27aa76836e29c9b793fdc0f3aab4fdf28b329c7bf3ece618b"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 4262,
+      "sha256": "effead276c14d344acef614ed6e4fda7f60e84e318fb89dcdaa97aae901745cf"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 267,
+      "sha256": "2b76fa7835df2446057a0bdf4b085f96d89cbed007ff87371418849a1bfc3660"
+    }
+  ]
+}

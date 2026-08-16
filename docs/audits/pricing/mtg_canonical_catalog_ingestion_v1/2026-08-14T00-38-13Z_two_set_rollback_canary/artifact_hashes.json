@@ -1,0 +1,10 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "run_plan.json": "0642d6084f49a0ab57516504b1b50d23444a002a273cd61c024253a672dbddce",
+    "progress.jsonl": "662100a8ac4307e85f2b47991f1c64027c0911999a1bae0d05abcb9e80e0ddd2",
+    "state.json": "48fa2753f629e77e08a938d2726587ffb841de8db7c125073cd6998d20266086",
+    "failure.json": "d1611c0ae6765dff1408bf803f786f9d521718cc45e032bb873d009fd346db3e",
+    "REPORT.md": "6a07fc52f7e02deb5da860c1029efb30ac9911fc0bbc173917c76cfde9b81775"
+  }
+}

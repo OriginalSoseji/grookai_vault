@@ -1,0 +1,29 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_POST_ROLLBACK_V1",
+  "recorded_at": "2026-08-15T05:08:03.234Z",
+  "repository": {
+    "commit_sha": "d2c27323e0cf88320e26f0979fa1ddc9823a4429",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "authority": {
+    "execution_directory": "docs/audits/pricing/one_piece_st01_printing_image_rollback_canary_v1/production_rollback_hot_policy_v1",
+    "execution_summary_sha256": "d2b2a8020b280111c75b71f33eb0667723ff29ae2023f5e0a17992f7d7d0b659",
+    "execution_producer_sha": "d2c27323e0cf88320e26f0979fa1ddc9823a4429",
+    "rollback_proof_sha256": "5981125e7746b174cef093274b70c1fbb301ddaf6b732eef40b3728fd489eddb",
+    "mutation_plan_sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4",
+    "mutation_plan_fingerprint_sha256": "52d48812803ede0db3a536f0a08346a12aa1461cef128ab5b55a0224f089e13f"
+  },
+  "mode": "fresh_read_only_post_rollback_verification",
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pointer_writes": 0,
+    "child_printing_writes": 0,
+    "printing_mapping_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  }
+}

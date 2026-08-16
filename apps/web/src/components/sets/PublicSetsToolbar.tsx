@@ -26,6 +26,11 @@ import {
   normalizePublicLanguageScope,
   type PublicLanguageScope,
 } from "@/lib/publicLanguageScope";
+import {
+  PUBLIC_GAME_SCOPE_OPTIONS,
+  normalizePublicGameScope,
+  type PublicGameScope,
+} from "@/lib/publicGameScope";
 
 export default function PublicSetsToolbar() {
   const pathname = usePathname();
@@ -36,6 +41,7 @@ export default function PublicSetsToolbar() {
   const currentEra = normalizePublicSetEra(searchParams.get("era"));
   const currentLane = normalizePublicSetLane(searchParams.get("lane"));
   const currentLanguageScope = normalizePublicLanguageScope(searchParams.get("lang"));
+  const currentGameScope = normalizePublicGameScope(searchParams.get("game"));
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
@@ -50,6 +56,7 @@ export default function PublicSetsToolbar() {
     nextEra: PublicSetEra,
     nextLane: PublicSetLane,
     nextLanguageScope: PublicLanguageScope = currentLanguageScope,
+    nextGameScope: PublicGameScope = currentGameScope,
   ) {
     const params = new URLSearchParams();
     const trimmedQuery = nextQuery.trim();
@@ -72,6 +79,10 @@ export default function PublicSetsToolbar() {
 
     if (nextLanguageScope !== "all") {
       params.set("lang", nextLanguageScope);
+    }
+
+    if (nextGameScope !== "pokemon") {
+      params.set("game", nextGameScope);
     }
 
     if (compareCardsParam) {
@@ -111,11 +122,27 @@ export default function PublicSetsToolbar() {
     );
   }
 
+  function handleGameChange(nextGameScope: PublicGameScope) {
+    router.push(
+      buildNextUrl(
+        query,
+        currentFilter,
+        "all",
+        currentLane,
+        currentLanguageScope,
+        nextGameScope,
+      ),
+    );
+  }
+
   function handleReset() {
     setQuery("");
     const params = new URLSearchParams();
     if (currentLanguageScope !== "all") {
       params.set("lang", currentLanguageScope);
+    }
+    if (currentGameScope !== "pokemon") {
+      params.set("game", currentGameScope);
     }
     if (compareCardsParam) {
       params.set("cards", compareCardsParam);
@@ -151,7 +178,25 @@ export default function PublicSetsToolbar() {
             </div>
           </SearchToolbarField>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[210px_170px_180px_190px_auto] lg:items-end">
+          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[170px_210px_170px_180px_190px_auto] lg:items-end">
+            <SearchToolbarField label="Game" className="min-w-0">
+              <SearchToolbarSelect
+                id="public-sets-game"
+                value={currentGameScope}
+                onChange={(event) =>
+                  handleGameChange(normalizePublicGameScope(event.target.value))
+                }
+                aria-label="Filter sets by game"
+                tone="soft"
+              >
+                {PUBLIC_GAME_SCOPE_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SearchToolbarSelect>
+            </SearchToolbarField>
+
             <SearchToolbarField label="Language" className="min-w-0">
               <div
                 className="inline-flex h-11 w-full rounded-[14px] border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"

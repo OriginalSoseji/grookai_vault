@@ -1,0 +1,59 @@
+{
+  "version": "ONE_PIECE_ST01_PRINTING_IMAGE_MUTATION_PLAN_V1",
+  "recorded_at": "2026-08-15T04:52:09.845Z",
+  "status": "frozen_offline_plan_no_database_access",
+  "repository": {
+    "commit_sha": "47158714ebb1ea1ac6aa9e8339ffaf039cf051a0",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "mutation_plan_fingerprint_sha256": "e3f7595bb9be1878eef35117b4f3e82727075e956937e433bf29e8615bbd199e",
+  "mutation_payload_fingerprint_sha256": "1916b0279e007648b55244543a25530b631d4f69a0b4ad74333fb84ee87cb1ec",
+  "counts": {
+    "parent_pointer_updates": 17,
+    "normal_child_inserts": 14,
+    "external_printing_mapping_inserts": 14,
+    "foil_taxonomy_blockers": 3,
+    "child_image_pointer_writes": 0
+  },
+  "rollback_attribution": [
+    {
+      "table_name": "card_prints",
+      "inserted": 0,
+      "updated": 17,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "card_printings",
+      "inserted": 14,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "external_printing_mappings",
+      "inserted": 14,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "findings": [],
+  "boundaries": {
+    "offline_plan_only": true,
+    "execution_mode_present": false,
+    "database_access": false,
+    "durable_database_writes": false,
+    "storage_writes": false,
+    "child_image_pointer_writes": false,
+    "foil_child_writes": false,
+    "don_writes": false,
+    "sealed_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false,
+    "app_visibility_changes": false
+  },
+  "next_gate": "separately_governed_rollback_only_production_canary_from_frozen_plan"
+}

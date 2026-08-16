@@ -1,0 +1,26 @@
+{
+  "version": "ONE_PIECE_ST01_CANONICAL_PROMOTION_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-14T20:12:18.516Z",
+  "repository": {
+    "commit_sha": "c5d3b4ad75fcc225e3cfe23d9f36cde22cbd756e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "promotion_plan_sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3",
+  "promotion_plan_fingerprint_sha256": "fad134878a6f42872e1eec22fd7680e932a0b2fc59edba1c0d9b06ada4be1446",
+  "preflight_summary_sha256": "75f14897571700f57fd9454bc1bebd0a54bb692f3407ee1900230fc743e6c60b",
+  "preflight_fingerprint_sha256": "a1ec0e958d746a8b39bf69accffc8558a6abc9799a5ed7197c6a1c149696887c",
+  "mode": "production_rollback_only",
+  "boundaries": {
+    "durable_database_writes": 0,
+    "transaction_rollback_required": true,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  }
+}

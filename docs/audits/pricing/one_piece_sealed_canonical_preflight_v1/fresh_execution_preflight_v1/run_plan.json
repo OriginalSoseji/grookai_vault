@@ -1,0 +1,19 @@
+{
+  "version": "ONE_PIECE_SEALED_CANONICAL_PREFLIGHT_V1",
+  "recorded_at": "2026-08-15T18:57:14.824Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "0fea3b661f4ce94211901b6eb84ad59a39f79b29",
+    "tracked_worktree_clean": true
+  },
+  "evidence_producer_commit_sha": "05f804751fba6d5aeed71cc01d1bce15411c8dba",
+  "resolution_fingerprint_sha256": "f4232cbdd644b8b8b89a0b1be7fbf59507dc20f2b7f971282ac27d08615c841d",
+  "canonical_plan_sha256": "c4c4fa550ed38c16610599abb534cdc89ba4e3c3cae1d9a7e00cb13f5be7f59b",
+  "boundaries": {
+    "transaction_read_only": true,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0
+  }
+}

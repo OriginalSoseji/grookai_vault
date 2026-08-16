@@ -1,0 +1,27 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "sha256": "97792e1ffe5161b23261c123f6b2f1206cce6e8c2fcc19be6ee16fe37135f557"
+    },
+    {
+      "path": "production_readback.json",
+      "sha256": "d3f69da33068780242f99ea1403a1d32c57d4983259eb93f7cfd75e29cfb97ec"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "eca1577dfbed43a392d0e0509fcc7b0d11505c14e46e00eb66c5f8563d9cca28"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "90b92784ef2d97f6d3ebe7ac94130cb8824abee706b4e68cadd5f35ff0a22ed9"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/frozen_plan_v1/plan.json",
+      "sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3"
+    }
+  ]
+}

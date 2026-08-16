@@ -1,0 +1,47 @@
+{
+  "version": "ONE_PIECE_SEALED_REVIEW_IMAGE_AVAILABILITY_V1",
+  "recorded_at": "2026-08-15T16:44:10.365Z",
+  "status": "review_image_gaps_preserved_no_writes",
+  "repository": {
+    "commit_sha": "b52311d1f10901f319dfedd66302505242afa483",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "review_packet_fingerprint_sha256": "a66df06f1189b7242b29f5c163aef3e3a57a8259af4609919b983b1b801ea798",
+  "counts": {
+    "target_references": 618,
+    "unique_urls": 487,
+    "available": 476,
+    "unavailable": 11,
+    "redirect_host_rejected": 0,
+    "non_image_response": 0,
+    "http_error": 11,
+    "request_error": 0,
+    "by_role": {
+      "tcgplayer_source_reference": {
+        "unique_urls": 403,
+        "available": 392,
+        "unavailable": 11
+      },
+      "bandai_official_family_reference": {
+        "unique_urls": 84,
+        "available": 84,
+        "unavailable": 0
+      }
+    }
+  },
+  "findings": [],
+  "boundaries": {
+    "network_reads": true,
+    "response_bodies_persisted": 0,
+    "database_connections": 0,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "identity_authority": false,
+    "image_pointer_authority": false,
+    "pricing_authority": false,
+    "publication_authority": false,
+    "app_visibility_enabled": false
+  },
+  "exact_next_gate": "review available images and preserve unavailable references as evidence gaps"
+}

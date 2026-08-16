@@ -1,0 +1,30 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "readiness_rows.jsonl",
+      "bytes": 66913,
+      "sha256": "6fd5b77b764bf1a8400bc02f271781499321759b6a45d108e5f18571c7555c89"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1666,
+      "sha256": "9e8e4700867843eb6e6c869931ccb62c1c22cf93e07d7b7c77aad75d4c8a35f0"
+    },
+    {
+      "path": "official_sources.json",
+      "bytes": 7435,
+      "sha256": "99788ad8b86c8f2565096c2123969aacb7b76bbc7d8a63a339620fc761f8b5e2"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 3199,
+      "sha256": "5158cfbf402650ca23b57cca0e669ccfaf22ea6dedd55f67e30673cec61bb72e"
+    }
+  ],
+  "bound_input": {
+    "path": "docs/audits/pricing/one_piece_canonical_import_staged_identity_review_v1/starter_deck_1_review_v1/review_rows.jsonl",
+    "bytes": 27938,
+    "sha256": "effc4ccc2e71be5cab7a30356763a2ca09d2d14b73bee48203ef3766dc97927b"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 982,
+      "sha256": "8f3d6417657caa2c22738898da1960a46841a7f9601fbd6fed9deb55f5979c59"
+    },
+    {
+      "path": "schema_readback.json",
+      "bytes": 45282,
+      "sha256": "740b143c34e20a45f9ef1a526c6ac2a25060d28ffcc8bda6849097935441c20f"
+    },
+    {
+      "path": "source_readback.json",
+      "bytes": 10724,
+      "sha256": "ff4ee3cc3ea7ffd361f52bcebdd09604730ebcaa9c419bc42e587d5c2a14d40a"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1320,
+      "sha256": "9b2dfdbf3a2cda8a3989721c2215e82bbdc61f9d13ce685c711bc43119416301"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 241,
+      "sha256": "1f3d9d31734ac0b7104f1e9bc97da81d5cc3e5a0bdd619c9b00cb2971a1c5e4b"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_import_durable_payload_v1/bounded_21_row_plan_v1/plan.json",
+      "bytes": 75233,
+      "sha256": "863c294262df66fc3a7cc2a51bf8c206df1fe1e67ea5633b92012e6453f2a729"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_canonical_import_durable_staging_schema_apply_v1/schema_apply_plan_v1/plan.json",
+      "bytes": 10712,
+      "sha256": "3bbd6456187ffb7b6f94329356fbccd47f03e8db337ab9f7fae7866f19b15f75"
+    }
+  ]
+}

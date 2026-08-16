@@ -1,0 +1,80 @@
+{
+  "version": "ONE_PIECE_ST01_CANONICAL_PROMOTION_ROLLBACK_CANARY_V1",
+  "recorded_at": "2026-08-14T20:12:23.449Z",
+  "status": "rollback_canary_passed_zero_durable_rows",
+  "repository": {
+    "commit_sha": "c5d3b4ad75fcc225e3cfe23d9f36cde22cbd756e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "promotion_plan_fingerprint_sha256": "fad134878a6f42872e1eec22fd7680e932a0b2fc59edba1c0d9b06ada4be1446",
+  "preflight_fingerprint_sha256": "a1ec0e958d746a8b39bf69accffc8558a6abc9799a5ed7197c6a1c149696887c",
+  "transaction_readback": {
+    "sets": 1,
+    "card_prints": 17,
+    "card_print_identity": 17,
+    "card_print_identity_source_evidence": 17,
+    "external_mappings": 17,
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_visible": false
+  },
+  "attributable_writes": [
+    {
+      "table_name": "card_print_identity",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_print_identity_source_evidence",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "card_prints",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "external_mappings",
+      "inserted": "17",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    },
+    {
+      "table_name": "sets",
+      "inserted": "1",
+      "updated": "0",
+      "deleted": "0",
+      "hot_updated": "0"
+    }
+  ],
+  "post_rollback_collisions": {
+    "set_identity": 0,
+    "card_identity": 0,
+    "print_identity": 0,
+    "source_evidence": 0,
+    "external_mapping": 0
+  },
+  "findings": [],
+  "boundaries": {
+    "durable_database_writes": 0,
+    "transaction_rollback_required": true,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "child_printing_writes": 0,
+    "don_writes": 0,
+    "sealed_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0
+  }
+}

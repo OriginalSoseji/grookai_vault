@@ -1,0 +1,36 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 841,
+      "sha256": "444d6f561d1616dccfd81f59e21f48154c3e2d13227094ff57292e8ba1332409"
+    },
+    {
+      "path": "production_readback.json",
+      "bytes": 8019,
+      "sha256": "f806c3dc174a8ff8f346b90b393345db90a7588ef7cc403256ce28b4d6057799"
+    },
+    {
+      "path": "staging_readback.jsonl.gz",
+      "bytes": 668100,
+      "sha256": "506438c5247affd26e1c20e0c165b5fa2ae3bc096d27e62f6abaf2d38b7550b2"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2453,
+      "sha256": "b180f9f8811c8efeae0df90645225cff1168a5fae9fff413649cdcecb6c53aa4"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 460,
+      "sha256": "bcb5dd855fe62d2e05104584085fdd63577249b3d8a69e62714eff4db857d7ce"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_complete_numbered_canonical_promotion_v1/frozen_plan_v1/promotion_plan.json.gz",
+      "sha256": "8c37351abd6d32643bddb5172d7eb661ad474201a9ec96436434c0046e11fd1f"
+    }
+  ]
+}

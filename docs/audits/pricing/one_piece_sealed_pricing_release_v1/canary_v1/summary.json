@@ -1,0 +1,43 @@
+{
+  "status": "rollback_canary_passed_zero_residue",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "1002f0218b9ffacef84273a1e98a984ea0aafdb1",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "03a7ab9dee1f0bd35dc2db6e838341b174baa90302a240ee2026a41b003b2e5d",
+  "transaction_readback": {
+    "valid": true,
+    "release": {
+      "id": "152e4fd2-be0d-5d1b-a68f-88e46822d84a",
+      "release_key": "one-piece-sealed-pricing-2026-08-15-v1",
+      "release_state": "frozen",
+      "source_audit_producer_sha": "0102cf5a7a7031be52b1804db7728a920b4c6cb1",
+      "source_sample_logical_hash": "be884db80e24e0dfd7963234e4187994456ed439cb2c0cfe149101e92c29287e",
+      "release_contract_version": "ONE_PIECE_SEALED_PRICING_RELEASE_V1",
+      "manifest_fingerprint": "b0047c787e0d02b1679133307bdd906b64a11bbb20e53f4a94f7130f798659ad",
+      "expected_member_count": 332,
+      "created_by": "9a772f75-297e-5a52-8f17-8578115ef650",
+      "frozen_by": "9a772f75-297e-5a52-8f17-8578115ef650",
+      "frozen": true
+    },
+    "member_count": 332,
+    "member_payload_sha256": "b0047c787e0d02b1679133307bdd906b64a11bbb20e53f4a94f7130f798659ad",
+    "expected_member_payload_sha256": "b0047c787e0d02b1679133307bdd906b64a11bbb20e53f4a94f7130f798659ad",
+    "member_exact": true,
+    "pointer": {
+      "release_id": "152e4fd2-be0d-5d1b-a68f-88e46822d84a",
+      "previous_release_id": null,
+      "pointer_contract_version": "CROSS_TCG_SEALED_PRODUCT_RELEASE_POINTER_V1"
+    }
+  },
+  "post_rollback": {
+    "qualification_rows": 374,
+    "release_rows": 0,
+    "member_rows": 0,
+    "pointer_rows": 0,
+    "one_piece_status": "hidden",
+    "qualification_binding_present": true
+  },
+  "database_writes_committed": 0
+}

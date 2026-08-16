@@ -1,0 +1,40 @@
+{
+  "status": "independent_storage_readback_failed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "2a02df2bb954e84e6bf26e0277fc149523493f0f",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5a05e6058f41987b81a41507745201114efb847602ab974daefea0a065982664",
+  "verified": 6552,
+  "failures": [
+    {
+      "ok": false,
+      "error": "storage_download:{}",
+      "source": {
+        "card_print_id": "c995939d-42e9-52fe-9edb-17a11ca1a5da",
+        "gv_id": "GV-OP-TCGP-617070",
+        "source_product_id": 617070,
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/617070_200w.jpg",
+        "image_path": "one-piece/card-prints/tcgplayer/617070/b8d88b1e184aadcf625c3352e04fbbc2.jpg",
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/external-card-images/one-piece/card-prints/tcgplayer/617070/b8d88b1e184aadcf625c3352e04fbbc2.jpg",
+        "image_source": "self_hosted_tcgplayer_exact_product_v1",
+        "image_hash": "b8d88b1e184aadcf625c3352e04fbbc2d3d1f84d9a1ba5e33d8173e387094caa",
+        "image_status": "exact",
+        "image_res": {
+          "width": 600,
+          "height": 838
+        },
+        "image_note": "Exact TCGPlayer product image self-hosted and hash-verified by ONE_PIECE_CARD_IMAGE_SELF_HOST_V1",
+        "content_type": "image/jpeg",
+        "size_bytes": 133385,
+        "width": 600,
+        "height": 838,
+        "format": "jpg",
+        "source_download_role": "high_resolution"
+      }
+    }
+  ],
+  "database_writes": 0,
+  "pointer_writes": 0
+}

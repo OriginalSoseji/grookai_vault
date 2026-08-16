@@ -1,0 +1,71 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_INGESTION_ORCHESTRATOR_V1",
+  "completed": [
+    {
+      "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+      "code": "msh",
+      "completed_at": "2026-08-14T00:42:41.646Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "staged_exact",
+        "staged_rows": 3089,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 453,
+          "card_print_identity": 453,
+          "card_printings": 865,
+          "external_mappings": 453,
+          "external_printing_mappings": 864
+        },
+        "after_classification": "staged_exact"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 453,
+          "card_print_identity": 453,
+          "card_printings": 865,
+          "external_mappings": 453,
+          "external_printing_mappings": 864
+        },
+        "promotion_plan_sha256": "b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba"
+      }
+    },
+    {
+      "source_set_id": "aa50a66a-0eb3-4bb5-acad-bc6c96f98663",
+      "code": "oe01",
+      "completed_at": "2026-08-14T00:44:15.523Z",
+      "outcome": {
+        "status": "full_cycle_rollback_proven",
+        "before_classification": "absent",
+        "staged_rows": 101,
+        "inserted": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "after_classification": "absent"
+      },
+      "counts_toward_run_delta": false,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "promotion_plan_sha256": "003048ecf19e0d3aaac6bc25382fdebc83016488921450412752f7d9f4652562"
+      }
+    }
+  ],
+  "deferred": [],
+  "retries": [],
+  "findings": [],
+  "status": "selected_full_cycle_rollbacks_proven"
+}

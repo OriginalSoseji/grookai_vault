@@ -1,0 +1,27 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "sha256": "ec5915d54dae8cc49f950c4d1cf8de45debdced13056a8c4d04021bb5b3f0375"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "923ac5111469636c8b706df9cff4fe0fd7442ed94304dba317a4da7ee2ef473c"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "c7361b77d89305057c515ca04183ad489cf5a0ceb8b648f27ed7f64b54da1d01"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_mutation_plan_v1/hot_update_policy_frozen_plan_v1/mutation_plan.json",
+      "sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4"
+    },
+    {
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_durable_apply_v1/frozen_apply_plan_v1/apply_plan.json",
+      "sha256": "e7a1e9b2bfe4726b781f7b608214214704515e4bf1223a0c906083b176c8658d"
+    }
+  ]
+}

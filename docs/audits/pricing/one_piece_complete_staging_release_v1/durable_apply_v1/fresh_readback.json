@@ -1,0 +1,604 @@
+{
+  "readback": {
+    "total_batch_count": 84,
+    "total_row_count": 7282,
+    "selected_batch_count": 83,
+    "selected_row_count": 7261,
+    "selected_batches_sha256": "84a9d29a59f84295429f73627b6dc9c282cf51cbf8861c39054a3452b6ecfc9c",
+    "selected_rows_sha256": "376e2aee355d17314bba8729298f3246fbf6de9540e96027688e6e786771f454",
+    "source_product_ids_sha256": "7e64929715941b7cdb73e141392102e47663e6d1e76bed0bd4352c3b3c5cae84",
+    "per_batch": [
+      {
+        "id": "b87154d2-ea0a-5119-ae58-9851c274f8ad",
+        "source_group_id": 3188,
+        "source_group_name": "Romance Dawn",
+        "payload_fingerprint_sha256": "1bd61fa6b0a06bf3dacd2e748f90f0b7eec23441022a013f43b86caace2715b3",
+        "row_count": 163
+      },
+      {
+        "id": "dd3886c1-9042-5a61-ad4b-a6f0217d750f",
+        "source_group_id": 3189,
+        "source_group_name": "Starter Deck 1: Straw Hat Crew",
+        "payload_fingerprint_sha256": "6e8e3b00748fe41b4b040ab5ea9871dea138bacbe164593b0b58582a591b520b",
+        "row_count": 21
+      },
+      {
+        "id": "b4f146ea-0eed-534a-bd6f-884525c5c35d",
+        "source_group_id": 3190,
+        "source_group_name": "Starter Deck 4: Animal Kingdom Pirates",
+        "payload_fingerprint_sha256": "916c5548a85f20f7ec1404a67f141558eac5642027fc07d09c8b27c54e251401",
+        "row_count": 19
+      },
+      {
+        "id": "0cf3f43b-4f40-5fbe-aa88-b96edf9d6124",
+        "source_group_id": 3191,
+        "source_group_name": "Starter Deck 2: Worst Generation",
+        "payload_fingerprint_sha256": "73abb1f5061215447de64abd625c09b9410aa924953ff6df67e0455d151b2058",
+        "row_count": 19
+      },
+      {
+        "id": "dcbc37b2-8d6b-5420-9f38-7e3c0ebab256",
+        "source_group_id": 3192,
+        "source_group_name": "Starter Deck 3: The Seven Warlords of The Sea",
+        "payload_fingerprint_sha256": "d08851199857c753f1eeb216b449c3d8949db8027ae127353787f10ae8f9afed",
+        "row_count": 19
+      },
+      {
+        "id": "29b31e9d-6100-5e50-99ce-b52b0f1ef628",
+        "source_group_id": 17658,
+        "source_group_name": "Super Pre-Release Starter Deck 2: Worst Generation",
+        "payload_fingerprint_sha256": "bdfe3c1f983ac0447955306668215ecc8a13289be273f6216afcc6390e835c12",
+        "row_count": 19
+      },
+      {
+        "id": "1948dcb0-5520-5c8b-a247-c59a1bc03742",
+        "source_group_id": 17659,
+        "source_group_name": "Super Pre-Release Starter Deck 1: Straw Hat Crew",
+        "payload_fingerprint_sha256": "ce6a9d520f17201e6a184915030399c612597e3339fa494d085b8d861347ef58",
+        "row_count": 21
+      },
+      {
+        "id": "01304552-ee0a-583f-9d50-842307b58a3d",
+        "source_group_id": 17660,
+        "source_group_name": "Super Pre-Release Starter Deck 3: The Seven Warlords of the Sea",
+        "payload_fingerprint_sha256": "39497ede8c61159727ee97efd13a4d4c2ebbab46aaa31f5d81e498fe0d0256e4",
+        "row_count": 19
+      },
+      {
+        "id": "07c7b1b8-3218-5a80-a816-0ecf81f64314",
+        "source_group_id": 17661,
+        "source_group_name": "Super Pre-Release Starter Deck 4: Animal Kingdom Pirates",
+        "payload_fingerprint_sha256": "edccd4a981ec619765a5d54f9b1116bf1f003eeb34e4935cea78ded6d8bcb688",
+        "row_count": 19
+      },
+      {
+        "id": "656404f3-37e6-57a5-aea6-b05edab725c3",
+        "source_group_id": 17675,
+        "source_group_name": "One Piece Promotion Cards",
+        "payload_fingerprint_sha256": "af90d020d966d8e9c9bcff7cf1e817bd9e85c72532246cc1b534ce484b7b9362",
+        "row_count": 1372
+      },
+      {
+        "id": "e3050457-ff02-5e16-98b5-696f669ab233",
+        "source_group_id": 17687,
+        "source_group_name": "Starter Deck 5: Film Edition",
+        "payload_fingerprint_sha256": "70b9df6493d35453a42a9c096c567b4237805f7e7f6ee12e6179ea52c85ba63f",
+        "row_count": 20
+      },
+      {
+        "id": "7a6218fc-1b73-549f-ae49-3b2fea3d0f57",
+        "source_group_id": 17698,
+        "source_group_name": "Paramount War",
+        "payload_fingerprint_sha256": "f100a0b0c6eca010f000fe0abef0422b11019fefc9b825a8be42cb00baefe8aa",
+        "row_count": 162
+      },
+      {
+        "id": "b57f5440-b49e-53ed-95ef-0e087fc2a3f5",
+        "source_group_id": 17699,
+        "source_group_name": "Starter Deck 6: Absolute Justice",
+        "payload_fingerprint_sha256": "a13e4f670bb9f70f2894d183992190b7e82e602ebaf48bfd6bebf765d290bf5b",
+        "row_count": 20
+      },
+      {
+        "id": "06f0e8e7-9a88-528c-a589-7e035d26e8b7",
+        "source_group_id": 22890,
+        "source_group_name": "Pillars of Strength",
+        "payload_fingerprint_sha256": "b610f34e2de2d40c2349bb1268b751a5a530b8de439b63a092f3d20a7804b5a3",
+        "row_count": 159
+      },
+      {
+        "id": "e5a60cc0-dad1-5626-a408-3b96b69e97d9",
+        "source_group_id": 22930,
+        "source_group_name": "Starter Deck 7: Big Mom Pirates",
+        "payload_fingerprint_sha256": "13b51c7d992584912fb2eda28a286278ad3c40bf5c9512130608d90283b479b7",
+        "row_count": 20
+      },
+      {
+        "id": "ed4f4db7-79b7-5ad7-b229-caf3bfe4cb92",
+        "source_group_id": 22934,
+        "source_group_name": "Paramount War Pre-Release Cards",
+        "payload_fingerprint_sha256": "3d020059c0d99ff302823328a81a6b98d9f315a81ab105cf0f5c11dfea73232f",
+        "row_count": 76
+      },
+      {
+        "id": "c0393791-3a30-54f5-9e87-328319cd3632",
+        "source_group_id": 22956,
+        "source_group_name": "Starter Deck 8: Monkey.D.Luffy",
+        "payload_fingerprint_sha256": "c1bfb0b69b5a18e83f99bde381775829407e2ed96e58badc5e365ce245b46c35",
+        "row_count": 18
+      },
+      {
+        "id": "5ed8fb09-e910-541b-b863-871dda4c0947",
+        "source_group_id": 22957,
+        "source_group_name": "Starter Deck 9: Yamato",
+        "payload_fingerprint_sha256": "80ca06d4157511cc64a6b659086e9f7f6a7e37a5d41e00c5f48a1d4cdae552ea",
+        "row_count": 18
+      },
+      {
+        "id": "19538105-9643-5867-bf6f-30fa27a93679",
+        "source_group_id": 23024,
+        "source_group_name": "Kingdoms of Intrigue",
+        "payload_fingerprint_sha256": "e58c43d3479f2f0515cc8447ebb4e7cbd02810aabdb59a33f461138d121e4b56",
+        "row_count": 166
+      },
+      {
+        "id": "96acb444-2934-5e4b-8384-b645a9277f28",
+        "source_group_id": 23213,
+        "source_group_name": "Awakening of the New Era",
+        "payload_fingerprint_sha256": "fb30e8ed650feb082ba8e5c9e02c57a1bdf6fe8716f5c5e20e118a682d12b92d",
+        "row_count": 165
+      },
+      {
+        "id": "27486873-d60d-5ec0-96c4-cd49c2fb4f80",
+        "source_group_id": 23232,
+        "source_group_name": "Pillars of Strength Pre-Release Cards",
+        "payload_fingerprint_sha256": "05c5d31585153acd27dc1d7895b3d4c097b79f45dc5567c39a7e28e5f4389ae2",
+        "row_count": 78
+      },
+      {
+        "id": "b08224cd-5709-56d3-bf12-5b74e64c0c7d",
+        "source_group_id": 23243,
+        "source_group_name": "Ultra Deck: The Three Captains",
+        "payload_fingerprint_sha256": "f0ef23e31216bc0e775b86a75846890960059c99cef65277c4b817fd59d75703",
+        "row_count": 21
+      },
+      {
+        "id": "b67dd936-006f-5659-9431-0b8022a61d52",
+        "source_group_id": 23250,
+        "source_group_name": "Starter Deck 11: Uta",
+        "payload_fingerprint_sha256": "8fe1c1d2a2801d23804e8fc43c68ef1bd2e6902ed3fce15a20a5ccb4b9b80e55",
+        "row_count": 8
+      },
+      {
+        "id": "43269e35-422d-5ddf-9f70-4a87b7736794",
+        "source_group_id": 23272,
+        "source_group_name": "Wings of the Captain",
+        "payload_fingerprint_sha256": "7c2015cf32001b38e7f948c188e98c4cc75baa9e876b00397c343ed921137034",
+        "row_count": 162
+      },
+      {
+        "id": "02336193-dffb-5cf0-b634-142db5fa419d",
+        "source_group_id": 23297,
+        "source_group_name": "Kingdoms of Intrigue Pre-Release Cards",
+        "payload_fingerprint_sha256": "dc8aca1ffc71a73a4a7a35150f0b120c3b7e2b5f2535dbd60a3e7a1ce37e8b1d",
+        "row_count": 76
+      },
+      {
+        "id": "fab452b0-ad12-5a98-912f-455ed624dc14",
+        "source_group_id": 23304,
+        "source_group_name": "One Piece Collection Sets",
+        "payload_fingerprint_sha256": "d04caa164b423a924d4a6b90cc799b1d212a30c3e7613afc430bd7cbdea9da3f",
+        "row_count": 12
+      },
+      {
+        "id": "dad641b6-5e16-552e-a641-e550ced8c9f2",
+        "source_group_id": 23333,
+        "source_group_name": "Extra Booster: Memorial Collection",
+        "payload_fingerprint_sha256": "950e67837046233615fd80b6bfd94dca850a80405b30a7533e299f7505da0fe8",
+        "row_count": 83
+      },
+      {
+        "id": "757b8e20-16a9-5e66-a02f-8d8444f6c441",
+        "source_group_id": 23348,
+        "source_group_name": "Starter Deck 12: Zoro and Sanji",
+        "payload_fingerprint_sha256": "46f374b3a5c21669867b03b7cd4c31bbe1a0a609de47541b4812569f775f3aa3",
+        "row_count": 20
+      },
+      {
+        "id": "607141f2-6483-5db2-83cf-e02ff5b83636",
+        "source_group_id": 23349,
+        "source_group_name": "Ultra Deck: The Three Brothers",
+        "payload_fingerprint_sha256": "1217d5474706175b7873e87b19b9ecfdcce85a42900c659629ddee2e43e03161",
+        "row_count": 38
+      },
+      {
+        "id": "3282c3c6-2e9d-56a4-84fe-603879d705e8",
+        "source_group_id": 23368,
+        "source_group_name": "Awakening of the New Era: 1st Anniversary Tournament Cards",
+        "payload_fingerprint_sha256": "7a2b1c58fb2aa8e92af84af0a603deb6028d5fbd17a09270396e72ce0972def0",
+        "row_count": 76
+      },
+      {
+        "id": "40a41a00-99a5-5cfb-bc9c-254461404a7e",
+        "source_group_id": 23387,
+        "source_group_name": "500 Years in the Future",
+        "payload_fingerprint_sha256": "faabf160d32cb9f57f6de0509fd18f07d002919b36bdd049c93def5b3a35f2e1",
+        "row_count": 162
+      },
+      {
+        "id": "5602f3fe-5450-52fc-88d2-3ac0a02dbe6a",
+        "source_group_id": 23424,
+        "source_group_name": "Wings of the Captain Pre-Release Cards",
+        "payload_fingerprint_sha256": "9bfcb3904ab6b5969d747d09866936edef7ce9660bce4750436cdd20be306e09",
+        "row_count": 76
+      },
+      {
+        "id": "31d53389-fb7e-5cef-b9e3-242c9d2ac5f8",
+        "source_group_id": 23462,
+        "source_group_name": "Two Legends",
+        "payload_fingerprint_sha256": "ef46c431b412226a6eeb0f3a36bba973e60474b9166893544a6482258c0b6ce5",
+        "row_count": 162
+      },
+      {
+        "id": "edbfaf0a-f9e0-524d-b036-5e5f78b1cbfb",
+        "source_group_id": 23489,
+        "source_group_name": "Starter Deck 14: 3D2Y",
+        "payload_fingerprint_sha256": "b5e399c604f1958c812bb4e30b659bb4bd2f9bec8e26ecbfb7e7a7a49a169560",
+        "row_count": 20
+      },
+      {
+        "id": "01df83dd-c403-5980-a473-69fa3b0fbc94",
+        "source_group_id": 23490,
+        "source_group_name": "Starter Deck 15: RED Edward.Newgate",
+        "payload_fingerprint_sha256": "df6a452ce91debbed9233eb32fbb9fd3b2cf26a7e2cca4850353feab23efd892",
+        "row_count": 17
+      },
+      {
+        "id": "b47e3e05-cc4e-5fe7-a165-17afa52d2b72",
+        "source_group_id": 23491,
+        "source_group_name": "Starter Deck 16: GREEN Uta",
+        "payload_fingerprint_sha256": "9c1e061a2318c242112d9be03de0c8e76cabf6bfdccb76364dacc176d70e1163",
+        "row_count": 18
+      },
+      {
+        "id": "d647aee8-9e62-5c5d-9a26-2af5ea7e4d6d",
+        "source_group_id": 23492,
+        "source_group_name": "Starter Deck 17: BLUE Donquixote Doflamingo",
+        "payload_fingerprint_sha256": "47c992325325d7f723e812983bd92dbbc530f27276aafe5eabcc9ec662dcaaed",
+        "row_count": 13
+      },
+      {
+        "id": "1bf38187-327c-54b7-8b50-8ec0b6221bf1",
+        "source_group_id": 23493,
+        "source_group_name": "Starter Deck 18: PURPLE Monkey.D.Luffy",
+        "payload_fingerprint_sha256": "d3201cc9998bd7f2b4aa8320ef96aea1f87832ad10f945f3ba39ed40437151b2",
+        "row_count": 18
+      },
+      {
+        "id": "aa274894-7e9d-55af-8600-b87f01e8922f",
+        "source_group_id": 23494,
+        "source_group_name": "Starter Deck 19: BLACK Smoker",
+        "payload_fingerprint_sha256": "2645b9a750a8fe8e12b05819294fc9493b291f1dda570c0320fdcca3c22ce602",
+        "row_count": 17
+      },
+      {
+        "id": "3f2c551c-bb23-50c0-adbb-4819cb511cec",
+        "source_group_id": 23495,
+        "source_group_name": "Starter Deck 20: YELLOW Charlotte Katakuri",
+        "payload_fingerprint_sha256": "d902ba6844ffc3dddbfda8ebbfd837a87eb8f882304723bdf4177b531ac53a25",
+        "row_count": 14
+      },
+      {
+        "id": "38af4416-e953-54a6-91a6-bf6f4f069723",
+        "source_group_id": 23496,
+        "source_group_name": "Premium Booster -The Best-",
+        "payload_fingerprint_sha256": "9c6bb9bffcd1b06dd2206d725ebd268c147b214f276efa03e2774246637dc04c",
+        "row_count": 329
+      },
+      {
+        "id": "966481d9-769b-5817-9039-0caba9c518ac",
+        "source_group_id": 23512,
+        "source_group_name": "500 Years in the Future Pre-Release Cards",
+        "payload_fingerprint_sha256": "05ad8784e696eda3408d561f55d2c4cdc05a227f9cd07a3cb8be30ce1eb83af4",
+        "row_count": 76
+      },
+      {
+        "id": "db84bd97-998b-54c0-a9ff-9ddcfc2def41",
+        "source_group_id": 23589,
+        "source_group_name": "Emperors in the New World",
+        "payload_fingerprint_sha256": "7ae24a853dff36356711942cc7be2af0aaddcb8eb64c08200e199fcd4177d31f",
+        "row_count": 169
+      },
+      {
+        "id": "5cd11a05-5699-5dbc-814e-9f29bb2e9c75",
+        "source_group_id": 23590,
+        "source_group_name": "Emperors in the New World: 2nd Anniversary Tournament Cards",
+        "payload_fingerprint_sha256": "b1dc4852aaaf9a447e70c42269e1f3ecd953236ca693d5baaffd540957f33b22",
+        "row_count": 76
+      },
+      {
+        "id": "43fb6ad9-826b-58a0-95e3-fee8b021c47d",
+        "source_group_id": 23737,
+        "source_group_name": "Two Legends Pre-Release Cards",
+        "payload_fingerprint_sha256": "6ab37dd5c935c2f13aabaa08fbb7d46634c9b4e75ddd02015b7073623de5996b",
+        "row_count": 76
+      },
+      {
+        "id": "1543d091-db79-5a44-9d3f-1fbadaefcdcf",
+        "source_group_id": 23766,
+        "source_group_name": "Royal Blood",
+        "payload_fingerprint_sha256": "a38c4a50a094e44bf052f2b2c7c17948d1648031865a9ab5bcd94504ad3b392f",
+        "row_count": 156
+      },
+      {
+        "id": "7f217600-cd0c-50e5-83d1-e37324080faa",
+        "source_group_id": 23834,
+        "source_group_name": "Extra Booster: Anime 25th Collection",
+        "payload_fingerprint_sha256": "de9af2de35b2cfd54e443e383a0853c6c3dfb2d70245e731a03933a1b736d557",
+        "row_count": 108
+      },
+      {
+        "id": "11a10c85-9b08-5755-beca-187d73d8e0a5",
+        "source_group_id": 23890,
+        "source_group_name": "Revision Pack Cards",
+        "payload_fingerprint_sha256": "bab2be528d86d5392666c963933c8ce095e579882b22939c1a9492076e153b5b",
+        "row_count": 33
+      },
+      {
+        "id": "7f91d519-70ee-56fd-a654-b7bd9c3d686d",
+        "source_group_id": 23907,
+        "source_group_name": "One Piece Demo Deck Cards",
+        "payload_fingerprint_sha256": "10c64f1001088cdaa8caa93052ba61124b0bedf8c29c32e4c87be8ee652c45df",
+        "row_count": 26
+      },
+      {
+        "id": "0e5aefe7-55e7-5c87-acec-98babfcd8070",
+        "source_group_id": 23991,
+        "source_group_name": "Starter Deck EX: Gear 5",
+        "payload_fingerprint_sha256": "5860981941832aaa3ade7aded08a26fb25eca5ef0f18831fc032b5e5acdb9f86",
+        "row_count": 36
+      },
+      {
+        "id": "d65b8db7-78bc-53ff-a51b-5e77edbd8dd4",
+        "source_group_id": 24068,
+        "source_group_name": "Royal Blood Release Event Cards",
+        "payload_fingerprint_sha256": "751b3932c7f8675b2ea7ccbd7cddfd67f201ff32db695951bd2c38268dd5f1ee",
+        "row_count": 76
+      },
+      {
+        "id": "6900b5ae-12d4-5710-9df6-fb4845ff11dc",
+        "source_group_id": 24241,
+        "source_group_name": "A Fist of Divine Speed",
+        "payload_fingerprint_sha256": "a45ff80223de8b4517c51e9c7213e37960805399c9393ac58ee8cec2f0b6a4e3",
+        "row_count": 166
+      },
+      {
+        "id": "740e5c10-b4e3-564c-9416-748aabcd216a",
+        "source_group_id": 24242,
+        "source_group_name": "A Fist of Divine Speed Release Event Cards",
+        "payload_fingerprint_sha256": "fedd684a3b031c623d14454c7d2d32e6e270a9139b58948a46cf3aa9a0f4de07",
+        "row_count": 76
+      },
+      {
+        "id": "a205ab5f-c16a-5efd-add4-1cae242927de",
+        "source_group_id": 24282,
+        "source_group_name": "Starter Deck 23: RED Shanks",
+        "payload_fingerprint_sha256": "5a564a43b3bfb1521891d0b52b2a588c5d06f8e8ef604e41f2e9d22120ed818f",
+        "row_count": 18
+      },
+      {
+        "id": "4ef910e6-554f-5b51-8c5c-3da5df0875f6",
+        "source_group_id": 24283,
+        "source_group_name": "Starter Deck 24: GREEN Jewelry Bonney",
+        "payload_fingerprint_sha256": "57b9f79862f4e94d8a1817a1a5e979c8fcf266d028da55650ac0f92b15e7aae4",
+        "row_count": 17
+      },
+      {
+        "id": "4a991744-a510-59d5-8293-176266f3469d",
+        "source_group_id": 24284,
+        "source_group_name": "Starter Deck 25: BLUE Buggy",
+        "payload_fingerprint_sha256": "50babca7ee3b951227711d33af9956b354b41762b413d08232b4c400d9725971",
+        "row_count": 17
+      },
+      {
+        "id": "1f540a63-798e-5d68-8b74-92f20ab27ee3",
+        "source_group_id": 24285,
+        "source_group_name": "Starter Deck 26: PURPLE/BLACK Monkey.D.Luffy",
+        "payload_fingerprint_sha256": "ba3caa47ae4defe3fa346b8c81364fbe2432a2c4c87f29bc4ac8ad26814b2ad5",
+        "row_count": 17
+      },
+      {
+        "id": "cdb8d5da-332c-5e57-8442-6f1369eefb4a",
+        "source_group_id": 24286,
+        "source_group_name": "Starter Deck 27: BLACK Marshall.D.Teach",
+        "payload_fingerprint_sha256": "2491a503ca68aa16018f7e76eea1b9bfbdc49ebe304ed40bafbefec96b463d5b",
+        "row_count": 17
+      },
+      {
+        "id": "387cf6d4-982a-57ec-a615-d7bb03f2fd42",
+        "source_group_id": 24287,
+        "source_group_name": "Starter Deck 28: GREEN/YELLOW Yamato",
+        "payload_fingerprint_sha256": "01f388405f934cdf30f5b1214fa8f45723e741ab9e3dc2346aa8e660293c3106",
+        "row_count": 17
+      },
+      {
+        "id": "dae9820e-3ce2-502a-8df9-8cf370b94ca6",
+        "source_group_id": 24302,
+        "source_group_name": "Legacy of the Master",
+        "payload_fingerprint_sha256": "d050a5b3ff237e7ee3024e6a885cd888cdd62ba263d0c1b832b404aba6bfff3b",
+        "row_count": 165
+      },
+      {
+        "id": "6a2bdf00-9f7f-54a4-adae-f5a370f9e182",
+        "source_group_id": 24303,
+        "source_group_name": "Carrying On His Will",
+        "payload_fingerprint_sha256": "81002204e68d93cf59b35593b79e97ff9d48413321a40533d698b15ab9b25895",
+        "row_count": 181
+      },
+      {
+        "id": "a4d6c631-ed39-592e-9668-e79dbe7a55c1",
+        "source_group_id": 24304,
+        "source_group_name": "Starter Deck 22: Ace & Newgate",
+        "payload_fingerprint_sha256": "56e794ad39db78ef804ea7d152124d4a56d0f340505bebacdbf96dbd2786e9f3",
+        "row_count": 33
+      },
+      {
+        "id": "a838d0bc-7fec-5348-9afb-bf63f19b2ce4",
+        "source_group_id": 24305,
+        "source_group_name": "Premium Booster -The Best- Vol. 2",
+        "payload_fingerprint_sha256": "941abd3c599a47122ba9bda91ef84cdd0b9a589f65ca3220bf69215c4ab1651b",
+        "row_count": 380
+      },
+      {
+        "id": "cf85dbf1-b213-5e7a-86ee-36bd369546e9",
+        "source_group_id": 24306,
+        "source_group_name": "Learn Together Deck Set",
+        "payload_fingerprint_sha256": "8be1cea3b7d0effda2864f05b70f9e97acdbd6b483075c53fb5fa897ffa69d8c",
+        "row_count": 53
+      },
+      {
+        "id": "18b053f5-d4e2-5358-ac90-054feeb4734f",
+        "source_group_id": 24406,
+        "source_group_name": "Legacy of the Master Release Event Cards",
+        "payload_fingerprint_sha256": "0501d96aa82c8f50422e592b4cf1d0c083834e4d31c2df2f4d2897e08641c24f",
+        "row_count": 76
+      },
+      {
+        "id": "985afd60-9f3c-5d43-8191-9938c86b629b",
+        "source_group_id": 24498,
+        "source_group_name": "Carrying On His Will: 3rd Anniversary Tournament Cards",
+        "payload_fingerprint_sha256": "e4685fb46b1088e850dd43a4b348ede0829b2ec32ff2ac7f51e6a907ee7086df",
+        "row_count": 81
+      },
+      {
+        "id": "73a15982-c618-5c38-9353-c4883c1fd601",
+        "source_group_id": 24537,
+        "source_group_name": "The Azure Sea's Seven",
+        "payload_fingerprint_sha256": "038b735ba2a06cf75888b2c906d9b43b8b9e46fd3c6d827a49f1eefd61d18b4c",
+        "row_count": 219
+      },
+      {
+        "id": "05a35947-4671-5057-8924-cd2652cfeef0",
+        "source_group_id": 24545,
+        "source_group_name": "Extra Booster: One Piece Heroines Edition",
+        "payload_fingerprint_sha256": "a27f4bf0cd5cc14229819b64729fc1bf5d20a5d2f344afd789667b2518857b24",
+        "row_count": 107
+      },
+      {
+        "id": "4b07ddcd-2736-56f0-9159-28229e394b3c",
+        "source_group_id": 24575,
+        "source_group_name": "Starter Deck 29: Egghead",
+        "payload_fingerprint_sha256": "446cc0b8b8366dc5fdc5619d7b61044d36a48505c483ce33c741928c019c0f6d",
+        "row_count": 34
+      },
+      {
+        "id": "c7ca3080-f32f-525b-9075-04e4c060b0f1",
+        "source_group_id": 24579,
+        "source_group_name": "The Azure Sea's Seven Release Event Cards",
+        "payload_fingerprint_sha256": "9e3ef01333561d0f745392ec540092f418a11d1f576b3e57053aa0643d3310ac",
+        "row_count": 90
+      },
+      {
+        "id": "caa6dfae-e545-5b13-b305-7fff5903d032",
+        "source_group_id": 24637,
+        "source_group_name": "Adventure on Kami's Island",
+        "payload_fingerprint_sha256": "2d63054d32da22265a939699cc47131f20278dec503203332847d252bcec5930",
+        "row_count": 215
+      },
+      {
+        "id": "8a0185ed-12f6-5fa9-91ff-4be987bed7c6",
+        "source_group_id": 24638,
+        "source_group_name": "Adventure on Kami's Island Release Event Cards",
+        "payload_fingerprint_sha256": "35ed5facf8a9551b082d6f5f1799b99fa7b8d43688d8e240678a36bc5a51be1f",
+        "row_count": 91
+      },
+      {
+        "id": "7c3033de-4c1d-5167-a48c-79f77a3faf77",
+        "source_group_id": 24664,
+        "source_group_name": "The Time of Battle",
+        "payload_fingerprint_sha256": "38b86723df057c082f270cc3e4bc236f37a8be2384db072770b5f990979b7ab7",
+        "row_count": 166
+      },
+      {
+        "id": "722bc670-9b58-53ec-87ad-5f8687639c52",
+        "source_group_id": 24677,
+        "source_group_name": "The Time of Battle Release Event Cards",
+        "payload_fingerprint_sha256": "591509382e5cfcb0c65f45c470dc92a111dd83dee06525a2e27e1f630610b4b3",
+        "row_count": 76
+      },
+      {
+        "id": "70dfd2e7-ee40-57fb-9470-42cb8e80eb87",
+        "source_group_id": 24678,
+        "source_group_name": "Starter Deck EX: Luffy & Ace",
+        "payload_fingerprint_sha256": "1fa3cc1e710b2de3b2294905abd4b3717439da3c1ae4efc139ba5b8c00ff4999",
+        "row_count": 37
+      },
+      {
+        "id": "a49bd850-3c0b-58cf-8040-ca81d229d4e0",
+        "source_group_id": 24708,
+        "source_group_name": "Set Sail Deck Set",
+        "payload_fingerprint_sha256": "e478edc6827302c15765092f895047909ed7852c035acce63dfa976c7952f7ee",
+        "row_count": 2
+      },
+      {
+        "id": "6373cc4e-c652-5251-ae03-f83a763de94a",
+        "source_group_id": 24736,
+        "source_group_name": "The World's Strongest Warriors",
+        "payload_fingerprint_sha256": "f96754d69dc8a4be7729e95356ada48dcd3764c7d230c3fe7dd3b7fd8e5e3479",
+        "row_count": 74
+      },
+      {
+        "id": "edef8ac1-28cb-5722-a969-4a783b72d1c6",
+        "source_group_id": 24749,
+        "source_group_name": "Starter Deck 31: RED Monkey.D.Luffy",
+        "payload_fingerprint_sha256": "7630ec5015e765a35976bee90d0d9cbccf7d22a623ddfdc6b0dd540b602986a7",
+        "row_count": 11
+      },
+      {
+        "id": "8ab1e600-6ac5-5c2c-bf01-78d6b84810c4",
+        "source_group_id": 24750,
+        "source_group_name": "Starter Deck 32: GREEN Roronoa Zoro",
+        "payload_fingerprint_sha256": "42585e35df21b321b442c4a8e4ab862cf3f4c26647120df020ba23f6295e445c",
+        "row_count": 11
+      },
+      {
+        "id": "a98e9c7e-333d-505f-b3ad-72286c4b5789",
+        "source_group_id": 24751,
+        "source_group_name": "Starter Deck 33: BLUE Kuzan",
+        "payload_fingerprint_sha256": "be71fdc348f05382b98e95524e2622955e8b7b53c6c1e0f84c6063b8d40cf6eb",
+        "row_count": 11
+      },
+      {
+        "id": "a9db201f-8e50-58e8-9ad6-e4683709c380",
+        "source_group_id": 24752,
+        "source_group_name": "Starter Deck 34: PURPLE Charlotte Katakuri",
+        "payload_fingerprint_sha256": "0bf3b77143c5ef080e25c9ffc75cc2a115a4c6f48a1b865c6cdc0a1039043240",
+        "row_count": 12
+      },
+      {
+        "id": "9823d14a-0410-5659-ba5d-8a1cd8ba030a",
+        "source_group_id": 24753,
+        "source_group_name": "Starter Deck 35: RED/BLACK Sabo",
+        "payload_fingerprint_sha256": "ef7f386699f3e62edf24a9db1ff1e5fec32a70c5a133c896a05890e3d84eb0bf",
+        "row_count": 11
+      },
+      {
+        "id": "ffd4834b-39b4-5ec2-9266-2bf971fcfec0",
+        "source_group_id": 24754,
+        "source_group_name": "Starter Deck 36: YELLOW Eustass\"Captain\"Kid",
+        "payload_fingerprint_sha256": "6d702dee95e9ea36b5e5edfdbc4e770b9040f60383b4594a5c47fadfbbbd8282",
+        "row_count": 13
+      }
+    ]
+  },
+  "schema_sha256": "e550f5f2480623c900e4e86ce6a071a781537f940c0b3e6e3ff0492cd83ce955",
+  "source_sha256": "dd26272c9362ad80b7b73e09d6bbea2ce14945eb1053a6aeebd0d99578791fca",
+  "protected_snapshot_sha256": "15cd2bfb6562c8211a2e52b9383bd7f6d08249780dd9fb3927ed87006af5d668",
+  "visibility": {
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false,
+    "service_role_visible": false
+  },
+  "findings": []
+}

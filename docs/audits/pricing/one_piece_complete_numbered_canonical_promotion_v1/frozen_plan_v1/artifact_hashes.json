@@ -1,0 +1,72 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "promotion_plan.json.gz",
+      "bytes": 3232194,
+      "sha256": "734c65812792f9fbc9395c06b02ee4f838de074d2fc78629df997e0855f27084"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1662,
+      "sha256": "11c12c2d10de0ed8388d5aa75a90fc81db3e8dacd998671f14193d34634eb79d"
+    },
+    {
+      "path": "set_rows.json",
+      "bytes": 67002,
+      "sha256": "a07d0aaa7515bd97a2aea2c055c67eec67da4f32aac36cf1b1d11bf5dde53a94"
+    },
+    {
+      "path": "retained_existing_rows.jsonl",
+      "bytes": 5338,
+      "sha256": "28104f1788f441dd69fbf1c25150724a905b871b37919162ee3f720afe259ff7"
+    },
+    {
+      "path": "authority_holds.jsonl",
+      "bytes": 3816,
+      "sha256": "369cc05938a53dd2a45606d18a9840aa018e23dd33fe30fcc03cbc2d02abd474"
+    },
+    {
+      "path": "non_english_language_holds.jsonl",
+      "bytes": 4897,
+      "sha256": "2fde01ff36123c01000dc5c0e97eb371c2eb3bbdec7c5af538d1745e0ec56333"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 493,
+      "sha256": "3c667aa72a7f22d92c5b5ad06ab9e9cf60cec4197c84e1b2bb1b7d270b8208b0"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "name": "authoritySummary",
+      "path": "docs/audits/pricing/one_piece_complete_official_catalog_authority_v1/official_english_v1/summary.json",
+      "sha256": "1e5c0978f82121ed68c0cb1e080798529cd6c49b22ef5adcc4d65b87732f6ebc"
+    },
+    {
+      "name": "bindings",
+      "path": "docs/audits/pricing/one_piece_complete_official_catalog_authority_v1/official_english_v1/numbered_product_bindings.jsonl.gz",
+      "sha256": "e57edabca8c86fa5555c1069ea2430bd0490613171e48ebe4ab709648332b9c6"
+    },
+    {
+      "name": "seriesSources",
+      "path": "docs/audits/pricing/one_piece_complete_official_catalog_authority_v1/official_english_v1/series_sources.json",
+      "sha256": "d20fba9f8beaa1ceb2e3f3410f0bba2d24fdf90dab3bdb7f63319e6c3f157cbc"
+    },
+    {
+      "name": "reconciliationSummary",
+      "path": "docs/audits/pricing/one_piece_complete_canonical_reconciliation_v1/frozen_reconciliation_v1/summary.json",
+      "sha256": "830418974b7eea09ce92f9197d0b39f643b40bd79029fcc4a84ed4e1f09d72f3"
+    },
+    {
+      "name": "manifest",
+      "path": "docs/audits/pricing/one_piece_canonical_catalog_readiness_v1/current_complete_source_2026-08-14_v1/source_product_manifest.jsonl.gz",
+      "sha256": "973bec5c186adc8853dcff91218e1057772aea384f9a3318919fb03b9c39bc0e"
+    },
+    {
+      "name": "existingSt01Plan",
+      "path": "docs/audits/pricing/one_piece_st01_canonical_promotion_v1/frozen_plan_v1/plan.json",
+      "sha256": "10b238edc52ab8fa1271481231e6803553814c451f348d19e6e459017d9bf5e3"
+    }
+  ]
+}

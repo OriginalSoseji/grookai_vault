@@ -1,0 +1,49 @@
+{
+  "transaction_read_only": true,
+  "readback": {
+    "counts": {
+      "families": 242,
+      "variants": 390,
+      "automated_reviews": 390,
+      "source_mappings": 390,
+      "variant_evidence": 1731
+    },
+    "expected_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "actual_sha256": "69c27e4b22aefc2779f3a9b6bd22646920dd5690e9efd30bdae2058f4769ca75",
+    "exact": true
+  },
+  "candidate_lineage": {
+    "expected": 390,
+    "found": 390,
+    "mismatches": []
+  },
+  "visibility": {
+    "release_status": "hidden",
+    "anon_visible": false,
+    "authenticated_visible": false
+  },
+  "baseline": {
+    "sealed_product_families": 242,
+    "sealed_product_variants": 390,
+    "sealed_product_candidates": 403,
+    "sealed_product_candidate_reviews": 390,
+    "sealed_product_source_mappings": 390,
+    "sealed_product_variant_evidence": 1731,
+    "card_prints": 77882,
+    "card_printings": 90243,
+    "external_mappings": 90047,
+    "vault_item_instances": 3385,
+    "market_price_current_publication": 1,
+    "catalog_game_release_controls": 2
+  },
+  "write_attribution": [],
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_writes": 0,
+    "publication_writes": 0,
+    "card_writes": 0,
+    "vault_writes": 0
+  }
+}

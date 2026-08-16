@@ -1,0 +1,16 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "2026-08-14T14-34-07.207Z_uploaded_verified_and_retained.json",
+      "bytes": 894,
+      "sha256": "ca68cbf35f0a38ea2dc71bff69c8ea00d46d7a8e7f81edd5567c8a493ee10c46"
+    },
+    {
+      "path": "2026-08-14T14-34-07.207Z_uploaded_verified_and_retained.md",
+      "bytes": 286,
+      "sha256": "ff3ab90ca183d851ce0bce39f120708c61511e7ef1874ef255826eee87b31527"
+    }
+  ],
+  "result_proof_hash_sha256": "7355e97c0f3e7d6bd68fe2364ab0247b283ab5a71c987e6e82743e6318f92c1f"
+}

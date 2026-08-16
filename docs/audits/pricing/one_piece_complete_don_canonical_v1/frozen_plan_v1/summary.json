@@ -1,0 +1,46 @@
+{
+  "version": "ONE_PIECE_COMPLETE_ENGLISH_DON_PARENT_PROMOTION_PLAN_V1",
+  "recorded_at": "2026-08-15T14:25:44.061Z",
+  "status": "frozen_don_plan_passed_no_writes",
+  "repository": {
+    "commit_sha": "d54085d3e82aba725a278e9be75cbc8af1a23f4e",
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "tracked_worktree_clean": true
+  },
+  "counts": {
+    "source_don_products": 225,
+    "current_source_products": 223,
+    "current_english_products": 222,
+    "current_non_english_holds": 1,
+    "future_or_presale_holds": 2,
+    "set_rows": 1,
+    "card_prints": 222,
+    "identity_rows": 222,
+    "source_evidence_rows": 222,
+    "external_mappings": 222
+  },
+  "plan_fingerprint_sha256": "3adebfb80803c147bc83bad6887418593c221f9e1cf090291819817505833bba",
+  "payload_fingerprint_sha256": "9aad9b82042c73a2220171309350fe351e1b7e0b886b825d9ecb70cf8f68a147",
+  "input_hashes": {
+    "source_manifest_gzip_sha256": "973bec5c186adc8853dcff91218e1057772aea384f9a3318919fb03b9c39bc0e",
+    "reconciliation_summary_sha256": "830418974b7eea09ce92f9197d0b39f643b40bd79029fcc4a84ed4e1f09d72f3",
+    "don_lane_sha256": "941c24025dafbdd705a9c373d8977eac9d818cd02e14cbfc386f226cd918a825"
+  },
+  "boundaries": {
+    "plan_only": true,
+    "database_connections": 0,
+    "database_writes": 0,
+    "updates": 0,
+    "deletes": 0,
+    "child_printing_writes": 0,
+    "sealed_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_enabled": false
+  },
+  "findings": [],
+  "exact_next_gate": "production read-only collision and staging preflight"
+}

@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "sha256": "ea8285ae4196a15a8e7808180893039b765c7b030b1d149ea4707da65d23080b"
+    },
+    {
+      "path": "protected_before.json",
+      "sha256": "8a6e9a916a37e7df64179affeb4e47df3d329909540f36ed7b85b9604c2fb06c"
+    },
+    {
+      "path": "transaction_proof.json",
+      "sha256": "8ade2f07c024887af9cc7fcaf2d56f64d41c36d6cc6dacb169aa2c931f12cd09"
+    },
+    {
+      "path": "post_rollback_readback.json",
+      "sha256": "8a6e9a916a37e7df64179affeb4e47df3d329909540f36ed7b85b9604c2fb06c"
+    },
+    {
+      "path": "summary.json",
+      "sha256": "d2b2a8020b280111c75b71f33eb0667723ff29ae2023f5e0a17992f7d7d0b659"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "dff300f17303d3b73d005497a6359b85019be12086eea2b84bd3622895e25b12"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "docs/audits/pricing/one_piece_st01_printing_image_mutation_plan_v1/hot_update_policy_frozen_plan_v1/mutation_plan.json",
+      "sha256": "6140bed1b25f38caf84f3114fadad0e212568d8c41f9a87415a6f06e4d5097a4"
+    }
+  ]
+}

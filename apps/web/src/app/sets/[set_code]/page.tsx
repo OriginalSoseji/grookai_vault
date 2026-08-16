@@ -35,7 +35,12 @@ export async function generateMetadata(
 
   const siteOrigin = getSiteOrigin();
   const canonicalUrl = `${siteOrigin}/sets/${encodeURIComponent(setDetail.code)}`;
-  const title = `${setDetail.name} Pokemon Card Set | Grookai Vault`;
+  const gameLabel = setDetail.game_code === "one_piece"
+    ? "One Piece Card Game"
+    : setDetail.game_code === "mtg"
+      ? "Magic: The Gathering"
+      : "Pokemon Trading Card Game";
+  const title = `${setDetail.name} ${gameLabel} Set | Grookai Vault`;
   const description = `Browse ${setDetail.card_count.toLocaleString()} reconciled card identities from ${setDetail.name} on Grookai Vault.`;
 
   return {

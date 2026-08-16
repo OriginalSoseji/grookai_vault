@@ -1,0 +1,20 @@
+{
+  "status": "production_preflight_passed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "1002f0218b9ffacef84273a1e98a984ea0aafdb1",
+    "tracked_worktree_clean": true
+  },
+  "migration_sha256": "ab6a6b0ba759e86dde6a812998164e6bed1aa71f847768f975cd788273f0a1c1",
+  "state": {
+    "qualification_rows": 374,
+    "release_rows": 0,
+    "member_rows": 0,
+    "pointer_rows": 0,
+    "ledger_rows": 0,
+    "qualification_column": false,
+    "read_function": false,
+    "one_piece_status": "hidden"
+  },
+  "database_writes": 0
+}
