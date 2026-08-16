@@ -2,6 +2,10 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 
+import {
+  selectMtgCatalogExecutionRangeV1,
+} from "../../scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs";
+
 const SOURCE = fs.readFileSync(
   new URL(
     "../../scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs",
@@ -67,4 +71,49 @@ test("apply requires one exact manifest-level approval", () => {
   assert.match(SOURCE, /Exact catalog envelope approval missing/);
   assert.doesNotMatch(SOURCE, /MTG_CANONICAL_SET_PROMOTION_APPROVAL/);
   assert.doesNotMatch(SOURCE, /MTG_CANONICAL_CANARY_STAGE_APPROVAL/);
+});
+
+test("orchestrator selects deterministic non-overlapping execution ranges", () => {
+  const executionOrder = Array.from({ length: 10 }, (_, index) => ({
+    execution_ordinal: index,
+    source_set_id: `set-${index}`,
+  }));
+
+  const first = selectMtgCatalogExecutionRangeV1(executionOrder, {
+    startIndex: 0,
+    maxSets: 4,
+  });
+  const second = selectMtgCatalogExecutionRangeV1(executionOrder, {
+    startIndex: 4,
+    maxSets: 4,
+  });
+  const final = selectMtgCatalogExecutionRangeV1(executionOrder, {
+    startIndex: 8,
+    maxSets: 4,
+  });
+
+  assert.deepEqual(first.selected.map((row) => row.source_set_id), [
+    "set-0",
+    "set-1",
+    "set-2",
+    "set-3",
+  ]);
+  assert.deepEqual(second.selected.map((row) => row.source_set_id), [
+    "set-4",
+    "set-5",
+    "set-6",
+    "set-7",
+  ]);
+  assert.deepEqual(final.selected.map((row) => row.source_set_id), ["set-8", "set-9"]);
+  assert.equal(final.end_index_exclusive, 10);
+});
+
+test("orchestrator rejects an execution range outside the frozen order", () => {
+  assert.throws(
+    () => selectMtgCatalogExecutionRangeV1([{ source_set_id: "set-0" }], {
+      startIndex: 1,
+      maxSets: 1,
+    }),
+    /outside execution order length/,
+  );
 });
