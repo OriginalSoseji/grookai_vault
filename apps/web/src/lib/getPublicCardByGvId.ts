@@ -35,6 +35,7 @@ type TraitRow = {
 
 type PublicCardRow = {
   id: string | null;
+  game_id: string | null;
   gv_id: string | null;
   name: string | null;
   number: string | null;
@@ -484,9 +485,11 @@ async function getRelatedPrintsByName(
   supabase: Awaited<ReturnType<typeof createServerSupabase>>,
   name?: string | null,
   excludeId?: string | null,
+  gameId?: string | null,
 ) {
   const normalizedName = name?.trim();
-  if (!normalizedName) {
+  const normalizedGameId = gameId?.trim();
+  if (!normalizedName || !normalizedGameId) {
     return undefined;
   }
 
@@ -517,6 +520,7 @@ async function getRelatedPrintsByName(
       `,
     )
     .eq("name", normalizedName)
+    .eq("game_id", normalizedGameId)
     .limit(10)
     .order("set_code", { ascending: true })
     .order("number_plain", { ascending: true, nullsFirst: false });
@@ -609,6 +613,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     .select(
       `
         id,
+        game_id,
         gv_id,
         name,
         number,
@@ -667,7 +672,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     await Promise.all([
       getSetDetailsByCode(row.set_code),
       includeRelatedPrints
-        ? getRelatedPrintsByName(supabase, row.name, row.id)
+        ? getRelatedPrintsByName(supabase, row.name, row.id, row.game_id)
         : Promise.resolve(undefined),
       resolveCardImageFieldsV1(row),
       getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
@@ -760,7 +765,7 @@ export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelate
   const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("id,gv_id,name")
+    .select("id,gv_id,name,game_id")
     .in("gv_id", getCompatiblePublicGvIdCandidates(gvId))
     .limit(2);
 
@@ -769,7 +774,10 @@ export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelate
   }
 
   const row = pickResolvedPublicGvIdRow(
-    data as unknown as Pick<PublicCardRow, "id" | "gv_id" | "name">[],
+    data as unknown as Pick<
+      PublicCardRow,
+      "id" | "gv_id" | "name" | "game_id"
+    >[],
     gvId,
   );
   if (!row) {
@@ -777,7 +785,7 @@ export const getPublicRelatedPrintsByGvId = cache(async function getPublicRelate
   }
   assertCanonicalCardRouteRow(row, gvId);
 
-  return getRelatedPrintsByName(supabase, row.name, row.id);
+  return getRelatedPrintsByName(supabase, row.name, row.id, row.game_id);
 });
 
 export const getPublicCameosByGvId = cache(async function getPublicCameosByGvId(

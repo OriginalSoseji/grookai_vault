@@ -70,6 +70,17 @@ test("card metadata identifies the game instead of hardcoding Pokemon", () => {
   assert.doesNotMatch(cardPage, /category: "Pokemon trading card"/);
 });
 
+test("related print discovery remains inside the selected game", () => {
+  const cardLoader = source("apps/web/src/lib/getPublicCardByGvId.ts");
+
+  assert.match(cardLoader, /\.eq\("game_id", normalizedGameId\)/);
+  assert.match(
+    cardLoader,
+    /getRelatedPrintsByName\(supabase, row\.name, row\.id, row\.game_id\)/,
+  );
+  assert.match(cardLoader, /\.select\("id,gv_id,name,game_id"\)/);
+});
+
 test("database release boundary still gates direct tables and search", () => {
   const migration = source(
     "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql",
