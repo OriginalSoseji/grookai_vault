@@ -6,12 +6,18 @@ import {
   matchesPublicSetLanguageScope,
   normalizePublicLanguageScope,
 } from "@/lib/publicLanguageScope";
+import {
+  matchesPublicGameScope,
+  normalizePublicGameScope,
+} from "@/lib/publicGameScope";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type SetsPageProps = {
   searchParams?: Promise<{
     lang?: string;
+    game?: string;
   }>;
 };
 
@@ -35,9 +41,12 @@ function isSpecialSetName(name: string, code: string) {
 export default async function SetsPage(props: SetsPageProps) {
   const searchParams = await props.searchParams;
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
+  const gameScope = normalizePublicGameScope(searchParams?.game);
   const allSets = await getPublicSets();
-  const sets = allSets.filter((setInfo) =>
-    matchesPublicSetLanguageScope(setInfo, languageScope),
+  const sets = allSets.filter(
+    (setInfo) =>
+      matchesPublicGameScope(setInfo, gameScope) &&
+      matchesPublicSetLanguageScope(setInfo, languageScope),
   );
   const setLogoPathByCode = await getSetLogoAssetPathMap(sets.map((setInfo) => setInfo.code));
   const totalCards = sets.reduce((sum, setInfo) => sum + setInfo.card_count, 0);
@@ -54,9 +63,9 @@ export default async function SetsPage(props: SetsPageProps) {
               </div>
               <div className="space-y-2">
                 <p className="gv-eyebrow">Public Sets</p>
-                <h1 className="gv-display-title">Browse Pokemon Sets</h1>
+                <h1 className="gv-display-title">Browse Trading Card Sets</h1>
                 <p className="gv-body-copy max-w-2xl">
-                  Explore physical sets, special releases, promos, and decks. Open a set to see its cards and the exact versions available.
+                  Explore supported games, physical sets, special releases, promos, and decks. Open a set to see its cards and the exact versions available.
                 </p>
               </div>
             </div>

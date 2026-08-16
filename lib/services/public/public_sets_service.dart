@@ -10,6 +10,7 @@ class PublicSetSummary {
     required this.code,
     required this.name,
     required this.cardCount,
+    this.game = PublicCatalogGame.pokemon,
     this.heroImageUrl,
     this.printedSetAbbrev,
     this.printedTotal,
@@ -21,6 +22,7 @@ class PublicSetSummary {
   final String code;
   final String name;
   final int cardCount;
+  final PublicCatalogGame game;
   final String? heroImageUrl;
   final String? printedSetAbbrev;
   final int? printedTotal;
@@ -33,6 +35,20 @@ class PublicSetSummary {
     final fallback = normalizeDisplayImageUrl(heroImageUrl);
     return fallback == hostedHeroImageUrl ? null : fallback;
   }
+}
+
+enum PublicCatalogGame { pokemon, onePiece }
+
+extension PublicCatalogGamePresentation on PublicCatalogGame {
+  String get databaseCode => switch (this) {
+    PublicCatalogGame.pokemon => 'pokemon',
+    PublicCatalogGame.onePiece => 'one_piece',
+  };
+
+  String get label => switch (this) {
+    PublicCatalogGame.pokemon => 'Pokemon',
+    PublicCatalogGame.onePiece => 'One Piece',
+  };
 }
 
 class PublicSetCard {
@@ -331,7 +347,7 @@ class PublicSetsService {
     final rawRows = await client
         .from('sets')
         .select(
-          'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
+          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
         )
         .not('card_prints.gv_id', 'is', null)
         .not('card_prints.set_code', 'is', null);
@@ -367,7 +383,8 @@ class PublicSetsService {
         continue;
       }
 
-      final key = _normalizeName(candidate.name);
+      final key =
+          '${candidate.game.databaseCode}:${_normalizeName(candidate.name)}';
       final existing = canonicalByName[key];
       canonicalByName[key] = existing == null
           ? candidate
@@ -420,7 +437,7 @@ class PublicSetsService {
     final rawRows = await client
         .from('sets')
         .select(
-          'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
+          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at,card_prints(count)',
         )
         .ilike('code', _escapePostgrestLikePattern(normalizedCode))
         .not('card_prints.gv_id', 'is', null)
@@ -717,11 +734,13 @@ class PublicSetsService {
     required List<PublicSetSummary> sets,
     required String query,
     required PublicSetFilter filter,
+    PublicCatalogGame game = PublicCatalogGame.pokemon,
     PublicSetEra era = PublicSetEra.all,
     PublicSetLane lane = PublicSetLane.all,
   }) {
     final queryTokens = _normalizeSearchTokens(query);
     var filtered = sets
+        .where((setInfo) => setInfo.game == game)
         .where((setInfo) => _matchesSearchTokens(setInfo, queryTokens))
         .where(
           (setInfo) => era == PublicSetEra.all || getSetEra(setInfo) == era,
@@ -1162,6 +1181,7 @@ class PublicSetsService {
     }
 
     return PublicSetSummary(
+      game: _parseCatalogGame(row['game']),
       code: code,
       name: name,
       heroImageUrl: _normalizeHttpUrl(row['hero_image_url']),
@@ -1185,6 +1205,12 @@ class PublicSetsService {
 
     final record = _firstNestedRecord(value);
     return _intValue(record?['count']);
+  }
+
+  static PublicCatalogGame _parseCatalogGame(dynamic value) {
+    return _cleanText(value).toLowerCase() == 'one_piece'
+        ? PublicCatalogGame.onePiece
+        : PublicCatalogGame.pokemon;
   }
 
   static String _normalizeCode(dynamic value) {

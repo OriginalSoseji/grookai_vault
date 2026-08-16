@@ -13,7 +13,7 @@ import {
   getBaseSetPrintRunLaneCardCountAdjustment,
   getBaseSetPrintRunLaneSpecialVariantKeys,
 } from "@/lib/baseSetPrintRunLanes";
-import { createPublicServerClient } from "@/lib/supabase/publicServer";
+import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   chooseCanonicalSetRow,
   choosePreferredEquivalentSetRow,
@@ -40,6 +40,7 @@ import {
 } from "@/lib/publicSets.shared";
 
 type SetRow = {
+  game: string | null;
   code: string | null;
   name: string | null;
   printed_set_abbrev: string | null;
@@ -103,8 +104,8 @@ type WorldChampionshipDecklistRow = {
   external_ids: Record<string, unknown> | null;
 };
 
-function createServerSupabase() {
-  return createPublicServerClient();
+async function createServerSupabase() {
+  return createServerComponentClient();
 }
 
 function normalizeSetCode(value?: string | null) {
@@ -210,12 +211,14 @@ function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
 }
 
 const PUBLIC_SET_LIST_SELECT = `
+  game,
   code,
   name,
   printed_set_abbrev,
   printed_total,
   release_date,
-  created_at
+  created_at,
+  card_prints(count)
 `;
 
 const PUBLIC_SET_DETAIL_SELECT = `
@@ -239,6 +242,7 @@ function mapSetRowToSummary(
   const displayName = normalizePublicSetDisplayName(row.name);
 
   return {
+    game_code: row.game?.trim().toLowerCase() || "pokemon",
     code,
     name: displayName,
     printed_set_abbrev:
@@ -261,7 +265,7 @@ function mapSetRowToSummary(
 }
 
 export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const { data: setRows, error: setError } = await supabase
     .from("sets")
     .select(PUBLIC_SET_LIST_SELECT);
@@ -281,9 +285,9 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
       continue;
     }
 
-    const cardCount = getManifestCardPrintCount(
-      publicSetCardCounts,
-      normalizedCode,
+    const cardCount = Math.max(
+      getManifestCardPrintCount(publicSetCardCounts, normalizedCode),
+      getEmbeddedCardPrintCount(row.card_prints),
     );
     const existing = equivalentSetsByCode.get(normalizedCode);
     equivalentSetsByCode.set(normalizedCode, {
@@ -300,7 +304,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
     const candidate = mapSetRowToSummary(row, cardCount);
     if (!candidate) continue;
 
-    const canonicalNameKey = normalizeSetQuery(candidate.name);
+    const canonicalNameKey = `${candidate.game_code}:${normalizeSetQuery(candidate.name)}`;
 
     const existing = canonicalSetsByName.get(canonicalNameKey);
     if (!existing) {
@@ -342,7 +346,7 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
     return null;
   }
 
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const { data, error } = await supabase
     .from("sets")
     .select(PUBLIC_SET_DETAIL_SELECT)
@@ -380,7 +384,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     return [];
   }
 
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
   const setCodePattern = escapePostgrestLikePattern(normalizedCode);
 
   const selectClause = `
@@ -490,7 +494,7 @@ export const getPublicWorldChampionshipDecklist = cache(
       return null;
     }
 
-    const supabase = createServerSupabase();
+    const supabase = await createServerSupabase();
     const setCodePattern = escapePostgrestLikePattern(normalizedCode);
     const { data, error } = await supabase
       .from("card_prints")
