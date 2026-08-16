@@ -59,7 +59,6 @@ type PublicCardRow = {
     | { code: string | null; name: string | null }[]
     | null;
   external_ids?: { tcgdex?: string | null } | null;
-  card_print_traits?: TraitRow | TraitRow[] | null;
   card_printings?:
     | {
         id: string | null;
@@ -275,7 +274,7 @@ function resolveDisplayPrintings(
 }
 
 function mapTraitRecord(
-  record?: PublicCardRow["card_print_traits"],
+  record?: TraitRow | TraitRow[] | null,
 ): TraitRow | undefined {
   const traitRecord = Array.isArray(record) ? record[0] : record;
 
@@ -297,6 +296,26 @@ function mapTraitRecord(
     supertype: traitRecord.supertype?.trim() || null,
     card_category: traitRecord.card_category?.trim() || null,
   };
+}
+
+async function getPublicCardTraits(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  cardPrintId?: string | null,
+): Promise<TraitRow | undefined> {
+  const normalizedCardPrintId = cardPrintId?.trim();
+  if (!normalizedCardPrintId) {
+    return undefined;
+  }
+
+  const { data, error } = await supabase.rpc("card_print_public_traits_v1", {
+    p_card_print_id: normalizedCardPrintId,
+  });
+
+  if (error || !data) {
+    return undefined;
+  }
+
+  return mapTraitRecord(data as TraitRow | TraitRow[]);
 }
 
 async function mapRelatedPrints(
@@ -634,13 +653,6 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
         printed_identity_modifier,
         variants,
         games(code,name),
-        card_print_traits(
-          hp,
-          national_dex,
-          types,
-          supertype,
-          card_category
-        ),
         sets(name,printed_total,printed_set_abbrev,release_date,identity_model)
       `,
     )
@@ -668,6 +680,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     activeIdentity,
     cameos,
     printingRows,
+    traitRecord,
   ] =
     await Promise.all([
       getSetDetailsByCode(row.set_code),
@@ -680,13 +693,13 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
       row.id
         ? getPublicCardPrintingOptions(supabase, [row.id])
         : Promise.resolve([]),
+      getPublicCardTraits(supabase, row.id),
     ]);
   // Public pricing is resolved by the governed TCGPlayer market read model.
   const pricingByCardId = includePricing && row.id
     ? await getPublicPricingByCardIds(supabase, [row.id])
     : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
-  const traitRecord = mapTraitRecord(row.card_print_traits);
   const printings = await mapCardPrintings(printingRows);
   const setName = normalizePublicSetDisplayName(
     setRecord?.name ?? fallbackSet.name,
