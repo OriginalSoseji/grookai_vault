@@ -72,6 +72,16 @@ test('storage canary records created paths before exact readback', async () => {
   assert.match(script, /\.remove\(created\.map\(\(row\) => row\.image_path\)\)/);
 });
 
+test('storage readback retries transient failures without weakening verification', async () => {
+  const script = await import('node:fs/promises').then(({ readFile }) => readFile(
+    new URL('../../scripts/audits/mtg_card_image_storage_v1.mjs', import.meta.url), 'utf8'));
+  assert.match(script, /for \(let attempt = 1; attempt <= 3; attempt \+= 1\)/);
+  assert.match(script, /storage_readback_exhausted/);
+  assert.match(script, /image\.sha256 !== pointer\.image_hash/);
+  assert.match(script, /image\.width !== pointer\.width/);
+  assert.match(script, /image\.height !== pointer\.height/);
+});
+
 test('PNG inspection and pointer retain exact face identity', () => {
   const bytes = Buffer.alloc(1280);
   Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]).copy(bytes);

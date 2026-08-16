@@ -202,16 +202,30 @@ async function exists(client, imagePath) {
 }
 
 async function downloadAndInspect(client, pointer) {
-  const { data, error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
-    .download(pointer.image_path);
-  if (error || !data) throw new Error(`storage_download:${error?.message ?? 'missing'}`);
-  const buffer = Buffer.from(await data.arrayBuffer());
-  const image = inspectImageBytesV1(buffer, pointer.content_type);
-  if (!image.valid || image.sha256 !== pointer.image_hash || image.size_bytes !== pointer.size_bytes
-    || image.width !== pointer.width || image.height !== pointer.height) {
-    throw new Error(`storage_readback_mismatch:${pointer.image_path}`);
+  const failures = [];
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const { data, error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
+        .download(pointer.image_path);
+      if (error || !data) {
+        throw new Error(`storage_download:${error?.message ?? 'missing'}`);
+      }
+      const buffer = Buffer.from(await data.arrayBuffer());
+      const image = inspectImageBytesV1(buffer, pointer.content_type);
+      if (!image.valid || image.sha256 !== pointer.image_hash
+        || image.size_bytes !== pointer.size_bytes || image.width !== pointer.width
+        || image.height !== pointer.height) {
+        throw new Error(`storage_readback_mismatch:${pointer.image_path}`);
+      }
+      return image;
+    } catch (error) {
+      failures.push(error.message);
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 750));
+      }
+    }
   }
-  return image;
+  throw new Error(`storage_readback_exhausted:${failures.join('|')}`);
 }
 
 async function mapLimit(values, limit, mapper) {
