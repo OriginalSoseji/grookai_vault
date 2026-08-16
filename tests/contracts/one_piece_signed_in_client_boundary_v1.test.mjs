@@ -4,11 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-);
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 function source(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), "utf8");
@@ -28,23 +24,19 @@ test("card and set loaders preserve request-role catalog visibility", () => {
   assert.match(cardLoader, /await createServerSupabase\(\)/);
   assert.match(setLoader, /await createServerSupabase\(\)/);
   assert.match(setLoader, /game,/);
-  assert.match(setLoader, /card_prints\(count\)/);
+  assert.doesNotMatch(setLoader, /card_prints\(count\)/);
+  assert.match(setLoader, /get_public_set_card_counts_v1/);
+  assert.doesNotMatch(setLoader, /\.ilike\("set_code"/);
   assert.match(setLoader, /candidate\.game_code/);
   assert.match(setStatsLoader, /createPublicServerClient/);
   assert.match(
     setStatsLoader,
     /getPublicSetMasterSetStats\(\s*setCode:\s*string,\s*userId:[\s\S]*requestScopedCatalogClient\?: SupabaseClient/,
   );
-  assert.match(
-    setStatsLoader,
-    /requestScopedCatalogClient \?\? createPublicServerClient\(\)/,
-  );
+  assert.match(setStatsLoader, /requestScopedCatalogClient \?\? createPublicServerClient\(\)/);
   assert.match(setStatsLoader, /fetchSetCardPrintIds\(supabase, setCode\)/);
   assert.match(setStatsLoader, /fetchCardPrintings\(supabase, cardPrintIds\)/);
-  assert.match(
-    setPage,
-    /user\?\.id && setDetail\.game_code !== "pokemon" \? supabase : undefined/,
-  );
+  assert.match(setPage, /user\?\.id && setDetail\.game_code !== "pokemon" \? supabase : undefined/);
   assert.match(
     setPage,
     /getPublicSetMasterSetStats\(\s*setDetail\.code,\s*user\?\.id \?\? null,\s*requestScopedCatalogClient,/,
@@ -75,6 +67,8 @@ test("Flutter set browse defaults to Pokemon and isolates One Piece explicitly",
   assert.match(service, /PublicCatalogGame game = PublicCatalogGame\.pokemon/);
   assert.match(service, /\.where\(\(setInfo\) => setInfo\.game == game\)/);
   assert.match(service, /'game,code,name,/);
+  assert.match(service, /get_public_set_card_counts_v1/);
+  assert.match(service, /\.inFilter\('set_code', exactSetCodes\)/);
   assert.match(screen, /_activeGame = PublicCatalogGame\.pokemon/);
   assert.match(screen, /SegmentedButton<PublicCatalogGame>/);
   assert.match(screen, /_activeGame == PublicCatalogGame\.pokemon/);
@@ -95,17 +89,12 @@ test("related print discovery remains inside the selected game", () => {
   const cardLoader = source("apps/web/src/lib/getPublicCardByGvId.ts");
 
   assert.match(cardLoader, /\.eq\("game_id", normalizedGameId\)/);
-  assert.match(
-    cardLoader,
-    /getRelatedPrintsByName\(supabase, row\.name, row\.id, row\.game_id\)/,
-  );
+  assert.match(cardLoader, /getRelatedPrintsByName\(supabase, row\.name, row\.id, row\.game_id\)/);
   assert.match(cardLoader, /\.select\("id,gv_id,name,game_id"\)/);
 });
 
 test("database release boundary still gates direct tables and search", () => {
-  const migration = source(
-    "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql",
-  );
+  const migration = source("supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql");
   assert.match(migration, /release_status = 'signed_in'/);
   assert.match(migration, /auth\.role\(\)/);
   assert.match(migration, /card_prints_catalog_release_visibility_v1/);

@@ -17,15 +17,20 @@ const generatorSource = fs.readFileSync(
   path.resolve(here, "../../../../scripts/generate_public_set_card_counts.mjs"),
   "utf8",
 );
-const manifest = JSON.parse(
-  fs.readFileSync(
-    path.join(here, "publicSetCardCounts.generated.json"),
-    "utf8",
+const exactCodesSource = fs.readFileSync(path.join(here, "publicSetExactCodes.ts"), "utf8");
+const countMigrationSource = fs.readFileSync(
+  path.resolve(here, "../../../../supabase/migrations/20260816120000_public_set_card_counts_v1.sql"),
+  "utf8",
+);
+const countVisibilityMigrationSource = fs.readFileSync(
+  path.resolve(
+    here,
+    "../../../../supabase/migrations/20260816123000_public_set_card_counts_visibility_v2.sql",
   ),
+  "utf8",
 );
-const webPackage = JSON.parse(
-  fs.readFileSync(path.resolve(here, "../../package.json"), "utf8"),
-);
+const manifest = JSON.parse(fs.readFileSync(path.join(here, "publicSetCardCounts.generated.json"), "utf8"));
+const webPackage = JSON.parse(fs.readFileSync(path.resolve(here, "../../package.json"), "utf8"));
 const listFunctionSource = source.slice(
   source.indexOf("export const getPublicSets"),
   source.indexOf("export const getPublicSetByCode"),
@@ -44,6 +49,9 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.doesNotMatch(source, /\.from\("card_prints"\)\s*\.select\("set_code"\)/s);
   assert.doesNotMatch(listFunctionSource, /card_prints\(count\)/);
   assert.match(listFunctionSource, /getManifestCardPrintCount/);
+  assert.match(listFunctionSource, /getDynamicPublicSetCardCounts/);
+  assert.doesNotMatch(listFunctionSource, /getManifestCardPrintCount[\s\S]*?=== 0/);
+  assert.match(source, /rpc\("get_public_set_card_counts_v1"/);
   assert.match(generatorSource, /group by lower\(trim\(set_code\)\)/);
   assert.match(generatorSource, /const PAGE_SIZE = 1000/);
   assert.match(generatorSource, /connectionTimeoutMillis/);
@@ -52,10 +60,7 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.match(generatorSource, /MIN_RETAINED_SNAPSHOT_RATIO/);
   assert.match(generatorSource, /assertPlausibleSnapshot/);
   assert.match(generatorSource, /for \(let offset = 0;/);
-  assert.doesNotMatch(
-    generatorSource,
-    /^import .* from ["'](?:pg|dotenv|@supabase\/supabase-js)["'];?$/m,
-  );
+  assert.doesNotMatch(generatorSource, /^import .* from ["'](?:pg|dotenv|@supabase\/supabase-js)["'];?$/m);
   assert.match(generatorSource, /validateOnly/);
   assert.match(webPackage.scripts.prebuild, /--validate-only/);
   assert.doesNotMatch(webPackage.scripts.prebuild, /--allow-stale/);
@@ -83,29 +88,37 @@ test("canonical aliases are selected by reconciled catalog rows, not printed tot
   assert.equal(getEmbeddedCardPrintCount([{ count: -4 }]), 0);
 });
 
-test("set detail aggregates one targeted case-insensitive set lane", () => {
-  assert.match(
-    source,
-    /const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;/,
-  );
-  assert.equal(
-    [...source.matchAll(/card_prints\(count\)/g)].length,
-    1,
-    "PostgREST rejects duplicate relationship aggregates in the same select",
-  );
+test("set detail counts exact visible set lanes without relationship aggregates", () => {
+  assert.match(source, /const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;/);
+  assert.doesNotMatch(source, /card_prints\(count\)/);
   assert.match(detailFunctionSource, /select\(PUBLIC_SET_DETAIL_SELECT\)/);
-  assert.match(
-    detailFunctionSource,
-    /\.ilike\("code", escapePostgrestLikePattern\(normalizedCode\)\)/,
-  );
-  assert.match(detailFunctionSource, /card_prints\.gv_id/);
-  assert.match(detailFunctionSource, /card_prints\.set_code/);
+  assert.match(detailFunctionSource, /\.ilike\("code", escapePostgrestLikePattern\(normalizedCode\)\)/);
+  assert.match(detailFunctionSource, /getDynamicPublicSetCardCounts/);
   assert.match(detailFunctionSource, /combinedCardCount/);
   assert.doesNotMatch(detailFunctionSource, /\.maybeSingle\(\)/);
-  assert.doesNotMatch(
-    detailFunctionSource,
-    /getPublicSetByCode[\s\S]*?const sets = await getPublicSets\(\)/,
+  assert.doesNotMatch(detailFunctionSource, /getPublicSetByCode[\s\S]*?const sets = await getPublicSets\(\)/);
+});
+
+test("card reads resolve visible set metadata before exact indexed set-code queries", () => {
+  assert.match(exactCodesSource, /\.from\("sets"\)/);
+  assert.match(exactCodesSource, /\.ilike\("code"/);
+  assert.doesNotMatch(source, /\.ilike\("set_code"/);
+  assert.match(cardsFunctionSource, /resolveVisiblePublicSetCodes/);
+  assert.match(cardsFunctionSource, /\.in\("set_code", exactSetCodes\)/);
+});
+
+test("dynamic set counts are bounded and enforce catalog visibility", () => {
+  assert.match(countMigrationSource, /security definer/i);
+  assert.match(countMigrationSource, /card\.set_code = any\(p_set_codes\)/);
+  assert.match(countMigrationSource, /catalog_game_visible_to_request_v1\(game\.code\)/);
+  assert.match(countMigrationSource, /cardinality\(p_set_codes\) > 1000/);
+  assert.match(countMigrationSource, /card\.gv_id is not null/);
+  assert.match(countMigrationSource, /grant execute[\s\S]*to anon, authenticated, service_role/);
+  assert.match(
+    countVisibilityMigrationSource,
+    /data_quality_flags #>> '\{app_visibility_v1,status\}'/,
   );
+  assert.match(countVisibilityMigrationSource, /<> 'suppressed'/);
 });
 
 test("case-equivalent Japanese set rows prefer descriptive metadata", () => {
@@ -120,14 +133,8 @@ test("case-equivalent Japanese set rows prefer descriptive metadata", () => {
     release_date: "2021-12-03",
   };
 
-  assert.equal(
-    choosePreferredEquivalentSetRow(generated, descriptive),
-    descriptive,
-  );
-  assert.equal(
-    choosePreferredEquivalentSetRow(descriptive, generated),
-    descriptive,
-  );
+  assert.equal(choosePreferredEquivalentSetRow(generated, descriptive), descriptive);
+  assert.equal(choosePreferredEquivalentSetRow(descriptive, generated), descriptive);
 });
 
 test("PostgREST case-insensitive exact patterns escape wildcards", () => {
@@ -148,9 +155,6 @@ test("full card loading is scoped to one selected set", () => {
 });
 
 test("set card pages use the stable card-print id as the final database order", () => {
-  assert.equal(
-    [...cardsFunctionSource.matchAll(/\.order\("id", \{ ascending: true \}\)/g)].length,
-    3,
-  );
+  assert.equal([...cardsFunctionSource.matchAll(/\.order\("id", \{ ascending: true \}\)/g)].length, 3);
   assert.match(source, /\(left\.id \?\? ""\)\.localeCompare\(right\.id \?\? ""\)/);
 });

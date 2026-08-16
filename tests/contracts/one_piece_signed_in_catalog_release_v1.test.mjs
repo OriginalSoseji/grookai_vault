@@ -10,9 +10,7 @@ import {
 import { ONE_PIECE_EXPECTED_COUNTS_V1 } from "../../backend/pricing/one_piece_signed_in_catalog_readiness_v1.mjs";
 
 const counts = Object.fromEntries(
-  Object.entries(ONE_PIECE_EXPECTED_COUNTS_V1).filter(
-    ([field]) => field !== "active_sealed_release_members",
-  ),
+  Object.entries(ONE_PIECE_EXPECTED_COUNTS_V1).filter(([field]) => field !== "active_sealed_release_members"),
 );
 
 function deployment() {
@@ -22,18 +20,18 @@ function deployment() {
       artifact_status: "signed",
       artifact_sha256: "b".repeat(64),
       commit_sha: "a".repeat(40),
-      version_code: "295",
+      version_code: "296",
     },
     ios: {
       distribution_status: "in_beta_testing",
-      build_number: "295",
+      build_number: "296",
       commit_sha: "a".repeat(40),
     },
   };
 }
 
 test("release plan requires all three exact deployed client proofs", () => {
-  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "295");
+  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "296");
   const ready = evaluateOnePieceSignedInCatalogReleasePlanV1({
     before: { release_control: { release_status: "hidden" }, counts },
     deployment: deployment(),
@@ -99,30 +97,18 @@ test("release readback proves one-row mutation and catalog immutability", () => 
     updatedRows: 1,
     activationPlanFingerprint: "plan",
   };
-  assert.equal(
-    evaluateOnePieceSignedInCatalogReleaseReadbackV1(input).release_active,
-    true,
-  );
+  assert.equal(evaluateOnePieceSignedInCatalogReleaseReadbackV1(input).release_active, true);
   input.after.catalog_fingerprint = "changed";
-  assert.equal(
-    evaluateOnePieceSignedInCatalogReleaseReadbackV1(input).release_active,
-    false,
-  );
+  assert.equal(evaluateOnePieceSignedInCatalogReleaseReadbackV1(input).release_active, false);
 });
 
 test("durable runner is restricted to the single release-control row", () => {
   const runner = fs.readFileSync(
-    new URL(
-      "../../scripts/audits/one_piece_signed_in_catalog_release_v1.mjs",
-      import.meta.url,
-    ),
+    new URL("../../scripts/audits/one_piece_signed_in_catalog_release_v1.mjs", import.meta.url),
     "utf8",
   );
   const policy = fs.readFileSync(
-    new URL(
-      "../../backend/pricing/one_piece_signed_in_catalog_release_v1.mjs",
-      import.meta.url,
-    ),
+    new URL("../../backend/pricing/one_piece_signed_in_catalog_release_v1.mjs", import.meta.url),
     "utf8",
   );
   const source = `${runner}\n${policy}`;
