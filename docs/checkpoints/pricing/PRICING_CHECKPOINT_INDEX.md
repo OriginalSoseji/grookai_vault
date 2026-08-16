@@ -1064,6 +1064,16 @@ Recommended reading order for future maintainers:
       rollback proof, frozen active internal release, signed-in rollback smoke,
       unchanged hidden catalog boundary, and the 6,730-image self-hosting gate
 
+90. `PRICING_CHECKPOINT_92_ONE_PIECE_CARD_IMAGES_APPLIED_VERIFIED.md`
+    - then read the exact 6,553-image self-host and pointer apply, independent
+      readback, 177 explicit provider gaps, unchanged non-One Piece boundary,
+      and the prohibition against substituting representative artwork
+
+91. `PRICING_CHECKPOINT_93_ONE_PIECE_SIGNED_IN_CATALOG_READY.md`
+    - then read the zero-residue signed-in simulation, complete authenticated
+      catalog/search/sealed-price proof, anonymous denial, request-role client
+      repair, deferred child-printing expansion, and guarded deployment gate
+
 After those checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`

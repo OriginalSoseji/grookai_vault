@@ -1,0 +1,18 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "2a02df2bb954e84e6bf26e0277fc149523493f0f",
+  "artifacts": {
+    "asset_manifest.json.gz": {
+      "bytes": 605984,
+      "sha256": "34cf434acb256b8492bb750c26c748d71d5996e265bcb591b439e54a4d3f3b8d"
+    },
+    "summary.json": {
+      "bytes": 589,
+      "sha256": "3d1c867f341e791ebf8aefa293ce7bbe048e62f79c0f80239f474bc5655abc90"
+    },
+    "REPORT.md": {
+      "bytes": 164,
+      "sha256": "7afb67d46014aa694fc942a2ff140eb7fc2d7196ee092fe95ac9427c1ee84b1c"
+    }
+  }
+}

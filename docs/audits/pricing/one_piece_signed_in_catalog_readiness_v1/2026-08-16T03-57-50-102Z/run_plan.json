@@ -1,0 +1,37 @@
+{
+  "version": "ONE_PIECE_SIGNED_IN_CATALOG_READINESS_V1",
+  "recorded_at": "2026-08-16T03:57:50.280Z",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "1124e41c3cdf0b075a2866c042dda58477c93b3c",
+    "tracked_worktree_clean": true
+  },
+  "bindings": {
+    "game_id": "4f504300-0000-4000-8000-000000000001",
+    "pointer_plan_fingerprint_sha256": "22f2b56070e43392c38ea33c4ad06f0013707e5e1eafb672b965cfee868388a4",
+    "pointer_payload_fingerprint_sha256": "dad6ab8990ff38f2b72816a6aea72188d38ca974137c44a65598d1b9624ea82a",
+    "expected_counts": {
+      "games": 1,
+      "sets": 60,
+      "card_prints": 6730,
+      "card_print_identity": 6730,
+      "card_printings": 14,
+      "self_hosted_images": 6553,
+      "image_coverage_gaps": 177,
+      "active_sealed_release_members": 332
+    }
+  },
+  "transaction": {
+    "mode": "rollback_only_signed_in_simulation",
+    "durable_commit_authorized": false
+  },
+  "boundaries": {
+    "durable_database_writes": 0,
+    "release_activation": false,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "vault_writes": 0,
+    "deployments": 0
+  }
+}

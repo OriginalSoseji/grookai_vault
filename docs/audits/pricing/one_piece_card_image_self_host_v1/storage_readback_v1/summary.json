@@ -1,0 +1,13 @@
+{
+  "status": "independent_storage_readback_passed",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "cf45bf2cbf9787e3dce0cb861444326bdb578199",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "5a05e6058f41987b81a41507745201114efb847602ab974daefea0a065982664",
+  "verified": 6553,
+  "failures": [],
+  "database_writes": 0,
+  "pointer_writes": 0
+}
