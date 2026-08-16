@@ -1,0 +1,96 @@
+{
+  "version": "ONE_PIECE_SEALED_PRICING_QUALIFICATION_APPLY_PLAN_V1",
+  "repository": {
+    "branch": "agent/one-piece-ingestion-readiness-v1",
+    "commit_sha": "2fe118efaaf3f9d1864df8e7db809fb4178c1419",
+    "tracked_worktree_clean": true
+  },
+  "source_plan_fingerprint_sha256": "d849465b7c9b7c10e736546a1c0298630a103464f4b64dcc12af02b913080f3f",
+  "source_payload_fingerprint_sha256": "be884db80e24e0dfd7963234e4187994456ed439cb2c0cfe149101e92c29287e",
+  "qualification_plan_artifact_sha256": "7c99984ada61c186c2a70ea7aeb7a573b5e879c0790e2499ce4151425472a222",
+  "rollback_canary_summary_sha256": "d0715af3ebe1ce428199c50ab52cfb5c81b7634b7662dbee647bad5919632b8e",
+  "rollback_canary_status": "production_rollback_canary_passed_zero_residue",
+  "rollback_canary_producer_commit_sha": "9bfba3b135142c4c2c8c06be19e21f7469186117",
+  "rollback_sample_fingerprint_sha256": "7d3e04655dc13e7ef4de2f880b68b05fa4ed6f70781c87c0e7740c5606068a54",
+  "bound_preflight_fingerprint_sha256": "309da7436947c1be6f62c05815762aed3b0c9aa3c57f52eb64cb52c4fa292fdb",
+  "bound_preflight": {
+    "valid": true,
+    "findings": [],
+    "transaction_read_only": true,
+    "baseline": {
+      "sealed_product_families": 242,
+      "sealed_product_variants": 390,
+      "sealed_product_source_mappings": 390,
+      "sealed_product_pricing_lane_qualifications": 0,
+      "sealed_product_releases": 0,
+      "sealed_product_release_members": 0,
+      "sealed_product_release_pointer": 0,
+      "one_piece_release_control_rows": 1,
+      "one_piece_release_status": "hidden"
+    },
+    "schema": {
+      "rls_enabled": true,
+      "rls_forced": true,
+      "append_only_trigger_enabled": true,
+      "service_role_policy_present": true,
+      "service_role_select": true,
+      "service_role_insert": true,
+      "anon_select": false,
+      "authenticated_select": false
+    },
+    "lineage": {
+      "expected_rows": 374,
+      "matched_variants": 374,
+      "matched_exact_mappings": 374,
+      "matched_source_observations": 374
+    },
+    "collisions": {
+      "id_collisions": 0,
+      "unique_key_collisions": 0
+    }
+  },
+  "mutation_contract": {
+    "operation": "single_transaction_insert_only",
+    "insert_order": [
+      "sealed_product_pricing_lane_qualifications"
+    ],
+    "expected_inserts": {
+      "sealed_product_pricing_lane_qualifications": 374
+    },
+    "expected_statuses": {
+      "qualified_exact": 332,
+      "blocked_stale": 4,
+      "blocked_missing_price": 38
+    },
+    "excluded_missing_observation_holds": 16,
+    "updates": 0,
+    "deletes": 0,
+    "release_writes": 0,
+    "release_member_writes": 0,
+    "release_pointer_writes": 0,
+    "publication_writes": 0,
+    "card_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "app_visibility_changes": 0
+  },
+  "mutation_contract_sha256": "9035abb51704978d47d37254a3d315280f33a98a78e46bba1edcac6dc4d9558d",
+  "execution_requirements": {
+    "exact_clean_commit_required": true,
+    "explicit_execute_flag_required": true,
+    "fresh_read_only_preflight_required": true,
+    "transaction_local_zero_collision_recheck_required": true,
+    "transaction_local_source_lineage_recheck_required": true,
+    "exact_payload_readback_required": true,
+    "exact_write_attribution_required": true,
+    "one_atomic_transaction_required": true,
+    "failure_rolls_back_entire_transaction": true,
+    "independent_post_commit_readback_required": true,
+    "one_piece_hidden_release_status_required": true
+  },
+  "plan_only": true,
+  "database_connections": 0,
+  "database_writes": 0,
+  "apply_executed": false,
+  "apply_plan_fingerprint_sha256": "1861e6779f78cee8ab967ece05b1a0354beb8c329f074041f809e58cc9e01998"
+}
