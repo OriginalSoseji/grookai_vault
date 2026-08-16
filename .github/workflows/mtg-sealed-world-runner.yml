@@ -1,0 +1,162 @@
+name: MTG Sealed World Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Governed MTG sealed-world operation
+        required: true
+        type: choice
+        options:
+          - migration_dry_run
+          - migration_apply
+          - plan
+          - preflight
+          - rollback_canary
+          - apply
+          - readback
+      expected_sha:
+        description: Exact merged commit SHA that must produce the evidence
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-sealed-world-v1
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      OPERATION: ${{ inputs.operation }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      TARGET_MIGRATION: 20260816170000_sealed_product_per_game_release_v2.sql
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify exact producer and contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "supabase/migrations/$TARGET_MIGRATION"
+          node --check backend/pricing/mtg_sealed_world_v1.mjs
+          node --check scripts/audits/mtg_sealed_world_v1.mjs
+          node --test \
+            tests/contracts/mtg_sealed_world_v1.test.mjs \
+            tests/contracts/sealed_product_per_game_release_v2.test.mjs \
+            tests/contracts/cross_tcg_sealed_product_identity_v1.test.mjs \
+            tests/contracts/one_piece_sealed_pricing_lineage_v1.test.mjs
+          git diff --check
+
+      - name: Install operator dependencies
+        if: ${{ !startsWith(inputs.operation, 'migration_') }}
+        run: npm ci --ignore-scripts
+
+      - name: Inspect exact pending migration
+        if: ${{ startsWith(inputs.operation, 'migration_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          mapfile -t pending < <(
+            grep -oE '[0-9]{14}_[A-Za-z0-9_]+\.sql' migration_dry_run.txt |
+              sort -u
+          )
+          test "${#pending[@]}" -eq 1
+          test "${pending[0]}" = "$TARGET_MIGRATION"
+
+      - name: Apply exact migration
+        if: ${{ inputs.operation == 'migration_apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push --db-url "$SUPABASE_DB_URL"
+
+      - name: Freeze exact live plan
+        if: ${{ !startsWith(inputs.operation, 'migration_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          plan_dir="$RUNNER_TEMP/mtg-sealed-plan"
+          node scripts/audits/mtg_sealed_world_v1.mjs \
+            --mode=plan \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --out-dir="$plan_dir"
+          fingerprint="$(node -e "const s=require(process.argv[1]);process.stdout.write(s.plan_fingerprint_sha256)" "$plan_dir/summary.json")"
+          [[ "$fingerprint" =~ ^[0-9a-f]{64}$ ]]
+          echo "PLAN_FINGERPRINT=$fingerprint" >> "$GITHUB_ENV"
+
+      - name: Run live read-only preflight
+        if: ${{ inputs.operation == 'preflight' || inputs.operation == 'rollback_canary' || inputs.operation == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_world_v1.mjs \
+            --mode=preflight \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --expected-plan-fingerprint="$PLAN_FINGERPRINT" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-preflight"
+
+      - name: Run full rollback canary
+        if: ${{ inputs.operation == 'rollback_canary' || inputs.operation == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_world_v1.mjs \
+            --mode=canary \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --expected-plan-fingerprint="$PLAN_FINGERPRINT" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-canary"
+
+      - name: Apply exact sealed world
+        if: ${{ inputs.operation == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_world_v1.mjs \
+            --mode=apply \
+            --execute-durable-apply \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --expected-plan-fingerprint="$PLAN_FINGERPRINT" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-apply"
+
+      - name: Run independent readback
+        if: ${{ inputs.operation == 'readback' || inputs.operation == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_world_v1.mjs \
+            --mode=readback \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --expected-plan-fingerprint="$PLAN_FINGERPRINT" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-readback"
+
+      - name: Upload immutable evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-sealed-${{ inputs.operation }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            ${{ runner.temp }}/mtg-sealed-*
+          if-no-files-found: warn
+          retention-days: 90
