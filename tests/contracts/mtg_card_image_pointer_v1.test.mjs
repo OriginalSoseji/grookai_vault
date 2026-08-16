@@ -185,3 +185,22 @@ test('operator never deletes images or canonical rows', () => {
   assert.doesNotMatch(source, /release_status\s*=/i);
   assert.doesNotMatch(source, /market_price/i);
 });
+
+test('operator recaptures protected boundaries inside the apply transaction', () => {
+  const source = fs.readFileSync(
+    'scripts/audits/mtg_card_image_pointer_v1.mjs',
+    'utf8',
+  );
+  const mutateBody = source.slice(
+    source.indexOf('async function mutate('),
+    source.indexOf('\nasync function main()'),
+  );
+
+  assert.match(mutateBody, /const lockedBoundary = await boundarySnapshot\(client\)/);
+  assert.match(mutateBody, /buildPlan\([\s\S]*lockedBoundary\)/);
+  assert.match(mutateBody, /const inTransactionBoundary = await boundarySnapshot\(client\)/);
+  assert.match(mutateBody, /evaluateState\([\s\S]*inTransactionBoundary\)/);
+  assert.ok(
+    mutateBody.indexOf('const inTransactionBoundary') < mutateBody.indexOf("client.query('commit')"),
+  );
+});

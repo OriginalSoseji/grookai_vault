@@ -273,8 +273,9 @@ async function mutate(connectionString, plan, aggregate, mode) {
     open = true;
     await client.query("set local lock_timeout='30s'");
     const locked = await captureState(client, true);
+    const lockedBoundary = await boundarySnapshot(client);
     const currentPlan = buildPlan(aggregate, locked, plan.checked_at,
-      plan.producer_commit, plan.boundary_snapshot);
+      plan.producer_commit, lockedBoundary);
     if (!inspectMtgImagePointerPlanV1(currentPlan).valid
       || currentPlan.pointer_plan_fingerprint_sha256 !== plan.pointer_plan_fingerprint_sha256) {
       throw new Error('Compare-and-swap pointer plan changed under lock');
@@ -282,13 +283,14 @@ async function mutate(connectionString, plan, aggregate, mode) {
     const insertedFaces = await insertFaces(client, activePlan.face_rows);
     const updatedParents = await updateParents(client, activePlan.parent_rows);
     const inTransaction = await captureState(client);
+    const inTransactionBoundary = await boundarySnapshot(client);
     const expected = mode === 'rollback-canary' ? activePlan : plan;
     const readbackFindings = evaluateState(expected, {
       rows: inTransaction.rows.filter((row) => expected.parent_rows.some((item) =>
         item.card_print_id === row.id) || expected.gap_card_print_ids.includes(row.id)),
       faces: inTransaction.faces.filter((row) => expected.face_rows.some((item) =>
         item.card_print_id === row.card_print_id && item.face_index === row.face_index)),
-    }, plan.boundary_snapshot).filter((finding) => finding !== 'face_count');
+    }, inTransactionBoundary).filter((finding) => finding !== 'face_count');
     if (readbackFindings.length) throw new Error(readbackFindings.join(','));
     if (mode === 'rollback-canary') await client.query('rollback');
     else await client.query('commit');
