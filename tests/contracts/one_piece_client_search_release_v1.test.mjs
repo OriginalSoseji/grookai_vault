@@ -19,6 +19,29 @@ test("mobile catalog search defaults to Pokemon and explicitly scopes One Piece"
   assert.match(cardModel, /trimmed\.isNotEmpty && gameScope == 'pokemon'/);
 });
 
+test("One Piece set lookup uses the real sets game column and case-insensitive codes", () => {
+  assert.match(
+    cardModel,
+    /\.from\('sets'\)[\s\S]*?\.eq\('game', gameScope\)[\s\S]*?\.ilike\('name',/,
+  );
+  assert.doesNotMatch(
+    cardModel,
+    /\.from\('sets'\)[\s\S]{0,160}?\.eq\('game_id', gameId\)/,
+  );
+  assert.ok(
+    cardModel.match(
+      /\.ilike\('set_code', _escapePostgrestLikePattern\(setCode\)\)/g,
+    )?.length >= 3,
+    "set-only, set-number, and set-name paths must all be case-insensitive",
+  );
+  assert.doesNotMatch(cardModel, /\.eq\('set_code', setCode\)/);
+  assert.match(
+    cardModel,
+    /fullSetNumber = _escapePostgrestLikePattern\('\$setCode-\$pad3'\)/,
+  );
+  assert.match(cardModel, /number\.ilike\.\$fullSetNumber/);
+});
+
 test("catalog and Vault pickers expose the same explicit game selector", () => {
   for (const source of [app, vault]) {
     assert.match(source, /value: 'pokemon'/);

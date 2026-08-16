@@ -661,7 +661,7 @@ class CardPrintRepository {
     final resolvedSet = await _resolveSetByName(
       client,
       tokens.rawTokens,
-      gameId: gameId,
+      gameScope: gameScope,
       shouldAttempt:
           !isSetPlusNumber &&
           !isSetOnly &&
@@ -1000,7 +1000,7 @@ class CardPrintRepository {
   static Future<Map<String, String>?> _resolveSetByName(
     SupabaseClient client,
     List<String> tokens, {
-    required String gameId,
+    required String gameScope,
     required bool shouldAttempt,
   }) async {
     if (!shouldAttempt) return null;
@@ -1011,7 +1011,7 @@ class CardPrintRepository {
       final matches = await client
           .from('sets')
           .select('name,code')
-          .eq('game_id', gameId)
+          .eq('game', gameScope)
           .ilike('name', '%$prefix%')
           .limit(5);
       if (matches.length == 1) {
@@ -1057,13 +1057,14 @@ class CardPrintRepository {
     required String pad3,
     required String sort,
   }) {
+    final fullSetNumber = _escapePostgrestLikePattern('$setCode-$pad3');
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
-        .eq('set_code', setCode)
+        .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .or(
-          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3,number.ilike.$fullSetNumber',
         )
         .order(sort, ascending: true);
   }
@@ -1078,7 +1079,7 @@ class CardPrintRepository {
         .from('card_prints')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
-        .eq('set_code', setCode)
+        .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .order(sort, ascending: true);
   }
 
@@ -1128,7 +1129,7 @@ class CardPrintRepository {
         .from('card_prints')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
-        .eq('set_code', setCode)
+        .ilike('set_code', _escapePostgrestLikePattern(setCode))
         .ilike('name', namePattern)
         .order(sort, ascending: true);
   }
@@ -1145,6 +1146,13 @@ class CardPrintRepository {
         .eq('game_id', gameId)
         .ilike('name', namePattern)
         .order(sort, ascending: true);
+  }
+
+  static String _escapePostgrestLikePattern(String value) {
+    return value
+        .replaceAll(r'\', r'\\')
+        .replaceAll('%', r'\%')
+        .replaceAll('_', r'\_');
   }
 
   /// Dev-only parser harness: call manually when debugging search parsing.
