@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/display_image_contract.dart';
 import '../theme/gv_tokens.dart';
@@ -264,8 +265,26 @@ class _ArtworkNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String>? requestHeaders(String url) {
+      if (!isCanonicalCardImageUrl(url)) {
+        return null;
+      }
+      String token;
+      try {
+        token =
+            Supabase.instance.client.auth.currentSession?.accessToken.trim() ??
+            '';
+      } catch (_) {
+        token = '';
+      }
+      return token.isEmpty
+          ? null
+          : <String, String>{'Authorization': 'Bearer $token'};
+    }
+
     return CachedNetworkImage(
       imageUrl: imageUrl,
+      httpHeaders: requestHeaders(imageUrl),
       fit: BoxFit.contain,
       alignment: Alignment.center,
       fadeInDuration: Duration.zero,
@@ -281,6 +300,7 @@ class _ArtworkNetworkImage extends StatelessWidget {
         }
         return CachedNetworkImage(
           imageUrl: fallback,
+          httpHeaders: requestHeaders(fallback),
           fit: BoxFit.contain,
           alignment: Alignment.center,
           fadeInDuration: Duration.zero,

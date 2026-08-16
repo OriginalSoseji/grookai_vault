@@ -2681,6 +2681,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   Timer? _debounce;
   int _searchRequestVersion = 0;
   String _languageScope = 'all';
+  String _gameScope = 'pokemon';
 
   @override
   void initState() {
@@ -2705,6 +2706,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
           query: query,
           limit: _kSearchResolverLimit,
           languageScope: _languageScope,
+          gameScope: _gameScope,
         ),
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
@@ -2772,6 +2774,21 @@ class _CatalogPickerState extends State<_CatalogPicker> {
     _fetch(_q.text.trim());
   }
 
+  void _handleGameScopeChanged(String scope) {
+    final normalized = scope == 'one_piece' ? 'one_piece' : 'pokemon';
+    if (_gameScope == normalized) {
+      return;
+    }
+    setState(() {
+      _gameScope = normalized;
+      _rows = const [];
+      _ownershipByCardPrintId = const <String, OwnershipState>{};
+      _resolverMeta = null;
+      _searchError = null;
+    });
+    _fetch(_q.text.trim());
+  }
+
   @override
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).viewInsets;
@@ -2810,6 +2827,25 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                 controller: _q,
                 onChanged: _onChanged,
                 onSubmitted: _fetch,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+              child: SegmentedButton<String>(
+                segments: const <ButtonSegment<String>>[
+                  ButtonSegment<String>(
+                    value: 'pokemon',
+                    label: Text('Pokemon'),
+                  ),
+                  ButtonSegment<String>(
+                    value: 'one_piece',
+                    label: Text('One Piece'),
+                  ),
+                ],
+                selected: <String>{_gameScope},
+                showSelectedIcon: false,
+                onSelectionChanged: (selection) =>
+                    _handleGameScopeChanged(selection.first),
               ),
             ),
             Padding(

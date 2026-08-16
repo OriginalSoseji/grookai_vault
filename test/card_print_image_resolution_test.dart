@@ -98,6 +98,18 @@ void main() {
       'https://grookaivault.com/api/canon/cards/GV-PK-CRI-120/image',
     );
     expect(buildCanonicalCardImageUrl('not-a-gv-id'), isNull);
+    expect(
+      isCanonicalCardImageUrl(
+        'https://grookaivault.com/api/canon/cards/GV-OP-TCGP-288228/image',
+      ),
+      isTrue,
+    );
+    expect(
+      isCanonicalCardImageUrl(
+        'https://provider.example/api/canon/cards/GV-OP-TCGP-288228/image',
+      ),
+      isFalse,
+    );
   });
 
   test('hosted card thumbnails stay on the native-safe canonical endpoint', () {
