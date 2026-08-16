@@ -392,8 +392,8 @@ async function main() {
            release_version = $1,
            evidence = evidence || jsonb_build_object(
              'rollback_only', true,
-             'pointer_plan_fingerprint_sha256', $2,
-             'pointer_payload_fingerprint_sha256', $3
+             'pointer_plan_fingerprint_sha256', $2::text,
+             'pointer_payload_fingerprint_sha256', $3::text
            ),
            activated_at = now(),
            activated_by = 'one_piece_signed_in_catalog_readiness_v1',
