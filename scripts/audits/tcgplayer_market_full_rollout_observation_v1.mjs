@@ -16,7 +16,7 @@ import {
   evaluateTcgplayerCurrentSourceHealthV1,
 } from "../../backend/pricing/tcgplayer_market_health_policy_v1.mjs";
 import {
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 
 const { Client } = pg;
@@ -250,9 +250,9 @@ async function queryEvidence(client, args, asOf, evidenceThrough) {
            count(*) filter (
              where decision_id is null
                 or decision_policy_version <>
-                   '${TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2}'
+                   '${TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3}'
                 or policy_version <>
-                   '${TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2}'
+                   '${TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3}'
                 or eligible is not true
                 or decision <> 'publish'
                 or publication_lane <> 'current'

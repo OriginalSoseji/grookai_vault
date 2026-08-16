@@ -7,7 +7,7 @@ import {
   TCGPLAYER_MARKET_READ_P95_TARGET_MS_V1,
 } from "./tcgplayer_market_performance_policy_v1.mjs";
 import {
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
 
 export const TCGPLAYER_MARKET_FULL_ROLLOUT_OBSERVATION_POLICY_V1 =
@@ -95,7 +95,7 @@ function runIsHealthy(run, expectedCommitSha) {
     run?.state === "verified" &&
     run?.reconciliation_state === "reconciled" &&
     string(run?.git_commit_sha) === expectedCommitSha &&
-    string(run?.policy_version) === TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2 &&
+    string(run?.policy_version) === TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3 &&
     integer(run?.required_phase_count) > 0 &&
     integer(run?.required_phase_count) ===
       integer(run?.succeeded_phase_count) &&
@@ -427,7 +427,7 @@ export function evaluateTcgplayerMarketFullRolloutObservationV1({
     },
     run_evidence: {
       expected_commit_sha: commitSha,
-      expected_policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+      expected_policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
       activation_run_key: activationRun?.run_key ?? null,
       scheduled_run_count: runs.length,
       unhealthy_run_keys: unhealthyRuns,

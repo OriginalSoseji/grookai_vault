@@ -1,0 +1,251 @@
+name: MTG Pricing Publication Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Governed MTG pricing operation
+        required: true
+        type: choice
+        options:
+          - migration_dry_run
+          - migration_apply
+          - parent_map_plan
+          - parent_map_dry_run
+          - parent_map_apply
+          - publication_dry_run
+          - publication_shadow
+          - publication_production
+      expected_sha:
+        description: Exact merged commit SHA that must produce the evidence
+        required: true
+        type: string
+      expected_shadow_run_key:
+        description: Reconciled shadow run required before production activation
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-pricing-publication-v1
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      OPERATION: ${{ inputs.operation }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      TARGET_MIGRATION: 20260816160000_mtg_tcgplayer_market_publication_v1.sql
+      EXPECTED_SHADOW_RUN_KEY: ${{ inputs.expected_shadow_run_key }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify frozen repository boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "supabase/migrations/$TARGET_MIGRATION"
+          node --check backend/pricing/mtg_tcgplayer_parent_mapping_policy_v1.mjs
+          node --check scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs
+          node --check scripts/workers/tcgplayer_market_publication_worker_v1.mjs
+          node --test \
+            tests/contracts/mtg_tcgplayer_market_publication_v1.test.mjs \
+            tests/contracts/tcgplayer_market_publication_v1.test.mjs \
+            tests/contracts/tcgplayer_market_full_rollout_guard_v1.test.mjs
+          git diff --check
+
+      - name: Install operator dependencies
+        if: ${{ !startsWith(inputs.operation, 'migration_') }}
+        run: npm ci --ignore-scripts
+
+      - name: Inspect the exact pending migration
+        if: ${{ startsWith(inputs.operation, 'migration_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          mapfile -t pending < <(
+            grep -oE '[0-9]{14}_[A-Za-z0-9_]+\.sql' migration_dry_run.txt |
+              sort -u
+          )
+          test "${#pending[@]}" -eq 1
+          test "${pending[0]}" = "$TARGET_MIGRATION"
+
+      - name: Apply the exact migration
+        if: ${{ inputs.operation == 'migration_apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push --db-url "$SUPABASE_DB_URL"
+
+      - name: Execute parent-map operation
+        if: ${{ startsWith(inputs.operation, 'parent_map_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${OPERATION#parent_map_}"
+          out="$RUNNER_TEMP/mtg-parent-map-$mode"
+          case "$mode" in
+            plan)
+              node scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs \
+                --plan --expected-head-sha="$EXPECTED_SHA" --out-dir="$out"
+              ;;
+            dry_run)
+              node scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs \
+                --dry-run --expected-head-sha="$EXPECTED_SHA" --out-dir="$out"
+              ;;
+            apply)
+              plan="$RUNNER_TEMP/mtg-parent-map-frozen-plan"
+              node scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs \
+                --plan --expected-head-sha="$EXPECTED_SHA" --out-dir="$plan"
+              approval="$(node -e "const s=require(process.argv[1]);process.stdout.write(s.plan.required_approval)" "$plan/summary.json")"
+              export MTG_TCGPLAYER_PARENT_MAPPING_APPROVAL="$approval"
+              node scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs \
+                --apply --expected-head-sha="$EXPECTED_SHA" --out-dir="$out"
+              ;;
+            *) exit 2 ;;
+          esac
+
+      - name: Execute pricing publication operation
+        if: ${{ startsWith(inputs.operation, 'publication_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${OPERATION#publication_}"
+          shadow_source_sync_run_id=""
+          if [[ "$mode" = "production" ]]; then
+            test -n "$EXPECTED_SHADOW_RUN_KEY"
+            shadow_source_sync_run_id="$(node --input-type=module - <<'NODE'
+          import pg from 'pg';
+          const client = new pg.Client({
+            connectionString: process.env.SUPABASE_DB_URL,
+            ssl: { rejectUnauthorized: false },
+          });
+          await client.connect();
+          try {
+            const result = await client.query(
+              `select count(*)::integer as count
+                 from public.market_price_pipeline_runs
+                where run_key = $1
+                  and run_mode = 'shadow'
+                  and state = 'shadow_verified'
+                  and reconciliation_state = 'reconciled'
+                  and policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3'
+                  and git_commit_sha = $2`,
+              [process.env.EXPECTED_SHADOW_RUN_KEY, process.env.EXPECTED_SHA],
+            );
+            if (Number(result.rows[0].count) !== 1) {
+              throw new Error('Exact reconciled shadow evidence was not found');
+            }
+            const categoryResult = await client.query(
+              `with shadow_run as (
+                 select id
+                   from public.market_price_pipeline_runs
+                  where run_key = $1
+              ),
+              shadow_counts as (
+                 select
+                   count(*) filter (
+                     where decision.evidence ->> 'category_id' = '1'
+                   )::integer as mtg_selected,
+                   count(*) filter (
+                     where decision.evidence ->> 'category_id' = '1'
+                       and decision.eligible = true
+                   )::integer as mtg_eligible,
+                   count(*) filter (
+                     where decision.evidence ->> 'category_id' = '3'
+                       and decision.eligible = true
+                   )::integer as pokemon_eligible
+                 from public.market_price_qualification_decisions decision
+                 join shadow_run on shadow_run.id = decision.run_id
+              ),
+              current_counts as (
+                 select count(*) filter (
+                   where decision.evidence ->> 'category_id' = '3'
+                     and decision.eligible = true
+                 )::integer as pokemon_eligible
+                 from public.market_price_current_publication current_state
+                 join public.market_price_qualification_decisions decision
+                   on decision.run_id = current_state.run_id
+              )
+              select
+                shadow_counts.mtg_selected,
+                shadow_counts.mtg_eligible,
+                shadow_counts.pokemon_eligible as shadow_pokemon_eligible,
+                current_counts.pokemon_eligible as current_pokemon_eligible
+              from shadow_counts cross join current_counts`,
+              [process.env.EXPECTED_SHADOW_RUN_KEY],
+            );
+            const counts = categoryResult.rows[0];
+            if (Number(counts.mtg_selected) < 1 || Number(counts.mtg_eligible) < 1) {
+              throw new Error('Shadow run did not prove eligible MTG pricing');
+            }
+            if (
+              Number(counts.shadow_pokemon_eligible) <
+              Number(counts.current_pokemon_eligible)
+            ) {
+              throw new Error('Shadow run would reduce current Pokemon publication');
+            }
+            process.stdout.write(String((await client.query(
+              `select source_sync_run_id
+                 from public.market_price_pipeline_runs
+                where run_key = $1`,
+              [process.env.EXPECTED_SHADOW_RUN_KEY],
+            )).rows[0].source_sync_run_id));
+          } finally {
+            await client.end();
+          }
+          NODE
+            )"
+          fi
+          out="$RUNNER_TEMP/mtg-pricing-$mode"
+          run_key="mtg-global-market-$mode-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          case "$mode" in
+            dry_run) flag="--dry-run" ;;
+            shadow) flag="--shadow" ;;
+            production) flag="--production" ;;
+            *) exit 2 ;;
+          esac
+          args=(
+            "$flag"
+            "--run-key=$run_key"
+            "--out-root=$out"
+            "--batch-size=1000"
+            "--database-timeout-minutes=180"
+          )
+          if [[ "$mode" = "production" ]]; then
+            test -n "$shadow_source_sync_run_id"
+            args+=("--expected-source-sync-run-id=$shadow_source_sync_run_id")
+          fi
+          node scripts/workers/tcgplayer_market_publication_worker_v1.mjs "${args[@]}"
+
+      - name: Upload immutable evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-pricing-${{ inputs.operation }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            ${{ runner.temp }}/mtg-parent-map-*
+            ${{ runner.temp }}/mtg-pricing-*
+          if-no-files-found: warn
+          retention-days: 90

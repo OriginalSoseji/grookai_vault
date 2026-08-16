@@ -2,6 +2,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_1";
 export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2";
+export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3 =
+  "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3";
 
 export const TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES = Object.freeze([
   {
@@ -157,6 +159,7 @@ function result({
 function classifyTcgplayerMarketProductScope(row, {
   policyVersion,
   specialVariantRules,
+  groupScopeRules = TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
 }) {
   const rowEvidence = evidence(row);
   const productName = text(
@@ -169,7 +172,7 @@ function classifyTcgplayerMarketProductScope(row, {
       rowEvidence.has_printed_number_evidence) === true;
 
   const groupRule = firstMatch(
-    TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
+    groupScopeRules,
     groupName,
   );
   if (groupRule) {
@@ -240,6 +243,20 @@ export function classifyTcgplayerMarketProductScopeV1_1(row = {}) {
 export function classifyTcgplayerMarketProductScopeV1_2(row = {}) {
   return classifyTcgplayerMarketProductScope(row, {
     policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2,
+    specialVariantRules: SPECIAL_VARIANT_RULES_V1_2,
+  });
+}
+
+export function classifyTcgplayerMarketProductScopeV1_3(row = {}) {
+  if (Number(row.category_id) === 1) {
+    return classifyTcgplayerMarketProductScope(row, {
+      policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
+      specialVariantRules: [],
+      groupScopeRules: [],
+    });
+  }
+  return classifyTcgplayerMarketProductScope(row, {
+    policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
     specialVariantRules: SPECIAL_VARIANT_RULES_V1_2,
   });
 }

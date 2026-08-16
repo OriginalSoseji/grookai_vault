@@ -1,5 +1,5 @@
 import {
-  classifyTcgplayerMarketProductScopeV1_2,
+  classifyTcgplayerMarketProductScopeV1_3,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1 =
@@ -8,11 +8,17 @@ export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_1";
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2";
+export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3 =
+  "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3";
 
 export const TCGPLAYER_MARKET_FRESHNESS_HOURS_V1 = 36;
 export const TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1 = 72;
 
-const SUPPORTED_FINISHES = new Set(["normal", "holo", "reverse"]);
+const SUPPORTED_FINISHES = new Set(["normal", "holo", "reverse", "foil"]);
+const SUPPORTED_IDENTITY_DOMAINS = new Map([
+  [1, "mtg_eng_paper_print"],
+  [3, "pokemon_eng_standard"],
+]);
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -36,6 +42,8 @@ export function normalizeTcgplayerMarketSubtypeV1(value) {
       return "holo";
     case "reverse holofoil":
       return "reverse";
+    case "foil":
+      return "foil";
     default:
       return null;
   }
@@ -71,12 +79,14 @@ export function evaluateTcgplayerMarketQualificationV1(
   const normalizedFinish =
     clean(row.normalized_finish_key) ||
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
-  const scope = classifyTcgplayerMarketProductScopeV1_2(row);
+  const categoryId = Number(row.category_id);
+  const expectedIdentityDomain = SUPPORTED_IDENTITY_DOMAINS.get(categoryId) ?? null;
+  const scope = classifyTcgplayerMarketProductScopeV1_3(row);
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );
 
-  if (Number(row.category_id) !== 3) exclusionReasons.push("not_pokemon_category");
+  if (!expectedIdentityDomain) exclusionReasons.push("unsupported_source_category");
   if (sourceProductId === null) reasons.push("invalid_source_product_id");
   if (row.source_product_active !== true) reasons.push("source_product_inactive");
   if (clean(row.source_product_catalog_status) !== "current") {
@@ -128,7 +138,11 @@ export function evaluateTcgplayerMarketQualificationV1(
   if (!clean(row.card_print_id) || !clean(row.gv_id)) {
     reasons.push("missing_canonical_card_identity");
   }
-  if (identityDomainCount !== 1 || clean(row.identity_domain) !== "pokemon_eng_standard") {
+  if (
+    identityDomainCount !== 1 ||
+    !expectedIdentityDomain ||
+    clean(row.identity_domain) !== expectedIdentityDomain
+  ) {
     reasons.push("not_english_standard_identity");
   }
   if (!SUPPORTED_FINISHES.has(normalizedFinish)) {
@@ -178,7 +192,9 @@ export function evaluateTcgplayerMarketQualificationV1(
   }
 
   const languageResult =
-    identityDomainCount === 1 && clean(row.identity_domain) === "pokemon_eng_standard"
+    identityDomainCount === 1 &&
+    expectedIdentityDomain &&
+    clean(row.identity_domain) === expectedIdentityDomain
       ? "english"
       : identityDomainCount === 0
         ? "missing"
@@ -255,7 +271,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const eligible = decision === "publish";
 
   return {
-    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
     decision,
     eligible,
     publication_lane: publicationLane,
@@ -269,7 +285,8 @@ export function evaluateTcgplayerMarketQualificationV1(
     source_age_hours:
       sourceAgeHours === null ? null : Math.round(sourceAgeHours * 1000) / 1000,
     evidence: {
-      category_id: Number(row.category_id),
+      category_id: categoryId,
+      expected_identity_domain: expectedIdentityDomain,
       source_product_active: row.source_product_active === true,
       source_product_catalog_status:
         clean(row.source_product_catalog_status) || null,

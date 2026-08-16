@@ -24,7 +24,7 @@ function productionRun({
   startedAt,
   completedAt,
   commit = COMMIT,
-  policy = "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2",
+  policy = "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3",
 } = {}) {
   const counts = {
     selected_count: 45082,

@@ -10,7 +10,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   TCGPLAYER_MARKET_FRESHNESS_HOURS_V1,
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
   TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
   evaluateTcgplayerMarketQualificationV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
@@ -50,6 +50,7 @@ function parseArgs(argv) {
   const args = {
     runMode: "dry_run",
     runKey: null,
+    expectedSourceSyncRunId: null,
     outRoot: DEFAULT_OUT_ROOT,
     limit: null,
     canaryDefinitionPath: null,
@@ -78,6 +79,10 @@ function parseArgs(argv) {
       args.runKey = arg.slice("--run-key=".length).trim();
     } else if (arg.startsWith("--resume-run-key=")) {
       args.runKey = arg.slice("--resume-run-key=".length).trim();
+    } else if (arg.startsWith("--expected-source-sync-run-id=")) {
+      args.expectedSourceSyncRunId = arg
+        .slice("--expected-source-sync-run-id=".length)
+        .trim();
     } else if (arg.startsWith("--out-root=")) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
     } else if (arg.startsWith("--limit=")) {
@@ -112,6 +117,14 @@ function parseArgs(argv) {
     throw new Error(
       "production mode forbids --limit; full rollout must evaluate the complete eligible scope",
     );
+  }
+  if (
+    args.expectedSourceSyncRunId &&
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      args.expectedSourceSyncRunId,
+    )
+  ) {
+    throw new Error("--expected-source-sync-run-id must be a UUID");
   }
   if (!Number.isFinite(args.freshnessHours) || args.freshnessHours <= 0) {
     throw new Error("--freshness-hours must be positive");
@@ -440,7 +453,7 @@ async function ensureRun(client, {
     [
       runKey,
       PIPELINE_VERSION,
-      TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+      TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
       runMode,
       sourceRun.observed_on,
       sourceRun.id,
@@ -468,7 +481,7 @@ async function ensureRun(client, {
     run.git_commit_sha !== commitSha ||
     run.run_mode !== runMode ||
     run.source_sync_run_id !== sourceRun.id ||
-    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2 ||
+    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3 ||
     run.worker_version !== WORKER_VERSION
   ) {
     throw new Error(
@@ -1266,13 +1279,30 @@ function decisionSummary(decisions) {
     quarantined_count: 0,
     excluded_count: 0,
     reason_counts: {},
+    category_counts: {},
   };
   for (const decision of decisions) {
+    const categoryKey = String(decision.evidence?.category_id ?? "unknown");
+    const category = result.category_counts[categoryKey] ?? {
+      selected_count: 0,
+      eligible_count: 0,
+      delayed_count: 0,
+      suppressed_count: 0,
+      quarantined_count: 0,
+      excluded_count: 0,
+    };
+    category.selected_count += 1;
     if (decision.decision === "publish") result.eligible_count += 1;
     else if (decision.decision === "delay") result.delayed_count += 1;
     else if (decision.decision === "suppress_stale") result.suppressed_count += 1;
     else if (decision.decision === "exclude") result.excluded_count += 1;
     else result.quarantined_count += 1;
+    if (decision.decision === "publish") category.eligible_count += 1;
+    else if (decision.decision === "delay") category.delayed_count += 1;
+    else if (decision.decision === "suppress_stale") category.suppressed_count += 1;
+    else if (decision.decision === "exclude") category.excluded_count += 1;
+    else category.quarantined_count += 1;
+    result.category_counts[categoryKey] = category;
     for (const reason of decision.reason_codes) {
       result.reason_counts[reason] = (result.reason_counts[reason] ?? 0) + 1;
     }
@@ -1556,11 +1586,19 @@ async function main() {
   );
   try {
     const sourceRun = await latestSourceRun(client);
+    if (
+      args.expectedSourceSyncRunId &&
+      sourceRun.id !== args.expectedSourceSyncRunId
+    ) {
+      throw new Error(
+        `Latest source run ${sourceRun.id} does not match shadow-proven source run ${args.expectedSourceSyncRunId}`,
+      );
+    }
     const runPlan = {
       pipeline_version: PIPELINE_VERSION,
       worker_version: WORKER_VERSION,
       schema_version: SCHEMA_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
@@ -1587,6 +1625,7 @@ async function main() {
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
         database_timeout_minutes: args.databaseTimeoutMinutes,
+        expected_source_sync_run_id: args.expectedSourceSyncRunId,
       },
       boundaries: {
         source_warehouse_writes: false,
@@ -1627,7 +1666,7 @@ async function main() {
     const counts = decisionSummary(decisions);
     const summary = {
       worker_version: WORKER_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
