@@ -1,0 +1,3582 @@
+{
+  "version": "MTG_CANONICAL_CATALOG_INGESTION_ORCHESTRATOR_V1",
+  "completed": [
+    {
+      "source_set_id": "ba9bf625-681c-4a4e-ab48-399b2fecac6b",
+      "code": "msh",
+      "completed_at": "2026-08-14T02:55:55.502Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": false,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 453,
+          "card_print_identity": 453,
+          "card_printings": 865,
+          "external_mappings": 453,
+          "external_printing_mappings": 864
+        },
+        "promotion_plan_sha256": "b6d2e6e0af04948fbb27e73deb4cbb6dc39d55a9bc0b7e0709f3b551b3a778ba"
+      }
+    },
+    {
+      "source_set_id": "aa50a66a-0eb3-4bb5-acad-bc6c96f98663",
+      "code": "oe01",
+      "completed_at": "2026-08-14T02:58:26.550Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "promotion_plan_sha256": "003048ecf19e0d3aaac6bc25382fdebc83016488921450412752f7d9f4652562"
+      }
+    },
+    {
+      "source_set_id": "4de7b6af-43e2-4cd8-990e-3927b65ba62f",
+      "code": "cc1",
+      "completed_at": "2026-08-14T03:00:19.520Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "promotion_plan_sha256": "e9613d78d80ade50814404ed3914d9cf4de0d465f1ca0f1815c62ff8f536010c"
+      }
+    },
+    {
+      "source_set_id": "05fccc6b-1c39-46b6-a492-ac9383a5abfe",
+      "code": "q07",
+      "completed_at": "2026-08-14T03:02:12.735Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "25b52fd83a43ff297dd21ab14eea2748b2ab69f8c723c5dfd331464bdf080f1b"
+      }
+    },
+    {
+      "source_set_id": "2a0b24ac-7614-4a08-b58a-b64f7c173361",
+      "code": "fdc",
+      "completed_at": "2026-08-14T03:04:07.631Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "promotion_plan_sha256": "a19a2df683a23bb7bd6c40c6f28ac7c94d82328f86b445d977d46a66d3bf6275"
+      }
+    },
+    {
+      "source_set_id": "7993c591-1361-4dcb-b2af-ac94dd8e86e8",
+      "code": "sum",
+      "completed_at": "2026-08-14T03:06:19.907Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 306,
+          "card_print_identity": 306,
+          "card_printings": 306,
+          "external_mappings": 306,
+          "external_printing_mappings": 37
+        },
+        "promotion_plan_sha256": "f22fed3c98c8eb2f2e479ed8549ab33d2fc68427bfb38ba39835e9c7cce0eb24"
+      }
+    },
+    {
+      "source_set_id": "20e53d4f-2ce8-4d82-9c7c-e6378a0134ad",
+      "code": "h2r",
+      "completed_at": "2026-08-14T03:08:32.229Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 16,
+          "card_print_identity": 16,
+          "card_printings": 32,
+          "external_mappings": 16,
+          "external_printing_mappings": 32
+        },
+        "promotion_plan_sha256": "c56eb2160fa02682a9c133dab7fa8fbb97563bca3a185f640e6e909a8a0586a8"
+      }
+    },
+    {
+      "source_set_id": "19c285e9-68e0-45e1-b82b-ac6051eb43be",
+      "code": "gs1",
+      "completed_at": "2026-08-14T03:10:40.908Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 41,
+          "card_print_identity": 41,
+          "card_printings": 41,
+          "external_mappings": 41,
+          "external_printing_mappings": 41
+        },
+        "promotion_plan_sha256": "6074835d8a66adbad3df78535fefd70c203c616944d9b71fd712e9a6c2a81ecb"
+      }
+    },
+    {
+      "source_set_id": "57f25bcf-c541-418d-87c2-57361d57d35e",
+      "code": "spe",
+      "completed_at": "2026-08-14T03:12:52.235Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 26,
+          "card_print_identity": 26,
+          "card_printings": 52,
+          "external_mappings": 26,
+          "external_printing_mappings": 52
+        },
+        "promotion_plan_sha256": "e37b92ee48520c96d415eec059ce6fce30c656e3c770c057354ae83cb6578b55"
+      }
+    },
+    {
+      "source_set_id": "856f63eb-e056-43e5-8a56-7a58e1608940",
+      "code": "arn",
+      "completed_at": "2026-08-14T03:15:00.750Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 92,
+          "card_print_identity": 92,
+          "card_printings": 92,
+          "external_mappings": 92,
+          "external_printing_mappings": 89
+        },
+        "promotion_plan_sha256": "92ab90ac32043660930a1db801e1261519dc7f63aa6bd0eb6cda5670194b5d7f"
+      }
+    },
+    {
+      "source_set_id": "21dd7ae2-1196-46d4-9acf-4ff9d82797be",
+      "code": "v14",
+      "completed_at": "2026-08-14T03:16:54.100Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 15,
+          "card_print_identity": 15,
+          "card_printings": 15,
+          "external_mappings": 15,
+          "external_printing_mappings": 15
+        },
+        "promotion_plan_sha256": "b9ce87073d8ee1cca06aefede56532febceeb738202297b8358af24bc29d62a4"
+      }
+    },
+    {
+      "source_set_id": "ecbf5a1a-ccdd-4279-856c-928977171f05",
+      "code": "ph23",
+      "completed_at": "2026-08-14T03:18:48.897Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "1dc1dc9a5e7a11c2055b256dadcd927c350591b0a75da0de48da2a9129046f21"
+      }
+    },
+    {
+      "source_set_id": "08aabe3a-7c0e-4c48-b2c2-57dcb5a266a4",
+      "code": "med",
+      "completed_at": "2026-08-14T03:20:42.439Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 24,
+          "card_print_identity": 24,
+          "card_printings": 24,
+          "external_mappings": 24,
+          "external_printing_mappings": 24
+        },
+        "promotion_plan_sha256": "fec8a60e06f6d603cc4cf5e1c369e9d4b83c766eb5419c1df9a6d3301471719f"
+      }
+    },
+    {
+      "source_set_id": "3c318e12-9152-4300-a096-4f58a6438897",
+      "code": "slx",
+      "completed_at": "2026-08-14T03:23:17.530Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 30
+        },
+        "promotion_plan_sha256": "61da6c6f20b2d6e38b97526e3632e410b2a8b9221d59ea9dcca283ab36de3406"
+      }
+    },
+    {
+      "source_set_id": "3b93026e-537b-4190-a4d4-64ad4bc29403",
+      "code": "pmic",
+      "completed_at": "2026-08-14T03:25:23.465Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "2554a665228a731856ad20f836c7d1f6c1f7812ddd2da632d6202224767fa55c"
+      }
+    },
+    {
+      "source_set_id": "2e22cc80-7a77-4719-8807-4d63f832c585",
+      "code": "mltr",
+      "completed_at": "2026-08-14T03:27:18.644Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "3446fbdcc4f374e09756ef2953cdb6f4c76635931d54f43548ccdf3c75ec9e86"
+      }
+    },
+    {
+      "source_set_id": "7079031b-c5b0-4353-87af-a63a0f204f47",
+      "code": "opc2",
+      "completed_at": "2026-08-14T03:29:15.136Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 40,
+          "card_print_identity": 40,
+          "card_printings": 40,
+          "external_mappings": 40,
+          "external_printing_mappings": 40
+        },
+        "promotion_plan_sha256": "2c75589e76d04bc7b9d17144d3a2bf74e057f8643f6671a9fbff6ff6ddf6524d"
+      }
+    },
+    {
+      "source_set_id": "b6d6ba83-3b91-4203-8103-320cfa50f848",
+      "code": "pd3",
+      "completed_at": "2026-08-14T03:31:11.561Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 30
+        },
+        "promotion_plan_sha256": "12a903041cf8b18115b24df40367fda5ea5d10491762cdd07478caa69733c6d7"
+      }
+    },
+    {
+      "source_set_id": "08041686-693b-4b57-9e87-76ba81f3b1a3",
+      "code": "g99",
+      "completed_at": "2026-08-14T03:33:07.732Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "3daa1853e0890d95bc3b303965ad7a7c754af18712bec9ee48bdeb43a61795d8"
+      }
+    },
+    {
+      "source_set_id": "4887d21f-71e7-4d7a-a079-e9521fd7e6d7",
+      "code": "ss3",
+      "completed_at": "2026-08-14T03:35:05.976Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "promotion_plan_sha256": "01aebbd523fab75865ca1cf61fa2892879896aadbb9a4e08913f8639bfeacca1"
+      }
+    },
+    {
+      "source_set_id": "a1bcdc11-74b2-4c86-880f-ae193857ae54",
+      "code": "cp2",
+      "completed_at": "2026-08-14T03:36:58.936Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 6,
+          "external_mappings": 6,
+          "external_printing_mappings": 6
+        },
+        "promotion_plan_sha256": "aabcfd2f734caa3505310a7098fc6096fb88a10d61f6162af3adbc44272d4b09"
+      }
+    },
+    {
+      "source_set_id": "440c0aa1-45ce-4323-a74b-b9d3d9f0513c",
+      "code": "sbro",
+      "completed_at": "2026-08-14T03:38:52.405Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "076f87eb7aab302b0d517bab4dad721310e0085ace9de91f8487674f64fd4e1c"
+      }
+    },
+    {
+      "source_set_id": "3c098543-7919-46d5-b14d-aa0444fd6573",
+      "code": "pvan",
+      "completed_at": "2026-08-14T03:40:48.688Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 32,
+          "card_print_identity": 32,
+          "card_printings": 32,
+          "external_mappings": 32,
+          "external_printing_mappings": 32
+        },
+        "promotion_plan_sha256": "441fa8eca25770b25fc8ea869e4cdbd105ed0683384b17c8d579ddc6bc8389ca"
+      }
+    },
+    {
+      "source_set_id": "0ce7fd53-7c14-4d16-a4c3-5c47ad8a8e5b",
+      "code": "pcon",
+      "completed_at": "2026-08-14T03:42:41.509Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "0e67b86ecd26fe9efb3e3186637d8d2fbf6795815549e128bee90dff41ab7438"
+      }
+    },
+    {
+      "source_set_id": "9d2617b0-2953-477b-bd9f-c9f9e47ee71f",
+      "code": "oafr",
+      "completed_at": "2026-08-14T03:44:38.297Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "df3f3d52d69120d0bb10581c13efa48c93014c1cdc7f83b0c495da890125e304"
+      }
+    },
+    {
+      "source_set_id": "005f56a5-9661-4bd1-bf05-cf133ccdcdcf",
+      "code": "tdd1",
+      "completed_at": "2026-08-14T03:47:07.719Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "promotion_plan_sha256": "aa3f951a24370a7c77a6e8cde72eb3360ed68532a31e045c008e9bb906630f3b"
+      }
+    },
+    {
+      "source_set_id": "017a97c4-45f6-4184-95ce-f6e545e9ee17",
+      "code": "aspm",
+      "completed_at": "2026-08-14T03:49:02.878Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 54,
+          "card_print_identity": 54,
+          "card_printings": 108,
+          "external_mappings": 54,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "44c6752217c856f268bedf9604627a4c2293aaff215dc22ad5c39588347995d5"
+      }
+    },
+    {
+      "source_set_id": "01e30e53-f292-4c39-ab09-435b015877f5",
+      "code": "ddu",
+      "completed_at": "2026-08-14T03:50:58.722Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 76,
+          "card_print_identity": 76,
+          "card_printings": 76,
+          "external_mappings": 76,
+          "external_printing_mappings": 76
+        },
+        "promotion_plan_sha256": "5652dcfe705cedd1ff127e2c009ee0d9153ad3783f5d0c7649f5b65a26dceb34"
+      }
+    },
+    {
+      "source_set_id": "01f0deac-9fcc-4c2b-a932-92c705fb558f",
+      "code": "pal99",
+      "completed_at": "2026-08-14T03:52:56.492Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 10,
+          "card_print_identity": 10,
+          "card_printings": 10,
+          "external_mappings": 10,
+          "external_printing_mappings": 9
+        },
+        "promotion_plan_sha256": "e187b161021be82f34c2dbbdad5f9640671059f1b8cf680df42af30bf61e6507"
+      }
+    },
+    {
+      "source_set_id": "02624962-f727-4c31-bbf2-a94fa6c5b653",
+      "code": "mm3",
+      "completed_at": "2026-08-14T03:54:58.015Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 249,
+          "card_print_identity": 249,
+          "card_printings": 498,
+          "external_mappings": 249,
+          "external_printing_mappings": 498
+        },
+        "promotion_plan_sha256": "d071e055b28658c4e6bbf98fea51c461a452c918b177d9e49dc9c3124f276744"
+      }
+    },
+    {
+      "source_set_id": "02a67a0d-b4da-4ca9-be01-b0d78dc62ed0",
+      "code": "dvd",
+      "completed_at": "2026-08-14T03:56:59.394Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 62,
+          "card_print_identity": 62,
+          "card_printings": 62,
+          "external_mappings": 62,
+          "external_printing_mappings": 62
+        },
+        "promotion_plan_sha256": "ddef55958886459acf7bfdc9eabb3b29d60670ca61d3772e11e9576d7ce53433"
+      }
+    },
+    {
+      "source_set_id": "02d1c536-68bc-4208-9b65-7741ef1f9da8",
+      "code": "akh",
+      "completed_at": "2026-08-14T03:59:05.121Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 287,
+          "card_print_identity": 287,
+          "card_printings": 556,
+          "external_mappings": 287,
+          "external_printing_mappings": 556
+        },
+        "promotion_plan_sha256": "8cda7bda70afe91b56d5086fe72a4b40bc79e05a3d282b7dc6ad1ff17236e24b"
+      }
+    },
+    {
+      "source_set_id": "02e8ceb3-e98d-443d-bc52-52e91ff0f2e9",
+      "code": "ftmc",
+      "completed_at": "2026-08-14T04:01:04.861Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 5,
+          "card_print_identity": 5,
+          "card_printings": 5,
+          "external_mappings": 5,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "3877be9b1e5c780fa5240e09b4cdccd2adc29ea01509293323081f0cf34539b3"
+      }
+    },
+    {
+      "source_set_id": "02ffcfa7-6d81-4f7b-9e22-f3d207834014",
+      "code": "pss5",
+      "completed_at": "2026-08-14T04:03:04.372Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "3fef0b4159021eee5c9444c66e1445ffd7831be3a4ca72088ae780bfad2cbff2"
+      }
+    },
+    {
+      "source_set_id": "03368b5a-dcb8-4742-bf70-f194718d0bc8",
+      "code": "ainr",
+      "completed_at": "2026-08-14T04:05:02.742Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 25,
+          "card_print_identity": 25,
+          "card_printings": 50,
+          "external_mappings": 25,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "1f77a0acf3467d63c8695ffa34392b7d44115a9d2f8eccb7da2647bcafa2e00f"
+      }
+    },
+    {
+      "source_set_id": "03542833-6773-414f-992d-be88b65238af",
+      "code": "oc13",
+      "completed_at": "2026-08-14T04:07:00.466Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 15,
+          "card_print_identity": 15,
+          "card_printings": 15,
+          "external_mappings": 15,
+          "external_printing_mappings": 15
+        },
+        "promotion_plan_sha256": "a487b48c06355debef2adeaf3714ffa81071e43cd4198ea303ea98b2444e9afb"
+      }
+    },
+    {
+      "source_set_id": "035a05f7-e020-4f50-a141-ed16ba704bd2",
+      "code": "gtc",
+      "completed_at": "2026-08-14T04:09:03.802Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 249,
+          "card_print_identity": 249,
+          "card_printings": 498,
+          "external_mappings": 249,
+          "external_printing_mappings": 498
+        },
+        "promotion_plan_sha256": "4399a067548f792eecd78b4fbddfcdbafb81d40fdf52203eb3264f39ef80d450"
+      }
+    },
+    {
+      "source_set_id": "039810a9-92d7-4f2d-b2d0-ca661ac586c0",
+      "code": "avr",
+      "completed_at": "2026-08-14T04:11:08.679Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 244,
+          "card_print_identity": 244,
+          "card_printings": 488,
+          "external_mappings": 244,
+          "external_printing_mappings": 488
+        },
+        "promotion_plan_sha256": "d2b11bb7c95b7098e77b82d7815d3f9e718ec37b6de5c3aee514e68868aab549"
+      }
+    },
+    {
+      "source_set_id": "03990f52-1d8a-4ce8-828a-c9bf633f0de6",
+      "code": "tmt",
+      "completed_at": "2026-08-14T04:13:16.997Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 320,
+          "card_print_identity": 320,
+          "card_printings": 605,
+          "external_mappings": 320,
+          "external_printing_mappings": 605
+        },
+        "promotion_plan_sha256": "a75d9a53b25a0b401872487d78bbe435a5bb8c6f24995f3ba2a96662e3b19641"
+      }
+    },
+    {
+      "source_set_id": "03a103bc-60be-463f-a2ab-3d2ad5363354",
+      "code": "tdmc",
+      "completed_at": "2026-08-14T04:15:21.692Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 24,
+          "external_mappings": 12,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "8559d062fd13932a7248862954dda371f08937ea47364f21e9efe3055739a59d"
+      }
+    },
+    {
+      "source_set_id": "04bef644-343f-4230-95ee-255f29aa67a2",
+      "code": "one",
+      "completed_at": "2026-08-14T04:17:37.157Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 456,
+          "card_print_identity": 456,
+          "card_printings": 828,
+          "external_mappings": 456,
+          "external_printing_mappings": 828
+        },
+        "promotion_plan_sha256": "63d6a5f875c282cbfa2256dd391df9b4b6733b4e19b011c4c884bd1f0191d271"
+      }
+    },
+    {
+      "source_set_id": "04dfc9bb-ccaa-436c-b79a-925b2ad9bdbe",
+      "code": "wc02",
+      "completed_at": "2026-08-14T04:19:46.505Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 153,
+          "card_print_identity": 153,
+          "card_printings": 153,
+          "external_mappings": 153,
+          "external_printing_mappings": 153
+        },
+        "promotion_plan_sha256": "cee5ff7e02ea931b2a0ca54ca36045038318d35f4919101dd06baaaa29ced3c3"
+      }
+    },
+    {
+      "source_set_id": "04e3fb66-920f-4c47-b17e-8aa2681cebdf",
+      "code": "pbbd",
+      "completed_at": "2026-08-14T04:21:59.803Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 22,
+          "card_print_identity": 22,
+          "card_printings": 22,
+          "external_mappings": 22,
+          "external_printing_mappings": 22
+        },
+        "promotion_plan_sha256": "efa1700e361135ae31254b1dc488471eb9bbf18a5313cbb991c0b255510703be"
+      }
+    },
+    {
+      "source_set_id": "04ed1b78-cc80-4888-9536-c69facdc19e3",
+      "code": "tonc",
+      "completed_at": "2026-08-14T04:24:52.030Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 23,
+          "card_print_identity": 23,
+          "card_printings": 24,
+          "external_mappings": 23,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "cf55f066baf1b7b1e3dcaecedcbc6a43f83c8b8fb6bf3792c9ccb107da6d9d63"
+      }
+    },
+    {
+      "source_set_id": "0516d9a9-8262-4fed-9207-7deca5306cdf",
+      "code": "tpip",
+      "completed_at": "2026-08-14T04:27:21.557Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 22,
+          "card_print_identity": 22,
+          "card_printings": 43,
+          "external_mappings": 22,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "97637d64092ce584c0d846fe0ed1c016a5c59f532baafdffc9e8bae0550aba8d"
+      }
+    },
+    {
+      "source_set_id": "05253e32-2e5b-41e3-8be4-c55cd31fe5fd",
+      "code": "tcn2",
+      "completed_at": "2026-08-14T04:29:31.282Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 12,
+          "external_mappings": 12,
+          "external_printing_mappings": 12
+        },
+        "promotion_plan_sha256": "849fcc6b895a363d29d12403618bf60b7ab5ce453d948c6e5bcfb16efb1baafd"
+      }
+    },
+    {
+      "source_set_id": "053b14b2-b622-44ce-a695-5881e2580e1d",
+      "code": "pspl",
+      "completed_at": "2026-08-14T04:31:45.364Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 24,
+          "external_mappings": 12,
+          "external_printing_mappings": 16
+        },
+        "promotion_plan_sha256": "05a72def3f62600f39e7c7d8809c7026aaaf2da57d864b8293bc69e8c2fb1bec"
+      }
+    },
+    {
+      "source_set_id": "0626d2d5-5b60-48fa-97b5-960eb263a051",
+      "code": "tc21",
+      "completed_at": "2026-08-14T04:34:02.475Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 30,
+          "card_print_identity": 30,
+          "card_printings": 30,
+          "external_mappings": 30,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "7f8166698bbd7d80f6c4c19e67bcc319318ca8bbd77bfad9bf0951d88e40b66b"
+      }
+    },
+    {
+      "source_set_id": "064626d0-7536-42b9-89a8-334c66fd88ae",
+      "code": "pmat",
+      "completed_at": "2026-08-14T04:36:14.371Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 16,
+          "external_mappings": 8,
+          "external_printing_mappings": 16
+        },
+        "promotion_plan_sha256": "db2e460a7c96d382cda38a4423df9c377f17bf5868185c9e89c6bcea045c1926"
+      }
+    },
+    {
+      "source_set_id": "066f22e0-c762-4222-8d99-ff262ead231e",
+      "code": "twwk",
+      "completed_at": "2026-08-14T04:38:22.148Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 6,
+          "external_mappings": 6,
+          "external_printing_mappings": 6
+        },
+        "promotion_plan_sha256": "caa1fa54658f93b6b5dcc6e0e710300340ae550becdca10f1742b96798d99604"
+      }
+    },
+    {
+      "source_set_id": "06ce6bc2-85cd-4cca-85b1-8c620d3e0902",
+      "code": "c18",
+      "completed_at": "2026-08-14T04:41:39.468Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 307,
+          "card_print_identity": 307,
+          "card_printings": 307,
+          "external_mappings": 307,
+          "external_printing_mappings": 307
+        },
+        "promotion_plan_sha256": "70d2cd1a06082655a7d9565256cfb77b5dda1e9a8cd94feefba08f758d29d05b"
+      }
+    },
+    {
+      "source_set_id": "06cfcf14-ff33-4210-a531-c2818637f7df",
+      "code": "tm21",
+      "completed_at": "2026-08-14T04:43:56.174Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 38,
+          "external_mappings": 20,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "113641c77ea8802e8fe5d1da985b0ad8e849c02f72e9822ce26d4a6e5b39e7db"
+      }
+    },
+    {
+      "source_set_id": "0790f41d-e012-46b7-b97c-bfeda3489a4f",
+      "code": "f10",
+      "completed_at": "2026-08-14T04:46:14.764Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 12,
+          "external_mappings": 12,
+          "external_printing_mappings": 12
+        },
+        "promotion_plan_sha256": "dd72c8be3ea7958e02f08928d49f96c9222ab88b041f41166424b6ea87dfed0c"
+      }
+    },
+    {
+      "source_set_id": "07ee7ac3-059b-4de5-924a-2bd1b7910c8b",
+      "code": "tlci",
+      "completed_at": "2026-08-14T04:48:27.295Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 19,
+          "card_print_identity": 19,
+          "card_printings": 38,
+          "external_mappings": 19,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "380db8886d95bfe4cd793dffe0d889571bc72e6bf8de3c18eac71408cd154af3"
+      }
+    },
+    {
+      "source_set_id": "08078706-ac5d-439b-8f01-894d38751367",
+      "code": "ltr",
+      "completed_at": "2026-08-14T04:50:53.729Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 853,
+          "card_print_identity": 853,
+          "card_printings": 1543,
+          "external_mappings": 853,
+          "external_printing_mappings": 1524
+        },
+        "promotion_plan_sha256": "8d2cbcf062e8bb2439868908efa860725dfabc6cdf66b316e90bbe81eaa93912"
+      }
+    },
+    {
+      "source_set_id": "08435c3a-335f-436e-a8a5-43752ebc2c14",
+      "code": "fjmp",
+      "completed_at": "2026-08-14T04:53:19.217Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 46,
+          "card_print_identity": 46,
+          "card_printings": 46,
+          "external_mappings": 46,
+          "external_printing_mappings": 13
+        },
+        "promotion_plan_sha256": "b5075e611db390f9d78501e7a838d212256debb79e801dd36fef015d4dc9d4c5"
+      }
+    },
+    {
+      "source_set_id": "0898d3dd-a7dd-4d65-bddc-3a0e32a1dfd0",
+      "code": "togw",
+      "completed_at": "2026-08-14T04:55:52.088Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 11,
+          "card_print_identity": 11,
+          "card_printings": 11,
+          "external_mappings": 11,
+          "external_printing_mappings": 11
+        },
+        "promotion_plan_sha256": "431dd68a4cf0f7170f4fccd8db44f53ab690fa88afc51684399cd24adb987022"
+      }
+    },
+    {
+      "source_set_id": "08e04147-c201-4c75-9b30-a566164ecaf3",
+      "code": "pgpx",
+      "completed_at": "2026-08-14T04:58:10.568Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 19
+        },
+        "promotion_plan_sha256": "cc7642738ad3e70004785ca5af9354d4a2a21eb4b50eb12517f6c4808dc3be4f"
+      }
+    },
+    {
+      "source_set_id": "091fc340-30ea-4054-a013-44bc345b9c9e",
+      "code": "plrw",
+      "completed_at": "2026-08-14T05:00:31.440Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "promotion_plan_sha256": "c5254029032c4ae2ee860840a077f53840cffb2c374bc716f250d7fd4f077752"
+      }
+    },
+    {
+      "source_set_id": "0964514c-cf50-468d-9cf7-a388aff65de9",
+      "code": "g00",
+      "completed_at": "2026-08-14T05:02:51.394Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "1881dd53d6d339bef4f3d17e3e13750b4b5cb62f637bf5d3d3e201d5c020fa7b"
+      }
+    },
+    {
+      "source_set_id": "0980a6e2-eb78-4ad2-8396-cef08fce365e",
+      "code": "c14",
+      "completed_at": "2026-08-14T05:05:26.169Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 337,
+          "card_print_identity": 337,
+          "card_printings": 337,
+          "external_mappings": 337,
+          "external_printing_mappings": 337
+        },
+        "promotion_plan_sha256": "81e1dc25116a73090b4c5991ee2323bbc0d605e156ba1687445481b1b480beac"
+      }
+    },
+    {
+      "source_set_id": "09c785bc-370d-4746-b618-c22d767cb34f",
+      "code": "p15a",
+      "completed_at": "2026-08-14T05:07:56.851Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 2,
+          "card_print_identity": 2,
+          "card_printings": 2,
+          "external_mappings": 2,
+          "external_printing_mappings": 2
+        },
+        "promotion_plan_sha256": "143dc82a69138e10be1080e69d2139f36354303ae8fb87c8667c9eb4d08b5ebd"
+      }
+    },
+    {
+      "source_set_id": "09d844de-a5ec-401c-9b0f-f99be569b8f9",
+      "code": "ps14",
+      "completed_at": "2026-08-14T05:10:20.627Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 6,
+          "external_mappings": 6,
+          "external_printing_mappings": 6
+        },
+        "promotion_plan_sha256": "08a0ebd8b9ff93f16954c510a642b30e852b3c48d86a8569e9d4613ab65df06d"
+      }
+    },
+    {
+      "source_set_id": "09e53c37-1e43-4f45-933d-af75b9cd6f76",
+      "code": "pf20",
+      "completed_at": "2026-08-14T05:12:38.926Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 7,
+          "external_mappings": 6,
+          "external_printing_mappings": 7
+        },
+        "promotion_plan_sha256": "bc43932ad8301145ff39e31f94cacf06dd0da99bf1c52090929313afa7c996d0"
+      }
+    },
+    {
+      "source_set_id": "0a722d87-0ce5-46e5-94e1-6f58f931a381",
+      "code": "g05",
+      "completed_at": "2026-08-14T05:15:02.028Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 4,
+          "card_print_identity": 4,
+          "card_printings": 4,
+          "external_mappings": 4,
+          "external_printing_mappings": 4
+        },
+        "promotion_plan_sha256": "2b68b692a13f421154d4ba76ec48d013da7cf08e0799e7866b877dd5951d48de"
+      }
+    },
+    {
+      "source_set_id": "0a8482de-062d-460f-8558-39044fed4a24",
+      "code": "pbig",
+      "completed_at": "2026-08-14T05:17:20.340Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 14,
+          "card_print_identity": 14,
+          "card_printings": 28,
+          "external_mappings": 14,
+          "external_printing_mappings": 28
+        },
+        "promotion_plan_sha256": "702f52330418606e015d8bb8198c92278f25e89b53b85c27d550bf36bb4aae9a"
+      }
+    },
+    {
+      "source_set_id": "0b7020f2-336d-4706-9ce6-f6710b9ebd5c",
+      "code": "mma",
+      "completed_at": "2026-08-14T05:19:43.368Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 229,
+          "card_print_identity": 229,
+          "card_printings": 458,
+          "external_mappings": 229,
+          "external_printing_mappings": 458
+        },
+        "promotion_plan_sha256": "e6e8584ad5ed202a81d1dc183b590f60ce4f15737670e29365e8b74d77f72c43"
+      }
+    },
+    {
+      "source_set_id": "0bded9df-2f2b-4862-b35f-1e64d3decb8b",
+      "code": "tddf",
+      "completed_at": "2026-08-14T05:22:02.030Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "9edbf4b55f28af6a764b5939bf69c1c72b1da140475a9f1103fc1399ad1c3cf0"
+      }
+    },
+    {
+      "source_set_id": "0c1a194b-a2ab-4eb1-88be-291ea32fad7e",
+      "code": "mmid",
+      "completed_at": "2026-08-14T05:24:19.496Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 6,
+          "external_mappings": 3,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "ced41c0d8e6975fde9b6fc9b9ae66adaaf610cca7eaf90c51ee354fab5e9b46f"
+      }
+    },
+    {
+      "source_set_id": "0c9ae251-ec77-4906-b505-02820b7ccedb",
+      "code": "ttdm",
+      "completed_at": "2026-08-14T05:26:41.778Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 16,
+          "card_print_identity": 16,
+          "card_printings": 32,
+          "external_mappings": 16,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "88bb057efa9330f389c61519d35fc8cd96bba12e75bdca10a19095b9dbc6e9fa"
+      }
+    },
+    {
+      "source_set_id": "0ccafe7e-c9ee-4742-89fd-06f1e14eacb0",
+      "code": "p23",
+      "completed_at": "2026-08-14T05:28:58.564Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 10,
+          "card_print_identity": 10,
+          "card_printings": 10,
+          "external_mappings": 10,
+          "external_printing_mappings": 10
+        },
+        "promotion_plan_sha256": "f35f798f63198abe89f335dd5949a389422dd15fe217b8b8728663d67c012762"
+      }
+    },
+    {
+      "source_set_id": "0dba38a9-6b9d-4768-9831-4e03e8970a0b",
+      "code": "m10",
+      "completed_at": "2026-08-14T05:31:23.633Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 249,
+          "card_print_identity": 249,
+          "card_printings": 498,
+          "external_mappings": 249,
+          "external_printing_mappings": 498
+        },
+        "promotion_plan_sha256": "8c66f0c329adfcaad96619ba1577b14395966875ecc9b010ec920c71cfb15f31"
+      }
+    },
+    {
+      "source_set_id": "0dbc7609-b12c-471a-bfd3-c57bc670c445",
+      "code": "ddp",
+      "completed_at": "2026-08-14T05:33:52.191Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 80,
+          "card_print_identity": 80,
+          "card_printings": 80,
+          "external_mappings": 80,
+          "external_printing_mappings": 80
+        },
+        "promotion_plan_sha256": "7dfe7a6309c5786a8824f1875e8cc53aaf0b4088b3c5c42a1c4621351b9275b3"
+      }
+    },
+    {
+      "source_set_id": "0dc30b69-bcba-4d06-a211-59b9b5624f2d",
+      "code": "ocmd",
+      "completed_at": "2026-08-14T05:36:15.197Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 15,
+          "card_print_identity": 15,
+          "card_printings": 15,
+          "external_mappings": 15,
+          "external_printing_mappings": 15
+        },
+        "promotion_plan_sha256": "f42931460751a6e7f824f439dea47afba05bfd9ce67cb9126ce23edfbad3d8e4"
+      }
+    },
+    {
+      "source_set_id": "0e125579-396f-4614-9557-717698b06462",
+      "code": "tddt",
+      "completed_at": "2026-08-14T05:38:35.096Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "promotion_plan_sha256": "7ed3a6ec1f012a4b3459171bf78b5b66d46d4ab7a57550fb0ca5fd639d776f54"
+      }
+    },
+    {
+      "source_set_id": "0e5fad97-b777-437a-b015-44428c42bf46",
+      "code": "piko",
+      "completed_at": "2026-08-14T05:41:00.194Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 137,
+          "card_print_identity": 137,
+          "card_printings": 205,
+          "external_mappings": 137,
+          "external_printing_mappings": 204
+        },
+        "promotion_plan_sha256": "9d5f2552367881d2dde1cf6a7ea8883a32fa132a6cc8a3725a22a750390eecba"
+      }
+    },
+    {
+      "source_set_id": "0eeb9a9a-20ac-404d-b55f-aeb7a43a7f62",
+      "code": "ori",
+      "completed_at": "2026-08-14T05:43:28.586Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 288,
+          "card_print_identity": 288,
+          "card_printings": 560,
+          "external_mappings": 288,
+          "external_printing_mappings": 560
+        },
+        "promotion_plan_sha256": "2e75abb2e26960407b5fbd2a941d0079aef53d6683d231e1059b9ae00176692a"
+      }
+    },
+    {
+      "source_set_id": "0f5b91bf-e0bd-444b-82b5-03906ba86e88",
+      "code": "p2hg",
+      "completed_at": "2026-08-14T05:45:55.954Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "aaa2e4764aead65d862e6be3e436ddeb64b957767573a4333486402475f594c2"
+      }
+    },
+    {
+      "source_set_id": "0f6ccf25-a627-4263-86df-5757137f1696",
+      "code": "jmp",
+      "completed_at": "2026-08-14T05:48:30.342Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 495,
+          "card_print_identity": 495,
+          "card_printings": 495,
+          "external_mappings": 495,
+          "external_printing_mappings": 495
+        },
+        "promotion_plan_sha256": "37a445dcdd1f5720c47a4a191f85e2297c7c6739d452421fb6fdb197381aaf15"
+      }
+    },
+    {
+      "source_set_id": "0fa3ccbb-d86d-4a2e-a55e-c4979c4feeb2",
+      "code": "c19",
+      "completed_at": "2026-08-14T05:51:02.050Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 302,
+          "card_print_identity": 302,
+          "card_printings": 302,
+          "external_mappings": 302,
+          "external_printing_mappings": 302
+        },
+        "promotion_plan_sha256": "32a9d53cb4191978cc9068d601c5612e015440462880b27fd02a787e694c4c5c"
+      }
+    },
+    {
+      "source_set_id": "0fbc0a38-0462-47d1-b0a2-dcd401d044bd",
+      "code": "j19",
+      "completed_at": "2026-08-14T05:53:33.976Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 8,
+          "external_mappings": 8,
+          "external_printing_mappings": 8
+        },
+        "promotion_plan_sha256": "ae50f3e8e1ef41e2dc7daff5828a483215381022cbf2c7144e3a38488cf9da0e"
+      }
+    },
+    {
+      "source_set_id": "1012754e-18e5-4a76-b9a3-24c55eaab1c5",
+      "code": "pltr",
+      "completed_at": "2026-08-14T05:56:02.604Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 86,
+          "card_print_identity": 86,
+          "card_printings": 86,
+          "external_mappings": 86,
+          "external_printing_mappings": 86
+        },
+        "promotion_plan_sha256": "2a95b5e92bdf3d4d3bea592553434e2933904cbfde49affa573508d36c682341"
+      }
+    },
+    {
+      "source_set_id": "1037d505-8080-4f98-92c6-c9816735c172",
+      "code": "f02",
+      "completed_at": "2026-08-14T05:58:32.036Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 12,
+          "external_mappings": 12,
+          "external_printing_mappings": 12
+        },
+        "promotion_plan_sha256": "75ab89d245535c30f7d98ae427667736409ffaeee5ccdc4059a673bcb069cb6d"
+      }
+    },
+    {
+      "source_set_id": "107e2bde-bf04-42e9-ab9d-44175d1bebe7",
+      "code": "teve",
+      "completed_at": "2026-08-14T06:01:04.977Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 7,
+          "card_print_identity": 7,
+          "card_printings": 7,
+          "external_mappings": 7,
+          "external_printing_mappings": 7
+        },
+        "promotion_plan_sha256": "879761bf761412f512bb4bad6a2d2398c9b5fd50b6649b2cc738918527cf55ee"
+      }
+    },
+    {
+      "source_set_id": "10b8cbe8-4beb-496b-97d7-889a81dde83b",
+      "code": "f04",
+      "completed_at": "2026-08-14T06:03:37.949Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 12,
+          "external_mappings": 12,
+          "external_printing_mappings": 12
+        },
+        "promotion_plan_sha256": "f750532278ef59eb8d8715d5965afed63022c9640fbe66302b770ba2f72bdb68"
+      }
+    },
+    {
+      "source_set_id": "10df3a67-178e-4363-8668-34f0e6edf2a7",
+      "code": "tmp",
+      "completed_at": "2026-08-14T06:06:13.850Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 350,
+          "card_print_identity": 350,
+          "card_printings": 350,
+          "external_mappings": 350,
+          "external_printing_mappings": 350
+        },
+        "promotion_plan_sha256": "3869308cc7da06dc8b941015d6e29059385ba5dded6345e8a0058894b396568b"
+      }
+    },
+    {
+      "source_set_id": "1135b292-4f02-4eec-8623-a1b7aee474df",
+      "code": "alci",
+      "completed_at": "2026-08-14T06:08:47.942Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 81,
+          "card_print_identity": 81,
+          "card_printings": 162,
+          "external_mappings": 81,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "a0950d934c6f86d85eeeb617777ce4c782e641e4b862c25e2e1a1da1e9da84cc"
+      }
+    },
+    {
+      "source_set_id": "114885aa-26f2-45a5-822f-376ae5374d63",
+      "code": "tsoi",
+      "completed_at": "2026-08-14T06:11:20.821Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "promotion_plan_sha256": "13c415458a6688286feafea3ab1e0a152743997f66783cfe0afe96b22dbf10e1"
+      }
+    },
+    {
+      "source_set_id": "118f7e64-5caa-4cb7-99a8-184f4d3a7422",
+      "code": "tla",
+      "completed_at": "2026-08-14T06:13:57.735Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 394,
+          "card_print_identity": 394,
+          "card_printings": 781,
+          "external_mappings": 394,
+          "external_printing_mappings": 781
+        },
+        "promotion_plan_sha256": "6ec1237734cda9efdfb2e8c5bc61942ce1341b8e19e9ac0b1d086388ddc604da"
+      }
+    },
+    {
+      "source_set_id": "11e90d1b-0502-43e6-b056-e24836523c13",
+      "code": "tsr",
+      "completed_at": "2026-08-14T06:16:42.040Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 411,
+          "card_print_identity": 411,
+          "card_printings": 821,
+          "external_mappings": 411,
+          "external_printing_mappings": 821
+        },
+        "promotion_plan_sha256": "9b00c89b191816482c191ca4a81b3d73adb7fed86d09f2c497629a886d6b60ff"
+      }
+    },
+    {
+      "source_set_id": "1226146b-024f-4456-be60-edf06fc054df",
+      "code": "tmsh",
+      "completed_at": "2026-08-14T06:19:14.529Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 27,
+          "card_print_identity": 27,
+          "card_printings": 49,
+          "external_mappings": 27,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "b9a45b6df165f0175c587babfcfcef55dfc5f61e49fb69a27ee7ff75d03539d3"
+      }
+    },
+    {
+      "source_set_id": "1316053f-0acb-48cf-b140-b8cf29437662",
+      "code": "tvoc",
+      "completed_at": "2026-08-14T06:21:48.164Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 6,
+          "card_print_identity": 6,
+          "card_printings": 6,
+          "external_mappings": 6,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "7479f5bddb43e222091fb08dc649f1fae24caf80a6ed87e8531e987f0892c073"
+      }
+    },
+    {
+      "source_set_id": "1347a008-d8da-46d5-82f7-fe25527bbbd0",
+      "code": "tddm",
+      "completed_at": "2026-08-14T06:24:20.034Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "04ed1fe0102afa3111a96e2c395d15c4ff9080cd457c3e2620d37be48d6b1b2e"
+      }
+    },
+    {
+      "source_set_id": "1361ca81-1304-49a8-b2e6-e76a4aa4a8c3",
+      "code": "tdm",
+      "completed_at": "2026-08-14T06:27:12.792Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 426,
+          "card_print_identity": 426,
+          "card_printings": 829,
+          "external_mappings": 426,
+          "external_printing_mappings": 829
+        },
+        "promotion_plan_sha256": "4576faacd8aa11e13036ba31f4f8472459ab1676324783ea7e532a5cd5ea40a7"
+      }
+    },
+    {
+      "source_set_id": "1401f7af-2e71-476d-9813-991084ed0bb9",
+      "code": "exo",
+      "completed_at": "2026-08-14T06:29:54.699Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 143,
+          "card_print_identity": 143,
+          "card_printings": 143,
+          "external_mappings": 143,
+          "external_printing_mappings": 143
+        },
+        "promotion_plan_sha256": "188b80d61b32b8b70057248ddebeda240fed2c3ba3ffeee05b6fa51977356897"
+      }
+    },
+    {
+      "source_set_id": "14332d2c-ba93-4498-bf3f-9d601f88f783",
+      "code": "big",
+      "completed_at": "2026-08-14T06:32:37.927Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 95,
+          "card_print_identity": 95,
+          "card_printings": 185,
+          "external_mappings": 95,
+          "external_printing_mappings": 185
+        },
+        "promotion_plan_sha256": "ac33ae434770de9f92b870174c8b632d068a114f5b8f64d80f25fd046af5787c"
+      }
+    },
+    {
+      "source_set_id": "14b6bb0f-b54e-49c6-adfa-984129093046",
+      "code": "pf23",
+      "completed_at": "2026-08-14T06:35:21.325Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 4,
+          "card_print_identity": 4,
+          "card_printings": 6,
+          "external_mappings": 4,
+          "external_printing_mappings": 6
+        },
+        "promotion_plan_sha256": "acc6cbdc5ef24964339a9d945259104e18f848bd5c0401766fd44e26ac3c4575"
+      }
+    },
+    {
+      "source_set_id": "159f2a38-6a67-48fb-b583-2538554d70a3",
+      "code": "mar",
+      "completed_at": "2026-08-14T06:38:07.366Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 100,
+          "card_print_identity": 100,
+          "card_printings": 200,
+          "external_mappings": 100,
+          "external_printing_mappings": 200
+        },
+        "promotion_plan_sha256": "9f77fa1cdb51e05ca91705ffcc74aab87327f6ed4da5c052afb3af949fc59cce"
+      }
+    },
+    {
+      "source_set_id": "15f41db6-1810-475b-bf2c-24a488050a37",
+      "code": "ddd",
+      "completed_at": "2026-08-14T06:40:49.019Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 63,
+          "card_print_identity": 63,
+          "card_printings": 63,
+          "external_mappings": 63,
+          "external_printing_mappings": 63
+        },
+        "promotion_plan_sha256": "1d0672169f3896cc8a4722bf95c6489e0346c0adab6bf3f4a8f5e26133c58421"
+      }
+    },
+    {
+      "source_set_id": "15fccbe8-2825-41ca-9d0a-67aebdf91c4a",
+      "code": "rav",
+      "completed_at": "2026-08-14T06:43:37.114Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 306,
+          "card_print_identity": 306,
+          "card_printings": 612,
+          "external_mappings": 306,
+          "external_printing_mappings": 612
+        },
+        "promotion_plan_sha256": "cc9613aea805a977042b3a1c283cfb25e53c54868dde2b2a1bca01456bcf8de9"
+      }
+    },
+    {
+      "source_set_id": "163844e5-077e-4e2c-a0f0-fa33fbc7bb3b",
+      "code": "ddn",
+      "completed_at": "2026-08-14T06:46:24.023Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 82,
+          "card_print_identity": 82,
+          "card_printings": 82,
+          "external_mappings": 82,
+          "external_printing_mappings": 82
+        },
+        "promotion_plan_sha256": "5b62fb158165b1ddccb7c69ba8161974ba8dcb6aff33dd329ae4ac000043c43d"
+      }
+    },
+    {
+      "source_set_id": "1645fb19-71a7-4634-99b8-bf703e861b6b",
+      "code": "ptmp",
+      "completed_at": "2026-08-14T06:49:02.841Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "14f285a5ca99f8327253ca0c97400c90659df3382e2688a9e92f9e359f47e1e2"
+      }
+    },
+    {
+      "source_set_id": "16641515-88d3-4fc8-9b49-86e2991f1713",
+      "code": "ptdmu",
+      "completed_at": "2026-08-14T06:51:42.916Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "98b1c6642db8e486578bd1ef0b941d163ee11c2019f6216139157cd453b20d94"
+      }
+    },
+    {
+      "source_set_id": "168acc08-0dea-40e7-ab0d-93bb2832e72b",
+      "code": "aznr",
+      "completed_at": "2026-08-14T06:54:32.934Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 81,
+          "card_print_identity": 81,
+          "card_printings": 162,
+          "external_mappings": 81,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "7758857c129fdb0f7d52e79ec4453d1fe19a4e2e94d43783859251b3c3985708"
+      }
+    },
+    {
+      "source_set_id": "16b35ba7-ab4d-4d0f-8d29-4de7d30d0e22",
+      "code": "asos",
+      "completed_at": "2026-08-14T06:57:17.470Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 54,
+          "card_print_identity": 54,
+          "card_printings": 108,
+          "external_mappings": 54,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "b8c6069e43e7d00ec51d81231b2e31a8f2827fa7a08f512a0b078626538fb330"
+      }
+    },
+    {
+      "source_set_id": "16b62eb1-0cab-47c9-a0c2-be6e781ece03",
+      "code": "pal05",
+      "completed_at": "2026-08-14T06:59:59.297Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 8,
+          "card_print_identity": 8,
+          "card_printings": 8,
+          "external_mappings": 8,
+          "external_printing_mappings": 8
+        },
+        "promotion_plan_sha256": "b1208ce80a0a9431ee57dda46d2d5413604519cc0b741649ba5050d25793d575"
+      }
+    },
+    {
+      "source_set_id": "16c10b7c-f1f5-432f-a54d-ca76cf262c6d",
+      "code": "prcq",
+      "completed_at": "2026-08-14T07:02:51.586Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 6,
+          "external_mappings": 3,
+          "external_printing_mappings": 6
+        },
+        "promotion_plan_sha256": "ec823f07a5411c5ca4501117dcf733917488224ad409b28ed6f7fc35fde20958"
+      }
+    },
+    {
+      "source_set_id": "178a07bb-cd54-4443-8b62-675e0c52cfe3",
+      "code": "tmc",
+      "completed_at": "2026-08-14T07:05:46.763Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 132,
+          "card_print_identity": 132,
+          "card_printings": 214,
+          "external_mappings": 132,
+          "external_printing_mappings": 138
+        },
+        "promotion_plan_sha256": "0f2657864904d387015ad6c26817bf70e0621613492175c17a35054c3b4d28bf"
+      }
+    },
+    {
+      "source_set_id": "17abd72e-22ed-4b47-87ca-929a378d0439",
+      "code": "pdp14",
+      "completed_at": "2026-08-14T07:08:29.123Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 3,
+          "card_print_identity": 3,
+          "card_printings": 3,
+          "external_mappings": 3,
+          "external_printing_mappings": 3
+        },
+        "promotion_plan_sha256": "23715daa6998716bcf95094ca3b1155c5d8925bea0467d5b37b06534830404c6"
+      }
+    },
+    {
+      "source_set_id": "19132aaf-ed11-4985-9cac-a8dc58827701",
+      "code": "psdc",
+      "completed_at": "2026-08-14T07:11:14.090Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 5,
+          "card_print_identity": 5,
+          "card_printings": 5,
+          "external_mappings": 5,
+          "external_printing_mappings": 5
+        },
+        "promotion_plan_sha256": "8ee99a1c9dd738695ca649bea57ea90c3018cae5562939a310a82557ebeda552"
+      }
+    },
+    {
+      "source_set_id": "198c5205-2614-43dd-b8c2-6e77aa0e5e91",
+      "code": "amh1",
+      "completed_at": "2026-08-14T07:14:10.640Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 54,
+          "card_print_identity": 54,
+          "card_printings": 54,
+          "external_mappings": 54,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "e812e013f9eda26a7f930a9663a43212becca072c3adcc593516a9a1ae48039a"
+      }
+    },
+    {
+      "source_set_id": "19feda43-15ab-427e-a0e4-148a4bf2b03a",
+      "code": "iko",
+      "completed_at": "2026-08-14T07:17:05.322Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 384,
+          "card_print_identity": 384,
+          "card_printings": 767,
+          "external_mappings": 384,
+          "external_printing_mappings": 767
+        },
+        "promotion_plan_sha256": "c3a007dc50c7fa7abb980b2bc1185fe3f8ab924b7eaa70589662b1fb2569b4be"
+      }
+    },
+    {
+      "source_set_id": "1a555c51-d5da-4f1d-ac1c-5cce81d5d8dc",
+      "code": "tmsc",
+      "completed_at": "2026-08-14T07:19:54.455Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 32,
+          "card_print_identity": 32,
+          "card_printings": 49,
+          "external_mappings": 32,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "f369b1bb05935aa72c4f1d007129cc19b21428cb59a59799c8fdd1b74cd39e9e"
+      }
+    },
+    {
+      "source_set_id": "1afde513-cf57-40a6-9e4b-aab815dad104",
+      "code": "f07",
+      "completed_at": "2026-08-14T07:22:40.414Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 12,
+          "external_mappings": 12,
+          "external_printing_mappings": 12
+        },
+        "promotion_plan_sha256": "84e1ba50750cc4684e90428527395e9dc8fcc593079548c5ffa04c26f70fe9f7"
+      }
+    },
+    {
+      "source_set_id": "1b3d029e-609e-44de-a210-8c6a531dffc4",
+      "code": "ttmc",
+      "completed_at": "2026-08-14T07:25:33.444Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 31,
+          "card_print_identity": 31,
+          "card_printings": 34,
+          "external_mappings": 31,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "c2006203909448de77ff133ee768b78010a44c00be23131a3235140c3232fafc"
+      }
+    },
+    {
+      "source_set_id": "1b5e95bd-4947-4991-8d7d-b770d6b2aaff",
+      "code": "pbfz",
+      "completed_at": "2026-08-14T07:28:21.887Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 90,
+          "card_print_identity": 90,
+          "card_printings": 101,
+          "external_mappings": 90,
+          "external_printing_mappings": 101
+        },
+        "promotion_plan_sha256": "5366b66f8659d1436201241f0d0c1fa330096931a85ef0acee5a3f92f8e12314"
+      }
+    },
+    {
+      "source_set_id": "1b90366b-7692-44ea-bd55-f17fa92869a5",
+      "code": "j20",
+      "completed_at": "2026-08-14T07:31:11.991Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 10,
+          "card_print_identity": 10,
+          "card_printings": 10,
+          "external_mappings": 10,
+          "external_printing_mappings": 10
+        },
+        "promotion_plan_sha256": "3d61fc261617d61bee21dec57745ec5b06784499543935ab27b8a7d87807e22b"
+      }
+    },
+    {
+      "source_set_id": "1c105623-2564-40d7-a3aa-4134787fb127",
+      "code": "s00",
+      "completed_at": "2026-08-14T07:34:01.681Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 20,
+          "card_print_identity": 20,
+          "card_printings": 20,
+          "external_mappings": 20,
+          "external_printing_mappings": 20
+        },
+        "promotion_plan_sha256": "c59a63cffe8bbb2002c7c0261785e42a32192ac46f57b49060ca0c5e6d933b54"
+      }
+    },
+    {
+      "source_set_id": "1cec5029-d9b9-4cbb-8a50-9c3a0f95d677",
+      "code": "puds",
+      "completed_at": "2026-08-14T07:36:45.649Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 1,
+          "card_print_identity": 1,
+          "card_printings": 1,
+          "external_mappings": 1,
+          "external_printing_mappings": 1
+        },
+        "promotion_plan_sha256": "266c100c5d112e8cc9633f470bd2489477c8d8ffadca4743d942e161fa0ea0ad"
+      }
+    },
+    {
+      "source_set_id": "1d4f90ba-8d4a-4ee5-bc2f-e2d6bffe4955",
+      "code": "mrd",
+      "completed_at": "2026-08-14T07:39:36.064Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 306,
+          "card_print_identity": 306,
+          "card_printings": 612,
+          "external_mappings": 306,
+          "external_printing_mappings": 612
+        },
+        "promotion_plan_sha256": "3cd845e0e76a143a612d6d2bd9a53364d4c7db15acc0064d94539ef9e59f2f95"
+      }
+    },
+    {
+      "source_set_id": "1d9c28af-5035-4b6d-9944-62b51cfd688d",
+      "code": "f08",
+      "completed_at": "2026-08-14T07:42:25.901Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 12,
+          "card_print_identity": 12,
+          "card_printings": 12,
+          "external_mappings": 12,
+          "external_printing_mappings": 12
+        },
+        "promotion_plan_sha256": "878c5bd444efb4a83ded80495cf91d88e336f90e9875498878d3b2bcaffd175b"
+      }
+    },
+    {
+      "source_set_id": "1dbdd608-c330-4199-901f-9d141ae03786",
+      "code": "brr",
+      "completed_at": "2026-08-14T07:45:20.017Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 189,
+          "card_print_identity": 189,
+          "card_printings": 315,
+          "external_mappings": 189,
+          "external_printing_mappings": 301
+        },
+        "promotion_plan_sha256": "11daf6f10a892ccb7005a75bb8ba028a67e560413adc4ef3d841301d608c1234"
+      }
+    },
+    {
+      "source_set_id": "1e6879fe-2f29-4ad7-8d42-7f5bfb469f4a",
+      "code": "mb2",
+      "completed_at": "2026-08-14T07:48:24.455Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 385,
+          "card_print_identity": 385,
+          "card_printings": 484,
+          "external_mappings": 385,
+          "external_printing_mappings": 483
+        },
+        "promotion_plan_sha256": "73b3ef78f435feb929483f3309070dbbe35131c9915560274b244e2da1e23a42"
+      }
+    },
+    {
+      "source_set_id": "1e769157-d90e-4b4f-bd6e-67162a3285ad",
+      "code": "twoc",
+      "completed_at": "2026-08-14T07:51:22.509Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 10,
+          "card_print_identity": 10,
+          "card_printings": 20,
+          "external_mappings": 10,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "ffdf519553f33a30b6be09dfd01ca9270d29c8cea88424f64dd3530cc00758f7"
+      }
+    },
+    {
+      "source_set_id": "1e96e903-601f-4286-b61e-8da021cbceff",
+      "code": "tdmu",
+      "completed_at": "2026-08-14T07:54:21.124Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 26,
+          "card_print_identity": 26,
+          "card_printings": 52,
+          "external_mappings": 26,
+          "external_printing_mappings": 13
+        },
+        "promotion_plan_sha256": "fa11e0c8fae9d1aeed663474a30d14edb2ffeaf78a2849ae6fba4e3d02323f7d"
+      }
+    },
+    {
+      "source_set_id": "1ea34c50-24cc-4e12-bdf5-12ef7d8a522f",
+      "code": "tsom",
+      "completed_at": "2026-08-14T07:57:20.536Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 10,
+          "card_print_identity": 10,
+          "card_printings": 10,
+          "external_mappings": 10,
+          "external_printing_mappings": 10
+        },
+        "promotion_plan_sha256": "32a62e2b48be73ff3ee1cc322e1dce7ce9dc62ceb0c019cebbc53911f4a429ce"
+      }
+    },
+    {
+      "source_set_id": "1edf0887-20de-4e75-bce3-45d842f0066d",
+      "code": "f01",
+      "completed_at": "2026-08-14T08:00:09.862Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 7,
+          "card_print_identity": 7,
+          "card_printings": 7,
+          "external_mappings": 7,
+          "external_printing_mappings": 7
+        },
+        "promotion_plan_sha256": "330169f8c255e7c2ab331dc4b792d596b7c4f7e0ea95aa378a2665074ab4ae17"
+      }
+    },
+    {
+      "source_set_id": "1f29f022-3ace-4c96-85e8-1f7b63aadf7e",
+      "code": "ema",
+      "completed_at": "2026-08-14T08:03:09.218Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 249,
+          "card_print_identity": 249,
+          "card_printings": 498,
+          "external_mappings": 249,
+          "external_printing_mappings": 498
+        },
+        "promotion_plan_sha256": "6aa2de1ad11df077b658cd3e6e67fe7c26d7ff90b3d15a8cfcdd857b49907f77"
+      }
+    },
+    {
+      "source_set_id": "1f4f105f-73e4-4f03-849e-82a204807847",
+      "code": "csp",
+      "completed_at": "2026-08-14T08:06:04.907Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 155,
+          "card_print_identity": 155,
+          "card_printings": 310,
+          "external_mappings": 155,
+          "external_printing_mappings": 310
+        },
+        "promotion_plan_sha256": "867e83b6cccf771597eb52dcb05d31c0e9d47944489eb2434a63beec63e3302e"
+      }
+    },
+    {
+      "source_set_id": "1f7e87ba-8d80-4484-a7bb-075a54f9182e",
+      "code": "olgc",
+      "completed_at": "2026-08-14T08:09:02.463Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 27,
+          "card_print_identity": 27,
+          "card_printings": 27,
+          "external_mappings": 27,
+          "external_printing_mappings": 0
+        },
+        "promotion_plan_sha256": "79d72a32a3e6ed081e47de922cae8e2154103abb872339304a0cc3ff98ce55aa"
+      }
+    },
+    {
+      "source_set_id": "20083173-c2da-4009-a6bd-5d56da78968d",
+      "code": "pl26",
+      "completed_at": "2026-08-14T08:11:53.648Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 5,
+          "card_print_identity": 5,
+          "card_printings": 5,
+          "external_mappings": 5,
+          "external_printing_mappings": 5
+        },
+        "promotion_plan_sha256": "fe9f6ee9eb41d5881269a720f26cadba6d79bec6285bf51e586441f0a17e5ee0"
+      }
+    },
+    {
+      "source_set_id": "200c397b-bf57-46a2-8ebf-592148fd49a4",
+      "code": "tthb",
+      "completed_at": "2026-08-14T08:14:44.362Z",
+      "outcome": {
+        "status": "staged_promoted_and_independently_read_back",
+        "database_writes": true,
+        "staging_written": true,
+        "canonical_written": true,
+        "independent_readback": {
+          "transaction_read_only": true,
+          "separate_connection": true
+        }
+      },
+      "counts_toward_run_delta": true,
+      "plan": {
+        "row_counts": {
+          "sets": 1,
+          "card_prints": 14,
+          "card_print_identity": 14,
+          "card_printings": 28,
+          "external_mappings": 14,
+          "external_printing_mappings": 10
+        },
+        "promotion_plan_sha256": "99338ba0b060d1a8404e2ed711b8cc7e224e6e94e3129a39cfcc8b35077dc526"
+      }
+    }
+  ],
+  "deferred": [],
+  "retries": [],
+  "findings": [
+    {
+      "recorded_at": "2026-08-14T08:15:36.261Z",
+      "status": "stopped_before_next_set",
+      "error_code": null,
+      "error_message": "current source lanes: expected 30, got 0",
+      "transient": false,
+      "completed_set_count": 132
+    }
+  ],
+  "status": "stopped_before_next_set"
+}

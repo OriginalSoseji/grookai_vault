@@ -1,0 +1,162 @@
+name: MTG Hidden Catalog Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Governed catalog operation
+        required: true
+        type: choice
+        options:
+          - reconcile-only
+          - rollback-canary
+          - apply
+      start_index:
+        description: Zero-based index in the frozen execution order
+        required: true
+        type: string
+      max_sets:
+        description: Maximum sets in this non-overlapping range
+        required: true
+        type: string
+      as_of:
+        description: Release-date eligibility boundary
+        required: true
+        default: "2026-08-16"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-hidden-catalog-ingestion-v1
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      MANIFEST: docs/audits/pricing/mtg_canonical_catalog_batch_manifest_v1/2026-08-13T22-10-07Z/manifest.json
+      PAYLOAD_RELEASE: mtg-catalog-payloads-v1
+      PAYLOAD_ASSET: mtg_catalog_payloads_v1.tar.gz
+      PAYLOAD_SHA256: e3a620463bbeba81bd728d7e635f648a26a0081f24982dd5c2827b6468e3abcd
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      GH_TOKEN: ${{ github.token }}
+      OPERATION: ${{ inputs.operation }}
+      START_INDEX: ${{ inputs.start_index }}
+      MAX_SETS: ${{ inputs.max_sets }}
+      AS_OF: ${{ inputs.as_of }}
+
+    steps:
+      - name: Check out the frozen producing commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore governed branch identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$START_INDEX" =~ ^[0-9]+$ ]]
+          [[ "$MAX_SETS" =~ ^[1-9][0-9]*$ ]]
+          [[ "$AS_OF" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]
+          git checkout -B agent/mtg-pricing-readiness-v1 "$GITHUB_SHA"
+          test "$(git branch --show-current)" = "agent/mtg-pricing-readiness-v1"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          printf 'producing_commit=%s\n' "$(git rev-parse HEAD)"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install operator dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Restore and verify the frozen payload inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive_dir="$RUNNER_TEMP/mtg-catalog-archive"
+          payload_root="$RUNNER_TEMP/mtg-catalog-payloads"
+          mkdir -p "$archive_dir" "$payload_root"
+          gh release download "$PAYLOAD_RELEASE" \
+            --repo "$GITHUB_REPOSITORY" \
+            --pattern "$PAYLOAD_ASSET" \
+            --dir "$archive_dir"
+          archive="$archive_dir/$PAYLOAD_ASSET"
+          echo "$PAYLOAD_SHA256  $archive" | sha256sum --check --strict
+          tar -xzf "$archive" -C "$payload_root"
+          test "$(find "$payload_root/payloads" -maxdepth 1 -type f -name '*.json' | wc -l)" -eq 953
+          echo "PAYLOAD_DIR=$payload_root/payloads" >> "$GITHUB_ENV"
+
+      - name: Verify the governing contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs
+          node --check scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs
+          node --test \
+            tests/contracts/mtg_canonical_catalog_ingestion_orchestrator_v1.test.mjs \
+            tests/contracts/mtg_canonical_catalog_ingestion_envelope_v1.test.mjs \
+            tests/contracts/mtg_canonical_catalog_set_promotion_writer_v1.test.mjs
+          git diff --check
+
+      - name: Freeze the exact no-database run plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          plan_dir="$RUNNER_TEMP/mtg-plan-$START_INDEX-$MAX_SETS"
+          node scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs \
+            --plan \
+            --manifest="$MANIFEST" \
+            --payload-dir="$PAYLOAD_DIR" \
+            --out-dir="$plan_dir" \
+            --start-index="$START_INDEX" \
+            --max-sets="$MAX_SETS" \
+            --as-of="$AS_OF"
+          echo "PLAN_DIR=$plan_dir" >> "$GITHUB_ENV"
+
+      - name: Execute the governed range
+        id: execute
+        shell: bash
+        run: |
+          set -euo pipefail
+          operation="$OPERATION"
+          run_dir="$RUNNER_TEMP/mtg-${operation}-${START_INDEX}-${MAX_SETS}"
+          echo "RUN_DIR=$run_dir" >> "$GITHUB_ENV"
+          approval="$(node -e "const s=require(process.argv[1]);process.stdout.write(s.envelope.required_approval_message)" "$PLAN_DIR/summary.json")"
+          export MTG_CATALOG_INGESTION_APPROVAL="$approval"
+
+          node scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs \
+            "--$operation" \
+            --manifest="$MANIFEST" \
+            --payload-dir="$PAYLOAD_DIR" \
+            --out-dir="$run_dir" \
+            --start-index="$START_INDEX" \
+            --max-sets="$MAX_SETS" \
+            --retries=3 \
+            --as-of="$AS_OF" &
+          pid=$!
+          while kill -0 "$pid" 2>/dev/null; do
+            sleep 60
+            if test -f "$run_dir/progress.jsonl"; then
+              tail -n 1 "$run_dir/progress.jsonl" || true
+            fi
+          done
+          wait "$pid"
+
+      - name: Upload immutable run evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-${{ inputs.operation }}-${{ inputs.start_index }}-${{ inputs.max_sets }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/mtg-plan-*
+            ${{ runner.temp }}/mtg-reconcile-only-*
+            ${{ runner.temp }}/mtg-rollback-canary-*
+            ${{ runner.temp }}/mtg-apply-*
+          if-no-files-found: warn
+          retention-days: 90

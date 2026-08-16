@@ -1,0 +1,8 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "production_snapshot.json": "632be74fbc3ae33fd857f76962ca5103d03a5f2996e50d6b94891e8cae0510db",
+    "w17_source_lane_readback.json": "b976b17a7039b07e72ca28c58191fd93711a79ab187fb26e5c3e196d61a21dcd",
+    "REPORT.md": "27f53ba41caab9ec69b64e1342bbf61656ffc8236f28c4ad93443e34a1b5d7a1"
+  }
+}

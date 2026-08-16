@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   assertMtgSetPromotionSecurityV1,
   buildMtgCanonicalSetPromotionApprovalV1,
+  captureMtgSetPromotionCurrentSourceLanesV1,
 } from "../../scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs";
 
 function fixture() {
@@ -76,4 +77,43 @@ test("set writer security rejects an authenticated release-table grant", () => {
     wrapper_search_anon_execute: true,
     wrapper_search_authenticated_execute: true,
   }), /security mismatch/);
+});
+
+test("source verification uses the newest complete planned-lane day", async () => {
+  let queryText = "";
+  let queryValues = null;
+  const client = {
+    async query(text, values) {
+      queryText = text;
+      queryValues = values;
+      return {
+        rows: [{
+          planned_count: 2,
+          source_row_count: 2,
+          positive_market_price_count: 2,
+          observed_on: "2026-08-14",
+        }],
+      };
+    },
+  };
+  const payload = {
+    rows: {
+      external_printing_mappings: [
+        { meta: { product_id: 101, source_subtype: "normal" } },
+        { meta: { product_id: 102, source_subtype: "foil" } },
+      ],
+    },
+  };
+
+  const result = await captureMtgSetPromotionCurrentSourceLanesV1(client, payload);
+
+  assert.equal(result.source_row_count, 2);
+  assert.match(queryText, /complete_days/);
+  assert.match(queryText, /having count\(\*\) = \(select count\(\*\) from planned\)/);
+  assert.match(queryText, /order by observation\.observed_on desc/);
+  assert.doesNotMatch(queryText, /latest_day/);
+  assert.deepEqual(JSON.parse(queryValues[0]), [
+    { product_id: 101, subtype: "normal" },
+    { product_id: 102, subtype: "foil" },
+  ]);
 });

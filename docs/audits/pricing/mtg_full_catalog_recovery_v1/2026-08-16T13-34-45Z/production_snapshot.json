@@ -1,0 +1,32 @@
+{
+  "version": "MTG_FULL_CATALOG_RECOVERY_PRODUCTION_SNAPSHOT_V1",
+  "recorded_at": "2026-08-16T13:34:45Z",
+  "mode": "read_only",
+  "game": {
+    "id": "4d544700-0000-4000-8000-000000000001",
+    "code": "mtg",
+    "name": "Magic: The Gathering",
+    "slug": "mtg"
+  },
+  "counts": {
+    "sets": 133,
+    "card_prints": 12380,
+    "card_print_identity": 12380,
+    "card_printings": 20040,
+    "self_hosted_parent_images": 0
+  },
+  "release": {
+    "release_status": "hidden",
+    "release_version": "MTG_CATALOG_APP_VISIBILITY_BOUNDARY_V1",
+    "activated_at": null,
+    "activated_by": null
+  },
+  "boundaries": {
+    "database_writes": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "release_control_writes": false,
+    "vault_writes": false
+  }
+}

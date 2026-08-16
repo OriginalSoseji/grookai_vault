@@ -66,6 +66,7 @@ function parseArgs(argv) {
     manifest: null,
     payloadDir: null,
     outDir: null,
+    startIndex: 0,
     maxSets: null,
     retries: 3,
     resume: false,
@@ -80,6 +81,7 @@ function parseArgs(argv) {
     else if (arg.startsWith("--manifest=")) args.manifest = path.resolve(arg.slice(11));
     else if (arg.startsWith("--payload-dir=")) args.payloadDir = path.resolve(arg.slice(14));
     else if (arg.startsWith("--out-dir=")) args.outDir = path.resolve(arg.slice(10));
+    else if (arg.startsWith("--start-index=")) args.startIndex = Number(arg.slice(14));
     else if (arg.startsWith("--max-sets=")) args.maxSets = Number(arg.slice(11));
     else if (arg.startsWith("--retries=")) args.retries = Number(arg.slice(10));
     else if (arg.startsWith("--as-of=")) args.asOf = arg.slice(8);
@@ -93,9 +95,38 @@ function parseArgs(argv) {
   if (args.maxSets !== null && (!Number.isInteger(args.maxSets) || args.maxSets < 1)) {
     throw new Error("--max-sets must be a positive integer");
   }
+  if (!Number.isInteger(args.startIndex) || args.startIndex < 0) {
+    throw new Error("--start-index must be a non-negative integer");
+  }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(args.asOf)) throw new Error("--as-of must be YYYY-MM-DD");
   if (args.resume && args.mode === "plan") throw new Error("--resume is not valid in plan mode");
   return args;
+}
+
+export function selectMtgCatalogExecutionRangeV1(
+  executionOrder,
+  { startIndex = 0, maxSets = null } = {},
+) {
+  if (!Number.isInteger(startIndex) || startIndex < 0) {
+    throw new Error("startIndex must be a non-negative integer");
+  }
+  if (maxSets !== null && (!Number.isInteger(maxSets) || maxSets < 1)) {
+    throw new Error("maxSets must be a positive integer when provided");
+  }
+  if (startIndex >= executionOrder.length) {
+    throw new Error(
+      `startIndex ${startIndex} is outside execution order length ${executionOrder.length}`,
+    );
+  }
+  const endIndex =
+    maxSets === null
+      ? executionOrder.length
+      : Math.min(executionOrder.length, startIndex + maxSets);
+  return {
+    start_index: startIndex,
+    end_index_exclusive: endIndex,
+    selected: executionOrder.slice(startIndex, endIndex),
+  };
 }
 
 function git(args) {
@@ -844,10 +875,11 @@ async function main() {
     payloadInventory: inventory,
     repository,
   });
-  const selected = envelope.execution_order.slice(
-    0,
-    args.maxSets === null ? envelope.execution_order.length : args.maxSets,
-  );
+  const selection = selectMtgCatalogExecutionRangeV1(envelope.execution_order, {
+    startIndex: args.startIndex,
+    maxSets: args.maxSets,
+  });
+  const selected = selection.selected;
   const outDir =
     args.outDir ??
     path.join(ROOT, "docs", "audits", "pricing", "mtg_canonical_catalog_ingestion_v1");
@@ -864,6 +896,8 @@ async function main() {
       runPlan.payload_inventory_sha256 !== envelope.payload_inventory_sha256 ||
       runPlan.as_of !== args.asOf ||
       runPlan.repository.governing_commit_sha !== repository.governing_commit_sha ||
+      runPlan.selection_start_index !== selection.start_index ||
+      runPlan.selection_end_index_exclusive !== selection.end_index_exclusive ||
       stableJson(runPlan.selected_set_ids) !== stableJson(selected.map((batch) => batch.source_set_id))
     ) {
       throw new Error("Resume plan does not match the frozen envelope, code, or selection");
@@ -879,6 +913,8 @@ async function main() {
       approval_sha256: envelope.approval_sha256,
       manifest_sha256: envelope.manifest_sha256,
       payload_inventory_sha256: envelope.payload_inventory_sha256,
+      selection_start_index: selection.start_index,
+      selection_end_index_exclusive: selection.end_index_exclusive,
       selected_set_ids: selected.map((batch) => batch.source_set_id),
       selected_sets: selected.map((batch) => ({
         execution_ordinal: batch.execution_ordinal,
@@ -954,7 +990,7 @@ async function main() {
   });
 
   try {
-    for (const [index, batch] of selected.entries()) {
+    for (const batch of selected) {
       if (stopRequested) throw new Error("Graceful stop requested before next set");
       if (completedById.has(batch.source_set_id)) continue;
       if (!isMtgCatalogBatchEligibleAsOfV1(batch, runPlan.as_of)) {
@@ -975,7 +1011,7 @@ async function main() {
       const plan = buildMtgCanonicalSetPromotionContractV1(payload);
       await appendProgress(outDir, {
         event: "set_started",
-        execution_ordinal: index,
+        execution_ordinal: batch.execution_ordinal,
         source_set_id: batch.source_set_id,
         code: batch.code,
         plan_sha256: plan.promotion_plan_sha256,

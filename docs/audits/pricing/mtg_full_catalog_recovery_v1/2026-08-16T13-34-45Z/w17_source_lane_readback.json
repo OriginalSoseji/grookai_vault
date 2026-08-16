@@ -1,0 +1,37 @@
+{
+  "version": "MTG_W17_SOURCE_LANE_READBACK_V1",
+  "recorded_at": "2026-08-16T13:34:45Z",
+  "mode": "read_only",
+  "set": {
+    "source_set_id": "2027da7f-c82a-4080-af34-4b9edf7c5132",
+    "code": "w17",
+    "name": "Welcome Deck 2017"
+  },
+  "frozen_payload": {
+    "planned_lanes": 30,
+    "external_printing_mappings": 30,
+    "positive_market_lanes": 30,
+    "writer_payload_fingerprint": "633400ba5441c9f9a6a870a4be231e415d2f6c5452ee01d53927debc4ee97f6d",
+    "payload_sha256": "e61875fbdf4206562637cb92c453fe86ecbcd3966a32d19a4cf5153974278022"
+  },
+  "current_source_readback": {
+    "matched_distinct_lanes": 30,
+    "latest_observed_on": "2026-08-16",
+    "latest_per_lane_positive": 30,
+    "missing_lanes": 0,
+    "observed_on_2026_08_14_rows": 30
+  },
+  "finding": {
+    "failure_class": "partial_global_latest_day_race",
+    "original_message": "current source lanes: expected 30, got 0",
+    "source_data_missing": false,
+    "payload_drift": false,
+    "canonical_drift": false,
+    "repair": "select newest observation day complete for every planned exact lane"
+  },
+  "boundaries": {
+    "database_writes": false,
+    "storage_writes": false,
+    "pricing_writes": false
+  }
+}
