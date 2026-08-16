@@ -110,6 +110,25 @@ test("App Store upload authenticates xcodebuild without logging API identifiers"
   assert.match(automation, /\[REDACTED\]/);
 });
 
+test("App Store archive excludes release credentials from build subprocesses", () => {
+  const automation = read("scripts/app_store_connect/ios_release_automation.rb");
+  const commandDispatch = automation.slice(automation.indexOf("case command"));
+  const archiveDispatch = commandDispatch.match(
+    /when "archive"([\s\S]*?)when "upload"/,
+  )?.[1];
+
+  assert.ok(archiveDispatch);
+  assert.match(
+    archiveDispatch,
+    /load_env_file\(DEFAULT_ENV, only: RELEASE_BUILD_ENV_KEYS\)/,
+  );
+  assert.match(automation, /next if only && !only\.include\?\(key\)/);
+  assert.match(automation, /RELEASE_BUILD_SENSITIVE_ENV_KEYS/);
+  assert.match(automation, /run\(command, unset_env: APP_REVIEW_ENV_KEYS\)/);
+  assert.match(automation, /def run\(command, unset_env: \[\]\)/);
+  assert.match(automation, /system\(environment, \*command\)/);
+});
+
 test("App Store status requests only supported app-info fields", () => {
   const automation = read("scripts/app_store_connect/ios_release_automation.rb");
 
