@@ -19,6 +19,7 @@ import {
   buildOnePieceCardImageSourcePlanV1,
   hashOnePieceCardImageV1,
   onePieceCardImageAuditDirectoryV1,
+  retryOnePieceCardImageReadV1,
   validateOnePieceCardImagePointersV1,
   validateOnePieceCardImageSourcePlanV1,
 } from "../../backend/pricing/one_piece_card_image_self_host_v1.mjs";
@@ -239,9 +240,15 @@ async function fetchImage(source, timeoutMs) {
 }
 
 async function downloadStored(client, pointer) {
-  const { data, error } = await client.storage.from(ONE_PIECE_CARD_IMAGE_BUCKET)
-    .download(pointer.image_path);
-  if (error || !data) throw new Error(`storage_download:${error?.message}`);
+  const data = await retryOnePieceCardImageReadV1(async () => {
+    const result = await client.storage.from(ONE_PIECE_CARD_IMAGE_BUCKET)
+      .download(pointer.image_path);
+    if (result.error || !result.data) {
+      const detail = result.error?.message ?? JSON.stringify(result.error ?? {});
+      throw new Error(`storage_download:${detail}`);
+    }
+    return result.data;
+  });
   const buffer = Buffer.from(await data.arrayBuffer());
   const observed = inspectOnePieceImage(buffer, pointer.content_type);
   if (observed.sha256 !== pointer.image_hash ||

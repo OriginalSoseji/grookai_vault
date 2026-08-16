@@ -6,6 +6,7 @@ import {
   buildOnePieceCardImageSourcePlanV1,
   highResolutionOnePieceImageUrlV1,
   onePieceCardImageAuditDirectoryV1,
+  retryOnePieceCardImageReadV1,
   validateOnePieceCardImageSourcePlanV1,
 } from "../../backend/pricing/one_piece_card_image_self_host_v1.mjs";
 
@@ -18,6 +19,17 @@ test("audit phase directories match their frozen manifest consumers", () => {
   assert.equal(onePieceCardImageAuditDirectoryV1("verify"),
     "storage_readback_v1");
   assert.throws(() => onePieceCardImageAuditDirectoryV1("other"));
+});
+
+test("immutable Storage readback retries bounded transport failures", async () => {
+  let attempts = 0;
+  const result = await retryOnePieceCardImageReadV1(async () => {
+    attempts += 1;
+    if (attempts < 3) throw new Error("transient_transport");
+    return "verified";
+  }, { attempts: 3, delayMs: 0 });
+  assert.equal(result, "verified");
+  assert.equal(attempts, 3);
 });
 
 test("exact TCGPlayer image references derive high resolution candidates", () => {

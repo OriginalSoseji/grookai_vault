@@ -26,6 +26,24 @@ export function onePieceCardImageAuditDirectoryV1(mode) {
   return directory;
 }
 
+export async function retryOnePieceCardImageReadV1(
+  operation,
+  { attempts = 3, delayMs = 250 } = {},
+) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await operation(attempt);
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts && delayMs > 0) {
+        await new Promise((resolve) => setTimeout(resolve, delayMs * attempt));
+      }
+    }
+  }
+  throw lastError;
+}
+
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
   if (value && typeof value === "object") {
