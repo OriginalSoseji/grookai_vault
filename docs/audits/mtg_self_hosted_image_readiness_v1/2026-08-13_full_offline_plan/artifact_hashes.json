@@ -1,0 +1,46 @@
+{
+  "version": "MTG_SELF_HOSTED_IMAGE_READINESS_V1",
+  "plan_fingerprint_sha256": "9803b4345b1ab5670a4475aac94c999efbb1f4de5561f335b64eefb1a52de857",
+  "files": [
+    {
+      "name": "summary.json",
+      "size_bytes": 3446,
+      "sha256": "78f3482f229c01b811a3be3d2b4b34d5fe08496d65229e020674d03e684890b1"
+    },
+    {
+      "name": "image_assets.jsonl.gz",
+      "size_bytes": 20584824,
+      "sha256": "ec384a63110f99f6053c7a0ea2b4545dec6f434caad957c0997c992a2359a85d"
+    },
+    {
+      "name": "set_coverage.jsonl",
+      "size_bytes": 329448,
+      "sha256": "fd911e1e0db4c34732c53dc39984333f367a5dda20e2ead488cda63889f05f33"
+    },
+    {
+      "name": "image_gaps.jsonl",
+      "size_bytes": 55273,
+      "sha256": "43111483d6da21b2690a97e30d87722ddf6cdc7196dbc185adc8e02dbe393741"
+    },
+    {
+      "name": "url_and_identity_issues.jsonl",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "path_collisions.jsonl",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payload_inventory.jsonl",
+      "size_bytes": 432737,
+      "sha256": "7a21fed5df243d099ecb900a950a3a3d765a2bc2c9b2fdd2d83f55898ab0daf9"
+    },
+    {
+      "name": "REPORT.md",
+      "size_bytes": 2479,
+      "sha256": "c8b382443e099906aa3a313ee8d55b6854de919e2ee13a168df399dccb381574"
+    }
+  ]
+}

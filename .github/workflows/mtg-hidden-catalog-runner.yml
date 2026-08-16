@@ -128,7 +128,7 @@ jobs:
           run_dir="$RUNNER_TEMP/mtg-${operation}-${START_INDEX}-${MAX_SETS}"
           echo "RUN_DIR=$run_dir" >> "$GITHUB_ENV"
           approval="$(node -e "const s=require(process.argv[1]);process.stdout.write(s.envelope.required_approval_message)" "$PLAN_DIR/summary.json")"
-          export MTG_CATALOG_INGESTION_APPROVAL="$approval"
+          export MTG_CANONICAL_CATALOG_INGESTION_APPROVAL="$approval"
 
           node scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs \
             "--$operation" \

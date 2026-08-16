@@ -1,0 +1,37 @@
+{
+  "audit_version": "MTG_CLIENT_SEARCH_READINESS_AUDIT_V1",
+  "mode": "offline_source_audit",
+  "source_files": [
+    "docs/contracts/MTG_CANONICAL_CATALOG_IMPORT_CONTRACT_V1.md",
+    "docs/audits/pricing/mtg_canonical_catalog_canary_plan_v1/dsk/writer_payload.json",
+    "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql",
+    "apps/web/src/types/cards.ts",
+    "apps/web/src/lib/publicSearchResolver.ts",
+    "apps/web/src/lib/search/smartSearchIntent.ts",
+    "apps/web/src/lib/explore/getExploreRows.ts",
+    "apps/web/src/lib/getPublicCardByGvId.ts",
+    "apps/web/src/app/card/[gv_id]/page.tsx",
+    "apps/web/src/lib/publicSets.ts",
+    "apps/web/src/lib/publicSets.shared.ts",
+    "apps/web/src/components/PublicSetCardGrid.tsx",
+    "apps/web/src/lib/publicLanguageScope.ts",
+    "apps/web/src/lib/cards/displayDiscriminator.ts",
+    "lib/models/card_print.dart",
+    "lib/services/identity/identity_search.dart",
+    "lib/card_detail_screen.dart",
+    "lib/services/public/public_sets_service.dart",
+    "lib/screens/sets/public_set_detail_screen.dart",
+    "lib/services/identity/display_identity.dart",
+    "tests/fixtures/mtg_client_search_readiness_v1.json"
+  ],
+  "boundaries": {
+    "mode": "offline_source_audit",
+    "database_access": false,
+    "database_writes": false,
+    "release_control_changes": false,
+    "mtg_visibility_activation": false,
+    "deployment": false,
+    "vercel": false,
+    "active_ingestion_worktree_touched": false
+  }
+}
