@@ -7,6 +7,19 @@ export const ONE_PIECE_CARD_IMAGE_BUCKET = "external-card-images";
 export const ONE_PIECE_CARD_IMAGE_SOURCE_HOST =
   "tcgplayer-cdn.tcgplayer.com";
 
+const ONE_PIECE_CARD_IMAGE_AUDIT_DIRECTORIES_V1 = Object.freeze({
+  plan: "source_plan_v1",
+  canary: "storage_canary_v1",
+  upload: "storage_upload_v1",
+  verify: "storage_readback_v1",
+});
+
+export function onePieceCardImageAuditDirectoryV1(mode) {
+  const directory = ONE_PIECE_CARD_IMAGE_AUDIT_DIRECTORIES_V1[mode];
+  if (!directory) throw new Error(`Unsupported image audit mode: ${mode}`);
+  return directory;
+}
+
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
   if (value && typeof value === "object") {

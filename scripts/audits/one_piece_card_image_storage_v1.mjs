@@ -16,6 +16,7 @@ import {
   buildOnePieceCardImagePointerV1,
   buildOnePieceCardImageSourcePlanV1,
   hashOnePieceCardImageV1,
+  onePieceCardImageAuditDirectoryV1,
   validateOnePieceCardImagePointersV1,
   validateOnePieceCardImageSourcePlanV1,
 } from "../../backend/pricing/one_piece_card_image_self_host_v1.mjs";
@@ -73,7 +74,8 @@ function parseArgs(argv) {
   }
   if (!Number.isInteger(args.concurrency) || args.concurrency < 1 ||
       args.concurrency > 50) throw new Error("Concurrency must be 1..50");
-  args.outDir ||= path.join(AUDIT_ROOT, `${args.mode}_v1`);
+  args.outDir ||= path.join(AUDIT_ROOT,
+    onePieceCardImageAuditDirectoryV1(args.mode));
   return args;
 }
 

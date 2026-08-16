@@ -5,8 +5,20 @@ import {
   buildOnePieceCardImagePointerV1,
   buildOnePieceCardImageSourcePlanV1,
   highResolutionOnePieceImageUrlV1,
+  onePieceCardImageAuditDirectoryV1,
   validateOnePieceCardImageSourcePlanV1,
 } from "../../backend/pricing/one_piece_card_image_self_host_v1.mjs";
+
+test("audit phase directories match their frozen manifest consumers", () => {
+  assert.equal(onePieceCardImageAuditDirectoryV1("plan"), "source_plan_v1");
+  assert.equal(onePieceCardImageAuditDirectoryV1("canary"),
+    "storage_canary_v1");
+  assert.equal(onePieceCardImageAuditDirectoryV1("upload"),
+    "storage_upload_v1");
+  assert.equal(onePieceCardImageAuditDirectoryV1("verify"),
+    "storage_readback_v1");
+  assert.throws(() => onePieceCardImageAuditDirectoryV1("other"));
+});
 
 test("exact TCGPlayer image references derive high resolution candidates", () => {
   assert.equal(highResolutionOnePieceImageUrlV1(
