@@ -20,18 +20,18 @@ function deployment() {
       artifact_status: "signed",
       artifact_sha256: "b".repeat(64),
       commit_sha: "a".repeat(40),
-      version_code: "296",
+      version_code: "297",
     },
     ios: {
       distribution_status: "in_beta_testing",
-      build_number: "296",
+      build_number: "297",
       commit_sha: "a".repeat(40),
     },
   };
 }
 
 test("release plan requires all three exact deployed client proofs", () => {
-  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "296");
+  assert.equal(ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1, "297");
   const ready = evaluateOnePieceSignedInCatalogReleasePlanV1({
     before: { release_control: { release_status: "hidden" }, counts },
     deployment: deployment(),

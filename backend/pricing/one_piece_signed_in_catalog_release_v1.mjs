@@ -1,7 +1,7 @@
 import { ONE_PIECE_EXPECTED_COUNTS_V1 } from "./one_piece_signed_in_catalog_readiness_v1.mjs";
 
 export const ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_VERSION_V1 = "ONE_PIECE_SIGNED_IN_CATALOG_RELEASE_V1";
-export const ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1 = "296";
+export const ONE_PIECE_SIGNED_IN_MOBILE_BUILD_V1 = "297";
 
 function numeric(value) {
   const parsed = Number(value);

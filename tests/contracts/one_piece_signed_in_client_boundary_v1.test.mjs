@@ -26,6 +26,8 @@ test("card and set loaders preserve request-role catalog visibility", () => {
   assert.match(setLoader, /game,/);
   assert.doesNotMatch(setLoader, /card_prints\(count\)/);
   assert.match(setLoader, /get_public_set_card_counts_v1/);
+  assert.match(setLoader, /getAllVisibleSetRows/);
+  assert.match(setLoader, /\.range\(offset, offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1\)/);
   assert.doesNotMatch(setLoader, /\.ilike\("set_code"/);
   assert.match(setLoader, /candidate\.game_code/);
   assert.match(setStatsLoader, /createPublicServerClient/);
@@ -68,6 +70,8 @@ test("Flutter set browse defaults to Pokemon and isolates One Piece explicitly",
   assert.match(service, /\.where\(\(setInfo\) => setInfo\.game == game\)/);
   assert.match(service, /'game,code,name,/);
   assert.match(service, /get_public_set_card_counts_v1/);
+  assert.match(service, /_fetchAllVisibleSetRows/);
+  assert.match(service, /\.range\(offset, offset \+ _setRowPageSize - 1\)/);
   assert.match(service, /\.inFilter\('set_code', exactSetCodes\)/);
   assert.match(screen, /_activeGame = PublicCatalogGame\.pokemon/);
   assert.match(screen, /SegmentedButton<PublicCatalogGame>/);

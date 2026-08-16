@@ -239,6 +239,7 @@ class PublicSetLaneOption {
 }
 
 class PublicSetsService {
+  static const _setRowPageSize = 1000;
   static const _setCountChunkSize = 500;
   static const _publicSetRouteAliases = <String, String>{
     'shiny vault': 'sma',
@@ -345,14 +346,7 @@ class PublicSetsService {
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
   }) async {
-    final rawRows = await client
-        .from('sets')
-        .select(
-          'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
-        );
-    final setRows = (rawRows as List<dynamic>)
-        .map((row) => Map<String, dynamic>.from(row as Map))
-        .toList();
+    final setRows = await _fetchAllVisibleSetRows(client: client);
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
     final cardCountsByCode = await _fetchExactSetCardCounts(
@@ -415,6 +409,28 @@ class PublicSetsService {
     });
 
     return sets;
+  }
+
+  static Future<List<Map<String, dynamic>>> _fetchAllVisibleSetRows({
+    required SupabaseClient client,
+  }) async {
+    final rows = <Map<String, dynamic>>[];
+    for (var offset = 0; ; offset += _setRowPageSize) {
+      final rawRows = await client
+          .from('sets')
+          .select(
+            'id,game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
+          )
+          .order('id')
+          .range(offset, offset + _setRowPageSize - 1);
+      final page = (rawRows as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .toList();
+      rows.addAll(page);
+      if (page.length < _setRowPageSize) {
+        return rows;
+      }
+    }
   }
 
   static Future<List<PublicSetSummary>> fetchFeaturedSets({
