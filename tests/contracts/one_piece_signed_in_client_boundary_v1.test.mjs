@@ -17,6 +17,8 @@ function source(relativePath) {
 test("card and set loaders preserve request-role catalog visibility", () => {
   const cardLoader = source("apps/web/src/lib/getPublicCardByGvId.ts");
   const setLoader = source("apps/web/src/lib/publicSets.ts");
+  const setStatsLoader = source("apps/web/src/lib/publicSetMasterSetStats.ts");
+  const setPage = source("apps/web/src/app/sets/[set_code]/page.tsx");
 
   for (const loader of [cardLoader, setLoader]) {
     assert.match(loader, /createServerComponentClient/);
@@ -28,6 +30,25 @@ test("card and set loaders preserve request-role catalog visibility", () => {
   assert.match(setLoader, /game,/);
   assert.match(setLoader, /card_prints\(count\)/);
   assert.match(setLoader, /candidate\.game_code/);
+  assert.match(setStatsLoader, /createPublicServerClient/);
+  assert.match(
+    setStatsLoader,
+    /getPublicSetMasterSetStats\(\s*setCode:\s*string,\s*userId:[\s\S]*requestScopedCatalogClient\?: SupabaseClient/,
+  );
+  assert.match(
+    setStatsLoader,
+    /requestScopedCatalogClient \?\? createPublicServerClient\(\)/,
+  );
+  assert.match(setStatsLoader, /fetchSetCardPrintIds\(supabase, setCode\)/);
+  assert.match(setStatsLoader, /fetchCardPrintings\(supabase, cardPrintIds\)/);
+  assert.match(
+    setPage,
+    /user\?\.id && setDetail\.game_code !== "pokemon" \? supabase : undefined/,
+  );
+  assert.match(
+    setPage,
+    /getPublicSetMasterSetStats\(\s*setDetail\.code,\s*user\?\.id \?\? null,\s*requestScopedCatalogClient,/,
+  );
 });
 
 test("web set browse is dynamic and exposes an explicit game scope", () => {
