@@ -100,7 +100,11 @@ async function SetPageContent({
   ]);
   const user = authResponse.data.user;
 
-  const masterSetStats = await getPublicSetMasterSetStats(setDetail.code, user?.id ?? null);
+  const masterSetStats = await getPublicSetMasterSetStats(
+    supabase,
+    setDetail.code,
+    user?.id ?? null,
+  );
   const [setLogoPath, worldChampionshipDecklist] = await Promise.all([
     getSetLogoAssetPathMap([setDetail.code]).then((logos) => logos.get(setDetail.code)),
     getPublicWorldChampionshipDecklist(setDetail.code),

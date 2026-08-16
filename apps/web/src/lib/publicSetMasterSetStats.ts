@@ -1,7 +1,7 @@
 import "server-only";
 
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
-import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { escapePostgrestLikePattern } from "@/lib/publicSetCanonicalization";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
@@ -43,13 +43,15 @@ function chunkValues<T>(values: T[], size = QUERY_CHUNK_SIZE) {
   return chunks;
 }
 
-async function fetchSetCardPrintIds(setCode: string) {
+async function fetchSetCardPrintIds(
+  supabase: SupabaseClient,
+  setCode: string,
+) {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode) {
     return [];
   }
 
-  const supabase = createPublicServerClient();
   const setCodePattern = escapePostgrestLikePattern(normalizedCode);
   const ids: string[] = [];
   const pageSize = 1000;
@@ -99,12 +101,14 @@ async function fetchSetCardPrintIds(setCode: string) {
   return normalizeIds(ids);
 }
 
-async function fetchCardPrintings(cardPrintIds: string[]) {
+async function fetchCardPrintings(
+  supabase: SupabaseClient,
+  cardPrintIds: string[],
+) {
   if (cardPrintIds.length === 0) {
     return [];
   }
 
-  const supabase = createPublicServerClient();
   const printings: Array<{ id: string; cardPrintId: string }> = [];
 
   const rows = await getPublicCardPrintingOptions(supabase, cardPrintIds);
@@ -156,11 +160,12 @@ async function fetchOwnedInstances(userId: string, cardPrintIds: string[]) {
 }
 
 export async function getPublicSetMasterSetStats(
+  supabase: SupabaseClient,
   setCode: string,
   userId: string | null | undefined,
 ): Promise<PublicSetMasterSetStats> {
-  const cardPrintIds = await fetchSetCardPrintIds(setCode);
-  const printings = await fetchCardPrintings(cardPrintIds);
+  const cardPrintIds = await fetchSetCardPrintIds(supabase, setCode);
+  const printings = await fetchCardPrintings(supabase, cardPrintIds);
   const parentIdsWithChildPrintings = new Set(printings.map((printing) => printing.cardPrintId));
   const fallbackParentIds = cardPrintIds.filter((id) => !parentIdsWithChildPrintings.has(id));
   const availablePrintingIds = new Set(printings.map((printing) => printing.id));
