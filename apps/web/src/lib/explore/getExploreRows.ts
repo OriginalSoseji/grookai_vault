@@ -3986,7 +3986,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     normalizeFinishKeys(options.finishKeys).length > 0 ||
     Boolean(options.imageState && options.imageState !== "any");
   const lookupRows = shouldRequireChildScope
-    ? await fetchSmartDiscoveryChildRows(options, parentRows)
+    ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
     : parentRows;
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(lookupRows.map((row) => row.set_code ?? "").filter(Boolean)),

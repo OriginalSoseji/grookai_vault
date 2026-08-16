@@ -38,7 +38,7 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   assert.match(route, /exactIllustrator,/);
   assert.match(route, /releaseYearMin: effectiveSmartSearchIntent\.releaseYearMin/);
   assert.match(route, /finishKeys: effectiveSmartSearchIntent\.finishKeys/);
-  assert.match(lookup, /fetchSmartDiscoveryChildRows\(options, parentRows\)/);
+  assert.match(lookup, /fetchSmartDiscoveryChildRows\(\{ \.\.\.options, sortMode \}, parentRows\)/);
   assert.match(lookup, /\.replace\(\/\^#\//);
   assert.match(lookup, /\.split\("\/", 1\)/);
 });
