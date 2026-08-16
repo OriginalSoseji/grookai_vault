@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-08-14T08:15:36.261Z",
+  "status": "stopped_before_next_set",
+  "error_code": null,
+  "error_message": "current source lanes: expected 30, got 0",
+  "transient": false,
+  "completed_set_count": 132
+}

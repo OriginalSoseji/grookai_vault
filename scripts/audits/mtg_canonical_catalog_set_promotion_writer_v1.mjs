@@ -204,19 +204,28 @@ export async function captureMtgSetPromotionCurrentSourceLanesV1(client, payload
     `with planned as (
        select * from jsonb_to_recordset($1::jsonb)
          as row(product_id integer, subtype text)
-     ), latest_day as (
-       select observed_on from public.tcgcsv_source_price_daily_observations
-       where category_id = 1 order by observed_on desc limit 1
+     ), complete_days as (
+       select observation.observed_on
+       from planned
+       join public.tcgcsv_source_price_daily_observations observation
+         on observation.category_id = 1
+        and observation.product_id = planned.product_id
+        and observation.subtype_name_normalized = planned.subtype
+       group by observation.observed_on
+       having count(*) = (select count(*) from planned)
+       order by observation.observed_on desc
+       limit 1
      )
      select count(*)::integer as planned_count,
             count(observation.id)::integer as source_row_count,
             count(observation.id) filter (where observation.market_price > 0)::integer
               as positive_market_price_count,
             max(observation.observed_on) as observed_on
-     from planned cross join latest_day
+     from planned
+     left join complete_days on true
      left join public.tcgcsv_source_price_daily_observations observation
        on observation.category_id = 1
-      and observation.observed_on = latest_day.observed_on
+      and observation.observed_on = complete_days.observed_on
       and observation.product_id = planned.product_id
       and observation.subtype_name_normalized = planned.subtype`,
     [JSON.stringify(payload.rows.external_printing_mappings.map((row) => ({
