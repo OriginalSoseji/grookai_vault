@@ -45,7 +45,12 @@ export function buildOnePieceCardImageSourcePlanV1(rows) {
       source_image_url: String(row.source_image_url),
       high_resolution_url: highResolutionOnePieceImageUrlV1(
         row.source_image_url, row.source_product_id),
-      evidence_role: "exact_tcgplayer_product_image",
+      evidence_role: row.existing_image_path
+        ? "existing_official_self_hosted_image"
+        : "exact_tcgplayer_product_image",
+      existing_image_bucket: row.existing_image_path ? "user-card-images" : null,
+      existing_image_path: row.existing_image_path ?? null,
+      existing_image_note: row.existing_image_note ?? null,
     }));
   const core = { version: ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION,
     bucket: ONE_PIECE_CARD_IMAGE_BUCKET, items,
@@ -85,8 +90,14 @@ export function validateOnePieceCardImageSourcePlanV1(plan) {
     } catch {
       findings.push(`invalid_source_image:${row.gv_id}`);
     }
-    add(row.evidence_role !== "exact_tcgplayer_product_image",
-      `evidence_role_mismatch:${row.gv_id}`);
+    add(!["exact_tcgplayer_product_image",
+      "existing_official_self_hosted_image"].includes(row.evidence_role),
+    `evidence_role_mismatch:${row.gv_id}`);
+    add(row.evidence_role === "existing_official_self_hosted_image" &&
+      (!row.existing_image_path?.startsWith(
+        "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/") ||
+       row.existing_image_bucket !== "user-card-images"),
+    `existing_official_binding_mismatch:${row.gv_id}`);
   }
   for (const [key, value] of Object.entries(plan?.boundaries ?? {})) {
     add(value !== 0, `boundary_overclaim:${key}`);
@@ -97,17 +108,25 @@ export function validateOnePieceCardImageSourcePlanV1(plan) {
 
 export function buildOnePieceCardImagePointerV1(source, image, publicUrl) {
   const extension = image.format === "png" ? "png" : "jpg";
-  const imagePath = `one-piece/card-prints/tcgplayer/${source.source_product_id}/` +
+  const authority = source.evidence_role === "existing_official_self_hosted_image"
+    ? "official" : "tcgplayer";
+  const imagePath = `one-piece/card-prints/${authority}/${source.source_product_id}/` +
     `${image.sha256.slice(0, 32)}.${extension}`;
+  const imageSource = authority === "official"
+    ? "self_hosted_official_one_piece_card_list_v1"
+    : "self_hosted_tcgplayer_exact_product_v1";
   return { card_print_id: source.card_print_id, gv_id: source.gv_id,
     source_product_id: source.source_product_id, source_image_url:
       source.source_image_url, image_path: imagePath,
   image_url: `${String(publicUrl).replace(/\/$/, "")}/${imagePath}`,
-  image_source: "self_hosted_tcgplayer_exact_product_v1",
+  image_source: imageSource,
   image_hash: image.sha256, image_status: "exact",
   image_res: { width: image.width, height: image.height },
-  image_note: "Exact TCGPlayer product image self-hosted and hash-verified by " +
-    ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION,
+  image_note: authority === "official"
+    ? `${source.existing_image_note} Copied to the public canonical image bucket ` +
+      `and hash-verified by ${ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION}.`
+    : "Exact TCGPlayer product image self-hosted and hash-verified by " +
+      ONE_PIECE_CARD_IMAGE_SELF_HOST_VERSION,
   content_type: image.content_type, size_bytes: image.size_bytes,
   width: image.width, height: image.height, format: image.format,
   source_download_role: image.source_download_role };
@@ -122,9 +141,13 @@ export function validateOnePieceCardImagePointersV1(rows) {
     if (!row.card_print_id || !row.gv_id || !row.source_product_id ||
         !/^[0-9a-f]{64}$/.test(row.image_hash ?? "") ||
         !row.image_path?.startsWith(
-          `one-piece/card-prints/tcgplayer/${row.source_product_id}/`) ||
+          `one-piece/card-prints/${row.image_source ===
+            "self_hosted_official_one_piece_card_list_v1"
+            ? "official" : "tcgplayer"}/${row.source_product_id}/`) ||
         row.image_status !== "exact" ||
-        row.image_source !== "self_hosted_tcgplayer_exact_product_v1" ||
+        !["self_hosted_tcgplayer_exact_product_v1",
+          "self_hosted_official_one_piece_card_list_v1"].includes(
+          row.image_source) ||
         !Number.isInteger(row.width) || !Number.isInteger(row.height) ||
         row.width < 100 || row.height < 100 || Number(row.size_bytes) <= 1000) {
       findings.push(`invalid_pointer:${row.gv_id ?? "unknown"}`);

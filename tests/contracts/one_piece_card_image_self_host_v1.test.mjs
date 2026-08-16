@@ -43,3 +43,22 @@ test("pointer is content addressed and self-hosted", () => {
   assert.match(pointer.image_path, /^one-piece\/card-prints\/tcgplayer\/123\//);
   assert.match(pointer.image_url, /external-card-images\/one-piece\//);
 });
+
+test("existing official image evidence is preserved as a separate authority", () => {
+  const rows = Array.from({ length: 6730 }, (_, index) => ({
+    card_print_id: `00000000-0000-4000-8000-${String(index).padStart(12, "0")}`,
+    gv_id: `GV-OP-TCGP-${index}`,
+    canonical_name: `Card ${index}`,
+    source_product_id: index + 1,
+    source_image_url:
+      `https://tcgplayer-cdn.tcgplayer.com/product/${index + 1}_200w.jpg`,
+    existing_image_path: index === 0
+      ? "warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/card/image.png"
+      : null,
+    existing_image_note: index === 0 ? "Official evidence." : null,
+  }));
+  const plan = buildOnePieceCardImageSourcePlanV1(rows);
+  assert.equal(plan.items[0].evidence_role,
+    "existing_official_self_hosted_image");
+  assert.equal(validateOnePieceCardImageSourcePlanV1(plan).valid, true);
+});

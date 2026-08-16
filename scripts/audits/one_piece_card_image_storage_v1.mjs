@@ -103,15 +103,22 @@ async function sourceRows(connectionString) {
     await client.query("begin read only");
     const rows = (await client.query(`select cp.id::text card_print_id,
       cp.gv_id,cp.name canonical_name,sp.product_id source_product_id,
-      sp.image_url source_image_url
+      sp.image_url source_image_url,cp.image_path existing_image_path,
+      cp.image_note existing_image_note
       from public.card_prints cp
       join public.games game on game.id=cp.game_id and game.code='one_piece'
       join public.external_mappings mapping
         on mapping.card_print_id=cp.id and mapping.source='tcgplayer'
       join public.tcgcsv_source_products sp
         on sp.product_id=mapping.external_id::bigint and sp.category_id=68
-      where cp.image_url is null and cp.image_path is null
-        and cp.image_source is null and cp.image_hash is null
+      where cp.image_url is null and (
+        (cp.image_path is null and cp.image_source is null and cp.image_hash is null)
+        or (
+          cp.image_source='identity' and cp.image_status='exact'
+          and cp.image_path like
+            'warehouse-derived/self-hosted-images-v1/card_prints/one-piece/st01/%'
+        )
+      )
       order by sp.product_id`)).rows;
     await client.query("commit");
     return rows;
@@ -220,7 +227,20 @@ async function exists(client, pointer) {
 }
 
 async function processOne(storage, publicBase, source, args, allowExisting) {
-  const fetched = await fetchImage(source, args.timeoutMs);
+  let fetched;
+  if (source.evidence_role === "existing_official_self_hosted_image") {
+    const { data, error } = await storage.storage
+      .from(source.existing_image_bucket).download(source.existing_image_path);
+    if (error || !data) throw new Error(`official_source_download:${error?.message}`);
+    const buffer = Buffer.from(await data.arrayBuffer());
+    const image = inspectOnePieceImage(buffer,
+      source.existing_image_path.endsWith(".png") ? "image/png" : "image/jpeg");
+    if (!image.valid_image) throw new Error(image.diagnostics.join(","));
+    fetched = { buffer, image: { ...image,
+      source_download_role: "existing_official_self_hosted" } };
+  } else {
+    fetched = await fetchImage(source, args.timeoutMs);
+  }
   const pointer = buildOnePieceCardImagePointerV1(source, fetched.image,
     publicBase);
   const wasPresent = await exists(storage, pointer);
