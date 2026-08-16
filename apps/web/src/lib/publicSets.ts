@@ -221,10 +221,7 @@ const PUBLIC_SET_LIST_SELECT = `
   card_prints(count)
 `;
 
-const PUBLIC_SET_DETAIL_SELECT = `
-  ${PUBLIC_SET_LIST_SELECT},
-  card_prints(count)
-`;
+const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
 
 const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<
   Record<string, number>

@@ -48,10 +48,10 @@ test("mobile release metadata uses one monotonic synchronized build number", () 
   const buildMatch = pubspec.match(/^version:\s*1\.0\.0\+(\d+)$/m);
 
   assert.ok(buildMatch, "pubspec must declare a 1.0.0 release build number");
-  assert.equal(buildMatch[1], "294");
+  assert.equal(buildMatch[1], "295");
   assert.equal(metadata.build_number, buildMatch[1]);
-  assert.match(metadata.archive_path, /build294\.xcarchive$/);
-  assert.match(metadata.export_path, /build294$/);
+  assert.match(metadata.archive_path, /build295\.xcarchive$/);
+  assert.match(metadata.export_path, /build295$/);
 });
 
 test("web release resolves Nano ID to the supported patched branch", () => {

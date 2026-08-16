@@ -84,6 +84,15 @@ test("canonical aliases are selected by reconciled catalog rows, not printed tot
 });
 
 test("set detail aggregates one targeted case-insensitive set lane", () => {
+  assert.match(
+    source,
+    /const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;/,
+  );
+  assert.equal(
+    [...source.matchAll(/card_prints\(count\)/g)].length,
+    1,
+    "PostgREST rejects duplicate relationship aggregates in the same select",
+  );
   assert.match(detailFunctionSource, /select\(PUBLIC_SET_DETAIL_SELECT\)/);
   assert.match(
     detailFunctionSource,
