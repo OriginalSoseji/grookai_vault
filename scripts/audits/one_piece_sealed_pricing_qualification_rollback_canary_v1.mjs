@@ -423,3 +423,5 @@ if (invoked === fileURLToPath(import.meta.url)) {
     process.exitCode = 1;
   });
 }
+
+export { baseline, collisionProof, lineageProof, readOnlyPreflight, schemaProof };
