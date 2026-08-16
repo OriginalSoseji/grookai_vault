@@ -390,8 +390,7 @@ function expectNumber(actual, expected, label) {
   }
 }
 
-async function assertSourceEvidence(client, payload, plan) {
-  const source = await captureMtgSetPromotionCurrentSourceLanesV1(client, payload);
+export function assertMtgCurrentSourceEvidenceV1(source, payload, plan) {
   expectNumber(
     source.planned_count,
     plan.row_counts.external_printing_mappings,
@@ -402,11 +401,24 @@ async function assertSourceEvidence(client, payload, plan) {
     plan.row_counts.external_printing_mappings,
     "current source lanes",
   );
-  expectNumber(
-    source.positive_market_price_count,
-    payload.counts.positive_market_lanes,
-    "positive source lanes",
-  );
+  const positive = Number(source.positive_market_price_count);
+  const frozenPositive = Number(payload.counts.positive_market_lanes);
+  const mappedLaneCount = Number(plan.row_counts.external_printing_mappings);
+  if (positive < frozenPositive) {
+    throw new Error(
+      `positive source lanes decreased: expected at least ${frozenPositive}, got ${positive}`,
+    );
+  }
+  if (positive > mappedLaneCount) {
+    throw new Error(
+      `positive source lanes exceeded mapped lanes: expected at most ${mappedLaneCount}, got ${positive}`,
+    );
+  }
+}
+
+async function assertSourceEvidence(client, payload, plan) {
+  const source = await captureMtgSetPromotionCurrentSourceLanesV1(client, payload);
+  assertMtgCurrentSourceEvidenceV1(source, payload, plan);
   return source;
 }
 

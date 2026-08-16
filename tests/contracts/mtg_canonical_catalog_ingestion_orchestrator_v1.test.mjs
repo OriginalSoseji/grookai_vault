@@ -3,6 +3,7 @@ import fs from "node:fs";
 import test from "node:test";
 
 import {
+  assertMtgCurrentSourceEvidenceV1,
   selectMtgCatalogExecutionRangeV1,
 } from "../../scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs";
 
@@ -145,5 +146,38 @@ test("orchestrator rejects an execution range outside the frozen order", () => {
       maxSets: 1,
     }),
     /outside execution order length/,
+  );
+});
+
+test("current source evidence accepts newly populated price lanes within the frozen mapping set", () => {
+  assert.doesNotThrow(() => assertMtgCurrentSourceEvidenceV1(
+    {
+      planned_count: 309,
+      source_row_count: 309,
+      positive_market_price_count: 309,
+    },
+    { counts: { positive_market_lanes: 308 } },
+    { row_counts: { external_printing_mappings: 309 } },
+  ));
+});
+
+test("current source evidence still blocks evidence loss and impossible overcounts", () => {
+  const payload = { counts: { positive_market_lanes: 308 } };
+  const plan = { row_counts: { external_printing_mappings: 309 } };
+  assert.throws(
+    () => assertMtgCurrentSourceEvidenceV1({
+      planned_count: 309,
+      source_row_count: 309,
+      positive_market_price_count: 307,
+    }, payload, plan),
+    /positive source lanes decreased/,
+  );
+  assert.throws(
+    () => assertMtgCurrentSourceEvidenceV1({
+      planned_count: 309,
+      source_row_count: 309,
+      positive_market_price_count: 310,
+    }, payload, plan),
+    /positive source lanes exceeded mapped lanes/,
   );
 });
