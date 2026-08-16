@@ -10,6 +10,7 @@ import {
   mtgHostedImagePathV1,
   selectMtgImageCanaryV1,
 } from '../../backend/pricing/mtg_card_image_self_host_v1.mjs';
+import { downloadAndInspect } from '../../scripts/audits/mtg_card_image_storage_v1.mjs';
 
 function row(index = 0, faceIndex = 0) {
   const id = `31f173fc-112c-4aec-b464-3f81e2ee21${String(index).padStart(2, '0')}`;
@@ -73,13 +74,35 @@ test('storage canary records created paths before exact readback', async () => {
 });
 
 test('storage readback retries transient failures without weakening verification', async () => {
-  const script = await import('node:fs/promises').then(({ readFile }) => readFile(
-    new URL('../../scripts/audits/mtg_card_image_storage_v1.mjs', import.meta.url), 'utf8'));
-  assert.match(script, /for \(let attempt = 1; attempt <= 3; attempt \+= 1\)/);
-  assert.match(script, /storage_readback_exhausted/);
-  assert.match(script, /image\.sha256 !== pointer\.image_hash/);
-  assert.match(script, /image\.width !== pointer\.width/);
-  assert.match(script, /image\.height !== pointer\.height/);
+  const bytes = Buffer.alloc(1280);
+  Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]).copy(bytes);
+  bytes.writeUInt32BE(745, 16);
+  bytes.writeUInt32BE(1040, 20);
+  const inspected = inspectImageBytesV1(bytes, 'image/png');
+  let calls = 0;
+  const client = {
+    storage: {
+      from: () => ({
+        download: async () => {
+          calls += 1;
+          if (calls < 3) {
+            return { data: null, error: { message: 'transient' } };
+          }
+          return { data: new Blob([bytes]), error: null };
+        },
+      }),
+    },
+  };
+  const readback = await downloadAndInspect(client, {
+    image_path: 'fixture/front.png',
+    content_type: 'image/png',
+    image_hash: inspected.sha256,
+    size_bytes: inspected.size_bytes,
+    width: inspected.width,
+    height: inspected.height,
+  }, { retryDelayMs: 0 });
+  assert.equal(calls, 3);
+  assert.equal(readback.sha256, inspected.sha256);
 });
 
 test('PNG inspection and pointer retain exact face identity', () => {

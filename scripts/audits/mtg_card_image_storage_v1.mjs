@@ -201,9 +201,12 @@ async function exists(client, imagePath) {
   return (data ?? []).some((row) => row.name === name);
 }
 
-async function downloadAndInspect(client, pointer) {
+export async function downloadAndInspect(client, pointer, {
+  attempts = 3,
+  retryDelayMs = 750,
+} = {}) {
   const failures = [];
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
       const { data, error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
         .download(pointer.image_path);
@@ -220,8 +223,8 @@ async function downloadAndInspect(client, pointer) {
       return image;
     } catch (error) {
       failures.push(error.message);
-      if (attempt < 3) {
-        await new Promise((resolve) => setTimeout(resolve, attempt * 750));
+      if (attempt < attempts) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * retryDelayMs));
       }
     }
   }
@@ -370,4 +373,6 @@ async function main() {
   throw new Error('Verify requires a bound pointer manifest and is implemented by the aggregate gate');
 }
 
-await main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  await main();
+}
