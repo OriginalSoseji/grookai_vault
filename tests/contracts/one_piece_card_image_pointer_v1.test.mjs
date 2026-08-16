@@ -75,6 +75,9 @@ test("pointer plan reconciles exact assets and explicit provider gaps", () => {
     boundarySnapshot: { row_count: 1, image_fingerprint: "d".repeat(32) } });
   assert.equal(plan.rows.length, 6553);
   assert.equal(plan.gap_rows.length, 177);
+  assert.ok(plan.rows.every((row) => row.after.image_source === "identity"));
+  assert.ok(plan.rows.every((row) =>
+    row.storage_provenance === "self_hosted_tcgplayer_exact_product_v1"));
   assert.deepEqual(validateOnePieceCardImagePointerPlanV1(plan,
     value.sourcePlan, value.assetManifest), { valid: true, findings: [] });
   assert.deepEqual(evaluateOnePieceCardImagePointerStateV1(plan,

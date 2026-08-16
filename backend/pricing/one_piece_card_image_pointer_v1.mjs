@@ -86,7 +86,7 @@ export function buildOnePieceCardImagePointerPlanV1({
     const after = {
       image_url: pointer.image_url,
       image_alt_url: null,
-      image_source: pointer.image_source,
+      image_source: "identity",
       image_hash: pointer.image_hash,
       image_status: "exact",
       image_res: pointer.image_res,
@@ -96,6 +96,7 @@ export function buildOnePieceCardImagePointerPlanV1({
     };
     return { card_print_id: pointer.card_print_id, gv_id: pointer.gv_id,
       source_product_id: pointer.source_product_id,
+      storage_provenance: pointer.image_source,
       evidence_role: source?.evidence_role ?? null,
       before, before_hash_sha256: hashOnePieceCardImageV1(before),
       after, after_hash_sha256: hashOnePieceCardImageV1(after), findings };
