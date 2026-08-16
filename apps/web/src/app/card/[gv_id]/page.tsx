@@ -7,6 +7,7 @@ import CardRouteLoading from "./CardRouteLoading";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
 import CompareTray from "@/components/compare/CompareTray";
 import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
+import CardFaceGallery from "@/components/cards/CardFaceGallery";
 import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
 import type { AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
@@ -1020,20 +1021,28 @@ async function CardPageContent({
         <div className="relative z-10 grid gap-8 py-2 sm:py-4 lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)] lg:items-start lg:gap-12">
           <div className="mx-auto flex w-full max-w-[260px] flex-col items-center sm:max-w-[330px] lg:sticky lg:top-8 lg:max-w-[390px]">
             <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
-              <CardZoomModal
-                src={resolvedCardImageSrc}
-                fallbackSrc={resolvedCardImageFallbacks[0]}
-                fallbackSources={resolvedCardImageFallbacks.slice(1)}
-                alt={getCardImageAltText(
-                  resolvedDisplayIdentity.display_name,
-                  displayedImageTruthSource,
-                )}
-                imageClassName="h-auto max-h-[560px] w-full cursor-zoom-in rounded-[18px] object-contain shadow-[0_24px_60px_-40px_rgba(15,23,42,0.82)] transition duration-150 hover:scale-[1.006] sm:max-h-[620px]"
-                fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[18px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
-                sizes="(max-width: 1024px) 86vw, 390px"
-                priority
-                unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
-              />
+              {(resolvedCard.image_faces?.length ?? 0) > 1 ? (
+                <CardFaceGallery
+                  faces={resolvedCard.image_faces ?? []}
+                  faceNames={resolvedCard.face_names}
+                  alt={resolvedDisplayIdentity.display_name}
+                />
+              ) : (
+                <CardZoomModal
+                  src={resolvedCardImageSrc}
+                  fallbackSrc={resolvedCardImageFallbacks[0]}
+                  fallbackSources={resolvedCardImageFallbacks.slice(1)}
+                  alt={getCardImageAltText(
+                    resolvedDisplayIdentity.display_name,
+                    displayedImageTruthSource,
+                  )}
+                  imageClassName="h-auto max-h-[560px] w-full cursor-zoom-in rounded-[18px] object-contain shadow-[0_24px_60px_-40px_rgba(15,23,42,0.82)] transition duration-150 hover:scale-[1.006] sm:max-h-[620px]"
+                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[18px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+                  sizes="(max-width: 1024px) 86vw, 390px"
+                  priority
+                  unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
+                />
+              )}
             </div>
             {resolvedCardImagePresentation.compactBadgeLabel ? (
               <div className="mt-4 flex w-full flex-wrap justify-center gap-2">
