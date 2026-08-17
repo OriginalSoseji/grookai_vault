@@ -29,6 +29,29 @@ async function exists(relativePath) {
   }
 }
 
+export async function readPngDimensions(relativePath) {
+  const bytes = await fs.readFile(path.join(ROOT, relativePath));
+  const pngSignature = "89504e470d0a1a0a";
+  if (bytes.length < 24 || bytes.subarray(0, 8).toString("hex") !== pngSignature) {
+    throw new Error(`not a PNG: ${relativePath}`);
+  }
+  return {
+    width: bytes.readUInt32BE(16),
+    height: bytes.readUInt32BE(20),
+  };
+}
+
+function expectedDimensions(relativePath) {
+  if (relativePath.includes("iphone_65_")) return { width: 1242, height: 2688 };
+  if (relativePath.includes("ipad_pro_129_")) return { width: 2048, height: 2732 };
+  if (relativePath.endsWith("app_icon_512.png")) return { width: 512, height: 512 };
+  if (relativePath.endsWith("feature_graphic_1024x500.png")) {
+    return { width: 1024, height: 500 };
+  }
+  if (/phone_\d+_.+\.png$/.test(relativePath)) return { width: 1080, height: 2160 };
+  return null;
+}
+
 function isPublicHttps(value) {
   try {
     const url = new URL(value);
@@ -97,10 +120,29 @@ export async function evaluateStoreReleaseReadinessV1() {
     ...(google.asset_requirements?.phone_screenshots ?? []),
   ].filter(Boolean);
   const missingAssets = [];
+  const invalidAssetDimensions = [];
   for (const assetPath of assetPaths) {
-    if (!(await exists(assetPath))) missingAssets.push(assetPath);
+    if (!(await exists(assetPath))) {
+      missingAssets.push(assetPath);
+      continue;
+    }
+    const expected = expectedDimensions(assetPath);
+    if (!expected) continue;
+    try {
+      const actual = await readPngDimensions(assetPath);
+      if (actual.width !== expected.width || actual.height !== expected.height) {
+        invalidAssetDimensions.push({ path: assetPath, expected, actual });
+      }
+    } catch (error) {
+      invalidAssetDimensions.push({
+        path: assetPath,
+        expected,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
   }
   if (missingAssets.length > 0) blockers.push("store_assets_missing");
+  if (invalidAssetDimensions.length > 0) blockers.push("store_asset_dimensions_invalid");
 
   if (external.apple_app_store_connect?.listing_verified !== true) {
     blockers.push("apple_console_not_verified");
@@ -121,6 +163,7 @@ export async function evaluateStoreReleaseReadinessV1() {
     release_submission_ready: findings.length === 0 && blockers.length === 0,
     build_number: build,
     missing_assets: missingAssets,
+    invalid_asset_dimensions: invalidAssetDimensions,
     findings,
     blockers: [...new Set(blockers)],
     status:

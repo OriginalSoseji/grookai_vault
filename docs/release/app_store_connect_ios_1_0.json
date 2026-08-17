@@ -75,13 +75,13 @@
     {
       "display_type": "APP_IPHONE_65",
       "paths": [
-        "artifacts/app_store/screenshots/prepared/iphone_65_01_signin.png"
+        "artifacts/app_store/screenshots/prepared/iphone_65_01_search.png"
       ]
     },
     {
       "display_type": "APP_IPAD_PRO_3GEN_129",
       "paths": [
-        "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_signin.png"
+        "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_search.png"
       ]
     }
   ]

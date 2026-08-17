@@ -32,9 +32,7 @@
     "feature_graphic_1024x500": "artifacts/store/google_play/feature_graphic_1024x500.png",
     "phone_screenshots": [
       "artifacts/store/google_play/phone_01_search.png",
-      "artifacts/store/google_play/phone_02_card.png",
-      "artifacts/store/google_play/phone_03_vault.png",
-      "artifacts/store/google_play/phone_04_sets.png"
+      "artifacts/store/google_play/phone_02_card.png"
     ]
   }
 }
