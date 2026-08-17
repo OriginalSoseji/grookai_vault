@@ -108,6 +108,30 @@ Never create a second Play app because the existing app is hidden by the wrong
 profile. Do not accept IARC or other legal terms, send a draft for review, or
 publish without explicit authorization for that action.
 
+Current August 17 readback:
+
+- Content ratings is actioned after the submitted IARC request.
+- Advertising ID and photo/video permission declarations remain under
+  `Need attention`.
+- Store listing media remains a separate release gate.
+
+### Collector chat safety
+
+The active product contract is:
+
+- `docs/contracts/CHAT_SAFETY_CONTRACT_V1.md`
+
+Normal web and Flutter message paths apply `CHAT_SAFETY_POLICY_V1`, while
+`trust_blocks` and `trust_reports` preserve the existing database-backed block
+and report boundaries. Founder report review is available at
+`/founder/trust-safety`.
+
+Do not claim bypass-proof database moderation yet. Strict migration preflight is
+blocked by the unrelated pending local-only migration
+`20260816160000_mtg_tcgplayer_market_publication_v1.sql`. Resolve that ledger
+state first, then use a separately approved forward-only database enforcement
+gate. Never delete or rewrite existing messages while adding moderation.
+
 ### App Store Connect and Mac
 
 The automation contract and commands are in:
@@ -267,8 +291,10 @@ As of the current `2026-08-17` readback:
 - the existing verified Google Play organization account and Grookai Vault app
   were found;
 - the package is `com.grookai.vault`;
-- initial Play setup is `9/11`;
-- content rating and store listing media remain open;
+- the last directly read setup count was `9/11`, before the rating submission;
+- Content ratings is now actioned;
+- Advertising ID and photo/video permission declarations need attention;
+- store listing media remains open;
 - descriptions are saved as drafts and have not been sent for review;
 - App Store Connect listing and review credentials are not freshly verified;
 - all six declared store media assets are prepared and dimension-verified.

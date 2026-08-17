@@ -452,6 +452,15 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
                 alignLabelWithHint: true,
               ),
             ),
+            const SizedBox(height: 6),
+            Text(
+              'Keep it about this card. Do not share contact details, external links, or off-platform payment requests.',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.62),
+              ),
+            ),
             if (_error != null) ...[
               const SizedBox(height: 8),
               Text(

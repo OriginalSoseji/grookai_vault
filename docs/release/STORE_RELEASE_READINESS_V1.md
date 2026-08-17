@@ -18,8 +18,11 @@ The repository must never claim submission readiness from configuration files al
 - Apple console verification requires a fresh authenticated App Store Connect session.
 - Google Play has an existing verified Grookai organization developer account
   and draft `Grookai Vault` app for package `com.grookai.vault`.
-- Google Play initial setup is `9/11`; content rating and store listing media
-  remain incomplete and unverified in the console.
+- Google Play Content ratings is actioned as of the direct August 17 console
+  readback. The prior `9/11` setup count was not re-read afterward.
+- Google Play still shows Advertising ID and photo/video permission declarations
+  under App content `Need attention`; store listing media also remains a release
+  gate.
 - All declared store screenshot and graphic paths are populated and
   dimension-verified in the repository media manifest.
 - Current external truth is recorded in

@@ -1,6 +1,6 @@
 {
   "schema_version": "GROOKAI_STORE_EXTERNAL_CONSOLE_STATUS_V1",
-  "observed_at": "2026-08-17T18:47:10Z",
+  "observed_at": "2026-08-17T20:26:57Z",
   "apple_app_store_connect": {
     "authenticated_session_available": false,
     "listing_verified": false,
@@ -15,11 +15,21 @@
     "app_exists": true,
     "package_name": "com.grookai.vault",
     "app_status": "draft_internal_testing",
-    "initial_setup_tasks_completed": 9,
-    "initial_setup_tasks_total": 11,
+    "initial_setup_tasks_completed_last_verified": 9,
+    "initial_setup_tasks_total_last_verified": 11,
+    "content_rating": {
+      "status": "actioned",
+      "last_edited": "2026-08-17",
+      "direct_console_readback": true
+    },
+    "app_content_need_attention": [
+      "advertising_id_declaration",
+      "photo_and_video_permissions_declaration"
+    ],
     "remaining_tasks": [
-      "content_rating",
-      "store_listing_media"
+      "store_listing_media",
+      "advertising_id_declaration",
+      "photo_and_video_permissions_declaration"
     ],
     "status": "existing_organization_account_and_draft_app_verified"
   },
@@ -28,6 +38,9 @@
     "The original Google Play observation used the wrong signed-in Google profile and incorrectly reached developer-account signup.",
     "Switching to the Grookai organization profile exposed the existing verified developer account and Grookai Vault draft app.",
     "The prepared short and full descriptions are saved in the Google Play draft; no changes have been sent for review.",
+    "The Google Play Content ratings request was submitted and directly read back under App content > Actioned on August 17, 2026.",
+    "Advertising ID and photo/video permission declarations remain under App content > Need attention.",
+    "The 9/11 initial setup count was not re-read after the content rating submission and is retained only as a last-verified historical count.",
     "The observed App Store Connect tab did not provide an authenticated console session.",
     "The repository may be release-ready while external console submission remains blocked."
   ]

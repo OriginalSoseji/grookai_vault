@@ -1452,6 +1452,12 @@ export default async function FounderPage() {
             title="TCGPlayer Market"
             description="Trace exact-printing publication, deployment visibility, canary evidence, and Production V1 release gates."
           />
+          <FounderToolCard
+            href="/founder/trust-safety"
+            eyebrow="Safety"
+            title="Trust and Safety"
+            description="Review collector reports and record actioned or dismissed decisions."
+          />
         </div>
       </PageSection>
 

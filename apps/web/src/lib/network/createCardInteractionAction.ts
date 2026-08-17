@@ -8,6 +8,7 @@ import {
 } from "@/lib/contracts/owner_write_proofs_v1";
 import { insertCardInteraction } from "@/lib/network/insertCardInteraction";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { reviewChatMessageSafety } from "@/lib/trustSafety/chatSafetyPolicy";
 
 type StreamTargetRow = {
   instance_id: string | null;
@@ -145,6 +146,16 @@ export async function createCardInteractionAction(
     };
   }
 
+  const safetyDecision = reviewChatMessageSafety(message);
+  if (!safetyDecision.allowed) {
+    return {
+      ok: false,
+      status: "validation-error",
+      submissionKey,
+      message: safetyDecision.userMessage,
+    };
+  }
+
   const { data: streamTarget, error: streamError } = await client
     .from("v_card_contact_targets_v1")
     .select(
@@ -252,6 +263,7 @@ export async function createCardInteractionAction(
             data: insertedRow,
             error: insertError,
             usedCanonicalFallback,
+            safetyRejection,
           } = await insertCardInteraction({
             client,
             adminClient: context.adminClient,
@@ -266,6 +278,15 @@ export async function createCardInteractionAction(
             },
             authorization: { kind: "public-target" },
           });
+
+          if (safetyRejection && !safetyRejection.allowed) {
+            return {
+              ok: false,
+              status: "validation-error",
+              submissionKey,
+              message: safetyRejection.userMessage,
+            } satisfies CreateCardInteractionActionResult;
+          }
 
           if (insertError) {
             return {

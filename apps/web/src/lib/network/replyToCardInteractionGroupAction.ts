@@ -9,6 +9,7 @@ import {
 } from "@/lib/contracts/owner_write_proofs_v1";
 import { insertCardInteraction } from "@/lib/network/insertCardInteraction";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { reviewChatMessageSafety } from "@/lib/trustSafety/chatSafetyPolicy";
 
 type ExistingInteractionRow = {
   id: string;
@@ -129,6 +130,16 @@ export async function replyToCardInteractionGroupAction(
     };
   }
 
+  const safetyDecision = reviewChatMessageSafety(message);
+  if (!safetyDecision.allowed) {
+    return {
+      ok: false,
+      status: "validation-error",
+      submissionKey,
+      message: safetyDecision.userMessage,
+    };
+  }
+
   const participantFilter = [
     `and(sender_user_id.eq.${user.id},receiver_user_id.eq.${counterpartUserId})`,
     `and(sender_user_id.eq.${counterpartUserId},receiver_user_id.eq.${user.id})`,
@@ -225,6 +236,7 @@ export async function replyToCardInteractionGroupAction(
             data: insertedRow,
             error: insertError,
             usedCanonicalFallback,
+            safetyRejection,
           } = await insertCardInteraction({
             client,
             adminClient: context.adminClient,
@@ -239,6 +251,15 @@ export async function replyToCardInteractionGroupAction(
             },
             authorization: { kind: "existing-thread" },
           });
+
+          if (safetyRejection && !safetyRejection.allowed) {
+            return {
+              ok: false,
+              status: "validation-error",
+              submissionKey,
+              message: safetyRejection.userMessage,
+            } satisfies CreateCardInteractionActionResult;
+          }
 
           if (insertError) {
             return {
