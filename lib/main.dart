@@ -4073,6 +4073,7 @@ class HomePageState extends State<HomePage> {
           languageScope: _languageScope,
           gameScope: _gameScope,
         ),
+        publicPokemonBrowse: widget.signedOutBrowse,
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
@@ -4169,6 +4170,11 @@ class HomePageState extends State<HomePage> {
     _debounce = Timer(const Duration(milliseconds: 300), () {
       _runSearch(value.trim());
     });
+  }
+
+  void _submitSearch(String value) {
+    _debounce?.cancel();
+    unawaited(_runSearch(value.trim()));
   }
 
   void _handleRarityFilterChanged(_RarityFilter filter) {
@@ -5410,7 +5416,7 @@ class HomePageState extends State<HomePage> {
               _CatalogSearchField(
                 controller: _searchCtrl,
                 onChanged: _onQueryChanged,
-                onSubmitted: _runSearch,
+                onSubmitted: _submitSearch,
               ),
               if (_searchError != null) ...[
                 const SizedBox(height: 6),

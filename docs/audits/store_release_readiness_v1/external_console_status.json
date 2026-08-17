@@ -1,0 +1,20 @@
+{
+  "schema_version": "GROOKAI_STORE_EXTERNAL_CONSOLE_STATUS_V1",
+  "observed_at": "2026-08-17T15:13:10Z",
+  "apple_app_store_connect": {
+    "authenticated_session_available": false,
+    "listing_verified": false,
+    "review_credentials_configured": false,
+    "status": "requires_authenticated_console_session"
+  },
+  "google_play_console": {
+    "authenticated_session_available": true,
+    "developer_account_available": false,
+    "listing_verified": false,
+    "status": "developer_account_signup_required"
+  },
+  "notes": [
+    "No credentials, tokens, account identifiers, or reviewer passwords are stored in this artifact.",
+    "The repository may be release-ready while external console submission remains blocked."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "GROOKAI_GOOGLE_PLAY_RELEASE_METADATA_V1",
+  "package_name": "com.grookai.vault",
+  "default_language": "en-US",
+  "release_track": "internal",
+  "store_listing": {
+    "app_name": "Grookai Vault",
+    "short_description": "Identify exact cards, organize your vault, and connect with collectors.",
+    "full_description": "Grookai Vault helps trading card collectors identify exact cards, organize owned copies, and connect around the cards they care about.\n\nSearch the catalog, scan a card, choose the correct printing and finish, and keep every owned copy organized in your Vault. Browse sets, track collection progress, build Binders, and use your Wall to showcase selected cards.\n\nDiscover collectors, follow public activity, and open card-centered conversations with the exact card and collector context preserved. Grookai keeps canonical card identity, ownership, intent, and collection context connected across the experience.",
+    "category": "LIFESTYLE",
+    "contact_email": "support@grookaivault.com",
+    "privacy_policy_url": "https://grookaivault.com/privacy",
+    "support_url": "https://grookaivault.com/support",
+    "account_deletion_url": "https://grookaivault.com/account/delete"
+  },
+  "app_access": {
+    "restricted_features": true,
+    "instructions": "Use the supplied review account to verify Search, Scan, exact-printing selection, Vault, Binders, Wall, collection progress, collector discovery, Following, and card-centered messaging."
+  },
+  "content": {
+    "contains_ads": false,
+    "user_generated_content": true,
+    "messaging_or_chat": true,
+    "simulated_gambling": false,
+    "real_money_gambling": false,
+    "violence_cartoon_or_fantasy": "infrequent",
+    "target_audience": ["13-15", "16-17", "18+"]
+  },
+  "release_notes": "Browse signed-in Pokemon and One Piece catalogs, identify exact printings, manage your Vault and Binders, share collector memories, and view governed market pricing where exact evidence is available.",
+  "asset_requirements": {
+    "app_icon_512": "artifacts/store/google_play/app_icon_512.png",
+    "feature_graphic_1024x500": "artifacts/store/google_play/feature_graphic_1024x500.png",
+    "phone_screenshots": [
+      "artifacts/store/google_play/phone_01_search.png",
+      "artifacts/store/google_play/phone_02_card.png",
+      "artifacts/store/google_play/phone_03_vault.png",
+      "artifacts/store/google_play/phone_04_sets.png"
+    ]
+  }
+}

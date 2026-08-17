@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <InformationPage
       eyebrow="Privacy"
       title="Privacy Policy"
-      description="This policy explains what Grookai Vault collects, how that information is used, and the choices available to collectors."
+      description="Effective August 17, 2026. This policy explains what Grookai Vault collects, how that information is used, and the choices available to collectors."
     >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Information We Collect</h2>
@@ -53,6 +53,24 @@ export default function PrivacyPage() {
             Grookai Vault relies on service providers for hosting, authentication, database storage, app distribution,
             analytics, notifications, and diagnostics. These providers process information only as needed to run the
             service.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-slate-950">Retention and Security</h2>
+          <p>
+            We retain account and collection information while an account is active and as needed to provide the
+            service. Diagnostic records and backups may be retained for limited operational, security, fraud
+            prevention, legal, or recovery purposes. We use access controls and encrypted network connections to
+            protect information, but no online service can guarantee absolute security.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-slate-950">Children</h2>
+          <p>
+            Grookai Vault is not directed to children under 13. If we learn that personal information was collected
+            from a child under 13 without appropriate authorization, contact support so it can be removed.
           </p>
         </section>
 
