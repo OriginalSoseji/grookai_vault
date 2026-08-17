@@ -109,9 +109,13 @@ test("source verification uses the newest complete planned-lane day", async () =
   const result = await captureMtgSetPromotionCurrentSourceLanesV1(client, payload);
 
   assert.equal(result.source_row_count, 2);
+  assert.match(queryText, /first_planned/);
+  assert.match(queryText, /candidate_days as materialized/);
   assert.match(queryText, /complete_days/);
-  assert.match(queryText, /having count\(\*\) = \(select count\(\*\) from planned\)/);
-  assert.match(queryText, /order by observation\.observed_on desc/);
+  assert.match(queryText, /where not exists \(\s*select 1\s*from planned/s);
+  assert.match(queryText, /observation\.observed_on = candidate\.observed_on/);
+  assert.match(queryText, /order by candidate\.observed_on desc/);
+  assert.doesNotMatch(queryText, /group by observation\.observed_on/);
   assert.doesNotMatch(queryText, /latest_day/);
   assert.deepEqual(JSON.parse(queryValues[0]), [
     { product_id: 101, subtype: "normal" },
