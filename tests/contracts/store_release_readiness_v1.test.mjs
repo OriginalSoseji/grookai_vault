@@ -37,7 +37,8 @@ test("store readiness reports external and asset blockers without invalidating v
   assert.equal(result.status, "EXTERNAL_OR_ASSET_BLOCKED");
   assert.deepEqual(result.invalid_asset_dimensions, []);
   assert.ok(result.blockers.includes("apple_console_not_verified"));
-  assert.ok(result.blockers.includes("google_play_developer_account_unavailable"));
+  assert.ok(!result.blockers.includes("google_play_developer_account_unavailable"));
+  assert.ok(result.blockers.includes("google_play_listing_not_verified"));
   if (result.missing_assets.length > 0) {
     assert.ok(result.blockers.includes("store_assets_missing"));
   } else {

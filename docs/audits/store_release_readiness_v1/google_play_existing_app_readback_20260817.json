@@ -1,0 +1,40 @@
+{
+  "audit_version": "GOOGLE_PLAY_EXISTING_APP_READBACK_20260817_V1",
+  "recorded_at": "2026-08-17T18:47:10Z",
+  "mode": "read_only_browser_readback_with_draft_copy_update",
+  "account_type": "organization",
+  "android_developer_verification_complete": true,
+  "app": {
+    "name": "Grookai Vault",
+    "package_name": "com.grookai.vault",
+    "status": "draft",
+    "track": "internal_testing"
+  },
+  "initial_setup": {
+    "completed_tasks": 9,
+    "total_tasks": 11,
+    "remaining_tasks": [
+      "content_rating",
+      "store_listing_media"
+    ]
+  },
+  "draft_changes": {
+    "short_description_saved": true,
+    "full_description_saved": true,
+    "sent_for_review": false
+  },
+  "mutations_performed": [
+    "saved_prepared_short_description_as_draft",
+    "saved_prepared_full_description_as_draft"
+  ],
+  "mutations_not_performed": [
+    "media_upload",
+    "content_rating_submission",
+    "review_submission",
+    "production_rollout"
+  ],
+  "notes": [
+    "No account identifier, credentials, tokens, reviewer passwords, or personal verification details are stored in this artifact.",
+    "The prior signup-page readback observed the wrong signed-in Google profile and remains preserved as historical evidence."
+  ]
+}

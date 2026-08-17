@@ -51,10 +51,16 @@ Work was performed on `agent/launch-readiness-store-qa-v1` from commit
 - Store submission ready: no.
 - App Store Connect listing: not authenticated or verified.
 - App Review credentials: not verified.
-- Google Play developer account: unavailable in the observed account.
-- Google Play Console is authenticated but stopped at developer-account owner
-  type selection (`organization` or `personal`).
-- Google Play listing: not verified.
+- Google Play organization developer account: verified and available.
+- Grookai Vault package `com.grookai.vault`: existing draft app in internal
+  testing.
+- Google Play initial setup: `9/11` tasks complete.
+- Remaining Google Play tasks: content rating and store listing media.
+- Prepared short and full descriptions: saved as draft, not sent for review.
+- Google Play listing: not yet complete or verified.
+
+The corrected console readback is preserved at
+`docs/audits/store_release_readiness_v1/google_play_existing_app_readback_20260817.json`.
 
 ## Artifact Hashes
 
@@ -97,8 +103,8 @@ The permanent hash and provenance manifest is
 
 1. Authenticate App Store Connect and verify the listing, build 297, privacy
    answers, review account, and screenshot sets.
-2. Select the legal Google Play developer-account ownership type, complete
-   account creation, then verify the listing,
-   app access, Data Safety answers, and uploaded assets.
+2. Complete the existing Google Play app's content rating and upload the
+   prepared icon, feature graphic, phone screenshots, and truthful Android
+   tablet screenshots. Verify the listing without sending it for review.
 3. Run `npm run release:store:require`. Only a zero-blocker result authorizes
    the submission handoff.
