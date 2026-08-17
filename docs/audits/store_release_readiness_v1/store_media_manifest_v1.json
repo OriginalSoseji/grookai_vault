@@ -1,6 +1,6 @@
 {
   "schema_version": "GROOKAI_STORE_MEDIA_MANIFEST_V1",
-  "generated_at": "2026-08-17T16:49:10.047Z",
+  "generated_at": "2026-08-17T18:16:18.399Z",
   "generator": "scripts/release/generate_store_media_assets_v1.mjs",
   "sources": [
     {
@@ -22,6 +22,11 @@
       "key": "physicalIphone",
       "path": "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/iphone_testflight_286_search.png",
       "sha256": "99aace3e7a7cc64bd8dbf4d12f2a7fda4c959f47853b8b6f64b6ad688e5ff9be"
+    },
+    {
+      "key": "ipadSignin",
+      "path": "artifacts/app_store/screenshots/sources/ipad_pro_129_signin_current.png",
+      "sha256": "1fa4d3a9dcd337a9fd01f9cacc096eee41b677d971983966160f44fa5b260935"
     }
   ],
   "assets": [
@@ -64,12 +69,15 @@
       "bytes": 797901,
       "sha256": "7d43d8d5ac456d7303ac85681230d53d018dff98ae3ccb031871f086595c68de",
       "provenance": "physical iPhone TestFlight build 286 search evidence; no material Search redesign through build 297"
+    },
+    {
+      "path": "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_signin.png",
+      "width": 2048,
+      "height": 2732,
+      "bytes": 604895,
+      "sha256": "ad26834b2133aec01bd4284bc027879f128283799f0c54eeabf05755f6966d5e",
+      "provenance": "current native iPadOS simulator render from Grookai commit a69a3c55c02a7737b399e52fe50b5743be7e5f8a"
     }
   ],
-  "intentionally_missing": [
-    {
-      "path": "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_search.png",
-      "reason": "Requires a truthful current iPad or iPad-simulator capture on macOS; no synthetic replacement is authorized."
-    }
-  ]
+  "intentionally_missing": []
 }

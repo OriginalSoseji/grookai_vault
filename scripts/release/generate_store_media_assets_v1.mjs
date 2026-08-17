@@ -17,6 +17,8 @@ const SOURCES = Object.freeze({
     "artifacts/release/signed_out_catalog_native_v1/charizard_card_current.png",
   physicalIphone:
     "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/iphone_testflight_286_search.png",
+  ipadSignin:
+    "artifacts/app_store/screenshots/sources/ipad_pro_129_signin_current.png",
 });
 
 const OUTPUTS = Object.freeze({
@@ -25,6 +27,7 @@ const OUTPUTS = Object.freeze({
   googleSearch: "artifacts/store/google_play/phone_01_search.png",
   googleCard: "artifacts/store/google_play/phone_02_card.png",
   iphoneSearch: "artifacts/app_store/screenshots/prepared/iphone_65_01_search.png",
+  ipadSignin: "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_signin.png",
   manifest: "artifacts/store/store_media_manifest_v1.json",
   permanentManifest: "docs/audits/store_release_readiness_v1/store_media_manifest_v1.json",
 });
@@ -116,6 +119,10 @@ async function main() {
       .resize({ width: 1242, height: 2688, fit: "cover", position: "top" })
       .png({ compressionLevel: 9 })
       .toFile(absolute(OUTPUTS.iphoneSearch)),
+    sharp(absolute(SOURCES.ipadSignin))
+      .resize({ width: 2048, height: 2732, fit: "cover", position: "top" })
+      .png({ compressionLevel: 9 })
+      .toFile(absolute(OUTPUTS.ipadSignin)),
     writeFeatureGraphic(),
   ]);
 
@@ -125,6 +132,7 @@ async function main() {
     describe(OUTPUTS.googleSearch, "current Android build 297 emulator search evidence"),
     describe(OUTPUTS.googleCard, "current Android build 297 emulator card-detail evidence"),
     describe(OUTPUTS.iphoneSearch, "physical iPhone TestFlight build 286 search evidence; no material Search redesign through build 297"),
+    describe(OUTPUTS.ipadSignin, "current native iPadOS simulator render from Grookai commit a69a3c55c02a7737b399e52fe50b5743be7e5f8a"),
   ]);
   const sources = await Promise.all(
     Object.entries(SOURCES).map(async ([key, relativePath]) => ({
@@ -139,12 +147,7 @@ async function main() {
     generator: "scripts/release/generate_store_media_assets_v1.mjs",
     sources,
     assets,
-    intentionally_missing: [
-      {
-        path: "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_search.png",
-        reason: "Requires a truthful current iPad or iPad-simulator capture on macOS; no synthetic replacement is authorized.",
-      },
-    ],
+    intentionally_missing: [],
   };
   const manifestJson = `${JSON.stringify(manifest, null, 2)}\n`;
   await Promise.all([

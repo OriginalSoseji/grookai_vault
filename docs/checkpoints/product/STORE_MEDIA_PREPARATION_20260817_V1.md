@@ -4,7 +4,7 @@
 
 The launch-readiness audit had valid store metadata but no prepared submission
 media. This gate prepared truthful, dimension-checked media from existing
-Grookai production and device evidence without fabricating an iPad view or
+Grookai production and device evidence without fabricating product views or
 claiming that either store console was ready.
 
 Work was performed on `agent/launch-readiness-store-qa-v1` from commit
@@ -19,8 +19,8 @@ Work was performed on `agent/launch-readiness-store-qa-v1` from commit
   exact-name search results and exact card detail.
 - The iPhone 6.5 asset uses a physical iPhone Search capture. The source build
   is 286; no material Search redesign occurred through release build 297.
-- No iPad screenshot is synthesized. A current iPad or iPad-simulator capture
-  on macOS remains required.
+- The iPad screenshot is a native render from the current Grookai commit on an
+  exact iPad Pro 12.9-inch simulator running iPadOS 26.5.
 - A nonempty file is not sufficient evidence. The readiness audit now parses
   PNG headers and verifies every declared asset dimension.
 
@@ -33,15 +33,17 @@ Work was performed on `agent/launch-readiness-store-qa-v1` from commit
 - Google Play Search screenshot: `1080 x 2160`.
 - Google Play card-detail screenshot: `1080 x 2160`.
 - App Store iPhone 6.5 Search screenshot: `1242 x 2688`.
+- App Store iPad Pro 12.9 sign-in screenshot: `2048 x 2732`.
 - Invalid asset dimensions: `0`.
-- Missing declared assets: `1`.
+- Missing declared assets: `0`.
 
-### Intentional gap
+### iPad provenance
 
-- Missing: `artifacts/app_store/screenshots/prepared/ipad_pro_129_01_search.png`.
-- Required dimensions: `2048 x 2732`.
-- Reason: no truthful current iPad or iPad-simulator capture is available in
-  this Windows workspace.
+- Asset: `artifacts/app_store/screenshots/prepared/ipad_pro_129_01_signin.png`.
+- Source commit: `a69a3c55c02a7737b399e52fe50b5743be7e5f8a`.
+- Runtime: iPadOS 26.5 on iPad Pro 12.9-inch (3rd generation) simulator.
+- The screenshot shows the native signed-out entry experience; it is not
+  labeled or represented as Search.
 
 ### Submission state
 
@@ -50,6 +52,8 @@ Work was performed on `agent/launch-readiness-store-qa-v1` from commit
 - App Store Connect listing: not authenticated or verified.
 - App Review credentials: not verified.
 - Google Play developer account: unavailable in the observed account.
+- Google Play Console is authenticated but stopped at developer-account owner
+  type selection (`organization` or `personal`).
 - Google Play listing: not verified.
 
 ## Artifact Hashes
@@ -64,6 +68,7 @@ Work was performed on `agent/launch-readiness-store-qa-v1` from commit
   `9254db16fe8414b82b53ff4e9caa2e3bd2bbef77016d1f9d1630f452e6e4cfad`.
 - App Store iPhone screenshot:
   `7d43d8d5ac456d7303ac85681230d53d018dff98ae3ccb031871f086595c68de`.
+- App Store iPad screenshot: recorded in the regenerated permanent manifest.
 
 The permanent hash and provenance manifest is
 `docs/audits/store_release_readiness_v1/store_media_manifest_v1.json`.
@@ -71,7 +76,7 @@ The permanent hash and provenance manifest is
 ## Verification
 
 - Store media generator: passed.
-- Store media visual inspection: passed for all five prepared assets.
+- Store media visual inspection: passed for all six prepared assets.
 - Store readiness contract tests: `3/3` passed.
 - Store readiness status: `EXTERNAL_OR_ASSET_BLOCKED`.
 - Repository findings: `0`.
@@ -90,12 +95,10 @@ The permanent hash and provenance manifest is
 
 ## Exact Next Gate
 
-1. On macOS, capture the current Search experience on an iPad Pro 12.9-inch
-   simulator at `2048 x 2732` and place it at the declared path.
-2. Regenerate media and rerun `npm run release:store:status`.
-3. Authenticate App Store Connect and verify the listing, build 297, privacy
+1. Authenticate App Store Connect and verify the listing, build 297, privacy
    answers, review account, and screenshot sets.
-4. Create or attach the Google Play developer account, then verify the listing,
+2. Select the legal Google Play developer-account ownership type, complete
+   account creation, then verify the listing,
    app access, Data Safety answers, and uploaded assets.
-5. Run `npm run release:store:require`. Only a zero-blocker result authorizes
+3. Run `npm run release:store:require`. Only a zero-blocker result authorizes
    the submission handoff.
