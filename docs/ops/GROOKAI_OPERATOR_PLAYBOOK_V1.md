@@ -10,6 +10,24 @@ Read this before asking the founder for access, repeating a setup step, or
 declaring that an account, app, device, database object, worker, or deployment
 does not exist.
 
+## Living Document Rule
+
+Update this playbook whenever a change introduces or materially changes any of
+the following:
+
+- a recurring operational procedure;
+- an account, console, browser profile, or authentication route;
+- a workstation, remote host, connected-device, build, or deployment workflow;
+- a scheduled worker, ingestion lane, pricing lane, or monitoring process;
+- a production-write boundary, approval boundary, rollback path, or release
+  gate;
+- an authoritative status artifact, contract, checkpoint, runbook, or command.
+
+The playbook update belongs in the same commit as the process change whenever
+practical. Preserve detailed domain instructions in their dedicated document
+and add or update the concise pointer here. New operational knowledge must not
+exist only in chat, an unindexed audit, or one person's memory.
+
 ## 1. Source-Of-Truth Order
 
 Use evidence in this order:

@@ -45,3 +45,11 @@ Verify through a second authoritative path before asking the founder.
 Finish work with direct readback, update the current status/checkpoint, run the
 relevant tests, and report remaining external gates precisely. Do not make the
 founder reconstruct state from chat history.
+
+## Living-Documentation Rule
+
+When work introduces or materially changes a recurring process, account,
+console, remote-access route, device workflow, worker, deployment path, release
+gate, or source-of-truth artifact, update
+`docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md` in the same change. Do not leave new
+operational knowledge only in chat, an unindexed audit, or personal memory.
