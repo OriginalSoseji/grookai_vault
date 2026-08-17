@@ -16,8 +16,14 @@ The repository must never claim submission readiness from configuration files al
 - Public privacy, support, and account-deletion routes are live contract requirements.
 - Reviewer credentials remain outside source control.
 - Apple console verification requires a fresh authenticated App Store Connect session.
-- Google Play requires creation or identification of a developer account before listing verification.
-- Current store screenshot and graphic paths are required but not yet populated on this branch.
+- Google Play has an existing verified Grookai organization developer account
+  and draft `Grookai Vault` app for package `com.grookai.vault`.
+- Google Play initial setup is `9/11`; content rating and store listing media
+  remain incomplete and unverified in the console.
+- All declared store screenshot and graphic paths are populated and
+  dimension-verified in the repository media manifest.
+- Current external truth is recorded in
+  `docs/audits/store_release_readiness_v1/external_console_status.json`.
 
 ## Commands
 
@@ -33,4 +39,6 @@ The status command succeeds when repository metadata is valid and reports extern
 - Never store reviewer passwords, API private keys, session tokens, or personal account identifiers in the repository.
 - Never mark a console field complete without direct readback from that console.
 - Never upload screenshots from a stale or materially different application build.
-- Never infer Google Play developer-account readiness from a signed-in Google session.
+- Never infer Google Play developer-account readiness from one signed-in Google
+  session or a signup page. Confirm the active `Work` profile, organization,
+  app, and package before concluding that an account or app is missing.
