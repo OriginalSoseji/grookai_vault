@@ -17,6 +17,14 @@ function exactRun({
   completedAt,
   commit = COMMIT,
   resolvedCount = 100,
+  sourceRunId = `source-${id}`,
+  sourceRunKey = runKey?.replace(/-publication$/, "-warehouse"),
+  sourceStatus = "completed",
+  sourceStartedAt,
+  sourceFinishedAt,
+  sourceFailedCount = 0,
+  sourceError = null,
+  sourceCommit = commit,
 } = {}) {
   return {
     id,
@@ -35,6 +43,15 @@ function exactRun({
     required_phase_count: 5,
     succeeded_phase_count: 5,
     git_commit_sha: commit,
+    source_sync_run_id: sourceRunId,
+    schedule_source_run_id: sourceRunId,
+    schedule_source_run_key: sourceRunKey,
+    schedule_source_status: sourceStatus,
+    schedule_source_started_at: sourceStartedAt,
+    schedule_source_finished_at: sourceFinishedAt,
+    schedule_source_failed_count: sourceFailedCount,
+    schedule_source_error: sourceError,
+    schedule_source_commit_sha: sourceCommit,
     started_at: startedAt,
     completed_at: completedAt,
     failed_at: null,
@@ -54,14 +71,19 @@ const activationRun = exactRun({
   runKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-28-REPAIR1-publication",
   startedAt: "2026-07-28T08:39:53.963Z",
   completedAt: WINDOW_START,
+  sourceStartedAt: "2026-07-28T08:15:02.000Z",
+  sourceFinishedAt: "2026-07-28T08:38:40.000Z",
 });
 
-function scheduledRun(day) {
+function scheduledRun(day, overrides = {}) {
   return exactRun({
     id: `run-${day}`,
     runKey: `TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-${day}-publication`,
-    startedAt: `2026-07-${day}T08:15:03.000Z`,
-    completedAt: `2026-07-${day}T08:16:10.000Z`,
+    sourceStartedAt: `2026-07-${day}T08:15:03.000Z`,
+    sourceFinishedAt: `2026-07-${day}T09:40:00.000Z`,
+    startedAt: `2026-07-${day}T09:50:03.000Z`,
+    completedAt: `2026-07-${day}T09:51:10.000Z`,
+    ...overrides,
   });
 }
 
@@ -132,6 +154,8 @@ test("a reconciled source-missing row is allowed within the frozen cohort tolera
     startedAt: "2026-07-28T08:39:53.963Z",
     completedAt: WINDOW_START,
     resolvedCount: 99,
+    sourceStartedAt: "2026-07-28T08:15:02.000Z",
+    sourceFinishedAt: "2026-07-28T08:38:40.000Z",
   });
   const result = evaluateTcgplayerMarketCanaryObservationV1(
     baseInput({
@@ -160,6 +184,8 @@ test("source-missing rows fail when unreconciled or above tolerance", () => {
     startedAt: "2026-07-28T08:39:53.963Z",
     completedAt: WINDOW_START,
     resolvedCount: 94,
+    sourceStartedAt: "2026-07-28T08:15:02.000Z",
+    sourceFinishedAt: "2026-07-28T08:38:40.000Z",
   });
   const result = evaluateTcgplayerMarketCanaryObservationV1(
     baseInput({
@@ -193,7 +219,98 @@ test("the exact three scheduled slots pass after 72 hours", () => {
   assert.equal(result.status, "passed");
   assert.equal(result.window.elapsed, true);
   assert.equal(result.schedule.matched_slots.length, 3);
+  assert.equal(result.schedule.completion_grace_minutes, 480);
+  assert.equal(
+    result.schedule.matched_slots[0].source_run_key,
+    "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-warehouse",
+  );
+  assert.equal(result.schedule.matched_slots[0].source_offset_minutes, 0.05);
+  assert.equal(
+    result.schedule.matched_slots[0].completion_offset_minutes,
+    96.167,
+  );
   assert.deepEqual(result.findings, []);
+});
+
+test("a delayed publication passes when its linked source starts on schedule", () => {
+  const run = scheduledRun("29", {
+    startedAt: "2026-07-29T09:50:10.000Z",
+    completedAt: "2026-07-29T09:51:20.000Z",
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T10:00:00.000Z",
+      scheduledRuns: [run],
+      current: {
+        ...baseInput().current,
+        current_publication_run_id: "run-29",
+      },
+    }),
+  );
+
+  assert.equal(result.status, "observing");
+  assert.equal(result.schedule.matched_slots.length, 1);
+  assert.deepEqual(result.findings, []);
+});
+
+test("a linked source that starts beyond schedule tolerance does not satisfy the slot", () => {
+  const run = scheduledRun("29", {
+    sourceStartedAt: "2026-07-29T10:00:01.000Z",
+    sourceFinishedAt: "2026-07-29T10:10:00.000Z",
+    startedAt: "2026-07-29T10:11:00.000Z",
+    completedAt: "2026-07-29T10:12:00.000Z",
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T10:30:00.000Z",
+      scheduledRuns: [run],
+      current: {
+        ...baseInput().current,
+        current_publication_run_id: "run-29",
+      },
+    }),
+  );
+
+  assert.ok(result.findings.includes("expected_schedule_slot_missing"));
+  assert.ok(result.findings.includes("unexpected_extra_canary_run"));
+});
+
+test("publication completion beyond the configured grace does not satisfy the slot", () => {
+  const run = scheduledRun("29", {
+    completedAt: "2026-07-29T16:16:00.000Z",
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T16:30:00.000Z",
+      scheduledRuns: [run],
+      current: {
+        ...baseInput().current,
+        current_publication_run_id: "run-29",
+      },
+    }),
+  );
+
+  assert.ok(result.findings.includes("expected_schedule_slot_missing"));
+  assert.ok(result.findings.includes("unexpected_extra_canary_run"));
+});
+
+test("missing or contradictory linked source evidence fails closed", () => {
+  const run = scheduledRun("29", {
+    sourceRunKey: "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-29-wrong",
+  });
+  const result = evaluateTcgplayerMarketCanaryObservationV1(
+    baseInput({
+      asOf: "2026-07-29T10:00:00.000Z",
+      scheduledRuns: [run],
+      current: {
+        ...baseInput().current,
+        current_publication_run_id: "run-29",
+      },
+    }),
+  );
+
+  assert.ok(result.findings.includes("scheduled_run_not_exact_and_healthy"));
+  assert.ok(result.findings.includes("expected_schedule_slot_missing"));
 });
 
 test("a missing elapsed schedule slot fails the gate", () => {

@@ -38,6 +38,9 @@ function parseArgs(argv) {
     expectedCount: 100,
     maxSourceMissingCount: 0,
     scheduleToleranceMinutes: 90,
+    scheduleCompletionGraceMinutes: 480,
+    frozenEvidencePath: null,
+    frozenEvidenceSha256: null,
     outRoot: DEFAULT_OUT_ROOT,
     requirePass: false,
   };
@@ -68,8 +71,21 @@ function parseArgs(argv) {
       args.scheduleToleranceMinutes = Number(
         arg.slice("--schedule-tolerance-minutes=".length),
       );
+    } else if (arg.startsWith("--schedule-completion-grace-minutes=")) {
+      args.scheduleCompletionGraceMinutes = Number(
+        arg.slice("--schedule-completion-grace-minutes=".length),
+      );
     } else if (arg.startsWith("--out-root=")) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
+    } else if (arg.startsWith("--frozen-evidence=")) {
+      args.frozenEvidencePath = path.resolve(
+        arg.slice("--frozen-evidence=".length),
+      );
+    } else if (arg.startsWith("--frozen-evidence-sha256=")) {
+      args.frozenEvidenceSha256 = arg
+        .slice("--frozen-evidence-sha256=".length)
+        .trim()
+        .toLowerCase();
     } else if (arg === "--require-pass") {
       args.requirePass = true;
     }
@@ -106,6 +122,25 @@ function parseArgs(argv) {
   ) {
     throw new Error("--schedule-tolerance-minutes must be positive");
   }
+  if (
+    !Number.isFinite(args.scheduleCompletionGraceMinutes) ||
+    args.scheduleCompletionGraceMinutes < 1
+  ) {
+    throw new Error(
+      "--schedule-completion-grace-minutes must be positive",
+    );
+  }
+  if (Boolean(args.frozenEvidencePath) !== Boolean(args.frozenEvidenceSha256)) {
+    throw new Error(
+      "--frozen-evidence and --frozen-evidence-sha256 must be provided together",
+    );
+  }
+  if (
+    args.frozenEvidenceSha256 &&
+    !/^[0-9a-f]{64}$/.test(args.frozenEvidenceSha256)
+  ) {
+    throw new Error("--frozen-evidence-sha256 must be a lowercase SHA-256 hash");
+  }
   return args;
 }
 
@@ -132,25 +167,138 @@ function sha256(buffer) {
   return createHash("sha256").update(buffer).digest("hex");
 }
 
+const LINKED_SOURCE_FIELDS = [
+  "schedule_source_run_id",
+  "schedule_source_run_key",
+  "schedule_source_status",
+  "schedule_source_started_at",
+  "schedule_source_finished_at",
+  "schedule_source_failed_count",
+  "schedule_source_error",
+  "schedule_source_commit_sha",
+];
+
+function timestampText(value) {
+  const date = new Date(value);
+  return Number.isFinite(date.getTime())
+    ? date.toISOString()
+    : String(value ?? "");
+}
+
+function assertFrozenRunMatchesLive(frozenRun, liveRun) {
+  if (!liveRun) {
+    throw new Error(
+      `Frozen run ${frozenRun?.id ?? "unknown"} is absent from live evidence`,
+    );
+  }
+  for (const field of [
+    "id",
+    "run_key",
+    "source_sync_run_id",
+    "git_commit_sha",
+  ]) {
+    if (String(frozenRun?.[field] ?? "") !== String(liveRun?.[field] ?? "")) {
+      throw new Error(
+        `Frozen run ${frozenRun?.id ?? "unknown"} changed field ${field}`,
+      );
+    }
+  }
+  for (const field of ["started_at", "completed_at"]) {
+    if (timestampText(frozenRun?.[field]) !== timestampText(liveRun?.[field])) {
+      throw new Error(
+        `Frozen run ${frozenRun?.id ?? "unknown"} changed field ${field}`,
+      );
+    }
+  }
+}
+
+function addLinkedSourceEvidence(frozenRun, liveRun) {
+  assertFrozenRunMatchesLive(frozenRun, liveRun);
+  return {
+    ...frozenRun,
+    ...Object.fromEntries(
+      LINKED_SOURCE_FIELDS.map((field) => [field, liveRun[field] ?? null]),
+    ),
+  };
+}
+
+async function frozenReplayEvidence(args, liveEvidence) {
+  if (!args.frozenEvidencePath) return liveEvidence;
+
+  const bytes = await fs.readFile(args.frozenEvidencePath);
+  const actualHash = sha256(bytes);
+  if (actualHash !== args.frozenEvidenceSha256) {
+    throw new Error(
+      `Frozen evidence hash mismatch: expected ${args.frozenEvidenceSha256}, got ${actualHash}`,
+    );
+  }
+  const frozen = JSON.parse(bytes.toString("utf8"));
+  if (!frozen?.activationRun || !Array.isArray(frozen?.scheduledRuns)) {
+    throw new Error("Frozen evidence is missing activationRun or scheduledRuns");
+  }
+
+  const liveRuns = new Map(
+    [liveEvidence.activationRun, ...liveEvidence.scheduledRuns]
+      .filter(Boolean)
+      .map((run) => [String(run.id), run]),
+  );
+  return {
+    ...frozen,
+    activationRun: addLinkedSourceEvidence(
+      frozen.activationRun,
+      liveRuns.get(String(frozen.activationRun.id)),
+    ),
+    scheduledRuns: frozen.scheduledRuns.map((run) =>
+      addLinkedSourceEvidence(run, liveRuns.get(String(run.id))),
+    ),
+    replayProvenance: {
+      mode: "hash_verified_frozen_evidence_with_linked_source_readback",
+      frozen_evidence_sha256: actualHash,
+      linked_source_fields: LINKED_SOURCE_FIELDS,
+      database_reads_only: true,
+    },
+  };
+}
+
 async function queryEvidence(client, args, asOf) {
   const activationRun = (
     await client.query(
-      `select *
-       from public.market_price_pipeline_runs
-       where id = $1::uuid`,
+      `select run.*,
+              source.id as schedule_source_run_id,
+              source.run_key as schedule_source_run_key,
+              source.status as schedule_source_status,
+              source.started_at as schedule_source_started_at,
+              source.finished_at as schedule_source_finished_at,
+              source.failed_count as schedule_source_failed_count,
+              source.error as schedule_source_error,
+              source.git_commit_sha as schedule_source_commit_sha
+       from public.market_price_pipeline_runs run
+       left join public.tcgcsv_source_sync_runs source
+         on source.id = run.source_sync_run_id
+       where run.id = $1::uuid`,
       [args.activationRunId],
     )
   ).rows[0] ?? null;
 
   const scheduledRuns = (
     await client.query(
-      `select *
-       from public.market_price_pipeline_runs
-       where run_mode = 'canary'
-         and started_at > $1::timestamptz
-         and started_at <= $2::timestamptz
-         and run_key like 'TCGPLAYER-MARKET-SCHEDULE-CANARY-%-publication'
-       order by started_at, id`,
+      `select run.*,
+              source.id as schedule_source_run_id,
+              source.run_key as schedule_source_run_key,
+              source.status as schedule_source_status,
+              source.started_at as schedule_source_started_at,
+              source.finished_at as schedule_source_finished_at,
+              source.failed_count as schedule_source_failed_count,
+              source.error as schedule_source_error,
+              source.git_commit_sha as schedule_source_commit_sha
+       from public.market_price_pipeline_runs run
+       left join public.tcgcsv_source_sync_runs source
+         on source.id = run.source_sync_run_id
+       where run.run_mode = 'canary'
+         and coalesce(source.started_at, run.started_at) > $1::timestamptz
+         and coalesce(source.started_at, run.started_at) <= $2::timestamptz
+         and run.run_key like 'TCGPLAYER-MARKET-SCHEDULE-CANARY-%-publication'
+       order by coalesce(source.started_at, run.started_at), run.id`,
       [args.windowStart, asOf],
     )
   ).rows;
@@ -390,6 +538,7 @@ function markdown(report) {
     "## Schedule",
     "",
     `- Expected slots through this check: \`${report.schedule.expected_slots.length}\``,
+    `- Publication completion grace: \`${report.schedule.completion_grace_minutes} minutes\``,
     `- Matched slots: \`${report.schedule.matched_slots.length}\``,
     `- Missing slots: \`${report.schedule.missing_slots.length}\``,
     `- Unmatched canary runs: \`${report.schedule.unmatched_run_keys.length}\``,
@@ -439,12 +588,15 @@ async function main() {
   });
   await client.connect();
   try {
-    const evidence = await queryEvidence(client, args, asOf);
+    const liveEvidence = await queryEvidence(client, args, asOf);
+    const evidence = await frozenReplayEvidence(args, liveEvidence);
     const report = evaluateTcgplayerMarketCanaryObservationV1({
       windowStart: args.windowStart,
       asOf,
       requiredHours: args.requiredHours,
       scheduleToleranceMinutes: args.scheduleToleranceMinutes,
+      scheduleCompletionGraceMinutes:
+        args.scheduleCompletionGraceMinutes,
       expectedCount: args.expectedCount,
       maxSourceMissingCount: args.maxSourceMissingCount,
       expectedCommitSha: args.expectedCommitSha,
@@ -464,6 +616,15 @@ async function main() {
       expected_count: args.expectedCount,
       max_source_missing_count: args.maxSourceMissingCount,
       schedule_tolerance_minutes: args.scheduleToleranceMinutes,
+      schedule_completion_grace_minutes:
+        args.scheduleCompletionGraceMinutes,
+      frozen_evidence: args.frozenEvidencePath
+        ? {
+            sha256: args.frozenEvidenceSha256,
+            replay_mode:
+              "hash_verified_frozen_evidence_with_linked_source_readback",
+          }
+        : null,
       boundaries: {
         database_reads_only: true,
         database_writes: false,

@@ -65,6 +65,33 @@ test("scheduled canary observer allows final-slot completion before requiring a 
   assert.doesNotMatch(workflow, /now_epoch >= required_end_epoch/);
   assert.match(workflow, /require_pass=\(--require-pass\)/);
   assert.match(workflow, /"\$\{require_pass\[@\]\}"/);
+  assert.match(
+    observer,
+    /arg\.startsWith\("--schedule-completion-grace-minutes="\)/,
+  );
+  assert.match(
+    observer,
+    /scheduleCompletionGraceMinutes:\s*args\.scheduleCompletionGraceMinutes/,
+  );
+  assert.match(observer, /schedule_completion_grace_minutes/);
+  assert.match(observer, /--frozen-evidence=/);
+  assert.match(observer, /--frozen-evidence-sha256=/);
+  assert.match(observer, /Frozen evidence hash mismatch/);
+  assert.match(
+    observer,
+    /hash_verified_frozen_evidence_with_linked_source_readback/,
+  );
+});
+
+test("scheduled canary observer reads linked source-cycle schedule evidence", () => {
+  assert.match(
+    observer,
+    /left join public\.tcgcsv_source_sync_runs source\s+on source\.id = run\.source_sync_run_id/,
+  );
+  assert.match(observer, /source\.started_at as schedule_source_started_at/);
+  assert.match(observer, /source\.finished_at as schedule_source_finished_at/);
+  assert.match(observer, /source\.run_key as schedule_source_run_key/);
+  assert.match(observer, /source\.git_commit_sha as schedule_source_commit_sha/);
 });
 
 test("scheduled canary observer is read-only and cannot apply migrations", () => {
