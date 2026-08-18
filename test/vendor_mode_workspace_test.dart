@@ -85,6 +85,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(service.printingSaves, [('copy-2', 'printing-reverse-copy-2')]);
 
+    await tester.tap(find.byKey(const Key('vendor_more_filters')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('vendor_filter_belowMarket')));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);

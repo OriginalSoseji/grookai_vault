@@ -1086,112 +1086,191 @@ class _WorkspaceHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final hasSecondaryFilter = _isSecondaryFilter(selectedFilter);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 8, 14, 10),
+      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            '$rowCount exact ${rowCount == 1 ? 'copy' : 'copies'}',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  '$rowCount exact ${rowCount == 1 ? 'copy' : 'copies'}',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              if (visibleCount != rowCount)
+                Text(
+                  '$visibleCount shown',
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+            ],
           ),
-          const SizedBox(height: 2),
-          Text(
-            'Price, organize, publish, and share from one screen.',
-            style: theme.textTheme.bodySmall,
-          ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 7),
           TextField(
             key: const Key('vendor_search'),
             controller: searchController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Find a card, set, printing, or GVVI',
-              prefixIcon: const Icon(Icons.search_rounded),
-              suffixText: visibleCount == rowCount ? null : '$visibleCount',
+              prefixIcon: Icon(Icons.search_rounded),
               isDense: true,
             ),
           ),
-          const SizedBox(height: 9),
-          _VendorFilterGroup(
-            label: 'Price status',
-            filters: const [
-              _VendorWorkspaceFilter.all,
-              _VendorWorkspaceFilter.priced,
-              _VendorWorkspaceFilter.unpriced,
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children:
+                        const [
+                              _VendorWorkspaceFilter.all,
+                              _VendorWorkspaceFilter.priced,
+                              _VendorWorkspaceFilter.unpriced,
+                            ]
+                            .map((filter) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 6),
+                                child: ChoiceChip(
+                                  key: Key('vendor_filter_${filter.name}'),
+                                  selected: filter == selectedFilter,
+                                  showCheckmark: false,
+                                  visualDensity: VisualDensity.compact,
+                                  label: Text(
+                                    '${_filterLabel(filter)} ${countFor(filter)}',
+                                  ),
+                                  onSelected: (_) => onFilterChanged(filter),
+                                ),
+                              );
+                            })
+                            .toList(growable: false),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 2),
+              IconButton.filledTonal(
+                key: const Key('vendor_more_filters'),
+                tooltip: hasSecondaryFilter
+                    ? '${_filterLabel(selectedFilter)} filter active'
+                    : 'More filters',
+                onPressed: () => _openSecondaryFilters(context),
+                icon: Badge(
+                  isLabelVisible: hasSecondaryFilter,
+                  smallSize: 8,
+                  child: Icon(
+                    hasSecondaryFilter
+                        ? Icons.filter_alt_rounded
+                        : Icons.filter_alt_outlined,
+                  ),
+                ),
+              ),
             ],
-            selectedFilter: selectedFilter,
-            countFor: countFor,
-            onFilterChanged: onFilterChanged,
-          ),
-          const SizedBox(height: 7),
-          _VendorFilterGroup(
-            label: 'Market position',
-            filters: const [
-              _VendorWorkspaceFilter.belowMarket,
-              _VendorWorkspaceFilter.atMarket,
-              _VendorWorkspaceFilter.aboveMarket,
-              _VendorWorkspaceFilter.noExactMarket,
-            ],
-            selectedFilter: selectedFilter,
-            countFor: countFor,
-            onFilterChanged: onFilterChanged,
-          ),
-          const SizedBox(height: 7),
-          _VendorFilterGroup(
-            label: 'Visibility',
-            filters: const [
-              _VendorWorkspaceFilter.onWall,
-              _VendorWorkspaceFilter.offWall,
-            ],
-            selectedFilter: selectedFilter,
-            countFor: countFor,
-            onFilterChanged: onFilterChanged,
           ),
         ],
       ),
     );
   }
+
+  Future<void> _openSecondaryFilters(BuildContext context) async {
+    final selected = await showModalBottomSheet<_VendorWorkspaceFilter>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      useSafeArea: true,
+      builder: (context) => _VendorSecondaryFilterSheet(
+        selectedFilter: selectedFilter,
+        countFor: countFor,
+      ),
+    );
+    if (selected != null) {
+      onFilterChanged(selected);
+    }
+  }
 }
 
-class _VendorFilterGroup extends StatelessWidget {
-  const _VendorFilterGroup({
-    required this.label,
-    required this.filters,
+class _VendorSecondaryFilterSheet extends StatelessWidget {
+  const _VendorSecondaryFilterSheet({
     required this.selectedFilter,
     required this.countFor,
-    required this.onFilterChanged,
   });
 
-  final String label;
-  final List<_VendorWorkspaceFilter> filters;
   final _VendorWorkspaceFilter selectedFilter;
   final int Function(_VendorWorkspaceFilter) countFor;
-  final ValueChanged<_VendorWorkspaceFilter> onFilterChanged;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: Theme.of(context).textTheme.labelSmall),
-        const SizedBox(height: 4),
-        Wrap(
-          spacing: 7,
-          runSpacing: 7,
-          children: filters
-              .map(
-                (filter) => ChoiceChip(
-                  key: Key('vendor_filter_${filter.name}'),
-                  selected: filter == selectedFilter,
-                  label: Text('${_filterLabel(filter)} ${countFor(filter)}'),
-                  onSelected: (_) => onFilterChanged(filter),
+    final theme = Theme.of(context);
+    return SingleChildScrollView(
+      padding: EdgeInsets.fromLTRB(
+        20,
+        0,
+        20,
+        24 + MediaQuery.paddingOf(context).bottom,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Filter inventory',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
-              )
-              .toList(growable: false),
-        ),
-      ],
+              ),
+              TextButton(
+                key: const Key('vendor_filter_clear'),
+                onPressed: () =>
+                    Navigator.pop(context, _VendorWorkspaceFilter.all),
+                child: const Text('Clear'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text('Market position', style: theme.textTheme.labelLarge),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: const [
+              _VendorWorkspaceFilter.belowMarket,
+              _VendorWorkspaceFilter.atMarket,
+              _VendorWorkspaceFilter.aboveMarket,
+              _VendorWorkspaceFilter.noExactMarket,
+            ].map((filter) => _filterChip(context, filter)).toList(),
+          ),
+          const SizedBox(height: 18),
+          Text('Visibility', style: theme.textTheme.labelLarge),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: const [
+              _VendorWorkspaceFilter.onWall,
+              _VendorWorkspaceFilter.offWall,
+            ].map((filter) => _filterChip(context, filter)).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _filterChip(BuildContext context, _VendorWorkspaceFilter filter) {
+    return ChoiceChip(
+      key: Key('vendor_filter_${filter.name}'),
+      selected: filter == selectedFilter,
+      label: Text('${_filterLabel(filter)} ${countFor(filter)}'),
+      onSelected: (_) => Navigator.pop(context, filter),
     );
   }
 }
@@ -1677,6 +1756,16 @@ String _filterLabel(_VendorWorkspaceFilter filter) => switch (filter) {
   _VendorWorkspaceFilter.noExactMarket => 'No market',
   _VendorWorkspaceFilter.onWall => 'On Wall',
   _VendorWorkspaceFilter.offWall => 'Off Wall',
+};
+
+bool _isSecondaryFilter(_VendorWorkspaceFilter filter) => switch (filter) {
+  _VendorWorkspaceFilter.belowMarket ||
+  _VendorWorkspaceFilter.atMarket ||
+  _VendorWorkspaceFilter.aboveMarket ||
+  _VendorWorkspaceFilter.noExactMarket ||
+  _VendorWorkspaceFilter.onWall ||
+  _VendorWorkspaceFilter.offWall => true,
+  _ => false,
 };
 
 String _message(Object error) =>

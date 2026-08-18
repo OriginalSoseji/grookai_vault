@@ -205,12 +205,14 @@ and cannot be created as a custom section.
 ## Search, Filters, And Ordering
 
 V1 supports text search over card name, set, number, GVVI, and printing label.
-It supports visible filter groups for price status, market position, and Wall
-visibility. Price status includes all cards, priced, and unpriced. Market
-position includes below market, at market, above market, and no exact market.
-Wall visibility includes on Wall and off Wall. `Priced` and `unpriced` are
-derived only from the exact copy's owner asking price, so saving a price cannot
-make the copy disappear into an unrelated market-evidence queue.
+Price status includes all cards, priced, and unpriced in one compact persistent
+row. Market position includes below market, at market, above market, and no
+exact market. Wall visibility includes on Wall and off Wall. Market-position
+and Wall-visibility choices remain available from one temporary secondary
+filter sheet so filtering does not displace the inventory. `Priced` and
+`unpriced` are derived only from the exact copy's owner asking price, so saving
+a price cannot make the copy disappear into an unrelated market-evidence
+queue.
 
 Default priority is:
 

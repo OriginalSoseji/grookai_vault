@@ -69,9 +69,11 @@ test('priced inventory is explicit, visible, and ordered before unpriced work', 
   assert.match(service, /left\.askingPrice == null \? 1 : 0/);
   assert.match(screen, /_VendorWorkspaceFilter\.priced => row\.askingPrice != null/);
   assert.match(screen, /_VendorWorkspaceFilter\.unpriced => row\.askingPrice == null/);
-  assert.match(screen, /label: 'Price status'/);
-  assert.match(screen, /label: 'Market position'/);
-  assert.match(screen, /label: 'Visibility'/);
+  assert.match(screen, /vendor_more_filters/);
+  assert.match(screen, /Filter inventory/);
+  assert.match(screen, /Text\('Market position'/);
+  assert.match(screen, /Text\('Visibility'/);
+  assert.doesNotMatch(screen, /class _VendorFilterGroup/);
 });
 
 test('swipe removal archives one exact copy through the governed RPC', () => {
