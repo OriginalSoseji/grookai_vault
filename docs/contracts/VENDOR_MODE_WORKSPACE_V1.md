@@ -205,24 +205,32 @@ and cannot be created as a custom section.
 ## Search, Filters, And Ordering
 
 V1 supports text search over card name, set, number, GVVI, and printing label.
-It supports queues for all cards, below market, above market, at market,
-unpriced, no exact market, on Wall, and off Wall.
+It supports visible filter groups for price status, market position, and Wall
+visibility. Price status includes all cards, priced, and unpriced. Market
+position includes below market, at market, above market, and no exact market.
+Wall visibility includes on Wall and off Wall. `Priced` and `unpriced` are
+derived only from the exact copy's owner asking price, so saving a price cannot
+make the copy disappear into an unrelated market-evidence queue.
 
 Default priority is:
 
-1. Review below market.
-2. Review above market.
-3. Unpriced.
-4. Remaining rows.
+1. Priced copies.
+2. Within priced copies: below market, above market, at market, then no exact
+   market.
+3. Unpriced copies.
 
-This ordering is triage only. It is not an instruction to change a price.
+This ordering keeps completed pricing work visible and is not an instruction to
+change a price.
 
 ## Sharing And QR
 
 Share uses the durable `https://grookaivault.com/q/{GVVI}` URL. The URL never
 contains mutable price, condition, vendor, or identity values. Share is enabled
-only for a currently public sale row. QR preview and 2.5 by 3.5 inch print remain
-on the existing exact-copy vendor-card surface.
+only for a currently public sale row. The private Vendor Mode row is the
+personal vendor card and retains editing, customer preview, QR preview, and 2.5
+by 3.5 inch print controls. The customer-facing GVVI landing contains only the
+card, current public offer, and shop/collector information; it never renders
+owner QR tooling.
 
 ## Security And Privacy
 

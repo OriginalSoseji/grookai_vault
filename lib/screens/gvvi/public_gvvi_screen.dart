@@ -37,11 +37,13 @@ class PublicGvviScreen extends StatefulWidget {
   const PublicGvviScreen({
     required this.gvviId,
     this.openedFromCardDetail = false,
+    this.showOwnerQrTools = false,
     super.key,
   });
 
   final String gvviId;
   final bool openedFromCardDetail;
+  final bool showOwnerQrTools;
 
   @override
   State<PublicGvviScreen> createState() => _PublicGvviScreenState();
@@ -410,7 +412,13 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
         : _publicGvviDisplayIdentity(_data!).displayName;
     return Scaffold(
       appBar: AppBar(
-        title: Text(_vendorOffer == null ? 'Copy' : 'Vendor card'),
+        title: Text(
+          widget.showOwnerQrTools
+              ? 'Personal vendor card'
+              : _vendorOffer == null
+              ? 'Copy'
+              : 'Card for sale',
+        ),
         actions: [
           IconButton(
             tooltip: 'Messages',
@@ -459,7 +467,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                       offer: _vendorOffer!,
                       onVendorTap: () => _openCollector(_data!),
                     ),
-                    if (_viewerOwns(_data!)) ...[
+                    if (widget.showOwnerQrTools && _viewerOwns(_data!)) ...[
                       const SizedBox(height: 12),
                       _VendorOwnerQrPanel(
                         data: _data!,

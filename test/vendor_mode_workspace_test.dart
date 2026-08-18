@@ -22,15 +22,15 @@ void main() {
     expect(rows.map((row) => row.instanceId), [
       'below',
       'above',
-      'unpriced',
       'no-market',
+      'unpriced',
     ]);
   });
 
   testWidgets('Vendor Mode edits an exact copy without leaving the screen', (
     tester,
   ) async {
-    tester.view.physicalSize = const Size(1080, 3600);
+    tester.view.physicalSize = const Size(1080, 4500);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
@@ -70,7 +70,14 @@ void main() {
     expect(find.byKey(const Key('vendor_row_copy-2')), findsOneWidget);
     expect(find.textContaining('25% below market'), findsOneWidget);
 
+    await tester.tap(find.byKey(const Key('vendor_filter_priced')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
+    expect(find.byKey(const Key('vendor_row_copy-2')), findsNothing);
+
     final printingField = find.byKey(const Key('vendor_printing_copy-2')).last;
+    await tester.tap(find.byKey(const Key('vendor_filter_all')));
+    await tester.pumpAndSettle();
     await tester.ensureVisible(printingField);
     await tester.tap(printingField);
     await tester.pumpAndSettle();
@@ -110,6 +117,8 @@ void main() {
     expect(service.conditionSaves, [('copy-2', 'LP')]);
 
     final sectionsButton = find.byKey(const Key('vendor_sections_copy-2')).last;
+    await tester.drag(find.byType(ListView), const Offset(0, -280));
+    await tester.pumpAndSettle();
     await tester.ensureVisible(sectionsButton);
     await tester.pumpAndSettle();
     await tester.tap(sectionsButton);

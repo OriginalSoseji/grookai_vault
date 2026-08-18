@@ -64,6 +64,16 @@ test('price publication, condition, sections, and sharing remain bounded', () =>
   assert.match(screen, /if \(!row\.shareReady\)/);
 });
 
+test('priced inventory is explicit, visible, and ordered before unpriced work', () => {
+  assert.match(contract, /Price status includes all cards, priced, and unpriced/);
+  assert.match(service, /left\.askingPrice == null \? 1 : 0/);
+  assert.match(screen, /_VendorWorkspaceFilter\.priced => row\.askingPrice != null/);
+  assert.match(screen, /_VendorWorkspaceFilter\.unpriced => row\.askingPrice == null/);
+  assert.match(screen, /label: 'Price status'/);
+  assert.match(screen, /label: 'Market position'/);
+  assert.match(screen, /label: 'Visibility'/);
+});
+
 test('swipe removal archives one exact copy through the governed RPC', () => {
   assert.match(contract, /familiar end-to-start swipe gesture/);
   assert.match(contract, /archives one exact/);

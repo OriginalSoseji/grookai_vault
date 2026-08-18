@@ -11,10 +11,11 @@ import 'public_gvvi_screen.dart';
 
 enum _VendorWorkspaceFilter {
   all,
-  belowMarket,
-  aboveMarket,
-  atMarket,
+  priced,
   unpriced,
+  belowMarket,
+  atMarket,
+  aboveMarket,
   noExactMarket,
   onWall,
   offWall,
@@ -129,17 +130,15 @@ class _VendorPricingWorkspaceScreenState
           }
           return switch (_filter) {
             _VendorWorkspaceFilter.all => true,
+            _VendorWorkspaceFilter.priced => row.askingPrice != null,
+            _VendorWorkspaceFilter.unpriced => row.askingPrice == null,
             _VendorWorkspaceFilter.belowMarket =>
               row.marketPosition == VendorMarketPosition.below,
-            _VendorWorkspaceFilter.aboveMarket =>
-              row.marketPosition == VendorMarketPosition.above,
             _VendorWorkspaceFilter.atMarket =>
               row.marketPosition == VendorMarketPosition.atMarket,
-            _VendorWorkspaceFilter.unpriced =>
-              row.marketPosition == VendorMarketPosition.unpriced,
-            _VendorWorkspaceFilter.noExactMarket =>
-              row.marketPosition == VendorMarketPosition.noExactMarket ||
-                  (row.marketPrice == null && row.askingPrice == null),
+            _VendorWorkspaceFilter.aboveMarket =>
+              row.marketPosition == VendorMarketPosition.above,
+            _VendorWorkspaceFilter.noExactMarket => row.marketPrice == null,
             _VendorWorkspaceFilter.onWall => row.onWall,
             _VendorWorkspaceFilter.offWall => !row.onWall,
           };
@@ -153,14 +152,14 @@ class _VendorPricingWorkspaceScreenState
     return _rows.where((row) {
       return switch (filter) {
         _VendorWorkspaceFilter.all => true,
+        _VendorWorkspaceFilter.priced => row.askingPrice != null,
+        _VendorWorkspaceFilter.unpriced => row.askingPrice == null,
         _VendorWorkspaceFilter.belowMarket =>
           row.marketPosition == VendorMarketPosition.below,
-        _VendorWorkspaceFilter.aboveMarket =>
-          row.marketPosition == VendorMarketPosition.above,
         _VendorWorkspaceFilter.atMarket =>
           row.marketPosition == VendorMarketPosition.atMarket,
-        _VendorWorkspaceFilter.unpriced =>
-          row.marketPosition == VendorMarketPosition.unpriced,
+        _VendorWorkspaceFilter.aboveMarket =>
+          row.marketPosition == VendorMarketPosition.above,
         _VendorWorkspaceFilter.noExactMarket => row.marketPrice == null,
         _VendorWorkspaceFilter.onWall => row.onWall,
         _VendorWorkspaceFilter.offWall => !row.onWall,
@@ -613,10 +612,25 @@ class _VendorPricingWorkspaceScreenState
     );
   }
 
-  Future<void> _openQr(VendorPricingWorkspaceRow row) async {
+  Future<void> _openVendorQr(VendorPricingWorkspaceRow row) async {
     if (!row.shareReady) {
       _showStatus(
         'Set a price and publish this card for sale before using QR.',
+      );
+      return;
+    }
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            PublicGvviScreen(gvviId: row.gvviId, showOwnerQrTools: true),
+      ),
+    );
+  }
+
+  Future<void> _previewCustomerCard(VendorPricingWorkspaceRow row) async {
+    if (!row.shareReady) {
+      _showStatus(
+        'Set a price and publish this card for sale before previewing it.',
       );
       return;
     }
@@ -721,7 +735,8 @@ class _VendorPricingWorkspaceScreenState
                                       _saveWallVisibility(row, value),
                                   onSections: () => _openSections(row),
                                   onShare: () => _share(row),
-                                  onQr: () => _openQr(row),
+                                  onPreview: () => _previewCustomerCard(row),
+                                  onQr: () => _openVendorQr(row),
                                 ),
                               );
                             },
@@ -1099,28 +1114,84 @@ class _WorkspaceHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 9),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: _VendorWorkspaceFilter.values
-                  .map((filter) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 7),
-                      child: FilterChip(
-                        key: Key('vendor_filter_${filter.name}'),
-                        selected: filter == selectedFilter,
-                        label: Text(
-                          '${_filterLabel(filter)} ${countFor(filter)}',
-                        ),
-                        onSelected: (_) => onFilterChanged(filter),
-                      ),
-                    );
-                  })
-                  .toList(growable: false),
-            ),
+          _VendorFilterGroup(
+            label: 'Price status',
+            filters: const [
+              _VendorWorkspaceFilter.all,
+              _VendorWorkspaceFilter.priced,
+              _VendorWorkspaceFilter.unpriced,
+            ],
+            selectedFilter: selectedFilter,
+            countFor: countFor,
+            onFilterChanged: onFilterChanged,
+          ),
+          const SizedBox(height: 7),
+          _VendorFilterGroup(
+            label: 'Market position',
+            filters: const [
+              _VendorWorkspaceFilter.belowMarket,
+              _VendorWorkspaceFilter.atMarket,
+              _VendorWorkspaceFilter.aboveMarket,
+              _VendorWorkspaceFilter.noExactMarket,
+            ],
+            selectedFilter: selectedFilter,
+            countFor: countFor,
+            onFilterChanged: onFilterChanged,
+          ),
+          const SizedBox(height: 7),
+          _VendorFilterGroup(
+            label: 'Visibility',
+            filters: const [
+              _VendorWorkspaceFilter.onWall,
+              _VendorWorkspaceFilter.offWall,
+            ],
+            selectedFilter: selectedFilter,
+            countFor: countFor,
+            onFilterChanged: onFilterChanged,
           ),
         ],
       ),
+    );
+  }
+}
+
+class _VendorFilterGroup extends StatelessWidget {
+  const _VendorFilterGroup({
+    required this.label,
+    required this.filters,
+    required this.selectedFilter,
+    required this.countFor,
+    required this.onFilterChanged,
+  });
+
+  final String label;
+  final List<_VendorWorkspaceFilter> filters;
+  final _VendorWorkspaceFilter selectedFilter;
+  final int Function(_VendorWorkspaceFilter) countFor;
+  final ValueChanged<_VendorWorkspaceFilter> onFilterChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: Theme.of(context).textTheme.labelSmall),
+        const SizedBox(height: 4),
+        Wrap(
+          spacing: 7,
+          runSpacing: 7,
+          children: filters
+              .map(
+                (filter) => ChoiceChip(
+                  key: Key('vendor_filter_${filter.name}'),
+                  selected: filter == selectedFilter,
+                  label: Text('${_filterLabel(filter)} ${countFor(filter)}'),
+                  onSelected: (_) => onFilterChanged(filter),
+                ),
+              )
+              .toList(growable: false),
+        ),
+      ],
     );
   }
 }
@@ -1139,6 +1210,7 @@ class _VendorInventoryRow extends StatelessWidget {
     required this.onWallChanged,
     required this.onSections,
     required this.onShare,
+    required this.onPreview,
     required this.onQr,
     this.error,
     super.key,
@@ -1159,6 +1231,7 @@ class _VendorInventoryRow extends StatelessWidget {
   final ValueChanged<bool> onWallChanged;
   final VoidCallback onSections;
   final VoidCallback onShare;
+  final VoidCallback onPreview;
   final VoidCallback onQr;
 
   @override
@@ -1427,9 +1500,17 @@ class _VendorInventoryRow extends StatelessWidget {
               icon: const Icon(Icons.share_outlined),
             ),
             IconButton(
+              key: Key('vendor_preview_${row.instanceId}'),
+              tooltip: row.shareReady
+                  ? 'Preview customer card'
+                  : 'Price and publish before previewing',
+              onPressed: busy ? null : onPreview,
+              icon: const Icon(Icons.visibility_outlined),
+            ),
+            IconButton(
               key: Key('vendor_qr_${row.instanceId}'),
               tooltip: row.shareReady
-                  ? 'Open QR and print'
+                  ? 'Open personal QR tools'
                   : 'Price and publish before QR',
               onPressed: busy ? null : onQr,
               icon: const Icon(Icons.qr_code_2_rounded),
@@ -1588,10 +1669,11 @@ class _WorkspaceState extends StatelessWidget {
 
 String _filterLabel(_VendorWorkspaceFilter filter) => switch (filter) {
   _VendorWorkspaceFilter.all => 'All',
-  _VendorWorkspaceFilter.belowMarket => 'Below',
-  _VendorWorkspaceFilter.aboveMarket => 'Above',
-  _VendorWorkspaceFilter.atMarket => 'At market',
+  _VendorWorkspaceFilter.priced => 'Priced',
   _VendorWorkspaceFilter.unpriced => 'Unpriced',
+  _VendorWorkspaceFilter.belowMarket => 'Below',
+  _VendorWorkspaceFilter.atMarket => 'At market',
+  _VendorWorkspaceFilter.aboveMarket => 'Above',
   _VendorWorkspaceFilter.noExactMarket => 'No market',
   _VendorWorkspaceFilter.onWall => 'On Wall',
   _VendorWorkspaceFilter.offWall => 'Off Wall',

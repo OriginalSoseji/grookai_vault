@@ -77,9 +77,20 @@ test("mobile vendor presentation consumes a bounded public vendor-offer contract
   assert.match(screen, /GvviVendorOfferService\.load/);
   assert.match(screen, /VENDOR PRICE/);
   assert.match(screen, /Vendor QR/);
+  assert.match(screen, /this\.showOwnerQrTools = false/);
+  assert.match(screen, /widget\.showOwnerQrTools && _viewerOwns/);
   assert.doesNotMatch(screen, /showModalBottomSheet/);
   assert.doesNotMatch(screen, /View vendor QR/);
   assert.match(screen, /buildPersistentGvviQrUri/);
+});
+
+test("customer GVVI is the default and private Vendor Mode explicitly opens QR tools", () => {
+  const publicScreen = read("lib/screens/gvvi/public_gvvi_screen.dart");
+  const vendorScreen = read("lib/screens/gvvi/vendor_pricing_workspace_screen.dart");
+  assert.match(publicScreen, /this\.showOwnerQrTools = false/);
+  assert.match(vendorScreen, /showOwnerQrTools: true/);
+  assert.match(vendorScreen, /Preview customer card/);
+  assert.match(vendorScreen, /Open personal QR tools/);
 });
 
 test("referral cookie stores GVVI context, derives vendor server-side, and blocks self-referral", () => {

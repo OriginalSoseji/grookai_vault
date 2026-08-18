@@ -812,12 +812,18 @@ int compareVendorWorkspaceRows(
   VendorPricingWorkspaceRow left,
   VendorPricingWorkspaceRow right,
 ) {
+  final byPriceStatus = (left.askingPrice == null ? 1 : 0).compareTo(
+    right.askingPrice == null ? 1 : 0,
+  );
+  if (byPriceStatus != 0) {
+    return byPriceStatus;
+  }
   int priority(VendorPricingWorkspaceRow row) => switch (row.marketPosition) {
     VendorMarketPosition.below => 0,
     VendorMarketPosition.above => 1,
-    VendorMarketPosition.unpriced => 2,
-    VendorMarketPosition.atMarket => 3,
-    VendorMarketPosition.noExactMarket => 4,
+    VendorMarketPosition.atMarket => 2,
+    VendorMarketPosition.noExactMarket => 3,
+    VendorMarketPosition.unpriced => 4,
   };
   final byPriority = priority(left).compareTo(priority(right));
   if (byPriority != 0) {

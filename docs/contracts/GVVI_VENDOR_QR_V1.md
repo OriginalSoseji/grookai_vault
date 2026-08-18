@@ -37,7 +37,7 @@ Invalid, private, archived, unpublished, or non-vendor GVVI identifiers return t
 
 ## Public Landing
 
-`/gvvi/{GVVI}` remains the only public exact-copy surface for Wall and QR entry. Vendor mode adds canonical card identity and image, `VENDOR PRICE` from the owner asking price, existing condition vocabulary, availability, public vendor name/avatar, and the vendor Wall/profile link.
+`/gvvi/{GVVI}` remains the only public exact-copy surface for Wall and QR entry. Vendor mode adds canonical card identity and image, `VENDOR PRICE` from the owner asking price, existing condition vocabulary, availability, public vendor name/avatar, and the vendor Wall/profile link. This customer-facing landing never renders the QR itself or owner editing controls.
 
 Market pricing is not loaded for an asking-price vendor page and is not required for rendering.
 
@@ -45,7 +45,7 @@ The mobile app consumes `/api/gvvi/{GVVI}/vendor-offer`, a bounded no-store read
 
 ## Owner Controls
 
-The owner GVVI page shows QR controls only to the exact owner with vendor-tool capability and a currently public vendor offer. Web controls provide an accessible preview, persistent link, owner-authenticated SVG download, and a compact 2.5 by 3.5 inch printable QR card. The native app renders the same stable URL inline on the vendor-card page, without an intermediate QR modal, and supports copy, share, and a 2.5 by 3.5 inch Android print flow after the bounded server read proves vendor eligibility.
+Owner QR controls live on an explicit private management surface and are never inferred merely because the owner opened the customer landing. Web controls provide an accessible preview, persistent link, owner-authenticated SVG download, and a compact 2.5 by 3.5 inch printable QR card. The native app exposes the same stable URL only when Vendor Mode explicitly opens personal QR tools, and supports copy, share, and a 2.5 by 3.5 inch Android print flow after the bounded server read proves vendor eligibility.
 
 The owner Wall exposes one `Price cards` workspace for routine vendor repricing. Each exact copy appears in a single list with card identity, governed exact-printing market price when available, and an editable owner asking price. Editing the asking price writes through the existing exact-GVVI sale boundary and requires no card-detail, printing-version, or public-Wall preview navigation. Missing exact market evidence displays as unavailable and is never replaced with an inferred parent price.
 
