@@ -92,28 +92,22 @@ test("repository completion state covers the exact governed requirement set", ()
   assert.equal(result.completion_allowed, false);
   assert.equal(result.counts.required, 30);
   assert.equal(result.counts.represented, 30);
-  assert.equal(result.counts.passed, 21);
-  assert.equal(result.counts.pending, 8);
+  assert.equal(result.counts.passed, 23);
+  assert.equal(result.counts.pending, 6);
   assert.equal(result.counts.blocked_external, 1);
   assert.deepEqual(result.findings, []);
 });
 
-test("repository state preserves both undeployed pricing migrations", () => {
+test("repository state records both pricing migrations as deployed", () => {
   const byId = new Map(
     STATE.requirements.map((row) => [row.requirement_id, row]),
   );
   const schemaParity = byId.get("production_schema_migration_parity");
   const surfaces = byId.get("all_supported_surfaces_shared_interface");
 
-  assert.equal(schemaParity.status, "pending");
-  assert.match(
-    schemaParity.next_gate,
-    /20260728130000_tcgplayer_market_read_model_contract_completion_v1\.sql/,
-  );
-  assert.match(
-    schemaParity.next_gate,
-    /20260728133000_vault_exact_market_pricing_targets_v1\.sql/,
-  );
+  assert.equal(schemaParity.status, "passed");
+  assert.equal(schemaParity.next_gate, null);
+  assert.match(schemaParity.current_truth, /must not be reapplied/i);
   assert.ok(
     schemaParity.evidence.includes(
       "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql",
@@ -131,7 +125,7 @@ test("repository state preserves both undeployed pricing migrations", () => {
   );
 
   assert.equal(surfaces.status, "pending");
-  assert.match(surfaces.current_truth, /read-model completion migration/);
+  assert.match(surfaces.current_truth, /read-model completion/);
   assert.match(surfaces.current_truth, /exact-Vault migration/);
   assert.match(surfaces.next_gate, /source-to-render proof/);
   assert.ok(

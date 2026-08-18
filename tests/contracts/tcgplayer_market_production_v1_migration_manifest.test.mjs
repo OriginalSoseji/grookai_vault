@@ -134,30 +134,39 @@ test("permanent migration-readiness artifacts match their recorded hashes", () =
   }
 });
 
-test("post-canary release plan stays blocked, ordered, and exact", () => {
+test("post-canary release plan records applied migrations and the remaining ordered gates", () => {
   assert.equal(
     postCanaryPlan.plan_version,
     "TCGPLAYER_MARKET_POST_CANARY_RELEASE_PLAN_V1",
   );
-  assert.equal(postCanaryPlan.status, "frozen_blocked_by_active_canary");
+  assert.equal(postCanaryPlan.status, "post_canary_rollout_in_progress");
   assert.equal(
     postCanaryPlan.production_runtime.anonymous_pricing_must_remain_denied,
     true,
   );
   assert.deepEqual(
-    postCanaryPlan.pending_migration_package.migrations.map(
+    postCanaryPlan.applied_migration_package.migrations.map(
       (migration) => migration.id,
     ),
     ["20260728130000", "20260728133000"],
   );
   assert.equal(
-    postCanaryPlan.pending_migration_package.runtime_repair_prerequisite
+    postCanaryPlan.applied_migration_package.runtime_repair_prerequisite
       .must_not_be_added_to_pending_package,
     true,
   );
   assert.deepEqual(
     postCanaryPlan.ordered_gates.map((gate) => gate.order),
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  );
+  assert.equal(
+    postCanaryPlan.applied_migration_package.status,
+    "applied_verified_do_not_reapply",
+  );
+  assert.equal("migration_apply" in postCanaryPlan.required_commands, false);
+  assert.match(
+    postCanaryPlan.required_commands.migration_ledger_rule,
+    /application is forbidden/i,
   );
   assert.ok(
     postCanaryPlan.ordered_gates.find(
