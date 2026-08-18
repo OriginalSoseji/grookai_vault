@@ -24,7 +24,7 @@ const observer = fs.readFileSync(
 test("scheduled canary observer is pinned to the reviewed source and canary", () => {
   assert.match(
     workflow,
-    /OBSERVER_SOURCE_SHA: "03cc549b77995894ce86fc2b83731e64dd29007e"/,
+    /OBSERVER_SOURCE_SHA: "3ac5e70b88176895f1422b52626c5b89bca3bfc2"/,
   );
   assert.match(
     workflow,
