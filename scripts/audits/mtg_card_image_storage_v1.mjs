@@ -201,6 +201,33 @@ async function exists(client, imagePath) {
   return (data ?? []).some((row) => row.name === name);
 }
 
+export async function uploadAndConfirm(client, pointer, buffer, {
+  attempts = 4,
+  retryDelayMs = 750,
+} = {}) {
+  const failures = [];
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const { error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
+      .upload(pointer.image_path, buffer, { upsert: false,
+        contentType: pointer.content_type, cacheControl: '31536000' });
+    if (!error) return { attempt, ambiguous_response_recovered: false };
+    failures.push(error.message);
+    try {
+      // A proxy can return a non-JSON response after Storage accepted the body.
+      // Treat existence as provisional success; exact byte readback follows.
+      if (await exists(client, pointer.image_path)) {
+        return { attempt, ambiguous_response_recovered: true };
+      }
+    } catch (existenceError) {
+      failures.push(`existence_check:${existenceError.message}`);
+    }
+    if (attempt < attempts) {
+      await new Promise((resolve) => setTimeout(resolve, attempt * retryDelayMs));
+    }
+  }
+  throw new Error(`storage_upload_exhausted:${failures.join('|')}`);
+}
+
 export async function downloadAndInspect(client, pointer, {
   attempts = 3,
   retryDelayMs = 750,
@@ -253,10 +280,7 @@ async function storeOne(client, publicBase, row, quality, limiter, timeoutMs, al
   if (present && !allowExisting) throw new Error(`target_collision:${pointer.image_path}`);
   let created = false;
   if (!present) {
-    const { error } = await client.storage.from(MTG_CARD_IMAGE_BUCKET)
-      .upload(pointer.image_path, fetched.buffer, { upsert: false,
-        contentType: pointer.content_type, cacheControl: '31536000' });
-    if (error) throw new Error(`storage_upload:${error.message}`);
+    await uploadAndConfirm(client, pointer, fetched.buffer);
     created = true;
     if (onCreated) await onCreated(pointer);
   }

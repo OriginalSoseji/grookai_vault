@@ -43,6 +43,16 @@ export type CardCameo = {
   source_name?: string;
 };
 
+export type CardImageFace = {
+  face_index: number;
+  face_role: string;
+  image_url: string;
+  image_path?: string;
+  image_hash?: string;
+  width?: number;
+  height?: number;
+};
+
 export interface CardSummary {
   id: string;
   gv_id: string;
@@ -114,4 +124,5 @@ export interface CardDetail extends CardSummary {
   display_printings?: CardPrinting[];
   related_prints?: RelatedCardPrint[];
   cameos?: CardCameo[];
+  image_faces?: CardImageFace[];
 }

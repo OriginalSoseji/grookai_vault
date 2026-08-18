@@ -21,9 +21,20 @@ import type {
   ActiveCardPrintIdentity,
   CardCameo,
   CardDetail,
+  CardImageFace,
   CardPrinting,
   RelatedCardPrint,
 } from "@/types/cards";
+
+type CardImageFaceRow = {
+  face_index: number | null;
+  face_role: string | null;
+  image_url: string | null;
+  image_path: string | null;
+  image_hash: string | null;
+  width: number | null;
+  height: number | null;
+};
 
 type TraitRow = {
   hp: number | null;
@@ -317,6 +328,36 @@ async function getPublicCardTraits(
   }
 
   return mapTraitRecord(data as TraitRow | TraitRow[]);
+}
+
+async function getCardImageFaces(
+  supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
+  cardPrintId: string,
+): Promise<CardImageFace[] | undefined> {
+  const { data, error } = await supabase.rpc("get_card_print_image_faces_v1", {
+    p_card_print_id: cardPrintId,
+  });
+  if (error || !Array.isArray(data)) return undefined;
+
+  const faces = (data as CardImageFaceRow[])
+    .map((row): CardImageFace | null => {
+      if (!Number.isInteger(row.face_index) || (row.face_index ?? -1) < 0 ||
+          !row.face_role?.trim() || !row.image_url?.trim()) {
+        return null;
+      }
+      return {
+        face_index: row.face_index as number,
+        face_role: row.face_role.trim(),
+        image_url: row.image_url.trim(),
+        image_path: row.image_path?.trim() || undefined,
+        image_hash: row.image_hash?.trim() || undefined,
+        width: Number.isInteger(row.width) ? (row.width as number) : undefined,
+        height: Number.isInteger(row.height) ? (row.height as number) : undefined,
+      };
+    })
+    .filter((face): face is CardImageFace => face !== null)
+    .sort((left, right) => left.face_index - right.face_index);
+  return faces.length > 0 ? faces : undefined;
 }
 
 async function mapRelatedPrints(
@@ -700,6 +741,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     cameos,
     printingRows,
     traitRecord,
+    imageFaces,
   ] =
     await Promise.all([
       getSetDetailsByCode(row.set_code),
@@ -713,6 +755,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
         ? getPublicCardPrintingOptions(supabase, [row.id])
         : Promise.resolve([]),
       getPublicCardTraits(supabase, row.id),
+      row.id ? getCardImageFaces(supabase, row.id) : Promise.resolve(undefined),
     ]);
   // Public pricing is resolved by the governed TCGPlayer market read model.
   const pricingByCardId = includePricing && row.id
@@ -791,6 +834,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     display_printings: resolveDisplayPrintings(row, printings),
     related_prints: relatedPrints,
     cameos,
+    image_faces: imageFaces,
   };
 });
 

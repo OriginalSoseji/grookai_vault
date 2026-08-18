@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   assertMtgSetPromotionSecurityV1,
+  assertMtgSetPromotionSourceLanesV1,
   buildMtgCanonicalSetPromotionApprovalV1,
   captureMtgSetPromotionCurrentSourceLanesV1,
 } from "../../scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs";
@@ -108,12 +109,35 @@ test("source verification uses the newest complete planned-lane day", async () =
   const result = await captureMtgSetPromotionCurrentSourceLanesV1(client, payload);
 
   assert.equal(result.source_row_count, 2);
+  assert.match(queryText, /first_planned/);
+  assert.match(queryText, /candidate_days as materialized/);
   assert.match(queryText, /complete_days/);
-  assert.match(queryText, /having count\(\*\) = \(select count\(\*\) from planned\)/);
-  assert.match(queryText, /order by observation\.observed_on desc/);
+  assert.match(queryText, /where not exists \(\s*select 1\s*from planned/s);
+  assert.match(queryText, /observation\.observed_on = candidate\.observed_on/);
+  assert.match(queryText, /order by candidate\.observed_on desc/);
+  assert.doesNotMatch(queryText, /group by observation\.observed_on/);
   assert.doesNotMatch(queryText, /latest_day/);
   assert.deepEqual(JSON.parse(queryValues[0]), [
     { product_id: 101, subtype: "normal" },
     { product_id: 102, subtype: "foil" },
   ]);
+});
+
+test("set writer separates exact source identity from current price availability", () => {
+  const plan = { row_counts: { external_printing_mappings: 237 } };
+  assert.doesNotThrow(() => assertMtgSetPromotionSourceLanesV1({
+    planned_count: 237,
+    source_row_count: 237,
+    positive_market_price_count: 236,
+  }, plan));
+  assert.throws(() => assertMtgSetPromotionSourceLanesV1({
+    planned_count: 237,
+    source_row_count: 236,
+    positive_market_price_count: 236,
+  }, plan), /current source lanes/);
+  assert.throws(() => assertMtgSetPromotionSourceLanesV1({
+    planned_count: 237,
+    source_row_count: 237,
+    positive_market_price_count: 238,
+  }, plan), /positive source lanes exceeded mapped lanes/);
 });
