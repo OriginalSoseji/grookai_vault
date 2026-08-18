@@ -1,0 +1,21 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "REAL_GVVI_MOBILE_20260817.png",
+      "sha256": "220d4907bba6231fa10955ddeaecf124a948e0d68d1d53d746ee16ade7743b22"
+    },
+    {
+      "path": "REAL_GVVI_DESKTOP_20260817.png",
+      "sha256": "b7d13af9a38c0a1604e617ce8e77b5e26363572efeda6ca9a1fd581bc082f221"
+    },
+    {
+      "path": "REAL_GVVI_QR_20260817.png",
+      "sha256": "4135b6d7490b76b711b05169225b3b226314f685a12ef9a5f589798313bd3b7c"
+    },
+    {
+      "path": "REAL_NATIVE_SAMSUNG_QR_20260817.png",
+      "sha256": "3aa62c5a896d061124eb2e13197e33152332e2094423164cdb3c9ea4cd1aad85"
+    }
+  ]
+}

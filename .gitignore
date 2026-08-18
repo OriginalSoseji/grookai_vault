@@ -122,6 +122,8 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/gvvi/
+!apps/web/src/app/api/gvvi/**
 !apps/web/src/app/api/follows/
 apps/web/src/app/api/follows/*
 !apps/web/src/app/api/follows/state/

@@ -28,9 +28,13 @@ function normalizeMetadata(value?: Record<string, unknown> | null) {
 }
 
 export async function trackServerEvent(payload: WebEventPayload) {
+  if (process.env.GROOKAI_DISABLE_TELEMETRY === "1") {
+    return "disabled" as const;
+  }
+
   const eventName = cleanString(payload.eventName, 64);
   if (!eventName) {
-    return;
+    return "failed" as const;
   }
 
   const row: WebEventInsertRow = {
@@ -47,7 +51,10 @@ export async function trackServerEvent(payload: WebEventPayload) {
   try {
     const supabase = createServerAdminClient();
 
-    if (row.event_name === "account_created" && row.user_id) {
+    if (
+      (row.event_name === "account_created" || row.event_name === "vendor_referred_signup") &&
+      row.user_id
+    ) {
       const { data: existing, error: existingError } = await supabase
         .from("web_events")
         .select("id")
@@ -61,7 +68,7 @@ export async function trackServerEvent(payload: WebEventPayload) {
       }
 
       if (existing?.id) {
-        return;
+        return "duplicate" as const;
       }
     }
 
@@ -69,6 +76,7 @@ export async function trackServerEvent(payload: WebEventPayload) {
     if (error) {
       throw error;
     }
+    return "inserted" as const;
   } catch (error) {
     console.error("[telemetry] trackServerEvent failed", {
       eventName: row.event_name,
@@ -77,5 +85,6 @@ export async function trackServerEvent(payload: WebEventPayload) {
       setCode: row.set_code,
       error,
     });
+    return "failed" as const;
   }
 }

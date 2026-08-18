@@ -4,15 +4,12 @@ import { createRouteHandlerClient } from "@/lib/supabase/server";
 import type { WebEventPayload } from "@/lib/telemetry/events";
 import { WEB_EVENT_NAMES } from "@/lib/telemetry/events";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
+import { consumeVendorReferralAttribution } from "@/lib/gvvi/vendorReferralAttribution";
 
 const ANONYMOUS_ID_COOKIE = "grookai-anonymous-id";
 
 function isEventName(value: unknown): value is WebEventPayload["eventName"] {
   return typeof value === "string" && WEB_EVENT_NAMES.includes(value as WebEventPayload["eventName"]);
-}
-
-function isUuid(value: unknown): value is string {
-  return typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 function getSafeAnonymousId(request: NextRequest, response: NextResponse) {
@@ -58,9 +55,13 @@ export async function POST(request: NextRequest) {
     data: { user },
   } = await authClient.auth.getUser();
 
-  await trackServerEvent({
+  if (body.eventName === "account_created" && !user) {
+    return NextResponse.json({ ok: false }, { status: 401 });
+  }
+
+  const eventResult = await trackServerEvent({
     eventName: body.eventName,
-    userId: user?.id ?? (body.eventName === "account_created" && isUuid(body.userId) ? body.userId : null),
+    userId: user?.id ?? null,
     anonymousId: user ? null : getSafeAnonymousId(request, response),
     path: typeof body.path === "string" ? body.path : null,
     gvId: typeof body.gvId === "string" ? body.gvId : null,
@@ -68,6 +69,15 @@ export async function POST(request: NextRequest) {
     searchQuery: typeof body.searchQuery === "string" ? body.searchQuery : null,
     metadata: body.metadata ?? null,
   });
+
+  if (body.eventName === "account_created" && user) {
+    await consumeVendorReferralAttribution({
+      request,
+      response,
+      user,
+      accountWasCreated: eventResult === "inserted",
+    });
+  }
 
   return response;
 }
