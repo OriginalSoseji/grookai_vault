@@ -24,7 +24,7 @@ const observer = fs.readFileSync(
 test("scheduled canary observer is pinned to the reviewed source and canary", () => {
   assert.match(
     workflow,
-    /OBSERVER_SOURCE_SHA: "7c7593040bbf3c48a320008e26e6b21970d99847"/,
+    /OBSERVER_SOURCE_SHA: "03cc549b77995894ce86fc2b83731e64dd29007e"/,
   );
   assert.match(
     workflow,
@@ -44,6 +44,30 @@ test("scheduled canary observer is pinned to the reviewed source and canary", ()
     /--max-source-missing-count=\$\{TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT\}/,
   );
   assert.match(workflow, /ref: \$\{\{ env\.OBSERVER_SOURCE_SHA \}\}/);
+});
+
+test("manual final replay uses the immutable GitHub artifact and repaired observer", () => {
+  assert.match(workflow, /actions: read/);
+  assert.match(workflow, /uses: actions\/download-artifact@v4/);
+  assert.match(workflow, /run-id: 31965591823/);
+  assert.match(
+    workflow,
+    /FINAL_EVIDENCE_SHA256: "7b84a452de3afff671fbbc83801f779020c5e9c1f2ad4edab5c4969999916013"/,
+  );
+  assert.match(
+    workflow,
+    /FINAL_EVIDENCE_AS_OF: "2026-08-16T18:47:26\.299Z"/,
+  );
+  assert.match(
+    workflow,
+    /now_epoch > final_observation_deadline[\s\S]*GITHUB_EVENT_NAME[\s\S]*workflow_dispatch/,
+  );
+  assert.match(workflow, /--frozen-evidence=\$\{frozen_evidence\}/);
+  assert.match(
+    workflow,
+    /--frozen-evidence-sha256=\$\{FINAL_EVIDENCE_SHA256\}/,
+  );
+  assert.match(workflow, /"\$\{frozen_replay\[@\]\}"/);
 });
 
 test("scheduled canary observer allows final-slot completion before requiring a terminal pass", () => {
