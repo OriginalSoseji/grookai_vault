@@ -46,6 +46,9 @@ class _VaultItemTile extends StatelessWidget {
   final VoidCallback? onDelete;
   final VoidCallback? onTap;
   final VoidCallback? onScan;
+  final VoidCallback? onSelectionTap;
+  final bool selectionMode;
+  final bool selected;
   final bool compact;
 
   const _VaultItemTile({
@@ -56,6 +59,9 @@ class _VaultItemTile extends StatelessWidget {
     this.onDelete,
     this.onTap,
     this.onScan,
+    this.onSelectionTap,
+    this.selectionMode = false,
+    this.selected = false,
     this.compact = false,
   });
 
@@ -126,7 +132,7 @@ class _VaultItemTile extends StatelessWidget {
           child: Icon(Icons.delete, color: colorScheme.onError),
         ),
         confirmDismiss: (_) async {
-          if (onDelete == null) {
+          if (selectionMode || onDelete == null) {
             return false;
           }
           await Future.sync(onDelete!);
@@ -137,7 +143,9 @@ class _VaultItemTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(compact ? 10 : 12),
           child: InkWell(
             borderRadius: BorderRadius.circular(compact ? 10 : 12),
-            onTap: cardPrintId.isEmpty ? null : onTap,
+            onTap: selectionMode
+                ? onSelectionTap
+                : (cardPrintId.isEmpty ? null : onTap),
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 8,
@@ -224,44 +232,47 @@ class _VaultItemTile extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: compact ? 0 : 4),
-                  PopupMenuButton<_VaultGridAction>(
-                    tooltip: 'Card actions',
-                    icon: const Icon(Icons.more_horiz_rounded),
-                    onSelected: (action) {
-                      switch (action) {
-                        case _VaultGridAction.scan:
-                          onScan?.call();
-                          break;
-                        case _VaultGridAction.add:
-                          onIncrement?.call();
-                          break;
-                        case _VaultGridAction.remove:
-                          onDecrement?.call();
-                          break;
-                        case _VaultGridAction.delete:
-                          onDelete?.call();
-                          break;
-                      }
-                    },
-                    itemBuilder: (context) => const [
-                      PopupMenuItem(
-                        value: _VaultGridAction.scan,
-                        child: Text('Scan card'),
-                      ),
-                      PopupMenuItem(
-                        value: _VaultGridAction.add,
-                        child: Text('Add quantity'),
-                      ),
-                      PopupMenuItem(
-                        value: _VaultGridAction.remove,
-                        child: Text('Remove quantity'),
-                      ),
-                      PopupMenuItem(
-                        value: _VaultGridAction.delete,
-                        child: Text('Delete item'),
-                      ),
-                    ],
-                  ),
+                  if (selectionMode)
+                    _VaultSelectionMark(selected: selected)
+                  else
+                    PopupMenuButton<_VaultGridAction>(
+                      tooltip: 'Card actions',
+                      icon: const Icon(Icons.more_horiz_rounded),
+                      onSelected: (action) {
+                        switch (action) {
+                          case _VaultGridAction.scan:
+                            onScan?.call();
+                            break;
+                          case _VaultGridAction.add:
+                            onIncrement?.call();
+                            break;
+                          case _VaultGridAction.remove:
+                            onDecrement?.call();
+                            break;
+                          case _VaultGridAction.delete:
+                            onDelete?.call();
+                            break;
+                        }
+                      },
+                      itemBuilder: (context) => const [
+                        PopupMenuItem(
+                          value: _VaultGridAction.scan,
+                          child: Text('Scan card'),
+                        ),
+                        PopupMenuItem(
+                          value: _VaultGridAction.add,
+                          child: Text('Add quantity'),
+                        ),
+                        PopupMenuItem(
+                          value: _VaultGridAction.remove,
+                          child: Text('Remove quantity'),
+                        ),
+                        PopupMenuItem(
+                          value: _VaultGridAction.delete,
+                          child: Text('Delete item'),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
@@ -281,6 +292,7 @@ class _VaultGridTile extends StatelessWidget {
     this.selectionMode = false,
     this.selected = false,
     this.onTap,
+    this.onSelectionTap,
     this.onLongPress,
     this.onScan,
     this.onIncrement,
@@ -293,6 +305,7 @@ class _VaultGridTile extends StatelessWidget {
   final bool selectionMode;
   final bool selected;
   final VoidCallback? onTap;
+  final VoidCallback? onSelectionTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onScan;
   final VoidCallback? onIncrement;
@@ -340,7 +353,7 @@ class _VaultGridTile extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
-        onTap: selectionMode ? onLongPress : onTap,
+        onTap: selectionMode ? onSelectionTap : onTap,
         onLongPress: onLongPress,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(4, 4, 4, 5),
@@ -525,15 +538,25 @@ class _VaultSelectionMark extends StatelessWidget {
   }
 }
 
-class _VaultLotSelectionBar extends StatelessWidget {
-  const _VaultLotSelectionBar({
+class _VaultSelectionBar extends StatelessWidget {
+  const _VaultSelectionBar({
     required this.selectedCount,
+    required this.visibleCount,
+    required this.allVisibleSelected,
+    required this.busy,
+    required this.onSelectAll,
     required this.onClear,
+    required this.onRemove,
     required this.onListLot,
   });
 
   final int selectedCount;
+  final int visibleCount;
+  final bool allVisibleSelected;
+  final bool busy;
+  final VoidCallback onSelectAll;
   final VoidCallback onClear;
+  final VoidCallback onRemove;
   final VoidCallback onListLot;
 
   @override
@@ -551,22 +574,33 @@ class _VaultLotSelectionBar extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              '$selectedCount selected',
+              '$selectedCount selected · $visibleCount shown',
               style: theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.w800,
               ),
             ),
           ),
-          IconButton(
-            tooltip: 'Clear selection',
-            onPressed: onClear,
-            icon: const Icon(Icons.close_rounded),
+          TextButton(
+            onPressed: busy
+                ? null
+                : (allVisibleSelected ? onClear : onSelectAll),
+            child: Text(allVisibleSelected ? 'Clear all' : 'Select all'),
           ),
-          const SizedBox(width: 4),
-          FilledButton.icon(
-            onPressed: selectedCount >= 2 ? onListLot : null,
+          IconButton(
+            tooltip: 'List selected as a lot',
+            onPressed: !busy && selectedCount >= 2 ? onListLot : null,
             icon: const Icon(Icons.inventory_2_outlined),
-            label: Text('List $selectedCount as Lot'),
+          ),
+          IconButton(
+            tooltip: 'Remove selected',
+            onPressed: !busy && selectedCount > 0 ? onRemove : null,
+            color: colorScheme.error,
+            icon: busy
+                ? const SizedBox.square(
+                    dimension: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Icon(Icons.delete_outline_rounded),
           ),
         ],
       ),
@@ -609,9 +643,12 @@ class VaultPageState extends State<VaultPage> {
   bool _canonicalSpeciesLoading = false;
   _SortBy _sortBy = _SortBy.newest;
   _VaultStructuralView _view = _VaultStructuralView.all;
+  _VaultPricingFilter _pricingFilter = _VaultPricingFilter.all;
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
   _VaultDerivedData _derivedData = const _VaultDerivedData.empty();
-  final Set<String> _selectedLotCardPrintIds = <String>{};
+  final Set<String> _selectedCardPrintIds = <String>{};
+  bool _selectionMode = false;
+  bool _bulkArchiveBusy = false;
   bool _showBinderWhatsNew = false;
 
   @override
@@ -642,7 +679,8 @@ class VaultPageState extends State<VaultPage> {
         _pricingSummaryByCardPrintId =
             const <String, VaultExactPricingSummary>{};
         _derivedData = const _VaultDerivedData.empty();
-        _selectedLotCardPrintIds.clear();
+        _selectedCardPrintIds.clear();
+        _selectionMode = false;
       });
       return;
     }
@@ -658,7 +696,7 @@ class VaultPageState extends State<VaultPage> {
 
       setState(() {
         _items = rows;
-        _selectedLotCardPrintIds.removeWhere(
+        _selectedCardPrintIds.removeWhere(
           (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
         );
         _recomputeDerivedData();
@@ -830,13 +868,13 @@ class VaultPageState extends State<VaultPage> {
     // PERFORMANCE_P3_VAULT_MEMOIZED_DERIVATIONS
     // Recomputes filtered/sorted/grouped vault rows only when source inputs change.
     final sortedRows = _sortedRows(_items);
-    final searchedRows = _applySearch(sortedRows);
+    final searchedRows = _applyPricingFilter(_applySearch(sortedRows));
     final duplicateRows = searchedRows
         .where((row) => _ownedCountForRow(row) > 1)
         .toList(growable: false);
     final recentRows = _sortRowsByNewest(searchedRows);
     final onWallRows = _filterOnWallRows(searchedRows);
-    final pokemonRows = _buildPokemonRows(sortedRows);
+    final pokemonRows = _buildPokemonRows(_applyPricingFilter(sortedRows));
     final pokemonSuggestions = _pokemonSuggestions(sortedRows);
     final bySetGroups = _groupRowsBySet(searchedRows);
     final totalCards = _items.fold<int>(
@@ -990,7 +1028,7 @@ class VaultPageState extends State<VaultPage> {
             return vaultItemId.isEmpty || itemVaultItemId != vaultItemId;
           })
           .toList(growable: false);
-      _selectedLotCardPrintIds.remove(cardId);
+      _selectedCardPrintIds.remove(cardId);
       _recomputeDerivedData();
     });
 
@@ -1144,6 +1182,34 @@ class VaultPageState extends State<VaultPage> {
     }).toList();
   }
 
+  List<Map<String, dynamic>> _applyPricingFilter(
+    List<Map<String, dynamic>> rows,
+  ) {
+    return switch (_pricingFilter) {
+      _VaultPricingFilter.all => rows,
+      _VaultPricingFilter.priced =>
+        rows
+            .where((row) {
+              final cardPrintId = (row['card_id'] ?? '').toString().trim();
+              return (_pricingSummaryByCardPrintId[cardPrintId]
+                          ?.pricedCopyCount ??
+                      0) >
+                  0;
+            })
+            .toList(growable: false),
+      _VaultPricingFilter.unpriced =>
+        rows
+            .where((row) {
+              final cardPrintId = (row['card_id'] ?? '').toString().trim();
+              final summary = _pricingSummaryByCardPrintId[cardPrintId];
+              return summary != null &&
+                  summary.pricedCopyCount == 0 &&
+                  summary.unpricedCopyCount > 0;
+            })
+            .toList(growable: false),
+    };
+  }
+
   void _handleSearchChanged() {
     final nextValue = _searchController.text;
     if (nextValue == _search && nextValue == _pokemonSearch) {
@@ -1152,6 +1218,7 @@ class VaultPageState extends State<VaultPage> {
     setState(() {
       _search = nextValue;
       _pokemonSearch = nextValue;
+      _selectedCardPrintIds.clear();
       _recomputeDerivedData();
     });
   }
@@ -1163,38 +1230,81 @@ class VaultPageState extends State<VaultPage> {
 
     setState(() {
       _view = view;
+      _selectedCardPrintIds.clear();
     });
   }
 
-  bool get _lotSelectionMode => _selectedLotCardPrintIds.isNotEmpty;
+  void _setPricingFilter(_VaultPricingFilter filter) {
+    if (_pricingFilter == filter) {
+      return;
+    }
+    setState(() {
+      _pricingFilter = filter;
+      _selectedCardPrintIds.clear();
+      _recomputeDerivedData();
+    });
+  }
 
-  void _toggleLotSelection(Map<String, dynamic> row) {
+  void _toggleSelectionMode() {
+    if (_bulkArchiveBusy) {
+      return;
+    }
+    setState(() {
+      _selectionMode = !_selectionMode;
+      if (!_selectionMode) {
+        _selectedCardPrintIds.clear();
+      }
+    });
+  }
+
+  void _toggleSelection(Map<String, dynamic> row) {
     final cardPrintId = (row['card_id'] ?? '').toString().trim();
     if (cardPrintId.isEmpty) {
       return;
     }
     setState(() {
-      if (_selectedLotCardPrintIds.contains(cardPrintId)) {
-        _selectedLotCardPrintIds.remove(cardPrintId);
+      _selectionMode = true;
+      if (_selectedCardPrintIds.contains(cardPrintId)) {
+        _selectedCardPrintIds.remove(cardPrintId);
       } else {
-        _selectedLotCardPrintIds.add(cardPrintId);
+        _selectedCardPrintIds.add(cardPrintId);
       }
     });
   }
 
-  void _clearLotSelection() {
-    if (_selectedLotCardPrintIds.isEmpty) {
+  void _clearSelection() {
+    if (_selectedCardPrintIds.isEmpty) {
       return;
     }
     setState(() {
-      _selectedLotCardPrintIds.clear();
+      _selectedCardPrintIds.clear();
     });
+  }
+
+  void _selectAllVisible(List<Map<String, dynamic>> rows) {
+    final visibleIds = rows
+        .map((row) => (row['card_id'] ?? '').toString().trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    final boundedIds = visibleIds.take(500).toSet();
+    setState(() {
+      _selectionMode = true;
+      _selectedCardPrintIds
+        ..clear()
+        ..addAll(boundedIds);
+    });
+    if (visibleIds.length > boundedIds.length) {
+      _showVaultMutationError(
+        'Selected the first 500 cards. Remove them before selecting more.',
+      );
+    }
   }
 
   Future<void> _openSelectedLotPricing() async {
     final selectedRows = _items
         .where(
-          (row) => _selectedLotCardPrintIds.contains(
+          (row) => _selectedCardPrintIds.contains(
             (row['card_id'] ?? '').toString().trim(),
           ),
         )
@@ -1228,6 +1338,136 @@ class VaultPageState extends State<VaultPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _confirmRemoveSelected() async {
+    if (_bulkArchiveBusy || _selectedCardPrintIds.isEmpty || _uid == null) {
+      return;
+    }
+    final selectedRows = _items
+        .where(
+          (row) => _selectedCardPrintIds.contains(
+            (row['card_id'] ?? '').toString().trim(),
+          ),
+        )
+        .toList(growable: false);
+    final copyCount = selectedRows.fold<int>(
+      0,
+      (sum, row) => sum + _ownedCountForRow(row),
+    );
+    final cardCount = selectedRows.length;
+    if (cardCount == 0 || copyCount == 0) {
+      _showVaultMutationError(
+        'The selected cards are no longer in your Vault.',
+      );
+      await reload();
+      return;
+    }
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text('Remove $copyCount ${copyCount == 1 ? 'copy' : 'copies'}?'),
+        content: Text(
+          'This removes all active copies of the $cardCount selected '
+          '${cardCount == 1 ? 'card' : 'cards'} from your Vault and Wall. '
+          'Memories and transaction history remain. You can add the cards '
+          'again later.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton.icon(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(dialogContext).colorScheme.error,
+              foregroundColor: Theme.of(dialogContext).colorScheme.onError,
+            ),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            icon: const Icon(Icons.delete_outline_rounded),
+            label: const Text('Remove selected'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) {
+      return;
+    }
+
+    await _removeSelectedCards(selectedRows);
+  }
+
+  Future<void> _removeSelectedCards(
+    List<Map<String, dynamic>> selectedRows,
+  ) async {
+    final userId = _uid;
+    if (userId == null || _bulkArchiveBusy) {
+      return;
+    }
+    final selectedIds = selectedRows
+        .map((row) => (row['card_id'] ?? '').toString().trim())
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    if (selectedIds.isEmpty) {
+      return;
+    }
+
+    final previousItems = List<Map<String, dynamic>>.from(_items);
+    setState(() {
+      _bulkArchiveBusy = true;
+      _items = _items
+          .where(
+            (row) =>
+                !selectedIds.contains((row['card_id'] ?? '').toString().trim()),
+          )
+          .toList(growable: false);
+      _recomputeDerivedData();
+    });
+
+    try {
+      final result = await VaultCardService.archiveSelectedVaultCards(
+        client: supabase,
+        userId: userId,
+        cardPrintIds: selectedIds,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _bulkArchiveBusy = false;
+        _selectionMode = false;
+        _selectedCardPrintIds.clear();
+      });
+      await reload();
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(
+              '${result.archivedInstanceCount} '
+              '${result.archivedInstanceCount == 1 ? 'copy' : 'copies'} '
+              'removed from your Vault.',
+            ),
+          ),
+        );
+    } catch (error) {
+      debugPrint('vault.mobile.bulk_archive.failed: $error');
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _bulkArchiveBusy = false;
+        _items = previousItems;
+        _recomputeDerivedData();
+      });
+      _showVaultMutationError(
+        'Nothing was removed. Refresh your Vault and try again.',
+      );
+    }
   }
 
   Future<void> _openMemoriesHome() async {
@@ -1487,10 +1727,14 @@ class VaultPageState extends State<VaultPage> {
     final name = (row['name'] ?? 'Item').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
     final canOpen = _canOpenVaultRow(row);
+    final selected = _selectedCardPrintIds.contains(cardPrintId);
 
     return _VaultItemTile(
       row: row,
       pricing: _pricingByCardPrintId[cardPrintId],
+      selectionMode: _selectionMode,
+      selected: selected,
+      onSelectionTap: () => _toggleSelection(row),
       compact: _cardViewMode == AppCardViewMode.compactList,
       onScan: () {
         Navigator.of(context).push(
@@ -1514,17 +1758,17 @@ class VaultPageState extends State<VaultPage> {
     final name = (row['name'] ?? 'Item').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
     final canOpen = _canOpenVaultRow(row);
-    final selectionMode = _lotSelectionMode;
-    final selected = _selectedLotCardPrintIds.contains(cardPrintId);
+    final selected = _selectedCardPrintIds.contains(cardPrintId);
 
     return _VaultGridTile(
       row: row,
       pricing: _pricingByCardPrintId[cardPrintId],
-      selectionMode: selectionMode,
+      selectionMode: _selectionMode,
       selected: selected,
       onTap: canOpen ? () => _openManageCardRow(row) : null,
-      onLongPress: selectionMode
-          ? () => _toggleLotSelection(row)
+      onSelectionTap: () => _toggleSelection(row),
+      onLongPress: _selectionMode
+          ? () => _toggleSelection(row)
           : () => _showVaultRowQuickActions(row),
       onScan: () {
         Navigator.of(context).push(
@@ -1752,7 +1996,8 @@ class VaultPageState extends State<VaultPage> {
   }
 
   int get _activeVaultFilterCount {
-    return _view == _VaultStructuralView.all ? 0 : 1;
+    return (_view == _VaultStructuralView.all ? 0 : 1) +
+        (_pricingFilter == _VaultPricingFilter.all ? 0 : 1);
   }
 
   Widget _buildVaultFilterButton(ThemeData theme) {
@@ -1800,6 +2045,11 @@ class VaultPageState extends State<VaultPage> {
               setSheetState(() {});
             }
 
+            void selectPricing(_VaultPricingFilter filter) {
+              _setPricingFilter(filter);
+              setSheetState(() {});
+            }
+
             return Padding(
               padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + bottomInset),
               child: SingleChildScrollView(
@@ -1842,6 +2092,42 @@ class VaultPageState extends State<VaultPage> {
                           ),
                       ],
                     ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'Pricing',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final filter in _VaultPricingFilter.values)
+                          GvChip(
+                            label: switch (filter) {
+                              _VaultPricingFilter.all => 'All prices',
+                              _VaultPricingFilter.priced => 'Priced',
+                              _VaultPricingFilter.unpriced => 'Unpriced',
+                            },
+                            selected: _pricingFilter == filter,
+                            onSelected: (_) => selectPricing(filter),
+                          ),
+                      ],
+                    ),
+                    if (_pricingFilter == _VaultPricingFilter.unpriced) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        'Unpriced shows only cards where none of the active '
+                        'copies has an exact market price.',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.64),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -2011,6 +2297,17 @@ class VaultPageState extends State<VaultPage> {
     return slivers;
   }
 
+  List<Map<String, dynamic>> _visibleRowsForSelection(_VaultDerivedData data) {
+    return switch (_view) {
+      _VaultStructuralView.all => data.searchedRows,
+      _VaultStructuralView.onWall => data.onWallRows,
+      _VaultStructuralView.duplicates => data.duplicateRows,
+      _VaultStructuralView.recent => data.recentRows,
+      _VaultStructuralView.bySet => data.searchedRows,
+      _VaultStructuralView.pokemon => data.pokemonRows,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -2021,6 +2318,14 @@ class VaultPageState extends State<VaultPage> {
     final pokemonSuggestions = derivedData.pokemonSuggestions;
     final totalCards = derivedData.totalCards;
     final setCount = derivedData.setCount;
+    final selectionRows = _visibleRowsForSelection(derivedData);
+    final visibleSelectionIds = selectionRows
+        .map((row) => (row['card_id'] ?? '').toString().trim())
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    final allVisibleSelected =
+        visibleSelectionIds.isNotEmpty &&
+        visibleSelectionIds.every(_selectedCardPrintIds.contains);
     final columns = resolveSharedCardGridColumns(
       context,
       horizontalPadding: 28,
@@ -2461,6 +2766,26 @@ class VaultPageState extends State<VaultPage> {
                     children: [
                       _buildVaultFilterButton(theme),
                       const SizedBox(width: 8),
+                      OutlinedButton.icon(
+                        onPressed: _bulkArchiveBusy
+                            ? null
+                            : _toggleSelectionMode,
+                        icon: Icon(
+                          _selectionMode
+                              ? Icons.check_box_rounded
+                              : Icons.check_box_outline_blank_rounded,
+                          size: 18,
+                        ),
+                        label: Text(_selectionMode ? 'Done' : 'Select'),
+                        style: OutlinedButton.styleFrom(
+                          visualDensity: VisualDensity.compact,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: Align(
                           alignment: Alignment.centerRight,
@@ -2476,11 +2801,16 @@ class VaultPageState extends State<VaultPage> {
                       ),
                     ],
                   ),
-                  if (_lotSelectionMode) ...[
+                  if (_selectionMode) ...[
                     const SizedBox(height: 8),
-                    _VaultLotSelectionBar(
-                      selectedCount: _selectedLotCardPrintIds.length,
-                      onClear: _clearLotSelection,
+                    _VaultSelectionBar(
+                      selectedCount: _selectedCardPrintIds.length,
+                      visibleCount: visibleSelectionIds.length,
+                      allVisibleSelected: allVisibleSelected,
+                      busy: _bulkArchiveBusy,
+                      onSelectAll: () => _selectAllVisible(selectionRows),
+                      onClear: _clearSelection,
+                      onRemove: _confirmRemoveSelected,
                       onListLot: _openSelectedLotPricing,
                     ),
                   ],
@@ -2553,6 +2883,8 @@ class VaultPageState extends State<VaultPage> {
 enum _SortBy { newest, name, qty }
 
 enum _VaultStructuralView { all, onWall, duplicates, recent, bySet, pokemon }
+
+enum _VaultPricingFilter { all, priced, unpriced }
 
 class _VaultSetGroup {
   const _VaultSetGroup({required this.title, required this.rows});

@@ -646,6 +646,16 @@ class VaultOwnedCardAnchor {
   final String cardPrintId;
 }
 
+class VaultBulkArchiveResult {
+  const VaultBulkArchiveResult({
+    required this.archivedCardCount,
+    required this.archivedInstanceCount,
+  });
+
+  final int archivedCardCount;
+  final int archivedInstanceCount;
+}
+
 class VaultCardService {
   static const _canonicalSelect =
       'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set:sets(name,code,identity_model)';
@@ -1692,6 +1702,60 @@ class VaultCardService {
         'p_vault_item_id': _trimmedOrNull(vaultItemId),
         'p_card_print_id': cardId,
       },
+    );
+  }
+
+  static Future<VaultBulkArchiveResult> archiveSelectedVaultCards({
+    required SupabaseClient client,
+    required String userId,
+    required Iterable<String> cardPrintIds,
+  }) async {
+    final authenticatedUserId = client.auth.currentUser?.id.trim() ?? '';
+    final normalizedUserId = userId.trim();
+    if (authenticatedUserId.isEmpty ||
+        authenticatedUserId != normalizedUserId) {
+      throw Exception('Vault owner session mismatch.');
+    }
+
+    final normalizedIds = cardPrintIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (normalizedIds.isEmpty) {
+      throw Exception('Select at least one Vault card.');
+    }
+    if (normalizedIds.length > 500) {
+      throw Exception('Select no more than 500 Vault cards at once.');
+    }
+
+    debugPrint(
+      'vault.mobile.bulk_archive.begin: ${normalizedIds.length} cards',
+    );
+    final raw = await client.rpc(
+      'vault_archive_selected_cards_v1',
+      params: {'p_card_print_ids': normalizedIds},
+    );
+    if (raw is! Map) {
+      throw Exception('Vault bulk remove returned an invalid response.');
+    }
+
+    final result = Map<String, dynamic>.from(raw);
+    int readCount(String key) {
+      final value = result[key];
+      return value is num ? value.toInt() : int.tryParse('$value') ?? 0;
+    }
+
+    final archivedCardCount = readCount('archived_card_count');
+    final archivedInstanceCount = readCount('archived_instance_count');
+    if (archivedCardCount != normalizedIds.length ||
+        archivedInstanceCount < 1) {
+      throw Exception('Vault bulk remove did not reconcile.');
+    }
+
+    return VaultBulkArchiveResult(
+      archivedCardCount: archivedCardCount,
+      archivedInstanceCount: archivedInstanceCount,
     );
   }
 
