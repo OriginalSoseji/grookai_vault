@@ -378,18 +378,6 @@ export default function ExploreDiscoverySections({
       </div>
 
       <div className="hidden space-y-10 md:block md:space-y-12">
-        <section className="overflow-hidden rounded-[16px] border border-slate-200 bg-slate-50 px-6 py-7 shadow-sm md:px-8 md:py-9 dark:border-white/[0.08] dark:bg-white/[0.03]">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Collector Discovery</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950 md:text-3xl">
-              Start with standout cards, iconic Pokémon, and modern set favorites.
-            </h2>
-            <p className="max-w-2xl text-sm leading-7 text-slate-600">
-              Browse the catalog visually first, then jump deeper once something catches your eye.
-            </p>
-          </div>
-        </section>
-
         <section className="space-y-5">
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Featured</p>
