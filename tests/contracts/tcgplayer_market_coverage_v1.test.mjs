@@ -133,6 +133,37 @@ test("V1.1 special groups are excluded with a governed reason", () => {
   assert.equal(result.product_scope.rule_id, "world_championship_deck");
 });
 
+test("Trainer Kit rows cannot enter the governed publication numerator", () => {
+  const result = classifyTcgplayerMarketCoverageRowV1(
+    coverageRow({
+      source_product_name: "Arcanine",
+      source_group_name: "EX Trainer Kit 1: Latias & Latios",
+      decision: "publish",
+    }),
+  );
+
+  assert.equal(result.in_denominator, false);
+  assert.equal(result.in_numerator, false);
+  assert.equal(result.denominator_exclusion_reason, "special_variant_v1_1");
+  assert.equal(
+    result.product_scope.rule_id,
+    "deck_exclusive_special_variant",
+  );
+});
+
+test("coverage audit blocks shadow activation when a publish row is out of scope", () => {
+  assert.match(AUDIT, /shadowPublicationOutOfScope/);
+  assert.match(
+    AUDIT,
+    /shadow_publication_contains_v1_2_scope_exclusion/,
+  );
+  assert.match(
+    AUDIT,
+    /summary\.shadow_publication_scope_status !== "passed"/,
+  );
+  assert.match(AUDIT, /shadow_publication_scope\.json/);
+});
+
 test("V1.1 excludes unnumbered sealed products without excluding card names", () => {
   for (const sourceProductName of [
     "Journey Together Booster Bundle",
