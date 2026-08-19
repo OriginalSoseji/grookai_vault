@@ -205,8 +205,7 @@ String formatCardSurfaceMoney(double value, {String? currency}) {
 
   final isNegative = value < 0;
   final absoluteValue = value.abs();
-  final precision = absoluteValue >= 100 ? 0 : 2;
-  final fixed = absoluteValue.toStringAsFixed(precision);
+  final fixed = absoluteValue.toStringAsFixed(2);
   final parts = fixed.split('.');
   final whole = parts.first;
   final fractional = parts.length > 1 ? parts.last : null;

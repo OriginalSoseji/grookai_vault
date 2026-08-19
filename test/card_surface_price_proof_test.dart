@@ -89,6 +89,15 @@ void main() {
     );
   });
 
+  test(
+    'market money preserves cents and thousands separators at every size',
+    () {
+      expect(formatCardSurfaceMoney(369.06), r'$369.06');
+      expect(formatCardSurfaceMoney(1596.22), r'$1,596.22');
+      expect(formatCardSurfaceMoney(1000000.5), r'$1,000,000.50');
+    },
+  );
+
   testWidgets('manual prices never carry TCGPlayer market proof', (
     tester,
   ) async {

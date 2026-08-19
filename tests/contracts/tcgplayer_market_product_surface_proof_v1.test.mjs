@@ -502,6 +502,24 @@ test("rendered price, timestamp, provenance, and source must match", () => {
   );
 });
 
+test("equivalent PostgreSQL and ISO timestamp precision compares as one instant", () => {
+  const input = evidence();
+  for (const captured of input.capture_manifest.captures) {
+    if (captured.proof_kind !== "price_record") {
+      continue;
+    }
+    captured.rendered.observed_at = "2026-07-27T08:15:00.123456+00:00";
+    captured.rendered.published_at = "2026-07-27T08:20:00.987654Z";
+  }
+  for (const row of input.read_model_rows) {
+    row.observed_at = new Date("2026-07-27T08:15:00.123Z");
+    row.published_at = new Date("2026-07-27T08:20:00.987Z");
+  }
+  const result = evaluateTcgplayerMarketProductSurfaceProofV1(input);
+  assert.equal(result.status, "passed");
+  assert.deepEqual(result.findings, []);
+});
+
 test("multi-printing parent summaries preserve the governed From state", () => {
   const input = evidence();
   input.read_model_rows[0].source_label = "From TCGPlayer Market";
