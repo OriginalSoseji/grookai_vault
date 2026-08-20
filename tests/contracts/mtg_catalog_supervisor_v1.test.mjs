@@ -173,6 +173,8 @@ test("workflow is GitHub-native, serialized, least-privilege, and frozen", () =>
   assert.match(WORKFLOW, new RegExp(TARGET_SHA));
   assert.match(WORKFLOW, /--max-sets=35/);
   assert.match(WORKFLOW, /--max-consecutive-failures=3/);
+  assert.match(WORKFLOW, /SUPERVISOR_OUT_DIR=\"\$RUNNER_TEMP\//);
+  assert.doesNotMatch(WORKFLOW, /SUPERVISOR_OUT_DIR:.*runner\.temp/);
 });
 
 test("entrypoint is read-only and writes the plan before dispatch", () => {
