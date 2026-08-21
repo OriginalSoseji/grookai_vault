@@ -475,7 +475,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     String? meaningfulFinishLabel,
   }) {
     final cardPrintId = _cardPrintIdForRow(row);
-    final marketPrice = _pricingByCardPrintId[cardPrintId]?.primaryPrice;
+    final marketPrice = _pricingByCardPrintId[cardPrintId]?.visibleValue;
     return GrookaiLotListingItemSource.fromVaultRow(
       row: row,
       canonicalCard: canonicalCard,

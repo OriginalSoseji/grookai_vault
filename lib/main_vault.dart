@@ -1059,7 +1059,7 @@ class VaultPageState extends State<VaultPage> {
     String? meaningfulFinishLabel,
   }) {
     final cardPrintId = (row['card_id'] ?? '').toString().trim();
-    final marketPrice = _pricingByCardPrintId[cardPrintId]?.primaryPrice;
+    final marketPrice = _pricingByCardPrintId[cardPrintId]?.visibleValue;
     return GrookaiLotListingItemSource.fromVaultRow(
       row: row,
       canonicalCard: canonicalCard,
