@@ -125,6 +125,36 @@ GrookaiObject fourImageLotFixture(GrookaiObjectSkin skin) {
   );
 }
 
+GrookaiObject fiveCardLotFixture(GrookaiObjectSkin skin) {
+  final data = LotListingData(
+    skin: skin,
+    listingNo: 'LOT5',
+    title: 'Five Card Test Lot',
+    items: [
+      for (var index = 0; index < 5; index += 1)
+        LotItem(
+          cardName: 'Card ${index + 1}',
+          setName: 'Ascended Heroes',
+          collectorNumber: '${index + 1}',
+          printedTotal: 198,
+          condition: 'Raw NM',
+          price: index + 5,
+        ),
+    ],
+    bundlePrice: 35,
+    sellerHandle: 'Collector',
+    sellerRating: 0,
+    sellerTradeCount: 0,
+  );
+  return GrookaiObject(
+    type: 'lot',
+    skin: skin,
+    layout: 'lot.v1',
+    fields: data.toFields(),
+    metadata: const {'fixture': true},
+  );
+}
+
 GrookaiObject twelveImageLotFixture(GrookaiObjectSkin skin) {
   final data = LotListingData(
     skin: skin,

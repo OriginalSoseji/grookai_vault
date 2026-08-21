@@ -78,15 +78,22 @@ class GrookaiObjectExportService {
     GlobalKey repaintBoundaryKey, {
     double pixelRatio = 3,
   }) async {
-    WidgetsBinding.instance.ensureVisualUpdate();
-    await WidgetsBinding.instance.endOfFrame.timeout(
-      const Duration(milliseconds: 250),
-      onTimeout: () {},
-    );
+    for (var frame = 0; frame < 2; frame += 1) {
+      WidgetsBinding.instance.ensureVisualUpdate();
+      await WidgetsBinding.instance.endOfFrame.timeout(
+        const Duration(seconds: 2),
+        onTimeout: () => throw StateError(
+          'Grookai object export frame did not finish rendering.',
+        ),
+      );
+    }
     final context = repaintBoundaryKey.currentContext;
     final renderObject = context?.findRenderObject();
     if (renderObject is! RenderRepaintBoundary) {
       throw StateError('Grookai object export boundary is not ready.');
+    }
+    if (renderObject.debugNeedsPaint) {
+      throw StateError('Grookai object export boundary is not painted yet.');
     }
 
     final image = await renderObject.toImage(pixelRatio: pixelRatio);
@@ -114,10 +121,36 @@ class GrookaiObjectExportService {
     String? text,
     String? subject,
   }) {
+    return sharePngs(
+      bytes: [bytes],
+      fileNames: [fileName],
+      text: text,
+      subject: subject,
+    );
+  }
+
+  Future<ShareResult> sharePngs({
+    required List<Uint8List> bytes,
+    required List<String> fileNames,
+    String? text,
+    String? subject,
+  }) {
+    if (bytes.isEmpty || bytes.length != fileNames.length) {
+      throw ArgumentError(
+        'PNG bytes and file names must be non-empty and have equal lengths.',
+      );
+    }
     return SharePlus.instance.share(
       ShareParams(
-        files: [XFile.fromData(bytes, mimeType: 'image/png', name: fileName)],
-        fileNameOverrides: [fileName],
+        files: [
+          for (var index = 0; index < bytes.length; index += 1)
+            XFile.fromData(
+              bytes[index],
+              mimeType: 'image/png',
+              name: fileNames[index],
+            ),
+        ],
+        fileNameOverrides: fileNames,
         text: text,
         subject: subject,
       ),
@@ -128,6 +161,17 @@ class GrookaiObjectExportService {
     final slug = _slug(title);
     final typeSlug = _slug(type);
     return 'grookai-$typeSlug-${slug.isEmpty ? 'card' : slug}.png';
+  }
+
+  static String sidedFileNameFor({
+    required String type,
+    required String title,
+    required String side,
+  }) {
+    final baseName = fileNameFor(type: type, title: title);
+    final normalizedSide = _slug(side);
+    final suffix = normalizedSide.isEmpty ? 'side' : normalizedSide;
+    return baseName.replaceFirst(RegExp(r'\.png$'), '-$suffix.png');
   }
 
   static String _slug(String value) {

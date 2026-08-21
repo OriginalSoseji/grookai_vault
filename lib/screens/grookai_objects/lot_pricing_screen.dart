@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../models/grookai_sale_listing.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
@@ -29,14 +30,14 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
   late final TextEditingController _titleController;
   late final TextEditingController _bundlePriceController;
   late final List<TextEditingController> _itemPriceControllers;
-  final GlobalKey _exportBoundaryKey = GlobalKey();
+  final GlobalKey _frontExportBoundaryKey = GlobalKey();
+  final GlobalKey _backExportBoundaryKey = GlobalKey();
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
   GrookaiObjectExportDestination _exportDestination =
       GrookaiObjectExportDestination.saveImage;
   bool _showFront = true;
   bool _sharing = false;
   String? _error;
-  GrookaiObject? _readyObject;
 
   @override
   void initState() {
@@ -68,16 +69,19 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
   }
 
   GrookaiObject get _previewObject {
-    final ready = _readyObject;
-    if (ready != null) {
-      return ready.copyWith(skin: _skin);
-    }
     final items = <GrookaiLotListingItemSource>[];
     for (var index = 0; index < widget.source.items.length; index += 1) {
       final item = widget.source.items[index];
       items.add(
         GrookaiLotListingItemSource(
+          cardPrintId: item.cardPrintId,
+          gvviId: item.gvviId,
           cardName: item.cardName,
+          setName: item.setName,
+          setCode: item.setCode,
+          collectorNumber: item.collectorNumber,
+          printedTotal: item.printedTotal,
+          variantLabel: item.variantLabel,
           condition: item.condition,
           price: _parseMoney(_itemPriceControllers[index].text) ?? item.price,
           imageUrl: item.imageUrl,
@@ -108,25 +112,22 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
     );
   }
 
-  void _validateForShare() {
+  bool _validateForShare() {
     final bundlePrice = _parseMoney(_bundlePriceController.text);
     if (bundlePrice == null || bundlePrice <= 0) {
       setState(() {
         _error = 'Enter a bundle price greater than 0.';
       });
-      return;
+      return false;
     }
     setState(() {
       _error = null;
-      _readyObject = _previewObject;
     });
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Lot card ready.')));
+    return true;
   }
 
   Future<void> _shareCurrentCard() async {
-    if (_sharing || _readyObject == null) {
+    if (_sharing || !_validateForShare()) {
       return;
     }
 
@@ -146,26 +147,45 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
 
     try {
       final object = _previewObject;
-      final bytes = await widget.exportService.exportObjectPng(
-        object: object,
-        destination: destination,
-        repaintBoundaryKey: _exportBoundaryKey,
-      );
-      await widget.exportService.sharePng(
-        bytes: bytes,
-        fileName: GrookaiObjectExportService.fileNameFor(
-          type: 'lot-${destination.slug}',
-          title: _exportTitle(object),
+      await _precacheLotImages();
+      final renderedSides = await Future.wait([
+        widget.exportService.exportObjectPng(
+          object: object,
+          destination: destination,
+          repaintBoundaryKey: _frontExportBoundaryKey,
         ),
+        widget.exportService.exportObjectPng(
+          object: object,
+          destination: destination,
+          repaintBoundaryKey: _backExportBoundaryKey,
+        ),
+      ]);
+      await widget.exportService.sharePngs(
+        bytes: renderedSides,
+        fileNames: [
+          GrookaiObjectExportService.sidedFileNameFor(
+            type: 'lot-${destination.slug}',
+            title: _exportTitle(object),
+            side: 'front',
+          ),
+          GrookaiObjectExportService.sidedFileNameFor(
+            type: 'lot-${destination.slug}',
+            title: _exportTitle(object),
+            side: 'back',
+          ),
+        ],
         subject: 'Grookai lot card',
-        text: 'Shared from Grookai Vault',
+        text: 'Front and details shared from Grookai Vault',
       );
-    } catch (error) {
+    } catch (error, stackTrace) {
+      debugPrint('Lot share export failed: $error\n$stackTrace');
       if (!mounted) {
         return;
       }
       setState(() {
-        _error = 'Unable to share this card right now.';
+        _error = error is _LotShareException
+            ? error.message
+            : 'Unable to generate both lot images. Please try again.';
       });
     } finally {
       if (mounted) {
@@ -174,8 +194,31 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
     }
   }
 
-  void _clearReadyState() {
-    _readyObject = null;
+  Future<void> _precacheLotImages() async {
+    for (final item in widget.source.items) {
+      final imageUrl = (item.imageUrl ?? '').trim();
+      if (imageUrl.isEmpty) {
+        continue;
+      }
+      Object? imageError;
+      await precacheImage(
+        CachedNetworkImageProvider(imageUrl),
+        context,
+        onError: (error, stackTrace) {
+          imageError = error;
+        },
+      ).timeout(
+        const Duration(seconds: 20),
+        onTimeout: () => throw _LotShareException(
+          'The image for ${item.cardName} took too long to load.',
+        ),
+      );
+      if (imageError != null) {
+        throw _LotShareException(
+          'The image for ${item.cardName} could not be loaded.',
+        );
+      }
+    }
   }
 
   @override
@@ -193,11 +236,17 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
             Center(
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: GrookaiObjectDestinationExportRenderer(
-                  repaintBoundaryKey: _exportBoundaryKey,
-                  object: _previewObject,
-                  destination: _exportDestination,
-                  showFront: _showFront,
+                child: Stack(
+                  children: [
+                    if (_showFront)
+                      _backExportRenderer()
+                    else
+                      _frontExportRenderer(),
+                    if (_showFront)
+                      _frontExportRenderer()
+                    else
+                      _backExportRenderer(),
+                  ],
                 ),
               ),
             ),
@@ -236,7 +285,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
             TextField(
               controller: _titleController,
               decoration: const InputDecoration(labelText: 'Lot title'),
-              onChanged: (_) => setState(_clearReadyState),
+              onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 16),
             Text(
@@ -250,7 +299,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
               _LotItemPriceRow(
                 item: widget.source.items[index],
                 controller: _itemPriceControllers[index],
-                onChanged: () => setState(_clearReadyState),
+                onChanged: () => setState(() {}),
               ),
             const SizedBox(height: 4),
             Text(
@@ -269,7 +318,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
                 labelText: 'Bundle price',
                 prefixText: r'$',
               ),
-              onChanged: (_) => setState(_clearReadyState),
+              onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 14),
             if (_error != null) ...[
@@ -283,28 +332,47 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
               ),
             ],
             FilledButton.icon(
-              onPressed: _validateForShare,
-              icon: const Icon(Icons.inventory_2_outlined),
-              label: const Text('Ready lot card'),
-            ),
-            const SizedBox(height: 10),
-            OutlinedButton.icon(
-              onPressed: _readyObject == null || _sharing
-                  ? null
-                  : _shareCurrentCard,
+              onPressed: _sharing ? null : _shareCurrentCard,
               icon: _sharing
                   ? const SizedBox.square(
                       dimension: 16,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.ios_share_outlined),
-              label: Text(_sharing ? 'Sharing...' : 'Share image'),
+              label: Text(_sharing ? 'Preparing both sides...' : 'Share lot'),
             ),
           ],
         ),
       ),
     );
   }
+
+  Widget _frontExportRenderer() {
+    return GrookaiObjectDestinationExportRenderer(
+      repaintBoundaryKey: _frontExportBoundaryKey,
+      object: _previewObject,
+      destination: _exportDestination,
+      showFront: true,
+    );
+  }
+
+  Widget _backExportRenderer() {
+    return GrookaiObjectDestinationExportRenderer(
+      repaintBoundaryKey: _backExportBoundaryKey,
+      object: _previewObject,
+      destination: _exportDestination,
+      showFront: false,
+    );
+  }
+}
+
+class _LotShareException implements Exception {
+  const _LotShareException(this.message);
+
+  final String message;
+
+  @override
+  String toString() => message;
 }
 
 class _LotItemPriceRow extends StatelessWidget {
@@ -356,6 +424,30 @@ class _LotItemPriceRow extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
+                if (item.setAndNumberLine.isNotEmpty) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    item.setAndNumberLine,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+                if ((item.variantLabel ?? '').trim().isNotEmpty) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    item.variantLabel!.trim(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 5),
                 Text(
                   item.condition,

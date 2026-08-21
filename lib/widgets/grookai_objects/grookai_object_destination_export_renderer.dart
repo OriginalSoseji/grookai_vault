@@ -60,6 +60,7 @@ class GrookaiObjectDestinationExportRenderer extends StatelessWidget {
           ),
           GrookaiObjectExportDestination.ebayListing => _EbayListingExport(
             object: object,
+            showFront: showFront,
           ),
         },
       ),
@@ -203,14 +204,17 @@ class _SocialOverlay extends StatelessWidget {
 }
 
 class _EbayListingExport extends StatelessWidget {
-  const _EbayListingExport({required this.object});
+  const _EbayListingExport({required this.object, required this.showFront});
 
   final GrookaiObject object;
+  final bool showFront;
 
   @override
   Widget build(BuildContext context) {
     if (object.type == 'lot') {
-      return _EbayLotListingExport(object: object);
+      return showFront
+          ? _EbayLotListingExport(object: object)
+          : _EbayLotDetailsExport(object: object);
     }
     final imageUrl = _imageUrlFor(object);
     final condition = _conditionFor(object);
@@ -256,6 +260,30 @@ class _EbayListingExport extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _EbayLotDetailsExport extends StatelessWidget {
+  const _EbayLotDetailsExport({required this.object});
+
+  final GrookaiObject object;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: const Color(0xFFF5F5F2),
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: SizedBox(
+            width: GrookaiObjectFrame.width,
+            height: GrookaiObjectFrame.height,
+            child: GrookaiObjectRenderer(object: object, showFront: false),
+          ),
+        ),
       ),
     );
   }

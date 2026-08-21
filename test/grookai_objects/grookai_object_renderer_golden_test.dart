@@ -71,6 +71,35 @@ void main() {
     }
   }
 
+  testWidgets('five-card lot uses a centered balanced layout', (tester) async {
+    const key = ValueKey('lot-five-onyx-front');
+    await tester.binding.setSurfaceSize(const Size(440, 600));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: const Color(0xFF101114),
+          body: Center(
+            child: RepaintBoundary(
+              key: key,
+              child: GrookaiObjectRenderer(
+                object: fiveCardLotFixture(GrookaiObjectSkin.onyx),
+                showFront: true,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await expectLater(
+      find.byKey(key),
+      matchesGoldenFile('goldens/lot_five_onyx_front.png'),
+    );
+  });
+
   testWidgets('unknown layouts render a forward-compatible placeholder', (
     tester,
   ) async {

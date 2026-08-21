@@ -148,30 +148,79 @@ class SaleListingData {
 
 @immutable
 class LotItem {
+  final String? cardPrintId;
+  final String? gvviId;
   final String cardName;
+  final String? setName;
+  final String? setCode;
+  final String? collectorNumber;
+  final int? printedTotal;
+  final String? variantLabel;
   final String condition;
   final double price;
   final String? imageUrl;
   const LotItem({
+    this.cardPrintId,
+    this.gvviId,
     required this.cardName,
+    this.setName,
+    this.setCode,
+    this.collectorNumber,
+    this.printedTotal,
+    this.variantLabel,
     required this.condition,
     required this.price,
     this.imageUrl,
   });
 
   factory LotItem.fromFields(Map<String, dynamic> f) => LotItem(
+    cardPrintId: f['cardPrintId'] as String?,
+    gvviId: f['gvviId'] as String?,
     cardName: f['cardName'] as String,
+    setName: f['setName'] as String?,
+    setCode: f['setCode'] as String?,
+    collectorNumber: f['collectorNumber'] as String?,
+    printedTotal: (f['printedTotal'] as num?)?.toInt(),
+    variantLabel: f['variantLabel'] as String?,
     condition: f['condition'] as String,
     price: (f['price'] as num).toDouble(),
     imageUrl: f['imageUrl'] as String?,
   );
 
   Map<String, dynamic> toFields() => {
+    'cardPrintId': cardPrintId,
+    'gvviId': gvviId,
     'cardName': cardName,
+    'setName': setName,
+    'setCode': setCode,
+    'collectorNumber': collectorNumber,
+    'printedTotal': printedTotal,
+    'variantLabel': variantLabel,
     'condition': condition,
     'price': price,
     'imageUrl': imageUrl,
   };
+
+  String get setAndNumberLine {
+    final normalizedSet = (setName ?? setCode ?? '').trim();
+    final normalizedNumber = (collectorNumber ?? '').trim();
+    final numberWithTotal = normalizedNumber.isEmpty
+        ? ''
+        : printedTotal != null &&
+              printedTotal! > 0 &&
+              !normalizedNumber.contains('/')
+        ? '$normalizedNumber/$printedTotal'
+        : normalizedNumber;
+    if (normalizedSet.isNotEmpty && numberWithTotal.isNotEmpty) {
+      return '$normalizedSet · $numberWithTotal';
+    }
+    return normalizedSet.isNotEmpty ? normalizedSet : numberWithTotal;
+  }
+
+  String? get meaningfulVariantLabel {
+    final normalized = (variantLabel ?? '').trim();
+    return normalized.isEmpty ? null : normalized;
+  }
 }
 
 /// Typed convenience wrapper around a 'lot.v1' object's fields. See

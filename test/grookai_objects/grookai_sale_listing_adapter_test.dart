@@ -68,7 +68,12 @@ void main() {
         sellerHandle: 'Casey',
         items: [
           GrookaiLotListingItemSource(
+            cardPrintId: 'CARD-1',
             cardName: 'Charizard ex',
+            setName: 'Obsidian Flames',
+            collectorNumber: '223',
+            printedTotal: 197,
+            variantLabel: 'Pokémon Center Stamp',
             condition: 'Raw NM',
             price: 120,
             imageUrl: 'https://example.test/charizard.webp',
@@ -95,6 +100,14 @@ void main() {
     expect(object.fields['bundlePrice'], 175);
     expect(object.fields['sellerHandle'], 'Casey');
     expect(object.fields['items'], hasLength(2));
+    final firstItem = Map<String, dynamic>.from(
+      (object.fields['items'] as List).first as Map,
+    );
+    expect(firstItem['cardPrintId'], 'CARD-1');
+    expect(firstItem['setName'], 'Obsidian Flames');
+    expect(firstItem['collectorNumber'], '223');
+    expect(firstItem['printedTotal'], 197);
+    expect(firstItem['variantLabel'], 'Pokémon Center Stamp');
     expect(object.metadata['card_print_ids'], ['CARD-1', 'CARD-2']);
   });
 
@@ -118,4 +131,34 @@ void main() {
 
     expect(object.fields['items'], hasLength(kGrookaiLotMaxCards));
   });
+
+  test(
+    'lot identity suppresses default finish and keeps meaningful finish',
+    () {
+      final baseRow = <String, dynamic>{
+        'card_id': 'CARD-1',
+        'name': 'Pikachu',
+        'set_name': 'Ascended Heroes',
+        'number': '25',
+        'variant_key': 'holo',
+      };
+
+      final soleFinish = GrookaiLotListingItemSource.fromVaultRow(
+        row: baseRow,
+        price: 10,
+        condition: 'Raw NM',
+        imageUrl: null,
+      );
+      final siblingFinish = GrookaiLotListingItemSource.fromVaultRow(
+        row: baseRow,
+        price: 10,
+        condition: 'Raw NM',
+        imageUrl: null,
+        meaningfulFinishLabel: 'Reverse Holo',
+      );
+
+      expect(soleFinish.variantLabel, isNull);
+      expect(siblingFinish.variantLabel, 'Reverse Holo');
+    },
+  );
 }

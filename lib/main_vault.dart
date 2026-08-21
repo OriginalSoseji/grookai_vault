@@ -967,13 +967,40 @@ class VaultPageState extends State<VaultPage> {
       return;
     }
 
+    final identityResults = await Future.wait<dynamic>([
+      CardPrintRepository.fetchByIds(
+        client: supabase,
+        ids: selectedRows.map((row) => (row['card_id'] ?? '').toString()),
+      ).catchError((_) => const <CardPrint>[]),
+      LotShareIdentityService.fetchMeaningfulFinishLabels(
+        client: supabase,
+        vaultRows: selectedRows,
+      ).catchError((_) => const <String, String>{}),
+    ]);
+    final canonicalCards = identityResults[0] as List<CardPrint>;
+    final meaningfulFinishLabels = identityResults[1] as Map<String, String>;
+    final canonicalCardsById = <String, CardPrint>{
+      for (final card in canonicalCards) card.id: card,
+    };
+
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => LotPricingScreen(
           source: GrookaiLotListingSource(
             title: _defaultLotTitle(selectedRows),
             sellerHandle: _vaultSellerHandle,
-            items: selectedRows.map(_lotItemSourceForRow).toList(),
+            items: selectedRows
+                .map(
+                  (row) => _lotItemSourceForRow(
+                    row,
+                    canonicalCard:
+                        canonicalCardsById[(row['card_id'] ?? '').toString()],
+                    meaningfulFinishLabel:
+                        meaningfulFinishLabels[(row['card_id'] ?? '')
+                            .toString()],
+                  ),
+                )
+                .toList(),
           ),
           metadata: <String, dynamic>{
             'card_print_ids': selectedRows
@@ -1023,11 +1050,17 @@ class VaultPageState extends State<VaultPage> {
     return '${rows.length}-Card Vault Lot';
   }
 
-  GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
+  GrookaiLotListingItemSource _lotItemSourceForRow(
+    Map<String, dynamic> row, {
+    CardPrint? canonicalCard,
+    String? meaningfulFinishLabel,
+  }) {
     final cardPrintId = (row['card_id'] ?? '').toString().trim();
     final price = _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0;
-    return GrookaiLotListingItemSource(
-      cardName: (row['name'] ?? 'Card').toString(),
+    return GrookaiLotListingItemSource.fromVaultRow(
+      row: row,
+      canonicalCard: canonicalCard,
+      meaningfulFinishLabel: meaningfulFinishLabel,
       condition: (row['condition_label'] ?? 'Raw NM').toString(),
       price: price,
       imageUrl: _vaultDisplayImageUrl(row),

@@ -38,7 +38,9 @@ class GrookaiObjectShareDestinationSheet extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Choose the output shape before generating the image.',
+              object.type == 'lot'
+                  ? 'Choose the output shape. Front and details are shared together.'
+                  : 'Choose the output shape before generating the image.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -79,7 +81,7 @@ String _descriptionFor(GrookaiObjectExportDestination destination) {
     case GrookaiObjectExportDestination.story:
       return '9:16 story image with top and bottom safe zones.';
     case GrookaiObjectExportDestination.ebayListing:
-      return 'Plain 1:1 listing image with condition only.';
+      return 'Plain 1:1 listing image for marketplace use.';
     case GrookaiObjectExportDestination.saveImage:
       return 'Native card image, matching the in-app preview.';
   }

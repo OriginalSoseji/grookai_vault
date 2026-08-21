@@ -17,6 +17,7 @@ import 'models/card_print.dart';
 import 'models/ownership_state.dart';
 import 'models/provisional_card.dart';
 import 'models/grookai_sale_listing.dart';
+import 'services/grookai_objects/lot_share_identity_service.dart';
 import 'secrets.dart';
 import 'screens/account/account_screen.dart';
 import 'screens/compare/compare_screen.dart';

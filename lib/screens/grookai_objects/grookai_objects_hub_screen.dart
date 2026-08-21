@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../models/card_print.dart';
 import '../../models/grookai_memory_card.dart';
 import '../../models/grookai_sale_listing.dart';
+import '../../services/grookai_objects/lot_share_identity_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
@@ -235,13 +237,40 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     if (selectedRows.length < 2) {
       return;
     }
+    final identityResults = await Future.wait<dynamic>([
+      CardPrintRepository.fetchByIds(
+        client: _client,
+        ids: selectedRows.map(_cardPrintIdForRow),
+      ).catchError((_) => const <CardPrint>[]),
+      LotShareIdentityService.fetchMeaningfulFinishLabels(
+        client: _client,
+        vaultRows: selectedRows,
+      ).catchError((_) => const <String, String>{}),
+    ]);
+    final canonicalCards = identityResults[0] as List<CardPrint>;
+    final meaningfulFinishLabels = identityResults[1] as Map<String, String>;
+    final canonicalCardsById = <String, CardPrint>{
+      for (final card in canonicalCards) card.id: card,
+    };
+    if (!mounted) {
+      return;
+    }
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => LotPricingScreen(
           source: GrookaiLotListingSource(
             title: _defaultLotTitle(selectedRows),
             sellerHandle: _sellerHandle,
-            items: selectedRows.map(_lotItemSourceForRow).toList(),
+            items: selectedRows
+                .map(
+                  (row) => _lotItemSourceForRow(
+                    row,
+                    canonicalCard: canonicalCardsById[_cardPrintIdForRow(row)],
+                    meaningfulFinishLabel:
+                        meaningfulFinishLabels[_cardPrintIdForRow(row)],
+                  ),
+                )
+                .toList(),
           ),
           metadata: <String, dynamic>{
             'card_print_ids': selectedRows
@@ -440,10 +469,16 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     return 'Collector';
   }
 
-  GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
+  GrookaiLotListingItemSource _lotItemSourceForRow(
+    Map<String, dynamic> row, {
+    CardPrint? canonicalCard,
+    String? meaningfulFinishLabel,
+  }) {
     final cardPrintId = _cardPrintIdForRow(row);
-    return GrookaiLotListingItemSource(
-      cardName: _cardNameForRow(row),
+    return GrookaiLotListingItemSource.fromVaultRow(
+      row: row,
+      canonicalCard: canonicalCard,
+      meaningfulFinishLabel: meaningfulFinishLabel,
       condition: _conditionForRow(row),
       price: _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0,
       imageUrl: _displayImageUrlForRow(row),

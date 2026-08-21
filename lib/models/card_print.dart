@@ -62,6 +62,7 @@ class CardPrint {
     this.gvId,
     required this.setCode,
     this.setName,
+    this.printedTotal,
     this.number,
     this.numberPlain,
     this.variantKey,
@@ -93,6 +94,7 @@ class CardPrint {
   final String? gvId;
   final String setCode;
   final String? setName;
+  final int? printedTotal;
   final String? number;
   final String? numberPlain;
   final String? variantKey;
@@ -144,6 +146,7 @@ class CardPrint {
       gvId: gvId,
       setCode: setCode,
       setName: setName,
+      printedTotal: printedTotal,
       number: number,
       numberPlain: numberPlain,
       variantKey: variantKey,
@@ -205,6 +208,7 @@ class CardPrint {
       setName: set != null
           ? (set['name'] ?? '').toString()
           : json['set_name']?.toString(),
+      printedTotal: _jsonInt(set?['printed_total'] ?? json['printed_total']),
       number: json['number']?.toString(),
       numberPlain: json['number_plain']?.toString(),
       variantKey: json['variant_key']?.toString(),
@@ -247,6 +251,13 @@ String? _jsonText(Map<String, dynamic> json, String snakeKey, String camelKey) {
   final value = json[snakeKey] ?? json[camelKey];
   final normalized = (value ?? '').toString().trim();
   return normalized.isEmpty ? null : normalized;
+}
+
+int? _jsonInt(dynamic value) {
+  if (value is num) {
+    return value.toInt();
+  }
+  return int.tryParse((value ?? '').toString().trim());
 }
 
 String _normalizeLanguageScope(String? value) {
@@ -352,7 +363,7 @@ class CardPrintSearchResult {
 }
 
 const _cardPrintSelect =
-    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model)';
+    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model,printed_total)';
 
 class CardPrintRepository {
   static Future<CardPrintSearchResult> searchCardPrintsResolved({

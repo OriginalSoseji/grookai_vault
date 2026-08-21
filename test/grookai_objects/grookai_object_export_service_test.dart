@@ -32,6 +32,14 @@ void main() {
       GrookaiObjectExportService.fileNameFor(type: 'for sale', title: '   '),
       'grookai-for-sale-card.png',
     );
+    expect(
+      GrookaiObjectExportService.sidedFileNameFor(
+        type: 'lot-save-image',
+        title: 'Trade Night Lot',
+        side: 'back',
+      ),
+      'grookai-lot-save-image-trade-night-lot-back.png',
+    );
   });
 
   test('destination availability matches object type rules', () {
@@ -196,7 +204,6 @@ void main() {
     for (final path in const [
       'lib/screens/grookai_objects/memory_card_capture_screen.dart',
       'lib/screens/grookai_objects/for_sale_terms_screen.dart',
-      'lib/screens/grookai_objects/lot_pricing_screen.dart',
     ]) {
       final source = File(path).readAsStringSync();
       expect(source, contains('GrookaiObjectExportService'));
@@ -205,5 +212,16 @@ void main() {
       expect(source, contains('exportObjectPng('));
       expect(source, contains('sharePng('));
     }
+
+    final lotSource = File(
+      'lib/screens/grookai_objects/lot_pricing_screen.dart',
+    ).readAsStringSync();
+    expect(lotSource, contains('GrookaiObjectExportService'));
+    expect(lotSource, contains('GrookaiObjectDestinationExportRenderer'));
+    expect(lotSource, contains('showGrookaiObjectShareDestinationSheet'));
+    expect(lotSource, contains('exportObjectPng('));
+    expect(lotSource, contains('sharePngs('));
+    expect(lotSource, contains("side: 'front'"));
+    expect(lotSource, contains("side: 'back'"));
   });
 }
