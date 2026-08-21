@@ -119,6 +119,7 @@ class GrookaiLotListingItemSource {
     this.variantLabel,
     required this.condition,
     required this.price,
+    this.marketPrice,
     this.imageUrl,
   });
 
@@ -131,6 +132,10 @@ class GrookaiLotListingItemSource {
   final int? printedTotal;
   final String? variantLabel;
   final String condition;
+
+  /// Immutable market reference used to seed, and later compare with, the
+  /// seller-controlled price.
+  final double? marketPrice;
   final double price;
   final String? imageUrl;
 
@@ -152,7 +157,7 @@ class GrookaiLotListingItemSource {
 
   factory GrookaiLotListingItemSource.fromVaultRow({
     required Map<String, dynamic> row,
-    required double price,
+    required double? marketPrice,
     required String condition,
     required String? imageUrl,
     CardPrint? canonicalCard,
@@ -188,7 +193,8 @@ class GrookaiLotListingItemSource {
       printedTotal: canonicalCard?.printedTotal,
       variantLabel: variantParts.isEmpty ? null : variantParts.join(' · '),
       condition: condition,
-      price: price,
+      marketPrice: marketPrice,
+      price: marketPrice ?? 0,
       imageUrl: imageUrl,
     );
   }
@@ -233,6 +239,9 @@ class GrookaiLotListingAdapter {
             printedTotal: item.printedTotal,
             variantLabel: _blankToNull(item.variantLabel),
             condition: _fallback(item.condition, 'Raw NM'),
+            marketPrice: item.marketPrice == null
+                ? null
+                : _normalizePrice(item.marketPrice!),
             price: _normalizePrice(item.price),
             imageUrl: _blankToNull(item.imageUrl),
           ),

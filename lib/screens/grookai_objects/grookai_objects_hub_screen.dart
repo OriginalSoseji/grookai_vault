@@ -475,12 +475,13 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     String? meaningfulFinishLabel,
   }) {
     final cardPrintId = _cardPrintIdForRow(row);
+    final marketPrice = _pricingByCardPrintId[cardPrintId]?.primaryPrice;
     return GrookaiLotListingItemSource.fromVaultRow(
       row: row,
       canonicalCard: canonicalCard,
       meaningfulFinishLabel: meaningfulFinishLabel,
       condition: _conditionForRow(row),
-      price: _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0,
+      marketPrice: marketPrice,
       imageUrl: _displayImageUrlForRow(row),
     );
   }

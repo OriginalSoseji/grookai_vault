@@ -83,6 +83,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
           printedTotal: item.printedTotal,
           variantLabel: item.variantLabel,
           condition: item.condition,
+          marketPrice: item.marketPrice,
           price: _parseMoney(_itemPriceControllers[index].text) ?? item.price,
           imageUrl: item.imageUrl,
         ),
@@ -303,7 +304,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
               ),
             const SizedBox(height: 4),
             Text(
-              'Estimated value is itemized above. Set one bundle price for the lot.',
+              'Each card starts at its current market price. Edit any price, then set the bundle price.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
@@ -458,6 +459,16 @@ class _LotItemPriceRow extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                if (item.marketPrice != null && item.marketPrice! > 0) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    'Market \$${item.marketPrice!.toStringAsFixed(2)}',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -470,7 +481,7 @@ class _LotItemPriceRow extends StatelessWidget {
                 decimal: true,
               ),
               decoration: const InputDecoration(
-                labelText: 'Est.',
+                labelText: 'My price',
                 prefixText: r'$',
               ),
               onChanged: (_) => onChanged(),

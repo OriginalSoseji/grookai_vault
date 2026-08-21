@@ -982,6 +982,9 @@ class VaultPageState extends State<VaultPage> {
     final canonicalCardsById = <String, CardPrint>{
       for (final card in canonicalCards) card.id: card,
     };
+    if (!mounted) {
+      return;
+    }
 
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
@@ -1056,13 +1059,13 @@ class VaultPageState extends State<VaultPage> {
     String? meaningfulFinishLabel,
   }) {
     final cardPrintId = (row['card_id'] ?? '').toString().trim();
-    final price = _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0;
+    final marketPrice = _pricingByCardPrintId[cardPrintId]?.primaryPrice;
     return GrookaiLotListingItemSource.fromVaultRow(
       row: row,
       canonicalCard: canonicalCard,
       meaningfulFinishLabel: meaningfulFinishLabel,
       condition: (row['condition_label'] ?? 'Raw NM').toString(),
-      price: price,
+      marketPrice: marketPrice,
       imageUrl: _vaultDisplayImageUrl(row),
     );
   }

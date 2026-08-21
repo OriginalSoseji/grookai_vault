@@ -157,6 +157,7 @@ class LotItem {
   final int? printedTotal;
   final String? variantLabel;
   final String condition;
+  final double? marketPrice;
   final double price;
   final String? imageUrl;
   const LotItem({
@@ -169,6 +170,7 @@ class LotItem {
     this.printedTotal,
     this.variantLabel,
     required this.condition,
+    this.marketPrice,
     required this.price,
     this.imageUrl,
   });
@@ -183,6 +185,7 @@ class LotItem {
     printedTotal: (f['printedTotal'] as num?)?.toInt(),
     variantLabel: f['variantLabel'] as String?,
     condition: f['condition'] as String,
+    marketPrice: (f['marketPrice'] as num?)?.toDouble(),
     price: (f['price'] as num).toDouble(),
     imageUrl: f['imageUrl'] as String?,
   );
@@ -197,6 +200,7 @@ class LotItem {
     'printedTotal': printedTotal,
     'variantLabel': variantLabel,
     'condition': condition,
+    if (marketPrice != null) 'marketPrice': marketPrice,
     'price': price,
     'imageUrl': imageUrl,
   };
@@ -276,6 +280,9 @@ class LotListingData {
     'sellerTradeCount': sellerTradeCount,
   };
 
-  double get estimatedValue => items.fold<double>(0, (sum, i) => sum + i.price);
+  double get estimatedValue => items.fold<double>(
+    0,
+    (sum, item) => sum + (item.marketPrice ?? item.price),
+  );
   int get cardCount => items.length;
 }

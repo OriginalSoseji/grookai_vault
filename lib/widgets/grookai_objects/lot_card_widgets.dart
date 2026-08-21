@@ -57,7 +57,7 @@ class LotCardFront extends StatelessWidget {
               CardPriceTag(tokens: t, skin: data.skin, price: data.bundlePrice),
               const SizedBox(width: 10),
               Text(
-                '\$${data.estimatedValue.toStringAsFixed(0)} value',
+                '\$${data.estimatedValue.toStringAsFixed(0)} market',
                 style: TextStyle(
                   fontSize: 11,
                   color: t.mutedText,

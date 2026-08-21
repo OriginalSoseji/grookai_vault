@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/grookai_sale_listing.dart';
 import 'package:grookai_vault/services/grookai_objects/sale_listing_service.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_models.dart';
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_skin.dart';
 
 void main() {
@@ -75,6 +76,7 @@ void main() {
             printedTotal: 197,
             variantLabel: 'Pokémon Center Stamp',
             condition: 'Raw NM',
+            marketPrice: 125,
             price: 120,
             imageUrl: 'https://example.test/charizard.webp',
           ),
@@ -108,6 +110,7 @@ void main() {
     expect(firstItem['collectorNumber'], '223');
     expect(firstItem['printedTotal'], 197);
     expect(firstItem['variantLabel'], 'Pokémon Center Stamp');
+    expect(firstItem['marketPrice'], 125);
     expect(object.metadata['card_print_ids'], ['CARD-1', 'CARD-2']);
   });
 
@@ -145,20 +148,51 @@ void main() {
 
       final soleFinish = GrookaiLotListingItemSource.fromVaultRow(
         row: baseRow,
-        price: 10,
+        marketPrice: 10,
         condition: 'Raw NM',
         imageUrl: null,
       );
       final siblingFinish = GrookaiLotListingItemSource.fromVaultRow(
         row: baseRow,
-        price: 10,
+        marketPrice: 10,
         condition: 'Raw NM',
         imageUrl: null,
         meaningfulFinishLabel: 'Reverse Holo',
       );
 
       expect(soleFinish.variantLabel, isNull);
+      expect(soleFinish.marketPrice, 10);
+      expect(soleFinish.price, 10);
       expect(siblingFinish.variantLabel, 'Reverse Holo');
     },
   );
+
+  test('lot estimated value remains tied to market after seller override', () {
+    final object = GrookaiLotListingAdapter.fromTerms(
+      source: const GrookaiLotListingSource(
+        title: 'Market Reference Lot',
+        items: [
+          GrookaiLotListingItemSource(
+            cardName: 'Pikachu',
+            condition: 'Raw NM',
+            marketPrice: 25,
+            price: 20,
+          ),
+          GrookaiLotListingItemSource(
+            cardName: 'Raichu',
+            condition: 'Raw NM',
+            marketPrice: 15,
+            price: 12,
+          ),
+        ],
+      ),
+      skin: GrookaiObjectSkin.onyx,
+      bundlePrice: 30,
+      metadata: const <String, dynamic>{},
+    );
+
+    final data = LotListingData.fromFields(object.skin, object.fields);
+    expect(data.estimatedValue, 40);
+    expect(data.items.map((item) => item.price), [20, 12]);
+  });
 }

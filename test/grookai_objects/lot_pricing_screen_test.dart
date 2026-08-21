@@ -81,6 +81,43 @@ void main() {
     expect(find.text('Save Image'), findsOneWidget);
   });
 
+  testWidgets('market price remains visible and seeds editable seller price', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: LotPricingScreen(
+          source: GrookaiLotListingSource(
+            title: 'Market Lot',
+            items: [
+              GrookaiLotListingItemSource(
+                cardName: 'Pikachu',
+                condition: 'Raw NM',
+                marketPrice: 13.35,
+                price: 13.35,
+              ),
+            ],
+          ),
+          metadata: <String, dynamic>{},
+        ),
+      ),
+    );
+
+    expect(find.text(r'Market $13.35'), findsOneWidget);
+    final myPriceField = tester.widget<TextField>(
+      find.widgetWithText(TextField, 'My price'),
+    );
+    expect(myPriceField.controller!.text, '13.35');
+    expect(find.text(r'$13 market'), findsOneWidget);
+
+    await tester.enterText(find.widgetWithText(TextField, 'My price'), '11.00');
+    await tester.pump();
+
+    expect(find.text(r'Market $13.35'), findsOneWidget);
+    expect(find.text(r'$13 market'), findsOneWidget);
+  });
+
   testWidgets('lot pricing shows every selected card with artwork rows', (
     tester,
   ) async {
