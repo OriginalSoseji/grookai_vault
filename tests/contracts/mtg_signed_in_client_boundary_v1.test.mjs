@@ -24,8 +24,11 @@ test("web exposes MTG as an explicit collector catalog scope", () => {
 test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", () => {
   const route = source("apps/web/src/app/api/resolver/search/route.ts");
   const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
-  const migration = source(
+  const migrationV1 = source(
     "supabase/migrations/20260822203000_game_scoped_card_search_v1.sql",
+  );
+  const migrationV2 = source(
+    "supabase/migrations/20260822210000_game_scoped_card_search_suppression_guard_v2.sql",
   );
 
   assert.match(route, /gameScope !== "pokemon" && !userId/);
@@ -33,7 +36,7 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   assert.match(route, /getExploreRowsForGameScopedTextSearch/);
   assert.match(route, /includeProvisional =\s*gameScope === "pokemon"/);
   assert.match(route, /game_scope: gameScope/);
-  assert.match(lookup, /\.rpc\("search_game_card_prints_v1"/);
+  assert.match(lookup, /\.rpc\("search_game_card_prints_v2"/);
   assert.match(lookup, /game_code_in: gameScope/);
   assert.match(lookup, /limit_in: SEARCH_LIMIT/);
   assert.match(lookup, /canUseBoundedGameRpc/);
@@ -49,18 +52,37 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   assert.match(lookup, /fetchSmartDiscoveryChildRows\(\{ \.\.\.options, sortMode \}, parentRows\)/);
   assert.match(lookup, /\.replace\(\/\^#\//);
   assert.match(lookup, /\.split\("\/", 1\)/);
-  assert.match(migration, /security definer/i);
-  assert.match(migration, /catalog_game_visible_to_request_v1\(game\.code\)/);
-  assert.match(migration, /least\(greatest\(coalesce\(limit_in, 50\), 1\), 64\)/);
+  assert.match(migrationV1, /security definer/i);
+  assert.match(migrationV1, /catalog_game_visible_to_request_v1\(game\.code\)/);
+  assert.match(migrationV1, /least\(greatest\(coalesce\(limit_in, 50\), 1\), 64\)/);
   assert.match(
-    migration,
+    migrationV1,
     /join public\.card_prints card on card\.game_id = scope\.game_id/,
   );
   assert.match(
-    migration,
+    migrationV1,
     /grant execute[\s\S]*to anon, authenticated, service_role/i,
   );
-  assert.doesNotMatch(migration, /insert\s+into|update\s+public|delete\s+from/i);
+  assert.match(migrationV2, /security definer/i);
+  assert.match(migrationV2, /search_game_card_prints_v1\(/i);
+  assert.match(migrationV2, /catalog_game_visible_to_request_v1\(game_code_in\)/i);
+  assert.match(
+    migrationV2,
+    /data_quality_flags\s*#>>\s*'\{app_visibility_v1,status\}'/i,
+  );
+  assert.match(migrationV2, /<> 'suppressed'/i);
+  assert.match(
+    migrationV2,
+    /revoke all on function public\.search_game_card_prints_v1[\s\S]*from public, anon, authenticated, service_role/i,
+  );
+  assert.match(
+    migrationV2,
+    /grant execute on function public\.search_game_card_prints_v2[\s\S]*to anon, authenticated, service_role/i,
+  );
+  assert.doesNotMatch(
+    `${migrationV1}\n${migrationV2}`,
+    /insert\s+into|update\s+public|delete\s+from/i,
+  );
 });
 
 test("Flutter exposes MTG and preserves exact collector-number identity", () => {

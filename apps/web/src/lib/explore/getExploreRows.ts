@@ -3910,7 +3910,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     (options.stampLabels?.length ?? 0) === 0;
 
   if (canUseBoundedGameRpc) {
-    const { data, error } = await supabase.rpc("search_game_card_prints_v1", {
+    const { data, error } = await supabase.rpc("search_game_card_prints_v2", {
       game_code_in: gameScope,
       q: nameText || null,
       set_code_in: inferredSetCode || null,
