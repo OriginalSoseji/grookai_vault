@@ -138,6 +138,8 @@ test("release runner is restricted to one release-control update and automatic r
   assert.match(workflow, /inputs\.android_version_code/);
   assert.match(workflow, /inputs\.ios_build_number/);
   assert.doesNotMatch(workflow, /version-code=298|build-number=298/);
+  assert.match(workflow, /OUT_DIR: \/tmp\/mtg-signed-in-release/);
+  assert.doesNotMatch(workflow, /OUT_DIR:\s*\$\{\{\s*runner\.temp/);
 });
 
 test("anonymous release readback never invokes authenticated-only image surfaces", () => {

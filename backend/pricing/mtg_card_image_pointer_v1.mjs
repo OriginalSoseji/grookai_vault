@@ -58,6 +58,16 @@ export function mtgParentImageSnapshotV1(row) {
   };
 }
 
+export function mtgParentImageUnpopulatedV1(row) {
+  const snapshot = mtgParentImageSnapshotV1(row);
+  return MTG_PARENT_IMAGE_COLUMNS.every((column) => {
+    if (column === 'image_status') {
+      return snapshot[column] === null || snapshot[column] === 'missing';
+    }
+    return snapshot[column] === null;
+  });
+}
+
 export function mtgParentImageAfterV1(pointer, checkedAt) {
   return {
     image_url: pointer.image_url,
@@ -190,7 +200,7 @@ export function validateMtgParentRowsV1(aggregate, currentRows, checkedAt) {
     if (current?.scryfall_print_id !== pointer.scryfall_print_id) {
       rowFindings.push('scryfall_mapping_mismatch');
     }
-    const beforeBlank = MTG_PARENT_IMAGE_COLUMNS.every((column) => before[column] === null);
+    const beforeBlank = mtgParentImageUnpopulatedV1(before);
     const alreadyAppliedCandidate = {
       ...proposed,
       image_last_checked_at: before.image_last_checked_at,
@@ -260,7 +270,7 @@ export function buildMtgImagePointerPlanV1({ aggregate, currentRows,
   };
   if (gapRows.length !== effectiveExpected.gaps) findings.push('gap_count_mismatch');
   if (gapRows.some((row) => row.game_id !== MTG_GAME_ID
-    || MTG_PARENT_IMAGE_COLUMNS.some((column) => row[column] !== null))) {
+    || !mtgParentImageUnpopulatedV1(row))) {
     findings.push('gap_boundary_mismatch');
   }
   const faceRows = eligibleRows.map((pointer) =>

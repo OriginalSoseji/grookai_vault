@@ -11,6 +11,7 @@ import {
   inspectMtgPointerAggregateV1,
   mtgFaceRecordV1,
   mtgParentImageAfterV1,
+  mtgParentImageUnpopulatedV1,
 } from '../../backend/pricing/mtg_card_image_pointer_v1.mjs';
 
 const ids = {
@@ -54,7 +55,7 @@ function blankRow(id, scryfallPrintId) {
     image_alt_url: null,
     image_source: null,
     image_hash: null,
-    image_status: null,
+    image_status: 'missing',
     image_res: null,
     image_last_checked_at: null,
     image_path: null,
@@ -121,6 +122,21 @@ test('pointer plan is exact, additive, and keeps the coverage gap blank', () => 
   assert.equal(value.plan.mutation_contract.release_writes, 0);
   assert.equal(value.plan.mutation_contract.pricing_writes, 0);
   assert.equal(value.plan.mutation_contract.vault_writes, 0);
+});
+
+test('the production missing sentinel is empty but no other image evidence is', () => {
+  const row = blankRow(ids.one, ids.printOne);
+  assert.equal(mtgParentImageUnpopulatedV1(row), true);
+  assert.equal(mtgParentImageUnpopulatedV1({ ...row, image_status: null }), true);
+  assert.equal(mtgParentImageUnpopulatedV1({ ...row, image_status: 'exact' }), false);
+  assert.equal(mtgParentImageUnpopulatedV1({
+    ...row,
+    image_url: 'https://unexpected.example/card.jpg',
+  }), false);
+  assert.equal(mtgParentImageUnpopulatedV1({
+    ...row,
+    image_hash: 'a'.repeat(64),
+  }), false);
 });
 
 test('already-applied parent and face rows become idempotent no-ops', () => {
@@ -202,5 +218,22 @@ test('operator recaptures protected boundaries inside the apply transaction', ()
   assert.match(mutateBody, /evaluateState\([\s\S]*inTransactionBoundary\)/);
   assert.ok(
     mutateBody.indexOf('const inTransactionBoundary') < mutateBody.indexOf("client.query('commit')"),
+  );
+});
+
+test('operator readback accepts only the governed unpopulated parent image state', () => {
+  const source = fs.readFileSync(
+    'scripts/audits/mtg_card_image_pointer_v1.mjs',
+    'utf8',
+  );
+  const evaluateBody = source.slice(
+    source.indexOf('function evaluateState('),
+    source.indexOf('\nasync function insertFaces('),
+  );
+
+  assert.match(evaluateBody, /!mtgParentImageUnpopulatedV1\(snapshot\)/);
+  assert.doesNotMatch(
+    evaluateBody,
+    /MTG_PARENT_IMAGE_COLUMNS\.some\(\(column\) => snapshot\[column\] !== null\)/,
   );
 });

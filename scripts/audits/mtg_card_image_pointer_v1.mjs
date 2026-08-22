@@ -11,13 +11,13 @@ import {
   MTG_ELIGIBLE_CARD_PRINT_COUNT,
   MTG_FACE_COUNT,
   MTG_GAME_ID,
-  MTG_PARENT_IMAGE_COLUMNS,
   buildMtgImagePointerPlanV1,
   buildMtgPointerAggregateV1,
   hashMtgImagePointerV1,
   inspectMtgImagePointerPlanV1,
   inspectMtgPointerAggregateV1,
   mtgParentImageSnapshotV1,
+  mtgParentImageUnpopulatedV1,
 } from '../../backend/pricing/mtg_card_image_pointer_v1.mjs';
 
 const { Client } = pg;
@@ -198,7 +198,7 @@ function evaluateState(plan, state, boundary) {
   if (state.faces.length !== plan.counts.face_rows) findings.push('face_count');
   for (const id of plan.gap_card_print_ids) {
     const snapshot = mtgParentImageSnapshotV1(parents.get(id));
-    if (MTG_PARENT_IMAGE_COLUMNS.some((column) => snapshot[column] !== null)) {
+    if (!mtgParentImageUnpopulatedV1(snapshot)) {
       findings.push(`gap_mutated:${id}`);
     }
   }
