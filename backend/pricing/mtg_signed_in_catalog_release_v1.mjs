@@ -1,6 +1,6 @@
 export const MTG_SIGNED_IN_CATALOG_RELEASE_VERSION_V1 =
   "MTG_SIGNED_IN_CATALOG_RELEASE_V1";
-export const MTG_SIGNED_IN_MOBILE_BUILD_V1 = "298";
+export const MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1 = 298;
 export const MTG_GAME_ID_V1 = "4d544700-0000-4000-8000-000000000001";
 
 export const MTG_SIGNED_IN_EXPECTED_COUNTS_V1 = Object.freeze({
@@ -62,6 +62,8 @@ function validateAuthenticatedCounts(findings, counts) {
 
 export function evaluateMtgSignedInReleasePlanV1({ before, deployment }) {
   const findings = [];
+  const androidBuild = number(deployment?.android?.version_code);
+  const iosBuild = number(deployment?.ios?.build_number);
   requireFinding(
     findings,
     before?.release_control?.release_status === "hidden",
@@ -90,21 +92,22 @@ export function evaluateMtgSignedInReleasePlanV1({ before, deployment }) {
     deployment?.android?.artifact_status === "signed" &&
       /^[0-9a-f]{64}$/.test(deployment?.android?.artifact_sha256 ?? "") &&
       deployment?.android?.commit_sha === deployment?.web?.commit_sha &&
-      String(deployment?.android?.version_code ?? "") ===
-        MTG_SIGNED_IN_MOBILE_BUILD_V1,
+      Number.isInteger(androidBuild) &&
+      androidBuild >= MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1,
     "signed_android_artifact_not_ready",
     deployment?.android ?? null,
-    `signed build ${MTG_SIGNED_IN_MOBILE_BUILD_V1} from the web commit`,
+    `signed build >=${MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1} from the web commit`,
   );
   requireFinding(
     findings,
     deployment?.ios?.distribution_status === "in_beta_testing" &&
       deployment?.ios?.commit_sha === deployment?.web?.commit_sha &&
-      String(deployment?.ios?.build_number ?? "") ===
-        MTG_SIGNED_IN_MOBILE_BUILD_V1,
+      Number.isInteger(iosBuild) &&
+      iosBuild >= MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1 &&
+      iosBuild === androidBuild,
     "testflight_build_not_ready",
     deployment?.ios ?? null,
-    `TestFlight build ${MTG_SIGNED_IN_MOBILE_BUILD_V1} from the web commit`,
+    `TestFlight build matching Android and >=${MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1} from the web commit`,
   );
   return {
     status: findings.length === 0 ? "ready_for_apply" : "blocked",

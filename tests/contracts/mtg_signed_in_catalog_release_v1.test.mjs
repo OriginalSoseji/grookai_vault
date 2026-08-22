@@ -4,7 +4,7 @@ import test from "node:test";
 
 import {
   MTG_SIGNED_IN_EXPECTED_COUNTS_V1,
-  MTG_SIGNED_IN_MOBILE_BUILD_V1,
+  MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1,
   evaluateMtgSignedInReleasePlanV1,
   evaluateMtgSignedInReleaseReadbackV1,
 } from "../../backend/pricing/mtg_signed_in_catalog_release_v1.mjs";
@@ -19,22 +19,33 @@ const deployment = {
     artifact_status: "signed",
     artifact_sha256: "b".repeat(64),
     commit_sha: "a".repeat(40),
-    version_code: "298",
+    version_code: "300",
   },
   ios: {
     distribution_status: "in_beta_testing",
     commit_sha: "a".repeat(40),
-    build_number: "298",
+    build_number: "300",
   },
 };
 
 test("release requires exact complete catalog, pricing, and client proof", () => {
-  assert.equal(MTG_SIGNED_IN_MOBILE_BUILD_V1, "298");
+  assert.equal(MTG_SIGNED_IN_MINIMUM_MOBILE_BUILD_V1, 298);
   const ready = evaluateMtgSignedInReleasePlanV1({
     before: { release_control: { release_status: "hidden" }, counts },
     deployment,
   });
   assert.equal(ready.ready_for_apply, true);
+
+  assert.equal(
+    evaluateMtgSignedInReleasePlanV1({
+      before: { release_control: { release_status: "hidden" }, counts },
+      deployment: {
+        ...deployment,
+        ios: { ...deployment.ios, build_number: "299" },
+      },
+    }).ready_for_apply,
+    false,
+  );
 
   for (const field of Object.keys(MTG_SIGNED_IN_EXPECTED_COUNTS_V1)) {
     const brokenCounts = { ...counts, [field]: 0 };
@@ -114,4 +125,17 @@ test("release runner is restricted to one release-control update and automatic r
     runner,
     /update\s+public\.(?!catalog_game_release_controls)/i,
   );
+
+  const workflow = fs.readFileSync(
+    new URL(
+      "../../.github/workflows/mtg-signed-in-catalog-release.yml",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(workflow, /android_version_code:/);
+  assert.match(workflow, /ios_build_number:/);
+  assert.match(workflow, /inputs\.android_version_code/);
+  assert.match(workflow, /inputs\.ios_build_number/);
+  assert.doesNotMatch(workflow, /version-code=298|build-number=298/);
 });
