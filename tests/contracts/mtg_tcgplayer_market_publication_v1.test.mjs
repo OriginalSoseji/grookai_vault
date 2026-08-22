@@ -186,6 +186,7 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKER, /does not match shadow-proven source run/);
   assert.match(WORKFLOW, /--database-timeout-minutes=180/);
   assert.match(WORKFLOW, /for attempt in 1 2 3/);
-  assert.match(WORKFLOW, /Connection terminated unexpectedly/);
-  assert.match(WORKFLOW, /if ! grep -Eqi/);
+  assert.match(WORKFLOW, /classifyMarketPipelineFailureV1/);
+  assert.match(WORKFLOW, /if \[\[ "\$retryable" != "true" \]\]/);
+  assert.doesNotMatch(WORKFLOW, /if ! grep -Eqi/);
 });

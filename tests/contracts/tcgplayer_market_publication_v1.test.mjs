@@ -994,6 +994,23 @@ test("scheduled failure policy retries source transport failures but stops invar
       retryable: false,
     },
   );
+  for (const errorText of [
+    "connect ECONNREFUSED",
+    "getaddrinfo ENOTFOUND",
+    "getaddrinfo EAI_AGAIN",
+    "socket hang up",
+    "could not connect to server",
+    "Connection terminated unexpectedly",
+  ]) {
+    assert.equal(
+      classifyMarketPipelineFailureV1({
+        failedPhase: "publication",
+        errorText,
+      }).retryable,
+      true,
+      errorText,
+    );
+  }
   assert.deepEqual(parseRetryDelaysV1("60, 300"), [60, 300]);
   assert.equal(retryDelayMsV1([60, 300], 1), 60_000);
   assert.equal(retryDelayMsV1([60, 300], 3), 300_000);

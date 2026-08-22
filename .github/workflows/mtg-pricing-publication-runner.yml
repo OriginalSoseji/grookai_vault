@@ -252,9 +252,18 @@ jobs:
               completed=true
               break
             fi
-            if ! grep -Eqi \
-              'Connection terminated unexpectedly|ECONNRESET|ETIMEDOUT|connection timeout|server closed the connection unexpectedly' \
-              "$log"; then
+            retryable="$(node --input-type=module - "$log" <<'NODE'
+          import fs from 'node:fs';
+          import { classifyMarketPipelineFailureV1 } from './backend/pricing/tcgplayer_market_operations_policy_v1.mjs';
+          const errorText = fs.readFileSync(process.argv[2], 'utf8');
+          const classification = classifyMarketPipelineFailureV1({
+            failedPhase: 'publication',
+            errorText,
+          });
+          process.stdout.write(String(classification.retryable));
+          NODE
+            )"
+            if [[ "$retryable" != "true" ]]; then
               exit "$exit_code"
             fi
             if [[ "$attempt" -eq 3 ]]; then
