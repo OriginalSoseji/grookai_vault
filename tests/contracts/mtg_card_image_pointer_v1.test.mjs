@@ -220,3 +220,20 @@ test('operator recaptures protected boundaries inside the apply transaction', ()
     mutateBody.indexOf('const inTransactionBoundary') < mutateBody.indexOf("client.query('commit')"),
   );
 });
+
+test('operator readback accepts only the governed unpopulated parent image state', () => {
+  const source = fs.readFileSync(
+    'scripts/audits/mtg_card_image_pointer_v1.mjs',
+    'utf8',
+  );
+  const evaluateBody = source.slice(
+    source.indexOf('function evaluateState('),
+    source.indexOf('\nasync function insertFaces('),
+  );
+
+  assert.match(evaluateBody, /!mtgParentImageUnpopulatedV1\(snapshot\)/);
+  assert.doesNotMatch(
+    evaluateBody,
+    /MTG_PARENT_IMAGE_COLUMNS\.some\(\(column\) => snapshot\[column\] !== null\)/,
+  );
+});
