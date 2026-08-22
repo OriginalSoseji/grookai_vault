@@ -162,6 +162,25 @@ void main() {
     },
   );
 
+  test('vault row source preserves an explicit holo printing identity', () {
+    final item = GrookaiLotListingItemSource.fromVaultRow(
+      row: const <String, dynamic>{
+        'card_id': 'CARD-HOLO-1',
+        'name': 'Holographic Card',
+        'set_name': 'Test Set',
+        'set_code': 'TST',
+        'number': '1',
+      },
+      marketPrice: 12.50,
+      condition: 'Raw NM',
+      imageUrl: 'https://hosted.test/CARD-HOLO-1.webp',
+      meaningfulVariantLabel: 'Printing: Holo',
+    );
+
+    expect(item.variantLabel, 'Holo');
+    expect(item.printingIdentityLabel, 'Holo');
+  });
+
   test('lot listing caps emitted items at the supported maximum', () {
     final object = GrookaiLotListingAdapter.fromTerms(
       source: GrookaiLotListingSource(

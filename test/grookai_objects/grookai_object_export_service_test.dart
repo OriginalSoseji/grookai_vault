@@ -292,6 +292,41 @@ void main() {
     expect(find.byType(GrookaiObjectNetworkImage), findsNothing);
   });
 
+  testWidgets(
+    'ebay single-card export keeps the product image when UI is flipped',
+    (tester) async {
+      final key = GlobalKey();
+      final sale = saleCardFixture(GrookaiObjectSkin.onyx);
+      final saleWithImage = sale.copyWith(
+        fields: <String, dynamic>{
+          ...sale.fields,
+          'cardImageUrl': 'https://example.test/charizard.webp',
+        },
+      );
+      await tester.binding.setSurfaceSize(const Size(420, 420));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
+      await tester.pumpWidget(
+        MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: Center(
+              child: GrookaiObjectDestinationExportRenderer(
+                repaintBoundaryKey: key,
+                object: saleWithImage,
+                destination: GrookaiObjectExportDestination.ebayListing,
+                showFront: false,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(GrookaiObjectNetworkImage), findsOneWidget);
+      expect(find.byType(GrookaiObjectRenderer), findsNothing);
+    },
+  );
+
   testWidgets('ebay lot export represents all 12 capped lot cards', (
     tester,
   ) async {

@@ -212,7 +212,7 @@ class _EbayListingExport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!showFront) {
+    if (object.type == 'lot' && !showFront) {
       return _EbayDetailsExport(object: object);
     }
     if (object.type == 'lot') {
