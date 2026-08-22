@@ -1,0 +1,154 @@
+name: MTG Image Pointer Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Governed MTG image pointer operation
+        required: true
+        type: choice
+        options:
+          - migration_dry_run
+          - migration_apply
+          - aggregate
+          - plan
+          - rollback-canary
+          - apply
+          - readback
+      expected_sha:
+        description: Exact merged producer commit
+        required: true
+        type: string
+      source_run_ids:
+        description: Comma-separated verified MTG Storage upload run IDs
+        required: false
+        type: string
+      expected_aggregate_fingerprint:
+        description: Exact aggregate pointer fingerprint
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: mtg-image-pointer-v1
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      OPERATION: ${{ inputs.operation }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      SOURCE_RUN_IDS: ${{ inputs.source_run_ids }}
+      EXPECTED_AGGREGATE_FINGERPRINT: ${{ inputs.expected_aggregate_fingerprint }}
+      TARGET_MIGRATION: 20260816163000_mtg_card_image_faces_v1.sql
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify exact producer
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "supabase/migrations/$TARGET_MIGRATION"
+          node --check backend/pricing/mtg_card_image_pointer_v1.mjs
+          node --check scripts/audits/mtg_card_image_pointer_v1.mjs
+          node --test tests/contracts/mtg_card_image_pointer_v1.test.mjs
+          git diff --check
+
+      - name: Inspect exact pending migration
+        if: ${{ startsWith(inputs.operation, 'migration_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --include-all \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          mapfile -t pending < <(
+            grep -oE '[0-9]{14}_[A-Za-z0-9_]+\.sql' migration_dry_run.txt |
+              sort -u
+          )
+          test "${#pending[@]}" -eq 1
+          test "${pending[0]}" = "$TARGET_MIGRATION"
+
+      - name: Apply exact migration
+        if: ${{ inputs.operation == 'migration_apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --include-all \
+            --yes
+
+      - name: Install operator dependencies
+        if: ${{ !startsWith(inputs.operation, 'migration_') }}
+        run: npm ci --ignore-scripts
+
+      - name: Download exact Storage evidence
+        if: ${{ !startsWith(inputs.operation, 'migration_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SOURCE_RUN_IDS"
+          source_dir="$RUNNER_TEMP/mtg-image-source-runs"
+          mkdir -p "$source_dir"
+          IFS=',' read -ra run_ids <<< "$SOURCE_RUN_IDS"
+          test "${#run_ids[@]}" -eq 11
+          declare -A seen=()
+          for run_id in "${run_ids[@]}"; do
+            [[ "$run_id" =~ ^[0-9]+$ ]]
+            test -z "${seen[$run_id]:-}"
+            seen[$run_id]=1
+            gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
+              --dir "$source_dir/$run_id"
+          done
+          echo "SOURCE_DIR=$source_dir" >> "$GITHUB_ENV"
+
+      - name: Execute governed pointer operation
+        if: ${{ !startsWith(inputs.operation, 'migration_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/mtg-image-pointer-$OPERATION"
+          args=(
+            "--mode=$OPERATION"
+            "--source-dir=$SOURCE_DIR"
+            "--out-dir=$out"
+            "--expected-head-sha=$EXPECTED_SHA"
+          )
+          if [[ "$OPERATION" != "aggregate" ]]; then
+            test -n "$SUPABASE_DB_URL"
+            [[ "$EXPECTED_AGGREGATE_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
+            args+=("--expected-aggregate-fingerprint=$EXPECTED_AGGREGATE_FINGERPRINT")
+          fi
+          node scripts/audits/mtg_card_image_pointer_v1.mjs "${args[@]}"
+
+      - name: Upload immutable evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-image-pointer-${{ inputs.operation }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            ${{ runner.temp }}/mtg-image-pointer-*
+          if-no-files-found: warn
+          retention-days: 90

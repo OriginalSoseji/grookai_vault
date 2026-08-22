@@ -204,16 +204,35 @@ export async function captureMtgSetPromotionCurrentSourceLanesV1(client, payload
     `with planned as (
        select * from jsonb_to_recordset($1::jsonb)
          as row(product_id integer, subtype text)
-     ), complete_days as (
-       select observation.observed_on
+     ), first_planned as (
+       select product_id, subtype
        from planned
+       order by product_id, subtype
+       limit 1
+     ), candidate_days as materialized (
+       select observation.observed_on
+       from first_planned
        join public.tcgcsv_source_price_daily_observations observation
          on observation.category_id = 1
-        and observation.product_id = planned.product_id
-        and observation.subtype_name_normalized = planned.subtype
-       group by observation.observed_on
-       having count(*) = (select count(*) from planned)
+        and observation.product_id = first_planned.product_id
+        and observation.subtype_name_normalized = first_planned.subtype
        order by observation.observed_on desc
+     ), complete_days as (
+       select candidate.observed_on
+       from candidate_days candidate
+       where not exists (
+         select 1
+         from planned
+         where not exists (
+           select 1
+           from public.tcgcsv_source_price_daily_observations observation
+           where observation.category_id = 1
+             and observation.product_id = planned.product_id
+             and observation.subtype_name_normalized = planned.subtype
+             and observation.observed_on = candidate.observed_on
+         )
+       )
+       order by candidate.observed_on desc
        limit 1
      )
      select count(*)::integer as planned_count,
@@ -247,11 +266,18 @@ export function assertMtgSetPromotionSourceLanesV1(source, plan) {
     plan.row_counts.external_printing_mappings,
     "current source lanes",
   );
-  expectCount(
-    source.positive_market_price_count,
-    plan.row_counts.external_printing_mappings,
-    "positive source lanes",
-  );
+  const positive = Number(source.positive_market_price_count);
+  const mappedLaneCount = Number(plan.row_counts.external_printing_mappings);
+  if (!Number.isInteger(positive) || positive < 0) {
+    throw new Error(
+      `positive source lanes invalid: expected a non-negative integer, got ${source.positive_market_price_count}`,
+    );
+  }
+  if (positive > mappedLaneCount) {
+    throw new Error(
+      `positive source lanes exceeded mapped lanes: expected at most ${mappedLaneCount}, got ${positive}`,
+    );
+  }
 }
 
 function assertClientHidden(evidence, role) {

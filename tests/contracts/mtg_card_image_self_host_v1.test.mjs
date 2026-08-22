@@ -10,7 +10,8 @@ import {
   mtgHostedImagePathV1,
   selectMtgImageCanaryV1,
 } from '../../backend/pricing/mtg_card_image_self_host_v1.mjs';
-import { downloadAndInspect } from '../../scripts/audits/mtg_card_image_storage_v1.mjs';
+import { downloadAndInspect, uploadAndConfirm } from
+  '../../scripts/audits/mtg_card_image_storage_v1.mjs';
 
 function row(index = 0, faceIndex = 0) {
   const id = `31f173fc-112c-4aec-b464-3f81e2ee21${String(index).padStart(2, '0')}`;
@@ -103,6 +104,39 @@ test('storage readback retries transient failures without weakening verification
   }, { retryDelayMs: 0 });
   assert.equal(calls, 3);
   assert.equal(readback.sha256, inspected.sha256);
+});
+
+test('storage upload recovers when an ambiguous response follows object creation', async () => {
+  let present = false;
+  const client = { storage: { from: () => ({
+    upload: async () => {
+      present = true;
+      return { error: { message: "Unexpected token '<' in JSON" } };
+    },
+    list: async () => ({ data: present ? [{ name: 'face.jpg' }] : [], error: null }),
+  }) } };
+  const result = await uploadAndConfirm(client, {
+    image_path: 'cards/face.jpg', content_type: 'image/jpeg',
+  }, Buffer.from('fixture'), { retryDelayMs: 0 });
+  assert.deepEqual(result, { attempt: 1, ambiguous_response_recovered: true });
+});
+
+test('storage upload retries when a failed response created no object', async () => {
+  let attempts = 0;
+  const client = { storage: { from: () => ({
+    upload: async () => {
+      attempts += 1;
+      return attempts === 1
+        ? { error: { message: 'temporary gateway response' } }
+        : { error: null };
+    },
+    list: async () => ({ data: [], error: null }),
+  }) } };
+  const result = await uploadAndConfirm(client, {
+    image_path: 'cards/face.jpg', content_type: 'image/jpeg',
+  }, Buffer.from('fixture'), { retryDelayMs: 0 });
+  assert.equal(attempts, 2);
+  assert.deepEqual(result, { attempt: 2, ambiguous_response_recovered: false });
 });
 
 test('PNG inspection and pointer retain exact face identity', () => {

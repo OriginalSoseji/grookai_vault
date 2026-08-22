@@ -1,0 +1,136 @@
+name: MTG Signed-In Catalog Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Plan or apply the one-row signed-in release
+        required: true
+        type: choice
+        options:
+          - plan
+          - apply
+      expected_sha:
+        description: Exact deployed commit SHA
+        required: true
+        type: string
+      web_deployment_id:
+        description: Verified production web deployment ID
+        required: true
+        type: string
+      android_artifact_sha256:
+        description: SHA-256 of the signed Android artifact
+        required: true
+        type: string
+      android_version_code:
+        description: Signed Android version code
+        required: true
+        type: string
+      android_workflow_run_id:
+        description: Android workflow run ID
+        required: true
+        type: string
+      ios_app_store_build_id:
+        description: Processed TestFlight build ID
+        required: true
+        type: string
+      ios_build_number:
+        description: Processed TestFlight build number; must match Android
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-signed-in-catalog-release-v1
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      OUT_DIR: ${{ runner.temp }}/mtg-signed-in-release
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify frozen release implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -n "$SUPABASE_DB_URL"
+          [[ "${{ inputs.android_version_code }}" =~ ^[1-9][0-9]*$ ]]
+          [[ "${{ inputs.ios_build_number }}" =~ ^[1-9][0-9]*$ ]]
+          test "${{ inputs.android_version_code }}" = "${{ inputs.ios_build_number }}"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/pricing/mtg_signed_in_catalog_release_v1.mjs
+          node --check scripts/audits/mtg_signed_in_catalog_release_v1.mjs
+          node --test tests/contracts/mtg_signed_in_catalog_release_v1.test.mjs
+          git diff --check
+
+      - name: Install operator dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Freeze exact release plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_signed_in_catalog_release_v1.mjs \
+            --mode=plan \
+            --expected-commit="$EXPECTED_SHA" \
+            --out-dir="$OUT_DIR/plan" \
+            --web-production-status=ready \
+            --web-commit="$EXPECTED_SHA" \
+            --web-deployment-id="${{ inputs.web_deployment_id }}" \
+            --android-artifact-status=signed \
+            --android-artifact-sha256="${{ inputs.android_artifact_sha256 }}" \
+            --android-commit="$EXPECTED_SHA" \
+            --android-version-code="${{ inputs.android_version_code }}" \
+            --android-workflow-run-id="${{ inputs.android_workflow_run_id }}" \
+            --ios-distribution-status=in_beta_testing \
+            --ios-build-number="${{ inputs.ios_build_number }}" \
+            --ios-commit="$EXPECTED_SHA" \
+            --ios-app-store-build-id="${{ inputs.ios_app_store_build_id }}"
+
+      - name: Apply and prove signed-in release
+        if: ${{ inputs.operation == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          fingerprint="$(node -e "const p=require(process.argv[1]);process.stdout.write(p.activation_plan_fingerprint_sha256)" "$OUT_DIR/plan/run_plan.json")"
+          node scripts/audits/mtg_signed_in_catalog_release_v1.mjs \
+            --mode=apply \
+            --expected-commit="$EXPECTED_SHA" \
+            --expected-plan-fingerprint="$fingerprint" \
+            --out-dir="$OUT_DIR/apply" \
+            --web-production-status=ready \
+            --web-commit="$EXPECTED_SHA" \
+            --web-deployment-id="${{ inputs.web_deployment_id }}" \
+            --android-artifact-status=signed \
+            --android-artifact-sha256="${{ inputs.android_artifact_sha256 }}" \
+            --android-commit="$EXPECTED_SHA" \
+            --android-version-code="${{ inputs.android_version_code }}" \
+            --android-workflow-run-id="${{ inputs.android_workflow_run_id }}" \
+            --ios-distribution-status=in_beta_testing \
+            --ios-build-number="${{ inputs.ios_build_number }}" \
+            --ios-commit="$EXPECTED_SHA" \
+            --ios-app-store-build-id="${{ inputs.ios_app_store_build_id }}"
+
+      - name: Upload release evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-signed-in-catalog-release-${{ github.run_id }}
+          path: ${{ runner.temp }}/mtg-signed-in-release
+          if-no-files-found: error
+          retention-days: 30

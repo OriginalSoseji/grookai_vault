@@ -116,6 +116,24 @@ class _CardDetailPrintingOption {
   final String? imageAltUrl;
 }
 
+class _CardImageFace {
+  const _CardImageFace({
+    required this.index,
+    required this.role,
+    required this.imageUrl,
+  });
+
+  final int index;
+  final String role;
+  final String imageUrl;
+
+  String get label {
+    if (role == 'front') return 'Front';
+    if (role == 'back') return 'Back';
+    return 'Face ${index + 1}';
+  }
+}
+
 class _CardDetailScreenState extends State<CardDetailScreen> {
   static const double _sectionSpacing = 10;
   final supabase = Supabase.instance.client;
@@ -126,6 +144,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   List<Map<String, dynamic>> _relatedVersions = const [];
   List<_CardDetailPrintingOption> _printingOptions =
       const <_CardDetailPrintingOption>[];
+  List<_CardImageFace> _imageFaces = const <_CardImageFace>[];
+  int _selectedImageFaceIndex = 0;
   String? _selectedCardPrintingId;
   bool _printingSelectionTouched = false;
   bool _priceLoading = false;
@@ -324,6 +344,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       final cardPrintId = _cleanText(contextData?['id']).isNotEmpty
           ? _cleanText(contextData?['id'])
           : widget.cardPrintId;
+      final imageFaces = await _fetchImageFaces(cardPrintId);
 
       List<Map<String, dynamic>> relatedRows = const [];
       if (resolvedName.isNotEmpty) {
@@ -364,6 +385,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _cardContextData = contextData;
         _relatedVersions = relatedRows;
         _printingOptions = printingOptions;
+        _imageFaces = imageFaces;
+        _selectedImageFaceIndex = 0;
         _selectedCardPrintingId = selectedCardPrintingId;
         _printingSelectionTouched = false;
         _relatedVersionOwnershipByCardPrintId =
@@ -379,10 +402,42 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _cardContextData = null;
         _relatedVersions = const [];
         _printingOptions = const <_CardDetailPrintingOption>[];
+        _imageFaces = const <_CardImageFace>[];
+        _selectedImageFaceIndex = 0;
         _selectedCardPrintingId = null;
         _printingSelectionTouched = false;
         _relatedVersionOwnershipByCardPrintId = <String, OwnershipState>{};
       });
+    }
+  }
+
+  Future<List<_CardImageFace>> _fetchImageFaces(String cardPrintId) async {
+    final normalizedCardPrintId = _cleanText(cardPrintId);
+    if (normalizedCardPrintId.isEmpty) return const <_CardImageFace>[];
+
+    try {
+      final raw = await supabase.rpc(
+        'get_card_print_image_faces_v1',
+        params: <String, dynamic>{'p_card_print_id': normalizedCardPrintId},
+      );
+      if (raw is! List) return const <_CardImageFace>[];
+      final faces = raw
+          .whereType<Map>()
+          .map((row) {
+            final index = int.tryParse('${row['face_index'] ?? ''}');
+            final role = _cleanText(row['face_role']).toLowerCase();
+            final imageUrl = _cleanText(row['image_url']);
+            if (index == null || index < 0 || role.isEmpty || imageUrl.isEmpty) {
+              return null;
+            }
+            return _CardImageFace(index: index, role: role, imageUrl: imageUrl);
+          })
+          .whereType<_CardImageFace>()
+          .toList()
+        ..sort((left, right) => left.index.compareTo(right.index));
+      return faces;
+    } catch (_) {
+      return const <_CardImageFace>[];
     }
   }
 
@@ -2098,7 +2153,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Widget _buildHeroImage() {
     final artwork = _cardArtworkResolution;
-    final url = artwork.primaryImageUrl ?? '';
+    final selectedFace = _imageFaces.isEmpty
+        ? null
+        : _imageFaces[_selectedImageFaceIndex.clamp(0, _imageFaces.length - 1)];
+    final url = selectedFace?.imageUrl ?? artwork.primaryImageUrl ?? '';
+    final fallbackUrl = selectedFace?.role == 'back'
+        ? null
+        : artwork.fallbackImageUrl;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -2108,18 +2169,48 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         return Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: maxWidth),
-            child: AspectRatio(
-              aspectRatio: 2.5 / 3.5,
-              child: CardSurfaceArtwork(
-                label: _displayTitle,
-                imageUrl: url,
-                fallbackImageUrl: artwork.fallbackImageUrl,
-                borderRadius: 20,
-                padding: EdgeInsets.zero,
-                frame: CardArtworkFrame.none,
-                showShadow: true,
-                showZoomAffordance: url.isNotEmpty,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AspectRatio(
+                  aspectRatio: 2.5 / 3.5,
+                  child: CardSurfaceArtwork(
+                    label: selectedFace == null
+                        ? _displayTitle
+                        : '$_displayTitle, ${selectedFace.label}',
+                    imageUrl: url,
+                    fallbackImageUrl: fallbackUrl,
+                    borderRadius: 20,
+                    padding: EdgeInsets.zero,
+                    frame: CardArtworkFrame.none,
+                    showShadow: true,
+                    showZoomAffordance: url.isNotEmpty,
+                  ),
+                ),
+                if (_imageFaces.length > 1) ...[
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    child: SegmentedButton<int>(
+                      segments: [
+                        for (var index = 0; index < _imageFaces.length; index++)
+                          ButtonSegment<int>(
+                            value: index,
+                            label: Text(_imageFaces[index].label),
+                          ),
+                      ],
+                      selected: <int>{_selectedImageFaceIndex},
+                      showSelectedIcon: false,
+                      onSelectionChanged: (selection) {
+                        if (selection.isEmpty) return;
+                        setState(() {
+                          _selectedImageFaceIndex = selection.first;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
         );
