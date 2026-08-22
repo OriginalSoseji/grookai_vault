@@ -79,6 +79,7 @@ jobs:
           test -n "$SUPABASE_DB_URL"
           npx --yes supabase@2.54.11 db push \
             --db-url "$SUPABASE_DB_URL" \
+            --include-all \
             --dry-run 2>&1 | tee migration_dry_run.txt
           grep -q "$TARGET_MIGRATION" migration_dry_run.txt
           mapfile -t pending < <(
@@ -93,7 +94,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes supabase@2.54.11 db push --db-url "$SUPABASE_DB_URL"
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --include-all \
+            --yes
 
       - name: Install operator dependencies
         if: ${{ !startsWith(inputs.operation, 'migration_') }}
