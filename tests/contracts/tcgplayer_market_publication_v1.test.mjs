@@ -18,6 +18,11 @@ import {
   evaluateTcgplayerCurrentSourceHealthV1,
   TCGPLAYER_MARKET_HEALTH_POLICY_V1,
 } from "../../backend/pricing/tcgplayer_market_health_policy_v1.mjs";
+import {
+  TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+  buildTcgplayerCandidateProductPagesV1,
+  inspectTcgplayerCandidateRowsV1,
+} from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -596,7 +601,64 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_4/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5/);
+});
+
+test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
+  assert.equal(TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1, 10_000);
+  assert.deepEqual(
+    buildTcgplayerCandidateProductPagesV1([4, 2, 4, 3, 1], 2),
+    [[1, 2], [3, 4]],
+  );
+  assert.throws(
+    () => buildTcgplayerCandidateProductPagesV1([1], 0),
+    /positive integer/,
+  );
+});
+
+test("candidate reconciliation pins count, source run, and observation uniqueness", () => {
+  const sourceRunId = "00000000-0000-4000-8000-000000000001";
+  const clean = inspectTcgplayerCandidateRowsV1({
+    rows: [
+      { source_observation_id: "obs-1", source_sync_run_id: sourceRunId },
+      { source_observation_id: "obs-2", source_sync_run_id: sourceRunId },
+    ],
+    expectedSourceSyncRunId: sourceRunId,
+    expectedCount: 2,
+  });
+  assert.deepEqual(clean.findings, []);
+
+  const drifted = inspectTcgplayerCandidateRowsV1({
+    rows: [
+      { source_observation_id: "obs-1", source_sync_run_id: sourceRunId },
+      { source_observation_id: "obs-1", source_sync_run_id: "other-run" },
+    ],
+    expectedSourceSyncRunId: sourceRunId,
+    expectedCount: 3,
+  });
+  assert.deepEqual(drifted.findings, [
+    "candidate_count:2/3",
+    "duplicate_source_observation_id",
+    "source_sync_run_mismatch",
+  ]);
+  assert.match(WORKER, /candidate\.source_sync_run_id = \$1/);
+  assert.match(WORKER, /candidate\.source_product_id = any\(\$2::integer\[\]\)/);
+  assert.match(WORKER, /candidate reconciliation failed/);
+  assert.doesNotMatch(
+    WORKER,
+    /order by candidate\.source_product_id,[\s\S]{0,200}\$\{limitSql\}/,
+  );
+});
+
+test("large qualification artifacts are written and hashed in bounded streams", () => {
+  assert.match(WORKER, /async function writeJsonLines/);
+  assert.match(WORKER, /for \(const batch of chunks\(rows, batchSize\)\)/);
+  assert.match(WORKER, /createReadStream\(filePath\)/);
+  assert.match(WORKER, /hashes\[name\] = await sha256File\(filePath\)/);
+  assert.doesNotMatch(
+    WORKER,
+    /decisions\.map\(\(decision\) => JSON\.stringify\(decision\)\)\.join/,
+  );
 });
 
 test("quarantines finish conflicts and non-positive market prices", () => {
