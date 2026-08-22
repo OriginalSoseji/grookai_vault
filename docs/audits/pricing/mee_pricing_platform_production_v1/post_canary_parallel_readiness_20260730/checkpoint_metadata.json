@@ -1,0 +1,40 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_POST_CANARY_PARALLEL_READINESS_CHECKPOINT_V1",
+  "status": "rehearsal_ready",
+  "recorded_on": "2026-07-30",
+  "preparation_commit_sha": "2c54716795a4eebce507f99df09544d6a6fe8459",
+  "integration_inputs": {
+    "main_sha": "92147f8c0aa81d5ab89453a89c63f2871e86b626",
+    "pricing_branch_sha": "cecfc06627c3de47af362f5397b57141f157e897",
+    "merge_base_sha": "97c5657c8c5d4a160248d160bb3c08e6c53eeeaa"
+  },
+  "active_canary": {
+    "production_sha": "456306bdb2a335286d513c1d612a97a58a1f01cc",
+    "activation_time": "2026-07-30T18:17:48.625Z",
+    "required_end_time": "2026-08-02T18:17:48.625Z",
+    "activation_run_id": "421f40ab-2d2d-4411-a1b3-7420603c5b86",
+    "publication_set_id": "5b016262-764b-4b05-9e1e-df15971d0a7d",
+    "rollback_publication_set_id": "1317e10a-c88f-4316-b062-bc5d62e297c9",
+    "changed_by_readiness_work": false
+  },
+  "readiness": {
+    "migration_rehearsal": "passed",
+    "coverage_threshold": "passed",
+    "coverage_percent": 95.247,
+    "exact_mapping_candidates": 251,
+    "rollback_dry_run": "passed",
+    "schedule_dry_run": "passed",
+    "integration_conflict_count": 11,
+    "required_surface_count": 17,
+    "captured_surface_count": 0,
+    "current_publication_scope_correction_count": 2
+  },
+  "boundaries": {
+    "production_database_writes": false,
+    "production_migration_apply": false,
+    "production_deploy": false,
+    "production_publication_activation": false,
+    "canary_configuration_changes": false
+  },
+  "next_gate": "Complete the active 72-hour observer at or after 2026-08-02T18:17:48.625Z, then execute docs/runbooks/TCGPLAYER_MARKET_POST_CANARY_EXECUTION_V1.md."
+}

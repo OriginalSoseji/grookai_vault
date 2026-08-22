@@ -349,7 +349,11 @@ export function FounderGovernedPricingPlatformDetail({
           <Metric
             label="Classification"
             value={summary.canary.classification}
-            detail={`${summary.canary.observedHours.toFixed(1)} / ${summary.canary.expectedHours} hours observed`}
+            detail={
+              summary.canary.windowElapsed
+                ? `${summary.canary.observedHours.toFixed(1)} hours observed; enforcing proof required`
+                : `${summary.canary.remainingHours.toFixed(1)} hours remain`
+            }
           />
           <Metric
             label="Exact / positive"
@@ -546,6 +550,19 @@ function CoverageSection({
           detail={formatDate(summary.coverage.verifiedAt)}
         />
       </div>
+      {summary.publicationScope.outOfScopeCount > 0 ? (
+        <div className="border-l-2 border-amber-500 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          <p className="font-semibold">
+            Current canary scope correction required
+          </p>
+          <p className="mt-1 leading-6">
+            {summary.publicationScope.outOfScopeCount} of{" "}
+            {summary.publicationScope.rowCount} current rows are now excluded
+            by V1.2 policy. The active canary remains unchanged; the first
+            post-canary shadow must omit them.
+          </p>
+        </div>
+      ) : null}
       <div className="overflow-x-auto border-y border-slate-200">
         <table className="w-full min-w-[520px] text-left text-sm">
           <thead className="bg-slate-50 text-xs uppercase text-slate-500">

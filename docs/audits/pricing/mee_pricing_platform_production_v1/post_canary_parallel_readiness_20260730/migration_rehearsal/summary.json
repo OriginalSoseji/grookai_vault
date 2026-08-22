@@ -1,0 +1,61 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_POST_CANARY_MIGRATION_REHEARSAL_V1",
+  "status": "passed",
+  "executed_on": "2026-07-30",
+  "environment": {
+    "kind": "disposable_local_supabase_stack",
+    "isolated_from_shared_local_stack": true,
+    "isolated_from_production": true,
+    "stack_stopped_after_rehearsal": true,
+    "container_volumes_removed": true
+  },
+  "migration_replay": {
+    "total_migrations_applied": 305,
+    "target_migrations": [
+      {
+        "id": "20260728130000",
+        "sha256": "028c94a4b86cf2e29fcd74dba4e5111c24ce70512019db3688c6d1e5b1632681",
+        "applied": true
+      },
+      {
+        "id": "20260728133000",
+        "sha256": "a66c7ae4aa3903077ad70d81bd1aeaa595f90a27ad30dd5b5604198eb7975cd7",
+        "applied": true
+      },
+      {
+        "id": "20260730180000",
+        "sha256": "2cca3f5634a40ee68489944fc08e026f8de840a276f159e43546cd3458ea31cf",
+        "applied": true
+      }
+    ]
+  },
+  "security_readback": {
+    "security_definer_function_count": 7,
+    "all_security_definer_functions_have_public_search_path": true,
+    "anon_market_read_model_execute": false,
+    "anon_top_market_execute": false,
+    "anon_parent_summary_select": false,
+    "authenticated_market_read_model_execute": true,
+    "authenticated_top_market_execute": true,
+    "authenticated_parent_summary_select": false,
+    "service_role_market_read_model_execute": true,
+    "service_role_top_market_execute": true,
+    "service_role_parent_summary_select": true,
+    "vault_item_instances_rls_enabled": true,
+    "vault_target_view_security_barrier": true,
+    "vault_target_view_security_invoker": false
+  },
+  "behavior_readback": {
+    "parent_summary_contains_materialized_current_prices": true,
+    "authenticated_empty_governed_read_row_count": 0,
+    "owner_empty_vault_target_read_row_count": 0,
+    "behavior_checks_rolled_back": true
+  },
+  "boundaries": {
+    "production_database_reads": false,
+    "production_database_writes": false,
+    "production_migration_apply": false,
+    "production_publication_change": false,
+    "production_deploy": false
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_POST_CANARY_PARALLEL_READINESS_HASHES_V1",
+  "algorithm": "sha256",
+  "file_count": 36,
+  "files": [
+    {
+      "path": "checkpoint_metadata.json",
+      "bytes": 1671,
+      "sha256": "b1056d831ae21f554f83028429977ae87896d9fe8be82f64ad884932e966fdd4"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/artifact_hashes.json",
+      "bytes": 552,
+      "sha256": "586813b31ce0d9a96e502cc314275b7bcb2b91a3af3497f2cbb5794d9281c54f"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/coverage_gaps.jsonl",
+      "bytes": 1984125,
+      "sha256": "031f2db0dd8d9673e5803ecda507121c58942a2c62807fc5e014923acdddc264"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/current_publication_scope.json",
+      "bytes": 1490,
+      "sha256": "04f2cb692446baeeb2b4b95af552358fe056969502681ef440fcfb5e849c6b6e"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/REPORT.md",
+      "bytes": 4456,
+      "sha256": "d80326422c6bf53d2f5158be1804e7ca63b4193e554ac5499b44aa2c38d8decd"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/run_plan.json",
+      "bytes": 579,
+      "sha256": "6ed105131fef664090b98aef8ad3434ca631158e66de785a7a32df50231314e7"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/scope_exclusions.jsonl",
+      "bytes": 16744246,
+      "sha256": "7909db8a38aacbcd7f594210814da247cdfe157a1f2293f6cf53e16969e7aa46"
+    },
+    {
+      "path": "coverage/2026-07-30T19-33-55-211Z/summary.json",
+      "bytes": 60577,
+      "sha256": "d29be42532f320bbeb53bf8baea31857111379fa7a4f23c80079e367142abe0f"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/artifact_hashes.json",
+      "bytes": 801,
+      "sha256": "d6d467228860644cd936120bc45a111db0af2c1cdb77a7d55f9f4c93417a1f9e"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/integration_files.jsonl",
+      "bytes": 101045,
+      "sha256": "0a0cc134beed780e0bb5039dd103eb12fa3da366e1f044ad78dfd28f48fbb18f"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/main_only_commits.jsonl",
+      "bytes": 5408,
+      "sha256": "bdd3684c3d119e7a84421cdb5fbc53527abd874b6031e8ce891b8edc17cfee9f"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/merge_conflicts.json",
+      "bytes": 646,
+      "sha256": "05f31daa2e0ffc362bd09707d060b9d2f51f968e28f7d205a7afd0b660f776cd"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/pricing_only_commits.jsonl",
+      "bytes": 8493,
+      "sha256": "1de3698c062a527e20125e95880b22e6ec179bac630d8877b626c8b8f1346b52"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/REPORT.md",
+      "bytes": 2418,
+      "sha256": "3e18720c97629ecd8f7810e9e397b9ed0d22911625554033c31fa9c0ee1f49ad"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/run_plan.json",
+      "bytes": 663,
+      "sha256": "a3a9e8212d98761e935fb350f62bec321155bd76d89eeb6d4434c8e32877ded8"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/summary.json",
+      "bytes": 2352,
+      "sha256": "36cb7f58569bb6239a2f7f714130db2da965b8cf9124fa8f6e6779cba3bb580b"
+    },
+    {
+      "path": "integration_inventory/2026-07-30T19-51-51-872Z/surface_checklist.json",
+      "bytes": 553,
+      "sha256": "190baa372cc0a2b04941f979503fe9aea2e5b4d843f67f77a12d6a8ac08adebc"
+    },
+    {
+      "path": "mapping-plan/2026-07-30T19-37-37-605Z/artifact_hashes.json",
+      "bytes": 436,
+      "sha256": "e2c428f2aee76fe966010c571407ab61379b7c8e5a8ee7c88fd64aafe099c221"
+    },
+    {
+      "path": "mapping-plan/2026-07-30T19-37-37-605Z/blocked.jsonl",
+      "bytes": 607413,
+      "sha256": "af11208277593c5f12bad99523cd0595d816f7407493f9cbbe9f0b2b8822d0d6"
+    },
+    {
+      "path": "mapping-plan/2026-07-30T19-37-37-605Z/candidates.jsonl",
+      "bytes": 310009,
+      "sha256": "d9c38ae39d51ebb02f15455ffeba2dbf8646c643250419622e5c6072a0e985f9"
+    },
+    {
+      "path": "mapping-plan/2026-07-30T19-37-37-605Z/REPORT.md",
+      "bytes": 943,
+      "sha256": "5a343c364f2172c943a8bf9e0dcde48cbd7f5c10c6f0a1438d1ac03845de1310"
+    },
+    {
+      "path": "mapping-plan/2026-07-30T19-37-37-605Z/run_plan.json",
+      "bytes": 1274,
+      "sha256": "b010b04418c095e8a16608223e66e597f13350906e283b5b0fae3eb6e2059b78"
+    },
+    {
+      "path": "mapping-plan/2026-07-30T19-37-37-605Z/summary.json",
+      "bytes": 1542,
+      "sha256": "47ce1507b89fb58f4282bf00fe52d863d83f4aeb47e1ec45ba9f823768233bf8"
+    },
+    {
+      "path": "migration_rehearsal/REPORT.md",
+      "bytes": 2252,
+      "sha256": "53cac04f8c3a648d7897c6861e724220e04004146f953ddf30a5214dfd5801e1"
+    },
+    {
+      "path": "migration_rehearsal/summary.json",
+      "bytes": 2101,
+      "sha256": "9f09fd76e79615bb7948834fde9bf3a2801cbe93e939c5d57201d7f7fcc1f806"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 5179,
+      "sha256": "0d2dc05169397aac3105d557aa556d31cdd22265d947fd18511fed5d5dd16a5c"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/artifact_hashes.json",
+      "bytes": 577,
+      "sha256": "2aae3d6f0078aeb0ae975ea8c7e3763d8fb669d481b80b6e5dd50c09e2dbc134"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/postcondition_readback.json",
+      "bytes": 5,
+      "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/precondition_readback.json",
+      "bytes": 1121,
+      "sha256": "2e2d51ab1b177755518a7eb0dc42c4d587f9421023ebbce28bea0585c0ec06ff"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/publication_events.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/rolled_back_set_readback.json",
+      "bytes": 5,
+      "sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/run_plan.json",
+      "bytes": 929,
+      "sha256": "3f83b1d472e770d8e81c0478098472cd5a857df351076c30d6ba238c1587ec20"
+    },
+    {
+      "path": "rollback/2026-07-30T19-35-28-488Z_dry_run_fdfdf9e1-b54f-4b16-a365-8a000983232d/summary.json",
+      "bytes": 598,
+      "sha256": "bcae72ccac9860feb6313cdaee071ebe73c259daad3b4b5e57cbc1bb5c5d47c4"
+    },
+    {
+      "path": "schedule/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/scheduled_run_plan.json",
+      "bytes": 1208,
+      "sha256": "e617036ede3b205dadeb8d68bd979e23be728bd3c50984d4646a20d74140fdd3"
+    },
+    {
+      "path": "schedule/TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-07-30/scheduled_summary.json",
+      "bytes": 1409,
+      "sha256": "14b3e1e978085f396191c885b9a102d5b94c52695c5c4da7b63f6f7c9a426bb0"
+    },
+    {
+      "path": "surface-template/capture_manifest.json",
+      "bytes": 905,
+      "sha256": "385577c21528ee97eaea69c5102c689497dffff7d53f373f18a98144850d1d6d"
+    }
+  ]
+}

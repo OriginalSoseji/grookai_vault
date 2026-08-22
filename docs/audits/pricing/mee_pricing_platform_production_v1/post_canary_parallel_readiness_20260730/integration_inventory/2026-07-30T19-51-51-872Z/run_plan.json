@@ -1,0 +1,18 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_POST_CANARY_INTEGRATION_INVENTORY_V1",
+  "created_at": "2026-07-30T19:51:51.871Z",
+  "main_ref": "origin/main",
+  "main_sha": "92147f8c0aa81d5ab89453a89c63f2871e86b626",
+  "pricing_ref": "origin/pricing/mee-productization-v1",
+  "pricing_sha": "cecfc06627c3de47af362f5397b57141f157e897",
+  "merge_base_sha": "97c5657c8c5d4a160248d160bb3c08e6c53eeeaa",
+  "producing_worktree_tracked_clean": true,
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "production_deploy": false,
+    "migration_apply": false,
+    "publication_activation": false,
+    "canary_configuration_changes": false
+  }
+}

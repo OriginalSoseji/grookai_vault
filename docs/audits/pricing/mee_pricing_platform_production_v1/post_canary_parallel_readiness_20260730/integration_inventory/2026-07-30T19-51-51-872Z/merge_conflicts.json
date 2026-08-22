@@ -1,0 +1,17 @@
+{
+  "clean": false,
+  "exit_code": 1,
+  "conflict_files": [
+    "apps/web/src/components/PublicSetCardGrid.tsx",
+    "apps/web/src/lib/pricing/getPublicPricingByCardIds.ts",
+    "lib/main_vault.dart",
+    "lib/screens/compare/compare_screen.dart",
+    "lib/services/public/public_collector_service.dart",
+    "package.json",
+    "scripts/audits/jpn_pikachu_promo_first_batch_dry_run_v1.mjs",
+    "scripts/audits/jpn_pikachu_promo_gap_audit_v1.mjs",
+    "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+    "supabase/functions/notification-dispatcher/index.ts",
+    "tests/contracts/search_resolver_pricing_resilience.test.mjs"
+  ]
+}
