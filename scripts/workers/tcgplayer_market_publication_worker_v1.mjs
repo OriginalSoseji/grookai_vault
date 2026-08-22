@@ -1,5 +1,6 @@
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
+import { createReadStream } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,6 +19,11 @@ import {
   loadTcgplayerMarketCanaryDefinitionV1,
   tcgplayerMarketCanarySourceKeyV1,
 } from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
+import {
+  TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+  buildTcgplayerCandidateProductPagesV1,
+  inspectTcgplayerCandidateRowsV1,
+} from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -29,7 +35,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_4";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -239,6 +245,30 @@ async function writeJson(filePath, value) {
   await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
+async function writeJsonLines(filePath, rows, batchSize = 1_000) {
+  const handle = await fs.open(filePath, "w");
+  try {
+    for (const batch of chunks(rows, batchSize)) {
+      await handle.writeFile(
+        `${batch.map((row) => JSON.stringify(row)).join("\n")}\n`,
+      );
+    }
+  } finally {
+    await handle.close();
+  }
+}
+
+async function sha256File(filePath) {
+  const hash = createHash("sha256");
+  await new Promise((resolve, reject) => {
+    const stream = createReadStream(filePath);
+    stream.on("data", (chunk) => hash.update(chunk));
+    stream.on("error", reject);
+    stream.on("end", resolve);
+  });
+  return hash.digest("hex");
+}
+
 async function latestSourceRun(client) {
   const result = await client.query(
     `select
@@ -287,7 +317,11 @@ function assertCandidateScopeEvidence(rows) {
   }
 }
 
-async function candidateRows(client, { limit, canaryDefinition }) {
+async function candidateRows(client, {
+  limit,
+  canaryDefinition,
+  sourceRun,
+}) {
   if (canaryDefinition) {
     const printingIds = canaryDefinition.printings.map(
       (printing) => printing.card_printing_id,
@@ -300,10 +334,11 @@ async function candidateRows(client, { limit, canaryDefinition }) {
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        where candidate.card_printing_id = any($1::uuid[])
+         and candidate.source_sync_run_id = $2
        order by candidate.source_product_id,
                 candidate.source_subtype_name,
                 candidate.source_observation_id`,
-      [printingIds],
+      [printingIds, sourceRun.id],
     );
     assertCandidateScopeEvidence(result.rows);
     const rowsBySourceKey = new Map();
@@ -313,7 +348,7 @@ async function candidateRows(client, { limit, canaryDefinition }) {
       matches.push(row);
       rowsBySourceKey.set(key, matches);
     }
-    return canaryDefinition.printings.map((printing) => {
+    const rows = canaryDefinition.printings.map((printing) => {
       const key = tcgplayerMarketCanarySourceKeyV1(printing);
       const matches = rowsBySourceKey.get(key) ?? [];
       if (matches.length !== 1) {
@@ -337,25 +372,64 @@ async function candidateRows(client, { limit, canaryDefinition }) {
       }
       return row;
     });
+    const inspection = inspectTcgplayerCandidateRowsV1({
+      rows,
+      expectedSourceSyncRunId: sourceRun.id,
+      expectedCount: canaryDefinition.printings.length,
+    });
+    if (!inspection.valid) {
+      throw new Error(`canary candidate reconciliation failed: ${inspection.findings.join(",")}`);
+    }
+    return rows;
   }
-  const params = [];
-  const limitSql = limit === null ? "" : "limit $1";
-  if (limit !== null) params.push(limit);
-  const result = await client.query(
-    `select
-       candidate.*,
-       source_group.name as source_group_name
-     from public.v_tcgplayer_market_qualification_candidates_v1 candidate
-     left join public.tcgcsv_source_groups source_group
-       on source_group.group_id = candidate.group_id
-     order by candidate.source_product_id,
-              candidate.source_subtype_name,
-              candidate.source_observation_id
-      ${limitSql}`,
-    params,
-  );
-  assertCandidateScopeEvidence(result.rows);
-  return result.rows;
+  const inventory = (
+    await client.query(
+      `select
+         count(*)::integer as observation_count,
+         array_agg(distinct observation.product_id order by observation.product_id)
+           as product_ids
+       from public.tcgcsv_source_price_daily_observations observation
+       where observation.last_seen_run_id = $1
+         and observation.observed_on = $2
+         and observation.category_id in (1, 3)`,
+      [sourceRun.id, sourceRun.observed_on],
+    )
+  ).rows[0];
+  const observationCount = Number(inventory.observation_count);
+  const expectedCount = limit === null
+    ? observationCount
+    : Math.min(limit, observationCount);
+  const pages = buildTcgplayerCandidateProductPagesV1(inventory.product_ids);
+  const rows = [];
+  for (const productIds of pages) {
+    const result = await client.query(
+      `select
+         candidate.*,
+         source_group.name as source_group_name
+       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+       left join public.tcgcsv_source_groups source_group
+         on source_group.group_id = candidate.group_id
+       where candidate.source_sync_run_id = $1
+         and candidate.source_product_id = any($2::integer[])
+       order by candidate.source_product_id,
+                candidate.source_subtype_name,
+                candidate.source_observation_id`,
+      [sourceRun.id, productIds],
+    );
+    rows.push(...result.rows);
+    if (limit !== null && rows.length >= limit) break;
+  }
+  const selectedRows = limit === null ? rows : rows.slice(0, limit);
+  const inspection = inspectTcgplayerCandidateRowsV1({
+    rows: selectedRows,
+    expectedSourceSyncRunId: sourceRun.id,
+    expectedCount,
+  });
+  if (!inspection.valid) {
+    throw new Error(`candidate reconciliation failed: ${inspection.findings.join(",")}`);
+  }
+  assertCandidateScopeEvidence(selectedRows);
+  return selectedRows;
 }
 
 function buildCandidate(row, runId) {
@@ -1285,15 +1359,11 @@ async function writeArtifacts(outDir, {
   };
   await writeJson(files.run_plan, runPlan);
   await writeJson(files.summary, summary);
-  await fs.writeFile(
-    files.decisions,
-    decisions.map((decision) => JSON.stringify(decision)).join("\n") +
-      (decisions.length ? "\n" : ""),
-  );
+  await writeJsonLines(files.decisions, decisions);
   await writeJson(files.reconciliation, reconciliation);
   const hashes = {};
   for (const [name, filePath] of Object.entries(files)) {
-    hashes[name] = sha256(await fs.readFile(filePath));
+    hashes[name] = await sha256File(filePath);
   }
   await writeJson(path.join(outDir, "artifact_hashes.json"), hashes);
 }
@@ -1342,6 +1412,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
   const rows = await candidateRows(client, {
     limit: args.limit,
     canaryDefinition: args.canaryDefinition,
+    sourceRun,
   });
   const evaluatedAt = new Date().toISOString();
   const decisions = rows.map((row, index) =>
@@ -1415,6 +1486,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
         const rows = await candidateRows(client, {
           limit: args.limit,
           canaryDefinition: args.canaryDefinition,
+          sourceRun,
         });
         const candidates = rows.map((row) => buildCandidate(row, run.id));
         await insertCandidates(client, candidates, args.batchSize);
@@ -1604,8 +1676,15 @@ async function main() {
     connectionString: url,
     ssl: sslConfig(url),
     connectionTimeoutMillis: 15_000,
+    keepAlive: true,
+    keepAliveInitialDelayMillis: 10_000,
     query_timeout: args.databaseTimeoutMinutes * 60 * 1000,
     statement_timeout: args.databaseTimeoutMinutes * 60 * 1000,
+  });
+  client.on("error", (error) => {
+    process.stderr.write(
+      `[tcgplayer-market-publication] database connection error: ${error.message}\n`,
+    );
   });
   await client.connect();
   await client.query(
@@ -1652,6 +1731,8 @@ async function main() {
         freshness_hours: args.freshnessHours,
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
+        candidate_product_page_size:
+          TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
         database_timeout_minutes: args.databaseTimeoutMinutes,
         expected_source_sync_run_id: args.expectedSourceSyncRunId,
       },

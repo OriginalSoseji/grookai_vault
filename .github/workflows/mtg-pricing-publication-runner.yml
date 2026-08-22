@@ -240,7 +240,38 @@ jobs:
             test -n "$shadow_source_sync_run_id"
             args+=("--expected-source-sync-run-id=$shadow_source_sync_run_id")
           fi
-          node scripts/workers/tcgplayer_market_publication_worker_v1.mjs "${args[@]}"
+          completed=false
+          for attempt in 1 2 3; do
+            log="$RUNNER_TEMP/mtg-pricing-$mode-attempt-$attempt.log"
+            set +e
+            node scripts/workers/tcgplayer_market_publication_worker_v1.mjs \
+              "${args[@]}" 2>&1 | tee "$log"
+            exit_code="${PIPESTATUS[0]}"
+            set -e
+            if [[ "$exit_code" -eq 0 ]]; then
+              completed=true
+              break
+            fi
+            retryable="$(node --input-type=module - "$log" <<'NODE'
+          import fs from 'node:fs';
+          import { classifyMarketPipelineFailureV1 } from './backend/pricing/tcgplayer_market_operations_policy_v1.mjs';
+          const errorText = fs.readFileSync(process.argv[2], 'utf8');
+          const classification = classifyMarketPipelineFailureV1({
+            failedPhase: 'publication',
+            errorText,
+          });
+          process.stdout.write(String(classification.retryable));
+          NODE
+            )"
+            if [[ "$retryable" != "true" ]]; then
+              exit "$exit_code"
+            fi
+            if [[ "$attempt" -eq 3 ]]; then
+              exit "$exit_code"
+            fi
+            sleep "$((attempt * 15))"
+          done
+          test "$completed" = true
 
       - name: Upload immutable evidence
         if: ${{ always() }}
