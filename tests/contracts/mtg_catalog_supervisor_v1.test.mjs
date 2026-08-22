@@ -18,6 +18,10 @@ const ENTRYPOINT = fs.readFileSync(
   new URL("../../scripts/audits/mtg_catalog_supervisor_v1.mjs", import.meta.url),
   "utf8",
 );
+const CONTRACT = fs.readFileSync(
+  new URL("../../docs/contracts/MTG_CATALOG_SUPERVISOR_V1.md", import.meta.url),
+  "utf8",
+);
 
 function batch(index, overrides = {}) {
   return {
@@ -205,6 +209,13 @@ test("historical runner failures cannot fail a complete signed-in no-dispatch st
   assert.equal(result.status, "eligible_catalog_complete_signed_in_no_dispatch");
   assert.equal(result.consecutive_runner_failures, 3);
   assert.equal(result.dispatch, null);
+});
+
+test("governing contract documents signed-in read-only completion and hidden-only dispatch", () => {
+  assert.match(CONTRACT, /signed-in catalog is complete without dispatching/i);
+  assert.match(CONTRACT, /release control to be `hidden` or `signed_in`/i);
+  assert.match(CONTRACT, /only while the release is `hidden`/i);
+  assert.match(CONTRACT, /eligible set is absent after the release becomes `signed_in`/i);
 });
 
 test("workflow is GitHub-native, serialized, least-privilege, and frozen", () => {

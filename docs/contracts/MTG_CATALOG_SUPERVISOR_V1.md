@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The MTG catalog supervisor keeps the approved hidden MTG canonical ingestion moving without local-computer uptime or repeated operator dispatches.
+The MTG catalog supervisor keeps approved hidden MTG canonical ingestion moving without local-computer uptime or repeated operator dispatches. After release, it remains a read-only watchdog that proves the signed-in catalog is complete without dispatching more ingestion work.
 
 It is an orchestrator, not a writer. The existing frozen writer remains the only database mutation authority.
 
@@ -27,14 +27,15 @@ For each invocation it:
 3. Exits successfully when a writer is active or queued.
 4. Stops after three consecutive failed, cancelled, or timed-out writer runs.
 5. Opens a production database transaction in read-only mode.
-6. Requires the MTG release control to remain `hidden`.
+6. Requires the MTG release control to be `hidden` or `signed_in`.
 7. Reconciles each eligible manifest set by exact set, card, identity, printing, parent-mapping, and printing-mapping counts.
 8. Stops on any partial or drifted set.
-9. Selects the first absent eligible execution ordinal.
-10. Writes `run_plan.json` before any dispatch request.
-11. Rechecks runner activity and frozen-ref identity.
-12. Dispatches at most one `apply` range through the existing writer.
-13. Polls GitHub until the newly dispatched writer is visible as active.
+9. When the release is `signed_in`, requires every eligible set to be complete and exits successfully with no dispatch.
+10. When the release is `hidden`, selects the first absent eligible execution ordinal.
+11. Writes `run_plan.json` before any dispatch request.
+12. Rechecks runner activity and frozen-ref identity.
+13. Dispatches at most one `apply` range through the existing writer, and only while the release is `hidden`.
+14. Polls GitHub until the newly dispatched writer is visible as active.
 
 The writer remains idempotent. A timeout or cancellation is resumed from production readback, not from an assumed cursor.
 
@@ -59,10 +60,11 @@ Automation fails closed when:
 
 - the frozen runner ref moves;
 - the manifest hash or contract validation changes;
-- MTG is no longer hidden;
+- MTG release control is neither `hidden` nor `signed_in`;
+- an eligible set is absent after the release becomes `signed_in`;
 - a selected set is partially present or count-drifted;
 - the database readback fails;
 - GitHub workflow state cannot be read;
 - three consecutive writer runs fail, time out, or are cancelled.
 
-Every invocation preserves a summary, run plan, sanitized runner state, artifact hashes, and production readback when no writer is active.
+Historical writer failures do not block a complete `signed_in` no-dispatch result because no writer authority is exercised. Every invocation preserves a summary, run plan, sanitized runner state, artifact hashes, and production readback when no writer is active.
