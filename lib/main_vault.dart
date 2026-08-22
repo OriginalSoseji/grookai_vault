@@ -1330,15 +1330,16 @@ class VaultPageState extends State<VaultPage> {
 
   GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
     final cardPrintId = (row['card_id'] ?? '').toString().trim();
-    final price = _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0;
-    return GrookaiLotListingItemSource(
-      cardName: (row['name'] ?? 'Card').toString(),
-      printingIdentityLabel: resolveVaultPrintingIdentityPresentation(
+    final artwork = _vaultArtwork(row);
+    return GrookaiLotListingItemSource.fromVaultRow(
+      row: row,
+      marketPrice: _pricingByCardPrintId[cardPrintId]?.visibleValue,
+      condition: (row['condition_label'] ?? 'Raw NM').toString(),
+      imageUrl: artwork.primaryImageUrl,
+      fallbackImageUrl: artwork.fallbackImageUrl,
+      meaningfulVariantLabel: resolveVaultPrintingIdentityPresentation(
         row,
       ).label,
-      condition: (row['condition_label'] ?? 'Raw NM').toString(),
-      price: price,
-      imageUrl: _vaultDisplayImageUrl(row),
     );
   }
 

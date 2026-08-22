@@ -382,7 +382,10 @@ void main() {
         ),
       ),
     );
-    await tester.drag(find.byType(ListView), const Offset(0, -500));
+    await tester.drag(
+      find.byType(SingleChildScrollView),
+      const Offset(0, -500),
+    );
     await tester.pump();
 
     final artwork = tester.widget<CardSurfaceArtwork>(

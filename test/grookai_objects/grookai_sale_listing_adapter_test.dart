@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/grookai_sale_listing.dart';
 import 'package:grookai_vault/services/grookai_objects/sale_listing_service.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_models.dart';
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_skin.dart';
 
 void main() {
@@ -70,11 +71,19 @@ void main() {
         sellerHandle: 'Casey',
         items: [
           GrookaiLotListingItemSource(
+            cardPrintId: 'CARD-1',
             cardName: 'Charizard ex',
+            setName: 'Obsidian Flames',
+            setCode: 'OBF',
+            collectorNumber: '223',
+            printedTotal: 197,
+            variantLabel: 'Special Illustration Rare',
             printingIdentityLabel: 'Printing: Reverse Holo',
             condition: 'Raw NM',
+            marketPrice: 130,
             price: 120,
             imageUrl: 'https://example.test/charizard.webp',
+            fallbackImageUrl: 'https://fallback.test/charizard.webp',
           ),
           GrookaiLotListingItemSource(
             cardName: 'Blastoise ex',
@@ -103,12 +112,55 @@ void main() {
       (items.first as Map<String, dynamic>)['printingIdentityLabel'],
       'Printing: Reverse Holo',
     );
+    expect((items.first as Map<String, dynamic>)['marketPrice'], 130);
+    expect((items.first as Map<String, dynamic>)['setName'], 'Obsidian Flames');
+    expect((items.first as Map<String, dynamic>)['collectorNumber'], '223');
+    expect(
+      (items.first as Map<String, dynamic>)['fallbackImageUrl'],
+      'https://fallback.test/charizard.webp',
+    );
     expect(
       (items.last as Map<String, dynamic>)['printingIdentityLabel'],
       'Printing not recorded',
     );
     expect(object.metadata['card_print_ids'], ['CARD-1', 'CARD-2']);
+
+    final lot = LotListingData.fromFields(object.skin, object.fields);
+    expect(lot.items.first.setAndNumberLine, 'Obsidian Flames · 223/197');
+    expect(lot.items.first.meaningfulVariantLabel, 'Special Illustration Rare');
+    expect(lot.estimatedValue, 210);
   });
+
+  test(
+    'vault row source preserves market price and hosted artwork fallback',
+    () {
+      final item = GrookaiLotListingItemSource.fromVaultRow(
+        row: const <String, dynamic>{
+          'card_id': 'CARD-PIKA-1',
+          'gv_vi_id': 'GV-PIKA-1',
+          'name': 'Pikachu',
+          'set_name': 'Ascended Heroes',
+          'set_code': 'ASC',
+          'number': '101/100',
+          'variant_key': 'standard',
+        },
+        marketPrice: 42.15,
+        condition: 'Raw NM',
+        imageUrl: 'https://hosted.test/GV-PIKA-1.webp',
+        fallbackImageUrl: 'https://provider.test/pikachu.webp',
+        meaningfulVariantLabel: 'Illustration Rare',
+      );
+
+      expect(item.cardPrintId, 'CARD-PIKA-1');
+      expect(item.gvviId, 'GV-PIKA-1');
+      expect(item.marketPrice, 42.15);
+      expect(item.price, 42.15);
+      expect(item.setAndNumberLine, 'Ascended Heroes · 101/100');
+      expect(item.variantLabel, contains('Illustration Rare'));
+      expect(item.imageUrl, 'https://hosted.test/GV-PIKA-1.webp');
+      expect(item.fallbackImageUrl, 'https://provider.test/pikachu.webp');
+    },
+  );
 
   test('lot listing caps emitted items at the supported maximum', () {
     final object = GrookaiLotListingAdapter.fromTerms(
