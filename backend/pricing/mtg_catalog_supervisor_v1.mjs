@@ -192,13 +192,10 @@ export function buildMtgCatalogSupervisorPlanV1({
       catalog: null,
     };
   }
-  if (consecutiveFailures >= resolvedFailureLimit) {
+  if (!["hidden", "signed_in"].includes(releaseStatus)) {
     throw new Error(
-      `MTG runner reached ${consecutiveFailures} consecutive failures; automatic dispatch stopped`,
+      `MTG release must be hidden or signed_in, got ${releaseStatus ?? "missing"}`,
     );
-  }
-  if (releaseStatus !== "hidden") {
-    throw new Error(`MTG release must remain hidden, got ${releaseStatus ?? "missing"}`);
   }
   if (!readbackByCode) throw new Error("MTG catalog readback is required before dispatch");
 
@@ -230,6 +227,26 @@ export function buildMtgCatalogSupervisorPlanV1({
     absent_count: absent.length,
     partial_or_drifted_count: partial.length,
   };
+
+  if (releaseStatus === "signed_in") {
+    if (absent.length > 0) {
+      throw new Error(
+        `Signed-in MTG catalog has ${absent.length} absent eligible sets; automatic dispatch is forbidden`,
+      );
+    }
+    return {
+      ...common,
+      status: "eligible_catalog_complete_signed_in_no_dispatch",
+      catalog,
+      dispatch: null,
+    };
+  }
+
+  if (consecutiveFailures >= resolvedFailureLimit) {
+    throw new Error(
+      `MTG runner reached ${consecutiveFailures} consecutive failures; automatic dispatch stopped`,
+    );
+  }
 
   if (absent.length === 0) {
     return {
