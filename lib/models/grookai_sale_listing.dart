@@ -1,4 +1,5 @@
 import '../services/grookai_objects/sale_listing_service.dart';
+import '../services/identity/display_identity.dart';
 import '../widgets/grookai_objects/grookai_object_models.dart';
 import '../widgets/grookai_objects/grookai_object.dart';
 import '../widgets/grookai_objects/grookai_object_skin.dart';
@@ -116,20 +117,84 @@ class GrookaiSaleListingAdapter {
 
 class GrookaiLotListingItemSource {
   const GrookaiLotListingItemSource({
+    this.cardPrintId,
+    this.gvviId,
     required this.cardName,
+    this.setName,
+    this.setCode,
+    this.collectorNumber,
+    this.printedTotal,
+    this.variantLabel,
     required this.condition,
     required this.price,
+    this.marketPrice,
     this.printingIdentityLabel = 'Printing not recorded',
     this.imageUrl,
     this.fallbackImageUrl,
   });
 
+  final String? cardPrintId;
+  final String? gvviId;
   final String cardName;
+  final String? setName;
+  final String? setCode;
+  final String? collectorNumber;
+  final int? printedTotal;
+  final String? variantLabel;
   final String condition;
+
+  /// Immutable market reference. [price] remains seller-controlled.
+  final double? marketPrice;
   final double price;
   final String printingIdentityLabel;
   final String? imageUrl;
   final String? fallbackImageUrl;
+
+  String get setAndNumberLine => _lotSetAndNumberLine(
+    setName: setName,
+    setCode: setCode,
+    collectorNumber: collectorNumber,
+    printedTotal: printedTotal,
+  );
+
+  factory GrookaiLotListingItemSource.fromVaultRow({
+    required Map<String, dynamic> row,
+    required double? marketPrice,
+    required String condition,
+    required String? imageUrl,
+    String? fallbackImageUrl,
+    String? meaningfulVariantLabel,
+  }) {
+    final identity = resolveDisplayIdentityFromFields(
+      name: row['name']?.toString(),
+      variantKey: row['variant_key']?.toString(),
+      printedIdentityModifier: row['printed_identity_modifier']?.toString(),
+      setIdentityModel: row['set_identity_model']?.toString(),
+      setCode: row['set_code']?.toString(),
+      number: row['number']?.toString(),
+    );
+    final variants = <String>{
+      ?_meaningfulLotVariant(identity.suffix),
+      ?_meaningfulLotVariant(meaningfulVariantLabel),
+    };
+    final variantLabel = variants.isEmpty ? null : variants.join(' · ');
+
+    return GrookaiLotListingItemSource(
+      cardPrintId: row['card_id']?.toString(),
+      gvviId: row['gv_vi_id']?.toString(),
+      cardName: identity.baseName,
+      setName: row['set_name']?.toString(),
+      setCode: row['set_code']?.toString(),
+      collectorNumber: row['number']?.toString(),
+      variantLabel: variantLabel,
+      condition: condition,
+      marketPrice: marketPrice,
+      price: marketPrice ?? 0,
+      printingIdentityLabel: variantLabel ?? 'Printing not recorded',
+      imageUrl: imageUrl,
+      fallbackImageUrl: fallbackImageUrl,
+    );
+  }
 }
 
 class GrookaiLotListingSource {
@@ -162,12 +227,22 @@ class GrookaiLotListingAdapter {
         .take(kGrookaiLotMaxCards)
         .map(
           (item) => LotItem(
+            cardPrintId: _blankToNull(item.cardPrintId),
+            gvviId: _blankToNull(item.gvviId),
             cardName: _fallback(item.cardName, 'Card'),
+            setName: _blankToNull(item.setName),
+            setCode: _blankToNull(item.setCode),
+            collectorNumber: _blankToNull(item.collectorNumber),
+            printedTotal: item.printedTotal,
+            variantLabel: _blankToNull(item.variantLabel),
             printingIdentityLabel: _fallback(
               item.printingIdentityLabel,
               'Printing not recorded',
             ),
             condition: _fallback(item.condition, 'Raw NM'),
+            marketPrice: item.marketPrice == null
+                ? null
+                : _normalizePrice(item.marketPrice!),
             price: _normalizePrice(item.price),
             imageUrl: _blankToNull(item.imageUrl),
             fallbackImageUrl: _blankToNull(item.fallbackImageUrl),
@@ -224,4 +299,44 @@ String _fallback(String? value, String fallback) {
 String? _blankToNull(String? value) {
   final normalized = (value ?? '').trim();
   return normalized.isEmpty ? null : normalized;
+}
+
+String _lotSetAndNumberLine({
+  required String? setName,
+  required String? setCode,
+  required String? collectorNumber,
+  required int? printedTotal,
+}) {
+  final normalizedSet = (setName ?? setCode ?? '').trim();
+  final normalizedNumber = (collectorNumber ?? '').trim();
+  final numberWithTotal = normalizedNumber.isEmpty
+      ? ''
+      : printedTotal != null &&
+            printedTotal > 0 &&
+            !normalizedNumber.contains('/')
+      ? '$normalizedNumber/$printedTotal'
+      : normalizedNumber;
+  if (normalizedSet.isNotEmpty && numberWithTotal.isNotEmpty) {
+    return '$normalizedSet · $numberWithTotal';
+  }
+  return normalizedSet.isNotEmpty ? normalizedSet : numberWithTotal;
+}
+
+String? _meaningfulLotVariant(String? value) {
+  var normalized = (value ?? '').trim();
+  if (normalized.toLowerCase().startsWith('printing:')) {
+    normalized = normalized.substring('printing:'.length).trim();
+  }
+  if (normalized.isEmpty ||
+      const {
+        'normal',
+        'standard',
+        'printing not recorded',
+        'printing status unavailable',
+        'exact printing assigned',
+        'unassigned',
+      }.contains(normalized.toLowerCase())) {
+    return null;
+  }
+  return normalized;
 }

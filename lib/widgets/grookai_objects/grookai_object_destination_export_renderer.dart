@@ -6,6 +6,7 @@ import 'grookai_object_atoms.dart';
 import 'grookai_object_frame.dart';
 import 'grookai_object_renderer.dart';
 import 'grookai_object_skin.dart';
+import 'lot_card_widgets.dart';
 
 class GrookaiObjectDestinationExportRenderer extends StatelessWidget {
   const GrookaiObjectDestinationExportRenderer({
@@ -60,6 +61,7 @@ class GrookaiObjectDestinationExportRenderer extends StatelessWidget {
           ),
           GrookaiObjectExportDestination.ebayListing => _EbayListingExport(
             object: object,
+            showFront: showFront,
           ),
         },
       ),
@@ -203,12 +205,16 @@ class _SocialOverlay extends StatelessWidget {
 }
 
 class _EbayListingExport extends StatelessWidget {
-  const _EbayListingExport({required this.object});
+  const _EbayListingExport({required this.object, required this.showFront});
 
   final GrookaiObject object;
+  final bool showFront;
 
   @override
   Widget build(BuildContext context) {
+    if (object.type == 'lot' && !showFront) {
+      return _EbayDetailsExport(object: object);
+    }
     if (object.type == 'lot') {
       return _EbayLotListingExport(object: object);
     }
@@ -263,6 +269,33 @@ class _EbayListingExport extends StatelessWidget {
   }
 }
 
+class _EbayDetailsExport extends StatelessWidget {
+  const _EbayDetailsExport({required this.object});
+
+  final GrookaiObject object;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: const Color(0xFFF5F5F2),
+      child: Center(
+        child: SizedBox(
+          width: 244,
+          height: 341,
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: SizedBox(
+              width: GrookaiObjectFrame.width,
+              height: GrookaiObjectFrame.height,
+              child: GrookaiObjectRenderer(object: object, showFront: false),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _EbayLotListingExport extends StatelessWidget {
   const _EbayLotListingExport({required this.object});
 
@@ -272,27 +305,13 @@ class _EbayLotListingExport extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = _itemMapsFor(object);
     final visibleItems = items.take(12).toList(growable: false);
-    final columnCount = visibleItems.length <= 4 ? 2 : 4;
     return ColoredBox(
       color: const Color(0xFFF5F5F2),
       child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(28, 36, 28, 28),
-            child: GridView.count(
-              crossAxisCount: columnCount,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.84,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                for (final item in visibleItems)
-                  _EbayLotImageTile(
-                    imageUrl: _imageUrlForItem(item),
-                    fallbackImageUrl: _fallbackImageUrlForItem(item),
-                  ),
-              ],
-            ),
+            child: _EbayBalancedLotGrid(items: visibleItems),
           ),
           Positioned(
             top: 18,
@@ -322,6 +341,78 @@ class _EbayLotListingExport extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _EbayBalancedLotGrid extends StatelessWidget {
+  const _EbayBalancedLotGrid({required this.items});
+
+  final List<Map<String, dynamic>> items;
+
+  @override
+  Widget build(BuildContext context) {
+    final pattern = lotBalancedRowPattern(items.length);
+    if (pattern.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const spacing = 10.0;
+        const cardAspectRatio = 0.84;
+        final maxColumns = pattern.reduce(
+          (left, right) => left > right ? left : right,
+        );
+        final maxWidth =
+            (constraints.maxWidth - spacing * (maxColumns - 1)) / maxColumns;
+        final maxHeight =
+            (constraints.maxHeight - spacing * (pattern.length - 1)) /
+            pattern.length;
+        final tileWidth = maxWidth < maxHeight * cardAspectRatio
+            ? maxWidth
+            : maxHeight * cardAspectRatio;
+        final tileHeight = tileWidth / cardAspectRatio;
+        var itemIndex = 0;
+        Widget buildTile(Map<String, dynamic> item) {
+          return _EbayLotImageTile(
+            imageUrl: _imageUrlForItem(item),
+            fallbackImageUrl: _fallbackImageUrlForItem(item),
+          );
+        }
+
+        return Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (
+                var rowIndex = 0;
+                rowIndex < pattern.length;
+                rowIndex += 1
+              ) ...[
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (
+                      var column = 0;
+                      column < pattern[rowIndex];
+                      column += 1
+                    ) ...[
+                      if (column > 0) const SizedBox(width: spacing),
+                      SizedBox(
+                        width: tileWidth,
+                        height: tileHeight,
+                        child: buildTile(items[itemIndex++]),
+                      ),
+                    ],
+                  ],
+                ),
+                if (rowIndex < pattern.length - 1)
+                  const SizedBox(height: spacing),
+              ],
+            ],
+          ),
+        );
+      },
     );
   }
 }
