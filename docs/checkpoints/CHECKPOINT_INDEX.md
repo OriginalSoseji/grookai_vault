@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `GVVI_VENDOR_QR_V1_20260817` — `2026-08-17` — Isolated migration-free implementation locking persistent physical GVVI QR identity, public vendor asking-price presentation, Wall convergence, owner-only QR export, and encrypted server-derived referral attribution
 - `P0_SEARCH_CARD_DETAIL_HIGH_FIDELITY_20260805_V1` — `2026-08-05` — Approved P0 Search and Card Detail hierarchy with exact-version collector context, action-first collection flow, shared evidence disclosure, dark-mode contrast proof, and four locked mobile/desktop screenshots
 - `RELEASE_CONVERGENCE_VISUAL_BOUNDARY_20260805_V1` — `2026-08-05` — Bounded visual completion proving native-canon shell reuse, Search-to-existing-Vault continuity, shared product states, canonical card geometry, deterministic screenshot evidence, and an explicit high-fidelity redesign approval gate
 - `JAPANESE_MASTER_INDEX_V4_DATABASE_WRITE_READINESS_V2` — `2026-08-05` — Complete 5,336-card Japanese V4 insert-only payload, clean current-chain replay, exact local/production schema equivalence, and passing schema-history rollback proof; targeted migration apply remains approval-gated

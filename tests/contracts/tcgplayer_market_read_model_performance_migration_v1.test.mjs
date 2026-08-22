@@ -16,6 +16,15 @@ const MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const REQUEST_SCOPED_CURRENT_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260819014000_tcgplayer_market_request_scoped_current_read_v1.sql",
+  ),
+  "utf8",
+);
 const REFRESH_WORKER = readFileSync(
   path.join(
     ROOT,
@@ -142,4 +151,45 @@ test("active asks refresh in the background and not inside product reads", () =>
   assert.doesNotMatch(REFRESH_WORKER, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
   assert.match(PIPELINE, /phase:\s*"active_ask_refresh"/);
   assert.match(PIPELINE, /activationMode \? "--apply" : "--dry-run"/);
+});
+
+test("full current publication reads filter snapshots before ranking", () => {
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /snapshot\.card_print_id = requested\.card_print_id/i,
+  );
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /snapshot\.card_printing_id = requested\.card_printing_id/i,
+  );
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /current_state\.publication_set_id[\s\S]*snapshot\.publication_set_id = current_state\.publication_set_id/i,
+  );
+  assert.doesNotMatch(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /join public\.v_market_price_current_v1 current_price/i,
+  );
+});
+
+test("full current publication reads have publication-set request indexes", () => {
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /market_price_publication_set_parent_read_idx[\s\S]*publication_set_id,[\s\S]*card_print_id,[\s\S]*card_printing_id/i,
+  );
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /market_price_publication_set_printing_read_idx[\s\S]*publication_set_id,[\s\S]*card_printing_id/i,
+  );
+});
+
+test("request-scoped repair preserves the signed-in-only RPC boundary", () => {
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /revoke all on function public\.get_market_pricing_read_model_v1\(uuid\[\], uuid\[\]\)[\s\S]*from public, anon, authenticated, service_role/i,
+  );
+  assert.match(
+    REQUEST_SCOPED_CURRENT_MIGRATION,
+    /grant execute on function public\.get_market_pricing_read_model_v1\(uuid\[\], uuid\[\]\)[\s\S]*to authenticated, service_role/i,
+  );
 });

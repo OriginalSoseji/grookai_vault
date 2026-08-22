@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: tcgplayer-market-canary-observation
@@ -24,7 +25,10 @@ jobs:
       CANARY_EXPECTED_COUNT: "100"
       TCGPLAYER_MARKET_CANARY_MAX_SOURCE_MISSING_COUNT: "5"
       CANARY_COMPLETION_GRACE_SECONDS: "28800"
-      OBSERVER_SOURCE_SHA: "7c7593040bbf3c48a320008e26e6b21970d99847"
+      OBSERVER_SOURCE_SHA: "3ac5e70b88176895f1422b52626c5b89bca3bfc2"
+      FINAL_EVIDENCE_RUN_ID: "31965591823"
+      FINAL_EVIDENCE_SHA256: "7b84a452de3afff671fbbc83801f779020c5e9c1f2ad4edab5c4969999916013"
+      FINAL_EVIDENCE_AS_OF: "2026-08-16T18:47:26.299Z"
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
 
     steps:
@@ -42,6 +46,15 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Download immutable final-window evidence for manual replay
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: tcgplayer-market-canary-observation-31965591823
+          path: ${{ runner.temp }}/frozen-canary-final
+          github-token: ${{ github.token }}
+          run-id: 31965591823
+
       - name: Observe frozen canary
         id: observe
         shell: bash
@@ -53,7 +66,8 @@ jobs:
           final_completion_deadline="$((required_end_epoch + CANARY_COMPLETION_GRACE_SECONDS))"
           final_observation_deadline="$((final_completion_deadline + 21600))"
 
-          if (( now_epoch > final_observation_deadline )); then
+          if (( now_epoch > final_observation_deadline )) &&
+             [[ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]]; then
             echo "The frozen canary observation window is complete; no further scheduled reads are required."
             echo "skipped_after_final_window=true" >> "$GITHUB_OUTPUT"
             exit 0
@@ -62,6 +76,21 @@ jobs:
           require_pass=()
           if (( now_epoch >= final_completion_deadline )); then
             require_pass=(--require-pass)
+          fi
+
+          frozen_replay=()
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            frozen_evidence="$(
+              find "$RUNNER_TEMP/frozen-canary-final" \
+                -type f -name evidence.json -print \
+                | sort | head -1
+            )"
+            test -n "$frozen_evidence"
+            frozen_replay=(
+              "--as-of=${FINAL_EVIDENCE_AS_OF}"
+              "--frozen-evidence=${frozen_evidence}"
+              "--frozen-evidence-sha256=${FINAL_EVIDENCE_SHA256}"
+            )
           fi
 
           node scripts/audits/tcgplayer_market_canary_observation_v1.mjs \
@@ -74,6 +103,7 @@ jobs:
             --schedule-tolerance-minutes=90 \
             --schedule-completion-grace-minutes=480 \
             --out-root="$RUNNER_TEMP/tcgplayer-market-canary-observation" \
+            "${frozen_replay[@]}" \
             "${require_pass[@]}"
 
           latest_summary="$(

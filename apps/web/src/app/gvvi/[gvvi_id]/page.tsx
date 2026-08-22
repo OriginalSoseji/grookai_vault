@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
+import VendorCardPageViewEvent from "@/components/gvvi/VendorCardPageViewEvent";
+import VendorOfferSummary from "@/components/gvvi/VendorOfferSummary";
 import PublicCardImage from "@/components/PublicCardImage";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import PageSection from "@/components/layout/PageSection";
@@ -45,8 +47,12 @@ export async function generateMetadata(
   const siteOrigin = getSiteOrigin();
   const canonicalUrl = `${siteOrigin}/gvvi/${encodeURIComponent(detail.gvviId)}`;
   const imageUrl = asAbsoluteUrl(siteOrigin, detail.imageUrl);
-  const title = `${detail.cardName} • ${detail.ownerDisplayName}'s copy | Grookai Vault`;
-  const description = `View ${detail.ownerDisplayName}'s ${detail.cardName} exact copy on Grookai Vault.`;
+  const title = detail.isVendorOffer
+    ? `${detail.cardName} • ${detail.ownerDisplayName} vendor price | Grookai Vault`
+    : `${detail.cardName} • ${detail.ownerDisplayName}'s copy | Grookai Vault`;
+  const description = detail.isVendorOffer
+    ? `View ${detail.ownerDisplayName}'s current vendor price and condition for ${detail.cardName}.`
+    : `View ${detail.ownerDisplayName}'s ${detail.cardName} exact copy on Grookai Vault.`;
 
   return {
     title,
@@ -122,8 +128,15 @@ export default async function PublicVaultInstancePage(
 
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
+      {detail.isVendorOffer ? (
+        <VendorCardPageViewEvent
+          gvviId={detail.gvviId}
+          gvId={detail.gvId}
+          vendorSlug={detail.ownerSlug}
+        />
+      ) : null}
       <VaultExactCopyHero
-        eyebrow="Collector exact copy"
+        eyebrow={detail.isVendorOffer ? "Vendor card" : "Collector exact copy"}
         cardName={detail.cardName}
         setName={detail.setName}
         setCode={detail.setCode}
@@ -139,19 +152,34 @@ export default async function PublicVaultInstancePage(
         grader={detail.grader}
         grade={detail.grade}
         certNumber={detail.certNumber}
-        statusLabel="Shared"
+        statusLabel={detail.isVendorOffer ? "Available" : "Shared"}
         intentLabel={getVaultIntentLabel(detail.intent)}
         contextLabel={
           <>
-            Shared by{" "}
+            {detail.isVendorOffer ? "Offered by" : "Shared by"}{" "}
             <Link href={`/u/${detail.ownerSlug}`} className="font-semibold text-slate-900 underline-offset-4 hover:underline dark:text-white">
               {detail.ownerDisplayName}
             </Link>
           </>
         }
+        featuredContent={
+          detail.isVendorOffer && detail.askingPriceAmount !== null ? (
+            <VendorOfferSummary
+              askingPriceAmount={detail.askingPriceAmount}
+              askingPriceCurrency={detail.askingPriceCurrency}
+              askingPriceNote={detail.askingPriceNote}
+              conditionLabel={detail.conditionLabel}
+              vendorDisplayName={detail.ownerDisplayName}
+              vendorSlug={detail.ownerSlug}
+              vendorAvatarUrl={detail.ownerAvatarUrl}
+            />
+          ) : null
+        }
         actions={
           <>
-            <Link href={`/u/${detail.ownerSlug}`} className="gv-secondary-button">View collector</Link>
+            <Link href={`/u/${detail.ownerSlug}`} className="gv-secondary-button">
+              {detail.isVendorOffer ? "View vendor Wall" : "View collector"}
+            </Link>
             {detail.gvId ? <Link href={`/card/${detail.gvId}`} className="gv-primary-button">View card</Link> : null}
           </>
         }
@@ -198,7 +226,8 @@ export default async function PublicVaultInstancePage(
         </div>
 
         <div className="space-y-6">
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
+          {!detail.isVendorOffer ? (
+            <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
               title="Pricing"
               description="This exact copy can show a market reference or an owner-set asking price."
@@ -219,13 +248,14 @@ export default async function PublicVaultInstancePage(
               printingGvId={detail.marketReferencePrintingGvId}
               isGraded={detail.isGraded}
             />
-          </PageSection>
+            </PageSection>
+          ) : null}
 
           {contactIntent ? (
             <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
-              title="Contact"
-              description="Message this collector about this card."
+              title={detail.isVendorOffer ? "Contact vendor" : "Contact"}
+              description={detail.isVendorOffer ? "Message this vendor about this exact card." : "Message this collector about this card."}
             />
               <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
                 <p className="text-sm text-slate-600">

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useActionState, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { createPortal } from "react-dom";
 import {
   createCardInteractionAction,
@@ -119,7 +119,7 @@ export function ContactOwnerButton({
   const dialogDescriptionId = `contact-owner-description-${reactId}`;
   const messageHintId = `contact-owner-message-hint-${reactId}`;
   const errorId = `contact-owner-error-${reactId}`;
-  const [state, formAction] = useFormState(createCardInteractionAction, null);
+  const [state, formAction] = useActionState(createCardInteractionAction, null);
   const [isOpen, setIsOpen] = useState(false);
   const [locallyBlocked, setLocallyBlocked] = useState(false);
   const [dismissedSubmissionKey, setDismissedSubmissionKey] = useState<number | null>(null);

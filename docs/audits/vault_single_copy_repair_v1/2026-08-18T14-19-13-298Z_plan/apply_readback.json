@@ -1,0 +1,27 @@
+{
+  "contract_version": "VAULT_SINGLE_COPY_REPAIR_V1",
+  "applied_at": "2026-08-18T14:21:17.218Z",
+  "plan_hash": "8af955e532c981128819e2b6dae1ed749ef17fa325a3bfdf70679d5763fb329c",
+  "target_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+  "before_active_rows": 934,
+  "archived_rows": 712,
+  "after_active_rows": 222,
+  "remaining_duplicate_exact_identities": 0,
+  "total_instance_rows_preserved": 1333,
+  "hard_deletes": 0,
+  "binder_contribution_states": [
+    {
+      "state": "active",
+      "count": 9
+    },
+    {
+      "state": "invalidated",
+      "count": 8
+    },
+    {
+      "state": "withdrawn",
+      "count": 7
+    }
+  ],
+  "result": "applied_and_reconciled"
+}

@@ -571,6 +571,32 @@ test("publication V1.2 scope is evidence-aware and keeps numbered card names", (
     yearQualifiedStaff.evidence.product_scope_rule_id,
     "event_or_distribution_stamp",
   );
+
+  const trainerKit = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      source_product_name: "Arcanine",
+      source_group_name: "EX Trainer Kit 1: Latias & Latios",
+    }),
+    { now: NOW },
+  );
+  assert.equal(trainerKit.decision, "exclude");
+  assert.ok(trainerKit.reason_codes.includes("special_variant_v1_1"));
+  assert.equal(
+    trainerKit.evidence.product_scope_rule_id,
+    "deck_exclusive_special_variant",
+  );
+});
+
+test("worker enriches candidates with source-group evidence before qualification", () => {
+  assert.match(
+    WORKER,
+    /source_group\.name as source_group_name[\s\S]*tcgcsv_source_groups source_group[\s\S]*source_group\.group_id = candidate\.group_id/i,
+  );
+  assert.match(
+    WORKER,
+    /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
+  );
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_4/);
 });
 
 test("quarantines finish conflicts and non-positive market prices", () => {

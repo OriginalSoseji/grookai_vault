@@ -36,11 +36,21 @@ function money(value) {
 }
 
 function timestamp(value) {
+  if (value instanceof Date) {
+    return Number.isFinite(value.getTime()) ? value.toISOString() : null;
+  }
   const normalized = clean(value);
   if (!normalized) {
     return null;
   }
-  const parsed = new Date(normalized);
+  // The PostgreSQL driver materializes timestamps at millisecond precision,
+  // while PostgREST and Flutter can preserve six fractional digits. Compare
+  // the same instant at the strongest precision available on both paths.
+  const millisecondPrecision = normalized.replace(
+    /\.(\d{3})\d*(?=(?:Z|[+-]\d{2}:\d{2})$)/,
+    ".$1",
+  );
+  const parsed = new Date(millisecondPrecision);
   return Number.isFinite(parsed.getTime()) ? parsed.toISOString() : null;
 }
 

@@ -1,0 +1,115 @@
+{
+  "policy_version": "TCGPLAYER_MARKET_CANARY_OBSERVATION_POLICY_V1",
+  "status": "passed",
+  "window": {
+    "started_at": "2026-08-13T09:56:42.279Z",
+    "required_end_at": "2026-08-16T09:56:42.279Z",
+    "as_of": "2026-08-16T18:47:26.299Z",
+    "required_hours": 72,
+    "observed_hours": 80.846,
+    "elapsed": true
+  },
+  "schedule": {
+    "hour_utc": 8,
+    "minute_utc": 15,
+    "tolerance_minutes": 90,
+    "completion_grace_minutes": 480,
+    "expected_slots": [
+      "2026-08-14T08:15:00.000Z",
+      "2026-08-15T08:15:00.000Z",
+      "2026-08-16T08:15:00.000Z"
+    ],
+    "matched_slots": [
+      {
+        "slot": "2026-08-14T08:15:00.000Z",
+        "source_run_id": "1586b514-5829-468b-b548-e99489c0a339",
+        "source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-14-warehouse",
+        "source_started_at": "2026-08-14T08:15:11.343Z",
+        "source_finished_at": "2026-08-14T09:34:48.641Z",
+        "publication_run_id": "ca435f8d-da80-43c3-81f5-523ffb8a83f6",
+        "publication_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-14-publication",
+        "publication_started_at": "2026-08-14T09:41:15.565Z",
+        "publication_completed_at": "2026-08-14T09:48:18.603Z",
+        "offset_minutes": 0.189,
+        "source_offset_minutes": 0.189,
+        "completion_offset_minutes": 93.31
+      },
+      {
+        "slot": "2026-08-15T08:15:00.000Z",
+        "source_run_id": "68862ffe-f272-4654-b826-ff3f6ea5c251",
+        "source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-15-warehouse",
+        "source_started_at": "2026-08-15T08:15:11.196Z",
+        "source_finished_at": "2026-08-15T09:43:46.184Z",
+        "publication_run_id": "38d1c2fd-a180-4a93-8663-6d81d10ab083",
+        "publication_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-15-publication",
+        "publication_started_at": "2026-08-15T09:50:10.425Z",
+        "publication_completed_at": "2026-08-15T09:57:06.772Z",
+        "offset_minutes": 0.187,
+        "source_offset_minutes": 0.187,
+        "completion_offset_minutes": 102.113
+      },
+      {
+        "slot": "2026-08-16T08:15:00.000Z",
+        "source_run_id": "03e5814b-0a0f-4cb4-98d6-9f1050cc1adc",
+        "source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-16-warehouse",
+        "source_started_at": "2026-08-16T08:15:08.109Z",
+        "source_finished_at": "2026-08-16T09:36:02.655Z",
+        "publication_run_id": "5d46eca7-8449-46f7-a49e-daae51684bbc",
+        "publication_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-16-publication",
+        "publication_started_at": "2026-08-16T09:41:03.392Z",
+        "publication_completed_at": "2026-08-16T09:48:07.528Z",
+        "offset_minutes": 0.135,
+        "source_offset_minutes": 0.135,
+        "completion_offset_minutes": 93.125
+      }
+    ],
+    "missing_slots": [],
+    "unmatched_run_keys": []
+  },
+  "run_evidence": {
+    "expected_commit_sha": "6b729441bf8944048885ade5d9905e23166d9d46",
+    "expected_count": 100,
+    "max_source_missing_count": 5,
+    "latest_resolved_count": 98,
+    "activation_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-13-publication",
+    "scheduled_run_count": 3,
+    "unhealthy_run_keys": []
+  },
+  "terminal_alert_count": 0,
+  "current": {
+    "exact_price_count": 98,
+    "positive_usd_count": 98,
+    "missing_provenance_count": 0,
+    "stale_price_count": 0,
+    "broken_trace_count": 0,
+    "current_publication_set_id": "820eb3ff-246f-4a38-b14d-0ac109d2e91a",
+    "current_publication_run_id": "5d46eca7-8449-46f7-a49e-daae51684bbc",
+    "previous_publication_set_id": "b02a5b08-a6f4-4310-bada-9b73ac042f50",
+    "current_publication_activated_at": "2026-08-16T09:48:07.528Z"
+  },
+  "source_health": {
+    "status": "healthy",
+    "source_continuity_mode": "completed_sync",
+    "effective_source_run_key": "TCGPLAYER-MARKET-SCHEDULE-CANARY-2026-08-16-warehouse",
+    "effective_source_status": "completed",
+    "effective_source_price_row_count": 543339,
+    "source_age_hours": 9.19,
+    "findings": []
+  },
+  "access": {
+    "authenticated_execute_granted": true,
+    "authenticated_read_count": 1,
+    "authenticated_runtime_latency_ms": 177.661,
+    "sampled_card_print_ids": [
+      "004a0cc7-3e4b-434e-bcef-530325b43539"
+    ],
+    "anonymous_execute_granted": false,
+    "anonymous_runtime_denied": true,
+    "anonymous_runtime_code": "42501"
+  },
+  "rollback": {
+    "service_execute_granted": true,
+    "prior_publication_available": true
+  },
+  "findings": []
+}

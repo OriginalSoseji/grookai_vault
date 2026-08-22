@@ -1,0 +1,29 @@
+{
+  "read_at": "2026-08-18T14:23:09.591Z",
+  "active_rows": 222,
+  "exact_identities": 222,
+  "duplicate_exact_identity_groups": 0,
+  "canonical_cards": 216,
+  "assigned_printing_rows": 9,
+  "slab_rows": 3,
+  "unassigned_rows": 210,
+  "total_rows": 1333,
+  "rows_archived_in_apply_window": 712,
+  "active_legacy_quantity": 222,
+  "active_wall_memberships": 32,
+  "binder_contribution_states": [
+    {
+      "state": "active",
+      "count": 9
+    },
+    {
+      "state": "invalidated",
+      "count": 8
+    },
+    {
+      "state": "withdrawn",
+      "count": 7
+    }
+  ],
+  "no_hard_delete_proof": "total vault_item_instances rows preserved; repair script contains no DELETE statement"
+}

@@ -9,8 +9,13 @@ import {
   type VaultIntent,
 } from "@/lib/network/intent";
 import { getExactMarketPricingByCardPrintingIds } from "@/lib/pricing/marketPricingReadModelV1";
+import { resolveProfileMediaUrl } from "@/lib/profileMedia";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import {
+  canEntitlementRecordUseVendorTools,
+  isEligiblePublicVendorOffer,
+} from "@/lib/gvvi/vendorQrCore";
 import {
   normalizeVaultInstancePricingAmount,
   normalizeVaultInstancePricingCurrency,
@@ -50,8 +55,16 @@ type PublicVaultInstanceRow = {
 type PublicProfileRow = {
   slug: string | null;
   display_name: string | null;
+  avatar_path: string | null;
   public_profile_enabled: boolean | null;
   vault_sharing_enabled: boolean | null;
+};
+
+type PublicOwnerEntitlementRow = {
+  tier: string | null;
+  role: string | null;
+  features: unknown;
+  is_active: boolean | null;
 };
 
 type SlabCertRow = {
@@ -122,6 +135,36 @@ function normalizeSetName(value: CardPrintRow["sets"]) {
   return normalizeOptionalText(record?.name) ?? "Unknown set";
 }
 
+async function getActiveOwnerEntitlement(
+  admin: ReturnType<typeof createServerAdminClient>,
+  ownerUserId: string,
+): Promise<PublicOwnerEntitlementRow | null> {
+  const { data: userIdEntitlement } = await admin
+    .from("user_entitlements")
+    .select("tier,role,features,is_active")
+    .eq("user_id", ownerUserId)
+    .eq("is_active", true)
+    .maybeSingle();
+  if (userIdEntitlement) {
+    return userIdEntitlement as PublicOwnerEntitlementRow;
+  }
+
+  const { data: ownerAuthData, error: ownerAuthError } =
+    await admin.auth.admin.getUserById(ownerUserId);
+  const ownerEmail = normalizeOptionalText(ownerAuthData?.user?.email)?.toLowerCase();
+  if (ownerAuthError || !ownerEmail) {
+    return null;
+  }
+
+  const { data: emailEntitlement } = await admin
+    .from("user_entitlements")
+    .select("tier,role,features,is_active")
+    .eq("email", ownerEmail)
+    .eq("is_active", true)
+    .maybeSingle();
+  return (emailEntitlement ?? null) as PublicOwnerEntitlementRow | null;
+}
+
 export type PublicVaultInstanceDetail = {
   instanceId: string;
   gvviId: string;
@@ -129,6 +172,9 @@ export type PublicVaultInstanceDetail = {
   ownerUserId: string;
   ownerSlug: string;
   ownerDisplayName: string;
+  ownerAvatarUrl: string | null;
+  ownerIsVendor: boolean;
+  isVendorOffer: boolean;
   cardPrintId: string;
   cardPrintingId: string | null;
   finishLabel: string | null;
@@ -192,6 +238,13 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
   const vaultItemId = normalizeOptionalText(instance.legacy_vault_item_id);
   const normalizedIntent = normalizeVaultIntent(instance.intent) ?? "hold";
   const discoverableIntent = normalizeDiscoverableVaultIntent(instance.intent);
+  const pricingMode = normalizeVaultInstancePricingMode(instance.pricing_mode) ?? "market";
+  const askingPriceAmount = normalizeVaultInstancePricingAmount(instance.asking_price_amount);
+  const canBeVendorOffer =
+    normalizedIntent === "sell" &&
+    pricingMode === "asking" &&
+    askingPriceAmount !== null &&
+    askingPriceAmount > 0;
 
   if (!ownerUserId || !vaultItemId || instance.archived_at !== null) {
     return null;
@@ -199,7 +252,7 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
 
   const { data: profileData } = await admin
     .from("public_profiles")
-    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled")
+    .select("slug,display_name,avatar_path,public_profile_enabled,vault_sharing_enabled")
     .eq("user_id", ownerUserId)
     .maybeSingle();
 
@@ -253,11 +306,18 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
 
   const card = cardData as CardPrintRow;
   const cardPrintingId = normalizeOptionalText(instance.card_printing_id);
-  const [cardImageFields, frontImageUrl, backImageUrl, pricingByPrintingId, printingResult] = await Promise.all([
+  const [
+    cardImageFields,
+    frontImageUrl,
+    backImageUrl,
+    pricingByPrintingId,
+    printingResult,
+    entitlementResult,
+  ] = await Promise.all([
     resolveCardImageFieldsV1(card),
     resolveVaultInstanceMediaUrl(instance.image_url),
     resolveVaultInstanceMediaUrl(instance.image_back_url),
-    options.includeMarketPricing && cardPrintingId
+    options.includeMarketPricing && pricingMode !== "asking" && cardPrintingId
       ? getExactMarketPricingByCardPrintingIds(admin, [cardPrintingId])
       : Promise.resolve(new Map()),
     cardPrintingId
@@ -268,6 +328,9 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
           .eq("card_print_id", cardPrintId)
           .maybeSingle()
       : Promise.resolve({ data: null, error: null }),
+    canBeVendorOffer
+      ? getActiveOwnerEntitlement(admin, ownerUserId)
+      : Promise.resolve(null),
   ]);
   if (printingResult.error) {
     throw new Error(`[public-gvvi] card printing finish query failed: ${printingResult.error.message}`);
@@ -284,6 +347,17 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
         finishLabel: finishRecord?.label,
       }) ?? null
     : null;
+  const ownerIsVendor = canEntitlementRecordUseVendorTools(
+    entitlementResult,
+  );
+  const isVendorOffer = isEligiblePublicVendorOffer({
+    ownerCanUseVendorTools: ownerIsVendor,
+    intent: normalizedIntent,
+    pricingMode,
+    askingPriceAmount,
+    archivedAt: instance.archived_at,
+    publicAccessProven: true,
+  });
 
   return {
     instanceId: instance.id,
@@ -292,6 +366,9 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
     ownerUserId,
     ownerSlug,
     ownerDisplayName,
+    ownerAvatarUrl: resolveProfileMediaUrl(profile?.avatar_path),
+    ownerIsVendor,
+    isVendorOffer,
     cardPrintId,
     cardPrintingId,
     finishLabel,
@@ -316,8 +393,8 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
       normalizeOptionalText(instance.grade_value),
     certNumber: normalizeOptionalText(slabCert?.cert_number),
     createdAt: instance.created_at ?? null,
-    pricingMode: normalizeVaultInstancePricingMode(instance.pricing_mode) ?? "market",
-    askingPriceAmount: normalizeVaultInstancePricingAmount(instance.asking_price_amount),
+    pricingMode,
+    askingPriceAmount,
     askingPriceCurrency: normalizeVaultInstancePricingCurrency(instance.asking_price_currency),
     askingPriceNote: normalizeVaultInstancePricingNote(instance.asking_price_note),
     marketReferencePrice:

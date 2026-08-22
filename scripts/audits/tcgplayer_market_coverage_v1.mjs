@@ -25,7 +25,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "coverage",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_2";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_3";
 
 function parseArgs(argv) {
   const args = {
@@ -90,7 +90,12 @@ function jsonl(rows) {
   );
 }
 
-function markdown(run, summary, currentPublicationScope) {
+function markdown(
+  run,
+  summary,
+  shadowPublicationScope,
+  currentPublicationScope,
+) {
   const topGaps = Object.entries(summary.gap_reasons).slice(0, 20);
   const weakestSets = Object.entries(summary.by_set)
     .filter(([, row]) => row.denominator > 0)
@@ -125,6 +130,12 @@ function markdown(run, summary, currentPublicationScope) {
     `- Numerator: \`${summary.counts.numerator_rows}\``,
     `- Remaining gap rows: \`${summary.counts.gap_rows}\``,
     `- Exact rows needed to reach threshold: \`${summary.rows_needed_for_threshold}\``,
+    "",
+    "## Shadow Publication Boundary",
+    "",
+    `- Shadow publish rows: \`${shadowPublicationScope.row_count}\``,
+    `- Shadow publish rows outside V1.2 scope: \`${shadowPublicationScope.out_of_scope_count}\``,
+    `- Shadow publication scope status: \`${shadowPublicationScope.status}\``,
     "",
     "## Current Publication Boundary",
     "",
@@ -251,6 +262,27 @@ async function main() {
       minimumCoveragePercent: args.minimumCoveragePercent,
     });
     const { rows: classifiedRows, ...summary } = result;
+    const shadowPublicationOutOfScope = classifiedRows.filter(
+      (row) => row.decision === "publish" && !row.product_scope.in_scope,
+    );
+    const shadowPublicationScope = {
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+      status:
+        shadowPublicationOutOfScope.length === 0 ? "passed" : "failed",
+      row_count: classifiedRows.filter((row) => row.decision === "publish")
+        .length,
+      out_of_scope_count: shadowPublicationOutOfScope.length,
+      out_of_scope_rows: shadowPublicationOutOfScope,
+    };
+    summary.coverage_status = summary.status;
+    summary.shadow_publication_scope_status = shadowPublicationScope.status;
+    if (shadowPublicationOutOfScope.length > 0) {
+      summary.findings = [
+        ...summary.findings,
+        "shadow_publication_contains_v1_2_scope_exclusion",
+      ];
+      summary.status = "failed";
+    }
     const currentPublicationRows = (
       await client.query(
         `select
@@ -294,7 +326,6 @@ async function main() {
       out_of_scope_count: currentPublicationOutOfScope.length,
       out_of_scope_rows: currentPublicationOutOfScope,
     };
-    summary.coverage_status = summary.status;
     summary.current_publication_scope_status = currentPublicationScope.status;
     if (currentPublicationOutOfScope.length > 0) {
       summary.findings = [
@@ -329,12 +360,22 @@ async function main() {
       "summary.json": `${JSON.stringify(summary, null, 2)}\n`,
       "coverage_gaps.jsonl": jsonl(gaps),
       "scope_exclusions.jsonl": jsonl(exclusions),
+      "shadow_publication_scope.json": `${JSON.stringify(
+        shadowPublicationScope,
+        null,
+        2,
+      )}\n`,
       "current_publication_scope.json": `${JSON.stringify(
         currentPublicationScope,
         null,
         2,
       )}\n`,
-      "REPORT.md": markdown(run, summary, currentPublicationScope),
+      "REPORT.md": markdown(
+        run,
+        summary,
+        shadowPublicationScope,
+        currentPublicationScope,
+      ),
     };
     const hashes = {};
     for (const [name, contents] of Object.entries(files)) {
@@ -361,7 +402,8 @@ async function main() {
     if (args.requirePass && summary.status !== "passed") process.exitCode = 1;
     if (
       args.requireCoveragePass &&
-      summary.coverage_status !== "passed"
+      (summary.coverage_status !== "passed" ||
+        summary.shadow_publication_scope_status !== "passed")
     ) {
       process.exitCode = 1;
     }

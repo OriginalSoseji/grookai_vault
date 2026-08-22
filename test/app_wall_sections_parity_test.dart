@@ -25,6 +25,12 @@ void main() {
   final networkStreamService = File(
     'lib/services/network/network_stream_service.dart',
   ).readAsStringSync();
+  final vendorPricingScreen = File(
+    'lib/screens/gvvi/vendor_pricing_workspace_screen.dart',
+  ).readAsStringSync();
+  final vendorPricingService = File(
+    'lib/services/gvvi/vendor_pricing_workspace_service.dart',
+  ).readAsStringSync();
 
   test(
     'app public collector service loads Wall and sections from parity views',
@@ -35,6 +41,7 @@ void main() {
       expect(collectorService, contains("from('v_section_cards_v1')"));
       expect(collectorService, contains('loadSectionCardsBySlug'));
       expect(collectorService, contains('display_image_url'));
+      expect(collectorService, contains('public_note,card_printing_id'));
       expect(collectorService, contains('_resolveVaultInstanceMediaSignedUrl'));
       expect(collectorService, contains('createSignedUrl'));
       expect(collectorService, contains('vault-instances'));
@@ -136,6 +143,23 @@ void main() {
     expect(collectorScreen, contains("intent: 'hold'"));
     expect(collectorScreen, contains('await onWallChanged()'));
     expect(collectorScreen, contains('The card is still in your Vault.'));
+  });
+
+  test('owner Wall exposes one-screen exact-copy Vendor Mode workspace', () {
+    expect(collectorScreen, contains('VendorPricingWorkspaceScreen'));
+    expect(collectorScreen, contains("'Vendor Mode'"));
+    expect(
+      collectorScreen,
+      contains("'Price, organize, publish, and share exact copies'"),
+    );
+    expect(vendorPricingScreen, contains("label: 'Market'"));
+    expect(vendorPricingScreen, contains("label: 'My price'"));
+    expect(vendorPricingScreen, contains("Text('Wall'"));
+    expect(vendorPricingScreen, contains('Assign sections'));
+    expect(vendorPricingScreen, contains('buildPersistentGvviQrUri'));
+    expect(vendorPricingService, contains("from('vault_item_instances')"));
+    expect(vendorPricingService, contains('fetchByCardPrintingIds'));
+    expect(vendorPricingService, contains('saveSingleCardListing'));
   });
 
   test('collector section deep links select the requested section', () {

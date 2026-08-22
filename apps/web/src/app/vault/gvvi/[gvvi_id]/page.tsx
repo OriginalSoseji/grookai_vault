@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
+import VendorQrManagementCard from "@/components/gvvi/VendorQrManagementCard";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
+import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
+import { getVendorQrDestinationUrl, renderVendorQrSvg, svgToDataUrl } from "@/lib/gvvi/vendorQr";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSectionMembershipCard from "@/components/vault/VaultInstanceSectionMembershipCard";
@@ -16,6 +19,7 @@ import {
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import { getVaultInstanceByGvvi, type VaultInstanceOutcome } from "@/lib/vault/getVaultInstanceByGvvi";
+import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
 import { getOwnerWallSectionMemberships } from "@/lib/wallSections/getOwnerWallSectionMemberships";
 
@@ -93,7 +97,7 @@ export default async function VaultInstancePage(
     canonicalImageUrl: detail.imageUrl,
     providerImageUrl: detail.providerImageUrl,
   });
-  const [sectionMembershipModel, messageSummary] = await Promise.all([
+  const [sectionMembershipModel, messageSummary, entitlement, publicDetail] = await Promise.all([
     getOwnerWallSectionMemberships(user.id, detail.instanceId),
     getOwnedCardMessageSummaries(user.id, [detail.cardPrintId])
       .then(([summary]) => summary ?? null)
@@ -105,7 +109,20 @@ export default async function VaultInstancePage(
         });
         return null;
       }),
+    resolveServerUserEntitlement(user),
+    publicSharePath
+      ? getPublicVaultInstanceByGvvi(detail.gvviId)
+      : Promise.resolve(null),
   ]);
+  const canManageVendorQr = Boolean(
+    entitlement.capabilities.canUseVendorTools &&
+      publicDetail?.isVendorOffer &&
+      publicDetail.ownerUserId === user.id,
+  );
+  const qrDestinationUrl = canManageVendorQr ? getVendorQrDestinationUrl(detail.gvviId) : null;
+  const qrDataUrl = canManageVendorQr
+    ? svgToDataUrl(await renderVendorQrSvg(detail.gvviId))
+    : null;
   const messagesHref =
     messageSummary && messageSummary.activeCount > 0
       ? buildOwnedCardMessagesHref({
@@ -296,6 +313,14 @@ export default async function VaultInstancePage(
               </div>
             </div>
           </PageSection>
+
+          {canManageVendorQr && qrDestinationUrl && qrDataUrl ? (
+            <VendorQrManagementCard
+              gvviId={detail.gvviId}
+              qrDataUrl={qrDataUrl}
+              destinationUrl={qrDestinationUrl}
+            />
+          ) : null}
         </div>
       </div>
     </div>

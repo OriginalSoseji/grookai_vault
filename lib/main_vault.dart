@@ -1852,16 +1852,7 @@ class VaultPageState extends State<VaultPage> {
   }
 
   String _formatVaultValue(double value) {
-    if (value >= 1000000) {
-      return '\$${(value / 1000000).toStringAsFixed(2)}M';
-    }
-    if (value >= 10000) {
-      return '\$${(value / 1000).toStringAsFixed(1)}K';
-    }
-    if (value >= 1000) {
-      return '\$${value.toStringAsFixed(0)}';
-    }
-    return '\$${value.toStringAsFixed(2)}';
+    return formatCardSurfaceMoney(value);
   }
 
   Future<void> _openManageCardRow(Map<String, dynamic> row) async {

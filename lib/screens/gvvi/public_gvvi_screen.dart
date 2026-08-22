@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/identity/display_identity.dart';
+import '../../services/gvvi/gvvi_vendor_offer_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -30,11 +37,13 @@ class PublicGvviScreen extends StatefulWidget {
   const PublicGvviScreen({
     required this.gvviId,
     this.openedFromCardDetail = false,
+    this.showOwnerQrTools = false,
     super.key,
   });
 
   final String gvviId;
   final bool openedFromCardDetail;
+  final bool showOwnerQrTools;
 
   @override
   State<PublicGvviScreen> createState() => _PublicGvviScreenState();
@@ -46,6 +55,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
       OwnershipResolverAdapter.instance;
 
   PublicGvviData? _data;
+  GvviVendorOffer? _vendorOffer;
   OwnershipState? _viewerOwnershipState;
   bool _loading = true;
   bool _viewerActionBusy = false;
@@ -61,19 +71,25 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
     setState(() {
       _loading = true;
       _error = null;
+      _vendorOffer = null;
     });
 
     try {
-      final data = await VaultGvviService.loadPublic(
-        client: _client,
-        gvviId: widget.gvviId,
-      );
+      final results = await Future.wait<Object?>([
+        VaultGvviService.loadPublic(client: _client, gvviId: widget.gvviId),
+        GvviVendorOfferService.load(widget.gvviId),
+      ]);
+      final data = results[0] as PublicGvviData?;
+      final vendorOffer = results[1] as GvviVendorOffer?;
       final viewerOwnershipState = await _loadViewerOwnershipState(data);
       if (!mounted) {
         return;
       }
       setState(() {
         _data = data;
+        _vendorOffer = data != null && vendorOffer?.gvviId == data.gvviId
+            ? vendorOffer
+            : null;
         _viewerOwnershipState = viewerOwnershipState;
         _loading = false;
         _error = data == null ? 'Copy not found.' : null;
@@ -292,6 +308,102 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
     );
   }
 
+  bool _viewerOwns(PublicGvviData data) {
+    final currentUserId = (_client.auth.currentUser?.id ?? '').trim();
+    return currentUserId.isNotEmpty && currentUserId == data.ownerUserId.trim();
+  }
+
+  Future<void> _copyVendorQrLink(PublicGvviData data) async {
+    final uri = buildPersistentGvviQrUri(data.gvviId);
+    await Clipboard.setData(ClipboardData(text: uri.toString()));
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(const SnackBar(content: Text('QR link copied.')));
+  }
+
+  Future<void> _shareVendorQrLink(PublicGvviData data) async {
+    final uri = buildPersistentGvviQrUri(data.gvviId);
+    await SharePlus.instance.share(
+      ShareParams(
+        uri: uri,
+        subject: '${_publicGvviDisplayIdentity(data).displayName} vendor card',
+      ),
+    );
+  }
+
+  Future<void> _printVendorQr(
+    PublicGvviData data,
+    GvviVendorOffer offer,
+  ) async {
+    final uri = buildPersistentGvviQrUri(data.gvviId);
+    final document = pw.Document();
+    final format = PdfPageFormat(
+      2.5 * PdfPageFormat.inch,
+      3.5 * PdfPageFormat.inch,
+      marginAll: 0.16 * PdfPageFormat.inch,
+    );
+    final displayName = _publicGvviDisplayIdentity(data).displayName;
+    final price = VaultGvviService.formatPrice(
+      offer.askingPriceAmount,
+      currency: offer.askingPriceCurrency,
+    );
+    document.addPage(
+      pw.Page(
+        pageFormat: format,
+        build: (_) => pw.Column(
+          crossAxisAlignment: pw.CrossAxisAlignment.stretch,
+          children: [
+            pw.Text(
+              offer.vendorDisplayName,
+              textAlign: pw.TextAlign.center,
+              style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
+            ),
+            pw.SizedBox(height: 5),
+            pw.Text(
+              displayName,
+              maxLines: 2,
+              textAlign: pw.TextAlign.center,
+              style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
+            ),
+            pw.SizedBox(height: 4),
+            pw.Text(
+              'VENDOR PRICE  ${price ?? 'Available'}',
+              textAlign: pw.TextAlign.center,
+              style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+            ),
+            if ((offer.conditionLabel ?? '').isNotEmpty)
+              pw.Text(
+                offer.conditionLabel!,
+                textAlign: pw.TextAlign.center,
+                style: const pw.TextStyle(fontSize: 9),
+              ),
+            pw.Spacer(),
+            pw.Center(
+              child: pw.BarcodeWidget(
+                barcode: pw.Barcode.qrCode(),
+                data: uri.toString(),
+                width: 1.45 * PdfPageFormat.inch,
+                height: 1.45 * PdfPageFormat.inch,
+              ),
+            ),
+            pw.SizedBox(height: 4),
+            pw.Text(
+              data.gvviId,
+              textAlign: pw.TextAlign.center,
+              style: const pw.TextStyle(fontSize: 7),
+            ),
+          ],
+        ),
+      ),
+    );
+    await Printing.layoutPdf(
+      name: '${data.gvviId}-vendor-qr',
+      format: format,
+      onLayout: (_) => document.save(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -300,7 +412,13 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
         : _publicGvviDisplayIdentity(_data!).displayName;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Copy'),
+        title: Text(
+          widget.showOwnerQrTools
+              ? 'Personal vendor card'
+              : _vendorOffer == null
+              ? 'Copy'
+              : 'Card for sale',
+        ),
         actions: [
           IconButton(
             tooltip: 'Messages',
@@ -342,39 +460,58 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                       letterSpacing: 0,
                     ),
                   ),
-                  const SizedBox(height: 6),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      _ExactCopyChip(
-                        label: _intentLabel(_data!.intent),
-                        tone: Theme.of(context).colorScheme.primary,
+                  if (_vendorOffer != null) ...[
+                    const SizedBox(height: 12),
+                    _VendorOfferSummary(
+                      data: _data!,
+                      offer: _vendorOffer!,
+                      onVendorTap: () => _openCollector(_data!),
+                    ),
+                    if (widget.showOwnerQrTools && _viewerOwns(_data!)) ...[
+                      const SizedBox(height: 12),
+                      _VendorOwnerQrPanel(
+                        data: _data!,
+                        onCopy: () => _copyVendorQrLink(_data!),
+                        onShare: () => _shareVendorQrLink(_data!),
+                        onPrint: () => _printVendorQr(_data!, _vendorOffer!),
                       ),
-                      _ExactCopyChip(
-                        label: _data!.isGraded ? 'Graded slab' : 'Raw copy',
-                        tone: Colors.deepPurple,
-                      ),
-                      if ((_data!.conditionLabel ?? '').trim().isNotEmpty &&
-                          !_data!.isGraded)
-                        _ExactCopyChip(
-                          label: _data!.conditionLabel!,
-                          tone: Colors.teal,
-                        ),
-                      if ((_data!.certNumber ?? '').trim().isNotEmpty)
-                        _ExactCopyChip(
-                          label: 'Cert ${_data!.certNumber}',
-                          tone: Colors.indigo,
-                        ),
                     ],
-                  ),
-                  const SizedBox(height: 12),
-                  _ActionPathRow(
-                    leadingLabel: 'Collector',
-                    title: _data!.ownerDisplayName,
-                    supporting: '@${_data!.ownerSlug}',
-                    onTap: () => _openCollector(_data!),
-                  ),
+                  ],
+                  if (_vendorOffer == null) ...[
+                    const SizedBox(height: 6),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        _ExactCopyChip(
+                          label: _intentLabel(_data!.intent),
+                          tone: Theme.of(context).colorScheme.primary,
+                        ),
+                        _ExactCopyChip(
+                          label: _data!.isGraded ? 'Graded slab' : 'Raw copy',
+                          tone: Colors.deepPurple,
+                        ),
+                        if ((_data!.conditionLabel ?? '').trim().isNotEmpty &&
+                            !_data!.isGraded)
+                          _ExactCopyChip(
+                            label: _data!.conditionLabel!,
+                            tone: Colors.teal,
+                          ),
+                        if ((_data!.certNumber ?? '').trim().isNotEmpty)
+                          _ExactCopyChip(
+                            label: 'Cert ${_data!.certNumber}',
+                            tone: Colors.indigo,
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    _ActionPathRow(
+                      leadingLabel: 'Collector',
+                      title: _data!.ownerDisplayName,
+                      supporting: '@${_data!.ownerSlug}',
+                      onTap: () => _openCollector(_data!),
+                    ),
+                  ],
                   const SizedBox(height: 8),
                   _ActionPathRow(
                     leadingLabel: 'Card',
@@ -385,7 +522,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                     ].join(' • '),
                     onTap: () => _openCard(_data!),
                   ),
-                  if (_data!.isDiscoverable) ...[
+                  if (_data!.isDiscoverable && !_viewerOwns(_data!)) ...[
                     const SizedBox(height: 12),
                     SizedBox(
                       width: double.infinity,
@@ -416,8 +553,10 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                           _handleViewerOwnershipAction(state, _data!),
                     ),
                   ],
-                  const SizedBox(height: 10),
-                  _PublicGvviPriceRow(data: _data!),
+                  if (_vendorOffer == null) ...[
+                    const SizedBox(height: 10),
+                    _PublicGvviPriceRow(data: _data!),
+                  ],
                   const SizedBox(height: 10),
                   _CompactIdentityGrid(data: _data!),
                   if ((_data!.publicNote ?? '').trim().isNotEmpty) ...[
@@ -781,6 +920,241 @@ class _ActionPathRow extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _VendorOfferSummary extends StatelessWidget {
+  const _VendorOfferSummary({
+    required this.data,
+    required this.offer,
+    required this.onVendorTap,
+  });
+
+  final PublicGvviData data;
+  final GvviVendorOffer offer;
+  final VoidCallback onVendorTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final price = VaultGvviService.formatPrice(
+      offer.askingPriceAmount,
+      currency: offer.askingPriceCurrency,
+    );
+    final avatarUrl = (offer.vendorAvatarUrl ?? '').trim();
+
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: colorScheme.primaryContainer.withValues(alpha: 0.46),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.35)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'VENDOR PRICE',
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      price ?? 'Available',
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(fontWeight: FontWeight.w900),
+                    ),
+                  ],
+                ),
+              ),
+              const _ExactCopyChip(label: 'Available', tone: Colors.green),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if ((offer.conditionLabel ?? data.conditionLabel ?? '')
+                  .trim()
+                  .isNotEmpty)
+                _ExactCopyChip(
+                  label: (offer.conditionLabel ?? data.conditionLabel!).trim(),
+                  tone: Colors.teal,
+                ),
+              _ExactCopyChip(label: data.gvviId, tone: colorScheme.primary),
+            ],
+          ),
+          const SizedBox(height: 12),
+          InkWell(
+            onTap: onVendorTap,
+            borderRadius: BorderRadius.circular(8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 19,
+                    foregroundImage: avatarUrl.isEmpty
+                        ? null
+                        : NetworkImage(avatarUrl),
+                    child: avatarUrl.isEmpty
+                        ? const Icon(Icons.storefront_outlined, size: 19)
+                        : null,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          offer.vendorDisplayName,
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        Text(
+                          '@${offer.vendorSlug}',
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.65,
+                                ),
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Icon(Icons.arrow_outward_rounded, size: 18),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VendorOwnerQrPanel extends StatelessWidget {
+  const _VendorOwnerQrPanel({
+    required this.data,
+    required this.onCopy,
+    required this.onShare,
+    required this.onPrint,
+  });
+
+  final PublicGvviData data;
+  final VoidCallback onCopy;
+  final VoidCallback onShare;
+  final VoidCallback onPrint;
+
+  @override
+  Widget build(BuildContext context) {
+    final uri = buildPersistentGvviQrUri(data.gvviId);
+    final colorScheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.18)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.qr_code_2_rounded, color: colorScheme.primary),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Vendor QR',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Customers scan this code to open this exact card.',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.66),
+            ),
+          ),
+          const SizedBox(height: 14),
+          Center(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: QrImageView(
+                  data: uri.toString(),
+                  version: QrVersions.auto,
+                  size: 220,
+                  backgroundColor: Colors.white,
+                  eyeStyle: const QrEyeStyle(
+                    eyeShape: QrEyeShape.square,
+                    color: Colors.black,
+                  ),
+                  dataModuleStyle: const QrDataModuleStyle(
+                    dataModuleShape: QrDataModuleShape.square,
+                    color: Colors.black,
+                  ),
+                  semanticsLabel: 'QR code for ${data.cardName}',
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            data.gvviId,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+          const SizedBox(height: 14),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: onCopy,
+                  icon: const Icon(Icons.copy_rounded),
+                  label: const Text('Copy'),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: onShare,
+                  icon: const Icon(Icons.share_outlined),
+                  label: const Text('Share'),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: FilledButton.icon(
+                  onPressed: onPrint,
+                  icon: const Icon(Icons.print_outlined),
+                  label: const Text('Print'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

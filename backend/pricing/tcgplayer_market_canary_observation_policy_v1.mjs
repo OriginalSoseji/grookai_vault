@@ -21,6 +21,43 @@ function string(value) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function timestamp(value) {
+  const milliseconds = new Date(value).getTime();
+  return Number.isFinite(milliseconds) ? milliseconds : null;
+}
+
+function expectedSourceRunKey(publicationRunKey) {
+  const runKey = string(publicationRunKey);
+  return runKey.endsWith("-publication")
+    ? `${runKey.slice(0, -"-publication".length)}-warehouse`
+    : "";
+}
+
+function linkedSourceIsHealthy(run, expectedCommitSha) {
+  const sourceStartedAt = timestamp(run?.schedule_source_started_at);
+  const sourceFinishedAt = timestamp(run?.schedule_source_finished_at);
+  const publicationStartedAt = timestamp(run?.started_at);
+  const publicationCompletedAt = timestamp(run?.completed_at);
+
+  return (
+    string(run?.source_sync_run_id) !== "" &&
+    string(run?.source_sync_run_id) === string(run?.schedule_source_run_id) &&
+    string(run?.schedule_source_run_key) ===
+      expectedSourceRunKey(run?.run_key) &&
+    run?.schedule_source_status === "completed" &&
+    integer(run?.schedule_source_failed_count) === 0 &&
+    !run?.schedule_source_error &&
+    string(run?.schedule_source_commit_sha) === expectedCommitSha &&
+    sourceStartedAt !== null &&
+    sourceFinishedAt !== null &&
+    publicationStartedAt !== null &&
+    publicationCompletedAt !== null &&
+    sourceStartedAt <= sourceFinishedAt &&
+    sourceFinishedAt <= publicationStartedAt &&
+    publicationStartedAt <= publicationCompletedAt
+  );
+}
+
 function reconciliationMismatches(run) {
   return Array.isArray(run?.reconciliation?.mismatches)
     ? run.reconciliation.mismatches
@@ -78,6 +115,7 @@ function runIsHealthy(
     !run?.failed_at &&
     !run?.error &&
     reconciliationMismatches(run).length === 0 &&
+    linkedSourceIsHealthy(run, expectedCommitSha) &&
     runIsExact(run, expectedCount, maxSourceMissingCount)
   );
 }
@@ -117,20 +155,37 @@ function matchRunsToSlots({
   slots,
   runs,
   scheduleToleranceMinutes,
+  scheduleCompletionGraceMinutes,
 }) {
   const toleranceMs = scheduleToleranceMinutes * MINUTE_MS;
+  const completionGraceMs = scheduleCompletionGraceMinutes * MINUTE_MS;
   const available = [...runs];
   const matches = [];
   const missing = [];
 
   for (const slot of slots) {
     const slotMs = new Date(slot).getTime();
+    const slotDate = slot.slice(0, 10);
+    const publicationRunKey =
+      `TCGPLAYER-MARKET-SCHEDULE-CANARY-${slotDate}-publication`;
+    const sourceRunKey =
+      `TCGPLAYER-MARKET-SCHEDULE-CANARY-${slotDate}-warehouse`;
     let bestIndex = -1;
     let bestDistance = Number.POSITIVE_INFINITY;
     for (let index = 0; index < available.length; index += 1) {
-      const startedMs = new Date(available[index]?.started_at).getTime();
-      const distance = Math.abs(startedMs - slotMs);
-      if (Number.isFinite(startedMs) && distance <= toleranceMs && distance < bestDistance) {
+      const run = available[index];
+      const sourceStartedMs = timestamp(run?.schedule_source_started_at);
+      const publicationCompletedMs = timestamp(run?.completed_at);
+      const distance = Math.abs(sourceStartedMs - slotMs);
+      if (
+        string(run?.run_key) === publicationRunKey &&
+        string(run?.schedule_source_run_key) === sourceRunKey &&
+        sourceStartedMs !== null &&
+        publicationCompletedMs !== null &&
+        distance <= toleranceMs &&
+        publicationCompletedMs <= slotMs + completionGraceMs &&
+        distance < bestDistance
+      ) {
         bestIndex = index;
         bestDistance = distance;
       }
@@ -142,11 +197,24 @@ function matchRunsToSlots({
     const [run] = available.splice(bestIndex, 1);
     matches.push({
       slot,
-      run_id: run.id,
-      run_key: run.run_key,
-      started_at: run.started_at,
-      completed_at: run.completed_at,
+      source_run_id: run.schedule_source_run_id,
+      source_run_key: run.schedule_source_run_key,
+      source_started_at: run.schedule_source_started_at,
+      source_finished_at: run.schedule_source_finished_at,
+      publication_run_id: run.id,
+      publication_run_key: run.run_key,
+      publication_started_at: run.started_at,
+      publication_completed_at: run.completed_at,
       offset_minutes: Number((bestDistance / MINUTE_MS).toFixed(3)),
+      source_offset_minutes: Number(
+        (
+          (timestamp(run.schedule_source_started_at) - slotMs) /
+          MINUTE_MS
+        ).toFixed(3),
+      ),
+      completion_offset_minutes: Number(
+        ((timestamp(run.completed_at) - slotMs) / MINUTE_MS).toFixed(3),
+      ),
     });
   }
 
@@ -160,6 +228,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   scheduleHourUtc = 8,
   scheduleMinuteUtc = 15,
   scheduleToleranceMinutes = 90,
+  scheduleCompletionGraceMinutes = 480,
   expectedCount = 100,
   maxSourceMissingCount = 0,
   expectedCommitSha,
@@ -177,6 +246,12 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   if (!commitSha) throw new Error("expectedCommitSha is required");
   if (!Number.isFinite(requiredHours) || requiredHours <= 0) {
     throw new Error("requiredHours must be positive");
+  }
+  if (
+    !Number.isFinite(scheduleCompletionGraceMinutes) ||
+    scheduleCompletionGraceMinutes <= 0
+  ) {
+    throw new Error("scheduleCompletionGraceMinutes must be positive");
   }
   if (!Number.isInteger(expectedCount) || expectedCount < 1) {
     throw new Error("expectedCount must be a positive integer");
@@ -203,13 +278,14 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
   });
 
   const runs = scheduledRuns.filter((run) => {
-    const startedAt = new Date(run?.started_at).getTime();
+    const startedAt = timestamp(run?.schedule_source_started_at);
     return Number.isFinite(startedAt) && startedAt > start.getTime();
   });
   const slotResult = matchRunsToSlots({
     slots: expectedSlots,
     runs,
     scheduleToleranceMinutes,
+    scheduleCompletionGraceMinutes,
   });
   const findings = [];
 
@@ -343,6 +419,7 @@ export function evaluateTcgplayerMarketCanaryObservationV1({
       hour_utc: scheduleHourUtc,
       minute_utc: scheduleMinuteUtc,
       tolerance_minutes: scheduleToleranceMinutes,
+      completion_grace_minutes: scheduleCompletionGraceMinutes,
       expected_slots: expectedSlots,
       matched_slots: slotResult.matches,
       missing_slots: slotResult.missing,

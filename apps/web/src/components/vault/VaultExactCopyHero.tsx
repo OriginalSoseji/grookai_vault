@@ -22,6 +22,7 @@ type VaultExactCopyHeroProps = {
   statusLabel: string;
   intentLabel: string;
   contextLabel?: ReactNode;
+  featuredContent?: ReactNode;
   actions?: ReactNode;
   evidence?: ReactNode;
 };
@@ -56,6 +57,7 @@ export default function VaultExactCopyHero({
   statusLabel,
   intentLabel,
   contextLabel,
+  featuredContent,
   actions,
   evidence,
 }: VaultExactCopyHeroProps) {
@@ -80,6 +82,8 @@ export default function VaultExactCopyHero({
               fallbackSrc={fallbackImageUrl ?? undefined}
               fallbackSources={fallbackImageUrls}
               alt={cardName}
+              loading="eager"
+              decoding="async"
               imageClassName="aspect-[5/7] w-full object-contain drop-shadow-[0_18px_34px_rgba(15,23,42,0.16)]"
               fallbackClassName="flex aspect-[5/7] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500 dark:bg-white/[0.04] dark:text-slate-400"
               fallbackLabel={cardName}
@@ -96,6 +100,8 @@ export default function VaultExactCopyHero({
             </h1>
             {contextLabel ? <div className="text-sm text-slate-600 dark:text-slate-300">{contextLabel}</div> : null}
           </div>
+
+          {featuredContent}
 
           <div className="grid grid-cols-2 border-y border-slate-200/80 py-3 dark:border-white/[0.08] lg:grid-cols-4" aria-label="Exact copy details">
             {[

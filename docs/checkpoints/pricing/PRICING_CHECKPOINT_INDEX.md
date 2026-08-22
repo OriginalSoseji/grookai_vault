@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_94_TCGPLAYER_CANARY_FINAL_PASS.md`
+
+This checkpoint records the corrected, hash-verified final replay of the
+August 13 authenticated pricing canary and closes the frozen 72-hour gate.
+
+Decision locked there:
+
+- schedule truth comes from each publication's exact linked warehouse cycle,
+  while publication completion remains bounded by the configured grace; the
+  immutable final-window evidence passed with all three cycles reconciled
+
+Unresolved risk afterward:
+
+- the already-applied migration boundaries require fresh readback, then the
+  full V1.2 shadow, signed-in activation, all-surface proof, and seven
+  unattended full-production cycles remain open
+
 ### `PRICING_CHECKPOINT_38_CANARY_AUTOMATION_AND_POST_72H_HANDOFF.md`
 
 This checkpoint records the automated read-only observation of the frozen

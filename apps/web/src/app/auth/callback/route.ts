@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
+import { consumeVendorReferralAttribution } from "@/lib/gvvi/vendorReferralAttribution";
 import {
   redactBinderSecretPath,
 } from "@/lib/binders/safePath";
@@ -48,13 +49,19 @@ export async function GET(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   if (user?.id) {
-    await trackServerEvent({
+    const accountEventResult = await trackServerEvent({
       eventName: "account_created",
       userId: user.id,
       path: redactBinderSecretPath(nextPath),
       metadata: {
         auth_method: "google_oauth",
       },
+    });
+    await consumeVendorReferralAttribution({
+      request,
+      response: successResponse,
+      user,
+      accountWasCreated: accountEventResult === "inserted",
     });
   }
 

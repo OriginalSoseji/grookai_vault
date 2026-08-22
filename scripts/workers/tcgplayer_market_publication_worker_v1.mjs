@@ -29,7 +29,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_3";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_4";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -273,18 +273,39 @@ async function latestSourceRun(client) {
   return result.rows[0];
 }
 
+function assertCandidateScopeEvidence(rows) {
+  const missingScopeEvidence = rows.filter(
+    (row) =>
+      Number(row.category_id) === 3 &&
+      (!String(row.source_product_name ?? "").trim() ||
+        !String(row.source_group_name ?? "").trim()),
+  );
+  if (missingScopeEvidence.length) {
+    throw new Error(
+      `publication scope evidence missing for ${missingScopeEvidence.length} Pokemon candidates`,
+    );
+  }
+}
+
 async function candidateRows(client, { limit, canaryDefinition }) {
   if (canaryDefinition) {
     const printingIds = canaryDefinition.printings.map(
       (printing) => printing.card_printing_id,
     );
     const result = await client.query(
-      `select *
-         from public.v_tcgplayer_market_qualification_candidates_v1
-        where card_printing_id = any($1::uuid[])
-        order by source_product_id, source_subtype_name, source_observation_id`,
+      `select
+         candidate.*,
+         source_group.name as source_group_name
+       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+       left join public.tcgcsv_source_groups source_group
+         on source_group.group_id = candidate.group_id
+       where candidate.card_printing_id = any($1::uuid[])
+       order by candidate.source_product_id,
+                candidate.source_subtype_name,
+                candidate.source_observation_id`,
       [printingIds],
     );
+    assertCandidateScopeEvidence(result.rows);
     const rowsBySourceKey = new Map();
     for (const row of result.rows) {
       const key = tcgplayerMarketCanarySourceKeyV1(row);
@@ -321,12 +342,19 @@ async function candidateRows(client, { limit, canaryDefinition }) {
   const limitSql = limit === null ? "" : "limit $1";
   if (limit !== null) params.push(limit);
   const result = await client.query(
-    `select *
-       from public.v_tcgplayer_market_qualification_candidates_v1
-      order by source_product_id, source_subtype_name, source_observation_id
+    `select
+       candidate.*,
+       source_group.name as source_group_name
+     from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+     left join public.tcgcsv_source_groups source_group
+       on source_group.group_id = candidate.group_id
+     order by candidate.source_product_id,
+              candidate.source_subtype_name,
+              candidate.source_observation_id
       ${limitSql}`,
     params,
   );
+  assertCandidateScopeEvidence(result.rows);
   return result.rows;
 }
 
