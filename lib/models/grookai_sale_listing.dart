@@ -329,6 +329,7 @@ String? _meaningfulLotVariant(String? value) {
   }
   if (normalized.isEmpty ||
       const {
+        'holo',
         'normal',
         'standard',
         'printing not recorded',
