@@ -36,8 +36,13 @@ function parseArgs(argv) {
   if (!new Set(["plan", "apply"]).has(mode)) {
     throw new Error("--mode must be plan or apply");
   }
+  const transition = argument(argv, "transition", "activate");
+  if (!new Set(["activate", "refresh"]).has(transition)) {
+    throw new Error("--transition must be activate or refresh");
+  }
   return {
     mode,
+    transition,
     envFile: path.resolve(
       argument(argv, "env-file", "C:\\grookai_vault\\.env.local"),
     ),
@@ -253,14 +258,23 @@ async function captureRoleVisibility(client, role, sample) {
   }
 }
 
-async function restoreReleaseControl(client, before, planFingerprint) {
+async function restoreReleaseControl(
+  client,
+  before,
+  planFingerprint,
+  transition,
+) {
+  const fingerprintField =
+    transition === "refresh"
+      ? "release_refresh_plan_fingerprint_sha256"
+      : "activation_plan_fingerprint_sha256";
   const result = await client.query(
     `update public.catalog_game_release_controls
      set release_status = $1, release_version = $2, evidence = $3::jsonb,
          activated_at = $4, activated_by = $5, updated_at = $6
      where game_code = 'mtg' and release_status = 'signed_in'
        and release_version = $7
-       and evidence->>'activation_plan_fingerprint_sha256' = $8`,
+       and evidence->>$8 = $9`,
     [
       before.release_status,
       before.release_version,
@@ -269,6 +283,7 @@ async function restoreReleaseControl(client, before, planFingerprint) {
       before.activated_by,
       before.updated_at,
       MTG_SIGNED_IN_CATALOG_RELEASE_VERSION_V1,
+      fingerprintField,
       planFingerprint,
     ],
   );
@@ -281,8 +296,13 @@ async function restoreReleaseControl(client, before, planFingerprint) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  if (!existsSync(args.envFile)) throw new Error("Environment file is missing");
-  dotenv.config({ path: args.envFile, override: false });
+  if (existsSync(args.envFile)) {
+    dotenv.config({ path: args.envFile, override: false });
+  } else if (!process.env.SUPABASE_DB_URL) {
+    throw new Error(
+      "Environment file is missing and SUPABASE_DB_URL is not configured",
+    );
+  }
   const connectionString = process.env.SUPABASE_DB_URL;
   if (!connectionString) throw new Error("SUPABASE_DB_URL is required");
 
@@ -309,8 +329,11 @@ async function main() {
   await client.connect();
   try {
     const before = await captureState(client);
+    const expectedReleaseStatus =
+      args.transition === "refresh" ? "signed_in" : "hidden";
     const planPayload = {
       version: MTG_SIGNED_IN_CATALOG_RELEASE_VERSION_V1,
+      transition: args.transition,
       repository,
       game: { code: "mtg", id: MTG_GAME_ID_V1 },
       expected_counts: MTG_SIGNED_IN_EXPECTED_COUNTS_V1,
@@ -318,7 +341,10 @@ async function main() {
       deployment: args.deployment,
       mutation: {
         table: "public.catalog_game_release_controls",
-        predicate: { game_code: "mtg", release_status: "hidden" },
+        predicate: {
+          game_code: "mtg",
+          release_status: expectedReleaseStatus,
+        },
         update: { release_status: "signed_in" },
         maximum_rows: 1,
       },
@@ -334,6 +360,7 @@ async function main() {
     const decision = evaluateMtgSignedInReleasePlanV1({
       before,
       deployment: args.deployment,
+      transition: args.transition,
     });
     if (args.deployment.web.commit_sha !== repository.commit_sha) {
       decision.findings.push({
@@ -349,6 +376,7 @@ async function main() {
       execution_mode: args.mode,
       recorded_at: new Date().toISOString(),
       activation_plan_fingerprint_sha256: planFingerprint,
+      release_plan_fingerprint_sha256: planFingerprint,
       decision,
     };
     await fs.mkdir(args.outDir, { recursive: true });
@@ -400,26 +428,50 @@ async function main() {
       const locked = await client.query(
         "select release_status from public.catalog_game_release_controls where game_code = 'mtg' for update",
       );
-      if (locked.rowCount !== 1 || locked.rows[0].release_status !== "hidden") {
-        throw new Error("MTG release row is not exactly one hidden row");
+      if (
+        locked.rowCount !== 1 ||
+        locked.rows[0].release_status !== expectedReleaseStatus
+      ) {
+        throw new Error(
+          `MTG release row is not exactly one ${expectedReleaseStatus} row`,
+        );
       }
-      const update = await client.query(
-        `update public.catalog_game_release_controls
-         set release_status = 'signed_in', release_version = $1,
-             evidence = evidence || jsonb_build_object(
-               'activation_plan_fingerprint_sha256', $2::text,
-               'deployed_clients', $3::jsonb
-             ),
-             activated_at = now(), activated_by = 'mtg_signed_in_catalog_release_v1',
-             updated_at = now()
-         where game_code = 'mtg' and release_status = 'hidden'
-         returning game_code`,
-        [
-          MTG_SIGNED_IN_CATALOG_RELEASE_VERSION_V1,
-          planFingerprint,
-          JSON.stringify(args.deployment),
-        ],
-      );
+      const update =
+        args.transition === "refresh"
+          ? await client.query(
+              `update public.catalog_game_release_controls
+               set release_version = $1,
+                   evidence = evidence || jsonb_build_object(
+                     'release_refresh_plan_fingerprint_sha256', $2::text,
+                     'deployed_clients', $3::jsonb,
+                     'last_refreshed_at', now()
+                   ),
+                   updated_at = now()
+               where game_code = 'mtg' and release_status = 'signed_in'
+               returning game_code`,
+              [
+                MTG_SIGNED_IN_CATALOG_RELEASE_VERSION_V1,
+                planFingerprint,
+                JSON.stringify(args.deployment),
+              ],
+            )
+          : await client.query(
+              `update public.catalog_game_release_controls
+               set release_status = 'signed_in', release_version = $1,
+                   evidence = evidence || jsonb_build_object(
+                     'activation_plan_fingerprint_sha256', $2::text,
+                     'deployed_clients', $3::jsonb
+                   ),
+                   activated_at = now(), activated_by = 'mtg_signed_in_catalog_release_v1',
+                   updated_at = now()
+               where game_code = 'mtg' and release_status = 'hidden'
+               returning game_code`,
+              [
+                MTG_SIGNED_IN_CATALOG_RELEASE_VERSION_V1,
+                planFingerprint,
+                JSON.stringify(args.deployment),
+              ],
+            );
       updatedRows = update.rowCount;
       if (updatedRows !== 1)
         throw new Error("Release update did not affect exactly one row");
@@ -440,6 +492,7 @@ async function main() {
         authenticated,
         updatedRows,
         activationPlanFingerprint: planFingerprint,
+        transition: args.transition,
       });
       const summary = {
         ...result,
@@ -480,6 +533,7 @@ async function main() {
           client,
           before.release_control,
           planFingerprint,
+          args.transition,
         );
       } else {
         await client.query("rollback");
