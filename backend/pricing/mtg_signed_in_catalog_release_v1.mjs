@@ -60,16 +60,24 @@ function validateAuthenticatedCounts(findings, counts) {
   }
 }
 
-export function evaluateMtgSignedInReleasePlanV1({ before, deployment }) {
+export function evaluateMtgSignedInReleasePlanV1({
+  before,
+  deployment,
+  transition = "activate",
+}) {
   const findings = [];
   const androidBuild = number(deployment?.android?.version_code);
   const iosBuild = number(deployment?.ios?.build_number);
+  const expectedReleaseStatus =
+    transition === "refresh" ? "signed_in" : "hidden";
   requireFinding(
     findings,
-    before?.release_control?.release_status === "hidden",
-    "baseline_release_not_hidden",
+    before?.release_control?.release_status === expectedReleaseStatus,
+    transition === "refresh"
+      ? "baseline_release_not_signed_in"
+      : "baseline_release_not_hidden",
     before?.release_control?.release_status ?? null,
-    "hidden",
+    expectedReleaseStatus,
   );
   validateCounts(findings, "baseline", before?.counts);
   requireFinding(
@@ -123,8 +131,13 @@ export function evaluateMtgSignedInReleaseReadbackV1({
   authenticated,
   updatedRows,
   activationPlanFingerprint,
+  transition = "activate",
 }) {
   const findings = [];
+  const evidenceFingerprintField =
+    transition === "refresh"
+      ? "release_refresh_plan_fingerprint_sha256"
+      : "activation_plan_fingerprint_sha256";
   requireFinding(
     findings,
     updatedRows === 1,
@@ -141,11 +154,12 @@ export function evaluateMtgSignedInReleaseReadbackV1({
   );
   requireFinding(
     findings,
-    after?.release_control?.evidence?.activation_plan_fingerprint_sha256 ===
+    after?.release_control?.evidence?.[evidenceFingerprintField] ===
       activationPlanFingerprint,
-    "activation_fingerprint_mismatch",
-    after?.release_control?.evidence?.activation_plan_fingerprint_sha256 ??
-      null,
+    transition === "refresh"
+      ? "release_refresh_fingerprint_mismatch"
+      : "activation_fingerprint_mismatch",
+    after?.release_control?.evidence?.[evidenceFingerprintField] ?? null,
     activationPlanFingerprint,
   );
   validateCounts(findings, "before", before?.counts);

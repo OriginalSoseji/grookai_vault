@@ -10,6 +10,14 @@ on:
         options:
           - plan
           - apply
+      transition:
+        description: Activate a hidden release or refresh deployed-client proof
+        required: true
+        default: refresh
+        type: choice
+        options:
+          - activate
+          - refresh
       expected_sha:
         description: Exact deployed commit SHA
         required: true
@@ -87,6 +95,7 @@ jobs:
           set -euo pipefail
           node scripts/audits/mtg_signed_in_catalog_release_v1.mjs \
             --mode=plan \
+            --transition="${{ inputs.transition }}" \
             --expected-commit="$EXPECTED_SHA" \
             --out-dir="$OUT_DIR/plan" \
             --web-production-status=ready \
@@ -110,6 +119,7 @@ jobs:
           fingerprint="$(node -e "const p=require(process.argv[1]);process.stdout.write(p.activation_plan_fingerprint_sha256)" "$OUT_DIR/plan/run_plan.json")"
           node scripts/audits/mtg_signed_in_catalog_release_v1.mjs \
             --mode=apply \
+            --transition="${{ inputs.transition }}" \
             --expected-commit="$EXPECTED_SHA" \
             --expected-plan-fingerprint="$fingerprint" \
             --out-dir="$OUT_DIR/apply" \

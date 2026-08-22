@@ -62,6 +62,25 @@ test("release requires exact complete catalog, pricing, and client proof", () =>
   }
 });
 
+test("release refresh requires an already signed-in release", () => {
+  assert.equal(
+    evaluateMtgSignedInReleasePlanV1({
+      before: { release_control: { release_status: "signed_in" }, counts },
+      deployment,
+      transition: "refresh",
+    }).ready_for_apply,
+    true,
+  );
+  assert.equal(
+    evaluateMtgSignedInReleasePlanV1({
+      before: { release_control: { release_status: "hidden" }, counts },
+      deployment,
+      transition: "refresh",
+    }).ready_for_apply,
+    false,
+  );
+});
+
 test("readback requires anonymous denial and authenticated catalog, faces, search, and pricing", () => {
   const input = {
     before: {
@@ -105,6 +124,52 @@ test("readback requires anonymous denial and authenticated catalog, faces, searc
   );
 });
 
+test("refresh readback requires refresh provenance without replacing activation proof", () => {
+  const input = {
+    before: {
+      release_control: { release_status: "signed_in" },
+      counts,
+      catalog_fingerprint: "mtg",
+      non_mtg_fingerprint: "other",
+    },
+    after: {
+      release_control: {
+        release_status: "signed_in",
+        evidence: {
+          activation_plan_fingerprint_sha256: "original",
+          release_refresh_plan_fingerprint_sha256: "refresh",
+        },
+      },
+      counts,
+      catalog_fingerprint: "mtg",
+      non_mtg_fingerprint: "other",
+    },
+    anonymous: { counts: { games: 0, sets: 0, card_prints: 0 } },
+    authenticated: {
+      counts: {
+        ...counts,
+        direct_card_matches: 1,
+        direct_face_matches: 1,
+        search_matches: 1,
+        pricing_rows: 1,
+      },
+    },
+    updatedRows: 1,
+    activationPlanFingerprint: "refresh",
+    transition: "refresh",
+  };
+  assert.equal(
+    evaluateMtgSignedInReleaseReadbackV1(input).release_active,
+    true,
+  );
+  input.after.release_control.evidence.release_refresh_plan_fingerprint_sha256 =
+    "wrong";
+  assert.equal(
+    evaluateMtgSignedInReleaseReadbackV1(input).release_active,
+    false,
+  );
+});
+
 test("release runner is restricted to one release-control update and automatic restoration", () => {
   const runner = fs.readFileSync(
     new URL(
@@ -119,6 +184,7 @@ test("release runner is restricted to one release-control update and automatic r
   );
   assert.match(runner, /release_control_updates: 1/);
   assert.match(runner, /restoreReleaseControl/);
+  assert.match(runner, /release_refresh_plan_fingerprint_sha256/);
   assert.doesNotMatch(runner, /insert\s+into/i);
   assert.doesNotMatch(runner, /delete\s+from/i);
   assert.doesNotMatch(
@@ -133,6 +199,7 @@ test("release runner is restricted to one release-control update and automatic r
     ),
     "utf8",
   );
+  assert.match(workflow, /transition:/);
   assert.match(workflow, /android_version_code:/);
   assert.match(workflow, /ios_build_number:/);
   assert.match(workflow, /inputs\.android_version_code/);
@@ -140,6 +207,12 @@ test("release runner is restricted to one release-control update and automatic r
   assert.doesNotMatch(workflow, /version-code=298|build-number=298/);
   assert.match(workflow, /OUT_DIR: \/tmp\/mtg-signed-in-release/);
   assert.doesNotMatch(workflow, /OUT_DIR:\s*\$\{\{\s*runner\.temp/);
+  assert.match(runner, /if \(existsSync\(args\.envFile\)\)/);
+  assert.match(runner, /else if \(!process\.env\.SUPABASE_DB_URL\)/);
+  assert.doesNotMatch(
+    runner,
+    /if \(!existsSync\(args\.envFile\)\) throw new Error\("Environment file is missing"\)/,
+  );
 });
 
 test("anonymous release readback never invokes authenticated-only image surfaces", () => {

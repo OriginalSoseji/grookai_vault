@@ -5,9 +5,9 @@
   "locale": "en-US",
   "version_string": "1.0",
   "build_marketing_version": "1.0.0",
-  "build_number": "306",
-  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build306.xcarchive",
-  "export_path": "build/ios/export/GrookaiVault-1.0.0-build306",
+  "build_number": "307",
+  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build307.xcarchive",
+  "export_path": "build/ios/export/GrookaiVault-1.0.0-build307",
   "export_options_plist": "ios/ExportOptionsAppStore.plist",
   "app_info_localization": {
     "subtitle": "Your Pokemon card vault",

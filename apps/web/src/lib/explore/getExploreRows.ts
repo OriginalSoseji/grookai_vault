@@ -3897,6 +3897,60 @@ export async function getExploreRowsForGameScopedTextSearch(
   const exactReleaseYear = options.exactReleaseYear;
   const releaseYearMin = exactReleaseYear ?? options.releaseYearMin;
   const releaseYearMax = exactReleaseYear ?? options.releaseYearMax;
+  const shouldRequireChildScope =
+    normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const canUseBoundedGameRpc =
+    typeof releaseYearMin !== "number" &&
+    typeof releaseYearMax !== "number" &&
+    !searchText.toUpperCase().startsWith("GV-") &&
+    !variantKey &&
+    identityFilter !== "classic_collection" &&
+    !shouldRequireChildScope &&
+    (options.stampLabels?.length ?? 0) === 0;
+
+  if (canUseBoundedGameRpc) {
+    const { data, error } = await supabase.rpc("search_game_card_prints_v2", {
+      game_code_in: gameScope,
+      q: nameText || null,
+      set_code_in: inferredSetCode || null,
+      number_in: collectorToken || null,
+      illustrator_in: exactIllustrator || null,
+      limit_in: SEARCH_LIMIT,
+      offset_in: 0,
+    });
+    if (error) throw new Error(error.message);
+
+    const parentRows = (data ?? []) as CardPrintLookupRow[];
+    const setMetadataByCode = await fetchPublicSetMetadata(
+      uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    );
+    const pricingByCardId = options.includePricing
+      ? await getPublicPricingByCardIds(supabase, parentRows.map((row) => row.id), {
+          requireComplete: sortMode === "value_high" || sortMode === "value_low",
+        })
+      : new Map<string, PublicPricingRecord>();
+    const rows = await buildExploreRows(
+      parentRows,
+      new Map<string, string>(),
+      setMetadataByCode,
+      pricingByCardId,
+      {
+        skipChildDisplayImageFallbacks:
+          parentRows.length > 24 ||
+          parentRows.every((row) =>
+            Boolean(
+              row.image_path ||
+                row.image_url ||
+                row.representative_image_url,
+            ),
+          ),
+      },
+    );
+    const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
+    return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
+  }
+
   let releaseScopedSetCodes: string[] | null = null;
   if (typeof releaseYearMin === "number" || typeof releaseYearMax === "number") {
     let setQuery = supabase.from("sets").select("code").eq("game", gameScope);
@@ -3982,9 +4036,6 @@ export async function getExploreRowsForGameScopedTextSearch(
     const identityMatches = matchesIdentityFilter(row, identityFilter);
     return nameMatches && collectorMatches && illustratorMatches && identityMatches;
   });
-  const shouldRequireChildScope =
-    normalizeFinishKeys(options.finishKeys).length > 0 ||
-    Boolean(options.imageState && options.imageState !== "any");
   const lookupRows = shouldRequireChildScope
     ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
     : parentRows;
