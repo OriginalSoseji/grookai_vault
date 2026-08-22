@@ -150,24 +150,26 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
     });
     final sharePositionOrigin =
         GrookaiObjectExportService.sharePositionOriginFor(context);
+    var stage = 'precache_images';
 
     try {
       final object = _previewObject;
       await _precacheLotImages();
-      final renderedSides = await Future.wait([
-        widget.exportService.exportObjectPng(
-          object: object,
-          destination: destination,
-          repaintBoundaryKey: _frontExportBoundaryKey,
-        ),
-        widget.exportService.exportObjectPng(
-          object: object,
-          destination: destination,
-          repaintBoundaryKey: _backExportBoundaryKey,
-        ),
-      ]);
+      stage = 'capture_front';
+      final front = await widget.exportService.exportObjectPng(
+        object: object,
+        destination: destination,
+        repaintBoundaryKey: _frontExportBoundaryKey,
+      );
+      stage = 'capture_back';
+      final back = await widget.exportService.exportObjectPng(
+        object: object,
+        destination: destination,
+        repaintBoundaryKey: _backExportBoundaryKey,
+      );
+      stage = 'open_share_sheet';
       await widget.exportService.sharePngs(
-        bytes: renderedSides,
+        bytes: [front, back],
         fileNames: [
           GrookaiObjectExportService.sidedFileNameFor(
             type: 'lot-${destination.slug}',
@@ -191,7 +193,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
         reason: 'grookai_object_share_failed',
         context: <String, Object?>{
           'operation': 'share_png',
-          'stage': 'lot_pricing',
+          'stage': stage,
           'surface': 'price_lot',
           'object_type': 'lot',
           'destination': _exportDestination.slug,
@@ -203,7 +205,15 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
       setState(() {
         _error = error is _LotShareException
             ? error.message
-            : 'Unable to generate both lot images. Please try again.';
+            : switch (stage) {
+                'capture_front' =>
+                  'Unable to generate the lot front image. Please try again.',
+                'capture_back' =>
+                  'Unable to generate the lot back image. Please try again.',
+                'open_share_sheet' =>
+                  'Both images were generated, but sharing could not be opened.',
+                _ => 'Unable to prepare the lot images. Please try again.',
+              };
       });
     } finally {
       if (mounted) {
@@ -258,119 +268,126 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Price Lot')),
       body: SafeArea(
-        child: ListView(
+        child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: EdgeInsets.fromLTRB(16, 10, 16, 24 + bottomInset),
-          children: [
-            Center(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Stack(
-                  children: [
-                    if (_showFront)
-                      _backExportRenderer()
-                    else
-                      _frontExportRenderer(),
-                    if (_showFront)
-                      _frontExportRenderer()
-                    else
-                      _backExportRenderer(),
-                  ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Stack(
+                    children: [
+                      if (_showFront)
+                        _backExportRenderer()
+                      else
+                        _frontExportRenderer(),
+                      if (_showFront)
+                        _frontExportRenderer()
+                      else
+                        _backExportRenderer(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 14),
-            SegmentedButton<bool>(
-              showSelectedIcon: false,
-              segments: const [
-                ButtonSegment<bool>(
-                  value: true,
-                  icon: Icon(Icons.flip_to_front_rounded),
-                  label: Text('Front'),
-                ),
-                ButtonSegment<bool>(
-                  value: false,
-                  icon: Icon(Icons.flip_to_back_rounded),
-                  label: Text('Back'),
-                ),
-              ],
-              selected: {_showFront},
-              onSelectionChanged: (selection) =>
-                  setState(() => _showFront = selection.single),
-            ),
-            const SizedBox(height: 18),
-            Text(
-              'Skin',
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
+              const SizedBox(height: 14),
+              SegmentedButton<bool>(
+                showSelectedIcon: false,
+                segments: const [
+                  ButtonSegment<bool>(
+                    value: true,
+                    icon: Icon(Icons.flip_to_front_rounded),
+                    label: Text('Front'),
+                  ),
+                  ButtonSegment<bool>(
+                    value: false,
+                    icon: Icon(Icons.flip_to_back_rounded),
+                    label: Text('Back'),
+                  ),
+                ],
+                selected: {_showFront},
+                onSelectionChanged: (selection) =>
+                    setState(() => _showFront = selection.single),
               ),
-            ),
-            const SizedBox(height: 8),
-            GrookaiObjectSkinPicker(
-              selected: _skin,
-              onChanged: (skin) => setState(() => _skin = skin),
-            ),
-            const SizedBox(height: 18),
-            TextField(
-              controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Lot title'),
-              onChanged: (_) => setState(() {}),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              '${widget.source.items.length} cards',
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 8),
-            for (var index = 0; index < widget.source.items.length; index += 1)
-              _LotItemPriceRow(
-                item: widget.source.items[index],
-                controller: _itemPriceControllers[index],
-                onChanged: () => setState(() {}),
-              ),
-            const SizedBox(height: 4),
-            Text(
-              'Estimated value is itemized above. Set one bundle price for the lot.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _bundlePriceController,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Bundle price',
-                prefixText: r'$',
-              ),
-              onChanged: (_) => setState(() {}),
-            ),
-            const SizedBox(height: 14),
-            if (_error != null) ...[
-              const SizedBox(height: 4),
+              const SizedBox(height: 18),
               Text(
-                _error!,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.error,
+                'Skin',
+                style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
+              const SizedBox(height: 8),
+              GrookaiObjectSkinPicker(
+                selected: _skin,
+                onChanged: (skin) => setState(() => _skin = skin),
+              ),
+              const SizedBox(height: 18),
+              TextField(
+                controller: _titleController,
+                decoration: const InputDecoration(labelText: 'Lot title'),
+                onChanged: (_) => setState(() {}),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                '${widget.source.items.length} cards',
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 8),
+              for (
+                var index = 0;
+                index < widget.source.items.length;
+                index += 1
+              )
+                _LotItemPriceRow(
+                  item: widget.source.items[index],
+                  controller: _itemPriceControllers[index],
+                  onChanged: () => setState(() {}),
+                ),
+              const SizedBox(height: 4),
+              Text(
+                'Estimated value is itemized above. Set one bundle price for the lot.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: _bundlePriceController,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'Bundle price',
+                  prefixText: r'$',
+                ),
+                onChanged: (_) => setState(() {}),
+              ),
+              const SizedBox(height: 14),
+              if (_error != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  _error!,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.error,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+              FilledButton.icon(
+                onPressed: _sharing ? null : _shareCurrentCard,
+                icon: _sharing
+                    ? const SizedBox.square(
+                        dimension: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.ios_share_outlined),
+                label: Text(_sharing ? 'Preparing both sides...' : 'Share lot'),
+              ),
             ],
-            FilledButton.icon(
-              onPressed: _sharing ? null : _shareCurrentCard,
-              icon: _sharing
-                  ? const SizedBox.square(
-                      dimension: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Icon(Icons.ios_share_outlined),
-              label: Text(_sharing ? 'Preparing both sides...' : 'Share lot'),
-            ),
-          ],
+          ),
         ),
       ),
     );

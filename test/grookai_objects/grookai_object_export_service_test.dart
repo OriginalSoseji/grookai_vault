@@ -210,6 +210,88 @@ void main() {
     expect(find.text('4 card lot'), findsOneWidget);
   });
 
+  testWidgets('ebay five-card export uses centered three-plus-two rows', (
+    tester,
+  ) async {
+    final key = GlobalKey();
+    await tester.binding.setSurfaceSize(const Size(420, 420));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Center(
+            child: GrookaiObjectDestinationExportRenderer(
+              repaintBoundaryKey: key,
+              object: fiveImageLotFixture(GrookaiObjectSkin.onyx),
+              destination: GrookaiObjectExportDestination.ebayListing,
+              showFront: true,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final images = find.byType(GrookaiObjectNetworkImage);
+    expect(images, findsNWidgets(5));
+    final positions = images
+        .evaluate()
+        .map((element) => tester.getTopLeft(find.byWidget(element.widget)))
+        .toList(growable: false);
+    final rowYs =
+        positions.map((position) => position.dy.round()).toSet().toList()
+          ..sort();
+    expect(rowYs, hasLength(2));
+    expect(
+      positions.where((position) => position.dy.round() == rowYs.first),
+      hasLength(3),
+    );
+    expect(
+      positions.where((position) => position.dy.round() == rowYs.last),
+      hasLength(2),
+    );
+    final topRowLeft = positions
+        .where((position) => position.dy.round() == rowYs.first)
+        .map((position) => position.dx)
+        .reduce((left, right) => left < right ? left : right);
+    final bottomRowLeft = positions
+        .where((position) => position.dy.round() == rowYs.last)
+        .map((position) => position.dx)
+        .reduce((left, right) => left < right ? left : right);
+    expect(bottomRowLeft, greaterThan(topRowLeft));
+  });
+
+  testWidgets('ebay back export renders lot details instead of front collage', (
+    tester,
+  ) async {
+    final key = GlobalKey();
+    await tester.binding.setSurfaceSize(const Size(420, 420));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Center(
+            child: GrookaiObjectDestinationExportRenderer(
+              repaintBoundaryKey: key,
+              object: fourImageLotFixture(GrookaiObjectSkin.onyx),
+              destination: GrookaiObjectExportDestination.ebayListing,
+              showFront: false,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final renderer = tester.widget<GrookaiObjectRenderer>(
+      find.byType(GrookaiObjectRenderer),
+    );
+    expect(renderer.showFront, isFalse);
+    expect(find.byType(GrookaiObjectNetworkImage), findsNothing);
+  });
+
   testWidgets('ebay lot export represents all 12 capped lot cards', (
     tester,
   ) async {

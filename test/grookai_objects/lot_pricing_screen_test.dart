@@ -7,6 +7,7 @@ import 'package:grookai_vault/models/grookai_sale_listing.dart';
 import 'package:grookai_vault/screens/grookai_objects/lot_pricing_screen.dart';
 import 'package:grookai_vault/services/grookai_objects/grookai_object_export_service.dart';
 import 'package:grookai_vault/widgets/card_surface_artwork.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_destination_export_renderer.dart';
 import 'package:share_plus/share_plus.dart';
 
 void main() {
@@ -80,6 +81,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(exportService.exportCalls, 2);
+      expect(exportService.maxConcurrentExports, 1);
       expect(exportService.shareCalls, 1);
       expect(exportService.fileNames, hasLength(2));
       expect(exportService.fileNames.first, endsWith('-front.png'));
@@ -171,10 +173,58 @@ void main() {
     expect(find.text('Cosmic Eclipse Pikachu'), findsWidgets);
     expect(find.byType(CardSurfaceArtwork), findsNWidgets(4));
   });
+
+  testWidgets('long lots keep both export boundaries mounted after scrolling', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(900, 800);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+    await tester.pumpWidget(
+      MaterialApp(
+        home: LotPricingScreen(
+          source: GrookaiLotListingSource(
+            title: 'Twelve Card Lot',
+            items: List<GrookaiLotListingItemSource>.generate(
+              12,
+              (index) => GrookaiLotListingItemSource(
+                cardName: 'Card ${index + 1}',
+                condition: 'Raw NM',
+                price: index + 1,
+              ),
+            ),
+          ),
+          metadata: const <String, dynamic>{},
+        ),
+      ),
+    );
+
+    await tester.scrollUntilVisible(
+      find.text('Share lot'),
+      700,
+      scrollable: find
+          .descendant(
+            of: find.byType(SingleChildScrollView),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    await tester.pump();
+
+    expect(
+      find.byType(GrookaiObjectDestinationExportRenderer),
+      findsNWidgets(2),
+    );
+  });
 }
 
 class _FakeLotExportService extends GrookaiObjectExportService {
   int exportCalls = 0;
+  int activeExports = 0;
+  int maxConcurrentExports = 0;
   int shareCalls = 0;
   List<String> fileNames = const [];
 
@@ -186,6 +236,12 @@ class _FakeLotExportService extends GrookaiObjectExportService {
     double pixelRatio = 3,
   }) async {
     exportCalls += 1;
+    activeExports += 1;
+    if (activeExports > maxConcurrentExports) {
+      maxConcurrentExports = activeExports;
+    }
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    activeExports -= 1;
     return Uint8List.fromList(const [137, 80, 78, 71]);
   }
 

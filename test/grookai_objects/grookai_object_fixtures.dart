@@ -172,6 +172,34 @@ GrookaiObject fourImageLotFixture(GrookaiObjectSkin skin) {
   );
 }
 
+GrookaiObject fiveImageLotFixture(GrookaiObjectSkin skin) {
+  final data = LotListingData(
+    skin: skin,
+    listingNo: 'LOT5',
+    title: 'Five Card Test Lot',
+    items: [
+      for (var index = 0; index < 5; index += 1)
+        LotItem(
+          cardName: 'Card ${index + 1}',
+          condition: 'Raw NM',
+          price: index + 1,
+          imageUrl: 'https://example.test/card-${index + 1}.webp',
+        ),
+    ],
+    bundlePrice: 15,
+    sellerHandle: 'Collector',
+    sellerRating: 0,
+    sellerTradeCount: 0,
+  );
+  return GrookaiObject(
+    type: 'lot',
+    skin: skin,
+    layout: 'lot.v1',
+    fields: data.toFields(),
+    metadata: const {'fixture': true},
+  );
+}
+
 GrookaiObject twelveImageLotFixture(GrookaiObjectSkin skin) {
   final data = LotListingData(
     skin: skin,
