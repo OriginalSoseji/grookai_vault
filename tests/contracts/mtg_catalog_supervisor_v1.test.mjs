@@ -129,8 +129,41 @@ test("partial catalog state fails closed before dispatch", () => {
   );
 });
 
-test("release visibility and frozen producer commit are hard stops", () => {
-  assert.throws(() => plan({ releaseStatus: "signed_in" }), /must remain hidden/);
+test("a complete signed-in catalog is a successful read-only no-dispatch state", () => {
+  const result = plan({ releaseStatus: "signed_in" });
+  assert.equal(result.status, "eligible_catalog_complete_signed_in_no_dispatch");
+  assert.equal(result.catalog.release_status, "signed_in");
+  assert.equal(result.catalog.absent_count, 0);
+  assert.equal(result.dispatch, null);
+});
+
+test("signed-in release fails closed when an eligible set is absent or drifted", () => {
+  const executionOrder = [batch(0), batch(1)];
+  assert.throws(
+    () =>
+      plan({
+        executionOrder,
+        readbackByCode: { set0: exact(executionOrder[0]) },
+        releaseStatus: "signed_in",
+      }),
+    /Signed-in MTG catalog has 1 absent eligible sets/,
+  );
+  assert.throws(
+    () =>
+      plan({
+        executionOrder,
+        readbackByCode: {
+          set0: exact(executionOrder[0]),
+          set1: { ...exact(executionOrder[1]), card_printings: 1 },
+        },
+        releaseStatus: "signed_in",
+      }),
+    /Partial or drifted MTG set state/,
+  );
+});
+
+test("unsupported release visibility and frozen producer commit are hard stops", () => {
+  assert.throws(() => plan({ releaseStatus: "public" }), /must be hidden or signed_in/);
   assert.throws(
     () => plan({ targetCommitSha: "a".repeat(40) }),
     /Frozen runner ref moved/,
@@ -159,6 +192,19 @@ test("a successful run resets the consecutive failure counter", () => {
     { id: 1, status: "completed", conclusion: "failure", updated_at: "2026-08-19T01:00:00Z" },
   ];
   assert.equal(consecutiveMtgCatalogRunnerFailuresV1(runs), 1);
+});
+
+test("historical runner failures cannot fail a complete signed-in no-dispatch state", () => {
+  const failures = [0, 1, 2].map((index) => ({
+    id: 100 - index,
+    status: "completed",
+    conclusion: "failure",
+    updated_at: `2026-08-19T0${3 - index}:00:00Z`,
+  }));
+  const result = plan({ releaseStatus: "signed_in", runnerRuns: failures });
+  assert.equal(result.status, "eligible_catalog_complete_signed_in_no_dispatch");
+  assert.equal(result.consecutive_runner_failures, 3);
+  assert.equal(result.dispatch, null);
 });
 
 test("workflow is GitHub-native, serialized, least-privilege, and frozen", () => {
