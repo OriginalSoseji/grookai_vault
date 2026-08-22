@@ -456,15 +456,15 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
   GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
     final cardPrintId = _cardPrintIdForRow(row);
     final artwork = _objectRowArtwork(row, _displayImageUrlForRow(row));
-    return GrookaiLotListingItemSource(
-      cardName: _cardNameForRow(row),
-      printingIdentityLabel: resolveVaultPrintingIdentityPresentation(
-        row,
-      ).label,
+    return GrookaiLotListingItemSource.fromVaultRow(
+      row: row,
+      marketPrice: _pricingByCardPrintId[cardPrintId]?.visibleValue,
       condition: _conditionForRow(row),
-      price: _pricingByCardPrintId[cardPrintId]?.visibleValue ?? 0,
       imageUrl: artwork.primaryImageUrl,
       fallbackImageUrl: artwork.fallbackImageUrl,
+      meaningfulVariantLabel: resolveVaultPrintingIdentityPresentation(
+        row,
+      ).label,
     );
   }
 

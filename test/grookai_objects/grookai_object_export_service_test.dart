@@ -10,6 +10,7 @@ import 'package:grookai_vault/widgets/grookai_objects/grookai_object_atoms.dart'
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_frame.dart';
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_renderer.dart';
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_skin.dart';
+import 'package:grookai_vault/widgets/grookai_objects/lot_card_widgets.dart';
 
 import 'grookai_object_fixtures.dart';
 
@@ -32,6 +33,24 @@ void main() {
       GrookaiObjectExportService.fileNameFor(type: 'for sale', title: '   '),
       'grookai-for-sale-card.png',
     );
+    expect(
+      GrookaiObjectExportService.sidedFileNameFor(
+        type: 'lot',
+        title: 'Pikachu Lot',
+        side: 'front',
+      ),
+      'grookai-lot-pikachu-lot-front.png',
+    );
+  });
+
+  test('odd lot sizes use balanced symmetric rows', () {
+    expect(lotBalancedRowPattern(5), [3, 2]);
+    expect(lotBalancedRowPattern(7), [2, 3, 2]);
+    expect(lotBalancedRowPattern(10), [3, 4, 3]);
+    expect(lotBalancedRowPattern(11), [4, 3, 4]);
+    for (var count = 1; count <= 12; count += 1) {
+      expect(lotBalancedRowPattern(count).fold<int>(0, (a, b) => a + b), count);
+    }
   });
 
   test('destination availability matches object type rules', () {
@@ -229,7 +248,7 @@ void main() {
       expect(source, contains('GrookaiObjectDestinationExportRenderer'));
       expect(source, contains('showGrookaiObjectShareDestinationSheet'));
       expect(source, contains('exportObjectPng('));
-      expect(source, contains('sharePng('));
+      expect(source, contains(RegExp(r'sharePng(?:s)?\(')));
       expect(source, contains('sharePositionOriginFor('));
       expect(source, contains('recordNonFatalError('));
     }
