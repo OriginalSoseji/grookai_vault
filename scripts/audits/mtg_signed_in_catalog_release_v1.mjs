@@ -206,19 +206,11 @@ async function captureRoleVisibility(client, role, sample) {
            select count(*) from public.card_prints where game_id = $1::uuid
              and image_status = 'exact' and image_source = 'identity'
          ),
-         'image_faces', (
-           select count(*) from public.card_print_image_faces face
-           join public.card_prints card on card.id = face.card_print_id
-           where card.game_id = $1::uuid and face.image_status = 'exact'
-         ),
          'image_coverage_gaps', (
            select count(*) from public.card_prints where game_id = $1::uuid
              and image_url is null and image_path is null and image_hash is null
          ),
          'direct_card_matches', (select count(*) from public.card_prints where id = $2::uuid),
-         'direct_face_matches', (
-           select count(*) from public.get_card_print_image_faces_v1($2::uuid)
-         ),
          'search_matches', (
            select count(*) from public.search_card_prints_v1($3, null, null, 1000, 0) search_row
            where search_row.id = $2::uuid
@@ -227,8 +219,26 @@ async function captureRoleVisibility(client, role, sample) {
       [MTG_GAME_ID_V1, sample.id, sample.name],
     );
     const counts = result.rows[0].value;
+    counts.image_faces = 0;
+    counts.direct_face_matches = 0;
     counts.pricing_rows = 0;
     if (role === "authenticated") {
+      const imageVisibility = await client.query(
+        `select jsonb_build_object(
+           'image_faces', (
+             select count(*) from public.card_print_image_faces face
+             join public.card_prints card on card.id = face.card_print_id
+             where card.game_id = $1::uuid and face.image_status = 'exact'
+           ),
+           'direct_face_matches', (
+             select count(*) from public.get_card_print_image_faces_v1($2::uuid)
+           )
+         ) as value`,
+        [MTG_GAME_ID_V1, sample.id],
+      );
+      counts.image_faces = imageVisibility.rows[0].value.image_faces;
+      counts.direct_face_matches =
+        imageVisibility.rows[0].value.direct_face_matches;
       const pricing = await client.query(
         "select count(*)::integer as count from public.get_market_pricing_read_model_v1(array[$1::uuid], null)",
         [sample.id],

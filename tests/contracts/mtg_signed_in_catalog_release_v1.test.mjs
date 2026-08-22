@@ -139,3 +139,33 @@ test("release runner is restricted to one release-control update and automatic r
   assert.match(workflow, /inputs\.ios_build_number/);
   assert.doesNotMatch(workflow, /version-code=298|build-number=298/);
 });
+
+test("anonymous release readback never invokes authenticated-only image surfaces", () => {
+  const runner = fs.readFileSync(
+    new URL(
+      "../../scripts/audits/mtg_signed_in_catalog_release_v1.mjs",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  const start = runner.indexOf("async function captureRoleVisibility");
+  const end = runner.indexOf("\nasync function ", start + 1);
+  const captureRoleVisibility = runner.slice(start, end);
+  const authenticatedBranch = captureRoleVisibility.indexOf(
+    'if (role === "authenticated")',
+  );
+
+  assert.ok(start >= 0, "captureRoleVisibility must exist");
+  assert.ok(authenticatedBranch >= 0, "authenticated readback branch must exist");
+  assert.ok(
+    captureRoleVisibility.indexOf("from public.card_print_image_faces") >
+      authenticatedBranch,
+    "the private image-face table must only be read as authenticated",
+  );
+  assert.ok(
+    captureRoleVisibility.indexOf(
+      "from public.get_card_print_image_faces_v1",
+    ) > authenticatedBranch,
+    "the private image-face RPC must only be invoked as authenticated",
+  );
+});
