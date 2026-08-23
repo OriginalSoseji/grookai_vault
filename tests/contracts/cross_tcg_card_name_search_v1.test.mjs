@@ -15,7 +15,10 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
   const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
 
   assert.match(route, /getExploreRowsForLanguageScopedTextSearch/);
-  assert.match(lookup, /getExploreRowsForGameScopedTextSearch\(\s*rawQuery,\s*"pokemon"/);
+  assert.match(
+    lookup,
+    /getExploreRowsForGameScopedTextSearch\(\s*boundedQuery,\s*"pokemon"/,
+  );
   assert.match(lookup, /search_game_card_prints_v3/);
   assert.match(lookup, /gameScope: PublicGameScope/);
   assert.match(lookup, /gameScope === "pokemon" \? options\.languageScope \?\? "all" : "all"/);
@@ -32,6 +35,36 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
     lookup,
     /const parentRows = limitRowsBeforeEnrichment\(\s*scopedParentRows,\s*resolverQuery,\s*sortMode/,
   );
+});
+
+test("direct Pokemon identity, set aliases, and value sorts retain the complete evidence path", () => {
+  const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
+
+  assert.match(
+    lookup,
+    /const query = await buildResolverQuery\(normalizeQuery\(rawQuery\)\)/,
+  );
+  assert.match(
+    lookup,
+    /const boundedSetCode =\s*query\.expectedSetCodes\.length === 1/,
+  );
+  assert.match(
+    lookup,
+    /const boundedQuery = boundedSetCode\s*\? \[\.\.\.query\.textTokens, \.\.\.query\.numberTokens\]\.join\(" "\)\.trim\(\)/,
+  );
+  assert.match(
+    lookup,
+    /const useCompletePokemonPath =\s*Boolean\(query\.directGvId\) \|\|\s*query\.expectedSetCodes\.length > 1/,
+  );
+  assert.match(
+    lookup,
+    /if \(useCompletePokemonPath\)[\s\S]*?fetchLanguageScopedTextRows\(query, languageScope\)/,
+  );
+  assert.match(
+    lookup,
+    /if \(useCompletePokemonPath\)[\s\S]*?limitRowsBeforeEnrichment\(exactRows, query, sortMode\)/,
+  );
+  assert.match(lookup, /exactSetCode: boundedSetCode \|\| undefined/);
 });
 
 test("global search preserves the selected TCG", () => {

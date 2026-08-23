@@ -3797,11 +3797,56 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   sortMode: SortMode,
   includePricing = false,
 ): Promise<ExploreRow[]> {
+  const query = await buildResolverQuery(normalizeQuery(rawQuery));
+  const boundedSetCode =
+    query.expectedSetCodes.length === 1 ? query.expectedSetCodes[0] : "";
+  const boundedQuery = boundedSetCode
+    ? [...query.textTokens, ...query.numberTokens].join(" ").trim()
+    : rawQuery;
+  const useCompletePokemonPath =
+    Boolean(query.directGvId) ||
+    query.expectedSetCodes.length > 1 ||
+    sortMode === "value_high" ||
+    sortMode === "value_low";
+  if (useCompletePokemonPath) {
+    assertValueSortPricingEnabled(sortMode, includePricing);
+    const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
+    const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
+    const setMetadataByCode = await fetchPublicSetMetadata(
+      uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
+    );
+    const supabase = await createServerComponentClient();
+    const valueSort = sortMode === "value_high" || sortMode === "value_low";
+    const pricingByCardId = includePricing
+      ? await getPublicPricingByCardIds(
+          supabase,
+          enrichmentRows.map((row) => row.id),
+          { requireComplete: valueSort },
+        )
+      : new Map<string, PublicPricingRecord>();
+    const rows = await buildExploreRows(
+      enrichmentRows,
+      new Map<string, string>(),
+      setMetadataByCode,
+      pricingByCardId,
+      {
+        skipChildDisplayImageFallbacks:
+          enrichmentRows.length > 24 && !valueSort,
+      },
+    );
+
+    return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
+  }
+
   return getExploreRowsForGameScopedTextSearch(
-    rawQuery,
+    boundedQuery,
     "pokemon",
     sortMode,
-    { includePricing, languageScope },
+    {
+      includePricing,
+      languageScope,
+      exactSetCode: boundedSetCode || undefined,
+    },
   );
 }
 
