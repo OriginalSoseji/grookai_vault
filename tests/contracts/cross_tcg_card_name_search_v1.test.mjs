@@ -34,6 +34,27 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
   );
 });
 
+test("direct Pokemon identity, set aliases, and value sorts retain the complete evidence path", () => {
+  const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
+
+  assert.match(
+    lookup,
+    /const query = await buildResolverQuery\(normalizeQuery\(rawQuery\)\)/,
+  );
+  assert.match(
+    lookup,
+    /const useCompletePokemonPath =\s*Boolean\(query\.directGvId\) \|\|\s*query\.expectedSetCodes\.length > 0/,
+  );
+  assert.match(
+    lookup,
+    /if \(useCompletePokemonPath\)[\s\S]*?fetchLanguageScopedTextRows\(query, languageScope\)/,
+  );
+  assert.match(
+    lookup,
+    /if \(useCompletePokemonPath\)[\s\S]*?limitRowsBeforeEnrichment\(exactRows, query, sortMode\)/,
+  );
+});
+
 test("global search preserves the selected TCG", () => {
   const form = source("apps/web/src/components/PublicSearchForm.tsx");
 
