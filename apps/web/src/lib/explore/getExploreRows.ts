@@ -28,6 +28,7 @@ import {
   normalizeQuery,
   type NormalizedQueryPacket,
 } from "@/lib/resolver/normalizeQuery";
+import { NAME_SHORTHANDS } from "@/lib/resolver/shorthand";
 import {
   getPrimaryFamilyTokensFromTokens,
   queryContainsNameDecoratorTokens,
@@ -3797,11 +3798,32 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   sortMode: SortMode,
   includePricing = false,
 ): Promise<ExploreRow[]> {
-  const query = await buildResolverQuery(normalizeQuery(rawQuery));
+  const packet = normalizeQuery(rawQuery);
+  const query = await buildResolverQuery(packet);
+  const originalQueryTokens = new Set(
+    packet.normalizedTokens.map((token) => normalizeTextForMatch(token)),
+  );
+  const canonicalNicknameTokens = query.textTokens.filter(
+    (token) => !originalQueryTokens.has(normalizeTextForMatch(token)),
+  );
+  const canonicalNicknameSource =
+    canonicalNicknameTokens.length === 1
+      ? query.textTokens.find(
+          (token) =>
+            originalQueryTokens.has(normalizeTextForMatch(token)) &&
+            (NAME_SHORTHANDS[normalizeTextForMatch(token)] ?? []).includes(
+              canonicalNicknameTokens[0],
+            ),
+        )
+      : undefined;
+  const boundedTextTokens =
+    canonicalNicknameSource
+      ? query.textTokens.filter((token) => token !== canonicalNicknameSource)
+      : query.textTokens;
   const canUseBoundedSetSearch =
     query.expectedSetCodes.length === 1 &&
     sortMode === "relevance" &&
-    query.textTokens.length <= 1 &&
+    boundedTextTokens.length <= 1 &&
     query.variantCues.length === 0 &&
     query.rarityIntent.length === 0 &&
     query.traitIntent.length === 0;
@@ -3812,7 +3834,7 @@ export async function getExploreRowsForLanguageScopedTextSearch(
     (token) => !query.setTokens.includes(normalizeTextForMatch(token)),
   );
   const boundedQuery = boundedSetCode
-    ? [...query.textTokens, ...boundedNumberTokens].join(" ").trim()
+    ? [...boundedTextTokens, ...boundedNumberTokens].join(" ").trim()
     : rawQuery;
   const useCompletePokemonPath =
     Boolean(query.directGvId) ||

@@ -42,11 +42,27 @@ test("direct Pokemon identity, set aliases, and value sorts retain the complete 
 
   assert.match(
     lookup,
-    /const query = await buildResolverQuery\(normalizeQuery\(rawQuery\)\)/,
+    /const packet = normalizeQuery\(rawQuery\);\s*const query = await buildResolverQuery\(packet\)/,
   );
   assert.match(
     lookup,
-    /const canUseBoundedSetSearch =\s*query\.expectedSetCodes\.length === 1 &&\s*sortMode === "relevance" &&\s*query\.textTokens\.length <= 1/,
+    /const originalQueryTokens = new Set\([\s\S]*?packet\.normalizedTokens\.map/,
+  );
+  assert.match(
+    lookup,
+    /const canonicalNicknameTokens = query\.textTokens\.filter\([\s\S]*?!originalQueryTokens\.has/,
+  );
+  assert.match(
+    lookup,
+    /const canonicalNicknameSource =[\s\S]*?NAME_SHORTHANDS\[normalizeTextForMatch\(token\)\][\s\S]*?canonicalNicknameTokens\[0\]/,
+  );
+  assert.match(
+    lookup,
+    /const boundedTextTokens =\s*canonicalNicknameSource\s*\? query\.textTokens\.filter\(\(token\) => token !== canonicalNicknameSource\)\s*:\s*query\.textTokens/,
+  );
+  assert.match(
+    lookup,
+    /const canUseBoundedSetSearch =\s*query\.expectedSetCodes\.length === 1 &&\s*sortMode === "relevance" &&\s*boundedTextTokens\.length <= 1/,
   );
   assert.match(
     lookup,
@@ -54,7 +70,7 @@ test("direct Pokemon identity, set aliases, and value sorts retain the complete 
   );
   assert.match(
     lookup,
-    /const boundedQuery = boundedSetCode\s*\? \[\.\.\.query\.textTokens, \.\.\.boundedNumberTokens\]\.join\(" "\)\.trim\(\)/,
+    /const boundedQuery = boundedSetCode\s*\? \[\.\.\.boundedTextTokens, \.\.\.boundedNumberTokens\]\.join\(" "\)\.trim\(\)/,
   );
   assert.match(
     lookup,
