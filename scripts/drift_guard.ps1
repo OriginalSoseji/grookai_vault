@@ -284,15 +284,15 @@ $linkedSummary = Parse-MigrationListTable -StdOut $linkedResult.StdOut
 
 if ($localSourceLabel -eq "repo migration files") {
   $repoIds = Get-RepoMigrationIds -RepoRoot $repoRoot
-  $localIds = $repoIds
-  $remoteIds = $linkedSummary.RemoteIds
-  $localOnly = Diff-Ids $localIds $remoteIds
-  $remoteOnly = Diff-Ids $remoteIds $localIds
+  $localIds = @($repoIds)
+  $remoteIds = @($linkedSummary.RemoteIds)
+  $localOnly = @(Diff-Ids $localIds $remoteIds)
+  $remoteOnly = @(Diff-Ids $remoteIds $localIds)
   $applied = @($localIds | Where-Object { $remoteIds.Contains($_) } | Sort-Object)
 } else {
-  $localOnly = $linkedSummary.LocalOnlyIds
-  $remoteOnly = $linkedSummary.RemoteOnlyIds
-  $applied = $linkedSummary.AppliedIds
+  $localOnly = @($linkedSummary.LocalOnlyIds)
+  $remoteOnly = @($linkedSummary.RemoteOnlyIds)
+  $applied = @($linkedSummary.AppliedIds)
 }
 
 $hasPending = (($null -ne $localSummary) -and $localSummary.Pending.Count -gt 0) -or ($linkedSummary.Pending.Count -gt 0)

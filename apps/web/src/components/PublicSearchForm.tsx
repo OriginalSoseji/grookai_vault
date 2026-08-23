@@ -9,6 +9,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
+import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { normalizePublicLanguageScope } from "@/lib/publicLanguageScope";
 import { buildPublicSearchDestination } from "@/lib/publicSearchRouting";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
@@ -24,6 +25,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const currentQuery = searchParams.get("q") ?? "";
   const currentView = searchParams.get("view");
   const currentSort = searchParams.get("sort");
+  const currentGameScope = normalizePublicGameScope(searchParams.get("game"));
   const currentLanguageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const normalizedCurrentView = pathname === "/explore" && currentView ? normalizeExploreViewMode(currentView) : null;
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
@@ -50,6 +52,10 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
 
     if (currentLanguageScope !== "all") {
       nextParams.set("lang", currentLanguageScope);
+    }
+
+    if (currentGameScope !== "pokemon") {
+      nextParams.set("game", currentGameScope);
     }
 
     if (normalizedCurrentView) {
@@ -80,6 +86,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       <form action="/search" method="get" onSubmit={handleSubmit} className="w-full max-w-2xl">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
+        {currentGameScope !== "pokemon" ? <input type="hidden" name="game" value={currentGameScope} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
         <SearchToolbar surface="pill" className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -107,6 +114,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
+        {currentGameScope !== "pokemon" ? <input type="hidden" name="game" value={currentGameScope} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
         <SearchToolbar surface="soft-pill">
@@ -147,6 +155,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
+        {currentGameScope !== "pokemon" ? <input type="hidden" name="game" value={currentGameScope} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
         <SearchToolbar surface="none" className="flex w-full items-center gap-2">
@@ -177,6 +186,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     >
       {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
       {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
+      {currentGameScope !== "pokemon" ? <input type="hidden" name="game" value={currentGameScope} /> : null}
       {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
       {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
       <SearchToolbar surface="none" className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">

@@ -30,17 +30,22 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   const migrationV2 = source(
     "supabase/migrations/20260822210000_game_scoped_card_search_suppression_guard_v2.sql",
   );
+  const migrationV3 = source(
+    "supabase/migrations/20260822230000_cross_tcg_card_search_v3.sql",
+  );
 
   assert.match(route, /gameScope !== "pokemon" && !userId/);
   assert.match(route, /Sign in to search this catalog/);
   assert.match(route, /getExploreRowsForGameScopedTextSearch/);
   assert.match(route, /includeProvisional =\s*gameScope === "pokemon"/);
   assert.match(route, /game_scope: gameScope/);
-  assert.match(lookup, /\.rpc\("search_game_card_prints_v2"/);
+  assert.match(lookup, /\.rpc\("search_game_card_prints_v3"/);
   assert.match(lookup, /game_code_in: gameScope/);
+  assert.match(lookup, /language_scope_in:/);
   assert.match(lookup, /limit_in: SEARCH_LIMIT/);
   assert.match(lookup, /canUseBoundedGameRpc/);
-  assert.match(lookup, /!searchText\.toUpperCase\(\)\.startsWith\("GV-"\)/);
+  assert.match(lookup, /const directGvIdSearch = searchText\.toUpperCase\(\)\.startsWith\("GV-"\)/);
+  assert.match(lookup, /!directGvIdSearch/);
   assert.match(lookup, /\.eq\("game_id", gameId\)/);
   assert.match(lookup, /\.eq\("code", gameScope\)/);
   assert.match(lookup, /\.ilike\("set_code", inferredSetCode\)/);
@@ -79,8 +84,20 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
     migrationV2,
     /grant execute on function public\.search_game_card_prints_v2[\s\S]*to anon, authenticated, service_role/i,
   );
+  assert.match(migrationV3, /security definer/i);
+  assert.match(migrationV3, /catalog_game_visible_to_request_v1\(game\.code\)/i);
+  assert.match(migrationV3, /scope\.language_scope = 'ja'/i);
+  assert.match(migrationV3, /scope\.language_scope = 'en'/i);
+  assert.match(
+    migrationV3,
+    /data_quality_flags\s*#>>\s*'\{app_visibility_v1,status\}'/i,
+  );
+  assert.match(
+    migrationV3,
+    /grant execute on function public\.search_game_card_prints_v3[\s\S]*to anon, authenticated, service_role/i,
+  );
   assert.doesNotMatch(
-    `${migrationV1}\n${migrationV2}`,
+    `${migrationV1}\n${migrationV2}\n${migrationV3}`,
     /insert\s+into|update\s+public|delete\s+from/i,
   );
 });
