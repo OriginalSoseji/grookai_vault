@@ -2767,7 +2767,11 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   }
 
   void _handleGameScopeChanged(String scope) {
-    final normalized = scope == 'one_piece' ? 'one_piece' : 'pokemon';
+    final normalized = switch (scope) {
+      'one_piece' => 'one_piece',
+      'mtg' => 'mtg',
+      _ => 'pokemon',
+    };
     if (_gameScope == normalized) {
       return;
     }
@@ -2833,6 +2837,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                     value: 'one_piece',
                     label: Text('One Piece'),
                   ),
+                  ButtonSegment<String>(value: 'mtg', label: Text('Magic')),
                 ],
                 selected: <String>{_gameScope},
                 showSelectedIcon: false,
