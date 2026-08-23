@@ -468,18 +468,10 @@ class CardPrintRepository {
       );
     }
 
-    if (gameScope != 'pokemon') {
-      return _searchCardPrintsResolvedFallback(
-        client: client,
-        options: options.copyWith(gameScope: gameScope),
-        defaultLimit: defaultLimit,
-        searchLimit: searchLimit,
-      );
-    }
-
     try {
       return await _searchCardPrintsViaWebResolver(
-        options: options,
+        client: client,
+        options: options.copyWith(gameScope: gameScope),
         trimmed: trimmed,
         identityFilter: identityFilter,
         searchLimit: searchLimit,
@@ -491,7 +483,7 @@ class CardPrintRepository {
 
       return _searchCardPrintsResolvedFallback(
         client: client,
-        options: options,
+        options: options.copyWith(gameScope: gameScope),
         defaultLimit: defaultLimit,
         searchLimit: searchLimit,
       );
@@ -499,16 +491,19 @@ class CardPrintRepository {
   }
 
   static Future<CardPrintSearchResult> _searchCardPrintsViaWebResolver({
+    required SupabaseClient client,
     required CardSearchOptions options,
     required String trimmed,
     required String? identityFilter,
     required int searchLimit,
   }) async {
+    final gameScope = _normalizeCatalogGameScope(options.gameScope);
     final resolverUri = Uri.parse(grookaiWebBaseUrl)
         .resolve('/api/resolver/search')
         .replace(
           queryParameters: {
             'limit': options.limit.clamp(1, searchLimit).toString(),
+            'game': gameScope,
             if (trimmed.isNotEmpty) 'q': trimmed,
             if (_normalizeLanguageScope(options.languageScope) != 'all')
               'lang': _normalizeLanguageScope(options.languageScope),
@@ -517,8 +512,14 @@ class CardPrintRepository {
           },
         );
 
+    final accessToken = client.auth.currentSession?.accessToken.trim() ?? '';
+    final headers = <String, String>{
+      'Accept': 'application/json',
+      if (accessToken.isNotEmpty) 'Authorization': 'Bearer $accessToken',
+    };
+
     final response = await http
-        .get(resolverUri, headers: const {'Accept': 'application/json'})
+        .get(resolverUri, headers: headers)
         .timeout(const Duration(seconds: 10));
 
     final decoded = jsonDecode(response.body);

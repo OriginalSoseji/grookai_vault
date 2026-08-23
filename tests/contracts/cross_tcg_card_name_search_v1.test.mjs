@@ -128,6 +128,30 @@ test("mobile search falls back instead of accepting a timeout as no-match", () =
   );
 });
 
+test("mobile search sends its Supabase session and selected TCG to the governed resolver", () => {
+  const model = source("lib/models/card_print.dart");
+  const serverClient = source("apps/web/src/lib/supabase/server.ts");
+  const main = source("lib/main.dart");
+  const vault = source("lib/main_vault.dart");
+
+  assert.match(model, /client\.auth\.currentSession\?\.accessToken/);
+  assert.match(model, /'Authorization': 'Bearer \$accessToken'/);
+  assert.match(model, /'game': gameScope/);
+  assert.doesNotMatch(
+    model,
+    /if \(gameScope != 'pokemon'\) \{\s*return _searchCardPrintsResolvedFallback/,
+  );
+
+  assert.match(serverClient, /headers\(\)/);
+  assert.match(serverClient, /\^Bearer\\s\+\\S\+\$/);
+  assert.match(serverClient, /global: \{ headers: \{ Authorization: authorization \} \}/);
+
+  for (const clientSurface of [main, vault]) {
+    assert.match(clientSurface, /value: 'mtg'/);
+    assert.match(clientSurface, /'mtg' => 'mtg'/);
+  }
+});
+
 test("V3 applies authority, suppression, and language filters before limiting", () => {
   const migration = source(
     "supabase/migrations/20260822230000_cross_tcg_card_search_v3.sql",

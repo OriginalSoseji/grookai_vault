@@ -1,12 +1,26 @@
 import "server-only";
 
-import { cookies } from "next/headers";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { cookies, headers } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServerConfig } from "@/lib/supabase/config";
 
 export async function createServerComponentClient() {
   const { url, publishableKey } = getSupabaseServerConfig();
+  const headerStore = await headers();
+  const authorization = headerStore.get("authorization")?.trim() ?? "";
+  if (/^Bearer\s+\S+$/i.test(authorization)) {
+    return createSupabaseClient(url, publishableKey, {
+      global: { headers: { Authorization: authorization } },
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+        detectSessionInUrl: false,
+      },
+    });
+  }
+
   const cookieStore = await cookies();
 
   return createServerClient(url, publishableKey, {
