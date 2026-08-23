@@ -113,6 +113,25 @@ void main() {
     expect(formatPrintedIdentityModifier('first_edition'), 'First Edition');
     expect(formatVariantKey('play_pokemon_stamp'), 'Play Pokémon Stamp');
     expect(
+      formatVariantKey('scryfall:4a2e428c-dd25-484c-bbc8-2d6ce10ef42c'),
+      isNull,
+    );
+    expect(formatVariantKey('tcgplayer_product_539554'), isNull);
+    expect(
+      resolveDisplayIdentityFromFields(
+        name: 'Black Lotus',
+        variantKey: 'scryfall:4a2e428c-dd25-484c-bbc8-2d6ce10ef42c',
+      ).displayName,
+      'Black Lotus',
+    );
+    expect(
+      resolveDisplayIdentityFromFields(
+        name: 'Monkey.D.Luffy',
+        variantKey: 'tcgplayer_product_539554',
+      ).displayName,
+      'Monkey.D.Luffy',
+    );
+    expect(
       resolveDisplayIdentityFromFields(
         name: 'Pikachu',
         variantKey: 'first_edition_red_cheeks',
