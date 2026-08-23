@@ -3798,9 +3798,25 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   includePricing = false,
 ): Promise<ExploreRow[]> {
   const query = await buildResolverQuery(normalizeQuery(rawQuery));
+  const canUseBoundedSetSearch =
+    query.expectedSetCodes.length === 1 &&
+    sortMode === "relevance" &&
+    query.textTokens.length <= 1 &&
+    query.variantCues.length === 0 &&
+    query.rarityIntent.length === 0 &&
+    query.traitIntent.length === 0;
+  const boundedSetCode = canUseBoundedSetSearch
+    ? query.expectedSetCodes[0]
+    : "";
+  const boundedNumberTokens = query.numberTokens.filter(
+    (token) => !query.setTokens.includes(normalizeTextForMatch(token)),
+  );
+  const boundedQuery = boundedSetCode
+    ? [...query.textTokens, ...boundedNumberTokens].join(" ").trim()
+    : rawQuery;
   const useCompletePokemonPath =
     Boolean(query.directGvId) ||
-    query.expectedSetCodes.length > 0 ||
+    (query.expectedSetCodes.length > 0 && !canUseBoundedSetSearch) ||
     sortMode === "value_high" ||
     sortMode === "value_low";
   if (useCompletePokemonPath) {
@@ -3834,10 +3850,14 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   }
 
   return getExploreRowsForGameScopedTextSearch(
-    rawQuery,
+    boundedQuery,
     "pokemon",
     sortMode,
-    { includePricing, languageScope },
+    {
+      includePricing,
+      languageScope,
+      exactSetCode: boundedSetCode || undefined,
+    },
   );
 }
 
