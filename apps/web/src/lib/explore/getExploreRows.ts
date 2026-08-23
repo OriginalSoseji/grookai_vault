@@ -44,6 +44,7 @@ import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 
 const SEARCH_LIMIT = 64;
+const SET_FETCH_PAGE_SIZE = 500;
 const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 160;
@@ -2976,17 +2977,28 @@ async function fetchCardRowsBySetCode(setCode: string) {
   const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
-  const { data, error } = await supabase
-    .from("card_prints")
-    .select(selectClause)
-    .eq("set_code", setCode)
-    .limit(250);
+  const rows: CardPrintLookupRow[] = [];
 
-  if (error) {
-    throw new Error(error.message);
+  for (let offset = 0; ; offset += SET_FETCH_PAGE_SIZE) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .eq("set_code", setCode)
+      .order("id", { ascending: true })
+      .range(offset, offset + SET_FETCH_PAGE_SIZE - 1);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    const page = (data ?? []) as CardPrintLookupRow[];
+    rows.push(...page);
+    if (page.length < SET_FETCH_PAGE_SIZE) {
+      break;
+    }
   }
 
-  return (data ?? []) as CardPrintLookupRow[];
+  return rows;
 }
 
 async function fetchCardRowsByStructuredTextQuery(query: ResolverQuery) {
@@ -3680,7 +3692,11 @@ async function fetchLanguageScopedTextRows(
     .filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token))
     .slice(0, 4);
 
-  if (tokens.length === 0 && !query.directGvId) {
+  if (
+    tokens.length === 0 &&
+    !query.directGvId &&
+    query.expectedSetCodes.length === 0
+  ) {
     return [] as CardPrintLookupRow[];
   }
 

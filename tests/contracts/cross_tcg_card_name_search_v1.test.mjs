@@ -39,6 +39,10 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
 
 test("direct Pokemon identity, set aliases, and value sorts retain the complete evidence path", () => {
   const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
+  const setFetcher = lookup.slice(
+    lookup.indexOf("async function fetchCardRowsBySetCode"),
+    lookup.indexOf("async function fetchCardRowsByStructuredTextQuery"),
+  );
 
   assert.match(
     lookup,
@@ -76,6 +80,19 @@ test("direct Pokemon identity, set aliases, and value sorts retain the complete 
     lookup,
     /query\.expectedSetCodes\.length > 0 && !canUseBoundedSetSearch/,
   );
+  assert.match(
+    lookup,
+    /tokens\.length === 0 &&\s*!query\.directGvId &&\s*query\.expectedSetCodes\.length === 0/,
+  );
+  assert.match(
+    lookup,
+    /if \(query\.expectedSetCodes\.length > 0\)[\s\S]*?fetchCardRowsBySetCode\(setCode\)[\s\S]*?if \(tokens\.length === 0\) \{\s*return languageScopedSetRows/,
+  );
+  assert.match(
+    setFetcher,
+    /for \(let offset = 0; ; offset \+= SET_FETCH_PAGE_SIZE\)[\s\S]*?\.order\("id", \{ ascending: true \}\)[\s\S]*?\.range\(offset, offset \+ SET_FETCH_PAGE_SIZE - 1\)[\s\S]*?page\.length < SET_FETCH_PAGE_SIZE/,
+  );
+  assert.doesNotMatch(setFetcher, /\.limit\(250\)/);
   assert.match(
     lookup,
     /if \(useCompletePokemonPath\)[\s\S]*?fetchLanguageScopedTextRows\(query, languageScope\)/,
