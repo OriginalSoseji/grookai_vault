@@ -99,6 +99,11 @@ final List<MapEntry<String, String>> _japanesePokemonNameRules =
     japanesePokemonNameToEnglish.entries.toList(growable: false)
       ..sort((left, right) => right.key.length.compareTo(left.key.length));
 
+bool _isOpaqueSourceIdentityVariantKey(String value) {
+  return value.startsWith('scryfall:') ||
+      RegExp(r'^tcgplayer_product_[0-9]+$').hasMatch(value);
+}
+
 String _normalizeToken(String? value) {
   return (value ?? '').trim().toLowerCase().replaceAll(RegExp(r'[\s-]+'), '_');
 }
@@ -122,7 +127,8 @@ String _toTitleCaseToken(String token) {
 
 String? formatVariantKey(String? value) {
   final normalized = _normalizeToken(value);
-  if (_nonMeaningfulVariantKeys.contains(normalized)) {
+  if (_nonMeaningfulVariantKeys.contains(normalized) ||
+      _isOpaqueSourceIdentityVariantKey(normalized)) {
     return null;
   }
 
