@@ -3797,48 +3797,21 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   sortMode: SortMode,
   includePricing = false,
 ): Promise<ExploreRow[]> {
-  assertValueSortPricingEnabled(sortMode, includePricing);
-  const query = await buildResolverQuery(normalizeQuery(rawQuery));
-  const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
-  const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
-  const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  return getExploreRowsForGameScopedTextSearch(
+    rawQuery,
+    "pokemon",
+    sortMode,
+    { includePricing, languageScope },
   );
-  const supabase = await createServerComponentClient();
-  const pricingByCardId =
-    includePricing
-      ? await getPublicPricingByCardIds(
-          supabase,
-          enrichmentRows.map((row) => row.id),
-          {
-            requireComplete:
-              sortMode === "value_high" || sortMode === "value_low",
-          },
-        )
-      : new Map<string, PublicPricingRecord>();
-  const rows = await buildExploreRows(
-    enrichmentRows,
-    new Map<string, string>(),
-    setMetadataByCode,
-    pricingByCardId,
-    {
-      skipChildDisplayImageFallbacks:
-        enrichmentRows.length > 24 &&
-        sortMode !== "value_high" &&
-        sortMode !== "value_low",
-    },
-  );
-
-  return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
 }
 
 export async function getExploreRowsForGameScopedTextSearch(
   rawQuery: string,
-  gameScope: Exclude<PublicGameScope, "pokemon">,
+  gameScope: PublicGameScope,
   sortMode: SortMode,
   options: Omit<
     SmartFilterDiscoveryOptions,
-    "sortMode" | "textQuery" | "languageScope"
+    "sortMode" | "textQuery"
   > = {},
 ): Promise<ExploreRow[]> {
   assertValueSortPricingEnabled(sortMode, options.includePricing ?? false);
@@ -3910,16 +3883,32 @@ export async function getExploreRowsForGameScopedTextSearch(
     (options.stampLabels?.length ?? 0) === 0;
 
   if (canUseBoundedGameRpc) {
-    const { data, error } = await supabase.rpc("search_game_card_prints_v2", {
-      game_code_in: gameScope,
-      q: nameText || null,
-      set_code_in: inferredSetCode || null,
-      number_in: collectorToken || null,
-      illustrator_in: exactIllustrator || null,
-      limit_in: SEARCH_LIMIT,
-      offset_in: 0,
-    });
+    const runBoundedSearch = (queryText: string | null, numberText: string | null) =>
+      supabase.rpc("search_game_card_prints_v3", {
+        game_code_in: gameScope,
+        q: queryText,
+        set_code_in: inferredSetCode || null,
+        number_in: numberText,
+        illustrator_in: exactIllustrator || null,
+        language_scope_in:
+          gameScope === "pokemon" ? options.languageScope ?? "all" : "all",
+        limit_in: SEARCH_LIMIT,
+        offset_in: 0,
+      });
+    let { data, error } = await runBoundedSearch(
+      nameText || null,
+      collectorToken || null,
+    );
     if (error) throw new Error(error.message);
+
+    // A single alphanumeric token can be either a collector number or a card
+    // name (for example Porygon2). Prefer the collector-number interpretation,
+    // then retry it as a name only when that exact lookup returns nothing.
+    if ((data ?? []).length === 0 && collectorSourceToken && !nameText) {
+      const nameRetry = await runBoundedSearch(searchText, null);
+      if (nameRetry.error) throw new Error(nameRetry.error.message);
+      data = nameRetry.data;
+    }
 
     const parentRows = (data ?? []) as CardPrintLookupRow[];
     const setMetadataByCode = await fetchPublicSetMetadata(
@@ -4021,7 +4010,10 @@ export async function getExploreRowsForGameScopedTextSearch(
   }
   const normalizedNameText = nameText.toLowerCase();
   const normalizedCollectorToken = collectorToken.toLowerCase();
-  const parentRows = [...rowsById.values()].filter((row) => {
+  const parentRows = applyLanguageScopeRows(
+    [...rowsById.values()],
+    gameScope === "pokemon" ? options.languageScope : "all",
+  ).filter((row) => {
     const nameMatches =
       !normalizedNameText ||
       (row.name ?? "").trim().toLowerCase().includes(normalizedNameText);

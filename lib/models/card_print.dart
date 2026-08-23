@@ -533,6 +533,13 @@ class CardPrintRepository {
       throw const FormatException('Resolver returned an invalid payload.');
     }
 
+    final degradedReason = (decoded['sort_degraded_reason'] ?? '')
+        .toString()
+        .trim();
+    if (degradedReason.isNotEmpty) {
+      throw StateError('Resolver degraded: $degradedReason');
+    }
+
     final rowsJson = decoded['rows'];
     final provisionalJson = decoded['provisional'];
     final metaJson = decoded['meta'];
