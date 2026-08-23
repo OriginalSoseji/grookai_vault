@@ -19,7 +19,7 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
     lookup,
     /getExploreRowsForGameScopedTextSearch\(\s*boundedQuery,\s*"pokemon"/,
   );
-  assert.match(lookup, /search_game_card_prints_v3/);
+  assert.match(lookup, /search_game_card_prints_v4/);
   assert.match(lookup, /gameScope: PublicGameScope/);
   assert.match(lookup, /gameScope === "pokemon" \? options\.languageScope \?\? "all" : "all"/);
   assert.match(lookup, /single alphanumeric token can be either a collector number or a card/);
@@ -35,6 +35,34 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
     lookup,
     /const parentRows = limitRowsBeforeEnrichment\(\s*scopedParentRows,\s*resolverQuery,\s*sortMode/,
   );
+});
+
+test("cross-TCG exact GV-ID search remains inside the bounded release-authorized RPC", () => {
+  const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
+  const migration = source(
+    "supabase/migrations/20260823074000_cross_tcg_direct_gvid_search_v4.sql",
+  );
+
+  assert.match(lookup, /\.rpc\("search_game_card_prints_v4"/);
+  assert.doesNotMatch(
+    lookup.slice(
+      lookup.indexOf("const canUseBoundedGameRpc"),
+      lookup.indexOf("if (canUseBoundedGameRpc)"),
+    ),
+    /!directGvIdSearch/,
+  );
+  assert.match(migration, /lower\(v_query\) not like 'gv-%'/i);
+  assert.match(migration, /lower\(card\.gv_id\) = lower\(v_query\)/i);
+  assert.match(migration, /catalog_game_visible_to_request_v1\(game\.code\)/i);
+  assert.match(
+    migration,
+    /data_quality_flags\s*#>>\s*'\{app_visibility_v1,status\}'/i,
+  );
+  assert.match(
+    migration,
+    /grant execute on function public\.search_game_card_prints_v4[\s\S]*to anon, authenticated, service_role/i,
+  );
+  assert.doesNotMatch(migration, /insert\s+into|update\s+public|delete\s+from/i);
 });
 
 test("direct Pokemon identity, set aliases, and value sorts retain the complete evidence path", () => {
