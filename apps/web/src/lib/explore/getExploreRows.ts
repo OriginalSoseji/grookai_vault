@@ -3873,10 +3873,14 @@ export async function getExploreRowsForGameScopedTextSearch(
   const shouldRequireChildScope =
     normalizeFinishKeys(options.finishKeys).length > 0 ||
     Boolean(options.imageState && options.imageState !== "any");
+  const valueSortRequested =
+    sortMode === "value_high" || sortMode === "value_low";
+  const directGvIdSearch = searchText.toUpperCase().startsWith("GV-");
   const canUseBoundedGameRpc =
     typeof releaseYearMin !== "number" &&
     typeof releaseYearMax !== "number" &&
-    !searchText.toUpperCase().startsWith("GV-") &&
+    !directGvIdSearch &&
+    !valueSortRequested &&
     !variantKey &&
     identityFilter !== "classic_collection" &&
     !shouldRequireChildScope &&
@@ -3916,7 +3920,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     );
     const pricingByCardId = options.includePricing
       ? await getPublicPricingByCardIds(supabase, parentRows.map((row) => row.id), {
-          requireComplete: sortMode === "value_high" || sortMode === "value_low",
+          requireComplete: false,
         })
       : new Map<string, PublicPricingRecord>();
     const rows = await buildExploreRows(
@@ -3986,7 +3990,9 @@ export async function getExploreRowsForGameScopedTextSearch(
       if (field && value) {
         query = query.ilike(field, contains ? `%${value}%` : value);
       }
-      const { data, error } = await query.order("name", { ascending: true }).limit(SEARCH_LIMIT);
+      const { data, error } = await query
+        .order("name", { ascending: true })
+        .limit(valueSortRequested ? VALUE_SORT_CANDIDATE_LIMIT + 1 : SEARCH_LIMIT);
       if (error) throw new Error(error.message);
       resultRows.push(...((data ?? []) as CardPrintLookupRow[]));
     }
@@ -3999,7 +4005,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     lookups.push(runLookup("number", collectorToken));
     lookups.push(runLookup("number_plain", collectorToken));
   }
-  if (searchText.toUpperCase().startsWith("GV-")) {
+  if (directGvIdSearch) {
     lookups.push(runLookup("gv_id", searchText, true));
   }
   if (lookups.length === 0) lookups.push(runLookup());
@@ -4010,7 +4016,7 @@ export async function getExploreRowsForGameScopedTextSearch(
   }
   const normalizedNameText = nameText.toLowerCase();
   const normalizedCollectorToken = collectorToken.toLowerCase();
-  const parentRows = applyLanguageScopeRows(
+  const scopedParentRows = applyLanguageScopeRows(
     [...rowsById.values()],
     gameScope === "pokemon" ? options.languageScope : "all",
   ).filter((row) => {
@@ -4018,6 +4024,7 @@ export async function getExploreRowsForGameScopedTextSearch(
       !normalizedNameText ||
       (row.name ?? "").trim().toLowerCase().includes(normalizedNameText);
     const collectorMatches =
+      directGvIdSearch ||
       !normalizedCollectorToken ||
       [row.number, row.number_plain].some(
         (value) => normalizeCollectorToken(value ?? "") === normalizedCollectorToken,
@@ -4028,6 +4035,12 @@ export async function getExploreRowsForGameScopedTextSearch(
     const identityMatches = matchesIdentityFilter(row, identityFilter);
     return nameMatches && collectorMatches && illustratorMatches && identityMatches;
   });
+  const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
+  const parentRows = limitRowsBeforeEnrichment(
+    scopedParentRows,
+    resolverQuery,
+    sortMode,
+  );
   const lookupRows = shouldRequireChildScope
     ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
     : parentRows;
@@ -4045,7 +4058,6 @@ export async function getExploreRowsForGameScopedTextSearch(
     setMetadataByCode,
     pricingByCardId,
   );
-  const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
   return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
 }
 

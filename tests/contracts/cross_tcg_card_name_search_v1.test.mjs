@@ -21,6 +21,17 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
   assert.match(lookup, /gameScope === "pokemon" \? options\.languageScope \?\? "all" : "all"/);
   assert.match(lookup, /single alphanumeric token can be either a collector number or a card/);
   assert.match(lookup, /runBoundedSearch\(searchText, null\)/);
+  assert.match(lookup, /const directGvIdSearch = searchText\.toUpperCase\(\)\.startsWith\("GV-"\)/);
+  assert.match(lookup, /directGvIdSearch \|\|\s*!normalizedCollectorToken/);
+  assert.match(lookup, /!valueSortRequested &&/);
+  assert.match(
+    lookup,
+    /limit\(valueSortRequested \? VALUE_SORT_CANDIDATE_LIMIT \+ 1 : SEARCH_LIMIT\)/,
+  );
+  assert.match(
+    lookup,
+    /const parentRows = limitRowsBeforeEnrichment\(\s*scopedParentRows,\s*resolverQuery,\s*sortMode/,
+  );
 });
 
 test("global search preserves the selected TCG", () => {
@@ -36,8 +47,15 @@ test("mobile search falls back instead of accepting a timeout as no-match", () =
   const model = source("lib/models/card_print.dart");
 
   assert.match(model, /decoded\['sort_degraded_reason'\]/);
-  assert.match(model, /throw StateError\('Resolver degraded: \$degradedReason'\)/);
+  assert.match(model, /resolverSource\.contains\('_degraded_'\)/);
+  assert.match(model, /throw StateError\('Resolver degraded: \$reason'\)/);
   assert.match(model, /search:web_resolver_failed fallback=local/);
+
+  const route = source("apps/web/src/app/api/resolver/search/route.ts");
+  assert.match(
+    route,
+    /if \(isTimeoutLikeError\(error\)\)[\s\S]*?sort_degraded_reason: "resolver_timeout"[\s\S]*?rows: \[\]/,
+  );
 });
 
 test("V3 applies authority, suppression, and language filters before limiting", () => {

@@ -44,7 +44,8 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   assert.match(lookup, /language_scope_in:/);
   assert.match(lookup, /limit_in: SEARCH_LIMIT/);
   assert.match(lookup, /canUseBoundedGameRpc/);
-  assert.match(lookup, /!searchText\.toUpperCase\(\)\.startsWith\("GV-"\)/);
+  assert.match(lookup, /const directGvIdSearch = searchText\.toUpperCase\(\)\.startsWith\("GV-"\)/);
+  assert.match(lookup, /!directGvIdSearch/);
   assert.match(lookup, /\.eq\("game_id", gameId\)/);
   assert.match(lookup, /\.eq\("code", gameScope\)/);
   assert.match(lookup, /\.ilike\("set_code", inferredSetCode\)/);

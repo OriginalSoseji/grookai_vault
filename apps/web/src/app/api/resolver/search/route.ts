@@ -752,13 +752,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           ok: valueSortRequested ? false : true,
+          sort_degraded_reason: "resolver_timeout",
           ...(valueSortRequested
             ? {
                 error:
                   "Value sorting timed out before a complete ordering could be produced. Narrow the search and try again.",
                 requested_sort: sortMode,
                 applied_sort: null,
-                sort_degraded_reason: "resolver_timeout",
               }
             : {}),
           query,

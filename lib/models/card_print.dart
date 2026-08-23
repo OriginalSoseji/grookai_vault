@@ -536,8 +536,12 @@ class CardPrintRepository {
     final degradedReason = (decoded['sort_degraded_reason'] ?? '')
         .toString()
         .trim();
-    if (degradedReason.isNotEmpty) {
-      throw StateError('Resolver degraded: $degradedReason');
+    final resolverSource = (decoded['source'] ?? '').toString().trim();
+    if (degradedReason.isNotEmpty || resolverSource.contains('_degraded_')) {
+      final reason = degradedReason.isNotEmpty
+          ? degradedReason
+          : resolverSource;
+      throw StateError('Resolver degraded: $reason');
     }
 
     final rowsJson = decoded['rows'];
