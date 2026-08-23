@@ -3973,7 +3973,6 @@ export async function getExploreRowsForGameScopedTextSearch(
   const canUseBoundedGameRpc =
     typeof releaseYearMin !== "number" &&
     typeof releaseYearMax !== "number" &&
-    !directGvIdSearch &&
     !valueSortRequested &&
     !variantKey &&
     identityFilter !== "classic_collection" &&
@@ -3982,7 +3981,7 @@ export async function getExploreRowsForGameScopedTextSearch(
 
   if (canUseBoundedGameRpc) {
     const runBoundedSearch = (queryText: string | null, numberText: string | null) =>
-      supabase.rpc("search_game_card_prints_v3", {
+      supabase.rpc("search_game_card_prints_v4", {
         game_code_in: gameScope,
         q: queryText,
         set_code_in: inferredSetCode || null,
