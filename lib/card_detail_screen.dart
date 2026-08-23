@@ -1769,6 +1769,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final entries = <MapEntry<String, String>>[];
     final illustrator = _cleanText(_cardContextData?['artist']);
     final variantKey = _cleanText(_cardContextData?['variant_key']);
+    final variantLabel = formatVariantKey(variantKey);
     final printedIdentityModifier = _cleanText(
       _cardContextData?['printed_identity_modifier'],
     );
@@ -1781,10 +1782,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (illustrator.isNotEmpty) {
       entries.add(MapEntry('Illustrator', illustrator));
     }
-    if (variantKey.isNotEmpty && variantKey.toLowerCase() != 'base') {
-      entries.add(
-        MapEntry('Variant', formatVariantKey(variantKey) ?? variantKey),
-      );
+    if (variantLabel != null) {
+      entries.add(MapEntry('Variant', variantLabel));
     }
     if (printedIdentityModifier.isNotEmpty) {
       entries.add(
