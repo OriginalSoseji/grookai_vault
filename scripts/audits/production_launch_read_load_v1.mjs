@@ -58,6 +58,11 @@ export function virtualClientUserAgentV1(index, kind, virtualClients) {
   return `Grookai-Production-Load-Client/${clientNumber}`;
 }
 
+export function isRetryableTransportErrorV1(error) {
+  const code = String(error?.cause?.code ?? '');
+  return code === 'UND_ERR_CONNECT_TIMEOUT' || code === 'UND_ERR_SOCKET';
+}
+
 function summarizeKind(rows, kind, targetP95Ms) {
   const selected = rows.filter((row) => row.kind === kind);
   const successes = selected.filter((row) => row.ok);
@@ -90,6 +95,9 @@ export function summarizeLoadV1({ rows, dbSnapshots, plannedRequests, envelope, 
   ];
   const failures = rows.filter((row) => !row.ok);
   const rateLimits = rows.filter((row) => row.http_status === 429);
+  const transportRetries = rows.reduce((total, row) => total + Number(row.retry_count ?? 0), 0);
+  const recoveredTransportRetries = rows.filter((row) => row.ok && Number(row.retry_count ?? 0) > 0).length;
+  const transportRetryRate = transportRetries / Math.max(1, rows.length);
   const maxConnectionUtilization = Math.max(
     0,
     ...dbSnapshots.map((row) => Number(row.connection_utilization ?? 0))
@@ -100,6 +108,7 @@ export function summarizeLoadV1({ rows, dbSnapshots, plannedRequests, envelope, 
   if (rows.length !== plannedRequests) findings.push('request_reconciliation_mismatch');
   if (failures.length / Math.max(1, rows.length) >= 0.01) findings.push('error_rate_at_or_above_1_percent');
   if (rateLimits.length > 0) findings.push('rate_limit_observed');
+  if (transportRetryRate > 0.01) findings.push('transport_retry_rate_above_1_percent');
   if (!envelope.satisfies_2x) findings.push('load_below_2x_observed_peak');
   if (maxConnectionUtilization >= 0.7) findings.push('connection_utilization_at_or_above_70_percent');
   if (waitingLocks > 0) findings.push('waiting_lock_observed');
@@ -114,6 +123,9 @@ export function summarizeLoadV1({ rows, dbSnapshots, plannedRequests, envelope, 
     failed_requests: failures.length,
     error_rate: failures.length / Math.max(1, rows.length),
     rate_limit_count: rateLimits.length,
+    transport_retry_count: transportRetries,
+    recovered_transport_retry_count: recoveredTransportRetries,
+    transport_retry_rate: transportRetryRate,
     max_connection_utilization: maxConnectionUtilization,
     maximum_waiting_locks: waitingLocks,
     envelope,
@@ -141,16 +153,21 @@ function parseArgs(argv) {
     timeoutMs: number('--timeout-ms', 15_000),
     monitorIntervalMs: number('--monitor-interval-ms', 5_000),
     virtualClients: number('--virtual-clients', 1),
+    transportRetries: number('--transport-retries', 0),
     outDir: path.resolve(value('--out-dir') ?? path.join('docs', 'audits', 'production_backend_launch_v1', 'read_load')),
     allowProduction: argv.includes('--allow-production'),
     requirePass: argv.includes('--require-pass')
   };
   for (const [key, numberValue] of Object.entries(args)) {
+    if (key === 'transportRetries') continue;
     if (typeof numberValue === 'number' && (!Number.isFinite(numberValue) || numberValue <= 0)) {
       throw new Error(`${key} must be positive`);
     }
   }
   if (!Number.isInteger(args.virtualClients)) throw new Error('virtualClients must be an integer');
+  if (!Number.isInteger(args.transportRetries) || args.transportRetries < 0 || args.transportRetries > 1) {
+    throw new Error('transportRetries must be 0 or 1');
+  }
   if (!args.allowProduction) throw new Error('--allow-production is required');
   const planned = Math.floor(args.rps * args.durationSeconds);
   if (planned > args.maxRequests) throw new Error(`planned request count ${planned} exceeds --max-requests`);
@@ -218,39 +235,55 @@ async function dbSnapshot(client, phase) {
   };
 }
 
-async function measuredFetch(kind, url, options, validate, timeoutMs) {
+async function measuredFetch(kind, url, options, validate, timeoutMs, maxTransportRetries) {
   const started = performance.now();
-  try {
-    const response = await fetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
-    const body = options.method === 'HEAD' ? '' : await response.text();
-    let parsed = null;
-    if (body) {
-      try { parsed = JSON.parse(body); } catch { parsed = null; }
+  let firstAttemptError = null;
+  for (let attempt = 0; attempt <= maxTransportRetries; attempt += 1) {
+    try {
+      const response = await fetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
+      const body = options.method === 'HEAD' ? '' : await response.text();
+      let parsed = null;
+      if (body) {
+        try { parsed = JSON.parse(body); } catch { parsed = null; }
+      }
+      const validation = validate({ response, body, parsed });
+      return {
+        kind,
+        ok: response.ok && validation.ok,
+        http_status: response.status,
+        latency_ms: Number((performance.now() - started).toFixed(3)),
+        response_bytes: Buffer.byteLength(body),
+        attempt_count: attempt + 1,
+        retry_count: attempt,
+        first_attempt_error: firstAttemptError,
+        validation: validation.reason ?? null,
+        error: response.ok && validation.ok ? null : validation.reason ?? `http_${response.status}`
+      };
+    } catch (error) {
+      const errorCode = String(error?.cause?.code ?? error?.name ?? error).slice(0, 120);
+      if (attempt === 0) firstAttemptError = errorCode;
+      if (attempt < maxTransportRetries && isRetryableTransportErrorV1(error)) {
+        await sleep(250);
+        continue;
+      }
+      return {
+        kind,
+        ok: false,
+        http_status: null,
+        latency_ms: Number((performance.now() - started).toFixed(3)),
+        response_bytes: 0,
+        attempt_count: attempt + 1,
+        retry_count: attempt,
+        first_attempt_error: firstAttemptError,
+        validation: null,
+        error: errorCode
+      };
     }
-    const validation = validate({ response, body, parsed });
-    return {
-      kind,
-      ok: response.ok && validation.ok,
-      http_status: response.status,
-      latency_ms: Number((performance.now() - started).toFixed(3)),
-      response_bytes: Buffer.byteLength(body),
-      validation: validation.reason ?? null,
-      error: response.ok && validation.ok ? null : validation.reason ?? `http_${response.status}`
-    };
-  } catch (error) {
-    return {
-      kind,
-      ok: false,
-      http_status: null,
-      latency_ms: Number((performance.now() - started).toFixed(3)),
-      response_bytes: 0,
-      validation: null,
-      error: String(error?.cause?.code ?? error?.name ?? error).slice(0, 120)
-    };
   }
+  throw new Error('unreachable measuredFetch state');
 }
 
-function buildRequest(index, env, samples, timeoutMs, virtualClients) {
+function buildRequest(index, env, samples, timeoutMs, virtualClients, transportRetries) {
   const kind = requestKindForIndexV1(index);
   const userAgent = virtualClientUserAgentV1(index, kind, virtualClients);
   if (kind === 'search') {
@@ -264,7 +297,8 @@ function buildRequest(index, env, samples, timeoutMs, virtualClients) {
         body: JSON.stringify({ q: query, set_code_in: null, number_in: null, object_type_in: null, limit_in: 50, offset_in: 0 })
       },
       ({ parsed }) => ({ ok: Array.isArray(parsed) && parsed.length > 0, reason: Array.isArray(parsed) && parsed.length > 0 ? null : 'empty_or_invalid_search' }),
-      timeoutMs
+      timeoutMs,
+      transportRetries
     );
   }
   if (kind === 'pricing_detail' || kind === 'pricing_grid') {
@@ -280,7 +314,8 @@ function buildRequest(index, env, samples, timeoutMs, virtualClients) {
         body: JSON.stringify({ p_card_print_ids: ids, p_card_printing_ids: null })
       },
       ({ parsed }) => ({ ok: Array.isArray(parsed) && parsed.length === ids.length, reason: Array.isArray(parsed) && parsed.length === ids.length ? null : 'pricing_row_count_mismatch' }),
-      timeoutMs
+      timeoutMs,
+      transportRetries
     );
   }
   const gvId = samples.imageRows[index % samples.imageRows.length];
@@ -289,7 +324,8 @@ function buildRequest(index, env, samples, timeoutMs, virtualClients) {
     `${env.webBaseUrl.replace(/\/$/, '')}/api/canon/cards/${encodeURIComponent(gvId)}/image`,
     { method: 'HEAD', headers: { 'User-Agent': userAgent } },
     ({ response }) => ({ ok: /^image\//i.test(response.headers.get('content-type') ?? ''), reason: /^image\//i.test(response.headers.get('content-type') ?? '') ? null : 'non_image_response' }),
-    timeoutMs
+    timeoutMs,
+    transportRetries
   );
 }
 
@@ -350,6 +386,7 @@ async function main() {
       max_requests: args.maxRequests,
       max_in_flight: args.maxInFlight,
       virtual_clients: args.virtualClients,
+      max_transport_retries: args.transportRetries,
       actor_model: 'one stable user-agent per virtual collector; source IP is supplied by the production edge',
       request_mix: { search: 0.4, pricing_detail: 0.25, pricing_grid: 0.15, image_head: 0.2 },
       envelope,
@@ -388,7 +425,14 @@ async function main() {
         break;
       }
       if (inFlight.size >= args.maxInFlight) await Promise.race(inFlight);
-      const promise = buildRequest(index, env, samples, args.timeoutMs, args.virtualClients)
+      const promise = buildRequest(
+        index,
+        env,
+        samples,
+        args.timeoutMs,
+        args.virtualClients,
+        args.transportRetries
+      )
         .then((result) => rows.push({ sequence: index + 1, ...result }))
         .finally(() => inFlight.delete(promise));
       inFlight.add(promise);

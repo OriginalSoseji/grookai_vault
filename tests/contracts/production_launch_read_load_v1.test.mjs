@@ -5,6 +5,7 @@ import test from 'node:test';
 
 import {
   deriveLoadEnvelopeV1,
+  isRetryableTransportErrorV1,
   nearestRankPercentileV1,
   requestKindForIndexV1,
   shouldAbortLoadV1,
@@ -42,6 +43,13 @@ test('nearest-rank percentiles are stable', () => {
   assert.equal(nearestRankPercentileV1([], 95), null);
 });
 
+test('only bounded network connection failures are retryable', () => {
+  assert.equal(isRetryableTransportErrorV1({ cause: { code: 'UND_ERR_CONNECT_TIMEOUT' } }), true);
+  assert.equal(isRetryableTransportErrorV1({ cause: { code: 'UND_ERR_SOCKET' } }), true);
+  assert.equal(isRetryableTransportErrorV1({ cause: { code: 'HTTP_500' } }), false);
+  assert.equal(isRetryableTransportErrorV1({ name: 'TimeoutError' }), false);
+});
+
 test('abort policy ignores warmup noise and stops sustained failure', () => {
   assert.equal(shouldAbortLoadV1(Array.from({ length: 100 }, () => ({ ok: false, http_status: 500 }))), false);
   assert.equal(shouldAbortLoadV1(Array.from({ length: 200 }, (_, index) => ({ ok: index >= 20, http_status: index < 20 ? 500 : 200 }))), true);
@@ -66,10 +74,43 @@ test('clean reconciled load passes all gates', () => {
   assert.deepEqual(summary.findings, []);
 });
 
+test('bounded recovered transport retries are visible and capped at one percent', () => {
+  const rows = Array.from({ length: 100 }, (_, index) => ({
+    kind: requestKindForIndexV1(index),
+    ok: true,
+    http_status: 200,
+    latency_ms: 100,
+    retry_count: index === 0 ? 1 : 0
+  }));
+  const envelope = deriveLoadEnvelopeV1({ peakEventsPerMinute: 600, targetRps: 20 });
+  const clean = summarizeLoadV1({
+    rows,
+    dbSnapshots: [{ connection_utilization: 0.5, waiting_locks: 0 }],
+    plannedRequests: 100,
+    envelope,
+    aborted: false
+  });
+  assert.equal(clean.status, 'passed');
+  assert.equal(clean.transport_retry_count, 1);
+  assert.equal(clean.recovered_transport_retry_count, 1);
+
+  rows[1].retry_count = 1;
+  const excessive = summarizeLoadV1({
+    rows,
+    dbSnapshots: [{ connection_utilization: 0.5, waiting_locks: 0 }],
+    plannedRequests: 100,
+    envelope,
+    aborted: false
+  });
+  assert.ok(excessive.findings.includes('transport_retry_rate_above_1_percent'));
+});
+
 test('load tooling is bounded and contains no production write statements', () => {
   assert.match(source, /--allow-production is required/);
   assert.match(source, /planned request count .* exceeds --max-requests/);
   assert.match(source, /--virtual-clients/);
+  assert.match(source, /--transport-retries/);
+  assert.match(source, /transport_retry_rate_above_1_percent/);
   assert.match(source, /virtual_clients: args\.virtualClients/);
   assert.match(source, /database_writes:\s*false/);
   assert.match(source, /credentials_persisted:\s*false/);
