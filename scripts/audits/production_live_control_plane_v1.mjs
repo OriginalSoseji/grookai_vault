@@ -582,6 +582,13 @@ export function controlPlaneAlertFindingsV1(report, topology) {
     .sort((left, right) => left.component_id.localeCompare(right.component_id));
 }
 
+export function controlPlaneAlertFingerprintV1(findings) {
+  return sha256(JSON.stringify(findings.map((finding) => ({
+    component_id: finding.component_id,
+    status: finding.status
+  }))));
+}
+
 export function shouldDeliverControlPlaneAlertV1({
   findingFingerprint,
   previousState,
@@ -612,7 +619,7 @@ async function dispatchControlPlaneAlertV1({ report, topology, outputDir, now })
     return healthyState;
   }
 
-  const findingFingerprint = sha256(JSON.stringify(findings));
+  const findingFingerprint = controlPlaneAlertFingerprintV1(findings);
   const cooldownMinutes = Number(process.env.GROOKAI_CONTROL_PLANE_ALERT_COOLDOWN_MINUTES || 360);
   if (!shouldDeliverControlPlaneAlertV1({
     findingFingerprint,

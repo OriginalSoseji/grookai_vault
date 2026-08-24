@@ -9,6 +9,7 @@ import {
   classifyScannerIdentityV1,
   classifySourceSyncV1,
   classifyWorkflowRunV1,
+  controlPlaneAlertFingerprintV1,
   controlPlaneAlertFindingsV1,
   shouldDeliverControlPlaneAlertV1
 } from '../../scripts/audits/production_live_control_plane_v1.mjs';
@@ -187,6 +188,20 @@ test('control-plane alerts include only unhealthy launch-critical components', (
     ]
   });
   assert.deepEqual(findings.map((finding) => finding.component_id), ['pricing']);
+});
+
+test('control-plane alert fingerprint ignores changing human-readable age text', () => {
+  const first = controlPlaneAlertFingerprintV1([{
+    component_id: 'mee-nightly',
+    status: 'stale',
+    reason: 'Latest evidence is 3000 minutes old.'
+  }]);
+  const second = controlPlaneAlertFingerprintV1([{
+    component_id: 'mee-nightly',
+    status: 'stale',
+    reason: 'Latest evidence is 3015 minutes old.'
+  }]);
+  assert.equal(first, second);
 });
 
 test('control-plane alert delivery is transition-based and cooldown bounded', () => {
