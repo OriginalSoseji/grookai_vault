@@ -13,7 +13,10 @@ WorkingDirectory=/opt/grookai_vault_mee_nightly
 EnvironmentFile=/etc/grookai/mee-nightly.env
 Environment=MEE_NIGHTLY_REQUIRE_DIRECT_DB=1
 Environment=MEE_RUNTIME_ARTIFACT_ROOT=/var/lib/grookai/mee/audits
-ExecStart=/usr/bin/flock -n /tmp/grookai-mee-nightly.lock /usr/bin/env bash -lc 'node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling="$${MEE_NIGHTLY_CALL_CEILING:-4000}"'
+ExecStartPre=+/usr/bin/touch /run/lock/grookai-mee-nightly.lock
+ExecStartPre=+/usr/bin/chown root:grookai /run/lock/grookai-mee-nightly.lock
+ExecStartPre=+/usr/bin/chmod 0660 /run/lock/grookai-mee-nightly.lock
+ExecStart=/usr/bin/flock -n /run/lock/grookai-mee-nightly.lock /usr/bin/env bash -lc 'node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling="$${MEE_NIGHTLY_CALL_CEILING:-4000}"'
 TimeoutStartSec=8h
 Nice=5
 IOSchedulingClass=best-effort

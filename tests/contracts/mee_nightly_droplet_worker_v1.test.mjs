@@ -144,7 +144,8 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(service, /Environment=MEE_NIGHTLY_REQUIRE_DIRECT_DB=1/);
   assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
   assert.match(service, /OnFailureJobMode=replace-irreversibly/);
-  assert.match(service, /\/usr\/bin\/flock -n \/tmp\/grookai-mee-nightly\.lock/);
+  assert.match(service, /\/usr\/bin\/flock -n \/run\/lock\/grookai-mee-nightly\.lock/);
+  assert.match(service, /chown root:grookai \/run\/lock\/grookai-mee-nightly\.lock/);
   assert.match(service, /mee_nightly_droplet_worker_v1\.mjs --run/);
   assert.match(service, /\$\$\{MEE_NIGHTLY_CALL_CEILING:-4000\}/);
   assert.match(timer, /OnCalendar=\*-\*-\* 03:15:00/);

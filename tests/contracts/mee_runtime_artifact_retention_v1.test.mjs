@@ -26,7 +26,8 @@ test("MEE retention is serialized, alerted, and scheduled before acquisition", (
   const service = read("deploy/systemd/grookai-mee-artifact-retention.service");
   const timer = read("deploy/systemd/grookai-mee-artifact-retention.timer");
   const installer = read("deploy/scripts/install-mee-nightly-release-v2.sh");
-  assert.match(service, /flock -n \/tmp\/grookai-mee-nightly\.lock/);
+  assert.match(service, /flock -n \/run\/lock\/grookai-mee-nightly\.lock/);
+  assert.match(service, /chown root:grookai \/run\/lock\/grookai-mee-nightly\.lock/);
   assert.match(service, /User=root/);
   assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
   assert.match(service, /mee_runtime_artifact_retention_v1\.sh --apply/);
