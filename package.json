@@ -51,6 +51,7 @@
     "founder:ops:collect": "node scripts/audits/founder_ops_dashboard_collect_v1.mjs",
     "production:launch:baseline": "node scripts/audits/production_backend_launch_baseline_v1.mjs",
     "production:ops:collect": "node scripts/audits/production_live_control_plane_v1.mjs",
+    "production:supabase:audit": "node scripts/audits/production_supabase_launch_audit_v1.mjs",
     "contracts:test": "node --test --test-concurrency=4 tests/contracts/*.test.mjs apps/web/src/components/vault/ownershipMutationGuards.test.mjs",
     "e7:meaningful-interactions:smoke": "node scripts/audits/e7_meaningful_interactions_local_fixture_smoke_v1.mjs",
     "e7:weekly-rollup:smoke": "node scripts/audits/e7_weekly_rollup_local_fixture_smoke_v1.mjs",
