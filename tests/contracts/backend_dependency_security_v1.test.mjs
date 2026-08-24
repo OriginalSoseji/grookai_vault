@@ -45,3 +45,15 @@ test("backend npm tree retains patched archive and image-processing releases", (
   assert.equal(packageJson.overrides["adm-zip"], "0.6.0");
   assert.equal(packageJson.overrides.sharp, "0.35.3");
 });
+
+test("root runtime retains the bounded UUID buffer-check repair", () => {
+  const packageJson = JSON.parse(source("package.json"));
+  const packageLock = JSON.parse(source("package-lock.json"));
+
+  assert.equal(packageJson.dependencies.uuid, "^11.1.1");
+  assert.equal(packageLock.packages["node_modules/uuid"].version, "11.1.1");
+  assert.equal(
+    packageLock.packages["node_modules/uuid"].integrity,
+    "sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ==",
+  );
+});
