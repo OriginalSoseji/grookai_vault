@@ -603,7 +603,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_7/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
@@ -616,6 +616,15 @@ test("candidate pages are bounded, deterministic, and deduplicate product IDs", 
   assert.throws(
     () => buildTcgplayerCandidateProductPagesV1([1], 0),
     /positive integer/,
+  );
+});
+
+test("an expected source sync is filtered before artifact enrichment", () => {
+  assert.match(WORKER, /with selected_sync_run as materialized/);
+  assert.match(WORKER, /sync_run\.id = \$1::uuid/);
+  assert.match(
+    WORKER,
+    /latestSourceRun\(\s*client,\s*args\.expectedSourceSyncRunId,\s*\)/,
   );
 });
 

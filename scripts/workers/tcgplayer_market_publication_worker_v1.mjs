@@ -37,7 +37,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_7";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -271,9 +271,27 @@ async function sha256File(filePath) {
   return hash.digest("hex");
 }
 
-async function latestSourceRun(client) {
+async function latestSourceRun(client, expectedSourceSyncRunId = null) {
   const result = await client.query(
-    `select
+    `with selected_sync_run as materialized (
+       select
+         sync_run.id,
+         sync_run.run_key,
+         sync_run.observed_on,
+         sync_run.source_marker,
+         sync_run.artifact_hash,
+         sync_run.finished_at,
+         sync_run.failed_count
+       from public.tcgcsv_source_sync_runs sync_run
+       where sync_run.sync_mode = 'current_full_sync'
+         and sync_run.status = 'completed'
+         and sync_run.failed_count = 0
+         and sync_run.finished_at is not null
+         and ($1::uuid is null or sync_run.id = $1::uuid)
+       order by sync_run.finished_at desc, sync_run.created_at desc, sync_run.id desc
+       limit 1
+     )
+     select
        sync_run.id,
        sync_run.run_key,
        sync_run.observed_on,
@@ -292,12 +310,8 @@ async function latestSourceRun(client) {
        order by source_artifact.created_at desc, source_artifact.id desc
        limit 1
      ) artifact on true
-     where sync_run.sync_mode = 'current_full_sync'
-       and sync_run.status = 'completed'
-       and sync_run.failed_count = 0
-       and sync_run.finished_at is not null
-     order by sync_run.finished_at desc, sync_run.created_at desc, sync_run.id desc
-     limit 1`,
+     `,
+    [expectedSourceSyncRunId],
   );
   if (!result.rowCount) {
     throw new Error("no reconciled completed current TCGCSV source run exists");
@@ -1968,7 +1982,10 @@ async function main() {
     [`${args.databaseTimeoutMinutes}min`],
   );
   try {
-    const sourceRun = await latestSourceRun(client);
+    const sourceRun = await latestSourceRun(
+      client,
+      args.expectedSourceSyncRunId,
+    );
     if (
       args.expectedSourceSyncRunId &&
       sourceRun.id !== args.expectedSourceSyncRunId
