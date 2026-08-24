@@ -1,5 +1,17 @@
 # TCGPlayer Market Pricing Product V1 Runbook
 
+## Immutable Release Deployment
+
+Production pricing runs from an immutable Git checkout selected through
+`/opt/grookai_pricing_current`. Install a frozen release with the timer disabled,
+verify the exact commit and worker syntax, then enable the timer only after the
+controlled resume/readback succeeds:
+
+```bash
+RELEASE_DIR=/opt/grookai/releases/backend/<sha> ENABLE_TIMER=0 \
+  bash deploy/scripts/install-tcgplayer-market-pipeline-release-v2.sh
+```
+
 ## Preconditions
 
 - Branch contains the applied migration history and the V1 pricing migration.

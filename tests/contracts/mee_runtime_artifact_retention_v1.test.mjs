@@ -17,6 +17,8 @@ test("MEE runtime retention preserves evidence before exact source removal", () 
   assert.match(script, /tar --zstd --compare/);
   assert.match(script, /source_removal_status.*authorized_pending/);
   assert.match(script, /source_removal_status.*completed_verified/);
+  assert.match(script, /existing archive is not in resumable pending state/);
+  assert.match(script, /resumed_archive=/);
   assert.match(script, /rm -rf --one-file-system -- "\$source_real"/);
 });
 
@@ -25,6 +27,7 @@ test("MEE retention is serialized, alerted, and scheduled before acquisition", (
   const timer = read("deploy/systemd/grookai-mee-artifact-retention.timer");
   const installer = read("deploy/scripts/install-mee-nightly-release-v2.sh");
   assert.match(service, /flock -n \/tmp\/grookai-mee-nightly\.lock/);
+  assert.match(service, /User=root/);
   assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
   assert.match(service, /mee_runtime_artifact_retention_v1\.sh --apply/);
   assert.match(timer, /OnCalendar=\*-\*-\* 01:45:00 UTC/);

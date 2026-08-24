@@ -7,7 +7,7 @@ OnFailureJobMode=replace-irreversibly
 
 [Service]
 Type=oneshot
-User=grookai
+User=root
 WorkingDirectory=/opt/grookai_mee_current
 EnvironmentFile=/etc/grookai/mee-nightly.env
 ExecStart=/usr/bin/flock -n /tmp/grookai-mee-nightly.lock /usr/bin/env bash scripts/ops/mee_runtime_artifact_retention_v1.sh --apply

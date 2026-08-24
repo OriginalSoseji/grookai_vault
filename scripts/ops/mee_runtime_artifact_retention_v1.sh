@@ -71,9 +71,30 @@ for candidate_record in "${candidates[@]}"; do
   manifest_path="$archive_real/$source_name.files.sha256"
   archive_hash_path="$archive_real/$source_name.tar.zst.sha256"
   metadata_path="$archive_real/$source_name.archive.json"
+  existing_targets=0
   for target in "$archive_path" "$manifest_path" "$archive_hash_path" "$metadata_path"; do
-    [[ ! -e "$target" ]] || { printf 'ERROR: archive target already exists: %s\n' "$target" >&2; exit 1; }
+    [[ ! -e "$target" ]] || existing_targets="$((existing_targets + 1))"
   done
+  if [[ "$existing_targets" -gt 0 ]]; then
+    [[ "$existing_targets" -eq 4 ]] || { printf 'ERROR: incomplete archive target set for %s\n' "$source_name" >&2; exit 1; }
+    grep -q '"source_removal_status": "authorized_pending"' "$metadata_path" || {
+      printf 'ERROR: existing archive is not in resumable pending state: %s\n' "$metadata_path" >&2
+      exit 1
+    }
+    (cd -- "$archive_real" && sha256sum --check --status "$(basename -- "$archive_hash_path")")
+    zstd --test --quiet "$archive_path"
+    rm -rf --one-file-system -- "$source_real"
+    [[ ! -e "$source_real" ]] || { printf 'ERROR: pending source remains after resumed removal\n' >&2; exit 1; }
+    metadata_update="$metadata_path.update"
+    sed 's/"source_removal_status": "authorized_pending"/"source_removal_status": "completed_verified"/' \
+      "$metadata_path" > "$metadata_update"
+    mv -- "$metadata_update" "$metadata_path"
+    archived_count="$((archived_count + 1))"
+    free_bytes="$(df --output=avail -B1 -- "$audit_real" | tail -1 | tr -d ' ')"
+    printf 'resumed_archive=%s free_bytes=%s\n' "$source_name" "$free_bytes"
+    [[ "$free_bytes" -lt "$target_free_bytes" ]] || break
+    continue
+  fi
 
   partial_archive="$archive_path.partial"
   partial_manifest="$manifest_path.partial"
