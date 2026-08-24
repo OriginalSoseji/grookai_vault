@@ -26,7 +26,6 @@ ProtectKernelModules=true
 ProtectControlGroups=true
 RestrictSUIDSGID=true
 LockPersonality=true
-MemoryDenyWriteExecute=true
 RestrictRealtime=true
 SystemCallArchitectures=native
 UMask=0027

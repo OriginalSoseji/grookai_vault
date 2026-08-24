@@ -102,4 +102,5 @@ test('runtime and service preserve read-only, alerting, and canonical boundaries
   assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
   assert.match(service, /ProtectSystem=strict/);
   assert.match(service, /\/opt\/grookai_pricing_current/);
+  assert.doesNotMatch(service, /MemoryDenyWriteExecute=true/, 'Node/V8 requires executable JIT memory');
 });
