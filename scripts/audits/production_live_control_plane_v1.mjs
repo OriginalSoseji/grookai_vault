@@ -725,6 +725,11 @@ function reportMarkdown(report) {
     '',
     ...Object.entries(report.summary).map(([status, count]) => `- ${status}: ${count}`),
     '',
+    '## Launch-Critical Summary',
+    '',
+    `- launch status: ${report.launch_status}`,
+    ...Object.entries(report.launch_summary).map(([status, count]) => `- ${status}: ${count}`),
+    '',
     '## Components',
     '',
     '| Component | Provider | Status | Reason |',
@@ -734,6 +739,39 @@ function reportMarkdown(report) {
     'This report contains no credentials. It records provider IDs, run IDs, counts, timestamps, states, and public workflow URLs only.',
     ''
   ].join('\n');
+}
+
+export function summarizeControlPlaneComponentsV1(components, topology) {
+  const topologyById = new Map(topology.components.map((component) => [component.id, component]));
+  const enrichedComponents = components.map((component) => {
+    const definition = topologyById.get(component.component_id);
+    return {
+      ...component,
+      workload_class: definition?.workload_class ?? null,
+      criticality: definition?.criticality ?? 'unknown'
+    };
+  });
+  const statuses = ['healthy', 'degraded', 'failed', 'stale', 'unmeasured'];
+  const summarize = (rows) => Object.fromEntries(
+    statuses.map((status) => [status, rows.filter((item) => item.status === status).length])
+  );
+  const statusFromSummary = (summary) => summary.failed > 0
+    ? 'failed'
+    : summary.stale > 0 || summary.degraded > 0
+      ? 'degraded'
+      : summary.unmeasured > 0
+        ? 'incomplete'
+        : 'healthy';
+  const launchComponents = enrichedComponents.filter((component) => component.criticality !== 'background');
+  const summary = summarize(enrichedComponents);
+  const launchSummary = summarize(launchComponents);
+  return {
+    components: enrichedComponents,
+    summary,
+    overall_status: statusFromSummary(summary),
+    launch_summary: launchSummary,
+    launch_status: statusFromSummary(launchSummary)
+  };
 }
 
 export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(), now = new Date() } = {}) {
@@ -836,20 +874,20 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
       evidence: {}
     }));
 
-  const components = [...providerResults, ...unmeasured]
+  const rawComponents = [...providerResults, ...unmeasured]
     .filter(Boolean)
     .sort((left, right) => left.component_id.localeCompare(right.component_id));
-  const statuses = ['healthy', 'degraded', 'failed', 'stale', 'unmeasured'];
-  const summary = Object.fromEntries(statuses.map((status) => [status, components.filter((item) => item.status === status).length]));
-  const overallStatus = summary.failed > 0 ? 'failed' : summary.stale > 0 || summary.degraded > 0 ? 'degraded' : summary.unmeasured > 0 ? 'incomplete' : 'healthy';
+  const controlPlaneSummary = summarizeControlPlaneComponentsV1(rawComponents, topology);
   const report = {
     schema_version: 'GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1',
     observed_at: now.toISOString(),
     commit_sha: await resolveRuntimeCommitShaV1(rootDir),
     repository: GITHUB_REPOSITORY,
-    overall_status: overallStatus,
-    summary,
-    components
+    overall_status: controlPlaneSummary.overall_status,
+    summary: controlPlaneSummary.summary,
+    launch_status: controlPlaneSummary.launch_status,
+    launch_summary: controlPlaneSummary.launch_summary,
+    components: controlPlaneSummary.components
   };
 
   const configuredOutputDir = process.env.GROOKAI_CONTROL_PLANE_OUTPUT_DIR?.trim();

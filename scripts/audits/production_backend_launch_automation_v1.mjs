@@ -118,6 +118,46 @@ function hasFiniteEvidenceNumber(value) {
     && Number.isFinite(Number(value));
 }
 
+export function reconcileDiskAutoscaleEvidenceV1({ provider, billingEvidence, now = new Date() }) {
+  const operator = billingEvidence?.disk_autoscale ?? null;
+  const management = provider?.provider_evidence?.disk_autoscale ?? null;
+  const currentSizeGb = Number(provider?.metrics?.disk_size_gb);
+  const evidenceAgeHours = ageHours(billingEvidence?.observed_at, now);
+  const operatorGrowthPercent = Number(operator?.growth_percent);
+  const operatorMinIncrementGb = Number(operator?.minimum_increment_gb);
+  const operatorMaxSizeGb = Number(operator?.maximum_disk_size_gb);
+  const managementMaxSizeGb = Number(management?.max_size_gb);
+  const confirmed = billingEvidence?.source === 'signed_in_supabase_dashboard_live_verification'
+    && Number.isFinite(evidenceAgeHours)
+    && evidenceAgeHours <= 24
+    && billingEvidence?.spend_cap_enabled === false
+    && Number.isFinite(currentSizeGb)
+    && operatorGrowthPercent > 0
+    && operatorMinIncrementGb > 0
+    && operatorMaxSizeGb > currentSizeGb
+    && managementMaxSizeGb === operatorMaxSizeGb;
+  return {
+    confirmed,
+    evidence_age_hours: evidenceAgeHours,
+    source: billingEvidence?.source ?? null,
+    current_size_gb: Number.isFinite(currentSizeGb) ? currentSizeGb : null,
+    operator: operator
+      ? {
+          growth_percent: Number.isFinite(operatorGrowthPercent) ? operatorGrowthPercent : null,
+          minimum_increment_gb: Number.isFinite(operatorMinIncrementGb) ? operatorMinIncrementGb : null,
+          maximum_disk_size_gb: Number.isFinite(operatorMaxSizeGb) ? operatorMaxSizeGb : null
+        }
+      : null,
+    management_api: management
+      ? {
+          growth_percent: management.growth_percent ?? null,
+          min_increment_gb: management.min_increment_gb ?? null,
+          max_size_gb: Number.isFinite(managementMaxSizeGb) ? managementMaxSizeGb : null
+        }
+      : null
+  };
+}
+
 export function evaluateBackendLaunchAutomationV1({
   provider,
   metrics,
@@ -131,14 +171,17 @@ export function evaluateBackendLaunchAutomationV1({
   now = new Date()
 }) {
   const findings = [];
+  const autoscaleReconciliation = reconcileDiskAutoscaleEvidenceV1({ provider, billingEvidence, now });
   if (gitState?.tracked_worktree_clean !== true) findings.push(finding('high', 'tracked_worktree_not_clean', 'The run was not produced from a clean tracked working tree.'));
   for (const [name, report] of [['provider', provider], ['metrics', metrics], ['database', database], ['managed', managed]]) {
     if (!report) findings.push(finding('critical', `${name}_report_missing`, `${name} evidence is missing.`));
     else if (['blocked', 'failed'].includes(report.status)) findings.push(finding('high', `${name}_gate_not_healthy`, `${name} gate status is ${report.status}.`));
   }
+  const controlPlaneLaunchStatus = controlPlane?.launch_status ?? controlPlane?.overall_status;
+  const controlPlaneLaunchSummary = controlPlane?.launch_summary ?? controlPlane?.summary;
   if (!controlPlane) findings.push(finding('unmeasured', 'control_plane_report_missing', 'The production control-plane report is missing.'));
-  else if (controlPlane.overall_status === 'failed') findings.push(finding('high', 'control_plane_failed', 'At least one production control-plane component failed.'));
-  else if (controlPlane.overall_status !== 'healthy') findings.push(finding('unmeasured', 'control_plane_incomplete', `Control-plane status is ${controlPlane.overall_status}.`, { summary: controlPlane.summary }));
+  else if (controlPlaneLaunchStatus === 'failed') findings.push(finding('high', 'control_plane_failed', 'At least one launch-critical production control-plane component failed.'));
+  else if (controlPlaneLaunchStatus !== 'healthy') findings.push(finding('unmeasured', 'control_plane_incomplete', `Launch-critical control-plane status is ${controlPlaneLaunchStatus}.`, { summary: controlPlaneLaunchSummary }));
 
   if (loadEvidence?.status !== 'passed') findings.push(finding('unmeasured', 'launch_read_load_gate_missing', 'A passing launch read-load artifact was not supplied.'));
   else if (loadEvidence.failed_requests !== 0 || loadEvidence.rate_limit_count !== 0 || loadEvidence.error_rate !== 0) {
@@ -166,7 +209,9 @@ export function evaluateBackendLaunchAutomationV1({
 
   const diskRatio = provider?.metrics?.disk_utilization;
   if (Number.isFinite(diskRatio) && diskRatio >= 0.7) findings.push(finding('medium', 'disk_headroom_below_launch_target', 'Provider disk utilization is above the 70% launch target.', { ratio: diskRatio }));
-  if (provider?.metrics?.disk_autoscale_provider_confirmed !== true) findings.push(finding('unmeasured', 'disk_autoscale_not_confirmed', 'An effective provider disk autoscale policy is not confirmed.'));
+  if (provider?.metrics?.disk_autoscale_provider_confirmed !== true && autoscaleReconciliation.confirmed !== true) {
+    findings.push(finding('unmeasured', 'disk_autoscale_not_confirmed', 'An effective provider disk autoscale policy is not confirmed.', { reconciliation: autoscaleReconciliation }));
+  }
   const blockers = findings.filter((row) => ['critical', 'high'].includes(row.severity));
   const incomplete = findings.filter((row) => ['medium', 'unmeasured'].includes(row.severity));
   const status = blockers.length ? 'blocked' : incomplete.length ? 'incomplete' : 'ready_for_launch_gate';
@@ -177,6 +222,9 @@ export function evaluateBackendLaunchAutomationV1({
       && metrics?.status === 'healthy'
       && provider?.metrics?.disk_utilization < 0.8
       && provider?.metrics?.project_readonly === false,
+    evidence_reconciliation: {
+      disk_autoscale: autoscaleReconciliation
+    },
     findings,
     summary: {
       critical: findings.filter((row) => row.severity === 'critical').length,
@@ -342,7 +390,13 @@ export async function runBackendLaunchAutomationV1({ argv = process.argv.slice(2
       metrics,
       database: database ? { status: database.status, summary: database.summary, metrics: database.metrics, report_fingerprint_sha256: database.report_fingerprint_sha256 } : null,
       managed: managed ? { status: managed.status, summary: managed.summary, metrics: managed.metrics, report_fingerprint_sha256: managed.report_fingerprint_sha256 } : null,
-      control_plane: controlPlane ? { overall_status: controlPlane.overall_status, summary: controlPlane.summary, commit_sha: controlPlane.commit_sha } : null,
+      control_plane: controlPlane ? {
+        overall_status: controlPlane.overall_status,
+        summary: controlPlane.summary,
+        launch_status: controlPlane.launch_status ?? controlPlane.overall_status,
+        launch_summary: controlPlane.launch_summary ?? controlPlane.summary,
+        commit_sha: controlPlane.commit_sha
+      } : null,
       load: loadEvidence,
       billing: billingEvidence,
       same_candidate: sameCandidateEvidence

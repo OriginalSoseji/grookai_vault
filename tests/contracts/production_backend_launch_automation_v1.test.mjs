@@ -12,8 +12,12 @@ import {
   parsePrometheusV1
 } from '../../scripts/audits/production_supabase_metrics_snapshot_v1.mjs';
 import {
-  evaluateBackendLaunchAutomationV1
+  evaluateBackendLaunchAutomationV1,
+  reconcileDiskAutoscaleEvidenceV1
 } from '../../scripts/audits/production_backend_launch_automation_v1.mjs';
+import {
+  summarizeControlPlaneComponentsV1
+} from '../../scripts/audits/production_live_control_plane_v1.mjs';
 
 const NOW = new Date('2026-08-24T20:00:00.000Z');
 
@@ -153,6 +157,78 @@ test('missing billing, restore, and client evidence fails closed as incomplete',
   }));
   assert.equal(result.status, 'incomplete');
   assert.equal(result.launch_allowed, false);
+});
+
+test('fresh signed-in autoscale evidence reconciles omitted Management API fields', () => {
+  const input = launchInput();
+  input.provider.metrics.disk_autoscale_provider_confirmed = false;
+  input.provider.provider_evidence = {
+    disk_autoscale: { growth_percent: null, min_increment_gb: null, max_size_gb: 600 }
+  };
+  input.billingEvidence = {
+    ...input.billingEvidence,
+    source: 'signed_in_supabase_dashboard_live_verification',
+    disk_autoscale: {
+      growth_percent: 50,
+      minimum_increment_gb: 4,
+      maximum_disk_size_gb: 600
+    }
+  };
+  const reconciliation = reconcileDiskAutoscaleEvidenceV1(input);
+  const result = evaluateBackendLaunchAutomationV1(input);
+  assert.equal(reconciliation.confirmed, true);
+  assert.equal(result.evidence_reconciliation.disk_autoscale.confirmed, true);
+  assert.ok(!result.findings.some((row) => row.code === 'disk_autoscale_not_confirmed'));
+});
+
+test('autoscale evidence fails closed when dashboard and Management API maxima differ', () => {
+  const input = launchInput();
+  input.provider.metrics.disk_autoscale_provider_confirmed = false;
+  input.provider.provider_evidence = {
+    disk_autoscale: { growth_percent: null, min_increment_gb: null, max_size_gb: 600 }
+  };
+  input.billingEvidence = {
+    ...input.billingEvidence,
+    source: 'signed_in_supabase_dashboard_live_verification',
+    disk_autoscale: {
+      growth_percent: 50,
+      minimum_increment_gb: 4,
+      maximum_disk_size_gb: 1000
+    }
+  };
+  const result = evaluateBackendLaunchAutomationV1(input);
+  assert.ok(result.findings.some((row) => row.code === 'disk_autoscale_not_confirmed'));
+  assert.equal(result.launch_allowed, false);
+});
+
+test('background unmeasured components remain visible without blocking launch-critical health', () => {
+  const topology = {
+    components: [
+      { id: 'supabase-core', workload_class: 'A', criticality: 'launch_critical' },
+      { id: 'japanese-master-index', workload_class: 'C', criticality: 'background' }
+    ]
+  };
+  const controlPlane = summarizeControlPlaneComponentsV1([
+    { component_id: 'supabase-core', status: 'healthy' },
+    { component_id: 'japanese-master-index', status: 'unmeasured' }
+  ], topology);
+  assert.equal(controlPlane.overall_status, 'incomplete');
+  assert.equal(controlPlane.launch_status, 'healthy');
+  assert.equal(controlPlane.launch_summary.unmeasured, 0);
+  const result = evaluateBackendLaunchAutomationV1(launchInput({ controlPlane }));
+  assert.ok(!result.findings.some((row) => row.code === 'control_plane_incomplete'));
+});
+
+test('unmeasured launch-critical control-plane evidence still fails closed', () => {
+  const topology = {
+    components: [{ id: 'scanner-identity', workload_class: 'A', criticality: 'launch_critical' }]
+  };
+  const controlPlane = summarizeControlPlaneComponentsV1([
+    { component_id: 'scanner-identity', status: 'unmeasured' }
+  ], topology);
+  const result = evaluateBackendLaunchAutomationV1(launchInput({ controlPlane }));
+  assert.equal(controlPlane.launch_status, 'incomplete');
+  assert.ok(result.findings.some((row) => row.code === 'control_plane_incomplete'));
 });
 
 test('clean evidence allows the launch gate', () => {

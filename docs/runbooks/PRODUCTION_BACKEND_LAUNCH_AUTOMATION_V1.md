@@ -70,6 +70,18 @@ or raw payload.
   incomplete.
 - Any database security failure or failed control-plane component: blocked.
 
+The Management API may return the configured autoscale maximum while omitting
+the dashboard's growth percentage and minimum increment. In that case the gate
+accepts fresh signed-in operator evidence only when Spend Cap is disabled, the
+dashboard values are internally valid, and the dashboard maximum exactly
+matches the Management API maximum. A stale or mismatched observation remains
+unmeasured.
+
+Control-plane reports preserve every background component and its status, but
+launch readiness is evaluated through the separate launch-critical summary.
+An unmeasured Class C background lane remains visible without blocking launch;
+an unmeasured launch-critical or release-evidence component still fails closed.
+
 ## Scheduled Operation
 
 `.github/workflows/production-backend-launch-readiness.yml` runs every six
