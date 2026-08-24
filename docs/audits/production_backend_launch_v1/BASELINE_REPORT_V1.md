@@ -1,25 +1,25 @@
 # Production Backend Launch V1 Baseline
 
-Generated: 2026-08-24T01:10:05.617Z
+Generated: 2026-08-24T22:41:36.303Z
 
 Launch ready: **NO**
 
 ## Summary
 
-- Topology components: 15
-- Repository source references: 25
+- Topology components: 18
+- Repository source references: 41
 - Missing source references: 0
-- Passed gates: 2
+- Passed gates: 1
 - Failed gates: 0
-- Stale gates: 4
+- Stale gates: 5
 - Unmeasured gates: 9
 
 ## Gate Matrix
 
 | Gate | Requirement | Status | Current truth |
 | --- | --- | --- | --- |
-| Topology | topology-registry | PASS | 15 components are declared with valid repository references. |
-| Topology | runtime-contract-health | PASS | Current runtime contract preflight has zero critical failures. |
+| Topology | topology-registry | PASS | 18 components are declared with valid repository references. |
+| Topology | runtime-contract-health | STALE | Runtime contract evidence is missing, stale, or has critical failures. |
 | Observability | live-control-plane | UNMEASURED | The dashboard exists, but several domain cards consume fixed dated artifacts and do not verify live schedules or freshness. |
 | Observability | alert-delivery | UNMEASURED | Alert code exists, but current SEV delivery latency and end-to-end notification proof are not established. |
 | Data reliability | mee-and-pricing | STALE | Extensive pricing workers and canary evidence exist, but current live schedule, freshness, and publication reconciliation are not part of this baseline. |
@@ -36,6 +36,7 @@ Launch ready: **NO**
 
 ## Next Actions
 
+- **runtime-contract-health:** Keep the runtime preflight inside the live control-plane collection.
 - **live-control-plane:** Implement a live worker registry, schedule freshness checks, and current provider probes.
 - **alert-delivery:** Run bounded SEV-1/2/3 synthetic alert delivery and acknowledgement proof.
 - **mee-and-pricing:** Run current read-only MEE, pricing health, coverage, provenance, and publication reconciliation audits.

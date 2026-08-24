@@ -532,9 +532,10 @@ async function collectSupabase(supabase, topology, now) {
       .eq('sync_mode', 'current_full_sync')
       .order('created_at', { ascending: false })
   );
+  const sourceSyncComponent = topology.components.find((item) => item.id === 'tcgplayer-source-sync');
   const sourceClassification = sourceSync.error
     ? { status: 'failed', reason: 'Current source sync query failed.' }
-    : classifySourceSyncV1(sourceSync.data, now, pricingComponent?.max_staleness_minutes);
+    : classifySourceSyncV1(sourceSync.data, now, sourceSyncComponent?.max_staleness_minutes);
   results.push({
     component_id: 'tcgplayer-source-sync',
     provider: 'supabase',

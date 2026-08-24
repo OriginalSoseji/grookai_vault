@@ -290,6 +290,16 @@ test('clean evidence allows the launch gate', () => {
   assert.equal(result.findings.length, 0);
 });
 
+test('production topology governs every explicit control-plane component', () => {
+  const topology = JSON.parse(fs.readFileSync('backend/operations/production_topology_v1.json', 'utf8'));
+  const topologyIds = new Set(topology.components.map((component) => component.id));
+  const source = fs.readFileSync('scripts/audits/production_live_control_plane_v1.mjs', 'utf8');
+  const explicitComponentIds = [...source.matchAll(/component_id:\s*'([^']+)'/g)].map((match) => match[1]);
+  const missing = [...new Set(explicitComponentIds)].filter((componentId) => !topologyIds.has(componentId));
+  assert.deepEqual(missing, []);
+  assert.equal(topology.components.find((component) => component.id === 'tcgplayer-source-sync')?.criticality, 'launch_critical');
+});
+
 test('automation sources enforce read-only provider methods and do not persist credentials', () => {
   const provider = fs.readFileSync('scripts/audits/production_supabase_provider_snapshot_v1.mjs', 'utf8');
   const metrics = fs.readFileSync('scripts/audits/production_supabase_metrics_snapshot_v1.mjs', 'utf8');

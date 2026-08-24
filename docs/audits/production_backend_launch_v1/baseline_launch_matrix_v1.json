@@ -1,11 +1,11 @@
 {
   "schema_version": "GROOKAI_PRODUCTION_LAUNCH_MATRIX_V1",
-  "generated_at": "2026-08-24T01:10:05.617Z",
+  "generated_at": "2026-08-24T22:41:36.303Z",
   "launch_ready": false,
   "summary": {
-    "pass": 2,
+    "pass": 1,
     "fail": 0,
-    "stale": 4,
+    "stale": 5,
     "unmeasured": 9,
     "not_applicable": 0
   },
@@ -17,17 +17,17 @@
       "evidence": [
         "backend/operations/production_topology_v1.json"
       ],
-      "reason": "15 components are declared with valid repository references.",
+      "reason": "18 components are declared with valid repository references.",
       "next_action": "Add live state and ownership to each component."
     },
     {
       "id": "runtime-contract-health",
       "gate": "Topology",
-      "status": "pass",
+      "status": "stale",
       "evidence": [
         "docs/audits/founder_ops_dashboard_v1/runtime_preflight_v1.json"
       ],
-      "reason": "Current runtime contract preflight has zero critical failures.",
+      "reason": "Runtime contract evidence is missing, stale, or has critical failures.",
       "next_action": "Keep the runtime preflight inside the live control-plane collection."
     },
     {

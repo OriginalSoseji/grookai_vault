@@ -1,6 +1,6 @@
 {
   "schema_version": "GROOKAI_PRODUCTION_TOPOLOGY_REPORT_V1",
-  "generated_at": "2026-08-24T01:10:05.617Z",
+  "generated_at": "2026-08-24T22:41:36.303Z",
   "topology": {
     "schema_version": "GROOKAI_PRODUCTION_TOPOLOGY_V1",
     "contract": "GROOKAI_PRODUCTION_BACKEND_LAUNCH_V1",
@@ -38,6 +38,25 @@
         "health_probe": "prod-edge-probe",
         "write_boundary": "request-scoped authenticated clients and governed server actions",
         "pause_policy": "not_applicable"
+      },
+      {
+        "id": "operations-alert-delivery",
+        "name": "Production operations alert delivery",
+        "kind": "managed_and_scheduled_service",
+        "workload_class": "A",
+        "criticality": "launch_critical",
+        "execution_plane": "supabase_and_digitalocean",
+        "deployment_expectation": "production_active",
+        "live_verification": "required",
+        "max_staleness_minutes": 1440,
+        "source_files": [
+          "supabase/functions/operations-webhook-v1/index.ts",
+          "scripts/ops/grookai_operations_webhook_v1.mjs",
+          "supabase/migrations/20260824043000_operations_notification_severity_v2.sql"
+        ],
+        "health_probe": "operations_event_and_outbox_delivery_readback",
+        "write_boundary": "service-role enqueue and dispatcher delivery only",
+        "pause_policy": "never paused by Class B or C work"
       },
       {
         "id": "mobile-clients",
@@ -83,12 +102,34 @@
         "deployment_expectation": "scheduled",
         "live_verification": "required",
         "schedule": "0 * * * *",
+        "max_staleness_minutes": 90,
         "source_files": [
           ".github/workflows/prod-edge-probe.yml"
         ],
         "health_probe": "github_workflow_run_and_probe_artifact",
         "write_boundary": "read-only production probes",
         "pause_policy": "never paused by Class C work"
+      },
+      {
+        "id": "production-control-plane",
+        "name": "Production live control plane",
+        "kind": "scheduled_worker",
+        "workload_class": "A",
+        "criticality": "launch_critical",
+        "execution_plane": "digitalocean_systemd",
+        "deployment_expectation": "scheduled",
+        "live_verification": "required",
+        "schedule": "every 15 minutes",
+        "max_staleness_minutes": 30,
+        "source_files": [
+          "scripts/audits/production_live_control_plane_v1.mjs",
+          "deploy/systemd/grookai-production-control-plane.service",
+          "deploy/systemd/grookai-production-control-plane.timer",
+          "deploy/scripts/install-production-control-plane-systemd.sh"
+        ],
+        "health_probe": "systemd_timer_and_current_report_freshness",
+        "write_boundary": "read-only provider probes, audit artifacts, and deduplicated governed operations alerts only",
+        "pause_policy": "never paused by Class B or C work"
       },
       {
         "id": "tcgplayer-market-pipeline",
@@ -100,6 +141,7 @@
         "deployment_expectation": "scheduled",
         "live_verification": "required",
         "schedule": "08:15 UTC daily",
+        "max_staleness_minutes": 2160,
         "source_files": [
           "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
           "deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh",
@@ -108,6 +150,28 @@
         "health_probe": "pricing_market_health_and_publication_reconciliation",
         "write_boundary": "governed source, mapping, qualification, and publication generations",
         "pause_policy": "may throttle but must retain pricing freshness"
+      },
+      {
+        "id": "tcgplayer-source-sync",
+        "name": "TCGPlayer source warehouse synchronization",
+        "kind": "scheduled_worker",
+        "workload_class": "B",
+        "criticality": "launch_critical",
+        "execution_plane": "digitalocean_systemd",
+        "deployment_expectation": "scheduled",
+        "live_verification": "required",
+        "schedule": "daily before governed market publication",
+        "max_staleness_minutes": 2160,
+        "source_files": [
+          "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+          "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+          "deploy/systemd/grookai-tcgcsv-warehouse.service",
+          "deploy/systemd/grookai-tcgcsv-warehouse.timer",
+          "docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md"
+        ],
+        "health_probe": "tcgcsv_source_sync_run_terminal_state_and_freshness",
+        "write_boundary": "source warehouse evidence only; no canonical identity or publication authority",
+        "pause_policy": "may throttle but must retain source freshness for governed pricing"
       },
       {
         "id": "mee-nightly",
@@ -119,6 +183,7 @@
         "deployment_expectation": "scheduled",
         "live_verification": "required",
         "schedule": "systemd timer; exact live calendar must be read back",
+        "max_staleness_minutes": 2160,
         "source_files": [
           "scripts/workers/mee_nightly_droplet_worker_v1.mjs",
           "deploy/scripts/install-mee-nightly-systemd.sh",
@@ -135,10 +200,15 @@
         "workload_class": "B",
         "criticality": "launch_critical",
         "execution_plane": "unverified",
-        "deployment_expectation": "must_be_scheduled",
+        "deployment_expectation": "scheduled",
         "live_verification": "required",
-        "schedule": "unverified",
+        "schedule": "12:15 UTC daily with up to 10 minutes jitter",
+        "max_staleness_minutes": 1800,
         "source_files": [
+          "scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs",
+          "deploy/systemd/grookai-pokemon-new-set-discovery.service",
+          "deploy/systemd/grookai-pokemon-new-set-discovery.timer",
+          "docs/contracts/POKEMON_NEW_SET_DISCOVERY_MONITOR_V1.md",
           "scripts/ingest/new_set_release_ingest_v1.mjs"
         ],
         "health_probe": "new_set_discovery_freshness_and_staging_reconciliation",
@@ -155,6 +225,7 @@
         "deployment_expectation": "scheduled",
         "live_verification": "required",
         "schedule": "17 13 * * *",
+        "max_staleness_minutes": 1560,
         "source_files": [
           ".github/workflows/founder-ops-dashboard.yml",
           "scripts/audits/founder_ops_dashboard_collect_v1.mjs"
@@ -173,6 +244,7 @@
         "deployment_expectation": "scheduled_during_canary",
         "live_verification": "required",
         "schedule": "17 */6 * * *",
+        "max_staleness_minutes": 420,
         "source_files": [
           ".github/workflows/tcgplayer-market-canary-observation.yml"
         ],
@@ -190,6 +262,7 @@
         "deployment_expectation": "scheduled",
         "live_verification": "required",
         "schedule": "*/15 * * * *",
+        "max_staleness_minutes": 45,
         "source_files": [
           ".github/workflows/mtg-catalog-supervisor.yml",
           "scripts/audits/mtg_catalog_supervisor_v1.mjs"
@@ -293,6 +366,21 @@
         "exists": true
       },
       {
+        "component_id": "operations-alert-delivery",
+        "path": "supabase/functions/operations-webhook-v1/index.ts",
+        "exists": true
+      },
+      {
+        "component_id": "operations-alert-delivery",
+        "path": "scripts/ops/grookai_operations_webhook_v1.mjs",
+        "exists": true
+      },
+      {
+        "component_id": "operations-alert-delivery",
+        "path": "supabase/migrations/20260824043000_operations_notification_severity_v2.sql",
+        "exists": true
+      },
+      {
         "component_id": "mobile-clients",
         "path": "pubspec.yaml",
         "exists": true
@@ -318,6 +406,26 @@
         "exists": true
       },
       {
+        "component_id": "production-control-plane",
+        "path": "scripts/audits/production_live_control_plane_v1.mjs",
+        "exists": true
+      },
+      {
+        "component_id": "production-control-plane",
+        "path": "deploy/systemd/grookai-production-control-plane.service",
+        "exists": true
+      },
+      {
+        "component_id": "production-control-plane",
+        "path": "deploy/systemd/grookai-production-control-plane.timer",
+        "exists": true
+      },
+      {
+        "component_id": "production-control-plane",
+        "path": "deploy/scripts/install-production-control-plane-systemd.sh",
+        "exists": true
+      },
+      {
         "component_id": "tcgplayer-market-pipeline",
         "path": "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
         "exists": true
@@ -329,6 +437,31 @@
       },
       {
         "component_id": "tcgplayer-market-pipeline",
+        "path": "docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md",
+        "exists": true
+      },
+      {
+        "component_id": "tcgplayer-source-sync",
+        "path": "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "exists": true
+      },
+      {
+        "component_id": "tcgplayer-source-sync",
+        "path": "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+        "exists": true
+      },
+      {
+        "component_id": "tcgplayer-source-sync",
+        "path": "deploy/systemd/grookai-tcgcsv-warehouse.service",
+        "exists": true
+      },
+      {
+        "component_id": "tcgplayer-source-sync",
+        "path": "deploy/systemd/grookai-tcgcsv-warehouse.timer",
+        "exists": true
+      },
+      {
+        "component_id": "tcgplayer-source-sync",
         "path": "docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md",
         "exists": true
       },
@@ -345,6 +478,26 @@
       {
         "component_id": "mee-nightly",
         "path": "docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md",
+        "exists": true
+      },
+      {
+        "component_id": "new-set-discovery",
+        "path": "scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs",
+        "exists": true
+      },
+      {
+        "component_id": "new-set-discovery",
+        "path": "deploy/systemd/grookai-pokemon-new-set-discovery.service",
+        "exists": true
+      },
+      {
+        "component_id": "new-set-discovery",
+        "path": "deploy/systemd/grookai-pokemon-new-set-discovery.timer",
+        "exists": true
+      },
+      {
+        "component_id": "new-set-discovery",
+        "path": "docs/contracts/POKEMON_NEW_SET_DISCOVERY_MONITOR_V1.md",
         "exists": true
       },
       {
@@ -399,11 +552,11 @@
       }
     ],
     "summary": {
-      "components": 15,
-      "class_a": 5,
-      "class_b": 5,
+      "components": 18,
+      "class_a": 7,
+      "class_b": 6,
       "class_c": 5,
-      "repository_sources": 25,
+      "repository_sources": 41,
       "missing_repository_sources": 0
     }
   }

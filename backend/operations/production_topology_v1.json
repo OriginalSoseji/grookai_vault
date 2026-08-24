@@ -149,6 +149,28 @@
       "pause_policy": "may throttle but must retain pricing freshness"
     },
     {
+      "id": "tcgplayer-source-sync",
+      "name": "TCGPlayer source warehouse synchronization",
+      "kind": "scheduled_worker",
+      "workload_class": "B",
+      "criticality": "launch_critical",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "daily before governed market publication",
+      "max_staleness_minutes": 2160,
+      "source_files": [
+        "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+        "deploy/systemd/grookai-tcgcsv-warehouse.service",
+        "deploy/systemd/grookai-tcgcsv-warehouse.timer",
+        "docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md"
+      ],
+      "health_probe": "tcgcsv_source_sync_run_terminal_state_and_freshness",
+      "write_boundary": "source warehouse evidence only; no canonical identity or publication authority",
+      "pause_policy": "may throttle but must retain source freshness for governed pricing"
+    },
+    {
       "id": "mee-nightly",
       "name": "Market Evidence Engine nightly worker",
       "kind": "scheduled_worker",
