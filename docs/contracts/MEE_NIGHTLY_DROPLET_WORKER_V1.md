@@ -18,6 +18,18 @@ TCGCSV is included as a nightly free-reference acquisition lane alongside eBay a
 - Time window: 3-4am server-local time
 - Entrypoint: `node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run`
 
+### Artifact Capacity
+
+Production must preserve at least 20 GiB of free artifact capacity before
+acquisition. `grookai-mee-artifact-retention.timer` runs before the nightly
+worker and may compress only allowlisted historical fetch and backfill
+artifact directories. It must write file manifests, verify the compressed
+archive and its SHA-256 hash, and remove only the exact verified source
+directory. Retention and acquisition share the same systemd lock.
+
+Both the nightly service and retention service must route terminal failures to
+`grookai-operations-webhook@%n.service`.
+
 ## Required Environment
 
 - `SUPABASE_URL`

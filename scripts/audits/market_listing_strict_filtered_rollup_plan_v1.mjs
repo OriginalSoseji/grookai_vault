@@ -202,19 +202,20 @@ function normalizeCandidateRow(row) {
     condition_text: obs.condition_text,
     exclusion_flags: row.exclusion_flags,
     match_confidence: row.match_confidence,
+    card: row.card ?? null,
   };
 }
 
-async function fetchCandidateRowsWithPg(acquisitionRunId) {
+async function fetchCandidateRowsWithPg(acquisitionRunId, onPage) {
   const connectionString = directDbUrl();
   const client = new Client({
     connectionString,
     connectionTimeoutMillis: 15_000,
-    query_timeout: 60_000,
-    statement_timeout: 60_000,
+    query_timeout: 300_000,
+    statement_timeout: 300_000,
     ssl: pgSslConfig(connectionString),
   });
-  const rows = [];
+  let processedCount = 0;
   await client.connect();
   try {
     await client.query("begin read only");
@@ -235,10 +236,24 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
            'currency', observation.currency,
            'seller_key', observation.seller_key,
            'condition_text', observation.condition_text
-         ) as obs
+         ) as obs,
+         jsonb_build_object(
+           'id', card.id,
+           'gv_id', card.gv_id,
+           'name', card.name,
+           'set_code', card.set_code,
+           'number', card.number,
+           'number_plain', card.number_plain,
+           'printed_set_abbrev', card.printed_set_abbrev,
+           'printed_identity_modifier', card.printed_identity_modifier,
+           'identity_domain', card.identity_domain,
+           'set_name', set_row.name
+         ) as card
        from public.market_listing_observations observation
        join public.market_listing_card_candidates candidate
          on candidate.observation_id = observation.id
+       left join public.card_prints card on card.id = candidate.card_print_id
+       left join public.sets set_row on set_row.id = card.set_id
       where observation.acquisition_run_id = $1::uuid
         and candidate.match_version = $2
       order by observation.id asc, candidate.id asc`,
@@ -247,9 +262,14 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
     for (;;) {
       const result = await client.query(`fetch forward ${DIRECT_FETCH_SIZE} from strict_candidate_rows_cursor`);
       if (!result.rows.length) break;
-      rows.push(...result.rows);
-      if (rows.length % 50_000 === 0) {
-        console.error(`[market-listing-strict-filtered-rollup-plan] loaded ${rows.length} run-scoped candidates`);
+      const page = result.rows
+        .map(normalizeCandidateRow)
+        .filter((row) => ["raw_single", "slab"].includes(row.evidence_class))
+        .filter((row) => row.total_ask_price !== null && row.total_ask_price !== undefined && row.currency === "USD");
+      onPage(page);
+      processedCount += page.length;
+      if (processedCount % 50_000 === 0) {
+        console.error(`[market-listing-strict-filtered-rollup-plan] processed ${processedCount} run-scoped candidates`);
       }
       if (result.rows.length < DIRECT_FETCH_SIZE) break;
     }
@@ -261,18 +281,10 @@ async function fetchCandidateRowsWithPg(acquisitionRunId) {
   } finally {
     await client.end();
   }
-  return rows;
+  return processedCount;
 }
 
 async function fetchCandidateRows(supabase, acquisitionRunId) {
-  if (directDbUrl() && acquisitionRunId) {
-    const rows = await fetchCandidateRowsWithPg(acquisitionRunId);
-    return rows
-      .map(normalizeCandidateRow)
-      .filter((row) => ["raw_single", "slab"].includes(row.evidence_class))
-      .filter((row) => row.total_ask_price !== null && row.total_ask_price !== undefined && row.currency === "USD");
-  }
-
   const rows = [];
   let lastCandidateId = null;
   for (;;) {
@@ -396,12 +408,11 @@ if (process.env.MEE_NIGHTLY_REQUIRE_DIRECT_DB === "1" && !args.runKey) {
 }
 const supabase = createBackendClient();
 const acquisitionRun = await resolveAcquisitionRun(supabase, args.runKey);
-const candidateRows = await fetchCandidateRows(supabase, acquisitionRun?.id ?? null);
-const cardMetadata = await fetchCardMetadata(candidateRows);
+let cardMetadata = new Map();
 const groups = new Map();
 const exclusionReasonCounts = {};
 const candidateCounts = {
-  total: candidateRows.length,
+  total: 0,
   strict_title_passed: 0,
   strict_title_excluded: 0,
   raw_single_total: 0,
@@ -413,40 +424,51 @@ const candidateCounts = {
 function titleGate(row) {
   return evaluateMarketListingTitleGateV1({
     ...row,
-    card: cardMetadata.get(row.card_print_id) ?? null,
+    card: row.card ?? cardMetadata.get(row.card_print_id) ?? null,
   });
 }
 
-for (const row of candidateRows) {
-  increment(candidateCounts, `${row.evidence_class}_total`);
-  const gate = titleGate(row);
-  if (!gate.passes) {
-    candidateCounts.strict_title_excluded += 1;
-    for (const reason of gate.reasons) increment(exclusionReasonCounts, reason);
-    continue;
-  }
+function processCandidateRows(rows) {
+  candidateCounts.total += rows.length;
+  for (const row of rows) {
+    increment(candidateCounts, `${row.evidence_class}_total`);
+    const gate = titleGate(row);
+    if (!gate.passes) {
+      candidateCounts.strict_title_excluded += 1;
+      for (const reason of gate.reasons) increment(exclusionReasonCounts, reason);
+      continue;
+    }
 
-  candidateCounts.strict_title_passed += 1;
-  increment(candidateCounts, `${row.evidence_class}_passed`);
-  const key = groupKey(row);
-  const group = groups.get(key) ?? {
-    card_print_id: row.card_print_id,
-    gv_id: row.gv_id,
-    evidence_class: row.evidence_class,
-    prices: [],
-    sellers: new Set(),
-    samples: [],
-  };
-  group.prices.push(Number(row.total_ask_price));
-  if (row.seller_key) group.sellers.add(row.seller_key);
-  if (group.samples.length < 5) {
-    group.samples.push({
-      title: row.listing_title,
-      total_ask_price: round(row.total_ask_price),
-      condition_text: row.condition_text,
-    });
+    candidateCounts.strict_title_passed += 1;
+    increment(candidateCounts, `${row.evidence_class}_passed`);
+    const key = groupKey(row);
+    const group = groups.get(key) ?? {
+      card_print_id: row.card_print_id,
+      gv_id: row.gv_id,
+      evidence_class: row.evidence_class,
+      prices: [],
+      sellers: new Set(),
+      samples: [],
+    };
+    group.prices.push(Number(row.total_ask_price));
+    if (row.seller_key) group.sellers.add(row.seller_key);
+    if (group.samples.length < 5) {
+      group.samples.push({
+        title: row.listing_title,
+        total_ask_price: round(row.total_ask_price),
+        condition_text: row.condition_text,
+      });
+    }
+    groups.set(key, group);
   }
-  groups.set(key, group);
+}
+
+if (directDbUrl() && acquisitionRun?.id) {
+  await fetchCandidateRowsWithPg(acquisitionRun.id, processCandidateRows);
+} else {
+  const candidateRows = await fetchCandidateRows(supabase, acquisitionRun?.id ?? null);
+  cardMetadata = await fetchCardMetadata(candidateRows);
+  processCandidateRows(candidateRows);
 }
 
 const rollups = [...groups.values()].map(makeRollup).sort((left, right) => (

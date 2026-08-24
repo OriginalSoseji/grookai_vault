@@ -581,7 +581,34 @@ async function main() {
   });
   state.disk_preflight = diskDecision;
   saveState(statePath, state);
-  if (!diskDecision.provider_calls_allowed) throw new Error(diskDecision.finding);
+  if (!diskDecision.provider_calls_allowed) {
+    state.findings.push(diskDecision.finding);
+    state.outcome = "failed_preflight";
+    state.completed_at = new Date().toISOString();
+    saveState(statePath, state);
+    const preflightFailure = {
+      phase: "disk_capacity_preflight",
+      status: 1,
+      started_at: state.created_at,
+      finished_at: state.completed_at,
+      report_path: statePath,
+      stdout_tail: "",
+      stderr_tail: diskDecision.finding,
+    };
+    await appendPhaseLedger(state.run_key, preflightFailure, statePath);
+    process.stdout.write(`${JSON.stringify({
+      package_id: PACKAGE_ID,
+      run_key: state.run_key,
+      outcome: state.outcome,
+      state_path: meeArtifactReferenceV1(REPO_ROOT, statePath),
+      findings: state.findings,
+      disk_preflight: diskDecision,
+      provider_calls_attempted: false,
+      database_writes_attempted: false,
+    }, null, 2)}\n`);
+    process.exitCode = 1;
+    return;
+  }
 
   const existingProvider = await providerPhasePreviouslyAttempted(state.run_key);
   const savedProvider = state.phases?.daily_batch_fetch ?? null;

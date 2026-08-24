@@ -366,10 +366,11 @@ function runCommand(command, timeoutMs = 1000 * 60 * 60 * 6) {
   return {
     command: commandText(command),
     actual_command: commandText(actualCommand),
-    status: result.status,
+    status: result.status ?? 1,
     signal: result.signal,
+    spawn_error: result.error ? String(result.error.message ?? result.error) : null,
     stdout_tail: (result.stdout ?? "").slice(-6000),
-    stderr_tail: (result.stderr ?? "").slice(-6000),
+    stderr_tail: (result.stderr ?? result.error?.stack ?? result.error?.message ?? "").slice(-6000),
   };
 }
 
@@ -908,6 +909,10 @@ const payload = {
     command: phase.command,
     actual_command: phase.actual_command,
     status: phase.status,
+    signal: phase.signal,
+    spawn_error: phase.spawn_error,
+    stdout_tail: phase.stdout_tail,
+    stderr_tail: phase.stderr_tail,
     skipped: phase.skipped,
     reason: phase.reason,
     ledger: phase.ledger,

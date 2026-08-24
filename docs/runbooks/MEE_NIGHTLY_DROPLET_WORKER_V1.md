@@ -1,5 +1,19 @@
 # MEE Nightly Droplet Worker V1 Runbook
 
+## Artifact Capacity
+
+The runtime artifact root is governed by
+`grookai-mee-artifact-retention.timer`, scheduled before acquisition. It keeps
+recent evidence expanded and archives older allowlisted fetch/backfill
+directories with manifests and SHA-256 readback. Do not lower the acquisition
+disk guard to bypass a capacity failure.
+
+```bash
+systemctl status grookai-mee-artifact-retention.timer --no-pager
+systemctl status grookai-mee-artifact-retention.service --no-pager
+df -h /var/lib/grookai/mee
+```
+
 ## Install
 
 ```bash

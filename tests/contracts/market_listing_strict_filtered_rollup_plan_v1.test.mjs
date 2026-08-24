@@ -19,6 +19,10 @@ test("strict filtered rollup plan is local-only and filters before medians", () 
   assert.match(script, /begin read only/);
   assert.match(script, /declare strict_candidate_rows_cursor no scroll cursor/);
   assert.match(script, /fetch forward \$\{DIRECT_FETCH_SIZE\} from strict_candidate_rows_cursor/);
+  assert.match(script, /onPage\(page\)/);
+  assert.match(script, /processCandidateRows/);
+  assert.doesNotMatch(script, /rows\.push\(\.\.\.result\.rows\)/);
+  assert.match(script, /query_timeout: 300_000/);
   assert.match(script, /close strict_candidate_rows_cursor/);
   assert.match(script, /order by observation\.id asc, candidate\.id asc/);
   assert.match(script, /left join public\.sets set_row on set_row\.id = card\.set_id/);

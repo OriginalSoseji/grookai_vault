@@ -3,6 +3,8 @@ Description=Grookai Market Evidence Engine Nightly Worker
 Wants=network-online.target
 After=network-online.target
 Conflicts=grookai-mee-post-ingest.service
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
 
 [Service]
 Type=oneshot

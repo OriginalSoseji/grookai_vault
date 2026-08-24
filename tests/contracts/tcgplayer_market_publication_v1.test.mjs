@@ -20,7 +20,9 @@ import {
 } from "../../backend/pricing/tcgplayer_market_health_policy_v1.mjs";
 import {
   TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+  TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
   buildTcgplayerCandidateProductPagesV1,
+  inspectTcgplayerBoundedPageProgressV1,
   inspectTcgplayerCandidateRowsV1,
 } from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
 
@@ -601,11 +603,12 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
   assert.equal(TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1, 10_000);
+  assert.equal(TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1, 1_000);
   assert.deepEqual(
     buildTcgplayerCandidateProductPagesV1([4, 2, 4, 3, 1], 2),
     [[1, 2], [3, 4]],
@@ -614,6 +617,32 @@ test("candidate pages are bounded, deterministic, and deduplicate product IDs", 
     () => buildTcgplayerCandidateProductPagesV1([1], 0),
     /positive integer/,
   );
+});
+
+test("full-catalog staging, qualification, and artifact export remain bounded", () => {
+  assert.deepEqual(
+    inspectTcgplayerBoundedPageProgressV1({
+      processedCount: 175_495,
+      expectedCount: 175_495,
+      largestPageCount: 1_000,
+      pageSize: 1_000,
+    }).findings,
+    [],
+  );
+  assert.deepEqual(
+    inspectTcgplayerBoundedPageProgressV1({
+      processedCount: 999,
+      expectedCount: 1_000,
+      largestPageCount: 1_001,
+      pageSize: 1_000,
+    }).findings,
+    ["candidate_count:999/1000", "page_size_exceeded:1001/1000"],
+  );
+  assert.match(WORKER, /visitCandidateRowPages/);
+  assert.match(WORKER, /visitStagedCandidatePages/);
+  assert.match(WORKER, /writeDatabaseDecisionJsonLines/);
+  assert.match(WORKER, /prior_worker_terminated_without_terminal_state/);
+  assert.doesNotMatch(WORKER, /const candidates = await stagedCandidates/);
 });
 
 test("candidate reconciliation pins count, source run, and observation uniqueness", () => {

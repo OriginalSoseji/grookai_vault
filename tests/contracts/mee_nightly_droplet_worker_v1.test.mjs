@@ -135,12 +135,15 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   const env = read(envPath);
   const installer = read(installerPath);
   const verifier = read(verifierPath);
+  const script = read(workerPath);
   const pkg = JSON.parse(read("package.json"));
 
   assert.match(service, /User=grookai/);
   assert.match(service, /WorkingDirectory=\/opt\/grookai_vault_mee_nightly/);
   assert.match(service, /EnvironmentFile=\/etc\/grookai\/mee-nightly\.env/);
   assert.match(service, /Environment=MEE_NIGHTLY_REQUIRE_DIRECT_DB=1/);
+  assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
+  assert.match(service, /OnFailureJobMode=replace-irreversibly/);
   assert.match(service, /\/usr\/bin\/flock -n \/tmp\/grookai-mee-nightly\.lock/);
   assert.match(service, /mee_nightly_droplet_worker_v1\.mjs --run/);
   assert.match(service, /\$\$\{MEE_NIGHTLY_CALL_CEILING:-4000\}/);
@@ -173,10 +176,12 @@ test("MEE nightly droplet deployment templates schedule the worker at 3am window
   assert.match(installer, /grookai-mee-post-ingest\.timer/);
   assert.match(installer, /ln -s \/dev\/null/);
   assert.match(installer, /systemctl reset-failed/);
-  assert.match(installer, /systemctl enable --now "\$\{TIMER_NAME\}"/);
+  assert.match(installer, /systemctl enable --now "\$\{RETENTION_TIMER_NAME\}" "\$\{TIMER_NAME\}"/);
   assert.match(installer, /MEE_NIGHTLY_ALLOW_RUN=1/);
   assert.match(verifier, /journalctl -u "\$\{SERVICE_NAME\}"/);
   assert.match(verifier, /mee_nightly_droplet_worker_v1_\*\.json/);
+  assert.match(script, /spawn_error: result\.error/);
+  assert.match(script, /stderr_tail: phase\.stderr_tail/);
   assert.equal(pkg.scripts["mee:nightly:droplet:dry-run"], "node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run");
   assert.equal(pkg.scripts["mee:nightly:droplet:run"], "node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run");
 });

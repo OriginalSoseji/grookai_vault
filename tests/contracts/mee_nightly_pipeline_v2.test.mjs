@@ -226,6 +226,15 @@ test("V2 pipeline preserves non-public and non-destructive boundaries", () => {
   assert.doesNotMatch(script, /\btruncate\b/i);
 });
 
+test("disk capacity refusal is terminal, persisted, and provider-free", () => {
+  const script = read("scripts/workers/market_listing_nightly_pipeline_v2.mjs");
+  assert.match(script, /state\.outcome = "failed_preflight"/);
+  assert.match(script, /saveState\(statePath, state\)/);
+  assert.match(script, /phase: "disk_capacity_preflight"/);
+  assert.match(script, /provider_calls_attempted: false/);
+  assert.match(script, /database_writes_attempted: false/);
+});
+
 test("immutable release installer leaves the timer disabled by default", () => {
   const installer = read("deploy/scripts/install-mee-nightly-release-v2.sh");
   assert.match(installer, /ENABLE_TIMER="\$\{ENABLE_TIMER:-0\}"/);

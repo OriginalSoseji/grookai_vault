@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Grookai MEE artifact retention before nightly acquisition
+
+[Timer]
+OnCalendar=*-*-* 01:45:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=grookai-mee-artifact-retention.service
+
+[Install]
+WantedBy=timers.target

@@ -21,7 +21,9 @@ import {
 } from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
 import {
   TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+  TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
   buildTcgplayerCandidateProductPagesV1,
+  inspectTcgplayerBoundedPageProgressV1,
   inspectTcgplayerCandidateRowsV1,
 } from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
 
@@ -35,7 +37,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -317,6 +319,90 @@ function assertCandidateScopeEvidence(rows) {
   }
 }
 
+async function candidateInventory(client, { limit, sourceRun }) {
+  const inventory = (
+    await client.query(
+      `select
+         count(*)::integer as observation_count,
+         array_agg(distinct observation.product_id order by observation.product_id)
+           as product_ids
+       from public.tcgcsv_source_price_daily_observations observation
+       where observation.last_seen_run_id = $1
+         and observation.observed_on = $2
+         and observation.category_id in (1, 3)`,
+      [sourceRun.id, sourceRun.observed_on],
+    )
+  ).rows[0];
+  const observationCount = Number(inventory.observation_count);
+  return {
+    expectedCount: limit === null
+      ? observationCount
+      : Math.min(limit, observationCount),
+    pages: buildTcgplayerCandidateProductPagesV1(inventory.product_ids),
+  };
+}
+
+async function visitCandidateRowPages(client, {
+  limit,
+  sourceRun,
+  onPage,
+}) {
+  const inventory = await candidateInventory(client, { limit, sourceRun });
+  let processedCount = 0;
+  let largestPageCount = 0;
+  let firstSourceObservationId = null;
+  let lastSourceObservationId = null;
+
+  for (const productIds of inventory.pages) {
+    const result = await client.query(
+      `select
+         candidate.*,
+         source_group.name as source_group_name
+       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+       left join public.tcgcsv_source_groups source_group
+         on source_group.group_id = candidate.group_id
+       where candidate.source_sync_run_id = $1
+         and candidate.source_product_id = any($2::integer[])
+       order by candidate.source_product_id,
+                candidate.source_subtype_name,
+                candidate.source_observation_id`,
+      [sourceRun.id, productIds],
+    );
+    const remaining = limit === null ? result.rows.length : limit - processedCount;
+    const selectedRows = limit === null
+      ? result.rows
+      : result.rows.slice(0, Math.max(0, remaining));
+    if (!selectedRows.length) break;
+    assertCandidateScopeEvidence(selectedRows);
+    if (selectedRows.some((row) => row.source_sync_run_id !== sourceRun.id)) {
+      throw new Error("candidate source sync run drifted inside a bounded page");
+    }
+    firstSourceObservationId ??= selectedRows[0].source_observation_id;
+    lastSourceObservationId = selectedRows.at(-1).source_observation_id;
+    processedCount += selectedRows.length;
+    largestPageCount = Math.max(largestPageCount, selectedRows.length);
+    await onPage(selectedRows);
+    if (limit !== null && processedCount >= limit) break;
+  }
+
+  const inspection = inspectTcgplayerBoundedPageProgressV1({
+    processedCount,
+    expectedCount: inventory.expectedCount,
+    largestPageCount,
+    pageSize: TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1 * 10,
+  });
+  if (!inspection.valid) {
+    throw new Error(`candidate reconciliation failed: ${inspection.findings.join(",")}`);
+  }
+  return {
+    processedCount,
+    expectedCount: inventory.expectedCount,
+    largestPageCount,
+    firstSourceObservationId,
+    lastSourceObservationId,
+  };
+}
+
 async function candidateRows(client, {
   limit,
   canaryDefinition,
@@ -382,54 +468,13 @@ async function candidateRows(client, {
     }
     return rows;
   }
-  const inventory = (
-    await client.query(
-      `select
-         count(*)::integer as observation_count,
-         array_agg(distinct observation.product_id order by observation.product_id)
-           as product_ids
-       from public.tcgcsv_source_price_daily_observations observation
-       where observation.last_seen_run_id = $1
-         and observation.observed_on = $2
-         and observation.category_id in (1, 3)`,
-      [sourceRun.id, sourceRun.observed_on],
-    )
-  ).rows[0];
-  const observationCount = Number(inventory.observation_count);
-  const expectedCount = limit === null
-    ? observationCount
-    : Math.min(limit, observationCount);
-  const pages = buildTcgplayerCandidateProductPagesV1(inventory.product_ids);
   const rows = [];
-  for (const productIds of pages) {
-    const result = await client.query(
-      `select
-         candidate.*,
-         source_group.name as source_group_name
-       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
-       left join public.tcgcsv_source_groups source_group
-         on source_group.group_id = candidate.group_id
-       where candidate.source_sync_run_id = $1
-         and candidate.source_product_id = any($2::integer[])
-       order by candidate.source_product_id,
-                candidate.source_subtype_name,
-                candidate.source_observation_id`,
-      [sourceRun.id, productIds],
-    );
-    rows.push(...result.rows);
-    if (limit !== null && rows.length >= limit) break;
-  }
-  const selectedRows = limit === null ? rows : rows.slice(0, limit);
-  const inspection = inspectTcgplayerCandidateRowsV1({
-    rows: selectedRows,
-    expectedSourceSyncRunId: sourceRun.id,
-    expectedCount,
+  await visitCandidateRowPages(client, {
+    limit,
+    sourceRun,
+    onPage: async (page) => rows.push(...page),
   });
-  if (!inspection.valid) {
-    throw new Error(`candidate reconciliation failed: ${inspection.findings.join(",")}`);
-  }
-  assertCandidateScopeEvidence(selectedRows);
-  return selectedRows;
+  return rows;
 }
 
 function buildCandidate(row, runId) {
@@ -607,6 +652,54 @@ async function completedPhase(client, runId, phaseName) {
   return result.rows[0].completed === true;
 }
 
+async function closeInterruptedPhaseAttempts(client, {
+  run,
+  sourceRun,
+  phaseName,
+}) {
+  const result = await client.query(
+    `select started.attempt, started.started_at
+       from public.market_price_pipeline_phase_attempts started
+      where started.run_id = $1
+        and started.phase_name = $2
+        and started.state = 'started'
+        and not exists (
+          select 1
+          from public.market_price_pipeline_phase_attempts terminal
+          where terminal.run_id = started.run_id
+            and terminal.phase_name = started.phase_name
+            and terminal.attempt = started.attempt
+            and terminal.state in ('succeeded', 'failed')
+        )
+      order by started.attempt`,
+    [run.id, phaseName],
+  );
+  for (const interrupted of result.rows) {
+    await insertPhaseAttempt(client, {
+      run,
+      phaseName,
+      attempt: Number(interrupted.attempt),
+      state: "failed",
+      sourceRun,
+      startedAt: interrupted.started_at,
+      completedAt: new Date().toISOString(),
+      result: {
+        resumability_data: {
+          recovered_by_worker_version: WORKER_VERSION,
+          recovery_reason: "prior_worker_terminated_without_terminal_state",
+        },
+      },
+      error: new Error("prior worker terminated without a terminal phase state"),
+    });
+  }
+  if (result.rows.length) {
+    process.stdout.write(
+      `[tcgplayer-market-publication] phase=${phaseName} interrupted_attempts_closed=${result.rows.length}\n`,
+    );
+  }
+  return result.rows.length;
+}
+
 async function nextPhaseAttempt(client, runId, phaseName) {
   const result = await client.query(
     `select coalesce(max(attempt), 0)::integer + 1 as attempt
@@ -715,6 +808,7 @@ async function runPhase(client, {
     );
     return { resumed: true };
   }
+  await closeInterruptedPhaseAttempts(client, { run, sourceRun, phaseName });
   const attempt = await nextPhaseAttempt(client, run.id, phaseName);
   const startedAt = new Date().toISOString();
   const phaseAttemptId = await insertPhaseAttempt(client, {
@@ -842,15 +936,42 @@ async function insertCandidates(client, candidates, batchSize) {
   }
 }
 
-async function stagedCandidates(client, runId) {
+async function stagedCandidateCounts(client, runId) {
   const result = await client.query(
-    `select id, candidate_payload
+    `select
+       count(*)::integer as candidate_count,
+       count(distinct source_observation_id)::integer as distinct_observation_count
        from public.market_price_pipeline_candidates
-      where run_id = $1
-      order by source_product_id, source_subtype_name, source_observation_id`,
+      where run_id = $1`,
     [runId],
   );
-  return result.rows;
+  return {
+    candidateCount: Number(result.rows[0].candidate_count),
+    distinctObservationCount: Number(result.rows[0].distinct_observation_count),
+  };
+}
+
+async function visitStagedCandidatePages(client, runId, onPage) {
+  let afterId = null;
+  let processedCount = 0;
+  let largestPageCount = 0;
+  while (true) {
+    const result = await client.query(
+      `select id, candidate_payload
+         from public.market_price_pipeline_candidates
+        where run_id = $1
+          and ($2::uuid is null or id > $2::uuid)
+        order by id
+        limit $3`,
+      [runId, afterId, TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1],
+    );
+    if (!result.rows.length) break;
+    await onPage(result.rows);
+    processedCount += result.rows.length;
+    largestPageCount = Math.max(largestPageCount, result.rows.length);
+    afterId = result.rows.at(-1).id;
+  }
+  return { processedCount, largestPageCount };
 }
 
 async function insertDecisions(client, decisions, batchSize) {
@@ -1315,19 +1436,12 @@ async function activateAndVerify(client, run, publicationSet) {
   }
 }
 
-async function artifactRows(client, runId) {
-  const [runResult, decisionResult, reconciliationResult] = await Promise.all([
+async function artifactRows(client, runId, { includeDecisions = true } = {}) {
+  const [runResult, reconciliationResult] = await Promise.all([
     client.query(
       `select *
          from public.market_price_pipeline_runs
         where id = $1`,
-      [runId],
-    ),
-    client.query(
-      `select *
-         from public.market_price_qualification_decisions
-        where run_id = $1
-        order by source_product_id, source_subtype_name, source_observation_id`,
       [runId],
     ),
     client.query(
@@ -1337,14 +1451,80 @@ async function artifactRows(client, runId) {
       [runId],
     ),
   ]);
+  const decisions = includeDecisions
+    ? (
+        await client.query(
+          `select *
+             from public.market_price_qualification_decisions
+            where run_id = $1
+            order by source_product_id, source_subtype_name, source_observation_id`,
+          [runId],
+        )
+      ).rows
+    : null;
   return {
     run: runResult.rows[0],
-    decisions: decisionResult.rows,
+    decisions,
     reconciliation: reconciliationResult.rows[0]?.reconciliation ?? {},
   };
 }
 
+async function writeDatabaseDecisionJsonLines(client, runId, filePath) {
+  const handle = await fs.open(filePath, "w");
+  let sourceProductId = null;
+  let sourceSubtypeName = null;
+  let sourceObservationId = null;
+  let writtenCount = 0;
+  try {
+    while (true) {
+      const result = await client.query(
+        `select *
+           from public.market_price_qualification_decisions
+          where run_id = $1
+            and (
+              $2::integer is null
+              or source_product_id > $2
+              or (
+                source_product_id = $2
+                and coalesce(source_subtype_name, '') > $3
+              )
+              or (
+                source_product_id = $2
+                and coalesce(source_subtype_name, '') = $3
+                and source_observation_id > $4::uuid
+              )
+            )
+          order by source_product_id,
+                   coalesce(source_subtype_name, ''),
+                   source_observation_id
+          limit $5`,
+        [
+          runId,
+          sourceProductId,
+          sourceSubtypeName,
+          sourceObservationId,
+          TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
+        ],
+      );
+      if (!result.rows.length) break;
+      await handle.writeFile(
+        `${result.rows.map((row) => JSON.stringify(row)).join("\n")}\n`,
+      );
+      writtenCount += result.rows.length;
+      const last = result.rows.at(-1);
+      sourceProductId = Number(last.source_product_id);
+      sourceSubtypeName = last.source_subtype_name ?? "";
+      sourceObservationId = last.source_observation_id;
+    }
+  } finally {
+    await handle.close();
+  }
+  return writtenCount;
+}
+
 async function writeArtifacts(outDir, {
+  client,
+  durableRunId,
   runPlan,
   summary,
   decisions,
@@ -1359,7 +1539,14 @@ async function writeArtifacts(outDir, {
   };
   await writeJson(files.run_plan, runPlan);
   await writeJson(files.summary, summary);
-  await writeJsonLines(files.decisions, decisions);
+  const writtenDecisionCount = Array.isArray(decisions)
+    ? (await writeJsonLines(files.decisions, decisions), decisions.length)
+    : await writeDatabaseDecisionJsonLines(client, durableRunId, files.decisions);
+  if (writtenDecisionCount !== summary.selected_count) {
+    throw new Error(
+      `decision artifact reconciliation failed expected=${summary.selected_count} written=${writtenDecisionCount}`,
+    );
+  }
   await writeJson(files.reconciliation, reconciliation);
   const hashes = {};
   for (const [name, filePath] of Object.entries(files)) {
@@ -1368,9 +1555,9 @@ async function writeArtifacts(outDir, {
   await writeJson(path.join(outDir, "artifact_hashes.json"), hashes);
 }
 
-function decisionSummary(decisions) {
-  const result = {
-    selected_count: decisions.length,
+function emptyDecisionSummary() {
+  return {
+    selected_count: 0,
     eligible_count: 0,
     delayed_count: 0,
     suppressed_count: 0,
@@ -1379,31 +1566,69 @@ function decisionSummary(decisions) {
     reason_counts: {},
     category_counts: {},
   };
+}
+
+function addDecisionToSummary(result, decision, increment = 1) {
+  result.selected_count += increment;
+  const categoryKey = String(decision.evidence?.category_id ?? decision.category_id ?? "unknown");
+  const category = result.category_counts[categoryKey] ?? {
+    selected_count: 0,
+    eligible_count: 0,
+    delayed_count: 0,
+    suppressed_count: 0,
+    quarantined_count: 0,
+    excluded_count: 0,
+  };
+  category.selected_count += increment;
+  if (decision.decision === "publish") result.eligible_count += increment;
+  else if (decision.decision === "delay") result.delayed_count += increment;
+  else if (decision.decision === "suppress_stale") result.suppressed_count += increment;
+  else if (decision.decision === "exclude") result.excluded_count += increment;
+  else result.quarantined_count += increment;
+  if (decision.decision === "publish") category.eligible_count += increment;
+  else if (decision.decision === "delay") category.delayed_count += increment;
+  else if (decision.decision === "suppress_stale") category.suppressed_count += increment;
+  else if (decision.decision === "exclude") category.excluded_count += increment;
+  else category.quarantined_count += increment;
+  result.category_counts[categoryKey] = category;
+}
+
+function decisionSummary(decisions) {
+  const result = emptyDecisionSummary();
   for (const decision of decisions) {
-    const categoryKey = String(decision.evidence?.category_id ?? "unknown");
-    const category = result.category_counts[categoryKey] ?? {
-      selected_count: 0,
-      eligible_count: 0,
-      delayed_count: 0,
-      suppressed_count: 0,
-      quarantined_count: 0,
-      excluded_count: 0,
-    };
-    category.selected_count += 1;
-    if (decision.decision === "publish") result.eligible_count += 1;
-    else if (decision.decision === "delay") result.delayed_count += 1;
-    else if (decision.decision === "suppress_stale") result.suppressed_count += 1;
-    else if (decision.decision === "exclude") result.excluded_count += 1;
-    else result.quarantined_count += 1;
-    if (decision.decision === "publish") category.eligible_count += 1;
-    else if (decision.decision === "delay") category.delayed_count += 1;
-    else if (decision.decision === "suppress_stale") category.suppressed_count += 1;
-    else if (decision.decision === "exclude") category.excluded_count += 1;
-    else category.quarantined_count += 1;
-    result.category_counts[categoryKey] = category;
+    addDecisionToSummary(result, decision);
     for (const reason of decision.reason_codes) {
       result.reason_counts[reason] = (result.reason_counts[reason] ?? 0) + 1;
     }
+  }
+  return result;
+}
+
+async function decisionSummaryFromDatabase(client, runId) {
+  const result = emptyDecisionSummary();
+  const categoryRows = await client.query(
+    `select
+       coalesce(evidence->>'category_id', 'unknown') as category_id,
+       decision,
+       count(*)::integer as row_count
+     from public.market_price_qualification_decisions
+     where run_id = $1
+     group by coalesce(evidence->>'category_id', 'unknown'), decision`,
+    [runId],
+  );
+  for (const row of categoryRows.rows) {
+    addDecisionToSummary(result, row, Number(row.row_count));
+  }
+  const reasonRows = await client.query(
+    `select reason, count(*)::integer as row_count
+       from public.market_price_qualification_decisions decision_row
+       cross join lateral unnest(decision_row.reason_codes) reason
+      where decision_row.run_id = $1
+      group by reason`,
+    [runId],
+  );
+  for (const row of reasonRows.rows) {
+    result.reason_counts[row.reason] = Number(row.row_count);
   }
   return result;
 }
@@ -1452,7 +1677,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
     });
 
     if (["shadow_verified", "verified"].includes(run.state)) {
-      return artifactRows(client, run.id);
+      return artifactRows(client, run.id, { includeDecisions: false });
     }
 
     await runPhase(client, {
@@ -1483,28 +1708,57 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "stage_candidates",
       operation: async () => {
-        const rows = await candidateRows(client, {
-          limit: args.limit,
-          canaryDefinition: args.canaryDefinition,
-          sourceRun,
-        });
-        const candidates = rows.map((row) => buildCandidate(row, run.id));
-        await insertCandidates(client, candidates, args.batchSize);
-        const staged = await stagedCandidates(client, run.id);
-        if (staged.length !== candidates.length) {
+        let progress;
+        if (args.canaryDefinition) {
+          const rows = await candidateRows(client, {
+            limit: args.limit,
+            canaryDefinition: args.canaryDefinition,
+            sourceRun,
+          });
+          await insertCandidates(
+            client,
+            rows.map((row) => buildCandidate(row, run.id)),
+            args.batchSize,
+          );
+          progress = {
+            processedCount: rows.length,
+            expectedCount: rows.length,
+            largestPageCount: rows.length,
+            firstSourceObservationId: rows[0]?.source_observation_id ?? null,
+            lastSourceObservationId: rows.at(-1)?.source_observation_id ?? null,
+          };
+        } else {
+          progress = await visitCandidateRowPages(client, {
+            limit: args.limit,
+            sourceRun,
+            onPage: async (rows) => {
+              await insertCandidates(
+                client,
+                rows.map((row) => buildCandidate(row, run.id)),
+                args.batchSize,
+              );
+            },
+          });
+        }
+        const staged = await stagedCandidateCounts(client, run.id);
+        if (
+          staged.candidateCount !== progress.expectedCount ||
+          staged.distinctObservationCount !== progress.expectedCount
+        ) {
           throw new Error(
-            `candidate staging mismatch selected=${candidates.length} staged=${staged.length}`,
+            `candidate staging mismatch selected=${progress.expectedCount} staged=${staged.candidateCount} distinct=${staged.distinctObservationCount}`,
           );
         }
         return {
-          input_count: rows.length,
-          output_count: staged.length,
-          reconciled_count: staged.length,
+          input_count: progress.processedCount,
+          output_count: staged.candidateCount,
+          reconciled_count: staged.distinctObservationCount,
           resumability_data: {
-            first_source_observation_id:
-              rows[0]?.source_observation_id ?? null,
-            last_source_observation_id:
-              rows.at(-1)?.source_observation_id ?? null,
+            first_source_observation_id: progress.firstSourceObservationId,
+            last_source_observation_id: progress.lastSourceObservationId,
+            largest_in_memory_page_count: progress.largestPageCount,
+            candidate_product_page_size:
+              TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
           },
         };
       },
@@ -1515,29 +1769,46 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "qualify",
       operation: async ({ phaseAttemptId }) => {
-        const candidates = await stagedCandidates(client, run.id);
         const evaluatedAt = new Date().toISOString();
-        const decisions = candidates.map((candidate) =>
-          buildDecision(
-            candidate,
-            evaluateTcgplayerMarketQualificationV1(
-              candidate.candidate_payload,
-              {
-                now: new Date(evaluatedAt),
-                freshnessHours: args.freshnessHours,
-                suppressionHours: args.suppressionHours,
-              },
-            ),
-            run,
-            phaseAttemptId,
-            evaluatedAt,
-          ),
+        const candidateCounts = await stagedCandidateCounts(client, run.id);
+        const progress = await visitStagedCandidatePages(
+          client,
+          run.id,
+          async (candidates) => {
+            const decisions = candidates.map((candidate) =>
+              buildDecision(
+                candidate,
+                evaluateTcgplayerMarketQualificationV1(
+                  candidate.candidate_payload,
+                  {
+                    now: new Date(evaluatedAt),
+                    freshnessHours: args.freshnessHours,
+                    suppressionHours: args.suppressionHours,
+                  },
+                ),
+                run,
+                phaseAttemptId,
+                evaluatedAt,
+              ),
+            );
+            await insertDecisions(client, decisions, args.batchSize);
+          },
         );
-        await insertDecisions(client, decisions, args.batchSize);
-        const counts = await decisionCounts(client, run.id);
-        if (counts.decision_count !== candidates.length) {
+        const pageInspection = inspectTcgplayerBoundedPageProgressV1({
+          processedCount: progress.processedCount,
+          expectedCount: candidateCounts.candidateCount,
+          largestPageCount: progress.largestPageCount,
+          pageSize: TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
+        });
+        if (!pageInspection.valid) {
           throw new Error(
-            `qualification mismatch candidates=${candidates.length} decisions=${counts.decision_count}`,
+            `bounded qualification scan failed: ${pageInspection.findings.join(",")}`,
+          );
+        }
+        const counts = await decisionCounts(client, run.id);
+        if (counts.decision_count !== candidateCounts.candidateCount) {
+          throw new Error(
+            `qualification mismatch candidates=${candidateCounts.candidateCount} decisions=${counts.decision_count}`,
           );
         }
         await client.query(
@@ -1548,12 +1819,17 @@ async function runDurable(client, args, sourceRun, runPlan) {
           [run.id],
         );
         return {
-          input_count: candidates.length,
+          input_count: candidateCounts.candidateCount,
           output_count: counts.decision_count,
           excluded_count: counts.excluded_count,
           quarantined_count:
             counts.quarantined_count + counts.suppressed_count,
-          resumability_data: counts,
+          resumability_data: {
+            ...counts,
+            largest_in_memory_page_count: progress.largestPageCount,
+            staged_candidate_page_size:
+              TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
+          },
         };
       },
     });
@@ -1633,7 +1909,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
         operation: async () => activateAndVerify(client, run, publicationSet),
       });
     }
-    return artifactRows(client, run.id);
+    return artifactRows(client, run.id, { includeDecisions: false });
   } finally {
     await client.query(
       "select pg_advisory_unlock(hashtext('tcgplayer_market_publication_v1'))",
@@ -1772,7 +2048,9 @@ async function main() {
       decisions = durable.decisions;
       reconciliation = durable.reconciliation;
     }
-    const counts = decisionSummary(decisions);
+    const counts = Array.isArray(decisions)
+      ? decisionSummary(decisions)
+      : await decisionSummaryFromDatabase(client, durableRun.id);
     const summary = {
       worker_version: WORKER_VERSION,
       policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
@@ -1799,6 +2077,8 @@ async function main() {
       writes_vault: false,
     };
     await writeArtifacts(outDir, {
+      client,
+      durableRunId: durableRun?.id ?? null,
       runPlan,
       summary,
       decisions,

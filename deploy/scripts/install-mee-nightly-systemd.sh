@@ -6,6 +6,8 @@ ENV_DIR="${ENV_DIR:-/etc/grookai}"
 ENV_FILE="${ENV_FILE:-${ENV_DIR}/mee-nightly.env}"
 SERVICE_NAME="grookai-mee-nightly.service"
 TIMER_NAME="grookai-mee-nightly.timer"
+RETENTION_SERVICE_NAME="grookai-mee-artifact-retention.service"
+RETENTION_TIMER_NAME="grookai-mee-artifact-retention.timer"
 
 cd "${REPO_DIR}"
 
@@ -86,12 +88,16 @@ set +a
 npm ci
 
 node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run --skip-provider --skip-apply
+sudo install -d -o grookai -g grookai -m 0750 \
+  /var/lib/grookai/mee/audits /var/lib/grookai/mee/archive/runtime
 
 tmp_service="$(mktemp)"
 sed "s#^WorkingDirectory=.*#WorkingDirectory=${REPO_DIR}#" "deploy/systemd/${SERVICE_NAME}" > "${tmp_service}"
 sudo cp "${tmp_service}" "/etc/systemd/system/${SERVICE_NAME}"
 rm -f "${tmp_service}"
 sudo cp "deploy/systemd/${TIMER_NAME}" "/etc/systemd/system/${TIMER_NAME}"
+sudo cp "deploy/systemd/${RETENTION_SERVICE_NAME}" "/etc/systemd/system/${RETENTION_SERVICE_NAME}"
+sudo cp "deploy/systemd/${RETENTION_TIMER_NAME}" "/etc/systemd/system/${RETENTION_TIMER_NAME}"
 sudo systemctl daemon-reload
 sudo systemctl disable --now \
   grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
@@ -109,8 +115,8 @@ sudo systemctl reset-failed \
   grookai-justtcg-refresh.timer grookai-justtcg-refresh.service \
   grookai-pricing-refresh.timer grookai-pricing-refresh.service \
   grookai-mee-post-ingest.timer grookai-mee-post-ingest.service \
-  "${SERVICE_NAME}" 2>/dev/null || true
-sudo systemctl enable --now "${TIMER_NAME}"
+  "${SERVICE_NAME}" "${RETENTION_SERVICE_NAME}" 2>/dev/null || true
+sudo systemctl enable --now "${RETENTION_TIMER_NAME}" "${TIMER_NAME}"
 
-systemctl list-timers "${TIMER_NAME}" --no-pager
+systemctl list-timers "${RETENTION_TIMER_NAME}" "${TIMER_NAME}" --no-pager
 systemctl status "${TIMER_NAME}" --no-pager

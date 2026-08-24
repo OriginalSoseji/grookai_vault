@@ -1,4 +1,5 @@
 export const TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1 = 10_000;
+export const TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1 = 1_000;
 
 export function buildTcgplayerCandidateProductPagesV1(
   productIds,
@@ -32,6 +33,22 @@ export function inspectTcgplayerCandidateRowsV1({
   }
   if (rows.some((row) => row.source_sync_run_id !== expectedSourceSyncRunId)) {
     findings.push('source_sync_run_mismatch');
+  }
+  return { valid: findings.length === 0, findings };
+}
+
+export function inspectTcgplayerBoundedPageProgressV1({
+  processedCount,
+  expectedCount,
+  largestPageCount,
+  pageSize,
+}) {
+  const findings = [];
+  if (processedCount !== expectedCount) {
+    findings.push(`candidate_count:${processedCount}/${expectedCount}`);
+  }
+  if (largestPageCount > pageSize) {
+    findings.push(`page_size_exceeded:${largestPageCount}/${pageSize}`);
   }
   return { valid: findings.length === 0, findings };
 }

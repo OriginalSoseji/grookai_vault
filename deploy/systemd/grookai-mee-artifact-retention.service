@@ -1,0 +1,20 @@
+[Unit]
+Description=Grookai MEE Runtime Artifact Retention
+Wants=network-online.target
+After=network-online.target
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/opt/grookai_mee_current
+EnvironmentFile=/etc/grookai/mee-nightly.env
+ExecStart=/usr/bin/flock -n /tmp/grookai-mee-nightly.lock /usr/bin/env bash scripts/ops/mee_runtime_artifact_retention_v1.sh --apply
+TimeoutStartSec=4h
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=multi-user.target
