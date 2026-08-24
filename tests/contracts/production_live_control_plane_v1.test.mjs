@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  classifyOperationsAlertDeliveryV1,
   classifyPricingRunV1,
   classifyNewSetDiscoveryV1,
+  classifyScannerIdentityV1,
   classifySourceSyncV1,
   classifyWorkflowRunV1
 } from '../../scripts/audits/production_live_control_plane_v1.mjs';
@@ -21,6 +23,15 @@ test('successful fresh GitHub workflow is healthy', () => {
     NOW
   );
   assert.equal(result.status, 'healthy');
+});
+
+test('public GitHub workflow collection does not require an authorization token', async () => {
+  const source = await import('node:fs/promises').then((fs) => fs.readFile(
+    'scripts/audits/production_live_control_plane_v1.mjs',
+    'utf8'
+  ));
+  assert.match(source, /if \(token\) headers\.Authorization/);
+  assert.doesNotMatch(source, /if \(!token\) \{\s*return \{/);
 });
 
 test('new-set discovery is healthy only when the report is successful and fresh', () => {
@@ -90,4 +101,49 @@ test('source sync rejects partial or row-level failures', () => {
     failed_count: 1,
     finished_at: '2026-08-24T00:00:00.000Z'
   }, NOW).status, 'failed');
+});
+
+test('scanner identity requires both active services and successful health probes', () => {
+  assert.equal(classifyScannerIdentityV1({
+    v3_state: 'active',
+    v5_state: 'active',
+    v3_health: { ok: true },
+    v5_health: { ok: true }
+  }).status, 'healthy');
+  assert.equal(classifyScannerIdentityV1({
+    v3_state: 'inactive',
+    v5_state: 'active',
+    v3_health: { ok: true },
+    v5_health: { ok: true }
+  }).status, 'failed');
+  assert.equal(classifyScannerIdentityV1({
+    v3_state: 'active',
+    v5_state: 'active',
+    v3_health: { ok: false },
+    v5_health: { ok: true }
+  }).status, 'failed');
+});
+
+test('operations alert delivery requires fresh terminal rows for every recipient', () => {
+  const event = { received_at: '2026-08-24T00:20:00.000Z', recipient_count: 1 };
+  assert.equal(classifyOperationsAlertDeliveryV1(event, [{
+    sent_at: '2026-08-24T00:21:00.000Z',
+    failed_at: null,
+    failure_reason: null
+  }], NOW).status, 'healthy');
+  assert.equal(classifyOperationsAlertDeliveryV1(event, [{
+    sent_at: null,
+    failed_at: null,
+    failure_reason: null
+  }], NOW).status, 'degraded');
+  assert.equal(classifyOperationsAlertDeliveryV1(event, [{
+    sent_at: null,
+    failed_at: '2026-08-24T00:21:00.000Z',
+    failure_reason: 'delivery_failed'
+  }], NOW).status, 'failed');
+  assert.equal(classifyOperationsAlertDeliveryV1(event, [{
+    sent_at: '2026-08-21T00:00:00.000Z',
+    failed_at: null,
+    failure_reason: null
+  }], NOW).status, 'stale');
 });

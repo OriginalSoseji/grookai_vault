@@ -64,34 +64,25 @@ export function classifyWorkflowRunV1(component, run, now = new Date()) {
 async function collectGitHubWorkflow(component, token, now) {
   const file = workflowFile(component);
   if (!file) return null;
-  if (!token) {
-    return {
-      component_id: component.id,
-      provider: 'github_actions',
-      status: 'unmeasured',
-      reason: 'GitHub authentication is unavailable.',
-      evidence: { workflow_file: file }
-    };
-  }
 
   const workflowId = encodeURIComponent(path.basename(file));
   let payload;
   try {
+    const headers = {
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'grookai-production-control-plane-v1',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+    if (token) headers.Authorization = `Bearer ${token}`;
     const response = await fetch(
       `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflowId}/runs?per_page=1&branch=main`,
-      {
-        headers: {
-          Accept: 'application/vnd.github+json',
-          Authorization: `Bearer ${token}`,
-          'User-Agent': 'grookai-production-control-plane-v1',
-          'X-GitHub-Api-Version': '2022-11-28'
-        }
-      }
+      { headers }
     );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     payload = await response.json();
   } catch (fetchError) {
     try {
+      if (!token) throw fetchError;
       payload = JSON.parse(execFileSync(
         'gh',
         [
@@ -216,6 +207,140 @@ export function classifyNewSetDiscoveryV1(report, now = new Date(), maxStaleness
   };
 }
 
+export function classifyScannerIdentityV1(probe) {
+  const servicesActive = probe?.v3_state === 'active' && probe?.v5_state === 'active';
+  const healthValid = probe?.v3_health?.ok === true && probe?.v5_health?.ok === true;
+  if (!servicesActive) {
+    return {
+      status: 'failed',
+      reason: `Scanner services are not both active (${probe?.v3_state ?? 'unknown'}/${probe?.v5_state ?? 'unknown'}).`
+    };
+  }
+  if (!healthValid) {
+    return {
+      status: 'failed',
+      reason: 'Scanner services are active, but one or more HTTP health probes failed.'
+    };
+  }
+  return {
+    status: 'healthy',
+    reason: 'Scanner V3 and V5 services are active and both HTTP health probes succeeded.'
+  };
+}
+
+export function classifyOperationsAlertDeliveryV1(event, outboxRows, now = new Date(), maxStalenessMinutes = 1440) {
+  if (!event) return { status: 'failed', reason: 'No operations notification event exists.' };
+  if (!Array.isArray(outboxRows) || outboxRows.length === 0) {
+    return { status: 'failed', reason: 'No operations notification outbox evidence exists.' };
+  }
+  if (outboxRows.some((row) => row.failed_at || row.failure_reason)) {
+    return { status: 'failed', reason: 'Latest operations notification delivery failed.' };
+  }
+  const sentRows = outboxRows.filter((row) => row.sent_at);
+  if (sentRows.length !== Number(event.recipient_count ?? 0)) {
+    return {
+      status: 'degraded',
+      reason: `Latest operations notification delivered ${sentRows.length} of ${Number(event.recipient_count ?? 0)} recipient rows.`
+    };
+  }
+  const observedAt = sentRows.map((row) => row.sent_at).sort().at(-1) ?? event.received_at ?? null;
+  const ageMinutes = minutesSince(observedAt, now);
+  if (!Number.isFinite(ageMinutes) || ageMinutes > maxStalenessMinutes) {
+    return {
+      status: 'stale',
+      reason: `Latest successful operations notification delivery is ${Number.isFinite(ageMinutes) ? Math.round(ageMinutes) : 'unknown'} minutes old.`,
+      observed_at: observedAt,
+      age_minutes: ageMinutes
+    };
+  }
+  return {
+    status: 'healthy',
+    reason: 'Latest operations notification was enqueued and delivered within its freshness window.',
+    observed_at: observedAt,
+    age_minutes: ageMinutes
+  };
+}
+
+function systemdState(unit) {
+  try {
+    return execFileSync('systemctl', ['is-active', unit], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe']
+    }).trim();
+  } catch (error) {
+    return String(error?.stdout ?? '').trim() || 'unknown';
+  }
+}
+
+async function scannerHealth(url) {
+  try {
+    const response = await fetch(url, { signal: AbortSignal.timeout(5_000) });
+    if (!response.ok) return { ok: false, http_status: response.status };
+    const payload = await response.json();
+    return {
+      ok: payload?.ok === true,
+      service: payload?.service ?? null,
+      started_at: payload?.started_at ?? null,
+      reference_count: payload?.reference_count ?? null,
+      reference_view_count: payload?.reference_view_count ?? null,
+      dimensions: payload?.dimensions ?? null,
+      contract: payload?.contract ?? null
+    };
+  } catch (error) {
+    return { ok: false, error: error.message };
+  }
+}
+
+async function collectScannerIdentity(now) {
+  if (process.env.GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED !== '1') {
+    return {
+      component_id: 'scanner-identity',
+      provider: 'digitalocean_systemd_http',
+      status: 'unmeasured',
+      reason: 'Runtime-local scanner probes are disabled for this collector execution.',
+      evidence: {}
+    };
+  }
+  const probe = {
+    v3_state: systemdState(process.env.SCANNER_V3_SYSTEMD_UNIT || 'scanner-v3-identity.service'),
+    v5_state: systemdState(process.env.SCANNER_V5_SYSTEMD_UNIT || 'scanner-v5-identity.service'),
+    v3_health: await scannerHealth(process.env.SCANNER_V3_HEALTH_URL || 'http://127.0.0.1:8787/health'),
+    v5_health: await scannerHealth(process.env.SCANNER_V5_HEALTH_URL || 'http://127.0.0.1:8795/health')
+  };
+  return {
+    component_id: 'scanner-identity',
+    provider: 'digitalocean_systemd_http',
+    ...classifyScannerIdentityV1(probe),
+    observed_at: now.toISOString(),
+    evidence: probe
+  };
+}
+
+function collectControlPlaneRuntime(now) {
+  if (process.env.GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED !== '1') {
+    return {
+      component_id: 'production-control-plane',
+      provider: 'digitalocean_systemd',
+      status: 'unmeasured',
+      reason: 'Runtime-local control-plane probes are disabled for this collector execution.',
+      evidence: {}
+    };
+  }
+  const timerState = systemdState(
+    process.env.PRODUCTION_CONTROL_PLANE_TIMER_UNIT || 'grookai-production-control-plane.timer'
+  );
+  return {
+    component_id: 'production-control-plane',
+    provider: 'digitalocean_systemd',
+    status: timerState === 'active' ? 'healthy' : 'failed',
+    reason: timerState === 'active'
+      ? 'Production control-plane timer is active; this report is the current scheduled probe.'
+      : `Production control-plane timer is ${timerState}.`,
+    observed_at: now.toISOString(),
+    evidence: { timer_state: timerState }
+  };
+}
+
 async function collectNewSetDiscovery(rootDir, topology, now) {
   const component = topology.components.find((item) => item.id === 'new-set-discovery');
   if (!component) return null;
@@ -265,7 +390,7 @@ async function collectNewSetDiscovery(rootDir, topology, now) {
 async function collectSupabase(supabase, topology, now) {
   if (!supabase) {
     return topology.components
-      .filter((component) => ['supabase-core', 'tcgplayer-market-pipeline', 'mee-nightly'].includes(component.id))
+      .filter((component) => ['supabase-core', 'operations-alert-delivery', 'tcgplayer-market-pipeline', 'mee-nightly'].includes(component.id))
       .map((component) => ({
         component_id: component.id,
         provider: 'supabase',
@@ -283,6 +408,41 @@ async function collectSupabase(supabase, topology, now) {
     status: core.error ? 'failed' : 'healthy',
     reason: core.error ? 'Supabase core read probe failed.' : 'Supabase API, authentication, and database read probe succeeded.',
     evidence: core.error ? { error: safeError(core.error) } : { game_count: core.count, observed_at: now.toISOString() }
+  });
+
+  const operationsEvent = await queryOne(
+    supabase
+      .from('operations_notification_events')
+      .select('id,notification_id,event_type,severity,source_host,source_unit,source_commit_sha,recipient_count,received_at')
+      .order('received_at', { ascending: false })
+  );
+  const operationsOutbox = operationsEvent.data
+    ? await supabase
+        .from('notification_outbox')
+        .select('id,event_type,dedupe_key,attempts,sent_at,failed_at,failure_reason,created_at')
+        .eq('event_type', 'operations_alert')
+        .eq('dedupe_key', `operations-alert:${operationsEvent.data.notification_id}`)
+        .order('created_at', { ascending: false })
+    : { data: [], error: null };
+  const operationsComponent = topology.components.find((item) => item.id === 'operations-alert-delivery');
+  const operationsErrors = [operationsEvent.error, operationsOutbox.error].filter(Boolean);
+  const operationsClassification = operationsErrors.length > 0
+    ? { status: 'failed', reason: 'Operations notification delivery readback failed.' }
+    : classifyOperationsAlertDeliveryV1(
+        operationsEvent.data,
+        operationsOutbox.data ?? [],
+        now,
+        operationsComponent?.max_staleness_minutes
+      );
+  results.push({
+    component_id: 'operations-alert-delivery',
+    provider: 'supabase',
+    ...operationsClassification,
+    evidence: {
+      event: operationsEvent.data,
+      outbox: operationsOutbox.data ?? [],
+      errors: operationsErrors
+    }
   });
 
   const pricing = await queryOne(
@@ -444,7 +604,26 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
       evidence: {}
     };
   }
-  const providerResults = [...githubResults, ...supabaseResults, newSetDiscovery].filter(Boolean);
+  let scannerIdentity;
+  try {
+    scannerIdentity = await collectScannerIdentity(now);
+  } catch (error) {
+    scannerIdentity = {
+      component_id: 'scanner-identity',
+      provider: 'digitalocean_systemd_http',
+      status: 'failed',
+      reason: `Scanner identity provider adapter failed: ${error.message}.`,
+      evidence: {}
+    };
+  }
+  const controlPlaneRuntime = collectControlPlaneRuntime(now);
+  const providerResults = [
+    ...githubResults,
+    ...supabaseResults,
+    newSetDiscovery,
+    scannerIdentity,
+    controlPlaneRuntime
+  ].filter(Boolean);
   const measuredIds = new Set(providerResults.map((item) => item.component_id));
   const unmeasured = topology.components
     .filter((component) => !measuredIds.has(component.id))
@@ -472,7 +651,10 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
     components
   };
 
-  const outputDir = path.join(rootDir, OUT_DIR);
+  const configuredOutputDir = process.env.GROOKAI_CONTROL_PLANE_OUTPUT_DIR?.trim();
+  const outputDir = configuredOutputDir
+    ? path.resolve(configuredOutputDir)
+    : path.join(rootDir, OUT_DIR);
   await fs.mkdir(outputDir, { recursive: true });
   await Promise.all([
     fs.writeFile(path.join(outputDir, 'live_control_plane_v1.json'), `${JSON.stringify(report, null, 2)}\n`),
@@ -487,7 +669,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
       ok: true,
       overall_status: report.overall_status,
       summary: report.summary,
-      output_dir: OUT_DIR
+      output_dir: process.env.GROOKAI_CONTROL_PLANE_OUTPUT_DIR?.trim() || OUT_DIR
     }, null, 2)))
     .catch((error) => {
       console.error(error instanceof Error ? error.stack : String(error));

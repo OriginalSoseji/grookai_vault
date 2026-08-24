@@ -1,0 +1,11 @@
+[Unit]
+Description=Collect Grookai production live control-plane evidence every 15 minutes
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+RandomizedDelaySec=30
+Unit=grookai-production-control-plane.service
+
+[Install]
+WantedBy=timers.target

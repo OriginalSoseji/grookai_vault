@@ -37,6 +37,25 @@
       "pause_policy": "not_applicable"
     },
     {
+      "id": "operations-alert-delivery",
+      "name": "Production operations alert delivery",
+      "kind": "managed_and_scheduled_service",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "supabase_and_digitalocean",
+      "deployment_expectation": "production_active",
+      "live_verification": "required",
+      "max_staleness_minutes": 1440,
+      "source_files": [
+        "supabase/functions/operations-webhook-v1/index.ts",
+        "scripts/ops/grookai_operations_webhook_v1.mjs",
+        "supabase/migrations/20260824043000_operations_notification_severity_v2.sql"
+      ],
+      "health_probe": "operations_event_and_outbox_delivery_readback",
+      "write_boundary": "service-role enqueue and dispatcher delivery only",
+      "pause_policy": "never paused by Class B or C work"
+    },
+    {
       "id": "mobile-clients",
       "name": "Android and iOS production clients",
       "kind": "client",
@@ -87,6 +106,27 @@
       "health_probe": "github_workflow_run_and_probe_artifact",
       "write_boundary": "read-only production probes",
       "pause_policy": "never paused by Class C work"
+    },
+    {
+      "id": "production-control-plane",
+      "name": "Production live control plane",
+      "kind": "scheduled_worker",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "every 15 minutes",
+      "max_staleness_minutes": 30,
+      "source_files": [
+        "scripts/audits/production_live_control_plane_v1.mjs",
+        "deploy/systemd/grookai-production-control-plane.service",
+        "deploy/systemd/grookai-production-control-plane.timer",
+        "deploy/scripts/install-production-control-plane-systemd.sh"
+      ],
+      "health_probe": "systemd_timer_and_current_report_freshness",
+      "write_boundary": "read-only provider probes and audit artifacts only",
+      "pause_policy": "never paused by Class B or C work"
     },
     {
       "id": "tcgplayer-market-pipeline",

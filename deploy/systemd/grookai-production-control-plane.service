@@ -1,0 +1,27 @@
+[Unit]
+Description=Grookai Production Live Control Plane V1
+Wants=network-online.target
+After=network-online.target
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+User=grookai
+Group=grookai
+WorkingDirectory=/opt/grookai_control_plane_current
+EnvironmentFile=/etc/grookai/production-control-plane.env
+Environment=GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED=1
+Environment=GROOKAI_CONTROL_PLANE_OUTPUT_DIR=/var/lib/grookai/production-control-plane/current
+ExecStart=/usr/bin/node scripts/audits/production_live_control_plane_v1.mjs
+TimeoutStartSec=5m
+Nice=0
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/lib/grookai/production-control-plane
+
+[Install]
+WantedBy=multi-user.target
