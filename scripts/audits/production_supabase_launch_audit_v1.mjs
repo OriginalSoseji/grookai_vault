@@ -204,8 +204,8 @@ async function main() {
     await client.query("begin read only");
     await client.query("set local statement_timeout = '30s'");
     await client.query("set local lock_timeout = '5s'");
-    sections = await Promise.all([
-      section(client, "database", `
+    const queries = [
+      ["database", `
         select pg_database_size(current_database())::bigint as database_bytes,
                current_setting('max_connections')::integer as max_connections,
                (select count(*)::integer from pg_stat_activity) as connection_count,
@@ -216,23 +216,23 @@ async function main() {
                deadlocks::bigint,
                temp_bytes::bigint
           from pg_stat_database
-         where datname = current_database()`),
-      section(client, "locks", `
+         where datname = current_database()`],
+      ["locks", `
         select count(*)::integer as waiting_lock_count
           from pg_stat_activity
          where pid <> pg_backend_pid()
-           and wait_event_type = 'Lock'`),
-      section(client, "long_queries", `
+           and wait_event_type = 'Lock'`],
+      ["long_queries", `
         select count(*)::integer as long_query_count
           from pg_stat_activity
          where pid <> pg_backend_pid()
            and state <> 'idle'
-           and query_start < now() - interval '5 minutes'`),
-      section(client, "invalid_indexes", `
+           and query_start < now() - interval '5 minutes'`],
+      ["invalid_indexes", `
         select count(*)::integer as invalid_index_count
           from pg_index
-         where not indisvalid or not indisready`),
-      section(client, "rls", `
+         where not indisvalid or not indisready`],
+      ["rls", `
         select count(*)::integer as exposed_without_rls_count
           from pg_class relation
           join pg_namespace namespace on namespace.oid = relation.relnamespace
@@ -242,8 +242,8 @@ async function main() {
            and (
              has_table_privilege('anon', relation.oid, 'select,insert,update,delete')
              or has_table_privilege('authenticated', relation.oid, 'select,insert,update,delete')
-           )`),
-      section(client, "functions", `
+           )`],
+      ["functions", `
         select count(*)::integer as unsafe_definer_count
           from pg_proc function_row
           join pg_namespace namespace on namespace.oid = function_row.pronamespace
@@ -252,13 +252,13 @@ async function main() {
            and not exists (
              select 1 from unnest(coalesce(function_row.proconfig, array[]::text[])) setting
               where setting like 'search_path=%'
-           )`),
-      section(client, "storage", `
+           )`],
+      ["storage", `
         select count(*)::bigint as storage_object_count,
                coalesce(sum(coalesce((metadata ->> 'size')::bigint, 0)), 0)::bigint as storage_bytes,
                count(distinct bucket_id)::integer as storage_bucket_count
-          from storage.objects`),
-      section(client, "largest_relations", `
+          from storage.objects`],
+      ["largest_relations", `
         select namespace.nspname as schema_name,
                relation.relname as relation_name,
                pg_total_relation_size(relation.oid)::bigint as total_bytes,
@@ -269,8 +269,8 @@ async function main() {
          where relation.relkind in ('r', 'p', 'm')
            and namespace.nspname in ('public', 'storage', 'auth')
          order by pg_total_relation_size(relation.oid) desc
-         limit 30`),
-      section(client, "table_health", `
+         limit 30`],
+      ["table_health", `
         select schemaname as schema_name,
                relname as relation_name,
                n_live_tup::bigint,
@@ -281,13 +281,17 @@ async function main() {
                last_autoanalyze
           from pg_stat_user_tables
          order by n_dead_tup desc
-         limit 30`),
-      section(client, "migration_head", `
+         limit 30`],
+      ["migration_head", `
         select version, name
           from supabase_migrations.schema_migrations
          order by version desc
-         limit 10`),
-    ]);
+         limit 10`],
+    ];
+    sections = [];
+    for (const [name, sql] of queries) {
+      sections.push(await section(client, name, sql));
+    }
     await client.query("rollback");
   } catch (error) {
     await client.query("rollback").catch(() => {});

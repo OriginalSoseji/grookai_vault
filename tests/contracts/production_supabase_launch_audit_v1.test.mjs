@@ -14,6 +14,8 @@ test("Supabase launch audit is read-only and bounded", () => {
   assert.match(SCRIPT, /begin read only/i);
   assert.match(SCRIPT, /set local statement_timeout = '30s'/i);
   assert.match(SCRIPT, /set local lock_timeout = '5s'/i);
+  assert.match(SCRIPT, /for \(const \[name, sql\] of queries\)/);
+  assert.doesNotMatch(SCRIPT, /Promise\.all\(\[\s*section\(client/);
   assert.doesNotMatch(SCRIPT, /client\.query\(\s*`?\s*(insert|update|delete|truncate|alter|create|drop)\b/i);
   assert.match(SCRIPT, /database_writes: false/);
   assert.match(SCRIPT, /storage_writes: false/);
