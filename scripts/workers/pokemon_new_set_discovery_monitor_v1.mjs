@@ -17,7 +17,7 @@ export const DEFAULT_STATE_DIR = '/var/lib/grookai/new-set-discovery';
 const DEFAULT_MAX_SOURCE_AGE_HOURS = 36;
 const POKEMON_TCGPLAYER_CATEGORY_ID = 3;
 const PRODUCT_OR_PROMO_PATTERN = /(?:promo|collection|blister|trainer kit|pop series|burger king|miscellaneous|world championship|league|deck|tin|box|pack)/i;
-const EXPANSION_PREFIX_PATTERN = /^(?:me(?:\d+(?:\.\d+)?)?|sv\d*(?:\.\d+)?|swsh\d*(?:\.\d+)?|sm\d*(?:\.\d+)?|xy\d*(?:\.\d+)?|bw\d*(?:\.\d+)?|hgss\d*(?:\.\d+)?|dp\d*(?:\.\d+)?)\s*:/i;
+const EXPANSION_PREFIX_PATTERN = /^(?:me(?:\d+(?:\.\d+)?)?|sv\d*(?:\.\d+)?|swsh\d*(?:\.\d+)?|sm\d*(?:\.\d+)?|xy\d*(?:\.\d+)?|bw\d*(?:\.\d+)?|hgss\d*(?:\.\d+)?|dp\d*(?:\.\d+)?)\s*[:\-]\s*/i;
 
 function clean(value) {
   const text = String(value ?? '').trim();
@@ -50,6 +50,15 @@ export function normalizeSetNameV1(value) {
     .toLowerCase();
 }
 
+function comparableSetNames(value) {
+  const normalized = normalizeSetNameV1(value);
+  const values = new Set(normalized ? [normalized] : []);
+  if (normalized.endsWith(' base set') && normalized.length > ' base set'.length) {
+    values.add(normalized.slice(0, -' base set'.length).trim());
+  }
+  return [...values];
+}
+
 function parseDate(value) {
   const parsed = Date.parse(value ?? '');
   return Number.isFinite(parsed) ? new Date(parsed) : null;
@@ -70,7 +79,7 @@ function numericIds(row) {
 
 function canonicalNames(row) {
   return [row.name, row.tcgdex_name, row.pokemonapi_name, ...(Array.isArray(row.source_aliases) ? row.source_aliases : [])]
-    .map(normalizeSetNameV1)
+    .flatMap(comparableSetNames)
     .filter(Boolean);
 }
 
@@ -94,8 +103,8 @@ export function reconcileSourceGroupV1(group, canonicalSets) {
     };
   }
 
-  const normalizedGroupName = normalizeSetNameV1(group.name);
-  const nameMatches = canonicalSets.filter((row) => canonicalNames(row).includes(normalizedGroupName));
+  const normalizedGroupNames = comparableSetNames(group.name);
+  const nameMatches = canonicalSets.filter((row) => canonicalNames(row).some((name) => normalizedGroupNames.includes(name)));
   if (nameMatches.length === 1) {
     return {
       status: 'canonical_exact',
@@ -138,11 +147,20 @@ export function classifySourceGroupV1(group, reconciliation, previousState = nul
       : group.is_supplemental
         ? 'supplemental'
         : 'unknown';
-  const previouslySeen = Boolean(previousState?.seen_group_fingerprints?.[String(group.group_id)]);
+  const evidenceFingerprint = sha256({
+    group_id: group.group_id,
+    name: group.name,
+    abbreviation: group.abbreviation,
+    published_on: group.published_on,
+    is_supplemental: group.is_supplemental,
+    source_active: group.source_active
+  });
+  const previousFingerprint = previousState?.seen_group_fingerprints?.[String(group.group_id)] ?? null;
+  const previouslySeen = Boolean(previousFingerprint);
+  const changedSinceMonitor = previousFingerprint !== evidenceFingerprint;
   let lane = 'canonical_reconciled';
   if (reconciliation.status === 'canonical_ambiguous') lane = 'review_required';
   else if (reconciliation.status === 'unmatched' && kind === 'expansion') lane = 'review_required';
-  else if (reconciliation.status === 'unmatched' && !previouslySeen && kind !== 'ancillary_or_product') lane = 'review_required';
   else if (reconciliation.status === 'unmatched') lane = 'candidate_backlog';
 
   return {
@@ -158,6 +176,8 @@ export function classifySourceGroupV1(group, reconciliation, previousState = nul
     group_kind: kind,
     discovery_lane: lane,
     first_seen_by_monitor: !previouslySeen,
+    changed_since_monitor: changedSinceMonitor,
+    evidence_fingerprint_sha256: evidenceFingerprint,
     reconciliation
   };
 }
@@ -177,7 +197,7 @@ export function buildDiscoveryReportV1({ groups, canonicalSets, sourceRun, previ
     .map((group) => classifySourceGroupV1(group, reconcileSourceGroupV1(group, canonicalSets), previousState))
     .sort((left, right) => left.group_id - right.group_id);
   const reviewRows = rows.filter((row) => row.discovery_lane === 'review_required');
-  const newReviewRows = reviewRows.filter((row) => row.first_seen_by_monitor);
+  const newReviewRows = reviewRows.filter((row) => row.changed_since_monitor);
   const ambiguousRows = rows.filter((row) => row.reconciliation.status === 'canonical_ambiguous');
   const candidateFingerprint = sha256(reviewRows.map((row) => ({ group_id: row.group_id, name: row.name, lane: row.discovery_lane })));
   const findings = [];
@@ -190,6 +210,7 @@ export function buildDiscoveryReportV1({ groups, canonicalSets, sourceRun, previ
     schema_version: WORKER_VERSION,
     observed_at: now.toISOString(),
     status: sourceRunHealthy ? 'succeeded' : 'failed',
+    monitor_bootstrap: !previousState,
     source: {
       category_id: POKEMON_TCGPLAYER_CATEGORY_ID,
       run_id: sourceRun?.id ?? null,
@@ -252,7 +273,7 @@ async function writeJson(file, value) {
 }
 
 function reportMarkdown(report) {
-  const rows = report.review_required.map((row) => `| ${row.group_id} | ${row.name.replaceAll('|', '\\|')} | ${row.group_kind} | ${row.reconciliation.status} | ${row.first_seen_by_monitor ? 'yes' : 'no'} |`);
+  const rows = report.review_required.map((row) => `| ${row.group_id} | ${row.name.replaceAll('|', '\\|')} | ${row.group_kind} | ${row.reconciliation.status} | ${row.changed_since_monitor ? 'yes' : 'no'} |`);
   return [
     '# Pokemon New-Set Discovery Monitor V1',
     '',
@@ -264,7 +285,7 @@ function reportMarkdown(report) {
     '',
     `Review required: ${report.counts.review_required}`,
     '',
-    '| Group | Name | Kind | Reconciliation | New to monitor |',
+    '| Group | Name | Kind | Reconciliation | New or changed |',
     '| ---: | --- | --- | --- | --- |',
     ...(rows.length ? rows : ['| - | None | - | - | - |']),
     '',
@@ -326,7 +347,12 @@ async function collectDatabaseEvidence(client) {
 }
 
 async function notify(report, runDir, previousState) {
-  const newFingerprint = report.candidate_fingerprint_sha256;
+  const alertCandidates = report.review_required.filter((row) => row.changed_since_monitor);
+  const newFingerprint = sha256(alertCandidates.map((row) => ({
+    group_id: row.group_id,
+    evidence_fingerprint_sha256: row.evidence_fingerprint_sha256,
+    reconciliation: row.reconciliation.status
+  })));
   if (previousState?.last_alerted_candidate_fingerprint_sha256 === newFingerprint) {
     const receipt = { status: 'suppressed_duplicate', candidate_fingerprint_sha256: newFingerprint };
     await writeJson(path.join(runDir, 'notification_receipt.json'), receipt);
@@ -343,8 +369,8 @@ async function notify(report, runDir, previousState) {
     created_at: report.observed_at,
     source_unit: 'grookai-pokemon-new-set-discovery.service',
     candidate_fingerprint_sha256: newFingerprint,
-    review_required_count: report.counts.review_required,
-    candidates: report.review_required.map((row) => ({ group_id: row.group_id, name: row.name, kind: row.group_kind }))
+    review_required_count: alertCandidates.length,
+    candidates: alertCandidates.map((row) => ({ group_id: row.group_id, name: row.name, kind: row.group_kind }))
   };
   await writeJson(path.join(runDir, 'notification_payload.json'), payload);
   const controller = new AbortController();
@@ -382,20 +408,25 @@ export async function runPokemonNewSetDiscoveryMonitorV1({ argv = process.argv.s
   const stamp = report.observed_at.replace(/[:.]/g, '-');
   const runDir = path.join(args.stateDir, 'runs', stamp);
   await fs.mkdir(runDir, { recursive: true });
-  await writeJson(path.join(runDir, 'report.json'), report);
+  const reportContent = `${JSON.stringify(report, null, 2)}\n`;
+  await writeAtomic(path.join(runDir, 'report.json'), reportContent);
   await writeAtomic(path.join(runDir, 'REPORT.md'), reportMarkdown(report));
-  const reportHash = sha256(report);
+  const reportHash = sha256(reportContent);
   await writeAtomic(path.join(runDir, 'report.json.sha256'), `${reportHash}  report.json\n`);
-  await writeJson(path.join(args.stateDir, 'latest.json'), report);
+  await writeAtomic(path.join(args.stateDir, 'latest.json'), reportContent);
 
   let notification = { status: 'not_requested' };
-  if (args.notify && report.status === 'succeeded' && report.counts.review_required > 0 && !args.dryRun) {
+  if (args.notify && report.status === 'succeeded' && report.monitor_bootstrap && !args.dryRun) {
+    notification = { status: 'bootstrap_suppressed' };
+    await writeJson(path.join(runDir, 'notification_receipt.json'), notification);
+  } else if (args.notify && report.status === 'succeeded' && report.counts.newly_observed_review_required > 0 && !args.dryRun) {
     notification = await notify(report, runDir, previousState);
   }
-  const seen = Object.fromEntries(evidence.groups.map((group) => [
-    String(group.group_id),
-    sha256({ group_id: group.group_id, name: group.name, abbreviation: group.abbreviation, published_on: group.published_on })
-  ]));
+  const seen = Object.fromEntries([
+    ...report.review_required,
+    ...report.candidate_backlog,
+    ...report.reconciled_groups
+  ].map((row) => [String(row.group_id), row.evidence_fingerprint_sha256]));
   const state = {
     schema_version: WORKER_VERSION,
     last_attempt_at: report.observed_at,

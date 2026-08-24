@@ -62,6 +62,16 @@ test('new unmatched expansion is review-required while ancillary rows stay backl
   assert.equal(promo.discovery_lane, 'candidate_backlog');
 });
 
+test('legacy unmatched non-expansion groups remain backlog during bootstrap', () => {
+  const row = classifySourceGroupV1(
+    { group_id: 1376, category_id: 3, name: 'EX Dragon', source_active: true },
+    { status: 'unmatched', canonical_set_ids: [], canonical_set_codes: [] },
+    null
+  );
+  assert.equal(row.discovery_lane, 'candidate_backlog');
+  assert.equal(row.first_seen_by_monitor, true);
+});
+
 test('fresh terminal source evidence produces a reconciled report', () => {
   const report = buildDiscoveryReportV1({
     groups: [{ group_id: 24831, category_id: 3, name: 'ME06: Delta Reign', source_active: true }],
@@ -71,6 +81,7 @@ test('fresh terminal source evidence produces a reconciled report', () => {
     now: NOW
   });
   assert.equal(report.status, 'succeeded');
+  assert.equal(report.monitor_bootstrap, false);
   assert.equal(report.counts.review_required, 1);
   assert.equal(report.findings.length, 0);
 });

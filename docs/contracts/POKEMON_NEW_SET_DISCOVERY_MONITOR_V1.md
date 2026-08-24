@@ -46,6 +46,12 @@ fingerprint, last alert fingerprint, report path, and report hash. A source run
 that is missing, partial, failed, stale, or contains row failures causes the
 monitor to fail closed.
 
+The first successful execution establishes a complete review backlog and does
+not emit a candidate alert. Subsequent executions alert only when a
+review-required source group is new or its source evidence changed. This keeps
+legacy naming debt visible without turning deployment bootstrap into an alert
+storm.
+
 ## Promotion Boundary
 
 Discovery is not publication authority. A candidate must enter a separately
