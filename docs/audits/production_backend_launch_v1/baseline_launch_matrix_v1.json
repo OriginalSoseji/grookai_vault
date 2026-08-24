@@ -1,0 +1,158 @@
+{
+  "schema_version": "GROOKAI_PRODUCTION_LAUNCH_MATRIX_V1",
+  "generated_at": "2026-08-24T01:10:05.617Z",
+  "launch_ready": false,
+  "summary": {
+    "pass": 2,
+    "fail": 0,
+    "stale": 4,
+    "unmeasured": 9,
+    "not_applicable": 0
+  },
+  "rows": [
+    {
+      "id": "topology-registry",
+      "gate": "Topology",
+      "status": "pass",
+      "evidence": [
+        "backend/operations/production_topology_v1.json"
+      ],
+      "reason": "15 components are declared with valid repository references.",
+      "next_action": "Add live state and ownership to each component."
+    },
+    {
+      "id": "runtime-contract-health",
+      "gate": "Topology",
+      "status": "pass",
+      "evidence": [
+        "docs/audits/founder_ops_dashboard_v1/runtime_preflight_v1.json"
+      ],
+      "reason": "Current runtime contract preflight has zero critical failures.",
+      "next_action": "Keep the runtime preflight inside the live control-plane collection."
+    },
+    {
+      "id": "live-control-plane",
+      "gate": "Observability",
+      "status": "unmeasured",
+      "evidence": [
+        ".github/workflows/founder-ops-dashboard.yml",
+        "scripts/audits/founder_ops_dashboard_collect_v1.mjs"
+      ],
+      "reason": "The dashboard exists, but several domain cards consume fixed dated artifacts and do not verify live schedules or freshness.",
+      "next_action": "Implement a live worker registry, schedule freshness checks, and current provider probes."
+    },
+    {
+      "id": "alert-delivery",
+      "gate": "Observability",
+      "status": "unmeasured",
+      "evidence": [
+        "scripts/ops/grookai_operations_webhook_v1.mjs"
+      ],
+      "reason": "Alert code exists, but current SEV delivery latency and end-to-end notification proof are not established.",
+      "next_action": "Run bounded SEV-1/2/3 synthetic alert delivery and acknowledgement proof."
+    },
+    {
+      "id": "mee-and-pricing",
+      "gate": "Data reliability",
+      "status": "stale",
+      "evidence": [
+        "docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md"
+      ],
+      "reason": "Extensive pricing workers and canary evidence exist, but current live schedule, freshness, and publication reconciliation are not part of this baseline.",
+      "next_action": "Run current read-only MEE, pricing health, coverage, provenance, and publication reconciliation audits."
+    },
+    {
+      "id": "new-set-discovery",
+      "gate": "Data reliability",
+      "status": "stale",
+      "evidence": [
+        "scripts/ingest/new_set_release_ingest_v1.mjs",
+        "docs/audits/new_set_release_ingestion_v1/20260714_abyss_eye_pitch_black/summary_v1.json"
+      ],
+      "reason": "The latest dashboard source is a fixed July 14 set artifact and does not prove continuous discovery.",
+      "next_action": "Add a discovery cursor, supported-source watermark, schedule, and missed-release alert."
+    },
+    {
+      "id": "image-delivery",
+      "gate": "Data reliability",
+      "status": "unmeasured",
+      "evidence": [
+        "docs/audits/image_truth_v1"
+      ],
+      "reason": "Historical image audits exist, but launch-wide authoritative image availability and live delivery latency are not current.",
+      "next_action": "Run current corpus coverage plus sampled CDN delivery and client fallback checks."
+    },
+    {
+      "id": "supabase-security",
+      "gate": "Supabase",
+      "status": "stale",
+      "evidence": [
+        "docs/audits/supabase_security_linter_v2/supabase_security_and_app_health_20260730.md"
+      ],
+      "reason": "Prior security remediation exists, but current advisors, grants, RLS, functions, and anonymous access require readback.",
+      "next_action": "Run a fresh read-only Supabase security and authority audit."
+    },
+    {
+      "id": "supabase-capacity-performance",
+      "gate": "Supabase",
+      "status": "unmeasured",
+      "evidence": [],
+      "reason": "Current database, Storage, egress, CPU, I/O, connection, cache, bloat, growth, and slow-query launch evidence is absent.",
+      "next_action": "Collect the Supabase capacity baseline and 30/90-day forecast before recommending plan changes."
+    },
+    {
+      "id": "backup-restore",
+      "gate": "Supabase",
+      "status": "unmeasured",
+      "evidence": [],
+      "reason": "Repository backup utilities do not prove current managed backup retention, PITR posture, or a successful restore exercise.",
+      "next_action": "Document managed backup settings and complete a non-destructive restore exercise."
+    },
+    {
+      "id": "shared-client-contracts",
+      "gate": "Client contracts",
+      "status": "stale",
+      "evidence": [
+        "docs/audits/release_completion_v1"
+      ],
+      "reason": "Web and mobile release evidence exists, but it predates the current launch SHA and backend contract baseline.",
+      "next_action": "Run same-commit web, Android, iOS, search, pricing, Vault, image, and sharing journeys."
+    },
+    {
+      "id": "load-and-failure",
+      "gate": "Failure and load",
+      "status": "unmeasured",
+      "evidence": [],
+      "reason": "No current 2x launch-load result or coordinated dependency-failure exercise is registered.",
+      "next_action": "Establish expected peak, run read-path load tests, and exercise provider, rate-limit, worker, and rollback failures."
+    },
+    {
+      "id": "background-isolation",
+      "gate": "Failure and load",
+      "status": "unmeasured",
+      "evidence": [
+        "backend/operations/production_topology_v1.json"
+      ],
+      "reason": "Class C pause policies are declared, but resource-aware enforcement is not yet proven.",
+      "next_action": "Implement shared supervisor thresholds and prove Class C yields to Class A/B."
+    },
+    {
+      "id": "production-canary",
+      "gate": "Canary",
+      "status": "unmeasured",
+      "evidence": [
+        "docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md"
+      ],
+      "reason": "Historical canary work exists, but a current frozen-SHA, full-backend 72-hour launch observation is not registered.",
+      "next_action": "Start only after preceding launch-critical gates pass."
+    },
+    {
+      "id": "rollback-and-launch-report",
+      "gate": "Launch",
+      "status": "unmeasured",
+      "evidence": [],
+      "reason": "A current deployment rollback target, restore result, migration manifest, and reconciled final launch report are not yet assembled.",
+      "next_action": "Build after the production candidate SHA and migration set are frozen."
+    }
+  ]
+}

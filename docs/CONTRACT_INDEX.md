@@ -36,6 +36,7 @@ If a contract is missing from this index, it is not authoritative.
 | EVIDENCE_TIER_V1 | Active | docs/contracts/EVIDENCE_TIER_V1.md — Governs evidence strength tiers and the no-guess decision gate for backlog passes that depend on external corroboration |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
 | PRODUCTION_READINESS_GATE_V1 | Active | docs/release/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |
+| GROOKAI_PRODUCTION_BACKEND_LAUNCH_V1 | Frozen | docs/contracts/GROOKAI_PRODUCTION_BACKEND_LAUNCH_V1.md — Final production-countdown contract for live operations, worker supervision, MEE and ingestion reliability, Supabase capacity and recovery, workload isolation, canary proof, and launch completion |
 | DOCUMENTATION_SYSTEM_V1 | Active | docs/contracts/DOCUMENTATION_SYSTEM_V1.md — Official documentation buckets, naming, and governance rules |
 | CODEX_GUARDRAILS_CONTRACT_V1 | Active | docs/contracts/CODEX_GUARDRAILS_CONTRACT_V1.md | Governance / Foundations | 2025-12-31 | Hard-stop safety gates for Codex (migrations, staging, scope, target, secrets) |
 | REMOTE_SCHEMA_EDIT_POLICY_V1 | Active | docs/contracts/REMOTE_SCHEMA_EDIT_POLICY_V1.md | Governance / Foundations | 2026-03-23 | Forbids normal direct remote schema edits and mandates immediate reconciliation after any emergency edit |

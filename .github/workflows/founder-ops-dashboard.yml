@@ -30,6 +30,13 @@ jobs:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: npm run founder:ops:collect
 
+      - name: Collect production control-plane report
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: npm run production:ops:collect
+
       - name: Verify founder ops dashboard contract
         run: node --test tests/contracts/founder_ops_reports_v1.test.mjs
 
@@ -39,7 +46,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/audits/founder_ops_dashboard_v1
+          git add docs/audits/founder_ops_dashboard_v1 docs/audits/production_backend_launch_v1
           if git diff --cached --quiet; then
             echo "No founder ops artifact changes to commit."
             exit 0

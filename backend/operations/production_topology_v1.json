@@ -1,0 +1,274 @@
+{
+  "schema_version": "GROOKAI_PRODUCTION_TOPOLOGY_V1",
+  "contract": "GROOKAI_PRODUCTION_BACKEND_LAUNCH_V1",
+  "components": [
+    {
+      "id": "supabase-core",
+      "name": "Supabase database, Auth, Storage, and Edge Functions",
+      "kind": "managed_service",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "supabase",
+      "deployment_expectation": "production_active",
+      "live_verification": "required",
+      "source_files": [
+        "supabase/config.toml",
+        "supabase/functions/warehouse-intake-v1/index.ts"
+      ],
+      "health_probe": "live_supabase_launch_audit_v1",
+      "write_boundary": "contracted RPC, Edge Function, migration, or service-role worker only",
+      "pause_policy": "not_applicable"
+    },
+    {
+      "id": "vercel-web",
+      "name": "Grookai production web and server resolver",
+      "kind": "managed_service",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "vercel",
+      "deployment_expectation": "production_active",
+      "live_verification": "required",
+      "source_files": [
+        "apps/web/package.json",
+        ".github/workflows/prod-edge-probe.yml"
+      ],
+      "health_probe": "prod-edge-probe",
+      "write_boundary": "request-scoped authenticated clients and governed server actions",
+      "pause_policy": "not_applicable"
+    },
+    {
+      "id": "mobile-clients",
+      "name": "Android and iOS production clients",
+      "kind": "client",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "app_stores",
+      "deployment_expectation": "production_candidate",
+      "live_verification": "required",
+      "source_files": [
+        "pubspec.yaml",
+        ".github/workflows/flutter-ci.yml"
+      ],
+      "health_probe": "shared_client_contract_and_device_journeys",
+      "write_boundary": "authenticated Supabase and governed web resolver contracts",
+      "pause_policy": "not_applicable"
+    },
+    {
+      "id": "scanner-identity",
+      "name": "Scanner identity service",
+      "kind": "long_running_service",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "production_active",
+      "live_verification": "required",
+      "source_files": [
+        "backend/identity_v3/deploy/scanner_v5/scanner-v5-identity.service",
+        "docs/runbooks/SCANNER_V5_DROPLET_RUNBOOK.md"
+      ],
+      "health_probe": "scanner_latency_and_identity_probe",
+      "write_boundary": "read-only identity resolution",
+      "pause_policy": "not_applicable"
+    },
+    {
+      "id": "prod-edge-probe",
+      "name": "Production Edge synthetic probe",
+      "kind": "scheduled_workflow",
+      "workload_class": "A",
+      "criticality": "launch_critical",
+      "execution_plane": "github_actions",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "0 * * * *",
+      "max_staleness_minutes": 90,
+      "source_files": [
+        ".github/workflows/prod-edge-probe.yml"
+      ],
+      "health_probe": "github_workflow_run_and_probe_artifact",
+      "write_boundary": "read-only production probes",
+      "pause_policy": "never paused by Class C work"
+    },
+    {
+      "id": "tcgplayer-market-pipeline",
+      "name": "TCGPlayer market pricing pipeline",
+      "kind": "scheduled_worker",
+      "workload_class": "B",
+      "criticality": "launch_critical",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "08:15 UTC daily",
+      "max_staleness_minutes": 2160,
+      "source_files": [
+        "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+        "deploy/scripts/install-tcgplayer-market-pipeline-systemd.sh",
+        "docs/runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md"
+      ],
+      "health_probe": "pricing_market_health_and_publication_reconciliation",
+      "write_boundary": "governed source, mapping, qualification, and publication generations",
+      "pause_policy": "may throttle but must retain pricing freshness"
+    },
+    {
+      "id": "mee-nightly",
+      "name": "Market Evidence Engine nightly worker",
+      "kind": "scheduled_worker",
+      "workload_class": "B",
+      "criticality": "launch_critical",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "systemd timer; exact live calendar must be read back",
+      "max_staleness_minutes": 2160,
+      "source_files": [
+        "scripts/workers/mee_nightly_droplet_worker_v1.mjs",
+        "deploy/scripts/install-mee-nightly-systemd.sh",
+        "docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md"
+      ],
+      "health_probe": "mee_run_terminal_state_and_reconciliation",
+      "write_boundary": "market evidence warehouse and governed normalization only",
+      "pause_policy": "yield provider and DB capacity to collector-critical traffic"
+    },
+    {
+      "id": "new-set-discovery",
+      "name": "Pokemon new-set discovery and staged ingestion",
+      "kind": "scheduled_worker",
+      "workload_class": "B",
+      "criticality": "launch_critical",
+      "execution_plane": "unverified",
+      "deployment_expectation": "must_be_scheduled",
+      "live_verification": "required",
+      "schedule": "unverified",
+      "max_staleness_minutes": 1800,
+      "source_files": [
+        "scripts/ingest/new_set_release_ingest_v1.mjs"
+      ],
+      "health_probe": "new_set_discovery_freshness_and_staging_reconciliation",
+      "write_boundary": "raw evidence and governed staging before canonical promotion",
+      "pause_policy": "may throttle but must discover supported sets within 24 hours"
+    },
+    {
+      "id": "founder-ops-dashboard",
+      "name": "Founder operations dashboard collector",
+      "kind": "scheduled_workflow",
+      "workload_class": "B",
+      "criticality": "launch_critical",
+      "execution_plane": "github_actions",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "17 13 * * *",
+      "max_staleness_minutes": 1560,
+      "source_files": [
+        ".github/workflows/founder-ops-dashboard.yml",
+        "scripts/audits/founder_ops_dashboard_collect_v1.mjs"
+      ],
+      "health_probe": "github_workflow_run_plus_freshness_enforced_dashboard",
+      "write_boundary": "audit artifacts only",
+      "pause_policy": "never paused by Class C work"
+    },
+    {
+      "id": "pricing-canary-observer",
+      "name": "Pricing canary observer",
+      "kind": "scheduled_workflow",
+      "workload_class": "B",
+      "criticality": "release_evidence",
+      "execution_plane": "github_actions",
+      "deployment_expectation": "scheduled_during_canary",
+      "live_verification": "required",
+      "schedule": "17 */6 * * *",
+      "max_staleness_minutes": 420,
+      "source_files": [
+        ".github/workflows/tcgplayer-market-canary-observation.yml"
+      ],
+      "health_probe": "canary_observation_artifact_reconciliation",
+      "write_boundary": "read-only observation evidence",
+      "pause_policy": "disabled only after final canary closeout"
+    },
+    {
+      "id": "mtg-catalog-supervisor",
+      "name": "MTG catalog supervisor",
+      "kind": "scheduled_workflow",
+      "workload_class": "C",
+      "criticality": "background",
+      "execution_plane": "github_actions",
+      "deployment_expectation": "scheduled",
+      "live_verification": "required",
+      "schedule": "*/15 * * * *",
+      "max_staleness_minutes": 45,
+      "source_files": [
+        ".github/workflows/mtg-catalog-supervisor.yml",
+        "scripts/audits/mtg_catalog_supervisor_v1.mjs"
+      ],
+      "health_probe": "mtg_supervisor_terminal_artifact",
+      "write_boundary": "domain staging and contract-approved bounded workers",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+    },
+    {
+      "id": "japanese-master-index",
+      "name": "Japanese master index completion",
+      "kind": "background_lane",
+      "workload_class": "C",
+      "criticality": "background",
+      "execution_plane": "unverified",
+      "deployment_expectation": "supervisor_required",
+      "live_verification": "required",
+      "schedule": "unverified",
+      "source_files": [
+        "scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
+        "docs/contracts/JAPANESE_MASTER_INDEX_COMPLETION_V1.md"
+      ],
+      "health_probe": "japanese_cursor_coverage_and_quarantine",
+      "write_boundary": "Japanese domain staging and separately governed canonical apply",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+    },
+    {
+      "id": "one-piece-expansion",
+      "name": "One Piece catalog completion",
+      "kind": "background_lane",
+      "workload_class": "C",
+      "criticality": "background",
+      "execution_plane": "unverified",
+      "deployment_expectation": "supervisor_required",
+      "live_verification": "required",
+      "schedule": "unverified",
+      "source_files": [
+        "scripts/audits/one_piece_complete_canonical_reconciliation_v1.mjs"
+      ],
+      "health_probe": "one_piece_cursor_coverage_and_quarantine",
+      "write_boundary": "One Piece staging and separately governed canonical apply",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+    },
+    {
+      "id": "cross-tcg-sealed",
+      "name": "Cross-TCG sealed catalog lane",
+      "kind": "background_lane",
+      "workload_class": "C",
+      "criticality": "background",
+      "execution_plane": "unverified",
+      "deployment_expectation": "supervisor_required",
+      "live_verification": "required",
+      "schedule": "unverified",
+      "source_files": [
+        "scripts/audits/cross_tcg_sealed_catalog_readiness_v1.mjs"
+      ],
+      "health_probe": "sealed_cursor_coverage_and_quarantine",
+      "write_boundary": "sealed staging; no singles or pricing publication authority",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+    },
+    {
+      "id": "funko-catalog",
+      "name": "Funko catalog foundation",
+      "kind": "background_lane",
+      "workload_class": "C",
+      "criticality": "background",
+      "execution_plane": "not_merged",
+      "deployment_expectation": "supervisor_required",
+      "live_verification": "required",
+      "schedule": "not_implemented",
+      "source_files": [],
+      "source_branch": "readiness/funko-domain",
+      "health_probe": "funko_cursor_coverage_and_quarantine",
+      "write_boundary": "warehouse and staging only until domain contract is merged",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+    }
+  ]
+}

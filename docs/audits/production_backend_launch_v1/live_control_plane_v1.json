@@ -1,0 +1,272 @@
+{
+  "schema_version": "GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1",
+  "observed_at": "2026-08-24T01:16:04.456Z",
+  "commit_sha": null,
+  "repository": "OriginalSoseji/grookai_vault",
+  "overall_status": "degraded",
+  "summary": {
+    "healthy": 8,
+    "degraded": 1,
+    "failed": 0,
+    "stale": 1,
+    "unmeasured": 6
+  },
+  "components": [
+    {
+      "component_id": "cross-tcg-sealed",
+      "provider": "unverified",
+      "status": "unmeasured",
+      "reason": "No live provider adapter is registered yet.",
+      "evidence": {}
+    },
+    {
+      "component_id": "founder-ops-dashboard",
+      "provider": "github_actions",
+      "status": "healthy",
+      "reason": "Latest workflow completed successfully within its freshness window.",
+      "observed_at": "2026-08-23T13:47:11Z",
+      "age_minutes": 688.8909333333334,
+      "evidence": {
+        "workflow_file": ".github/workflows/founder-ops-dashboard.yml",
+        "run_id": 32643341764,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "ba450b43720edd2c9b20b37d3185240275a4e4a9",
+        "created_at": "2026-08-23T13:45:55Z",
+        "updated_at": "2026-08-23T13:47:11Z",
+        "html_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/32643341764"
+      }
+    },
+    {
+      "component_id": "funko-catalog",
+      "provider": "not_merged",
+      "status": "unmeasured",
+      "reason": "No live provider adapter is registered yet.",
+      "evidence": {}
+    },
+    {
+      "component_id": "japanese-master-index",
+      "provider": "unverified",
+      "status": "unmeasured",
+      "reason": "No live provider adapter is registered yet.",
+      "evidence": {}
+    },
+    {
+      "component_id": "mee-nightly",
+      "provider": "supabase",
+      "status": "stale",
+      "reason": "Latest MEE acquisition evidence is 2751 minutes old.",
+      "observed_at": "2026-08-22T03:25:28.796+00:00",
+      "age_minutes": 2750.5943333333335,
+      "evidence": {
+        "listing_run": {
+          "id": "98544b92-89db-d331-7417-659b75f2911d",
+          "run_key": "MEE-11L-DAILY-BATCH-cef9cad7a045",
+          "status": "completed",
+          "consumed_call_count": 3372,
+          "observed_listing_count": 331350,
+          "error_count": 0,
+          "started_at": "2026-08-22T03:25:28.796+00:00",
+          "finished_at": "2026-08-22T03:25:28.796+00:00",
+          "created_at": "2026-08-22T03:57:18.872+00:00"
+        },
+        "reference_run": {
+          "id": "33135f03-3663-40ee-91d9-96720e3aaf9d",
+          "run_key": "MEE-13B_TCGDEX_REFERENCE_RAW_SNAPSHOT_SUPPORT_V1",
+          "source_phase": "MEE-13B_TCGDEX_REFERENCE_RAW_SNAPSHOT_SUPPORT_V1",
+          "source_list": [
+            "tcgdex_reference",
+            "tcgdex_tcgplayer_reference",
+            "tcgdex_cardmarket_reference"
+          ],
+          "started_at": "2026-06-28T16:54:01.859994+00:00",
+          "finished_at": "2026-06-28T16:54:01.859994+00:00",
+          "created_at": "2026-06-28T16:54:01.859994+00:00"
+        },
+        "errors": []
+      }
+    },
+    {
+      "component_id": "mobile-clients",
+      "provider": "github_actions",
+      "status": "healthy",
+      "reason": "Latest workflow completed successfully within its freshness window.",
+      "observed_at": "2026-08-23T08:53:43Z",
+      "age_minutes": 982.3576,
+      "evidence": {
+        "workflow_file": ".github/workflows/flutter-ci.yml",
+        "run_id": 32629333344,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "ba450b43720edd2c9b20b37d3185240275a4e4a9",
+        "created_at": "2026-08-23T08:50:18Z",
+        "updated_at": "2026-08-23T08:53:43Z",
+        "html_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/32629333344"
+      }
+    },
+    {
+      "component_id": "mtg-catalog-supervisor",
+      "provider": "github_actions",
+      "status": "healthy",
+      "reason": "Latest workflow completed successfully within its freshness window.",
+      "observed_at": "2026-08-24T00:34:09Z",
+      "age_minutes": 41.92426666666667,
+      "evidence": {
+        "workflow_file": ".github/workflows/mtg-catalog-supervisor.yml",
+        "run_id": 32677028016,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "d96f4964ffa8673db60c0141b30190ffabf8d3c8",
+        "created_at": "2026-08-24T00:33:07Z",
+        "updated_at": "2026-08-24T00:34:09Z",
+        "html_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/32677028016"
+      }
+    },
+    {
+      "component_id": "new-set-discovery",
+      "provider": "unverified",
+      "status": "unmeasured",
+      "reason": "No live provider adapter is registered yet.",
+      "evidence": {}
+    },
+    {
+      "component_id": "one-piece-expansion",
+      "provider": "unverified",
+      "status": "unmeasured",
+      "reason": "No live provider adapter is registered yet.",
+      "evidence": {}
+    },
+    {
+      "component_id": "pricing-canary-observer",
+      "provider": "github_actions",
+      "status": "healthy",
+      "reason": "Latest workflow completed successfully within its freshness window.",
+      "observed_at": "2026-08-23T18:48:56Z",
+      "age_minutes": 387.14093333333335,
+      "evidence": {
+        "workflow_file": ".github/workflows/tcgplayer-market-canary-observation.yml",
+        "run_id": 32659188392,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "d96f4964ffa8673db60c0141b30190ffabf8d3c8",
+        "created_at": "2026-08-23T18:48:03Z",
+        "updated_at": "2026-08-23T18:48:56Z",
+        "html_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/32659188392"
+      }
+    },
+    {
+      "component_id": "prod-edge-probe",
+      "provider": "github_actions",
+      "status": "healthy",
+      "reason": "Latest workflow completed successfully within its freshness window.",
+      "observed_at": "2026-08-24T00:47:48Z",
+      "age_minutes": 28.274266666666666,
+      "evidence": {
+        "workflow_file": ".github/workflows/prod-edge-probe.yml",
+        "run_id": 32677724158,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "d96f4964ffa8673db60c0141b30190ffabf8d3c8",
+        "created_at": "2026-08-24T00:46:48Z",
+        "updated_at": "2026-08-24T00:47:48Z",
+        "html_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/32677724158"
+      }
+    },
+    {
+      "component_id": "scanner-identity",
+      "provider": "digitalocean_systemd",
+      "status": "unmeasured",
+      "reason": "No live provider adapter is registered yet.",
+      "evidence": {}
+    },
+    {
+      "component_id": "supabase-core",
+      "provider": "supabase",
+      "status": "healthy",
+      "reason": "Supabase API, authentication, and database read probe succeeded.",
+      "evidence": {
+        "game_count": 4,
+        "observed_at": "2026-08-24T01:16:04.456Z"
+      }
+    },
+    {
+      "component_id": "tcgplayer-market-pipeline",
+      "provider": "supabase",
+      "status": "degraded",
+      "reason": "Latest production pricing run is running/pending.",
+      "observed_at": "2026-08-23T09:42:57.25822+00:00",
+      "age_minutes": 933.1199666666666,
+      "evidence": {
+        "id": "bef27f49-52f9-4699-a936-6b2e31bcc637",
+        "run_key": "TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-23-publication",
+        "run_mode": "production",
+        "state": "running",
+        "reconciliation_state": "pending",
+        "selected_count": 0,
+        "mapped_count": 0,
+        "eligible_count": 0,
+        "snapshot_count": 0,
+        "git_commit_sha": "db32d8caa669263510369a5e0d299e43a493c1c5",
+        "started_at": "2026-08-23T09:42:57.25822+00:00",
+        "completed_at": null,
+        "failed_at": null,
+        "error_classification": null,
+        "error": null,
+        "created_at": "2026-08-23T09:42:57.25822+00:00"
+      }
+    },
+    {
+      "component_id": "tcgplayer-source-sync",
+      "provider": "supabase",
+      "status": "healthy",
+      "reason": "Latest current full source sync is terminal and fresh.",
+      "observed_at": "2026-08-23T09:33:01.704+00:00",
+      "age_minutes": 943.0458666666667,
+      "evidence": {
+        "id": "2e3be140-7add-48fe-9d19-1a9dfc5dcae0",
+        "run_key": "TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-23-warehouse",
+        "sync_mode": "current_full_sync",
+        "status": "completed",
+        "observed_on": "2026-08-23",
+        "request_count": 9287,
+        "category_count": 82,
+        "group_count": 4601,
+        "product_count": 501555,
+        "price_row_count": 546166,
+        "inserted_count": 546173,
+        "updated_count": 506231,
+        "no_op_count": 0,
+        "failed_count": 0,
+        "git_commit_sha": "db32d8caa669263510369a5e0d299e43a493c1c5",
+        "started_at": "2026-08-23T08:15:04.408+00:00",
+        "finished_at": "2026-08-23T09:33:01.704+00:00",
+        "error": null,
+        "created_at": "2026-08-23T08:15:05.331322+00:00"
+      }
+    },
+    {
+      "component_id": "vercel-web",
+      "provider": "github_actions",
+      "status": "healthy",
+      "reason": "Latest workflow completed successfully within its freshness window.",
+      "observed_at": "2026-08-24T00:47:48Z",
+      "age_minutes": 28.274266666666666,
+      "evidence": {
+        "workflow_file": ".github/workflows/prod-edge-probe.yml",
+        "run_id": 32677724158,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "d96f4964ffa8673db60c0141b30190ffabf8d3c8",
+        "created_at": "2026-08-24T00:46:48Z",
+        "updated_at": "2026-08-24T00:47:48Z",
+        "html_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/32677724158"
+      }
+    }
+  ]
+}
