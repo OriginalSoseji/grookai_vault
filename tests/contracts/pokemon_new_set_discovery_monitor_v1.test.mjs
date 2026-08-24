@@ -98,6 +98,7 @@ test('stale or partial source evidence fails closed', () => {
 test('runtime and service preserve read-only, alerting, and canonical boundaries', () => {
   const worker = fs.readFileSync('scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs', 'utf8');
   const service = fs.readFileSync('deploy/systemd/grookai-pokemon-new-set-discovery.service', 'utf8');
+  const installer = fs.readFileSync('deploy/scripts/install-pokemon-new-set-discovery-systemd.sh', 'utf8');
   assert.match(worker, /begin read only/i);
   assert.doesNotMatch(worker, /\b(insert|update|delete|truncate)\s+(?:into\s+|from\s+)?public\./i);
   assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
@@ -105,6 +106,9 @@ test('runtime and service preserve read-only, alerting, and canonical boundaries
   assert.match(service, /\/opt\/grookai_pricing_current/);
   assert.doesNotMatch(service, /MemoryDenyWriteExecute=true/, 'Node/V8 requires executable JIT memory');
   assert.match(service, /GROOKAI_DEPLOYED_COMMIT_SHA=/);
+  assert.match(installer, /git -C "\$\{REPO_DIR\}" rev-parse HEAD/);
+  assert.match(installer, /\.release-sha/);
+  assert.match(installer, /\^\[0-9a-f\]\{40\}\$/);
 });
 
 test('review-required discovery alerts satisfy the governed operations payload contract', () => {

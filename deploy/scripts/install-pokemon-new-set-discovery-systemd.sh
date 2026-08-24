@@ -16,7 +16,18 @@ test -f "${ENV_FILE}"
 grep -q '^SUPABASE_DB_URL=' "${ENV_FILE}"
 
 node --check scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs
-DEPLOYED_COMMIT_SHA="$(git rev-parse HEAD)"
+if DEPLOYED_COMMIT_SHA="$(git -C "${REPO_DIR}" rev-parse HEAD 2>/dev/null)"; then
+  :
+elif [[ -f "${REPO_DIR}/.release-sha" ]]; then
+  DEPLOYED_COMMIT_SHA="$(tr -d '[:space:]' < "${REPO_DIR}/.release-sha")"
+else
+  echo "REPO_DIR must be a Git checkout or contain .release-sha" >&2
+  exit 1
+fi
+[[ "${DEPLOYED_COMMIT_SHA}" =~ ^[0-9a-f]{40}$ ]] || {
+  echo "deployed commit SHA is invalid" >&2
+  exit 1
+}
 
 install -d -o grookai -g grookai -m 0750 "${STATE_DIR}"
 temporary_service="$(mktemp)"
