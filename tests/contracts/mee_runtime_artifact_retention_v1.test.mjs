@@ -9,6 +9,7 @@ function read(relativePath) {
 test("MEE runtime retention preserves evidence before exact source removal", () => {
   const script = read("scripts/ops/mee_runtime_artifact_retention_v1.sh");
   assert.match(script, /MEE_RUNTIME_ARTIFACT_RETENTION_V1/);
+  assert.match(script, /MEE_RETENTION_MAX_ARCHIVES:-20/);
   assert.match(script, /mee_11l_market_listing_acquisition_daily_batch_fetch_/);
   assert.match(script, /mee_11m_market_listing_acquisition_daily_batch_backfill_plan_/);
   assert.match(script, /sha256sum/);

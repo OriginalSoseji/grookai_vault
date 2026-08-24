@@ -5,7 +5,7 @@ audit_root="${MEE_RUNTIME_ARTIFACT_ROOT:-/var/lib/grookai/mee/audits}"
 archive_root="${MEE_RUNTIME_ARCHIVE_ROOT:-/var/lib/grookai/mee/archive/runtime}"
 target_free_bytes="${MEE_RETENTION_TARGET_FREE_BYTES:-21474836480}"
 minimum_age_hours="${MEE_RETENTION_MINIMUM_AGE_HOURS:-168}"
-maximum_archives="${MEE_RETENTION_MAX_ARCHIVES:-8}"
+maximum_archives="${MEE_RETENTION_MAX_ARCHIVES:-20}"
 staging_margin_bytes="${MEE_RETENTION_STAGING_MARGIN_BYTES:-536870912}"
 apply=0
 
