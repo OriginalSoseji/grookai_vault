@@ -54,6 +54,34 @@ function resolveGitHubToken() {
   }
 }
 
+async function resolveRuntimeCommitSha() {
+  try {
+    const releaseSha = (await fs.readFile(path.join(rootDir, 'RELEASE_COMMIT_SHA'), 'utf8')).trim();
+    if (/^[a-f0-9]{40}$/.test(releaseSha)) return releaseSha;
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+
+  for (const candidate of [
+    process.env.GROOKAI_DEPLOYED_COMMIT_SHA,
+    process.env.GITHUB_SHA
+  ]) {
+    const value = candidate?.trim();
+    if (/^[a-f0-9]{40}$/.test(value ?? '')) return value;
+  }
+
+  try {
+    const value = execFileSync('git', ['rev-parse', 'HEAD'], {
+      cwd: rootDir,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore']
+    }).trim();
+    return /^[a-f0-9]{40}$/.test(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 function workflowFile(component) {
   return component.source_files?.find((file) => /^\.github\/workflows\/[^/]+\.ya?ml$/i.test(file)) ?? null;
 }
@@ -85,12 +113,13 @@ async function collectGitHubWorkflow(component, token, now) {
   try {
     const headers = {
       Accept: 'application/vnd.github+json',
-      'Cache-Control': 'no-cache',
+      'Cache-Control': 'no-cache, no-store, max-age=0',
+      Pragma: 'no-cache',
       'User-Agent': 'grookai-production-control-plane-v1',
       'X-GitHub-Api-Version': '2022-11-28'
     };
     if (token) headers.Authorization = `Bearer ${token}`;
-    const cacheBust = Math.floor(now.getTime() / 60_000);
+    const cacheBust = `${now.getTime()}-${process.pid}`;
     const response = await fetch(
       `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflowId}/runs?per_page=1&branch=main&cache_bust=${cacheBust}`,
       { headers }
@@ -816,7 +845,7 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
   const report = {
     schema_version: 'GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1',
     observed_at: now.toISOString(),
-    commit_sha: process.env.GITHUB_SHA ?? null,
+    commit_sha: await resolveRuntimeCommitSha(),
     repository: GITHUB_REPOSITORY,
     overall_status: overallStatus,
     summary,

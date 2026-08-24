@@ -36,9 +36,22 @@ test('public GitHub workflow collection does not require an authorization token'
   ));
   assert.match(source, /if \(token\) headers\.Authorization/);
   assert.doesNotMatch(source, /if \(!token\) \{\s*return \{/);
-  assert.match(source, /'Cache-Control': 'no-cache'/);
+  assert.match(source, /'Cache-Control': 'no-cache, no-store, max-age=0'/);
+  assert.match(source, /Pragma: 'no-cache'/);
   assert.match(source, /cache_bust=\$\{cacheBust\}/);
-  assert.match(source, /Math\.floor\(now\.getTime\(\) \/ 60_000\)/);
+  assert.match(source, /`\$\{now\.getTime\(\)\}-\$\{process\.pid\}`/);
+});
+
+test('runtime provenance prefers the immutable release SHA over environment metadata', async () => {
+  const source = await import('node:fs/promises').then((fs) => fs.readFile(
+    'scripts/audits/production_live_control_plane_v1.mjs',
+    'utf8'
+  ));
+  const releaseRead = source.indexOf("path.join(rootDir, 'RELEASE_COMMIT_SHA')");
+  const environmentRead = source.indexOf('process.env.GITHUB_SHA');
+  assert.ok(releaseRead >= 0);
+  assert.ok(environmentRead > releaseRead);
+  assert.match(source, /commit_sha: await resolveRuntimeCommitSha\(\)/);
 });
 
 test('new-set discovery is healthy only when the report is successful and fresh', () => {
