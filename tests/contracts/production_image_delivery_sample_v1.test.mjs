@@ -2,11 +2,21 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  cardVisibleToProxyAudienceV1,
   classifyImageResponseV1,
   resolveStorageLocationV1,
   selectDeterministicSampleV1,
   upperFailureRate95V1
 } from '../../scripts/audits/production_image_delivery_sample_v1.mjs';
+
+test('proxy cohorts respect catalog release authority', () => {
+  assert.equal(cardVisibleToProxyAudienceV1({ game_code: 'pokemon', release_status: 'hidden' }), true);
+  assert.equal(cardVisibleToProxyAudienceV1({ game_code: 'mtg', release_status: 'public' }), true);
+  assert.equal(cardVisibleToProxyAudienceV1({ game_code: 'mtg', release_status: 'signed_in' }), false);
+  assert.equal(cardVisibleToProxyAudienceV1({ game_code: 'mtg', release_status: 'signed_in' }, 'signed_in'), true);
+  assert.equal(cardVisibleToProxyAudienceV1({ game_code: 'one_piece', release_status: 'hidden' }, 'signed_in'), false);
+  assert.equal(cardVisibleToProxyAudienceV1({ game_code: 'pokemon' }, 'unsupported'), false);
+});
 
 test('warehouse and One Piece paths resolve to their governed buckets', () => {
   assert.deepEqual(resolveStorageLocationV1('warehouse-derived/self-hosted-images-v1/a.webp'), {

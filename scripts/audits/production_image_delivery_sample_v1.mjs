@@ -13,6 +13,7 @@ const DEFAULT_SAMPLE_SIZE = 3000;
 const DEFAULT_BODY_SAMPLE_SIZE = 100;
 const DEFAULT_PROXY_SAMPLE_SIZE = 100;
 const DEFAULT_CONCURRENCY = 30;
+const PROXY_AUDIENCES = new Set(['anonymous_public', 'signed_in']);
 const PRIVATE_BUCKET = 'user-card-images';
 const EXTERNAL_BUCKET = 'external-card-images';
 const WAREHOUSE_PREFIXES = [
@@ -65,6 +66,15 @@ export function selectDeterministicSampleV1(rows, { sampleSize = DEFAULT_SAMPLE_
   const remainder = ordered.filter((row) => !selectedKeys.has(`${row.gv_id}|${row.image_path}`));
   return [...selectedRepresentatives, ...remainder.slice(0, target - representativeTarget)]
     .sort((left, right) => left.selection_hash.localeCompare(right.selection_hash));
+}
+
+export function cardVisibleToProxyAudienceV1(row, audience = 'anonymous_public') {
+  if (!PROXY_AUDIENCES.has(audience)) return false;
+  const gameCode = clean(row?.game_code)?.toLowerCase();
+  const releaseStatus = clean(row?.release_status)?.toLowerCase();
+  if (gameCode === 'pokemon') return true;
+  if (releaseStatus === 'public') return true;
+  return audience === 'signed_in' && releaseStatus === 'signed_in';
 }
 
 export function resolveStorageLocationV1(imagePath) {
@@ -162,9 +172,11 @@ async function probeStorage(row, { supabaseUrl, serviceKey, fullBody, timeoutMs 
   };
 }
 
-async function probeProxy(row, { webBaseUrl, timeoutMs }) {
+async function probeProxy(row, { webBaseUrl, timeoutMs, bearerToken = null }) {
   const url = `${webBaseUrl}/api/canon/cards/${encodeURIComponent(row.gv_id)}/image`;
-  const measured = await fetchMeasured(url, { method: 'HEAD', headers: { 'Cache-Control': 'no-cache' } }, timeoutMs);
+  const headers = { 'Cache-Control': 'no-cache' };
+  if (bearerToken) headers.Authorization = `Bearer ${bearerToken}`;
+  const measured = await fetchMeasured(url, { method: 'HEAD', headers }, timeoutMs);
   if (!measured.response) return { gv_id: row.gv_id, target: 'web_proxy_head', ok: false, latency_ms: measured.latency_ms, error: measured.error };
   const classification = classifyImageResponseV1({
     status: measured.response.status,
@@ -210,6 +222,10 @@ function parseArgs(argv) {
     if (!Number.isInteger(parsed) || parsed <= 0) throw new Error(`${name} must be a positive integer`);
     return parsed;
   };
+  const proxyAudience = value('--proxy-audience') ?? 'anonymous_public';
+  if (!PROXY_AUDIENCES.has(proxyAudience)) {
+    throw new Error('--proxy-audience must be anonymous_public or signed_in');
+  }
   return {
     sampleSize: integer('--sample-size', DEFAULT_SAMPLE_SIZE),
     bodySampleSize: integer('--body-sample-size', DEFAULT_BODY_SAMPLE_SIZE),
@@ -217,6 +233,7 @@ function parseArgs(argv) {
     concurrency: integer('--concurrency', DEFAULT_CONCURRENCY),
     timeoutMs: integer('--timeout-ms', 15_000),
     seed: value('--seed') ?? `${AUDIT_VERSION}_20260824`,
+    proxyAudience,
     webBaseUrl: (value('--web-base-url') ?? 'https://grookaivault.com').replace(/\/+$/, ''),
     outDir: path.resolve(value('--out-dir') ?? path.join('docs', 'audits', 'production_backend_launch_v1', 'image_delivery'))
   };
@@ -227,15 +244,25 @@ async function loadRows(dbUrl) {
   await client.connect();
   try {
     const result = await client.query(`
-      select gv_id, image_path, image_status, image_source
-      from public.card_prints
-      where gv_id is not null
-        and image_path is not null
-        and btrim(image_path) <> ''
+      select
+        card.id as card_print_id,
+        card.gv_id,
+        card.image_path,
+        card.image_status,
+        card.image_source,
+        game.code as game_code,
+        coalesce(control.release_status, 'hidden') as release_status
+      from public.card_prints card
+      left join public.games game on game.id = card.game_id
+      left join public.catalog_game_release_controls control
+        on lower(control.game_code) = lower(game.code)
+      where card.gv_id is not null
+        and card.image_path is not null
+        and btrim(card.image_path) <> ''
         and (
-          image_path like 'warehouse-derived/self-hosted-images-v1/%'
-          or image_path like 'warehouse-derived/image-truth-v1/%'
-          or image_path ~* '^one-piece/card-prints/(official|tcgplayer)/[1-9][0-9]*/[0-9a-f]{32}\\.(png|jpe?g|webp)$'
+          card.image_path like 'warehouse-derived/self-hosted-images-v1/%'
+          or card.image_path like 'warehouse-derived/image-truth-v1/%'
+          or card.image_path ~* '^one-piece/card-prints/(official|tcgplayer)/[1-9][0-9]*/[0-9a-f]{32}\\.(png|jpe?g|webp)$'
         )
     `);
     return result.rows;
@@ -259,13 +286,13 @@ function markdown(report) {
     '| --- | ---: | ---: | ---: | ---: | ---: |',
     line('Direct Storage HEAD', report.summaries.storage_head),
     line('Direct Storage full body', report.summaries.storage_body),
-    line('Production web proxy HEAD', report.summaries.web_proxy_head),
+    line(`Production web proxy HEAD (${report.proxy_selection.audience})`, report.summaries.web_proxy_head),
     '',
     '## Boundaries',
     '',
     '- Database: one read-only catalog query.',
     '- Storage: authenticated HEAD/GET reads only.',
-    '- Web: public image-proxy HEAD reads only.',
+    `- Web: image-proxy HEAD reads only for the \`${report.proxy_selection.audience}\` release cohort.`,
     '- Database writes, Storage writes, pointer changes, canonical changes, and user-data changes: none.',
     ''
   ].join('\n');
@@ -277,13 +304,26 @@ export async function runImageDeliverySampleV1({ argv = process.argv.slice(2), n
   const serviceKey = clean(process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY);
   const dbUrl = clean(process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL);
   if (!supabaseUrl || !serviceKey || !dbUrl) throw new Error('SUPABASE_URL, service key, and database URL are required');
+  const proxyBearerToken = clean(process.env.CARD_IMAGE_PROXY_BEARER_TOKEN);
+  if (args.proxyAudience === 'signed_in' && !proxyBearerToken) {
+    throw new Error('CARD_IMAGE_PROXY_BEARER_TOKEN is required for the signed_in proxy audience');
+  }
   const eligible = await loadRows(dbUrl);
   const selected = selectDeterministicSampleV1(eligible, { sampleSize: args.sampleSize, seed: args.seed });
   const storageHead = await mapPool(selected, args.concurrency, (row) => probeStorage(row, { supabaseUrl, serviceKey, fullBody: false, timeoutMs: args.timeoutMs }));
   const storageBodyRows = selected.slice(0, Math.min(args.bodySampleSize, selected.length));
   const storageBody = await mapPool(storageBodyRows, Math.min(10, args.concurrency), (row) => probeStorage(row, { supabaseUrl, serviceKey, fullBody: true, timeoutMs: args.timeoutMs }));
-  const proxyRows = selected.slice(0, Math.min(args.proxySampleSize, selected.length));
-  const webProxy = await mapPool(proxyRows, Math.min(10, args.concurrency), (row) => probeProxy(row, { webBaseUrl: args.webBaseUrl, timeoutMs: args.timeoutMs }));
+  const proxyEligible = eligible.filter((row) => cardVisibleToProxyAudienceV1(row, args.proxyAudience));
+  const proxyRows = selectDeterministicSampleV1(proxyEligible, {
+    sampleSize: args.proxySampleSize,
+    seed: `${args.seed}|proxy|${args.proxyAudience}`,
+    representativeMinimum: 0
+  });
+  const webProxy = await mapPool(proxyRows, Math.min(10, args.concurrency), (row) => probeProxy(row, {
+    webBaseUrl: args.webBaseUrl,
+    timeoutMs: args.timeoutMs,
+    bearerToken: proxyBearerToken
+  }));
   const summaries = {
     storage_head: summarize(storageHead),
     storage_body: summarize(storageBody),
@@ -293,6 +333,7 @@ export async function runImageDeliverySampleV1({ argv = process.argv.slice(2), n
     && summaries.storage_head.failure_count === 0
     && summaries.storage_head.upper_failure_rate_95 <= 0.001
     && summaries.storage_body.failure_count === 0
+    && summaries.web_proxy_head.sample_count === args.proxySampleSize
     && summaries.web_proxy_head.failure_count === 0
     ? 'passed'
     : 'failed';
@@ -309,12 +350,19 @@ export async function runImageDeliverySampleV1({ argv = process.argv.slice(2), n
       representative_rows: selected.filter((row) => clean(row.image_status)?.toLowerCase().startsWith('representative')).length,
       selection_sha256: sha256(selected.map((row) => `${row.gv_id}|${row.image_path}`).join('\n'))
     },
+    proxy_selection: {
+      audience: args.proxyAudience,
+      eligible_rows: proxyEligible.length,
+      selected_rows: proxyRows.length,
+      selection_sha256: sha256(proxyRows.map((row) => `${row.gv_id}|${row.image_path}`).join('\n'))
+    },
     summaries,
     failures: [...storageHead, ...storageBody, ...webProxy].filter((row) => !row.ok),
     boundaries: {
       database_reads_only: true,
       storage_reads_only: true,
       web_reads_only: true,
+      web_proxy_audience: args.proxyAudience,
       database_writes: false,
       storage_writes: false,
       image_pointer_writes: false,
@@ -337,8 +385,12 @@ export async function runImageDeliverySampleV1({ argv = process.argv.slice(2), n
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  runImageDeliverySampleV1().catch((error) => {
-    console.error(`[production-image-delivery-sample] ${error.stack ?? error.message}`);
-    process.exitCode = 1;
-  });
+  runImageDeliverySampleV1()
+    .then((report) => {
+      if (report.status !== 'passed') process.exitCode = 1;
+    })
+    .catch((error) => {
+      console.error(`[production-image-delivery-sample] ${error.stack ?? error.message}`);
+      process.exitCode = 1;
+    });
 }
