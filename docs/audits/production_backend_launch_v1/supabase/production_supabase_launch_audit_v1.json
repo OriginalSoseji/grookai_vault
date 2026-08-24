@@ -1,0 +1,668 @@
+{
+  "package_id": "PRODUCTION_SUPABASE_LAUNCH_AUDIT_V1",
+  "observed_at": "2026-08-24T07:50:45.257Z",
+  "status": "incomplete",
+  "findings": [
+    {
+      "severity": "unmeasured",
+      "code": "database_capacity_limit_unmeasured",
+      "detail": "SUPABASE_DATABASE_CAPACITY_BYTES is not configured; absolute utilization cannot be computed.",
+      "evidence": {}
+    },
+    {
+      "severity": "medium",
+      "code": "database_cache_hit_below_99_percent",
+      "detail": "Database cache-hit ratio is below the initial launch target.",
+      "evidence": {
+        "ratio": 0.924253
+      }
+    },
+    {
+      "severity": "unmeasured",
+      "code": "storage_capacity_limit_unmeasured",
+      "detail": "SUPABASE_STORAGE_CAPACITY_BYTES is not configured; absolute utilization cannot be computed.",
+      "evidence": {}
+    },
+    {
+      "severity": "unmeasured",
+      "code": "managed_backup_restore_unmeasured",
+      "detail": "Managed backup retention, PITR, and restore exercise require control-plane verification.",
+      "evidence": {}
+    }
+  ],
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "unmeasured": 3
+  },
+  "metrics": {
+    "connection_utilization": 0.23333333333333334,
+    "database_capacity_utilization": null,
+    "storage_capacity_utilization": null
+  },
+  "capacities": {
+    "database_bytes": null,
+    "storage_bytes": null
+  },
+  "sections": [
+    {
+      "name": "database",
+      "status": "measured",
+      "rows": [
+        {
+          "database_bytes": "228119088275",
+          "max_connections": 90,
+          "connection_count": 21,
+          "cache_hit_ratio": "0.924253",
+          "xact_commit": "60471712",
+          "xact_rollback": "468612",
+          "deadlocks": "0",
+          "temp_bytes": "1787517241508"
+        }
+      ]
+    },
+    {
+      "name": "locks",
+      "status": "measured",
+      "rows": [
+        {
+          "waiting_lock_count": 0
+        }
+      ]
+    },
+    {
+      "name": "long_queries",
+      "status": "measured",
+      "rows": [
+        {
+          "long_query_count": 0
+        }
+      ]
+    },
+    {
+      "name": "invalid_indexes",
+      "status": "measured",
+      "rows": [
+        {
+          "invalid_index_count": 0
+        }
+      ]
+    },
+    {
+      "name": "rls",
+      "status": "measured",
+      "rows": [
+        {
+          "exposed_without_rls_count": 0
+        }
+      ]
+    },
+    {
+      "name": "functions",
+      "status": "measured",
+      "rows": [
+        {
+          "unsafe_definer_count": 0
+        }
+      ]
+    },
+    {
+      "name": "storage",
+      "status": "measured",
+      "rows": [
+        {
+          "storage_object_count": "167734",
+          "storage_bytes": "31838610700",
+          "storage_bucket_count": 7
+        }
+      ]
+    },
+    {
+      "name": "largest_relations",
+      "status": "measured",
+      "rows": [
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_price_daily_observations",
+          "total_bytes": "104092721152",
+          "table_bytes": "86868008960",
+          "index_bytes": "17201143808"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "justtcg_variant_price_snapshots",
+          "total_bytes": "52618993664",
+          "table_bytes": "42510344192",
+          "index_bytes": "10096975872"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_raw_snapshots",
+          "total_bytes": "18237587456",
+          "table_bytes": "14563532800",
+          "index_bytes": "2438529024"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_price_events",
+          "total_bytes": "10867023872",
+          "table_bytes": "8967602176",
+          "index_bytes": "1896955904"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_price_pipeline_candidates",
+          "total_bytes": "6460612608",
+          "table_bytes": "1144856576",
+          "index_bytes": "695787520"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_card_candidates",
+          "total_bytes": "5553143808",
+          "table_bytes": "4564271104",
+          "index_bytes": "987586560"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_observations",
+          "total_bytes": "5545656320",
+          "table_bytes": "3678691328",
+          "index_bytes": "1865924608"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_price_qualification_decisions",
+          "total_bytes": "4723040256",
+          "table_bytes": "2488680448",
+          "index_bytes": "683327488"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_evidence_lifecycle_events",
+          "total_bytes": "4081983488",
+          "table_bytes": "3214630912",
+          "index_bytes": "866443264"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_evidence_variant_assignments",
+          "total_bytes": "2405220352",
+          "table_bytes": "1733754880",
+          "index_bytes": "670949376"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "web_events",
+          "total_bytes": "2292080640",
+          "table_bytes": "1632354304",
+          "index_bytes": "659251200"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_artifacts",
+          "total_bytes": "1808564224",
+          "table_bytes": "960782336",
+          "index_bytes": "847486976"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_price_publication_snapshots",
+          "total_bytes": "1659084800",
+          "table_bytes": "898613248",
+          "index_bytes": "760193024"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_products",
+          "total_bytes": "1430405120",
+          "table_bytes": "1120952320",
+          "index_bytes": "46465024"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_reference_candidates",
+          "total_bytes": "842244096",
+          "table_bytes": "545161216",
+          "index_bytes": "296886272"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_evidence_observations",
+          "total_bytes": "813490176",
+          "table_bytes": "558145536",
+          "index_bytes": "255164416"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "mtg_canonical_import_rows",
+          "total_bytes": "806379520",
+          "table_bytes": "566976512",
+          "index_bytes": "239206400"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_reference_normalized_evidence",
+          "total_bytes": "800169984",
+          "table_bytes": "645480448",
+          "index_bytes": "154476544"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_prints",
+          "total_bytes": "494714880",
+          "table_bytes": "298721280",
+          "index_bytes": "195141632"
+        },
+        {
+          "schema_name": "storage",
+          "relation_name": "objects",
+          "total_bytes": "304267264",
+          "table_bytes": "127451136",
+          "index_bytes": "176750592"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_seller_snapshots",
+          "total_bytes": "301645824",
+          "table_bytes": "119209984",
+          "index_bytes": "182370304"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_rollups",
+          "total_bytes": "277512192",
+          "table_bytes": "205242368",
+          "index_bytes": "72179712"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_print_identity",
+          "total_bytes": "200097792",
+          "table_bytes": "130572288",
+          "index_bytes": "69459968"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "external_mappings",
+          "total_bytes": "199811072",
+          "table_bytes": "140238848",
+          "index_bytes": "59498496"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_print_identity_source_evidence",
+          "total_bytes": "151011328",
+          "table_bytes": "107692032",
+          "index_bytes": "38166528"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_printings",
+          "total_bytes": "115236864",
+          "table_bytes": "72769536",
+          "index_bytes": "42409984"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_print_image_faces",
+          "total_bytes": "112025600",
+          "table_bytes": "98500608",
+          "index_bytes": "13467648"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "raw_imports",
+          "total_bytes": "104275968",
+          "table_bytes": "61095936",
+          "index_bytes": "4177920"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "justtcg_variant_prices_latest",
+          "total_bytes": "93593600",
+          "table_bytes": "60866560",
+          "index_bytes": "32677888"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_candidate_cleanup_events",
+          "total_bytes": "72916992",
+          "table_bytes": "66650112",
+          "index_bytes": "6217728"
+        }
+      ]
+    },
+    {
+      "name": "table_health",
+      "status": "measured",
+      "rows": [
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_price_daily_observations",
+          "n_live_tup": "110778540",
+          "n_dead_tup": "2149414",
+          "dead_tuple_ratio": "0.019403",
+          "last_autovacuum": "2026-07-22T01:54:19.160Z",
+          "last_autoanalyze": "2026-08-06T08:19:08.104Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_products",
+          "n_live_tup": "501309",
+          "n_dead_tup": "60285",
+          "dead_tuple_ratio": "0.120255",
+          "last_autovacuum": "2026-08-23T09:21:38.859Z",
+          "last_autoanalyze": "2026-08-23T09:33:01.757Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_card_candidates",
+          "n_live_tup": "3411253",
+          "n_dead_tup": "3372",
+          "dead_tuple_ratio": "0.000988",
+          "last_autovacuum": "2026-08-22T05:47:49.605Z",
+          "last_autoanalyze": "2026-08-22T05:47:59.200Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_artifacts",
+          "n_live_tup": "1252671",
+          "n_dead_tup": "3338",
+          "dead_tuple_ratio": "0.002665",
+          "last_autovacuum": "2026-08-21T09:21:24.621Z",
+          "last_autoanalyze": "2026-08-23T08:44:54.241Z"
+        },
+        {
+          "schema_name": "storage",
+          "relation_name": "objects",
+          "n_live_tup": "167734",
+          "n_dead_tup": "3117",
+          "dead_tuple_ratio": "0.018583",
+          "last_autovacuum": "2026-08-16T21:30:11.197Z",
+          "last_autoanalyze": "2026-08-16T21:37:06.728Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_listing_query_cache",
+          "n_live_tup": "36286",
+          "n_dead_tup": "1022",
+          "dead_tuple_ratio": "0.028165",
+          "last_autovacuum": "2026-08-21T04:20:59.048Z",
+          "last_autoanalyze": "2026-08-24T06:38:55.351Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "external_mappings",
+          "n_live_tup": "276822",
+          "n_dead_tup": "679",
+          "dead_tuple_ratio": "0.002453",
+          "last_autovacuum": "2026-08-22T14:19:53.262Z",
+          "last_autoanalyze": "2026-08-22T14:19:54.105Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_print_identity",
+          "n_live_tup": "165710",
+          "n_dead_tup": "679",
+          "dead_tuple_ratio": "0.004098",
+          "last_autovacuum": "2026-08-20T21:20:35.764Z",
+          "last_autoanalyze": "2026-08-22T06:55:30.185Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_printings",
+          "n_live_tup": "227881",
+          "n_dead_tup": "675",
+          "dead_tuple_ratio": "0.002962",
+          "last_autovacuum": "2026-08-20T19:06:27.437Z",
+          "last_autoanalyze": "2026-08-21T22:19:00.901Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "external_printing_mappings",
+          "n_live_tup": "144577",
+          "n_dead_tup": "671",
+          "dead_tuple_ratio": "0.004641",
+          "last_autovacuum": "2026-08-21T22:33:01.042Z",
+          "last_autoanalyze": "2026-08-22T01:55:13.114Z"
+        },
+        {
+          "schema_name": "auth",
+          "relation_name": "refresh_tokens",
+          "n_live_tup": "2907",
+          "n_dead_tup": "592",
+          "dead_tuple_ratio": "0.203646",
+          "last_autovacuum": "2026-08-04T17:09:39.399Z",
+          "last_autoanalyze": "2026-08-22T12:06:46.095Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "tcgcsv_source_groups",
+          "n_live_tup": "4601",
+          "n_dead_tup": "427",
+          "dead_tuple_ratio": "0.092806",
+          "last_autovacuum": "2026-08-22T08:28:34.620Z",
+          "last_autoanalyze": "2026-08-23T09:25:50.297Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "vault_item_instances",
+          "n_live_tup": "3390",
+          "n_dead_tup": "307",
+          "dead_tuple_ratio": "0.090560",
+          "last_autovacuum": "2026-08-18T14:22:14.227Z",
+          "last_autoanalyze": "2026-08-18T14:22:14.273Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "web_events",
+          "n_live_tup": "3086268",
+          "n_dead_tup": "154",
+          "dead_tuple_ratio": "0.000050",
+          "last_autovacuum": "2026-08-19T19:30:17.661Z",
+          "last_autoanalyze": "2026-08-22T22:06:24.500Z"
+        },
+        {
+          "schema_name": "auth",
+          "relation_name": "mfa_amr_claims",
+          "n_live_tup": "376",
+          "n_dead_tup": "115",
+          "dead_tuple_ratio": "0.305851",
+          "last_autovacuum": null,
+          "last_autoanalyze": "2026-08-11T08:12:39.323Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "vault_items",
+          "n_live_tup": "442",
+          "n_dead_tup": "93",
+          "dead_tuple_ratio": "0.210407",
+          "last_autovacuum": "2026-08-24T02:00:39.877Z",
+          "last_autoanalyze": "2026-08-24T05:00:49.233Z"
+        },
+        {
+          "schema_name": "auth",
+          "relation_name": "sessions",
+          "n_live_tup": "376",
+          "n_dead_tup": "71",
+          "dead_tuple_ratio": "0.188830",
+          "last_autovacuum": null,
+          "last_autoanalyze": "2026-08-23T16:48:12.556Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "notification_outbox",
+          "n_live_tup": "91",
+          "n_dead_tup": "64",
+          "dead_tuple_ratio": "0.703297",
+          "last_autovacuum": "2026-07-25T14:16:14.614Z",
+          "last_autoanalyze": "2026-08-24T05:13:49.849Z"
+        },
+        {
+          "schema_name": "auth",
+          "relation_name": "flow_state",
+          "n_live_tup": "369",
+          "n_dead_tup": "55",
+          "dead_tuple_ratio": "0.149051",
+          "last_autovacuum": null,
+          "last_autoanalyze": "2026-08-22T00:16:06.751Z"
+        },
+        {
+          "schema_name": "net",
+          "relation_name": "http_request_queue",
+          "n_live_tup": "31",
+          "n_dead_tup": "50",
+          "dead_tuple_ratio": "1.612903",
+          "last_autovacuum": "2026-08-24T06:29:53.662Z",
+          "last_autoanalyze": "2026-08-24T07:19:56.276Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_price_pipeline_runs",
+          "n_live_tup": "59",
+          "n_dead_tup": "49",
+          "dead_tuple_ratio": "0.830508",
+          "last_autovacuum": "2026-08-19T02:25:50.801Z",
+          "last_autoanalyze": "2026-08-22T17:31:02.056Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "vault_owners",
+          "n_live_tup": "25",
+          "n_dead_tup": "44",
+          "dead_tuple_ratio": "1.760000",
+          "last_autovacuum": "2026-07-07T17:22:33.987Z",
+          "last_autoanalyze": "2026-07-07T17:22:33.997Z"
+        },
+        {
+          "schema_name": "realtime",
+          "relation_name": "subscription",
+          "n_live_tup": "0",
+          "n_dead_tup": "38",
+          "dead_tuple_ratio": null,
+          "last_autovacuum": null,
+          "last_autoanalyze": "2026-08-06T22:42:37.661Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "pulse_viewer_state",
+          "n_live_tup": "13",
+          "n_dead_tup": "37",
+          "dead_tuple_ratio": "2.846154",
+          "last_autovacuum": "2026-08-19T03:42:55.113Z",
+          "last_autoanalyze": "2026-08-22T19:37:08.494Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "market_price_current_publication",
+          "n_live_tup": "1",
+          "n_dead_tup": "36",
+          "dead_tuple_ratio": "36.000000",
+          "last_autovacuum": null,
+          "last_autoanalyze": null
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "binder_progress_state",
+          "n_live_tup": "4",
+          "n_dead_tup": "34",
+          "dead_tuple_ratio": "8.500000",
+          "last_autovacuum": null,
+          "last_autoanalyze": null
+        },
+        {
+          "schema_name": "auth",
+          "relation_name": "users",
+          "n_live_tup": "74",
+          "n_dead_tup": "33",
+          "dead_tuple_ratio": "0.445946",
+          "last_autovacuum": "2026-08-07T13:49:21.905Z",
+          "last_autoanalyze": "2026-08-23T23:43:33.066Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "card_print_identity_source_evidence",
+          "n_live_tup": "128780",
+          "n_dead_tup": "32",
+          "dead_tuple_ratio": "0.000248",
+          "last_autovacuum": "2026-08-05T16:38:05.299Z",
+          "last_autoanalyze": "2026-08-15T14:04:36.702Z"
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "want_matches",
+          "n_live_tup": "6",
+          "n_dead_tup": "31",
+          "dead_tuple_ratio": "5.166667",
+          "last_autovacuum": null,
+          "last_autoanalyze": null
+        },
+        {
+          "schema_name": "public",
+          "relation_name": "mtg_canonical_import_batches",
+          "n_live_tup": "946",
+          "n_dead_tup": "27",
+          "dead_tuple_ratio": "0.028541",
+          "last_autovacuum": null,
+          "last_autoanalyze": "2026-08-22T08:35:35.026Z"
+        }
+      ]
+    },
+    {
+      "name": "migration_head",
+      "status": "measured",
+      "rows": [
+        {
+          "version": "20260824043000",
+          "name": "operations_notification_severity_v2"
+        },
+        {
+          "version": "20260824033000",
+          "name": "tcgplayer_market_snapshot_paging_v1"
+        },
+        {
+          "version": "20260824021500",
+          "name": "tcgcsv_source_artifact_lookup_performance_v1"
+        },
+        {
+          "version": "20260823074000",
+          "name": "cross_tcg_direct_gvid_search_v4"
+        },
+        {
+          "version": "20260822230000",
+          "name": "cross_tcg_card_search_v3"
+        },
+        {
+          "version": "20260822210000",
+          "name": "game_scoped_card_search_suppression_guard_v2"
+        },
+        {
+          "version": "20260822203000",
+          "name": "game_scoped_card_search_v1"
+        },
+        {
+          "version": "20260819023000",
+          "name": "vault_bulk_archive_selected_cards_v1"
+        },
+        {
+          "version": "20260819014000",
+          "name": "tcgplayer_market_request_scoped_current_read_v1"
+        },
+        {
+          "version": "20260818133000",
+          "name": "vendor_mode_transaction_details_v2"
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "database_transaction_read_only": true,
+    "database_writes": false,
+    "storage_writes": false,
+    "authority_changes": false,
+    "user_data_writes": false
+  },
+  "report_fingerprint_sha256": "317172fb21ec2c7f1eb335beaec6b6e0136cbaed5305c6eb02ed2a535f85b0f0"
+}

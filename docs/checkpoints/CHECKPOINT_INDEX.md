@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `PRODUCTION_BACKEND_LAUNCH_V1_CURRENT_STATE_20260824` — `2026-08-24` — Current production-backend truth: live control plane and alerts operational, fresh 4,000-call MEE cycle reconciled, pricing/new-set/scanners healthy, Supabase security clean, and launch still blocked by capacity limits, restore proof, same-candidate clients, 2x load, and the 72-hour canary
 - `PRODUCTION_BACKEND_LAUNCH_V1_START` — `2026-08-23` — Freezes the final production-backend launch contract, records the current fragmented operational baseline, prohibits stale artifacts from representing live health, and opens the authoritative topology and launch-matrix gate
 - `GVVI_VENDOR_QR_V1_20260817` — `2026-08-17` — Isolated migration-free implementation locking persistent physical GVVI QR identity, public vendor asking-price presentation, Wall convergence, owner-only QR export, and encrypted server-derived referral attribution
 - `P0_SEARCH_CARD_DETAIL_HIGH_FIDELITY_20260805_V1` — `2026-08-05` — Approved P0 Search and Card Detail hierarchy with exact-version collector context, action-first collection flow, shared evidence disclosure, dark-mode contrast proof, and four locked mobile/desktop screenshots

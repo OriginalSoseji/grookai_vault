@@ -1,0 +1,94 @@
+{
+  "schema_version": "GROOKAI_PRODUCTION_BACKEND_CURRENT_LAUNCH_MATRIX_V1",
+  "observed_at": "2026-08-24T07:52:19.237Z",
+  "branch": "release/production-backend-launch-v1",
+  "candidate_commit_sha": "648ba5da0fe5cc70992dc1bf3a583fff9938d0c4",
+  "launch_ready": false,
+  "summary": {
+    "pass": 8,
+    "incomplete": 3,
+    "blocked": 5
+  },
+  "gates": [
+    {
+      "id": "topology-registry",
+      "status": "pass",
+      "truth": "All declared production topology source references resolve and Class C entries are configured to yield to collector-critical work."
+    },
+    {
+      "id": "live-control-plane",
+      "status": "pass",
+      "truth": "The 15-minute production control-plane timer is active. The current report has 14 healthy, zero failed, zero degraded, zero stale, and four explicitly unmeasured Class C components."
+    },
+    {
+      "id": "alert-delivery",
+      "status": "pass",
+      "truth": "Severity, RLS, grant, outbox, Edge Function delivery, transition deduplication, and cooldown behavior are proven."
+    },
+    {
+      "id": "mee-current-cycle",
+      "status": "pass",
+      "truth": "The fresh 4,000-call MEE cycle completed with zero findings and exact run-scoped readback."
+    },
+    {
+      "id": "pricing-current-cycle",
+      "status": "pass",
+      "truth": "The current production pricing recovery run is terminal and reconciled, and its daily timer is active."
+    },
+    {
+      "id": "new-set-discovery",
+      "status": "pass",
+      "truth": "Discovery is scheduled, fresh, and alerts on missed or failed evidence. Seven governed review candidates remain contained."
+    },
+    {
+      "id": "scanner-identity",
+      "status": "pass",
+      "truth": "Scanner V3 and V5 systemd services and HTTP health probes are healthy."
+    },
+    {
+      "id": "supabase-security",
+      "status": "pass",
+      "truth": "The fresh read-only audit found zero critical/high findings, waiting locks, long queries, invalid indexes, exposed tables without RLS, or unsafe security-definer functions."
+    },
+    {
+      "id": "supabase-capacity-performance",
+      "status": "incomplete",
+      "truth": "Database and Storage use are measured, but plan capacity limits and 30/90-day growth forecasts are not. Cumulative cache hit is 0.924253 and needs interval/load measurement."
+    },
+    {
+      "id": "image-delivery",
+      "status": "incomplete",
+      "truth": "Self-hosted image contracts and prior repairs exist, but a current launch-wide availability and latency sample is not registered to this candidate."
+    },
+    {
+      "id": "background-isolation",
+      "status": "incomplete",
+      "truth": "MTG supervision is healthy. Japanese, One Piece, cross-TCG sealed, and Funko are explicitly unmeasured and must remain disabled or receive live adapters before enablement."
+    },
+    {
+      "id": "backup-restore",
+      "status": "blocked",
+      "truth": "Seven fresh physical backups and WAL-G are present, but PITR is disabled and no reconciled nonproduction restore exercise exists."
+    },
+    {
+      "id": "shared-client-contracts",
+      "status": "blocked",
+      "truth": "Same-candidate signed-in web, Android, and iOS journeys are not complete; temporary journey credentials are not available in the governed secrets location."
+    },
+    {
+      "id": "load-and-failure",
+      "status": "blocked",
+      "truth": "Expected launch peak, stable 2x load, and coordinated dependency-failure exercises are not yet proven."
+    },
+    {
+      "id": "production-canary",
+      "status": "blocked",
+      "truth": "The full frozen-candidate 72-hour observation and required unattended pricing cycles have not completed."
+    },
+    {
+      "id": "rollback-and-launch-report",
+      "status": "blocked",
+      "truth": "The release branch is not merged/deployed as one production candidate and final rollback/readback evidence is not assembled."
+    }
+  ]
+}
