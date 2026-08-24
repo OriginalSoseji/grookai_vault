@@ -8,7 +8,8 @@ import {
   nearestRankPercentileV1,
   requestKindForIndexV1,
   shouldAbortLoadV1,
-  summarizeLoadV1
+  summarizeLoadV1,
+  virtualClientUserAgentV1
 } from '../../scripts/audits/production_launch_read_load_v1.mjs';
 
 const source = fs.readFileSync(path.resolve('scripts/audits/production_launch_read_load_v1.mjs'), 'utf8');
@@ -24,6 +25,16 @@ test('request mix is deterministic across every 20 requests', () => {
   assert.equal(kinds.filter((kind) => kind === 'pricing_detail').length, 5);
   assert.equal(kinds.filter((kind) => kind === 'pricing_grid').length, 3);
   assert.equal(kinds.filter((kind) => kind === 'image_head').length, 4);
+});
+
+test('image requests rotate across recorded virtual collectors', () => {
+  const imageIndexes = Array.from({ length: 60 }, (_, index) => index)
+    .filter((index) => requestKindForIndexV1(index) === 'image_head');
+  const agents = imageIndexes.map((index) => virtualClientUserAgentV1(index, 'image_head', 10));
+  assert.deepEqual(new Set(agents), new Set(Array.from(
+    { length: 10 },
+    (_, index) => `Grookai-Production-Load-Client/${index + 1}`
+  )));
 });
 
 test('nearest-rank percentiles are stable', () => {
@@ -58,6 +69,8 @@ test('clean reconciled load passes all gates', () => {
 test('load tooling is bounded and contains no production write statements', () => {
   assert.match(source, /--allow-production is required/);
   assert.match(source, /planned request count .* exceeds --max-requests/);
+  assert.match(source, /--virtual-clients/);
+  assert.match(source, /virtual_clients: args\.virtualClients/);
   assert.match(source, /database_writes:\s*false/);
   assert.match(source, /credentials_persisted:\s*false/);
   assert.doesNotMatch(source, /\b(insert|update|delete|truncate)\s+(?:into|from|table|public\.)/i);

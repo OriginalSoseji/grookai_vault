@@ -50,6 +50,14 @@ export function requestKindForIndexV1(index) {
   return 'image_head';
 }
 
+export function virtualClientUserAgentV1(index, kind, virtualClients) {
+  const ordinal = kind === 'image_head'
+    ? (Math.floor(index / 20) * 4) + Math.max(0, (index % 20) - 16)
+    : index;
+  const clientNumber = (ordinal % virtualClients) + 1;
+  return `Grookai-Production-Load-Client/${clientNumber}`;
+}
+
 function summarizeKind(rows, kind, targetP95Ms) {
   const selected = rows.filter((row) => row.kind === kind);
   const successes = selected.filter((row) => row.ok);
@@ -132,6 +140,7 @@ function parseArgs(argv) {
     maxInFlight: number('--max-in-flight', 100),
     timeoutMs: number('--timeout-ms', 15_000),
     monitorIntervalMs: number('--monitor-interval-ms', 5_000),
+    virtualClients: number('--virtual-clients', 1),
     outDir: path.resolve(value('--out-dir') ?? path.join('docs', 'audits', 'production_backend_launch_v1', 'read_load')),
     allowProduction: argv.includes('--allow-production'),
     requirePass: argv.includes('--require-pass')
@@ -141,6 +150,7 @@ function parseArgs(argv) {
       throw new Error(`${key} must be positive`);
     }
   }
+  if (!Number.isInteger(args.virtualClients)) throw new Error('virtualClients must be an integer');
   if (!args.allowProduction) throw new Error('--allow-production is required');
   const planned = Math.floor(args.rps * args.durationSeconds);
   if (planned > args.maxRequests) throw new Error(`planned request count ${planned} exceeds --max-requests`);
@@ -240,8 +250,9 @@ async function measuredFetch(kind, url, options, validate, timeoutMs) {
   }
 }
 
-function buildRequest(index, env, samples, timeoutMs) {
+function buildRequest(index, env, samples, timeoutMs, virtualClients) {
   const kind = requestKindForIndexV1(index);
+  const userAgent = virtualClientUserAgentV1(index, kind, virtualClients);
   if (kind === 'search') {
     const query = SEARCH_QUERIES[index % SEARCH_QUERIES.length];
     return measuredFetch(
@@ -249,7 +260,7 @@ function buildRequest(index, env, samples, timeoutMs) {
       `${env.supabaseUrl.replace(/\/$/, '')}/rest/v1/rpc/search_print_identity_v1`,
       {
         method: 'POST',
-        headers: { apikey: env.publishableKey, Authorization: `Bearer ${env.publishableKey}`, 'Content-Type': 'application/json' },
+        headers: { apikey: env.publishableKey, Authorization: `Bearer ${env.publishableKey}`, 'Content-Type': 'application/json', 'User-Agent': userAgent },
         body: JSON.stringify({ q: query, set_code_in: null, number_in: null, object_type_in: null, limit_in: 50, offset_in: 0 })
       },
       ({ parsed }) => ({ ok: Array.isArray(parsed) && parsed.length > 0, reason: Array.isArray(parsed) && parsed.length > 0 ? null : 'empty_or_invalid_search' }),
@@ -265,7 +276,7 @@ function buildRequest(index, env, samples, timeoutMs) {
       `${env.supabaseUrl.replace(/\/$/, '')}/rest/v1/rpc/get_market_pricing_read_model_v1`,
       {
         method: 'POST',
-        headers: { apikey: env.secretKey, Authorization: `Bearer ${env.secretKey}`, 'Content-Type': 'application/json' },
+        headers: { apikey: env.secretKey, Authorization: `Bearer ${env.secretKey}`, 'Content-Type': 'application/json', 'User-Agent': userAgent },
         body: JSON.stringify({ p_card_print_ids: ids, p_card_printing_ids: null })
       },
       ({ parsed }) => ({ ok: Array.isArray(parsed) && parsed.length === ids.length, reason: Array.isArray(parsed) && parsed.length === ids.length ? null : 'pricing_row_count_mismatch' }),
@@ -276,7 +287,7 @@ function buildRequest(index, env, samples, timeoutMs) {
   return measuredFetch(
     kind,
     `${env.webBaseUrl.replace(/\/$/, '')}/api/canon/cards/${encodeURIComponent(gvId)}/image`,
-    { method: 'HEAD' },
+    { method: 'HEAD', headers: { 'User-Agent': userAgent } },
     ({ response }) => ({ ok: /^image\//i.test(response.headers.get('content-type') ?? ''), reason: /^image\//i.test(response.headers.get('content-type') ?? '') ? null : 'non_image_response' }),
     timeoutMs
   );
@@ -338,6 +349,8 @@ async function main() {
       planned_requests: args.plannedRequests,
       max_requests: args.maxRequests,
       max_in_flight: args.maxInFlight,
+      virtual_clients: args.virtualClients,
+      actor_model: 'one stable user-agent per virtual collector; source IP is supplied by the production edge',
       request_mix: { search: 0.4, pricing_detail: 0.25, pricing_grid: 0.15, image_head: 0.2 },
       envelope,
       endpoint_hosts: [new URL(env.supabaseUrl).host, new URL(env.webBaseUrl).host],
@@ -375,7 +388,7 @@ async function main() {
         break;
       }
       if (inFlight.size >= args.maxInFlight) await Promise.race(inFlight);
-      const promise = buildRequest(index, env, samples, args.timeoutMs)
+      const promise = buildRequest(index, env, samples, args.timeoutMs, args.virtualClients)
         .then((result) => rows.push({ sequence: index + 1, ...result }))
         .finally(() => inFlight.delete(promise));
       inFlight.add(promise);
