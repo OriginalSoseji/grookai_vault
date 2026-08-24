@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
 
 import {
@@ -11,6 +14,7 @@ import {
   classifyWorkflowRunV1,
   controlPlaneAlertFingerprintV1,
   controlPlaneAlertFindingsV1,
+  resolveRuntimeCommitShaV1,
   shouldDeliverControlPlaneAlertV1
 } from '../../scripts/audits/production_live_control_plane_v1.mjs';
 
@@ -43,15 +47,17 @@ test('public GitHub workflow collection does not require an authorization token'
 });
 
 test('runtime provenance prefers the immutable release SHA over environment metadata', async () => {
-  const source = await import('node:fs/promises').then((fs) => fs.readFile(
-    'scripts/audits/production_live_control_plane_v1.mjs',
-    'utf8'
-  ));
-  const releaseRead = source.indexOf("path.join(rootDir, 'RELEASE_COMMIT_SHA')");
-  const environmentRead = source.indexOf('process.env.GITHUB_SHA');
-  assert.ok(releaseRead >= 0);
-  assert.ok(environmentRead > releaseRead);
-  assert.match(source, /commit_sha: await resolveRuntimeCommitSha\(\)/);
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'grookai-control-plane-'));
+  const releaseSha = '1'.repeat(40);
+  try {
+    await fs.writeFile(path.join(root, 'RELEASE_COMMIT_SHA'), `${releaseSha}\n`);
+    assert.equal(await resolveRuntimeCommitShaV1(root, {
+      GROOKAI_DEPLOYED_COMMIT_SHA: '2'.repeat(40),
+      GITHUB_SHA: '3'.repeat(40)
+    }), releaseSha);
+  } finally {
+    await fs.rm(root, { recursive: true, force: true });
+  }
 });
 
 test('new-set discovery is healthy only when the report is successful and fresh', () => {

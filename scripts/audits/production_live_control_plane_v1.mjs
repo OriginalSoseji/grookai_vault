@@ -54,17 +54,17 @@ function resolveGitHubToken() {
   }
 }
 
-async function resolveRuntimeCommitSha() {
+export async function resolveRuntimeCommitShaV1(rootDirectory, env = process.env) {
   try {
-    const releaseSha = (await fs.readFile(path.join(rootDir, 'RELEASE_COMMIT_SHA'), 'utf8')).trim();
+    const releaseSha = (await fs.readFile(path.join(rootDirectory, 'RELEASE_COMMIT_SHA'), 'utf8')).trim();
     if (/^[a-f0-9]{40}$/.test(releaseSha)) return releaseSha;
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
   }
 
   for (const candidate of [
-    process.env.GROOKAI_DEPLOYED_COMMIT_SHA,
-    process.env.GITHUB_SHA
+    env.GROOKAI_DEPLOYED_COMMIT_SHA,
+    env.GITHUB_SHA
   ]) {
     const value = candidate?.trim();
     if (/^[a-f0-9]{40}$/.test(value ?? '')) return value;
@@ -72,7 +72,7 @@ async function resolveRuntimeCommitSha() {
 
   try {
     const value = execFileSync('git', ['rev-parse', 'HEAD'], {
-      cwd: rootDir,
+      cwd: rootDirectory,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore']
     }).trim();
@@ -845,7 +845,7 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
   const report = {
     schema_version: 'GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1',
     observed_at: now.toISOString(),
-    commit_sha: await resolveRuntimeCommitSha(),
+    commit_sha: await resolveRuntimeCommitShaV1(rootDir),
     repository: GITHUB_REPOSITORY,
     overall_status: overallStatus,
     summary,
