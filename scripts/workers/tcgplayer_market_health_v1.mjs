@@ -131,6 +131,15 @@ async function main() {
          order by created_at desc, id desc
          limit 1
        ),
+       selected_publication as (
+         select
+           publication_set.id as publication_set_id,
+           publication_set.run_id
+         from public.market_price_publication_sets publication_set
+         join selected_run pipeline_run
+           on pipeline_run.id = publication_set.run_id
+         limit 1
+       ),
        selected_decisions as (
          select decision.*
          from public.market_price_qualification_decisions decision
@@ -156,9 +165,10 @@ async function main() {
                and decision.card_printing_id = snapshot.card_printing_id
                and decision.eligible = true
            )::integer as traced_snapshot_count
-         from selected_run pipeline_run
+         from selected_publication publication
          left join public.market_price_publication_snapshots snapshot
-           on snapshot.run_id = pipeline_run.id
+           on snapshot.publication_set_id = publication.publication_set_id
+          and snapshot.run_id = publication.run_id
          left join public.market_price_qualification_decisions decision
            on decision.id = snapshot.qualification_decision_id
           and decision.run_id = snapshot.run_id
@@ -191,17 +201,6 @@ async function main() {
          select publication_set_id, run_id, activated_at
          from public.market_price_current_publication
          where singleton = true
-       ),
-       broken_trace as (
-         select count(*)::integer as broken_trace_count
-         from public.market_price_publication_snapshots snapshot
-         left join public.market_price_qualification_decisions decision
-           on decision.id = snapshot.qualification_decision_id
-          and decision.eligible = true
-          and decision.source_observation_id = snapshot.source_observation_id
-         left join public.tcgcsv_source_price_daily_observations observation
-           on observation.id = snapshot.source_observation_id
-         where decision.id is null or observation.id is null
        )
        select
          source.run_key as latest_source_run_key,
@@ -240,12 +239,12 @@ async function main() {
          current_publication.publication_set_id as current_publication_set_id,
          current_publication.run_id as current_publication_run_id,
          current_publication.activated_at as current_publication_activated_at,
-         broken_trace.broken_trace_count
+         (snapshots.snapshot_count - snapshots.traced_snapshot_count)::integer
+           as broken_trace_count
        from decision_totals decisions
        cross join snapshot_totals snapshots
        cross join phase_totals phases
        cross join current_totals current_prices
-       cross join broken_trace
        left join latest_source source on true
        left join completed_source on true
        left join selected_run pipeline_run on true

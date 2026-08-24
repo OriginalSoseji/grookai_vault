@@ -942,8 +942,8 @@ test("full source syncs cannot use a ceiling below the observed TCGCSV workload"
   );
 });
 
-test("full source phase timeout exceeds the measured 70-76 minute runtime", () => {
-  assert.match(PIPELINE, /DEFAULT_PHASE_TIMEOUT_MINUTES = 120/);
+test("full pipeline phase timeout covers measured source and publication runtimes", () => {
+  assert.match(PIPELINE, /DEFAULT_PHASE_TIMEOUT_MINUTES = 240/);
   assert.match(PIPELINE, /FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90/);
   assert.match(
     PIPELINE,
@@ -955,14 +955,14 @@ test("full source phase timeout exceeds the measured 70-76 minute runtime", () =
     PIPELINE,
     /resume refused because frozen run-plan fields changed/,
   );
-  assert.match(SCHEDULED_RUNNER, /DEFAULT_PHASE_TIMEOUT_MINUTES = 120/);
+  assert.match(SCHEDULED_RUNNER, /DEFAULT_PHASE_TIMEOUT_MINUTES = 240/);
   assert.match(
     SCHEDULED_RUNNER,
     /--phase-timeout-minutes=\$\{args\.phaseTimeoutMinutes\}/,
   );
   assert.match(
     SCHEDULE_ENV_EXAMPLE,
-    /TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES=120/,
+    /TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES=240/,
   );
 });
 
@@ -1116,6 +1116,15 @@ test("scheduled runner is safe by default and preserves one durable run key acro
   assert.match(SCHEDULED_RUNNER, /canonical_identity_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /vault_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /modeled_value_writes:\s*false/);
+  assert.match(SCHEDULED_RUNNER, /DEFAULT_PHASE_TIMEOUT_MINUTES = 240/);
+  assert.match(
+    SCHEDULE_ENV_EXAMPLE,
+    /TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES=240/,
+  );
+  assert.match(PIPELINE, /state\.status = "running"/);
+  assert.match(PIPELINE, /delete state\.finished_at/);
+  assert.match(PIPELINE, /`\$\{phase\}\.attempt_\$\{attempt\}\.stdout\.log`/);
+  assert.match(PIPELINE, /`\$\{phase\}\.attempt_\$\{attempt\}\.stderr\.log`/);
 });
 
 test("systemd schedule is authoritative at 08:15 UTC and has a required failure route", () => {
@@ -1173,6 +1182,19 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
   assert.match(HEALTH, /minimum_current_prices/);
   assert.match(HEALTH, /durable_pipeline_run_not_reconciled/);
   assert.match(HEALTH, /current_publication_pointer_mismatch/);
+  assert.match(HEALTH, /selected_publication as/);
+  assert.match(
+    HEALTH,
+    /snapshot\.publication_set_id = publication\.publication_set_id/,
+  );
+  assert.match(
+    HEALTH,
+    /snapshots\.snapshot_count - snapshots\.traced_snapshot_count/,
+  );
+  assert.doesNotMatch(
+    HEALTH,
+    /left join public\.tcgcsv_source_price_daily_observations observation/,
+  );
 });
 
 test("publication rollback is guarded, dry-run-default, and read back before commit", () => {

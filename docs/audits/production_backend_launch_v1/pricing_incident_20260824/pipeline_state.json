@@ -1,0 +1,72 @@
+{
+  "pipeline_version": "TCGPLAYER_MARKET_PIPELINE_V1",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24",
+  "status": "failed",
+  "started_at": "2026-08-24T09:48:01.717Z",
+  "commit_sha": "1bb457785e52135bc2cbb0ef3103c8d9596794cc",
+  "phases": {
+    "warehouse_current_sync": {
+      "status": "completed",
+      "started_at": "2026-08-24T13:12:23.936Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+        "--mode=current",
+        "--apply",
+        "--resume-run-key=TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24-warehouse",
+        "--request-ceiling=10000",
+        "--out-dir=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/warehouse"
+      ],
+      "finished_at": "2026-08-24T13:12:25.550Z",
+      "stdout_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/warehouse_current_sync.stdout.log",
+      "stderr_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/warehouse_current_sync.stderr.log"
+    },
+    "active_ask_refresh": {
+      "status": "completed",
+      "started_at": "2026-08-24T13:12:25.551Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+        "--apply",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/active_ask_refresh",
+        "--timeout-minutes=20"
+      ],
+      "finished_at": "2026-08-24T13:15:39.238Z",
+      "stdout_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/active_ask_refresh.stdout.log",
+      "stderr_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/active_ask_refresh.stderr.log"
+    },
+    "publication": {
+      "status": "completed",
+      "started_at": "2026-08-24T13:15:39.238Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
+        "--mode=production",
+        "--run-key=TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24-publication",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/publication",
+        "--freshness-hours=36",
+        "--database-timeout-minutes=20"
+      ],
+      "finished_at": "2026-08-24T13:34:25.656Z",
+      "stdout_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/publication.stdout.log",
+      "stderr_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/publication.stderr.log"
+    },
+    "health": {
+      "status": "failed",
+      "started_at": "2026-08-24T13:34:25.657Z",
+      "command": [
+        "/usr/bin/node",
+        "scripts/workers/tcgplayer_market_health_v1.mjs",
+        "--run-key=TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24-publication",
+        "--out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/health",
+        "--max-source-age-hours=36",
+        "--minimum-current-prices=1"
+      ],
+      "finished_at": "2026-08-24T13:36:26.330Z",
+      "stdout_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/health.stdout.log",
+      "stderr_path": "../../../../../var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/health.stderr.log",
+      "error": "Command failed: /usr/bin/node scripts/workers/tcgplayer_market_health_v1.mjs --run-key=TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24-publication --out-root=/var/lib/grookai/market-pricing/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/pipeline/TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24/health --max-source-age-hours=36 --minimum-current-prices=1\n[market-health] Error: Query read timeout\n    at /opt/grookai/releases/backend/1bb457785/node_modules/pg/lib/client.js:631:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async main (file:///opt/grookai/releases/backend/1bb457785/scripts/workers/tcgplayer_market_health_v1.mjs:97:20)\n"
+    }
+  },
+  "finished_at": "2026-08-24T13:36:26.330Z"
+}

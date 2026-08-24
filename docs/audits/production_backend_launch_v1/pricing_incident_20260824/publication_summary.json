@@ -1,0 +1,62 @@
+{
+  "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9",
+  "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3",
+  "run_key": "TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-24-publication",
+  "run_mode": "production",
+  "commit_sha": "1bb457785e52135bc2cbb0ef3103c8d9596794cc",
+  "source_sync_run_id": "e8bba6ff-7eda-426c-a14e-1ab0c87c6b9d",
+  "evaluated_at": "2026-08-24T13:32:50.945Z",
+  "freshness_hours": 36,
+  "suppression_hours": 72,
+  "selected_count": 206227,
+  "eligible_count": 164133,
+  "delayed_count": 0,
+  "suppressed_count": 0,
+  "quarantined_count": 30442,
+  "excluded_count": 11652,
+  "reason_counts": {
+    "missing_active_source_mapping": 30734,
+    "missing_canonical_card_identity": 30734,
+    "missing_canonical_printing_identity": 32605,
+    "missing_exact_card_mapping": 30734,
+    "missing_exact_printing_finish_mapping": 32605,
+    "missing_mapping_method": 30750,
+    "missing_positive_market_price": 3285,
+    "missing_printed_number_evidence": 15237,
+    "missing_source_mapping_identity": 30734,
+    "missing_variant_assignment": 30734,
+    "not_english_standard_identity": 30734,
+    "special_variant_v1_1": 6883,
+    "unsupported_or_ambiguous_source_subtype": 1873,
+    "unsupported_product_kind": 4769,
+    "variant_assignment_not_exact_child_finish": 1871
+  },
+  "category_counts": {
+    "1": {
+      "selected_count": 161042,
+      "eligible_count": 132953,
+      "delayed_count": 0,
+      "suppressed_count": 0,
+      "quarantined_count": 27164,
+      "excluded_count": 925
+    },
+    "3": {
+      "selected_count": 45185,
+      "eligible_count": 31180,
+      "delayed_count": 0,
+      "suppressed_count": 0,
+      "quarantined_count": 3278,
+      "excluded_count": 10727
+    }
+  },
+  "durable_run_state": "verified",
+  "reconciliation_state": "reconciled",
+  "source_of_market_close": "tcgcsv_source_price_daily_observations.market_price",
+  "supporting_fields_change_market_close": false,
+  "writes_publication_tables": true,
+  "activates_current_publication": true,
+  "canary_id": null,
+  "canary_definition_sha256": null,
+  "writes_canonical_identity": false,
+  "writes_vault": false
+}

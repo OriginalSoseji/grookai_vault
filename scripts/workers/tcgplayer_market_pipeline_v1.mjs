@@ -19,7 +19,7 @@ const DEFAULT_OUT_ROOT = path.join(
 );
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const FULL_SYNC_REQUEST_CEILING = 10_000;
-const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
+const DEFAULT_PHASE_TIMEOUT_MINUTES = 240;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
@@ -211,8 +211,10 @@ async function runPhase({
   timeoutMs,
 }) {
   const startedAt = new Date().toISOString();
+  const attempt = Number(state.phases[phase]?.attempt ?? 0) + 1;
   state.phases[phase] = {
     status: "running",
+    attempt,
     started_at: startedAt,
     command: [command, ...args],
   };
@@ -226,8 +228,14 @@ async function runPhase({
       maxBuffer: 64 * 1024 * 1024,
       windowsHide: true,
     });
-    const stdoutPath = path.join(runDir, `${phase}.stdout.log`);
-    const stderrPath = path.join(runDir, `${phase}.stderr.log`);
+    const stdoutPath = path.join(
+      runDir,
+      `${phase}.attempt_${attempt}.stdout.log`,
+    );
+    const stderrPath = path.join(
+      runDir,
+      `${phase}.attempt_${attempt}.stderr.log`,
+    );
     await fs.writeFile(stdoutPath, result.stdout ?? "");
     await fs.writeFile(stderrPath, result.stderr ?? "");
     state.phases[phase] = {
@@ -240,8 +248,14 @@ async function runPhase({
     await writeJson(statePath, state);
     process.stdout.write(`[market-pipeline] phase=${phase} status=completed\n`);
   } catch (error) {
-    const stdoutPath = path.join(runDir, `${phase}.stdout.log`);
-    const stderrPath = path.join(runDir, `${phase}.stderr.log`);
+    const stdoutPath = path.join(
+      runDir,
+      `${phase}.attempt_${attempt}.stdout.log`,
+    );
+    const stderrPath = path.join(
+      runDir,
+      `${phase}.attempt_${attempt}.stderr.log`,
+    );
     await fs.writeFile(stdoutPath, error.stdout ?? "");
     await fs.writeFile(stderrPath, error.stderr ?? String(error.stack ?? error));
     state.phases[phase] = {
@@ -354,6 +368,9 @@ async function main() {
         commit_sha: commitSha,
         phases: {},
       };
+  state.status = "running";
+  delete state.finished_at;
+  await writeJson(statePath, state);
 
   if (!args.skipIngest) {
     const warehouseArgs = [
