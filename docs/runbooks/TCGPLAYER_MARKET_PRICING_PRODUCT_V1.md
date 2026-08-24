@@ -91,6 +91,15 @@ node scripts/workers/tcgplayer_market_pipeline_v1.mjs --apply --resume-run-key=<
 Completed phases are not repeated. Resume is refused if the current commit SHA
 or mode differs from the frozen run plan.
 
+If the operating system terminates a worker and the repaired worker has a new
+commit or worker version, do not rewrite the old run or force a provenance
+resume. Plan and apply append-only terminalization with
+`scripts/ops/tcgplayer_market_interrupted_run_recovery_v1.mjs`, using exact run,
+source, commit, worker, and plan fingerprints. Then start a new publication-only
+run pinned to the already completed source sync. This recovery performs no
+source fetch, publication activation, canonical mutation, Vault mutation, or
+deletion.
+
 ## Scheduled Operations
 
 The safe default produces an operations plan without writes:

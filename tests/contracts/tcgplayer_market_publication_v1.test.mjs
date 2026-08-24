@@ -1085,7 +1085,7 @@ test("systemd schedule is authoritative at 08:15 UTC and has a required failure 
   assert.match(SCHEDULED_TIMER, /RandomizedDelaySec=0/);
   assert.match(
     SCHEDULED_SERVICE,
-    /\/usr\/bin\/flock -n \/tmp\/grookai-tcgplayer-market-pipeline\.lock/,
+    /\/usr\/bin\/flock -n \/run\/lock\/grookai-tcgplayer-market-pipeline\.lock/,
   );
   assert.match(
     SCHEDULED_SERVICE,

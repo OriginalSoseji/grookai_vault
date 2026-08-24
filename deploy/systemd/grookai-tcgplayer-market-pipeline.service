@@ -9,9 +9,12 @@ OnFailureJobMode=replace-irreversibly
 [Service]
 Type=oneshot
 User=grookai
-WorkingDirectory=/opt/grookai_vault_mee_nightly
+WorkingDirectory=/opt/grookai_pricing_current
 EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
-ExecStart=/usr/bin/flock -n /tmp/grookai-tcgplayer-market-pipeline.lock /usr/bin/env node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run
+ExecStartPre=+/usr/bin/touch /run/lock/grookai-tcgplayer-market-pipeline.lock
+ExecStartPre=+/usr/bin/chown root:grookai /run/lock/grookai-tcgplayer-market-pipeline.lock
+ExecStartPre=+/usr/bin/chmod 0660 /run/lock/grookai-tcgplayer-market-pipeline.lock
+ExecStart=/usr/bin/flock -n /run/lock/grookai-tcgplayer-market-pipeline.lock /usr/bin/env node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run
 TimeoutStartSec=8h
 Nice=5
 IOSchedulingClass=best-effort

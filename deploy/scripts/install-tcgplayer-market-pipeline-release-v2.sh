@@ -19,6 +19,7 @@ release_sha="$(git -C "${RELEASE_DIR}" rev-parse HEAD)"
 sudo -u grookai npm --prefix "${RELEASE_DIR}" ci
 sudo -u grookai node --check "${RELEASE_DIR}/scripts/workers/tcgplayer_market_publication_worker_v1.mjs"
 sudo -u grookai node --check "${RELEASE_DIR}/scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs"
+sudo -u grookai node --check "${RELEASE_DIR}/scripts/ops/tcgplayer_market_interrupted_run_recovery_v1.mjs"
 
 previous_target="$(readlink -f "${CURRENT_LINK}" 2>/dev/null || true)"
 sudo ln -sfn "${RELEASE_DIR}" "${CURRENT_LINK}.next"
