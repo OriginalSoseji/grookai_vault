@@ -1,5 +1,7 @@
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
@@ -25,6 +27,19 @@ function safeError(error) {
     message: error.message ?? String(error),
     hint: error.hint ?? null
   };
+}
+
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+async function readJsonOrNull(filePath) {
+  try {
+    return JSON.parse(await fs.readFile(filePath, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
 }
 
 function resolveGitHubToken() {
@@ -549,6 +564,117 @@ async function collectSupabase(supabase, topology, now) {
   return results;
 }
 
+export function controlPlaneAlertFindingsV1(report, topology) {
+  const launchCriticalIds = new Set(
+    topology.components
+      .filter((component) => component.criticality === 'launch_critical')
+      .map((component) => component.id)
+  );
+  return report.components
+    .filter((component) => launchCriticalIds.has(component.component_id))
+    .filter((component) => ['failed', 'stale', 'degraded'].includes(component.status))
+    .map((component) => ({
+      component_id: component.component_id,
+      status: component.status,
+      reason: component.reason,
+      observed_at: component.observed_at ?? null
+    }))
+    .sort((left, right) => left.component_id.localeCompare(right.component_id));
+}
+
+export function shouldDeliverControlPlaneAlertV1({
+  findingFingerprint,
+  previousState,
+  now = new Date(),
+  cooldownMinutes = 360
+}) {
+  if (!findingFingerprint) return false;
+  if (previousState?.finding_fingerprint !== findingFingerprint) return true;
+  const lastDeliveredAt = Date.parse(previousState?.delivered_at ?? '');
+  if (!Number.isFinite(lastDeliveredAt)) return true;
+  return now.getTime() - lastDeliveredAt >= cooldownMinutes * 60_000;
+}
+
+async function dispatchControlPlaneAlertV1({ report, topology, outputDir, now }) {
+  if (process.env.GROOKAI_CONTROL_PLANE_ALERTS_ENABLED !== '1') return null;
+  const findings = controlPlaneAlertFindingsV1(report, topology);
+  const statePath = path.join(outputDir, 'alert_state_v1.json');
+  const previousState = await readJsonOrNull(statePath);
+  if (findings.length === 0) {
+    const healthyState = {
+      schema_version: 'GROOKAI_CONTROL_PLANE_ALERT_STATE_V1',
+      status: 'healthy',
+      finding_fingerprint: null,
+      observed_at: now.toISOString(),
+      delivered_at: previousState?.delivered_at ?? null
+    };
+    await fs.writeFile(statePath, `${JSON.stringify(healthyState, null, 2)}\n`);
+    return healthyState;
+  }
+
+  const findingFingerprint = sha256(JSON.stringify(findings));
+  const cooldownMinutes = Number(process.env.GROOKAI_CONTROL_PLANE_ALERT_COOLDOWN_MINUTES || 360);
+  if (!shouldDeliverControlPlaneAlertV1({
+    findingFingerprint,
+    previousState,
+    now,
+    cooldownMinutes
+  })) {
+    const suppressedState = {
+      ...previousState,
+      status: 'suppressed_duplicate',
+      observed_at: now.toISOString(),
+      findings
+    };
+    await fs.writeFile(statePath, `${JSON.stringify(suppressedState, null, 2)}\n`);
+    return suppressedState;
+  }
+
+  const webhookUrl = process.env.GROOKAI_OPERATIONS_WEBHOOK_URL?.trim();
+  const webhookToken = process.env.GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN?.trim();
+  if (!webhookUrl || !webhookToken) {
+    throw new Error('Control-plane alert delivery credentials are unavailable.');
+  }
+  const cooldownBucket = Math.floor(now.getTime() / (cooldownMinutes * 60_000));
+  const notificationId = sha256(`production-control-plane|${findingFingerprint}|${cooldownBucket}`);
+  const payload = {
+    notification_version: 'GROOKAI_PRODUCTION_CONTROL_PLANE_ALERT_V1',
+    notification_id: notificationId,
+    event: 'production_control_plane_degraded',
+    severity: findings.some((finding) => finding.status === 'failed') ? 'critical' : 'high',
+    created_at: now.toISOString(),
+    host: os.hostname(),
+    unit: 'grookai-production-control-plane.service',
+    commit_sha: report.commit_sha,
+    finding_fingerprint: findingFingerprint,
+    findings
+  };
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${webhookToken}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(15_000)
+  });
+  if (!response.ok) {
+    throw new Error(`Control-plane operations webhook returned HTTP ${response.status}.`);
+  }
+  const deliveredState = {
+    schema_version: 'GROOKAI_CONTROL_PLANE_ALERT_STATE_V1',
+    status: 'delivered',
+    notification_id: notificationId,
+    finding_fingerprint: findingFingerprint,
+    findings,
+    observed_at: now.toISOString(),
+    delivered_at: new Date().toISOString(),
+    http_status: response.status
+  };
+  await fs.writeFile(statePath, `${JSON.stringify(deliveredState, null, 2)}\n`);
+  return deliveredState;
+}
+
 function reportMarkdown(report) {
   return [
     '# Production Live Control Plane V1',
@@ -697,6 +823,7 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
     fs.writeFile(path.join(outputDir, 'live_control_plane_v1.json'), `${JSON.stringify(report, null, 2)}\n`),
     fs.writeFile(path.join(outputDir, 'LIVE_CONTROL_PLANE_V1.md'), reportMarkdown(report))
   ]);
+  await dispatchControlPlaneAlertV1({ report, topology, outputDir, now });
   return report;
 }
 

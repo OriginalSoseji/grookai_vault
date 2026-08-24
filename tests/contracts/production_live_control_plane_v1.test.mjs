@@ -8,7 +8,9 @@ import {
   classifyNewSetDiscoveryV1,
   classifyScannerIdentityV1,
   classifySourceSyncV1,
-  classifyWorkflowRunV1
+  classifyWorkflowRunV1,
+  controlPlaneAlertFindingsV1,
+  shouldDeliverControlPlaneAlertV1
 } from '../../scripts/audits/production_live_control_plane_v1.mjs';
 
 const NOW = new Date('2026-08-24T01:00:00.000Z');
@@ -168,4 +170,41 @@ test('operations alert delivery requires fresh terminal rows for every recipient
     failed_at: null,
     failure_reason: null
   }], NOW).status, 'stale');
+});
+
+test('control-plane alerts include only unhealthy launch-critical components', () => {
+  const findings = controlPlaneAlertFindingsV1({
+    components: [
+      { component_id: 'pricing', status: 'stale', reason: 'old' },
+      { component_id: 'scanner', status: 'healthy', reason: 'ok' },
+      { component_id: 'background', status: 'failed', reason: 'paused lane' }
+    ]
+  }, {
+    components: [
+      { id: 'pricing', criticality: 'launch_critical' },
+      { id: 'scanner', criticality: 'launch_critical' },
+      { id: 'background', criticality: 'background' }
+    ]
+  });
+  assert.deepEqual(findings.map((finding) => finding.component_id), ['pricing']);
+});
+
+test('control-plane alert delivery is transition-based and cooldown bounded', () => {
+  assert.equal(shouldDeliverControlPlaneAlertV1({
+    findingFingerprint: 'new',
+    previousState: { finding_fingerprint: 'old', delivered_at: NOW.toISOString() },
+    now: NOW
+  }), true);
+  assert.equal(shouldDeliverControlPlaneAlertV1({
+    findingFingerprint: 'same',
+    previousState: { finding_fingerprint: 'same', delivered_at: '2026-08-24T00:30:00.000Z' },
+    now: NOW,
+    cooldownMinutes: 360
+  }), false);
+  assert.equal(shouldDeliverControlPlaneAlertV1({
+    findingFingerprint: 'same',
+    previousState: { finding_fingerprint: 'same', delivered_at: '2026-08-23T18:00:00.000Z' },
+    now: NOW,
+    cooldownMinutes: 360
+  }), true);
 });

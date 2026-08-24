@@ -12,6 +12,8 @@ Group=grookai
 WorkingDirectory=/opt/grookai_control_plane_current
 EnvironmentFile=/etc/grookai/production-control-plane.env
 Environment=GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED=1
+Environment=GROOKAI_CONTROL_PLANE_ALERTS_ENABLED=1
+Environment=GROOKAI_CONTROL_PLANE_ALERT_COOLDOWN_MINUTES=360
 Environment=GROOKAI_CONTROL_PLANE_OUTPUT_DIR=/var/lib/grookai/production-control-plane/current
 ExecStart=/usr/bin/node scripts/audits/production_live_control_plane_v1.mjs
 TimeoutStartSec=5m

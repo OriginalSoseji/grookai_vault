@@ -125,7 +125,7 @@
         "deploy/scripts/install-production-control-plane-systemd.sh"
       ],
       "health_probe": "systemd_timer_and_current_report_freshness",
-      "write_boundary": "read-only provider probes and audit artifacts only",
+      "write_boundary": "read-only provider probes, audit artifacts, and deduplicated governed operations alerts only",
       "pause_policy": "never paused by Class B or C work"
     },
     {
