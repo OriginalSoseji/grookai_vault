@@ -63,7 +63,9 @@ jobs:
         run: |
           flutter build apk --release \
             --dart-define=SUPABASE_URL="$MOBILE_SUPABASE_URL" \
-            --dart-define=SUPABASE_PUBLISHABLE_KEY="$MOBILE_SUPABASE_PUBLISHABLE_KEY"
+            --dart-define=SUPABASE_PUBLISHABLE_KEY="$MOBILE_SUPABASE_PUBLISHABLE_KEY" \
+            --dart-define=GROOKAI_SOURCE_COMMIT_SHA="$GITHUB_SHA" \
+            --dart-define=GROOKAI_BUILD_RUN_ID="$GITHUB_RUN_ID"
 
       - name: Upload signed APK artifact
         uses: actions/upload-artifact@v4

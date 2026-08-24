@@ -55,7 +55,7 @@
     {
       "id": "supabase-capacity-performance",
       "status": "blocked",
-      "truth": "Managed disk is 72.33% utilized, above the frozen launch target. Conservative measured append growth is 3.187 GB/day, projects 80% in 7.70 days and full disk in 27.78 days, and leaves a 485.18 GB deficit against required 2x 90-day headroom. MEE is reversibly throttled to one call nightly. Stable interval load behavior is proven, but Storage plan capacity and egress remain unmeasured."
+      "truth": "Managed disk is 72.33% utilized, above the frozen launch target. Conservative measured append growth is 3.187 GB/day, projects 80% in 7.70 days and full disk in 27.78 days, and leaves a 485.18 GB deficit against required 2x 90-day headroom. MEE is reversibly throttled to one call nightly. The Pro 100 GB Storage allowance is now measured: current utilization is 31.84%, the burst-sensitive 90-day projection is 89.77%, and 2x projected-growth headroom is short by 47.70 GB. Current billing-cycle egress remains unmeasured."
     },
     {
       "id": "image-delivery",
@@ -70,12 +70,12 @@
     {
       "id": "backup-restore",
       "status": "blocked",
-      "truth": "Seven fresh physical backups and WAL-G are present, but PITR is disabled and no reconciled nonproduction restore exercise exists."
+      "truth": "Seven fresh physical backups, WAL-G, and seven-day provider retention are present. Restore-to-new-project and project cloning are available, but PITR is disabled and no reconciled nonproduction restore exercise exists. The isolated restore runbook is prepared; destination creation remains a paid hard stop."
     },
     {
       "id": "shared-client-contracts",
       "status": "blocked",
-      "truth": "Same-candidate signed-in web, Android, and iOS journeys are not complete; temporary journey credentials are not available in the governed secrets location."
+      "truth": "A fail-closed same-candidate evaluator and mobile source-commit provenance are implemented and tested. The gate remains blocked until a newly synchronized web, signed Android, and TestFlight iOS candidate completes authentication, search, pricing, Vault, image, sharing, and Memory-link journeys with database reconciliation."
     },
     {
       "id": "load-and-failure",
@@ -90,7 +90,7 @@
     {
       "id": "rollback-and-launch-report",
       "status": "blocked",
-      "truth": "The release branch is not merged/deployed as one production candidate and final rollback/readback evidence is not assembled."
+      "truth": "Final-candidate, migration, workload, and rollback evaluators plus ordered deployment/rollback and 72-hour canary runbooks are prepared. The release branch is not merged or deployed as one production candidate, and the example manifest correctly remains blocked by capacity, restore, client, and rollback prerequisites."
     }
   ]
 }

@@ -96,7 +96,7 @@ test("Xcode Cloud generates Flutter and CocoaPods build inputs", () => {
   assert.match(script, /pod install\r?\n\) \|\| exit 25/);
   assert.match(
     script,
-    /flutter build ios --release --no-codesign --config-only \|\| exit 26/,
+    /flutter build ios --release --no-codesign --config-only[\s\S]*?GROOKAI_SOURCE_COMMIT_SHA=\$\{CI_COMMIT\}[\s\S]*?GROOKAI_BUILD_RUN_ID=\$\{CI_BUILD_ID:-xcode-cloud\}[\s\S]*?\|\| exit 26/,
   );
 
   const podAvailabilityIndex = script.indexOf("if ! command -v pod");

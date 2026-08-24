@@ -1,0 +1,54 @@
+{
+  "schema_version": "PRODUCTION_SAME_CANDIDATE_CLIENT_GATE_V1",
+  "candidate": {
+    "source_commit_sha": "0000000000000000000000000000000000000000",
+    "frozen_at": "2026-08-24T00:00:00.000Z"
+  },
+  "artifacts": {
+    "web": {
+      "source_commit_sha": "0000000000000000000000000000000000000000",
+      "build_id": "pending",
+      "built_at": "2026-08-24T00:00:00.000Z",
+      "deployment_url": "https://grookaivault.com"
+    },
+    "android": {
+      "source_commit_sha": "0000000000000000000000000000000000000000",
+      "build_id": "pending",
+      "built_at": "2026-08-24T00:00:00.000Z",
+      "binary_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "ios": {
+      "source_commit_sha": "0000000000000000000000000000000000000000",
+      "build_id": "pending",
+      "built_at": "2026-08-24T00:00:00.000Z",
+      "binary_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "journeys": {
+    "web": {
+      "source_commit_sha": "0000000000000000000000000000000000000000",
+      "observed_at": "2026-08-24T00:00:00.000Z",
+      "database_reconciliation": "not_run",
+      "checks": {},
+      "evidence_paths": []
+    },
+    "android": {
+      "source_commit_sha": "0000000000000000000000000000000000000000",
+      "observed_at": "2026-08-24T00:00:00.000Z",
+      "database_reconciliation": "not_run",
+      "checks": {},
+      "evidence_paths": []
+    },
+    "ios": {
+      "source_commit_sha": "0000000000000000000000000000000000000000",
+      "observed_at": "2026-08-24T00:00:00.000Z",
+      "database_reconciliation": "not_run",
+      "checks": {},
+      "evidence_paths": []
+    }
+  },
+  "boundaries": {
+    "production_database_writes": false,
+    "public_rollout": false
+  }
+}

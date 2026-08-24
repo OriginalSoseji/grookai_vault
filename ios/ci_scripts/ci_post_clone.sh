@@ -3,6 +3,7 @@
 set -eu
 
 : "${CI_PRIMARY_REPOSITORY_PATH:?CI_PRIMARY_REPOSITORY_PATH is required}"
+: "${CI_COMMIT:?CI_COMMIT is required}"
 
 FLUTTER_VERSION="3.44.9"
 FLUTTER_HOME="${HOME}/flutter-${FLUTTER_VERSION}"
@@ -60,6 +61,9 @@ echo "xcode-cloud-bootstrap phase=pod-install"
 ) || exit 25
 
 echo "xcode-cloud-bootstrap phase=release-config"
-flutter build ios --release --no-codesign --config-only || exit 26
+flutter build ios --release --no-codesign --config-only \
+  --dart-define="GROOKAI_SOURCE_COMMIT_SHA=${CI_COMMIT}" \
+  --dart-define="GROOKAI_BUILD_RUN_ID=${CI_BUILD_ID:-xcode-cloud}" \
+  || exit 26
 
 echo "xcode-cloud-bootstrap phase=complete"

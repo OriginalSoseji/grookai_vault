@@ -121,9 +121,31 @@ Supabase Management API and read-only database statistics observed at `2026-08-2
 | Required 2x 90-day headroom | 573,740,500,424 bytes |
 | 2x 90-day headroom deficit | 485,181,552,072 bytes |
 
-The database-growth estimate uses current relation bytes per live row multiplied by rows written in the reconciled TCGPlayer, MEE, and publication cycles. It is a lower bound because it excludes WAL, system overhead, bloat changes, and unlisted relations. Storage added `19,310,094,155` bytes in the last 30 days, but that period includes a one-time bulk image event; Storage plan capacity and provider egress remain unmeasured.
+The database-growth estimate uses current relation bytes per live row multiplied by rows written in the reconciled TCGPlayer, MEE, and publication cycles. It is a lower bound because it excludes WAL, system overhead, bloat changes, and unlisted relations. Storage added `19,310,094,155` bytes in the last 30 days, but that period includes a one-time bulk image event.
 
 This gate is **BLOCKED**. Current utilization already exceeds the frozen `<70%` target and cannot provide the required 2x projected 90-day headroom. Resolving it requires a separately governed capacity and/or hash-verified archival-retention decision.
+
+Provider-plan evidence observed at `2026-08-24T17:56:21Z` establishes one
+organization project and a Pro entitlement profile: seven-day backups, Small
+compute, IPv4, restore-to-new-project access, and no Team project-scoped roles.
+The 100 GB Pro Storage allowance is therefore reconciled against the only
+project:
+
+- current Storage: `31.84 GB` (`31.84%`), below the frozen threshold;
+- recent-rate 30-day projection: `51.15 GB` (`51.15%`);
+- burst-sensitive 90-day projection: `89.77 GB` (`89.77%`); and
+- 2x projected 90-day growth headroom deficit: `47.70 GB`.
+
+Current object Storage passes, but its conservative 90-day and 2x-headroom
+tests do not. Actual billing-cycle cached and uncached egress remain unmeasured:
+Supabase exposes those byte totals in the organization Usage page, not through
+the public Management API. The plan quotas are `250 GB` uncached and `250 GB`
+cached.
+
+Backup retention is now provider-proven at seven days, and
+restore-to-new-project is available. PITR remains disabled and no reconciled
+restore has been executed. The prepared, non-executing recovery runbook is
+`docs/runbooks/PRODUCTION_SUPABASE_NONPRODUCTION_RESTORE_EXERCISE_V1.md`.
 
 Temporary risk containment:
 
@@ -197,14 +219,34 @@ Permanent report:
 - `git diff --check`: passed.
 - GitHub Contracts Runtime Protection at `648ba5da0`: passed.
 - GitHub MTG Catalog Supervisor latest run: passed at `2026-08-24T07:23:30Z`.
+- Same-candidate and final-candidate manifest policy tests: `10 / 10` passed.
+- Mobile release builds now embed source commit and build-run provenance for Android GitHub Actions and iOS Xcode Cloud.
+- Fresh full repository contract suite: `2,410 / 2,410` passed.
+- Fresh full Flutter non-golden suite: `616 / 616` passed.
+
+## Prepared Release Controls
+
+The following fail-closed controls are implemented but not yet satisfied by a
+new candidate:
+
+- same-candidate web, Android, and iOS manifest evaluator;
+- source-commit provenance in governed mobile builds;
+- final-candidate prerequisite, migration, workload, and rollback evaluator;
+- nonproduction restore runbook;
+- ordered final-candidate deployment and rollback runbook; and
+- 72-hour production-backend canary runbook.
+
+The checked-in example manifests deliberately evaluate as blocked. Historical
+functional evidence remains useful but cannot satisfy a new candidate's commit
+or observation window.
 
 ## Remaining Hard Gates
 
 1. Resolve the managed-disk capacity blocker through a separately authorized capacity and/or hash-verified archival-retention plan. No paid plan change or destructive retention action is authorized by this checkpoint.
-2. Measure the remaining Storage plan limit and provider egress forecast.
-3. Run a reconciled restore into a nonproduction Supabase project. PITR remains a separate plan decision.
-4. Run same-candidate signed-in web, Android, and iOS journeys for authentication, search, pricing, Vault, images, sharing, and memory links.
-5. Freeze and deploy one same-source production candidate across control plane, pricing/MEE, web, Android, and iOS with a migration manifest and tested rollback target.
+2. Capture authoritative current-billing-cycle cached and uncached egress from the Supabase organization Usage page and produce the 30-day and 90-day forecast. The Storage plan limit is now measured.
+3. Authorize an isolated destination, then run a reconciled restore into a nonproduction Supabase project. PITR remains a separate paid plan decision.
+4. Produce one synchronized web, Android, and iOS candidate and run the prepared authentication, search, pricing, Vault, image, sharing, and Memory-link gate.
+5. Complete the prepared final-candidate manifest, then deploy one same-source candidate across control plane, pricing/MEE, web, Android, and iOS with a frozen migration manifest and tested rollback target.
 6. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
 7. Reconcile the final report and only then make a separate public-rollout decision.
 

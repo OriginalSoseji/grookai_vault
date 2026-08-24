@@ -1,0 +1,39 @@
+{
+  "schema_version": "PRODUCTION_BACKEND_FINAL_CANDIDATE_MANIFEST_V1",
+  "candidate": {
+    "source_commit_sha": "0000000000000000000000000000000000000000",
+    "branch": "main",
+    "tracked_worktree_clean": false,
+    "frozen_at": ""
+  },
+  "prerequisites": {
+    "supabase_security": "passed",
+    "supabase_capacity": "blocked",
+    "backup_restore": "blocked",
+    "load_and_failure": "passed",
+    "same_candidate_clients": "blocked"
+  },
+  "database": {
+    "migration_ledger_head": "20260824174500",
+    "candidate_migrations": []
+  },
+  "workloads": {
+    "control_plane": { "expected_commit_sha": "", "rollback_unit": "" },
+    "tcgplayer_source": { "expected_commit_sha": "", "rollback_unit": "" },
+    "mee": { "expected_commit_sha": "", "rollback_unit": "" },
+    "pricing_publication": { "expected_commit_sha": "", "rollback_unit": "" },
+    "new_set_discovery": { "expected_commit_sha": "", "rollback_unit": "" }
+  },
+  "rollback": {
+    "previous_source_commit_sha": "",
+    "previous_web_deployment_id": "",
+    "previous_android_build_id": "",
+    "previous_ios_build_id": "",
+    "database_restore_required": false,
+    "tested": false
+  },
+  "boundaries": {
+    "public_rollout": false,
+    "destructive_data_action": false
+  }
+}

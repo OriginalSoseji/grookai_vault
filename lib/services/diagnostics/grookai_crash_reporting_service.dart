@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../firebase_options.dart';
+import 'app_build_identity.dart';
 
 class GrookaiCrashReportingService {
   GrookaiCrashReportingService._();
@@ -37,6 +38,20 @@ class GrookaiCrashReportingService {
       await crashlytics.setCrashlyticsCollectionEnabled(
         kReleaseMode || _forceCollection,
       );
+      await Future.wait<void>([
+        crashlytics.setCustomKey(
+          'grookai_source_commit_sha',
+          AppBuildIdentity.sourceCommitSha,
+        ),
+        crashlytics.setCustomKey(
+          'grookai_build_run_id',
+          AppBuildIdentity.buildRunId,
+        ),
+        crashlytics.setCustomKey(
+          'grookai_governed_source_commit',
+          AppBuildIdentity.hasGovernedSourceCommit,
+        ),
+      ]);
 
       FlutterError.onError = (details) {
         FlutterError.presentError(details);

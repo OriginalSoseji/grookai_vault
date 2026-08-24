@@ -72,6 +72,11 @@ Permanent evidence is preserved outside the repository at:
 - `C:\secure-ops\production-backend-launch\search-migration\2026-08-24T17-28-31-542Z_bounded_extended_equivalence\`
 - `C:\secure-ops\production-backend-launch\search-migration\2026-08-24T17-30-53-569Z_bounded_apply\`
 - `C:\secure-ops\production-backend-launch\read-load\20260824T174405Z_final_launch_33rps_300s\`
+- `C:\secure-ops\production-backend-launch\supabase-usage\20260824T175621Z\`
+- `docs/runbooks/PRODUCTION_SUPABASE_NONPRODUCTION_RESTORE_EXERCISE_V1.md`
+- `docs/runbooks/PRODUCTION_SAME_CANDIDATE_CLIENT_JOURNEYS_V1.md`
+- `docs/runbooks/PRODUCTION_BACKEND_FINAL_CANDIDATE_DEPLOY_ROLLBACK_V1.md`
+- `docs/runbooks/PRODUCTION_BACKEND_72_HOUR_CANARY_V1.md`
 
 ## Supabase Current Proof
 
@@ -80,14 +85,16 @@ Permanent evidence is preserved outside the repository at:
 - Connections: `21 / 90`.
 - Waiting locks, long queries, invalid indexes, RLS exposure, unsafe definer functions, and deadlocks: `0`.
 - Cumulative cache hit: `0.924253`; the final read-load run had no waiting locks and peaked at `33.33%` connection utilization.
-- Physical backups: `7`; latest age `19.25h`; maximum gap `25.66h`.
-- WAL-G: enabled. PITR: disabled. Nonproduction restore: unmeasured.
+- Physical backups: `7`; latest age `19.25h`; maximum gap `25.66h`; provider entitlement retention: `7 days`.
+- WAL-G: enabled. PITR: disabled. Restore-to-new-project and project cloning: available. Nonproduction restore: not executed.
 - Managed disk: `231,542,988,800 / 320,101,937,152` bytes (`72.33%`).
 - Lower-bound append growth: `3,187,447,225` bytes/day.
 - Lower-bound 30-day disk utilization: `102.21%`.
 - 2x 90-day headroom deficit: `485,181,552,072` bytes.
 - Managed-disk autoscale: unconfigured.
-- Storage plan limit and egress forecast: unmeasured.
+- Provider entitlement profile: Pro, classified from seven-day backup retention and absence of Team project-scoped roles; the Management API does not return a direct plan-name field.
+- Storage allowance: `100 GB`; current utilization `31.84%`; recent-rate 30-day projection `51.15%`; burst-sensitive 90-day projection `89.77%`; 2x 90-day growth headroom deficit `47.70 GB`.
+- Egress allowance: `250 GB` uncached plus `250 GB` cached; current billing-cycle byte totals and forecast remain unmeasured.
 
 ## Invariants
 
@@ -121,18 +128,21 @@ Permanent evidence is preserved outside the repository at:
 - Image audit fingerprint: `edbfe3fff6380e463655099b45fb850ce11068d77c713855c82a17a099d1bc15`.
 - Extended search output equivalence: `14 / 14` query shapes matched exact ordered live results.
 - Final 2x read-load proof: `9,900 / 9,900` requests passed with zero findings.
+- Same-candidate and final-candidate policy tests: `10 / 10` passed.
+- Fresh repository contracts: `2,410 / 2,410`; fresh Flutter non-golden tests: `616 / 616`.
+- Governed Android and iOS build paths embed immutable source-commit provenance.
 - Failed production systemd units: zero.
 
 ## Remaining Work
 
 1. Resolve the measured Supabase capacity blocker without deleting source or user truth.
-2. Measure Storage plan capacity and provider egress.
-3. Complete a nonproduction restore exercise.
-4. Run governed signed-in journeys on web, Android, and iOS from one candidate.
-5. Freeze, merge, and deploy one candidate with rollback evidence.
+2. Capture provider billing-cycle egress and complete its forecast. Storage plan capacity is measured.
+3. Authorize an isolated destination and complete the prepared nonproduction restore exercise.
+4. Cut one synchronized candidate and execute the prepared governed signed-in web, Android, and iOS journey gate.
+5. Complete the prepared manifest, freeze, merge, and deploy one candidate with rollback evidence.
 6. Complete the 72-hour canary and unattended cycle requirements.
 7. Produce a zero-mismatch final launch report.
 
 ## Explicit Next Gate
 
-Measure the remaining Storage plan and egress limits, then prepare the nonproduction restore exercise and same-candidate client journey package while the managed-disk decision remains blocked. A paid disk change, PITR change, nonproduction project creation, destructive retention action, final candidate deployment, and public rollout remain separate gates.
+Capture provider billing-cycle egress, then execute the prepared nonproduction restore exercise only after an isolated destination is authorized. Continue preparing the same-candidate client journey package while the managed-disk decision remains blocked. A paid disk change, PITR change, nonproduction project creation, destructive retention action, final candidate deployment, and public rollout remain separate gates.
