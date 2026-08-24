@@ -85,12 +85,14 @@ async function collectGitHubWorkflow(component, token, now) {
   try {
     const headers = {
       Accept: 'application/vnd.github+json',
+      'Cache-Control': 'no-cache',
       'User-Agent': 'grookai-production-control-plane-v1',
       'X-GitHub-Api-Version': '2022-11-28'
     };
     if (token) headers.Authorization = `Bearer ${token}`;
+    const cacheBust = Math.floor(now.getTime() / 60_000);
     const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflowId}/runs?per_page=1&branch=main`,
+      `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflowId}/runs?per_page=1&branch=main&cache_bust=${cacheBust}`,
       { headers }
     );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);

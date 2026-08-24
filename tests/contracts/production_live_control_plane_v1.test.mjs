@@ -36,6 +36,9 @@ test('public GitHub workflow collection does not require an authorization token'
   ));
   assert.match(source, /if \(token\) headers\.Authorization/);
   assert.doesNotMatch(source, /if \(!token\) \{\s*return \{/);
+  assert.match(source, /'Cache-Control': 'no-cache'/);
+  assert.match(source, /cache_bust=\$\{cacheBust\}/);
+  assert.match(source, /Math\.floor\(now\.getTime\(\) \/ 60_000\)/);
 });
 
 test('new-set discovery is healthy only when the report is successful and fresh', () => {
