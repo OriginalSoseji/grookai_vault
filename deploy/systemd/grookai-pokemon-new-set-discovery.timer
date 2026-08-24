@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Grookai Pokemon new-set discovery daily
+
+[Timer]
+OnCalendar=*-*-* 12:15:00 UTC
+Persistent=true
+RandomizedDelaySec=600
+Unit=grookai-pokemon-new-set-discovery.service
+
+[Install]
+WantedBy=timers.target

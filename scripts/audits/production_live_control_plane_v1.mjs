@@ -189,6 +189,79 @@ export function classifySourceSyncV1(run, now = new Date(), maxStalenessMinutes 
   return { status: 'healthy', reason: 'Latest current full source sync is terminal and fresh.', observed_at: terminalAt, age_minutes: ageMinutes };
 }
 
+export function classifyNewSetDiscoveryV1(report, now = new Date(), maxStalenessMinutes = 1800) {
+  if (!report) return { status: 'unmeasured', reason: 'No new-set discovery report is available.' };
+  const ageMinutes = minutesSince(report.observed_at, now);
+  if (report.status !== 'succeeded' || (report.findings?.length ?? 0) > 0) {
+    return {
+      status: 'failed',
+      reason: `New-set discovery is ${report.status ?? 'unknown'} with ${(report.findings ?? []).length} findings.`,
+      observed_at: report.observed_at ?? null,
+      age_minutes: ageMinutes
+    };
+  }
+  if (!Number.isFinite(ageMinutes) || ageMinutes > maxStalenessMinutes) {
+    return {
+      status: 'stale',
+      reason: `Latest successful new-set discovery is ${Number.isFinite(ageMinutes) ? Math.round(ageMinutes) : 'unknown'} minutes old.`,
+      observed_at: report.observed_at ?? null,
+      age_minutes: ageMinutes
+    };
+  }
+  return {
+    status: 'healthy',
+    reason: `New-set discovery is fresh; ${Number(report.counts?.review_required ?? 0)} candidates require governed review.`,
+    observed_at: report.observed_at,
+    age_minutes: ageMinutes
+  };
+}
+
+async function collectNewSetDiscovery(rootDir, topology, now) {
+  const component = topology.components.find((item) => item.id === 'new-set-discovery');
+  if (!component) return null;
+  const configured = process.env.POKEMON_NEW_SET_DISCOVERY_LATEST_REPORT?.trim();
+  const candidates = [
+    configured,
+    '/var/lib/grookai/new-set-discovery/latest.json',
+    path.join(rootDir, 'artifacts', 'new-set-discovery', 'latest.json')
+  ].filter(Boolean);
+  let report = null;
+  let reportPath = null;
+  for (const candidate of candidates) {
+    try {
+      report = JSON.parse(await fs.readFile(candidate, 'utf8'));
+      reportPath = candidate;
+      break;
+    } catch (error) {
+      if (error.code !== 'ENOENT') {
+        return {
+          component_id: component.id,
+          provider: 'filesystem_runtime_artifact',
+          status: 'failed',
+          reason: `New-set discovery report could not be parsed: ${error.message}.`,
+          evidence: { report_path: candidate }
+        };
+      }
+    }
+  }
+  const classification = classifyNewSetDiscoveryV1(report, now, component.max_staleness_minutes);
+  return {
+    component_id: component.id,
+    provider: 'filesystem_runtime_artifact',
+    ...classification,
+    evidence: report
+      ? {
+          report_path: reportPath,
+          source_run_id: report.source?.run_id ?? null,
+          source_run_key: report.source?.run_key ?? null,
+          source_age_hours: report.source?.age_hours ?? null,
+          counts: report.counts ?? {},
+          candidate_fingerprint_sha256: report.candidate_fingerprint_sha256 ?? null
+        }
+      : { searched_paths: candidates }
+  };
+}
+
 async function collectSupabase(supabase, topology, now) {
   if (!supabase) {
     return topology.components
@@ -359,7 +432,20 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
         evidence: {}
       }));
   }
-  const measuredIds = new Set([...githubResults, ...supabaseResults].map((item) => item.component_id));
+  let newSetDiscovery;
+  try {
+    newSetDiscovery = await collectNewSetDiscovery(rootDir, topology, now);
+  } catch (error) {
+    newSetDiscovery = {
+      component_id: 'new-set-discovery',
+      provider: 'filesystem_runtime_artifact',
+      status: 'failed',
+      reason: `New-set discovery provider adapter failed: ${error.message}.`,
+      evidence: {}
+    };
+  }
+  const providerResults = [...githubResults, ...supabaseResults, newSetDiscovery].filter(Boolean);
+  const measuredIds = new Set(providerResults.map((item) => item.component_id));
   const unmeasured = topology.components
     .filter((component) => !measuredIds.has(component.id))
     .map((component) => ({
@@ -370,7 +456,7 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
       evidence: {}
     }));
 
-  const components = [...githubResults, ...supabaseResults, ...unmeasured]
+  const components = [...providerResults, ...unmeasured]
     .filter(Boolean)
     .sort((left, right) => left.component_id.localeCompare(right.component_id));
   const statuses = ['healthy', 'degraded', 'failed', 'stale', 'unmeasured'];

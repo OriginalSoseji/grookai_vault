@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import {
   classifyPricingRunV1,
+  classifyNewSetDiscoveryV1,
   classifySourceSyncV1,
   classifyWorkflowRunV1
 } from '../../scripts/audits/production_live_control_plane_v1.mjs';
@@ -20,6 +21,26 @@ test('successful fresh GitHub workflow is healthy', () => {
     NOW
   );
   assert.equal(result.status, 'healthy');
+});
+
+test('new-set discovery is healthy only when the report is successful and fresh', () => {
+  assert.equal(classifyNewSetDiscoveryV1({
+    status: 'succeeded',
+    observed_at: '2026-08-24T00:30:00.000Z',
+    findings: [],
+    counts: { review_required: 2 }
+  }, NOW).status, 'healthy');
+  assert.equal(classifyNewSetDiscoveryV1({
+    status: 'failed',
+    observed_at: '2026-08-24T00:30:00.000Z',
+    findings: ['source_sync_stale']
+  }, NOW).status, 'failed');
+  assert.equal(classifyNewSetDiscoveryV1({
+    status: 'succeeded',
+    observed_at: '2026-08-22T00:00:00.000Z',
+    findings: [],
+    counts: {}
+  }, NOW).status, 'stale');
 });
 
 test('failed GitHub workflow is never hidden by freshness', () => {

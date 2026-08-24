@@ -135,11 +135,15 @@
       "workload_class": "B",
       "criticality": "launch_critical",
       "execution_plane": "unverified",
-      "deployment_expectation": "must_be_scheduled",
+      "deployment_expectation": "scheduled",
       "live_verification": "required",
-      "schedule": "unverified",
+      "schedule": "12:15 UTC daily with up to 10 minutes jitter",
       "max_staleness_minutes": 1800,
       "source_files": [
+        "scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs",
+        "deploy/systemd/grookai-pokemon-new-set-discovery.service",
+        "deploy/systemd/grookai-pokemon-new-set-discovery.timer",
+        "docs/contracts/POKEMON_NEW_SET_DISCOVERY_MONITOR_V1.md",
         "scripts/ingest/new_set_release_ingest_v1.mjs"
       ],
       "health_probe": "new_set_discovery_freshness_and_staging_reconciliation",

@@ -1,0 +1,35 @@
+[Unit]
+Description=Grookai Pokemon New-Set Discovery Monitor V1
+Wants=network-online.target
+After=network-online.target grookai-tcgplayer-market-pipeline.service
+OnFailure=grookai-operations-webhook@%n.service
+
+[Service]
+Type=oneshot
+User=grookai
+Group=grookai
+WorkingDirectory=/opt/grookai_pricing_current
+EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
+Environment=POKEMON_NEW_SET_DISCOVERY_STATE_DIR=/var/lib/grookai/new-set-discovery
+ExecStart=/usr/bin/flock -n /run/lock/grookai-pokemon-new-set-discovery.lock /usr/bin/node scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs --notify
+TimeoutStartSec=10m
+Nice=8
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/grookai/new-set-discovery
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictRealtime=true
+SystemCallArchitectures=native
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
