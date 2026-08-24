@@ -228,6 +228,22 @@ export function classifyScannerIdentityV1(probe) {
   };
 }
 
+export function applyRuntimeTimerStateV1(result, timerState, timerUnit) {
+  const evidence = {
+    ...(result?.evidence ?? {}),
+    runtime_timer: { unit: timerUnit, state: timerState }
+  };
+  if (timerState !== 'active') {
+    return {
+      ...result,
+      status: 'failed',
+      reason: `${timerUnit} is ${timerState}; a successful historical run does not prove unattended operation.`,
+      evidence
+    };
+  }
+  return { ...result, evidence };
+}
+
 export function classifyOperationsAlertDeliveryV1(event, outboxRows, now = new Date(), maxStalenessMinutes = 1440) {
   if (!event) return { status: 'failed', reason: 'No operations notification event exists.' };
   if (!Array.isArray(outboxRows) || outboxRows.length === 0) {
@@ -615,6 +631,27 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
       reason: `Scanner identity provider adapter failed: ${error.message}.`,
       evidence: {}
     };
+  }
+  if (process.env.GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED === '1') {
+    const runtimeTimers = new Map([
+      ['mee-nightly', 'grookai-mee-nightly.timer'],
+      ['tcgplayer-market-pipeline', 'grookai-tcgplayer-market-pipeline.timer'],
+      ['new-set-discovery', 'grookai-pokemon-new-set-discovery.timer']
+    ]);
+    supabaseResults = supabaseResults.map((result) => {
+      const timerUnit = runtimeTimers.get(result.component_id);
+      return timerUnit
+        ? applyRuntimeTimerStateV1(result, systemdState(timerUnit), timerUnit)
+        : result;
+    });
+    const newSetTimer = runtimeTimers.get(newSetDiscovery?.component_id);
+    if (newSetTimer) {
+      newSetDiscovery = applyRuntimeTimerStateV1(
+        newSetDiscovery,
+        systemdState(newSetTimer),
+        newSetTimer
+      );
+    }
   }
   const controlPlaneRuntime = collectControlPlaneRuntime(now);
   const providerResults = [

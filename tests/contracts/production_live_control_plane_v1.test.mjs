@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  applyRuntimeTimerStateV1,
   classifyOperationsAlertDeliveryV1,
   classifyPricingRunV1,
   classifyNewSetDiscoveryV1,
@@ -122,6 +123,27 @@ test('scanner identity requires both active services and successful health probe
     v3_health: { ok: false },
     v5_health: { ok: true }
   }).status, 'failed');
+});
+
+test('an inactive timer fails a historically healthy scheduled worker', () => {
+  const healthyRun = {
+    component_id: 'tcgplayer-market-pipeline',
+    status: 'healthy',
+    reason: 'Latest run succeeded.',
+    evidence: { run_id: 'run-1' }
+  };
+  assert.equal(applyRuntimeTimerStateV1(
+    healthyRun,
+    'active',
+    'grookai-tcgplayer-market-pipeline.timer'
+  ).status, 'healthy');
+  const inactive = applyRuntimeTimerStateV1(
+    healthyRun,
+    'inactive',
+    'grookai-tcgplayer-market-pipeline.timer'
+  );
+  assert.equal(inactive.status, 'failed');
+  assert.match(inactive.reason, /does not prove unattended operation/);
 });
 
 test('operations alert delivery requires fresh terminal rows for every recipient', () => {
