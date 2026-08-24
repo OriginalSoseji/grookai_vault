@@ -1,16 +1,16 @@
 # Production Live Control Plane V1
 
-Observed: 2026-08-24T07:52:19.237Z
+Observed: 2026-08-24T19:13:08.145Z
 
 Overall status: **INCOMPLETE**
 
 ## Summary
 
-- healthy: 14
+- healthy: 11
 - degraded: 0
 - failed: 0
 - stale: 0
-- unmeasured: 4
+- unmeasured: 7
 
 ## Components
 
@@ -23,13 +23,13 @@ Overall status: **INCOMPLETE**
 | mee-nightly | supabase | HEALTHY | Latest MEE acquisition evidence is readable and fresh. |
 | mobile-clients | github_actions | HEALTHY | Latest workflow completed successfully within its freshness window. |
 | mtg-catalog-supervisor | github_actions | HEALTHY | Latest workflow completed successfully within its freshness window. |
-| new-set-discovery | filesystem_runtime_artifact | HEALTHY | New-set discovery is fresh; 7 candidates require governed review. |
+| new-set-discovery | filesystem_runtime_artifact | UNMEASURED | No new-set discovery report is available. |
 | one-piece-expansion | unverified | UNMEASURED | No live provider adapter is registered yet. |
 | operations-alert-delivery | supabase | HEALTHY | Latest operations notification was enqueued and delivered within its freshness window. |
 | pricing-canary-observer | github_actions | HEALTHY | Latest workflow completed successfully within its freshness window. |
 | prod-edge-probe | github_actions | HEALTHY | Latest workflow completed successfully within its freshness window. |
-| production-control-plane | digitalocean_systemd | HEALTHY | Production control-plane timer is active; this report is the current scheduled probe. |
-| scanner-identity | digitalocean_systemd_http | HEALTHY | Scanner V3 and V5 services are active and both HTTP health probes succeeded. |
+| production-control-plane | digitalocean_systemd | UNMEASURED | Runtime-local control-plane probes are disabled for this collector execution. |
+| scanner-identity | digitalocean_systemd_http | UNMEASURED | Runtime-local scanner probes are disabled for this collector execution. |
 | supabase-core | supabase | HEALTHY | Supabase API, authentication, and database read probe succeeded. |
 | tcgplayer-market-pipeline | supabase | HEALTHY | Latest production pricing run is terminal, reconciled, and fresh. |
 | tcgplayer-source-sync | supabase | HEALTHY | Latest current full source sync is terminal and fresh. |

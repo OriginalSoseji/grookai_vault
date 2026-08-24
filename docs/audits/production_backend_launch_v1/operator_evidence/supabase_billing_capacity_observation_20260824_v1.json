@@ -1,0 +1,22 @@
+{
+  "schema_version": "SUPABASE_BILLING_CAPACITY_OPERATOR_EVIDENCE_V1",
+  "observed_at": "2026-08-24T18:37:00.000Z",
+  "source": "founder_supplied_supabase_dashboard_capture",
+  "organization_id": "rksadomjkuoxvrbhsmxu",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "quota_restriction_notice_active": true,
+  "restriction_date": "2026-09-04",
+  "spend_cap_enabled": true,
+  "uncached_egress_gb": null,
+  "cached_egress_gb": null,
+  "dashboard_reported_cpu_percent": 99,
+  "dashboard_reported_memory_percent": 78,
+  "dashboard_reported_disk_io_percent": 21,
+  "dashboard_reported_disk_percent": 72,
+  "notes": [
+    "The organization banner states that quota was exceeded in the previous billing cycle and restriction will begin on 2026-09-04 if the organization remains over quota.",
+    "The project infrastructure page shows Spend Cap enabled.",
+    "Exact billing-cycle cached and uncached egress values were not visible in the supplied capture.",
+    "Provider API and Metrics API snapshots supersede the dashboard point-in-time resource percentages for current operational measurements."
+  ]
+}

@@ -146,3 +146,33 @@ Permanent evidence is preserved outside the repository at:
 ## Explicit Next Gate
 
 Capture provider billing-cycle egress, then execute the prepared nonproduction restore exercise only after an isolated destination is authorized. Continue preparing the same-candidate client journey package while the managed-disk decision remains blocked. A paid disk change, PITR change, nonproduction project creation, destructive retention action, final candidate deployment, and public rollout remain separate gates.
+
+## Automated Readiness Addendum
+
+The launch readiness checks are now executable through one read-only command:
+
+`npm run production:launch:automate`
+
+The automation queries the Supabase Management and Metrics APIs, executes the
+existing database audit in a read-only transaction, refreshes managed-backup
+and control-plane evidence, and reconciles the preserved read-load result. It
+writes a run plan before provider calls and hashes every output artifact.
+
+The first complete live run is preserved at:
+
+`C:\secure-ops\production-backend-launch\automated-readiness\2026-08-24T19-32-37-655Z_read_only`
+
+Current provider truth from that run:
+
+- Medium compute is active with 4 GB memory and 120 direct connections.
+- Current CPU maximum was 10.47%; memory maximum was 37.36%.
+- Disk remains 72.33% used and above the frozen launch target.
+- The project is healthy and not read-only.
+- Nine completed physical backups are visible; WAL-G is enabled.
+- The organization quota warning and enabled Spend Cap remain launch blockers.
+- Exact billing-cycle egress, nonproduction restore proof, and synchronized
+  same-candidate client proof remain incomplete.
+
+The scheduled GitHub readiness and founder-operations monitors now upload
+artifacts without committing generated snapshots. They therefore do not create
+monitor-only source commits or trigger Vercel deployments.

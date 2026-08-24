@@ -6,7 +6,7 @@ on:
     - cron: "17 13 * * *"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   collect-founder-ops:
@@ -40,16 +40,25 @@ jobs:
       - name: Verify founder ops dashboard contract
         run: node --test tests/contracts/founder_ops_reports_v1.test.mjs
 
-      - name: Commit updated founder ops artifacts
+      - name: Publish founder ops summary
+        if: always()
         shell: bash
         run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/audits/founder_ops_dashboard_v1 docs/audits/production_backend_launch_v1
-          if git diff --cached --quiet; then
-            echo "No founder ops artifact changes to commit."
-            exit 0
-          fi
-          git commit -m "chore: update founder ops dashboard snapshots"
-          git push
+          {
+            echo "# Founder Operations Snapshot"
+            echo
+            echo "Generated from commit \`${GITHUB_SHA}\`."
+            echo
+            echo "Generated reports are attached to this workflow run; this monitor never commits to the repository or triggers a Vercel deployment."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload founder ops evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: founder-ops-${{ github.run_id }}
+          path: |
+            docs/audits/founder_ops_dashboard_v1
+            docs/audits/production_backend_launch_v1
+          if-no-files-found: warn
+          retention-days: 30

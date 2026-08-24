@@ -1,0 +1,79 @@
+name: Production Backend Launch Readiness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 */6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-backend-launch-readiness
+  cancel-in-progress: false
+
+jobs:
+  read-only-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run read-only launch automation
+        id: readiness
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUPABASE_PROJECT_REF: ycdxbpibncqcchqiihfz
+          SUPABASE_ORGANIZATION_ID: rksadomjkuoxvrbhsmxu
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run production:launch:automate -- \
+            --out-root="$RUNNER_TEMP/production-backend-launch-readiness" \
+            --billing-evidence=docs/audits/production_backend_launch_v1/operator_evidence/supabase_billing_capacity_observation_20260824_v1.json \
+            --load-evidence=docs/audits/production_backend_launch_v1/read_load_gate_20260824_v1.json \
+            --require-ready
+
+      - name: Publish readiness summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          report="$(find "$RUNNER_TEMP/production-backend-launch-readiness" -name REMAINING_PLAN.md -print -quit)"
+          if [[ -n "$report" ]]; then
+            cat "$report" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "# Production Backend Launch Readiness" >> "$GITHUB_STEP_SUMMARY"
+            echo "The readiness automation failed before producing a report." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload readiness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-backend-launch-readiness-${{ github.run_id }}
+          path: ${{ runner.temp }}/production-backend-launch-readiness
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Enforce readiness result
+        if: always() && steps.readiness.outcome == 'failure'
+        run: |
+          echo "Production backend readiness is blocked or incomplete. Review the uploaded evidence and job summary."
+          exit 1
