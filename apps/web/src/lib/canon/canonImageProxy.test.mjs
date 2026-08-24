@@ -11,6 +11,10 @@ import {
 test("canon image IDs retain the stable uppercase proxy contract", () => {
   assert.equal(normalizeCanonImageGvId("  gv-pk-obf-001  "), "GV-PK-OBF-001");
   assert.equal(
+    normalizeCanonImageGvId("gv-pk-wcd-2005-bright_aura-06-ex_hidden_legend-89-island_cave"),
+    "GV-PK-WCD-2005-BRIGHT_AURA-06-EX_HIDDEN_LEGEND-89-ISLAND_CAVE",
+  );
+  assert.equal(
     buildCanonCardImageProxyUrl("gv-pk-obf-001"),
     "/api/canon/cards/GV-PK-OBF-001/image",
   );

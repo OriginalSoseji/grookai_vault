@@ -129,7 +129,7 @@ export function normalizeCanonImageGvId(value: unknown) {
   }
 
   const normalized = value.trim().toUpperCase();
-  if (!normalized || normalized.length > 96 || !/^GV-[A-Z0-9-]+$/.test(normalized)) {
+  if (!normalized || normalized.length > 96 || !/^GV-[A-Z0-9_-]+$/.test(normalized)) {
     return null;
   }
 
