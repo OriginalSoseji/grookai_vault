@@ -669,6 +669,7 @@ test("full-catalog staging, qualification, and artifact export remain bounded", 
 });
 
 test("snapshot pagination has a matching partial decision index", () => {
+  assert.match(SNAPSHOT_PAGING_MIGRATION, /create index concurrently/i);
   assert.match(
     SNAPSHOT_PAGING_MIGRATION,
     /market_price_qualification_run_publish_id_idx/i,
