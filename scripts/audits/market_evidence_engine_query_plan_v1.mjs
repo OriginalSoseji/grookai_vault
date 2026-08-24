@@ -9,12 +9,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
-const DEFAULT_WORKLIST = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1', 'mee_overnight_worklist_2026-06-25T05-13-57-661Z.json');
+const WORKLIST_PREFIX = 'mee_overnight_worklist_';
 
 function parseArgs(argv) {
   const parsed = {
     limit: 5000,
-    worklist: DEFAULT_WORKLIST,
+    worklist: null,
     outDir: DEFAULT_OUT_DIR,
   };
 
@@ -33,6 +33,21 @@ function parseArgs(argv) {
   }
 
   return parsed;
+}
+
+async function latestRuntimeWorklist(outDir) {
+  const entries = await fs.readdir(outDir, { withFileTypes: true }).catch((error) => {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  });
+  const latest = entries
+    .filter((entry) => entry.isFile() && entry.name.startsWith(WORKLIST_PREFIX) && entry.name.endsWith('.json'))
+    .map((entry) => entry.name)
+    .sort((left, right) => right.localeCompare(left))[0];
+  if (!latest) {
+    throw new Error(`[mee-query-plan] no runtime worklist found in ${outDir}; run market_evidence_engine_overnight_worklist_v1.mjs first`);
+  }
+  return path.join(outDir, latest);
 }
 
 function renderMarkdown({ plan, jsonPath }) {
@@ -82,6 +97,7 @@ function renderMarkdown({ plan, jsonPath }) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  args.worklist = args.worklist ?? await latestRuntimeWorklist(args.outDir);
   const generatedAt = new Date().toISOString();
   const stamp = generatedAt.replace(/[:.]/g, '-');
 

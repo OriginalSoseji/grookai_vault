@@ -85,6 +85,9 @@ test("MEE-04B script and plan stay local-only with no provider calls or writes",
   assert.match(planDoc, /search URL templates/);
   assert.match(planDoc, /Proceed to `MEE-04C`/);
   assert.match(pkg, /"mee:query-plan"/);
+  assert.match(scriptSource, /no runtime worklist found/);
+  assert.match(scriptSource, /market_evidence_engine_overnight_worklist_v1\.mjs first/);
+  assert.doesNotMatch(scriptSource, /mee_overnight_worklist_2026-/);
 
   const combined = `${moduleSource}\n${scriptSource}`;
   assert.doesNotMatch(combined, /createBackendClient|searchActiveListings|fetchItemDetails|fetch\s*\(/);
