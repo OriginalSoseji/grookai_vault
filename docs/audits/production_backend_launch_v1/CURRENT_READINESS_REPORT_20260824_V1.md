@@ -1,12 +1,14 @@
 # Production Backend Launch V1 Current Readiness
 
-**Observed:** `2026-08-24T15:18:38.086Z`
+**Observed:** `2026-08-24T16:30:15Z`
 
 **Branch:** `release/production-backend-launch-v1`
 
 **Deployed control-plane SHA:** `e56f33fc462190e39bfe4f4717d6c1ce9a6c15a0`
 
 **Deployed pricing/MEE SHA:** `4b6064a5fb7eeacb7887c240735fc6dd8ffec06f`
+
+**Deployed web SHA:** `e136393c47a9941a5e2b4a846566f697f9a0f9d9`
 
 **Launch verdict:** **NOT READY**
 
@@ -25,6 +27,8 @@
 - The managed-control audit confirms a fresh seven-point physical backup chain and WAL-G support.
 - Supabase managed disk capacity is now measured and fails the launch target. No data was deleted and no paid capacity change was made.
 - The internal-only MEE acquisition lane was reversibly throttled from `4,000` to `1` provider call per nightly cycle. Its provider-free, write-free dry run completed with zero findings.
+- The production web image route now accepts valid underscore-bearing canonical GV-IDs. Deployment `dpl_6xj6Wi6iAzuJHEj1AFSRc5r1ifsH` is Ready, with rollback target `dpl_9exhfBoYgtUk8VWkmLbRqAB2G85z` preserved.
+- The launch-wide image audit passed `3,000 / 3,000` direct object reads, `100 / 100` full-body image-signature checks, and `100 / 100` anonymous-public production proxy checks.
 
 ## Fresh MEE Proof
 
@@ -125,11 +129,40 @@ Temporary risk containment:
 - Provider calls during throttle verification: `0`.
 - Database, Storage, canonical, pricing, and Vault writes during throttle verification: `0`.
 
+## Image Delivery Proof
+
+The passing audit observed production at `2026-08-24T16:29:10.151Z` from
+deployed web commit `e136393c47a9941a5e2b4a846566f697f9a0f9d9`.
+
+| Measure | Result |
+| --- | ---: |
+| Eligible self-hosted rows | 164,227 |
+| Direct Storage HEAD | 3,000 / 3,000 |
+| Direct full-body image signature | 100 / 100 |
+| Anonymous-public production proxy | 100 / 100 |
+| Observed object failure rate | 0% |
+| 95% upper broken-object bound | 0.0998% |
+| Direct Storage HEAD p95 | 572.5 ms |
+| Full-body p95 | 593.0 ms |
+| Cold/no-cache production proxy p95 | 3,094.3 ms |
+
+Report fingerprint:
+`edbfe3fff6380e463655099b45fb850ce11068d77c713855c82a17a099d1bc15`.
+
+The earlier `69 / 100` proxy result was preserved as failed evidence and
+classified as an invalid anonymous cohort: `65` hidden MTG rows and `4` hidden
+One Piece rows were correctly denied by the release boundary. Their direct
+objects were present. No RLS or catalog-release boundary was widened. The cold
+proxy latency is not treated as a passing performance result; it remains part
+of the pending 2x load and latency gate.
+
 ## Verification
 
 - Repository full contract suite earlier in this lane: `2,359 passed`, `0 failed`.
 - Capacity forecast contract tests: `4 passed`, `0 failed`.
 - Current candidate targeted suite before this audit: `43 passed`, `0 failed`.
+- Production-backend contract suite after the image cohort repair: `38 passed`, `0 failed`.
+- Full repository shipcheck after both image-route repairs: Flutter `635 / 635`; all prior web, contract, type, lint, and build phases passed.
 - Current candidate syntax checks: passed.
 - `git diff --check`: passed.
 - GitHub Contracts Runtime Protection at `648ba5da0`: passed.
@@ -142,10 +175,9 @@ Temporary risk containment:
 3. Run a reconciled restore into a nonproduction Supabase project. PITR remains a separate plan decision.
 4. Define expected launch peak and pass stable 2x read-path load plus dependency-failure exercises.
 5. Run same-candidate signed-in web, Android, and iOS journeys for authentication, search, pricing, Vault, images, sharing, and memory links.
-6. Complete a current launch-wide self-hosted image delivery and fallback sample.
-7. Merge and deploy one frozen production candidate with a migration manifest and tested rollback target.
-8. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
-9. Reconcile the final report and only then make a separate public-rollout decision.
+6. Freeze and deploy one same-source production candidate across control plane, pricing/MEE, web, Android, and iOS with a migration manifest and tested rollback target.
+7. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
+8. Reconcile the final report and only then make a separate public-rollout decision.
 
 ## Background Lanes
 

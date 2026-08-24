@@ -1,12 +1,14 @@
 {
   "schema_version": "GROOKAI_PRODUCTION_BACKEND_CURRENT_LAUNCH_MATRIX_V1",
-  "observed_at": "2026-08-24T15:18:38.086Z",
+  "observed_at": "2026-08-24T16:30:15.000Z",
   "branch": "release/production-backend-launch-v1",
-  "candidate_commit_sha": "e56f33fc462190e39bfe4f4717d6c1ce9a6c15a0",
+  "candidate_commit_sha": "2dee90bc513188fd4535bd7c313798138add40dd",
+  "deployed_web_commit_sha": "e136393c47a9941a5e2b4a846566f697f9a0f9d9",
+  "deployed_web_deployment_id": "dpl_6xj6Wi6iAzuJHEj1AFSRc5r1ifsH",
   "launch_ready": false,
   "summary": {
-    "pass": 8,
-    "incomplete": 2,
+    "pass": 9,
+    "incomplete": 1,
     "blocked": 6
   },
   "gates": [
@@ -57,8 +59,8 @@
     },
     {
       "id": "image-delivery",
-      "status": "incomplete",
-      "truth": "Self-hosted image contracts and prior repairs exist, but a current launch-wide availability and latency sample is not registered to this candidate."
+      "status": "pass",
+      "truth": "The current launch-wide audit passed 3,000/3,000 direct self-hosted object reads, 100/100 full-body image-signature checks, and 100/100 anonymous-public production proxy reads with zero failures. The 95% upper broken-object bound is 0.0998%. Cold no-cache proxy p95 was 3.09 seconds and remains explicit input to the load/performance gate."
     },
     {
       "id": "background-isolation",

@@ -1,0 +1,73 @@
+{
+  "schema_version": "PRODUCTION_IMAGE_DELIVERY_SAMPLE_V1",
+  "observed_at": "2026-08-24T16:29:10.151Z",
+  "commit_sha": "e136393c47a9941a5e2b4a846566f697f9a0f9d9",
+  "status": "passed",
+  "selection": {
+    "seed": "PRODUCTION_IMAGE_DELIVERY_SAMPLE_V1_20260824",
+    "eligible_rows": 164227,
+    "selected_rows": 3000,
+    "representative_rows": 500,
+    "selection_sha256": "6508e595c15cc96a4c89dec1a94c18afdc41f9b454ef84bdd57bae85f5cfe5ac"
+  },
+  "proxy_selection": {
+    "audience": "anonymous_public",
+    "eligible_rows": 53424,
+    "selected_rows": 100,
+    "selection_sha256": "b90ba08549b1f29fdf317fc9e266f1ae4fc1d37678dcbbd498113de3b273f37d"
+  },
+  "summaries": {
+    "storage_head": {
+      "sample_count": 3000,
+      "success_count": 3000,
+      "failure_count": 0,
+      "observed_failure_rate": 0,
+      "upper_failure_rate_95": 0.0009980790119965555,
+      "latency_ms": {
+        "p50": 361.89940000000024,
+        "p95": 572.4732999999978,
+        "p99": 808.1814999999988,
+        "maximum": 5903.140800000001
+      }
+    },
+    "storage_body": {
+      "sample_count": 100,
+      "success_count": 100,
+      "failure_count": 0,
+      "observed_failure_rate": 0,
+      "upper_failure_rate_95": 0.029513049607039932,
+      "latency_ms": {
+        "p50": 403.3643000000011,
+        "p95": 593.0429999999978,
+        "p99": 685.3592000000062,
+        "maximum": 1124.3050000000003
+      }
+    },
+    "web_proxy_head": {
+      "sample_count": 100,
+      "success_count": 100,
+      "failure_count": 0,
+      "observed_failure_rate": 0,
+      "upper_failure_rate_95": 0.029513049607039932,
+      "latency_ms": {
+        "p50": 754.8483000000051,
+        "p95": 3094.3159000000014,
+        "p99": 5582.482400000001,
+        "maximum": 8375.251799999998
+      }
+    }
+  },
+  "failures": [],
+  "boundaries": {
+    "database_reads_only": true,
+    "storage_reads_only": true,
+    "web_reads_only": true,
+    "web_proxy_audience": "anonymous_public",
+    "database_writes": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "canonical_writes": false,
+    "vault_writes": false
+  },
+  "report_fingerprint_sha256": "edbfe3fff6380e463655099b45fb850ce11068d77c713855c82a17a099d1bc15"
+}
