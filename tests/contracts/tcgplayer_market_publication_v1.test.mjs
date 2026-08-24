@@ -65,6 +65,15 @@ const ASSIGNMENT_RUNTIME_REPAIR_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const SNAPSHOT_PAGING_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20260824033000_tcgplayer_market_snapshot_paging_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -603,7 +612,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_8/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
@@ -650,9 +659,27 @@ test("full-catalog staging, qualification, and artifact export remain bounded", 
   );
   assert.match(WORKER, /visitCandidateRowPages/);
   assert.match(WORKER, /visitStagedCandidatePages/);
+  assert.match(WORKER, /visitEligibleDecisionPages/);
+  assert.match(WORKER, /SNAPSHOT_DECISION_PAGE_SIZE = 1_000/);
+  assert.match(WORKER, /decision\.id = any\(\$6::uuid\[\]\)/);
+  assert.match(WORKER, /bounded snapshot scan mismatch/);
   assert.match(WORKER, /writeDatabaseDecisionJsonLines/);
   assert.match(WORKER, /prior_worker_terminated_without_terminal_state/);
   assert.doesNotMatch(WORKER, /const candidates = await stagedCandidates/);
+});
+
+test("snapshot pagination has a matching partial decision index", () => {
+  assert.match(
+    SNAPSHOT_PAGING_MIGRATION,
+    /market_price_qualification_run_publish_id_idx/i,
+  );
+  assert.match(
+    SNAPSHOT_PAGING_MIGRATION,
+    /on public\.market_price_qualification_decisions\(run_id, id\)/i,
+  );
+  assert.match(SNAPSHOT_PAGING_MIGRATION, /where eligible = true/i);
+  assert.match(SNAPSHOT_PAGING_MIGRATION, /decision = 'publish'/i);
+  assert.match(SNAPSHOT_PAGING_MIGRATION, /publication_lane = 'current'/i);
 });
 
 test("candidate reconciliation pins count, source run, and observation uniqueness", () => {

@@ -37,7 +37,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_8";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -53,6 +53,7 @@ const WRITE_MODES = new Set(["shadow", "canary", "production"]);
 const ACTIVATION_MODES = new Set(["canary", "production"]);
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const SNAPSHOT_DECISION_PAGE_SIZE = 1_000;
 
 function parseArgs(argv) {
   const args = {
@@ -988,6 +989,33 @@ async function visitStagedCandidatePages(client, runId, onPage) {
   return { processedCount, largestPageCount };
 }
 
+async function visitEligibleDecisionPages(client, runId, onPage) {
+  let afterId = null;
+  let processedCount = 0;
+  let largestPageCount = 0;
+  while (true) {
+    const result = await client.query(
+      `select id
+         from public.market_price_qualification_decisions
+        where run_id = $1
+          and eligible = true
+          and decision = 'publish'
+          and publication_lane = 'current'
+          and ($2::uuid is null or id > $2::uuid)
+        order by id
+        limit $3`,
+      [runId, afterId, SNAPSHOT_DECISION_PAGE_SIZE],
+    );
+    if (!result.rows.length) break;
+    const decisionIds = result.rows.map((row) => row.id);
+    await onPage(decisionIds);
+    processedCount += decisionIds.length;
+    largestPageCount = Math.max(largestPageCount, decisionIds.length);
+    afterId = decisionIds.at(-1);
+  }
+  return { processedCount, largestPageCount };
+}
+
 async function insertDecisions(client, decisions, batchSize) {
   for (const batch of chunks(decisions, batchSize)) {
     await client.query(
@@ -1172,7 +1200,14 @@ async function ensurePublicationSet(client, run) {
   return publicationSet;
 }
 
-async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
+async function insertSnapshots(
+  client,
+  run,
+  publicationSet,
+  phaseAttemptId,
+  decisionIds,
+) {
+  if (!decisionIds.length) return 0;
   const result = await client.query(
     `insert into public.market_price_publication_snapshots (
        publication_set_id,
@@ -1253,6 +1288,7 @@ async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
        and decision.eligible = true
        and decision.decision = 'publish'
        and decision.publication_lane = 'current'
+       and decision.id = any($6::uuid[])
      on conflict (
        publication_set_id,
        source_observation_id,
@@ -1265,6 +1301,7 @@ async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
       phaseAttemptId,
       SNAPSHOT_SCHEMA_VERSION,
       WORKER_VERSION,
+      decisionIds,
     ],
   );
   return result.rowCount;
@@ -1855,7 +1892,20 @@ async function runDurable(client, args, sourceRun, runPlan) {
       phaseName: "build_publication",
       operation: async ({ phaseAttemptId }) => {
         publicationSet = await ensurePublicationSet(client, run);
-        await insertSnapshots(client, run, publicationSet, phaseAttemptId);
+        let insertedCount = 0;
+        const progress = await visitEligibleDecisionPages(
+          client,
+          run.id,
+          async (decisionIds) => {
+            insertedCount += await insertSnapshots(
+              client,
+              run,
+              publicationSet,
+              phaseAttemptId,
+              decisionIds,
+            );
+          },
+        );
         const counts = await decisionCounts(client, run.id);
         const snapshotResult = await client.query(
           `select count(*)::integer as snapshot_count
@@ -1870,11 +1920,22 @@ async function runDurable(client, args, sourceRun, runPlan) {
             `snapshot build mismatch eligible=${counts.eligible_count} snapshots=${snapshotCount}`,
           );
         }
+        if (progress.processedCount !== counts.eligible_count) {
+          throw new Error(
+            `bounded snapshot scan mismatch eligible=${counts.eligible_count} processed=${progress.processedCount}`,
+          );
+        }
         return {
           input_count: counts.eligible_count,
           output_count: snapshotCount,
           reconciled_count: snapshotCount,
-          resumability_data: { publication_set_id: publicationSet.id },
+          resumability_data: {
+            publication_set_id: publicationSet.id,
+            inserted_snapshot_count: insertedCount,
+            processed_decision_count: progress.processedCount,
+            largest_in_memory_page_count: progress.largestPageCount,
+            snapshot_decision_page_size: SNAPSHOT_DECISION_PAGE_SIZE,
+          },
         };
       },
     });
