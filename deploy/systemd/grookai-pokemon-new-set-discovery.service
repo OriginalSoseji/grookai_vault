@@ -11,6 +11,7 @@ Group=grookai
 WorkingDirectory=/opt/grookai_pricing_current
 EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
 Environment=POKEMON_NEW_SET_DISCOVERY_STATE_DIR=/var/lib/grookai/new-set-discovery
+Environment=GROOKAI_DEPLOYED_COMMIT_SHA=unknown
 ExecStart=/usr/bin/flock -n /run/lock/grookai-pokemon-new-set-discovery.lock /usr/bin/node scripts/workers/pokemon_new_set_discovery_monitor_v1.mjs --notify
 TimeoutStartSec=10m
 Nice=8

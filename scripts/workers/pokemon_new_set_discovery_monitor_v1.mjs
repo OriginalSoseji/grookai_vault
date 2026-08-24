@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
@@ -361,17 +362,11 @@ async function notify(report, runDir, previousState) {
   const url = clean(process.env.GROOKAI_OPERATIONS_WEBHOOK_URL);
   const token = clean(process.env.GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN);
   if (!url || !token) throw new Error('operations webhook URL and bearer token are required with --notify');
-  const payload = {
-    notification_version: WORKER_VERSION,
-    notification_id: sha256(`new_set_discovery|${newFingerprint}`),
-    event: 'pokemon_new_set_discovery_candidate',
-    severity: 'warning',
-    created_at: report.observed_at,
-    source_unit: 'grookai-pokemon-new-set-discovery.service',
-    candidate_fingerprint_sha256: newFingerprint,
-    review_required_count: alertCandidates.length,
-    candidates: alertCandidates.map((row) => ({ group_id: row.group_id, name: row.name, kind: row.group_kind }))
-  };
+  const payload = buildNotificationPayloadV1({
+    report,
+    alertCandidates,
+    candidateFingerprint: newFingerprint
+  });
   await writeJson(path.join(runDir, 'notification_payload.json'), payload);
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 15_000);
@@ -389,6 +384,28 @@ async function notify(report, runDir, previousState) {
   } finally {
     clearTimeout(timer);
   }
+}
+
+export function buildNotificationPayloadV1({
+  report,
+  alertCandidates,
+  candidateFingerprint,
+  hostname = os.hostname(),
+  deployedCommitSha = clean(process.env.GROOKAI_DEPLOYED_COMMIT_SHA ?? process.env.GITHUB_SHA)
+}) {
+  return {
+    notification_version: WORKER_VERSION,
+    notification_id: sha256(`new_set_discovery|${candidateFingerprint}`),
+    event: 'pokemon_new_set_discovery_candidate',
+    severity: 'warning',
+    created_at: report.observed_at,
+    host: hostname,
+    unit: 'grookai-pokemon-new-set-discovery.service',
+    commit_sha: deployedCommitSha,
+    candidate_fingerprint_sha256: candidateFingerprint,
+    review_required_count: alertCandidates.length,
+    candidates: alertCandidates.map((row) => ({ group_id: row.group_id, name: row.name, kind: row.group_kind }))
+  };
 }
 
 export async function runPokemonNewSetDiscoveryMonitorV1({ argv = process.argv.slice(2), now = new Date() } = {}) {

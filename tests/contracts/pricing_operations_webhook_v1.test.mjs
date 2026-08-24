@@ -6,6 +6,10 @@ const migration = readFileSync(
   "supabase/migrations/20260728050000_pricing_operations_notification_webhook_v1.sql",
   "utf8",
 );
+const severityMigration = readFileSync(
+  "supabase/migrations/20260824043000_operations_notification_severity_v2.sql",
+  "utf8",
+);
 const webhook = readFileSync(
   "supabase/functions/operations-webhook-v1/index.ts",
   "utf8",
@@ -72,6 +76,34 @@ test("operations webhook requires its own bearer and dispatches the exact alert"
   assert.match(webhook, /operations_notification_id: notificationId/);
   assert.match(webhook, /MAX_PAYLOAD_BYTES/);
   assert.doesNotMatch(webhook, /service_role.*eyJ/i);
+  assert.match(webhook, /SUPPORTED_SEVERITIES/);
+  for (const severity of ["critical", "high", "warning", "info"]) {
+    assert.match(webhook, new RegExp(`"${severity}"`));
+  }
+});
+
+test("operations severity V2 remains private, founder-only, and idempotent", () => {
+  assert.match(
+    severityMigration,
+    /severity in \('critical', 'high', 'warning', 'info'\)/i,
+  );
+  assert.match(severityMigration, /entitlements\.role = 'founder'/);
+  assert.match(
+    severityMigration,
+    /on conflict \(recipient_user_id, dedupe_key\) do nothing/i,
+  );
+  assert.match(
+    severityMigration,
+    /revoke all on function public\.enqueue_operations_notification_v1\(jsonb\)\s+from public, anon, authenticated/i,
+  );
+  assert.match(
+    severityMigration,
+    /grant execute on function public\.enqueue_operations_notification_v1\(jsonb\)\s+to service_role/i,
+  );
+  assert.doesNotMatch(
+    severityMigration,
+    /grant\s+(?:select|insert|update|delete|all)\s+on\s+public\.operations_notification_events\s+to\s+(?:public|anon|authenticated)/i,
+  );
 });
 
 test("shared-secret operations functions bypass the Supabase JWT gateway", () => {
@@ -85,7 +117,7 @@ test("shared-secret operations functions bypass the Supabase JWT gateway", () =>
   );
 });
 
-test("dispatcher treats operations alerts as non-card critical notifications", () => {
+test("dispatcher treats operations alerts as private non-card notifications", () => {
   assert.match(dispatcher, /outbox\.event_type === "operations_alert"/);
   assert.match(dispatcher, /notification_dispatcher_claim_operations_alert_v1/);
   assert.match(dispatcher, /if \(!isOperationsAlert && !row\.card_print_id\)/);

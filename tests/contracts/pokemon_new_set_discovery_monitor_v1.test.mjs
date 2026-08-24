@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import test from 'node:test';
 
 import {
+  buildNotificationPayloadV1,
   buildDiscoveryReportV1,
   classifySourceGroupV1,
   normalizeSetNameV1,
@@ -103,4 +104,21 @@ test('runtime and service preserve read-only, alerting, and canonical boundaries
   assert.match(service, /ProtectSystem=strict/);
   assert.match(service, /\/opt\/grookai_pricing_current/);
   assert.doesNotMatch(service, /MemoryDenyWriteExecute=true/, 'Node/V8 requires executable JIT memory');
+  assert.match(service, /GROOKAI_DEPLOYED_COMMIT_SHA=/);
+});
+
+test('review-required discovery alerts satisfy the governed operations payload contract', () => {
+  const payload = buildNotificationPayloadV1({
+    report: { observed_at: NOW.toISOString() },
+    alertCandidates: [{ group_id: 24831, name: 'ME06: Delta Reign', group_kind: 'expansion' }],
+    candidateFingerprint: 'candidate-fingerprint',
+    hostname: 'discovery.test',
+    deployedCommitSha: 'frozen-sha'
+  });
+  assert.equal(payload.severity, 'warning');
+  assert.equal(payload.host, 'discovery.test');
+  assert.equal(payload.unit, 'grookai-pokemon-new-set-discovery.service');
+  assert.equal(payload.commit_sha, 'frozen-sha');
+  assert.equal(payload.review_required_count, 1);
+  assert.equal(Object.hasOwn(payload, 'source_unit'), false);
 });
