@@ -1,0 +1,248 @@
+{
+  "schema_version": "PRODUCTION_SUPABASE_CAPACITY_FORECAST_V1",
+  "observed_at": "2026-08-24T15:05:33Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "source_evidence": {
+    "managed_disk": "Supabase Management API GET /v1/projects/ycdxbpibncqcchqiihfz/config/disk and /config/disk/util",
+    "relation_statistics": "read-only pg_stat_user_tables and pg_total_relation_size query at 2026-08-24T15:09Z",
+    "pricing_cycle": "docs/audits/production_backend_launch_v1/pricing_incident_20260824/publication_summary.json",
+    "mee_cycle": "C:/secure-ops/production-backend-launch/mee/20260824T055224Z_c434101ee/mee_12c_market_listing_nightly_ingest_readback_2026-08-24T07-45-46-571Z.json",
+    "storage_history": "read-only storage.objects 90-day daily object-count and metadata-size aggregation at 2026-08-24T15:10Z"
+  },
+  "status": "failed",
+  "findings": [
+    {
+      "severity": "high",
+      "code": "managed_disk_at_or_above_70_percent",
+      "detail": "Managed database disk utilization exceeds the frozen launch target.",
+      "evidence": {
+        "utilization": 0.7233414169875895
+      }
+    },
+    {
+      "severity": "critical",
+      "code": "managed_disk_30_day_forecast_exceeds_90_percent",
+      "detail": "The conservative lower-bound 30-day database growth forecast exceeds 90 percent managed disk utilization.",
+      "evidence": {
+        "projected_30_day_utilization": 1.0220694334068923
+      }
+    },
+    {
+      "severity": "high",
+      "code": "managed_disk_2x_90_day_headroom_missing",
+      "detail": "Available managed disk does not provide the required 2x projected 90-day database growth headroom.",
+      "evidence": {
+        "available_bytes": 88558948352,
+        "required_bytes": 573740500424.3595,
+        "deficit_bytes": 485181552072.3595
+      }
+    },
+    {
+      "severity": "unmeasured",
+      "code": "storage_plan_capacity_unmeasured",
+      "detail": "Storage plan capacity is not present in the evidence snapshot, so planned utilization cannot pass.",
+      "evidence": {}
+    },
+    {
+      "severity": "unmeasured",
+      "code": "connection_load_forecast_unverified",
+      "detail": "The 2x connection calculation is diagnostic only until the launch load test is complete.",
+      "evidence": {}
+    },
+    {
+      "severity": "unmeasured",
+      "code": "egress_forecast_unverified",
+      "detail": "A provider-backed 30-day and 90-day egress forecast has not been supplied.",
+      "evidence": {}
+    },
+    {
+      "severity": "medium",
+      "code": "managed_disk_autoscale_unconfigured",
+      "detail": "Managed disk autoscale is not configured in the provider snapshot.",
+      "evidence": {}
+    }
+  ],
+  "metrics": {
+    "managed_disk": {
+      "configured_size_gb": 303,
+      "fs_size_bytes": 320101937152,
+      "fs_used_bytes": 231542988800,
+      "fs_avail_bytes": 88558948352,
+      "utilization": 0.7233414169875895,
+      "threshold_forecast": {
+        "70": {
+          "threshold_percent": 70,
+          "threshold_bytes": 224071356006.4,
+          "remaining_bytes": -7471632793.600006,
+          "days_until_threshold": 0
+        },
+        "80": {
+          "threshold_percent": 80,
+          "threshold_bytes": 256081549721.6,
+          "remaining_bytes": 24538560921.600006,
+          "days_until_threshold": 7.698499517850091
+        },
+        "90": {
+          "threshold_percent": 90,
+          "threshold_bytes": 288091743436.8,
+          "remaining_bytes": 56548754636.79999,
+          "days_until_threshold": 17.741079507365093
+        },
+        "100": {
+          "threshold_percent": 100,
+          "threshold_bytes": 320101937152,
+          "remaining_bytes": 88558948352,
+          "days_until_threshold": 27.783659496880105
+        }
+      },
+      "projected_daily_database_bytes_lower_bound": 3187447224.579775,
+      "projected_30_day_database_bytes_lower_bound": 95623416737.39325,
+      "projected_90_day_database_bytes_lower_bound": 286870250212.17975,
+      "projected_30_day_utilization_lower_bound": 1.0220694334068923,
+      "projected_90_day_utilization_lower_bound": 1.6195254662454974,
+      "required_2x_90_day_headroom_bytes": 573740500424.3595,
+      "headroom_deficit_bytes": 485181552072.3595
+    },
+    "storage": {
+      "current_bytes": 31838610700,
+      "current_objects": 167734,
+      "observed_30_day_new_bytes": 19310094155,
+      "observed_90_day_new_bytes": 31390410535,
+      "projected_30_day_bytes_at_recent_rate": 51148704855,
+      "projected_90_day_bytes_at_recent_rate": 89768893165,
+      "plan_capacity_bytes": null,
+      "burst_sensitive": true
+    },
+    "connections": {
+      "current": 21,
+      "maximum": 90,
+      "current_utilization": 0.23333333333333334,
+      "diagnostic_2x_utilization": 0.4666666666666667,
+      "load_test_verified": false
+    },
+    "egress": {
+      "forecast_verified": false
+    }
+  },
+  "relation_growth": [
+    {
+      "relation": "tcgcsv_source_price_daily_observations",
+      "workload": "tcgplayer_source",
+      "total_bytes": 104558796800,
+      "live_rows": 111160278,
+      "cycle_insert_rows": 546333,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 940.6129480892446,
+      "projected_daily_bytes": 513887893.76844126
+    },
+    {
+      "relation": "market_listing_raw_snapshots",
+      "workload": "mee",
+      "total_bytes": 18237587456,
+      "live_rows": 8432826,
+      "cycle_insert_rows": 222947,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 2162.6898807114007,
+      "projected_daily_bytes": 482165220.83496463
+    },
+    {
+      "relation": "market_listing_price_events",
+      "workload": "mee",
+      "total_bytes": 10867023872,
+      "live_rows": 8567659,
+      "cycle_insert_rows": 222947,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 1268.3772629139419,
+      "projected_daily_bytes": 282780905.6348746
+    },
+    {
+      "relation": "market_listing_card_candidates",
+      "workload": "mee",
+      "total_bytes": 5553143808,
+      "live_rows": 3411253,
+      "cycle_insert_rows": 181745,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 1627.8897542926309,
+      "projected_daily_bytes": 295860823.3939142
+    },
+    {
+      "relation": "market_listing_observations",
+      "workload": "mee",
+      "total_bytes": 5545656320,
+      "live_rows": 8447759,
+      "cycle_insert_rows": 222947,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 656.4647878804308,
+      "projected_daily_bytes": 146356855.0635784
+    },
+    {
+      "relation": "market_listing_seller_snapshots",
+      "workload": "mee",
+      "total_bytes": 301645824,
+      "live_rows": 764280,
+      "cycle_insert_rows": 18667,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 394.6797299419061,
+      "projected_daily_bytes": 7367486.518825561
+    },
+    {
+      "relation": "market_listing_rollups",
+      "workload": "mee",
+      "total_bytes": 277512192,
+      "live_rows": 165002,
+      "cycle_insert_rows": 5892,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 1681.8716864038013,
+      "projected_daily_bytes": 9909587.976291196
+    },
+    {
+      "relation": "market_price_pipeline_candidates",
+      "workload": "pricing_publication",
+      "total_bytes": 7134912512,
+      "live_rows": 2224666,
+      "cycle_insert_rows": 206227,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 3207.183690495562,
+      "projected_daily_bytes": 661407870.9398283
+    },
+    {
+      "relation": "market_price_qualification_decisions",
+      "workload": "pricing_publication",
+      "total_bytes": 5307932672,
+      "live_rows": 1980910,
+      "cycle_insert_rows": 206227,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 2679.542569829018,
+      "projected_daily_bytes": 552594025.5481288
+    },
+    {
+      "relation": "market_price_publication_snapshots",
+      "workload": "pricing_publication",
+      "total_bytes": 1842159616,
+      "live_rows": 1285997,
+      "cycle_insert_rows": 164133,
+      "cycles_per_day": 1,
+      "estimated_bytes_per_row": 1432.4758269265014,
+      "projected_daily_bytes": 235116554.90092745
+    }
+  ],
+  "methodology": {
+    "database_forecast": "lower_bound_current_relation_bytes_per_live_row_times_observed_rows_per_cycle_times_cycles_per_day",
+    "storage_forecast": "recent_30_day_object_bytes_rate; burst-sensitive and not a capacity pass without the plan limit",
+    "limitations": [
+      "Database forecast excludes WAL, system overhead, bloat changes, and tables not listed in relation_growth_inputs.",
+      "Storage history includes one-time bulk image activity and must not be treated as a steady-state commitment.",
+      "Connection doubling is diagnostic until the controlled 2x load test runs."
+    ]
+  },
+  "boundaries": {
+    "provider_reads_only": true,
+    "database_reads_only": true,
+    "paid_plan_changes": false,
+    "worker_schedule_changes": false,
+    "database_writes": false,
+    "storage_writes": false,
+    "deletes": false
+  },
+  "report_fingerprint_sha256": "5c18bfd198a40fc94005fdaf42a0eac9b4452a8b0037e13af28ed42ef21f250d"
+}

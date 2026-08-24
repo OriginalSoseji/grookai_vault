@@ -1,0 +1,125 @@
+{
+  "schema_version": "PRODUCTION_SUPABASE_CAPACITY_FORECAST_INPUT_V1",
+  "observed_at": "2026-08-24T15:05:33Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "source_evidence": {
+    "managed_disk": "Supabase Management API GET /v1/projects/ycdxbpibncqcchqiihfz/config/disk and /config/disk/util",
+    "relation_statistics": "read-only pg_stat_user_tables and pg_total_relation_size query at 2026-08-24T15:09Z",
+    "pricing_cycle": "docs/audits/production_backend_launch_v1/pricing_incident_20260824/publication_summary.json",
+    "mee_cycle": "C:/secure-ops/production-backend-launch/mee/20260824T055224Z_c434101ee/mee_12c_market_listing_nightly_ingest_readback_2026-08-24T07-45-46-571Z.json",
+    "storage_history": "read-only storage.objects 90-day daily object-count and metadata-size aggregation at 2026-08-24T15:10Z"
+  },
+  "managed_disk": {
+    "configured_size_gb": 303,
+    "fs_size_bytes": 320101937152,
+    "fs_used_bytes": 231542988800,
+    "fs_avail_bytes": 88558948352
+  },
+  "autoscale": {
+    "configured": false,
+    "growth_percent": null,
+    "min_increment_gb": null,
+    "max_size_gb": null
+  },
+  "database": {
+    "current_bytes": 228119088275
+  },
+  "storage": {
+    "current_bytes": 31838610700,
+    "current_objects": 167734,
+    "observed_30_day_new_bytes": 19310094155,
+    "observed_90_day_new_bytes": 31390410535,
+    "plan_capacity_bytes": null,
+    "burst_sensitive": true
+  },
+  "connections": {
+    "current": 21,
+    "maximum": 90,
+    "load_test_verified": false
+  },
+  "egress": {
+    "forecast_verified": false
+  },
+  "relation_growth_inputs": [
+    {
+      "relation": "tcgcsv_source_price_daily_observations",
+      "workload": "tcgplayer_source",
+      "total_bytes": 104558796800,
+      "live_rows": 111160278,
+      "cycle_insert_rows": 546333,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_listing_raw_snapshots",
+      "workload": "mee",
+      "total_bytes": 18237587456,
+      "live_rows": 8432826,
+      "cycle_insert_rows": 222947,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_listing_price_events",
+      "workload": "mee",
+      "total_bytes": 10867023872,
+      "live_rows": 8567659,
+      "cycle_insert_rows": 222947,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_listing_card_candidates",
+      "workload": "mee",
+      "total_bytes": 5553143808,
+      "live_rows": 3411253,
+      "cycle_insert_rows": 181745,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_listing_observations",
+      "workload": "mee",
+      "total_bytes": 5545656320,
+      "live_rows": 8447759,
+      "cycle_insert_rows": 222947,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_listing_seller_snapshots",
+      "workload": "mee",
+      "total_bytes": 301645824,
+      "live_rows": 764280,
+      "cycle_insert_rows": 18667,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_listing_rollups",
+      "workload": "mee",
+      "total_bytes": 277512192,
+      "live_rows": 165002,
+      "cycle_insert_rows": 5892,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_price_pipeline_candidates",
+      "workload": "pricing_publication",
+      "total_bytes": 7134912512,
+      "live_rows": 2224666,
+      "cycle_insert_rows": 206227,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_price_qualification_decisions",
+      "workload": "pricing_publication",
+      "total_bytes": 5307932672,
+      "live_rows": 1980910,
+      "cycle_insert_rows": 206227,
+      "cycles_per_day": 1
+    },
+    {
+      "relation": "market_price_publication_snapshots",
+      "workload": "pricing_publication",
+      "total_bytes": 1842159616,
+      "live_rows": 1285997,
+      "cycle_insert_rows": 164133,
+      "cycles_per_day": 1
+    }
+  ]
+}

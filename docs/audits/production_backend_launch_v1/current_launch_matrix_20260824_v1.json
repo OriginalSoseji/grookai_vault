@@ -1,13 +1,13 @@
 {
   "schema_version": "GROOKAI_PRODUCTION_BACKEND_CURRENT_LAUNCH_MATRIX_V1",
-  "observed_at": "2026-08-24T07:52:19.237Z",
+  "observed_at": "2026-08-24T15:18:38.086Z",
   "branch": "release/production-backend-launch-v1",
-  "candidate_commit_sha": "648ba5da0fe5cc70992dc1bf3a583fff9938d0c4",
+  "candidate_commit_sha": "e56f33fc462190e39bfe4f4717d6c1ce9a6c15a0",
   "launch_ready": false,
   "summary": {
     "pass": 8,
-    "incomplete": 3,
-    "blocked": 5
+    "incomplete": 2,
+    "blocked": 6
   },
   "gates": [
     {
@@ -18,7 +18,7 @@
     {
       "id": "live-control-plane",
       "status": "pass",
-      "truth": "The 15-minute production control-plane timer is active. The current report has 14 healthy, zero failed, zero degraded, zero stale, and four explicitly unmeasured Class C components."
+      "truth": "The 15-minute production control-plane timer is active. The unattended 2026-08-24T15:15:14.456Z report identifies exact runtime SHA e56f33fc462190e39bfe4f4717d6c1ce9a6c15a0 and has 14 healthy, zero failed, zero degraded, zero stale, and four explicitly unmeasured Class C components."
     },
     {
       "id": "alert-delivery",
@@ -52,8 +52,8 @@
     },
     {
       "id": "supabase-capacity-performance",
-      "status": "incomplete",
-      "truth": "Database and Storage use are measured, but plan capacity limits and 30/90-day growth forecasts are not. Cumulative cache hit is 0.924253 and needs interval/load measurement."
+      "status": "blocked",
+      "truth": "Managed disk is 72.33% utilized, above the frozen launch target. Conservative measured append growth is 3.187 GB/day, projects 80% in 7.70 days and full disk in 27.78 days, and leaves a 485.18 GB deficit against required 2x 90-day headroom. MEE is reversibly throttled to one call nightly; Storage plan capacity, egress, and interval/load behavior remain unmeasured."
     },
     {
       "id": "image-delivery",

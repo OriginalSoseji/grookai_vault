@@ -1,25 +1,30 @@
 # Production Backend Launch V1 Current Readiness
 
-**Observed:** `2026-08-24T07:52:19.237Z`
+**Observed:** `2026-08-24T15:18:38.086Z`
 
 **Branch:** `release/production-backend-launch-v1`
 
-**Candidate SHA:** `648ba5da0fe5cc70992dc1bf3a583fff9938d0c4`
+**Deployed control-plane SHA:** `e56f33fc462190e39bfe4f4717d6c1ce9a6c15a0`
+
+**Deployed pricing/MEE SHA:** `4b6064a5fb7eeacb7887c240735fc6dd8ffec06f`
 
 **Launch verdict:** **NOT READY**
 
 ## Completed In This Gate
 
-- The live control plane is deployed from the candidate SHA and runs every 15 minutes.
+- The live control plane is deployed from immutable release `e56f33fc46` and runs every 15 minutes.
 - Current topology status is 14 healthy, zero failed, zero degraded, zero stale, and four unmeasured Class C lanes.
+- The unattended `2026-08-24T15:15:14.456Z` timer run reported the exact deployed SHA and the same healthy status.
 - Launch-critical control-plane findings produce governed operations notifications with stable transition-based deduplication and a six-hour cooldown.
 - Scanner V3 and V5 are active and pass direct HTTP health checks.
 - New-set discovery is active, fresh, and contains seven review-required candidates without promoting them.
 - The production pricing recovery run is terminal and reconciled. Its daily timer is active for `08:15 UTC`.
+- The completed pricing cycle selected `206,227` rows, published `164,133` exact current snapshots, and reconciled `164,133 / 164,133 / 164,133` eligible, snapshot, and traced rows with zero broken traces.
 - A fresh MEE cycle completed under systemd supervision with no retry or provider refetch after its initial acquisition.
 - The fresh read-only Supabase audit found no critical or high security or database-health finding.
 - The managed-control audit confirms a fresh seven-point physical backup chain and WAL-G support.
-- The MEE retention planner made no deletion because available disk already exceeds its configured free-space floor.
+- Supabase managed disk capacity is now measured and fails the launch target. No data was deleted and no paid capacity change was made.
+- The internal-only MEE acquisition lane was reversibly throttled from `4,000` to `1` provider call per nightly cycle. Its provider-free, write-free dry run completed with zero findings.
 
 ## Fresh MEE Proof
 
@@ -89,10 +94,42 @@ Host evidence after MEE:
 - Retention action: none; capacity already satisfied.
 - Failed systemd units: zero.
 
+## Capacity Forecast
+
+Supabase Management API and read-only database statistics observed at `2026-08-24T15:05:33Z`:
+
+| Measure | Current value |
+| --- | ---: |
+| Managed disk configured size | 303 GB |
+| Managed filesystem size | 320,101,937,152 bytes |
+| Managed filesystem used | 231,542,988,800 bytes |
+| Managed filesystem available | 88,558,948,352 bytes |
+| Managed disk utilization | 72.33% |
+| Lower-bound measured database growth | 3,187,447,225 bytes/day |
+| Days to 80% at measured rate | 7.70 |
+| Days to 90% at measured rate | 17.74 |
+| Days to full at measured rate | 27.78 |
+| Lower-bound 30-day utilization | 102.21% |
+| Required 2x 90-day headroom | 573,740,500,424 bytes |
+| 2x 90-day headroom deficit | 485,181,552,072 bytes |
+
+The database-growth estimate uses current relation bytes per live row multiplied by rows written in the reconciled TCGPlayer, MEE, and publication cycles. It is a lower bound because it excludes WAL, system overhead, bloat changes, and unlisted relations. Storage added `19,310,094,155` bytes in the last 30 days, but that period includes a one-time bulk image event; Storage plan capacity and provider egress remain unmeasured.
+
+This gate is **BLOCKED**. Current utilization already exceeds the frozen `<70%` target and cannot provide the required 2x projected 90-day headroom. Resolving it requires a separately governed capacity and/or hash-verified archival-retention decision.
+
+Temporary risk containment:
+
+- MEE nightly acquisition ceiling: `1` call.
+- MEE timer: still active; next scheduled cycle remains supervised.
+- TCGPlayer source and exact pricing publication: unchanged.
+- Provider calls during throttle verification: `0`.
+- Database, Storage, canonical, pricing, and Vault writes during throttle verification: `0`.
+
 ## Verification
 
 - Repository full contract suite earlier in this lane: `2,359 passed`, `0 failed`.
-- Current candidate targeted suite: `43 passed`, `0 failed`.
+- Capacity forecast contract tests: `4 passed`, `0 failed`.
+- Current candidate targeted suite before this audit: `43 passed`, `0 failed`.
 - Current candidate syntax checks: passed.
 - `git diff --check`: passed.
 - GitHub Contracts Runtime Protection at `648ba5da0`: passed.
@@ -100,14 +137,15 @@ Host evidence after MEE:
 
 ## Remaining Hard Gates
 
-1. Measure Supabase plan limits and produce 30-day and 90-day database, Storage, egress, and connection forecasts. No paid plan change is authorized by this gate.
-2. Run a reconciled restore into a nonproduction Supabase project. PITR remains a separate plan decision.
-3. Define expected launch peak and pass stable 2x read-path load plus dependency-failure exercises.
-4. Run same-candidate signed-in web, Android, and iOS journeys for authentication, search, pricing, Vault, images, sharing, and memory links.
-5. Complete a current launch-wide self-hosted image delivery and fallback sample.
-6. Merge and deploy one frozen production candidate with a migration manifest and tested rollback target.
-7. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
-8. Reconcile the final report and only then make a separate public-rollout decision.
+1. Resolve the managed-disk capacity blocker through a separately authorized capacity and/or hash-verified archival-retention plan. No paid plan change or destructive retention action is authorized by this checkpoint.
+2. Measure the remaining Storage plan limit and provider egress forecast.
+3. Run a reconciled restore into a nonproduction Supabase project. PITR remains a separate plan decision.
+4. Define expected launch peak and pass stable 2x read-path load plus dependency-failure exercises.
+5. Run same-candidate signed-in web, Android, and iOS journeys for authentication, search, pricing, Vault, images, sharing, and memory links.
+6. Complete a current launch-wide self-hosted image delivery and fallback sample.
+7. Merge and deploy one frozen production candidate with a migration manifest and tested rollback target.
+8. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
+9. Reconcile the final report and only then make a separate public-rollout decision.
 
 ## Background Lanes
 
@@ -115,4 +153,4 @@ MTG supervision is healthy. Japanese, One Piece, cross-TCG sealed, and Funko rem
 
 ## Boundary
 
-This gate did not delete user data, mutate Vault ownership, change canonical identity, widen RLS, publish MEE-derived prices, create public access, enable a Class C worker, buy infrastructure, or authorize public rollout.
+This gate did not delete user or warehouse data, mutate Vault ownership, change canonical identity, widen RLS, publish MEE-derived prices, create public access, enable a Class C worker, buy infrastructure, or authorize public rollout.
