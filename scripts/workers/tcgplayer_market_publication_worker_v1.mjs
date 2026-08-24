@@ -37,7 +37,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_7";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_8";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -301,7 +301,7 @@ async function latestSourceRun(client, expectedSourceSyncRunId = null) {
        sync_run.failed_count,
        artifact.id as source_artifact_id,
        artifact.sha256 as source_artifact_hash
-     from public.tcgcsv_source_sync_runs sync_run
+     from selected_sync_run sync_run
      left join lateral (
        select source_artifact.id, source_artifact.sha256
        from public.tcgcsv_source_artifacts source_artifact
