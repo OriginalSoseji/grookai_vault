@@ -13,6 +13,7 @@ import {
 } from '../../scripts/audits/production_supabase_metrics_snapshot_v1.mjs';
 import {
   evaluateBackendLaunchAutomationV1,
+  reconcileExternalControlPlaneEvidenceV1,
   reconcileDiskAutoscaleEvidenceV1
 } from '../../scripts/audits/production_backend_launch_automation_v1.mjs';
 import {
@@ -229,6 +230,57 @@ test('unmeasured launch-critical control-plane evidence still fails closed', () 
   const result = evaluateBackendLaunchAutomationV1(launchInput({ controlPlane }));
   assert.equal(controlPlane.launch_status, 'incomplete');
   assert.ok(result.findings.some((row) => row.code === 'control_plane_incomplete'));
+});
+
+test('fresh external control-plane evidence is reconciled against local topology', () => {
+  const topology = {
+    components: [
+      { id: 'scanner-identity', workload_class: 'A', criticality: 'launch_critical' },
+      { id: 'japanese-master-index', workload_class: 'C', criticality: 'background' }
+    ]
+  };
+  const report = {
+    schema_version: 'GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1',
+    observed_at: new Date(NOW.getTime() - 5 * 60_000).toISOString(),
+    commit_sha: 'abc123',
+    overall_status: 'incomplete',
+    summary: { healthy: 1, degraded: 0, failed: 0, stale: 0, unmeasured: 1 },
+    components: [
+      { component_id: 'scanner-identity', status: 'healthy' },
+      { component_id: 'japanese-master-index', status: 'unmeasured' }
+    ]
+  };
+  const reconciled = reconcileExternalControlPlaneEvidenceV1({ report, topology, now: NOW });
+  assert.equal(reconciled.launch_status, 'healthy');
+  assert.equal(reconciled.launch_summary.unmeasured, 0);
+  assert.equal(reconciled.external_evidence_validation.status, 'passed');
+});
+
+test('stale or structurally inconsistent external control-plane evidence fails closed', () => {
+  const topology = { components: [{ id: 'scanner-identity', workload_class: 'A', criticality: 'launch_critical' }] };
+  const stale = {
+    schema_version: 'GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1',
+    observed_at: new Date(NOW.getTime() - 31 * 60_000).toISOString(),
+    summary: { healthy: 1, degraded: 0, failed: 0, stale: 0, unmeasured: 0 },
+    components: [{ component_id: 'scanner-identity', status: 'healthy' }]
+  };
+  assert.throws(
+    () => reconcileExternalControlPlaneEvidenceV1({ report: stale, topology, now: NOW }),
+    /not fresh/
+  );
+  const duplicate = {
+    ...stale,
+    observed_at: NOW.toISOString(),
+    summary: { healthy: 2, degraded: 0, failed: 0, stale: 0, unmeasured: 0 },
+    components: [
+      { component_id: 'scanner-identity', status: 'healthy' },
+      { component_id: 'scanner-identity', status: 'healthy' }
+    ]
+  };
+  assert.throws(
+    () => reconcileExternalControlPlaneEvidenceV1({ report: duplicate, topology, now: NOW }),
+    /duplicate component IDs/
+  );
 });
 
 test('clean evidence allows the launch gate', () => {

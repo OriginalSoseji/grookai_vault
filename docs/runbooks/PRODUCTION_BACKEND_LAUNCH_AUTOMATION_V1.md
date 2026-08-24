@@ -17,7 +17,8 @@ public rollout.
 ```powershell
 npm run production:launch:automate -- `
   --billing-evidence=docs/audits/production_backend_launch_v1/operator_evidence/supabase_billing_capacity_observation_20260824_v1.json `
-  --load-evidence=docs/audits/production_backend_launch_v1/read_load_gate_20260824_v1.json
+  --load-evidence=docs/audits/production_backend_launch_v1/read_load_gate_20260824_v1.json `
+  --control-plane-evidence=C:\secure-ops\production-backend-launch\control-plane-runtime-evidence\<timestamp>\live_control_plane_v1.json
 ```
 
 Use `--require-ready` in CI to return a nonzero exit when the release remains
@@ -81,6 +82,12 @@ Control-plane reports preserve every background component and its status, but
 launch readiness is evaluated through the separate launch-critical summary.
 An unmeasured Class C background lane remains visible without blocking launch;
 an unmeasured launch-critical or release-evidence component still fails closed.
+
+When `--control-plane-evidence` is supplied, the automation preserves the exact
+remote source report and independently reconciles its components against the
+repository topology. The report must use the V1 schema, be no more than 30
+minutes old, contain no duplicate or unknown component IDs, and reconcile with
+its own summary. Invalid or stale remote evidence aborts the run.
 
 ## Scheduled Operation
 

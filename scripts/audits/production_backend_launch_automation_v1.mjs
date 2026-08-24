@@ -7,6 +7,8 @@ import { promisify } from 'node:util';
 import { pathToFileURL } from 'node:url';
 
 import '../../backend/env.mjs';
+import { TOPOLOGY_PATH } from './production_backend_launch_baseline_v1.mjs';
+import { summarizeControlPlaneComponentsV1 } from './production_live_control_plane_v1.mjs';
 
 const execFileAsync = promisify(execFile);
 export const AUTOMATION_VERSION = 'PRODUCTION_BACKEND_LAUNCH_AUTOMATION_V1';
@@ -51,6 +53,7 @@ function parseArgs(argv, now) {
     restoreEvidence: text(value('--restore-evidence')) ? path.resolve(value('--restore-evidence')) : null,
     sameCandidateEvidence: text(value('--same-candidate-evidence')) ? path.resolve(value('--same-candidate-evidence')) : null,
     loadEvidence: text(value('--load-evidence')) ? path.resolve(value('--load-evidence')) : null,
+    controlPlaneEvidence: text(value('--control-plane-evidence')) ? path.resolve(value('--control-plane-evidence')) : null,
     requireReady: argv.includes('--require-ready'),
     outDir: path.join(root, `${stamp(now)}_read_only`)
   };
@@ -116,6 +119,51 @@ function hasFiniteEvidenceNumber(value) {
     && value !== undefined
     && String(value).trim() !== ''
     && Number.isFinite(Number(value));
+}
+
+export function reconcileExternalControlPlaneEvidenceV1({ report, topology, now = new Date(), maxAgeMinutes = 30 }) {
+  if (report?.schema_version !== 'GROOKAI_PRODUCTION_LIVE_CONTROL_PLANE_V1') {
+    throw new Error('External control-plane evidence has an unsupported schema version.');
+  }
+  if (!Array.isArray(report.components) || report.components.length === 0) {
+    throw new Error('External control-plane evidence has no components.');
+  }
+  if (!Array.isArray(topology?.components) || topology.components.length === 0) {
+    throw new Error('Production topology is missing or empty.');
+  }
+  const observedAt = Date.parse(report.observed_at ?? '');
+  const ageMinutes = Number.isFinite(observedAt) ? (now.getTime() - observedAt) / 60_000 : null;
+  if (!Number.isFinite(ageMinutes) || ageMinutes < -5 || ageMinutes > maxAgeMinutes) {
+    throw new Error(`External control-plane evidence is not fresh (age_minutes=${ageMinutes}).`);
+  }
+  const componentIds = report.components.map((component) => text(component?.component_id));
+  if (componentIds.some((componentId) => !componentId)) {
+    throw new Error('External control-plane evidence contains a component without an ID.');
+  }
+  if (new Set(componentIds).size !== componentIds.length) {
+    throw new Error('External control-plane evidence contains duplicate component IDs.');
+  }
+  const topologyIds = new Set(topology.components.map((component) => component.id));
+  const unknownIds = componentIds.filter((componentId) => !topologyIds.has(componentId));
+  if (unknownIds.length) {
+    throw new Error(`External control-plane evidence contains unknown component IDs: ${unknownIds.join(', ')}.`);
+  }
+  const reconciliation = summarizeControlPlaneComponentsV1(report.components, topology);
+  if (JSON.stringify(stable(report.summary)) !== JSON.stringify(stable(reconciliation.summary))) {
+    throw new Error('External control-plane component counts do not reconcile with its summary.');
+  }
+  return {
+    ...report,
+    ...reconciliation,
+    external_evidence_validation: {
+      status: 'passed',
+      age_minutes: ageMinutes,
+      max_age_minutes: maxAgeMinutes,
+      component_count: componentIds.length,
+      source_commit_sha: report.commit_sha ?? null,
+      source_report_fingerprint_sha256: sha256(report)
+    }
+  };
 }
 
 export function reconcileDiskAutoscaleEvidenceV1({ provider, billingEvidence, now = new Date() }) {
@@ -312,7 +360,8 @@ export async function runBackendLaunchAutomationV1({ argv = process.argv.slice(2
       billing: args.billingEvidence,
       restore: args.restoreEvidence,
       same_candidate: args.sameCandidateEvidence,
-      load: args.loadEvidence
+      load: args.loadEvidence,
+      control_plane: args.controlPlaneEvidence
     },
     boundaries: {
       provider_get_only: true,
@@ -357,10 +406,24 @@ export async function runBackendLaunchAutomationV1({ argv = process.argv.slice(2
   if (args.restoreEvidence) managedArgs.push(`--restore-evidence=${args.restoreEvidence}`);
   await runNode('scripts/audits/production_supabase_managed_control_audit_v1.mjs', managedArgs);
   const managed = await readJsonOrNull(path.join(managedDir, 'production_supabase_managed_control_audit_v1.json'));
-  await runNode('scripts/audits/production_live_control_plane_v1.mjs', [], {
-    env: { ...process.env, GROOKAI_CONTROL_PLANE_OUTPUT_DIR: controlPlaneDir }
-  });
-  const controlPlane = await readJsonOrNull(path.join(controlPlaneDir, 'live_control_plane_v1.json'));
+  let controlPlane;
+  if (args.controlPlaneEvidence) {
+    const [externalControlPlane, topology] = await Promise.all([
+      readJsonOrNull(args.controlPlaneEvidence),
+      readJsonOrNull(path.resolve(TOPOLOGY_PATH))
+    ]);
+    controlPlane = reconcileExternalControlPlaneEvidenceV1({ report: externalControlPlane, topology, now });
+    await fs.mkdir(controlPlaneDir, { recursive: true });
+    await Promise.all([
+      fs.copyFile(args.controlPlaneEvidence, path.join(controlPlaneDir, 'live_control_plane_v1.remote_source.json')),
+      fs.writeFile(path.join(controlPlaneDir, 'live_control_plane_v1.json'), `${JSON.stringify(controlPlane, null, 2)}\n`)
+    ]);
+  } else {
+    await runNode('scripts/audits/production_live_control_plane_v1.mjs', [], {
+      env: { ...process.env, GROOKAI_CONTROL_PLANE_OUTPUT_DIR: controlPlaneDir }
+    });
+    controlPlane = await readJsonOrNull(path.join(controlPlaneDir, 'live_control_plane_v1.json'));
+  }
   const loadPath = args.loadEvidence ?? await findLatestLoadEvidence();
   const [loadEvidence, billingEvidence, sameCandidateEvidence] = await Promise.all([
     readJsonOrNull(loadPath),
@@ -395,7 +458,8 @@ export async function runBackendLaunchAutomationV1({ argv = process.argv.slice(2
         summary: controlPlane.summary,
         launch_status: controlPlane.launch_status ?? controlPlane.overall_status,
         launch_summary: controlPlane.launch_summary ?? controlPlane.summary,
-        commit_sha: controlPlane.commit_sha
+        commit_sha: controlPlane.commit_sha,
+        external_evidence_validation: controlPlane.external_evidence_validation ?? null
       } : null,
       load: loadEvidence,
       billing: billingEvidence,
@@ -405,7 +469,8 @@ export async function runBackendLaunchAutomationV1({ argv = process.argv.slice(2
       load: loadPath,
       billing: args.billingEvidence,
       restore: args.restoreEvidence,
-      same_candidate: args.sameCandidateEvidence
+      same_candidate: args.sameCandidateEvidence,
+      control_plane: args.controlPlaneEvidence
     },
     boundaries: runPlan.boundaries
   };
