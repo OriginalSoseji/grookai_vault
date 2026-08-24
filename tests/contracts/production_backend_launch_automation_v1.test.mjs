@@ -136,6 +136,15 @@ test('active quota restriction and Spend Cap block launch', () => {
   assert.ok(result.findings.some((row) => row.code === 'spend_cap_blocks_disk_autoscale'));
 });
 
+test('null billing egress stays unmeasured instead of coercing to zero', () => {
+  const input = launchInput();
+  input.billingEvidence.uncached_egress_gb = null;
+  input.billingEvidence.cached_egress_gb = null;
+  const result = evaluateBackendLaunchAutomationV1(input);
+  assert.ok(result.findings.some((row) => row.code === 'billing_egress_exact_values_unmeasured'));
+  assert.equal(result.launch_allowed, false);
+});
+
 test('missing billing, restore, and client evidence fails closed as incomplete', () => {
   const result = evaluateBackendLaunchAutomationV1(launchInput({
     billingEvidence: null,

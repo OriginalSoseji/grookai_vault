@@ -123,6 +123,12 @@ Choose and execute one approved capacity path:
 After the decision, rerun the provider snapshot and require disk below the
 launch target with effective autoscale confirmed.
 
+The Studio dashboard uses a signed-in dashboard-only usage route. The public
+Management API does not publish an equivalent organization billing-usage GET
+endpoint for PAT automation. Exact cached and uncached billing-cycle egress
+therefore remains operator evidence until Supabase publishes a supported API.
+The automation must not extract or reuse browser session credentials.
+
 ### 2. Restore Proof
 
 Create or authorize an isolated nonproduction destination, restore from a
@@ -130,11 +136,22 @@ managed production backup, reconcile expected counts and invariants, remove
 the temporary destination, and preserve zero-mismatch evidence. Production
 must remain unmodified.
 
+The prepared read-only command is:
+
+`npm run production:supabase:restore-preflight`
+
+It currently proves a `277 GB` minimum isolated destination and blocks because
+the organization contains no nonproduction destination.
+
 ### 3. Same-Candidate Clients
 
 Freeze one commit and verify signed-in journeys on web, Android, and iOS from
 that exact source candidate. Required journeys include authentication, search,
 pricing, Vault, images, sharing, and Memory links with database reconciliation.
+
+The prepared no-deploy command is:
+
+`npm run production:clients:prepare`
 
 ### 4. Final Candidate And Canary
 
@@ -150,4 +167,3 @@ reconciles with zero mismatches.
 - Database and disk size: https://supabase.com/docs/guides/platform/database-size
 - Cost control and Spend Cap: https://supabase.com/docs/guides/platform/cost-control
 - Egress usage: https://supabase.com/docs/guides/platform/manage-your-usage/egress
-

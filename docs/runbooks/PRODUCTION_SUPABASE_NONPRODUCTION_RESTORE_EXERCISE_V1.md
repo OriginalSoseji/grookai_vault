@@ -36,6 +36,28 @@ Before execution, write `restore_plan.json` with:
 
 ## Preflight
 
+Run the read-only preflight first:
+
+```powershell
+npm run production:supabase:restore-preflight
+```
+
+With an existing isolated destination, provide its exact evidence:
+
+```powershell
+npm run production:supabase:restore-preflight -- `
+  --destination-project-ref=<20-character-ref> `
+  --destination-capacity-gb=<provider-confirmed-gb> `
+  --destination-isolation-confirmed
+```
+
+The command reads project and backup inventory, opens a read-only production
+database transaction, fingerprints the migration ledger and schema, calculates
+the minimum destination capacity with 20 percent restore headroom, and writes
+hashed artifacts under `C:\secure-ops`. It cannot create a project or start a
+restore. Even a passing preflight reports `restore_execution_allowed: false`;
+execution remains a separately authorized provider action.
+
 1. Confirm the selected backup remains within the seven-day retention window.
 2. Confirm destination isolation and that no production secret points to it.
 3. Confirm destination disk is large enough for the source database plus
@@ -43,6 +65,15 @@ Before execution, write `restore_plan.json` with:
 4. Capture source counts and fingerprints using read-only queries.
 5. Confirm production connection, lock, disk, and backup health.
 6. Hash the frozen plan before restore starts.
+
+Current read-only result on `2026-08-24`:
+
+- only the production project exists in the organization;
+- latest physical backup is completed and WAL-G is enabled;
+- source schema and migration-ledger fingerprints were captured;
+- minimum isolated destination capacity is `277 GB`; and
+- preflight is blocked because no isolated destination or destination-capacity
+  evidence exists.
 
 ## Restore
 

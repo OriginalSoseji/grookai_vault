@@ -176,3 +176,26 @@ Current provider truth from that run:
 The scheduled GitHub readiness and founder-operations monitors now upload
 artifacts without committing generated snapshots. They therefore do not create
 monitor-only source commits or trigger Vercel deployments.
+
+## Automated Prerequisite Addendum
+
+Two additional fail-closed preparation commands now cover the work that can be
+completed without financial or deployment mutations:
+
+- `npm run production:supabase:restore-preflight`
+- `npm run production:clients:prepare`
+
+The live restore preflight inspected the management plane and production in a
+read-only transaction. It captured schema and migration-ledger fingerprints,
+confirmed the latest completed backup, calculated a `277 GB` minimum isolated
+destination, and refused to proceed because the organization currently has
+only the production project. No project was created and no restore started.
+
+The client preparation package writes a hashed manifest template tied to the
+current source SHA while deliberately leaving every deployment/build SHA and
+journey result empty. It cannot pass until web, Android, and iOS are all built
+and tested from the final frozen candidate.
+
+Supabase Studio's exact organization billing usage is not exposed by the
+documented PAT Management API. Exact cached/uncached egress remains an operator
+capture; automation may not reuse signed-in browser credentials.

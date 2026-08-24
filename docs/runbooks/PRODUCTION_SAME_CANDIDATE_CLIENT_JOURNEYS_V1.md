@@ -63,6 +63,18 @@ required.
 
 ## Evaluation
 
+Prepare a fail-closed evidence package before freezing or deploying anything:
+
+```powershell
+npm run production:clients:prepare
+```
+
+This writes a hashed manifest template under `C:\secure-ops` using the current
+source SHA. Artifact source SHAs, build IDs, binary hashes, journey timestamps,
+and evidence paths remain empty until independently proven. The preparation
+command never freezes a candidate, starts a deployment, triggers a mobile
+build, or changes production.
+
 Copy
 `docs/release/production_same_candidate_client_gate_v1.example.json` into the
 new audit directory, replace every placeholder with immutable evidence, and

@@ -111,6 +111,13 @@ function ageHours(timestamp, now) {
   return Number.isFinite(parsed) ? (now.getTime() - parsed) / 3_600_000 : null;
 }
 
+function hasFiniteEvidenceNumber(value) {
+  return value !== null
+    && value !== undefined
+    && String(value).trim() !== ''
+    && Number.isFinite(Number(value));
+}
+
 export function evaluateBackendLaunchAutomationV1({
   provider,
   metrics,
@@ -145,7 +152,7 @@ export function evaluateBackendLaunchAutomationV1({
     if (!Number.isFinite(billingAge) || billingAge > 24) findings.push(finding('unmeasured', 'billing_evidence_stale', 'Billing evidence is older than 24 hours.', { age_hours: billingAge }));
     if (billingEvidence.quota_restriction_notice_active === true) findings.push(finding('critical', 'organization_quota_restriction_notice_active', 'Supabase reports that the organization exceeded quota and is scheduled for restriction.', { restriction_date: billingEvidence.restriction_date ?? null }));
     if (billingEvidence.spend_cap_enabled === true && provider?.metrics?.disk_size_gb > 8) findings.push(finding('critical', 'spend_cap_blocks_disk_autoscale', 'Spend Cap is enabled while the database requires paid disk above the included limit.'));
-    if (!Number.isFinite(Number(billingEvidence.uncached_egress_gb)) || !Number.isFinite(Number(billingEvidence.cached_egress_gb))) {
+    if (!hasFiniteEvidenceNumber(billingEvidence.uncached_egress_gb) || !hasFiniteEvidenceNumber(billingEvidence.cached_egress_gb)) {
       findings.push(finding('unmeasured', 'billing_egress_exact_values_unmeasured', 'Exact cached and uncached billing-cycle egress values were not recorded.'));
     }
   }
