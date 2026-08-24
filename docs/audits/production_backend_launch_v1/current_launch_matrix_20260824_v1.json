@@ -1,15 +1,15 @@
 {
   "schema_version": "GROOKAI_PRODUCTION_BACKEND_CURRENT_LAUNCH_MATRIX_V1",
-  "observed_at": "2026-08-24T16:30:15.000Z",
+  "observed_at": "2026-08-24T17:49:06.879Z",
   "branch": "release/production-backend-launch-v1",
-  "candidate_commit_sha": "2dee90bc513188fd4535bd7c313798138add40dd",
+  "candidate_commit_sha": "646f8dac17e4c8dcc340045a1d7dda536b598556",
   "deployed_web_commit_sha": "e136393c47a9941a5e2b4a846566f697f9a0f9d9",
   "deployed_web_deployment_id": "dpl_6xj6Wi6iAzuJHEj1AFSRc5r1ifsH",
   "launch_ready": false,
   "summary": {
-    "pass": 9,
+    "pass": 10,
     "incomplete": 1,
-    "blocked": 6
+    "blocked": 5
   },
   "gates": [
     {
@@ -55,12 +55,12 @@
     {
       "id": "supabase-capacity-performance",
       "status": "blocked",
-      "truth": "Managed disk is 72.33% utilized, above the frozen launch target. Conservative measured append growth is 3.187 GB/day, projects 80% in 7.70 days and full disk in 27.78 days, and leaves a 485.18 GB deficit against required 2x 90-day headroom. MEE is reversibly throttled to one call nightly; Storage plan capacity, egress, and interval/load behavior remain unmeasured."
+      "truth": "Managed disk is 72.33% utilized, above the frozen launch target. Conservative measured append growth is 3.187 GB/day, projects 80% in 7.70 days and full disk in 27.78 days, and leaves a 485.18 GB deficit against required 2x 90-day headroom. MEE is reversibly throttled to one call nightly. Stable interval load behavior is proven, but Storage plan capacity and egress remain unmeasured."
     },
     {
       "id": "image-delivery",
       "status": "pass",
-      "truth": "The current launch-wide audit passed 3,000/3,000 direct self-hosted object reads, 100/100 full-body image-signature checks, and 100/100 anonymous-public production proxy reads with zero failures. The 95% upper broken-object bound is 0.0998%. Cold no-cache proxy p95 was 3.09 seconds and remains explicit input to the load/performance gate."
+      "truth": "The current launch-wide audit passed 3,000/3,000 direct self-hosted object reads, 100/100 full-body image-signature checks, and 100/100 anonymous-public production proxy reads with zero failures. The 95% upper broken-object bound is 0.0998%. Under the passing 2.056x launch load, 1,980/1,980 image reads succeeded with 248.269 ms p95 and 1,495.742 ms maximum latency."
     },
     {
       "id": "background-isolation",
@@ -79,8 +79,8 @@
     },
     {
       "id": "load-and-failure",
-      "status": "blocked",
-      "truth": "Expected launch peak, stable 2x load, and coordinated dependency-failure exercises are not yet proven."
+      "status": "pass",
+      "truth": "A read-only five-minute 33 RPS run, 2.056x the measured 16.05 RPS launch peak, passed 9,900/9,900 requests with zero HTTP failures, rate limits, transport retries, waiting locks, or reconciliation mismatches. Search p95 was 225.245 ms; pricing detail/grid p95 was 178.888/143.057 ms; image p95 was 248.269 ms; maximum database connection utilization was 33.33%. The single-actor run separately proved the 120-request API abuse limit returns governed 429 responses."
     },
     {
       "id": "production-canary",

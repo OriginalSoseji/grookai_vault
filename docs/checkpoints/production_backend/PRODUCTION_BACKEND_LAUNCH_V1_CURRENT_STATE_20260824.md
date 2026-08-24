@@ -10,6 +10,8 @@
 
 **Deployed web SHA:** `e136393c47a9941a5e2b4a846566f697f9a0f9d9`
 
+**Read-load candidate SHA:** `646f8dac17e4c8dcc340045a1d7dda536b598556`
+
 ## Context
 
 The launch lane began with fragmented historical evidence, stale dashboard inputs, and no single live view of worker freshness. The release contract required current operational proof rather than another feature milestone.
@@ -37,7 +39,10 @@ Keep `GROOKAI_PRODUCTION_BACKEND_LAUNCH_V1` frozen. Operate one live control pla
 - Supabase managed disk is `72.33%` utilized, above the frozen launch target; conservative measured writes project 80% in `7.70` days and full disk in `27.78` days.
 - MEE acquisition is temporarily throttled to one call nightly. The timer remains active and a zero-provider-call, zero-write dry run passed.
 - Production image delivery passes the launch availability gate: `3,000 / 3,000` object reads, `100 / 100` body checks, and `100 / 100` anonymous-public proxy reads.
-- The measured 95% upper broken-object bound is `0.0998%`. Cold/no-cache proxy p95 is `3.09s` and remains open under the load/performance gate.
+- The measured 95% upper broken-object bound is `0.0998%`.
+- Candidate-first, bounded identity search is applied in production with exact ordered-output equivalence and unchanged release visibility.
+- The read-load gate is closed: `9,900 / 9,900` successful production reads at `33 RPS` for five minutes (`2.056x` measured peak), with zero retries, 429s, waiting locks, or reconciliation mismatches.
+- Search p95 is `225.245 ms`; pricing detail/grid p95 is `178.888 / 143.057 ms`; image p95 is `248.269 ms`; maximum DB connection use is `33.33%`.
 - The release branch remains ahead of `origin/main`; it has not been declared or deployed as the final all-client production candidate.
 
 ## MEE Current-Cycle Proof
@@ -63,6 +68,10 @@ Permanent evidence is preserved outside the repository at:
 - `C:\secure-ops\production-backend-launch\capacity\20260824T1517Z_mee_capacity_throttle\`
 - `C:\secure-ops\production-backend-launch\image-delivery\20260824T161945Z_e136393c4_failed\`
 - `C:\secure-ops\production-backend-launch\image-delivery\20260824T162909Z_e136393c4_audit_2dee90bc51\`
+- `C:\secure-ops\production-backend-launch\search-migration\2026-08-24T17-27-46-860Z_bounded_preflight\`
+- `C:\secure-ops\production-backend-launch\search-migration\2026-08-24T17-28-31-542Z_bounded_extended_equivalence\`
+- `C:\secure-ops\production-backend-launch\search-migration\2026-08-24T17-30-53-569Z_bounded_apply\`
+- `C:\secure-ops\production-backend-launch\read-load\20260824T174405Z_final_launch_33rps_300s\`
 
 ## Supabase Current Proof
 
@@ -70,7 +79,7 @@ Permanent evidence is preserved outside the repository at:
 - Storage: `31,838,610,700` bytes across `167,734` objects.
 - Connections: `21 / 90`.
 - Waiting locks, long queries, invalid indexes, RLS exposure, unsafe definer functions, and deadlocks: `0`.
-- Cumulative cache hit: `0.924253`; interval/load behavior is not yet proven.
+- Cumulative cache hit: `0.924253`; the final read-load run had no waiting locks and peaked at `33.33%` connection utilization.
 - Physical backups: `7`; latest age `19.25h`; maximum gap `25.66h`.
 - WAL-G: enabled. PITR: disabled. Nonproduction restore: unmeasured.
 - Managed disk: `231,542,988,800 / 320,101,937,152` bytes (`72.33%`).
@@ -102,7 +111,7 @@ Permanent evidence is preserved outside the repository at:
 
 ## Verification
 
-- Full contract suite in this lane: `2,359 / 2,359` passed.
+- Full contract suite after the search repair: `2,397 / 2,397` passed.
 - Current targeted suite: `43 / 43` passed.
 - Syntax and diff checks: passed.
 - Runtime Protection workflow: passed.
@@ -110,6 +119,8 @@ Permanent evidence is preserved outside the repository at:
 - MEE one-call throttle dry run: completed with zero findings, provider calls, and writes.
 - Image delivery audit: passed with zero failures across all `3,200` governed probes.
 - Image audit fingerprint: `edbfe3fff6380e463655099b45fb850ce11068d77c713855c82a17a099d1bc15`.
+- Extended search output equivalence: `14 / 14` query shapes matched exact ordered live results.
+- Final 2x read-load proof: `9,900 / 9,900` requests passed with zero findings.
 - Failed production systemd units: zero.
 
 ## Remaining Work
@@ -117,12 +128,11 @@ Permanent evidence is preserved outside the repository at:
 1. Resolve the measured Supabase capacity blocker without deleting source or user truth.
 2. Measure Storage plan capacity and provider egress.
 3. Complete a nonproduction restore exercise.
-4. Establish expected launch peak and pass 2x load/failure tests.
-5. Run governed signed-in journeys on web, Android, and iOS from one candidate.
-6. Freeze, merge, and deploy one candidate with rollback evidence.
-7. Complete the 72-hour canary and unattended cycle requirements.
-8. Produce a zero-mismatch final launch report.
+4. Run governed signed-in journeys on web, Android, and iOS from one candidate.
+5. Freeze, merge, and deploy one candidate with rollback evidence.
+6. Complete the 72-hour canary and unattended cycle requirements.
+7. Produce a zero-mismatch final launch report.
 
 ## Explicit Next Gate
 
-Complete 2x read-load and dependency-failure evidence, including the cold image-proxy latency finding, while the managed-disk decision remains blocked. A paid disk change, PITR change, nonproduction project creation, destructive retention action, final candidate deployment, and public rollout remain separate gates.
+Measure the remaining Storage plan and egress limits, then prepare the nonproduction restore exercise and same-candidate client journey package while the managed-disk decision remains blocked. A paid disk change, PITR change, nonproduction project creation, destructive retention action, final candidate deployment, and public rollout remain separate gates.

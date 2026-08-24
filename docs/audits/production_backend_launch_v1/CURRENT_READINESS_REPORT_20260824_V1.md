@@ -1,6 +1,6 @@
 # Production Backend Launch V1 Current Readiness
 
-**Observed:** `2026-08-24T16:30:15Z`
+**Observed:** `2026-08-24T17:49:06.879Z`
 
 **Branch:** `release/production-backend-launch-v1`
 
@@ -9,6 +9,8 @@
 **Deployed pricing/MEE SHA:** `4b6064a5fb7eeacb7887c240735fc6dd8ffec06f`
 
 **Deployed web SHA:** `e136393c47a9941a5e2b4a846566f697f9a0f9d9`
+
+**Read-load candidate SHA:** `646f8dac17e4c8dcc340045a1d7dda536b598556`
 
 **Launch verdict:** **NOT READY**
 
@@ -29,6 +31,8 @@
 - The internal-only MEE acquisition lane was reversibly throttled from `4,000` to `1` provider call per nightly cycle. Its provider-free, write-free dry run completed with zero findings.
 - The production web image route now accepts valid underscore-bearing canonical GV-IDs. Deployment `dpl_6xj6Wi6iAzuJHEj1AFSRc5r1ifsH` is Ready, with rollback target `dpl_9exhfBoYgtUk8VWkmLbRqAB2G85z` preserved.
 - The launch-wide image audit passed `3,000 / 3,000` direct object reads, `100 / 100` full-body image-signature checks, and `100 / 100` anonymous-public production proxy checks.
+- Production identity search now uses bounded candidate-first reads. Exact ordered output remained unchanged across common-name, identity, filter, finish, cameo, object-type, and pagination comparisons.
+- The five-minute `33 RPS` launch gate passed `9,900 / 9,900` read requests at `2.056x` measured peak with zero failures, retries, rate limits, waiting locks, or reconciliation mismatches.
 
 ## Fresh MEE Proof
 
@@ -153,16 +157,42 @@ The earlier `69 / 100` proxy result was preserved as failed evidence and
 classified as an invalid anonymous cohort: `65` hidden MTG rows and `4` hidden
 One Piece rows were correctly denied by the release boundary. Their direct
 objects were present. No RLS or catalog-release boundary was widened. The cold
-proxy latency is not treated as a passing performance result; it remains part
-of the pending 2x load and latency gate.
+proxy result was subsequently exercised under the passing launch-load gate.
+
+## Read-Load Proof
+
+The final read-only run observed production at `2026-08-24T17:49:06.879Z`
+from frozen load commit `646f8dac17e4c8dcc340045a1d7dda536b598556`.
+
+| Measure | Result |
+| --- | ---: |
+| Target | 33 RPS for 300 seconds |
+| Measured launch-peak multiplier | 2.056x |
+| Planned / completed / successful | 9,900 / 9,900 / 9,900 |
+| HTTP failures / 429s / transport retries | 0 / 0 / 0 |
+| Search p95 | 225.245 ms |
+| Pricing detail p95 | 178.888 ms |
+| Pricing grid p95 | 143.057 ms |
+| Image p95 / maximum | 248.269 / 1,495.742 ms |
+| Maximum DB connection utilization | 33.33% |
+| Waiting locks | 0 |
+
+The app's existing `120` requests-per-actor-per-minute API protection was
+separately proven by the preserved single-actor run. The passing launch run
+modeled ten independent collectors and did not alter production rate limits.
+
+Permanent report:
+`docs/audits/production_backend_launch_v1/READ_LOAD_GATE_20260824_V1.md`.
 
 ## Verification
 
-- Repository full contract suite earlier in this lane: `2,359 passed`, `0 failed`.
+- Repository full contract suite after the bounded search migration: `2,397 passed`, `0 failed`.
 - Capacity forecast contract tests: `4 passed`, `0 failed`.
 - Current candidate targeted suite before this audit: `43 passed`, `0 failed`.
 - Production-backend contract suite after the image cohort repair: `38 passed`, `0 failed`.
 - Full repository shipcheck after both image-route repairs: Flutter `635 / 635`; all prior web, contract, type, lint, and build phases passed.
+- Bounded-search output equivalence: `14 / 14` query shapes preserved exact ordered results.
+- Final launch read load: `9,900 / 9,900` passed with zero findings.
 - Current candidate syntax checks: passed.
 - `git diff --check`: passed.
 - GitHub Contracts Runtime Protection at `648ba5da0`: passed.
@@ -173,11 +203,10 @@ of the pending 2x load and latency gate.
 1. Resolve the managed-disk capacity blocker through a separately authorized capacity and/or hash-verified archival-retention plan. No paid plan change or destructive retention action is authorized by this checkpoint.
 2. Measure the remaining Storage plan limit and provider egress forecast.
 3. Run a reconciled restore into a nonproduction Supabase project. PITR remains a separate plan decision.
-4. Define expected launch peak and pass stable 2x read-path load plus dependency-failure exercises.
-5. Run same-candidate signed-in web, Android, and iOS journeys for authentication, search, pricing, Vault, images, sharing, and memory links.
-6. Freeze and deploy one same-source production candidate across control plane, pricing/MEE, web, Android, and iOS with a migration manifest and tested rollback target.
-7. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
-8. Reconcile the final report and only then make a separate public-rollout decision.
+4. Run same-candidate signed-in web, Android, and iOS journeys for authentication, search, pricing, Vault, images, sharing, and memory links.
+5. Freeze and deploy one same-source production candidate across control plane, pricing/MEE, web, Android, and iOS with a migration manifest and tested rollback target.
+6. Observe at least 72 hours and all required unattended pricing cycles with zero unresolved SEV-1 or SEV-2 incidents.
+7. Reconcile the final report and only then make a separate public-rollout decision.
 
 ## Background Lanes
 
