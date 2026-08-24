@@ -14,6 +14,13 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
 
   assert.match(service, /WorkingDirectory=\/opt\/grookai_mee_current/);
   assert.match(service, /MEE_RUNTIME_ARTIFACT_ROOT=\/var\/lib\/grookai\/mee\/audits/);
+  assert.match(service, /RuntimeDirectory=grookai-mee/);
+  assert.match(service, /flock -n \/run\/grookai-mee\/reference-refresh\.lock/);
+  assert.match(service, /MemoryHigh=1G/);
+  assert.match(service, /MemoryMax=1536M/);
+  assert.match(service, /ProtectSystem=full/);
+  assert.match(service, /ReadWritePaths=\/var\/lib\/grookai\/mee/);
+  assert.doesNotMatch(service, /\/tmp\/grookai-mee-reference-refresh\.lock/);
   assert.match(service, /"\$artifact_root"\/mee_06a_/);
   assert.match(install, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_mee_current\}"/);
 
