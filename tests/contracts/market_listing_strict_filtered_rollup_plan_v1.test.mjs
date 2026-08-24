@@ -13,6 +13,18 @@ test("strict filtered rollup plan is local-only and filters before medians", () 
   assert.match(script, /strict_filtered_review_ready_internal_candidate/);
   assert.match(script, /titleGate\(row\)/);
   assert.match(script, /median_active_ask/);
+  assert.match(script, /--run-key=/);
+  assert.match(script, /MEE_NIGHTLY_REQUIRE_DIRECT_DB/);
+  assert.match(script, /where observation\.acquisition_run_id = \$1::uuid/);
+  assert.match(script, /begin read only/);
+  assert.match(script, /declare strict_candidate_rows_cursor no scroll cursor/);
+  assert.match(script, /fetch forward \$\{DIRECT_FETCH_SIZE\} from strict_candidate_rows_cursor/);
+  assert.match(script, /close strict_candidate_rows_cursor/);
+  assert.match(script, /order by observation\.id asc, candidate\.id asc/);
+  assert.match(script, /left join public\.sets set_row on set_row\.id = card\.set_id/);
+  assert.match(script, /where card\.id = any\(\$1::uuid\[\]\)/);
+  assert.match(script, /strict_filtered_rollups_hash_sha256/);
+  assert.match(script, /source_acquisition_run:\s*acquisitionRun/);
   assert.match(script, /app_visible_pricing:\s*false/);
   assert.match(script, /public_price_rollups:\s*false/);
   assert.doesNotMatch(script, /\binsert\s+into\b/i);

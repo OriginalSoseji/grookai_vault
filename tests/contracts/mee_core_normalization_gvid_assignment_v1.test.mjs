@@ -13,7 +13,7 @@ function exists(relativePath) {
 const assignmentAuditPath = "scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs";
 const normalizationRunnerPath = "scripts/audits/market_evidence_normalization_only_runner_v1.mjs";
 const candidatePlanPath = "scripts/audits/market_listing_card_candidate_rollup_plan_v1.mjs";
-const nightlyIngestPath = "scripts/audits/market_listing_nightly_ingest_run_v1.mjs";
+const nightlyIngestPath = "scripts/workers/market_listing_nightly_pipeline_v2.mjs";
 const workerPath = "scripts/workers/mee_nightly_droplet_worker_v1.mjs";
 const envExamplePath = "deploy/env/mee-nightly.env.example";
 const contractPath = "docs/contracts/MEE_NIGHTLY_DROPLET_WORKER_V1.md";
@@ -67,8 +67,8 @@ test("candidate planning supports run keys while nightly ingestion resolves the 
   assert.match(candidatePlan, /args\.runKey/);
   assert.match(candidatePlan, /resolvedRunKey/);
   assert.match(candidatePlan, /source_run_key:\s*resolvedRunKey/);
-  assert.match(nightlyIngest, /market_listing_card_candidate_rollup_plan_v1\.mjs"/);
-  assert.doesNotMatch(nightlyIngest, /market_listing_card_candidate_rollup_plan_v1\.mjs", "--run-key=\{runKey\}"/);
+  assert.match(nightlyIngest, /market_listing_card_candidate_rollup_plan_v1\.mjs/);
+  assert.match(nightlyIngest, /`--run-key=\$\{acquisitionRunKey\(\)\}`/);
 });
 
 test("nightly worker has provider-call budget gates and normalization-only mode", () => {

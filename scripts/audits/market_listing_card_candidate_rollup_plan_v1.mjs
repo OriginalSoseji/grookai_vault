@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 import { resolveMarketListingTitleTargetV1 } from "../../backend/pricing/market_listing_title_retarget_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
@@ -15,7 +16,7 @@ export const EXPECTED_SOURCE_READBACK_FINGERPRINT = "3ecef7a22b6209c5a68fc591d58
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const PAGE_SIZE = 1000;
 const PRICE_EVENT_CHUNK_SIZE = 5000;
 const { Client } = pg;
@@ -47,7 +48,7 @@ function deterministicUuid(input) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function writeRow(stream, row, hash) {
@@ -453,7 +454,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const generatedAt = new Date().toISOString();
   const stamp = generatedAt.replace(/[:.]/g, "-");
-  const outputDir = path.join(REPO_ROOT, AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}`);
+  const outputDir = path.join(AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}`);
   mkdirSync(outputDir, { recursive: true });
 
   const supabase = createBackendClient();
@@ -597,8 +598,8 @@ async function main() {
   };
   report.approval_prompt_for_next_step = approvalPrompt(report);
 
-  const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}.json`);
-  const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}.md`);
+  const jsonPath = path.join(AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}.json`);
+  const mdPath = path.join(AUDIT_DIR, `mee_11s_market_listing_card_candidate_rollup_plan_${stamp}.md`);
   writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
   writeFileSync(mdPath, renderMarkdown(report));
 

@@ -4,11 +4,12 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import pg from "pg";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
 const { Client } = pg;
 
@@ -100,7 +101,7 @@ function sha256(value) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function parseArgs(argv) {
@@ -387,10 +388,10 @@ const report = {
 };
 report.approval_prompt_for_future_run = approvalPrompt(report);
 
-mkdirSync(path.join(REPO_ROOT, AUDIT_DIR), { recursive: true });
+mkdirSync(AUDIT_DIR, { recursive: true });
 const stamp = report.generated_at.replace(/[:.]/g, "-");
-const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12d_market_listing_nightly_ingest_run_${stamp}.json`);
-const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12d_market_listing_nightly_ingest_run_${stamp}.md`);
+const jsonPath = path.join(AUDIT_DIR, `mee_12d_market_listing_nightly_ingest_run_${stamp}.json`);
+const mdPath = path.join(AUDIT_DIR, `mee_12d_market_listing_nightly_ingest_run_${stamp}.md`);
 writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
 writeFileSync(mdPath, renderMarkdown(report));
 

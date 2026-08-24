@@ -7,16 +7,18 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const CONTRACT_PATH = "docs/contracts/MARKET_LISTING_NIGHTLY_INGEST_V1.json";
 
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-INGEST-READBACK-V1";
 const BASE_STRICT_RAW_ROLLUP_VERSION = "MEE_12B_INTERNAL_RAW_SINGLE_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
 const BASE_STRICT_SLAB_ROLLUP_VERSION = "MEE_12B_INTERNAL_SLAB_STRICT_FILTERED_ACTIVE_ASK_REVIEW_V1";
+const CANDIDATE_VERSION = "MEE_11S_REVIEW_ONLY_TARGETED_LISTING_CANDIDATES_V1";
 const { Client } = pg;
 
 function stable(value) {
@@ -37,7 +39,7 @@ function sha256(value) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 async function runSql(sql) {
@@ -45,12 +47,15 @@ async function runSql(sql) {
     const client = new Client({
       connectionString: process.env.SUPABASE_DB_URL,
       connectionTimeoutMillis: 15_000,
-      query_timeout: 180_000,
-      statement_timeout: 180_000,
+      query_timeout: 300_000,
+      statement_timeout: 300_000,
       ssl: { rejectUnauthorized: false },
     });
     await client.connect();
     try {
+      // Supabase role defaults can override startup parameters; bind this audit's
+      // bounded read-only allowance to the established five-minute client limit.
+      await client.query("set statement_timeout = '300s'");
       const result = await client.query(sql);
       return JSON.stringify(result.rows);
     } finally {
@@ -181,6 +186,24 @@ const queryJoinFilter = args.runKey
   ? `join scoped_run sr on sr.id = qc.acquisition_run_id`
   : "";
 
+const eventSql = `
+with scoped_run as (
+  select id
+  from public.market_listing_acquisition_runs
+  ${runFilter}
+)
+select jsonb_build_object(
+  'total', count(*),
+  'raw_single', count(*) filter (where pe.event_payload->>'listing_evidence_class' = 'raw_single'),
+  'slab', count(*) filter (where pe.event_payload->>'listing_evidence_class' = 'slab'),
+  'excluded_or_ambiguous', count(*) filter (where pe.event_payload->>'listing_evidence_class' = 'excluded_or_ambiguous'),
+  'without_evidence_class', count(*) filter (where pe.event_payload->>'listing_evidence_class' is null)
+) as payload
+from public.market_listing_price_events pe
+join public.market_listing_observations o on o.id = pe.observation_id
+${runJoinFilter};
+`;
+
 const sql = `
 with scoped_run as (
   select *
@@ -207,12 +230,16 @@ run_counts as (
   ) s
 ),
 event_base as (
-  select
-    pe.*,
-    pe.event_payload->>'listing_evidence_class' as evidence_class
-  from public.market_listing_price_events pe
-  join public.market_listing_observations o on o.id = pe.observation_id
+  -- Price-event aggregation runs separately so this boundary query remains bounded.
+  select null::text as evidence_class
+  where false
+),
+candidate_base as (
+  select candidate.*
+  from public.market_listing_card_candidates candidate
+  join public.market_listing_observations o on o.id = candidate.observation_id
   ${runJoinFilter}
+  where candidate.match_version = ${sqlString(CANDIDATE_VERSION)}
 ),
 warehouse_counts as (
   select jsonb_build_object(
@@ -222,7 +249,7 @@ warehouse_counts as (
     'market_listing_observations', (select count(*) from public.market_listing_observations o ${runJoinFilter}),
     'market_listing_seller_snapshots', (select count(*) from public.market_listing_seller_snapshots ss ${sellerJoinFilter}),
     'market_listing_price_events', (select count(*) from event_base),
-    'market_listing_card_candidates_total', (select count(*) from public.market_listing_card_candidates),
+    'market_listing_card_candidates_total', (select count(*) from candidate_base),
     'market_listing_rollups_total', (select count(*) from public.market_listing_rollups)
   ) as payload
 ),
@@ -246,12 +273,12 @@ candidate_state as (
       select jsonb_object_agg(match_version, version_count)
       from (
         select match_version, count(*) as version_count
-        from public.market_listing_card_candidates
+        from candidate_base
         group by match_version
       ) v
     ), '{}'::jsonb)
   ) as payload
-  from public.market_listing_card_candidates
+  from candidate_base
 ),
 strict_rollups as (
   select *
@@ -331,10 +358,15 @@ select jsonb_build_object(
 )::text as report;
 `;
 
+const eventResultRows = parseSupabaseRows(await runSql(eventSql));
+const eventCounts = eventResultRows?.[0]?.payload;
+if (!eventCounts) throw new Error("[market-listing-nightly-readback] failed to parse event SQL report");
 const queryResultRows = parseSupabaseRows(await runSql(sql));
 const rawReport = queryResultRows?.[0]?.report;
 if (!rawReport) throw new Error("[market-listing-nightly-readback] failed to parse SQL report");
 const parsed = JSON.parse(rawReport);
+parsed.event_counts = typeof eventCounts === "string" ? JSON.parse(eventCounts) : eventCounts;
+parsed.warehouse_counts.market_listing_price_events = parsed.event_counts.total;
 
 const findings = [];
 const strict = parsed.strict_rollup_state;
@@ -418,10 +450,10 @@ const report = {
       : "Resolve readback findings before building or running the nightly wrapper.",
 };
 
-mkdirSync(path.join(REPO_ROOT, AUDIT_DIR), { recursive: true });
+mkdirSync(AUDIT_DIR, { recursive: true });
 const stamp = report.generated_at.replace(/[:.]/g, "-");
-const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.json`);
-const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.md`);
+const jsonPath = path.join(AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.json`);
+const mdPath = path.join(AUDIT_DIR, `mee_12c_market_listing_nightly_ingest_readback_${stamp}.md`);
 writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
 writeFileSync(mdPath, renderMarkdown(report));
 
@@ -436,3 +468,4 @@ console.log(JSON.stringify({
   },
   recommended_next_step: report.recommended_next_step,
 }, null, 2));
+if (report.findings.length > 0) process.exitCode = 1;

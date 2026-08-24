@@ -8,12 +8,13 @@ import '../../backend/env.mjs';
 import { fetchPokemonCardById } from '../../backend/clients/pokemonapi.mjs';
 import { createBackendClient } from '../../backend/supabase_backend_client.mjs';
 import { acquirePokemonTcgIoEvidenceV1 } from '../../backend/pricing/market_evidence_pokemontcg_io_acquisition_v1.mjs';
+import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const DEFAULT_OUT_DIR = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1');
+const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const SOURCE = 'pokemontcg_io_reference';
 const DEFAULT_BASE_URL = 'https://api.pokemontcg.io/v2';
 const DB_LOOKUP_CHUNK_SIZE = 100;

@@ -1,0 +1,21 @@
+ M deploy/scripts/install-mee-reference-refresh-systemd.sh
+ M deploy/systemd/grookai-mee-nightly.service
+ M deploy/systemd/grookai-mee-reference-refresh.service.candidate
+ M deploy/systemd/grookai-mee-reference-refresh.timer.candidate
+ M docs/contracts/MEE_CORE_FOUNDATION_COMPLETE_V2.md
+ M docs/contracts/MEE_CORE_QUALITY_SCORING_READ_MODEL_V1.md
+ M scripts/audits/market_listing_acquisition_daily_batch_backfill_apply_v1.mjs
+ M scripts/audits/market_listing_card_candidate_rollup_plan_v1.mjs
+ M scripts/audits/market_listing_nightly_ingest_run_v1.mjs
+ M scripts/workers/mee_nightly_droplet_worker_v1.mjs
+ M scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs
+?? deploy/scripts/install-tcgcsv-historical-backfill-systemd.sh
+?? deploy/scripts/install-tcgcsv-warehouse-systemd.sh
+?? deploy/systemd/grookai-tcgcsv-historical-backfill.service
+?? deploy/systemd/grookai-tcgcsv-warehouse.service
+?? deploy/systemd/grookai-tcgcsv-warehouse.timer
+?? scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs
+?? scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs
+?? scripts/workers/tcgcsv_historical_backfill_agent_v1.sh
+?? scripts/workers/tcgcsv_historical_load_guard_v1.mjs
+?? supabase/migrations/20260712090000_pricing_pipeline_phase_runs_v1.sql

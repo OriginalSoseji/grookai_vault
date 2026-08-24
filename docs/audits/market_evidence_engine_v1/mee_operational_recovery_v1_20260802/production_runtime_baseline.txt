@@ -1,0 +1,70 @@
+# /etc/systemd/system/grookai-mee-nightly.service
+[Unit]
+Description=Grookai Market Evidence Engine Nightly Worker
+Wants=network-online.target
+After=network-online.target
+Conflicts=grookai-mee-post-ingest.service
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/opt/grookai_vault_mee_nightly
+EnvironmentFile=/etc/grookai/mee-nightly.env
+Environment=MEE_NIGHTLY_REQUIRE_DIRECT_DB=1
+ExecStart=/usr/bin/flock -n /tmp/grookai-mee-nightly.lock /usr/bin/env bash -lc 'node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run --call-ceiling="$${MEE_NIGHTLY_CALL_CEILING:-4000}"'
+TimeoutStartSec=8h
+Nice=5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target
+# /etc/systemd/system/grookai-mee-nightly.timer
+[Unit]
+Description=Run Grookai Market Evidence Engine Nightly Worker daily
+
+[Timer]
+OnCalendar=*-*-* 03:15:00
+Persistent=true
+RandomizedDelaySec=900
+Unit=grookai-mee-nightly.service
+
+[Install]
+WantedBy=timers.target
+× grookai-mee-nightly.service - Grookai Market Evidence Engine Nightly Worker
+     Loaded: loaded (/etc/systemd/system/grookai-mee-nightly.service; disabled; preset: enabled)
+     Active: failed (Result: exit-code) since Sun 2026-08-02 05:37:37 UTC; 19h ago
+   Main PID: 669830 (code=exited, status=1/FAILURE)
+        CPU: 6min 57.098s
+
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[669831]:   "package_fingerprint_sha256": "70e5369c142ea7d2174f31e7387eac29a36d0087d28bf64173215bfc814d4e5e",
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[669831]:   "artifacts": {
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[669831]:     "json": "docs/audits/market_evidence_engine_v1/mee_nightly_droplet_worker_v1_2026-08-02T03-27-04-050Z.json",
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[669831]:     "markdown": "docs/audits/market_evidence_engine_v1/mee_nightly_droplet_worker_v1_2026-08-02T03-27-04-050Z.md"
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[669831]:   }
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 flock[669831]: }
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-mee-nightly.service: Main process exited, code=exited, status=1/FAILURE
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-mee-nightly.service: Failed with result 'exit-code'.
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Failed to start grookai-mee-nightly.service - Grookai Market Evidence Engine Nightly Worker.
+Aug 02 05:37:37 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-mee-nightly.service: Consumed 6min 57.098s CPU time.
+○ grookai-mee-nightly.timer - Run Grookai Market Evidence Engine Nightly Worker daily
+     Loaded: loaded (/etc/systemd/system/grookai-mee-nightly.timer; disabled; preset: enabled)
+     Active: inactive (dead)
+    Trigger: n/a
+   Triggers: ● grookai-mee-nightly.service
+
+Aug 02 23:06:14 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: grookai-mee-nightly.timer: Deactivated successfully.
+Aug 02 23:06:14 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Stopped grookai-mee-nightly.timer - Run Grookai Market Evidence Engine Nightly Worker daily.
+● grookai-tcgplayer-market-pipeline.timer - Run Grookai TCGPlayer Market Production V1 daily at 08:15 UTC
+     Loaded: loaded (/etc/systemd/system/grookai-tcgplayer-market-pipeline.timer; enabled; preset: enabled)
+     Active: active (waiting) since Tue 2026-07-28 08:29:12 UTC; 5 days ago
+    Trigger: Mon 2026-08-03 08:15:00 UTC; 6h left
+   Triggers: ● grookai-tcgplayer-market-pipeline.service
+
+Jul 28 08:29:12 ubuntu-s-2vcpu-4gb-120gb-intel-sfo2-01 systemd[1]: Started grookai-tcgplayer-market-pipeline.timer - Run Grookai TCGPlayer Market Production V1 daily at 08:15 UTC.
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1       116G  100G   16G  87% /
+81G	/opt/grookai_vault_mee_nightly/docs/audits/market_evidence_engine_v1
+5.9G	/var/lib/grookai/market-pricing
+9d7aeb1560b043f4e3842ba608658d46292a4fa6be5f7bf76afbc44aa919eb21  /etc/grookai/mee-nightly.env
+723987 bash -c systemctl cat grookai-mee-nightly.service; systemctl cat grookai-mee-nightly.timer; systemctl status grookai-mee-nightly.service --no-pager -l; systemctl status grookai-mee-nightly.timer --no-pager -l; systemctl status grookai-tcgplayer-market-pipeline.timer --no-pager -l; df -h /; du -sh /opt/grookai_vault_mee_nightly/docs/audits/market_evidence_engine_v1 /var/lib/grookai/market-pricing; sha256sum /etc/grookai/mee-nightly.env; pgrep -af 'mee_nightly_droplet_worker|market_listing_nightly_ingest' || true

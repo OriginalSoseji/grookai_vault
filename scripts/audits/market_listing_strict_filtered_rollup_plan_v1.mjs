@@ -2,20 +2,38 @@ import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import pg from "pg";
 
 import "../../backend/env.mjs";
+import { meeArtifactReferenceV1, resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 import { evaluateMarketListingTitleGateV1, MARKET_LISTING_TITLE_GATE_VERSION } from "../../backend/pricing/market_listing_title_gate_v1.mjs";
 import { createBackendClient } from "../../backend/supabase_backend_client.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 
 const PACKAGE_ID = "MARKET-LISTING-STRICT-FILTERED-ROLLUP-PLAN-V1";
 const SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT = "7f5e73c2c9504291194b6f7ff269a3145ad6c9c1e075ceb012a79d3fa1417eec";
 const CANDIDATE_VERSION = "MEE_11S_REVIEW_ONLY_TARGETED_LISTING_CANDIDATES_V1";
 const PAGE_SIZE = 1000;
+const DIRECT_FETCH_SIZE = 5000;
+const { Client } = pg;
+
+function parseArgs(argv) {
+  return {
+    runKey: argv.find((arg) => arg.startsWith("--run-key="))?.slice("--run-key=".length) ?? null,
+  };
+}
+
+function directDbUrl() {
+  return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? null;
+}
+
+function pgSslConfig(connectionString) {
+  return /localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString) ? false : { rejectUnauthorized: false };
+}
 
 const THRESHOLDS = {
   raw_single: {
@@ -46,7 +64,7 @@ function sha256(value) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function percentile(sortedValues, p) {
@@ -156,8 +174,105 @@ function renderMarkdown(report) {
   ].join("\n");
 }
 
-async function fetchCandidateRows() {
-  const supabase = createBackendClient();
+async function resolveAcquisitionRun(supabase, runKey) {
+  if (!runKey) return null;
+  const { data, error } = await supabase
+    .from("market_listing_acquisition_runs")
+    .select("id,run_key")
+    .eq("run_key", runKey)
+    .limit(1);
+  if (error) throw new Error(error.message);
+  if (!data?.[0]) throw new Error(`No market_listing_acquisition_runs row found for run_key=${runKey}`);
+  return data[0];
+}
+
+function normalizeCandidateRow(row) {
+  const obs = row.obs ?? {};
+  return {
+    card_print_id: row.card_print_id,
+    gv_id: row.gv_id,
+    source_listing_id: row.source_listing_id,
+    evidence_class: row.title_features?.listing_evidence_class,
+    listing_title: obs.listing_title,
+    query_text: row.title_features?.query_text ?? null,
+    strategy: row.title_features?.strategy ?? null,
+    total_ask_price: obs.total_ask_price,
+    currency: obs.currency,
+    seller_key: obs.seller_key,
+    condition_text: obs.condition_text,
+    exclusion_flags: row.exclusion_flags,
+    match_confidence: row.match_confidence,
+  };
+}
+
+async function fetchCandidateRowsWithPg(acquisitionRunId) {
+  const connectionString = directDbUrl();
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 60_000,
+    statement_timeout: 60_000,
+    ssl: pgSslConfig(connectionString),
+  });
+  const rows = [];
+  await client.connect();
+  try {
+    await client.query("begin read only");
+    await client.query(
+      `declare strict_candidate_rows_cursor no scroll cursor for
+       select
+         candidate.id,
+         observation.id as source_observation_id,
+         candidate.card_print_id,
+         candidate.gv_id,
+         candidate.source_listing_id,
+         candidate.title_features,
+         candidate.exclusion_flags,
+         candidate.match_confidence,
+         jsonb_build_object(
+           'listing_title', observation.listing_title,
+           'total_ask_price', observation.total_ask_price,
+           'currency', observation.currency,
+           'seller_key', observation.seller_key,
+           'condition_text', observation.condition_text
+         ) as obs
+       from public.market_listing_observations observation
+       join public.market_listing_card_candidates candidate
+         on candidate.observation_id = observation.id
+      where observation.acquisition_run_id = $1::uuid
+        and candidate.match_version = $2
+      order by observation.id asc, candidate.id asc`,
+      [acquisitionRunId, CANDIDATE_VERSION],
+    );
+    for (;;) {
+      const result = await client.query(`fetch forward ${DIRECT_FETCH_SIZE} from strict_candidate_rows_cursor`);
+      if (!result.rows.length) break;
+      rows.push(...result.rows);
+      if (rows.length % 50_000 === 0) {
+        console.error(`[market-listing-strict-filtered-rollup-plan] loaded ${rows.length} run-scoped candidates`);
+      }
+      if (result.rows.length < DIRECT_FETCH_SIZE) break;
+    }
+    await client.query("close strict_candidate_rows_cursor");
+    await client.query("commit");
+  } catch (error) {
+    await client.query("rollback").catch(() => {});
+    throw error;
+  } finally {
+    await client.end();
+  }
+  return rows;
+}
+
+async function fetchCandidateRows(supabase, acquisitionRunId) {
+  if (directDbUrl() && acquisitionRunId) {
+    const rows = await fetchCandidateRowsWithPg(acquisitionRunId);
+    return rows
+      .map(normalizeCandidateRow)
+      .filter((row) => ["raw_single", "slab"].includes(row.evidence_class))
+      .filter((row) => row.total_ask_price !== null && row.total_ask_price !== undefined && row.currency === "USD");
+  }
+
   const rows = [];
   let lastCandidateId = null;
   for (;;) {
@@ -172,7 +287,8 @@ async function fetchCandidateRows() {
         title_features,
         exclusion_flags,
         match_confidence,
-        obs:market_listing_observations!market_listing_card_candidates_observation_id_fkey(
+        obs:market_listing_observations!market_listing_card_candidates_observation_id_fkey!inner(
+          acquisition_run_id,
           listing_title,
           total_ask_price,
           currency,
@@ -183,6 +299,7 @@ async function fetchCandidateRows() {
         .eq("match_version", CANDIDATE_VERSION)
         .order("id", { ascending: true })
         .limit(PAGE_SIZE);
+      if (acquisitionRunId) query = query.eq("obs.acquisition_run_id", acquisitionRunId);
       if (lastCandidateId) query = query.gt("id", lastCandidateId);
       return query;
     });
@@ -194,21 +311,7 @@ async function fetchCandidateRows() {
       const evidenceClass = row.title_features?.listing_evidence_class;
       if (!["raw_single", "slab"].includes(evidenceClass)) continue;
       if (obs.total_ask_price === null || obs.total_ask_price === undefined || obs.currency !== "USD") continue;
-      rows.push({
-        card_print_id: row.card_print_id,
-        gv_id: row.gv_id,
-        source_listing_id: row.source_listing_id,
-        evidence_class: evidenceClass,
-        listing_title: obs.listing_title,
-        query_text: row.title_features?.query_text ?? null,
-        strategy: row.title_features?.strategy ?? null,
-        total_ask_price: obs.total_ask_price,
-        currency: obs.currency,
-        seller_key: obs.seller_key,
-        condition_text: obs.condition_text,
-        exclusion_flags: row.exclusion_flags,
-        match_confidence: row.match_confidence,
-      });
+      rows.push(normalizeCandidateRow({ ...row, obs }));
     }
 
     if (data.length < PAGE_SIZE) break;
@@ -220,10 +323,49 @@ async function fetchCandidateRows() {
   ));
 }
 
+async function fetchCardMetadataWithPg(ids) {
+  const connectionString = directDbUrl();
+  const client = new Client({
+    connectionString,
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 120_000,
+    statement_timeout: 120_000,
+    ssl: pgSslConfig(connectionString),
+  });
+  await client.connect();
+  try {
+    const result = await client.query(
+      `select
+         card.id,
+         card.gv_id,
+         card.name,
+         card.set_code,
+         card.number,
+         card.number_plain,
+         card.printed_set_abbrev,
+         card.printed_identity_modifier,
+         card.identity_domain,
+         set_row.name as set_name
+       from public.card_prints card
+       left join public.sets set_row on set_row.id = card.set_id
+      where card.id = any($1::uuid[])`,
+      [ids],
+    );
+    return result.rows;
+  } finally {
+    await client.end();
+  }
+}
+
 async function fetchCardMetadata(candidateRows) {
-  const supabase = createBackendClient();
   const ids = [...new Set(candidateRows.map((row) => row.card_print_id).filter(Boolean))];
   const map = new Map();
+  if (directDbUrl()) {
+    for (const row of await fetchCardMetadataWithPg(ids)) map.set(row.id, row);
+    return map;
+  }
+
+  const supabase = createBackendClient();
   for (let index = 0; index < ids.length; index += 200) {
     const chunk = ids.slice(index, index + 200);
     const { data } = await supabaseReadWithRetry(`card metadata page ${index}-${index + chunk.length - 1}`, () => supabase
@@ -248,7 +390,13 @@ async function fetchCardMetadata(candidateRows) {
   return map;
 }
 
-const candidateRows = await fetchCandidateRows();
+const args = parseArgs(process.argv.slice(2));
+if (process.env.MEE_NIGHTLY_REQUIRE_DIRECT_DB === "1" && !args.runKey) {
+  throw new Error("--run-key is required for production strict rollup projection");
+}
+const supabase = createBackendClient();
+const acquisitionRun = await resolveAcquisitionRun(supabase, args.runKey);
+const candidateRows = await fetchCandidateRows(supabase, acquisitionRun?.id ?? null);
 const cardMetadata = await fetchCardMetadata(candidateRows);
 const groups = new Map();
 const exclusionReasonCounts = {};
@@ -320,20 +468,22 @@ if (!rollups.length) findings.push("no_strict_filtered_rollups");
 if (candidateCounts.strict_title_excluded > 0) findings.push("strict_title_filter_excluded_candidate_rows");
 
 const generatedAt = new Date().toISOString();
+const strictFilteredRollupsHash = sha256(rollups);
 const reportPayloadForHash = {
   source_strict_title_audit_fingerprint_sha256: SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT,
   title_gate_version: MARKET_LISTING_TITLE_GATE_VERSION,
+  strict_filtered_rollups_hash_sha256: strictFilteredRollupsHash,
   candidate_counts: candidateCounts,
   rollup_bucket_counts: bucketCounts,
   evidence_bucket_counts: evidenceBucketCounts,
   strict_title_exclusion_reason_counts: exclusionReasonCounts,
 };
 
-mkdirSync(path.join(REPO_ROOT, AUDIT_DIR), { recursive: true });
+mkdirSync(AUDIT_DIR, { recursive: true });
 const stamp = generatedAt.replace(/[:.]/g, "-");
-const rollupJsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11y_market_listing_strict_filtered_rollups_${stamp}.json`);
-const reportJsonPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11y_market_listing_strict_filtered_rollup_plan_${stamp}.json`);
-const reportMdPath = path.join(REPO_ROOT, AUDIT_DIR, `mee_11y_market_listing_strict_filtered_rollup_plan_${stamp}.md`);
+const rollupJsonPath = path.join(AUDIT_DIR, `mee_11y_market_listing_strict_filtered_rollups_${stamp}.json`);
+const reportJsonPath = path.join(AUDIT_DIR, `mee_11y_market_listing_strict_filtered_rollup_plan_${stamp}.json`);
+const reportMdPath = path.join(AUDIT_DIR, `mee_11y_market_listing_strict_filtered_rollup_plan_${stamp}.md`);
 
 writeFileSync(rollupJsonPath, `${JSON.stringify({ generated_at: generatedAt, rows: rollups }, null, 2)}\n`);
 
@@ -341,8 +491,10 @@ const report = {
   package_id: PACKAGE_ID,
   generated_at: generatedAt,
   mode: "local_strict_filtered_rollup_plan_no_writes_no_provider_calls",
+  source_acquisition_run: acquisitionRun,
   source_strict_title_audit_fingerprint_sha256: SOURCE_STRICT_TITLE_AUDIT_FINGERPRINT,
   title_gate_version: MARKET_LISTING_TITLE_GATE_VERSION,
+  strict_filtered_rollups_hash_sha256: strictFilteredRollupsHash,
   package_fingerprint_sha256: sha256(reportPayloadForHash),
   summary: {
     candidate_rows_total: candidateCounts.total,

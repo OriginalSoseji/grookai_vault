@@ -172,7 +172,11 @@ function buildQueryCacheRow(result, acquisitionRunId, fetchArtifact, generatedAt
       targeted_batch: true,
     },
     target_hints: {
-      gv_id: result.gv_id,
+      ...(result.target_hints && typeof result.target_hints === "object" ? result.target_hints : {}),
+      card_print_id: result.card_print_id ?? result.target_hints?.card_print_id ?? null,
+      card_printing_id: result.card_printing_id ?? result.target_hints?.card_printing_id ?? null,
+      gv_id: result.gv_id ?? result.target_hints?.gv_id ?? null,
+      printing_gv_id: result.printing_gv_id ?? result.target_hints?.printing_gv_id ?? null,
       strategy: result.strategy,
       card_matching_deferred: false,
     },
@@ -303,10 +307,11 @@ export async function buildMarketListingAcquisitionDailyBatchBackfillPlanV1({
     duplicate_raw_payload_rows_skipped: 0,
     duplicate_seller_rows_skipped: 0,
   };
+  let acquisitionRunRow = null;
 
   try {
     if (findings.length === 0) {
-      const acquisitionRunRow = buildAcquisitionRunRow(fetchArtifact, generatedAt);
+      acquisitionRunRow = buildAcquisitionRunRow(fetchArtifact, generatedAt);
       writeRow(streams.acquisitionRunRows, acquisitionRunRow, rowHashes.acquisitionRunRows);
       rowCounts.acquisitionRunRows += 1;
 
@@ -405,6 +410,9 @@ export async function buildMarketListingAcquisitionDailyBatchBackfillPlanV1({
     projected_observation_manifest_hash_sha256: fetchArtifact.projected_observation_manifest_hash_sha256,
     schema_migration_hash_sha256: fetchArtifact.schema_migration_hash_sha256,
     package_fingerprint_sha256: packageFingerprint,
+    source_acquisition_run: acquisitionRunRow
+      ? { id: acquisitionRunRow.id, run_key: acquisitionRunRow.run_key }
+      : null,
     row_manifest_hash_sha256: rowManifestHash,
     row_file_hashes_sha256: rowFileHashes,
     proposed_table_row_counts: {

@@ -16,6 +16,19 @@ Nightly listing ingestion may collect and organize evidence. It must not publish
 
 The nightly job can fetch active listing evidence, store it internally, attach it to likely Grookai card identities, and compute internal review-only rollups. It cannot create public pricing, write app-visible pricing, mutate canon, or rewrite user/vault/image data.
 
+## Target Evolution Rule
+
+The acquisition queue must evolve with the canonical English Pokemon catalog. It must not rebuild the same fixed top-N queue on every run.
+
+Targets are selected in this coverage order:
+
+1. Released English Pokemon cards from the latest 365 days with no prior query evidence.
+2. Other released English Pokemon cards with no prior query evidence.
+3. Recently released targets whose evidence is due for refresh.
+4. Remaining targets ordered by oldest query evidence.
+
+Rarity and special-print priorities apply within those coverage lanes. Future-dated and non-English sets are excluded from this Production V1 acquisition queue. Query-cache rows must retain card, printing, set, release, lane, and selection-version provenance so the next run can make a freshness decision from evidence rather than code changes.
+
 ## Allowed In One Approved Nightly Run
 
 The approved run may:
@@ -41,6 +54,7 @@ The approved run may:
   - `app_visible = false`
   - `market_truth = false`
 - Generate a final morning report with counts, failures, coverage, bucket summaries, and next recommended actions.
+- Report target coverage lanes and selected-set counts so new-set starvation is visible.
 
 ## Required Pipeline Order
 
@@ -149,4 +163,3 @@ The final report must include:
 - schema/write boundary confirmation
 - artifact paths
 - recommended next step
-

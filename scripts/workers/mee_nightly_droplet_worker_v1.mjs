@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,7 +15,7 @@ const { Client } = pg;
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-NIGHTLY-DROPLET-WORKER-V1";
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
@@ -34,6 +35,7 @@ if (!Number.isFinite(PREFLIGHT_READBACK_TIMEOUT_MS) || PREFLIGHT_READBACK_TIMEOU
 }
 const REQUIRED_FILES = [
   "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+  "scripts/workers/market_listing_nightly_pipeline_v2.mjs",
   "scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
   "scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs",
   "scripts/audits/market_evidence_lifecycle_remaining_drain_v1.mjs",
@@ -43,6 +45,7 @@ const REQUIRED_FILES = [
   "docs/sql/mee_variant_assignment_v1_backfill.sql",
   "docs/sql/mee_variant_assignment_v1_readback.sql",
   "docs/sql/mee_variant_read_models_v1_readback.sql",
+  "docs/sql/mee_variant_read_models_fast_readback_v1.sql",
   "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql",
   "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_apply_candidate.sql",
   "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql",
@@ -62,16 +65,19 @@ const PHASES = [
     key: "listing_ingest",
     command: [
       "node",
-      "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+      "scripts/workers/market_listing_nightly_pipeline_v2.mjs",
       "--run",
       "--call-ceiling={callCeiling}",
       "--run-key={runKey}",
+      "{frozenDryRunIfIncomplete}",
     ],
     dryRunCommand: [
       "node",
-      "scripts/audits/market_listing_nightly_ingest_run_v1.mjs",
+      "scripts/workers/market_listing_nightly_pipeline_v2.mjs",
+      "--dry-run",
       "--call-ceiling={callCeiling}",
       "--run-key={runKey}",
+      "{frozenDryRunIfIncomplete}",
     ],
     providerCalls: true,
     dbWrites: true,
@@ -113,13 +119,16 @@ const PHASES = [
     dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_assignment_v1_readback.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "variant_read_models_readback",
-    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_v1_readback.sql"],
-    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_v1_readback.sql"],
+    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_fast_readback_v1.sql"],
+    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_variant_read_models_fast_readback_v1.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
+    timeoutMs: 30_000,
   },
   {
     key: "quality_scoring_readback",
@@ -127,6 +136,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_quality_scoring_read_model_v1.mjs"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "quality_gate_action_plan",
@@ -134,6 +144,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_quality_gate_remaining_candidate_actions_v1.mjs"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "quality_gate_action_preflight",
@@ -141,6 +152,7 @@ const PHASES = [
     dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "quality_gate_action_apply",
@@ -156,6 +168,7 @@ const PHASES = [
     dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
   {
     key: "final_fast_readback",
@@ -164,6 +177,7 @@ const PHASES = [
     providerCalls: false,
     dbWrites: false,
     timeoutMs: PREFLIGHT_READBACK_TIMEOUT_MS,
+    nonBlocking: true,
   },
   {
     key: "foundation_checkpoint",
@@ -171,6 +185,7 @@ const PHASES = [
     dryRunCommand: ["node", "scripts/audits/market_evidence_foundation_complete_v2.mjs"],
     providerCalls: false,
     dbWrites: false,
+    nonBlocking: true,
   },
 ];
 
@@ -223,17 +238,23 @@ function parseArgs(argv) {
     enableRunOnlyMaintenance:
       argv.includes("--enable-run-only-maintenance") || process.env.MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE === "1",
     providerCallsEnabled: process.env.MEE_NIGHTLY_PROVIDER_CALLS_ENABLED === "1",
+    frozenDryRunIfIncomplete: process.env.MEE_NIGHTLY_FROZEN_DRY_RUN_IF_INCOMPLETE?.trim() || null,
     maxCallCeiling: Number.parseInt(process.env.MEE_NIGHTLY_MAX_CALL_CEILING ?? String(DEFAULT_CALL_CEILING), 10),
   };
 }
 
 function fillCommand(command, args) {
-  return command.map((part) =>
-    part
+  return command.flatMap((part) => {
+    if (part === "{frozenDryRunIfIncomplete}") {
+      return args.frozenDryRunIfIncomplete
+        ? [`--frozen-dry-run-if-incomplete=${args.frozenDryRunIfIncomplete}`]
+        : [];
+    }
+    return [part
       .replace("{callCeiling}", String(args.callCeiling))
       .replace("{referenceLimit}", String(args.referenceLimit))
-      .replace("{runKey}", args.runKey),
-  );
+      .replace("{runKey}", args.runKey)];
+  });
 }
 
 function executionCommand(command) {
@@ -279,45 +300,47 @@ function translatedCommand(command) {
 }
 
 function ensureSupabaseShimDir() {
-  const shimDir = path.join(os.tmpdir(), "grookai-mee-nightly-bin");
-  mkdirSync(shimDir, { recursive: true });
-
-  if (process.platform === "win32") {
-    const shimPath = path.join(shimDir, "supabase.cmd");
-    writeFileSync(
-      shimPath,
-      [
+  const windows = process.platform === "win32";
+  const shimContents = windows
+    ? [
         "@echo off",
         `if exist "${path.join(LOCAL_BIN_DIR, "supabase.cmd")}" "${path.join(LOCAL_BIN_DIR, "supabase.cmd")}" %*`,
         "if not errorlevel 9009 exit /b %errorlevel%",
         "where supabase >nul 2>nul && supabase %* && exit /b %errorlevel%",
         "npx --yes supabase %*",
         "",
-      ].join("\r\n"),
-    );
-    return shimDir;
-  }
-
-  const shimPath = path.join(shimDir, "supabase");
-  writeFileSync(
-    shimPath,
-    [
-      "#!/usr/bin/env bash",
-      "set -euo pipefail",
-      `LOCAL_SUPABASE="${path.join(LOCAL_BIN_DIR, "supabase")}"`,
-      'if [[ -x "${LOCAL_SUPABASE}" ]]; then',
-      '  exec "${LOCAL_SUPABASE}" "$@"',
-      "fi",
-      "for candidate in /usr/local/bin/supabase /usr/bin/supabase; do",
-      '  if [[ -x "${candidate}" ]]; then',
-      '    exec "${candidate}" "$@"',
-      "  fi",
-      "done",
-      'exec npx --yes supabase "$@"',
-      "",
-    ].join("\n"),
+      ].join("\r\n")
+    : [
+        "#!/usr/bin/env bash",
+        "set -euo pipefail",
+        `LOCAL_SUPABASE="${path.join(LOCAL_BIN_DIR, "supabase")}"`,
+        'if [[ -x "${LOCAL_SUPABASE}" ]]; then',
+        '  exec "${LOCAL_SUPABASE}" "$@"',
+        "fi",
+        "for candidate in /usr/local/bin/supabase /usr/bin/supabase; do",
+        '  if [[ -x "${candidate}" ]]; then',
+        '    exec "${candidate}" "$@"',
+        "  fi",
+        "done",
+        'exec npx --yes supabase "$@"',
+        "",
+      ].join("\n");
+  const shimHash = createHash("sha256")
+    .update(shimContents)
+    .digest("hex")
+    .slice(0, 16);
+  const shimDir = path.join(
+    os.tmpdir(),
+    "grookai-mee-nightly-bin",
+    shimHash,
   );
-  chmodSync(shimPath, 0o755);
+  const shimPath = path.join(shimDir, windows ? "supabase.cmd" : "supabase");
+  mkdirSync(shimDir, { recursive: true });
+
+  if (!existsSync(shimPath) || readFileSync(shimPath, "utf8") !== shimContents) {
+    writeFileSync(shimPath, shimContents);
+    if (!windows) chmodSync(shimPath, 0o755);
+  }
   return shimDir;
 }
 
@@ -658,6 +681,7 @@ function preflight(args) {
       SUPABASE_SECRET_KEY_present: Boolean(process.env.SUPABASE_SECRET_KEY),
       SUPABASE_DB_URL_present: Boolean(process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL),
       MEE_NIGHTLY_PROVIDER_CALLS_ENABLED: args.providerCallsEnabled,
+      MEE_NIGHTLY_FROZEN_DRY_RUN_IF_INCOMPLETE_present: Boolean(args.frozenDryRunIfIncomplete),
       MEE_NIGHTLY_NORMALIZATION_ONLY: args.normalizationOnly,
       MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE: args.enableRunOnlyMaintenance,
       MEE_NIGHTLY_MAX_CALL_CEILING: args.maxCallCeiling,
@@ -722,6 +746,7 @@ const startedAt = new Date().toISOString();
 const preflightResult = preflight(args);
 const execution = [];
 const findings = [...preflightResult.findings];
+const warnings = [];
 let lock = null;
 let lockRelease = null;
 
@@ -832,6 +857,7 @@ try {
       if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
       if (result.status !== 0) {
         if (phase.nonBlocking) {
+          warnings.push(`phase_warning:${phase.key}`);
           execution.push({
             phase: `${phase.key}_warning`,
             skipped: true,
@@ -888,6 +914,8 @@ const payload = {
   })),
   boundary,
   findings,
+  warnings,
+  outcome: findings.length ? "failed" : warnings.length ? "completed_with_warnings" : "completed",
 };
 
 const report = {

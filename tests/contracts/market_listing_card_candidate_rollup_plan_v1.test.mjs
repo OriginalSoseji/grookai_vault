@@ -16,4 +16,7 @@ test("MEE-11S candidate rollup plan stays review-only and non-public", () => {
   assert.doesNotMatch(script, /\.delete\s*\(/);
   assert.doesNotMatch(script, /\.from\(["']pricing_observations["']\)/);
   assert.doesNotMatch(script, /\.from\(["']ebay_active_prices_latest["']\)/);
+  assert.match(script, /acquisition_run_id/);
+  assert.match(script, /--run-key=/);
+  assert.match(script, /\.eq\("acquisition_run_id", runId\)|where observation\.acquisition_run_id/);
 });

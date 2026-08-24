@@ -24,6 +24,11 @@ test("strict filtered rollup apply is fingerprint-gated and only writes internal
   assert.match(script, /publishable:\s*false/);
   assert.match(script, /app_visible:\s*false/);
   assert.match(script, /market_truth:\s*false/);
+  assert.match(script, /source_rollup_rows_hash_mismatch/);
+  assert.match(script, /create temp table tmp_market_listing_strict_rollups/);
+  assert.match(script, /on commit preserve rows/);
+  assert.match(script, /strict rollup direct apply readback does not match the plan; rolling back/);
+  assert.match(script, /committed strict rollup direct apply readback does not match the plan/);
   assert.match(script, /if \(args\.apply\)/);
   assert.match(script, /\.from\("market_listing_rollups"\)[\s\S]*\.insert\(chunk\)/);
   assert.doesNotMatch(script, /\.from\("market_listing_card_candidates"\)[\s\S]*\.insert/);

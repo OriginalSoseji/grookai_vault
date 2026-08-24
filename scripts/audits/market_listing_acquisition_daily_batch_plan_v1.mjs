@@ -3,15 +3,20 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { buildMarketListingAcquisitionDailyBatchPlanV1 } from "../../backend/pricing/market_listing_acquisition_daily_batch_plan_v1.mjs";
+import {
+  meeArtifactReferenceV1,
+  resolveMeeArtifactInputV1,
+  resolveMeeAuditRootV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = "docs/audits/market_evidence_engine_v1";
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const DRY_RUN_PREFIX = "mee_11d_market_listing_acquisition_dry_run_plan_";
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function parseArgs(argv) {
@@ -31,7 +36,7 @@ function parseArgs(argv) {
 }
 
 function latestDryRunPath() {
-  const dir = path.join(REPO_ROOT, AUDIT_DIR);
+  const dir = AUDIT_DIR;
   const candidates = readdirSync(dir)
     .filter((fileName) => fileName.startsWith(DRY_RUN_PREFIX) && fileName.endsWith(".json"))
     .sort();
@@ -41,7 +46,7 @@ function latestDryRunPath() {
 }
 
 function readDryRunPlan(filePath) {
-  const resolved = path.resolve(REPO_ROOT, filePath ?? latestDryRunPath());
+  const resolved = resolveMeeArtifactInputV1(REPO_ROOT, filePath ?? latestDryRunPath());
   return JSON.parse(readFileSync(resolved, "utf8"));
 }
 
@@ -97,10 +102,10 @@ function renderMarkdown(report) {
 }
 
 function writeReport(report) {
-  mkdirSync(path.join(REPO_ROOT, AUDIT_DIR), { recursive: true });
+  mkdirSync(AUDIT_DIR, { recursive: true });
   const base = `mee_11k_market_listing_acquisition_daily_batch_plan_${new Date().toISOString().replace(/[:.]/g, "-")}`;
-  const jsonPath = path.join(REPO_ROOT, AUDIT_DIR, `${base}.json`);
-  const mdPath = path.join(REPO_ROOT, AUDIT_DIR, `${base}.md`);
+  const jsonPath = path.join(AUDIT_DIR, `${base}.json`);
+  const mdPath = path.join(AUDIT_DIR, `${base}.md`);
   const output = {
     ...report,
     approval_prompt_for_next_step: approvalPrompt(report),

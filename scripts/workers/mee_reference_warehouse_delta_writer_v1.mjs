@@ -13,18 +13,24 @@ import {
   MARKET_REFERENCE_WAREHOUSE_AUTOMATED_APPLY_CONTRACT_VERSION,
 } from "../../backend/pricing/market_reference_warehouse_automated_apply_policy_v1.mjs";
 import { referenceCandidateHashV1 } from "../../backend/pricing/market_reference_warehouse_backfill_manifest_v1.mjs";
+import {
+  meeArtifactReferenceV1,
+  resolveMeeArtifactInputV1,
+  resolveMeeAuditRootV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 export const PACKAGE_ID = "MEE-REFERENCE-WAREHOUSE-DELTA-WRITER-V1";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const { Client } = pg;
 const REFERENCE_WAREHOUSE_TABLES = new Set([
   "market_reference_candidates",
   "market_reference_normalized_evidence",
 ]);
+const LOOKUP_CHUNK_SIZE = 500;
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -44,7 +50,7 @@ function sha256(value) {
 }
 
 function rel(filePath) {
-  return path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
+  return meeArtifactReferenceV1(REPO_ROOT, filePath);
 }
 
 function parseArgs(argv) {
@@ -157,10 +163,10 @@ async function buildArtifactInventory({ candidateCounts = {}, normalizedCounts =
   });
   const tcgdexAudit = readJsonIfPresent(tcgdexAuditPath);
   const tcgdexCandidateManifestPath = tcgdexAudit?.artifacts?.candidates
-    ? path.join(REPO_ROOT, tcgdexAudit.artifacts.candidates)
+    ? resolveMeeArtifactInputV1(REPO_ROOT, tcgdexAudit.artifacts.candidates)
     : null;
   const tcgdexNormalizedManifestPath = tcgdexAudit?.artifacts?.normalized
-    ? path.join(REPO_ROOT, tcgdexAudit.artifacts.normalized)
+    ? resolveMeeArtifactInputV1(REPO_ROOT, tcgdexAudit.artifacts.normalized)
     : null;
 
   const pokemonAcquisitionPath = await latestFile({
@@ -265,72 +271,78 @@ function sourceProjectionFromInventory(inventory) {
   };
 }
 
-async function fetchAll(supabase, table, select, configure = (query) => query, { pageSize = 1000 } = {}) {
-  const rows = [];
-  for (let from = 0;; from += pageSize) {
-    let data = null;
-    let error = null;
-    for (let attempt = 1; attempt <= 5; attempt += 1) {
-      const response = await configure(supabase.from(table).select(select).range(from, from + pageSize - 1));
-      data = response.data;
-      error = response.error;
-      if (!error) break;
-      await new Promise((resolve) => setTimeout(resolve, attempt * 750));
-    }
-    if (error) throw new Error(`[mee-reference-delta-writer] read failed for ${table}: ${error.message}`);
-    rows.push(...(data ?? []));
-    if (!data || data.length < pageSize) break;
+function chunkValues(values, size = LOOKUP_CHUNK_SIZE) {
+  const unique = [...new Set(values.filter(Boolean))];
+  const chunks = [];
+  for (let index = 0; index < unique.length; index += size) {
+    chunks.push(unique.slice(index, index + size));
   }
-  return rows;
+  return chunks;
 }
 
-async function fetchExistingCandidateMapWithPg(source) {
+async function fetchExistingCandidateMapWithPg(source, candidateHashes) {
   return withPgClient(async (client) => {
-    const result = await client.query(
-      `select id, candidate_hash
-         from public.market_reference_candidates
-        where source = $1
-        order by id asc`,
-      [source],
-    );
-    return new Map(result.rows.map((row) => [row.candidate_hash, row.id]));
+    const rows = [];
+    for (const hashes of chunkValues(candidateHashes)) {
+      const result = await client.query(
+        `select id, candidate_hash
+           from public.market_reference_candidates
+          where source = $1
+            and candidate_hash = any($2::text[])`,
+        [source, hashes],
+      );
+      rows.push(...result.rows);
+    }
+    return new Map(rows.map((row) => [row.candidate_hash, row.id]));
   });
 }
 
-async function fetchExistingNormalizedKeysWithPg(source) {
+async function fetchExistingNormalizedKeysWithPg(source, candidateIds) {
   return withPgClient(async (client) => {
-    const result = await client.query(
-      `select candidate_id, normalizer_version
-         from public.market_reference_normalized_evidence
-        where source = $1
-        order by candidate_id asc`,
-      [source],
-    );
-    return new Set(result.rows.map((row) => `${row.candidate_id}:${row.normalizer_version}`));
+    const rows = [];
+    for (const ids of chunkValues(candidateIds)) {
+      const result = await client.query(
+        `select candidate_id, normalizer_version
+           from public.market_reference_normalized_evidence
+          where source = $1
+            and candidate_id = any($2::uuid[])`,
+        [source, ids],
+      );
+      rows.push(...result.rows);
+    }
+    return new Set(rows.map((row) => `${row.candidate_id}:${row.normalizer_version}`));
   });
 }
 
-async function fetchExistingCandidateMap(supabase, source) {
-  if (process.env.SUPABASE_DB_URL) return fetchExistingCandidateMapWithPg(source);
+async function fetchExistingCandidateMap(supabase, source, candidateHashes) {
+  if (process.env.SUPABASE_DB_URL) return fetchExistingCandidateMapWithPg(source, candidateHashes);
 
-  const rows = await fetchAll(
-    supabase,
-    "market_reference_candidates",
-    "id,candidate_hash",
-    (query) => query.eq("source", source).order("id", { ascending: true }),
-  );
+  const rows = [];
+  for (const hashes of chunkValues(candidateHashes)) {
+    const { data, error } = await supabase
+      .from("market_reference_candidates")
+      .select("id,candidate_hash")
+      .eq("source", source)
+      .in("candidate_hash", hashes);
+    if (error) throw new Error(`[mee-reference-delta-writer] candidate lookup failed: ${error.message}`);
+    rows.push(...(data ?? []));
+  }
   return new Map(rows.map((row) => [row.candidate_hash, row.id]));
 }
 
-async function fetchExistingNormalizedKeys(supabase, source) {
-  if (process.env.SUPABASE_DB_URL) return fetchExistingNormalizedKeysWithPg(source);
+async function fetchExistingNormalizedKeys(supabase, source, candidateIds) {
+  if (process.env.SUPABASE_DB_URL) return fetchExistingNormalizedKeysWithPg(source, candidateIds);
 
-  const rows = await fetchAll(
-    supabase,
-    "market_reference_normalized_evidence",
-    "candidate_id,normalizer_version",
-    (query) => query.eq("source", source).order("candidate_id", { ascending: true }),
-  );
+  const rows = [];
+  for (const ids of chunkValues(candidateIds)) {
+    const { data, error } = await supabase
+      .from("market_reference_normalized_evidence")
+      .select("candidate_id,normalizer_version")
+      .eq("source", source)
+      .in("candidate_id", ids);
+    if (error) throw new Error(`[mee-reference-delta-writer] normalized lookup failed: ${error.message}`);
+    rows.push(...(data ?? []));
+  }
   return new Set(rows.map((row) => `${row.candidate_id}:${row.normalizer_version}`));
 }
 
@@ -421,14 +433,12 @@ async function buildSourceDeltaPlan({ supabase, inventory }) {
   const findings = [];
 
   for (const item of plannedSourcesFromInventory(inventory)) {
-    const acquisition = readJsonIfPresent(item.acquisitionPath ? path.join(REPO_ROOT, item.acquisitionPath) : null);
-    const normalized = readJsonIfPresent(item.normalizedPath ? path.join(REPO_ROOT, item.normalizedPath) : null);
+    const acquisition = readJsonIfPresent(resolveMeeArtifactInputV1(REPO_ROOT, item.acquisitionPath));
+    const normalized = readJsonIfPresent(resolveMeeArtifactInputV1(REPO_ROOT, item.normalizedPath));
     if (!acquisition || !normalized) {
       findings.push(`${item.source}:source_artifacts_missing`);
       continue;
     }
-    const existingCandidateMap = await fetchExistingCandidateMap(supabase, item.source);
-    const existingNormalizedKeys = await fetchExistingNormalizedKeys(supabase, item.source);
     const candidateRows = dedupeBy(
       (acquisition.candidate_evidence ?? [])
         .filter((row) => row.source === item.source)
@@ -440,6 +450,16 @@ async function buildSourceDeltaPlan({ supabase, inventory }) {
         .filter((row) => row.source === item.source)
         .map(normalizedProjectionRow),
       (row) => `${row.source}:${row.candidate_hash}:${row.normalizer_version}`,
+    );
+    const existingCandidateMap = await fetchExistingCandidateMap(
+      supabase,
+      item.source,
+      candidateRows.map((row) => row.candidate_hash),
+    );
+    const existingNormalizedKeys = await fetchExistingNormalizedKeys(
+      supabase,
+      item.source,
+      [...existingCandidateMap.values()],
     );
     const candidateRowsByHash = new Map(candidateRows.map((row) => [row.candidate_hash, row]));
     const missingCandidateRows = candidateRows.filter((row) => !existingCandidateMap.has(row.candidate_hash));
@@ -521,7 +541,11 @@ async function applySourceDeltaPlan({ supabase, sourcePlans, chunkSize }) {
       { chunkSize, select: "id,candidate_hash" },
     );
     const candidateIdByHash = new Map(insertedCandidates.map((row) => [row.candidate_hash, row.id]));
-    const existingCandidateMap = await fetchExistingCandidateMap(supabase, sourcePlan.source);
+    const existingCandidateMap = await fetchExistingCandidateMap(
+      supabase,
+      sourcePlan.source,
+      sourcePlan.rows.missing_normalized_rows.map((row) => row.candidate_hash),
+    );
     for (const [hash, id] of existingCandidateMap.entries()) {
       if (!candidateIdByHash.has(hash)) candidateIdByHash.set(hash, id);
     }

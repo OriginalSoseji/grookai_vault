@@ -124,6 +124,8 @@
     "mee:normalization:run": "node scripts/audits/market_evidence_normalization_only_runner_v1.mjs --run",
     "mee:nightly:droplet:dry-run": "node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run",
     "mee:nightly:droplet:run": "node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run",
+    "mee:nightly:pipeline-v2:dry-run": "node scripts/workers/market_listing_nightly_pipeline_v2.mjs --dry-run",
+    "mee:nightly:pipeline-v2:run": "node scripts/workers/market_listing_nightly_pipeline_v2.mjs --run",
     "mee:nightly:post-ingest:dry-run": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --dry-run",
     "mee:nightly:post-ingest:readbacks": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --dry-run --execute-readbacks",
     "mee:nightly:post-ingest:run": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --run",

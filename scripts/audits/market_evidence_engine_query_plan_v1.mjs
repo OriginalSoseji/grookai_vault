@@ -3,12 +3,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildMarketEvidenceQueryPlanV1 } from '../../backend/pricing/market_evidence_query_plan_v1.mjs';
+import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const DEFAULT_OUT_DIR = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1');
-const DEFAULT_WORKLIST = path.join(DEFAULT_OUT_DIR, 'mee_overnight_worklist_2026-06-25T05-13-57-661Z.json');
+const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
+const DEFAULT_WORKLIST = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1', 'mee_overnight_worklist_2026-06-25T05-13-57-661Z.json');
 
 function parseArgs(argv) {
   const parsed = {

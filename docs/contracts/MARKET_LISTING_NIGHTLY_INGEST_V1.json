@@ -5,6 +5,20 @@
   "default_call_ceiling": 4000,
   "source": "ebay_active",
   "provider_route": "ebay_browse_api",
+  "target_selection": {
+    "version": "MEE_MARKET_LISTING_ACQUISITION_TARGET_SELECTION_V1",
+    "scope": "released_english_pokemon",
+    "new_set_window_days": 365,
+    "coverage_order": [
+      "new_release_unqueried",
+      "unqueried",
+      "new_release_refresh",
+      "stale_refresh"
+    ],
+    "future_releases_allowed": false,
+    "full_target_provenance_required": true,
+    "fixed_top_queue_allowed": false
+  },
   "allowed_tables": [
     "market_listing_acquisition_runs",
     "market_listing_query_cache",
