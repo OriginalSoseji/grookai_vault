@@ -102,6 +102,25 @@ test("MEE nightly droplet worker includes the full internal MEE phase chain", ()
   }
 });
 
+test("scheduled MEE readback phases isolate generated files from the release checkout", () => {
+  const worker = read(workerPath);
+  assert.match(worker, /resolveMeeRuntimePathV1/);
+  assert.match(worker, /QUALITY_GATE_PREFLIGHT_SQL/);
+  assert.match(worker, /QUALITY_GATE_APPLY_SQL/);
+  assert.match(worker, /QUALITY_GATE_READBACK_SQL/);
+
+  for (const auditPath of [
+    "scripts/audits/market_evidence_fast_post_ingest_review_readback_v1.mjs",
+    "scripts/audits/market_evidence_quality_scoring_read_model_v1.mjs",
+    "scripts/audits/market_evidence_quality_gate_remaining_candidate_actions_v1.mjs",
+    "scripts/audits/market_evidence_foundation_complete_v2.mjs",
+  ]) {
+    const audit = read(auditPath);
+    assert.match(audit, /resolveMeeAuditRootV1/);
+    assert.match(audit, /resolveMeeRuntimePathV1/);
+  }
+});
+
 test("MEE nightly droplet worker keeps public pricing boundaries sealed", () => {
   const script = read(workerPath);
   const contract = read(contractPath);

@@ -4,17 +4,24 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { marketEvidenceQueryRows } from "../lib/market_evidence_db_query_v1.mjs";
+import {
+  resolveMeeAuditRootV1,
+  resolveMeeRuntimePathV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-CORE-QUALITY-GATE-REMAINING-CANDIDATE-ACTIONS-V1";
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const ARTIFACT_DIR = path.join(AUDIT_DIR, PACKAGE_ID);
-const SQL_DIR = path.join(REPO_ROOT, "docs", "sql");
-const PLAN_DIR = path.join(REPO_ROOT, "docs", "plans", "market_evidence_engine_v1");
-const CHECKPOINT_DIR = path.join(REPO_ROOT, "docs", "checkpoints", "market_evidence_engine");
+const SQL_DIR = resolveMeeRuntimePathV1(REPO_ROOT, "docs/sql");
+const PLAN_DIR = resolveMeeRuntimePathV1(REPO_ROOT, "docs/plans/market_evidence_engine_v1");
+const CHECKPOINT_DIR = resolveMeeRuntimePathV1(
+  REPO_ROOT,
+  "docs/checkpoints/market_evidence_engine",
+);
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);

@@ -1,18 +1,27 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+import {
+  meeArtifactReadCandidatesV1,
+  resolveMeeAuditRootV1,
+  resolveMeeRuntimePathV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-CORE-FOUNDATION-COMPLETE-V2";
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const ARTIFACT_DIR = path.join(AUDIT_DIR, PACKAGE_ID);
-const CONTRACT_DIR = path.join(REPO_ROOT, "docs", "contracts");
-const PLAN_DIR = path.join(REPO_ROOT, "docs", "plans", "market_evidence_engine_v1");
-const CHECKPOINT_DIR = path.join(REPO_ROOT, "docs", "checkpoints", "market_evidence_engine");
+const CONTRACT_DIR = resolveMeeRuntimePathV1(REPO_ROOT, "docs/contracts");
+const PLAN_DIR = resolveMeeRuntimePathV1(REPO_ROOT, "docs/plans/market_evidence_engine_v1");
+const CHECKPOINT_DIR = resolveMeeRuntimePathV1(
+  REPO_ROOT,
+  "docs/checkpoints/market_evidence_engine",
+);
 
 const FAST_READBACK_REPORT =
   "docs/audits/market_evidence_engine_v1/MEE-CORE-FAST-POST-INGEST-REVIEW-READBACK-V1/report.json";
@@ -44,7 +53,9 @@ function sha256Json(value) {
 }
 
 function read(relativePath) {
-  return readFileSync(path.join(REPO_ROOT, relativePath), "utf8");
+  const candidates = meeArtifactReadCandidatesV1(REPO_ROOT, relativePath);
+  const resolvedPath = candidates.find((candidate) => existsSync(candidate)) ?? candidates.at(-1);
+  return readFileSync(resolvedPath, "utf8");
 }
 
 function readJson(relativePath) {
@@ -52,19 +63,9 @@ function readJson(relativePath) {
 }
 
 function readJsonOrNull(relativePath) {
-  const absolutePath = path.join(REPO_ROOT, relativePath);
-  if (!readFileExists(absolutePath)) return null;
-  return JSON.parse(readFileSync(absolutePath, "utf8"));
-}
-
-function readFileExists(absolutePath) {
-  try {
-    readFileSync(absolutePath);
-    return true;
-  } catch (error) {
-    if (error?.code === "ENOENT") return false;
-    throw error;
-  }
+  const absolutePath = meeArtifactReadCandidatesV1(REPO_ROOT, relativePath)
+    .find((candidate) => existsSync(candidate));
+  return absolutePath ? JSON.parse(readFileSync(absolutePath, "utf8")) : null;
 }
 
 function boundaryProof() {

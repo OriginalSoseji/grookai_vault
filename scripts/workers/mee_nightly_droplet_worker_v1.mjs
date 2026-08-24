@@ -7,7 +7,10 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
-import { resolveMeeAuditRootV1 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
+import {
+  resolveMeeAuditRootV1,
+  resolveMeeRuntimePathV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +19,18 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-NIGHTLY-DROPLET-WORKER-V1";
 const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
+const QUALITY_GATE_APPLY_SQL = resolveMeeRuntimePathV1(
+  REPO_ROOT,
+  "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_apply_candidate.sql",
+);
+const QUALITY_GATE_PREFLIGHT_SQL = resolveMeeRuntimePathV1(
+  REPO_ROOT,
+  "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql",
+);
+const QUALITY_GATE_READBACK_SQL = resolveMeeRuntimePathV1(
+  REPO_ROOT,
+  "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql",
+);
 const DEFAULT_CALL_CEILING = 4000;
 const LOCK_KEY = "grookai_mee_nightly_worker_v1";
 const LOCAL_BIN_DIR = path.join(REPO_ROOT, "node_modules", ".bin");
@@ -148,15 +163,15 @@ const PHASES = [
   },
   {
     key: "quality_gate_action_preflight",
-    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql"],
-    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_preflight.sql"],
+    command: ["supabase", "db", "query", "--linked", "-f", QUALITY_GATE_PREFLIGHT_SQL],
+    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", QUALITY_GATE_PREFLIGHT_SQL],
     providerCalls: false,
     dbWrites: false,
     nonBlocking: true,
   },
   {
     key: "quality_gate_action_apply",
-    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_apply_candidate.sql"],
+    command: ["supabase", "db", "query", "--linked", "-f", QUALITY_GATE_APPLY_SQL],
     dryRunCommand: null,
     providerCalls: false,
     dbWrites: true,
@@ -164,8 +179,8 @@ const PHASES = [
   },
   {
     key: "quality_gate_action_readback",
-    command: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql"],
-    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", "docs/sql/mee_core_quality_gate_remaining_candidate_actions_v1_readback.sql"],
+    command: ["supabase", "db", "query", "--linked", "-f", QUALITY_GATE_READBACK_SQL],
+    dryRunCommand: ["supabase", "db", "query", "--linked", "-f", QUALITY_GATE_READBACK_SQL],
     providerCalls: false,
     dbWrites: false,
     nonBlocking: true,

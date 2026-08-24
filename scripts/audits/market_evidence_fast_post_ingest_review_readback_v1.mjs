@@ -4,17 +4,24 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { marketEvidenceQueryRows } from "../lib/market_evidence_db_query_v1.mjs";
+import {
+  resolveMeeAuditRootV1,
+  resolveMeeRuntimePathV1,
+} from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const PACKAGE_ID = "MEE-CORE-FAST-POST-INGEST-REVIEW-READBACK-V1";
-const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
+const AUDIT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const ARTIFACT_DIR = path.join(AUDIT_DIR, PACKAGE_ID);
-const CHECKPOINT_DIR = path.join(REPO_ROOT, "docs", "checkpoints", "market_evidence_engine");
-const PLAN_DIR = path.join(REPO_ROOT, "docs", "plans", "market_evidence_engine_v1");
-const SQL_DIR = path.join(REPO_ROOT, "docs", "sql");
+const CHECKPOINT_DIR = resolveMeeRuntimePathV1(
+  REPO_ROOT,
+  "docs/checkpoints/market_evidence_engine",
+);
+const PLAN_DIR = resolveMeeRuntimePathV1(REPO_ROOT, "docs/plans/market_evidence_engine_v1");
+const SQL_DIR = resolveMeeRuntimePathV1(REPO_ROOT, "docs/sql");
 const REPORT_JSON = path.join(ARTIFACT_DIR, "report.json");
 const REPORT_MD = path.join(AUDIT_DIR, `${PACKAGE_ID}.md`);
 const CHECKPOINT_MD = path.join(CHECKPOINT_DIR, `${PACKAGE_ID.replaceAll("-", "_")}.md`);
