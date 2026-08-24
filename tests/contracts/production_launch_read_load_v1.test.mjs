@@ -62,3 +62,9 @@ test('load tooling is bounded and contains no production write statements', () =
   assert.match(source, /credentials_persisted:\s*false/);
   assert.doesNotMatch(source, /\b(insert|update|delete|truncate)\s+(?:into|from|table|public\.)/i);
 });
+
+test('load sample discovery avoids sorting the full current pricing view', () => {
+  assert.match(source, /market_price_current_publication/);
+  assert.match(source, /market_price_publication_snapshots/);
+  assert.doesNotMatch(source, /select\s+distinct\s+current_price\.card_print_id/i);
+});

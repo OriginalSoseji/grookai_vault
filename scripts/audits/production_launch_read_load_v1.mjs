@@ -166,13 +166,15 @@ function gitValue(args) {
 }
 
 async function loadSamples(client) {
-  const pricingRows = (await client.query(`
-    select distinct current_price.card_print_id
-    from public.v_market_price_current_v1 current_price
-    where current_price.card_print_id is not null
-    order by current_price.card_print_id
-    limit 50
-  `)).rows.map((row) => row.card_print_id);
+  const pricingRows = [...new Set((await client.query(`
+    select snapshot.card_print_id
+    from public.market_price_current_publication current_state
+    join public.market_price_publication_snapshots snapshot
+      on snapshot.publication_set_id = current_state.publication_set_id
+     and snapshot.run_id = current_state.run_id
+    where snapshot.card_print_id is not null
+    limit 200
+  `)).rows.map((row) => row.card_print_id))].slice(0, 50);
   const imageRows = (await client.query(`
     select card.gv_id
     from public.card_prints card
