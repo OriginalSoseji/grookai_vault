@@ -20,6 +20,11 @@ Deployed authenticated pricing surfaces are governed by
 `TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md`. Repository wiring alone does
 not satisfy its source-to-render requirement.
 
+`MEE_PUBLIC_PRICING_COMPATIBILITY_RETIREMENT_V1.md` closes the obsolete
+`v_card_pricing_ui_v1` surface. It preserves the legacy database shape while
+returning zero rows and denying app-role access; Production V1 clients must use
+the governed TCGPlayer Market RPC.
+
 ## MTG Planning Amendment
 
 `MTG_MARKET_PRICING_PRODUCT_V1.md` defines the fail-closed scope and authority
