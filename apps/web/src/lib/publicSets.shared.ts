@@ -134,6 +134,12 @@ export const GAME_SCOPED_SET_ALIAS_MAP: Record<
   Record<string, string[]>
 > = {
   pokemon: {
+    "m-p": ["jpn-MP"],
+    "mega promotion cards": ["jpn-MP"],
+    "pokemon world championships 2026": ["jpn-MP"],
+    "world championships 2026": ["jpn-MP"],
+    "world championship 2026": ["jpn-MP"],
+    "wcs 2026": ["jpn-MP"],
     "storm emeralda": ["jpn-product-93e429bd4ffd351d"],
     "storm emerald": ["jpn-product-93e429bd4ffd351d"],
     "ストームエメラルダ": ["jpn-product-93e429bd4ffd351d"],

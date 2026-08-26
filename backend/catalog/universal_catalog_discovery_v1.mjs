@@ -14,6 +14,14 @@ export const CATALOG_GAP_STATUSES = Object.freeze({
   SOURCE_NO_ELIGIBLE_CARDS: "source_no_eligible_cards",
 });
 
+export const JAPANESE_CARD_COVERAGE_STATUSES = Object.freeze({
+  AMBIGUOUS_CANONICAL_MATCH: "ambiguous_canonical_match",
+  CANONICAL_CARD_MISSING: "canonical_card_missing",
+  CANONICAL_PRESENT_OFFICIAL_EVIDENCE_MISSING:
+    "canonical_present_official_evidence_missing",
+  OFFICIAL_EVIDENCE_PRESENT: "official_evidence_present",
+});
+
 function clean(value) {
   return String(value ?? "").trim();
 }
@@ -56,6 +64,70 @@ export function normalizeCatalogSetCode(gameCode, value) {
     if (match) return `${match[1].toLowerCase()}${match[2].padStart(2, "0")}`;
   }
   return compact;
+}
+
+export function normalizeJapanesePrintedSetCode(value) {
+  return clean(value)
+    .normalize("NFKC")
+    .toLocaleLowerCase("und")
+    .replace(/^jpn[-_\s]*/i, "")
+    .replace(/[^a-z0-9]+/g, "");
+}
+
+function normalizeCollectorNumber(value) {
+  const token = clean(value).split("/", 1)[0].toLocaleUpperCase("und");
+  return /^\d+$/.test(token) ? String(Number(token)) : token.replace(/\s+/g, "");
+}
+
+export function reconcileJapaneseOfficialCardCoverage({
+  card,
+  officialEvidenceIds = [],
+  canonicalCards = [],
+}) {
+  const sourceExternalId = clean(card?.card_id);
+  if (new Set(officialEvidenceIds.map(clean)).has(sourceExternalId)) {
+    return {
+      status: JAPANESE_CARD_COVERAGE_STATUSES.OFFICIAL_EVIDENCE_PRESENT,
+      canonical_matches: [],
+    };
+  }
+
+  const sourceSetCode = normalizeJapanesePrintedSetCode(card?.source_set_code);
+  const sourceNumber = normalizeCollectorNumber(
+    card?.card_number_raw ?? card?.card_number_numerator,
+  );
+  const coordinateMatches = (canonicalCards ?? []).filter((candidate) =>
+    sourceSetCode && sourceNumber &&
+    normalizeJapanesePrintedSetCode(candidate.set_code) === sourceSetCode &&
+    normalizeCollectorNumber(candidate.number_plain ?? candidate.number) === sourceNumber);
+  const sourceName = normalizeCatalogText(card?.printed_name);
+  const exactNameMatches = coordinateMatches.filter((candidate) =>
+    sourceName && normalizeCatalogText(candidate.name) === sourceName);
+  const matches = exactNameMatches.length === 1 ? exactNameMatches : coordinateMatches;
+  const canonicalMatches = matches.map((candidate) => ({
+    card_print_id: candidate.id,
+    gv_id: candidate.gv_id,
+    name: candidate.name,
+    number: candidate.number,
+    set_code: candidate.set_code,
+  }));
+  if (matches.length === 1) {
+    return {
+      status:
+        JAPANESE_CARD_COVERAGE_STATUSES.CANONICAL_PRESENT_OFFICIAL_EVIDENCE_MISSING,
+      canonical_matches: canonicalMatches,
+    };
+  }
+  if (matches.length > 1) {
+    return {
+      status: JAPANESE_CARD_COVERAGE_STATUSES.AMBIGUOUS_CANONICAL_MATCH,
+      canonical_matches: canonicalMatches,
+    };
+  }
+  return {
+    status: JAPANESE_CARD_COVERAGE_STATUSES.CANONICAL_CARD_MISSING,
+    canonical_matches: [],
+  };
 }
 
 export function catalogSetMatchKeys(row) {
@@ -101,20 +173,36 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
   }
   const results = [];
   for (const source of sourceSets ?? []) {
-    const candidateMap = new Map();
+    let candidates = [];
     for (const key of catalogSetMatchKeys(source)) {
-      for (const row of databaseIndex.get(key) ?? []) {
-        candidateMap.set(`${row.game_code}:${row.code}`, row);
-      }
+      const candidateMap = new Map((databaseIndex.get(key) ?? []).map((row) => [
+        `${row.game_code}:${row.code}`,
+        row,
+      ]));
+      if (candidateMap.size === 0) continue;
+      candidates = [...candidateMap.values()];
+      break;
     }
-    const candidates = [...candidateMap.values()];
-    const database = candidates.length === 1 ? candidates[0] : null;
     const expected = integerOrNull(source.expected_card_count);
+    let database = candidates.length === 1 ? candidates[0] : null;
+    if (!database && candidates.length > 1) {
+      const exactCountMatches = expected === null ? [] : candidates.filter((row) =>
+        integerOrNull(row.card_count) === expected);
+      const populated = candidates.filter((row) => (integerOrNull(row.card_count) ?? 0) > 0);
+      if (exactCountMatches.length === 1) database = exactCountMatches[0];
+      else if (populated.length === 1) database = populated[0];
+    }
     const actual = integerOrNull(database?.card_count);
+    const countScope = clean(source.count_scope) || "full_set";
+    const hasCompleteCountAuthority = countScope === "full_set" ||
+      countScope === "canonical_parent_rows" ||
+      countScope === "canonical_parent_rows_owned_by_set";
     let status;
     const normalizedSourceCode = normalizeCatalogSetCode(source.game_code, source.code);
     if (normalizedSourceCode &&
       (sourceCodeCounts.get(`${source.game_code}:${normalizedSourceCode}`) ?? 0) > 1) {
+      status = CATALOG_GAP_STATUSES.AMBIGUOUS_SOURCE_IDENTITY;
+    } else if (!database && candidates.length > 1) {
       status = CATALOG_GAP_STATUSES.AMBIGUOUS_SOURCE_IDENTITY;
     } else if (!database && expected === 0) {
       status = CATALOG_GAP_STATUSES.SOURCE_NO_ELIGIBLE_CARDS;
@@ -126,6 +214,8 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
       status = CATALOG_GAP_STATUSES.PRESENT_UNVERIFIED;
     } else if (actual < expected) {
       status = CATALOG_GAP_STATUSES.INCOMPLETE_CARDS;
+    } else if (!hasCompleteCountAuthority) {
+      status = CATALOG_GAP_STATUSES.PRESENT_UNVERIFIED;
     } else if (actual > expected) {
       status = CATALOG_GAP_STATUSES.SOURCE_BEHIND;
     } else {
@@ -141,6 +231,8 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
       source_url: source.source_url,
       release_date: source.release_date ?? null,
       expected_card_count: expected,
+      count_scope: countScope,
+      count_evidence: source.count_evidence ?? [],
       database_code: database?.code ?? null,
       database_name: database?.name ?? null,
       database_card_count: actual,

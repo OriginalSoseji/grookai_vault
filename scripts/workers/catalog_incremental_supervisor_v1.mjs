@@ -1,0 +1,216 @@
+import { spawnSync } from "node:child_process";
+import fs from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+
+import { sha256 } from "../../backend/catalog/universal_catalog_discovery_v1.mjs";
+
+export const CATALOG_INCREMENTAL_SUPERVISOR_VERSION =
+  "CATALOG_INCREMENTAL_SUPERVISOR_V1";
+
+function parseArgs(argv) {
+  const options = {
+    mode: "plan",
+    asOf: new Date().toISOString().slice(0, 10),
+    discoveryDir: null,
+    outDir: null,
+    expectedHeadSha: process.env.GITHUB_SHA ?? null,
+    maxTargets: 5,
+  };
+  for (const token of argv) {
+    if (token.startsWith("--mode=")) options.mode = token.slice(7);
+    else if (token.startsWith("--as-of=")) options.asOf = token.slice(8);
+    else if (token.startsWith("--discovery-dir=")) options.discoveryDir = path.resolve(token.slice(16));
+    else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
+    else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
+    else if (token.startsWith("--max-targets=")) options.maxTargets = Number(token.slice(14));
+    else throw new Error(`Unknown argument: ${token}`);
+  }
+  if (!new Set(["plan", "dry-run", "apply"]).has(options.mode)) {
+    throw new Error("--mode must be plan, dry-run, or apply");
+  }
+  if (!options.discoveryDir || !options.outDir) {
+    throw new Error("--discovery-dir and --out-dir are required");
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(options.asOf)) throw new Error("Invalid --as-of");
+  if (!Number.isInteger(options.maxTargets) || options.maxTargets < 1 || options.maxTargets > 10) {
+    throw new Error("--max-targets must be between 1 and 10");
+  }
+  if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
+    throw new Error("Apply requires --expected-head-sha");
+  }
+  return options;
+}
+
+async function readJson(file) {
+  return JSON.parse(await fs.readFile(file, "utf8"));
+}
+
+function targetForGap(gap) {
+  if (gap.status === "missing_set" && gap.game_code === "mtg" && gap.source_code) {
+    return {
+      key: `mtg:${String(gap.source_code).toLowerCase()}`,
+      worker: "scripts/workers/mtg_incremental_promotion_v1.mjs",
+      args: [`--set-code=${String(gap.source_code).toLowerCase()}`],
+    };
+  }
+  if (gap.status === "missing_set" && gap.game_code === "one_piece" &&
+      gap.source_code && gap.source_set_id) {
+    return {
+      key: `one_piece:${String(gap.source_code).toUpperCase()}`,
+      worker: "scripts/workers/one_piece_incremental_promotion_v1.mjs",
+      args: [
+        `--set-code=${String(gap.source_code).toUpperCase()}`,
+        `--official-series-id=${gap.source_set_id}`,
+      ],
+    };
+  }
+  if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
+      gap.source_id === "pokemon_card_official_jp_products" &&
+      (gap.count_evidence ?? []).some((evidence) =>
+        evidence.authority === "tcgdex_japanese_structured_api" &&
+        evidence.scope === "full_set") &&
+      gap.source_code && gap.database_code && gap.source_set_id) {
+    return {
+      key: `pokemon_jpn:${String(gap.source_code).toUpperCase()}`,
+      worker: "scripts/workers/catalog_incremental_promotion_v1.mjs",
+      args: [
+        `--pokemon-set-code=${gap.source_code}`,
+        `--pokemon-db-set-code=${gap.database_code}`,
+        `--pokemon-product-id=${gap.source_set_id}`,
+      ],
+    };
+  }
+  return null;
+}
+
+export function buildCatalogIncrementalSupervisorPlanV1(gaps, maxTargets = 5) {
+  const targets = [];
+  const unsupported = [];
+  const seen = new Set();
+  for (const gap of gaps ?? []) {
+    const target = targetForGap(gap);
+    if (!target) {
+      unsupported.push({
+        game_code: gap.game_code,
+        status: gap.status,
+        source_code: gap.source_code ?? null,
+        reason: "no_exact_incremental_writer_for_gap_shape",
+      });
+      continue;
+    }
+    if (seen.has(target.key)) continue;
+    seen.add(target.key);
+    targets.push(target);
+  }
+  return {
+    version: CATALOG_INCREMENTAL_SUPERVISOR_VERSION,
+    targets: targets.slice(0, maxTargets),
+    deferred_target_count: Math.max(0, targets.length - maxTargets),
+    unsupported,
+  };
+}
+
+async function writeJson(file, value) {
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  const body = `${JSON.stringify(value, null, 2)}\n`;
+  await fs.writeFile(file, body, "utf8");
+  return Buffer.from(body);
+}
+
+function executeTarget(options, target, targetDir) {
+  const args = [
+    target.worker,
+    `--mode=${options.mode}`,
+    `--as-of=${options.asOf}`,
+    `--out-dir=${targetDir}`,
+    ...target.args,
+  ];
+  if (options.mode === "apply") args.push(`--expected-head-sha=${options.expectedHeadSha}`);
+  const result = spawnSync(process.execPath, args, {
+    cwd: process.cwd(),
+    env: process.env,
+    encoding: "utf8",
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  return {
+    target: target.key,
+    worker: target.worker,
+    exit_code: result.status,
+    signal: result.signal,
+    stdout: result.stdout,
+    stderr: result.stderr,
+    artifact_directory: targetDir,
+  };
+}
+
+async function main() {
+  const options = parseArgs(process.argv.slice(2));
+  await fs.mkdir(options.outDir, { recursive: true });
+  const gaps = await readJson(path.join(options.discoveryDir, "actionable_gaps.json"));
+  const discoverySummary = await readJson(path.join(options.discoveryDir, "summary.json"));
+  const plan = {
+    ...buildCatalogIncrementalSupervisorPlanV1(gaps, options.maxTargets),
+    mode: options.mode,
+    as_of: options.asOf,
+    expected_head_sha: options.expectedHeadSha,
+    discovery_summary: discoverySummary,
+    boundaries: {
+      source: "frozen_universal_catalog_discovery_artifact",
+      max_targets: options.maxTargets,
+      child_workers_only: true,
+      no_substitution: true,
+      no_partial_set_repairs: true,
+    },
+  };
+  const planBody = await writeJson(path.join(options.outDir, "supervisor_plan.json"), plan);
+  const results = [];
+  for (const [index, target] of plan.targets.entries()) {
+    const targetDir = path.join(options.outDir, "targets", `${String(index + 1).padStart(2, "0")}_${target.key.replace(/[^a-z0-9_-]+/gi, "_")}`);
+    const result = executeTarget(options, target, targetDir);
+    results.push(result);
+    if (result.exit_code !== 0) break;
+  }
+  const failed = results.filter((result) => result.exit_code !== 0);
+  const summary = {
+    version: CATALOG_INCREMENTAL_SUPERVISOR_VERSION,
+    mode: options.mode,
+    status: failed.length > 0 ? "failed" : plan.deferred_target_count > 0
+      ? "bounded_targets_remaining" : "completed",
+    selected_target_count: plan.targets.length,
+    completed_target_count: results.filter((result) => result.exit_code === 0).length,
+    failed_target_count: failed.length,
+    deferred_target_count: plan.deferred_target_count,
+    unsupported_gap_count: plan.unsupported.length,
+    targets: results.map((result) => ({
+      target: result.target,
+      worker: result.worker,
+      exit_code: result.exit_code,
+      artifact_directory: result.artifact_directory,
+    })),
+  };
+  const resultsBody = await writeJson(path.join(options.outDir, "execution_results.json"), results);
+  const summaryBody = await writeJson(path.join(options.outDir, "summary.json"), summary);
+  await writeJson(path.join(options.outDir, "artifact_hashes.json"), {
+    algorithm: "sha256",
+    artifacts: [
+      ["supervisor_plan.json", planBody],
+      ["execution_results.json", resultsBody],
+      ["summary.json", summaryBody],
+    ].map(([artifactPath, body]) => ({
+      path: artifactPath,
+      bytes: body.length,
+      sha256: sha256(body),
+    })),
+  });
+  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+  if (failed.length > 0 || plan.deferred_target_count > 0) process.exitCode = 1;
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    process.stderr.write(`${error.stack ?? error.message}\n`);
+    process.exitCode = 1;
+  });
+}

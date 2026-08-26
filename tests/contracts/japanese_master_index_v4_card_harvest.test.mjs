@@ -94,6 +94,34 @@ const LIMITLESS_HTML = `
   </body>
 </html>
 `;
+const LIMITLESS_GRID_HTML = `
+<!doctype html>
+<html lang="en">
+  <body>
+    <div class="infobox">
+      <div class="infobox-heading sm">
+        <img class="set" alt="M6" src="https://s3.limitlesstcg.com/sets/jp/M6.png">
+        Storm Emeralda (M6)
+      </div>
+      <div class="infobox-line">31st July 2026 • 2 Cards</div>
+    </div>
+    <section>
+      <div class="card-search-grid">
+        <a href="/cards/jp/M6/1"><img class="card shadow" src="https://example.com/M6_1.png"></a>
+        <a href="/cards/jp/M6/2"><img class="card shadow" src="https://example.com/M6_2.png"></a>
+      </div>
+    </section>
+  </body>
+</html>
+`;
+const BULBAPEDIA_MODERN_NUMBERED_HTML = `
+<!doctype html>
+<html><body><table><tbody>
+  <tr><td>001/002</td><td><a href="/wiki/Standard_format_(TCG)">J</a></td><td><a href="/wiki/Heracross_(Example_Set_1)">Heracross</a></td></tr>
+  <tr><td>002/002</td><td><a href="/wiki/Standard_format_(TCG)">J</a></td><td><a href="/wiki/Surskit_(Example_Set_2)">Surskit</a></td></tr>
+  <tr><td>003/002</td><td><a href="/wiki/Standard_format_(TCG)">J</a></td><td><a href="/wiki/Masquerain_(Example_Set_3)">Masquerain</a></td></tr>
+</tbody></table></body></html>
+`;
 const ARTOFPKM_HTML = `
 <!doctype html>
 <html>
@@ -407,6 +435,23 @@ test('Limitless adapter parses one bounded set checklist and ignores displayed p
   assert.equal(assertion.source_fields.displayed_price_fields_ignored, true);
   assert.equal(Object.hasOwn(assertion.source_fields, 'usd'), false);
   assert.equal(Object.hasOwn(assertion.source_fields, 'eur'), false);
+});
+
+test('Limitless adapter preserves image-backed coordinates from the current grid layout', () => {
+  const checklist = parseLimitlessJapaneseCardChecklist(
+    LIMITLESS_GRID_HTML,
+    'M6',
+  );
+  assert.equal(checklist.set.name, 'Storm Emeralda');
+  assert.equal(checklist.set.card_count, 2);
+  assert.equal(checklist.cards.length, 2);
+  assert.equal(checklist.cards[0].source_external_id, 'M6:1');
+  assert.equal(checklist.cards[0].printed_name, null);
+  assert.equal(checklist.cards[0].source_fields.checklist_layout, 'card_search_grid');
+  assert.equal(
+    checklist.cards[0].source_fields.printed_identity_not_present_in_grid,
+    true,
+  );
 });
 
 test('Limitless health reports page count mismatches without inventing coverage', () => {
@@ -729,6 +774,21 @@ test('Bulbapedia adapter selects the Japanese table by registry denominator', ()
   });
   assert.equal(health.status, 'complete');
   assert.equal(health.covered_base_number_count, 3);
+});
+
+test('Bulbapedia adapter reads modern exact numbered rows including secret cards', () => {
+  const checklist = parseBulbapediaJapaneseCardList(
+    BULBAPEDIA_MODERN_NUMBERED_HTML,
+    {
+      source_container_id: 'Example_Set_(TCG)',
+      source_container_url: 'https://example.com/example-set',
+      source_expected_card_count: 2,
+    },
+  );
+  assert.equal(checklist.cards.length, 3);
+  assert.equal(checklist.cards[0].english_display_name, 'Heracross');
+  assert.equal(checklist.cards[2].card_number_raw, '003/002');
+  assert.equal(checklist.diagnostics.modern_numbered_row_fallback_used, true);
 });
 
 test('Bulbapedia adapter preserves an exact older unnumbered Japanese list without inventing numbers', () => {

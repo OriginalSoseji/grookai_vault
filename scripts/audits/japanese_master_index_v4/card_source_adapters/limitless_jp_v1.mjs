@@ -182,6 +182,39 @@ export function parseLimitlessJapaneseCardChecklist(
     });
   }
 
+  if (parsedRows.length === 0) {
+    for (const card of html.matchAll(
+      /<a\s+href="(?<href>\/cards\/jp\/(?<code>[^/"?]+)\/(?<path_number>[^/"?]+))"[^>]*>\s*<img\b[^>]*\bsrc="(?<image_url>[^"]+)"[^>]*>/gi,
+    )) {
+      const sourceSetCode = decodeURIComponent(card.groups.code);
+      if (sourceSetCode.toLowerCase() !== expectedSetCode.toLowerCase()) {
+        throw new Error(
+          `Limitless Japanese grid row set mismatch: expected ${expectedSetCode}, received ${sourceSetCode}.`,
+        );
+      }
+      const pathNumber = decodeURIComponent(card.groups.path_number);
+      const parsedRow = {
+        base_external_id: `${sourceSetCode}:${pathNumber}`,
+        source_url: `https://limitlesstcg.com${decodeHtml(card.groups.href)}`,
+        source_set_code: sourceSetCode,
+        card_number_raw: pathNumber,
+        printed_name: null,
+        type_line: null,
+        rarity: null,
+        image_url: decodeHtml(card.groups.image_url),
+        source_fields: {
+          path_number: pathNumber,
+          checklist_layout: 'card_search_grid',
+          printed_identity_not_present_in_grid: true,
+        },
+      };
+      parsedRows.push({
+        ...parsedRow,
+        row_fingerprint: rowFingerprint(parsedRow),
+      });
+    }
+  }
+
   const rowsByBaseId = groupRowsByBaseId(parsedRows);
   const cards = [];
   for (const groupedRows of rowsByBaseId.values()) {
