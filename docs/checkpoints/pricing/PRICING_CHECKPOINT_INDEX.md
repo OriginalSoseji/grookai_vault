@@ -33,6 +33,13 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_95_PRODUCTION_FULL_CYCLE_AND_PERFORMANCE.md`
+
+This checkpoint records the complete 546,717-source-row production cycle,
+164,135 active exact-price snapshots, 95.308 percent Pokemon coverage, zero
+broken provenance, exact-Vault readback, applied GV-ID performance index, and
+the passing 180-request post-index read gate.
+
 ### `PRICING_CHECKPOINT_94_TCGPLAYER_CANARY_FINAL_PASS.md`
 
 This checkpoint records the corrected, hash-verified final replay of the
