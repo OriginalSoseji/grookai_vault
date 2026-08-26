@@ -326,7 +326,6 @@ void main() {
       expect(find.byType(GrookaiObjectRenderer), findsNothing);
     },
   );
-
   testWidgets('ebay lot export represents all 12 capped lot cards', (
     tester,
   ) async {
