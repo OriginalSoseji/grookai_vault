@@ -23,7 +23,7 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
   assert.match(lookup, /gameScope: PublicGameScope/);
   assert.match(lookup, /gameScope === "pokemon" \? options\.languageScope \?\? "all" : "all"/);
   assert.match(lookup, /single alphanumeric token can be either a collector number or a card/);
-  assert.match(lookup, /runBoundedSearch\(searchText, null\)/);
+  assert.match(lookup, /runBoundedSearch\(searchText, null, setCode\)/);
   assert.match(lookup, /const directGvIdSearch = searchText\.toUpperCase\(\)\.startsWith\("GV-"\)/);
   assert.match(lookup, /directGvIdSearch \|\|\s*!normalizedCollectorToken/);
   assert.match(lookup, /!valueSortRequested &&/);

@@ -129,6 +129,37 @@ export const STRUCTURED_CARD_SET_ALIAS_MAP: Record<string, string[]> = {
   "lost origin": ["swsh11", "swsh11tg"],
 };
 
+export const GAME_SCOPED_SET_ALIAS_MAP: Record<
+  "pokemon" | "one_piece" | "mtg",
+  Record<string, string[]>
+> = {
+  pokemon: {
+    "m-p": ["jpn-MP"],
+    "mega promotion cards": ["jpn-MP"],
+    "pokemon world championships 2026": ["jpn-MP"],
+    "world championships 2026": ["jpn-MP"],
+    "world championship 2026": ["jpn-MP"],
+    "wcs 2026": ["jpn-MP"],
+    "storm emeralda": ["jpn-product-93e429bd4ffd351d"],
+    "storm emerald": ["jpn-product-93e429bd4ffd351d"],
+    "ストームエメラルダ": ["jpn-product-93e429bd4ffd351d"],
+  },
+  one_piece: {
+    op17: ["op17"],
+    "op-17": ["op17"],
+    "the world's strongest warriors": ["op17"],
+    "the worlds strongest warriors": ["op17"],
+    "world's strongest warriors": ["op17"],
+    "worlds strongest warriors": ["op17"],
+  },
+  mtg: {
+    hobbit: ["hob", "hoc", "thob"],
+    "the hobbit": ["hob", "hoc", "thob"],
+    "the hobbit eternal": ["hoc"],
+    "the hobbit tokens": ["thob"],
+  },
+};
+
 export type PublicSetSummary = {
   game_code: string;
   code: string;
@@ -308,7 +339,7 @@ export function normalizeSetQuery(value: string) {
     .trim()
     .toLowerCase()
     .replace(/&/g, " and ")
-    .replace(/[^a-z0-9\s.-]+/g, " ")
+    .replace(/[^\p{L}\p{N}\s.-]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -329,7 +360,34 @@ export function normalizePublicSetDisplayName(value?: string | null) {
 }
 
 export function tokenizeSetWords(value?: string | null) {
-  return normalizeSetQuery(value ?? "").match(/[a-z0-9]+/g) ?? [];
+  return normalizeSetQuery(value ?? "").match(/[\p{L}\p{N}]+/gu) ?? [];
+}
+
+export function resolveGameScopedSetSearchIntent(
+  value: string,
+  gameScope: "pokemon" | "one_piece" | "mtg",
+) {
+  const normalized = normalizeSetQuery(value);
+  const entries = Object.entries(GAME_SCOPED_SET_ALIAS_MAP[gameScope])
+    .map(([alias, setCodes]) => ({
+      alias: normalizeSetQuery(alias),
+      setCodes,
+    }))
+    .sort((left, right) => right.alias.length - left.alias.length);
+  const matched = entries.find(({ alias }) =>
+    alias && ` ${normalized} `.includes(` ${alias} `));
+  if (!matched) {
+    return { matchedAlias: null, setCodes: [] as string[], remainingQuery: value.trim() };
+  }
+  const remainingQuery = ` ${normalized} `
+    .replace(` ${matched.alias} `, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return {
+    matchedAlias: matched.alias,
+    setCodes: [...new Set(matched.setCodes.map((code) => code.toLowerCase()))],
+    remainingQuery,
+  };
 }
 
 function uniqueValues(values: string[]) {

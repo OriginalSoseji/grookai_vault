@@ -4,7 +4,7 @@ import {
 } from '../card_assertion_contract_v1.mjs';
 
 export const BULBAPEDIA_JP_CARD_PARSER_VERSION =
-  'JPN-MASTER-INDEX-BULBAPEDIA-JP-CARD-PARSER-V2';
+  'JPN-MASTER-INDEX-BULBAPEDIA-JP-CARD-PARSER-V3';
 export const BULBAPEDIA_JP_SOURCE_ID = 'bulbapedia_jp_card_lists';
 export const BULBAPEDIA_JP_SOURCE_FAMILY =
   'bulbapedia_jp_card_list';
@@ -171,13 +171,51 @@ function cardListTables(html) {
   return tables;
 }
 
+function modernNumberedRows(html, expectedDenominator) {
+  if (expectedDenominator === null) return [];
+  const cards = [];
+  for (const [rowIndex, row] of [
+    ...html.matchAll(/<tr\b[^>]*>(?<body>[\s\S]*?)<\/tr>/gi),
+  ].entries()) {
+    const cells = rowCells(row.groups.body);
+    const numberCellIndex = cells.findIndex((cell) => {
+      const number = parseNumberCell(cell.text);
+      return number?.denominator === expectedDenominator;
+    });
+    if (numberCellIndex < 0) continue;
+    const number = parseNumberCell(cells[numberCellIndex].text);
+    const nameCell = cells.slice(numberCellIndex + 1).find((cell) =>
+      visibleLinks(cell.html).some((link) =>
+        /\/wiki\/[^/]+_\([^)]*\d+\)/i.test(link.href)));
+    if (!nameCell?.text) continue;
+    const cardLink = visibleLinks(nameCell.html).find((link) =>
+      /\/wiki\/[^/]+_\([^)]*\d+\)/i.test(link.href));
+    cards.push({
+      table_index: -1,
+      table_heading: null,
+      article_row_index: rowIndex,
+      number,
+      unnumbered: false,
+      english_display_name: nameCell.text,
+      related_url: cardLink?.href ?? null,
+      type_line: null,
+      rarity: null,
+      row_cells: cells.map((cell) => cell.text),
+    });
+  }
+  return cards;
+}
+
 export function parseBulbapediaJapaneseCardList(body, workItem) {
   const html = Buffer.isBuffer(body) ? body.toString('utf8') : String(body);
   const expected = integerOrNull(workItem.source_expected_card_count);
   const tables = cardListTables(html);
   const cards = [];
   const coordinateOccurrences = new Map();
-  const numberedRows = tables.flatMap((table) => table.numbered_cards);
+  const tableNumberedRows = tables.flatMap((table) => table.numbered_cards);
+  const numberedRows = tableNumberedRows.length > 0
+    ? tableNumberedRows
+    : modernNumberedRows(html, expected);
   const candidateNumberedRowCount = numberedRows.length;
   const rejectedOtherDenominatorCount = expected === null
     ? 0
@@ -268,6 +306,7 @@ export function parseBulbapediaJapaneseCardList(body, workItem) {
       rejected_other_denominator_count: rejectedOtherDenominatorCount,
       matching_row_count: cards.length,
       card_list_table_count: tables.length,
+      modern_numbered_row_fallback_used: tableNumberedRows.length === 0,
       unnumbered_candidate_table_counts: unnumberedTables.map(
         (table) => table.unnumbered_cards.length,
       ),
