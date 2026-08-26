@@ -151,17 +151,17 @@ test("Trainer Kit rows cannot enter the governed publication numerator", () => {
   );
 });
 
-test("coverage audit blocks shadow activation when a publish row is out of scope", () => {
-  assert.match(AUDIT, /shadowPublicationOutOfScope/);
+test("coverage audit blocks a selected run when a publish row is out of scope", () => {
+  assert.match(AUDIT, /selectedPublicationOutOfScope/);
   assert.match(
     AUDIT,
-    /shadow_publication_contains_v1_2_scope_exclusion/,
+    /selected_run_publication_contains_active_scope_exclusion/,
   );
   assert.match(
     AUDIT,
-    /summary\.shadow_publication_scope_status !== "passed"/,
+    /summary\.selected_run_publication_scope_status !== "passed"/,
   );
-  assert.match(AUDIT, /shadow_publication_scope\.json/);
+  assert.match(AUDIT, /selected_run_publication_scope\.json/);
 });
 
 test("V1.1 excludes unnumbered sealed products without excluding card names", () => {
@@ -420,8 +420,27 @@ test("coverage audit is read-only and produces governed artifacts", () => {
   assert.match(AUDIT, /current_publication_scope\.json/);
   assert.match(
     AUDIT,
-    /current_publication_contains_v1_2_scope_exclusion/,
+    /current_publication_contains_active_scope_exclusion/,
   );
   assert.match(AUDIT, /artifact_hashes\.json/);
   assert.doesNotMatch(AUDIT, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
+});
+
+test("coverage audit supports reconciled production runs with bounded live scope reads", () => {
+  assert.match(AUDIT, /--run-mode must be shadow or production/);
+  assert.match(AUDIT, /classifyTcgplayerMarketProductScopeV1_3/);
+  assert.match(
+    AUDIT,
+    /\(decision\.evidence ->> 'category_id'\)::integer as category_id/,
+  );
+  assert.match(AUDIT, /args\.runMode === "shadow" \? "shadow_verified" : "verified"/);
+  assert.match(AUDIT, /currentPointer\?\.run_id === run\.id/);
+  assert.match(AUDIT, /market_coverage_current_cursor_v1 no scroll cursor/i);
+  assert.match(AUDIT, /market_coverage_selected_cursor_v1 no scroll cursor/i);
+  assert.match(AUDIT, /selectedRunRowsFromCursor\(client, run\.id\)/);
+  assert.match(
+    AUDIT,
+    /fetch forward \$\{CURRENT_PUBLICATION_CURSOR_PAGE_SIZE\}/i,
+  );
+  assert.match(AUDIT, /begin isolation level repeatable read read only/i);
 });

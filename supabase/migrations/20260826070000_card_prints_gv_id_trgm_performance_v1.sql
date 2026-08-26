@@ -3,7 +3,7 @@
 -- routing and collector search without blocking canonical writes.
 
 create index concurrently if not exists card_prints_gv_id_trgm_idx
-  on public.card_prints using gin (gv_id gin_trgm_ops)
+  on public.card_prints using gin (gv_id extensions.gin_trgm_ops)
   where gv_id is not null;
 
 comment on index public.card_prints_gv_id_trgm_idx is

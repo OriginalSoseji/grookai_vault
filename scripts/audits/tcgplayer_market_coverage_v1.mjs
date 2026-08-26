@@ -12,7 +12,8 @@ import {
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_2,
+  classifyTcgplayerMarketProductScopeV1_3,
+  TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
 
 const { Client } = pg;
@@ -26,10 +27,12 @@ const DEFAULT_OUT_ROOT = path.join(
   "coverage",
 );
 const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_3";
+const CURRENT_PUBLICATION_CURSOR_PAGE_SIZE = 5_000;
 
 function parseArgs(argv) {
   const args = {
     runKey: "",
+    runMode: "shadow",
     outRoot: DEFAULT_OUT_ROOT,
     minimumCoveragePercent: TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
     requirePass: false,
@@ -38,6 +41,8 @@ function parseArgs(argv) {
   for (const arg of argv) {
     if (arg.startsWith("--run-key=")) {
       args.runKey = arg.slice("--run-key=".length).trim();
+    } else if (arg.startsWith("--run-mode=")) {
+      args.runMode = arg.slice("--run-mode=".length).trim();
     } else if (arg.startsWith("--out-root=")) {
       args.outRoot = path.resolve(arg.slice("--out-root=".length));
     } else if (arg.startsWith("--minimum-coverage-percent=")) {
@@ -49,6 +54,9 @@ function parseArgs(argv) {
     } else if (arg === "--require-coverage-pass") {
       args.requireCoveragePass = true;
     }
+  }
+  if (!new Set(["shadow", "production"]).has(args.runMode)) {
+    throw new Error("--run-mode must be shadow or production");
   }
   if (
     !Number.isFinite(args.minimumCoveragePercent) ||
@@ -90,10 +98,138 @@ function jsonl(rows) {
   );
 }
 
+async function selectedRunRowsFromCursor(client, runId) {
+  const rows = [];
+  let transactionOpen = false;
+  try {
+    await client.query("begin isolation level repeatable read read only");
+    transactionOpen = true;
+    await client.query(
+      `declare market_coverage_selected_cursor_v1 no scroll cursor for
+       select
+         decision.id,
+         decision.source_observation_id,
+         decision.source_product_id,
+         decision.source_subtype_name,
+         decision.currency,
+         decision.market_price,
+         decision.decision,
+         decision.language_result,
+         decision.source_integrity_result,
+         decision.reason_codes,
+         decision.card_print_id,
+         decision.card_printing_id,
+         decision.variant_assignment_status,
+         decision.evidence,
+         (decision.evidence ->> 'category_id')::integer as category_id,
+         observation.group_id as source_group_id,
+         product.name as source_product_name,
+         product.source_active as source_product_active,
+         product.catalog_metadata_status as source_product_catalog_status,
+         source_group.name as source_group_name,
+         source_group.published_on::text as source_group_published_on
+       from public.market_price_qualification_decisions decision
+       join public.tcgcsv_source_price_daily_observations observation
+         on observation.id = decision.source_observation_id
+       join public.tcgcsv_source_products product
+         on product.product_id = decision.source_product_id
+       join public.tcgcsv_source_groups source_group
+         on source_group.group_id = observation.group_id
+       where decision.run_id = $1::uuid`,
+      [runId],
+    );
+    while (true) {
+      const page = (
+        await client.query(
+          `fetch forward ${CURRENT_PUBLICATION_CURSOR_PAGE_SIZE}
+             from market_coverage_selected_cursor_v1`,
+        )
+      ).rows;
+      if (!page.length) break;
+      rows.push(...page);
+    }
+    await client.query("close market_coverage_selected_cursor_v1");
+    await client.query("commit");
+    transactionOpen = false;
+  } catch (error) {
+    if (transactionOpen) await client.query("rollback").catch(() => {});
+    throw error;
+  }
+  rows.sort(
+    (left, right) =>
+      Number(left.source_product_id) - Number(right.source_product_id) ||
+      String(left.source_subtype_name).localeCompare(
+        String(right.source_subtype_name),
+      ) ||
+      String(left.source_observation_id).localeCompare(
+        String(right.source_observation_id),
+      ),
+  );
+  return rows;
+}
+
+async function currentPublicationScopeFromCursor(client) {
+  let rowCount = 0;
+  const outOfScopeRows = [];
+  let transactionOpen = false;
+  try {
+    await client.query("begin isolation level repeatable read read only");
+    transactionOpen = true;
+    await client.query(
+      `declare market_coverage_current_cursor_v1 no scroll cursor for
+       select
+         snapshot.source_product_id,
+         product.name as source_product_name,
+         source_group.name as source_group_name,
+         (decision.evidence ->> 'category_id')::integer as category_id,
+         coalesce(
+           (decision.evidence ->> 'has_printed_number_evidence')::boolean,
+           false
+         ) as has_printed_number_evidence
+       from public.market_price_current_publication pointer
+       join public.market_price_publication_snapshots snapshot
+         on snapshot.publication_set_id = pointer.publication_set_id
+       join public.market_price_qualification_decisions decision
+         on decision.id = snapshot.qualification_decision_id
+       join public.tcgcsv_source_products product
+         on product.product_id = snapshot.source_product_id
+       join public.tcgcsv_source_price_daily_observations observation
+         on observation.id = snapshot.source_observation_id
+       join public.tcgcsv_source_groups source_group
+         on source_group.group_id = observation.group_id
+       where pointer.singleton`,
+    );
+    while (true) {
+      const rows = (
+        await client.query(
+          `fetch forward ${CURRENT_PUBLICATION_CURSOR_PAGE_SIZE}
+             from market_coverage_current_cursor_v1`,
+        )
+      ).rows;
+      if (!rows.length) break;
+      rowCount += rows.length;
+      for (const row of rows) {
+        const classified = {
+          ...row,
+          product_scope: classifyTcgplayerMarketProductScopeV1_3(row),
+        };
+        if (!classified.product_scope.in_scope) outOfScopeRows.push(classified);
+      }
+    }
+    await client.query("close market_coverage_current_cursor_v1");
+    await client.query("commit");
+    transactionOpen = false;
+  } catch (error) {
+    if (transactionOpen) await client.query("rollback").catch(() => {});
+    throw error;
+  }
+  return { rowCount, outOfScopeRows };
+}
+
 function markdown(
   run,
   summary,
-  shadowPublicationScope,
+  selectedPublicationScope,
   currentPublicationScope,
 ) {
   const topGaps = Object.entries(summary.gap_reasons).slice(0, 20);
@@ -131,16 +267,17 @@ function markdown(
     `- Remaining gap rows: \`${summary.counts.gap_rows}\``,
     `- Exact rows needed to reach threshold: \`${summary.rows_needed_for_threshold}\``,
     "",
-    "## Shadow Publication Boundary",
+    "## Selected Run Publication Boundary",
     "",
-    `- Shadow publish rows: \`${shadowPublicationScope.row_count}\``,
-    `- Shadow publish rows outside V1.2 scope: \`${shadowPublicationScope.out_of_scope_count}\``,
-    `- Shadow publication scope status: \`${shadowPublicationScope.status}\``,
+    `- Selected run mode: \`${run.run_mode}\``,
+    `- Selected publish rows: \`${selectedPublicationScope.row_count}\``,
+    `- Selected publish rows outside active product scope: \`${selectedPublicationScope.out_of_scope_count}\``,
+    `- Selected publication scope status: \`${selectedPublicationScope.status}\``,
     "",
     "## Current Publication Boundary",
     "",
     `- Current exact publication rows: \`${currentPublicationScope.row_count}\``,
-    `- Current rows outside V1.1 scope: \`${currentPublicationScope.out_of_scope_count}\``,
+    `- Current rows outside active product scope: \`${currentPublicationScope.out_of_scope_count}\``,
     `- Current publication scope status: \`${currentPublicationScope.status}\``,
     "",
     "## Denominator",
@@ -206,131 +343,87 @@ async function main() {
       await client.query(
         `select *
          from public.market_price_pipeline_runs
-         where run_mode = 'shadow'
-           and ($1::text = '' or run_key = $1)
+         where run_mode = $1
+           and ($2::text = '' or run_key = $2)
          order by created_at desc, id desc
          limit 1`,
-        [args.runKey],
+        [args.runMode, args.runKey],
       )
     ).rows[0];
-    if (!run) throw new Error("reconciled full shadow run not found");
+    if (!run) throw new Error(`reconciled full ${args.runMode} run not found`);
+    const requiredState = args.runMode === "shadow" ? "shadow_verified" : "verified";
     if (
-      run.state !== "shadow_verified" ||
+      run.state !== requiredState ||
       run.reconciliation_state !== "reconciled"
     ) {
-      throw new Error("coverage requires a reconciled shadow-verified run");
+      throw new Error(
+        `coverage requires a reconciled ${requiredState} ${args.runMode} run`,
+      );
     }
 
-    const rows = (
-      await client.query(
-        `select
-           decision.id,
-           decision.source_observation_id,
-           decision.source_product_id,
-           decision.source_subtype_name,
-           decision.currency,
-           decision.market_price,
-           decision.decision,
-           decision.language_result,
-           decision.source_integrity_result,
-           decision.reason_codes,
-           decision.card_print_id,
-           decision.card_printing_id,
-           decision.variant_assignment_status,
-           decision.evidence,
-           observation.group_id as source_group_id,
-           product.name as source_product_name,
-           product.source_active as source_product_active,
-           product.catalog_metadata_status as source_product_catalog_status,
-           source_group.name as source_group_name,
-           source_group.published_on::text as source_group_published_on
-         from public.market_price_qualification_decisions decision
-         join public.tcgcsv_source_price_daily_observations observation
-           on observation.id = decision.source_observation_id
-         join public.tcgcsv_source_products product
-           on product.product_id = decision.source_product_id
-         join public.tcgcsv_source_groups source_group
-           on source_group.group_id = observation.group_id
-         where decision.run_id = $1::uuid
-         order by decision.source_product_id,
-                  decision.source_subtype_name,
-                  decision.source_observation_id`,
-        [run.id],
-      )
-    ).rows;
+    const rows = await selectedRunRowsFromCursor(client, run.id);
     const result = summarizeTcgplayerMarketCoverageV1(rows, {
       minimumCoveragePercent: args.minimumCoveragePercent,
     });
     const { rows: classifiedRows, ...summary } = result;
-    const shadowPublicationOutOfScope = classifiedRows.filter(
-      (row) => row.decision === "publish" && !row.product_scope.in_scope,
+    const selectedPublicationRows = rows
+      .filter((row) => row.decision === "publish")
+      .map((row) => ({
+        ...row,
+        product_scope: classifyTcgplayerMarketProductScopeV1_3(row),
+      }));
+    const selectedPublicationOutOfScope = selectedPublicationRows.filter(
+      (row) => !row.product_scope.in_scope,
     );
-    const shadowPublicationScope = {
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+    const selectedPublicationScope = {
+      policy_version: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
       status:
-        shadowPublicationOutOfScope.length === 0 ? "passed" : "failed",
-      row_count: classifiedRows.filter((row) => row.decision === "publish")
-        .length,
-      out_of_scope_count: shadowPublicationOutOfScope.length,
-      out_of_scope_rows: shadowPublicationOutOfScope,
+        selectedPublicationOutOfScope.length === 0 ? "passed" : "failed",
+      row_count: selectedPublicationRows.length,
+      out_of_scope_count: selectedPublicationOutOfScope.length,
+      out_of_scope_rows: selectedPublicationOutOfScope,
     };
     summary.coverage_status = summary.status;
-    summary.shadow_publication_scope_status = shadowPublicationScope.status;
-    if (shadowPublicationOutOfScope.length > 0) {
+    summary.selected_run_mode = run.run_mode;
+    summary.selected_run_publication_scope_status = selectedPublicationScope.status;
+    summary.shadow_publication_scope_status =
+      run.run_mode === "shadow" ? selectedPublicationScope.status : null;
+    if (selectedPublicationOutOfScope.length > 0) {
       summary.findings = [
         ...summary.findings,
-        "shadow_publication_contains_v1_2_scope_exclusion",
+        "selected_run_publication_contains_active_scope_exclusion",
       ];
       summary.status = "failed";
     }
-    const currentPublicationRows = (
+    const currentPointer = (
       await client.query(
-        `select
-           snapshot.source_product_id,
-           product.name as source_product_name,
-           source_group.name as source_group_name,
-           coalesce(
-             (decision.evidence ->> 'has_printed_number_evidence')::boolean,
-             false
-           ) as has_printed_number_evidence
+        `select publication_set.run_id
          from public.market_price_current_publication pointer
-         join public.market_price_publication_snapshots snapshot
-           on snapshot.publication_set_id = pointer.publication_set_id
-         join public.market_price_qualification_decisions decision
-           on decision.id = snapshot.qualification_decision_id
-         join public.tcgcsv_source_products product
-           on product.product_id = snapshot.source_product_id
-         join public.tcgcsv_source_price_daily_observations observation
-           on observation.id = snapshot.source_observation_id
-         join public.tcgcsv_source_groups source_group
-           on source_group.group_id = observation.group_id
-         where pointer.singleton
-         order by snapshot.source_product_id, snapshot.source_subtype_name`,
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = pointer.publication_set_id
+         where pointer.singleton`,
       )
-    ).rows;
-    const currentPublicationClassifications = currentPublicationRows.map(
-      (row) => ({
-        ...row,
-        product_scope: classifyTcgplayerMarketProductScopeV1_2(row),
-      }),
-    );
-    const currentPublicationOutOfScope =
-      currentPublicationClassifications.filter(
-        (row) => !row.product_scope.in_scope,
-      );
+    ).rows[0];
+    const currentScopeRows = currentPointer?.run_id === run.id
+      ? {
+          rowCount: selectedPublicationScope.row_count,
+          outOfScopeRows: selectedPublicationScope.out_of_scope_rows,
+        }
+      : await currentPublicationScopeFromCursor(client);
     const currentPublicationScope = {
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
       status:
-        currentPublicationOutOfScope.length === 0 ? "passed" : "failed",
-      row_count: currentPublicationClassifications.length,
-      out_of_scope_count: currentPublicationOutOfScope.length,
-      out_of_scope_rows: currentPublicationOutOfScope,
+        currentScopeRows.outOfScopeRows.length === 0 ? "passed" : "failed",
+      row_count: currentScopeRows.rowCount,
+      out_of_scope_count: currentScopeRows.outOfScopeRows.length,
+      out_of_scope_rows: currentScopeRows.outOfScopeRows,
+      derived_from_selected_run: currentPointer?.run_id === run.id,
     };
     summary.current_publication_scope_status = currentPublicationScope.status;
-    if (currentPublicationOutOfScope.length > 0) {
+    if (currentScopeRows.outOfScopeRows.length > 0) {
       summary.findings = [
         ...summary.findings,
-        "current_publication_contains_v1_2_scope_exclusion",
+        "current_publication_contains_active_scope_exclusion",
       ];
       summary.status = "failed";
     }
@@ -345,6 +438,7 @@ async function main() {
       policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
       source_run_id: run.id,
       source_run_key: run.run_key,
+      source_run_mode: run.run_mode,
       source_commit_sha: run.git_commit_sha,
       minimum_coverage_percent: args.minimumCoveragePercent,
       denominator_unit: "source_product_subtype_price_row",
@@ -360,8 +454,8 @@ async function main() {
       "summary.json": `${JSON.stringify(summary, null, 2)}\n`,
       "coverage_gaps.jsonl": jsonl(gaps),
       "scope_exclusions.jsonl": jsonl(exclusions),
-      "shadow_publication_scope.json": `${JSON.stringify(
-        shadowPublicationScope,
+      "selected_run_publication_scope.json": `${JSON.stringify(
+        selectedPublicationScope,
         null,
         2,
       )}\n`,
@@ -373,7 +467,7 @@ async function main() {
       "REPORT.md": markdown(
         run,
         summary,
-        shadowPublicationScope,
+        selectedPublicationScope,
         currentPublicationScope,
       ),
     };
@@ -403,7 +497,7 @@ async function main() {
     if (
       args.requireCoveragePass &&
       (summary.coverage_status !== "passed" ||
-        summary.shadow_publication_scope_status !== "passed")
+        summary.selected_run_publication_scope_status !== "passed")
     ) {
       process.exitCode = 1;
     }

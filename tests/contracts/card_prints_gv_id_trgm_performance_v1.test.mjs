@@ -13,7 +13,10 @@ const MIGRATION = fs.readFileSync(
 test("case-insensitive Grookai ID lookups use a concurrent trigram index", () => {
   assert.match(MIGRATION, /create index concurrently if not exists/i);
   assert.match(MIGRATION, /card_prints_gv_id_trgm_idx/i);
-  assert.match(MIGRATION, /using gin \(gv_id gin_trgm_ops\)/i);
+  assert.match(
+    MIGRATION,
+    /using gin \(gv_id extensions\.gin_trgm_ops\)/i,
+  );
   assert.match(MIGRATION, /where gv_id is not null/i);
   assert.doesNotMatch(MIGRATION, /\b(insert|update|delete|truncate)\b/i);
 });
