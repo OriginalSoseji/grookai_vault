@@ -7,6 +7,8 @@ import pg from "pg";
 
 import {
   buildEnglishPokemonIncrementalSetPlanV1,
+  normalizeEnglishPokemonCardNameV1,
+  normalizeEnglishPokemonCardNumberV1,
   validateEnglishPokemonIncrementalSetPlanV1,
 } from "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 import {
@@ -63,6 +65,10 @@ function parseArgs(argv) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(options.asOf)) throw new Error("Invalid --as-of");
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
+  }
+  if (options.mode === "apply" &&
+      path.resolve(options.masterDir) !== path.resolve(DEFAULT_MASTER_DIR)) {
+    throw new Error("Apply requires the checked-in default English Master Index");
   }
   return options;
 }
@@ -154,6 +160,72 @@ async function fetchTcgdexSet(setCode, sourceSetFile = null) {
     }
   }
   throw new Error(`TCGdex set fetch failed: ${lastError?.message ?? lastError}`);
+}
+
+function cardCoordinate(number, name) {
+  return `${normalizeEnglishPokemonCardNumberV1(number)}|${normalizeEnglishPokemonCardNameV1(name)}`;
+}
+
+async function mapLimit(values, limit, mapper) {
+  const output = new Array(values.length);
+  let cursor = 0;
+  async function worker() {
+    while (cursor < values.length) {
+      const index = cursor;
+      cursor += 1;
+      output[index] = await mapper(values[index]);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, values.length) }, () => worker()));
+  return output;
+}
+
+async function fetchTcgdexCardDetail(cardId) {
+  const url = `https://api.tcgdex.net/v2/en/cards/${encodeURIComponent(cardId)}`;
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: { "User-Agent": USER_AGENT },
+        signal: AbortSignal.timeout(30_000),
+      });
+      const body = await response.text();
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return {
+        detail: JSON.parse(body),
+        snapshot: {
+          request_url: url,
+          final_url: response.url,
+          http_status: response.status,
+          fetched_at: new Date().toISOString(),
+          byte_size: Buffer.byteLength(body),
+          body_sha256: sha256(body),
+          attempt_count: attempt,
+        },
+      };
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 750));
+      }
+    }
+  }
+  throw new Error(`TCGdex card detail fetch failed for ${cardId}: ${lastError?.message ?? lastError}`);
+}
+
+async function fetchMissingTcgdexDetails({ sourceSet, masterCards, existingCards }) {
+  const existingCoordinates = new Set(existingCards.map((card) =>
+    cardCoordinate(card.number ?? card.number_plain, card.name)));
+  const missingCoordinates = new Set(masterCards
+    .filter((card) => !existingCoordinates.has(cardCoordinate(card.card_number, card.card_name)))
+    .map((card) => cardCoordinate(card.card_number, card.card_name)));
+  const briefs = (sourceSet?.cards ?? []).filter((card) =>
+    missingCoordinates.has(cardCoordinate(card.localId, card.name)));
+  const results = await mapLimit(briefs, 8, (card) => fetchTcgdexCardDetail(card.id));
+  return {
+    details: results.map((result) => result.detail),
+    snapshots: results.map((result) => result.snapshot),
+  };
 }
 
 async function loadDatabase(client, options) {
@@ -379,12 +451,18 @@ async function main() {
   let report;
   try {
     const database = await loadDatabase(client, options);
+    const tcgdexDetails = await fetchMissingTcgdexDetails({
+      sourceSet: tcgdex.set,
+      masterCards: master.cards,
+      existingCards: database.existingCards,
+    });
     const plan = buildEnglishPokemonIncrementalSetPlanV1({
       set: database.set,
       sourceSet: tcgdex.set,
       masterCards: master.cards,
       existingCards: database.existingCards,
       speciesRows: database.speciesRows,
+      tcgdexDetails: tcgdexDetails.details,
     });
     await computeIdentityHashes(client, plan);
     plan.payload_fingerprint_sha256 = sha256(stableJson(plan.payload));
@@ -420,6 +498,7 @@ async function main() {
       pass: true,
       master_index_hashes: master.hashes,
       source_snapshot: tcgdex.snapshot,
+      detail_source_snapshots: tcgdexDetails.snapshots,
       payload_fingerprint_sha256: plan.payload_fingerprint_sha256,
       counts: plan.counts,
       collision_preflight: collisions,

@@ -75,7 +75,32 @@ test("existing exact coordinates are idempotent and name collisions stop", () =>
     masterCards: cards,
     existingCards: [{ number: "WPR JU 60", name: "Wrong Card" }],
     speciesRows: SPECIES,
-  }), /coordinate collision/);
+  }), /absent from admitted Master Index|coordinate collision/);
+  assert.throws(() => buildEnglishPokemonIncrementalSetPlanV1({
+    set: SET,
+    sourceSet: SOURCE_SET,
+    masterCards: cards,
+    existingCards: [{ number: "999", name: "Rogue Card" }],
+    speciesRows: SPECIES,
+  }), /absent from admitted Master Index/);
+});
+
+test("Trainer details resolve a non-species family", () => {
+  const trainer = masterCard("1", "Professor's Research");
+  const plan = buildEnglishPokemonIncrementalSetPlanV1({
+    set: SET,
+    sourceSet: { ...SOURCE_SET, cardCount: { total: 1 } },
+    masterCards: [trainer],
+    speciesRows: SPECIES,
+    tcgdexDetails: [{
+      localId: "1",
+      name: "Professor's Research",
+      category: "Trainer",
+      trainerType: "Supporter",
+    }],
+  });
+  assert.equal(plan.payload.rows[0].identity.identity_payload.card_domain, "trainer");
+  assert.equal(plan.payload.rows[0].identity.identity_payload.card_type, "supporter");
 });
 
 test("partial or single-source Master Index evidence never admits a payload", () => {
@@ -123,6 +148,8 @@ test("worker source enforces rollback and forbidden-write boundaries", () => {
     "utf8",
   );
   assert.match(worker, /Apply requires --expected-head-sha/);
+  assert.match(worker, /Apply requires the checked-in default English Master Index/);
+  assert.match(worker, /fetchMissingTcgdexDetails/);
   assert.match(worker, /--source-set-file=/);
   assert.match(worker, /frozen_local_https_snapshot/);
   assert.match(worker, /await client\.query\("rollback"\)/);

@@ -14,6 +14,7 @@ A set may enter the unattended writer only when:
 - every identity has at least two independent preserved sources;
 - every missing Pokemon family resolves exactly to one canonical species;
 - every existing card number agrees with the Master Index name;
+- every existing canonical coordinate belongs to the admitted full-set Master Index;
 - collision preflight is zero for parent IDs, GV-IDs, natural coordinates, active identity hashes, evidence hashes, and family-review hashes.
 
 Partial Master Index coverage, source-only rows, finish-only claims, ambiguous aliases, missing set containers, and unresolved species remain report-only.
@@ -38,6 +39,8 @@ It may not write child printings, Storage, image pointers, external mappings, pr
 - `plan` builds and fingerprints the exact payload.
 - `dry-run` inserts, reads back, rolls back, and proves every inserted ID absent.
 - `apply` requires the exact clean commit SHA, repeats collision preflight, commits once, and performs durable readback.
+- `apply` may read identity evidence only from the checked-in default English Master Index directory.
+- Missing TCGdex card details are fetched before Trainer, Energy, or Pokemon family resolution.
 - The catalog supervisor routes only a discovery gap containing full-set `english_master_index_completion_v1` evidence.
 
 ## Initial Proven Lane

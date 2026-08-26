@@ -232,6 +232,12 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
   const existingByNumber = new Map();
   for (const card of existingCards) {
     const number = normalizeEnglishPokemonCardNumberV1(card.number ?? card.number_plain);
+    const existingCoordinate = coordinate(card.number ?? card.number_plain, card.name);
+    if (!masterCoordinates.has(existingCoordinate)) {
+      throw new Error(
+        `Canonical set contains coordinate absent from admitted Master Index: ${card.number ?? card.number_plain}`,
+      );
+    }
     const rows = existingByNumber.get(number) ?? [];
     rows.push(card);
     existingByNumber.set(number, rows);
@@ -384,6 +390,11 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
         active: true,
       },
     });
+  }
+  if (existingCards.length + rows.length !== expected) {
+    throw new Error(
+      `Resulting canonical count does not equal admitted set count: ${existingCards.length + rows.length}/${expected}`,
+    );
   }
   const payload = {
     set: { id: set.id, code: set.code, name: set.name },
