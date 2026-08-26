@@ -18,6 +18,7 @@ import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFall
 import {
   STRUCTURED_CARD_SET_ALIAS_MAP,
   normalizeSetQuery,
+  resolveGameScopedSetSearchIntent,
   tokenizeSetWords,
 } from "@/lib/publicSets.shared";
 import {
@@ -3923,8 +3924,15 @@ export async function getExploreRowsForGameScopedTextSearch(
     "id,gv_id,name,number,number_plain,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const normalizedSetCode = options.exactSetCode?.trim().toLowerCase() ?? "";
   let searchText = rawQuery.trim().replace(/\s+/g, " ");
-  let inferredSetCode = normalizedSetCode;
-  if (!inferredSetCode && searchText.includes(" ")) {
+  let inferredSetCodes = normalizedSetCode ? [normalizedSetCode] : [];
+  if (inferredSetCodes.length === 0) {
+    const setIntent = resolveGameScopedSetSearchIntent(searchText, gameScope);
+    if (setIntent.setCodes.length > 0) {
+      inferredSetCodes = setIntent.setCodes;
+      searchText = setIntent.remainingQuery;
+    }
+  }
+  if (inferredSetCodes.length === 0 && searchText) {
     const [firstToken, ...remainder] = searchText.split(" ");
     const { data: setRows, error: setError } = await supabase
       .from("sets")
@@ -3934,10 +3942,11 @@ export async function getExploreRowsForGameScopedTextSearch(
       .limit(2);
     if (setError) throw new Error(setError.message);
     if ((setRows ?? []).length === 1) {
-      inferredSetCode = String(setRows?.[0]?.code ?? "").trim().toLowerCase();
+      inferredSetCodes = [String(setRows?.[0]?.code ?? "").trim().toLowerCase()];
       searchText = remainder.join(" ").trim();
     }
   }
+  const inferredSetCode = inferredSetCodes.length === 1 ? inferredSetCodes[0] : "";
 
   const normalizeCollectorToken = (value: string) => {
     const normalized =
@@ -3980,11 +3989,15 @@ export async function getExploreRowsForGameScopedTextSearch(
     (options.stampLabels?.length ?? 0) === 0;
 
   if (canUseBoundedGameRpc) {
-    const runBoundedSearch = (queryText: string | null, numberText: string | null) =>
+    const runBoundedSearch = (
+      queryText: string | null,
+      numberText: string | null,
+      setCode: string | null,
+    ) =>
       supabase.rpc("search_game_card_prints_v4", {
         game_code_in: gameScope,
         q: queryText,
-        set_code_in: inferredSetCode || null,
+        set_code_in: setCode,
         number_in: numberText,
         illustrator_in: exactIllustrator || null,
         language_scope_in:
@@ -3992,22 +4005,27 @@ export async function getExploreRowsForGameScopedTextSearch(
         limit_in: SEARCH_LIMIT,
         offset_in: 0,
       });
-    let { data, error } = await runBoundedSearch(
-      nameText || null,
-      collectorToken || null,
-    );
-    if (error) throw new Error(error.message);
+    const boundedSetCodes = inferredSetCodes.length > 0 ? inferredSetCodes : [null];
+    const initialSearches = await Promise.all(boundedSetCodes.map((setCode) =>
+      runBoundedSearch(nameText || null, collectorToken || null, setCode)));
+    const initialError = initialSearches.find((result) => result.error)?.error;
+    if (initialError) throw new Error(initialError.message);
+    let data = initialSearches.flatMap((result) => result.data ?? []);
 
     // A single alphanumeric token can be either a collector number or a card
     // name (for example Porygon2). Prefer the collector-number interpretation,
     // then retry it as a name only when that exact lookup returns nothing.
     if ((data ?? []).length === 0 && collectorSourceToken && !nameText) {
-      const nameRetry = await runBoundedSearch(searchText, null);
-      if (nameRetry.error) throw new Error(nameRetry.error.message);
-      data = nameRetry.data;
+      const nameRetries = await Promise.all(boundedSetCodes.map((setCode) =>
+        runBoundedSearch(searchText, null, setCode)));
+      const retryError = nameRetries.find((result) => result.error)?.error;
+      if (retryError) throw new Error(retryError.message);
+      data = nameRetries.flatMap((result) => result.data ?? []);
     }
 
-    const parentRows = (data ?? []) as CardPrintLookupRow[];
+    const parentRows = [...new Map(
+      ((data ?? []) as CardPrintLookupRow[]).map((row) => [row.id, row]),
+    ).values()];
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
@@ -4057,11 +4075,11 @@ export async function getExploreRowsForGameScopedTextSearch(
   }
 
   if (
-    inferredSetCode &&
+    inferredSetCodes.length > 0 &&
     releaseScopedSetCodes &&
-    !releaseScopedSetCodes.some(
-      (setCode) => setCode.toLowerCase() === inferredSetCode,
-    )
+    inferredSetCodes.every((inferredCode) => !releaseScopedSetCodes.some(
+      (setCode) => setCode.toLowerCase() === inferredCode,
+    ))
   ) {
     return [];
   }
@@ -4069,14 +4087,16 @@ export async function getExploreRowsForGameScopedTextSearch(
   const runLookup = async (field?: "name" | "number" | "number_plain" | "gv_id", value?: string,
     contains = false) => {
     const releaseSetChunks =
-      !inferredSetCode && releaseScopedSetCodes
+      inferredSetCodes.length === 0 && releaseScopedSetCodes
         ? chunkArray(releaseScopedSetCodes, 200)
-        : [null];
+        : inferredSetCodes.length > 0
+          ? inferredSetCodes
+          : [null];
     const resultRows: CardPrintLookupRow[] = [];
     for (const releaseSetChunk of releaseSetChunks) {
       let query = supabase.from("card_prints").select(selectClause).eq("game_id", gameId);
-      if (inferredSetCode) query = query.ilike("set_code", inferredSetCode);
-      if (releaseSetChunk) query = query.in("set_code", releaseSetChunk);
+      if (typeof releaseSetChunk === "string") query = query.ilike("set_code", releaseSetChunk);
+      if (Array.isArray(releaseSetChunk)) query = query.in("set_code", releaseSetChunk);
       if (exactIllustrator) query = query.ilike("artist", exactIllustrator);
       if (variantKey) query = query.eq("variant_key", variantKey);
       if (identityFilter === "classic_collection") query = query.eq("variant_key", "cc");

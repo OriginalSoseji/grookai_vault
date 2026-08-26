@@ -1,0 +1,122 @@
+name: Universal Catalog Discovery
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: universal-catalog-discovery-v1
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install read-only discovery dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify discovery contracts
+        run: |
+          node --check backend/catalog/universal_catalog_discovery_v1.mjs
+          node --check scripts/workers/universal_catalog_discovery_v1.mjs
+          node --test tests/contracts/universal_catalog_discovery_v1.test.mjs
+
+      - name: Run official-source reconciliation
+        id: discovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/universal-catalog-discovery-$GITHUB_RUN_ID"
+          echo "out_dir=$OUT_DIR" >> "$GITHUB_OUTPUT"
+          node scripts/workers/universal_catalog_discovery_v1.mjs \
+            --out-dir="$OUT_DIR"
+
+      - name: Publish run summary
+        if: always() && steps.discovery.outcome == 'success'
+        shell: bash
+        run: cat "${{ steps.discovery.outputs.out_dir }}/UNIVERSAL_CATALOG_DISCOVERY_REPORT.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Reconcile catalog gap issue
+        if: always() && steps.discovery.outcome == 'success'
+        uses: actions/github-script@v7
+        env:
+          OUT_DIR: ${{ steps.discovery.outputs.out_dir }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summary = JSON.parse(fs.readFileSync(`${process.env.OUT_DIR}/summary.json`, 'utf8'));
+            const report = fs.readFileSync(`${process.env.OUT_DIR}/UNIVERSAL_CATALOG_DISCOVERY_REPORT.md`, 'utf8');
+            const title = '[Catalog Discovery] Actionable official catalog gaps';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            const failureIssue = issues.find((issue) => issue.title === '[Catalog Discovery] Supervisor failure');
+            if (failureIssue) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: failureIssue.number, state: 'closed',
+            });
+            if (summary.actionable_gap_count === 0 && summary.recent_japanese_cards.missing === 0) {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+              return;
+            }
+            const body = `${report}\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo, title, body,
+              });
+            }
+
+      - name: Open or update supervisor failure issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '[Catalog Discovery] Supervisor failure';
+            const body = `The universal catalog discovery supervisor failed.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Upload discovery evidence
+        if: always() && steps.discovery.outputs.out_dir != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: universal-catalog-discovery-${{ github.run_id }}
+          path: ${{ steps.discovery.outputs.out_dir }}
+          if-no-files-found: error
+          retention-days: 90

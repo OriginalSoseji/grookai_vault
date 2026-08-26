@@ -57,7 +57,7 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
   );
   assert.match(lookup, /\.eq\("game_id", gameId\)/);
   assert.match(lookup, /\.eq\("code", gameScope\)/);
-  assert.match(lookup, /\.ilike\("set_code", inferredSetCode\)/);
+  assert.match(lookup, /\.ilike\("set_code", releaseSetChunk\)/);
   assert.match(lookup, /return nameMatches && collectorMatches && illustratorMatches && identityMatches/);
   assert.match(route, /exactReleaseYear,/);
   assert.match(route, /exactIllustrator,/);
