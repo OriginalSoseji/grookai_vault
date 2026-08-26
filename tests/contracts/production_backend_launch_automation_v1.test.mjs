@@ -160,6 +160,41 @@ test('missing billing, restore, and client evidence fails closed as incomplete',
   assert.equal(result.launch_allowed, false);
 });
 
+test('actionable subreport findings propagate into the aggregate launch gate', () => {
+  const result = evaluateBackendLaunchAutomationV1(launchInput({
+    database: {
+      status: 'incomplete',
+      findings: [{
+        severity: 'medium',
+        code: 'database_cache_hit_below_99_percent',
+        detail: 'Database cache-hit ratio is below the launch target.',
+        evidence: { ratio: 0.924 },
+      }],
+    },
+  }));
+  assert.equal(result.status, 'incomplete');
+  assert.equal(result.launch_allowed, false);
+  assert.ok(result.findings.some((row) =>
+    row.code === 'database_cache_hit_below_99_percent'
+    && row.evidence.ratio === 0.924));
+});
+
+test('subreport unmeasured findings remain owned by combined-evidence checks', () => {
+  const result = evaluateBackendLaunchAutomationV1(launchInput({
+    database: {
+      status: 'incomplete',
+      findings: [{
+        severity: 'unmeasured',
+        code: 'managed_backup_restore_unmeasured',
+        detail: 'Database-only audit cannot verify managed restore evidence.',
+      }],
+    },
+  }));
+  assert.equal(result.status, 'ready_for_launch_gate');
+  assert.ok(!result.findings.some((row) =>
+    row.code === 'database_managed_backup_restore_unmeasured'));
+});
+
 test('fresh signed-in autoscale evidence reconciles omitted Management API fields', () => {
   const input = launchInput();
   input.provider.metrics.disk_autoscale_provider_confirmed = false;

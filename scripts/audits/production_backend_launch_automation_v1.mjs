@@ -222,8 +222,25 @@ export function evaluateBackendLaunchAutomationV1({
   const autoscaleReconciliation = reconcileDiskAutoscaleEvidenceV1({ provider, billingEvidence, now });
   if (gitState?.tracked_worktree_clean !== true) findings.push(finding('high', 'tracked_worktree_not_clean', 'The run was not produced from a clean tracked working tree.'));
   for (const [name, report] of [['provider', provider], ['metrics', metrics], ['database', database], ['managed', managed]]) {
-    if (!report) findings.push(finding('critical', `${name}_report_missing`, `${name} evidence is missing.`));
-    else if (['blocked', 'failed'].includes(report.status)) findings.push(finding('high', `${name}_gate_not_healthy`, `${name} gate status is ${report.status}.`));
+    if (!report) {
+      findings.push(finding('critical', `${name}_report_missing`, `${name} evidence is missing.`));
+      continue;
+    }
+    const actionable = Array.isArray(report.findings)
+      ? report.findings.filter((row) => ['critical', 'high', 'medium'].includes(row?.severity))
+      : [];
+    for (const row of actionable) {
+      const sourceCode = row.code ?? 'unnamed_finding';
+      findings.push(finding(
+        row.severity,
+        sourceCode.startsWith(`${name}_`) ? sourceCode : `${name}_${sourceCode}`,
+        row.detail ?? `${name} reported an actionable finding.`,
+        { source_report: name, ...(row.evidence ?? {}) },
+      ));
+    }
+    if (['blocked', 'failed'].includes(report.status) && actionable.length === 0) {
+      findings.push(finding('high', `${name}_gate_not_healthy`, `${name} gate status is ${report.status}.`));
+    }
   }
   const controlPlaneLaunchStatus = controlPlane?.launch_status ?? controlPlane?.overall_status;
   const controlPlaneLaunchSummary = controlPlane?.launch_summary ?? controlPlane?.summary;
