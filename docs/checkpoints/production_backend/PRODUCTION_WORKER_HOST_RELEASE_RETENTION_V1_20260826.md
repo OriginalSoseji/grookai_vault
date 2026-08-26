@@ -70,6 +70,34 @@ Eight old releases were removed. Free space increased from `15,629,873,152`
 bytes to `21,886,971,904` bytes. Filesystem utilization decreased from `88%`
 to `83%`.
 
+## Scheduled Automation Proof
+
+The exact retention implementation was installed as a root-owned systemd
+oneshot and persistent daily timer from commit
+`2a983b87524906ff10a253df65dbf534810cf9ef`.
+
+- Install/readback artifact:
+  `C:\secure-ops\production-backend-launch\worker-host-release-retention\20260826T063521Z_timer_install`
+- Installed script SHA-256:
+  `d67d6e4d02b795d99812b892abb884ce12a1186491007c5c0e6b207199b163e3`
+- Frozen source bundle SHA-256:
+  `ab1007d20d88e3083379048e5c435f9b25c4a78a74faf14ed6a2366c0dbd489a`
+- Install output SHA-256:
+  `2027c91af25067c7f112a2886e33dfe43e551b3ac0ee33db4692a2bd71aa02ca`
+- Installed readback SHA-256:
+  `2c3301a07d81d9dcfb97ea532e061f075085621df17d75c4a24b455385227f5d`
+- Timer state: `enabled` and `active`
+- First scheduled trigger: `2026-08-27 01:16:26 UTC`
+- Service result from install-time execution: `success`
+- Failure notification: `grookai-operations-webhook@%n.service`
+
+The first installation attempts failed closed before systemd installation:
+one because the operator account lacked noninteractive sudo authority and one
+because `/tmp` is non-executable. The installer was repaired to invoke the
+verified source through `bash`, its contract test was updated, and the final
+installation used a sparse temporary checkout. All temporary remote install
+directories and bundles passed absence readback afterward.
+
 ## Current Truths
 
 - `/opt/grookai_mee_current` and `/opt/grookai_pricing_current` still resolve
@@ -82,6 +110,8 @@ to `83%`.
 - Every planned removed release passed absence readback.
 - `grookai-mee-artifact-retention.service` now completes with
   `capacity_already_satisfied` and the timer remains active.
+- `grookai-immutable-release-retention.timer` is enabled and runs before the
+  MEE artifact-retention timer so old immutable releases are evaluated first.
 - No database, runtime evidence, credential, Storage, pricing, publication, or
   Vault row was removed by this action.
 
