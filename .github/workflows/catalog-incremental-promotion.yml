@@ -38,11 +38,13 @@ jobs:
           node --check scripts/workers/catalog_incremental_promotion_v1.mjs
           node --check scripts/workers/one_piece_incremental_promotion_v1.mjs
           node --check scripts/workers/mtg_incremental_promotion_v1.mjs
+          node --check scripts/workers/english_pokemon_incremental_promotion_v1.mjs
           node --test \
             tests/contracts/catalog_incremental_supervisor_v1.test.mjs \
             tests/contracts/catalog_incremental_promotion_v1.test.mjs \
             tests/contracts/one_piece_incremental_promotion_v1.test.mjs \
-            tests/contracts/mtg_incremental_promotion_v1.test.mjs
+            tests/contracts/mtg_incremental_promotion_v1.test.mjs \
+            tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs
           git diff --check
 
       - name: Freeze current discovery evidence

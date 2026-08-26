@@ -92,5 +92,7 @@ test("scheduled promotion workflow remains bounded and issue-visible", () => {
   assert.match(workflow, /cron:\s*"47 \*\/6 \* \* \*"/);
   assert.match(workflow, /--max-targets=5/);
   assert.match(workflow, /--expected-head-sha="\$GITHUB_SHA"/);
+  assert.match(workflow, /node --check scripts\/workers\/english_pokemon_incremental_promotion_v1\.mjs/);
+  assert.match(workflow, /tests\/contracts\/english_pokemon_incremental_promotion_v1\.test\.mjs/);
   assert.match(workflow, /actions\/upload-artifact@v4/);
 });
