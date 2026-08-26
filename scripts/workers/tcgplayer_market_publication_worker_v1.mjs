@@ -20,9 +20,8 @@ import {
   tcgplayerMarketCanarySourceKeyV1,
 } from "../../backend/pricing/tcgplayer_market_canary_definition_v1.mjs";
 import {
-  TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+  TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1,
   TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
-  buildTcgplayerCandidateProductPagesV1,
   inspectTcgplayerBoundedPageProgressV1,
   inspectTcgplayerCandidateRowsV1,
 } from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
@@ -37,7 +36,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_10";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -338,9 +337,7 @@ async function candidateInventory(client, { limit, sourceRun }) {
   const inventory = (
     await client.query(
       `select
-         count(*)::integer as observation_count,
-         array_agg(distinct observation.product_id order by observation.product_id)
-           as product_ids
+         count(*)::integer as observation_count
        from public.tcgcsv_source_price_daily_observations observation
        where observation.last_seen_run_id = $1
          and observation.observed_on = $2
@@ -353,7 +350,6 @@ async function candidateInventory(client, { limit, sourceRun }) {
     expectedCount: limit === null
       ? observationCount
       : Math.min(limit, observationCount),
-    pages: buildTcgplayerCandidateProductPagesV1(inventory.product_ids),
   };
 }
 
@@ -361,50 +357,88 @@ async function visitCandidateRowPages(client, {
   limit,
   sourceRun,
   onPage,
+  databaseTimeoutMinutes,
 }) {
   const inventory = await candidateInventory(client, { limit, sourceRun });
+  const url = connectionString();
+  const readClient = new Client({
+    connectionString: url,
+    ssl: sslConfig(url),
+    connectionTimeoutMillis: 15_000,
+    keepAlive: true,
+    keepAliveInitialDelayMillis: 10_000,
+    query_timeout: databaseTimeoutMinutes * 60 * 1000,
+    statement_timeout: databaseTimeoutMinutes * 60 * 1000,
+  });
   let processedCount = 0;
   let largestPageCount = 0;
   let firstSourceObservationId = null;
   let lastSourceObservationId = null;
-
-  for (const productIds of inventory.pages) {
-    const result = await client.query(
-      `select
+  let connected = false;
+  let transactionOpen = false;
+  readClient.on("error", (error) => {
+    process.stderr.write(
+      `[tcgplayer-market-publication] candidate reader error: ${error.message}\n`,
+    );
+  });
+  try {
+    await readClient.connect();
+    connected = true;
+    await readClient.query("begin isolation level repeatable read read only");
+    transactionOpen = true;
+    await readClient.query(
+      "select set_config('statement_timeout', $1, true)",
+      [`${databaseTimeoutMinutes}min`],
+    );
+    const limitClause = limit === null ? "" : "limit $2";
+    const cursorValues = limit === null ? [sourceRun.id] : [sourceRun.id, limit];
+    await readClient.query(
+      `declare tcgplayer_candidate_cursor_v1 no scroll cursor for
+       select
          candidate.*,
          source_group.name as source_group_name
        from public.v_tcgplayer_market_qualification_candidates_v1 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        where candidate.source_sync_run_id = $1
-         and candidate.source_product_id = any($2::integer[])
        order by candidate.source_product_id,
                 candidate.source_subtype_name,
-                candidate.source_observation_id`,
-      [sourceRun.id, productIds],
+                candidate.source_observation_id
+       ${limitClause}`,
+      cursorValues,
     );
-    const remaining = limit === null ? result.rows.length : limit - processedCount;
-    const selectedRows = limit === null
-      ? result.rows
-      : result.rows.slice(0, Math.max(0, remaining));
-    if (!selectedRows.length) break;
-    assertCandidateScopeEvidence(selectedRows);
-    if (selectedRows.some((row) => row.source_sync_run_id !== sourceRun.id)) {
-      throw new Error("candidate source sync run drifted inside a bounded page");
+    while (true) {
+      const result = await readClient.query(
+        `fetch forward ${TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1}
+           from tcgplayer_candidate_cursor_v1`,
+      );
+      const selectedRows = result.rows;
+      if (!selectedRows.length) break;
+      assertCandidateScopeEvidence(selectedRows);
+      if (selectedRows.some((row) => row.source_sync_run_id !== sourceRun.id)) {
+        throw new Error("candidate source sync run drifted inside a bounded page");
+      }
+      firstSourceObservationId ??= selectedRows[0].source_observation_id;
+      lastSourceObservationId = selectedRows.at(-1).source_observation_id;
+      processedCount += selectedRows.length;
+      largestPageCount = Math.max(largestPageCount, selectedRows.length);
+      await onPage(selectedRows);
     }
-    firstSourceObservationId ??= selectedRows[0].source_observation_id;
-    lastSourceObservationId = selectedRows.at(-1).source_observation_id;
-    processedCount += selectedRows.length;
-    largestPageCount = Math.max(largestPageCount, selectedRows.length);
-    await onPage(selectedRows);
-    if (limit !== null && processedCount >= limit) break;
+    await readClient.query("close tcgplayer_candidate_cursor_v1");
+    await readClient.query("commit");
+    transactionOpen = false;
+  } catch (error) {
+    if (transactionOpen) await readClient.query("rollback").catch(() => {});
+    throw error;
+  } finally {
+    if (connected) await readClient.end();
   }
 
   const inspection = inspectTcgplayerBoundedPageProgressV1({
     processedCount,
     expectedCount: inventory.expectedCount,
     largestPageCount,
-    pageSize: TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1 * 10,
+    pageSize: TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1,
   });
   if (!inspection.valid) {
     throw new Error(`candidate reconciliation failed: ${inspection.findings.join(",")}`);
@@ -422,6 +456,7 @@ async function candidateRows(client, {
   limit,
   canaryDefinition,
   sourceRun,
+  databaseTimeoutMinutes,
 }) {
   if (canaryDefinition) {
     const printingIds = canaryDefinition.printings.map(
@@ -487,6 +522,7 @@ async function candidateRows(client, {
   await visitCandidateRowPages(client, {
     limit,
     sourceRun,
+    databaseTimeoutMinutes,
     onPage: async (page) => rows.push(...page),
   });
   return rows;
@@ -1689,6 +1725,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
     limit: args.limit,
     canaryDefinition: args.canaryDefinition,
     sourceRun,
+    databaseTimeoutMinutes: args.databaseTimeoutMinutes,
   });
   const evaluatedAt = new Date().toISOString();
   const decisions = rows.map((row, index) =>
@@ -1765,6 +1802,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
             limit: args.limit,
             canaryDefinition: args.canaryDefinition,
             sourceRun,
+            databaseTimeoutMinutes: args.databaseTimeoutMinutes,
           });
           await insertCandidates(
             client,
@@ -1782,6 +1820,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
           progress = await visitCandidateRowPages(client, {
             limit: args.limit,
             sourceRun,
+            databaseTimeoutMinutes: args.databaseTimeoutMinutes,
             onPage: async (rows) => {
               await insertCandidates(
                 client,
@@ -1808,8 +1847,8 @@ async function runDurable(client, args, sourceRun, runPlan) {
             first_source_observation_id: progress.firstSourceObservationId,
             last_source_observation_id: progress.lastSourceObservationId,
             largest_in_memory_page_count: progress.largestPageCount,
-            candidate_product_page_size:
-              TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+            candidate_cursor_page_size:
+              TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1,
           },
         };
       },
@@ -2085,8 +2124,8 @@ async function main() {
         freshness_hours: args.freshnessHours,
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
-        candidate_product_page_size:
-          TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
+        candidate_cursor_page_size:
+          TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1,
         database_timeout_minutes: args.databaseTimeoutMinutes,
         expected_source_sync_run_id: args.expectedSourceSyncRunId,
       },

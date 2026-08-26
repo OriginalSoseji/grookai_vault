@@ -19,6 +19,7 @@ import {
   TCGPLAYER_MARKET_HEALTH_POLICY_V1,
 } from "../../backend/pricing/tcgplayer_market_health_policy_v1.mjs";
 import {
+  TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1,
   TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1,
   TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1,
   buildTcgplayerCandidateProductPagesV1,
@@ -612,10 +613,11 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_10/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
+  assert.equal(TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1, 1_000);
   assert.equal(TCGPLAYER_MARKET_CANDIDATE_PRODUCT_PAGE_SIZE_V1, 10_000);
   assert.equal(TCGPLAYER_MARKET_STAGED_CANDIDATE_PAGE_SIZE_V1, 1_000);
   assert.deepEqual(
@@ -626,6 +628,19 @@ test("candidate pages are bounded, deterministic, and deduplicate product IDs", 
     () => buildTcgplayerCandidateProductPagesV1([1], 0),
     /positive integer/,
   );
+});
+
+test("full-catalog candidate staging uses one bounded read-only cursor", () => {
+  assert.match(WORKER, /begin isolation level repeatable read read only/i);
+  assert.match(WORKER, /declare tcgplayer_candidate_cursor_v1 no scroll cursor/i);
+  assert.match(
+    WORKER,
+    /fetch forward \$\{TCGPLAYER_MARKET_CANDIDATE_CURSOR_PAGE_SIZE_V1\}/i,
+  );
+  assert.match(WORKER, /close tcgplayer_candidate_cursor_v1/i);
+  assert.match(WORKER, /candidate_cursor_page_size/i);
+  assert.doesNotMatch(WORKER, /array_agg\(distinct observation\.product_id/i);
+  assert.doesNotMatch(WORKER, /candidate\.source_product_id = any/i);
 });
 
 test("an expected source sync is filtered before artifact enrichment", () => {
@@ -709,7 +724,8 @@ test("candidate reconciliation pins count, source run, and observation uniquenes
     "source_sync_run_mismatch",
   ]);
   assert.match(WORKER, /candidate\.source_sync_run_id = \$1/);
-  assert.match(WORKER, /candidate\.source_product_id = any\(\$2::integer\[\]\)/);
+  assert.match(WORKER, /const limitClause = limit === null \? "" : "limit \$2"/);
+  assert.match(WORKER, /cursorValues = limit === null/);
   assert.match(WORKER, /candidate reconciliation failed/);
   assert.doesNotMatch(
     WORKER,
