@@ -33,6 +33,8 @@ import { parseBulbapediaJapaneseCardList } from
   "../audits/japanese_master_index_v4/card_source_adapters/bulbapedia_jp_v1.mjs";
 import { parseTcgdexJapaneseSetPayload } from
   "../audits/japanese_master_index_v4/card_source_adapters/tcgdex_ja_v1.mjs";
+import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
+  "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 
 const USER_AGENT = "GrookaiVaultCatalogDiscovery/1.0 catalog-ops@grookai.com";
 const DEFAULT_RECENT_DAYS = 180;
@@ -40,6 +42,9 @@ const DEFAULT_JP_RECENT_PAGES = 8;
 const DEFAULT_MAX_DETAIL_FETCHES = 250;
 const DEFAULT_JP_CARD_ID_LOOKBACK = 250;
 const GAME_CODES = ["pokemon", "mtg", "one_piece"];
+const ENGLISH_MASTER_INDEX_DIR = path.join(
+  "docs", "audits", "verified_master_set_index_v1", "english_master_index_v1",
+);
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -198,6 +203,19 @@ async function loadDatabaseSnapshot(databaseUrl) {
        and identity.identity_domain = 'pokemon_jpn'
       order by cp.set_code, cp.number_plain, cp.id
     `);
+    const englishCanonicalCards = await client.query(`
+      select distinct
+        cp.set_code::text,
+        cp.name::text,
+        cp.number::text,
+        cp.number_plain::text
+      from public.card_prints cp
+      join public.card_print_identity identity
+        on identity.card_print_id = cp.id
+       and identity.is_active
+       and identity.identity_domain = 'pokemon_eng_standard'
+      order by cp.set_code, cp.number_plain, cp.number, cp.name
+    `);
     const onePieceWarehouse = await client.query(`
       select
         source_group.group_id,
@@ -224,6 +242,7 @@ async function loadDatabaseSnapshot(databaseUrl) {
       sets: sets.rows.map((row) => ({ ...row, card_count: Number(row.card_count) })),
       official_japanese_card_ids: japaneseEvidence.rows.map((row) => row.source_external_id),
       japanese_canonical_cards: japaneseCanonicalCards.rows,
+      english_canonical_cards: englishCanonicalCards.rows,
       one_piece_warehouse_products: onePieceWarehouse.rows,
     };
   } catch (error) {
@@ -392,14 +411,24 @@ async function discoverMtg(databaseSets, sourceSnapshots, options) {
   return result;
 }
 
-async function discoverPokemonEnglish(databaseSets, sourceSnapshots, options) {
+async function discoverPokemonEnglish(
+  databaseSets,
+  sourceSnapshots,
+  options,
+  englishMasterIndex,
+) {
   const registryUrl = "https://api.tcgdex.net/v2/en/sets";
   const registrySnapshot = await fetchSource(registryUrl, { responseType: "json" });
   sourceSnapshots.push(sourceMetadata(registrySnapshot));
   const registry = Array.isArray(registrySnapshot.body) ? registrySnapshot.body : [];
   const databaseEnglish = databaseSets.filter((row) =>
     row.game_code === "pokemon" && !/^jpn(?:[-_]|$)/i.test(clean(row.code)));
-  const databaseByCode = new Map(databaseEnglish.map((row) => [compactSetCode(row.code), row]));
+  const databaseByCode = new Map();
+  for (const row of databaseEnglish) {
+    for (const code of [row.code, ...(row.code_aliases ?? [])]) {
+      databaseByCode.set(compactSetCode(code), row);
+    }
+  }
   const databaseByName = new Map(databaseEnglish.map((row) => [normalizeCatalogText(row.name), row]));
   const matchedDatabaseSet = (set) => databaseByCode.get(compactSetCode(set.id)) ??
     databaseByName.get(normalizeCatalogText(set.name)) ?? null;
@@ -425,6 +454,10 @@ async function discoverPokemonEnglish(databaseSets, sourceSnapshots, options) {
     const detail = detailsById.get(clean(set.id));
     const expected = Number(detail?.cardCount?.total ?? set?.cardCount?.total);
     const validCount = Number.isSafeInteger(expected) && expected >= 0 ? expected : null;
+    const masterCards = englishMasterIndex.cardsBySet.get(clean(set.id)) ?? [];
+    const masterIndexComplete = validCount !== null && masterCards.length === validCount &&
+      masterCards.every((card) => card.status === "master_verified" &&
+        Number(card.source_count) >= 2);
     return {
       game_code: "pokemon",
       source_id: "tcgdex_english_set_registry",
@@ -442,10 +475,29 @@ async function discoverPokemonEnglish(databaseSets, sourceSnapshots, options) {
         source_url: detail
           ? `https://api.tcgdex.net/v2/en/sets/${encodeURIComponent(set.id)}`
           : registryUrl,
-      }],
+      }, ...(masterIndexComplete ? [{
+        authority: "english_master_index_completion_v1",
+        scope: "full_set",
+        count: masterCards.length,
+        source_count_floor: Math.min(...masterCards.map((card) => Number(card.source_count))),
+        artifact_sha256: englishMasterIndex.cardsSha256,
+      }] : [])],
       source_url: `https://api.tcgdex.net/v2/en/sets/${encodeURIComponent(set.id)}`,
     };
   });
+}
+
+async function loadEnglishMasterIndex() {
+  const cardsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_cards_v1.json");
+  const bytes = await fs.readFile(cardsFile);
+  const cards = JSON.parse(bytes).cards ?? [];
+  const cardsBySet = new Map();
+  for (const card of cards) {
+    const rows = cardsBySet.get(clean(card.set_key)) ?? [];
+    rows.push(card);
+    cardsBySet.set(clean(card.set_key), rows);
+  }
+  return { cards, cardsBySet, cardsSha256: sha256(bytes) };
 }
 
 function officialJapaneseProductUrl(productType, page) {
@@ -761,7 +813,20 @@ async function main() {
   };
   await writeJson(path.join(options.outDir, "run_plan.json"), runPlan);
 
-  const database = await loadDatabaseSnapshot(options.databaseUrl);
+  const [database, englishMasterIndex] = await Promise.all([
+    loadDatabaseSnapshot(options.databaseUrl),
+    loadEnglishMasterIndex(),
+  ]);
+  const englishAliasOverlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
+    databaseSets: database.sets.filter((row) => row.game_code === "pokemon"),
+    databaseCards: database.english_canonical_cards,
+    masterCards: englishMasterIndex.cards,
+  });
+  database.sets = [
+    ...database.sets.filter((row) => row.game_code !== "pokemon"),
+    ...englishAliasOverlay.sets,
+  ];
+  database.english_alias_resolutions = englishAliasOverlay.resolutions;
   const sourceSnapshots = [];
   const [onePieceSets, mtgSets, pokemonEnglishSets, japaneseSets] = await Promise.all([
     discoverOnePiece(
@@ -771,7 +836,12 @@ async function main() {
       options,
     ),
     discoverMtg(database.sets, sourceSnapshots, options),
-    discoverPokemonEnglish(database.sets, sourceSnapshots, options),
+    discoverPokemonEnglish(
+      database.sets,
+      sourceSnapshots,
+      options,
+      englishMasterIndex,
+    ),
     discoverJapaneseProducts(sourceSnapshots, options),
   ]);
   const recentJapaneseCards = await discoverRecentJapaneseCards(
@@ -808,6 +878,8 @@ async function main() {
       sets: database.sets,
       official_japanese_card_ids: database.official_japanese_card_ids,
       japanese_canonical_card_count: database.japanese_canonical_cards.length,
+      english_canonical_card_count: database.english_canonical_cards.length,
+      english_alias_resolutions: database.english_alias_resolutions,
       one_piece_warehouse_product_count: database.one_piece_warehouse_products.length,
       artifact_policy: "counts_only_for_large_database_collections",
     }),

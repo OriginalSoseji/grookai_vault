@@ -67,6 +67,22 @@ function targetForGap(gap) {
     };
   }
   if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
+      gap.source_id === "tcgdex_english_set_registry" &&
+      (gap.count_evidence ?? []).some((evidence) =>
+        evidence.authority === "english_master_index_completion_v1" &&
+        evidence.scope === "full_set" &&
+        Number(evidence.count) === Number(gap.expected_card_count)) &&
+      gap.source_code && gap.database_code) {
+    return {
+      key: `pokemon_en:${String(gap.source_code).toLowerCase()}`,
+      worker: "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
+      args: [
+        `--source-set-code=${gap.source_code}`,
+        `--database-set-code=${gap.database_code}`,
+      ],
+    };
+  }
+  if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
       gap.source_id === "pokemon_card_official_jp_products" &&
       (gap.count_evidence ?? []).some((evidence) =>
         evidence.authority === "tcgdex_japanese_structured_api" &&

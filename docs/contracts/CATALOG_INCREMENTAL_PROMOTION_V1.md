@@ -21,8 +21,9 @@ Supported automatic lanes:
 - MTG: a fully missing, released Scryfall English paper set.
 - One Piece: a fully missing, released Bandai set where numbered products bind exactly to official card number and name authority. DON!!, sealed, ambiguous, and mismatched products are excluded.
 - Japanese Pokemon: an incomplete existing set only when the frozen discovery row contains TCGdex full-set authority, TCGdex and an independent checklist agree on coverage, and every Pokemon species resolves exactly. Product shapes without that endpoint remain report-only.
+- English Pokemon: an incomplete existing set only when TCGdex full-set count and the immutable English Master Index agree exactly, every Master Index identity is `master_verified` by at least two independent sources, and the dedicated writer resolves every missing family without a collision.
 
-English Pokemon is detected continuously but remains report-only until a dedicated English writer is governed and rollback-proven.
+English gaps without complete Master Index admission remain report-only.
 
 ## Release Rules
 
