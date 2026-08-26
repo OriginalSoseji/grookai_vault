@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Grookai immutable release retention before MEE retention
+
+[Timer]
+OnCalendar=*-*-* 01:15:00 UTC
+Persistent=true
+RandomizedDelaySec=5m
+Unit=grookai-immutable-release-retention.service
+
+[Install]
+WantedBy=timers.target

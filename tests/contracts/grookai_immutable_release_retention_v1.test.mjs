@@ -48,3 +48,28 @@ test("immutable release retention restores the frozen capacity floor", () => {
   assert.match(script, /status=capacity_restored/);
   assert.match(contract, /No runtime evidence is archived or deleted/);
 });
+
+test("immutable release retention is installed as an alerted daily timer", () => {
+  const service = read(
+    "deploy/systemd/grookai-immutable-release-retention.service",
+  );
+  const timer = read(
+    "deploy/systemd/grookai-immutable-release-retention.timer",
+  );
+  const installer = read(
+    "deploy/scripts/install-immutable-release-retention-v1.sh",
+  );
+  assert.match(service, /User=root/);
+  assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
+  assert.match(
+    service,
+    /\/usr\/local\/lib\/grookai\/ops\/grookai_immutable_release_retention_v1\.sh --apply/,
+  );
+  assert.match(timer, /OnCalendar=\*-\*-\* 01:15:00 UTC/);
+  assert.match(timer, /Persistent=true/);
+  assert.match(installer, /RELEASE_DIR must have no tracked or untracked changes/);
+  assert.match(installer, /bash -n "\$source_script"/);
+  assert.match(installer, /bash "\$source_script"/);
+  assert.match(installer, /installed script hash mismatch/);
+  assert.match(installer, /systemctl enable --now "\$TIMER_NAME"/);
+});

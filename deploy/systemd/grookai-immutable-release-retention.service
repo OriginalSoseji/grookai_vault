@@ -1,0 +1,18 @@
+[Unit]
+Description=Grookai Immutable Release Retention V1
+Wants=network-online.target
+After=network-online.target
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/lib/grookai/ops/grookai_immutable_release_retention_v1.sh --apply
+TimeoutStartSec=30m
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=multi-user.target

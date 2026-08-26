@@ -55,6 +55,15 @@ After apply, verify the active symlinks and process working directories remain
 unchanged, the current release worktree is clean, free space is at least 20
 GiB, and the MEE artifact-retention service passes.
 
+## Scheduling
+
+`deploy/scripts/install-immutable-release-retention-v1.sh` installs the exact
+hash-verified script under `/usr/local/lib/grookai/ops`, runs it once, and
+enables `grookai-immutable-release-retention.timer`. The timer runs daily at
+`01:15 UTC`, before MEE runtime-artifact retention at `01:45 UTC`. Failures use
+the production operations webhook and remain visible rather than being treated
+as successful no-ops.
+
 ## Rollback
 
 Removed release directories are reproducible Git checkouts, not evidence
