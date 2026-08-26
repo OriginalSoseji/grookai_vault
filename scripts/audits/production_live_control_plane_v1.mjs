@@ -104,12 +104,8 @@ export function classifyWorkflowRunV1(component, run, now = new Date()) {
   return { status: 'healthy', reason: 'Latest workflow completed successfully within its freshness window.', observed_at: observedAt, age_minutes: ageMinutes };
 }
 
-async function collectGitHubWorkflow(component, token, now) {
-  const file = workflowFile(component);
-  if (!file) return null;
-
+async function fetchGitHubWorkflowPayload(file, token, now) {
   const workflowId = encodeURIComponent(path.basename(file));
-  let payload;
   try {
     const headers = {
       Accept: 'application/vnd.github+json',
@@ -125,11 +121,11 @@ async function collectGitHubWorkflow(component, token, now) {
       { headers }
     );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    payload = await response.json();
+    return await response.json();
   } catch (fetchError) {
     try {
       if (!token) throw fetchError;
-      payload = JSON.parse(execFileSync(
+      return JSON.parse(execFileSync(
         'gh',
         [
           'api',
@@ -148,36 +144,60 @@ async function collectGitHubWorkflow(component, token, now) {
         }
       ));
     } catch {
+      throw new Error(`GitHub workflow lookup failed through both provider paths: ${fetchError.message}.`);
+    }
+  }
+}
+
+export async function collectGitHubWorkflowComponentsV1(
+  components,
+  token,
+  now,
+  { loadPayload = fetchGitHubWorkflowPayload } = {}
+) {
+  const payloadByWorkflow = new Map();
+  return Promise.all(components.map(async (component) => {
+    const file = workflowFile(component);
+    if (!file) return null;
+
+    if (!payloadByWorkflow.has(file)) {
+      payloadByWorkflow.set(file, Promise.resolve().then(() => loadPayload(file, token, now)));
+    }
+
+    let payload;
+    try {
+      payload = await payloadByWorkflow.get(file);
+    } catch (error) {
       return {
         component_id: component.id,
         provider: 'github_actions',
         status: 'failed',
-        reason: `GitHub workflow lookup failed through both provider paths: ${fetchError.message}.`,
+        reason: error.message,
         evidence: { workflow_file: file }
       };
     }
-  }
 
-  const run = payload.workflow_runs?.[0] ?? null;
-  const classification = classifyWorkflowRunV1(component, run, now);
-  return {
-    component_id: component.id,
-    provider: 'github_actions',
-    ...classification,
-    evidence: run
-      ? {
-          workflow_file: file,
-          run_id: run.id,
-          event: run.event,
-          status: run.status,
-          conclusion: run.conclusion,
-          head_sha: run.head_sha,
-          created_at: run.created_at,
-          updated_at: run.updated_at,
-          html_url: run.html_url
-        }
-      : { workflow_file: file }
-  };
+    const run = payload.workflow_runs?.[0] ?? null;
+    const classification = classifyWorkflowRunV1(component, run, now);
+    return {
+      component_id: component.id,
+      provider: 'github_actions',
+      ...classification,
+      evidence: run
+        ? {
+            workflow_file: file,
+            run_id: run.id,
+            event: run.event,
+            status: run.status,
+            conclusion: run.conclusion,
+            head_sha: run.head_sha,
+            created_at: run.created_at,
+            updated_at: run.updated_at,
+            html_url: run.html_url
+          }
+        : { workflow_file: file }
+    };
+  }));
 }
 
 function makeSupabaseClient() {
@@ -782,21 +802,7 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
 
   const githubToken = resolveGitHubToken();
   const githubComponents = topology.components.filter((component) => workflowFile(component));
-  const githubResults = await Promise.all(
-    githubComponents.map(async (component) => {
-      try {
-        return await collectGitHubWorkflow(component, githubToken, now);
-      } catch (error) {
-        return {
-          component_id: component.id,
-          provider: 'github_actions',
-          status: 'failed',
-          reason: `GitHub provider adapter failed: ${error.message}.`,
-          evidence: { workflow_file: workflowFile(component) }
-        };
-      }
-    })
-  );
+  const githubResults = await collectGitHubWorkflowComponentsV1(githubComponents, githubToken, now);
   let supabaseResults;
   try {
     supabaseResults = await collectSupabase(makeSupabaseClient(), topology, now);

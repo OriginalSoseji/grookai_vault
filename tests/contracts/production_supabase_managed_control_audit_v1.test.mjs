@@ -57,6 +57,71 @@ test('reconciled nonproduction restore evidence closes the restore measurement',
   assert.equal(result.metrics.restore_exercise_verified, true);
 });
 
+test('final restore-drill report schema closes the restore measurement independently of replacement debt', () => {
+  const result = evaluateManagedControlV1({
+    project: PROJECT,
+    backupInventory: { ...BACKUPS, pitr_enabled: true },
+    restoreEvidence: {
+      schema_version: 'PRODUCTION_SUPABASE_RESTORE_DRILL_FINAL_REPORT_V1',
+      status: 'passed',
+      production_replacement_readiness: 'blocked_provider_collation_followup',
+      source: { project_ref: PROJECT.ref, production_writes: false },
+      destination: { project_ref: 'dkuiaiorwirujnrmbpvq' },
+      schedule_isolation: { result: 'passed', production_target_executions: 0 },
+      reconciliation: {
+        status: 'passed',
+        migration_ledger_match: true,
+        schema_match: true,
+        schema_column_match: true,
+        rls_policy_match: true,
+        function_match: true,
+        relation_grant_match: true,
+        routine_grant_match: true
+      },
+      signed_in_smoke: { status: 'passed' },
+      boundaries: { production_database_writes: false, production_restore_in_place: false }
+    },
+    now: NOW
+  });
+  assert.equal(result.status, 'healthy');
+  assert.equal(result.metrics.restore_exercise_verified, true);
+});
+
+test('final restore-drill report rejects source mutation or same-project targets', () => {
+  const base = {
+    status: 'passed',
+    source: { project_ref: PROJECT.ref, production_writes: false },
+    destination: { project_ref: 'dkuiaiorwirujnrmbpvq' },
+    schedule_isolation: { result: 'passed', production_target_executions: 0 },
+    reconciliation: {
+      status: 'passed',
+      migration_ledger_match: true,
+      schema_match: true,
+      schema_column_match: true,
+      rls_policy_match: true,
+      function_match: true,
+      relation_grant_match: true,
+      routine_grant_match: true
+    },
+    signed_in_smoke: { status: 'passed' },
+    boundaries: { production_database_writes: false, production_restore_in_place: false }
+  };
+  const sourceMutation = evaluateManagedControlV1({
+    project: PROJECT,
+    backupInventory: BACKUPS,
+    restoreEvidence: { ...base, source: { ...base.source, production_writes: true } },
+    now: NOW
+  });
+  const sameProject = evaluateManagedControlV1({
+    project: PROJECT,
+    backupInventory: BACKUPS,
+    restoreEvidence: { ...base, destination: { project_ref: PROJECT.ref } },
+    now: NOW
+  });
+  assert.equal(sourceMutation.metrics.restore_exercise_verified, false);
+  assert.equal(sameProject.metrics.restore_exercise_verified, false);
+});
+
 test('audit CLI remains read-only and never invokes restore or project mutation commands', () => {
   const source = fs.readFileSync('scripts/audits/production_supabase_managed_control_audit_v1.mjs', 'utf8');
   assert.match(source, /\['projects', 'list'/);

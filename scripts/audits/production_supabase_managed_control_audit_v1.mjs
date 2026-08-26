@@ -50,6 +50,47 @@ function finding(severity, code, detail, evidence = {}) {
   return { severity, code, detail, evidence };
 }
 
+export function verifyRestoreEvidenceV1(restoreEvidence, projectRef) {
+  if (!restoreEvidence || !projectRef) return false;
+
+  const legacyEvidenceVerified = Boolean(
+    restoreEvidence.status === 'succeeded'
+      && restoreEvidence.production_source_project_ref === projectRef
+      && restoreEvidence.target_environment === 'nonproduction'
+      && restoreEvidence.production_mutations === false
+      && restoreEvidence.reconciliation?.mismatches === 0
+  );
+  if (legacyEvidenceVerified) return true;
+
+  const sourceRef = restoreEvidence.source?.project_ref ?? null;
+  const destinationRef = restoreEvidence.destination?.project_ref ?? null;
+  const reconciliation = restoreEvidence.reconciliation ?? {};
+  const reconciliationChecks = [
+    'migration_ledger_match',
+    'schema_match',
+    'schema_column_match',
+    'rls_policy_match',
+    'function_match',
+    'relation_grant_match',
+    'routine_grant_match'
+  ];
+
+  return Boolean(
+    restoreEvidence.status === 'passed'
+      && sourceRef === projectRef
+      && destinationRef
+      && destinationRef !== sourceRef
+      && restoreEvidence.source?.production_writes === false
+      && restoreEvidence.boundaries?.production_database_writes === false
+      && restoreEvidence.boundaries?.production_restore_in_place === false
+      && restoreEvidence.schedule_isolation?.result === 'passed'
+      && restoreEvidence.schedule_isolation?.production_target_executions === 0
+      && reconciliation.status === 'passed'
+      && reconciliationChecks.every((key) => reconciliation[key] === true)
+      && restoreEvidence.signed_in_smoke?.status === 'passed'
+  );
+}
+
 export function evaluateManagedControlV1({ project, backupInventory, restoreEvidence = null, now = new Date(), maxBackupAgeHours = DEFAULT_MAX_BACKUP_AGE_HOURS }) {
   const findings = [];
   if (!project) findings.push(finding('critical', 'project_missing', 'The requested Supabase project was not returned by the management plane.'));
@@ -74,14 +115,7 @@ export function evaluateManagedControlV1({ project, backupInventory, restoreEvid
     findings.push(finding('high', 'physical_backup_continuity_gap', 'A physical backup interval exceeds the permitted continuity window.', { maximum_gap_hours: maximumGapHours }));
   }
 
-  const restoreVerified = Boolean(
-    restoreEvidence
-      && restoreEvidence.status === 'succeeded'
-      && restoreEvidence.production_source_project_ref === project?.ref
-      && restoreEvidence.target_environment === 'nonproduction'
-      && restoreEvidence.production_mutations === false
-      && restoreEvidence.reconciliation?.mismatches === 0
-  );
+  const restoreVerified = verifyRestoreEvidenceV1(restoreEvidence, project?.ref);
   if (!restoreVerified) findings.push(finding('unmeasured', 'nonproduction_restore_exercise_unmeasured', 'A reconciled non-production restore exercise has not been supplied.'));
 
   const blockers = findings.filter((row) => ['critical', 'high'].includes(row.severity));

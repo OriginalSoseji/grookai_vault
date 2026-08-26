@@ -12,6 +12,7 @@ import {
   classifyScannerIdentityV1,
   classifySourceSyncV1,
   classifyWorkflowRunV1,
+  collectGitHubWorkflowComponentsV1,
   controlPlaneAlertFingerprintV1,
   controlPlaneAlertFindingsV1,
   resolveRuntimeCommitShaV1,
@@ -44,6 +45,31 @@ test('public GitHub workflow collection does not require an authorization token'
   assert.match(source, /Pragma: 'no-cache'/);
   assert.match(source, /cache_bust=\$\{cacheBust\}/);
   assert.match(source, /`\$\{now\.getTime\(\)\}-\$\{process\.pid\}`/);
+});
+
+test('components sharing one workflow use one provider payload', async () => {
+  let loads = 0;
+  const components = [
+    { id: 'vercel-web', max_staleness_minutes: 90, source_files: ['.github/workflows/prod-edge-probe.yml'] },
+    { id: 'prod-edge-probe', max_staleness_minutes: 90, source_files: ['.github/workflows/prod-edge-probe.yml'] }
+  ];
+  const results = await collectGitHubWorkflowComponentsV1(components, null, NOW, {
+    loadPayload: async () => {
+      loads += 1;
+      return {
+        workflow_runs: [{
+          id: 123,
+          status: 'completed',
+          conclusion: 'success',
+          updated_at: '2026-08-24T00:30:00.000Z'
+        }]
+      };
+    }
+  });
+  assert.equal(loads, 1);
+  assert.deepEqual(results.map((row) => row.component_id), ['vercel-web', 'prod-edge-probe']);
+  assert.deepEqual(results.map((row) => row.status), ['healthy', 'healthy']);
+  assert.deepEqual(results.map((row) => row.evidence.run_id), [123, 123]);
 });
 
 test('runtime provenance prefers the immutable release SHA over environment metadata', async () => {
