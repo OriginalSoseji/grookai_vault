@@ -73,28 +73,37 @@ for root in "${release_roots[@]}"; do
 done
 [[ "${#resolved_roots[@]}" -gt 0 ]] || fail "no allowlisted release roots exist"
 
-protect_release_path() {
+release_path_for_candidate() {
   local candidate="$1"
-  local reason="$2"
   local root
-  local release
   local relative
   local release_name
-  [[ -n "$candidate" ]] || return 0
+  local release
   for root in "${resolved_roots[@]}"; do
     case "$candidate" in
       "$root"/*)
         relative="${candidate#"$root"/}"
         release_name="${relative%%/*}"
         release="$root/$release_name"
-        [[ -d "$release" ]] || return 0
-        protected_releases["$release"]=1
-        active_families["$root"]=1
-        keep_reasons["$release"]="${keep_reasons[$release]:+${keep_reasons[$release]},}$reason"
+        [[ -d "$release" ]] || return 1
+        printf '%s\n' "$release"
         return 0
         ;;
     esac
   done
+  return 1
+}
+
+protect_release_path() {
+  local candidate="$1"
+  local reason="$2"
+  local release
+  [[ -n "$candidate" ]] || return 0
+  release="$(release_path_for_candidate "$candidate" || true)"
+  [[ -n "$release" ]] || return 0
+  protected_releases["$release"]=1
+  active_families["$(dirname -- "$release")"]=1
+  keep_reasons["$release"]="${keep_reasons[$release]:+${keep_reasons[$release]},}$reason"
 }
 
 for link in /opt/grookai_*_current; do
@@ -120,6 +129,52 @@ for root in "${resolved_roots[@]}"; do
     fi
   done < <(find "$root" -mindepth 1 -maxdepth 1 -type d -printf '%T@ %p\n' | sort -nr | cut -d' ' -f2-)
 done
+
+protect_linked_release_dependencies() {
+  local changed=1
+  local release
+  local dependency_link
+  local raw_target
+  local logical_target
+  local dependency_release
+  local dependency_real
+  local root
+  local under_release_root
+  local -a protected_snapshot
+
+  while [[ "$changed" -eq 1 ]]; do
+    changed=0
+    protected_snapshot=("${!protected_releases[@]}")
+    for release in "${protected_snapshot[@]}"; do
+      while IFS= read -r -d '' dependency_link; do
+        raw_target="$(readlink -- "$dependency_link" 2>/dev/null || true)"
+        [[ -n "$raw_target" ]] || fail "protected release contains an unreadable symlink: $dependency_link"
+        if [[ "$raw_target" == /* ]]; then
+          logical_target="$(realpath -m -- "$raw_target")"
+        else
+          logical_target="$(realpath -m -- "$(dirname -- "$dependency_link")/$raw_target")"
+        fi
+        under_release_root=0
+        for root in "${resolved_roots[@]}"; do
+          case "$logical_target" in
+            "$root"/*) under_release_root=1; break ;;
+          esac
+        done
+        [[ "$under_release_root" -eq 1 ]] || continue
+        [[ -e "$logical_target" ]] || fail "protected release dependency is missing: $dependency_link -> $logical_target"
+        dependency_real="$(realpath -e -- "$logical_target")"
+        dependency_release="$(release_path_for_candidate "$dependency_real" || true)"
+        [[ -n "$dependency_release" ]] || fail "release dependency escaped the allowlisted roots: $dependency_link"
+        if [[ -z "${protected_releases[$dependency_release]:-}" ]]; then
+          protect_release_path "$dependency_real" "referenced_by:$release:$dependency_link"
+          changed=1
+        fi
+      done < <(find "$release" -xdev -type l -print0)
+    done
+  done
+}
+
+protect_linked_release_dependencies
 
 reference_root="${resolved_roots[0]}"
 free_bytes_before="$(df --output=avail -B1 -- "$reference_root" | tail -1 | tr -d ' ')"

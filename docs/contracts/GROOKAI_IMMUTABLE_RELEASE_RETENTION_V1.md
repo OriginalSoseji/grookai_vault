@@ -25,6 +25,10 @@ authority of this contract.
 
 - Every active `/opt/grookai_*_current` symlink target is protected.
 - Every release used as a live process working directory is protected.
+- Every allowlisted release referenced by a symlink inside a protected release
+  is protected transitively.
+- A broken symlink from a protected release into an allowlisted release root
+  fails closed before any candidate can be removed.
 - Active release families retain their two newest releases.
 - Inactive release families retain their newest cold rollback release.
 - A candidate must be older than 24 hours and have a directory name matching

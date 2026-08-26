@@ -27,6 +27,11 @@ test("immutable release retention protects live and rollback releases", () => {
   assert.match(script, /\/opt\/grookai_\*_current/);
   assert.match(script, /\/proc\/\[0-9\]\*\/cwd/);
   assert.match(script, /release_name="\$\{relative%%\/\*\}"/);
+  assert.match(script, /protect_linked_release_dependencies/);
+  assert.match(script, /find "\$release" -xdev -type l -print0/);
+  assert.match(script, /protected release dependency is missing/);
+  assert.match(script, /referenced_by:/);
+  assert.match(script, /release dependency escaped the allowlisted roots/);
   assert.match(script, /newest_family_release/);
   assert.match(script, /candidate became protected before removal/);
   assert.match(script, /git -C "\$source_real" status --porcelain/);
