@@ -61,4 +61,4 @@ Current unattended writer coverage is intentionally narrower than discovery cove
 - MTG: fully absent, released English paper sets only.
 - One Piece: fully absent, released numbered-card sets with exact official number/name and warehouse product binding only.
 - Japanese Pokemon: the proven incomplete-set lane with two independent full-set authorities and exact species resolution.
-- English Pokemon: detection and issue visibility only until an English incremental writer receives its own rollback proof.
+- English Pokemon: full-set Master Index-admitted parent deltas through the dedicated insert-only writer. Partial Master Index sets, ambiguous aliases, missing set containers, and unresolved families remain report-only.

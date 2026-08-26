@@ -134,6 +134,8 @@ export function catalogSetMatchKeys(row) {
   const gameCode = clean(row.game_code);
   return [...new Set([
     row.code ? `code:${normalizeCatalogSetCode(gameCode, row.code)}` : "",
+    ...(row.code_aliases ?? []).map((alias) =>
+      `code:${normalizeCatalogSetCode(gameCode, alias)}`),
     row.source_set_id ? `source:${normalizeCatalogText(row.source_set_id)}` : "",
     row.name ? `name:${normalizeCatalogText(row.name)}` : "",
     ...(row.aliases ?? []).map((alias) => `name:${normalizeCatalogText(alias)}`),

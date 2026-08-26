@@ -111,6 +111,31 @@ test("equivalent compact set codes choose the unique count-backed canonical row"
   assert.equal(row.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
 });
 
+test("governed source-code aliases reconcile against their canonical owner", () => {
+  const [row] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      source_id: "tcgdex_english_set_registry",
+      source_set_id: "2011bw",
+      code: "2011bw",
+      name: "McDonald's Collection 2011",
+      expected_card_count: 12,
+      count_scope: "full_set",
+      source_url: "https://api.tcgdex.net/v2/en/sets/2011bw",
+    }],
+    databaseSets: [{
+      game_code: "pokemon",
+      code: "mcd11",
+      code_aliases: ["2011bw"],
+      name: "McDonald's Collection 2011",
+      card_count: 12,
+    }],
+    asOf: "2026-08-26",
+  });
+  assert.equal(row.database_code, "mcd11");
+  assert.equal(row.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
+});
+
 test("multiple populated equivalent canonical rows remain ambiguous", () => {
   const [row] = reconcileCatalogSets({
     sourceSets: [{

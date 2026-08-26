@@ -39,6 +39,37 @@ test("English Pokemon gaps never route to the Japanese writer", () => {
   assert.equal(plan.unsupported.length, 1);
 });
 
+test("English Pokemon routes only with complete Master Index authority", () => {
+  const admitted = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "pokemon",
+    source_id: "tcgdex_english_set_registry",
+    status: "incomplete_cards",
+    source_code: "wp",
+    database_code: "wp",
+    expected_card_count: 7,
+    count_evidence: [{
+      authority: "english_master_index_completion_v1",
+      scope: "full_set",
+      count: 7,
+    }],
+  }]);
+  assert.deepEqual(admitted.targets.map((row) => row.key), ["pokemon_en:wp"]);
+  const partial = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "pokemon",
+    source_id: "tcgdex_english_set_registry",
+    status: "incomplete_cards",
+    source_code: "mfb",
+    database_code: "mfb",
+    expected_card_count: 48,
+    count_evidence: [{
+      authority: "english_master_index_completion_v1",
+      scope: "full_set",
+      count: 34,
+    }],
+  }]);
+  assert.equal(partial.targets.length, 0);
+});
+
 test("Japanese product gaps without the writer's TCGdex authority stay held", () => {
   const plan = buildCatalogIncrementalSupervisorPlanV1([{
     game_code: "pokemon",
