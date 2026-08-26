@@ -161,7 +161,7 @@ export function deriveEnglishPokemonCanonicalAliasOverlayV1({
   const databaseBySetAndCoordinate = new Map();
   for (const card of databaseCards) {
     const setCode = clean(card.set_code).toLocaleLowerCase("en");
-    const key = `${setCode}|${coordinate(card.number_plain ?? card.number, card.name)}`;
+    const key = `${setCode}|${coordinate(card.number ?? card.number_plain, card.name)}`;
     databaseBySetAndCoordinate.set(key, true);
   }
   const setCodes = [...new Set(databaseSets.map((row) =>
@@ -231,7 +231,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
   }
   const existingByNumber = new Map();
   for (const card of existingCards) {
-    const number = normalizeEnglishPokemonCardNumberV1(card.number_plain ?? card.number);
+    const number = normalizeEnglishPokemonCardNumberV1(card.number ?? card.number_plain);
     const rows = existingByNumber.get(number) ?? [];
     rows.push(card);
     existingByNumber.set(number, rows);

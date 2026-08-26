@@ -214,7 +214,7 @@ async function collisionPreflight(client, plan) {
     natural_coordinates: Number((await client.query(`
       select count(*)::int as count from public.card_prints
       where set_id = $1::uuid and (
-        upper(regexp_replace(coalesce(number_plain, number, ''), '[^A-Z0-9]', '', 'g')) = any($2::text[])
+        upper(regexp_replace(coalesce(number, number_plain, ''), '[^A-Z0-9]', '', 'g')) = any($2::text[])
       )
     `, [plan.payload.set.id, rows.map((row) =>
       clean(row.number).toUpperCase().replace(/[^A-Z0-9]+/g, ""))])).rows[0].count),

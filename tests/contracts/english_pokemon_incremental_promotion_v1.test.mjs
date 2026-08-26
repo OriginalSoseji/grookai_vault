@@ -63,7 +63,7 @@ test("existing exact coordinates are idempotent and name collisions stop", () =>
     sourceSet: SOURCE_SET,
     masterCards: cards,
     existingCards: [
-      { number: "WPR JU 60", name: "Pikachu" },
+      { number: "WPR JU 60", number_plain: "60", name: "Pikachu" },
       { number: "WPR TR 19", name: "Dark Arbok" },
     ],
     speciesRows: SPECIES,
