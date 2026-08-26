@@ -107,14 +107,19 @@ test("app startup does not prewarm the scanner", () => {
   assert.doesNotMatch(init, /_prewarmScanCardSurface/);
 });
 
-test("app startup preloads the first route beneath a blocking branded cover", () => {
+test("app startup preloads the first route without blocking on crash reporting", () => {
   const main = readSource("lib/main.dart");
   const shell = readSource("lib/main_shell.dart");
 
-  assert.match(main, /APP_STARTUP_PARALLEL_BOOT_V1/);
+  assert.match(main, /APP_STARTUP_NON_BLOCKING_CRASH_REPORTING_V1/);
+  assert.match(main, /runApp\(const MyApp\(\)\);[\s\S]*unawaited\(_startDeferredCrashReporting\(\)\)/);
   assert.match(
     main,
-    /Future\.wait<void>\(\[[\s\S]*GrookaiCrashReportingService\.initialize\(\)[\s\S]*_loadEnv\(\)/,
+    /Future<void> _startDeferredCrashReporting\(\) async \{[\s\S]*GrookaiCrashReportingService\.initialize\(\)/,
+  );
+  assert.doesNotMatch(
+    main,
+    /await Future\.wait<void>\(\[[\s\S]*GrookaiCrashReportingService\.initialize\(\)/,
   );
   assert.match(main, /APP_STARTUP_COVERED_PRELOAD_V1/);
   assert.match(

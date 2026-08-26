@@ -2477,6 +2477,12 @@ class _ActionSheetMetadataText extends StatelessWidget {
   }
 }
 
+Future<void> _startDeferredCrashReporting() async {
+  await Future<void>.delayed(_kDeferredStartupServiceDelay);
+  await GrookaiCrashReportingService.initialize();
+  AppBootTiming.mark('crash_reporting_ready');
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _configureAppImageCache();
@@ -2496,18 +2502,8 @@ Future<void> main() async {
       return false;
     };
     AppBootTiming.mark('platform_error_handler_ready');
-    // APP_STARTUP_PARALLEL_BOOT_V1
-    // Firebase/Crashlytics and local configuration are independent startup
-    // dependencies. Resolve them together while the native launch screen is
-    // still visible instead of paying their latency serially.
-    await Future.wait<void>([
-      GrookaiCrashReportingService.initialize().then((_) {
-        AppBootTiming.mark('crash_reporting_ready');
-      }),
-      _loadEnv().then((_) {
-        AppBootTiming.mark('env_loaded');
-      }),
-    ]);
+    await _loadEnv();
+    AppBootTiming.mark('env_loaded');
 
     final url = supabaseUrl;
     final key = supabasePublishableKey;
@@ -2526,6 +2522,9 @@ Future<void> main() async {
     AppBootTiming.mark('supabase_initialize_complete');
     AppBootTiming.mark('runApp');
     runApp(const MyApp());
+    // APP_STARTUP_NON_BLOCKING_CRASH_REPORTING_V1
+    // Telemetry is best-effort and must never delay the first Flutter frame.
+    unawaited(_startDeferredCrashReporting());
   } catch (error, stackTrace) {
     GrookaiCrashReportingService.recordFatalError(error, stackTrace);
     debugPrint('[APP_STARTUP] failed error=$error');
