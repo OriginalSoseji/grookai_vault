@@ -154,9 +154,15 @@ export function buildJapaneseOfficialIncrementalSetPlanV1({
   if ([...existingByNumber.keys()].some((number) => !checklistByNumber.has(number))) {
     throw new Error("Canonical set contains a coordinate absent from the numbered checklist");
   }
-  const denominators = [...new Set(officialCards.map((card) =>
-    Number(card.card_number_denominator)).filter(Number.isSafeInteger))];
+  const denominators = [...new Set(officialCards
+    .map((card) => clean(card.card_number_denominator))
+    .filter(Boolean)
+    .map(Number)
+    .filter((value) => Number.isSafeInteger(value) && value > 0))];
   if (denominators.length > 1) throw new Error("Official printed denominators disagree");
+  if (denominators.length === 1 && denominators[0] !== expected) {
+    throw new Error("Official printed denominator conflicts with numbered checklist");
+  }
   const printedTotal = denominators[0] ?? expected;
   const rows = [];
   for (const number of missingCoordinates) {

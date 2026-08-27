@@ -160,6 +160,52 @@ export function catalogSetMatchKeys(row) {
   ].filter((value) => value && !value.endsWith(":")))];
 }
 
+function masterSetCodes(row, language) {
+  const values = language === "en"
+    ? [
+        row.key,
+        row.pokemontcg,
+        row.tcgdex,
+        ...(row.manual_aliases ?? []),
+        ...Object.values(row.source_aliases ?? {}),
+      ]
+    : [
+        ...(row.official_code_evidence ?? []),
+        clean(row.jpn_set_key).replace(/^jpn-/i, ""),
+      ];
+  return new Set(values.map((value) =>
+    normalizeCatalogSetCode("pokemon", value)).filter(Boolean));
+}
+
+export function classifyPokemonDatabaseSetScopesV1({
+  databaseSets = [],
+  englishMasterSets = [],
+  japaneseMasterSets = [],
+}) {
+  const englishCodes = new Set(englishMasterSets.flatMap((row) =>
+    [...masterSetCodes(row, "en")]));
+  const japaneseCodes = new Set(japaneseMasterSets.flatMap((row) =>
+    [...masterSetCodes(row, "ja")]));
+  return databaseSets.map((row) => {
+    if (row.game_code !== "pokemon" || catalogSetScope(row) !== "pokemon unspecified") {
+      return row;
+    }
+    const code = normalizeCatalogSetCode("pokemon", row.code);
+    const englishMatch = englishCodes.has(code);
+    const japaneseMatch = japaneseCodes.has(code);
+    if (englishMatch === japaneseMatch) {
+      return { ...row, catalog_scope: "pokemon_unspecified" };
+    }
+    return {
+      ...row,
+      catalog_scope: englishMatch ? "pokemon_en" : "pokemon_ja",
+      catalog_scope_evidence: englishMatch
+        ? "english_master_index_set_code"
+        : "japanese_master_index_set_code",
+    };
+  });
+}
+
 function integerOrNull(value) {
   if (value === null || value === undefined || value === "") return null;
   const parsed = Number(value);

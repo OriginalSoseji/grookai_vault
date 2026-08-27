@@ -10,6 +10,7 @@ import {
   buildPokemonMasterIndexUpdateCandidatesV1,
   catalogSetScope,
   CATALOG_GAP_STATUSES,
+  classifyPokemonDatabaseSetScopesV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
@@ -553,15 +554,20 @@ async function discoverPokemonEnglish(
 
 async function loadEnglishMasterIndex() {
   const cardsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_cards_v1.json");
-  const bytes = await fs.readFile(cardsFile);
+  const setsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_sets_v1.json");
+  const [bytes, setsBytes] = await Promise.all([
+    fs.readFile(cardsFile),
+    fs.readFile(setsFile),
+  ]);
   const cards = JSON.parse(bytes).cards ?? [];
+  const sets = JSON.parse(setsBytes).sets ?? [];
   const cardsBySet = new Map();
   for (const card of cards) {
     const rows = cardsBySet.get(clean(card.set_key)) ?? [];
     rows.push(card);
     cardsBySet.set(clean(card.set_key), rows);
   }
-  return { cards, cardsBySet, cardsSha256: sha256(bytes) };
+  return { sets, cards, cardsBySet, cardsSha256: sha256(bytes) };
 }
 
 function officialJapaneseProductUrl(productType, page) {
@@ -889,10 +895,17 @@ async function main() {
     loadEnglishMasterIndex(),
     loadJapaneseMasterIndex(),
   ]);
-  const japaneseDatabaseSets = database.sets.filter((row) =>
+  const classifiedDatabaseSets = classifyPokemonDatabaseSetScopesV1({
+    databaseSets: database.sets,
+    englishMasterSets: englishMasterIndex.sets,
+    japaneseMasterSets: japaneseMasterIndex.sets,
+  });
+  const japaneseDatabaseSets = classifiedDatabaseSets.filter((row) =>
     row.game_code === "pokemon" && catalogSetScope(row) === "pokemon ja");
-  const englishDatabaseSets = database.sets.filter((row) =>
+  const englishDatabaseSets = classifiedDatabaseSets.filter((row) =>
     row.game_code === "pokemon" && catalogSetScope(row) === "pokemon en");
+  const unresolvedPokemonSets = classifiedDatabaseSets.filter((row) =>
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon unspecified");
   const englishAliasOverlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
     databaseSets: englishDatabaseSets,
     databaseCards: database.english_canonical_cards,
@@ -900,6 +913,7 @@ async function main() {
   });
   database.sets = [
     ...database.sets.filter((row) => row.game_code !== "pokemon"),
+    ...unresolvedPokemonSets,
     ...japaneseDatabaseSets,
     ...englishAliasOverlay.sets,
   ];

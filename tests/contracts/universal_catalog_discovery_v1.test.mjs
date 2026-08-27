@@ -10,6 +10,7 @@ import {
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
   CATALOG_GAP_STATUSES,
+  classifyPokemonDatabaseSetScopesV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   normalizeCatalogSetCode,
   normalizeCatalogText,
@@ -30,6 +31,24 @@ test("catalog normalization preserves Japanese authority text and canonicalizes 
   assert.equal(normalizeCatalogText("拡張パック「ストームエメラルダ」"), "拡張パック ストームエメラルダ");
   assert.equal(normalizeCatalogSetCode("one_piece", "OP-17"), "op17");
   assert.equal(normalizeCatalogSetCode("mtg", "HOB"), "hob");
+});
+
+test("Pokemon sets without active identities use Master Index scope or stay preserved", () => {
+  const rows = classifyPokemonDatabaseSetScopesV1({
+    databaseSets: [
+      { game_code: "pokemon", code: "en1", name: "English Empty", card_count: 0 },
+      { game_code: "pokemon", code: "M6", name: "Japanese Empty", card_count: 0 },
+      { game_code: "pokemon", code: "unknown", name: "Unresolved Empty", card_count: 0 },
+      { game_code: "mtg", code: "lea", name: "Limited Edition Alpha", card_count: 0 },
+    ],
+    englishMasterSets: [{ key: "en1", source_aliases: {} }],
+    japaneseMasterSets: [{ jpn_set_key: "jpn-m6", official_code_evidence: ["M6"] }],
+  });
+  assert.equal(rows[0].catalog_scope, "pokemon_en");
+  assert.equal(rows[1].catalog_scope, "pokemon_ja");
+  assert.equal(rows[2].catalog_scope, "pokemon_unspecified");
+  assert.equal(rows[3].catalog_scope, undefined);
+  assert.equal(rows.length, 4);
 });
 
 test("reconciliation distinguishes complete, missing, incomplete, and future sets", () => {

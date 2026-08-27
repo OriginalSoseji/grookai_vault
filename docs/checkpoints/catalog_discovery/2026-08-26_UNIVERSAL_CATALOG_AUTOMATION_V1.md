@@ -232,12 +232,15 @@ The follow-up automation closes the remaining ordering loophole:
 - future Pokemon languages remain blocked until a language-specific persistent
   Master Index adapter exists.
 
-The strict production read-only proof at
-`C:\Users\ccabr\AppData\Local\Temp\grookai-catalog-automation-completion-v1\master-index-strict-20260826-230211`
+The final production read-only proof at
+`C:\Users\ccabr\AppData\Local\Temp\grookai-catalog-review-fixes-20260826-231740`
 recorded:
 
 - source sets checked: `1,257`;
-- actionable source gaps: `10`, all English;
+- actionable source gaps: `9`, all English;
+- incomplete English owners: `jumbo`, `mfb`, `tk-hs-g`, `tk-hs-r`, `tk-sm-l`,
+  `tk-sm-r`;
+- missing English owners: `miscp`, `rc`, `sp`;
 - canonical promotion candidates: `0`;
 - Master Index update candidates: `67`;
 - recent Japanese canonical gaps: `0`;
@@ -256,7 +259,7 @@ Japanese rows now report their actual persistent index state:
 This stricter result is intentional. It turns a hidden source-to-database bypass
 into explicit language-index debt.
 
-The expanded catalog suite passed `54/54`; all syntax/import checks and
+The expanded catalog suite passed `57/57`; all syntax/import checks and
 `git diff --check` passed. The English refresh worker also replayed the current
 authority against itself with `changed: false`, `21,520` card facts, `38,939`
 printing facts, zero conflicts, and zero unexplained removals.
@@ -265,8 +268,8 @@ printing facts, zero conflicts, and zero unexplained removals.
 
 | Artifact | SHA-256 |
 |---|---|
-| Production read-only summary | `065143fa765e5930738c14af424393121046c34226447892055c04d97d7fb952` |
-| Language Master Index reconciliation | `7b0bd7dbad2c285fe055c48f4268262098f82aa3f70a27f3b3c6102c775392ea` |
-| Language Master Index update candidates | `365c1f1d5c83953bd2607496d844626ef64964488175c1bbe6dcc5ceadcc72d9` |
+| Production read-only summary | `765c2c3c066581dd314d494588d3eb37159e96a860c2ef89131ecbde1f82a0c1` |
+| Language Master Index reconciliation | `c5fbb33c3267d573959bf110f72e7af319f1993f66621f84938b13c51d440725` |
+| Language Master Index update candidates | `50e13b8c39af5f41603f29a1f8e16f6954abde4bd5aca93a20bce6c6d3c5046a` |
 | Canonical promotion candidates | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | English no-change refresh plan | `0490a5c71143758d9ff6e5b4772f149b8325d963ab42f5df65fad8433eeceeec` |

@@ -46,7 +46,7 @@ function fixture() {
       {
         card_id: "50452",
         card_number_raw: "001",
-        card_number_denominator: 2,
+        card_number_denominator: 3,
         printed_name: "シェイミ",
         source_set_code: "MEM",
         source_url: "https://www.pokemon-card.com/card/50452",
@@ -58,7 +58,7 @@ function fixture() {
       {
         card_id: "50463",
         card_number_raw: "003",
-        card_number_denominator: 2,
+        card_number_denominator: 3,
         printed_name: "ポケパッド",
         source_set_code: "MEM",
         source_url: "https://www.pokemon-card.com/card/50463",
@@ -92,6 +92,22 @@ test("official Japanese promotion closes a numbered set without inventing transl
     valid: true,
     findings: [],
   });
+});
+
+test("missing printed denominators fall back to the admitted checklist total", () => {
+  const input = fixture();
+  for (const card of input.officialCards) card.card_number_denominator = null;
+  const plan = buildJapaneseOfficialIncrementalSetPlanV1(input);
+  assert.deepEqual(plan.payload.rows.map((row) => row.card_print.printed_total), [3, 3]);
+});
+
+test("printed denominators inconsistent with the checklist fail closed", () => {
+  const input = fixture();
+  for (const card of input.officialCards) card.card_number_denominator = 2;
+  assert.throws(
+    () => buildJapaneseOfficialIncrementalSetPlanV1(input),
+    /printed denominator conflicts with numbered checklist/,
+  );
 });
 
 test("official Japanese promotion fails closed when any checklist coordinate is missing", () => {
