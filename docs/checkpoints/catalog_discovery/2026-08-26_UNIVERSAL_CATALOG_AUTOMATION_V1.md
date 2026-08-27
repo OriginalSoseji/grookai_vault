@@ -9,6 +9,10 @@ Japanese numbered-product gap is closed. Remaining detected gaps are preserved
 as report-only English Pokemon acquisition work because the current evidence
 does not authorize unattended canonical writes.
 
+Pokemon automation is now explicitly Master-Index-first. Source discovery can
+update a language evidence queue, but only a reconciled Master Index delta can
+reach a canonical writer.
+
 ## Producer
 
 - Database apply producer SHA: `95fbc0c1d6a66960e168d80e7ec7b91967fcb58d`
@@ -16,9 +20,14 @@ does not authorize unattended canonical writes.
 - Pull request: `https://github.com/OriginalSoseji/grookai_vault/pull/245`
 - Apply date: `2026-08-26` America/Denver (`2026-08-27` UTC)
 - Apply mode: exact clean-SHA, insert-only, supervisor-bounded
+- Latest automation repair SHA:
+  `62b827509adc26e474be720f51b05c8ef451b952`
 
 The checkpoint may be committed after the producer SHA. That later documentation
 commit did not produce the database mutation.
+
+The automation repair SHA did not produce a database mutation. Its production
+proof used a read-only discovery transaction and a zero-target supervisor plan.
 
 ## What Changed
 
@@ -145,3 +154,61 @@ The scheduled promotion workflow now aggregates these candidates into
    Piece `OP17` enter the existing release-gated promotion path.
 
 Do not weaken the evidence gate to make the remaining queue read zero.
+
+## Master-Index-First Repair
+
+The English `sma` / Hidden Fates Shiny Vault row exposed two false assumptions:
+
+1. canonical ownership was counted by comparing a printed set code with a
+   canonical set code instead of joining through `card_prints.set_id`;
+2. a raw source gap could be considered before a language-scoped Master Index
+   owner decision.
+
+Both are repaired at `62b827509adc26e474be720f51b05c8ef451b952`:
+
+- canonical set counts and English card ownership use `card_prints.set_id`;
+- `sma` resolves to the existing `sm115` Hidden Fates owner with no set or card
+  write;
+- future English Master Index rebuilds fold `SV1` through `SV94` from `sma` into
+  `sm115`;
+- discovery writes `pokemon_master_index_reconciliation.json`;
+- unresolved evidence writes `pokemon_master_index_update_candidates.json`;
+- only admitted rows enter `canonical_promotion_candidates.json`;
+- the catalog promotion supervisor consumes only that admitted candidate file;
+- the scheduled discovery workflow maintains a dedicated GitHub Master Index
+  evidence-queue issue.
+
+The clean-SHA production read proved:
+
+- source sets checked: `1,257`;
+- Pokemon source gaps: `10`, down from `11` after suppressing the false `sma`
+  gap;
+- recent Japanese missing cards: `0`;
+- recent Japanese official-evidence gaps: `0`;
+- language Master Index rows: `209` (`203` English, `6` Japanese);
+- Master Index update candidates: `66` (`63` English evidence gaps and `3`
+  Japanese owner-resolution gaps);
+- canonical promotion candidates: `0`;
+- supervisor targets: `0`;
+- database writes: `0`.
+
+The remaining ten source gaps are:
+
+- missing: `jumbo`, `me05`, `miscp`, `rc`, `sp`;
+- incomplete: `mfb`, `tk-hs-g`, `tk-hs-r`, `tk-sm-l`, `tk-sm-r`.
+
+They remain Master Index acquisition work. They are not canonical writer work.
+
+### Master-Index-First Artifact Hashes
+
+| Artifact | SHA-256 |
+|---|---|
+| Clean discovery summary | `62de483eb23620c4a468e640573c01243a80f20c77463e70bb7a4c4b91c9002f` |
+| Pokemon Master Index reconciliation | `1af1b76040c05829cd047d7058023de8a67cb34813b0df66120a873aa758c2ca` |
+| Pokemon Master Index update candidates | `e33e6ca2f7e836e03dbdf02e2f8e0d32debc97ad105dcb399acb23ff23811dc8` |
+| Canonical promotion candidates | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
+| Zero-target supervisor summary | `116801849ee2d548b50a9e635e5783a9f8c1d44ba561b89c4607a264fa317837` |
+| Zero-target supervisor plan | `c70ae3408100e65284801d25ac5529e45d1bf301f8bf8144357386caf8ac22d1` |
+
+The complete catalog contract suite passed `49/49` with syntax/import and diff
+checks passing.
