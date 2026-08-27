@@ -296,18 +296,32 @@ async function plan(options) {
     }
   });
 
+  const resultsByLanguage = new Map(results.map((row) => [row.language, row]));
   const registry = {
     version: POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
     policy: "all_source_rows_enter_language_index_before_canonical_reconciliation",
     canonical_authority: false,
-    languages: results.map((row) => {
-      const prior = baselineRegistryByLanguage.get(row.language);
+    languages: TCGDEX_POKEMON_LANGUAGE_SCOPES.map((language) => {
+      const row = resultsByLanguage.get(language);
+      const prior = baselineRegistryByLanguage.get(language);
+      if (!row) {
+        return prior ?? {
+          language,
+          status: "not_selected_no_baseline",
+          set_count: 0,
+          card_count: 0,
+          sets_fingerprint_sha256: null,
+          cards_fingerprint_sha256: null,
+          source: null,
+          source_commit_sha: null,
+        };
+      }
       if (prior && (row.status === "source_unavailable_baseline_preserved" ||
           row.status === "source_error_baseline_preserved")) {
         return prior;
       }
       return {
-        language: row.language,
+        language,
         status: row.status,
         set_count: row.set_count,
         card_count: row.card_count,

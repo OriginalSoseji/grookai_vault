@@ -304,7 +304,12 @@ async function fetchSource(url, { responseType = "text", delayMs = 0 } = {}) {
       if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 750));
     }
   }
-  throw new Error(`Source fetch failed for ${url}: ${lastError?.message ?? lastError}`);
+  const cause = String(lastError?.message ?? lastError);
+  const unavailable = /fetch failed|timed? ?out|timeout|HTTP (?:429|5\d\d)/i.test(cause);
+  throw new Error(
+    `[${unavailable ? "SOURCE_UNAVAILABLE" : "SOURCE_INTEGRITY_FAILURE"}] ` +
+    `Source fetch failed for ${url}: ${cause}`,
+  );
 }
 
 function sourceMetadata(snapshot) {

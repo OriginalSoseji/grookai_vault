@@ -104,10 +104,15 @@ jobs:
               --discovery-dir="$DISCOVERY_DIR" \
               --out-dir="$JAPANESE_REPORT_DIR" 2>&1 | tee "$JAPANESE_REPORT_DIR/refresh_plan.log"
           else
-            printf '{"changed":false,"status":"source_discovery_unavailable","canonical_writes":false,"database_writes":false,"storage_writes":false}\n' \
-              > "$JAPANESE_REPORT_DIR/plan.json"
-            printf '{"status":"source_discovery_unavailable","preserved_prior_master_index":true}\n' \
-              > "$JAPANESE_REPORT_DIR/source_health.json"
+            if grep -q 'Error: \[SOURCE_UNAVAILABLE\]' "$DISCOVERY_DIR/discovery.log"; then
+              printf '{"changed":false,"status":"source_discovery_unavailable","canonical_writes":false,"database_writes":false,"storage_writes":false}\n' \
+                > "$JAPANESE_REPORT_DIR/plan.json"
+              printf '{"status":"source_discovery_unavailable","preserved_prior_master_index":true}\n' \
+                > "$JAPANESE_REPORT_DIR/source_health.json"
+            else
+              printf 'Japanese discovery failed an integrity gate; publication is blocked.\n' >&2
+              exit 1
+            fi
           fi
 
       - name: Apply changed facts to a data-only branch
@@ -263,13 +268,14 @@ jobs:
           set -euo pipefail
           RESPONSE=''
           for ATTEMPT in 1 2 3 4 5; do
-            RESPONSE="$(gh api \
-              --method PUT \
-              "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" \
-              -f merge_method=squash)"
-            if echo "$RESPONSE" | jq -e '.merged == true' >/dev/null; then break; fi
+            if RESPONSE="$(gh api \
+                --method PUT \
+                "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" \
+                -f merge_method=squash 2>&1)"; then
+              if echo "$RESPONSE" | jq -e '.merged == true' >/dev/null; then break; fi
+            fi
             if [ "$ATTEMPT" = "5" ]; then
-              echo "$RESPONSE" | jq . >&2
+              printf '%s\n' "$RESPONSE" >&2
               exit 1
             fi
             sleep $((ATTEMPT * 3))

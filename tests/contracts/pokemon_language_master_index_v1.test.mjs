@@ -208,6 +208,13 @@ test("worker plan and apply are deterministic with fixture sources", () => {
   );
   assert.equal(planned.status, 0, planned.stderr);
   assert.equal(JSON.parse(planned.stdout).changed, true);
+  const firstRegistry = JSON.parse(fs.readFileSync(
+    path.join(firstPlan, "candidate_index", "language_registry_v1.json"),
+    "utf8",
+  ));
+  assert.equal(firstRegistry.languages.length, 18);
+  assert.equal(firstRegistry.languages.find((row) => row.language === "de").status,
+    "not_selected_no_baseline");
   const applied = run(
     "--mode=apply-to-worktree",
     `--baseline-dir=${baseline}`,
@@ -217,6 +224,19 @@ test("worker plan and apply are deterministic with fixture sources", () => {
   assert.equal(summarizePokemonLanguageCandidateSnapshotV1(
     normalizePokemonLanguageSourceSnapshotV1({ language: "fr", sets, cards }),
   ).card_count, 2);
+  const baselineRegistryPath = path.join(baseline, "language_registry_v1.json");
+  const baselineRegistry = JSON.parse(fs.readFileSync(baselineRegistryPath, "utf8"));
+  Object.assign(
+    baselineRegistry.languages.find((row) => row.language === "de"),
+    {
+      status: "candidate_index_ready",
+      set_count: 9,
+      card_count: 90,
+      source: "prior_source",
+      source_commit_sha: "prior-commit",
+    },
+  );
+  fs.writeFileSync(baselineRegistryPath, JSON.stringify(baselineRegistry));
 
   const replay = run(
     "--mode=plan",
@@ -227,4 +247,13 @@ test("worker plan and apply are deterministic with fixture sources", () => {
   );
   assert.equal(replay.status, 0, replay.stderr);
   assert.equal(JSON.parse(replay.stdout).changed, false);
+  const replayRegistry = JSON.parse(fs.readFileSync(
+    path.join(secondPlan, "candidate_index", "language_registry_v1.json"),
+    "utf8",
+  ));
+  assert.equal(replayRegistry.languages.length, 18);
+  assert.equal(replayRegistry.languages.find((row) => row.language === "fr").card_count, 2);
+  assert.equal(replayRegistry.languages.find((row) => row.language === "de").card_count, 90);
+  assert.equal(replayRegistry.languages.find((row) => row.language === "de").source_commit_sha,
+    "prior-commit");
 });
