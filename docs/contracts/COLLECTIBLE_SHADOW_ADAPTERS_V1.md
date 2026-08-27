@@ -147,3 +147,9 @@ candidates:
 
 Canonical promotion remains governed by `CATALOG_SHADOW_AUTOMATION_V1` and
 requires separate explicit authority.
+
+The first bounded parser gate is governed by
+`COLLECTIBLE_SHADOW_PARSER_WAVE1_V1`. It covers Yu-Gi-Oh printing metadata from
+the documented YGOPRODeck public API and Gundam printing metadata from the
+ODbL-licensed gcg-api dataset. It does not authorize scheduling, production
+writes, card text, prices, or images.

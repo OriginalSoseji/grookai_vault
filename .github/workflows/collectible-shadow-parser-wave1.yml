@@ -1,0 +1,98 @@
+name: Collectible Shadow Parser Wave 1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: collectible-shadow-parser-wave1-v1
+  cancel-in-progress: false
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CATALOG_AUTOMATION_MODE: shadow-only
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify parser contracts
+        run: |
+          node --check backend/catalog/collectible_shadow_adapter_registry_v1.mjs
+          node --check backend/catalog/collectible_shadow_parser_wave1_v1.mjs
+          node --check scripts/workers/collectible_shadow_parser_wave1_v1.mjs
+          node --test tests/contracts/collectible_shadow_parser_wave1_v1.test.mjs
+          git diff --check
+
+      - name: Run bounded shadow parsers
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          OUT_DIR="$RUNNER_TEMP/collectible-parser-wave1-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/collectible_shadow_parser_wave1_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --expected-head-sha="$GITHUB_SHA" \
+            --max-response-bytes=134217728 \
+            --request-timeout-ms=60000
+
+      - name: Report parser findings
+        if: always() && env.OUT_DIR != ''
+        uses: actions/github-script@v8
+        env:
+          OUT_DIR: ${{ env.OUT_DIR }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = `${process.env.OUT_DIR}/summary.json`;
+            if (!fs.existsSync(summaryPath)) return;
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            const title = '[Collectible Parser Wave 1] Review findings';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (summary.status === 'completed') {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+              return;
+            }
+            const body = `Status: ${summary.status}\n\n` +
+              `Candidates: ${summary.candidate_count}\n` +
+              `Validation failures: ${summary.validation_failure_count}\n` +
+              `Sources needing review: ${summary.review_source_count}\n\n` +
+              `No production database, Storage, image, pricing, publication, or Vault writes occurred.\n\n` +
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Upload parser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collectible-shadow-parser-wave1-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

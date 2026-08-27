@@ -1,0 +1,16 @@
+[
+  {
+    "set_name": "Fixture Set Alpha",
+    "set_code": "FSA",
+    "num_of_cards": 1,
+    "tcg_date": "2026-01-01",
+    "set_image": "https://images.invalid/FSA.jpg"
+  },
+  {
+    "set_name": "Fixture Set Beta",
+    "set_code": "FSB",
+    "num_of_cards": 1,
+    "tcg_date": "2026-02-01",
+    "set_image": "https://images.invalid/FSB.jpg"
+  }
+]

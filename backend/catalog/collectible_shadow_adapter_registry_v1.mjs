@@ -51,6 +51,7 @@ function adapter({
   executionStage = "official_probe_active",
   cadence = "daily",
   existingRuntime = null,
+  candidateSources = [],
   notes = [],
 }) {
   return {
@@ -66,6 +67,7 @@ function adapter({
     poll_cadence: cadence,
     probe_enabled: executionStage === "official_probe_active",
     existing_runtime: existingRuntime,
+    candidate_sources: candidateSources,
     canonical_authority: false,
     persistence_policy: "hash_and_metadata_only",
     rights: {
@@ -121,6 +123,24 @@ export const COLLECTIBLE_SHADOW_ADAPTERS = Object.freeze([
     identityContract: "tcg_card_v1",
     officialSourceUrl: "https://www.db.yugioh-card.com/yugiohdb/card_list.action?request_locale=en",
     operator: "Konami",
+    candidateSources: [{
+      source_id: "yugioh_ygoprodeck_api_v7",
+      operator: "YGOPRODeck",
+      source_authority: "governed_community_public_api",
+      data_url: "https://db.ygoprodeck.com/api/v7/cardinfo.php",
+      manifest_url: "https://db.ygoprodeck.com/api/v7/checkDBVer.php",
+      set_manifest_url: "https://db.ygoprodeck.com/api/v7/cardsets.php",
+      documentation_url: "https://ygoprodeck.com/api-guide/",
+      terms_or_license_url: "https://ygoprodeck.com/api-guide/",
+      catalog_extraction: "documented_public_api_internal_metadata",
+      data_license: "not_separately_specified",
+      attribution_required: true,
+      parser_enabled: true,
+      allowed_persistence: "internal_shadow_identity_metadata_only",
+      excluded_fields: ["card_text", "prices", "images"],
+      image_republication: "not_authorized",
+      self_hosting: "not_authorized",
+    }],
   }),
   adapter({
     adapterId: "digimon_official_v1",
@@ -184,6 +204,24 @@ export const COLLECTIBLE_SHADOW_ADAPTERS = Object.freeze([
     identityContract: "tcg_card_v1",
     officialSourceUrl: "https://www.gundam-gcg.com/en/cards/",
     operator: "Bandai",
+    candidateSources: [{
+      source_id: "gundam_gcg_api_v1",
+      operator: "gcg-api",
+      source_authority: "governed_community_open_data",
+      data_url: "https://api.gcgapi.com/v1/bulk",
+      manifest_url: "https://api.gcgapi.com/v1/manifest",
+      set_manifest_url: "https://api.gcgapi.com/v1/sets",
+      documentation_url: "https://api.gcgapi.com/docs",
+      terms_or_license_url: "https://github.com/yzRobo/gcg-api/blob/main/LICENSE-DATA",
+      catalog_extraction: "odbl_internal_metadata",
+      data_license: "ODbL-1.0",
+      attribution_required: true,
+      parser_enabled: true,
+      allowed_persistence: "internal_shadow_identity_metadata_only",
+      excluded_fields: ["card_text", "rulings", "images"],
+      image_republication: "not_authorized",
+      self_hosting: "not_authorized",
+    }],
   }),
   adapter({
     adapterId: "union_arena_official_v1",
@@ -291,6 +329,7 @@ export function validateCollectibleShadowAdapterRegistryV1(
 ) {
   const ids = new Set();
   const keys = new Set();
+  const candidateSourceIds = new Set();
   for (const row of adapters) {
     if (!row.adapter_id || ids.has(row.adapter_id)) {
       throw new Error(`Duplicate or missing adapter_id: ${row.adapter_id}`);
@@ -315,11 +354,36 @@ export function validateCollectibleShadowAdapterRegistryV1(
         row.rights?.self_hosting !== "not_authorized") {
       throw new Error(`Unproven image authority: ${row.adapter_id}`);
     }
+    for (const source of row.candidate_sources ?? []) {
+      if (!source.source_id || candidateSourceIds.has(source.source_id)) {
+        throw new Error(`Duplicate or missing candidate source: ${source.source_id}`);
+      }
+      candidateSourceIds.add(source.source_id);
+      for (const urlField of [
+        "data_url",
+        "manifest_url",
+        "set_manifest_url",
+        "documentation_url",
+        "terms_or_license_url",
+      ]) {
+        if (!/^https:\/\//.test(source[urlField] ?? "")) {
+          throw new Error(`Candidate source requires HTTPS ${urlField}: ${source.source_id}`);
+        }
+      }
+      if (source.parser_enabled !== true ||
+          source.allowed_persistence !== "internal_shadow_identity_metadata_only" ||
+          source.image_republication !== "not_authorized" ||
+          source.self_hosting !== "not_authorized") {
+        throw new Error(`Candidate source exceeds parser authority: ${source.source_id}`);
+      }
+    }
   }
   return {
     version: COLLECTIBLE_SHADOW_ADAPTER_REGISTRY_VERSION,
     adapter_count: adapters.length,
     probe_adapter_count: adapters.filter((row) => row.probe_enabled).length,
+    parser_source_count: adapters.flatMap((row) => row.candidate_sources ?? [])
+      .filter((source) => source.parser_enabled).length,
     blocked_adapter_count: adapters.filter((row) =>
       row.execution_stage === "licensed_source_required").length,
     by_domain: Object.fromEntries(Object.values(COLLECTIBLE_DOMAINS).map((domain) => [
