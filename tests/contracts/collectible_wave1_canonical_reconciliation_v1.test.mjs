@@ -268,7 +268,10 @@ test("workflow is manual, exact-artifact, read-only, and secret-bounded", () => 
   ), "utf8");
   assert.match(workflow, /workflow_dispatch:/);
   assert.doesNotMatch(workflow, /schedule:/);
-  assert.match(workflow, /ref:\s*\$\{\{ github\.sha \}\}/);
+  assert.match(workflow, /if:\s*github\.ref == format\('refs\/heads\/\{0\}', github\.event\.repository\.default_branch\)/);
+  assert.match(workflow, /ref:\s*\$\{\{ github\.event\.repository\.default_branch \}\}/);
+  assert.match(workflow, /test "\$GITHUB_REF" = "refs\/heads\/\$\{\{ github\.event\.repository\.default_branch \}\}"/);
+  assert.match(workflow, /test "\$\(git rev-parse HEAD\)" = "\$GITHUB_SHA"/);
   assert.match(workflow, /run-id:\s*"33118951166"/);
   assert.match(workflow, /30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f/);
   assert.doesNotMatch(workflow, /inputs\./);
