@@ -19,6 +19,8 @@ jobs:
   refresh-english:
     runs-on: ubuntu-latest
     timeout-minutes: 180
+    env:
+      CATALOG_AUTOMATION_MODE: shadow-only
     steps:
       - uses: actions/checkout@v4
         with:
@@ -323,7 +325,7 @@ jobs:
           printf '{"pull_request":%s,"merged_sha":"%s","producer_run_id":"%s"}\n' \
             "$PR_NUMBER" "$MERGED_SHA" "$GITHUB_RUN_ID" > "$REPORT_DIR/automatic_merge_readback.json"
 
-      - name: Dispatch fresh reconciliation and bounded promotion
+      - name: Dispatch fresh read-only discovery and shadow reconciliation
         if: steps.merge.outputs.merged_sha != ''
         env:
           GH_TOKEN: ${{ github.token }}
@@ -332,7 +334,7 @@ jobs:
           set -euo pipefail
           gh workflow run universal-catalog-discovery.yml --ref "${{ github.event.repository.default_branch }}"
           gh workflow run catalog-incremental-promotion.yml --ref "${{ github.event.repository.default_branch }}"
-          printf '{"merged_sha":"%s","discovery_dispatched":true,"promotion_dispatched":true}\n' \
+          printf '{"merged_sha":"%s","discovery_dispatched":true,"shadow_reconciliation_dispatched":true}\n' \
             "${{ steps.merge.outputs.merged_sha }}" > "$REPORT_DIR/downstream_dispatch.json"
 
       - name: Upload refresh evidence

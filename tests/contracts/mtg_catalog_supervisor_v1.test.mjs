@@ -211,22 +211,23 @@ test("historical runner failures cannot fail a complete signed-in no-dispatch st
   assert.equal(result.dispatch, null);
 });
 
-test("governing contract documents signed-in read-only completion and hidden-only dispatch", () => {
-  assert.match(CONTRACT, /signed-in catalog is complete without dispatching/i);
+test("governing contract documents signed-in completion and shadow-only observation", () => {
+  assert.match(CONTRACT, /signed_in.*complete.*no dispatch/is);
   assert.match(CONTRACT, /release control to be `hidden` or `signed_in`/i);
-  assert.match(CONTRACT, /only while the release is `hidden`/i);
+  assert.match(CONTRACT, /records the next eligible shadow candidate/i);
   assert.match(CONTRACT, /eligible set is absent after the release becomes `signed_in`/i);
 });
 
-test("workflow is GitHub-native, serialized, least-privilege, and frozen", () => {
+test("workflow is GitHub-native, serialized, shadow-only, and frozen", () => {
   assert.match(WORKFLOW, /schedule:/);
   assert.match(WORKFLOW, /workflow_run:/);
   assert.match(WORKFLOW, /MTG Hidden Catalog Runner/);
-  assert.match(WORKFLOW, /actions: write/);
+  assert.match(WORKFLOW, /actions: read/);
   assert.match(WORKFLOW, /contents: read/);
   assert.match(WORKFLOW, /group: mtg-catalog-supervisor-v1/);
   assert.match(WORKFLOW, /cancel-in-progress: false/);
-  assert.match(WORKFLOW, /--dispatch/);
+  assert.match(WORKFLOW, /--shadow-only/);
+  assert.doesNotMatch(WORKFLOW, /--dispatch/);
   assert.match(WORKFLOW, new RegExp(TARGET_SHA));
   assert.match(WORKFLOW, /--max-sets=35/);
   assert.match(WORKFLOW, /--max-consecutive-failures=3/);

@@ -128,19 +128,17 @@ test("Pokemon source gaps cannot bypass the language Master Index gate", () => {
   assert.equal(plan.unsupported.length, 1);
 });
 
-test("scheduled promotion workflow remains bounded and issue-visible", () => {
+test("scheduled catalog reconciliation remains evidence-only and issue-visible", () => {
   const workflow = fs.readFileSync(
     new URL("../../.github/workflows/catalog-incremental-promotion.yml", import.meta.url),
     "utf8",
   );
   assert.match(workflow, /cron:\s*"47 \*\/6 \* \* \*"/);
-  assert.match(workflow, /--max-targets=5/);
   assert.match(workflow, /--expected-head-sha="\$GITHUB_SHA"/);
-  assert.match(workflow, /node --check scripts\/workers\/english_pokemon_incremental_promotion_v1\.mjs/);
-  assert.match(workflow, /node --check scripts\/workers\/japanese_official_incremental_promotion_v1\.mjs/);
-  assert.match(workflow, /tests\/contracts\/english_pokemon_incremental_promotion_v1\.test\.mjs/);
-  assert.match(workflow, /tests\/contracts\/japanese_official_incremental_promotion_v1\.test\.mjs/);
-  assert.match(workflow, /Exact incremental self-hosting backlog/);
+  assert.match(workflow, /CATALOG_AUTOMATION_MODE:\s*shadow-only/);
+  assert.match(workflow, /catalog_shadow_reconciliation_v1\.mjs/);
+  assert.doesNotMatch(workflow, /--mode=apply/);
+  assert.doesNotMatch(workflow, /catalog_incremental_supervisor_v1\.mjs/);
   assert.match(workflow, /canonical_promotion_candidates\.json/);
   assert.match(workflow, /actions\/upload-artifact@v4/);
 });

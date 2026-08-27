@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 30
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      PGOPTIONS: "-c default_transaction_read_only=on"
+      CATALOG_AUTOMATION_MODE: shadow-only
     steps:
       - uses: actions/checkout@v4
 

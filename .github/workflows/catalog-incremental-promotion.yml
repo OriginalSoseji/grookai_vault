@@ -1,4 +1,4 @@
-name: Catalog Incremental Promotion
+name: Catalog Shadow Reconciliation
 
 on:
   schedule:
@@ -10,7 +10,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: catalog-incremental-promotion-v1
+  group: catalog-shadow-reconciliation-v1
   cancel-in-progress: false
 
 jobs:
@@ -19,10 +19,12 @@ jobs:
     timeout-minutes: 60
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      PGOPTIONS: "-c default_transaction_read_only=on"
+      CATALOG_AUTOMATION_MODE: shadow-only
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
 
       - uses: actions/setup-node@v4
         with:
@@ -32,21 +34,14 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
-      - name: Verify promotion contracts
+      - name: Verify shadow reconciliation contracts
         run: |
-          node --check scripts/workers/catalog_incremental_supervisor_v1.mjs
-          node --check scripts/workers/catalog_incremental_promotion_v1.mjs
-          node --check scripts/workers/one_piece_incremental_promotion_v1.mjs
-          node --check scripts/workers/mtg_incremental_promotion_v1.mjs
-          node --check scripts/workers/english_pokemon_incremental_promotion_v1.mjs
-          node --check scripts/workers/japanese_official_incremental_promotion_v1.mjs
+          node --check backend/catalog/catalog_shadow_automation_v1.mjs
+          node --check scripts/workers/catalog_shadow_reconciliation_v1.mjs
+          node --check scripts/workers/universal_catalog_discovery_v1.mjs
           node --test \
-            tests/contracts/catalog_incremental_supervisor_v1.test.mjs \
-            tests/contracts/catalog_incremental_promotion_v1.test.mjs \
-            tests/contracts/one_piece_incremental_promotion_v1.test.mjs \
-            tests/contracts/mtg_incremental_promotion_v1.test.mjs \
-            tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
-            tests/contracts/japanese_official_incremental_promotion_v1.test.mjs
+            tests/contracts/catalog_shadow_automation_v1.test.mjs \
+            tests/contracts/universal_catalog_discovery_v1.test.mjs
           git diff --check
 
       - name: Freeze current discovery evidence
@@ -56,34 +51,31 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain --untracked-files=no)"
           DISCOVERY_DIR="$RUNNER_TEMP/catalog-discovery-$GITHUB_RUN_ID"
-          PROMOTION_DIR="$RUNNER_TEMP/catalog-promotion-$GITHUB_RUN_ID"
+          SHADOW_DIR="$RUNNER_TEMP/catalog-shadow-$GITHUB_RUN_ID"
           echo "DISCOVERY_DIR=$DISCOVERY_DIR" >> "$GITHUB_ENV"
-          echo "PROMOTION_DIR=$PROMOTION_DIR" >> "$GITHUB_ENV"
+          echo "SHADOW_DIR=$SHADOW_DIR" >> "$GITHUB_ENV"
           node scripts/workers/universal_catalog_discovery_v1.mjs \
             --as-of="$(date -u +%F)" \
             --out-dir="$DISCOVERY_DIR"
 
-      - name: Apply only exact released incremental targets
+      - name: Freeze candidates in the evidence-only shadow queue
         shell: bash
         run: |
           set -euo pipefail
           test -f "$DISCOVERY_DIR/canonical_promotion_candidates.json"
           test -f "$DISCOVERY_DIR/pokemon_master_index_reconciliation.json"
-          node scripts/workers/catalog_incremental_supervisor_v1.mjs \
-            --mode=apply \
-            --as-of="$(date -u +%F)" \
+          node scripts/workers/catalog_shadow_reconciliation_v1.mjs \
             --discovery-dir="$DISCOVERY_DIR" \
-            --out-dir="$PROMOTION_DIR" \
-            --expected-head-sha="$GITHUB_SHA" \
-            --max-targets=5
+            --out-dir="$SHADOW_DIR" \
+            --expected-head-sha="$GITHUB_SHA"
 
-      - name: Open or update promotion failure issue
+      - name: Open or update shadow reconciliation failure issue
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
-            const title = '[Catalog Promotion] Incremental supervisor failure';
-            const body = `The governed incremental catalog supervisor failed or reached a bounded stop.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const title = '[Catalog Shadow] Reconciliation failure';
+            const body = `The catalog shadow reconciliation failed closed. No canonical writer was dispatched.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
             });
@@ -96,12 +88,12 @@ jobs:
               owner: context.repo.owner, repo: context.repo.repo, title, body,
             });
 
-      - name: Close resolved promotion failure issue
+      - name: Close resolved shadow reconciliation failure issue
         if: success()
         uses: actions/github-script@v7
         with:
           script: |
-            const title = '[Catalog Promotion] Incremental supervisor failure';
+            const title = '[Catalog Shadow] Reconciliation failure';
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
             });
@@ -111,22 +103,21 @@ jobs:
               issue_number: existing.number, state: 'closed',
             });
 
-      - name: Report exact self-hosting candidates
+      - name: Report evidence-only catalog candidates
         if: success()
         uses: actions/github-script@v7
         env:
-          PROMOTION_DIR: ${{ env.PROMOTION_DIR }}
+          SHADOW_DIR: ${{ env.SHADOW_DIR }}
         with:
           script: |
             const fs = require('fs');
             const summary = JSON.parse(fs.readFileSync(
-              `${process.env.PROMOTION_DIR}/summary.json`, 'utf8',
+              `${process.env.SHADOW_DIR}/summary.json`, 'utf8',
             ));
-            const count = Number(summary.pending_self_hosted_image_candidate_count || 0);
-            if (count === 0) return;
-            const title = '[Catalog Images] Exact incremental self-hosting backlog';
-            const body = `${count} exact image candidates were produced by the latest ` +
-              `catalog promotion. They remain evidence-only and are not public pointers.\n\n` +
+            const count = Number(summary.counts?.shadow_promotion_candidate_count || 0);
+            const title = '[Catalog Shadow] Canonical promotion candidate queue';
+            const body = `${count} evidence-backed candidates are preserved in the latest ` +
+              `shadow catalog. They are not canonical and no writer was dispatched.\n\n` +
               `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
@@ -140,13 +131,13 @@ jobs:
               owner: context.repo.owner, repo: context.repo.repo, title, body,
             });
 
-      - name: Upload discovery and promotion evidence
+      - name: Upload discovery and shadow evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: catalog-incremental-promotion-${{ github.run_id }}
+          name: catalog-shadow-reconciliation-${{ github.run_id }}
           path: |
             ${{ env.DISCOVERY_DIR }}
-            ${{ env.PROMOTION_DIR }}
+            ${{ env.SHADOW_DIR }}
           if-no-files-found: error
           retention-days: 90

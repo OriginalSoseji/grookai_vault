@@ -2,9 +2,12 @@
 
 ## Purpose
 
-The MTG catalog supervisor keeps approved hidden MTG canonical ingestion moving without local-computer uptime or repeated operator dispatches. After release, it remains a read-only watchdog that proves the signed-in catalog is complete without dispatching more ingestion work.
+The MTG catalog supervisor is a read-only watchdog. It proves current catalog
+coverage and records the next eligible shadow candidate without dispatching
+canonical ingestion from any scheduled invocation.
 
-It is an orchestrator, not a writer. The existing frozen writer remains the only database mutation authority.
+It is an observer, not a writer. The historical frozen writer is outside
+background catalog automation and requires a separate explicit authorization.
 
 ## Frozen Authority
 
@@ -12,13 +15,14 @@ It is an orchestrator, not a writer. The existing frozen writer remains the only
 - Runner ref: `agent/mtg-pointer-release-v1`
 - Runner commit: `7e9f2bb92f56335a6a352f655e12000b344a63a4`
 - Manifest SHA-256: `1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1`
-- Eligibility boundary: `2026-08-16`
-- Maximum dispatched range: `35` execution-order rows
+- Frozen manifest eligibility baseline: `2026-08-16`
+- Maximum observed candidate range: `35` execution-order rows
 - Maximum consecutive failed writer runs: `3`
 
 ## Operation
 
-The default-branch workflow runs after every completed MTG writer run and every 15 minutes as a recovery watchdog.
+The default-branch workflow runs after every completed historical MTG writer run
+and every 15 minutes as a shadow-only recovery watchdog.
 
 For each invocation it:
 
@@ -31,11 +35,9 @@ For each invocation it:
 7. Reconciles each eligible manifest set by exact set, card, identity, printing, parent-mapping, and printing-mapping counts.
 8. Stops on any partial or drifted set.
 9. When the release is `signed_in`, requires every eligible set to be complete and exits successfully with no dispatch.
-10. When the release is `hidden`, selects the first absent eligible execution ordinal.
-11. Writes `run_plan.json` before any dispatch request.
-12. Rechecks runner activity and frozen-ref identity.
-13. Dispatches at most one `apply` range through the existing writer, and only while the release is `hidden`.
-14. Polls GitHub until the newly dispatched writer is visible as active.
+10. When the release is `hidden`, identifies the first absent eligible execution ordinal.
+11. Writes `run_plan.json` and marks the row as a shadow candidate.
+12. Performs no dispatch and grants no canonical authority.
 
 The writer remains idempotent. A timeout or cancellation is resumed from production readback, not from an assumed cursor.
 
@@ -44,6 +46,7 @@ The writer remains idempotent. A timeout or cancellation is resumed from product
 The supervisor has no authority to:
 
 - write to the database;
+- dispatch a canonical writer from a scheduled invocation;
 - alter MTG release visibility;
 - update or delete canonical rows;
 - write Storage objects or image pointers;
@@ -52,7 +55,7 @@ The supervisor has no authority to:
 - change the frozen manifest, payload inventory, writer branch, or writer commit;
 - run more than one writer concurrently.
 
-GitHub permissions are limited to `contents: read` and `actions: write`. The latter is used only to dispatch the frozen workflow.
+GitHub permissions are limited to `contents: read` and `actions: read`.
 
 ## Stop Conditions
 
