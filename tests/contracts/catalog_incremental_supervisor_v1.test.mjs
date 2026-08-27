@@ -10,7 +10,7 @@ test("catalog promotion supervisor routes exact supported gap shapes", () => {
   const plan = buildCatalogIncrementalSupervisorPlanV1([
     { game_code: "mtg", status: "missing_set", source_code: "abc" },
     { game_code: "one_piece", status: "missing_set", source_code: "OP17", source_set_id: "569117" },
-    { game_code: "pokemon", source_id: "pokemon_card_official_jp_products", status: "incomplete_cards", source_code: "M6", source_set_id: "955", database_code: "jpn-product-x", count_evidence: [{ authority: "tcgdex_japanese_structured_api", scope: "full_set" }] },
+    { game_code: "pokemon", source_id: "pokemon_card_official_jp_products", status: "incomplete_cards", source_code: "M6", source_set_id: "955", database_code: "jpn-product-x", master_index_gate: { decision: "canonical_delta_eligible", language: "ja" }, count_evidence: [{ authority: "tcgdex_japanese_structured_api", scope: "full_set" }] },
   ]);
   assert.deepEqual(plan.targets.map((row) => row.key), ["mtg:abc", "one_piece:OP17", "pokemon_jpn:M6"]);
   assert.equal(plan.unsupported.length, 0);
@@ -46,6 +46,7 @@ test("English Pokemon routes only with complete Master Index authority", () => {
     status: "incomplete_cards",
     source_code: "wp",
     database_code: "wp",
+    master_index_gate: { decision: "canonical_delta_eligible", language: "en" },
     expected_card_count: 7,
     count_evidence: [{
       authority: "english_master_index_completion_v1",
@@ -60,6 +61,7 @@ test("English Pokemon routes only with complete Master Index authority", () => {
     status: "incomplete_cards",
     source_code: "mfb",
     database_code: "mfb",
+    master_index_gate: { decision: "canonical_delta_eligible", language: "en" },
     expected_card_count: 48,
     count_evidence: [{
       authority: "english_master_index_completion_v1",
@@ -78,6 +80,7 @@ test("Japanese product gaps without the writer's TCGdex authority stay held", ()
     source_code: "MEM",
     source_set_id: "958",
     database_code: "jpn-product-x",
+    master_index_gate: { decision: "canonical_delta_eligible", language: "ja" },
     count_evidence: [{ authority: "pokemon_card_official_jp_product", scope: "full_set" }],
   }]);
   assert.equal(plan.targets.length, 0);
@@ -93,6 +96,7 @@ test("Japanese numbered-base gaps route through frozen official and checklist ev
     source_set_id: "958",
     database_code: "jpn-product-x",
     expected_card_count: 18,
+    master_index_gate: { decision: "canonical_delta_eligible", language: "ja" },
     count_evidence: [{
       authority: "limitless_jp_structured_checklist",
       scope: "numbered_base_set",
@@ -104,6 +108,24 @@ test("Japanese numbered-base gaps route through frozen official and checklist ev
   ]);
   assert.equal(plan.targets[0].requires_discovery_dir, true);
   assert.equal(plan.unsupported.length, 0);
+});
+
+test("Pokemon source gaps cannot bypass the language Master Index gate", () => {
+  const plan = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "pokemon",
+    source_id: "tcgdex_english_set_registry",
+    status: "incomplete_cards",
+    source_code: "wp",
+    database_code: "wp",
+    expected_card_count: 7,
+    count_evidence: [{
+      authority: "english_master_index_completion_v1",
+      scope: "full_set",
+      count: 7,
+    }],
+  }]);
+  assert.equal(plan.targets.length, 0);
+  assert.equal(plan.unsupported.length, 1);
 });
 
 test("scheduled promotion workflow remains bounded and issue-visible", () => {
@@ -119,6 +141,7 @@ test("scheduled promotion workflow remains bounded and issue-visible", () => {
   assert.match(workflow, /tests\/contracts\/english_pokemon_incremental_promotion_v1\.test\.mjs/);
   assert.match(workflow, /tests\/contracts\/japanese_official_incremental_promotion_v1\.test\.mjs/);
   assert.match(workflow, /Exact incremental self-hosting backlog/);
+  assert.match(workflow, /canonical_promotion_candidates\.json/);
   assert.match(workflow, /actions\/upload-artifact@v4/);
 });
 

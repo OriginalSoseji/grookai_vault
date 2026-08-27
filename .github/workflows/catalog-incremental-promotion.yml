@@ -67,6 +67,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test -f "$DISCOVERY_DIR/canonical_promotion_candidates.json"
+          test -f "$DISCOVERY_DIR/pokemon_master_index_reconciliation.json"
           node scripts/workers/catalog_incremental_supervisor_v1.mjs \
             --mode=apply \
             --as-of="$(date -u +%F)" \

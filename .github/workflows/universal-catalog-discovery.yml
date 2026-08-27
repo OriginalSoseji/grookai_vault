@@ -34,6 +34,7 @@ jobs:
         run: |
           node --check backend/catalog/universal_catalog_discovery_v1.mjs
           node --check scripts/workers/universal_catalog_discovery_v1.mjs
+          node --check scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs
           node --test tests/contracts/universal_catalog_discovery_v1.test.mjs
 
       - name: Run official-source reconciliation
@@ -83,6 +84,51 @@ jobs:
             }
             const body = `${report}\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo, title, body,
+              });
+            }
+
+      - name: Reconcile Pokemon Master Index update issue
+        if: always() && steps.discovery.outcome == 'success'
+        uses: actions/github-script@v7
+        env:
+          OUT_DIR: ${{ steps.discovery.outputs.out_dir }}
+        with:
+          script: |
+            const fs = require('fs');
+            const candidates = JSON.parse(fs.readFileSync(
+              `${process.env.OUT_DIR}/pokemon_master_index_update_candidates.json`, 'utf8',
+            ));
+            const title = '[Pokemon Master Index] Language evidence update queue';
+            const counts = candidates.reduce((result, row) => {
+              result[row.language] = (result[row.language] || 0) + 1;
+              return result;
+            }, {});
+            const body = [
+              `${candidates.length} source sets require language-scoped Master Index work before canonical reconciliation.`,
+              '',
+              `By language: ${JSON.stringify(counts)}`,
+              '',
+              'Raw source gaps are not canonical writer input.',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (candidates.length === 0) {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+            } else if (existing) {
               await github.rest.issues.update({
                 owner: context.repo.owner, repo: context.repo.repo,
                 issue_number: existing.number, body,

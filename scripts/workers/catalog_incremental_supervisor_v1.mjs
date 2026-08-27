@@ -68,6 +68,8 @@ function targetForGap(gap) {
   }
   if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
       gap.source_id === "tcgdex_english_set_registry" &&
+      gap.master_index_gate?.decision === "canonical_delta_eligible" &&
+      gap.master_index_gate?.language === "en" &&
       (gap.count_evidence ?? []).some((evidence) =>
         evidence.authority === "english_master_index_completion_v1" &&
         evidence.scope === "full_set" &&
@@ -84,6 +86,8 @@ function targetForGap(gap) {
   }
   if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
       gap.source_id === "pokemon_card_official_jp_products" &&
+      gap.master_index_gate?.decision === "canonical_delta_eligible" &&
+      gap.master_index_gate?.language === "ja" &&
       (gap.count_evidence ?? []).some((evidence) =>
         evidence.authority === "tcgdex_japanese_structured_api" &&
         evidence.scope === "full_set") &&
@@ -100,6 +104,8 @@ function targetForGap(gap) {
   }
   if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
       gap.source_id === "pokemon_card_official_jp_products" &&
+      gap.master_index_gate?.decision === "canonical_delta_eligible" &&
+      gap.master_index_gate?.language === "ja" &&
       (gap.count_evidence ?? []).some((evidence) =>
         evidence.authority === "limitless_jp_structured_checklist" &&
         evidence.scope === "numbered_base_set" &&
@@ -185,7 +191,9 @@ function executeTarget(options, target, targetDir) {
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   await fs.mkdir(options.outDir, { recursive: true });
-  const gaps = await readJson(path.join(options.discoveryDir, "actionable_gaps.json"));
+  const gaps = await readJson(
+    path.join(options.discoveryDir, "canonical_promotion_candidates.json"),
+  );
   const discoverySummary = await readJson(path.join(options.discoveryDir, "summary.json"));
   const plan = {
     ...buildCatalogIncrementalSupervisorPlanV1(gaps, options.maxTargets),
@@ -194,7 +202,7 @@ async function main() {
     expected_head_sha: options.expectedHeadSha,
     discovery_summary: discoverySummary,
     boundaries: {
-      source: "frozen_universal_catalog_discovery_artifact",
+      source: "frozen_master_index_gated_catalog_promotion_artifact",
       max_targets: options.maxTargets,
       child_workers_only: true,
       no_substitution: true,

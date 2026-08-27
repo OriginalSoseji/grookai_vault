@@ -4,7 +4,10 @@ import process from "node:process";
 import { Client } from "pg";
 
 import {
+  buildCanonicalPromotionCandidatesV1,
   buildCatalogSearchAliases,
+  buildPokemonLanguageMasterIndexReconciliationV1,
+  buildPokemonMasterIndexUpdateCandidatesV1,
   catalogSetScope,
   CATALOG_GAP_STATUSES,
   JAPANESE_CARD_COVERAGE_STATUSES,
@@ -176,10 +179,8 @@ async function loadDatabaseSnapshot(databaseUrl) {
         array_remove(array_agg(distinct identity.identity_domain), null)::text[]
           as identity_domains
       from public.sets s
-      left join public.games g on g.code = s.game
       left join public.card_prints cp
-        on cp.game_id = g.id
-       and lower(cp.set_code) = lower(s.code)
+        on cp.set_id = s.id
       left join public.card_print_identity identity
         on identity.card_print_id = cp.id
        and identity.is_active
@@ -212,16 +213,17 @@ async function loadDatabaseSnapshot(databaseUrl) {
     `);
     const englishCanonicalCards = await client.query(`
       select distinct
-        cp.set_code::text,
+        s.code::text as set_code,
         cp.name::text,
         cp.number::text,
         cp.number_plain::text
       from public.card_prints cp
+      join public.sets s on s.id = cp.set_id
       join public.card_print_identity identity
         on identity.card_print_id = cp.id
        and identity.is_active
        and identity.identity_domain = 'pokemon_eng_standard'
-      order by cp.set_code, cp.number_plain, cp.number, cp.name
+      order by s.code, cp.number_plain, cp.number, cp.name
     `);
     const onePieceWarehouse = await client.query(`
       select
@@ -891,6 +893,22 @@ async function main() {
     CATALOG_GAP_STATUSES.MISSING_SET,
     CATALOG_GAP_STATUSES.INCOMPLETE_CARDS,
   ].includes(row.status));
+  const pokemonMasterIndexReconciliation =
+    buildPokemonLanguageMasterIndexReconciliationV1({
+      reconciliation,
+      englishMasterCards: englishMasterIndex.cards,
+      englishAliasResolutions: database.english_alias_resolutions,
+    });
+  const canonicalPromotionCandidates = buildCanonicalPromotionCandidatesV1({
+    actionableGaps: gaps,
+    pokemonMasterIndexReconciliation,
+  });
+  const pokemonMasterIndexUpdateCandidates =
+    buildPokemonMasterIndexUpdateCandidatesV1(pokemonMasterIndexReconciliation);
+  summary.pokemon_master_index = pokemonMasterIndexReconciliation.summary;
+  summary.pokemon_master_index.update_candidate_count =
+    pokemonMasterIndexUpdateCandidates.length;
+  summary.canonical_promotion_candidate_count = canonicalPromotionCandidates.length;
   const aliases = buildCatalogSearchAliases(reconciliation);
   sourceSnapshots.sort((left, right) =>
     left.request_url.localeCompare(right.request_url) ||
@@ -910,6 +928,18 @@ async function main() {
     writeJson(path.join(options.outDir, "source_sets.json"), sourceSets),
     writeJson(path.join(options.outDir, "catalog_reconciliation.json"), reconciliation),
     writeJson(path.join(options.outDir, "actionable_gaps.json"), gaps),
+    writeJson(
+      path.join(options.outDir, "pokemon_master_index_reconciliation.json"),
+      pokemonMasterIndexReconciliation,
+    ),
+    writeJson(
+      path.join(options.outDir, "canonical_promotion_candidates.json"),
+      canonicalPromotionCandidates,
+    ),
+    writeJson(
+      path.join(options.outDir, "pokemon_master_index_update_candidates.json"),
+      pokemonMasterIndexUpdateCandidates,
+    ),
     writeJson(path.join(options.outDir, "recent_japanese_card_gaps.json"), recentJapaneseCards),
     writeJson(path.join(options.outDir, "search_alias_candidates.json"), aliases),
     writeJson(path.join(options.outDir, "summary.json"), summary),

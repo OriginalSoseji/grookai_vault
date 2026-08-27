@@ -22,6 +22,9 @@ export const JAPANESE_CARD_COVERAGE_STATUSES = Object.freeze({
   OFFICIAL_EVIDENCE_PRESENT: "official_evidence_present",
 });
 
+export const POKEMON_MASTER_INDEX_RECONCILIATION_VERSION =
+  "POKEMON_LANGUAGE_MASTER_INDEX_RECONCILIATION_V1";
+
 function clean(value) {
   return String(value ?? "").trim();
 }
@@ -297,6 +300,163 @@ export function summarizeCatalogReconciliation(rows) {
     by_game: byGame,
     actionable_gap_fingerprint: sha256(actionable),
   };
+}
+
+export function buildPokemonLanguageMasterIndexReconciliationV1({
+  reconciliation = [],
+  englishMasterCards = [],
+  englishAliasResolutions = [],
+}) {
+  const englishCardsBySet = new Map();
+  for (const card of englishMasterCards) {
+    const key = clean(card.set_key).toLocaleLowerCase("en");
+    const rows = englishCardsBySet.get(key) ?? [];
+    rows.push(card);
+    englishCardsBySet.set(key, rows);
+  }
+  const englishAliasBySource = new Map(englishAliasResolutions.map((row) => [
+    clean(row.source_code).toLocaleLowerCase("en"),
+    row,
+  ]));
+  const rows = reconciliation.filter((row) => row.game_code === "pokemon").map((row) => {
+    const language = row.catalog_scope === "pokemon en"
+      ? "en"
+      : row.catalog_scope === "pokemon ja" ? "ja" : "unknown";
+    const sourceCode = clean(row.source_code);
+    const expected = integerOrNull(row.expected_card_count);
+    const alias = language === "en"
+      ? englishAliasBySource.get(sourceCode.toLocaleLowerCase("en")) ?? null
+      : null;
+    const masterCards = language === "en"
+      ? englishCardsBySet.get(sourceCode.toLocaleLowerCase("en")) ?? []
+      : [];
+    const completeEnglishAuthority = language === "en" && expected !== null &&
+      masterCards.length === expected && masterCards.every((card) =>
+        card.status === "master_verified" && Number(card.source_count) >= 2);
+    const japaneseCountAuthority = language === "ja" &&
+      (row.count_evidence ?? []).some((evidence) =>
+        ["tcgdex_japanese_structured_api", "limitless_jp_structured_checklist"]
+          .includes(evidence.authority) &&
+        ["full_set", "numbered_base_set"].includes(evidence.scope) &&
+        Number(evidence.count) === expected);
+
+    let masterIndexStatus = "candidate_update_required";
+    let promotionDecision = "blocked_master_index_incomplete";
+    let canonicalOwnerCode = row.database_code ?? null;
+    if (language === "unknown") {
+      masterIndexStatus = "unsupported_language_scope";
+      promotionDecision = "blocked_language_scope";
+    } else if (alias) {
+      masterIndexStatus = "alias_or_subset_owner_resolved";
+      promotionDecision = "no_write_existing_canonical_owner";
+      canonicalOwnerCode = alias.canonical_code;
+    } else if (language === "en" && completeEnglishAuthority) {
+      masterIndexStatus = "master_verified";
+      promotionDecision = row.status === CATALOG_GAP_STATUSES.INCOMPLETE_CARDS && row.database_code
+        ? "canonical_delta_eligible"
+        : row.status === CATALOG_GAP_STATUSES.EXACT_COMPLETE
+          ? "no_write_exact_complete"
+          : row.status === CATALOG_GAP_STATUSES.SOURCE_BEHIND
+            ? "no_write_source_scope_behind"
+            : "blocked_master_set_owner_unresolved";
+    } else if (language === "ja" && japaneseCountAuthority) {
+      masterIndexStatus = "official_master_evidence_verified";
+      promotionDecision = row.status === CATALOG_GAP_STATUSES.INCOMPLETE_CARDS && row.database_code
+        ? "canonical_delta_eligible"
+        : row.status === CATALOG_GAP_STATUSES.EXACT_COMPLETE
+          ? "no_write_exact_complete"
+          : row.status === CATALOG_GAP_STATUSES.SOURCE_BEHIND
+            ? "no_write_source_scope_behind"
+            : "blocked_master_set_owner_unresolved";
+    }
+    return {
+      language,
+      source_id: row.source_id,
+      source_set_id: row.source_set_id,
+      source_code: row.source_code,
+      source_name: row.source_name,
+      expected_card_count: expected,
+      master_index_card_count: language === "en" ? masterCards.length : null,
+      master_index_status: masterIndexStatus,
+      canonical_owner_code: canonicalOwnerCode,
+      canonical_reconciliation_status: row.status,
+      promotion_decision: promotionDecision,
+      source_url: row.source_url,
+    };
+  });
+  const byLanguage = {};
+  const byDecision = {};
+  for (const row of rows) {
+    byLanguage[row.language] = (byLanguage[row.language] ?? 0) + 1;
+    byDecision[row.promotion_decision] = (byDecision[row.promotion_decision] ?? 0) + 1;
+  }
+  return {
+    version: POKEMON_MASTER_INDEX_RECONCILIATION_VERSION,
+    policy: "pokemon_sources_update_language_master_index_before_canonical_reconciliation",
+    supported_languages: ["en", "ja"],
+    summary: {
+      row_count: rows.length,
+      by_language: byLanguage,
+      by_promotion_decision: byDecision,
+    },
+    rows,
+  };
+}
+
+export function buildPokemonMasterIndexUpdateCandidatesV1(masterIndexReconciliation) {
+  return (masterIndexReconciliation?.rows ?? []).filter((row) =>
+    row.promotion_decision.startsWith("blocked_")).map((row) => ({
+    language: row.language,
+    source_id: row.source_id,
+    source_set_id: row.source_set_id,
+    source_code: row.source_code,
+    source_name: row.source_name,
+    expected_card_count: row.expected_card_count,
+    observed_master_index_card_count: row.master_index_card_count,
+    current_status: row.master_index_status,
+    blocked_reason: row.promotion_decision,
+    required_next_evidence: row.promotion_decision === "blocked_master_index_incomplete"
+      ? "collect_independent_language_source_evidence_and_rebuild_master_index"
+      : row.promotion_decision === "blocked_master_set_owner_unresolved"
+        ? "resolve_language_master_set_owner_or_alias_before_canonical_reconciliation"
+        : "resolve_language_scope_before_master_index_admission",
+    source_url: row.source_url,
+  }));
+}
+
+export function buildCanonicalPromotionCandidatesV1({
+  actionableGaps = [],
+  pokemonMasterIndexReconciliation,
+}) {
+  const pokemonGateBySource = new Map(
+    (pokemonMasterIndexReconciliation?.rows ?? []).map((row) => [
+      [row.language, row.source_id, row.source_set_id, row.source_code].join("|"),
+      row,
+    ]),
+  );
+  return actionableGaps.flatMap((gap) => {
+    if (gap.game_code !== "pokemon") return [gap];
+    const language = gap.catalog_scope === "pokemon en"
+      ? "en"
+      : gap.catalog_scope === "pokemon ja" ? "ja" : "unknown";
+    const gate = pokemonGateBySource.get([
+      language,
+      gap.source_id,
+      gap.source_set_id,
+      gap.source_code,
+    ].join("|"));
+    if (gate?.promotion_decision !== "canonical_delta_eligible") return [];
+    return [{
+      ...gap,
+      master_index_gate: {
+        version: pokemonMasterIndexReconciliation.version,
+        language,
+        master_index_status: gate.master_index_status,
+        canonical_owner_code: gate.canonical_owner_code,
+        decision: gate.promotion_decision,
+      },
+    }];
+  });
 }
 
 export function buildCatalogSearchAliases(rows) {

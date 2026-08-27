@@ -1,5 +1,23 @@
 # Catalog Incremental Promotion V1
 
+## Pokemon Master Index Boundary
+
+Every Pokemon source row must enter a language-scoped Master Index reconciliation
+before it can become a canonical promotion target. The scheduled discovery run
+emits `pokemon_master_index_reconciliation.json` and derives
+`canonical_promotion_candidates.json` from it. The promotion supervisor consumes
+only the latter artifact.
+
+- English source cards require the complete, checked-in English Master Index.
+- Japanese source cards require the Japanese official/checklist Master Index lane.
+- Alias and folded-subset coordinates resolve to their existing canonical owner
+  and produce no duplicate set or card writes.
+- A newly observed or incomplete source set becomes a Master Index update
+  candidate. It cannot reach a canonical writer until that language's evidence
+  contract admits it.
+- Canonical set ownership is read through `card_prints.set_id`; printed set codes
+  and abbreviations are identity evidence and must not be used as ownership joins.
+
 ## Purpose
 
 Keep supported TCG catalogs current without turning source discovery into permission to mutate canonical identity. The supervisor consumes a frozen discovery artifact and invokes only an exact source-specific writer for a governed gap shape.

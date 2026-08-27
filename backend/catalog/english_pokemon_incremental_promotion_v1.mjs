@@ -175,7 +175,7 @@ export function deriveEnglishPokemonCanonicalAliasOverlayV1({
     if (owners.length !== 1 || owners[0] === sourceCode) continue;
     const aliasSet = databaseSets.find((row) =>
       clean(row.code).toLocaleLowerCase("en") === sourceCode);
-    if (!aliasSet || Number(aliasSet.card_count ?? 0) !== 0) continue;
+    if (aliasSet && Number(aliasSet.card_count ?? 0) !== 0) continue;
     resolutions.push({
       source_code: sourceCodeRaw,
       canonical_code: owners[0],
@@ -306,6 +306,9 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
       numberPlain: number,
       variantKey: "base",
     });
+    const imageCandidateUrls = clean(detail?.image)
+      ? [`${clean(detail.image).replace(/\/$/, "")}/high.webp`]
+      : [];
     rows.push({
       number,
       card_print: {
@@ -327,6 +330,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
             master_index_fact_key: card.key,
             source_set_id: sourceSet.id,
             source_urls: evidence.map((row) => row.evidence_payload.source_url),
+            image_candidate_urls: imageCandidateUrls,
           },
         },
         variants: {},
@@ -405,6 +409,14 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
       existing_canonical: existingCards.length,
     },
     rows,
+    image_candidates: rows.flatMap((row) =>
+      row.card_print.external_ids.english_pokemon_incremental_promotion_v1
+        .image_candidate_urls.map((sourceUrl) => ({
+          card_print_id: row.card_print.id,
+          gv_id: row.card_print.gv_id,
+          source_url: sourceUrl,
+          destination_status: "self_hosting_pending",
+        }))),
   };
   return {
     version: ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
@@ -414,6 +426,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
       identities: rows.length,
       evidence: rows.reduce((sum, row) => sum + row.evidence.length, 0),
       family_reviews: rows.length,
+      image_candidates: payload.image_candidates.length,
     },
     payload_fingerprint_sha256: sha256(stableJson(payload)),
     payload,
