@@ -1,0 +1,17 @@
+{
+  "canonical_authority": false,
+  "card_count": 15551,
+  "cards_fingerprint_sha256": "50de12d897d160aacf06ba562d9ebf326c3a9046dfea760cbf5c31525c36721d",
+  "complete_source_set_count": 107,
+  "language": "it",
+  "observed_card_count": 15551,
+  "observed_set_count": 191,
+  "revalidation_card_count": 0,
+  "revalidation_set_count": 0,
+  "set_count": 191,
+  "sets_fingerprint_sha256": "d82acd4595e91834f10be70580d0d16a691af6528a8e2120def86e2a05e99eb8",
+  "source": "tcgdex_v2",
+  "source_authority": "candidate_only",
+  "source_commit_sha": null,
+  "version": "POKEMON_LANGUAGE_MASTER_INDEX_V1"
+}
