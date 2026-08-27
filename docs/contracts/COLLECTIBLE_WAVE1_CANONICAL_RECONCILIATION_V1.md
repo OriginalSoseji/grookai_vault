@@ -30,7 +30,8 @@ stop the run.
 The live worker and workflow hard-pin this tuple. Workflow dispatchers cannot
 substitute a run ID, artifact name, source commit, candidate count, or candidate
 hash. The secret-backed job runs only when dispatched from the repository's
-default branch, checks out that default branch, and verifies its exact SHA.
+default branch, checks out the immutable dispatch SHA, and verifies that exact
+SHA before database access.
 
 ## Database Boundary
 
