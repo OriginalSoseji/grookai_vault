@@ -383,4 +383,29 @@ test("worker persists source anomalies instead of failing the language", () => {
   const anomalies = JSON.parse(zlib.gunzipSync(anomalyBuffer).toString("utf8"));
   assert.equal(anomalies.length, 1);
   assert.equal(anomalies[0].source_payload.id, "pop8-1");
+
+  const baseline = path.join(root, "baseline");
+  const applied = spawnSync(process.execPath, [
+    worker,
+    "--mode=apply-to-worktree",
+    `--baseline-dir=${baseline}`,
+    `--plan-dir=${out}`,
+  ], { cwd: path.resolve("."), encoding: "utf8" });
+  assert.equal(applied.status, 0, applied.stderr);
+  fs.writeFileSync(path.join(source, "de.cards.json"), JSON.stringify([cards[0]]));
+  const replayOut = path.join(root, "replay");
+  const replay = spawnSync(process.execPath, [
+    worker,
+    "--mode=plan",
+    `--baseline-dir=${baseline}`,
+    `--source-dir=${source}`,
+    `--out-dir=${replayOut}`,
+    "--languages=de",
+  ], { cwd: path.resolve("."), encoding: "utf8" });
+  assert.equal(replay.status, 0, replay.stderr);
+  const replayReport = JSON.parse(replay.stdout);
+  assert.deepEqual(replayReport.source_anomaly_languages, ["de"]);
+  assert.equal(replayReport.source_anomaly_count, 1);
+  assert.equal(replayReport.observed_source_anomaly_count, 0);
+  assert.equal(replayReport.revalidation_source_anomaly_count, 1);
 });

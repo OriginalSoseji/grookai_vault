@@ -380,10 +380,18 @@ async function plan(options) {
       row.status.startsWith("source_error")
     ).map((row) => row.language),
     source_anomaly_languages: results.filter((row) =>
-      Number(row.observed_source_anomaly_count ?? 0) > 0
+      Number(row.source_anomaly_count ?? 0) > 0
     ).map((row) => row.language),
     source_anomaly_count: results.reduce(
+      (sum, row) => sum + Number(row.source_anomaly_count ?? 0),
+      0,
+    ),
+    observed_source_anomaly_count: results.reduce(
       (sum, row) => sum + Number(row.observed_source_anomaly_count ?? 0),
+      0,
+    ),
+    revalidation_source_anomaly_count: results.reduce(
+      (sum, row) => sum + Number(row.revalidation_source_anomaly_count ?? 0),
       0,
     ),
     required_live_language_failures: results.filter((row) =>
