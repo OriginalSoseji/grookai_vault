@@ -423,11 +423,15 @@ async function main() {
       decision: "preserve_aggregate_and_block_promotion_until_parser_metadata_refinement",
     });
   }
+  const blockingDecisionCount = [
+    "ambiguous_candidate",
+    "conflicting_candidate",
+    "blocked_missing_game_foundation",
+  ].reduce((sum, decision) => sum + (reconciled.decision_counts[decision] ?? 0), 0);
   const summary = {
     version: COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_VERSION,
     mode: "shadow-only-read-only-reconciliation",
-    status: artifactLimitations.length > 0 ||
-        (reconciled.decision_counts.blocked_missing_game_foundation ?? 0) > 0
+    status: artifactLimitations.length > 0 || blockingDecisionCount > 0
       ? "completed_with_blockers"
       : "completed",
     parser_run_id: options.parserRunId,
@@ -436,6 +440,7 @@ async function main() {
     reconciled_candidate_count: reconciled.rows.length,
     decision_bucket_count_sum: decisionCountSum,
     decision_counts: reconciled.decision_counts,
+    blocking_decision_count: blockingDecisionCount,
     unresolved_variant_row_count: reconciled.unresolved_variant_row_count,
     unresolved_variant_aggregate_source_count: aggregateUnresolvedVariantCount,
     artifact_limitation_count: artifactLimitations.length,

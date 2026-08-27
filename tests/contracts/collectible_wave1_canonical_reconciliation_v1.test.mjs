@@ -207,6 +207,7 @@ test("worker is transaction-read-only and has no persistence authority", () => {
   assert.match(worker, /g\.id = cp\.game_id\s+and \(lower\(g\.code\) = lower\(s\.game\) or lower\(g\.slug\) = lower\(s\.game\)\)/);
   assert.match(worker, /where identity\.card_print_id = cp\.id\s+and identity\.is_active = true/);
   assert.match(worker, /where mapping\.card_print_id = cp\.id\s+and mapping\.active = true/);
+  assert.match(worker, /"ambiguous_candidate",\s+"conflicting_candidate",\s+"blocked_missing_game_foundation"/);
   const cardQuery = worker.slice(worker.indexOf("from public.card_prints cp"));
   assert.doesNotMatch(cardQuery, /where lower\(coalesce\(s\.game, ''\)\) = any/);
   assert.match(worker, /database_writes: false/);
@@ -255,6 +256,7 @@ test("fixture CLI reconciles every parser candidate and hashes every output", ()
   assert.equal(summary.selected_candidate_count, 5);
   assert.equal(summary.reconciled_candidate_count, 5);
   assert.equal(summary.decision_bucket_count_sum, 5);
+  assert.equal(summary.blocking_decision_count, 0);
   assert.deepEqual(summary.decision_counts, {
     exact_existing_identity: 4,
     new_candidate: 1,
