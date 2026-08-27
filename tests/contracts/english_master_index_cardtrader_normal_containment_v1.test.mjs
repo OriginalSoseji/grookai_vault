@@ -50,13 +50,14 @@ test('legacy CardTrader Normal containment snapshot is exact and fail-closed', (
   assert.equal(report.summary.explicit_normal_or_non_holo_records, 0);
   assert.equal(report.summary.unqualified_inferred_normal_records, 1206);
   assert.equal(report.summary.canonical_contaminated_normal_facts, 1099);
-  assert.equal(report.summary.canonical_sets_affected, 58);
+  assert.equal(report.summary.canonical_sets_affected, 57);
   assert.equal(report.summary.alias_duplicate_occurrences_collapsed, 107);
-  assert.equal(report.summary.current_master_index_matches, 1099);
-  assert.equal(report.summary.current_master_facts_with_cardtrader_source, 1099);
+  assert.equal(report.summary.current_master_index_matches, 6);
+  assert.equal(report.summary.current_master_facts_with_cardtrader_source, 0);
   assert.equal(report.summary.confirmed_false_me04_normals, 45);
+  assert.equal(report.summary.confirmed_false_me04_normals_in_current_master, 0);
   assert.equal(report.invariant_checks.every((row) => row.passed), true);
-  assert.equal(report.overall_status, 'fail_closed_rebuild_and_review_required');
+  assert.equal(report.overall_status, 'contained_rebuild_verified');
   assert.equal(
     report.facts.every((row) => row.source_finish_classification.post_loader_finish_key === null),
     true,
@@ -71,35 +72,36 @@ test('containment projection never treats legacy CardTrader evidence as a second
   const report = buildCurrentReport();
 
   assert.deepEqual(report.summary.current_master_statuses, {
-    master_verified: 1098,
+    not_matched: 1093,
+    candidate_unconfirmed: 5,
     human_source_verified: 1,
   });
   assert.deepEqual(report.summary.current_master_source_combinations, {
-    'cardtrader_blueprint_index + tcgdex': 1095,
-    'cardtrader_blueprint_index + pokemontcg_api': 2,
-    cardtrader_blueprint_index: 1,
-    'cardtrader_blueprint_index + thepricedex_price_list': 1,
+    not_matched: 1093,
+    tcgdex: 5,
+    thepricedex_price_list: 1,
   });
   assert.deepEqual(report.summary.projected_statuses_after_rebuild, {
-    candidate_unconfirmed: 1052,
+    not_in_current_master_index: 1048,
     suppressed_reviewed: 45,
+    candidate_unconfirmed: 5,
     human_source_verified: 1,
-    no_qualified_finish_evidence: 1,
   });
   assert.deepEqual(report.summary.dispositions, {
-    human_checklist_reverification_required: 1052,
+    source_ledger_review_required: 1048,
     confirmed_false_suppression: 45,
-    independent_verification_required: 1,
+    human_checklist_reverification_required: 5,
     second_authority_required: 1,
   });
 
-  const noEvidence = report.facts.filter((row) => (
-    row.containment.projected_status_after_rebuild === 'no_qualified_finish_evidence'
-  ));
-  assert.equal(noEvidence.length, 1);
-  assert.equal(noEvidence[0].set_key, 'ex9');
-  assert.equal(noEvidence[0].card_number, '107');
-  assert.equal(noEvidence[0].card_name, "Farfetch'd");
+  const survivingFacts = report.facts.filter((row) => row.current_master_index.matched);
+  assert.equal(survivingFacts.length, 6);
+  assert.equal(
+    survivingFacts.every((row) => (
+      !row.current_master_index.sources.includes('cardtrader_blueprint_index')
+    )),
+    true,
+  );
 });
 
 test('committed containment report matches the current fixture and Master Index snapshot', () => {
@@ -118,5 +120,6 @@ test('committed containment report matches the current fixture and Master Index 
     current.facts.map((row) => row.fact_key),
   );
   assert.match(markdown, /No database writes, migrations, automatic deletions/);
-  assert.match(markdown, /remaining facts require reclassification or independent evidence/);
+  assert.match(markdown, /active Master Index no longer accepts CardTrader as authority/);
+  assert.match(markdown, /Independently supported Normal printings may remain/);
 });

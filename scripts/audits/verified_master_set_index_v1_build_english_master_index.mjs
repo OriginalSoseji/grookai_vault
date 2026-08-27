@@ -20,6 +20,8 @@ import {
 import { classifyEvidence } from './verified_master_set_index_v1/agreement_engine/classifier.mjs';
 import { collectHumanFixtureEvidence } from './verified_master_set_index_v1/source_adapters/human_fixtures.mjs';
 import { assertMe04FinishTruthV1 } from './me04_finish_truth_v1.mjs';
+import { ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1 } from
+  '../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs';
 
 const require = createRequire(import.meta.url);
 const dotenv = require('dotenv');
@@ -35,20 +37,12 @@ const DEFAULT_MASTER_OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_
 const DEFAULT_POKEMONTCG_SNAPSHOT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'source_snapshots', 'pokemontcg_api_source_snapshot_v1.json.gz');
 const DEFAULT_POKEMONTCG_PRESERVATION_SNAPSHOT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'source_snapshots', 'pokemontcg_api_preservation_overrides_v1.json');
 const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex', 'pkmncards', 'bulbapedia']);
-const FOLDED_SUBSET_SET_CONFIGS = new Map([
-  ['rc', {
-    canonical_set_key: 'bw11',
-    canonical_set_name: 'Legendary Treasures',
-    source_set_name: 'Radiant Collection',
-    note: 'TCGdex exposes Radiant Collection RC1-RC25 as a standalone shell, but the English Master Index represents those cards as Legendary Treasures subset cards under bw11. Generations Radiant Collection remains under g1.',
-  }],
-  ['sma', {
-    canonical_set_key: 'sm115',
-    canonical_set_name: 'Hidden Fates',
-    source_set_name: 'Hidden Fates Shiny Vault',
-    note: 'TCGdex exposes the SV1-SV94 Shiny Vault subset as sma. The English Master Index assigns those coordinates to the canonical Hidden Fates owner sm115.',
-  }],
-]);
+const FOLDED_SUBSET_SET_CONFIGS = new Map(
+  ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1.map((owner) => [
+    owner.source_set_key,
+    owner,
+  ]),
+);
 const HUMAN_REQUIRED_NOTE = 'Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.';
 const EXACT_CHECKLIST_SOURCE_KINDS = new Set([
   'official_gallery',
@@ -1548,6 +1542,16 @@ function canonicalizeEvidenceRows(records, setConfigs, generatedAt) {
       unresolved_evidence_rows: unresolvedRows,
       ambiguous_aliases: aliasIndex.ambiguousAliases.length,
     },
+    folded_subset_owners: [...FOLDED_SUBSET_SET_CONFIGS.entries()]
+      .map(([source_set_key, config]) => ({
+        source_set_key,
+        source_set_name: config.source_set_name,
+        canonical_set_key: config.canonical_set_key,
+        canonical_set_name: config.canonical_set_name,
+        authority: 'english_master_index_folded_subset_owner_v1',
+        note: config.note,
+      }))
+      .sort((left, right) => left.source_set_key.localeCompare(right.source_set_key)),
     remaps,
     remap_samples: remapSamples,
     unresolved_samples: unresolvedSamples,
@@ -3623,6 +3627,13 @@ function buildSetAliasNormalizationMarkdown(payload) {
     row.to_set_name,
     row.evidence_rows,
   ]);
+  const foldedOwnerRows = (payload.folded_subset_owners ?? []).map((row) => [
+    row.source_set_key,
+    row.source_set_name,
+    row.canonical_set_key,
+    row.canonical_set_name,
+    row.authority,
+  ]);
   const sampleRows = (payload.remap_samples ?? []).slice(0, 100).map((row) => [
     row.source_key,
     row.evidence_type,
@@ -3658,6 +3669,12 @@ function buildSetAliasNormalizationMarkdown(payload) {
     '## Summary',
     '',
     markdownTable(['metric', 'count'], summaryRows),
+    '',
+    '## Folded Subset Owners',
+    '',
+    foldedOwnerRows.length
+      ? markdownTable(['source_key', 'source_name', 'canonical_key', 'canonical_name', 'authority'], foldedOwnerRows)
+      : 'No folded subset owners are configured.',
     '',
     '## Remaps',
     '',

@@ -273,3 +273,144 @@ printing facts, zero conflicts, and zero unexplained removals.
 | Language Master Index update candidates | `50e13b8c39af5f41603f29a1f8e16f6954abde4bd5aca93a20bce6c6d3c5046a` |
 | Canonical promotion candidates | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | English no-change refresh plan | `0490a5c71143758d9ff6e5b4772f149b8325d963ab42f5df65fad8433eeceeec` |
+
+## 2026-08-27 Master Index Ownership And Continuity Repair
+
+Status: `VERIFIED_PENDING_MERGE_AND_SCHEDULED_REPLAY`
+
+The English Pokemon refresh lane now enforces the permanent ordering rule:
+
+```text
+source discovery
+-> language Master Index evidence
+-> stable owner and alias reconciliation
+-> cumulative card and printing authority
+-> canonical promotion candidate
+-> separately governed canonical writer
+```
+
+A provider row can no longer become canonical merely because its set code or
+card count looks plausible. Every Pokemon card first belongs to a persistent,
+language-scoped Master Index. Canonical reconciliation consumes that authority;
+it does not replace it.
+
+### Repair Details
+
+- `rc` is a source shell owned by English `bw11` Legendary Treasures for
+  `RC1-RC25`.
+- `sma` is a source shell owned by English `sm115` Hidden Fates for `SV1-SV94`.
+- The owner contract is versioned and loaded independently of the current card
+  layout, so folding cards into their canonical owner cannot erase the mapping
+  used by the next discovery run.
+- Historical alias crosswalks are cumulative. A refresh may add aliases, but an
+  owner change fails closed and a temporarily absent alias is preserved.
+- Card continuity keys use stable set keys rather than mutable display names.
+- Previously admitted printing facts remain authoritative when a source omits
+  them temporarily. They enter an explicit revalidation queue rather than being
+  deleted.
+- Only a contracted legacy-source revocation or an exact source-backed
+  supersession can remove printing authority automatically.
+- The JSON and Markdown Master Index summaries are reconciled after continuity
+  carry-forward.
+- Every scheduled data PR regenerates the dependent CardTrader containment
+  audit and runs the ME04 truth contract before it can commit.
+
+### Exact Live-Source Candidate
+
+The complete English source rebuild ran locally with no database access and
+produced this governed plan:
+
+| Metric | Baseline | Source candidate | Effective candidate |
+|---|---:|---:|---:|
+| Sets | 203 | 204 | 204 |
+| Cards | 21,693 | 21,693 | 21,693 |
+| Printings | 38,267 | 38,257 | 38,267 |
+| Alias remaps | 34 | 46 | 46 |
+
+Additional results:
+
+- added cards: `0`;
+- unexplained card removals: `0`;
+- added printings: `0`;
+- unexplained printing removals: `0`;
+- temporarily unobserved printing facts preserved for review: `10`;
+- historical alias forms preserved: `2`;
+- conflicts: `0`;
+- folded owner mappings: `rc -> bw11`, `sma -> sm115`;
+- database, Storage, canonical, pricing, publication, image-pointer, and Vault
+  writes: `0`.
+
+The ten carried-forward printing facts are one-source historical Normal facts:
+`sv01 #54 Quaquaval` and nine `sv04` cards. They are not promoted or deleted;
+they remain visible as `printing_finish_source_revalidation` work.
+
+### Disposable Apply Proof
+
+The candidate was applied to a disposable copy of the Master Index and then
+planned a second time against the same live-source candidate.
+
+- first apply: changed;
+- second plan: `changed: false`;
+- fingerprint after apply and second candidate fingerprint:
+  `af73371a43b89c6cb95add7a255abb81b7d91186647913dadeeaadb4bdd03062`;
+- printings after apply: `38,267`;
+- manual-review rows: `424`, including exactly `10` continuity rows;
+- alias remaps: `46`;
+- required owners: `2`;
+- JSON/Markdown printing status agreement: passed;
+- JSON/Markdown manual-review count agreement: passed.
+
+### Legacy Finish Containment
+
+The active Master Index no longer carries unqualified CardTrader finish
+authority:
+
+- legacy unqualified Normal facts traced: `1,099`;
+- active facts still carrying CardTrader finish authority: `0`;
+- independently supported active matches: `6`;
+- confirmed false ME04 Normal facts traced: `45`;
+- confirmed false ME04 Normal facts in the active Master Index: `0`.
+
+ME04 remains exactly `122` parent cards and `202` printings (`68` Normal, `58`
+Holo, `76` Reverse). The legacy `247`-row state is reconstructed only in the
+contract test from the immutable 45-row suppression fixture; it is not restored
+to active authority.
+
+### Verification
+
+- focused catalog contracts: `54/54` passed;
+- complete repository contract suite: `2,355/2,355` passed;
+- syntax/import checks: passed;
+- `git diff --check`: passed;
+- exact refresh-plan SHA-256:
+  `eaf74715f2361420bffd69ce2ec68aa4959e866fb86e10c3ec5bcaf18e499309`;
+- disposable Master Index summary SHA-256:
+  `6e9e60ab10673057d63f37d65115abde2cbb5f1a526a305589329b1be8dcec01`;
+- disposable alias artifact SHA-256:
+  `78910f5687355e7784cd734761b6ed0978536c616400a0aee0ae9443985da5a5`.
+
+The local discovery replay could not reach Scryfall or TCGdex because Windows
+Schannel could not obtain a certificate-revocation response. This was a local
+transport limitation, not a reconciliation or authority failure. TLS checks
+were not disabled globally. The merged GitHub runner remains the production
+replay environment.
+
+### Remaining Language Coverage
+
+English now has an autonomous persistent Master Index refresh. Japanese V4 is
+persistent and fingerprint-verified, but its universal discovery adapter still
+exposes only a narrow recent official-source view. Other Pokemon languages do
+not yet have autonomous persistent adapters. They remain blocked from
+canonical promotion rather than bypassing the Master Index rule.
+
+### Exact Next Gates
+
+1. Merge the ownership and continuity repair after required checks pass.
+2. Run `Pokemon Master Index Refresh` from the merged default-branch SHA.
+3. Review and merge only the generated data-only Master Index PR; it authorizes
+   no database write.
+4. Run Universal Catalog Discovery from the resulting merged data SHA.
+5. Confirm `rc` and `sma` reconcile through their owners and no longer appear as
+   canonical gaps.
+6. Run canonical promotion only if discovery produces nonzero, fully admitted
+   candidates. A zero-candidate result is valid and performs no write.

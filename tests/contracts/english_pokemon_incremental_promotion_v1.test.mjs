@@ -142,6 +142,43 @@ test("empty source aliases resolve to one exact canonical owner without moving c
   assert.equal(overlay.resolutions[0].canonical_code, "mcd11");
 });
 
+test("persisted folded subset ownership survives canonicalized Master Index cards", () => {
+  const overlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
+    databaseSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "sm115",
+      name: "Hidden Fates",
+      card_count: 163,
+    }],
+    databaseCards: [{
+      set_code: "sm115",
+      number: "SV1",
+      name: "Scyther",
+    }],
+    masterCards: [{
+      set_key: "sm115",
+      card_number: "SV1",
+      card_name: "Scyther",
+      status: "master_verified",
+    }],
+    masterSetRemaps: [{
+      source_set_key: "sma",
+      canonical_set_key: "sm115",
+      authority: "english_master_index_folded_subset_owner_v1",
+    }],
+  });
+
+  assert.deepEqual(overlay.resolutions, [{
+    source_code: "sma",
+    canonical_code: "sm115",
+    evidence_card_count: null,
+    evidence_row_count: null,
+    authority: "english_master_index_folded_subset_owner_v1",
+  }]);
+  assert.deepEqual(overlay.sets[0].code_aliases, ["sma"]);
+});
+
 test("worker source enforces rollback and forbidden-write boundaries", () => {
   const worker = fs.readFileSync(
     new URL("../../scripts/workers/english_pokemon_incremental_promotion_v1.mjs", import.meta.url),

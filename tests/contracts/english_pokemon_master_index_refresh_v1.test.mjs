@@ -5,15 +5,18 @@ import test from "node:test";
 import {
   buildEnglishPokemonMasterIndexRefreshPlanV1,
   preserveExistingFactOrderV1,
+  preserveHistoricalSetAliasesV1,
+  reconcileMasterIndexMarkdownV1,
 } from "../../scripts/workers/english_pokemon_master_index_refresh_v1.mjs";
 
-function card(setKey, number, name) {
+function card(setKey, number, name, overrides = {}) {
   return {
     set_key: setKey,
     card_number: number,
     card_name: name,
     status: "master_verified",
     source_count: 2,
+    ...overrides,
   };
 }
 
@@ -103,14 +106,83 @@ test("equivalent aliases, number padding, punctuation, and source glyphs are not
   assert.equal(plan.counts.folded_alias_cards, 0);
 });
 
-test("printing continuity fails closed on unexplained finish loss", () => {
-  assert.throws(() => buildEnglishPokemonMasterIndexRefreshPlanV1({
+test("set display-name normalization does not remove stable card identities", () => {
+  const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
+    baselineSets: [{ key: "base1", set_name: "Base" }],
+    baselineCards: [card("base1", "1", "Alakazam", { set_name: "Base" })],
+    candidateSets: [{ key: "base1", set_name: "Base Set" }],
+    candidateCards: [card("base1", "1", "Alakazam", { set_name: "Base Set" })],
+  });
+
+  assert.equal(plan.counts.added_cards, 0);
+  assert.equal(plan.counts.unexplained_removed_cards, 0);
+});
+
+test("printing continuity preserves unobserved authority for revalidation", () => {
+  const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
     baselineSets: [{ key: "xyp" }],
     baselineCards: [card("xyp", "XY67a", "Jirachi")],
     baselinePrintings: [printing("xyp", "XY67a", "Jirachi", "holo")],
     candidateSets: [{ key: "xyp" }],
     candidateCards: [card("xyp", "XY67a", "Jirachi")],
-  }), /unexplained printing facts/);
+  });
+
+  assert.equal(plan.counts.source_candidate_printings, 0);
+  assert.equal(plan.counts.candidate_printings, 1);
+  assert.equal(plan.counts.preserved_unobserved_printings, 1);
+  assert.equal(plan.counts.unexplained_removed_printings, 0);
+  assert.equal(
+    plan.preserved_unobserved_printings[0].reason,
+    "historical_master_index_authority_pending_source_revalidation",
+  );
+});
+
+test("alias continuity preserves established mappings and rejects owner changes", () => {
+  const result = preserveHistoricalSetAliasesV1({
+    baselineAliasReport: {
+      remaps: [{ from_set_key: "old", to_set_key: "owner" }],
+    },
+    candidateAliasReport: {
+      remaps: [{ from_set_key: "new", to_set_key: "owner" }],
+    },
+  });
+
+  assert.deepEqual(
+    result.report.remaps.map((row) => row.from_set_key),
+    ["new", "old"],
+  );
+  assert.equal(result.preserved.length, 1);
+  assert.throws(() => preserveHistoricalSetAliasesV1({
+    baselineAliasReport: {
+      remaps: [{ from_set_key: "old", to_set_key: "owner" }],
+    },
+    candidateAliasReport: {
+      remaps: [{ from_set_key: "old", to_set_key: "different-owner" }],
+    },
+  }), /changes historical alias/);
+});
+
+test("effective printing continuity is reflected in the Markdown summary", () => {
+  const markdown = [
+    "| manual review | 3 |",
+    "",
+    "## Printings By Status",
+    "",
+    "| status | count |",
+    "| --- | --- |",
+    "| master_verified | 9 |",
+    "",
+    "## Source Evidence Rows",
+  ].join("\n");
+  const result = reconcileMasterIndexMarkdownV1({
+    markdown,
+    printingStatusCounts: { candidate_unconfirmed: 2, master_verified: 10 },
+    manualReviewCount: 4,
+  });
+  assert.match(result, /\| manual review \| 4 \|/);
+  assert.match(result, /\| candidate_unconfirmed \| 2 \|/);
+  assert.match(result, /\| master_verified \| 10 \|/);
+  assert.doesNotMatch(result, /master_verified \| 9/);
 });
 
 test("only contracted legacy Normal assertions and explicit supersessions may disappear", () => {
@@ -149,14 +221,17 @@ test("only contracted legacy Normal assertions and explicit supersessions may di
   assert.equal(plan.counts.unexplained_removed_printings, 0);
 });
 
-test("explicit printing supersession still requires its replacement fact", () => {
-  assert.throws(() => buildEnglishPokemonMasterIndexRefreshPlanV1({
+test("configured supersession without its replacement preserves prior authority", () => {
+  const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
     baselineSets: [{ key: "mep" }],
     baselineCards: [card("mep", "018", "Cottonee")],
     baselinePrintings: [printing("mep", "018", "Cottonee", "holo")],
     candidateSets: [{ key: "mep" }],
     candidateCards: [card("mep", "18", "Cottonee")],
-  }), /unexplained printing facts/);
+  });
+
+  assert.equal(plan.counts.superseded_printings, 0);
+  assert.equal(plan.counts.preserved_unobserved_printings, 1);
 });
 
 test("unexplained removals, duplicate coordinates, and conflicts fail closed", () => {
@@ -185,6 +260,7 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.match(workflow, /cron:\s*"37 3 \* \* \*"/);
   assert.match(workflow, /--skip-db-audit/);
   assert.match(workflow, /--mode=apply-to-worktree/);
+  assert.match(workflow, /english_master_index_cardtrader_normal_containment_v1\.mjs/);
   assert.match(workflow, /gh pr create/);
   assert.match(workflow, /CHECKED_OUT_SHA="\$\(git rev-parse HEAD\)"/);
   assert.doesNotMatch(workflow, /"\$GITHUB_SHA" "\$\{GITHUB_REF_NAME\}"/);
@@ -202,4 +278,15 @@ test("printing authority remains line-reviewable across scheduled refreshes", ()
 
   assert.ok(printingWrite, "printing authority write must remain explicit");
   assert.doesNotMatch(printingWrite[0], /compact:\s*true/);
+});
+
+test("English Master Index publishes folded subset ownership for discovery", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(builder, /folded_subset_owners/);
+  assert.match(builder, /english_master_index_folded_subset_owner_v1/);
+  assert.match(builder, /source_set_key/);
+  assert.match(builder, /canonical_set_key/);
 });

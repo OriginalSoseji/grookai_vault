@@ -88,14 +88,19 @@ jobs:
             --baseline-dir="$BASELINE_DIR" \
             --candidate-dir="$CANDIDATE_DIR" \
             --out-dir="$REPORT_DIR"
+          node scripts/audits/english_master_index_cardtrader_normal_containment_v1.mjs
           node --test \
+            tests/contracts/english_master_index_cardtrader_normal_containment_v1.test.mjs \
+            tests/contracts/me04_finish_truth_v1.test.mjs \
             tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
             tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
             tests/contracts/universal_catalog_discovery_v1.test.mjs
           git diff --check
           git config user.name "grookai-catalog-automation"
           git config user.email "catalog-automation@grookai.com"
-          git add "$BASELINE_DIR"
+          git add \
+            "$BASELINE_DIR" \
+            "docs/audits/verified_master_set_index_v1/cardtrader_normal_containment_v1"
           git commit -m "data(pokemon): refresh English Master Index"
           git push origin "HEAD:$BRANCH"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"

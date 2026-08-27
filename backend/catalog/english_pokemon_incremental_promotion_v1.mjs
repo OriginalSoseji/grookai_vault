@@ -151,6 +151,7 @@ export function deriveEnglishPokemonCanonicalAliasOverlayV1({
   databaseSets = [],
   databaseCards = [],
   masterCards = [],
+  masterSetRemaps = [],
 }) {
   const masterBySet = new Map();
   for (const card of masterCards.filter((row) => row.status === "master_verified")) {
@@ -167,9 +168,34 @@ export function deriveEnglishPokemonCanonicalAliasOverlayV1({
   const setCodes = [...new Set(databaseSets.map((row) =>
     clean(row.code).toLocaleLowerCase("en")))];
   const resolutions = [];
+  const explicitSources = new Set();
+  for (const remap of masterSetRemaps) {
+    const sourceCode = clean(
+      remap.source_set_key ?? remap.from_set_key,
+    ).toLocaleLowerCase("en");
+    const canonicalCode = clean(
+      remap.canonical_set_key ?? remap.to_set_key,
+    ).toLocaleLowerCase("en");
+    if (!sourceCode || !canonicalCode || sourceCode === canonicalCode) continue;
+    const owners = databaseSets.filter((row) =>
+      clean(row.code).toLocaleLowerCase("en") === canonicalCode);
+    if (owners.length !== 1) continue;
+    const aliasSet = databaseSets.find((row) =>
+      clean(row.code).toLocaleLowerCase("en") === sourceCode);
+    if (aliasSet && Number(aliasSet.card_count ?? 0) !== 0) continue;
+    resolutions.push({
+      source_code: sourceCode,
+      canonical_code: canonicalCode,
+      evidence_card_count: null,
+      evidence_row_count: Number(remap.evidence_rows ?? 0) || null,
+      authority: clean(remap.authority) ||
+        "ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1",
+    });
+    explicitSources.add(sourceCode);
+  }
   for (const [sourceCodeRaw, cards] of masterBySet) {
     const sourceCode = clean(sourceCodeRaw).toLocaleLowerCase("en");
-    if (cards.length === 0) continue;
+    if (cards.length === 0 || explicitSources.has(sourceCode)) continue;
     const owners = setCodes.filter((setCode) => cards.every((card) =>
       databaseBySetAndCoordinate.has(`${setCode}|${coordinate(card.card_number, card.card_name)}`)));
     if (owners.length !== 1 || owners[0] === sourceCode) continue;
@@ -183,6 +209,9 @@ export function deriveEnglishPokemonCanonicalAliasOverlayV1({
       authority: "ENGLISH_MASTER_INDEX_COMPLETION_V1",
     });
   }
+  resolutions.sort((left, right) =>
+    left.source_code.localeCompare(right.source_code) ||
+    left.canonical_code.localeCompare(right.canonical_code));
   const resolutionBySource = new Map(resolutions.map((row) =>
     [clean(row.source_code).toLocaleLowerCase("en"), row]));
   const sets = databaseSets.filter((row) => !resolutionBySource.has(
