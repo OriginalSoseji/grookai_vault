@@ -165,6 +165,7 @@
     "mtg:client-readiness:audit": "node scripts/audits/mtg_client_search_readiness_v1.mjs",
     "catalog:discovery:read-only": "node scripts/workers/universal_catalog_discovery_v1.mjs",
     "catalog:shadow:reconcile": "node scripts/workers/catalog_shadow_reconciliation_v1.mjs",
+    "catalog:shadow:probe-collectibles": "node scripts/workers/collectible_shadow_adapter_probe_v1.mjs",
     "catalog:promotion:supervise": "node scripts/workers/catalog_incremental_supervisor_v1.mjs"
   },
   "devDependencies": {
