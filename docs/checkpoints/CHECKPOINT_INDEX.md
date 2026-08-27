@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `POKEMON_LANGUAGE_MASTER_INDEX_AUTOMATION_V1` - `2026-08-27` - Daily 18-language Pokemon candidate capture, evidence-only source anomaly preservation, generated-data PR Guard, successful discovery/promotion dispatch, 139,894 indexed candidates, and explicit independent-admission debt
 - `SUPABASE_PRODUCTION_CAPACITY_V1` - `2026-08-27` - Production ref and restore-drill separation, founder-approved Medium/303 GB capacity purchase, Spend Cap authorization, live 217 GB read-only database readback, dominant storage relations, and explicit control-plane/performance follow-up gates
 - `UNIVERSAL_CATALOG_AUTOMATION_V1` — `2026-08-26` — Master-Index-first Pokemon promotion, canonical `set_id` ownership, exact official-Japanese numbered-set closure, durable MEE/MEM/MEZ readback, Shiny Vault alias suppression, self-hosted image backlog, and an explicit ten-set English authority queue
 - `GVVI_VENDOR_QR_V1_20260817` — `2026-08-17` — Isolated migration-free implementation locking persistent physical GVVI QR identity, public vendor asking-price presentation, Wall convergence, owner-only QR export, and encrypted server-derived referral attribution
