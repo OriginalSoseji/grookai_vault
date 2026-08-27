@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `COLLECTIBLE_SHADOW_ADAPTERS_V1` - `2026-08-27` - Five domain-specific collectible identity contracts, 16 scheduled hash-only source probes, exact-SHA default-branch live proof, 0 artifact mismatches, no production access or writes, publisher restrictions tracked in issue 271, and an explicit terms-cleared parser gate
 - `CATALOG_SHADOW_AUTOMATION_V1` - `2026-08-27` - Scheduled cross-TCG discovery locked to read-only shadow persistence, no canonical writer dispatch, three successful frozen-SHA live canaries, 36/36 artifact hashes reconciled, 139,894 Pokemon language candidates preserved, and explicit default-branch activation gate
 - `POKEMON_LANGUAGE_MASTER_INDEX_AUTOMATION_V1` - `2026-08-27` - Daily 18-language Pokemon candidate capture, evidence-only source anomaly preservation, generated-data PR Guard, successful discovery/promotion dispatch, 139,894 indexed candidates, and explicit independent-admission debt
 - `SUPABASE_PRODUCTION_CAPACITY_V1` - `2026-08-27` - Production ref and restore-drill separation, founder-approved Medium/303 GB capacity purchase, Spend Cap authorization, live 217 GB read-only database readback, dominant storage relations, and explicit control-plane/performance follow-up gates
