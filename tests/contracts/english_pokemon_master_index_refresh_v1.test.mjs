@@ -262,6 +262,12 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.match(workflow, /--mode=apply-to-worktree/);
   assert.match(workflow, /english_master_index_cardtrader_normal_containment_v1\.mjs/);
   assert.match(workflow, /gh pr create/);
+  assert.match(workflow, /source_discovery_unavailable/);
+  assert.match(workflow, /preserved_prior_master_index/);
+  assert.match(workflow, /SOURCE_UNAVAILABLE/);
+  assert.match(workflow, /failed an integrity gate/);
+  assert.match(workflow, /if RESPONSE="\$\(gh api/);
+  assert.match(workflow, /pokemon-language-candidate-dir/);
   assert.match(workflow, /CHECKED_OUT_SHA="\$\(git rev-parse HEAD\)"/);
   assert.doesNotMatch(workflow, /"\$GITHUB_SHA" "\$\{GITHUB_REF_NAME\}"/);
   assert.doesNotMatch(workflow, /SUPABASE_DB_URL|DATABASE_URL/);

@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
   issues: write
@@ -36,9 +37,14 @@ jobs:
         run: |
           node --check scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs
           node --check scripts/workers/english_pokemon_master_index_refresh_v1.mjs
+          node --check scripts/workers/pokemon_language_master_index_refresh_v1.mjs
+          node --check scripts/workers/japanese_pokemon_master_index_incremental_refresh_v1.mjs
+          node --check scripts/workers/universal_catalog_discovery_v1.mjs
           node --test \
             tests/contracts/english_master_index_human_fixtures_v1.test.mjs \
-            tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs
+            tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
+            tests/contracts/pokemon_language_master_index_v1.test.mjs \
+            tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs
 
       - name: Initialize refresh evidence
         shell: bash
@@ -48,13 +54,24 @@ jobs:
           set -euo pipefail
           CANDIDATE_DIR="$RUNNER_TEMP/english-master-index-candidate"
           REPORT_DIR="$RUNNER_TEMP/english-master-index-refresh-report"
+          LANGUAGE_REPORT_DIR="$RUNNER_TEMP/pokemon-language-master-index-report"
+          DISCOVERY_DIR="$RUNNER_TEMP/pokemon-language-master-index-discovery"
+          JAPANESE_REPORT_DIR="$RUNNER_TEMP/japanese-master-index-incremental-report"
           BASELINE_DIR="docs/audits/verified_master_set_index_v1/english_master_index_v1"
           CHECKED_OUT_SHA="$(git rev-parse HEAD)"
           CHECKED_OUT_BRANCH="$(git branch --show-current)"
           CHECKED_OUT_BRANCH="${CHECKED_OUT_BRANCH:-$DEFAULT_BRANCH}"
-          mkdir -p "$CANDIDATE_DIR" "$REPORT_DIR"
+          mkdir -p \
+            "$CANDIDATE_DIR" \
+            "$REPORT_DIR" \
+            "$LANGUAGE_REPORT_DIR" \
+            "$DISCOVERY_DIR" \
+            "$JAPANESE_REPORT_DIR"
           echo "CANDIDATE_DIR=$CANDIDATE_DIR" >> "$GITHUB_ENV"
           echo "REPORT_DIR=$REPORT_DIR" >> "$GITHUB_ENV"
+          echo "LANGUAGE_REPORT_DIR=$LANGUAGE_REPORT_DIR" >> "$GITHUB_ENV"
+          echo "DISCOVERY_DIR=$DISCOVERY_DIR" >> "$GITHUB_ENV"
+          echo "JAPANESE_REPORT_DIR=$JAPANESE_REPORT_DIR" >> "$GITHUB_ENV"
           echo "BASELINE_DIR=$BASELINE_DIR" >> "$GITHUB_ENV"
           printf '{"run_id":"%s","commit_sha":"%s","branch":"%s","database_writes":false,"storage_writes":false}\n' \
             "$GITHUB_RUN_ID" "$CHECKED_OUT_SHA" "$CHECKED_OUT_BRANCH" > "$REPORT_DIR/run_metadata.json"
@@ -72,40 +89,158 @@ jobs:
             --baseline-dir="$BASELINE_DIR" \
             --candidate-dir="$CANDIDATE_DIR" \
             --out-dir="$REPORT_DIR" 2>&1 | tee "$REPORT_DIR/refresh_plan.log"
+          node scripts/workers/pokemon_language_master_index_refresh_v1.mjs \
+            --mode=plan \
+            --out-dir="$LANGUAGE_REPORT_DIR" \
+            --concurrency=4 2>&1 | tee "$LANGUAGE_REPORT_DIR/refresh_plan.log"
+          if node scripts/workers/universal_catalog_discovery_v1.mjs \
+              --as-of="$(date -u +%F)" \
+              --source-only \
+              --pokemon-language-candidate-dir="$LANGUAGE_REPORT_DIR/candidate_index" \
+              --out-dir="$DISCOVERY_DIR" 2>&1 | tee "$DISCOVERY_DIR/discovery.log"; then
+            node scripts/workers/japanese_pokemon_master_index_incremental_refresh_v1.mjs \
+              --mode=plan \
+              --as-of="$(date -u +%F)" \
+              --discovery-dir="$DISCOVERY_DIR" \
+              --out-dir="$JAPANESE_REPORT_DIR" 2>&1 | tee "$JAPANESE_REPORT_DIR/refresh_plan.log"
+          else
+            if grep -q 'Error: \[SOURCE_UNAVAILABLE\]' "$DISCOVERY_DIR/discovery.log"; then
+              printf '{"changed":false,"status":"source_discovery_unavailable","canonical_writes":false,"database_writes":false,"storage_writes":false}\n' \
+                > "$JAPANESE_REPORT_DIR/plan.json"
+              printf '{"status":"source_discovery_unavailable","preserved_prior_master_index":true}\n' \
+                > "$JAPANESE_REPORT_DIR/source_health.json"
+            else
+              printf 'Japanese discovery failed an integrity gate; publication is blocked.\n' >&2
+              exit 1
+            fi
+          fi
 
       - name: Apply changed facts to a data-only branch
         id: apply
         shell: bash
         run: |
           set -euo pipefail
-          CHANGED="$(node -e "const p=require(process.argv[1]); process.stdout.write(String(p.changed))" "$REPORT_DIR/refresh_plan.json")"
+          ENGLISH_CHANGED="$(node -e "const p=require(process.argv[1]); process.stdout.write(String(p.changed))" "$REPORT_DIR/refresh_plan.json")"
+          LANGUAGE_CHANGED="$(node -e "const p=require(process.argv[1]); process.stdout.write(String(p.changed))" "$LANGUAGE_REPORT_DIR/plan.json")"
+          JAPANESE_CHANGED="$(node -e "const p=require(process.argv[1]); process.stdout.write(String(p.changed))" "$JAPANESE_REPORT_DIR/plan.json")"
+          if [[ "$ENGLISH_CHANGED" == "true" || "$LANGUAGE_CHANGED" == "true" || "$JAPANESE_CHANGED" == "true" ]]; then
+            CHANGED=true
+          else
+            CHANGED=false
+          fi
           echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
           if [ "$CHANGED" != "true" ]; then exit 0; fi
           BRANCH="automation/pokemon-master-index-refresh-$GITHUB_RUN_ID"
           git checkout -b "$BRANCH"
-          node scripts/workers/english_pokemon_master_index_refresh_v1.mjs \
-            --mode=apply-to-worktree \
-            --baseline-dir="$BASELINE_DIR" \
-            --candidate-dir="$CANDIDATE_DIR" \
-            --out-dir="$REPORT_DIR"
+          if [ "$ENGLISH_CHANGED" = "true" ]; then
+            node scripts/workers/english_pokemon_master_index_refresh_v1.mjs \
+              --mode=apply-to-worktree \
+              --baseline-dir="$BASELINE_DIR" \
+              --candidate-dir="$CANDIDATE_DIR" \
+              --out-dir="$REPORT_DIR"
+          fi
+          if [ "$LANGUAGE_CHANGED" = "true" ]; then
+            node scripts/workers/pokemon_language_master_index_refresh_v1.mjs \
+              --mode=apply-to-worktree \
+              --plan-dir="$LANGUAGE_REPORT_DIR"
+          fi
+          if [ "$JAPANESE_CHANGED" = "true" ]; then
+            node scripts/workers/japanese_pokemon_master_index_incremental_refresh_v1.mjs \
+              --mode=apply-to-worktree \
+              --plan-dir="$JAPANESE_REPORT_DIR"
+          fi
           node scripts/audits/english_master_index_cardtrader_normal_containment_v1.mjs
           node --test \
             tests/contracts/english_master_index_cardtrader_normal_containment_v1.test.mjs \
             tests/contracts/me04_finish_truth_v1.test.mjs \
             tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
+            tests/contracts/pokemon_language_master_index_v1.test.mjs \
+            tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs \
             tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
             tests/contracts/universal_catalog_discovery_v1.test.mjs
           git diff --check
+          UNEXPECTED_PATHS="$(git diff --name-only | grep -Ev \
+            '^(docs/audits/verified_master_set_index_v1/english_master_index_v1/|docs/audits/verified_master_set_index_v1/cardtrader_normal_containment_v1/|docs/audits/pokemon_language_master_index_v1/)' || true)"
+          if [ -n "$UNEXPECTED_PATHS" ]; then
+            printf 'Unexpected Master Index refresh paths:\n%s\n' "$UNEXPECTED_PATHS" >&2
+            exit 1
+          fi
           git config user.name "grookai-catalog-automation"
           git config user.email "catalog-automation@grookai.com"
           git add \
             "$BASELINE_DIR" \
             "docs/audits/verified_master_set_index_v1/cardtrader_normal_containment_v1"
-          git commit -m "data(pokemon): refresh English Master Index"
+          if [ -e "docs/audits/pokemon_language_master_index_v1" ]; then
+            git add "docs/audits/pokemon_language_master_index_v1"
+          fi
+          git commit -m "data(pokemon): refresh language Master Indexes"
+          git fetch origin "${{ github.event.repository.default_branch }}"
+          git rebase "origin/${{ github.event.repository.default_branch }}"
+          git diff "origin/${{ github.event.repository.default_branch }}" --check
+          UNEXPECTED_PATHS="$(git diff --name-only "origin/${{ github.event.repository.default_branch }}"...HEAD | grep -Ev \
+            '^(docs/audits/verified_master_set_index_v1/english_master_index_v1/|docs/audits/verified_master_set_index_v1/cardtrader_normal_containment_v1/|docs/audits/pokemon_language_master_index_v1/)' || true)"
+          if [ -n "$UNEXPECTED_PATHS" ]; then
+            printf 'Unexpected rebased Master Index paths:\n%s\n' "$UNEXPECTED_PATHS" >&2
+            exit 1
+          fi
+          node --test \
+            tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
+            tests/contracts/pokemon_language_master_index_v1.test.mjs \
+            tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs \
+            tests/contracts/universal_catalog_discovery_v1.test.mjs
           git push origin "HEAD:$BRANCH"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
 
+      - name: Reconcile language source adapter health issue
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          LANGUAGE_REPORT_DIR: ${{ env.LANGUAGE_REPORT_DIR }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = `${process.env.LANGUAGE_REPORT_DIR}/summary.json`;
+            if (!fs.existsSync(summaryPath)) return;
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            const failures = summary.required_live_language_failures || [];
+            const errors = summary.source_error_languages || [];
+            const japaneseHealthPath = `${process.env.JAPANESE_REPORT_DIR}/source_health.json`;
+            const japaneseHealth = fs.existsSync(japaneseHealthPath)
+              ? JSON.parse(fs.readFileSync(japaneseHealthPath, 'utf8'))
+              : null;
+            const title = '[Pokemon Master Index] Language source adapter debt';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (failures.length === 0 && errors.length === 0 && !japaneseHealth) {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+              return;
+            }
+            const body = [
+              'The daily language candidate index preserved all prior authority and detected source adapter debt.',
+              '',
+              `Required live scopes without a usable baseline: ${JSON.stringify(failures)}`,
+              `Source errors with preserved baselines: ${JSON.stringify(errors)}`,
+              `Japanese source discovery: ${JSON.stringify(japaneseHealth)}`,
+              '',
+              'No candidate-only row received canonical authority.',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
       - name: Open governed Master Index update pull request
+        id: pr
         if: steps.apply.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -117,8 +252,51 @@ jobs:
           gh pr create \
             --base "$BASE_BRANCH" \
             --head "$BRANCH" \
-            --title "data(pokemon): refresh English Master Index" \
-            --body "Automated source-evidence refresh. This PR changes Master Index artifacts only. It performs no database, Storage, pricing, publication, or Vault writes. Canonical reconciliation remains a later gated workflow."
+            --title "data(pokemon): refresh language Master Indexes" \
+            --body "Automated source-evidence refresh. This PR changes allowlisted Master Index artifacts only. It performs no database, Storage, pricing, publication, or Vault writes. The workflow already passed deterministic source, continuity, diff, and focused contract gates."
+          PR_NUMBER="$(gh pr view "$BRANCH" --json number --jq .number)"
+          echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Merge governed data-only update automatically
+        id: merge
+        if: steps.apply.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          RESPONSE=''
+          for ATTEMPT in 1 2 3 4 5; do
+            if RESPONSE="$(gh api \
+                --method PUT \
+                "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/merge" \
+                -f merge_method=squash 2>&1)"; then
+              if echo "$RESPONSE" | jq -e '.merged == true' >/dev/null; then break; fi
+            fi
+            if [ "$ATTEMPT" = "5" ]; then
+              printf '%s\n' "$RESPONSE" >&2
+              exit 1
+            fi
+            sleep $((ATTEMPT * 3))
+          done
+          MERGED_SHA="$(echo "$RESPONSE" | jq -r .sha)"
+          test -n "$MERGED_SHA"
+          echo "merged_sha=$MERGED_SHA" >> "$GITHUB_OUTPUT"
+          printf '{"pull_request":%s,"merged_sha":"%s","producer_run_id":"%s"}\n' \
+            "$PR_NUMBER" "$MERGED_SHA" "$GITHUB_RUN_ID" > "$REPORT_DIR/automatic_merge_readback.json"
+
+      - name: Dispatch fresh reconciliation and bounded promotion
+        if: steps.merge.outputs.merged_sha != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run universal-catalog-discovery.yml --ref "${{ github.event.repository.default_branch }}"
+          gh workflow run catalog-incremental-promotion.yml --ref "${{ github.event.repository.default_branch }}"
+          printf '{"merged_sha":"%s","discovery_dispatched":true,"promotion_dispatched":true}\n' \
+            "${{ steps.merge.outputs.merged_sha }}" > "$REPORT_DIR/downstream_dispatch.json"
 
       - name: Upload refresh evidence
         if: always()
@@ -128,6 +306,9 @@ jobs:
           path: |
             ${{ env.REPORT_DIR }}
             ${{ env.CANDIDATE_DIR }}
+            ${{ env.LANGUAGE_REPORT_DIR }}
+            ${{ env.DISCOVERY_DIR }}
+            ${{ env.JAPANESE_REPORT_DIR }}
           if-no-files-found: error
           retention-days: 90
 
@@ -136,8 +317,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const title = '[Pokemon Master Index] English refresh failure';
-            const body = `The governed English Pokemon Master Index refresh failed closed. ` +
+            const title = '[Pokemon Master Index] Language refresh failure';
+            const body = `The governed Pokemon language Master Index refresh failed closed. ` +
               `No canonical, database, Storage, pricing, publication, or Vault writes were authorized.\n\n` +
               `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: issues } = await github.rest.issues.listForRepo({
@@ -157,7 +338,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const title = '[Pokemon Master Index] English refresh failure';
+            const title = '[Pokemon Master Index] Language refresh failure';
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
             });

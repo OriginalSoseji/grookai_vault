@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import zlib from "node:zlib";
 import { Client } from "pg";
 
 import {
@@ -46,6 +47,13 @@ import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
   "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 import { mergeEnglishPokemonFoldedSubsetOwnersV1 } from
   "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
+import { mergeJapaneseMasterIndexIncrementalOverlayV1 } from
+  "../../backend/catalog/japanese_pokemon_master_index_incremental_v1.mjs";
+import {
+  buildPokemonLanguageCandidateIndexReconciliationV1,
+  POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
+  pokemonLanguageFingerprint,
+} from "../../backend/catalog/pokemon_language_master_index_v1.mjs";
 
 const USER_AGENT = "GrookaiVaultCatalogDiscovery/1.0 catalog-ops@grookai.com";
 const DEFAULT_RECENT_DAYS = 180;
@@ -59,6 +67,65 @@ const ENGLISH_MASTER_INDEX_DIR = path.join(
 const JAPANESE_MASTER_INDEX_DIR = path.join(
   "docs", "audits", "japanese_master_index_v4", "final",
 );
+const JAPANESE_INCREMENTAL_OVERLAY_PATH = path.join(
+  "docs",
+  "audits",
+  "pokemon_language_master_index_v1",
+  "ja",
+  "japanese_incremental_admitted_v1.json",
+);
+const POKEMON_LANGUAGE_CANDIDATE_DIR = path.join(
+  "docs",
+  "audits",
+  "pokemon_language_master_index_v1",
+  "candidates",
+);
+
+async function loadPokemonLanguageCandidateRegistry(candidateDir) {
+  const registryPath = path.join(candidateDir, "language_registry_v1.json");
+  try {
+    const registry = JSON.parse(await fs.readFile(registryPath, "utf8"));
+    if (registry.version !== POKEMON_LANGUAGE_MASTER_INDEX_VERSION ||
+        registry.canonical_authority !== false) {
+      throw new Error("Pokemon language candidate registry authority mismatch.");
+    }
+    return registry;
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+    return {
+      version: POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
+      policy: "all_source_rows_enter_language_index_before_canonical_reconciliation",
+      canonical_authority: false,
+      languages: [],
+    };
+  }
+}
+
+async function loadPokemonLanguageCandidateSnapshot(candidateDir, language) {
+  const languageDir = path.join(candidateDir, language);
+  try {
+    const manifest = JSON.parse(await fs.readFile(
+      path.join(languageDir, "manifest.json"),
+      "utf8",
+    ));
+    const [setsBytes, cardsBytes] = await Promise.all([
+      fs.readFile(path.join(languageDir, "sets.json.gz")),
+      fs.readFile(path.join(languageDir, "cards.json.gz")),
+    ]);
+    const sets = JSON.parse(zlib.gunzipSync(setsBytes).toString("utf8"));
+    const cards = JSON.parse(zlib.gunzipSync(cardsBytes).toString("utf8"));
+    if (manifest.version !== POKEMON_LANGUAGE_MASTER_INDEX_VERSION ||
+        manifest.language !== language || manifest.canonical_authority !== false ||
+        pokemonLanguageFingerprint(sets) !== manifest.sets_fingerprint_sha256 ||
+        pokemonLanguageFingerprint(cards) !== manifest.cards_fingerprint_sha256) {
+      throw new Error(`Pokemon language candidate snapshot mismatch for ${language}.`);
+    }
+    return { manifest, sets, cards };
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+    return null;
+  }
+}
 
 async function loadVerifiedJapaneseMasterIndexDataset(descriptorName, expectedKey) {
   const descriptorPath = path.join(JAPANESE_MASTER_INDEX_DIR, descriptorName);
@@ -96,11 +163,25 @@ async function loadJapaneseMasterIndex() {
       "master_admissible_card_rows_v1",
     ),
   ]);
+  let overlay = null;
+  try {
+    overlay = JSON.parse(await fs.readFile(JAPANESE_INCREMENTAL_OVERLAY_PATH, "utf8"));
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+  const merged = mergeJapaneseMasterIndexIncrementalOverlayV1({
+    baseSets: sets.rows,
+    baseCards: cards.rows,
+    overlay,
+  });
   return {
-    sets: sets.rows,
-    cards: cards.rows,
+    sets: merged.sets,
+    cards: merged.cards,
     setFingerprint: sets.fingerprint,
     cardFingerprint: cards.fingerprint,
+    incrementalOverlayFingerprint: overlay
+      ? contentFingerprint({ sets: overlay.sets, cards: overlay.cards })
+      : null,
   };
 }
 
@@ -134,6 +215,8 @@ function parseArgs(argv) {
     japaneseRecentPages: DEFAULT_JP_RECENT_PAGES,
     maxDetailFetches: DEFAULT_MAX_DETAIL_FETCHES,
     japaneseCardIdLookback: DEFAULT_JP_CARD_ID_LOOKBACK,
+    pokemonLanguageCandidateDir: POKEMON_LANGUAGE_CANDIDATE_DIR,
+    sourceOnly: false,
     databaseUrl: process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? null,
   };
   for (const token of argv) {
@@ -146,7 +229,10 @@ function parseArgs(argv) {
       options.maxDetailFetches = Number(token.slice(21));
     } else if (token.startsWith("--japanese-card-id-lookback=")) {
       options.japaneseCardIdLookback = Number(token.slice(28));
-    } else if (token.startsWith("--db-url=")) options.databaseUrl = token.slice(9);
+    } else if (token.startsWith("--pokemon-language-candidate-dir=")) {
+      options.pokemonLanguageCandidateDir = token.slice(33);
+    } else if (token === "--source-only") options.sourceOnly = true;
+    else if (token.startsWith("--db-url=")) options.databaseUrl = token.slice(9);
     else throw new Error(`Unknown argument: ${token}`);
   }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(options.asOf)) throw new Error("Invalid --as-of");
@@ -158,12 +244,24 @@ function parseArgs(argv) {
   })) {
     if (!Number.isSafeInteger(value) || value < 1) throw new Error(`Invalid ${key}`);
   }
-  if (!options.databaseUrl) throw new Error("SUPABASE_DB_URL is required for read-only reconciliation");
+  if (!options.sourceOnly && !options.databaseUrl) {
+    throw new Error("SUPABASE_DB_URL is required for read-only reconciliation");
+  }
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   options.outDir ??= path.join(
     "docs", "audits", "universal_catalog_discovery_v1", `${stamp}_read_only`,
   );
   return options;
+}
+
+function emptyDatabaseSnapshot() {
+  return {
+    sets: [],
+    official_japanese_card_ids: [],
+    japanese_canonical_cards: [],
+    english_canonical_cards: [],
+    one_piece_warehouse_products: [],
+  };
 }
 
 function recentDate(asOf, days) {
@@ -206,7 +304,12 @@ async function fetchSource(url, { responseType = "text", delayMs = 0 } = {}) {
       if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 750));
     }
   }
-  throw new Error(`Source fetch failed for ${url}: ${lastError?.message ?? lastError}`);
+  const cause = String(lastError?.message ?? lastError);
+  const unavailable = /fetch failed|timed? ?out|timeout|HTTP (?:429|5\d\d)/i.test(cause);
+  throw new Error(
+    `[${unavailable ? "SOURCE_UNAVAILABLE" : "SOURCE_INTEGRITY_FAILURE"}] ` +
+    `Source fetch failed for ${url}: ${cause}`,
+  );
 }
 
 function sourceMetadata(snapshot) {
@@ -629,7 +732,7 @@ async function fetchOfficialJapaneseProductCards(productId, sourceSnapshots) {
   return { ...first, cards };
 }
 
-async function discoverJapaneseProducts(sourceSnapshots, options) {
+async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandidateSnapshot) {
   const threshold = recentDate(options.asOf, options.recentDays);
   const sourceSets = [];
   for (const productType of ["expansion", "construction", "others"]) {
@@ -658,7 +761,38 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
       let tcgdexSet = null;
       if (sourceSetCode) {
         const tcgdexUrl = `https://api.tcgdex.net/v2/ja/sets/${encodeURIComponent(sourceSetCode)}`;
-        try {
+        const candidateSet = japaneseCandidateSnapshot?.sets.find((row) =>
+          clean(row.source_set_id).toLocaleLowerCase("und") ===
+            clean(sourceSetCode).toLocaleLowerCase("und") &&
+          row.source_presence === "observed"
+        );
+        const candidateCards = japaneseCandidateSnapshot?.cards.filter((row) =>
+          clean(row.source_set_id).toLocaleLowerCase("und") ===
+            clean(sourceSetCode).toLocaleLowerCase("und") &&
+          row.source_presence === "observed"
+        ) ?? [];
+        const candidatePayload = candidateSet && candidateCards.length > 0
+          ? {
+              id: candidateSet.source_set_id,
+              name: candidateSet.source_set_name,
+              cardCount: {
+                official: candidateSet.source_official_card_count,
+                total: candidateSet.source_total_card_count,
+              },
+              cards: candidateCards.map((card) => ({
+                id: card.source_card_id,
+                localId: card.printed_number,
+                name: card.printed_name,
+                image: card.source_image_reference,
+              })),
+            }
+          : null;
+        if (options.sourceOnly && candidatePayload) {
+          tcgdexSet = parseTcgdexJapaneseSetPayload(
+            JSON.stringify(candidatePayload),
+            sourceSetCode,
+          );
+        } else try {
           const tcgdexSnapshot = await fetchSource(tcgdexUrl, {
             responseType: "json",
             delayMs: 200,
@@ -669,7 +803,14 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
             sourceSetCode,
           );
         } catch (error) {
-          if (!/HTTP 404/i.test(String(error.message))) throw error;
+          if (candidatePayload) {
+            tcgdexSet = parseTcgdexJapaneseSetPayload(
+              JSON.stringify(candidatePayload),
+              sourceSetCode,
+            );
+          } else if (!/HTTP 404|fetch failed|timeout/i.test(String(error.message))) {
+            throw error;
+          }
         }
         const checklistUrl = `https://limitlesstcg.com/cards/jp/${encodeURIComponent(sourceSetCode)}?show=all`;
         try {
@@ -760,6 +901,28 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
             source_url: fullChecklist.cards[0]?.source_url ?? null,
           }] : []),
         ],
+        tcgdex_cards: (tcgdexSet?.cards ?? []).map((card) => ({
+          source_external_id: clean(card.id),
+          card_number_raw: clean(card.localId),
+          printed_name_ja: clean(card.name),
+          image_url: clean(card.image) || null,
+          source_url: card.id
+            ? `https://api.tcgdex.net/v2/ja/cards/${encodeURIComponent(card.id)}`
+            : null,
+        })),
+        independent_full_checklist_cards: (fullChecklist?.cards ?? []).map((card) => ({
+          source_external_id: clean(card.source_external_id),
+          card_number_raw: clean(card.card_number_raw) || null,
+          english_display_name: clean(card.english_display_name) || null,
+          type_line: clean(card.type_line) || null,
+          rarity: clean(card.rarity) || null,
+          source_url: clean(card.source_url) || null,
+        })),
+        official_product_cards: cardList.cards.map((card) => ({
+          source_external_id: clean(card.card_id),
+          printed_name_ja: clean(card.card_name) || null,
+          image_url: clean(card.image_url) || null,
+        })),
         numbered_base_cards: (checklist?.cards ?? []).map((card) => ({
           card_number_raw: card.card_number_raw,
           image_url: card.image_url ?? null,
@@ -861,7 +1024,7 @@ async function writeReport(filePath, summary, gaps, recentJapaneseCards) {
     `- Actionable set gaps: \`${summary.actionable_gap_count}\``,
     `- Recent Japanese cards scanned: \`${recentJapaneseCards.scanned_card_count}\``,
     `- Missing recent Japanese cards: \`${recentJapaneseCards.missing_card_count}\``,
-    "- Database mode: `read-only transaction`",
+    `- Database mode: \`${summary.database_mode}\``,
     "",
     "## Actionable Set Gaps",
     "",
@@ -891,8 +1054,10 @@ async function main() {
     recent_days: options.recentDays,
     japanese_recent_pages: options.japaneseRecentPages,
     japanese_card_id_lookback: options.japaneseCardIdLookback,
+    pokemon_language_candidate_dir: options.pokemonLanguageCandidateDir,
+    source_only: options.sourceOnly,
     boundaries: {
-      database_transaction: "read_only",
+      database_transaction: options.sourceOnly ? "none" : "read_only",
       database_writes: false,
       storage_writes: false,
       pricing_writes: false,
@@ -907,10 +1072,20 @@ async function main() {
   };
   await writeJson(path.join(options.outDir, "run_plan.json"), runPlan);
 
-  const [database, englishMasterIndex, japaneseMasterIndex] = await Promise.all([
-    loadDatabaseSnapshot(options.databaseUrl),
+  const [
+    database,
+    englishMasterIndex,
+    japaneseMasterIndex,
+    pokemonLanguageCandidateRegistry,
+    japaneseCandidateSnapshot,
+  ] = await Promise.all([
+    options.sourceOnly
+      ? Promise.resolve(emptyDatabaseSnapshot())
+      : loadDatabaseSnapshot(options.databaseUrl),
     loadEnglishMasterIndex(),
     loadJapaneseMasterIndex(),
+    loadPokemonLanguageCandidateRegistry(options.pokemonLanguageCandidateDir),
+    loadPokemonLanguageCandidateSnapshot(options.pokemonLanguageCandidateDir, "ja"),
   ]);
   const classifiedDatabaseSets = classifyPokemonDatabaseSetScopesV1({
     databaseSets: database.sets,
@@ -938,24 +1113,38 @@ async function main() {
   database.english_alias_resolutions = englishAliasOverlay.resolutions;
   const sourceSnapshots = [];
   const [onePieceSets, mtgSets, pokemonEnglishSets, japaneseSets] = await Promise.all([
-    discoverOnePiece(
+    options.sourceOnly ? Promise.resolve([]) : discoverOnePiece(
       database.sets,
       database.one_piece_warehouse_products,
       sourceSnapshots,
       options,
     ),
-    discoverMtg(database.sets, sourceSnapshots, options),
-    discoverPokemonEnglish(
+    options.sourceOnly
+      ? Promise.resolve([])
+      : discoverMtg(database.sets, sourceSnapshots, options),
+    options.sourceOnly ? Promise.resolve([]) : discoverPokemonEnglish(
       database.sets,
       sourceSnapshots,
       options,
       englishMasterIndex,
     ),
-    discoverJapaneseProducts(sourceSnapshots, options),
+    discoverJapaneseProducts(sourceSnapshots, options, japaneseCandidateSnapshot),
   ]);
-  const recentJapaneseCards = await discoverRecentJapaneseCards(
-    database, sourceSnapshots, options,
-  );
+  const recentJapaneseCards = options.sourceOnly
+    ? {
+        scanned_card_count: 0,
+        existing_card_count: 0,
+        missing_card_count: 0,
+        official_evidence_gap_count: 0,
+        detected_card_count: 0,
+        detail_request_count: 0,
+        detail_fetch_count: 0,
+        detail_fetch_truncated: false,
+        card_id_window: null,
+        cards: [],
+        source_only_skip: true,
+      }
+    : await discoverRecentJapaneseCards(database, sourceSnapshots, options);
   const sourceSets = [...onePieceSets, ...mtgSets, ...pokemonEnglishSets, ...japaneseSets];
   const reconciliation = reconcileCatalogSets({
     sourceSets,
@@ -964,6 +1153,7 @@ async function main() {
   });
   const summary = {
     ...summarizeCatalogReconciliation(reconciliation),
+    database_mode: options.sourceOnly ? "none" : "read-only transaction",
     recent_japanese_cards: {
       scanned: recentJapaneseCards.scanned_card_count,
       missing: recentJapaneseCards.missing_card_count,
@@ -991,10 +1181,22 @@ async function main() {
   });
   const pokemonMasterIndexUpdateCandidates =
     buildPokemonMasterIndexUpdateCandidatesV1(pokemonMasterIndexReconciliation);
+  const pokemonLanguageCandidateIndexReconciliation =
+    buildPokemonLanguageCandidateIndexReconciliationV1({
+      registry: pokemonLanguageCandidateRegistry,
+      canonicalCardCountsByLanguage: options.sourceOnly
+        ? {}
+        : {
+            en: database.english_canonical_cards.length,
+            ja: database.japanese_canonical_cards.length,
+          },
+    });
   summary.pokemon_master_index = pokemonMasterIndexReconciliation.summary;
   summary.pokemon_master_index.update_candidate_count =
     pokemonMasterIndexUpdateCandidates.length;
   summary.canonical_promotion_candidate_count = canonicalPromotionCandidates.length;
+  summary.pokemon_language_candidate_index =
+    pokemonLanguageCandidateIndexReconciliation.summary;
   const aliases = buildCatalogSearchAliases(reconciliation);
   sourceSnapshots.sort((left, right) =>
     left.request_url.localeCompare(right.request_url) ||
@@ -1012,8 +1214,14 @@ async function main() {
       japanese_master_index: {
         set_count: japaneseMasterIndex.sets.length,
         card_count: japaneseMasterIndex.cards.length,
+        base_set_fingerprint_sha256: japaneseMasterIndex.setFingerprint,
+        base_card_fingerprint_sha256: japaneseMasterIndex.cardFingerprint,
         set_fingerprint_sha256: japaneseMasterIndex.setFingerprint,
         card_fingerprint_sha256: japaneseMasterIndex.cardFingerprint,
+        incremental_overlay_fingerprint_sha256:
+          japaneseMasterIndex.incrementalOverlayFingerprint,
+        effective_set_fingerprint_sha256: contentFingerprint(japaneseMasterIndex.sets),
+        effective_card_fingerprint_sha256: contentFingerprint(japaneseMasterIndex.cards),
       },
       one_piece_warehouse_product_count: database.one_piece_warehouse_products.length,
       artifact_policy: "counts_only_for_large_database_collections",
@@ -1033,6 +1241,10 @@ async function main() {
     writeJson(
       path.join(options.outDir, "pokemon_master_index_update_candidates.json"),
       pokemonMasterIndexUpdateCandidates,
+    ),
+    writeJson(
+      path.join(options.outDir, "pokemon_language_candidate_index_reconciliation.json"),
+      pokemonLanguageCandidateIndexReconciliation,
     ),
     writeJson(path.join(options.outDir, "recent_japanese_card_gaps.json"), recentJapaneseCards),
     writeJson(path.join(options.outDir, "search_alias_candidates.json"), aliases),
