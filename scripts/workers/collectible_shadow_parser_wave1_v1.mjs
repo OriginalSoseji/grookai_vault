@@ -200,6 +200,30 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))].sort();
 }
 
+export function validateYugiohAuxiliaryPayloadsV1(manifest, sets) {
+  if (!Array.isArray(manifest) || manifest.length === 0 ||
+      !String(manifest[0]?.database_version ?? "").trim() ||
+      !String(manifest[0]?.last_update ?? "").trim()) {
+    throw new Error("YGOPRODeck manifest payload is malformed");
+  }
+  if (!Array.isArray(sets) || sets.length === 0 ||
+      sets.some((row) => !String(row?.set_name ?? "").trim())) {
+    throw new Error("YGOPRODeck set manifest payload is malformed");
+  }
+}
+
+export function validateGundamAuxiliaryPayloadsV1(manifest, sets) {
+  const manifestCount = Number(manifest?.card_count);
+  if (!String(manifest?.dataset_version ?? "").trim() ||
+      !Number.isInteger(manifestCount) || manifestCount < 0) {
+    throw new Error("Gundam manifest payload is malformed");
+  }
+  if (!Array.isArray(sets?.data) || sets.data.length === 0 ||
+      sets.data.some((row) => !String(row?.set_code ?? "").trim())) {
+    throw new Error("Gundam set manifest payload is malformed");
+  }
+}
+
 async function runYugioh(binding, options) {
   const prefix = binding.source.source_id;
   const [manifest, sets, cards] = await Promise.all([
@@ -231,6 +255,7 @@ async function runYugioh(binding, options) {
       sourceUrl: binding.source.data_url,
     }),
   ]);
+  validateYugiohAuxiliaryPayloadsV1(manifest.value, sets.value);
   const parsed = parseYugiohYgoprodeckCandidatesV1(
     cards.value,
     cards.snapshot.response_sha256,
@@ -296,6 +321,7 @@ async function runGundam(binding, options) {
       sourceUrl: binding.source.data_url,
     }),
   ]);
+  validateGundamAuxiliaryPayloadsV1(manifest.value, sets.value);
   const parsed = parseGundamGcgApiCandidatesV1(
     cards.value,
     cards.snapshot.response_sha256,

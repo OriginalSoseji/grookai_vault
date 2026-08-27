@@ -13,6 +13,8 @@ import {
 } from "../../backend/catalog/collectible_shadow_parser_wave1_v1.mjs";
 import {
   sanitizeSnapshotUrlV1,
+  validateGundamAuxiliaryPayloadsV1,
+  validateYugiohAuxiliaryPayloadsV1,
 } from "../../scripts/workers/collectible_shadow_parser_wave1_v1.mjs";
 import {
   validateCollectibleShadowAdapterRegistryV1,
@@ -140,6 +142,32 @@ test("source snapshots strip signed query and fragment data", () => {
   assert.equal(
     sanitizeSnapshotUrlV1("https://assets.example.test/cards.ndjson?sig=secret&expires=1#fragment"),
     "https://assets.example.test/cards.ndjson",
+  );
+});
+
+test("auxiliary API error envelopes cannot report a complete source", () => {
+  assert.doesNotThrow(() => validateYugiohAuxiliaryPayloadsV1(
+    readJson("yugioh_ygoprodeck_api_v7.manifest.json"),
+    readJson("yugioh_ygoprodeck_api_v7.sets.json"),
+  ));
+  assert.throws(
+    () => validateYugiohAuxiliaryPayloadsV1({ error: "rate limited" }, []),
+    /manifest payload is malformed/,
+  );
+  assert.throws(
+    () => validateYugiohAuxiliaryPayloadsV1(
+      readJson("yugioh_ygoprodeck_api_v7.manifest.json"),
+      { error: "changed schema" },
+    ),
+    /set manifest payload is malformed/,
+  );
+  assert.doesNotThrow(() => validateGundamAuxiliaryPayloadsV1(
+    readJson("gundam_gcg_api_v1.manifest.json"),
+    readJson("gundam_gcg_api_v1.sets.json"),
+  ));
+  assert.throws(
+    () => validateGundamAuxiliaryPayloadsV1({ error: "unavailable" }, { data: [] }),
+    /manifest payload is malformed/,
   );
 });
 

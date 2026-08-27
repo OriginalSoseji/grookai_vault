@@ -113,6 +113,7 @@ Any mismatch remains `needs_review`. It cannot be repaired by inventing rows.
 9. Candidate IDs are unique across the run.
 10. Artifacts are SHA-256 reconciled.
 11. Redirected source URLs are recorded without query strings or fragments.
+12. Auxiliary manifest and set payloads must pass source-specific schema checks.
 
 ## Required Artifacts
 
