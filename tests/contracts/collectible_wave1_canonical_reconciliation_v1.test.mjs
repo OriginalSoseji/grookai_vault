@@ -119,6 +119,25 @@ test("mapping-coordinate conflicts and duplicate owners fail closed", () => {
   assert.equal(ambiguous.canonical_match_ids.length, 2);
 });
 
+test("multiple canonical sets matching one candidate are ambiguous", () => {
+  const snapshot = canonicalSnapshot();
+  snapshot.sets.push({
+    ...snapshot.sets.find((row) => row.code === "GX01"),
+    id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb2",
+    name: "Fixture Gundam Set Duplicate",
+  });
+  const row = reconcileCollectibleCandidateV1(candidate({
+    source_candidate_id: "GX01-999",
+    identity_coordinates: {
+      ...candidate().identity_coordinates,
+      collector_number: "GX01-999",
+      card_name: "Unseen Unit",
+    },
+  }), snapshot);
+  assert.equal(row.decision, "ambiguous_candidate");
+  assert.ok(row.reason_codes.includes("multiple_canonical_sets_match_candidate_coordinates"));
+});
+
 test("rarity and number ownership conflicts are not treated as new cards", () => {
   const rarity = reconcileCollectibleCandidateV1(candidate({
     source_candidate_id: "unmapped-rarity",
@@ -173,6 +192,8 @@ test("worker is transaction-read-only and has no persistence authority", () => {
   assert.match(worker, /certificate_authority_verification: "not_configured_for_existing_connection"/);
   assert.match(worker, /begin isolation level repeatable read read only/i);
   assert.match(worker, /transaction_ended_with: "rollback"/);
+  assert.match(worker, /from public\.sets s\s+join public\.games g/);
+  assert.doesNotMatch(worker, /from public\.sets s\s+left join public\.games g/);
   assert.match(worker, /database_writes: false/);
   assert.match(worker, /storage_access: false/);
   assert.match(worker, /writer_dispatches: false/);

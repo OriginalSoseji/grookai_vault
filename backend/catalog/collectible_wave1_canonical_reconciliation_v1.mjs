@@ -284,6 +284,12 @@ function reconcileCandidate(candidate, snapshot, index) {
       ...variantReasons,
     ]);
   }
+  if (matchingSets.length > 1) {
+    return rowEnvelope(candidate, "ambiguous_candidate", [
+      "multiple_canonical_sets_match_candidate_coordinates",
+      ...variantReasons,
+    ]);
+  }
   const cardsInSet = matchingSets.flatMap((set) =>
     index.cardsByGameAndSet.get(compoundKey(foundations[0].id, set.id)) ?? []);
   const coordinates = candidate.identity_coordinates;

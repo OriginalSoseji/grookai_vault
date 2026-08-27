@@ -261,7 +261,7 @@ async function loadDatabaseSnapshot(databaseUrl, candidateGames) {
         s.name::text,
         g.id::text as game_id
       from public.sets s
-      left join public.games g
+      join public.games g
         on lower(g.code) = lower(s.game)
         or lower(g.slug) = lower(s.game)
       where lower(coalesce(s.game, '')) = any($1::text[])
