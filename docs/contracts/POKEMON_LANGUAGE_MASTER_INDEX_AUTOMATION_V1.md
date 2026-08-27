@@ -23,6 +23,13 @@ Each language has two independent states:
 `source_candidate` is not a weaker spelling of `master_admissible`. It is a
 different authority class.
 
+Provider rows that cannot safely join the normal set/card graph are retained as
+`source_anomalies`. This includes missing identity fields, cards with no source
+set owner, and colliding source IDs. The complete provider payload is preserved,
+the anomaly is fingerprinted, and `canonical_authority` remains false. A source
+anomaly is persistent evidence and operational debt, not a discarded row and
+not permission to invent a set owner.
+
 ## Daily Order
 
 ```text
@@ -73,6 +80,8 @@ A data-only update may merge automatically only when:
 - focused Master Index, discovery, and promotion contracts pass;
 - the final branch rebases cleanly onto current `main`;
 - the allowlisted diff and tests pass again after rebase.
+- the automation-created pull request's required guard is approved, completed,
+  and read back as successful before merge.
 
 The merged SHA, source fingerprints, row deltas, and downstream dispatches are
 recorded in the run artifacts.
@@ -105,6 +114,8 @@ silently substitute for missing card-level identity evidence.
 - Temporarily unobserved candidate rows remain present with revalidation debt.
 - Printed-name changes preserve prior names.
 - Coordinate changes fail closed.
+- Source anomalies remain evidence-only, are included in language fingerprints,
+  and keep the language adapter-health issue visible until independently fixed.
 - Automatic deletion is forbidden.
 
 ## Downstream Boundary
