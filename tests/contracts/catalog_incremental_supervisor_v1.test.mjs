@@ -84,6 +84,28 @@ test("Japanese product gaps without the writer's TCGdex authority stay held", ()
   assert.equal(plan.unsupported.length, 1);
 });
 
+test("Japanese numbered-base gaps route through frozen official and checklist evidence", () => {
+  const plan = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "pokemon",
+    source_id: "pokemon_card_official_jp_products",
+    status: "incomplete_cards",
+    source_code: "MEM",
+    source_set_id: "958",
+    database_code: "jpn-product-x",
+    expected_card_count: 18,
+    count_evidence: [{
+      authority: "limitless_jp_structured_checklist",
+      scope: "numbered_base_set",
+      count: 18,
+    }],
+  }]);
+  assert.deepEqual(plan.targets.map((row) => row.key), [
+    "pokemon_jpn_official:MEM",
+  ]);
+  assert.equal(plan.targets[0].requires_discovery_dir, true);
+  assert.equal(plan.unsupported.length, 0);
+});
+
 test("scheduled promotion workflow remains bounded and issue-visible", () => {
   const workflow = fs.readFileSync(
     new URL("../../.github/workflows/catalog-incremental-promotion.yml", import.meta.url),
@@ -93,6 +115,18 @@ test("scheduled promotion workflow remains bounded and issue-visible", () => {
   assert.match(workflow, /--max-targets=5/);
   assert.match(workflow, /--expected-head-sha="\$GITHUB_SHA"/);
   assert.match(workflow, /node --check scripts\/workers\/english_pokemon_incremental_promotion_v1\.mjs/);
+  assert.match(workflow, /node --check scripts\/workers\/japanese_official_incremental_promotion_v1\.mjs/);
   assert.match(workflow, /tests\/contracts\/english_pokemon_incremental_promotion_v1\.test\.mjs/);
+  assert.match(workflow, /tests\/contracts\/japanese_official_incremental_promotion_v1\.test\.mjs/);
+  assert.match(workflow, /Exact incremental self-hosting backlog/);
   assert.match(workflow, /actions\/upload-artifact@v4/);
+});
+
+test("MTG supervisor evaluates the current UTC date instead of a stale fixed date", () => {
+  const workflow = fs.readFileSync(
+    new URL("../../.github/workflows/mtg-catalog-supervisor.yml", import.meta.url),
+    "utf8",
+  );
+  assert.match(workflow, /--as-of="\$\(date -u \+%F\)"/);
+  assert.doesNotMatch(workflow, /--as-of=2026-08-16/);
 });

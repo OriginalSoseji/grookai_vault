@@ -98,7 +98,8 @@ export function reconcileJapaneseOfficialCardCoverage({
   );
   const coordinateMatches = (canonicalCards ?? []).filter((candidate) =>
     sourceSetCode && sourceNumber &&
-    normalizeJapanesePrintedSetCode(candidate.set_code) === sourceSetCode &&
+    [candidate.set_code, candidate.printed_set_abbrev]
+      .some((value) => normalizeJapanesePrintedSetCode(value) === sourceSetCode) &&
     normalizeCollectorNumber(candidate.number_plain ?? candidate.number) === sourceNumber);
   const sourceName = normalizeCatalogText(card?.printed_name);
   const exactNameMatches = coordinateMatches.filter((candidate) =>
@@ -130,15 +131,29 @@ export function reconcileJapaneseOfficialCardCoverage({
   };
 }
 
+export function catalogSetScope(row) {
+  const explicit = normalizeCatalogText(row?.catalog_scope);
+  if (explicit) return explicit;
+  const gameCode = clean(row?.game_code);
+  if (gameCode !== "pokemon") return normalizeCatalogText(gameCode) || "global";
+  const domains = [row?.identity_domain, ...(row?.identity_domains ?? [])]
+    .map(normalizeCatalogText).filter(Boolean);
+  if (domains.some((domain) => domain === "pokemon jpn")) return "pokemon ja";
+  if (domains.some((domain) => domain.startsWith("pokemon eng"))) return "pokemon en";
+  return "pokemon unspecified";
+}
+
 export function catalogSetMatchKeys(row) {
   const gameCode = clean(row.game_code);
+  const scope = catalogSetScope(row);
+  const scoped = (kind, value) => value ? `${scope}|${kind}:${value}` : "";
   return [...new Set([
-    row.code ? `code:${normalizeCatalogSetCode(gameCode, row.code)}` : "",
+    scoped("code", normalizeCatalogSetCode(gameCode, row.code)),
     ...(row.code_aliases ?? []).map((alias) =>
-      `code:${normalizeCatalogSetCode(gameCode, alias)}`),
-    row.source_set_id ? `source:${normalizeCatalogText(row.source_set_id)}` : "",
-    row.name ? `name:${normalizeCatalogText(row.name)}` : "",
-    ...(row.aliases ?? []).map((alias) => `name:${normalizeCatalogText(alias)}`),
+      scoped("code", normalizeCatalogSetCode(gameCode, alias))),
+    scoped("source", normalizeCatalogText(row.source_set_id)),
+    scoped("name", normalizeCatalogText(row.name)),
+    ...(row.aliases ?? []).map((alias) => scoped("name", normalizeCatalogText(alias))),
   ].filter((value) => value && !value.endsWith(":")))];
 }
 
@@ -170,7 +185,7 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
   for (const source of sourceSets ?? []) {
     const code = normalizeCatalogSetCode(source.game_code, source.code);
     if (!code) continue;
-    const key = `${source.game_code}:${code}`;
+    const key = `${source.game_code}:${catalogSetScope(source)}:${code}`;
     sourceCodeCounts.set(key, (sourceCodeCounts.get(key) ?? 0) + 1);
   }
   const results = [];
@@ -202,7 +217,9 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
     let status;
     const normalizedSourceCode = normalizeCatalogSetCode(source.game_code, source.code);
     if (normalizedSourceCode &&
-      (sourceCodeCounts.get(`${source.game_code}:${normalizedSourceCode}`) ?? 0) > 1) {
+      (sourceCodeCounts.get(
+        `${source.game_code}:${catalogSetScope(source)}:${normalizedSourceCode}`,
+      ) ?? 0) > 1) {
       status = CATALOG_GAP_STATUSES.AMBIGUOUS_SOURCE_IDENTITY;
     } else if (!database && candidates.length > 1) {
       status = CATALOG_GAP_STATUSES.AMBIGUOUS_SOURCE_IDENTITY;
@@ -226,6 +243,7 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
 
     results.push({
       game_code: source.game_code,
+      catalog_scope: catalogSetScope(source),
       source_id: source.source_id,
       source_set_id: source.source_set_id ?? null,
       source_code: source.code ?? null,

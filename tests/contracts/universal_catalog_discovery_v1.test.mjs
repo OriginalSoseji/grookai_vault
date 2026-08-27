@@ -208,6 +208,83 @@ test("recent Japanese cards distinguish canonical coverage from official evidenc
   assert.equal(evidenced.status, JAPANESE_CARD_COVERAGE_STATUSES.OFFICIAL_EVIDENCE_PRESENT);
 });
 
+test("Japanese official coordinates reconcile through printed set abbreviations", () => {
+  const result = reconcileJapaneseOfficialCardCoverage({
+    card: {
+      card_id: "50412",
+      printed_name: "サンダース",
+      source_set_code: "MEE",
+      card_number_raw: "001",
+    },
+    canonicalCards: [{
+      id: "card-print-id",
+      gv_id: "GV-PK-JPN-MEE-1",
+      name: "サンダース",
+      number: "1",
+      number_plain: "1",
+      set_code: "jpn-product-4b7ef0a0f96e6ef5",
+      printed_set_abbrev: "MEE",
+    }],
+  });
+  assert.equal(
+    result.status,
+    JAPANESE_CARD_COVERAGE_STATUSES.CANONICAL_PRESENT_OFFICIAL_EVIDENCE_MISSING,
+  );
+});
+
+test("Pokemon set matching is language scoped even when source codes differ only by case", () => {
+  const rows = reconcileCatalogSets({
+    sourceSets: [
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_en",
+        source_id: "tcgdex_english_set_registry",
+        source_set_id: "mee",
+        code: "mee",
+        name: "Mega Evolution Energy",
+        expected_card_count: 8,
+        count_scope: "full_set",
+        source_url: "https://example.com/en-mee",
+      },
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_ja",
+        source_id: "pokemon_card_official_jp_products",
+        source_set_id: "958",
+        code: "MEE",
+        name: "スターターセットex イーブイex",
+        expected_card_count: 20,
+        count_scope: "numbered_base_set",
+        source_url: "https://example.com/ja-mee",
+      },
+    ],
+    databaseSets: [
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_en",
+        code: "mee",
+        name: "Mega Evolution Energy",
+        card_count: 8,
+      },
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_ja",
+        code: "jpn-product-4b7ef0a0f96e6ef5",
+        name: "スターターセットex イーブイex",
+        card_count: 11,
+      },
+    ],
+    asOf: "2026-08-26",
+  });
+  const english = rows.find((row) => row.catalog_scope === "pokemon en");
+  const japanese = rows.find((row) => row.catalog_scope === "pokemon ja");
+  assert.equal(english.database_code, "mee");
+  assert.equal(english.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
+  assert.equal(japanese.database_code, "jpn-product-4b7ef0a0f96e6ef5");
+  assert.equal(japanese.status, CATALOG_GAP_STATUSES.INCOMPLETE_CARDS);
+  assert.equal(japanese.missing_card_count, 9);
+});
+
 test("duplicate official codes and zero-eligible source sets never become insertion candidates", () => {
   const rows = reconcileCatalogSets({
     sourceSets: [

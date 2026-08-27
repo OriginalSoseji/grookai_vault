@@ -5,6 +5,7 @@ import { Client } from "pg";
 
 import {
   buildCatalogSearchAliases,
+  catalogSetScope,
   CATALOG_GAP_STATUSES,
   JAPANESE_CARD_COVERAGE_STATUSES,
   normalizeCatalogText,
@@ -171,12 +172,17 @@ async function loadDatabaseSnapshot(databaseUrl) {
         s.code::text as code,
         s.name::text as name,
         s.release_date::text as release_date,
-        count(cp.id)::integer as card_count
+        count(distinct cp.id)::integer as card_count,
+        array_remove(array_agg(distinct identity.identity_domain), null)::text[]
+          as identity_domains
       from public.sets s
       left join public.games g on g.code = s.game
       left join public.card_prints cp
         on cp.game_id = g.id
        and lower(cp.set_code) = lower(s.code)
+      left join public.card_print_identity identity
+        on identity.card_print_id = cp.id
+       and identity.is_active
       where s.game = any($1::text[])
       group by s.game, s.code, s.name, s.release_date
       order by s.game, s.code
@@ -195,7 +201,8 @@ async function loadDatabaseSnapshot(databaseUrl) {
         cp.name::text,
         cp.number::text,
         cp.number_plain::text,
-        cp.set_code::text
+        cp.set_code::text,
+        cp.printed_set_abbrev::text
       from public.card_prints cp
       join public.card_print_identity identity
         on identity.card_print_id = cp.id
@@ -239,7 +246,10 @@ async function loadDatabaseSnapshot(databaseUrl) {
     `);
     await client.query("commit");
     return {
-      sets: sets.rows.map((row) => ({ ...row, card_count: Number(row.card_count) })),
+      sets: sets.rows.map((row) => {
+        const base = { ...row, card_count: Number(row.card_count) };
+        return { ...base, catalog_scope: catalogSetScope(base) };
+      }),
       official_japanese_card_ids: japaneseEvidence.rows.map((row) => row.source_external_id),
       japanese_canonical_cards: japaneseCanonicalCards.rows,
       english_canonical_cards: englishCanonicalCards.rows,
@@ -422,7 +432,7 @@ async function discoverPokemonEnglish(
   sourceSnapshots.push(sourceMetadata(registrySnapshot));
   const registry = Array.isArray(registrySnapshot.body) ? registrySnapshot.body : [];
   const databaseEnglish = databaseSets.filter((row) =>
-    row.game_code === "pokemon" && !/^jpn(?:[-_]|$)/i.test(clean(row.code)));
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon en");
   const databaseByCode = new Map();
   for (const row of databaseEnglish) {
     for (const code of [row.code, ...(row.code_aliases ?? [])]) {
@@ -460,6 +470,7 @@ async function discoverPokemonEnglish(
         Number(card.source_count) >= 2);
     return {
       game_code: "pokemon",
+      catalog_scope: "pokemon_en",
       source_id: "tcgdex_english_set_registry",
       source_set_id: clean(set.id),
       code: clean(set.id),
@@ -634,6 +645,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
       const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount;
       sourceSets.push({
         game_code: "pokemon",
+        catalog_scope: "pokemon_ja",
         source_id: "pokemon_card_official_jp_products",
         source_set_id: productId,
         code: sourceSetCode,
@@ -672,6 +684,12 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
             source_url: fullChecklist.cards[0]?.source_url ?? null,
           }] : []),
         ],
+        numbered_base_cards: (checklist?.cards ?? []).map((card) => ({
+          card_number_raw: card.card_number_raw,
+          image_url: card.image_url ?? null,
+          source_external_id: card.source_external_id ?? null,
+          source_url: card.source_url ?? null,
+        })),
         source_url: new URL(product.link_detailPage || product.link_cardList,
           "https://www.pokemon-card.com").toString(),
       });
@@ -817,13 +835,18 @@ async function main() {
     loadDatabaseSnapshot(options.databaseUrl),
     loadEnglishMasterIndex(),
   ]);
+  const japaneseDatabaseSets = database.sets.filter((row) =>
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon ja");
+  const englishDatabaseSets = database.sets.filter((row) =>
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon en");
   const englishAliasOverlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
-    databaseSets: database.sets.filter((row) => row.game_code === "pokemon"),
+    databaseSets: englishDatabaseSets,
     databaseCards: database.english_canonical_cards,
     masterCards: englishMasterIndex.cards,
   });
   database.sets = [
     ...database.sets.filter((row) => row.game_code !== "pokemon"),
+    ...japaneseDatabaseSets,
     ...englishAliasOverlay.sets,
   ];
   database.english_alias_resolutions = englishAliasOverlay.resolutions;

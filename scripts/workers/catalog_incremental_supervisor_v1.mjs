@@ -98,6 +98,24 @@ function targetForGap(gap) {
       ],
     };
   }
+  if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
+      gap.source_id === "pokemon_card_official_jp_products" &&
+      (gap.count_evidence ?? []).some((evidence) =>
+        evidence.authority === "limitless_jp_structured_checklist" &&
+        evidence.scope === "numbered_base_set" &&
+        Number(evidence.count) === Number(gap.expected_card_count)) &&
+      gap.source_code && gap.database_code && gap.source_set_id) {
+    return {
+      key: `pokemon_jpn_official:${String(gap.source_code).toUpperCase()}`,
+      worker: "scripts/workers/japanese_official_incremental_promotion_v1.mjs",
+      requires_discovery_dir: true,
+      args: [
+        `--source-set-code=${gap.source_code}`,
+        `--database-set-code=${gap.database_code}`,
+        `--product-id=${gap.source_set_id}`,
+      ],
+    };
+  }
   return null;
 }
 
@@ -143,6 +161,9 @@ function executeTarget(options, target, targetDir) {
     `--out-dir=${targetDir}`,
     ...target.args,
   ];
+  if (target.requires_discovery_dir) {
+    args.push(`--discovery-dir=${options.discoveryDir}`);
+  }
   if (options.mode === "apply") args.push(`--expected-head-sha=${options.expectedHeadSha}`);
   const result = spawnSync(process.execPath, args, {
     cwd: process.cwd(),
@@ -189,6 +210,18 @@ async function main() {
     if (result.exit_code !== 0) break;
   }
   const failed = results.filter((result) => result.exit_code !== 0);
+  const imageCandidates = [];
+  for (const result of results.filter((row) => row.exit_code === 0)) {
+    const manifestPath = path.join(result.artifact_directory, "image_candidate_manifest.json");
+    try {
+      const manifest = await readJson(manifestPath);
+      for (const candidate of manifest.candidates ?? []) {
+        imageCandidates.push({ target: result.target, ...candidate });
+      }
+    } catch (error) {
+      if (error?.code !== "ENOENT") throw error;
+    }
+  }
   const summary = {
     version: CATALOG_INCREMENTAL_SUPERVISOR_VERSION,
     mode: options.mode,
@@ -199,6 +232,7 @@ async function main() {
     failed_target_count: failed.length,
     deferred_target_count: plan.deferred_target_count,
     unsupported_gap_count: plan.unsupported.length,
+    pending_self_hosted_image_candidate_count: imageCandidates.length,
     targets: results.map((result) => ({
       target: result.target,
       worker: result.worker,
@@ -207,12 +241,22 @@ async function main() {
     })),
   };
   const resultsBody = await writeJson(path.join(options.outDir, "execution_results.json"), results);
+  const imageBacklogBody = await writeJson(
+    path.join(options.outDir, "image_candidate_backlog.json"),
+    {
+      version: CATALOG_INCREMENTAL_SUPERVISOR_VERSION,
+      policy: "candidate_only_requires_separate_self_hosting_promotion",
+      candidate_count: imageCandidates.length,
+      candidates: imageCandidates,
+    },
+  );
   const summaryBody = await writeJson(path.join(options.outDir, "summary.json"), summary);
   await writeJson(path.join(options.outDir, "artifact_hashes.json"), {
     algorithm: "sha256",
     artifacts: [
       ["supervisor_plan.json", planBody],
       ["execution_results.json", resultsBody],
+      ["image_candidate_backlog.json", imageBacklogBody],
       ["summary.json", summaryBody],
     ].map(([artifactPath, body]) => ({
       path: artifactPath,

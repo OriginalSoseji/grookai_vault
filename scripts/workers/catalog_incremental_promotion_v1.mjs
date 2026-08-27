@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 
 import pg from "pg";
 
@@ -240,7 +241,7 @@ async function loadOfficialEnrichmentTarget(client, officialCard) {
   };
 }
 
-async function computeIdentityHashes(client, plan) {
+export async function computeIdentityHashes(client, plan) {
   for (const row of plan.payload.rows) {
     const input = row.identity_hash_input;
     const result = await client.query(`
@@ -260,7 +261,7 @@ async function computeIdentityHashes(client, plan) {
   }
 }
 
-async function collisionPreflight(client, plan, enrichmentRows) {
+export async function collisionPreflight(client, plan, enrichmentRows = []) {
   const rows = plan.payload.rows;
   const evidence = [...rows.flatMap((row) => row.evidence), ...enrichmentRows];
   const checks = {
@@ -291,7 +292,7 @@ async function collisionPreflight(client, plan, enrichmentRows) {
   return checks;
 }
 
-async function insertRows(client, plan, enrichmentRows) {
+export async function insertRows(client, plan, enrichmentRows = []) {
   const rows = plan.payload.rows;
   if (rows.length > 0) {
     await client.query(`insert into public.card_prints (
@@ -360,7 +361,7 @@ async function insertRows(client, plan, enrichmentRows) {
   }
 }
 
-async function readback(client, plan, enrichmentRows) {
+export async function readback(client, plan, enrichmentRows = []) {
   const ids = plan.payload.rows.map((row) => row.card_print.id);
   const familyReviewIds = plan.payload.rows.map((row) => row.family_review.id);
   const evidenceIds = [
@@ -609,7 +610,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  process.stderr.write(`${error.stack ?? error.message}\n`);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    process.stderr.write(`${error.stack ?? error.message}\n`);
+    process.exitCode = 1;
+  });
+}
