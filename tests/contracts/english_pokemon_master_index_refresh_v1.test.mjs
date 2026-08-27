@@ -4,6 +4,7 @@ import test from "node:test";
 
 import {
   buildEnglishPokemonMasterIndexRefreshPlanV1,
+  preserveExistingFactOrderV1,
 } from "../../scripts/workers/english_pokemon_master_index_refresh_v1.mjs";
 
 function card(setKey, number, name) {
@@ -34,6 +35,42 @@ test("Master Index refresh admits additions without database authority", () => {
   assert.equal(plan.changed, true);
   assert.equal(plan.counts.added_cards, 1);
   assert.equal(plan.boundaries.database_writes, false);
+});
+
+test("fact fingerprints ignore source completion order", () => {
+  const first = card("a", "1", "Pikachu");
+  const second = card("b", "2", "Raichu");
+  const firstPrinting = printing("a", "1", "Pikachu", "holo");
+  const secondPrinting = printing("b", "2", "Raichu", "normal");
+  const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
+    baselineSets: [{ key: "b" }, { key: "a" }],
+    baselineCards: [second, first],
+    baselinePrintings: [secondPrinting, firstPrinting],
+    candidateSets: [{ key: "a" }, { key: "b" }],
+    candidateCards: [first, second],
+    candidatePrintings: [firstPrinting, secondPrinting],
+  });
+
+  assert.equal(plan.changed, false);
+  assert.equal(
+    plan.baseline_fact_fingerprint_sha256,
+    plan.candidate_fact_fingerprint_sha256,
+  );
+});
+
+test("data apply preserves retained authority order and appends additions deterministically", () => {
+  const rows = preserveExistingFactOrderV1({
+    baselineRows: [{ key: "b", value: "old" }, { key: "a", value: "old" }],
+    candidateRows: [
+      { key: "d", value: "new" },
+      { key: "a", value: "updated" },
+      { key: "c", value: "new" },
+      { key: "b", value: "updated" },
+    ],
+  });
+
+  assert.deepEqual(rows.map((row) => row.key), ["b", "a", "c", "d"]);
+  assert.deepEqual(rows.map((row) => row.value), ["updated", "updated", "new", "new"]);
 });
 
 test("Shiny Vault can fold into Hidden Fates without looking like data loss", () => {
