@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-08-27T08:29:03.414Z",
+  "generated_at": "2026-08-27T10:12:05.926Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -15,7 +15,7 @@
   },
   "summary": {
     "sets": 203,
-    "evidence_rows": 238177,
+    "evidence_rows": 237571,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -443,7 +443,7 @@
       },
       {
         "source_key": "pokemontcg_api",
-        "evidence_rows": 51842
+        "evidence_rows": 51841
       },
       {
         "source_key": "pokemonwizard_variant_exact",
@@ -639,7 +639,7 @@
       },
       {
         "source_key": "tcgplayer_price_guide",
-        "evidence_rows": 23896
+        "evidence_rows": 23291
       },
       {
         "source_key": "tcgplayer_pro_catalog_page",
@@ -3001,14 +3001,14 @@
       "master_verified": 21510
     },
     "printings_by_status": {
-      "api_agreed": 1,
-      "candidate_unconfirmed": 109,
+      "master_verified": 37762,
       "human_source_verified": 395,
-      "master_verified": 37762
+      "api_agreed": 1,
+      "candidate_unconfirmed": 109
     },
     "conflicts": 0,
     "manual_review": 213,
-    "suppressed_structured_finish_candidates": 1956,
+    "suppressed_structured_finish_candidates": 1957,
     "source_availability_by_status": {
       "bulbapedia_set_list|collected": 90,
       "bulbapedia_set_list|error": 112,
@@ -3016,19 +3016,24 @@
       "human_fixtures|collected": 1,
       "pkmncards|collected": 153,
       "pkmncards|error": 50,
-      "pokemontcg_api|cached_snapshot": 20,
-      "pokemontcg_api|collected": 143,
+      "pokemontcg_api|cached_snapshot": 8,
+      "pokemontcg_api|collected": 155,
       "pokemontcg_api|collected_plus_cached_snapshot": 11,
       "pokemontcg_api|unavailable": 29,
       "tcgdex|collected": 199,
       "tcgdex|unavailable": 4,
-      "tcgplayer_price_guide|cached_snapshot": 17,
-      "tcgplayer_price_guide|collected": 124,
-      "tcgplayer_price_guide|collected_plus_cached_snapshot": 12,
+      "tcgplayer_price_guide|cached_snapshot": 8,
+      "tcgplayer_price_guide|collected": 134,
+      "tcgplayer_price_guide|collected_plus_cached_snapshot": 11,
       "tcgplayer_price_guide|unavailable": 50,
       "thepricedex_price_list|collected": 175,
       "thepricedex_price_list|error": 27,
       "thepricedex_price_list|unavailable": 1
+    },
+    "continuity_carry_forward": {
+      "printing_count": 0,
+      "policy": "preserve_historical_authority_until_explicit_revalidation_or_revocation",
+      "alias_remap_count": 0
     }
   },
   "artifact_manifest": {

@@ -1,138 +1,40 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1",
-  "generated_at": "2026-08-27T08:29:03.414Z",
+  "generated_at": "2026-08-27T10:12:05.926Z",
   "audit_only": true,
   "db_writes": false,
   "rule": "Evidence set aliases are canonicalized before suppression and classification only when an alias resolves to exactly one configured English set.",
   "summary": {
-    "evidence_rows_examined": 327699,
-    "evidence_rows_after_dedupe": 240133,
+    "evidence_rows_examined": 327147,
+    "evidence_rows_after_dedupe": 239528,
     "evidence_rows_remapped": 2236,
-    "duplicate_rows_collapsed": 87566,
+    "duplicate_rows_collapsed": 87619,
     "unresolved_evidence_rows": 0,
     "ambiguous_aliases": 0,
-    "source_availability_rows_remapped": 0
+    "source_availability_rows_remapped": 0,
+    "historical_remaps_preserved": 0,
+    "effective_remaps": 34,
+    "folded_subset_owners": 2
   },
+  "folded_subset_owners": [
+    {
+      "source_set_key": "rc",
+      "source_set_name": "Radiant Collection",
+      "canonical_set_key": "bw11",
+      "canonical_set_name": "Legendary Treasures",
+      "authority": "english_master_index_folded_subset_owner_v1",
+      "note": "TCGdex exposes Radiant Collection RC1-RC25 as a standalone shell, but the English Master Index assigns those subset coordinates to Legendary Treasures. Generations Radiant Collection remains under g1."
+    },
+    {
+      "source_set_key": "sma",
+      "source_set_name": "Hidden Fates Shiny Vault",
+      "canonical_set_key": "sm115",
+      "canonical_set_name": "Hidden Fates",
+      "authority": "english_master_index_folded_subset_owner_v1",
+      "note": "TCGdex exposes SV1-SV94 as sma, while the English Master Index assigns those subset coordinates to Hidden Fates."
+    }
+  ],
   "remaps": [
-    {
-      "from_set_key": "sma",
-      "from_set_name": "Hidden Fates Shiny Vault",
-      "to_set_key": "sm115",
-      "to_set_name": "Hidden Fates",
-      "evidence_rows": 940
-    },
-    {
-      "from_set_key": "swsh45sv",
-      "from_set_name": "Shining Fates Shiny Vault",
-      "to_set_key": "swsh4.5sv",
-      "to_set_name": "Shining Fates Shiny Vault",
-      "evidence_rows": 244
-    },
-    {
-      "from_set_key": "me4",
-      "from_set_name": "Chaos Rising",
-      "to_set_key": "me04",
-      "to_set_name": "Chaos Rising",
-      "evidence_rows": 183
-    },
-    {
-      "from_set_key": "sv3",
-      "from_set_name": "Obsidian Flames",
-      "to_set_key": "sv03",
-      "to_set_name": "Obsidian Flames",
-      "evidence_rows": 164
-    },
-    {
-      "from_set_key": "swsh45",
-      "from_set_name": "Shining Fates",
-      "to_set_key": "swsh4.5",
-      "to_set_name": "Shining Fates",
-      "evidence_rows": 151
-    },
-    {
-      "from_set_key": "sv3pt5",
-      "from_set_name": "151",
-      "to_set_key": "sv03.5",
-      "to_set_name": "151",
-      "evidence_rows": 145
-    },
-    {
-      "from_set_key": "swsh12pt5gg",
-      "from_set_name": "Crown Zenith Galarian Gallery",
-      "to_set_key": "swsh12.5gg",
-      "to_set_name": "Crown Zenith Galarian Gallery",
-      "evidence_rows": 140
-    },
-    {
-      "from_set_key": "cel25c",
-      "from_set_name": "Celebrations: Classic Collection",
-      "to_set_key": "cel25cc",
-      "to_set_name": "Celebrations: Classic Collection",
-      "evidence_rows": 50
-    },
-    {
-      "from_set_key": "sm75",
-      "from_set_name": "Dragon Majesty",
-      "to_set_key": "sm7.5",
-      "to_set_name": "Dragon Majesty",
-      "evidence_rows": 39
-    },
-    {
-      "from_set_key": "sv2",
-      "from_set_name": "Paldea Evolved",
-      "to_set_key": "sv02",
-      "to_set_name": "Paldea Evolved",
-      "evidence_rows": 31
-    },
-    {
-      "from_set_key": "sv8pt5",
-      "from_set_name": "Prismatic Evolutions",
-      "to_set_key": "sv08.5",
-      "to_set_name": "Prismatic Evolutions",
-      "evidence_rows": 24
-    },
-    {
-      "from_set_key": "sv5",
-      "from_set_name": "Temporal Forces",
-      "to_set_key": "sv05",
-      "to_set_name": "Temporal Forces",
-      "evidence_rows": 21
-    },
-    {
-      "from_set_key": "sm35",
-      "from_set_name": "Shining Legends",
-      "to_set_key": "sm3.5",
-      "to_set_name": "Shining Legends",
-      "evidence_rows": 20
-    },
-    {
-      "from_set_key": "sv9",
-      "from_set_name": "Journey Together",
-      "to_set_key": "sv09",
-      "to_set_name": "Journey Together",
-      "evidence_rows": 17
-    },
-    {
-      "from_set_key": "sv7",
-      "from_set_name": "Stellar Crown",
-      "to_set_key": "sv07",
-      "to_set_name": "Stellar Crown",
-      "evidence_rows": 14
-    },
-    {
-      "from_set_key": "me1",
-      "from_set_name": "Mega Evolution",
-      "to_set_key": "me01",
-      "to_set_name": "Mega Evolution",
-      "evidence_rows": 9
-    },
-    {
-      "from_set_key": "sv6pt5",
-      "from_set_name": "Shrouded Fable",
-      "to_set_key": "sv06.5",
-      "to_set_name": "Shrouded Fable",
-      "evidence_rows": 7
-    },
     {
       "from_set_key": "bp",
       "from_set_name": "Best of Game",
@@ -141,53 +43,11 @@
       "evidence_rows": 6
     },
     {
-      "from_set_key": "sv6",
-      "from_set_name": "Twilight Masquerade",
-      "to_set_key": "sv06",
-      "to_set_name": "Twilight Masquerade",
-      "evidence_rows": 5
-    },
-    {
-      "from_set_key": "me2",
-      "from_set_name": "Phantasmal Flames",
-      "to_set_key": "me02",
-      "to_set_name": "Phantasmal Flames",
-      "evidence_rows": 4
-    },
-    {
-      "from_set_key": "pgo",
-      "from_set_name": "Pokémon GO",
-      "to_set_key": "swsh10.5",
-      "to_set_name": "Pokémon GO",
-      "evidence_rows": 3
-    },
-    {
-      "from_set_key": "sv1",
-      "from_set_name": "Scarlet & Violet",
-      "to_set_key": "sv01",
-      "to_set_name": "Scarlet & Violet",
-      "evidence_rows": 3
-    },
-    {
-      "from_set_key": "sv8",
-      "from_set_name": "Surging Sparks",
-      "to_set_key": "sv08",
-      "to_set_name": "Surging Sparks",
-      "evidence_rows": 3
-    },
-    {
-      "from_set_key": "hsp",
-      "from_set_name": "HGSS Black Star Promos",
-      "to_set_key": "hgssp",
-      "to_set_name": "HGSS Black Star Promos",
-      "evidence_rows": 2
-    },
-    {
-      "from_set_key": "zsv10pt5",
-      "from_set_name": "Black Bolt",
-      "to_set_key": "sv10.5b",
-      "to_set_name": "Black Bolt",
-      "evidence_rows": 2
+      "from_set_key": "cel25c",
+      "from_set_name": "Celebrations: Classic Collection",
+      "to_set_key": "cel25cc",
+      "to_set_name": "Celebrations: Classic Collection",
+      "evidence_rows": 50
     },
     {
       "from_set_key": "hgss2",
@@ -204,11 +64,144 @@
       "evidence_rows": 1
     },
     {
+      "from_set_key": "hsp",
+      "from_set_name": "HGSS Black Star Promos",
+      "to_set_key": "hgssp",
+      "to_set_name": "HGSS Black Star Promos",
+      "evidence_rows": 2
+    },
+    {
+      "from_set_key": "me1",
+      "from_set_name": "Mega Evolution",
+      "to_set_key": "me01",
+      "to_set_name": "Mega Evolution",
+      "evidence_rows": 9
+    },
+    {
+      "from_set_key": "me2",
+      "from_set_name": "Phantasmal Flames",
+      "to_set_key": "me02",
+      "to_set_name": "Phantasmal Flames",
+      "evidence_rows": 4
+    },
+    {
+      "from_set_key": "me4",
+      "from_set_name": "Chaos Rising",
+      "to_set_key": "me04",
+      "to_set_name": "Chaos Rising",
+      "evidence_rows": 183
+    },
+    {
+      "from_set_key": "pgo",
+      "from_set_name": "Pokémon GO",
+      "to_set_key": "swsh10.5",
+      "to_set_name": "Pokémon GO",
+      "evidence_rows": 3
+    },
+    {
       "from_set_key": "rsv10pt5",
       "from_set_name": "White Flare",
       "to_set_key": "sv10.5w",
       "to_set_name": "White Flare",
       "evidence_rows": 1
+    },
+    {
+      "from_set_key": "sm35",
+      "from_set_name": "Shining Legends",
+      "to_set_key": "sm3.5",
+      "to_set_name": "Shining Legends",
+      "evidence_rows": 20
+    },
+    {
+      "from_set_key": "sm75",
+      "from_set_name": "Dragon Majesty",
+      "to_set_key": "sm7.5",
+      "to_set_name": "Dragon Majesty",
+      "evidence_rows": 39
+    },
+    {
+      "from_set_key": "sma",
+      "from_set_name": "Hidden Fates Shiny Vault",
+      "to_set_key": "sm115",
+      "to_set_name": "Hidden Fates",
+      "evidence_rows": 940
+    },
+    {
+      "from_set_key": "sv1",
+      "from_set_name": "Scarlet & Violet",
+      "to_set_key": "sv01",
+      "to_set_name": "Scarlet & Violet",
+      "evidence_rows": 3
+    },
+    {
+      "from_set_key": "sv2",
+      "from_set_name": "Paldea Evolved",
+      "to_set_key": "sv02",
+      "to_set_name": "Paldea Evolved",
+      "evidence_rows": 31
+    },
+    {
+      "from_set_key": "sv3",
+      "from_set_name": "Obsidian Flames",
+      "to_set_key": "sv03",
+      "to_set_name": "Obsidian Flames",
+      "evidence_rows": 164
+    },
+    {
+      "from_set_key": "sv3pt5",
+      "from_set_name": "151",
+      "to_set_key": "sv03.5",
+      "to_set_name": "151",
+      "evidence_rows": 145
+    },
+    {
+      "from_set_key": "sv5",
+      "from_set_name": "Temporal Forces",
+      "to_set_key": "sv05",
+      "to_set_name": "Temporal Forces",
+      "evidence_rows": 21
+    },
+    {
+      "from_set_key": "sv6",
+      "from_set_name": "Twilight Masquerade",
+      "to_set_key": "sv06",
+      "to_set_name": "Twilight Masquerade",
+      "evidence_rows": 5
+    },
+    {
+      "from_set_key": "sv6pt5",
+      "from_set_name": "Shrouded Fable",
+      "to_set_key": "sv06.5",
+      "to_set_name": "Shrouded Fable",
+      "evidence_rows": 7
+    },
+    {
+      "from_set_key": "sv7",
+      "from_set_name": "Stellar Crown",
+      "to_set_key": "sv07",
+      "to_set_name": "Stellar Crown",
+      "evidence_rows": 14
+    },
+    {
+      "from_set_key": "sv8",
+      "from_set_name": "Surging Sparks",
+      "to_set_key": "sv08",
+      "to_set_name": "Surging Sparks",
+      "evidence_rows": 3
+    },
+    {
+      "from_set_key": "sv8pt5",
+      "from_set_name": "Prismatic Evolutions",
+      "to_set_key": "sv08.5",
+      "to_set_name": "Prismatic Evolutions",
+      "evidence_rows": 24
+    },
+    {
+      "from_set_key": "sv9",
+      "from_set_name": "Journey Together",
+      "to_set_key": "sv09",
+      "to_set_name": "Journey Together",
+      "evidence_rows": 17
     },
     {
       "from_set_key": "swsh12pt5",
@@ -218,11 +211,32 @@
       "evidence_rows": 1
     },
     {
+      "from_set_key": "swsh12pt5gg",
+      "from_set_name": "Crown Zenith Galarian Gallery",
+      "to_set_key": "swsh12.5gg",
+      "to_set_name": "Crown Zenith Galarian Gallery",
+      "evidence_rows": 140
+    },
+    {
       "from_set_key": "swsh35",
       "from_set_name": "Champion's Path",
       "to_set_key": "swsh3.5",
       "to_set_name": "Champion's Path",
       "evidence_rows": 1
+    },
+    {
+      "from_set_key": "swsh45",
+      "from_set_name": "Shining Fates",
+      "to_set_key": "swsh4.5",
+      "to_set_name": "Shining Fates",
+      "evidence_rows": 151
+    },
+    {
+      "from_set_key": "swsh45sv",
+      "from_set_name": "Shining Fates Shiny Vault",
+      "to_set_key": "swsh4.5sv",
+      "to_set_name": "Shining Fates Shiny Vault",
+      "evidence_rows": 244
     },
     {
       "from_set_key": "tk1a",
@@ -251,6 +265,13 @@
       "to_set_key": "tk-ex-m",
       "to_set_name": "EX Trainer Kit 2 Minun",
       "evidence_rows": 1
+    },
+    {
+      "from_set_key": "zsv10pt5",
+      "from_set_name": "Black Bolt",
+      "to_set_key": "sv10.5b",
+      "to_set_name": "Black Bolt",
+      "evidence_rows": 2
     }
   ],
   "remap_samples": [
