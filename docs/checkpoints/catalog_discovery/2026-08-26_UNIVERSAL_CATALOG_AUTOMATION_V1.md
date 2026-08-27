@@ -276,7 +276,7 @@ printing facts, zero conflicts, and zero unexplained removals.
 
 ## 2026-08-27 Master Index Ownership And Continuity Repair
 
-Status: `VERIFIED_PENDING_MERGE_AND_SCHEDULED_REPLAY`
+Status: `COMPLETE_MASTER_INDEX_FIRST_ORDERING_PROVEN`
 
 The English Pokemon refresh lane now enforces the permanent ordering rule:
 
@@ -403,14 +403,64 @@ exposes only a narrow recent official-source view. Other Pokemon languages do
 not yet have autonomous persistent adapters. They remain blocked from
 canonical promotion rather than bypassing the Master Index rule.
 
-### Exact Next Gates
+### Completed Production Replay
 
-1. Merge the ownership and continuity repair after required checks pass.
-2. Run `Pokemon Master Index Refresh` from the merged default-branch SHA.
-3. Review and merge only the generated data-only Master Index PR; it authorizes
-   no database write.
-4. Run Universal Catalog Discovery from the resulting merged data SHA.
-5. Confirm `rc` and `sma` reconcile through their owners and no longer appear as
-   canonical gaps.
-6. Run canonical promotion only if discovery produces nonzero, fully admitted
-   candidates. A zero-candidate result is valid and performs no write.
+The full merged sequence completed without a canonical write:
+
+| Gate | Proof |
+|---|---|
+| Ownership/continuity repair | PR `#256`, merge SHA `8e1490c73f579362153eb085db04c7c18431114e` |
+| English Master Index refresh | Run `33061925584`, success in `4m41s` |
+| Data-only Master Index update | PR `#257`, data SHA `a4b9a71eb099ca326f01878e6a7736701917205b` |
+| Authoritative data merge | SHA `84150b7b64ca97c267ff2cae04c6951206390469` |
+| Universal Catalog Discovery | Run `33062595622`, success in `3m48s` |
+
+The GitHub refresh re-observed all active printing facts directly:
+
+- sets: `203 -> 203`;
+- cards: `21,693 -> 21,693`;
+- printings: `38,267 -> 38,267`;
+- card identity additions/removals: `0 / 0`;
+- printing identity additions/removals: `0 / 0`;
+- current printing source-ledger changes: `688`, all
+  `master_verified -> master_verified`;
+- continuity printing carry-forward needed: `0`;
+- conflicts: `0`.
+
+The merged discovery readback proved:
+
+- source sets checked: `1,257`;
+- actionable gaps: `8`, all English Pokemon;
+- canonical promotion candidates: `0`;
+- `rc`: `alias_or_subset_owner_resolved`, owner `bw11`, no write;
+- `sma`: `alias_or_subset_owner_resolved`, owner `sm115`, no write;
+- `rc` or `sma` actionable/update candidates: `0`;
+- recent Japanese cards scanned: `312`;
+- recent Japanese missing cards: `0`;
+- recent Japanese official-evidence gaps: `0`;
+- database, Storage, canonical, pricing, publication, image-pointer, and Vault
+  writes: `0`.
+
+Discovery artifact hashes:
+
+| Artifact | SHA-256 |
+|---|---|
+| Summary | `0ddbc733b7cead9475e7cc5a13f1fbefe39d16151b2256ff5b4047c5cefb07bb` |
+| Actionable gaps | `e221b80281cf1e34335ab86cad21034486fcf95b79f068d48448e541f819d26e` |
+| Pokemon Master Index reconciliation | `1de22ab306917c00c878a1253f00ef5fe7aa44daceb9defb5eda783845e509a8` |
+| Pokemon Master Index update candidates | `109862665f5f70ef488f6ddb881ebd611c1585b9828c1a2a74c2fbd76103b713` |
+| Canonical promotion candidates | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
+| Database snapshot | `7065ad907dabfa9309602887f5c6a5aba45d421bb99ce3762d38e1ab9ffd68c5` |
+
+### Remaining Catalog Work
+
+No canonical promotion workflow was dispatched because the admitted candidate
+count is exactly zero. The remaining English Master Index acquisition queue is:
+
+- incomplete: `jumbo` (`160` expected), `mfb` (`48`), `tk-hs-g` (`30`),
+  `tk-hs-r` (`30`), `tk-sm-l` (`30`), `tk-sm-r` (`30`);
+- missing source shells: `miscp` (`1` expected), `sp` (`10`).
+
+These eight rows must receive complete, independent card-level Master Index
+evidence before canonical promotion can be considered. The automation must not
+weaken the evidence gate merely to reduce this queue.
