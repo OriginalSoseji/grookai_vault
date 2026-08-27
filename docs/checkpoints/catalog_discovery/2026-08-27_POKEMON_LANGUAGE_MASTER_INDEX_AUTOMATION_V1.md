@@ -93,7 +93,7 @@ Its durable stages are:
 
 1. fetch and normalize all registered language sources;
 2. write candidate cards, sets, manifests, and source anomalies;
-3. run the full contract suite against the proposed data branch;
+3. run the focused catalog contract set against the proposed data branch;
 4. open a data-only pull request when facts changed;
 5. approve and wait for the required generated-PR Guard;
 6. merge only after that Guard succeeds;
