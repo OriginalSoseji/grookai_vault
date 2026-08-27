@@ -353,6 +353,7 @@ test("worker persists source anomalies instead of failing the language", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "pokemon-language-anomaly-"));
   const source = path.join(root, "source");
   const out = path.join(root, "plan");
+  const baseline = path.join(root, "baseline");
   fs.mkdirSync(source, { recursive: true });
   fs.writeFileSync(path.join(source, "de.sets.json"), JSON.stringify([sets[0]]));
   fs.writeFileSync(path.join(source, "de.cards.json"), JSON.stringify([
@@ -363,6 +364,7 @@ test("worker persists source anomalies instead of failing the language", () => {
   const planned = spawnSync(process.execPath, [
     worker,
     "--mode=plan",
+    `--baseline-dir=${baseline}`,
     `--source-dir=${source}`,
     `--out-dir=${out}`,
     "--languages=de",
@@ -384,7 +386,6 @@ test("worker persists source anomalies instead of failing the language", () => {
   assert.equal(anomalies.length, 1);
   assert.equal(anomalies[0].source_payload.id, "pop8-1");
 
-  const baseline = path.join(root, "baseline");
   const applied = spawnSync(process.execPath, [
     worker,
     "--mode=apply-to-worktree",
