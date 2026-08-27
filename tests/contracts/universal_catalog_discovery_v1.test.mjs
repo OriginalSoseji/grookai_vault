@@ -5,8 +5,12 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
+  buildCanonicalPromotionCandidatesV1,
   buildCatalogSearchAliases,
+  buildPokemonLanguageMasterIndexReconciliationV1,
+  buildPokemonMasterIndexUpdateCandidatesV1,
   CATALOG_GAP_STATUSES,
+  classifyPokemonDatabaseSetScopesV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   normalizeCatalogSetCode,
   normalizeCatalogText,
@@ -14,6 +18,8 @@ import {
   reconcileCatalogSets,
   summarizeCatalogReconciliation,
 } from "../../backend/catalog/universal_catalog_discovery_v1.mjs";
+import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
+  "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -25,6 +31,24 @@ test("catalog normalization preserves Japanese authority text and canonicalizes 
   assert.equal(normalizeCatalogText("拡張パック「ストームエメラルダ」"), "拡張パック ストームエメラルダ");
   assert.equal(normalizeCatalogSetCode("one_piece", "OP-17"), "op17");
   assert.equal(normalizeCatalogSetCode("mtg", "HOB"), "hob");
+});
+
+test("Pokemon sets without active identities use Master Index scope or stay preserved", () => {
+  const rows = classifyPokemonDatabaseSetScopesV1({
+    databaseSets: [
+      { game_code: "pokemon", code: "en1", name: "English Empty", card_count: 0 },
+      { game_code: "pokemon", code: "M6", name: "Japanese Empty", card_count: 0 },
+      { game_code: "pokemon", code: "unknown", name: "Unresolved Empty", card_count: 0 },
+      { game_code: "mtg", code: "lea", name: "Limited Edition Alpha", card_count: 0 },
+    ],
+    englishMasterSets: [{ key: "en1", source_aliases: {} }],
+    japaneseMasterSets: [{ jpn_set_key: "jpn-m6", official_code_evidence: ["M6"] }],
+  });
+  assert.equal(rows[0].catalog_scope, "pokemon_en");
+  assert.equal(rows[1].catalog_scope, "pokemon_ja");
+  assert.equal(rows[2].catalog_scope, "pokemon_unspecified");
+  assert.equal(rows[3].catalog_scope, undefined);
+  assert.equal(rows.length, 4);
 });
 
 test("reconciliation distinguishes complete, missing, incomplete, and future sets", () => {
@@ -136,6 +160,128 @@ test("governed source-code aliases reconcile against their canonical owner", () 
   assert.equal(row.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
 });
 
+test("Master Index subset ownership resolves before canonical promotion", () => {
+  const masterCards = [
+    { set_key: "sma", card_number: "SV1", card_name: "Scyther", status: "master_verified", source_count: 3 },
+    { set_key: "sma", card_number: "SV2", card_name: "Rowlet", status: "master_verified", source_count: 3 },
+  ];
+  const overlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
+    databaseSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "sm115",
+      name: "Hidden Fates",
+      card_count: 2,
+    }],
+    databaseCards: [
+      { set_code: "sm115", number: "SV1", name: "Scyther" },
+      { set_code: "sm115", number: "SV2", name: "Rowlet" },
+    ],
+    masterCards,
+  });
+  assert.equal(overlay.resolutions[0].canonical_code, "sm115");
+  assert.deepEqual(overlay.sets[0].code_aliases, ["sma"]);
+  const [reconciled] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      source_id: "tcgdex_english_set_registry",
+      source_set_id: "sma",
+      code: "sma",
+      name: "Hidden Fates Shiny Vault",
+      expected_card_count: 2,
+      count_scope: "full_set",
+      source_url: "https://api.tcgdex.net/v2/en/sets/sma",
+    }],
+    databaseSets: overlay.sets,
+    asOf: "2026-08-26",
+  });
+  const master = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [reconciled],
+    englishMasterCards: masterCards,
+    englishAliasResolutions: overlay.resolutions,
+  });
+  assert.equal(reconciled.database_code, "sm115");
+  assert.equal(master.rows[0].master_index_status, "alias_or_subset_owner_resolved");
+  assert.equal(master.rows[0].promotion_decision, "no_write_existing_canonical_owner");
+  assert.deepEqual(buildCanonicalPromotionCandidatesV1({
+    actionableGaps: [reconciled],
+    pokemonMasterIndexReconciliation: master,
+  }), []);
+});
+
+test("new Pokemon sources stage in the Master Index before canonical writes", () => {
+  const [gap] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      source_id: "tcgdex_english_set_registry",
+      source_set_id: "new1",
+      code: "new1",
+      name: "New Set",
+      expected_card_count: 2,
+      count_scope: "full_set",
+      source_url: "https://example.com/new1",
+    }],
+    databaseSets: [],
+    asOf: "2026-08-26",
+  });
+  const master = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [gap],
+    englishMasterCards: [],
+  });
+  assert.equal(master.rows[0].master_index_status, "candidate_update_required");
+  assert.equal(master.rows[0].promotion_decision, "blocked_master_index_incomplete");
+  assert.deepEqual(
+    buildPokemonMasterIndexUpdateCandidatesV1(master).map((row) => row.source_code),
+    ["new1"],
+  );
+  assert.deepEqual(buildCanonicalPromotionCandidatesV1({
+    actionableGaps: [gap],
+    pokemonMasterIndexReconciliation: master,
+  }), []);
+});
+
+test("Japanese source counts cannot bypass the checked-in Japanese Master Index", () => {
+  const gap = {
+    game_code: "pokemon",
+    catalog_scope: "pokemon ja",
+    source_id: "pokemon_card_official_jp_products",
+    source_set_id: "955",
+    source_code: "M6",
+    source_name: "Storm Emeralda",
+    expected_card_count: 2,
+    status: CATALOG_GAP_STATUSES.INCOMPLETE_CARDS,
+    database_code: "jpn-m6",
+    count_evidence: [{
+      authority: "tcgdex_japanese_structured_api",
+      scope: "full_set",
+      count: 2,
+    }],
+  };
+  const withoutIndex = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [gap],
+  });
+  assert.equal(withoutIndex.rows[0].promotion_decision,
+    "blocked_master_index_incomplete");
+
+  const withIndex = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [gap],
+    japaneseMasterSets: [{
+      jpn_set_key: "jpn-m6",
+      official_code_evidence: ["M6"],
+      expected_card_count_evidence: [2],
+      master_admissible: true,
+    }],
+    japaneseMasterCards: [
+      { jpn_set_key: "jpn-m6", printed_number: "1", admission_status: "master_admissible" },
+      { jpn_set_key: "jpn-m6", printed_number: "2", admission_status: "master_admissible" },
+    ],
+  });
+  assert.equal(withIndex.rows[0].master_index_status, "master_verified");
+  assert.equal(withIndex.rows[0].promotion_decision, "canonical_delta_eligible");
+});
+
 test("multiple populated equivalent canonical rows remain ambiguous", () => {
   const [row] = reconcileCatalogSets({
     sourceSets: [{
@@ -208,6 +354,83 @@ test("recent Japanese cards distinguish canonical coverage from official evidenc
   assert.equal(evidenced.status, JAPANESE_CARD_COVERAGE_STATUSES.OFFICIAL_EVIDENCE_PRESENT);
 });
 
+test("Japanese official coordinates reconcile through printed set abbreviations", () => {
+  const result = reconcileJapaneseOfficialCardCoverage({
+    card: {
+      card_id: "50412",
+      printed_name: "サンダース",
+      source_set_code: "MEE",
+      card_number_raw: "001",
+    },
+    canonicalCards: [{
+      id: "card-print-id",
+      gv_id: "GV-PK-JPN-MEE-1",
+      name: "サンダース",
+      number: "1",
+      number_plain: "1",
+      set_code: "jpn-product-4b7ef0a0f96e6ef5",
+      printed_set_abbrev: "MEE",
+    }],
+  });
+  assert.equal(
+    result.status,
+    JAPANESE_CARD_COVERAGE_STATUSES.CANONICAL_PRESENT_OFFICIAL_EVIDENCE_MISSING,
+  );
+});
+
+test("Pokemon set matching is language scoped even when source codes differ only by case", () => {
+  const rows = reconcileCatalogSets({
+    sourceSets: [
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_en",
+        source_id: "tcgdex_english_set_registry",
+        source_set_id: "mee",
+        code: "mee",
+        name: "Mega Evolution Energy",
+        expected_card_count: 8,
+        count_scope: "full_set",
+        source_url: "https://example.com/en-mee",
+      },
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_ja",
+        source_id: "pokemon_card_official_jp_products",
+        source_set_id: "958",
+        code: "MEE",
+        name: "スターターセットex イーブイex",
+        expected_card_count: 20,
+        count_scope: "numbered_base_set",
+        source_url: "https://example.com/ja-mee",
+      },
+    ],
+    databaseSets: [
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_en",
+        code: "mee",
+        name: "Mega Evolution Energy",
+        card_count: 8,
+      },
+      {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_ja",
+        code: "jpn-product-4b7ef0a0f96e6ef5",
+        name: "スターターセットex イーブイex",
+        card_count: 11,
+      },
+    ],
+    asOf: "2026-08-26",
+  });
+  const english = rows.find((row) => row.catalog_scope === "pokemon en");
+  const japanese = rows.find((row) => row.catalog_scope === "pokemon ja");
+  assert.equal(english.database_code, "mee");
+  assert.equal(english.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
+  assert.equal(japanese.database_code, "jpn-product-4b7ef0a0f96e6ef5");
+  assert.equal(japanese.status, CATALOG_GAP_STATUSES.INCOMPLETE_CARDS);
+  assert.equal(japanese.missing_card_count, 9);
+});
+
 test("duplicate official codes and zero-eligible source sets never become insertion candidates", () => {
   const rows = reconcileCatalogSets({
     sourceSets: [
@@ -255,11 +478,30 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /serie\?\.id !== "tcgp"/);
   assert.match(worker, /pokemon-card\.com\/card-search\/resultAPI\.php/);
   assert.match(worker, /recent_japanese_card_gaps\.json/);
+  assert.match(worker, /pokemon_master_index_reconciliation\.json/);
+  assert.match(worker, /pokemon_master_index_update_candidates\.json/);
+  assert.match(worker, /canonical_promotion_candidates\.json/);
+  assert.match(worker, /cp\.set_id = s\.id/);
   assert.match(worker, /counts_only_for_large_database_collections/);
   assert.doesNotMatch(
     worker,
     /writeJson\(path\.join\(options\.outDir, "database_snapshot\.json"\), database\)/,
   );
+  const workflow = source(".github/workflows/universal-catalog-discovery.yml");
+  assert.match(
+    workflow,
+    /node --check scripts\/audits\/verified_master_set_index_v1_build_english_master_index\.mjs/,
+  );
+  assert.match(workflow, /Pokemon Master Index.*Language evidence update queue/s);
+});
+
+test("English Master Index rebuild permanently folds Shiny Vault into Hidden Fates", () => {
+  const builder = source(
+    "scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs",
+  );
+  assert.match(builder, /canonical_set_key: 'sm115'/);
+  assert.match(builder, /sma_shiny_vault_subset_to_sm115/);
+  assert.match(builder, /\^SV\\d\+\$/);
 });
 
 test("cross-TCG search uses game-scoped aliases and Unicode-safe set tokens", () => {

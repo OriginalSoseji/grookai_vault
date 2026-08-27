@@ -7,6 +7,7 @@ import pg from "pg";
 
 import {
   buildEnglishPokemonIncrementalSetPlanV1,
+  ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
   normalizeEnglishPokemonCardNameV1,
   normalizeEnglishPokemonCardNumberV1,
   validateEnglishPokemonIncrementalSetPlanV1,
@@ -468,6 +469,7 @@ async function main() {
     plan.payload_fingerprint_sha256 = sha256(stableJson(plan.payload));
     const validation = validateEnglishPokemonIncrementalSetPlanV1(plan);
     if (!validation.valid) throw new Error(`Plan validation failed: ${validation.findings.join(",")}`);
+    await writeJson(path.join(options.outDir, "preflight_plan.json"), plan);
     const collisions = await collisionPreflight(client, plan);
     let insertedReadback = null;
     let absenceReadback = null;
@@ -512,8 +514,14 @@ async function main() {
         number: row.card_print.number,
         evidence_count: row.evidence.length,
       })),
+      image_candidate_count: plan.counts.image_candidates,
     };
     await writeJson(path.join(options.outDir, "payload.json"), plan);
+    await writeJson(path.join(options.outDir, "image_candidate_manifest.json"), {
+      version: ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+      policy: "candidate_only_requires_separate_self_hosting_promotion",
+      candidates: plan.payload.image_candidates,
+    });
   } catch (error) {
     if (transactionOpen) await client.query("rollback").catch(() => {});
     throw error;

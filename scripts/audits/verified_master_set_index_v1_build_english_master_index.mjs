@@ -42,6 +42,12 @@ const FOLDED_SUBSET_SET_CONFIGS = new Map([
     source_set_name: 'Radiant Collection',
     note: 'TCGdex exposes Radiant Collection RC1-RC25 as a standalone shell, but the English Master Index represents those cards as Legendary Treasures subset cards under bw11. Generations Radiant Collection remains under g1.',
   }],
+  ['sma', {
+    canonical_set_key: 'sm115',
+    canonical_set_name: 'Hidden Fates',
+    source_set_name: 'Hidden Fates Shiny Vault',
+    note: 'TCGdex exposes the SV1-SV94 Shiny Vault subset as sma. The English Master Index assigns those coordinates to the canonical Hidden Fates owner sm115.',
+  }],
 ]);
 const HUMAN_REQUIRED_NOTE = 'Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.';
 const EXACT_CHECKLIST_SOURCE_KINDS = new Set([
@@ -1419,6 +1425,25 @@ function applyKnownSourceAlias(row, setConfigs) {
       source_alias: foldedSet.key,
       known_source_alias_normalized: true,
       known_source_alias_rule: 'rc_radiant_collection_subset_to_bw11',
+      known_source_alias_note: foldedRule.note,
+    };
+  }
+
+  if (setKey === 'sma') {
+    const foldedRule = FOLDED_SUBSET_SET_CONFIGS.get('sma');
+    const foldedSet = setConfigs.find((set) =>
+      normalizeText(set.key) === foldedRule?.canonical_set_key);
+    if (!foldedSet || !/^SV\d+$/i.test(cardNumber)) return row;
+    return {
+      ...row,
+      original_set_key: row.original_set_key ?? row.set_key ?? null,
+      original_set_name: row.original_set_name ?? row.set_name ?? null,
+      original_card_number: row.original_card_number ?? row.card_number ?? null,
+      set_key: foldedSet.key,
+      set_name: foldedSet.set_name,
+      source_alias: foldedSet.key,
+      known_source_alias_normalized: true,
+      known_source_alias_rule: 'sma_shiny_vault_subset_to_sm115',
       known_source_alias_note: foldedRule.note,
     };
   }

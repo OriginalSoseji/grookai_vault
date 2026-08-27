@@ -1,0 +1,113 @@
+name: Pokemon Master Index Refresh
+
+on:
+  schedule:
+    - cron: "37 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: pokemon-master-index-refresh-v1
+  cancel-in-progress: false
+
+jobs:
+  refresh-english:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify refresh contracts
+        run: |
+          node --check scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs
+          node --check scripts/workers/english_pokemon_master_index_refresh_v1.mjs
+          node --test tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs
+
+      - name: Rebuild English Master Index from source evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          CANDIDATE_DIR="$RUNNER_TEMP/english-master-index-candidate"
+          REPORT_DIR="$RUNNER_TEMP/english-master-index-refresh-report"
+          BASELINE_DIR="docs/audits/verified_master_set_index_v1/english_master_index_v1"
+          echo "CANDIDATE_DIR=$CANDIDATE_DIR" >> "$GITHUB_ENV"
+          echo "REPORT_DIR=$REPORT_DIR" >> "$GITHUB_ENV"
+          echo "BASELINE_DIR=$BASELINE_DIR" >> "$GITHUB_ENV"
+          node scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs \
+            --output-dir "$CANDIDATE_DIR" \
+            --concurrency 8 \
+            --skip-db-audit
+          node scripts/workers/english_pokemon_master_index_refresh_v1.mjs \
+            --mode=plan \
+            --baseline-dir="$BASELINE_DIR" \
+            --candidate-dir="$CANDIDATE_DIR" \
+            --out-dir="$REPORT_DIR"
+
+      - name: Apply changed facts to a data-only branch
+        id: apply
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHANGED="$(node -e "const p=require(process.argv[1]); process.stdout.write(String(p.changed))" "$REPORT_DIR/refresh_plan.json")"
+          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+          if [ "$CHANGED" != "true" ]; then exit 0; fi
+          BRANCH="automation/pokemon-master-index-refresh-$GITHUB_RUN_ID"
+          git checkout -b "$BRANCH"
+          node scripts/workers/english_pokemon_master_index_refresh_v1.mjs \
+            --mode=apply-to-worktree \
+            --baseline-dir="$BASELINE_DIR" \
+            --candidate-dir="$CANDIDATE_DIR" \
+            --out-dir="$REPORT_DIR"
+          node --test \
+            tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
+            tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
+            tests/contracts/universal_catalog_discovery_v1.test.mjs
+          git diff --check
+          git config user.name "grookai-catalog-automation"
+          git config user.email "catalog-automation@grookai.com"
+          git add "$BASELINE_DIR"
+          git commit -m "data(pokemon): refresh English Master Index"
+          git push origin "HEAD:$BRANCH"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Open governed Master Index update pull request
+        if: steps.apply.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.apply.outputs.branch }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh pr create \
+            --base "$BASE_BRANCH" \
+            --head "$BRANCH" \
+            --title "data(pokemon): refresh English Master Index" \
+            --body "Automated source-evidence refresh. This PR changes Master Index artifacts only. It performs no database, Storage, pricing, publication, or Vault writes. Canonical reconciliation remains a later gated workflow."
+
+      - name: Upload refresh evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-master-index-refresh-${{ github.run_id }}
+          path: |
+            ${{ env.REPORT_DIR }}
+            ${{ env.CANDIDATE_DIR }}/english_master_index_conflicts_v1.json
+            ${{ env.CANDIDATE_DIR }}/english_master_index_source_availability_v1.json
+          if-no-files-found: error
+          retention-days: 90

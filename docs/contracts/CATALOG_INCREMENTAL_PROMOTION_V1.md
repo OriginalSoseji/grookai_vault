@@ -1,5 +1,26 @@
 # Catalog Incremental Promotion V1
 
+## Pokemon Master Index Boundary
+
+Every Pokemon source row must enter a language-scoped Master Index reconciliation
+before it can become a canonical promotion target. The scheduled discovery run
+emits `pokemon_master_index_reconciliation.json` and derives
+`canonical_promotion_candidates.json` from it. The promotion supervisor consumes
+only the latter artifact.
+
+- English source cards require the complete, checked-in English Master Index.
+- Japanese source cards require the fingerprint-verified, checked-in Japanese
+  V4 Master Index set and card datasets. Fresh official/checklist counts can
+  create an index-update candidate, but cannot authorize a canonical write in
+  the same run.
+- Alias and folded-subset coordinates resolve to their existing canonical owner
+  and produce no duplicate set or card writes.
+- A newly observed or incomplete source set becomes a Master Index update
+  candidate. It cannot reach a canonical writer until that language's evidence
+  contract admits it.
+- Canonical set ownership is read through `card_prints.set_id`; printed set codes
+  and abbreviations are identity evidence and must not be used as ownership joins.
+
 ## Purpose
 
 Keep supported TCG catalogs current without turning source discovery into permission to mutate canonical identity. The supervisor consumes a frozen discovery artifact and invokes only an exact source-specific writer for a governed gap shape.
@@ -20,10 +41,17 @@ Supported automatic lanes:
 
 - MTG: a fully missing, released Scryfall English paper set.
 - One Piece: a fully missing, released Bandai set where numbered products bind exactly to official card number and name authority. DON!!, sealed, ambiguous, and mismatched products are excluded.
-- Japanese Pokemon: an incomplete existing set only when the frozen discovery row contains TCGdex full-set authority, TCGdex and an independent checklist agree on coverage, and every Pokemon species resolves exactly. Product shapes without that endpoint remain report-only.
+- Japanese Pokemon, full-set lane: an incomplete existing set only when the frozen discovery row contains TCGdex full-set authority, TCGdex and an independent checklist agree on coverage, and every Pokemon species resolves exactly.
+- Japanese Pokemon, numbered-product lane: an incomplete existing set may use the official Japanese card source plus a frozen Limitless numbered-base checklist when every missing checklist coordinate has one exact official card, the existing and proposed coordinates close the numbered set exactly, and no source-set conflict exists. Official Japanese printed names are preserved. English names and species links remain unresolved unless independently proven; family promotion remains disabled.
 - English Pokemon: an incomplete existing set only when TCGdex full-set count and the immutable English Master Index agree exactly, every Master Index identity is `master_verified` by at least two independent sources, and the dedicated writer resolves every missing family without a collision.
 
-English gaps without complete Master Index admission remain report-only.
+English gaps without complete Master Index admission remain report-only and issue-visible. Source discovery is not permission to fill historical special sets from one catalog.
+
+The same rule applies to Japanese gaps. A Japanese set owner and every card in
+the proposed delta must already be admitted by the checked-in Japanese Master
+Index before the supervisor can select a canonical writer. Adding another
+Pokemon language requires a language-specific Master Index adapter and checked-in
+authority; unknown language scopes fail closed.
 
 ## Release Rules
 
@@ -31,7 +59,8 @@ English gaps without complete Master Index admission remain report-only.
 - Existing exact sets produce zero writes.
 - Partial MTG and One Piece sets are held because an insert-only writer cannot safely repair unknown omissions.
 - Ambiguous source identities and source disagreements are held.
-- Images remain missing until the separate self-hosted image pipeline promotes an exact asset.
+- Images remain missing until the separate self-hosted image pipeline promotes an exact asset. Writers emit a hashed exact-image candidate manifest; the supervisor aggregates it into `image_candidate_backlog.json` and reports a GitHub follow-up without creating external public pointers.
+- Pokemon source matching is language scoped. English and Japanese set codes that differ only by case, such as `mee` and `MEE`, are independent identities.
 - Search aliases are code changes or immutable governed data; source text never directly changes canonical identity.
 
 ## Required Proof

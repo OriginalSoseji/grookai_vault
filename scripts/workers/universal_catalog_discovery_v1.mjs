@@ -4,8 +4,13 @@ import process from "node:process";
 import { Client } from "pg";
 
 import {
+  buildCanonicalPromotionCandidatesV1,
   buildCatalogSearchAliases,
+  buildPokemonLanguageMasterIndexReconciliationV1,
+  buildPokemonMasterIndexUpdateCandidatesV1,
+  catalogSetScope,
   CATALOG_GAP_STATUSES,
+  classifyPokemonDatabaseSetScopesV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
@@ -33,6 +38,10 @@ import { parseBulbapediaJapaneseCardList } from
   "../audits/japanese_master_index_v4/card_source_adapters/bulbapedia_jp_v1.mjs";
 import { parseTcgdexJapaneseSetPayload } from
   "../audits/japanese_master_index_v4/card_source_adapters/tcgdex_ja_v1.mjs";
+import { readVerifiedArtifact } from
+  "../audits/japanese_master_index_v4/artifact_rows_v1.mjs";
+import { contentFingerprint } from
+  "../audits/japanese_master_index_v4/deterministic_artifact_v1.mjs";
 import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
   "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 
@@ -45,6 +54,53 @@ const GAME_CODES = ["pokemon", "mtg", "one_piece"];
 const ENGLISH_MASTER_INDEX_DIR = path.join(
   "docs", "audits", "verified_master_set_index_v1", "english_master_index_v1",
 );
+const JAPANESE_MASTER_INDEX_DIR = path.join(
+  "docs", "audits", "japanese_master_index_v4", "final",
+);
+
+async function loadVerifiedJapaneseMasterIndexDataset(descriptorName, expectedKey) {
+  const descriptorPath = path.join(JAPANESE_MASTER_INDEX_DIR, descriptorName);
+  const { artifact: descriptorArtifact } = await readVerifiedArtifact(descriptorPath);
+  const descriptor = descriptorArtifact.content?.dataset;
+  if (descriptor?.dataset_key !== expectedKey) {
+    throw new Error(`Japanese Master Index descriptor mismatch: ${expectedKey}`);
+  }
+  const rows = [];
+  for (let index = 0; index < descriptor.shard_paths.length; index += 1) {
+    const { artifact: shard } = await readVerifiedArtifact(descriptor.shard_paths[index]);
+    if (shard.content?.dataset_key !== expectedKey ||
+        shard.content?.shard_index !== index + 1 ||
+        shard.content?.shard_count !== descriptor.shard_count ||
+        shard.content?.row_count !== shard.content?.rows?.length) {
+      throw new Error(`Japanese Master Index shard mismatch: ${expectedKey}`);
+    }
+    rows.push(...shard.content.rows);
+  }
+  if (rows.length !== descriptor.row_count ||
+      contentFingerprint(rows) !== descriptor.content_fingerprint_sha256) {
+    throw new Error(`Japanese Master Index dataset fingerprint mismatch: ${expectedKey}`);
+  }
+  return { rows, fingerprint: descriptor.content_fingerprint_sha256 };
+}
+
+async function loadJapaneseMasterIndex() {
+  const [sets, cards] = await Promise.all([
+    loadVerifiedJapaneseMasterIndexDataset(
+      "jpn_master_admissible_sets_v1.json",
+      "master_admissible_set_rows_v1",
+    ),
+    loadVerifiedJapaneseMasterIndexDataset(
+      "jpn_master_admissible_cards_v1.json",
+      "master_admissible_card_rows_v1",
+    ),
+  ]);
+  return {
+    sets: sets.rows,
+    cards: cards.rows,
+    setFingerprint: sets.fingerprint,
+    cardFingerprint: cards.fingerprint,
+  };
+}
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -171,12 +227,15 @@ async function loadDatabaseSnapshot(databaseUrl) {
         s.code::text as code,
         s.name::text as name,
         s.release_date::text as release_date,
-        count(cp.id)::integer as card_count
+        count(distinct cp.id)::integer as card_count,
+        array_remove(array_agg(distinct identity.identity_domain), null)::text[]
+          as identity_domains
       from public.sets s
-      left join public.games g on g.code = s.game
       left join public.card_prints cp
-        on cp.game_id = g.id
-       and lower(cp.set_code) = lower(s.code)
+        on cp.set_id = s.id
+      left join public.card_print_identity identity
+        on identity.card_print_id = cp.id
+       and identity.is_active
       where s.game = any($1::text[])
       group by s.game, s.code, s.name, s.release_date
       order by s.game, s.code
@@ -195,7 +254,8 @@ async function loadDatabaseSnapshot(databaseUrl) {
         cp.name::text,
         cp.number::text,
         cp.number_plain::text,
-        cp.set_code::text
+        cp.set_code::text,
+        cp.printed_set_abbrev::text
       from public.card_prints cp
       join public.card_print_identity identity
         on identity.card_print_id = cp.id
@@ -205,16 +265,17 @@ async function loadDatabaseSnapshot(databaseUrl) {
     `);
     const englishCanonicalCards = await client.query(`
       select distinct
-        cp.set_code::text,
+        s.code::text as set_code,
         cp.name::text,
         cp.number::text,
         cp.number_plain::text
       from public.card_prints cp
+      join public.sets s on s.id = cp.set_id
       join public.card_print_identity identity
         on identity.card_print_id = cp.id
        and identity.is_active
        and identity.identity_domain = 'pokemon_eng_standard'
-      order by cp.set_code, cp.number_plain, cp.number, cp.name
+      order by s.code, cp.number_plain, cp.number, cp.name
     `);
     const onePieceWarehouse = await client.query(`
       select
@@ -239,7 +300,10 @@ async function loadDatabaseSnapshot(databaseUrl) {
     `);
     await client.query("commit");
     return {
-      sets: sets.rows.map((row) => ({ ...row, card_count: Number(row.card_count) })),
+      sets: sets.rows.map((row) => {
+        const base = { ...row, card_count: Number(row.card_count) };
+        return { ...base, catalog_scope: catalogSetScope(base) };
+      }),
       official_japanese_card_ids: japaneseEvidence.rows.map((row) => row.source_external_id),
       japanese_canonical_cards: japaneseCanonicalCards.rows,
       english_canonical_cards: englishCanonicalCards.rows,
@@ -422,7 +486,7 @@ async function discoverPokemonEnglish(
   sourceSnapshots.push(sourceMetadata(registrySnapshot));
   const registry = Array.isArray(registrySnapshot.body) ? registrySnapshot.body : [];
   const databaseEnglish = databaseSets.filter((row) =>
-    row.game_code === "pokemon" && !/^jpn(?:[-_]|$)/i.test(clean(row.code)));
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon en");
   const databaseByCode = new Map();
   for (const row of databaseEnglish) {
     for (const code of [row.code, ...(row.code_aliases ?? [])]) {
@@ -460,6 +524,7 @@ async function discoverPokemonEnglish(
         Number(card.source_count) >= 2);
     return {
       game_code: "pokemon",
+      catalog_scope: "pokemon_en",
       source_id: "tcgdex_english_set_registry",
       source_set_id: clean(set.id),
       code: clean(set.id),
@@ -489,15 +554,20 @@ async function discoverPokemonEnglish(
 
 async function loadEnglishMasterIndex() {
   const cardsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_cards_v1.json");
-  const bytes = await fs.readFile(cardsFile);
+  const setsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_sets_v1.json");
+  const [bytes, setsBytes] = await Promise.all([
+    fs.readFile(cardsFile),
+    fs.readFile(setsFile),
+  ]);
   const cards = JSON.parse(bytes).cards ?? [];
+  const sets = JSON.parse(setsBytes).sets ?? [];
   const cardsBySet = new Map();
   for (const card of cards) {
     const rows = cardsBySet.get(clean(card.set_key)) ?? [];
     rows.push(card);
     cardsBySet.set(clean(card.set_key), rows);
   }
-  return { cards, cardsBySet, cardsSha256: sha256(bytes) };
+  return { sets, cards, cardsBySet, cardsSha256: sha256(bytes) };
 }
 
 function officialJapaneseProductUrl(productType, page) {
@@ -634,6 +704,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
       const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount;
       sourceSets.push({
         game_code: "pokemon",
+        catalog_scope: "pokemon_ja",
         source_id: "pokemon_card_official_jp_products",
         source_set_id: productId,
         code: sourceSetCode,
@@ -672,6 +743,12 @@ async function discoverJapaneseProducts(sourceSnapshots, options) {
             source_url: fullChecklist.cards[0]?.source_url ?? null,
           }] : []),
         ],
+        numbered_base_cards: (checklist?.cards ?? []).map((card) => ({
+          card_number_raw: card.card_number_raw,
+          image_url: card.image_url ?? null,
+          source_external_id: card.source_external_id ?? null,
+          source_url: card.source_url ?? null,
+        })),
         source_url: new URL(product.link_detailPage || product.link_cardList,
           "https://www.pokemon-card.com").toString(),
       });
@@ -813,17 +890,31 @@ async function main() {
   };
   await writeJson(path.join(options.outDir, "run_plan.json"), runPlan);
 
-  const [database, englishMasterIndex] = await Promise.all([
+  const [database, englishMasterIndex, japaneseMasterIndex] = await Promise.all([
     loadDatabaseSnapshot(options.databaseUrl),
     loadEnglishMasterIndex(),
+    loadJapaneseMasterIndex(),
   ]);
+  const classifiedDatabaseSets = classifyPokemonDatabaseSetScopesV1({
+    databaseSets: database.sets,
+    englishMasterSets: englishMasterIndex.sets,
+    japaneseMasterSets: japaneseMasterIndex.sets,
+  });
+  const japaneseDatabaseSets = classifiedDatabaseSets.filter((row) =>
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon ja");
+  const englishDatabaseSets = classifiedDatabaseSets.filter((row) =>
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon en");
+  const unresolvedPokemonSets = classifiedDatabaseSets.filter((row) =>
+    row.game_code === "pokemon" && catalogSetScope(row) === "pokemon unspecified");
   const englishAliasOverlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
-    databaseSets: database.sets.filter((row) => row.game_code === "pokemon"),
+    databaseSets: englishDatabaseSets,
     databaseCards: database.english_canonical_cards,
     masterCards: englishMasterIndex.cards,
   });
   database.sets = [
     ...database.sets.filter((row) => row.game_code !== "pokemon"),
+    ...unresolvedPokemonSets,
+    ...japaneseDatabaseSets,
     ...englishAliasOverlay.sets,
   ];
   database.english_alias_resolutions = englishAliasOverlay.resolutions;
@@ -868,6 +959,24 @@ async function main() {
     CATALOG_GAP_STATUSES.MISSING_SET,
     CATALOG_GAP_STATUSES.INCOMPLETE_CARDS,
   ].includes(row.status));
+  const pokemonMasterIndexReconciliation =
+    buildPokemonLanguageMasterIndexReconciliationV1({
+      reconciliation,
+      englishMasterCards: englishMasterIndex.cards,
+      englishAliasResolutions: database.english_alias_resolutions,
+      japaneseMasterSets: japaneseMasterIndex.sets,
+      japaneseMasterCards: japaneseMasterIndex.cards,
+    });
+  const canonicalPromotionCandidates = buildCanonicalPromotionCandidatesV1({
+    actionableGaps: gaps,
+    pokemonMasterIndexReconciliation,
+  });
+  const pokemonMasterIndexUpdateCandidates =
+    buildPokemonMasterIndexUpdateCandidatesV1(pokemonMasterIndexReconciliation);
+  summary.pokemon_master_index = pokemonMasterIndexReconciliation.summary;
+  summary.pokemon_master_index.update_candidate_count =
+    pokemonMasterIndexUpdateCandidates.length;
+  summary.canonical_promotion_candidate_count = canonicalPromotionCandidates.length;
   const aliases = buildCatalogSearchAliases(reconciliation);
   sourceSnapshots.sort((left, right) =>
     left.request_url.localeCompare(right.request_url) ||
@@ -880,6 +989,12 @@ async function main() {
       japanese_canonical_card_count: database.japanese_canonical_cards.length,
       english_canonical_card_count: database.english_canonical_cards.length,
       english_alias_resolutions: database.english_alias_resolutions,
+      japanese_master_index: {
+        set_count: japaneseMasterIndex.sets.length,
+        card_count: japaneseMasterIndex.cards.length,
+        set_fingerprint_sha256: japaneseMasterIndex.setFingerprint,
+        card_fingerprint_sha256: japaneseMasterIndex.cardFingerprint,
+      },
       one_piece_warehouse_product_count: database.one_piece_warehouse_products.length,
       artifact_policy: "counts_only_for_large_database_collections",
     }),
@@ -887,6 +1002,18 @@ async function main() {
     writeJson(path.join(options.outDir, "source_sets.json"), sourceSets),
     writeJson(path.join(options.outDir, "catalog_reconciliation.json"), reconciliation),
     writeJson(path.join(options.outDir, "actionable_gaps.json"), gaps),
+    writeJson(
+      path.join(options.outDir, "pokemon_master_index_reconciliation.json"),
+      pokemonMasterIndexReconciliation,
+    ),
+    writeJson(
+      path.join(options.outDir, "canonical_promotion_candidates.json"),
+      canonicalPromotionCandidates,
+    ),
+    writeJson(
+      path.join(options.outDir, "pokemon_master_index_update_candidates.json"),
+      pokemonMasterIndexUpdateCandidates,
+    ),
     writeJson(path.join(options.outDir, "recent_japanese_card_gaps.json"), recentJapaneseCards),
     writeJson(path.join(options.outDir, "search_alias_candidates.json"), aliases),
     writeJson(path.join(options.outDir, "summary.json"), summary),

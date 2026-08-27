@@ -1,5 +1,12 @@
 # Universal Catalog Discovery Supervisor V1
 
+## Pokemon Master Index First
+
+Pokemon discovery is ordered as source evidence, language-scoped Master Index
+reconciliation, canonical owner reconciliation, and only then a promotion
+candidate. Raw Pokemon gaps are never direct writer input. English and Japanese
+remain separate language authorities, and unknown language scopes are blocked.
+
 ## Purpose
 
 Grookai must detect official TCG set and card changes before collectors report a missing release. This supervisor compares current first-party catalog authority against the production canonical database and emits governed gaps. It does not mutate catalog truth.
