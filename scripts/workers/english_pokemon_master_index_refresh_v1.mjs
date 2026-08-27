@@ -152,10 +152,36 @@ function factProjection({ sets, cards, printings }) {
       release_date: row.release_date,
       source_aliases: row.source_aliases,
       source_totals: row.source_totals,
-    })),
-    cards,
-    printings,
+    })).sort((left, right) => normalizeText(left.key ?? left.set_name)
+      .localeCompare(normalizeText(right.key ?? right.set_name))),
+    cards: [...cards].sort((left, right) => cardKey(left).localeCompare(cardKey(right))),
+    printings: [...printings]
+      .sort((left, right) => printingKey(left).localeCompare(printingKey(right))),
   };
+}
+
+export function preserveExistingFactOrderV1({
+  baselineRows = [],
+  candidateRows = [],
+  baselineKey = (row) => row.key,
+  candidateKey = (row) => row.key,
+}) {
+  const candidateByKey = new Map(candidateRows.map((row) => [candidateKey(row), row]));
+  const seen = new Set();
+  const ordered = [];
+
+  for (const baselineRow of baselineRows) {
+    const key = baselineKey(baselineRow);
+    const candidateRow = candidateByKey.get(key);
+    if (!candidateRow || seen.has(key)) continue;
+    ordered.push(candidateRow);
+    seen.add(key);
+  }
+
+  const additions = candidateRows
+    .filter((row) => !seen.has(candidateKey(row)))
+    .sort((left, right) => candidateKey(left).localeCompare(candidateKey(right)));
+  return [...ordered, ...additions];
 }
 
 export function buildEnglishPokemonMasterIndexRefreshPlanV1({
@@ -304,9 +330,58 @@ async function loadAuthority(dir) {
   };
 }
 
-async function writeJson(file, value) {
+async function writeJson(file, value, { compact = false } = {}) {
   await fs.mkdir(path.dirname(file), { recursive: true });
-  await fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  const body = compact ? JSON.stringify(value) : JSON.stringify(value, null, 2);
+  await fs.writeFile(file, `${body}\n`, "utf8");
+}
+
+async function applyCandidateAuthority(options) {
+  const orderAwareFiles = new Set([
+    "english_master_index_cards_v1.json",
+    "english_master_index_printings_v1.json",
+  ]);
+  for (const file of MASTER_INDEX_AUTHORITY_FILES) {
+    if (orderAwareFiles.has(file)) continue;
+    await fs.copyFile(path.join(options.candidateDir, file), path.join(options.baselineDir, file));
+  }
+
+  const [baselineCards, candidateCards, baselinePrintings, candidatePrintings] =
+    await Promise.all([
+      readJson(options.baselineDir, "english_master_index_cards_v1.json"),
+      readJson(options.candidateDir, "english_master_index_cards_v1.json"),
+      readJson(options.baselineDir, "english_master_index_printings_v1.json"),
+      readJson(options.candidateDir, "english_master_index_printings_v1.json"),
+    ]);
+
+  candidateCards.cards = preserveExistingFactOrderV1({
+    baselineRows: baselineCards.cards ?? [],
+    candidateRows: candidateCards.cards ?? [],
+    baselineKey: cardKey,
+    candidateKey: cardKey,
+  });
+  candidatePrintings.printings = preserveExistingFactOrderV1({
+    baselineRows: baselinePrintings.printings ?? [],
+    candidateRows: candidatePrintings.printings ?? [],
+    baselineKey: (row) => printingKey(foldedPrinting(row)),
+    candidateKey: printingKey,
+  });
+  candidatePrintings.finish_absences = preserveExistingFactOrderV1({
+    baselineRows: baselinePrintings.finish_absences ?? [],
+    candidateRows: candidatePrintings.finish_absences ?? [],
+    baselineKey: (row) => printingKey(foldedPrinting(row)),
+    candidateKey: printingKey,
+  });
+
+  await writeJson(
+    path.join(options.baselineDir, "english_master_index_cards_v1.json"),
+    candidateCards,
+    { compact: true },
+  );
+  await writeJson(
+    path.join(options.baselineDir, "english_master_index_printings_v1.json"),
+    candidatePrintings,
+  );
 }
 
 async function main() {
@@ -325,9 +400,7 @@ async function main() {
     candidateConflicts: candidate.conflicts,
   });
   if (options.mode === "apply-to-worktree" && plan.changed) {
-    for (const file of MASTER_INDEX_AUTHORITY_FILES) {
-      await fs.copyFile(path.join(options.candidateDir, file), path.join(options.baselineDir, file));
-    }
+    await applyCandidateAuthority(options);
   }
   await writeJson(path.join(options.outDir, "refresh_plan.json"), {
     ...plan,

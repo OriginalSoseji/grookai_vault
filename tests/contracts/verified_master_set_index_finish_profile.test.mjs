@@ -57,6 +57,42 @@ test('exact finish truth requires independent source authorities', () => {
   assert.equal(classified.printings[0].source_count, 1);
 });
 
+test('classification order is deterministic across source completion order', () => {
+  const records = [
+    {
+      source_key: 'source_z',
+      source_kind: 'structured_api',
+      source_url: 'https://source-z.test/card',
+      set_key: 'a',
+      set_name: 'Set A',
+      card_number: '001',
+      card_name: 'Porygon-Z \uE071\uE071',
+      finish_key: null,
+      language: 'en',
+    },
+    {
+      source_key: 'source_a',
+      source_kind: 'structured_api',
+      source_url: 'https://source-a.test/card',
+      set_key: 'a',
+      set_name: 'Set A',
+      card_number: '1',
+      card_name: 'Porygon-Z',
+      finish_key: null,
+      language: 'en',
+    },
+  ];
+
+  const forward = classifyEvidence(records);
+  const reverse = classifyEvidence([...records].reverse());
+  assert.deepEqual(forward, reverse);
+  assert.deepEqual(forward.cards.map((row) => row.key), ['set a|1|porygon z']);
+  assert.deepEqual(
+    forward.cards[0].evidence.map((row) => row.source_key),
+    ['source_a', 'source_z'],
+  );
+});
+
 test('general parallel rules do not promote to exact card-level finish truth', () => {
   const records = [
     {

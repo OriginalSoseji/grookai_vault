@@ -62,22 +62,47 @@ function isAmbiguousCardRows(rows) {
   return names.length > 1 || numbers.length > 1 || sets.length > 1;
 }
 
+function rawText(value) {
+  return String(value ?? '').normalize('NFKC').trim();
+}
+
+function compareEvidenceRows(left, right) {
+  return normalizeText(left.set_name).localeCompare(normalizeText(right.set_name))
+    || rawText(left.set_name).localeCompare(rawText(right.set_name))
+    || normalizeNumber(left.card_number).localeCompare(normalizeNumber(right.card_number), undefined, { numeric: true })
+    || rawText(left.card_number).localeCompare(rawText(right.card_number), undefined, { numeric: true })
+    || canonicalCardNameKey(left).localeCompare(canonicalCardNameKey(right))
+    || rawText(left.card_name).localeCompare(rawText(right.card_name))
+    || normalizeText(left.finish_key).localeCompare(normalizeText(right.finish_key))
+    || sourceAuthorityKey(left).localeCompare(sourceAuthorityKey(right))
+    || rawText(left.source_key).localeCompare(rawText(right.source_key))
+    || rawText(left.source_url).localeCompare(rawText(right.source_url))
+    || rawText(left.evidence_type).localeCompare(rawText(right.evidence_type))
+    || JSON.stringify(left).localeCompare(JSON.stringify(right));
+}
+
 function buildFactRecord(rows, status, { finishTruth = false } = {}) {
-  const first = rows[0];
+  const orderedRows = [...rows].sort(compareEvidenceRows);
+  const first = orderedRows[0];
   return {
     status,
     set_key: first.set_key,
     set_name: first.set_name,
     card_number: first.card_number,
-    card_name: canonicalCardDisplayName(rows),
+    card_name: canonicalCardDisplayName(orderedRows),
     finish_key: finishTruth ? first.finish_key : null,
     rarity_values: uniqueSorted(rows.map((row) => row.rarity)),
     source_count: uniqueSorted(rows.map(sourceAuthorityKey)).length,
     sources: uniqueSorted(rows.map((row) => row.source_key)),
     source_authorities: uniqueSorted(rows.map(sourceAuthorityKey)),
     source_kinds: uniqueSorted(rows.map((row) => row.source_kind)),
-    evidence: rows.map(evidenceSummary),
+    evidence: orderedRows.map(evidenceSummary),
   };
+}
+
+function compareFactRecords(left, right) {
+  return String(left.key ?? '').localeCompare(String(right.key ?? ''))
+    || JSON.stringify(left).localeCompare(JSON.stringify(right));
 }
 
 export function classifyEvidence(records) {
@@ -191,10 +216,11 @@ export function classifyEvidence(records) {
   }));
 
   return {
-    cards,
-    printings,
-    finish_absences: finishAbsences,
-    conflicts,
-    manual_review: [...manualReview, ...setLevelManualReview, ...nonExactManualReview],
+    cards: cards.sort(compareFactRecords),
+    printings: printings.sort(compareFactRecords),
+    finish_absences: finishAbsences.sort(compareFactRecords),
+    conflicts: conflicts.sort(compareFactRecords),
+    manual_review: [...manualReview, ...setLevelManualReview, ...nonExactManualReview]
+      .sort(compareFactRecords),
   };
 }
