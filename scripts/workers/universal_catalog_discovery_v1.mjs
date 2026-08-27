@@ -44,6 +44,8 @@ import { contentFingerprint } from
   "../audits/japanese_master_index_v4/deterministic_artifact_v1.mjs";
 import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
   "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
+import { mergeEnglishPokemonFoldedSubsetOwnersV1 } from
+  "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
 const USER_AGENT = "GrookaiVaultCatalogDiscovery/1.0 catalog-ops@grookai.com";
 const DEFAULT_RECENT_DAYS = 180;
@@ -555,19 +557,34 @@ async function discoverPokemonEnglish(
 async function loadEnglishMasterIndex() {
   const cardsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_cards_v1.json");
   const setsFile = path.join(ENGLISH_MASTER_INDEX_DIR, "english_master_index_sets_v1.json");
-  const [bytes, setsBytes] = await Promise.all([
+  const aliasesFile = path.join(
+    ENGLISH_MASTER_INDEX_DIR,
+    "english_master_index_set_alias_normalization_v1.json",
+  );
+  const [bytes, setsBytes, aliasesBytes] = await Promise.all([
     fs.readFile(cardsFile),
     fs.readFile(setsFile),
+    fs.readFile(aliasesFile),
   ]);
   const cards = JSON.parse(bytes).cards ?? [];
   const sets = JSON.parse(setsBytes).sets ?? [];
+  const setOwnerRemaps = mergeEnglishPokemonFoldedSubsetOwnersV1(
+    JSON.parse(aliasesBytes).folded_subset_owners ?? [],
+  );
   const cardsBySet = new Map();
   for (const card of cards) {
     const rows = cardsBySet.get(clean(card.set_key)) ?? [];
     rows.push(card);
     cardsBySet.set(clean(card.set_key), rows);
   }
-  return { sets, cards, cardsBySet, cardsSha256: sha256(bytes) };
+  return {
+    sets,
+    cards,
+    cardsBySet,
+    setOwnerRemaps,
+    cardsSha256: sha256(bytes),
+    aliasesSha256: sha256(aliasesBytes),
+  };
 }
 
 function officialJapaneseProductUrl(productType, page) {
@@ -910,6 +927,7 @@ async function main() {
     databaseSets: englishDatabaseSets,
     databaseCards: database.english_canonical_cards,
     masterCards: englishMasterIndex.cards,
+    masterSetRemaps: englishMasterIndex.setOwnerRemaps,
   });
   database.sets = [
     ...database.sets.filter((row) => row.game_code !== "pokemon"),
@@ -989,6 +1007,8 @@ async function main() {
       japanese_canonical_card_count: database.japanese_canonical_cards.length,
       english_canonical_card_count: database.english_canonical_cards.length,
       english_alias_resolutions: database.english_alias_resolutions,
+      english_master_index_alias_fingerprint_sha256:
+        englishMasterIndex.aliasesSha256,
       japanese_master_index: {
         set_count: japaneseMasterIndex.sets.length,
         card_count: japaneseMasterIndex.cards.length,

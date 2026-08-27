@@ -10,6 +10,8 @@ import {
   normalizeNumber,
   normalizeText,
 } from "../audits/verified_master_set_index_v1/shared.mjs";
+import { mergeEnglishPokemonFoldedSubsetOwnersV1 } from
+  "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
 export const ENGLISH_POKEMON_MASTER_INDEX_REFRESH_VERSION =
   "ENGLISH_POKEMON_MASTER_INDEX_REFRESH_V1";
@@ -31,6 +33,12 @@ export const MASTER_INDEX_AUTHORITY_FILES = Object.freeze([
 
 function clean(value) {
   return String(value ?? "").normalize("NFKC").trim();
+}
+
+function continuitySetKey(card) {
+  const setKey = clean(card.set_key).toLocaleLowerCase("en")
+    .replace(/[^a-z0-9]+/g, "");
+  return setKey || normalizeText(card.set_name);
 }
 
 function parseArgs(argv) {
@@ -65,7 +73,7 @@ async function readJson(dir, file) {
 
 function cardKey(card) {
   return [
-    normalizeText(card.set_name ?? card.set_key),
+    continuitySetKey(card),
     normalizeNumber(card.card_number).toUpperCase(),
     canonicalCardNameKey(card),
   ].join("|");
@@ -88,6 +96,79 @@ function foldedPrinting(printing) {
     ...printing,
     set_key: "sm115",
     set_name: "Hidden Fates",
+  };
+}
+
+function aliasSourceKey(row) {
+  return normalizeText(row?.from_set_key ?? row?.source_set_key);
+}
+
+function aliasTargetKey(row) {
+  return normalizeText(row?.to_set_key ?? row?.canonical_set_key);
+}
+
+export function preserveHistoricalSetAliasesV1({
+  baselineAliasReport = {},
+  candidateAliasReport = {},
+}) {
+  const candidateTargetBySource = new Map();
+  const effectiveByIdentity = new Map();
+  const aliasIdentity = (row) => [
+    aliasSourceKey(row),
+    normalizeText(row?.from_set_name),
+    aliasTargetKey(row),
+    normalizeText(row?.to_set_name),
+  ].join("|");
+  for (const row of candidateAliasReport.remaps ?? []) {
+    const source = aliasSourceKey(row);
+    if (!source) continue;
+    const target = aliasTargetKey(row);
+    const existingTarget = candidateTargetBySource.get(source);
+    if (existingTarget && existingTarget !== target) {
+      throw new Error(`Candidate Master Index has conflicting alias targets for ${source}`);
+    }
+    candidateTargetBySource.set(source, target);
+    effectiveByIdentity.set(aliasIdentity(row), row);
+  }
+  const preserved = [];
+  for (const row of baselineAliasReport.remaps ?? []) {
+    const source = aliasSourceKey(row);
+    if (!source) continue;
+    const candidateTarget = candidateTargetBySource.get(source);
+    if (candidateTarget && candidateTarget !== aliasTargetKey(row)) {
+      throw new Error(
+        `Candidate Master Index changes historical alias ${source} from ` +
+        `${aliasTargetKey(row)} to ${candidateTarget}`,
+      );
+    }
+    const identity = aliasIdentity(row);
+    if (!effectiveByIdentity.has(identity)) {
+      effectiveByIdentity.set(identity, row);
+      preserved.push(row);
+    }
+  }
+  const remaps = [...effectiveByIdentity.values()].sort((left, right) =>
+    aliasSourceKey(left).localeCompare(aliasSourceKey(right)) ||
+    aliasTargetKey(left).localeCompare(aliasTargetKey(right)) ||
+    normalizeText(left.from_set_name).localeCompare(normalizeText(right.from_set_name)) ||
+    normalizeText(left.to_set_name).localeCompare(normalizeText(right.to_set_name)));
+  const foldedSubsetOwners = mergeEnglishPokemonFoldedSubsetOwnersV1([
+    ...(baselineAliasReport.folded_subset_owners ?? []),
+    ...(candidateAliasReport.folded_subset_owners ?? []),
+  ]);
+  return {
+    report: {
+      ...candidateAliasReport,
+      summary: {
+        ...(candidateAliasReport.summary ?? {}),
+        historical_remaps_preserved: preserved.length,
+        effective_remaps: remaps.length,
+        folded_subset_owners: foldedSubsetOwners.length,
+      },
+      folded_subset_owners: foldedSubsetOwners,
+      remaps,
+    },
+    preserved,
   };
 }
 
@@ -130,6 +211,30 @@ function allowedPrintingSupersession(printing, candidateByCardKey) {
     .some((candidate) => normalizeText(candidate.finish_key) === replacementFinish);
 }
 
+export function preserveUnobservedPrintingAuthorityV1({
+  baselinePrintings = [],
+  candidatePrintings = [],
+}) {
+  const candidateKeys = new Set(candidatePrintings.map(printingKey));
+  const candidateByCardKey = new Map();
+  for (const printing of candidatePrintings) {
+    const key = printingCardKey(printing);
+    const rows = candidateByCardKey.get(key) ?? [];
+    rows.push(printing);
+    candidateByCardKey.set(key, rows);
+  }
+  const preserved = baselinePrintings.filter((printing) => {
+    if (candidateKeys.has(printingKey(foldedPrinting(printing)))) return false;
+    if (isRevokedLegacyUnqualifiedNormal(printing)) return false;
+    if (allowedPrintingSupersession(printing, candidateByCardKey)) return false;
+    return true;
+  });
+  return {
+    printings: [...candidatePrintings, ...preserved],
+    preserved,
+  };
+}
+
 function allowedFoldedReplacement(card, candidateKeys) {
   if (clean(card.set_key).toLowerCase() !== "sma") return false;
   return candidateKeys.has(cardKey({
@@ -143,7 +248,7 @@ function allowedFoldedReplacement(card, candidateKeys) {
   }));
 }
 
-function factProjection({ sets, cards, printings }) {
+function factProjection({ sets, cards, printings, aliases = [] }) {
   return {
     sets: sets.map((row) => ({
       key: row.key,
@@ -157,7 +262,45 @@ function factProjection({ sets, cards, printings }) {
     cards: [...cards].sort((left, right) => cardKey(left).localeCompare(cardKey(right))),
     printings: [...printings]
       .sort((left, right) => printingKey(left).localeCompare(printingKey(right))),
+    aliases: [...aliases]
+      .map((row) => ({
+        source: aliasSourceKey(row),
+        target: aliasTargetKey(row),
+      }))
+      .sort((left, right) => left.source.localeCompare(right.source)),
   };
+}
+
+export function reconcileMasterIndexMarkdownV1({
+  markdown,
+  printingStatusCounts,
+  manualReviewCount,
+}) {
+  const statusOrder = [
+    "api_agreed",
+    "candidate_unconfirmed",
+    "human_source_verified",
+    "master_verified",
+  ];
+  const statuses = [
+    ...statusOrder.filter((status) => printingStatusCounts[status] !== undefined),
+    ...Object.keys(printingStatusCounts)
+      .filter((status) => !statusOrder.includes(status))
+      .sort(),
+  ];
+  const printingSection = [
+    "## Printings By Status",
+    "",
+    "| status | count |",
+    "| --- | --- |",
+    ...statuses.map((status) => `| ${status} | ${printingStatusCounts[status]} |`),
+  ].join("\n");
+  return String(markdown)
+    .replace(/\| manual review \| \d+ \|/, `| manual review | ${manualReviewCount} |`)
+    .replace(
+      /## Printings By Status\r?\n\r?\n[\s\S]*?\r?\n\r?\n## Source Evidence Rows/,
+      `${printingSection}\n\n## Source Evidence Rows`,
+    );
 }
 
 export function preserveExistingFactOrderV1({
@@ -188,9 +331,11 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
   baselineSets = [],
   baselineCards = [],
   baselinePrintings = [],
+  baselineAliases = [],
   candidateSets = [],
   candidateCards = [],
   candidatePrintings = [],
+  candidateAliases = [],
   candidateConflicts = [],
 }) {
   if (candidateSets.length === 0 || candidateCards.length === 0) {
@@ -232,14 +377,17 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
   const supersededPrintings = removedPrintings.filter((printing) =>
     !isRevokedLegacyUnqualifiedNormal(printing)
     && allowedPrintingSupersession(printing, candidatePrintingsByCardKey));
-  const unexplainedRemovedPrintings = removedPrintings.filter((printing) =>
+  const unobservedPrintings = removedPrintings.filter((printing) =>
     !isRevokedLegacyUnqualifiedNormal(printing)
     && !allowedPrintingSupersession(printing, candidatePrintingsByCardKey));
-  if (unexplainedRemovedPrintings.length > 0) {
-    throw new Error(
-      `Candidate Master Index removes ${unexplainedRemovedPrintings.length} unexplained printing facts`,
-    );
-  }
+  const effectiveCandidate = preserveUnobservedPrintingAuthorityV1({
+    baselinePrintings,
+    candidatePrintings,
+  });
+  const effectiveAliases = preserveHistoricalSetAliasesV1({
+    baselineAliasReport: { remaps: baselineAliases },
+    candidateAliasReport: { remaps: candidateAliases },
+  });
   const baselinePrintingKeys = new Set(
     baselinePrintings.map((printing) => printingKey(foldedPrinting(printing))),
   );
@@ -249,11 +397,13 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
     sets: baselineSets,
     cards: baselineCards,
     printings: baselinePrintings,
+    aliases: baselineAliases,
   })));
   const candidateFingerprint = sha256(stableJson(factProjection({
     sets: candidateSets,
     cards: candidateCards,
-    printings: candidatePrintings,
+    printings: effectiveCandidate.printings,
+    aliases: effectiveAliases.report.remaps,
   })));
   return {
     version: ENGLISH_POKEMON_MASTER_INDEX_REFRESH_VERSION,
@@ -269,11 +419,17 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
       folded_alias_cards: removed.length,
       unexplained_removed_cards: unexplainedRemoved.length,
       baseline_printings: baselinePrintings.length,
-      candidate_printings: candidatePrintings.length,
+      source_candidate_printings: candidatePrintings.length,
+      candidate_printings: effectiveCandidate.printings.length,
       added_printings: addedPrintings.length,
       revoked_legacy_printings: revokedLegacyPrintings.length,
       superseded_printings: supersededPrintings.length,
-      unexplained_removed_printings: unexplainedRemovedPrintings.length,
+      preserved_unobserved_printings: unobservedPrintings.length,
+      baseline_alias_remaps: baselineAliases.length,
+      source_candidate_alias_remaps: candidateAliases.length,
+      candidate_alias_remaps: effectiveAliases.report.remaps.length,
+      preserved_historical_alias_remaps: effectiveAliases.preserved.length,
+      unexplained_removed_printings: 0,
       candidate_conflicts: candidateConflicts.length,
     },
     added_cards: added.slice(0, 250).map((card) => ({
@@ -306,6 +462,15 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
       ),
       reason: "explicit_source_backed_printing_supersession",
     })),
+    preserved_unobserved_printings: unobservedPrintings.slice(0, 250)
+      .map((printing) => ({
+        set_key: printing.set_key,
+        card_number: printing.card_number,
+        card_name: printing.card_name,
+        finish_key: printing.finish_key,
+        sources: printing.sources ?? [],
+        reason: "historical_master_index_authority_pending_source_revalidation",
+      })),
     boundaries: {
       database_writes: false,
       storage_writes: false,
@@ -316,17 +481,19 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
 }
 
 async function loadAuthority(dir) {
-  const [sets, cards, printings, conflicts] = await Promise.all([
+  const [sets, cards, printings, conflicts, aliases] = await Promise.all([
     readJson(dir, "english_master_index_sets_v1.json"),
     readJson(dir, "english_master_index_cards_v1.json"),
     readJson(dir, "english_master_index_printings_v1.json"),
     readJson(dir, "english_master_index_conflicts_v1.json"),
+    readJson(dir, "english_master_index_set_alias_normalization_v1.json"),
   ]);
   return {
     sets: sets.sets ?? [],
     cards: cards.cards ?? [],
     printings: printings.printings ?? [],
     conflicts: conflicts.conflicts ?? [],
+    aliases: aliases.remaps ?? [],
   };
 }
 
@@ -340,18 +507,26 @@ async function applyCandidateAuthority(options) {
   const orderAwareFiles = new Set([
     "english_master_index_cards_v1.json",
     "english_master_index_printings_v1.json",
+    "english_master_index_set_alias_normalization_v1.json",
   ]);
   for (const file of MASTER_INDEX_AUTHORITY_FILES) {
     if (orderAwareFiles.has(file)) continue;
     await fs.copyFile(path.join(options.candidateDir, file), path.join(options.baselineDir, file));
   }
 
-  const [baselineCards, candidateCards, baselinePrintings, candidatePrintings] =
+  const [baselineCards, candidateCards, baselinePrintings, candidatePrintings,
+    baselineAliases, candidateAliases, candidateManualReview, candidateIndex,
+    candidateMarkdown] =
     await Promise.all([
       readJson(options.baselineDir, "english_master_index_cards_v1.json"),
       readJson(options.candidateDir, "english_master_index_cards_v1.json"),
       readJson(options.baselineDir, "english_master_index_printings_v1.json"),
       readJson(options.candidateDir, "english_master_index_printings_v1.json"),
+      readJson(options.baselineDir, "english_master_index_set_alias_normalization_v1.json"),
+      readJson(options.candidateDir, "english_master_index_set_alias_normalization_v1.json"),
+      readJson(options.candidateDir, "english_master_index_manual_review_v1.json"),
+      readJson(options.candidateDir, "english_master_index_v1.json"),
+      fs.readFile(path.join(options.candidateDir, "english_master_index_v1.md"), "utf8"),
     ]);
 
   candidateCards.cards = preserveExistingFactOrderV1({
@@ -360,9 +535,13 @@ async function applyCandidateAuthority(options) {
     baselineKey: cardKey,
     candidateKey: cardKey,
   });
+  const effectiveCandidatePrintings = preserveUnobservedPrintingAuthorityV1({
+    baselinePrintings: baselinePrintings.printings ?? [],
+    candidatePrintings: candidatePrintings.printings ?? [],
+  });
   candidatePrintings.printings = preserveExistingFactOrderV1({
     baselineRows: baselinePrintings.printings ?? [],
-    candidateRows: candidatePrintings.printings ?? [],
+    candidateRows: effectiveCandidatePrintings.printings,
     baselineKey: (row) => printingKey(foldedPrinting(row)),
     candidateKey: printingKey,
   });
@@ -371,6 +550,52 @@ async function applyCandidateAuthority(options) {
     candidateRows: candidatePrintings.finish_absences ?? [],
     baselineKey: (row) => printingKey(foldedPrinting(row)),
     candidateKey: printingKey,
+  });
+  const continuityReviewRows = effectiveCandidatePrintings.preserved.map((printing) => ({
+    fact_type: "printing_finish_source_revalidation",
+    key: `${printing.key}|historical-source-revalidation`,
+    status: "needs_manual_review",
+    set_key: printing.set_key,
+    set_name: printing.set_name,
+    card_number: printing.card_number,
+    card_name: printing.card_name,
+    finish_key: printing.finish_key,
+    source_count: printing.source_count,
+    sources: printing.sources ?? [],
+    source_authorities: printing.source_authorities ?? [],
+    source_kinds: printing.source_kinds ?? [],
+    evidence: [],
+    review_reason:
+      "Previously admitted printing authority was not re-observed in the latest source refresh; authority was preserved pending explicit revalidation or revocation.",
+  }));
+  const reviewByKey = new Map([
+    ...(candidateManualReview.manual_review ?? []),
+    ...continuityReviewRows,
+  ].map((row) => [row.key, row]));
+  candidateManualReview.manual_review = [...reviewByKey.values()]
+    .sort((left, right) => left.key.localeCompare(right.key));
+
+  const printingStatusCounts = {};
+  for (const printing of candidatePrintings.printings) {
+    printingStatusCounts[printing.status] =
+      (printingStatusCounts[printing.status] ?? 0) + 1;
+  }
+  candidateIndex.summary.printings_by_status = printingStatusCounts;
+  candidateIndex.summary.manual_review = candidateManualReview.manual_review.length;
+  candidateIndex.summary.continuity_carry_forward = {
+    printing_count: effectiveCandidatePrintings.preserved.length,
+    policy: "preserve_historical_authority_until_explicit_revalidation_or_revocation",
+  };
+  const effectiveAliases = preserveHistoricalSetAliasesV1({
+    baselineAliasReport: baselineAliases,
+    candidateAliasReport: candidateAliases,
+  });
+  candidateIndex.summary.continuity_carry_forward.alias_remap_count =
+    effectiveAliases.preserved.length;
+  const reconciledMarkdown = reconcileMasterIndexMarkdownV1({
+    markdown: candidateMarkdown,
+    printingStatusCounts,
+    manualReviewCount: candidateManualReview.manual_review.length,
   });
 
   await writeJson(
@@ -381,6 +606,23 @@ async function applyCandidateAuthority(options) {
   await writeJson(
     path.join(options.baselineDir, "english_master_index_printings_v1.json"),
     candidatePrintings,
+  );
+  await writeJson(
+    path.join(options.baselineDir, "english_master_index_manual_review_v1.json"),
+    candidateManualReview,
+  );
+  await writeJson(
+    path.join(options.baselineDir, "english_master_index_v1.json"),
+    candidateIndex,
+  );
+  await writeJson(
+    path.join(options.baselineDir, "english_master_index_set_alias_normalization_v1.json"),
+    effectiveAliases.report,
+  );
+  await fs.writeFile(
+    path.join(options.baselineDir, "english_master_index_v1.md"),
+    reconciledMarkdown,
+    "utf8",
   );
 }
 
@@ -394,9 +636,11 @@ async function main() {
     baselineSets: baseline.sets,
     baselineCards: baseline.cards,
     baselinePrintings: baseline.printings,
+    baselineAliases: baseline.aliases,
     candidateSets: candidate.sets,
     candidateCards: candidate.cards,
     candidatePrintings: candidate.printings,
+    candidateAliases: candidate.aliases,
     candidateConflicts: candidate.conflicts,
   });
   if (options.mode === "apply-to-worktree" && plan.changed) {

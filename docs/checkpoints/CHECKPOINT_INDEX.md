@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `SUPABASE_PRODUCTION_CAPACITY_V1` - `2026-08-27` - Production ref and restore-drill separation, founder-approved Medium/303 GB capacity purchase, Spend Cap authorization, live 217 GB read-only database readback, dominant storage relations, and explicit control-plane/performance follow-up gates
 - `UNIVERSAL_CATALOG_AUTOMATION_V1` — `2026-08-26` — Master-Index-first Pokemon promotion, canonical `set_id` ownership, exact official-Japanese numbered-set closure, durable MEE/MEM/MEZ readback, Shiny Vault alias suppression, self-hosted image backlog, and an explicit ten-set English authority queue
 - `GVVI_VENDOR_QR_V1_20260817` — `2026-08-17` — Isolated migration-free implementation locking persistent physical GVVI QR identity, public vendor asking-price presentation, Wall convergence, owner-only QR export, and encrypted server-derived referral attribution
 - `P0_SEARCH_CARD_DETAIL_HIGH_FIDELITY_20260805_V1` — `2026-08-05` — Approved P0 Search and Card Detail hierarchy with exact-version collector context, action-first collection flow, shared evidence disclosure, dark-mode contrast proof, and four locked mobile/desktop screenshots

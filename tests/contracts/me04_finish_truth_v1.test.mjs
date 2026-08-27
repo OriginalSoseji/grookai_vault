@@ -32,13 +32,20 @@ function rowKey(row) {
   return `${identity.card_number}|${identity.card_name.toLowerCase()}|${identity.finish_key}`;
 }
 
-test('ME04 governance projects the legacy 247 rows to exact 202-printing truth', () => {
+test('ME04 governance reconstructs and projects the legacy 247 rows to exact 202-printing truth', () => {
   const master = readJson(MASTER_PRINTINGS);
-  const sourceRows = master.printings.filter((row) => row.set_key === 'me04');
+  const governance = readJson(GOVERNANCE_FIXTURE);
+  const governedRows = master.printings.filter((row) => row.set_key === 'me04');
+  const sourceRows = [
+    ...governedRows,
+    ...(governance.suppressed_printing_facts ?? []),
+  ];
+  assert.equal(sourceRows.length, 247);
   const { retained, removed } = applyMe04FinishTruthV1(sourceRows);
 
   assert.equal(removed.length, 45);
   assert.equal(removed.every(isMe04PhantomNormalV1), true);
+  assert.deepEqual(retained, governedRows);
   const summary = assertMe04FinishTruthV1(retained);
   assert.equal(summary.total, ME04_EXPECTED_PRINTING_COUNT_V1);
   assert.deepEqual(summary.by_finish, ME04_EXPECTED_FINISH_COUNTS_V1);

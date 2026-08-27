@@ -20,6 +20,10 @@ import {
 } from "../../backend/catalog/universal_catalog_discovery_v1.mjs";
 import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
   "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
+import {
+  ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1,
+  mergeEnglishPokemonFoldedSubsetOwnersV1,
+} from "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -162,8 +166,8 @@ test("governed source-code aliases reconcile against their canonical owner", () 
 
 test("Master Index subset ownership resolves before canonical promotion", () => {
   const masterCards = [
-    { set_key: "sma", card_number: "SV1", card_name: "Scyther", status: "master_verified", source_count: 3 },
-    { set_key: "sma", card_number: "SV2", card_name: "Rowlet", status: "master_verified", source_count: 3 },
+    { set_key: "sm115", card_number: "SV1", card_name: "Scyther", status: "master_verified", source_count: 3 },
+    { set_key: "sm115", card_number: "SV2", card_name: "Rowlet", status: "master_verified", source_count: 3 },
   ];
   const overlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
     databaseSets: [{
@@ -178,6 +182,11 @@ test("Master Index subset ownership resolves before canonical promotion", () => 
       { set_code: "sm115", number: "SV2", name: "Rowlet" },
     ],
     masterCards,
+    masterSetRemaps: [{
+      source_set_key: "sma",
+      canonical_set_key: "sm115",
+      authority: "english_master_index_folded_subset_owner_v1",
+    }],
   });
   assert.equal(overlay.resolutions[0].canonical_code, "sm115");
   assert.deepEqual(overlay.sets[0].code_aliases, ["sma"]);
@@ -208,6 +217,18 @@ test("Master Index subset ownership resolves before canonical promotion", () => 
     actionableGaps: [reconciled],
     pokemonMasterIndexReconciliation: master,
   }), []);
+});
+
+test("Master Index owner contract preserves both folded English subset shells", () => {
+  const owners = mergeEnglishPokemonFoldedSubsetOwnersV1();
+  assert.deepEqual(owners.map((row) => [
+    row.source_set_key,
+    row.canonical_set_key,
+  ]), [
+    ["rc", "bw11"],
+    ["sma", "sm115"],
+  ]);
+  assert.equal(ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1.length, 2);
 });
 
 test("new Pokemon sources stage in the Master Index before canonical writes", () => {
@@ -481,6 +502,8 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /pokemon_master_index_reconciliation\.json/);
   assert.match(worker, /pokemon_master_index_update_candidates\.json/);
   assert.match(worker, /canonical_promotion_candidates\.json/);
+  assert.match(worker, /english_master_index_set_alias_normalization_v1\.json/);
+  assert.match(worker, /setOwnerRemaps/);
   assert.match(worker, /cp\.set_id = s\.id/);
   assert.match(worker, /counts_only_for_large_database_collections/);
   assert.doesNotMatch(
@@ -499,8 +522,13 @@ test("English Master Index rebuild permanently folds Shiny Vault into Hidden Fat
   const builder = source(
     "scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs",
   );
-  assert.match(builder, /canonical_set_key: 'sm115'/);
+  const ownership = source(
+    "backend/catalog/english_pokemon_master_index_ownership_v1.mjs",
+  );
+  assert.match(ownership, /canonical_set_key: "sm115"/);
+  assert.match(ownership, /canonical_set_key: "bw11"/);
   assert.match(builder, /sma_shiny_vault_subset_to_sm115/);
+  assert.match(builder, /rc_radiant_collection_subset_to_bw11/);
   assert.match(builder, /\^SV\\d\+\$/);
 });
 

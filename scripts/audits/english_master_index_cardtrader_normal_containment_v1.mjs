@@ -378,6 +378,9 @@ export function buildCardTraderNormalContainmentV1({
     projected_statuses_after_rebuild: sortedCounts(projectedStatusCounts),
     dispositions: sortedCounts(dispositionCounts),
     confirmed_false_me04_normals: facts.filter((row) => row.containment.confirmed_false_normal).length,
+    confirmed_false_me04_normals_in_current_master: facts.filter((row) => (
+      row.containment.confirmed_false_normal && row.current_master_index.matched
+    )).length,
   };
 
   const invariantChecks = [
@@ -397,14 +400,14 @@ export function buildCardTraderNormalContainmentV1({
       actual: facts.filter((row) => row.source_finish_classification.post_loader_finish_key === null).length,
     },
     {
-      check: 'every_contaminated_fact_is_located_in_current_master_index',
-      expected: summary.canonical_contaminated_normal_facts,
-      actual: summary.current_master_index_matches,
+      check: 'unqualified_cardtrader_finish_authority_is_absent_from_current_master',
+      expected: 0,
+      actual: summary.current_master_facts_with_cardtrader_source,
     },
     {
-      check: 'every_current_match_carries_cardtrader_evidence',
-      expected: summary.current_master_index_matches,
-      actual: summary.current_master_facts_with_cardtrader_source,
+      check: 'confirmed_false_me04_normals_are_absent_from_current_master',
+      expected: 0,
+      actual: summary.confirmed_false_me04_normals_in_current_master,
     },
     {
       check: 'me04_confirmed_false_normal_cohort_is_exact',
@@ -421,7 +424,7 @@ export function buildCardTraderNormalContainmentV1({
     migrations_created: false,
     automatic_deletes_performed: false,
     overall_status: invariantChecks.every((row) => row.passed)
-      ? 'fail_closed_rebuild_and_review_required'
+      ? 'contained_rebuild_verified'
       : 'audit_invariant_failure',
     policy: {
       source_rule: 'CardTrader contributes Normal finish truth only when the blueprint label explicitly says Normal or Non-Holo.',
@@ -496,9 +499,9 @@ export function buildCardTraderNormalContainmentMarkdownV1(report) {
     '',
     '## Outcome',
     '',
-    'The legacy CardTrader fixture corpus contains no explicit Normal or Non-Holo descriptors. Every stored Normal was inferred from an unqualified rarity or product label. The repaired loader now fail-closes those rows to unknown finish, but the checked-in Master Index predates that repair and must be rebuilt and reviewed.',
+    'The legacy CardTrader fixture corpus contains no explicit Normal or Non-Holo descriptors. Every stored Normal was inferred from an unqualified rarity or product label. The repaired loader fail-closes those rows to unknown finish, and the active Master Index no longer accepts CardTrader as authority for any of them.',
     '',
-    'This audit does not claim that every affected Normal printing is physically false. It proves that CardTrader cannot serve as its finish evidence. ME04 is the bounded confirmed-false cohort; the remaining facts require reclassification or independent evidence.',
+    'This audit does not claim that every affected Normal printing is physically false. It proves that CardTrader cannot serve as its finish evidence. Independently supported Normal printings may remain under their qualified sources; the bounded ME04 false-Normal cohort remains suppressed.',
     '',
     '## Summary',
     '',
@@ -544,13 +547,13 @@ export function buildCardTraderNormalContainmentMarkdownV1(report) {
       ? markdownTable(['set_key', 'number', 'card', 'current_status', 'current_sources'], independentVerificationRows)
       : 'No facts are wholly unsupported after CardTrader removal.',
     '',
-    '## Safety Boundary And Next Gate',
+    '## Safety Boundary And Continuing Policy',
     '',
-    '1. Rebuild the Master Index in an isolated output directory with the repaired loader.',
-    '2. Diff all 1,099 facts by exact canonical identity and projected status.',
+    '1. Continue loading unqualified CardTrader finish rows as unknown, never Normal.',
+    '2. Keep the complete 1,099-fact legacy ledger for traceability.',
     '3. Keep the 45 ME04 false Normals suppressed by reviewed exact-fact governance.',
-    '4. Send the remaining facts through set-scoped source replacement; do not bulk-delete them.',
-    '5. Produce a precommit plan and live dependency readback before any production mutation.',
+    '4. Admit a Normal printing only from independent, qualified finish evidence.',
+    '5. Preserve historical qualified authority until explicit revalidation, supersession, or revocation.',
     '',
     `The complete ${report.facts.length}-fact ledger, fixture occurrence traceability, evidence URLs, aliases, and dispositions are in ${REPORT_JSON}.`,
     '',
