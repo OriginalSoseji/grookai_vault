@@ -290,6 +290,7 @@ async function loadDatabaseSnapshot(databaseUrl, candidateGames) {
           ) order by identity.identity_domain, identity.identity_key_hash)
           from public.card_print_identity identity
           where identity.card_print_id = cp.id
+            and identity.is_active = true
         ), '[]'::jsonb) as identities,
         coalesce((
           select jsonb_agg(jsonb_build_object(
