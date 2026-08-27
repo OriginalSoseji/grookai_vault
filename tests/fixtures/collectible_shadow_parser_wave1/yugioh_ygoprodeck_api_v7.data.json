@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "id": 1001,
+      "name": "Fixture Dragon",
+      "desc": "Fixture rules text that must never enter candidate output.",
+      "card_sets": [
+        {
+          "set_name": "Fixture Set Alpha",
+          "set_code": "FSA-EN001",
+          "set_rarity": "Super Rare",
+          "set_price": "99.99"
+        },
+        {
+          "set_name": "Fixture Set Alpha",
+          "set_code": "FSA-EN001",
+          "set_rarity": "Ultra Rare",
+          "set_price": "199.99"
+        }
+      ],
+      "card_images": [
+        { "id": 1001, "image_url": "https://images.invalid/1001.jpg" },
+        { "id": 1002, "image_url": "https://images.invalid/1002.jpg" }
+      ],
+      "card_prices": [{ "tcgplayer_price": "99.99" }]
+    },
+    {
+      "id": 1002,
+      "name": "Fixture Spell",
+      "card_sets": [
+        {
+          "set_name": "Fixture Set Beta",
+          "set_code": "FSB-EN002",
+          "set_rarity": "Rare"
+        },
+        {
+          "set_name": "Fixture Set Beta",
+          "set_code": "FSB-EN002",
+          "set_rarity": "Rare"
+        }
+      ],
+      "card_images": []
+    },
+    {
+      "id": 1003,
+      "name": "Fixture Unprinted Concept",
+      "card_sets": [],
+      "card_images": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "_meta": { "count": 2 },
+  "data": [
+    { "set_code": "GX01", "set_name": "Fixture Gundam Set One", "card_count": 1 },
+    { "set_code": "GX02", "set_name": "Fixture Gundam Set Two", "card_count": 1 }
+  ]
+}

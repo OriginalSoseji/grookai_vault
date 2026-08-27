@@ -1,0 +1,6 @@
+{
+  "dataset_version": "fixture-1",
+  "card_count": 2,
+  "bulk_url": "https://api.gcgapi.com/v1/bulk",
+  "disclaimer": "Fixture metadata only"
+}
