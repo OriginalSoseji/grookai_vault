@@ -3777,7 +3777,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
     evidence_storage: 'compact_evidence_urls_only',
     printings: index.printings.map(compactPrintingFact),
     finish_absences: index.finish_absences.map(compactPrintingFact),
-  }, { compact: true });
+  });
   await writeJson(outputDir, 'english_master_index_manual_review_v1.json', {
     version: 'ENGLISH_MASTER_INDEX_MANUAL_REVIEW_V1',
     generated_at: index.generated_at,

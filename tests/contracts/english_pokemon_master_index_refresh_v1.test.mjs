@@ -153,3 +153,16 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.doesNotMatch(workflow, /"\$GITHUB_SHA" "\$\{GITHUB_REF_NAME\}"/);
   assert.doesNotMatch(workflow, /SUPABASE_DB_URL|DATABASE_URL/);
 });
+
+test("printing authority remains line-reviewable across scheduled refreshes", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  const printingWrite = builder.match(
+    /writeJson\(outputDir, 'english_master_index_printings_v1\.json',[\s\S]*?\n\s*\}\);/,
+  );
+
+  assert.ok(printingWrite, "printing authority write must remain explicit");
+  assert.doesNotMatch(printingWrite[0], /compact:\s*true/);
+});
