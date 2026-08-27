@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 
 import { collectHumanFixtureEvidence } from '../../scripts/audits/verified_master_set_index_v1/source_adapters/human_fixtures.mjs';
 
@@ -80,4 +81,37 @@ test('every accepted fixture row still requires supported source provenance', as
       /unsupported source_kind=model_guess/,
     );
   });
+});
+
+test('printing continuity fixture replays every exact source-backed fact', async () => {
+  const fixtureDir = fileURLToPath(new URL(
+    '../../docs/audits/verified_master_set_index_v1/source_fixtures/generated_master_index_printing_continuity_v1/',
+    import.meta.url,
+  ));
+  const focusFinishes = ['normal', 'holo', 'reverse', 'stamped', 'cosmos'];
+  const setConfigs = ['sv03', 'xyp', 'svp'].map((key) => ({
+    key,
+    tcgdex: null,
+    pokemontcg: null,
+    finish_profile: {
+      source_backed: true,
+      focus_finishes: focusFinishes,
+      not_applicable_finishes: [],
+    },
+  }));
+
+  const rows = await collectHumanFixtureEvidence(setConfigs, {
+    fixtureDir,
+    retrievedAt: '2026-08-27T12:00:00.000Z',
+  });
+
+  assert.equal(rows.length, 17);
+  assert.equal(rows.every((row) => row.evidence_type === 'finish_presence'), true);
+  assert.equal(rows.every((row) => row.source_url && row.raw_snapshot_ref), true);
+  assert.equal(rows.filter((row) => row.set_key === 'sv03' && row.finish_key === 'stamped').length, 10);
+  assert.equal(rows.filter((row) => row.set_key === 'xyp' && row.finish_key === 'holo').length, 5);
+  assert.deepEqual(
+    rows.filter((row) => row.set_key === 'svp').map((row) => [row.card_number, row.finish_key]),
+    [['224', 'stamped'], ['500', 'normal']],
+  );
 });

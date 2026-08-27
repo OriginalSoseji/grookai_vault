@@ -71,6 +71,65 @@ function cardKey(card) {
   ].join("|");
 }
 
+function printingCardKey(printing) {
+  return cardKey(printing);
+}
+
+function printingKey(printing) {
+  return [
+    printingCardKey(printing),
+    normalizeText(printing.finish_key),
+  ].join("|");
+}
+
+function foldedPrinting(printing) {
+  if (clean(printing.set_key).toLowerCase() !== "sma") return printing;
+  return {
+    ...printing,
+    set_key: "sm115",
+    set_name: "Hidden Fates",
+  };
+}
+
+const LEGACY_UNQUALIFIED_NORMAL_SOURCES = new Set([
+  "cardtrader_blueprint_index",
+  "pokemontcg_api",
+  "tcgdex",
+]);
+
+function isRevokedLegacyUnqualifiedNormal(printing) {
+  const sources = printing.sources ?? [];
+  return normalizeText(printing.finish_key) === "normal"
+    && sources.includes("cardtrader_blueprint_index")
+    && sources.every((source) => LEGACY_UNQUALIFIED_NORMAL_SOURCES.has(source));
+}
+
+const EXPLICIT_PRINTING_SUPERSESSIONS = new Map([
+  ["mep|18|cottonee|holo", "cosmos"],
+  ["mep|19|whimsicott|holo", "cosmos"],
+  ["mep|20|sneasel|holo", "cosmos"],
+  ["mep|21|weavile|holo", "cosmos"],
+  ["svp|224|paradise resort|normal", "stamped"],
+]);
+
+function printingSupersessionKey(printing) {
+  return [
+    clean(printing.set_key).toLowerCase(),
+    normalizeNumber(printing.card_number).toUpperCase(),
+    canonicalCardNameKey(printing),
+    normalizeText(printing.finish_key),
+  ].join("|");
+}
+
+function allowedPrintingSupersession(printing, candidateByCardKey) {
+  const replacementFinish = EXPLICIT_PRINTING_SUPERSESSIONS.get(
+    printingSupersessionKey(printing),
+  );
+  if (!replacementFinish) return false;
+  return (candidateByCardKey.get(printingCardKey(printing)) ?? [])
+    .some((candidate) => normalizeText(candidate.finish_key) === replacementFinish);
+}
+
 function allowedFoldedReplacement(card, candidateKeys) {
   if (clean(card.set_key).toLowerCase() !== "sma") return false;
   return candidateKeys.has(cardKey({
@@ -128,6 +187,38 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
   }
   const baselineKeys = new Set(baselineCards.map(cardKey));
   const added = candidateCards.filter((card) => !baselineKeys.has(cardKey(card)));
+  const candidatePrintingKeys = new Set(candidatePrintings.map(printingKey));
+  if (candidatePrintingKeys.size !== candidatePrintings.length) {
+    throw new Error("Candidate Master Index repeats a printing coordinate");
+  }
+  const candidatePrintingsByCardKey = new Map();
+  for (const printing of candidatePrintings) {
+    const key = printingCardKey(printing);
+    const rows = candidatePrintingsByCardKey.get(key) ?? [];
+    rows.push(printing);
+    candidatePrintingsByCardKey.set(key, rows);
+  }
+  const removedPrintings = baselinePrintings.filter((printing) =>
+    !candidatePrintingKeys.has(printingKey(foldedPrinting(printing))));
+  const revokedLegacyPrintings = removedPrintings.filter(
+    isRevokedLegacyUnqualifiedNormal,
+  );
+  const supersededPrintings = removedPrintings.filter((printing) =>
+    !isRevokedLegacyUnqualifiedNormal(printing)
+    && allowedPrintingSupersession(printing, candidatePrintingsByCardKey));
+  const unexplainedRemovedPrintings = removedPrintings.filter((printing) =>
+    !isRevokedLegacyUnqualifiedNormal(printing)
+    && !allowedPrintingSupersession(printing, candidatePrintingsByCardKey));
+  if (unexplainedRemovedPrintings.length > 0) {
+    throw new Error(
+      `Candidate Master Index removes ${unexplainedRemovedPrintings.length} unexplained printing facts`,
+    );
+  }
+  const baselinePrintingKeys = new Set(
+    baselinePrintings.map((printing) => printingKey(foldedPrinting(printing))),
+  );
+  const addedPrintings = candidatePrintings.filter((printing) =>
+    !baselinePrintingKeys.has(printingKey(printing)));
   const baselineFingerprint = sha256(stableJson(factProjection({
     sets: baselineSets,
     cards: baselineCards,
@@ -151,7 +242,12 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
       added_cards: added.length,
       folded_alias_cards: removed.length,
       unexplained_removed_cards: unexplainedRemoved.length,
+      baseline_printings: baselinePrintings.length,
       candidate_printings: candidatePrintings.length,
+      added_printings: addedPrintings.length,
+      revoked_legacy_printings: revokedLegacyPrintings.length,
+      superseded_printings: supersededPrintings.length,
+      unexplained_removed_printings: unexplainedRemovedPrintings.length,
       candidate_conflicts: candidateConflicts.length,
     },
     added_cards: added.slice(0, 250).map((card) => ({
@@ -166,6 +262,23 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
       to_set_key: "sm115",
       card_number: card.card_number,
       card_name: card.card_name,
+    })),
+    revoked_legacy_printings: revokedLegacyPrintings.slice(0, 250).map((printing) => ({
+      set_key: printing.set_key,
+      card_number: printing.card_number,
+      card_name: printing.card_name,
+      finish_key: printing.finish_key,
+      reason: "unqualified_cardtrader_normal_revoked_by_ingestion_contract_v1",
+    })),
+    superseded_printings: supersededPrintings.slice(0, 250).map((printing) => ({
+      set_key: printing.set_key,
+      card_number: printing.card_number,
+      card_name: printing.card_name,
+      from_finish_key: printing.finish_key,
+      to_finish_key: EXPLICIT_PRINTING_SUPERSESSIONS.get(
+        printingSupersessionKey(printing),
+      ),
+      reason: "explicit_source_backed_printing_supersession",
     })),
     boundaries: {
       database_writes: false,
