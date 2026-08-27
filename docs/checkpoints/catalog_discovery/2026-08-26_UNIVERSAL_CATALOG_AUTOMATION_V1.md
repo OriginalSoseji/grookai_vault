@@ -22,6 +22,8 @@ reach a canonical writer.
 - Apply mode: exact clean-SHA, insert-only, supervisor-bounded
 - Latest automation repair SHA:
   `62b827509adc26e474be720f51b05c8ef451b952`
+- Language Master-Index-first enforcement SHA:
+  `ccb9c9d24e834e2d4274294016397594b3bdec03`
 
 The checkpoint may be committed after the producer SHA. That later documentation
 commit did not produce the database mutation.
@@ -253,3 +255,18 @@ Japanese rows now report their actual persistent index state:
 
 This stricter result is intentional. It turns a hidden source-to-database bypass
 into explicit language-index debt.
+
+The expanded catalog suite passed `54/54`; all syntax/import checks and
+`git diff --check` passed. The English refresh worker also replayed the current
+authority against itself with `changed: false`, `21,520` card facts, `38,939`
+printing facts, zero conflicts, and zero unexplained removals.
+
+### Strict Language Gate Artifact Hashes
+
+| Artifact | SHA-256 |
+|---|---|
+| Production read-only summary | `065143fa765e5930738c14af424393121046c34226447892055c04d97d7fb952` |
+| Language Master Index reconciliation | `7b0bd7dbad2c285fe055c48f4268262098f82aa3f70a27f3b3c6102c775392ea` |
+| Language Master Index update candidates | `365c1f1d5c83953bd2607496d844626ef64964488175c1bbe6dcc5ceadcc72d9` |
+| Canonical promotion candidates | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
+| English no-change refresh plan | `0490a5c71143758d9ff6e5b4772f149b8325d963ab42f5df65fad8433eeceeec` |
