@@ -302,9 +302,10 @@ async function loadDatabaseSnapshot(databaseUrl, candidateGames) {
         ), '[]'::jsonb) as mappings
       from public.card_prints cp
       join public.sets s on s.id = cp.set_id
-      join public.games g on g.id = cp.game_id
-      where lower(coalesce(s.game, '')) = any($1::text[])
-         or lower(coalesce(g.code, '')) = any($1::text[])
+      join public.games g
+        on g.id = cp.game_id
+       and (lower(g.code) = lower(s.game) or lower(g.slug) = lower(s.game))
+      where lower(coalesce(g.code, '')) = any($1::text[])
          or lower(coalesce(g.slug, '')) = any($1::text[])
       order by cp.id
     `, [candidateGames])).rows;

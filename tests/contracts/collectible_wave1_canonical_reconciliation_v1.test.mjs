@@ -194,6 +194,9 @@ test("worker is transaction-read-only and has no persistence authority", () => {
   assert.match(worker, /transaction_ended_with: "rollback"/);
   assert.match(worker, /from public\.sets s\s+join public\.games g/);
   assert.doesNotMatch(worker, /from public\.sets s\s+left join public\.games g/);
+  assert.match(worker, /g\.id = cp\.game_id\s+and \(lower\(g\.code\) = lower\(s\.game\) or lower\(g\.slug\) = lower\(s\.game\)\)/);
+  const cardQuery = worker.slice(worker.indexOf("from public.card_prints cp"));
+  assert.doesNotMatch(cardQuery, /where lower\(coalesce\(s\.game, ''\)\) = any/);
   assert.match(worker, /database_writes: false/);
   assert.match(worker, /storage_access: false/);
   assert.match(worker, /writer_dispatches: false/);
