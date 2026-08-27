@@ -114,6 +114,13 @@ test("scheduled workflows never dispatch canonical writers", () => {
   assert.doesNotMatch(mtg, /actions:\s*write/);
 });
 
+test("an empty shadow candidate queue closes rather than opens an issue", () => {
+  const shadow = workflow("catalog-incremental-promotion.yml");
+  assert.match(shadow, /if \(count === 0\)/);
+  assert.match(shadow, /issue_number: existing\.number, state: 'closed'/);
+  assert.match(shadow, /if \(existing\) await github\.rest\.issues\.update/);
+});
+
 test("shadow workflows check out and reconcile the exact triggering SHA", () => {
   for (const name of [
     "catalog-incremental-promotion.yml",

@@ -116,13 +116,20 @@ jobs:
             ));
             const count = Number(summary.counts?.shadow_promotion_candidate_count || 0);
             const title = '[Catalog Shadow] Canonical promotion candidate queue';
-            const body = `${count} evidence-backed candidates are preserved in the latest ` +
-              `shadow catalog. They are not canonical and no writer was dispatched.\n\n` +
-              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
             });
             const existing = issues.find((issue) => issue.title === title);
+            if (count === 0) {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+              return;
+            }
+            const body = `${count} evidence-backed candidates are preserved in the latest ` +
+              `shadow catalog. They are not canonical and no writer was dispatched.\n\n` +
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             if (existing) await github.rest.issues.update({
               owner: context.repo.owner, repo: context.repo.repo,
               issue_number: existing.number, body,
