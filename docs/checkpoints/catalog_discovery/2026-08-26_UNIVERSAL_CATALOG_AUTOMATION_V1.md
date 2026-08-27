@@ -2,7 +2,7 @@
 
 ## Status
 
-`ACTIVE_AND_GOVERNED_WITH_ENGLISH_AUTHORITY_BACKLOG`
+`ACTIVE_AND_GOVERNED_WITH_LANGUAGE_MASTER_INDEX_BACKLOG`
 
 The cross-TCG discovery and bounded promotion architecture is operational. The
 Japanese numbered-product gap is closed. Remaining detected gaps are preserved
@@ -212,3 +212,44 @@ They remain Master Index acquisition work. They are not canonical writer work.
 
 The complete catalog contract suite passed `49/49` with syntax/import and diff
 checks passing.
+
+## Scheduled Language Index Enforcement
+
+The follow-up automation closes the remaining ordering loophole:
+
+- `.github/workflows/pokemon-master-index-refresh.yml` rebuilds the English
+  Master Index daily from governed source evidence;
+- changed facts are proposed on a data-only branch and never written directly
+  to canonical tables;
+- unexplained card removal, duplicate coordinates, or any candidate conflict
+  fails the refresh closed;
+- discovery fingerprint-verifies the checked-in Japanese V4 admissible set and
+  card shards before reconciling Japanese source rows;
+- same-run Japanese official, TCGdex, or Limitless counts no longer substitute
+  for persistent Japanese Master Index card authority;
+- future Pokemon languages remain blocked until a language-specific persistent
+  Master Index adapter exists.
+
+The strict production read-only proof at
+`C:\Users\ccabr\AppData\Local\Temp\grookai-catalog-automation-completion-v1\master-index-strict-20260826-230211`
+recorded:
+
+- source sets checked: `1,257`;
+- actionable source gaps: `10`, all English;
+- canonical promotion candidates: `0`;
+- Master Index update candidates: `67`;
+- recent Japanese canonical gaps: `0`;
+- Japanese V4 authority: `1,426` admitted sets and `28,008` admitted cards;
+- database, Storage, pricing, publication, image-pointer, and Vault writes: `0`.
+
+Japanese rows now report their actual persistent index state:
+
+- `M4`: complete and Master Index verified;
+- `M5`: owner verified, card coverage incomplete (`77/118` for this source view);
+- `M6`: no admitted V4 owner yet and queued for index work;
+- `MEE`, `MEM`, `MEZ`: owner verified, card coverage incomplete in the V4
+  authority; the already-applied canonical rows remain unchanged and exact
+  source reconciliation performs no write.
+
+This stricter result is intentional. It turns a hidden source-to-database bypass
+into explicit language-index debt.

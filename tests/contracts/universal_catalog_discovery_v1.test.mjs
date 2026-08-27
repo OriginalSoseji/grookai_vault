@@ -223,6 +223,46 @@ test("new Pokemon sources stage in the Master Index before canonical writes", ()
   }), []);
 });
 
+test("Japanese source counts cannot bypass the checked-in Japanese Master Index", () => {
+  const gap = {
+    game_code: "pokemon",
+    catalog_scope: "pokemon ja",
+    source_id: "pokemon_card_official_jp_products",
+    source_set_id: "955",
+    source_code: "M6",
+    source_name: "Storm Emeralda",
+    expected_card_count: 2,
+    status: CATALOG_GAP_STATUSES.INCOMPLETE_CARDS,
+    database_code: "jpn-m6",
+    count_evidence: [{
+      authority: "tcgdex_japanese_structured_api",
+      scope: "full_set",
+      count: 2,
+    }],
+  };
+  const withoutIndex = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [gap],
+  });
+  assert.equal(withoutIndex.rows[0].promotion_decision,
+    "blocked_master_index_incomplete");
+
+  const withIndex = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [gap],
+    japaneseMasterSets: [{
+      jpn_set_key: "jpn-m6",
+      official_code_evidence: ["M6"],
+      expected_card_count_evidence: [2],
+      master_admissible: true,
+    }],
+    japaneseMasterCards: [
+      { jpn_set_key: "jpn-m6", printed_number: "1", admission_status: "master_admissible" },
+      { jpn_set_key: "jpn-m6", printed_number: "2", admission_status: "master_admissible" },
+    ],
+  });
+  assert.equal(withIndex.rows[0].master_index_status, "master_verified");
+  assert.equal(withIndex.rows[0].promotion_decision, "canonical_delta_eligible");
+});
+
 test("multiple populated equivalent canonical rows remain ambiguous", () => {
   const [row] = reconcileCatalogSets({
     sourceSets: [{

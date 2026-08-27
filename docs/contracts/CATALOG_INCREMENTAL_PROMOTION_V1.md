@@ -9,7 +9,10 @@ emits `pokemon_master_index_reconciliation.json` and derives
 only the latter artifact.
 
 - English source cards require the complete, checked-in English Master Index.
-- Japanese source cards require the Japanese official/checklist Master Index lane.
+- Japanese source cards require the fingerprint-verified, checked-in Japanese
+  V4 Master Index set and card datasets. Fresh official/checklist counts can
+  create an index-update candidate, but cannot authorize a canonical write in
+  the same run.
 - Alias and folded-subset coordinates resolve to their existing canonical owner
   and produce no duplicate set or card writes.
 - A newly observed or incomplete source set becomes a Master Index update
@@ -43,6 +46,12 @@ Supported automatic lanes:
 - English Pokemon: an incomplete existing set only when TCGdex full-set count and the immutable English Master Index agree exactly, every Master Index identity is `master_verified` by at least two independent sources, and the dedicated writer resolves every missing family without a collision.
 
 English gaps without complete Master Index admission remain report-only and issue-visible. Source discovery is not permission to fill historical special sets from one catalog.
+
+The same rule applies to Japanese gaps. A Japanese set owner and every card in
+the proposed delta must already be admitted by the checked-in Japanese Master
+Index before the supervisor can select a canonical writer. Adding another
+Pokemon language requires a language-specific Master Index adapter and checked-in
+authority; unknown language scopes fail closed.
 
 ## Release Rules
 

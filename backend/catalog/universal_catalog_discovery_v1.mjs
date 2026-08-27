@@ -306,6 +306,8 @@ export function buildPokemonLanguageMasterIndexReconciliationV1({
   reconciliation = [],
   englishMasterCards = [],
   englishAliasResolutions = [],
+  japaneseMasterSets = [],
+  japaneseMasterCards = [],
 }) {
   const englishCardsBySet = new Map();
   for (const card of englishMasterCards) {
@@ -318,6 +320,24 @@ export function buildPokemonLanguageMasterIndexReconciliationV1({
     clean(row.source_code).toLocaleLowerCase("en"),
     row,
   ]));
+  const japaneseSetsByCode = new Map();
+  for (const set of japaneseMasterSets) {
+    for (const code of set.official_code_evidence ?? []) {
+      const key = normalizeJapanesePrintedSetCode(code);
+      if (!key) continue;
+      const rows = japaneseSetsByCode.get(key) ?? [];
+      rows.push(set);
+      japaneseSetsByCode.set(key, rows);
+    }
+  }
+  const japaneseCardsBySet = new Map();
+  for (const card of japaneseMasterCards) {
+    const key = clean(card.jpn_set_key);
+    if (!key) continue;
+    const rows = japaneseCardsBySet.get(key) ?? [];
+    rows.push(card);
+    japaneseCardsBySet.set(key, rows);
+  }
   const rows = reconciliation.filter((row) => row.game_code === "pokemon").map((row) => {
     const language = row.catalog_scope === "pokemon en"
       ? "en"
@@ -330,15 +350,28 @@ export function buildPokemonLanguageMasterIndexReconciliationV1({
     const masterCards = language === "en"
       ? englishCardsBySet.get(sourceCode.toLocaleLowerCase("en")) ?? []
       : [];
+    const japaneseSetMatches = language === "ja"
+      ? japaneseSetsByCode.get(normalizeJapanesePrintedSetCode(sourceCode)) ?? []
+      : [];
+    const japaneseMasterSet = japaneseSetMatches.length === 1
+      ? japaneseSetMatches[0]
+      : null;
+    const japaneseMasterSetCards = japaneseMasterSet
+      ? japaneseCardsBySet.get(clean(japaneseMasterSet.jpn_set_key)) ?? []
+      : [];
     const completeEnglishAuthority = language === "en" && expected !== null &&
       masterCards.length === expected && masterCards.every((card) =>
         card.status === "master_verified" && Number(card.source_count) >= 2);
-    const japaneseCountAuthority = language === "ja" &&
-      (row.count_evidence ?? []).some((evidence) =>
-        ["tcgdex_japanese_structured_api", "limitless_jp_structured_checklist"]
-          .includes(evidence.authority) &&
-        ["full_set", "numbered_base_set"].includes(evidence.scope) &&
-        Number(evidence.count) === expected);
+    const completeJapaneseAuthority = language === "ja" &&
+      japaneseMasterSet !== null && expected !== null &&
+      japaneseMasterSet.master_admissible === true &&
+      (japaneseMasterSet.expected_card_count_evidence ?? [])
+        .some((count) => Number(count) === expected) &&
+      japaneseMasterSetCards.length === expected &&
+      japaneseMasterSetCards.every((card) =>
+        card.master_admissible !== false &&
+        card.admission_status === "master_admissible" &&
+        clean(card.printed_number));
 
     let masterIndexStatus = "candidate_update_required";
     let promotionDecision = "blocked_master_index_incomplete";
@@ -359,15 +392,21 @@ export function buildPokemonLanguageMasterIndexReconciliationV1({
           : row.status === CATALOG_GAP_STATUSES.SOURCE_BEHIND
             ? "no_write_source_scope_behind"
             : "blocked_master_set_owner_unresolved";
-    } else if (language === "ja" && japaneseCountAuthority) {
-      masterIndexStatus = "official_master_evidence_verified";
-      promotionDecision = row.status === CATALOG_GAP_STATUSES.INCOMPLETE_CARDS && row.database_code
+    } else if (language === "ja" && japaneseMasterSet) {
+      masterIndexStatus = completeJapaneseAuthority
+        ? "master_verified"
+        : "master_set_owner_verified_cards_incomplete";
+      canonicalOwnerCode = row.database_code ?? japaneseMasterSet.jpn_set_key;
+      promotionDecision = row.status === CATALOG_GAP_STATUSES.INCOMPLETE_CARDS &&
+        row.database_code && completeJapaneseAuthority
         ? "canonical_delta_eligible"
         : row.status === CATALOG_GAP_STATUSES.EXACT_COMPLETE
           ? "no_write_exact_complete"
           : row.status === CATALOG_GAP_STATUSES.SOURCE_BEHIND
             ? "no_write_source_scope_behind"
-            : "blocked_master_set_owner_unresolved";
+            : row.status === CATALOG_GAP_STATUSES.MISSING_SET && completeJapaneseAuthority
+              ? "blocked_missing_canonical_set_writer"
+              : "blocked_master_index_incomplete";
     }
     return {
       language,
@@ -376,7 +415,9 @@ export function buildPokemonLanguageMasterIndexReconciliationV1({
       source_code: row.source_code,
       source_name: row.source_name,
       expected_card_count: expected,
-      master_index_card_count: language === "en" ? masterCards.length : null,
+      master_index_card_count: language === "en"
+        ? masterCards.length
+        : language === "ja" ? japaneseMasterSetCards.length : null,
       master_index_status: masterIndexStatus,
       canonical_owner_code: canonicalOwnerCode,
       canonical_reconciliation_status: row.status,
@@ -419,6 +460,8 @@ export function buildPokemonMasterIndexUpdateCandidatesV1(masterIndexReconciliat
       ? "collect_independent_language_source_evidence_and_rebuild_master_index"
       : row.promotion_decision === "blocked_master_set_owner_unresolved"
         ? "resolve_language_master_set_owner_or_alias_before_canonical_reconciliation"
+        : row.promotion_decision === "blocked_missing_canonical_set_writer"
+          ? "add_and_prove_a_governed_missing_set_writer_after_master_index_admission"
         : "resolve_language_scope_before_master_index_admission",
     source_url: row.source_url,
   }));

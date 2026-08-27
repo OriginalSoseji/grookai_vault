@@ -37,6 +37,10 @@ import { parseBulbapediaJapaneseCardList } from
   "../audits/japanese_master_index_v4/card_source_adapters/bulbapedia_jp_v1.mjs";
 import { parseTcgdexJapaneseSetPayload } from
   "../audits/japanese_master_index_v4/card_source_adapters/tcgdex_ja_v1.mjs";
+import { readVerifiedArtifact } from
+  "../audits/japanese_master_index_v4/artifact_rows_v1.mjs";
+import { contentFingerprint } from
+  "../audits/japanese_master_index_v4/deterministic_artifact_v1.mjs";
 import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
   "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 
@@ -49,6 +53,53 @@ const GAME_CODES = ["pokemon", "mtg", "one_piece"];
 const ENGLISH_MASTER_INDEX_DIR = path.join(
   "docs", "audits", "verified_master_set_index_v1", "english_master_index_v1",
 );
+const JAPANESE_MASTER_INDEX_DIR = path.join(
+  "docs", "audits", "japanese_master_index_v4", "final",
+);
+
+async function loadVerifiedJapaneseMasterIndexDataset(descriptorName, expectedKey) {
+  const descriptorPath = path.join(JAPANESE_MASTER_INDEX_DIR, descriptorName);
+  const { artifact: descriptorArtifact } = await readVerifiedArtifact(descriptorPath);
+  const descriptor = descriptorArtifact.content?.dataset;
+  if (descriptor?.dataset_key !== expectedKey) {
+    throw new Error(`Japanese Master Index descriptor mismatch: ${expectedKey}`);
+  }
+  const rows = [];
+  for (let index = 0; index < descriptor.shard_paths.length; index += 1) {
+    const { artifact: shard } = await readVerifiedArtifact(descriptor.shard_paths[index]);
+    if (shard.content?.dataset_key !== expectedKey ||
+        shard.content?.shard_index !== index + 1 ||
+        shard.content?.shard_count !== descriptor.shard_count ||
+        shard.content?.row_count !== shard.content?.rows?.length) {
+      throw new Error(`Japanese Master Index shard mismatch: ${expectedKey}`);
+    }
+    rows.push(...shard.content.rows);
+  }
+  if (rows.length !== descriptor.row_count ||
+      contentFingerprint(rows) !== descriptor.content_fingerprint_sha256) {
+    throw new Error(`Japanese Master Index dataset fingerprint mismatch: ${expectedKey}`);
+  }
+  return { rows, fingerprint: descriptor.content_fingerprint_sha256 };
+}
+
+async function loadJapaneseMasterIndex() {
+  const [sets, cards] = await Promise.all([
+    loadVerifiedJapaneseMasterIndexDataset(
+      "jpn_master_admissible_sets_v1.json",
+      "master_admissible_set_rows_v1",
+    ),
+    loadVerifiedJapaneseMasterIndexDataset(
+      "jpn_master_admissible_cards_v1.json",
+      "master_admissible_card_rows_v1",
+    ),
+  ]);
+  return {
+    sets: sets.rows,
+    cards: cards.rows,
+    setFingerprint: sets.fingerprint,
+    cardFingerprint: cards.fingerprint,
+  };
+}
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -833,9 +884,10 @@ async function main() {
   };
   await writeJson(path.join(options.outDir, "run_plan.json"), runPlan);
 
-  const [database, englishMasterIndex] = await Promise.all([
+  const [database, englishMasterIndex, japaneseMasterIndex] = await Promise.all([
     loadDatabaseSnapshot(options.databaseUrl),
     loadEnglishMasterIndex(),
+    loadJapaneseMasterIndex(),
   ]);
   const japaneseDatabaseSets = database.sets.filter((row) =>
     row.game_code === "pokemon" && catalogSetScope(row) === "pokemon ja");
@@ -898,6 +950,8 @@ async function main() {
       reconciliation,
       englishMasterCards: englishMasterIndex.cards,
       englishAliasResolutions: database.english_alias_resolutions,
+      japaneseMasterSets: japaneseMasterIndex.sets,
+      japaneseMasterCards: japaneseMasterIndex.cards,
     });
   const canonicalPromotionCandidates = buildCanonicalPromotionCandidatesV1({
     actionableGaps: gaps,
@@ -921,6 +975,12 @@ async function main() {
       japanese_canonical_card_count: database.japanese_canonical_cards.length,
       english_canonical_card_count: database.english_canonical_cards.length,
       english_alias_resolutions: database.english_alias_resolutions,
+      japanese_master_index: {
+        set_count: japaneseMasterIndex.sets.length,
+        card_count: japaneseMasterIndex.cards.length,
+        set_fingerprint_sha256: japaneseMasterIndex.setFingerprint,
+        card_fingerprint_sha256: japaneseMasterIndex.cardFingerprint,
+      },
       one_piece_warehouse_product_count: database.one_piece_warehouse_products.length,
       artifact_policy: "counts_only_for_large_database_collections",
     }),
