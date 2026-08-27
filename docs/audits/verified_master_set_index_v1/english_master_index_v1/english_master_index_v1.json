@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-06-12T08:27:20.983Z",
+  "generated_at": "2026-08-27T07:25:09.597Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -14,11 +14,15 @@
     "note": "Default Node TLS verification."
   },
   "summary": {
-    "sets": 201,
-    "evidence_rows": 232931,
+    "sets": 203,
+    "evidence_rows": 237764,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "beckett_skarmory_league_crosshatch_holo",
         "evidence_rows": 1
       },
       {
@@ -86,6 +90,14 @@
         "evidence_rows": 8
       },
       {
+        "source_key": "bulbapedia_sv03_additional_card_marker",
+        "evidence_rows": 10
+      },
+      {
+        "source_key": "bulbapedia_sv03_additional_stamped_active_finish",
+        "evidence_rows": 3
+      },
+      {
         "source_key": "bulbapedia_sv05_additional_cards",
         "evidence_rows": 3
       },
@@ -135,6 +147,10 @@
       },
       {
         "source_key": "crazygamer_ascended_heroes_diglett_100",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "dextcg",
         "evidence_rows": 1
       },
       {
@@ -294,6 +310,10 @@
         "evidence_rows": 52
       },
       {
+        "source_key": "ebay",
+        "evidence_rows": 5
+      },
+      {
         "source_key": "elitefourum_alternate_checklist",
         "evidence_rows": 50
       },
@@ -303,6 +323,14 @@
       },
       {
         "source_key": "facetofacegames_sve_reverse_product",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "full_grip_games_product_page",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "gamenerdz_product_page",
         "evidence_rows": 1
       },
       {
@@ -318,6 +346,10 @@
         "evidence_rows": 18
       },
       {
+        "source_key": "local_prismatic_evolutions_master_set_list_xlsx_v1",
+        "evidence_rows": 167
+      },
+      {
         "source_key": "lockett_labs_ascended_heroes_dugtrio_101",
         "evidence_rows": 1
       },
@@ -328,6 +360,14 @@
       {
         "source_key": "magicmadhouse_swsh9_stamps",
         "evidence_rows": 5
+      },
+      {
+        "source_key": "noble_knight_exact_promo_finish",
+        "evidence_rows": 4
+      },
+      {
+        "source_key": "noble_knight_product_page",
+        "evidence_rows": 1
       },
       {
         "source_key": "official_pokemon_checklist_pdf",
@@ -347,7 +387,7 @@
       },
       {
         "source_key": "pkmncards",
-        "evidence_rows": 19167
+        "evidence_rows": 19288
       },
       {
         "source_key": "pkmncards_identity_gap",
@@ -370,6 +410,14 @@
         "evidence_rows": 5
       },
       {
+        "source_key": "pokecardvalues",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "pokecardvalues_skarmory_league_reverse",
+        "evidence_rows": 1
+      },
+      {
         "source_key": "pokecardvalues_stamped_finish",
         "evidence_rows": 34
       },
@@ -390,8 +438,12 @@
         "evidence_rows": 18
       },
       {
+        "source_key": "pokemonflashfire_league_reverse_exact",
+        "evidence_rows": 14
+      },
+      {
         "source_key": "pokemontcg_api",
-        "evidence_rows": 51710
+        "evidence_rows": 51842
       },
       {
         "source_key": "pokemonwizard_variant_exact",
@@ -442,6 +494,10 @@
         "evidence_rows": 1
       },
       {
+        "source_key": "pricecharting",
+        "evidence_rows": 9
+      },
+      {
         "source_key": "pricecharting_api_product",
         "evidence_rows": 1
       },
@@ -462,8 +518,20 @@
         "evidence_rows": 9
       },
       {
+        "source_key": "pricecharting_csv_product_stamp_label",
+        "evidence_rows": 42
+      },
+      {
         "source_key": "pricecharting_csv_promo_exact",
         "evidence_rows": 15
+      },
+      {
+        "source_key": "pricecharting_exact_promo_finish",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "pricecharting_mfb_representative_card_page",
+        "evidence_rows": 32
       },
       {
         "source_key": "pricecharting_product_page",
@@ -475,6 +543,10 @@
       },
       {
         "source_key": "pricecharting_variant_exact",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "pricecharting_web_skarmory_league_reverse",
         "evidence_rows": 1
       },
       {
@@ -490,8 +562,12 @@
         "evidence_rows": 5
       },
       {
+        "source_key": "psa_exact_promo_marker",
+        "evidence_rows": 1
+      },
+      {
         "source_key": "reverseholo_set_checklist",
-        "evidence_rows": 16549
+        "evidence_rows": 16545
       },
       {
         "source_key": "scrydex_variant_exact",
@@ -527,7 +603,7 @@
       },
       {
         "source_key": "tcgcsv_prize_pack_catalog",
-        "evidence_rows": 122
+        "evidence_rows": 123
       },
       {
         "source_key": "tcgcsv_prize_pack_title_finish",
@@ -546,12 +622,28 @@
         "evidence_rows": 9
       },
       {
+        "source_key": "tcgcsv_tcgplayer_catalog_live",
+        "evidence_rows": 4
+      },
+      {
         "source_key": "tcgdex",
-        "evidence_rows": 47038
+        "evidence_rows": 49012
+      },
+      {
+        "source_key": "tcgnav_exact_finish",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer",
+        "evidence_rows": 4
       },
       {
         "source_key": "tcgplayer_price_guide",
-        "evidence_rows": 21358
+        "evidence_rows": 23483
+      },
+      {
+        "source_key": "tcgplayer_pro_catalog_page",
+        "evidence_rows": 1
       },
       {
         "source_key": "tcgplayer_product_675813",
@@ -2895,7 +2987,7 @@
       },
       {
         "source_key": "thepricedex_price_list",
-        "evidence_rows": 57749
+        "evidence_rows": 57926
       },
       {
         "source_key": "vendortools_ascended_heroes_spidops_019",
@@ -2904,32 +2996,39 @@
     ],
     "cards_by_status": {
       "api_agreed": 9,
-      "master_verified": 21511
+      "candidate_unconfirmed": 96,
+      "human_source_verified": 78,
+      "master_verified": 21510
     },
     "printings_by_status": {
-      "human_source_verified": 39,
-      "master_verified": 38893
+      "api_agreed": 1,
+      "candidate_unconfirmed": 109,
+      "human_source_verified": 395,
+      "master_verified": 37762
     },
     "conflicts": 0,
-    "manual_review": 5,
-    "suppressed_structured_finish_candidates": 1615,
+    "manual_review": 213,
+    "suppressed_structured_finish_candidates": 1957,
     "source_availability_by_status": {
       "bulbapedia_set_list|collected": 90,
-      "bulbapedia_set_list|error": 110,
+      "bulbapedia_set_list|error": 112,
       "bulbapedia_set_list|unavailable": 1,
       "human_fixtures|collected": 1,
-      "pokemontcg_api|cached_snapshot": 3,
-      "pokemontcg_api|collected": 156,
-      "pokemontcg_api|collected_plus_cached_snapshot": 14,
-      "pokemontcg_api|unavailable": 28,
-      "tcgdex|collected": 190,
-      "tcgdex|unavailable": 11,
-      "tcgplayer_price_guide|cached_snapshot": 3,
-      "tcgplayer_price_guide|collected": 135,
-      "tcgplayer_price_guide|collected_plus_cached_snapshot": 7,
-      "tcgplayer_price_guide|unavailable": 56,
-      "thepricedex_price_list|collected": 173,
-      "thepricedex_price_list|error": 28
+      "pkmncards|collected": 153,
+      "pkmncards|error": 50,
+      "pokemontcg_api|cached_snapshot": 14,
+      "pokemontcg_api|collected": 148,
+      "pokemontcg_api|collected_plus_cached_snapshot": 12,
+      "pokemontcg_api|unavailable": 29,
+      "tcgdex|collected": 199,
+      "tcgdex|unavailable": 4,
+      "tcgplayer_price_guide|cached_snapshot": 10,
+      "tcgplayer_price_guide|collected": 130,
+      "tcgplayer_price_guide|collected_plus_cached_snapshot": 12,
+      "tcgplayer_price_guide|unavailable": 51,
+      "thepricedex_price_list|collected": 175,
+      "thepricedex_price_list|error": 27,
+      "thepricedex_price_list|unavailable": 1
     }
   },
   "artifact_manifest": {
