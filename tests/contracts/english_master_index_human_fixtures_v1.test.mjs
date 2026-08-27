@@ -38,11 +38,17 @@ test('human fixture loader accepts wrapped records, wrapped rows, and bare evide
   await withFixtures({
     'records.json': { source_key: 'records', source_kind: 'collector_reference', records: [evidence({ card_number: '1' })] },
     'rows.json': { source_key: 'rows', source_kind: 'collector_reference', rows: [evidence({ card_number: '2' })] },
-    'array.json': [evidence({ card_number: '3' })],
+    'array.json': [evidence({
+      card_number: '3',
+      retrieved_at: '2026-06-12T22:43:00.000Z',
+      raw_snapshot_ref: 'manual_web:fixture:3',
+    })],
   }, async (fixtureDir) => {
     const rows = await collectHumanFixtureEvidence(SETS, { fixtureDir, retrievedAt: '2026-08-27T00:00:00.000Z' });
     assert.deepEqual(rows.map((row) => row.card_number), ['3', '1', '2']);
     assert.equal(rows.every((row) => row.source_url === 'https://example.invalid/card/1'), true);
+    assert.equal(rows[0].retrieved_at, '2026-06-12T22:43:00.000Z');
+    assert.equal(rows[0].raw_snapshot_ref, 'manual_web:fixture:3');
   });
 });
 

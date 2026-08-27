@@ -146,8 +146,8 @@ export async function collectHumanFixtureEvidence(setConfigs, options) {
           : record.evidence_type,
         evidence_label: record.evidence_text_or_label ?? record.evidence_label,
         language: 'en',
-        retrieved_at: fixture.retrieved_at ?? options.retrievedAt,
-        raw_snapshot_ref: fixture.raw_snapshot_ref ?? `fixture:${file}`,
+        retrieved_at: record.retrieved_at ?? fixture.retrieved_at ?? options.retrievedAt,
+        raw_snapshot_ref: record.raw_snapshot_ref ?? fixture.raw_snapshot_ref ?? `fixture:${file}`,
         notes: unqualifiedCardTraderNormal
           ? [
             'Legacy CardTrader Normal inference downgraded to unknown because the source label has no explicit Normal/Non-Holo descriptor.',

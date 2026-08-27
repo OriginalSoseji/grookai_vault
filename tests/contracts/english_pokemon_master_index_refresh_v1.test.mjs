@@ -85,5 +85,7 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.match(workflow, /--skip-db-audit/);
   assert.match(workflow, /--mode=apply-to-worktree/);
   assert.match(workflow, /gh pr create/);
+  assert.match(workflow, /CHECKED_OUT_SHA="\$\(git rev-parse HEAD\)"/);
+  assert.doesNotMatch(workflow, /"\$GITHUB_SHA" "\$\{GITHUB_REF_NAME\}"/);
   assert.doesNotMatch(workflow, /SUPABASE_DB_URL|DATABASE_URL/);
 });

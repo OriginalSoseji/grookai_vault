@@ -42,17 +42,22 @@ jobs:
 
       - name: Initialize refresh evidence
         shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           set -euo pipefail
           CANDIDATE_DIR="$RUNNER_TEMP/english-master-index-candidate"
           REPORT_DIR="$RUNNER_TEMP/english-master-index-refresh-report"
           BASELINE_DIR="docs/audits/verified_master_set_index_v1/english_master_index_v1"
+          CHECKED_OUT_SHA="$(git rev-parse HEAD)"
+          CHECKED_OUT_BRANCH="$(git branch --show-current)"
+          CHECKED_OUT_BRANCH="${CHECKED_OUT_BRANCH:-$DEFAULT_BRANCH}"
           mkdir -p "$CANDIDATE_DIR" "$REPORT_DIR"
           echo "CANDIDATE_DIR=$CANDIDATE_DIR" >> "$GITHUB_ENV"
           echo "REPORT_DIR=$REPORT_DIR" >> "$GITHUB_ENV"
           echo "BASELINE_DIR=$BASELINE_DIR" >> "$GITHUB_ENV"
           printf '{"run_id":"%s","commit_sha":"%s","branch":"%s","database_writes":false,"storage_writes":false}\n' \
-            "$GITHUB_RUN_ID" "$GITHUB_SHA" "${GITHUB_REF_NAME}" > "$REPORT_DIR/run_metadata.json"
+            "$GITHUB_RUN_ID" "$CHECKED_OUT_SHA" "$CHECKED_OUT_BRANCH" > "$REPORT_DIR/run_metadata.json"
 
       - name: Rebuild English Master Index from source evidence
         shell: bash
