@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SETS_V1",
-  "generated_at": "2026-07-14T19:15:29.057Z",
+  "generated_at": "2026-08-27T06:24:00.130Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -440,7 +440,47 @@
         },
         "tcgdex": {
           "official": 0,
-          "total": 52
+          "total": 89
+        }
+      }
+    },
+    {
+      "key": "miscp",
+      "set_name": "Miscellaneous Promos",
+      "pokemontcg": null,
+      "tcgdex": "miscp",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "miscp",
+        "official_checklist_pdf": null,
+        "official_pokemon_checklist": null,
+        "thepricedex": "miscp",
+        "thepricedex_price_list": "miscp",
+        "pkmncards": "miscellaneous-promos",
+        "bulbapedia": "Miscellaneous_Promos_(TCG)",
+        "bulbapedia_set_list": "Miscellaneous_Promos_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available",
+        "official_checklist_pdf": "unavailable",
+        "official_pokemon_checklist": "unavailable",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 1,
+          "total": 1
         }
       }
     },
@@ -1800,7 +1840,7 @@
         },
         "tcgdex": {
           "official": 147,
-          "total": 185
+          "total": 186
         }
       }
     },
@@ -6360,20 +6400,20 @@
         },
         "tcgdex": {
           "official": 72,
-          "total": 195
+          "total": 73
         }
       }
     },
     {
-      "key": "swsh45sv",
+      "key": "swsh4.5sv",
       "set_name": "Shining Fates Shiny Vault",
       "pokemontcg": "swsh45sv",
-      "tcgdex": null,
+      "tcgdex": "swsh4.5sv",
       "manual_aliases": [],
       "release_date": "2021/02/19",
       "source_aliases": {
         "pokemontcg_api": "swsh45sv",
-        "tcgdex": null,
+        "tcgdex": "swsh4.5sv",
         "official_checklist_pdf": "swsh45sv",
         "official_pokemon_checklist": "swsh45sv",
         "thepricedex": "swsh45sv",
@@ -6384,7 +6424,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -6399,8 +6439,8 @@
           "total": 122
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 122,
+          "total": 122
         }
       }
     },
@@ -6560,20 +6600,20 @@
         },
         "tcgdex": {
           "official": 25,
-          "total": 50
+          "total": 25
         }
       }
     },
     {
-      "key": "cel25c",
+      "key": "cel25cc",
       "set_name": "Celebrations: Classic Collection",
       "pokemontcg": "cel25c",
-      "tcgdex": null,
+      "tcgdex": "cel25cc",
       "manual_aliases": [],
       "release_date": "2021/10/08",
       "source_aliases": {
         "pokemontcg_api": "cel25c",
-        "tcgdex": null,
+        "tcgdex": "cel25cc",
         "official_checklist_pdf": "cel25c",
         "official_pokemon_checklist": "cel25c",
         "thepricedex": "cel25c",
@@ -6584,7 +6624,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -6599,8 +6639,8 @@
           "total": 25
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 25,
+          "total": 25
         }
       }
     },
@@ -6680,7 +6720,7 @@
         },
         "tcgdex": {
           "official": 172,
-          "total": 216
+          "total": 186
         }
       }
     },
@@ -6688,12 +6728,12 @@
       "key": "swsh9tg",
       "set_name": "Brilliant Stars Trainer Gallery",
       "pokemontcg": "swsh9tg",
-      "tcgdex": null,
+      "tcgdex": "swsh9tg",
       "manual_aliases": [],
       "release_date": "2022/02/25",
       "source_aliases": {
         "pokemontcg_api": "swsh9tg",
-        "tcgdex": null,
+        "tcgdex": "swsh9tg",
         "official_checklist_pdf": "swsh9tg",
         "official_pokemon_checklist": "swsh9tg",
         "thepricedex": "swsh9tg",
@@ -6704,7 +6744,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -6719,8 +6759,8 @@
           "total": 30
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 30,
+          "total": 30
         }
       }
     },
@@ -6760,7 +6800,7 @@
         },
         "tcgdex": {
           "official": 189,
-          "total": 246
+          "total": 216
         }
       }
     },
@@ -6768,12 +6808,12 @@
       "key": "swsh10tg",
       "set_name": "Astral Radiance Trainer Gallery",
       "pokemontcg": "swsh10tg",
-      "tcgdex": null,
+      "tcgdex": "swsh10tg",
       "manual_aliases": [],
       "release_date": "2022/05/27",
       "source_aliases": {
         "pokemontcg_api": "swsh10tg",
-        "tcgdex": null,
+        "tcgdex": "swsh10tg",
         "official_checklist_pdf": "swsh10tg",
         "official_pokemon_checklist": "swsh10tg",
         "thepricedex": "swsh10tg",
@@ -6784,7 +6824,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -6799,8 +6839,8 @@
           "total": 30
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 30,
+          "total": 30
         }
       }
     },
@@ -6920,7 +6960,7 @@
         },
         "tcgdex": {
           "official": 196,
-          "total": 247
+          "total": 217
         }
       }
     },
@@ -6928,12 +6968,12 @@
       "key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
       "pokemontcg": "swsh11tg",
-      "tcgdex": null,
+      "tcgdex": "swsh11tg",
       "manual_aliases": [],
       "release_date": "2022/09/09",
       "source_aliases": {
         "pokemontcg_api": "swsh11tg",
-        "tcgdex": null,
+        "tcgdex": "swsh11tg",
         "official_checklist_pdf": "swsh11tg",
         "official_pokemon_checklist": "swsh11tg",
         "thepricedex": "swsh11tg",
@@ -6944,7 +6984,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -6959,8 +6999,8 @@
           "total": 30
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 30,
+          "total": 30
         }
       }
     },
@@ -7000,7 +7040,7 @@
         },
         "tcgdex": {
           "official": 195,
-          "total": 245
+          "total": 215
         }
       }
     },
@@ -7008,12 +7048,12 @@
       "key": "swsh12tg",
       "set_name": "Silver Tempest Trainer Gallery",
       "pokemontcg": "swsh12tg",
-      "tcgdex": null,
+      "tcgdex": "swsh12tg",
       "manual_aliases": [],
       "release_date": "2022/11/11",
       "source_aliases": {
         "pokemontcg_api": "swsh12tg",
-        "tcgdex": null,
+        "tcgdex": "swsh12tg",
         "official_checklist_pdf": "swsh12tg",
         "official_pokemon_checklist": "swsh12tg",
         "thepricedex": "swsh12tg",
@@ -7024,7 +7064,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -7039,8 +7079,8 @@
           "total": 30
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 30,
+          "total": 30
         }
       }
     },
@@ -7120,20 +7160,20 @@
         },
         "tcgdex": {
           "official": 159,
-          "total": 230
+          "total": 160
         }
       }
     },
     {
-      "key": "swsh12pt5gg",
+      "key": "swsh12.5gg",
       "set_name": "Crown Zenith Galarian Gallery",
       "pokemontcg": "swsh12pt5gg",
-      "tcgdex": null,
+      "tcgdex": "swsh12.5gg",
       "manual_aliases": [],
       "release_date": "2023/01/20",
       "source_aliases": {
         "pokemontcg_api": "swsh12pt5gg",
-        "tcgdex": null,
+        "tcgdex": "swsh12.5gg",
         "official_checklist_pdf": "swsh12pt5gg",
         "official_pokemon_checklist": "swsh12pt5gg",
         "thepricedex": "swsh12pt5gg",
@@ -7144,7 +7184,7 @@
       },
       "source_status": {
         "pokemontcg_api": "available",
-        "tcgdex": "unavailable",
+        "tcgdex": "available",
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
@@ -7159,8 +7199,8 @@
           "total": 70
         },
         "tcgdex": {
-          "official": null,
-          "total": null
+          "official": 70,
+          "total": 70
         }
       }
     },
@@ -8050,50 +8090,42 @@
     },
     {
       "key": "me05",
-      "set_name": "Mega Evolution: Pitch Black",
-      "pokemontcg": null,
-      "tcgdex": null,
+      "set_name": "Pitch Black",
+      "pokemontcg": "me5",
+      "tcgdex": "me05",
       "manual_aliases": [],
-      "release_date": "2026-07-17",
+      "release_date": "2026/07/17",
       "source_aliases": {
-        "pokemontcg_api": null,
-        "tcgdex": null,
-        "official_pokemon_checklist": "mega-evolution-pitch-black",
+        "pokemontcg_api": "me5",
+        "tcgdex": "me05",
+        "official_checklist_pdf": "me5",
+        "official_pokemon_checklist": "me5",
+        "thepricedex": "me5",
+        "thepricedex_price_list": "me5",
+        "pkmncards": "pitch-black",
         "bulbapedia": "Pitch_Black_(TCG)",
         "bulbapedia_set_list": "Pitch_Black_(TCG)"
       },
       "source_status": {
-        "pokemontcg_api": "unavailable",
-        "tcgdex": "unavailable",
+        "pokemontcg_api": "available",
+        "tcgdex": "available",
+        "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
         "bulbapedia": "candidate_url",
         "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
-          "printed_total": null,
-          "total": null
+          "printed_total": 84,
+          "total": 120
         },
         "tcgdex": {
-          "official": null,
-          "total": null
-        },
-        "official_pokemon_checklist": {
-          "official": 115,
-          "total": null
+          "official": 84,
+          "total": 120
         }
-      },
-      "new_set_release_ingestion_v1": {
-        "package_id": "NEW-POKEMON-SET-RELEASE-INGESTION-V1",
-        "release_slug": "20260714_abyss_eye_pitch_black",
-        "source_urls": [
-          "https://www.pokemon.com/us/pokemon-tcg/mega-evolution-pitch-black",
-          "https://bulbapedia.bulbagarden.net/wiki/Pitch_Black_(TCG)"
-        ],
-        "status": "candidate_pending_card_level_source",
-        "reject_names": [
-          "Black Bolt"
-        ]
       }
     }
   ]
