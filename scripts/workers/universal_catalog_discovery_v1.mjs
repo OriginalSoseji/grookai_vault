@@ -322,6 +322,7 @@ async function loadDatabaseSnapshot(databaseUrl) {
     connectionString: databaseUrl,
     ssl: { rejectUnauthorized: false },
     application_name: "universal_catalog_discovery_v1_read_only",
+    options: "-c default_transaction_read_only=on",
   });
   await client.connect();
   try {

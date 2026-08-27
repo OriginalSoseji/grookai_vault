@@ -46,10 +46,12 @@ function parseArgs(argv) {
     repository: process.env.GITHUB_REPOSITORY ?? "",
     runnerCommit: DEFAULT_RUNNER_COMMIT,
     runnerRef: DEFAULT_RUNNER_REF,
+    shadowOnly: false,
     workflowId: DEFAULT_RUNNER_WORKFLOW_ID,
   };
   for (const arg of argv) {
     if (arg === "--dispatch") args.dispatch = true;
+    else if (arg === "--shadow-only") args.shadowOnly = true;
     else if (arg.startsWith("--as-of=")) args.asOf = arg.slice(8);
     else if (arg.startsWith("--manifest=")) args.manifest = path.resolve(arg.slice(11));
     else if (arg.startsWith("--max-consecutive-failures=")) {
@@ -75,8 +77,12 @@ function parseArgs(argv) {
   if (args.runnerCommit !== DEFAULT_RUNNER_COMMIT) {
     throw new Error("runner-commit is outside the frozen supervisor authority");
   }
-  if (args.asOf !== "2026-08-16") {
-    throw new Error("as-of is outside the frozen supervisor authority");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(args.asOf)) throw new Error("as-of must be YYYY-MM-DD");
+  if (args.dispatch && args.shadowOnly) {
+    throw new Error("--dispatch is forbidden in --shadow-only mode");
+  }
+  if (args.shadowOnly && process.env.CATALOG_AUTOMATION_MODE !== "shadow-only") {
+    throw new Error("CATALOG_AUTOMATION_MODE must equal shadow-only");
   }
   if (!Number.isInteger(args.maxSets) || args.maxSets < 1 || args.maxSets > 35) {
     throw new Error("max-sets must be between 1 and the frozen ceiling of 35");
@@ -178,6 +184,7 @@ function createReadOnlyClient() {
   return new Client({
     connectionString,
     ssl: { rejectUnauthorized: false },
+    options: "-c default_transaction_read_only=on",
     connectionTimeoutMillis: 15_000,
     query_timeout: 300_000,
     statement_timeout: 300_000,
@@ -398,6 +405,7 @@ async function main() {
       runner_workflow_id: args.workflowId,
       runner_ref: args.runnerRef,
       dispatch_requested: args.dispatch,
+      shadow_only: args.shadowOnly,
       boundaries: {
         database_access: readback ? "read_only" : "skipped_while_writer_active",
         database_writes: false,
@@ -432,7 +440,9 @@ async function main() {
         finalStatus = "dispatch_created_and_observed";
       }
     } else if (runPlan.status === "dispatch_ready") {
-      finalStatus = "plan_only_dispatch_ready";
+      finalStatus = args.shadowOnly
+        ? "shadow_only_candidate_recorded"
+        : "plan_only_dispatch_ready";
     }
 
     const summary = {
@@ -441,6 +451,7 @@ async function main() {
       completed_at: new Date().toISOString(),
       status: finalStatus,
       dispatched,
+      shadow_only: args.shadowOnly,
       repository: args.repository,
       target_commit_sha: targetCommitSha,
       catalog: runPlan.catalog,
@@ -462,6 +473,7 @@ async function main() {
       failed_at: new Date().toISOString(),
       status: "stopped_fail_closed",
       dispatched: dispatchAccepted,
+      shadow_only: args.shadowOnly,
       repository: args.repository,
       target_commit_sha: targetCommitSha,
       error: String(error?.message ?? error),
