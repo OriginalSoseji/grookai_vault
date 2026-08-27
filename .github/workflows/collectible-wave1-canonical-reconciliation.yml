@@ -2,19 +2,6 @@ name: Collectible Wave 1 Canonical Reconciliation
 
 on:
   workflow_dispatch:
-    inputs:
-      parser_run_id:
-        description: Exact successful Parser Wave 1 workflow run
-        required: true
-        default: "33118951166"
-      parser_artifact_name:
-        description: Exact Parser Wave 1 artifact name
-        required: true
-        default: collectible-shadow-parser-wave1-33118951166
-      expected_candidate_sha256:
-        description: Approved candidate_index.jsonl SHA-256
-        required: true
-        default: 30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f
 
 permissions:
   actions: read
@@ -56,10 +43,10 @@ jobs:
       - name: Download exact Parser Wave 1 artifact
         uses: actions/download-artifact@v5
         with:
-          name: ${{ inputs.parser_artifact_name }}
+          name: collectible-shadow-parser-wave1-33118951166
           path: ${{ runner.temp }}/parser-wave1
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ inputs.parser_run_id }}
+          run-id: "33118951166"
 
       - name: Run read-only canonical reconciliation
         shell: bash
@@ -73,8 +60,8 @@ jobs:
             --out-dir="$OUT_DIR" \
             --expected-head-sha="$GITHUB_SHA" \
             --parser-artifact-dir="$RUNNER_TEMP/parser-wave1" \
-            --parser-run-id="${{ inputs.parser_run_id }}" \
-            --expected-candidate-sha256="${{ inputs.expected_candidate_sha256 }}"
+            --parser-run-id="33118951166" \
+            --expected-candidate-sha256="30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f"
 
       - name: Report reconciliation blockers
         if: always() && env.OUT_DIR != ''

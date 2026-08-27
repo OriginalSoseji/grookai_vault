@@ -15,6 +15,12 @@ import {
 
 const { Client } = pg;
 const EXPECTED_PARSER_VERSION = "COLLECTIBLE_SHADOW_PARSER_WAVE1_V1";
+const FROZEN_LIVE_INPUT = Object.freeze({
+  parser_run_id: "33118951166",
+  parser_head_sha: "90afb4b7f33ff5b37c8c2183889bccae486b734b",
+  candidate_count: 46259,
+  candidate_sha256: "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f",
+});
 const CANDIDATE_FILE = "candidate_index.jsonl";
 const REQUIRED_INPUT_ARTIFACTS = Object.freeze([
   "run_plan.json",
@@ -117,6 +123,12 @@ async function readJson(file) {
 }
 
 async function verifyParserArtifacts(options) {
+  if (!options.canonicalFixture) {
+    if (options.parserRunId !== FROZEN_LIVE_INPUT.parser_run_id ||
+        options.expectedCandidateSha256 !== FROZEN_LIVE_INPUT.candidate_sha256) {
+      throw new Error("live reconciliation input does not match the frozen artifact tuple");
+    }
+  }
   const manifest = await readJson(path.join(options.parserArtifactDir, "artifact_hashes.json"));
   if (manifest?.algorithm !== "sha256" || !Array.isArray(manifest?.artifacts)) {
     throw new Error("parser artifact hash manifest is malformed");
@@ -148,6 +160,12 @@ async function verifyParserArtifacts(options) {
       parserSummary?.version !== EXPECTED_PARSER_VERSION ||
       parserPlan?.mode !== "shadow-only" || parserSummary?.mode !== "shadow-only") {
     throw new Error("parser artifacts do not satisfy the Wave 1 contract");
+  }
+  if (!options.canonicalFixture &&
+      (parserPlan.actual_head_sha !== FROZEN_LIVE_INPUT.parser_head_sha ||
+       parserPlan.expected_head_sha !== FROZEN_LIVE_INPUT.parser_head_sha ||
+       parserSummary.candidate_count !== FROZEN_LIVE_INPUT.candidate_count)) {
+    throw new Error("live parser metadata does not match the frozen artifact tuple");
   }
   if (parserSummary.validation_failure_count !== 0 ||
       parserSummary.failed_source_count !== 0) {

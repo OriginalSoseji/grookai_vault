@@ -69,6 +69,12 @@ test("game aliases are deterministic and canonical cards require game ownership"
     () => validateCanonicalSnapshotV1(invalid),
     /canonical card references an unknown game/,
   );
+  const crossGame = canonicalSnapshot();
+  crossGame.cards[0].game_id = crossGame.games[1].id;
+  assert.throws(
+    () => validateCanonicalSnapshotV1(crossGame),
+    /canonical card and set game ownership disagree/,
+  );
 });
 
 test("exact mapping plus exact coordinates resolves one canonical identity", () => {
@@ -84,7 +90,10 @@ test("exact mapping plus exact coordinates resolves one canonical identity", () 
 
 test("missing game foundation blocks rather than creating a false match", () => {
   const snapshot = canonicalSnapshot();
+  const removedGameId = snapshot.games.find((row) => row.code === "gundam").id;
   snapshot.games = snapshot.games.filter((row) => row.code !== "gundam");
+  snapshot.sets = snapshot.sets.filter((row) => row.game_id !== removedGameId);
+  snapshot.cards = snapshot.cards.filter((row) => row.game_id !== removedGameId);
   const row = reconcileCollectibleCandidateV1(candidate(), snapshot);
   assert.equal(row.decision, "blocked_missing_game_foundation");
   assert.deepEqual(row.canonical_match_ids, []);
@@ -145,6 +154,14 @@ test("batch reconciliation rejects duplicate candidate IDs", () => {
     () => reconcileCollectibleCandidatesV1([candidate(), candidate()], canonicalSnapshot()),
     /duplicate shadow candidate ID/,
   );
+});
+
+test("batch reconciliation builds canonical indexes instead of rescanning all cards", () => {
+  const module = fs.readFileSync(path.join(
+    ROOT, "backend", "catalog", "collectible_wave1_canonical_reconciliation_v1.mjs",
+  ), "utf8");
+  assert.match(module, /function buildCanonicalIndex/);
+  assert.doesNotMatch(module, /snapshot\.cards\.filter/);
 });
 
 test("worker is transaction-read-only and has no persistence authority", () => {
@@ -231,11 +248,35 @@ test("workflow is manual, exact-artifact, read-only, and secret-bounded", () => 
   assert.match(workflow, /workflow_dispatch:/);
   assert.doesNotMatch(workflow, /schedule:/);
   assert.match(workflow, /ref:\s*\$\{\{ github\.sha \}\}/);
-  assert.match(workflow, /run-id:\s*\$\{\{ inputs\.parser_run_id \}\}/);
-  assert.match(workflow, /expected_candidate_sha256/);
+  assert.match(workflow, /run-id:\s*"33118951166"/);
+  assert.match(workflow, /30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f/);
+  assert.doesNotMatch(workflow, /inputs\./);
   assert.match(workflow, /PGOPTIONS:.*default_transaction_read_only=on/);
   assert.match(workflow, /SUPABASE_DB_URL:\s*\$\{\{ secrets\.SUPABASE_DB_URL \}\}/);
   assert.doesNotMatch(workflow, /--apply|SUPABASE_STORAGE|storage\.from|\.upload\(|embeddings/i);
+});
+
+test("live worker rejects a caller-substituted artifact tuple before database access", () => {
+  const head = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: ROOT,
+    encoding: "utf8",
+  }).stdout.trim();
+  const run = spawnSync(process.execPath, [
+    path.join(ROOT, "scripts", "workers", "collectible_wave1_canonical_reconciliation_v1.mjs"),
+    `--out-dir=${fs.mkdtempSync(path.join(os.tmpdir(), "collectible-wave1-frozen-"))}`,
+    `--expected-head-sha=${head}`,
+    `--parser-artifact-dir=${PARSER_FIXTURES}`,
+    "--parser-run-id=99999999999",
+    `--expected-candidate-sha256=${"f".repeat(64)}`,
+    "--db-url=postgres://invalid:invalid@127.0.0.1:1/invalid",
+  ], {
+    cwd: ROOT,
+    encoding: "utf8",
+    env: { ...process.env, CATALOG_AUTOMATION_MODE: "shadow-only" },
+  });
+  assert.notEqual(run.status, 0);
+  assert.match(run.stderr, /does not match the frozen artifact tuple/);
+  assert.doesNotMatch(run.stderr, /ECONNREFUSED/);
 });
 
 test("contract freezes classifications, aggregate variant limits, and stop boundary", () => {

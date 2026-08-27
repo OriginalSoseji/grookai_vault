@@ -58,6 +58,55 @@ function sourceAliases(sourceId) {
   return new Set([key(sourceId), ...(SOURCE_MAPPING_ALIASES[sourceId] ?? []).map(key)]);
 }
 
+function addIndexed(index, indexKey, row) {
+  if (!index.has(indexKey)) index.set(indexKey, []);
+  index.get(indexKey).push(row);
+}
+
+function compoundKey(...values) {
+  return values.map((value) => text(value)).join("\u0000");
+}
+
+function buildCanonicalIndex(snapshot) {
+  const gamesByAlias = new Map();
+  const setsByGameAndCode = new Map();
+  const setsByGameAndName = new Map();
+  const cardsByGameAndSet = new Map();
+  const cardsBySourceMapping = new Map();
+
+  for (const game of snapshot.games) {
+    for (const alias of unique([
+      ...gameAliases(game.code),
+      key(game.slug),
+      key(game.name),
+    ])) {
+      addIndexed(gamesByAlias, alias, game);
+    }
+  }
+  for (const set of snapshot.sets) {
+    addIndexed(setsByGameAndCode, compoundKey(set.game_id, key(set.code)), set);
+    addIndexed(setsByGameAndName, compoundKey(set.game_id, key(set.name)), set);
+  }
+  for (const card of snapshot.cards) {
+    addIndexed(cardsByGameAndSet, compoundKey(card.game_id, card.set_id), card);
+    for (const mapping of card.mappings ?? []) {
+      if (mapping.active === false) continue;
+      addIndexed(cardsBySourceMapping, compoundKey(
+        card.game_id,
+        key(mapping.source),
+        text(mapping.external_id),
+      ), card);
+    }
+  }
+  return {
+    gamesByAlias,
+    setsByGameAndCode,
+    setsByGameAndName,
+    cardsByGameAndSet,
+    cardsBySourceMapping,
+  };
+}
+
 function cardSetMatches(candidate, canonicalCard) {
   const coordinates = candidate.identity_coordinates ?? {};
   const sourceSetCode = key(coordinates.set_code);
@@ -108,11 +157,15 @@ export function validateCanonicalSnapshotV1(snapshot) {
   }
   const setIds = new Set();
   for (const set of snapshot.sets) {
-    if (!text(set?.id) || !text(set?.game) || setIds.has(set.id)) {
+    if (!text(set?.id) || !text(set?.game_id) || !text(set?.game) || setIds.has(set.id)) {
       throw new Error("canonical snapshot contains an invalid or duplicate set");
+    }
+    if (!gameIds.has(set.game_id)) {
+      throw new Error(`canonical set references an unknown game: ${set.id}`);
     }
     setIds.add(set.id);
   }
+  const setsById = new Map(snapshot.sets.map((set) => [set.id, set]));
   const cardIds = new Set();
   for (const card of snapshot.cards) {
     if (!text(card?.id) || !text(card?.game_id) || !text(card?.set_id) || !text(card?.name) ||
@@ -125,6 +178,9 @@ export function validateCanonicalSnapshotV1(snapshot) {
     if (!setIds.has(card.set_id)) {
       throw new Error(`canonical card references an unknown set: ${card.id}`);
     }
+    if (setsById.get(card.set_id).game_id !== card.game_id) {
+      throw new Error(`canonical card and set game ownership disagree: ${card.id}`);
+    }
     cardIds.add(card.id);
     if (!Array.isArray(card.mappings ?? []) || !Array.isArray(card.identities ?? [])) {
       throw new Error(`canonical card mappings and identities must be arrays: ${card.id}`);
@@ -133,37 +189,48 @@ export function validateCanonicalSnapshotV1(snapshot) {
   return { game_count: gameIds.size, set_count: setIds.size, card_count: cardIds.size };
 }
 
-function gameFoundations(candidate, snapshot) {
+function gameFoundations(candidate, index) {
   const aliases = gameAliases(candidate.identity_coordinates?.game);
-  return snapshot.games.filter((game) =>
-    aliases.has(key(game.code)) || aliases.has(key(game.slug)) || aliases.has(key(game.name)));
+  const matches = new Map();
+  for (const alias of aliases) {
+    for (const game of index.gamesByAlias.get(alias) ?? []) matches.set(game.id, game);
+  }
+  return [...matches.values()];
 }
 
-function candidateSets(candidate, snapshot, foundations) {
-  const gameIds = new Set(foundations.map((row) => row.id));
-  const aliases = gameAliases(candidate.identity_coordinates?.game);
+function candidateSets(candidate, index, foundations) {
   const coordinates = candidate.identity_coordinates ?? {};
   const sourceSetCode = key(coordinates.set_code);
-  return snapshot.sets.filter((set) => {
-    const sameGame = gameIds.has(set.game_id) || aliases.has(key(set.game));
-    if (!sameGame) return false;
-    if (sourceSetCode) return sourceSetCode === key(set.code);
-    return key(coordinates.set_or_product) === key(set.name);
-  });
+  const matches = new Map();
+  for (const foundation of foundations) {
+    const rows = sourceSetCode
+      ? index.setsByGameAndCode.get(compoundKey(foundation.id, sourceSetCode))
+      : index.setsByGameAndName.get(compoundKey(
+        foundation.id,
+        key(coordinates.set_or_product),
+      ));
+    for (const set of rows ?? []) matches.set(set.id, set);
+  }
+  return [...matches.values()];
 }
 
-function exactSourceMappingCards(candidate, snapshot, foundations) {
+function exactSourceMappingCards(candidate, index, foundations) {
   const aliases = sourceAliases(candidate.candidate_source?.source_id);
-  const gameIds = new Set(foundations.map((row) => row.id));
-  return snapshot.cards.filter((card) => {
-    if (!gameIds.has(card.game_id)) return false;
-    return (card.mappings ?? []).some((mapping) =>
-      mapping.active !== false && aliases.has(key(mapping.source)) &&
-      text(mapping.external_id) === text(candidate.source_candidate_id));
-  });
+  const matches = new Map();
+  for (const foundation of foundations) {
+    for (const alias of aliases) {
+      const rows = index.cardsBySourceMapping.get(compoundKey(
+        foundation.id,
+        alias,
+        text(candidate.source_candidate_id),
+      ));
+      for (const card of rows ?? []) matches.set(card.id, card);
+    }
+  }
+  return [...matches.values()];
 }
 
-export function reconcileCollectibleCandidateV1(candidate, snapshot) {
+function reconcileCandidate(candidate, snapshot, index) {
   if (!text(candidate?.shadow_candidate_id) ||
       !text(candidate?.source_candidate_id) ||
       !text(candidate?.source_evidence_sha256) ||
@@ -173,7 +240,7 @@ export function reconcileCollectibleCandidateV1(candidate, snapshot) {
       !text(candidate?.identity_coordinates?.card_name)) {
     throw new Error("candidate is missing required reconciliation coordinates");
   }
-  const foundations = gameFoundations(candidate, snapshot);
+  const foundations = gameFoundations(candidate, index);
   const variantReasons = candidateVariantUnresolved(candidate)
     ? ["unresolved_alternative_artwork_mapping"]
     : [];
@@ -190,7 +257,7 @@ export function reconcileCollectibleCandidateV1(candidate, snapshot) {
     ]);
   }
 
-  const mappedCards = exactSourceMappingCards(candidate, snapshot, foundations);
+  const mappedCards = exactSourceMappingCards(candidate, index, foundations);
   if (mappedCards.length > 1) {
     return rowEnvelope(candidate, "ambiguous_candidate", [
       "source_mapping_has_multiple_canonical_owners",
@@ -210,15 +277,15 @@ export function reconcileCollectibleCandidateV1(candidate, snapshot) {
     ], mappedCards);
   }
 
-  const matchingSets = candidateSets(candidate, snapshot, foundations);
+  const matchingSets = candidateSets(candidate, index, foundations);
   if (matchingSets.length === 0) {
     return rowEnvelope(candidate, "new_candidate", [
       "canonical_set_not_found",
       ...variantReasons,
     ]);
   }
-  const setIds = new Set(matchingSets.map((row) => row.id));
-  const cardsInSet = snapshot.cards.filter((card) => setIds.has(card.set_id));
+  const cardsInSet = matchingSets.flatMap((set) =>
+    index.cardsByGameAndSet.get(compoundKey(foundations[0].id, set.id)) ?? []);
   const coordinates = candidate.identity_coordinates;
   const numberMatches = cardsInSet.filter((card) =>
     numberKey(card.number) === numberKey(coordinates.collector_number));
@@ -258,9 +325,15 @@ export function reconcileCollectibleCandidateV1(candidate, snapshot) {
   ]);
 }
 
+export function reconcileCollectibleCandidateV1(candidate, snapshot) {
+  validateCanonicalSnapshotV1(snapshot);
+  return reconcileCandidate(candidate, snapshot, buildCanonicalIndex(snapshot));
+}
+
 export function reconcileCollectibleCandidatesV1(candidates, snapshot) {
   validateCanonicalSnapshotV1(snapshot);
   if (!Array.isArray(candidates)) throw new Error("candidates must be an array");
+  const index = buildCanonicalIndex(snapshot);
   const ids = new Set();
   const rows = [];
   for (const candidate of candidates) {
@@ -268,7 +341,7 @@ export function reconcileCollectibleCandidatesV1(candidates, snapshot) {
       throw new Error(`duplicate shadow candidate ID: ${candidate.shadow_candidate_id}`);
     }
     ids.add(candidate?.shadow_candidate_id);
-    rows.push(reconcileCollectibleCandidateV1(candidate, snapshot));
+    rows.push(reconcileCandidate(candidate, snapshot, index));
   }
   rows.sort((left, right) => left.shadow_candidate_id.localeCompare(right.shadow_candidate_id));
   const counts = {};

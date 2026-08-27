@@ -27,6 +27,10 @@ database connection is opened. Failed parser sources, parser validation
 failures, candidate-count drift, duplicate IDs, or a candidate hash mismatch
 stop the run.
 
+The live worker and workflow hard-pin this tuple. Workflow dispatchers cannot
+substitute a run ID, artifact name, source commit, candidate count, or candidate
+hash.
+
 ## Database Boundary
 
 The database session must:
