@@ -16,6 +16,14 @@ function card(setKey, number, name) {
   };
 }
 
+function printing(setKey, number, name, finish, sources = ["tcgdex", "thepricedex_price_list"]) {
+  return {
+    ...card(setKey, number, name),
+    finish_key: finish,
+    sources,
+  };
+}
+
 test("Master Index refresh admits additions without database authority", () => {
   const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
     baselineSets: [{ key: "a" }],
@@ -56,6 +64,62 @@ test("equivalent aliases, number padding, punctuation, and source glyphs are not
   assert.equal(plan.counts.unexplained_removed_cards, 0);
   assert.equal(plan.counts.added_cards, 0);
   assert.equal(plan.counts.folded_alias_cards, 0);
+});
+
+test("printing continuity fails closed on unexplained finish loss", () => {
+  assert.throws(() => buildEnglishPokemonMasterIndexRefreshPlanV1({
+    baselineSets: [{ key: "xyp" }],
+    baselineCards: [card("xyp", "XY67a", "Jirachi")],
+    baselinePrintings: [printing("xyp", "XY67a", "Jirachi", "holo")],
+    candidateSets: [{ key: "xyp" }],
+    candidateCards: [card("xyp", "XY67a", "Jirachi")],
+  }), /unexplained printing facts/);
+});
+
+test("only contracted legacy Normal assertions and explicit supersessions may disappear", () => {
+  const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
+    baselineSets: [{ key: "base5" }, { key: "mep" }, { key: "svp" }],
+    baselineCards: [
+      card("base5", "83", "Dark Raichu"),
+      card("mep", "018", "Cottonee"),
+      card("svp", "224", "Paradise Resort"),
+    ],
+    baselinePrintings: [
+      printing("base5", "83", "Dark Raichu", "normal", [
+        "cardtrader_blueprint_index",
+        "tcgdex",
+      ]),
+      printing("mep", "018", "Cottonee", "holo"),
+      printing("svp", "224", "Paradise Resort", "normal", [
+        "pkmncards_card_page",
+        "tcgdex",
+      ]),
+    ],
+    candidateSets: [{ key: "base5" }, { key: "mep" }, { key: "svp" }],
+    candidateCards: [
+      card("base5", "83", "Dark Raichu"),
+      card("mep", "18", "Cottonee"),
+      card("svp", "224", "Paradise Resort"),
+    ],
+    candidatePrintings: [
+      printing("mep", "18", "Cottonee", "cosmos"),
+      printing("svp", "224", "Paradise Resort", "stamped"),
+    ],
+  });
+
+  assert.equal(plan.counts.revoked_legacy_printings, 1);
+  assert.equal(plan.counts.superseded_printings, 2);
+  assert.equal(plan.counts.unexplained_removed_printings, 0);
+});
+
+test("explicit printing supersession still requires its replacement fact", () => {
+  assert.throws(() => buildEnglishPokemonMasterIndexRefreshPlanV1({
+    baselineSets: [{ key: "mep" }],
+    baselineCards: [card("mep", "018", "Cottonee")],
+    baselinePrintings: [printing("mep", "018", "Cottonee", "holo")],
+    candidateSets: [{ key: "mep" }],
+    candidateCards: [card("mep", "18", "Cottonee")],
+  }), /unexplained printing facts/);
 });
 
 test("unexplained removals, duplicate coordinates, and conflicts fail closed", () => {
