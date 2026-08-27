@@ -204,6 +204,7 @@ jobs:
             const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
             const failures = summary.required_live_language_failures || [];
             const errors = summary.source_error_languages || [];
+            const anomalies = summary.source_anomaly_languages || [];
             const japaneseHealthPath = `${process.env.JAPANESE_REPORT_DIR}/source_health.json`;
             const japaneseHealth = fs.existsSync(japaneseHealthPath)
               ? JSON.parse(fs.readFileSync(japaneseHealthPath, 'utf8'))
@@ -213,7 +214,8 @@ jobs:
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
             });
             const existing = issues.find((issue) => issue.title === title);
-            if (failures.length === 0 && errors.length === 0 && !japaneseHealth) {
+            if (failures.length === 0 && errors.length === 0 &&
+                anomalies.length === 0 && !japaneseHealth) {
               if (existing) await github.rest.issues.update({
                 owner: context.repo.owner, repo: context.repo.repo,
                 issue_number: existing.number, state: 'closed',
@@ -225,6 +227,7 @@ jobs:
               '',
               `Required live scopes without a usable baseline: ${JSON.stringify(failures)}`,
               `Source errors with preserved baselines: ${JSON.stringify(errors)}`,
+              `Scopes with quarantined source anomalies: ${JSON.stringify(anomalies)}`,
               `Japanese source discovery: ${JSON.stringify(japaneseHealth)}`,
               '',
               'No candidate-only row received canonical authority.',
@@ -256,6 +259,40 @@ jobs:
             --body "Automated source-evidence refresh. This PR changes allowlisted Master Index artifacts only. It performs no database, Storage, pricing, publication, or Vault writes. The workflow already passed deterministic source, continuity, diff, and focused contract gates."
           PR_NUMBER="$(gh pr view "$BRANCH" --json number --jq .number)"
           echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Approve and verify generated pull request checks
+        if: steps.apply.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          HEAD_SHA="$(gh pr view "$PR_NUMBER" --json headRefOid --jq .headRefOid)"
+          EXPECTED_PATH='.github/workflows/ci-guard-keys.yml'
+          RUN_ID=''
+          for ATTEMPT in $(seq 1 30); do
+            RUN_ID="$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/runs" \
+              -f head_sha="$HEAD_SHA" -f event=pull_request -f per_page=100 \
+              --jq ".workflow_runs[] | select(.path == \"$EXPECTED_PATH\") | .id" \
+              | head -n 1)"
+            if [ -n "$RUN_ID" ]; then break; fi
+            sleep 2
+          done
+          if [ -z "$RUN_ID" ]; then
+            printf 'Expected generated-PR guard run was not created for %s.\n' "$HEAD_SHA" >&2
+            exit 1
+          fi
+          CONCLUSION="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .conclusion)"
+          if [ "$CONCLUSION" = "action_required" ]; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/approve"
+          fi
+          gh run watch "$RUN_ID" --exit-status
+          FINAL_CONCLUSION="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" --jq .conclusion)"
+          test "$FINAL_CONCLUSION" = "success"
+          printf '{"pull_request":%s,"head_sha":"%s","guard_run_id":%s,"guard_conclusion":"%s"}\n' \
+            "$PR_NUMBER" "$HEAD_SHA" "$RUN_ID" "$FINAL_CONCLUSION" \
+            > "$REPORT_DIR/generated_pr_guard_readback.json"
 
       - name: Merge governed data-only update automatically
         id: merge

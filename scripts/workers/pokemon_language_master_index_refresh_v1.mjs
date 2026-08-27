@@ -99,8 +99,15 @@ async function readSnapshot(root, language) {
   ]);
   const sets = JSON.parse(zlib.gunzipSync(setsBuffer).toString("utf8"));
   const cards = JSON.parse(zlib.gunzipSync(cardsBuffer).toString("utf8"));
+  const anomaliesPath = path.join(languageDir, "source_anomalies.json.gz");
+  const sourceAnomalies = await exists(anomaliesPath)
+    ? JSON.parse(zlib.gunzipSync(await fs.readFile(anomaliesPath)).toString("utf8"))
+    : [];
   if (pokemonLanguageFingerprint(sets) !== manifest.sets_fingerprint_sha256 ||
-      pokemonLanguageFingerprint(cards) !== manifest.cards_fingerprint_sha256) {
+      pokemonLanguageFingerprint(cards) !== manifest.cards_fingerprint_sha256 ||
+      (manifest.source_anomalies_fingerprint_sha256 &&
+        pokemonLanguageFingerprint(sourceAnomalies) !==
+          manifest.source_anomalies_fingerprint_sha256)) {
     throw new Error(`Pokemon language snapshot fingerprint mismatch for ${language}.`);
   }
   return {
@@ -112,6 +119,7 @@ async function readSnapshot(root, language) {
     canonical_authority: false,
     sets,
     cards,
+    source_anomalies: sourceAnomalies,
   };
 }
 
@@ -128,6 +136,13 @@ async function writeSnapshot(root, snapshot) {
     fs.writeFile(
       path.join(languageDir, "cards.json.gz"),
       zlib.gzipSync(Buffer.from(stablePokemonLanguageJson(snapshot.cards)), gzipOptions),
+    ),
+    fs.writeFile(
+      path.join(languageDir, "source_anomalies.json.gz"),
+      zlib.gzipSync(
+        Buffer.from(stablePokemonLanguageJson(snapshot.source_anomalies ?? [])),
+        gzipOptions,
+      ),
     ),
     fs.writeFile(path.join(languageDir, "manifest.json"), stablePokemonLanguageJson(summary)),
   ]);
@@ -272,7 +287,9 @@ async function plan(options) {
         : null;
       const changed = !baselineSummary ||
         baselineSummary.sets_fingerprint_sha256 !== summary.sets_fingerprint_sha256 ||
-        baselineSummary.cards_fingerprint_sha256 !== summary.cards_fingerprint_sha256;
+        baselineSummary.cards_fingerprint_sha256 !== summary.cards_fingerprint_sha256 ||
+        baselineSummary.source_anomalies_fingerprint_sha256 !==
+          summary.source_anomalies_fingerprint_sha256;
       return { language, status: "candidate_index_ready", changed, ...summary };
     } catch (error) {
       if (baseline) {
@@ -312,6 +329,8 @@ async function plan(options) {
           card_count: 0,
           sets_fingerprint_sha256: null,
           cards_fingerprint_sha256: null,
+          source_anomaly_count: 0,
+          source_anomalies_fingerprint_sha256: null,
           source: null,
           source_commit_sha: null,
         };
@@ -327,6 +346,9 @@ async function plan(options) {
         card_count: row.card_count,
         sets_fingerprint_sha256: row.sets_fingerprint_sha256 ?? null,
         cards_fingerprint_sha256: row.cards_fingerprint_sha256 ?? null,
+        source_anomaly_count: row.source_anomaly_count ?? 0,
+        source_anomalies_fingerprint_sha256:
+          row.source_anomalies_fingerprint_sha256 ?? null,
         source: row.changed || !prior
           ? row.source ?? null
           : prior.source ?? row.source ?? null,
@@ -357,6 +379,13 @@ async function plan(options) {
     source_error_languages: results.filter((row) =>
       row.status.startsWith("source_error")
     ).map((row) => row.language),
+    source_anomaly_languages: results.filter((row) =>
+      Number(row.observed_source_anomaly_count ?? 0) > 0
+    ).map((row) => row.language),
+    source_anomaly_count: results.reduce(
+      (sum, row) => sum + Number(row.observed_source_anomaly_count ?? 0),
+      0,
+    ),
     required_live_language_failures: results.filter((row) =>
       TCGDEX_LIVE_POKEMON_LANGUAGE_SCOPES.includes(row.language) &&
       row.status !== "candidate_index_ready" &&
