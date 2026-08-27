@@ -39,6 +39,25 @@ test("Shiny Vault can fold into Hidden Fates without looking like data loss", ()
   assert.equal(plan.counts.unexplained_removed_cards, 0);
 });
 
+test("equivalent aliases, number padding, punctuation, and source glyphs are not removals", () => {
+  const plan = buildEnglishPokemonMasterIndexRefreshPlanV1({
+    baselineSets: [{ key: "swsh45sv", set_name: "Shining Fates Shiny Vault" }],
+    baselineCards: [
+      { ...card("swsh45sv", "001", "Example-GX"), set_name: "Shining Fates Shiny Vault" },
+      { ...card("pl4", "026", "Porygon-Z"), set_name: "Arceus" },
+    ],
+    candidateSets: [{ key: "swsh4.5sv", set_name: "Shining Fates Shiny Vault" }],
+    candidateCards: [
+      { ...card("swsh4.5sv", "1", "Example GX"), set_name: "Shining Fates Shiny Vault" },
+      { ...card("pl4", "26", "Porygon-Z "), set_name: "Arceus" },
+    ],
+  });
+
+  assert.equal(plan.counts.unexplained_removed_cards, 0);
+  assert.equal(plan.counts.added_cards, 0);
+  assert.equal(plan.counts.folded_alias_cards, 0);
+});
+
 test("unexplained removals, duplicate coordinates, and conflicts fail closed", () => {
   assert.throws(() => buildEnglishPokemonMasterIndexRefreshPlanV1({
     baselineSets: [{ key: "a" }],
@@ -66,5 +85,7 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.match(workflow, /--skip-db-audit/);
   assert.match(workflow, /--mode=apply-to-worktree/);
   assert.match(workflow, /gh pr create/);
+  assert.match(workflow, /CHECKED_OUT_SHA="\$\(git rev-parse HEAD\)"/);
+  assert.doesNotMatch(workflow, /"\$GITHUB_SHA" "\$\{GITHUB_REF_NAME\}"/);
   assert.doesNotMatch(workflow, /SUPABASE_DB_URL|DATABASE_URL/);
 });

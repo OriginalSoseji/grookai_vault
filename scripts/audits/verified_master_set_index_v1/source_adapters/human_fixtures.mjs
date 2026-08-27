@@ -38,6 +38,17 @@ function assertSourceUrl(file, value) {
   }
 }
 
+function fixtureRecords(file, fixture) {
+  if (Array.isArray(fixture)) return fixture;
+  if (Array.isArray(fixture?.records)) return fixture.records;
+  if (Array.isArray(fixture?.rows)) return fixture.rows;
+  throw new Error(`Human source fixture ${file} has an unsupported payload shape.`);
+}
+
+function isReviewOnlyRecord(record) {
+  return String(record?.observation_status ?? '').endsWith('_review_required');
+}
+
 function validateFinishProfileEvidence(file, setConfig, record, finishKey) {
   const profile = setConfig?.finish_profile;
   if (!profile || !finishKey) return;
@@ -94,16 +105,19 @@ export async function collectHumanFixtureEvidence(setConfigs, options) {
   for (const fixturePath of files) {
     const file = path.relative(options.fixtureDir, fixturePath);
     const fixture = JSON.parse(await fs.readFile(fixturePath, 'utf8'));
-    if (fixture?.source_status === 'unavailable' && (!fixture.records || fixture.records.length === 0)) {
+    const fixtureRows = fixtureRecords(file, fixture);
+    if (fixture?.source_status === 'unavailable' && fixtureRows.length === 0) {
       continue;
     }
-    if (!fixture?.source_url) {
-      throw new Error(`Human source fixture ${file} is missing source_url.`);
-    }
-    if (!HUMAN_SOURCE_KINDS.has(fixture?.source_kind)) {
-      throw new Error(`Human source fixture ${file} has unsupported source_kind=${fixture?.source_kind}.`);
-    }
-    for (const record of fixture.records ?? []) {
+    for (const record of fixtureRows) {
+      // Review queues may live beside accepted source fixtures, but they are not
+      // Master Index evidence until their observation status is promoted.
+      if (isReviewOnlyRecord(record)) continue;
+
+      const sourceKind = record.source_kind ?? fixture?.source_kind;
+      if (!HUMAN_SOURCE_KINDS.has(sourceKind)) {
+        throw new Error(`Human source fixture ${file} has unsupported source_kind=${sourceKind}.`);
+      }
       // Older generated CardTrader fixtures inferred Normal from the absence of a
       // finish token. Preserve their exact card/source evidence, but downgrade the
       // finish to unknown so it cannot re-enter working printing truth.
@@ -118,7 +132,7 @@ export async function collectHumanFixtureEvidence(setConfigs, options) {
 
       records.push({
         source_key: record.source_key ?? fixture.source_key,
-        source_kind: record.source_kind ?? fixture.source_kind,
+        source_kind: sourceKind,
         source_url: sourceUrl,
         set_key: recordSetKey,
         set_name: record.set_name ?? fixture.set_name,
@@ -132,8 +146,8 @@ export async function collectHumanFixtureEvidence(setConfigs, options) {
           : record.evidence_type,
         evidence_label: record.evidence_text_or_label ?? record.evidence_label,
         language: 'en',
-        retrieved_at: fixture.retrieved_at ?? options.retrievedAt,
-        raw_snapshot_ref: fixture.raw_snapshot_ref ?? `fixture:${file}`,
+        retrieved_at: record.retrieved_at ?? fixture.retrieved_at ?? options.retrievedAt,
+        raw_snapshot_ref: record.raw_snapshot_ref ?? fixture.raw_snapshot_ref ?? `fixture:${file}`,
         notes: unqualifiedCardTraderNormal
           ? [
             'Legacy CardTrader Normal inference downgraded to unknown because the source label has no explicit Normal/Non-Holo descriptor.',
