@@ -149,6 +149,16 @@ test("rarity and number ownership conflicts are not treated as new cards", () =>
   assert.equal(rarity.decision, "conflicting_candidate");
   assert.ok(rarity.reason_codes.includes("canonical_rarity_conflict"));
 
+  const snapshot = canonicalSnapshot();
+  const canonical = snapshot.cards.find((row) => row.id ===
+    "dddddddd-dddd-4ddd-8ddd-ddddddddddd1");
+  canonical.rarity = null;
+  const missingCanonicalRarity = reconcileCollectibleCandidateV1(candidate({
+    source_candidate_id: "unmapped-missing-canonical-rarity",
+  }), snapshot);
+  assert.equal(missingCanonicalRarity.decision, "conflicting_candidate");
+  assert.ok(missingCanonicalRarity.reason_codes.includes("canonical_rarity_conflict"));
+
   const name = reconcileCollectibleCandidateV1(candidate({
     source_candidate_id: "unmapped-name",
     identity_coordinates: {
@@ -196,6 +206,7 @@ test("worker is transaction-read-only and has no persistence authority", () => {
   assert.doesNotMatch(worker, /from public\.sets s\s+left join public\.games g/);
   assert.match(worker, /g\.id = cp\.game_id\s+and \(lower\(g\.code\) = lower\(s\.game\) or lower\(g\.slug\) = lower\(s\.game\)\)/);
   assert.match(worker, /where identity\.card_print_id = cp\.id\s+and identity\.is_active = true/);
+  assert.match(worker, /where mapping\.card_print_id = cp\.id\s+and mapping\.active = true/);
   const cardQuery = worker.slice(worker.indexOf("from public.card_prints cp"));
   assert.doesNotMatch(cardQuery, /where lower\(coalesce\(s\.game, ''\)\) = any/);
   assert.match(worker, /database_writes: false/);

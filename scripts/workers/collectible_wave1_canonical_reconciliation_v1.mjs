@@ -300,6 +300,7 @@ async function loadDatabaseSnapshot(databaseUrl, candidateGames) {
           ) order by mapping.source, mapping.external_id)
           from public.external_mappings mapping
           where mapping.card_print_id = cp.id
+            and mapping.active = true
         ), '[]'::jsonb) as mappings
       from public.card_prints cp
       join public.sets s on s.id = cp.set_id

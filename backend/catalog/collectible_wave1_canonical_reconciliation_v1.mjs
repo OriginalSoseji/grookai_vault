@@ -37,7 +37,7 @@ function unique(values) {
 function sameOptional(left, right) {
   const normalizedLeft = key(left);
   const normalizedRight = key(right);
-  return !normalizedLeft || !normalizedRight || normalizedLeft === normalizedRight;
+  return !normalizedLeft || normalizedLeft === normalizedRight;
 }
 
 function candidateVariantUnresolved(candidate) {
