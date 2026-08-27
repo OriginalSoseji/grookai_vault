@@ -339,15 +339,24 @@ export function normalizeCollectibleShadowCandidateV1(adapterRow, candidate) {
   if (!coordinates || typeof coordinates !== "object" || Array.isArray(coordinates)) {
     throw new Error("identity_coordinates must be an object");
   }
+  const sourceCandidateId = String(candidate?.source_candidate_id ?? "").trim();
+  if (!sourceCandidateId) {
+    throw new Error("source_candidate_id is required");
+  }
+  const sourceEvidenceSha256 = String(candidate?.source_evidence_sha256 ?? "").trim();
+  if (!/^[0-9a-f]{64}$/.test(sourceEvidenceSha256)) {
+    throw new Error("source_evidence_sha256 must be a lowercase SHA-256");
+  }
   const missing = contract.required_coordinates.filter((key) =>
     String(coordinates[key] ?? "").trim() === "");
   const status = missing.length === 0 ? "identity_coordinates_complete" : "incomplete_candidate";
   return {
-    shadow_candidate_id: `${adapterRow.adapter_id}:${String(candidate.source_candidate_id ?? "").trim()}`,
+    shadow_candidate_id: `${adapterRow.adapter_id}:${sourceCandidateId}`,
     adapter_id: adapterRow.adapter_id,
     catalog_key: adapterRow.catalog_key,
     domain: adapterRow.domain,
-    source_candidate_id: String(candidate.source_candidate_id ?? "").trim(),
+    source_candidate_id: sourceCandidateId,
+    source_evidence_sha256: sourceEvidenceSha256,
     source_url: String(candidate.source_url ?? adapterRow.official_source_url ?? "").trim(),
     label: String(candidate.label ?? "").trim(),
     identity_contract: adapterRow.identity_contract,

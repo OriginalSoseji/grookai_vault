@@ -13,6 +13,9 @@ import {
   normalizeCollectibleShadowCandidateV1,
   validateCollectibleShadowAdapterRegistryV1,
 } from "../../backend/catalog/collectible_shadow_adapter_registry_v1.mjs";
+import {
+  hashBoundedResponseBodyV1,
+} from "../../scripts/workers/collectible_shadow_adapter_probe_v1.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..", "..");
 
@@ -64,8 +67,10 @@ test("domain identity contracts preserve domain-specific coordinates", () => {
 
 test("complete and incomplete shadow candidates remain evidence-only", () => {
   const adapter = COLLECTIBLE_SHADOW_ADAPTERS.find((row) => row.catalog_key === "hot_wheels");
+  const evidenceHash = "a".repeat(64);
   const complete = normalizeCollectibleShadowCandidateV1(adapter, {
     source_candidate_id: "hw-1",
+    source_evidence_sha256: evidenceHash,
     label: "Example Casting",
     identity_coordinates: {
       manufacturer: "Mattel",
@@ -77,14 +82,59 @@ test("complete and incomplete shadow candidates remain evidence-only", () => {
   assert.equal(complete.status, "identity_coordinates_complete");
   assert.equal(complete.canonical_authority, false);
   assert.equal(complete.image_republication_authorized, false);
+  assert.equal(complete.source_evidence_sha256, evidenceHash);
 
   const incomplete = normalizeCollectibleShadowCandidateV1(adapter, {
     source_candidate_id: "hw-2",
+    source_evidence_sha256: evidenceHash,
     label: "Unknown release",
     identity_coordinates: { manufacturer: "Mattel", casting: "Unknown" },
   });
   assert.equal(incomplete.status, "incomplete_candidate");
   assert.deepEqual(incomplete.missing_required_coordinates, ["release_year", "series"]);
+});
+
+test("candidate normalization requires a source-owned ID and evidence hash", () => {
+  const adapter = COLLECTIBLE_SHADOW_ADAPTERS.find((row) => row.catalog_key === "funko");
+  const base = {
+    identity_coordinates: {
+      manufacturer: "Funko",
+      product_line: "Pop!",
+      franchise: "Example",
+      character: "Example",
+      box_number: "1",
+    },
+  };
+  assert.throws(
+    () => normalizeCollectibleShadowCandidateV1(adapter, {
+      ...base,
+      source_candidate_id: " ",
+      source_evidence_sha256: "a".repeat(64),
+    }),
+    /source_candidate_id is required/,
+  );
+  assert.throws(
+    () => normalizeCollectibleShadowCandidateV1(adapter, {
+      ...base,
+      source_candidate_id: "funko-1",
+      source_evidence_sha256: "invalid",
+    }),
+    /source_evidence_sha256/,
+  );
+});
+
+test("network response hashing enforces the size limit while streaming", async () => {
+  const accepted = await hashBoundedResponseBodyV1(
+    new Response(new Uint8Array([1, 2, 3, 4])),
+    4,
+  );
+  assert.equal(accepted.responseBytes, 4);
+  assert.match(accepted.responseSha256, /^[0-9a-f]{64}$/);
+
+  await assert.rejects(
+    hashBoundedResponseBodyV1(new Response(new Uint8Array(8)), 4),
+    /response exceeds 4 bytes/,
+  );
 });
 
 test("probe worker has no database, image, or canonical writer capability", () => {

@@ -121,6 +121,33 @@ async function probeFixture(adapterRow, fixtureDir) {
   };
 }
 
+export async function hashBoundedResponseBodyV1(
+  response,
+  maxBytes = MAX_RESPONSE_BYTES,
+) {
+  if (!response.body) {
+    return { responseBytes: 0, responseSha256: sha256(Buffer.alloc(0)) };
+  }
+  const reader = response.body.getReader();
+  const hash = crypto.createHash("sha256");
+  let responseBytes = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      responseBytes += value.byteLength;
+      if (responseBytes > maxBytes) {
+        await reader.cancel("response size limit exceeded");
+        throw new Error(`response exceeds ${maxBytes} bytes`);
+      }
+      hash.update(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return { responseBytes, responseSha256: hash.digest("hex") };
+}
+
 async function probeNetwork(adapterRow, requestTimeoutMs) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
@@ -137,10 +164,8 @@ async function probeNetwork(adapterRow, requestTimeoutMs) {
     if (Number.isFinite(declaredLength) && declaredLength > MAX_RESPONSE_BYTES) {
       throw new Error(`response exceeds ${MAX_RESPONSE_BYTES} bytes`);
     }
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.length > MAX_RESPONSE_BYTES) {
-      throw new Error(`response exceeds ${MAX_RESPONSE_BYTES} bytes`);
-    }
+    const { responseBytes, responseSha256 } =
+      await hashBoundedResponseBodyV1(response);
     return {
       adapter_id: adapterRow.adapter_id,
       catalog_key: adapterRow.catalog_key,
@@ -151,8 +176,8 @@ async function probeNetwork(adapterRow, requestTimeoutMs) {
       http_status: response.status,
       content_type: response.headers.get("content-type"),
       content_length_header: response.headers.get("content-length"),
-      response_bytes: bytes.length,
-      response_sha256: sha256(bytes),
+      response_bytes: responseBytes,
+      response_sha256: responseSha256,
       etag: response.headers.get("etag"),
       last_modified: response.headers.get("last-modified"),
       persistence: "hash_and_metadata_only",
