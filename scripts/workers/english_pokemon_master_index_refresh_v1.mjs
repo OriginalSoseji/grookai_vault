@@ -5,6 +5,11 @@ import { fileURLToPath } from "node:url";
 
 import { sha256, stableJson } from
   "../../backend/catalog/universal_catalog_discovery_v1.mjs";
+import {
+  canonicalCardNameKey,
+  normalizeNumber,
+  normalizeText,
+} from "../audits/verified_master_set_index_v1/shared.mjs";
 
 export const ENGLISH_POKEMON_MASTER_INDEX_REFRESH_VERSION =
   "ENGLISH_POKEMON_MASTER_INDEX_REFRESH_V1";
@@ -59,17 +64,24 @@ async function readJson(dir, file) {
 }
 
 function cardKey(card) {
-  return [clean(card.set_key).toLowerCase(), clean(card.card_number).toUpperCase(),
-    clean(card.card_name).toLowerCase()].join("|");
+  return [
+    normalizeText(card.set_name ?? card.set_key),
+    normalizeNumber(card.card_number).toUpperCase(),
+    canonicalCardNameKey(card),
+  ].join("|");
 }
 
 function allowedFoldedReplacement(card, candidateKeys) {
   if (clean(card.set_key).toLowerCase() !== "sma") return false;
-  return candidateKeys.has([
-    "sm115",
-    clean(card.card_number).toUpperCase(),
-    clean(card.card_name).toLowerCase(),
-  ].join("|"));
+  return candidateKeys.has(cardKey({
+    ...card,
+    set_key: "sm115",
+    set_name: "Hidden Fates",
+  })) || candidateKeys.has(cardKey({
+    ...card,
+    set_key: "sm115",
+    set_name: null,
+  }));
 }
 
 function factProjection({ sets, cards, printings }) {
