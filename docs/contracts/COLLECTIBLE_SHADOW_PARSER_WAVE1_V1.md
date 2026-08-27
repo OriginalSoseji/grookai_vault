@@ -131,3 +131,7 @@ Stop after one bounded live shadow run and artifact reconciliation. Do not
 schedule parsing, write candidates to production, acquire images, or promote
 canonical identity until the completeness report is reviewed and a separate
 gate is authorized.
+
+The separately governed read-only comparison gate is defined by
+`COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_V1.md`. It does not expand this
+parser's persistence or promotion authority.

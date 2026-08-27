@@ -1,0 +1,123 @@
+name: Collectible Wave 1 Canonical Reconciliation
+
+on:
+  workflow_dispatch:
+    inputs:
+      parser_run_id:
+        description: Exact successful Parser Wave 1 workflow run
+        required: true
+        default: "33118951166"
+      parser_artifact_name:
+        description: Exact Parser Wave 1 artifact name
+        required: true
+        default: collectible-shadow-parser-wave1-33118951166
+      expected_candidate_sha256:
+        description: Approved candidate_index.jsonl SHA-256
+        required: true
+        default: 30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+concurrency:
+  group: collectible-wave1-canonical-reconciliation-v1
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CATALOG_AUTOMATION_MODE: shadow-only
+      PGOPTIONS: "-c default_transaction_read_only=on -c statement_timeout=120000"
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify reconciliation contracts
+        run: |
+          node --check backend/catalog/collectible_wave1_canonical_reconciliation_v1.mjs
+          node --check scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs
+          node --test tests/contracts/collectible_wave1_canonical_reconciliation_v1.test.mjs
+          git diff --check
+
+      - name: Download exact Parser Wave 1 artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ inputs.parser_artifact_name }}
+          path: ${{ runner.temp }}/parser-wave1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ inputs.parser_run_id }}
+
+      - name: Run read-only canonical reconciliation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -n "$SUPABASE_DB_URL"
+          OUT_DIR="$RUNNER_TEMP/collectible-wave1-reconciliation-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --expected-head-sha="$GITHUB_SHA" \
+            --parser-artifact-dir="$RUNNER_TEMP/parser-wave1" \
+            --parser-run-id="${{ inputs.parser_run_id }}" \
+            --expected-candidate-sha256="${{ inputs.expected_candidate_sha256 }}"
+
+      - name: Report reconciliation blockers
+        if: always() && env.OUT_DIR != ''
+        uses: actions/github-script@v8
+        env:
+          OUT_DIR: ${{ env.OUT_DIR }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = `${process.env.OUT_DIR}/summary.json`;
+            if (!fs.existsSync(summaryPath)) return;
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            const title = '[Collectible Wave 1 Reconciliation] Blockers';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (summary.status === 'completed') {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+              return;
+            }
+            const body = `Status: ${summary.status}\n\n` +
+              `Candidates: ${summary.selected_candidate_count}\n` +
+              `Decisions: ${JSON.stringify(summary.decision_counts)}\n` +
+              `Artifact limitations: ${summary.artifact_limitation_count}\n\n` +
+              `No database, Storage, image, pricing, publication, or Vault writes occurred.\n\n` +
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Upload reconciliation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collectible-wave1-canonical-reconciliation-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

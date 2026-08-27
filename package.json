@@ -167,6 +167,7 @@
     "catalog:shadow:reconcile": "node scripts/workers/catalog_shadow_reconciliation_v1.mjs",
     "catalog:shadow:probe-collectibles": "node scripts/workers/collectible_shadow_adapter_probe_v1.mjs",
     "catalog:shadow:parse-wave1": "node scripts/workers/collectible_shadow_parser_wave1_v1.mjs",
+    "catalog:shadow:reconcile-wave1": "node scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs",
     "catalog:promotion:supervise": "node scripts/workers/catalog_incremental_supervisor_v1.mjs"
   },
   "devDependencies": {
