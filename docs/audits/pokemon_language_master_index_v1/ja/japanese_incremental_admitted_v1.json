@@ -1,0 +1,5583 @@
+{
+  "canonical_writes": false,
+  "cards": [
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Heracross",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:1",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヘラクロス",
+      "printed_name_ja_candidates": [
+        "ヘラクロス"
+      ],
+      "printed_number": "001",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "676bd7ed9b01937fc769c526be45b0e1ad7a7c437e1d96a3e0f2ef8910a10c06",
+        "b42bac6bc82df0dcc5fbdfab24cd620d63edaf05485ad32f7eebfe9552104a51"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Surskit",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:2",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "アメタマ",
+      "printed_name_ja_candidates": [
+        "アメタマ"
+      ],
+      "printed_number": "002",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7834114c542f6300ba9581d484d82513b5800fac89e9a5d90bcabd770526b226",
+        "9002d35f44a9bb4905b090c5bd0e14c68d57400478b89ed4aea0919423b70cac"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Masquerain",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:3",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "アメモース",
+      "printed_name_ja_candidates": [
+        "アメモース"
+      ],
+      "printed_number": "003",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "04c03e50ec663d8ec44b54e140bf06381f05ea51e3023c56b626bfce27074390",
+        "251c41bbfafe543cebdc0c933e0687eda9783bf7efdf5836c55495b38376e143"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Cacnea",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:4",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "サボネア",
+      "printed_name_ja_candidates": [
+        "サボネア"
+      ],
+      "printed_number": "004",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "239d1fe52be367dc1624270e2cce521972ed06a8da531275df0daa61e936594b",
+        "6d587c189bdc79674731f0993704e2bfdf52661483ce32da33978ea0d6e62b35"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Cacturne",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:5",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ノクタス",
+      "printed_name_ja_candidates": [
+        "ノクタス"
+      ],
+      "printed_number": "005",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "529859d6b615ceaaf660652f2c6f52a53dcc747b126adb7e0bde43fc574b2204",
+        "3c3fcb4fadf07560dcfe5c3f22db13baf818fa1e603bd7c8e4929791fbc467d2"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Combee",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:6",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ミツハニー",
+      "printed_name_ja_candidates": [
+        "ミツハニー"
+      ],
+      "printed_number": "006",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "5928c6656ffef5db2e90c4c9b78ae00f514b4169cc69231e33be27fd1d197249",
+        "de596ee8c98931d59d9f8d04b5bd49ddd6d88085ba6f2b7bf5fef1efbcd800bb"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Vespiquen",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:7",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ビークイン",
+      "printed_name_ja_candidates": [
+        "ビークイン"
+      ],
+      "printed_number": "007",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "5ee21d1569e6889909ab25efb6b9ab8f4de1e4862aabd318eaaea374dc1005f9",
+        "7f534b3eec063c1f90398efb89731ff679eea054be61025a4c1cf1cea8981f3d"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Wimpod",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:8",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "コソクムシ",
+      "printed_name_ja_candidates": [
+        "コソクムシ"
+      ],
+      "printed_number": "008",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7dcfbda01ca6224a6215bd44473a3f677313651d9921b4441cb1bfd05df2240a",
+        "7dff6785e96a793209850f3a896b80bf3b08fbfc8ca11faf6f6e56df9d1cdcb8"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Golisopod",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:9",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガグソクムシャex",
+      "printed_name_ja_candidates": [
+        "メガグソクムシャex"
+      ],
+      "printed_number": "009",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "dcc97dd51b35ccedf77808dd502905d1a72892abf4bfdb89badad200bf0fbd11",
+        "67c9de62b6c110187beb2c15f544f17a399a97339e2f1bf1bee287dbcfb8e98f"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Growlithe",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:10",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ガーディ",
+      "printed_name_ja_candidates": [
+        "ガーディ"
+      ],
+      "printed_number": "010",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "549b058c539853779707de2e995d995dbeb9d70587a72a690ebf1dabdf87d6df",
+        "a1c3680de523ca4fe352ca091badf57a9be82902b9eccbd2c58e26e67d7708ab"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Arcanine",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:11",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ウインディ",
+      "printed_name_ja_candidates": [
+        "ウインディ"
+      ],
+      "printed_number": "011",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "0b00162624fe1eaa19f2332478f815c5e41a00a92c5adb77005134bae9e030d2",
+        "7c96f126b9deffd2ac7b0ce76341a92dd49df69e35e25ebf8e75d8ff1362814b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Magmar",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:12",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ブーバー",
+      "printed_name_ja_candidates": [
+        "ブーバー"
+      ],
+      "printed_number": "012",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "ff00817cefb9f322ba3eb36991f85ee132fa59f404455bfd226edc51cce18fd9",
+        "37cfaf226dd3b401c4332e2bdf31307bc49c4784e65ce75021b71c261ee75f95"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Magmortar",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:13",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ブーバーン",
+      "printed_name_ja_candidates": [
+        "ブーバーン"
+      ],
+      "printed_number": "013",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "ebc0cc9e5e039db36b2f749c09cb9e63c032a66a6cacaf65c717c409fc4f574e",
+        "335c8407325138d3f9c5b36b6952dccecd14b94a1c36f290c7c198a97fe3a58e"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Torkoal",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:14",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "コータス",
+      "printed_name_ja_candidates": [
+        "コータス"
+      ],
+      "printed_number": "014",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "b2aa891a78fd3ac3a6e1888049ed003d0e438b757b292af01b0c7d33899bc389",
+        "c286675dd8cbe6d140ffaf5f844f7a97efb33346f9881e8f380407dec145cfe3"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Heat Rotom",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:15",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヒートロトムex",
+      "printed_name_ja_candidates": [
+        "ヒートロトムex"
+      ],
+      "printed_number": "015",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "0dab54d7ccf62edbecff5adde295caee3bab4a5e67089e690ed89e9c64f23a8e",
+        "9b56e89e3a92387d80981710528874c69259f09b7ddf5595fafebe1c8def3c7a"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Heatmor",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:16",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "クイタラン",
+      "printed_name_ja_candidates": [
+        "クイタラン"
+      ],
+      "printed_number": "016",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "82f0c4890cc20de79a0fdd01246c7e2ef9f0b336e0739ce0cf692fcfbc607f75",
+        "60f294ca99314f8bbbb817efa1b9a0f814d77a550d5889212b2b47325dcd94e0"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mantine",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:17",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "マンタイン",
+      "printed_name_ja_candidates": [
+        "マンタイン"
+      ],
+      "printed_number": "017",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "5ac6cbc162cbff66948556658fe81dedf5ee1ad301b44be290e476d13a01dcc0",
+        "f1b28f881b3365fd8482bc1cd5ea1099b2f1dfd33069e0b130491ea4d2138482"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Kyogre",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:18",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "カイオーガ",
+      "printed_name_ja_candidates": [
+        "カイオーガ"
+      ],
+      "printed_number": "018",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "83c1730146fef43c9ff1137e65843d6151bbe54fab00a10961d559207c444925",
+        "40ad3c8c4e394336ac37c610483dc8afbd0fe744feb8b19c8f4201759095fefd"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Frillish",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:19",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "プルリル",
+      "printed_name_ja_candidates": [
+        "プルリル"
+      ],
+      "printed_number": "019",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "b1e29316811226fbd485df6ab44ca70856f4f1d9783528b3262908e8f015ae00",
+        "ccae82dd76e9f539c0ceb095c7fff80be4bed5e7af12afea50ade6ec08353864"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Jellicent",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:20",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ブルンゲル",
+      "printed_name_ja_candidates": [
+        "ブルンゲル"
+      ],
+      "printed_number": "020",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "44b695a4c910cbbad273b06ea881c0ee914f498798cf36604fdf640ec906d7cd",
+        "0b4767a7690d255cbb157fb697394567de02e36221ac76e87d76e33b4c54b23b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Wishiwashi",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:21",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヨワシex",
+      "printed_name_ja_candidates": [
+        "ヨワシex"
+      ],
+      "printed_number": "021",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "34a93eed99e90d3dff1a3ad2e3d15a8176f8a7c5a6f1cdb38468f583fb9fafad",
+        "cc99df992fa62493fdf3c3b61d87fc7597a4c4f9793933dd59cb26ccec42e740"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Electabuzz",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:22",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "エレブー",
+      "printed_name_ja_candidates": [
+        "エレブー"
+      ],
+      "printed_number": "022",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "b0bafc10a527cea02dddf400a10ee30932d54c23bb71260c7f2e462d163bbcd4",
+        "7e08e7cc1e7039c3386bbb900b4175847e35d2068bb420146c9d2476035b6f2a"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Electivire",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:23",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "エレキブル",
+      "printed_name_ja_candidates": [
+        "エレキブル"
+      ],
+      "printed_number": "023",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "26783d59755e736115fc20debcdea23e6491f0cc509a463926a4141aff7b3958",
+        "8f52bc028bb2e2f4841abfb7cfdf35659baaa5992bd363ccdbf257895a11daae"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Raikou",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:24",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ライコウex",
+      "printed_name_ja_candidates": [
+        "ライコウex"
+      ],
+      "printed_number": "024",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "c945ce6351a6f0edf115d16756ca8ee3eb52f8e42935584fbcdb965415c29b90",
+        "e763c1b65cd3f6a5862919a8a26a00b9630905e9e1d77c5c317d44a4a75fc1cb"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Thundurus",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:25",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ボルトロス",
+      "printed_name_ja_candidates": [
+        "ボルトロス"
+      ],
+      "printed_number": "025",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "92da7da9914dc073abdcc33d08dd91d576a7cf2f2a4fc632f311778cd365e6c2",
+        "8382efa81ccf22acb2a0b17f7af06b3a0ee46f789db5f4f967d87c2a917b6f23"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Pincurchin",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:26",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "バチンウニ",
+      "printed_name_ja_candidates": [
+        "バチンウニ"
+      ],
+      "printed_number": "026",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "f34820d2ef08b7e965fa9e02cd230b981d41436716ee795a40bf7ade427bc6d2",
+        "d328953863f519b2dcc4f7fce3223269d558848ff5388f43385565fe0ad533f6"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Wattrel",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:27",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "カイデン",
+      "printed_name_ja_candidates": [
+        "カイデン"
+      ],
+      "printed_number": "027",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "479e822acd6364ba9296fa5d2b0559b8a9b80f9f276cda61fa50b49e90d8cc1e",
+        "0a723cedb2278be233adc2644fbc10231f127cfdb6c120a8639f6f2a34b5b26c"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Kilowattrel",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:28",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "タイカイデン",
+      "printed_name_ja_candidates": [
+        "タイカイデン"
+      ],
+      "printed_number": "028",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "ea0454e4d20bd8885e333d37d1dca353024a2ca50876067318040539575b05e7",
+        "4c92e1d23634ce6a34b2ec168196b23682df8f75776e913518a62cf21f89329b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Drowzee",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:29",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "スリープ",
+      "printed_name_ja_candidates": [
+        "スリープ"
+      ],
+      "printed_number": "029",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "0f578e4744f5654e97611e0835eca8636195fdd9c40bb01de6e19fe4acd32ca7",
+        "da4c7379f47e6563574840fe6dff2d5390770bfcde8eaa53ebd56da0a6e89791"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Hypno",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:30",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "スリーパー",
+      "printed_name_ja_candidates": [
+        "スリーパー"
+      ],
+      "printed_number": "030",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "9780879d63f825b58130d0932df4ac55b81257af04faa1a3a83863944884fd0e",
+        "85078ec6f1f1da74af0020ad4570c1c5d321fa76ea0824391e9b35ed8fe53c4d"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Giratina",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:31",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ギラティナ",
+      "printed_name_ja_candidates": [
+        "ギラティナ"
+      ],
+      "printed_number": "031",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "a7ece2cf4904bb328cc2113d51c223f78b1b25fa05ee2041daf82450a83fd142",
+        "993611e6df908ca9b2ccd9411cfaa96fd12a23e89476d184e22493db55ad22ff"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Golett",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:32",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ゴビット",
+      "printed_name_ja_candidates": [
+        "ゴビット"
+      ],
+      "printed_number": "032",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "e4f79e9345e21bf120a23b2919b9788d3c0d4ed14c92ce4818c1907f0f0932ae",
+        "a1a510689cc6329e5d9645eb2d90314677f0df49dd260acb8edc764d260d0b73"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Golurk",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:33",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガゴルーグex",
+      "printed_name_ja_candidates": [
+        "メガゴルーグex"
+      ],
+      "printed_number": "033",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "1a09c067c519d85c5f5d2d85db27c2620b1c18ee3ade9ce029f28d517af26387",
+        "b80a8862c0471428d996221ca76ce63d8977111af74efe5b929c7261417dcc33"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Enamorus",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:34",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ラブトロス",
+      "printed_name_ja_candidates": [
+        "ラブトロス"
+      ],
+      "printed_number": "034",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "bbd2a0fda00d9c5f64a4e0ab26ba848c2b4a6a58513e04190263ddf1aa49a27f",
+        "c1055d5b60e630434c34394d707297b320551862878b1c4264ef237d38cebe01"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Sandshrew",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:35",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "サンド",
+      "printed_name_ja_candidates": [
+        "サンド"
+      ],
+      "printed_number": "035",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "4668ba42902de0a2a9ed57f80ec16acc4c9eb569680ef229a843833eab2e5e9f",
+        "b5a3d763782e502087963b893f3996a09fba7c80844709a0c4ab5afa92935de9"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Sandslash",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:36",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "サンドパン",
+      "printed_name_ja_candidates": [
+        "サンドパン"
+      ],
+      "printed_number": "036",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "217397b7686abb252709d3253374acd43f613cf6619538fd31883c363c63ba1d",
+        "c398b75be163fbf1337504a21798dd6119e946c9d217538d1c407485ad13ffce"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Onix",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:37",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "イワーク",
+      "printed_name_ja_candidates": [
+        "イワーク"
+      ],
+      "printed_number": "037",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "ef4368d93b2170c73a04bc875ac177d7c21be37f4ab1803eb9da2d57c42008b4",
+        "c28e68ca6f31dba93a5bf823002cebf473c62938753da3b16919aea1de0851ee"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Steelix",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:38",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ハガネール",
+      "printed_name_ja_candidates": [
+        "ハガネール"
+      ],
+      "printed_number": "038",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "51de0f10c26811f479f26fcb16c601297c0d45c72da30ed04dca9c9aee99f97e",
+        "700c3675238c68c15bb961992fbddfc5c6303b5c182e3932494cc265fb49c025"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Groudon",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:39",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "グラードン",
+      "printed_name_ja_candidates": [
+        "グラードン"
+      ],
+      "printed_number": "039",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "6138f8cae746f569b3a7cc0724908880e74b1794c2665b3aa99ff98072a9c750",
+        "9d406143a1a3c685f3c4a1e5904ebd848d49b59f6b55130fe3243a3ff0fb1c86"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Landorus",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:40",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ランドロス",
+      "printed_name_ja_candidates": [
+        "ランドロス"
+      ],
+      "printed_number": "040",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "84faf8ebc7d7a533755c8f52663e7e699df1c98ab247c6170f81efbb8643e177",
+        "46dd7b4654b899433008c79f7ab4e0a8986f6468a4620b81615a697ccd26dbed"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Nidoran♀",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:41",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ニドラン♀",
+      "printed_name_ja_candidates": [
+        "ニドラン♀"
+      ],
+      "printed_number": "041",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "a79aa324d9154933752ce5559ded67b4a21e1b3663708a9b9c7908d212c5330c",
+        "95989eea6b1d13e08de40db30ce4108ec3882640c8d197046cd23a1610dd0789"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Nidorina",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:42",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ニドリーナ",
+      "printed_name_ja_candidates": [
+        "ニドリーナ"
+      ],
+      "printed_number": "042",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "49d985b9c759f2f0ed6e0f6550f2e5bb16b0e2d700f91695e76733a4f94c80a9",
+        "46b08469c4a10bfacf992b47845ac096a290ed2a51b970b068781b6115a4dc41"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Nidoqueen",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:43",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ニドクイン",
+      "printed_name_ja_candidates": [
+        "ニドクイン"
+      ],
+      "printed_number": "043",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "fa42a4f2849a5c2ce59c152615ecaf9ed619da9232d7e0cfc33579226380243e",
+        "930ff21f8192f28411a45f39c9df4369ef8d5015849147fa0ab4f35c8b1252d3"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Spinarak",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:44",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "イトマル",
+      "printed_name_ja_candidates": [
+        "イトマル"
+      ],
+      "printed_number": "044",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7fb2a99671d74f9f4f26ac1cd3e5eebf298c9959a64ce8f88b4eb9ac61447c23",
+        "b9338dd66df1eae923786e327f54818edc3fd86a12bab3490f70438cd91fb25b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Ariados",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:45",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "アリアドス",
+      "printed_name_ja_candidates": [
+        "アリアドス"
+      ],
+      "printed_number": "045",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7e080a51d0dc47f90cd8e4d3d1762811a7f399440c553b96b991a44084db80d8",
+        "67cfb5ae3a9c3b9ab35787cb1bd80a70c51b28ec4432f6ce69cdee8f18d44e80"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Sableye",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:46",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヤミラミ",
+      "printed_name_ja_candidates": [
+        "ヤミラミ"
+      ],
+      "printed_number": "046",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "bdc83cae34dbd6e9cc2a69872bef651d16836bbbff67c914b5c6fc2758826fe6",
+        "8e4e2b96025554a29e83418d011d11bd75c1620d95829661a2c413ea111dc175"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Inkay",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:47",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "マーイーカ",
+      "printed_name_ja_candidates": [
+        "マーイーカ"
+      ],
+      "printed_number": "047",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "252cd69065f2dfe77ca12c03b8d73c9320e3ad00cc15e75a1c1dcb244af7266e",
+        "f8616ae7a37d055b034d8805c9a5817c7c59c381cf91878d6664c5e388f0cde1"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Malamar",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:48",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガカラマネロex",
+      "printed_name_ja_candidates": [
+        "メガカラマネロex"
+      ],
+      "printed_number": "048",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "56fd321f324b87dd4a71672c1c2f2de894215a9e6fd41c91fe7eee8e0ffe337b",
+        "0a4dd30b75a73f589ee1ee62f4111a85371dbaab84c0f931ba580b7e66ce0707"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Druddigon",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:49",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "クリムガン",
+      "printed_name_ja_candidates": [
+        "クリムガン"
+      ],
+      "printed_number": "049",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "b8e9d3c2c54a815fc027f35fbc89b327a37e493ce3d0163ad09d5ef03b450067",
+        "ad4733ece055f8cc575d50f85773306f1025bc73e5cc69cf001db06c9fbce231"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Jangmo-o",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:50",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ジャラコ",
+      "printed_name_ja_candidates": [
+        "ジャラコ"
+      ],
+      "printed_number": "050",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "83800649465b4dd09cca4019a7a4fcb22f30a722381d2909e13a706b20d4e62f",
+        "53bda0a98033befaea5c94fecf2c670597a316751f4d361b7d723c261aabf27e"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Hakamo-o",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:51",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ジャランゴ",
+      "printed_name_ja_candidates": [
+        "ジャランゴ"
+      ],
+      "printed_number": "051",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "89a6a6b8f6885335feeb70be743f80d46e8d44033d261a881ed97d3c0f1352df",
+        "cca7d7b8ff05871ed00e675e9befd513d0efc2e7e9bb95450c2b02d074930c35"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Kommo-o",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:52",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ジャラランガ",
+      "printed_name_ja_candidates": [
+        "ジャラランガ"
+      ],
+      "printed_number": "052",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7498876adb4c8f10278f9786198d09b4579705645b5ea02dd1cedfe6ba2437cd",
+        "dfa562ebfcf3f7bf811ba7605cb87ee0ab029320002e24915b8d1f97c2596327"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Cyclizar",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:53",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "モトトカゲ",
+      "printed_name_ja_candidates": [
+        "モトトカゲ"
+      ],
+      "printed_number": "053",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "d43f7c215409f5f9da6173f2980d967d919910a527c22bd9a69d22cda52a3539",
+        "51bfd53dd7f4c3542876586d337891759e5a3e15d5393fa5e21b656671c5b69c"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Azurill",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:54",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ルリリ",
+      "printed_name_ja_candidates": [
+        "ルリリ"
+      ],
+      "printed_number": "054",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "f8ee032bb8007a47221bdee467eea35d5b1c4360b3cf55677fe28658a577d990",
+        "7b3c031e7a7569b3a810b68f0b29897d14c4e8eb9cea4ba379dd7bbda408b89e"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Swablu",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:55",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "チルット",
+      "printed_name_ja_candidates": [
+        "チルット"
+      ],
+      "printed_number": "055",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "0419f634b960fcd2dbaf615f5cee990b561843fd032fd7b4e733e07a700f5a24",
+        "48a84601d6a9a8b8025fe7dcbae036931cd0622223ded8bcdb91e0b84edc6e94"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Altaria",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:56",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "チルタリス",
+      "printed_name_ja_candidates": [
+        "チルタリス"
+      ],
+      "printed_number": "056",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "2e70f1a3c7ae7ab0c22ae7e3ef05b867f6f1fc90d9d39568a3ec28d36c955c56",
+        "6a9543a48e4b6dd11bf6bdd7e5cee36208dde5ca8323c6c8d5af264ac195c486"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Kecleon",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:57",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "カクレオン",
+      "printed_name_ja_candidates": [
+        "カクレオン"
+      ],
+      "printed_number": "057",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "ea68c4a9f997d83666a04fb546bd3c6910322c43c4ede1293ad33c75b75c8e5a",
+        "fbdf6e5af2ee37421d1aa800c4f3b559592534fe5c6c9837d39e7e53c8239f2b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Rayquaza",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:58",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガレックウザex",
+      "printed_name_ja_candidates": [
+        "メガレックウザex"
+      ],
+      "printed_number": "058",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "54287a573744a4ff2710dd1cd09d30475f59ef24736034fdb0ea3ff16a10ff93",
+        "1ae8d6fe823a83099e8f476b20c359223de34b6b699d0a35dbb632db256d092c"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Tornadus",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:59",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "トルネロス",
+      "printed_name_ja_candidates": [
+        "トルネロス"
+      ],
+      "printed_number": "059",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "3d7854f03ddd2bd44c5f7b50083e87360aeac2c2994e3aaa5e370f8de09c232f",
+        "d4da2609d9817ef3a39559fe7ad1a577a435ee8b7dd6705a72669ff875a8fcc8"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Fletchling",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:60",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヤヤコマ",
+      "printed_name_ja_candidates": [
+        "ヤヤコマ"
+      ],
+      "printed_number": "060",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7f9268a1f00a139e34a9397834a6812a3581cb12de325a22557c69690ebf4840",
+        "3a3d1fb49f637d58c5f9510c90bc4d85425b7b4f60163b36124b2e411c6dea9c"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Fletchinder",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:61",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヒノヤコマ",
+      "printed_name_ja_candidates": [
+        "ヒノヤコマ"
+      ],
+      "printed_number": "061",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "9a1c14e177f70080b2aa1a44f9b410aa7ee2a77be7353c1d4e0c68ac9255cdfc",
+        "3574dc18562ea33ffa1ab550da27839901eb301cbea21bbc225f5ae3ed05b7df"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Talonflame",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:62",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ファイアローex",
+      "printed_name_ja_candidates": [
+        "ファイアローex"
+      ],
+      "printed_number": "062",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "3ae01828ab0c88de22e71748b8726bf0c4a5a418955ca8a694ada2d4fd17909c",
+        "947bcde18cd807a199fc10966064448cfa459e8b0afcb5b2afd31a080617d224"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Delicious Onigiri",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:63",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "おいしいおむすび",
+      "printed_name_ja_candidates": [
+        "おいしいおむすび"
+      ],
+      "printed_number": "063",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "da35b2acbcb9b9c6df0da601f4666192be1902b36c419d019d56b5ed53f251de",
+        "2ec687606e4760afde59a89e5397387c0a91c1f3686c77f43d80c7654068fb46"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Adventuring Lantern",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:64",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ぼうけんのランタン",
+      "printed_name_ja_candidates": [
+        "ぼうけんのランタン"
+      ],
+      "printed_number": "064",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "bb93b52e2d31fc2390bf70312c9b6abd2a9012afcddc134b7bee03dc0a000a05",
+        "09242fb591736fccb9ccc45a08b9b05f8ba0525c9a7d6c1a010c88a35d985acd"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Custom Vest",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:65",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "とくちゅうチョッキ",
+      "printed_name_ja_candidates": [
+        "とくちゅうチョッキ"
+      ],
+      "printed_number": "065",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "74df5a0c091af822ea2153401fcc226a79ee01147d995780f12dacea643d88bd",
+        "e2d59d8049f4b7b4c3e88a7437be8fa3384eb76d7a9b07b2c3e7a29086148309"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Rayquaza Cap",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:66",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガレックウザキャップ",
+      "printed_name_ja_candidates": [
+        "メガレックウザキャップ"
+      ],
+      "printed_number": "066",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "b071ac25d598f7dffea044453d105006093729bd4a0b19847557d51b7a0453fc",
+        "3286dd74c46b6fe3df17ad099584967f9e150163ab7ae75997872226c5c2f5fc"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Emcee's Hype",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:67",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "MCの盛り上げ",
+      "printed_name_ja_candidates": [
+        "MCの盛り上げ"
+      ],
+      "printed_number": "067",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "d5b6ecd44dd7b527d7ed795507dab84582f1b58ec6bf90c6f8a493284bd7de9d",
+        "442ec2428ec2d1d529103d5a417688bd2118894a6e2c4792e5e75c1b7d90ed82"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Aarune",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:68",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ギリー",
+      "printed_name_ja_candidates": [
+        "ギリー"
+      ],
+      "printed_number": "068",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "856671ac66a6c11214f8c53226d5c6088667152992a40d29febb566f60fac6cd",
+        "3c1c7f18c1db3008db2b77a0d305e589b9e73a7a7ea3799321f52c4db93cb585"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Zinnia's Trust",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:69",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヒガナの信頼",
+      "printed_name_ja_candidates": [
+        "ヒガナの信頼"
+      ],
+      "printed_number": "069",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "155000cf7a56fe1f628e8e12fc7aa7cba595a8d66f584d950b60cdcaf0a14369",
+        "bd11deda0d95f5d286702d19c7475453fa1a738da3612c6418423e44ee4bb5a0"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Tate & Liza's Training",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:70",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "フウとランの修行",
+      "printed_name_ja_candidates": [
+        "フウとランの修行"
+      ],
+      "printed_number": "070",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "4b90f8ef42723c12e39dd72880ccf3578ed82fe59858678c1dd43643e6a99fde",
+        "95b56d59a634b9d871cb6c32a33f1c66c0a1fa734c54f8385c7c92824951959b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Legendary Marine Trench",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:71",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "伝説の海溝",
+      "printed_name_ja_candidates": [
+        "伝説の海溝"
+      ],
+      "printed_number": "071",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "f73e2224df0f9d359efb534348fcb32bcea2053ce91fe202c4693bd7d3f1aba6",
+        "39604ffad18a826f91e6e0657f5dc1b1e4f01c1052b6b52bac92a1683bd1e172"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Legendary Marine Trench",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:72",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "伝説の海溝",
+      "printed_name_ja_candidates": [
+        "伝説の海溝"
+      ],
+      "printed_number": "072",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "98413c0c00cca31331e0c292b52e3d87f58382e4da489058fecc8fee9df22cdd",
+        "72d262ac79aaf60893a5409adac1fe423925cea7331955b48aaa73f195833bc8"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Legendary Summit",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:73",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "伝説の山頂",
+      "printed_name_ja_candidates": [
+        "伝説の山頂"
+      ],
+      "printed_number": "073",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "a6dea3495eb1b3bba9945f374d27fa2f986f585676e343107965875f0a69e8bf",
+        "ac2492de3fe68a6702f098ad85d6c498f40dcefb400169e1a34cf7df2ddfe059"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Legendary Summit",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:74",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "伝説の山頂",
+      "printed_name_ja_candidates": [
+        "伝説の山頂"
+      ],
+      "printed_number": "074",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "65436494596294f89e63c69a239111392063b3f09c08c790746019e0707d56ab",
+        "c45cc39207daa2ad8200ff1d6c7ef2f03aa24ef111e5afca5cef9c94e0463307"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Legendary Lava Tube",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:75",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "伝説の溶岩洞",
+      "printed_name_ja_candidates": [
+        "伝説の溶岩洞"
+      ],
+      "printed_number": "075",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "e22eecc5ca6c4c63a19f11be79e836455d1c182f072cb4348b4d349f84cd7057",
+        "978bf1a60c7587beefca3e337d01c76ff939ceb0f0b5a2c8fe25f52682a53039"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Legendary Lava Tube",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:76",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "伝説の溶岩洞",
+      "printed_name_ja_candidates": [
+        "伝説の溶岩洞"
+      ],
+      "printed_number": "076",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "0cb63ee8acfb0584f59c65339231dc58a61eeca70dc6491ba803d99fc288a65b",
+        "5625f86f52f2234ff9ed72f251ac636de9675ebfaec4c38304b6415e1cb21b3c"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Masquerain",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:77",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "アメモース",
+      "printed_name_ja_candidates": [
+        "アメモース"
+      ],
+      "printed_number": "077",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "ecf917d79315da17b71facb5efe3e420058d71c601e78e6d979c6575ead5a428",
+        "bfda78b208de515aff601e09451b4d601ac27929e2510bf118d0a8c38ed8d8da"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Growlithe",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:78",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ガーディ",
+      "printed_name_ja_candidates": [
+        "ガーディ"
+      ],
+      "printed_number": "078",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "14e49370ffc748031798dca13b811ab7c295a8e49b08e8744f52cd4b5cb0ecf9",
+        "b3b63d5c9018d2bc5393d683ded7c35c891e217e2e6344fb0b3c8630482a8d56"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Magmortar",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:79",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ブーバーン",
+      "printed_name_ja_candidates": [
+        "ブーバーン"
+      ],
+      "printed_number": "079",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "588c36a332fde37becc5037c1d67a9e1a25511a70e652bc64b062baf3c3faa5f",
+        "00f2a004e036876d070c07bbb1d6c84983be0651a55ca560d31262e4e16248e3"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Kyogre",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:80",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "カイオーガ",
+      "printed_name_ja_candidates": [
+        "カイオーガ"
+      ],
+      "printed_number": "080",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "fa25bbcb49dbfa614169d16bc1278d69d2c6e31fddf61a809668d423b88c0248",
+        "1767afea2db922798829b6988dd481de2926ed29c91997114833bd4713a5106e"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Electivire",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:81",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "エレキブル",
+      "printed_name_ja_candidates": [
+        "エレキブル"
+      ],
+      "printed_number": "081",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "8310784f14d1215840dc622048176cd6dd46f086a25202b7c12434f360843f15",
+        "8d26fafd96d72283ce5d4fe9e6aacdd8aa110d7b9ea46b4576734835f6bf1b3d"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Pincurchin",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:82",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "バチンウニ",
+      "printed_name_ja_candidates": [
+        "バチンウニ"
+      ],
+      "printed_number": "082",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "b238412c66f5d475693dddf9e8fe97aefeacc0dd07ec8a5a434634adcee6354a",
+        "4afc4b1b8cc237f1d374b7e68a63d72fe76dd4949e58fff3e54640080f3d8778"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Enamorus",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:83",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ラブトロス",
+      "printed_name_ja_candidates": [
+        "ラブトロス"
+      ],
+      "printed_number": "083",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "8a01db72689e867ba081a4a98ef25a48e89b85990349a32873d9d2d48a49ebcb",
+        "4cd6539120ca890500189fc9d2a3f887ee99ee7347e3347da0ba6284d81adfc1"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Groudon",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:84",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "グラードン",
+      "printed_name_ja_candidates": [
+        "グラードン"
+      ],
+      "printed_number": "084",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "977411c604bb55b3bbb7c6752e57c57506142b306435ea93a46e708122a04626",
+        "7dc4765c86d9555cc61efe38ee62d865ce4b3be3567082cf873420c6e700ead2"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Inkay",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:85",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "マーイーカ",
+      "printed_name_ja_candidates": [
+        "マーイーカ"
+      ],
+      "printed_number": "085",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "05a2c5c7fcf037b38575aaec88a1564a11833cf760df0372e79c0d3455cfd9b7",
+        "c261179f3fb67befbbfcb3cec791a053c334540b04ae4e9efd9cd0bd474db433"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Azurill",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:86",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ルリリ",
+      "printed_name_ja_candidates": [
+        "ルリリ"
+      ],
+      "printed_number": "086",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "8c8c555d10afa020e49935edb30d8e55160c7629316e03743a621ce15144b4b1",
+        "6fcfe47c69ff7282c435b9b8c7001b1767604335027661a2ea72598bde51cbfd"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Altaria",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:87",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "チルタリス",
+      "printed_name_ja_candidates": [
+        "チルタリス"
+      ],
+      "printed_number": "087",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "f9d88eb17d0c6e39de22ff4638dbbe2445a2127dabb61b42ad40920b9812cbb4",
+        "d94a8c44661534f22f6d0c01cf02ced5a507e2ce5de1450f5cba9b37bec60de2"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Kecleon",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:88",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "カクレオン",
+      "printed_name_ja_candidates": [
+        "カクレオン"
+      ],
+      "printed_number": "088",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "fbe17a52a7b480d38f5aed7b409f3c62d7f9b33a34c7ac1a645922749614ae6b",
+        "5d10c800fb363b5abd8d651f74967a8706a6e4879e00067921a8fb597afcf3b1"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Golisopod",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:89",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガグソクムシャex",
+      "printed_name_ja_candidates": [
+        "メガグソクムシャex"
+      ],
+      "printed_number": "089",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "6abc54db88fb625373471826275e3e84d0e5befed14057c100229467077d01b1",
+        "6d37eab0d0303062c539cf6cdba9ac303c36a815d65ae1746e2043eecb7ec8db"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Heat Rotom",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:90",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヒートロトムex",
+      "printed_name_ja_candidates": [
+        "ヒートロトムex"
+      ],
+      "printed_number": "090",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "be9598399a62b1c86f449e41b7fa017f1bb39f0fb2207e1d4ac0770f997004bb",
+        "b51c27e89907f819047e90e5aefddaf2e305bf9eebcf46de3e03c7061184e52f"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Wishiwashi",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:91",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヨワシex",
+      "printed_name_ja_candidates": [
+        "ヨワシex"
+      ],
+      "printed_number": "091",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "8f08ff77d366a6e413ffced2bec61295e0eca0b73ee05c340e7abed22fcfbe70",
+        "28aa0cc1be7eef727d71e3bb744ea058eed0bcee4b1eade0580834f3a19bbeaf"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Raikou",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:92",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ライコウex",
+      "printed_name_ja_candidates": [
+        "ライコウex"
+      ],
+      "printed_number": "092",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "0213746bf0c8958134b7410ddc1fcaa8f372ce8cf66b9eaf584fcf7e6b1e4a61",
+        "44d351a5de70ae41b69470dbf1765839f9de365f5b078f8698736c278ec34a7a"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Golurk",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:93",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガゴルーグex",
+      "printed_name_ja_candidates": [
+        "メガゴルーグex"
+      ],
+      "printed_number": "093",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "1fca95a58ce675291008c827f1a9b9133525b1647d5d9b10fced4c6106c44df5",
+        "8be04f13e4fc7f800aa8ecdef9a6676e6e9363d676b85ba6780cf7d2ae3e1a02"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Malamar",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:94",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガカラマネロex",
+      "printed_name_ja_candidates": [
+        "メガカラマネロex"
+      ],
+      "printed_number": "094",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "29ac89797ee429f5e76dc34c6f83cbf7893c2f1406c8b00a95c1b89e4067e5eb",
+        "85107738640d916a95e44e593b19279a9d1a564952f8559e431303af74fc7b82"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Rayquaza",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:95",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガレックウザex",
+      "printed_name_ja_candidates": [
+        "メガレックウザex"
+      ],
+      "printed_number": "095",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "7cc84f5df50df1895a7952fa559aa0d58e733c59db7683ea78e284b70913670e",
+        "bfd734e24b047ba1dd129e1dee2ef17c6f98c98a8b67cb2dfc120a44a6fc9c9b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Talonflame",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:96",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ファイアローex",
+      "printed_name_ja_candidates": [
+        "ファイアローex"
+      ],
+      "printed_number": "096",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "5330556281ba0f5cd7086235e3760a8fab0a287881adeec5dd807e07169efc6c",
+        "c298eac33fd0133039bf3cd4dd7ce8a14b313b1d22a2f17a37bdd62643a166d2"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Adventuring Lantern",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:97",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ぼうけんのランタン",
+      "printed_name_ja_candidates": [
+        "ぼうけんのランタン"
+      ],
+      "printed_number": "097",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "54fe9a3222d025ce27571c8ce48f93bb1077904759466a5b85ef178ff1486500",
+        "3c56a9142c443ce3e74c88ece06c75700de5bc7fc569a8c035818875863dddbf"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Pokémon Catcher",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:98",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "とくちゅうチョッキ",
+      "printed_name_ja_candidates": [
+        "とくちゅうチョッキ"
+      ],
+      "printed_number": "098",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "fb56b8e558aa0f8dadf4debefa21c2c6bc4bce82d7237a200cfc548373e13f55",
+        "f3750f925d571d2f563bcfad02cf503e979f2e8d54937e64409adcaec79120a3"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Custom Vest",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:99",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ポケモンキャッチャー",
+      "printed_name_ja_candidates": [
+        "ポケモンキャッチャー"
+      ],
+      "printed_number": "099",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "c542c7b55d521ddc64cf69516d18a9818403d7c2ff54fa9e0875c5942fd7534f",
+        "999c218dc5323df987a867caf25f8cd08599fb54ea9d0b7d8bd2e2be9946ea4d"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Emcee's Hype",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:100",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "MCの盛り上げ",
+      "printed_name_ja_candidates": [
+        "MCの盛り上げ"
+      ],
+      "printed_number": "100",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "a9a76093a32deab6ec8a94797250453d30915f97c66be5ea3c6cbbb7eee098fe",
+        "98e5f3bc68df6ebfa26d46c3bfea86b985542f89a26f9e2be5dbc5f0fe9569d9"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Aarune",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:101",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ギリー",
+      "printed_name_ja_candidates": [
+        "ギリー"
+      ],
+      "printed_number": "101",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "5a0e2b4469dc3f1cced6927e495a8edf5b6011561a73eade68d749ded592c872",
+        "9e9787faa5cda0496a3d661c944c8e5e400b19461d447ae1afb0397fc454ad09"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Zinnia's Trust",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:102",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヒガナの信頼",
+      "printed_name_ja_candidates": [
+        "ヒガナの信頼"
+      ],
+      "printed_number": "102",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "4773cb5951c17283c1d00c472d3e86155ac4dc3feea7e54358a6dbdeb990020c",
+        "e65c7c71c0b49d65582b41e96e8b9cc447d4e66cc5d1dd41c3fce801cf994dee"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Tate & Liza's Training",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:103",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "フウとランの修行",
+      "printed_name_ja_candidates": [
+        "フウとランの修行"
+      ],
+      "printed_number": "103",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "84fe0e11deb664e7ad17ad4dac53fef861e32f1c53bfa85c4889cf65e0f8cbd1",
+        "7bfca6ca4c23e3e34eb411714c55fea65af25e5fe5a6cc4a013d1347fdd8061b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Growing Energy",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:104",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "グロウ草エネルギー",
+      "printed_name_ja_candidates": [
+        "グロウ草エネルギー"
+      ],
+      "printed_number": "104",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "f9ef0d5a0fe7e6cc3cd8d3cb447de7b70e83c5ea01b77c452478c6e9d15a62b7",
+        "466c121509f82bccd68fdc89ea3c16f18892ee84fc24cb7610d0f26cbd3b614b"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Nitro Energy",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:105",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ニトロ炎エネルギー",
+      "printed_name_ja_candidates": [
+        "ニトロ炎エネルギー"
+      ],
+      "printed_number": "105",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "22154ff7163544f66ad1ceb0a15cc8d38df2fffba0aa8778fe341f3f645d149b",
+        "a2852a15ffb4d26cf248337013dc9f138a173555d0052534cdf85e1b510e3bd7"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Bubbly Energy",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:106",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "バブル水エネルギー",
+      "printed_name_ja_candidates": [
+        "バブル水エネルギー"
+      ],
+      "printed_number": "106",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "594f21a9bd28222d616e55afdd9a900077f8ed1aeffa11789426c2b7f3e904fe",
+        "b5d45c2189fb73da705d06c917e6a25612f8f0186338dc7eecda515e56dabd1f"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Golisopod",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:107",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガグソクムシャex",
+      "printed_name_ja_candidates": [
+        "メガグソクムシャex"
+      ],
+      "printed_number": "107",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "f0370c969111b574e1ca7c4edabbace278a249b5020cd02d4448925258df88dc",
+        "dbdf80e7e4b48d4aaee7ddcce50c52285fe2e8da968d78f9f563aaee39f60836"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Raikou",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:108",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ライコウex",
+      "printed_name_ja_candidates": [
+        "ライコウex"
+      ],
+      "printed_number": "108",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "5b0acb9f4b690ff410292f9626d7b1f1ed666b11030bd27f7aa631ef102ed2dd",
+        "413836040727e69a5e3ae9d0c076bac27bc4547a0891026664938f42e6a8473e"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Golurk",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:109",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガゴルーグex",
+      "printed_name_ja_candidates": [
+        "メガゴルーグex"
+      ],
+      "printed_number": "109",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "22c031a65b6a9fcc73f7fd2a9f01b10190bae619a06f940c19c42297fb8dd38c",
+        "98f32059789d431ede5f44eeae27a475b4e0235b47291512bcc4eecdcac7e280"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Rayquaza",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:110",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガレックウザex",
+      "printed_name_ja_candidates": [
+        "メガレックウザex"
+      ],
+      "printed_number": "110",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "a83f9fdca8c8ac811d94a394582af59a702991a322b1f410836e50576d9f87e5",
+        "e7aabf1b3132263ac763dea1520069c4f405c0165758c4e109ea6e08f7afff3e"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Aarune",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:111",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ギリー",
+      "printed_name_ja_candidates": [
+        "ギリー"
+      ],
+      "printed_number": "111",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "715bc6949d96f0032bb0d7e056b08d7f3aadcf979144e086904cc08facca4b58",
+        "ef092beeedac9ad1f9ce69916de0d8eb2f573b084455d9f51ae05200757bc3a2"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Zinnia's Trust",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:112",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "ヒガナの信頼",
+      "printed_name_ja_candidates": [
+        "ヒガナの信頼"
+      ],
+      "printed_number": "112",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "6b7552beea64c2f7af128b8f407df94d253bb00d62aa86bcccbd0a8cdf2037ce",
+        "6be109ad758583f00493cb1f9d8d873a95edbe26446fc79d25a7d7fee32f1024"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    },
+    {
+      "admission_status": "master_admissible",
+      "baseline_evidence_ids": [],
+      "candidate_kind": "incremental_missing_parent",
+      "card_domain": "pokemon",
+      "card_type": null,
+      "card_type_evidence": [],
+      "collector_facing_name_en": "Mega Rayquaza",
+      "conflict_status": "none",
+      "disposition_reasons": [],
+      "distribution_mark_evidence": [],
+      "edition_mark_evidence": [],
+      "evidence_status": "independent_coordinate_and_identity_supported",
+      "existing_card_print_id": null,
+      "existing_gv_id": null,
+      "family_key": null,
+      "family_reason": "family_resolution_deferred_to_canonical_writer",
+      "family_status": "unresolved",
+      "final_disposition": "master_admissible",
+      "governed_unnumbered_key": null,
+      "human_readable_source_present": true,
+      "identity_modifiers": [],
+      "image_urls": [],
+      "independent_source_count": 2,
+      "independent_source_families": [
+        "bulbapedia",
+        "tcgdex"
+      ],
+      "jpn_card_identity_key": "incremental:jpn-m6:113",
+      "jpn_set_key": "jpn-m6",
+      "language": "ja",
+      "market": "JP",
+      "official_source_present": false,
+      "printed_name_ja": "メガレックウザex",
+      "printed_name_ja_candidates": [
+        "メガレックウザex"
+      ],
+      "printed_number": "113",
+      "rarity_evidence": [],
+      "regulation_mark_evidence": [],
+      "source_assertion_keys": [
+        "13a9ecf74628b7edbe775f4f33fb5e97d20929204b0ba9ef7bd856e07e40d80e",
+        "a32211966fe2d38c53aed82bcd65119e877fb503430ac5d635c1e7af0c5db2bb"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "tcgdex_ja_cards"
+      ]
+    }
+  ],
+  "cards_fingerprint_sha256": "c48dea70ae66ac7ba6a4c95c80daceac6372d3cc876c96024be1d4e643b40d70",
+  "policy": "independent_complete_lists_before_master_index_admission",
+  "sets": [
+    {
+      "canonical_name_ja": "拡張パック「ストームエメラルダ」",
+      "collector_facing_name_en": null,
+      "completion_status": "incremental_source_agreed_identity",
+      "conflict_keys": [],
+      "conflict_status": "none",
+      "era_evidence": [],
+      "exclusion_reason": null,
+      "expected_card_count_evidence": [
+        113
+      ],
+      "independent_source_count": 3,
+      "jpn_set_key": "jpn-m6",
+      "master_admissible": true,
+      "official_code_evidence": [
+        "M6"
+      ],
+      "parent_relationships": [],
+      "registry_entry_kind": "japanese_card_release",
+      "release_date_evidence": [
+        "2026-07-31"
+      ],
+      "release_kind": "unknown",
+      "source_aliases": [
+        "M6",
+        "Storm Emeralda",
+        "拡張パック「ストームエメラルダ」"
+      ],
+      "source_ids": [
+        "bulbapedia_jp_card_lists",
+        "pokemon_card_official_jp_products",
+        "tcgdex_ja_cards"
+      ],
+      "source_scope_status": "admitted_incremental_set_assertion"
+    }
+  ],
+  "sets_fingerprint_sha256": "1adcecc391a5ed9b6d63ca4a5944473519023d3cd94e17b75c4aeded4c6a956d",
+  "version": "JAPANESE_POKEMON_MASTER_INDEX_INCREMENTAL_V1"
+}

@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-08-27T10:12:05.926Z
+Generated: 2026-08-27T12:23:22.683Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 203 |
-| evidence rows | 237571 |
+| evidence rows | 237832 |
 | conflicts | 0 |
 | manual review | 213 |
 
@@ -145,7 +145,7 @@ Transport: Default Node TLS verification.
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 51841 |
+| pokemontcg_api | 51826 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -194,7 +194,7 @@ Transport: Default Node TLS verification.
 | tcgdex | 49012 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23291 |
+| tcgplayer_price_guide | 23567 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -794,16 +794,16 @@ Transport: Default Node TLS verification.
 | human_fixtures | collected | 1 |
 | pkmncards | collected | 153 |
 | pkmncards | error | 50 |
-| pokemontcg_api | cached_snapshot | 8 |
-| pokemontcg_api | collected | 155 |
-| pokemontcg_api | collected_plus_cached_snapshot | 11 |
+| pokemontcg_api | cached_snapshot | 32 |
+| pokemontcg_api | collected | 135 |
+| pokemontcg_api | collected_plus_cached_snapshot | 7 |
 | pokemontcg_api | unavailable | 29 |
 | tcgdex | collected | 199 |
 | tcgdex | unavailable | 4 |
-| tcgplayer_price_guide | cached_snapshot | 8 |
-| tcgplayer_price_guide | collected | 134 |
-| tcgplayer_price_guide | collected_plus_cached_snapshot | 11 |
-| tcgplayer_price_guide | unavailable | 50 |
+| tcgplayer_price_guide | cached_snapshot | 28 |
+| tcgplayer_price_guide | collected | 117 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 7 |
+| tcgplayer_price_guide | unavailable | 51 |
 | thepricedex_price_list | collected | 175 |
 | thepricedex_price_list | error | 27 |
 | thepricedex_price_list | unavailable | 1 |

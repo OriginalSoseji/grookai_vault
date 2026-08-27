@@ -1,0 +1,187 @@
+{
+  "canonical_authority": false,
+  "languages": [
+    {
+      "card_count": 0,
+      "cards_fingerprint_sha256": null,
+      "language": "de",
+      "set_count": 0,
+      "sets_fingerprint_sha256": null,
+      "source": null,
+      "source_commit_sha": null,
+      "status": "source_error_no_baseline"
+    },
+    {
+      "card_count": 23546,
+      "cards_fingerprint_sha256": "05e58dc6cbf764368a230b1175659ebe9ec9f0a4c97c98b0f86dddbbc3d89876",
+      "language": "en",
+      "set_count": 218,
+      "sets_fingerprint_sha256": "7f5fcb35c325c0ed63c1e58c9032d591f9beb34201a092022da7ece0a3df2800",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 15320,
+      "cards_fingerprint_sha256": "4582befa1073109f1017d001614f0d34b28c77753d3b12d1c2657cba4c6af798",
+      "language": "es",
+      "set_count": 154,
+      "sets_fingerprint_sha256": "6307a9b4e0313e3b0116076cd4818c6e612d73d3ef96cdcb071f5eacaf2bffc7",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 1467,
+      "cards_fingerprint_sha256": "e1fa7f119de5d9005f702ef9aa794f8a921aa28005f8e86378a01c48c83f5b5d",
+      "language": "es-mx",
+      "set_count": 9,
+      "sets_fingerprint_sha256": "68b397388a5fc5ab8a748242f7ec9744ae88381a5fd3a02110afca3b65133169",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 21913,
+      "cards_fingerprint_sha256": "ab2feee688766e53b4837927ce7acf148727755244e92d92751de05492491e85",
+      "language": "fr",
+      "set_count": 200,
+      "sets_fingerprint_sha256": "f232e295fa79f716390788393fcb4cb4ee1a0a3edd8b8a78f88519ccf91fc5e1",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 2788,
+      "cards_fingerprint_sha256": "6ac93225f573c0dd2a8ee0a63860cdc3e30c03cd98f3a5580414a29d54522051",
+      "language": "id",
+      "set_count": 70,
+      "sets_fingerprint_sha256": "770ccfefaab62dce19082736220fcb15499aabf50ddb41e13babe661c1d97844",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 15551,
+      "cards_fingerprint_sha256": "50de12d897d160aacf06ba562d9ebf326c3a9046dfea760cbf5c31525c36721d",
+      "language": "it",
+      "set_count": 191,
+      "sets_fingerprint_sha256": "d82acd4595e91834f10be70580d0d16a691af6528a8e2120def86e2a05e99eb8",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 12781,
+      "cards_fingerprint_sha256": "8ecd45331487a81c4daac2b392d586b05a41f213c5e4d933afc3e54e02090a8b",
+      "language": "ja",
+      "set_count": 184,
+      "sets_fingerprint_sha256": "6790ef63e4be03dedd258656aa425087e773af27841dca6701e787451c77f597",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 239,
+      "cards_fingerprint_sha256": "033804c6a86bfdb803d03e481a5efec50f35a5b0342d9f04db668f86933ab36d",
+      "language": "ko",
+      "set_count": 95,
+      "sets_fingerprint_sha256": "9b2942b1fbb2ecb77ed4e7cad9e1217bc68577de0b53744bc824102aac38a6ff",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 0,
+      "cards_fingerprint_sha256": null,
+      "language": "nl",
+      "set_count": 0,
+      "sets_fingerprint_sha256": null,
+      "source": null,
+      "source_commit_sha": null,
+      "status": "provider_no_cards"
+    },
+    {
+      "card_count": 0,
+      "cards_fingerprint_sha256": null,
+      "language": "pl",
+      "set_count": 0,
+      "sets_fingerprint_sha256": null,
+      "source": null,
+      "source_commit_sha": null,
+      "status": "provider_no_cards"
+    },
+    {
+      "card_count": 13873,
+      "cards_fingerprint_sha256": "5e38923e9d84b063c13abff2711ead14dc3facbb4543e1349f12cf87406e6a09",
+      "language": "pt",
+      "set_count": 123,
+      "sets_fingerprint_sha256": "a6012dd1ffb2c0b52d8bd912ec61909622acd2af877d5ecdd2341f881f2890ba",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 1124,
+      "cards_fingerprint_sha256": "19f484e7629b560cabb10654f10dcab74cf4128f883cb8e2bddc5053bc11008a",
+      "language": "pt-br",
+      "set_count": 11,
+      "sets_fingerprint_sha256": "329628f20a0c2f19b769cb03d1c69b533009bd79e9cef3ef5a12d79708e4f51a",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 0,
+      "cards_fingerprint_sha256": null,
+      "language": "pt-pt",
+      "set_count": 0,
+      "sets_fingerprint_sha256": null,
+      "source": null,
+      "source_commit_sha": null,
+      "status": "provider_no_cards"
+    },
+    {
+      "card_count": 0,
+      "cards_fingerprint_sha256": null,
+      "language": "ru",
+      "set_count": 0,
+      "sets_fingerprint_sha256": null,
+      "source": null,
+      "source_commit_sha": null,
+      "status": "provider_no_cards"
+    },
+    {
+      "card_count": 2921,
+      "cards_fingerprint_sha256": "2090ff739e7bc6fa4302748cee4f592dc519f8717b194af3dad9dec6910af3bf",
+      "language": "th",
+      "set_count": 72,
+      "sets_fingerprint_sha256": "acf9cbeb3b67630d6ee8fdbd8a9a2a8fc3d4b0b63ee01921781e765b423f6848",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    },
+    {
+      "card_count": 0,
+      "cards_fingerprint_sha256": null,
+      "language": "zh-cn",
+      "set_count": 0,
+      "sets_fingerprint_sha256": null,
+      "source": null,
+      "source_commit_sha": null,
+      "status": "source_error_no_baseline"
+    },
+    {
+      "card_count": 7436,
+      "cards_fingerprint_sha256": "a6b85c52708a0c44327db2e7574a1cf16b56ccd25a8fa8a13db34f315c1e0e94",
+      "language": "zh-tw",
+      "set_count": 98,
+      "sets_fingerprint_sha256": "e92492b00d561ca455e9284335e402fc72cb3b89d6d9272612b86648ca221ca2",
+      "source": "tcgdex_v2",
+      "source_commit_sha": null,
+      "status": "candidate_index_ready"
+    }
+  ],
+  "policy": "all_source_rows_enter_language_index_before_canonical_reconciliation",
+  "version": "POKEMON_LANGUAGE_MASTER_INDEX_V1"
+}
