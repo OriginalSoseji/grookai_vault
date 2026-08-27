@@ -100,6 +100,8 @@ test("probe worker has no database, image, or canonical writer capability", () =
   assert.match(source, /raw_source_body_persistence: false/);
   assert.match(source, /image_downloads: false/);
   assert.match(source, /writer_dispatches: false/);
+  assert.match(source, /cause_code/);
+  assert.match(source, /system_ca_enabled/);
 });
 
 test("fixture probe emits hashed metadata without persisting source bodies", () => {

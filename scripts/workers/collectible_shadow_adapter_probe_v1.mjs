@@ -61,6 +61,15 @@ function sha256(value) {
   return crypto.createHash("sha256").update(value).digest("hex");
 }
 
+function serializeProbeError(error) {
+  return {
+    message: String(error?.message ?? error),
+    code: error?.code ?? null,
+    cause_message: error?.cause?.message ?? null,
+    cause_code: error?.cause?.code ?? null,
+  };
+}
+
 function currentHeadSha() {
   return execFileSync("git", ["rev-parse", "HEAD"], {
     cwd: process.cwd(),
@@ -169,7 +178,7 @@ async function probeAdapter(adapterRow, options) {
       domain: adapterRow.domain,
       source_url: adapterRow.official_source_url,
       status: "probe_failed",
-      error: String(error?.message ?? error),
+      error: serializeProbeError(error),
       persistence: "hash_and_metadata_only",
       body_persisted: false,
       fixture: Boolean(options.fixtureDir),
@@ -209,6 +218,12 @@ async function main() {
     max_concurrency: options.maxConcurrency,
     request_timeout_ms: options.requestTimeoutMs,
     fixture_mode: Boolean(options.fixtureDir),
+    runtime: {
+      node_version: process.version,
+      platform: process.platform,
+      system_ca_enabled: String(process.env.NODE_OPTIONS ?? "")
+        .split(/\s+/).includes("--use-system-ca"),
+    },
     boundaries: {
       database_access: false,
       database_writes: false,
