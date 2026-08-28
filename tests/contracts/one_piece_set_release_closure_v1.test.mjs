@@ -89,5 +89,9 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(workflow, /EXPECTED_SNAPSHOT_FINGERPRINT/);
   assert.match(worker, /begin transaction isolation level serializable/i);
   assert.match(worker, /activation canary left durable residue/i);
+  assert.match(worker, /Snapshot-bound mapping revalidation failed/i);
+  assert.match(worker, /storage_cleanup_failed/i);
+  assert.match(worker, /Independent release readback failed/i);
+  assert.match(worker, /finally \{[\s\S]*?client\.end\(\)/i);
   assert.doesNotMatch(worker, /vault_entries|embeddings|semantic_search/i);
 });

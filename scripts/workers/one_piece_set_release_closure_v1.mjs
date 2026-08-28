@@ -383,7 +383,20 @@ async function uploadOne(storage, publicBaseUrl, row) {
     if (result.error) throw new Error(`storage_upload:${result.error.message}`);
     created = true;
   }
-  await verifyStored(storage, pointer);
+  try {
+    await verifyStored(storage, pointer);
+  } catch (error) {
+    if (created) {
+      try {
+        await removeCreated(storage, [pointer]);
+      } catch (cleanupError) {
+        throw new Error(
+          `${error.message}; storage_cleanup_failed:${cleanupError.message}`,
+        );
+      }
+    }
+    throw error;
+  }
   return { pointer, created, reused_verified: existed };
 }
 
@@ -420,13 +433,15 @@ async function applyPointers(client, setCode, pointers) {
     await client.query(`create temp table op_set_image_pointer_v1 (
       id uuid primary key, image_url text, image_alt_url text,
       image_source text, image_hash text, image_status text,
-      image_res jsonb, image_path text, image_note text
+      image_res jsonb, image_path text, image_note text,
+      source_product_id bigint, source_image_url text
     ) on commit drop`);
     await client.query(`insert into op_set_image_pointer_v1
       select * from jsonb_to_recordset($1::jsonb) as x(
         id uuid, image_url text, image_alt_url text, image_source text,
         image_hash text, image_status text, image_res jsonb,
-        image_path text, image_note text
+        image_path text, image_note text, source_product_id bigint,
+        source_image_url text
       )`, [JSON.stringify(pointers.map((pointer) => ({
       id: pointer.card_print_id,
       image_url: pointer.image_url,
@@ -437,7 +452,28 @@ async function applyPointers(client, setCode, pointers) {
       image_res: pointer.image_res,
       image_path: pointer.image_path,
       image_note: pointer.image_note,
+      source_product_id: pointer.source_product_id,
+      source_image_url: pointer.source_image_url,
     })))]);
+    const mappingLock = await client.query(`
+      select payload.id
+      from op_set_image_pointer_v1 payload
+      join public.external_mappings mapping
+        on mapping.card_print_id=payload.id
+       and mapping.source='tcgplayer'
+       and mapping.active
+       and mapping.external_id=payload.source_product_id::text
+      join public.tcgcsv_source_products product
+        on product.category_id=68
+       and product.product_id=payload.source_product_id
+       and product.image_url=payload.source_image_url
+      for share of mapping, product
+    `);
+    if (mappingLock.rowCount !== pointers.length) {
+      throw new Error(
+        `Snapshot-bound mapping revalidation failed ${mappingLock.rowCount}/${pointers.length}`,
+      );
+    }
     const updated = await client.query(`update public.card_prints card set
       image_url=payload.image_url,
       image_alt_url=payload.image_alt_url,
@@ -543,24 +579,24 @@ async function main() {
   const official = await fetchOfficialSeries(args.officialSeriesId);
   const client = new Client(clientOptions(args.databaseUrl, args.mode));
   await client.connect();
-  let snapshot;
   try {
-    await client.query("begin transaction isolation level repeatable read read only");
-    snapshot = await captureSnapshot(client, args.setCode, official);
-    await client.query("commit");
-  } catch (error) {
-    await client.query("rollback").catch(() => {});
-    await client.end();
-    throw error;
-  }
-  const base = {
+    let snapshot;
+    try {
+      await client.query("begin transaction isolation level repeatable read read only");
+      snapshot = await captureSnapshot(client, args.setCode, official);
+      await client.query("commit");
+    } catch (error) {
+      await client.query("rollback").catch(() => {});
+      throw error;
+    }
+    const base = {
     version: ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
     mode: args.mode,
     repository: repo,
     target: { set_code: args.setCode, official_series_id: args.officialSeriesId },
     snapshot_fingerprint_sha256: snapshot.snapshot_fingerprint_sha256,
   };
-  if (args.mode === "audit") {
+    if (args.mode === "audit") {
     const readiness = evaluateOnePieceSetReleaseReadinessV1(snapshot);
     const summary = { ...base, status: "read_only_audit_complete", counts: snapshot.counts,
       release_control: snapshot.release_control, readiness, database_writes: 0,
@@ -571,11 +607,10 @@ async function main() {
       "summary.json": summary,
     }, repo.commit_sha);
     process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-    await client.end();
     return;
-  }
-  assertSnapshotBinding(snapshot, args);
-  if (args.mode === "image-canary" || args.mode === "image-apply") {
+    }
+    assertSnapshotBinding(snapshot, args);
+    if (args.mode === "image-canary" || args.mode === "image-apply") {
     const candidates = imageCandidates(snapshot);
     if (!candidates.length) throw new Error("No missing image candidates remain");
     if (candidates.some((row) => !row.source_image_url)) {
@@ -642,10 +677,9 @@ async function main() {
       "summary.json": summary,
     }, repo.commit_sha);
     process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-    await client.end();
     return;
-  }
-  if (args.mode === "activation-canary" || args.mode === "activate") {
+    }
+    if (args.mode === "activation-canary" || args.mode === "activate") {
     const activation = await activateSet(
       client,
       snapshot,
@@ -678,20 +712,33 @@ async function main() {
       "summary.json": summary,
     }, repo.commit_sha);
     process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-    await client.end();
     return;
+    }
+    const visibility = await visibilityCounts(client, snapshot);
+    if (snapshot.release_control?.release_status !== "signed_in" ||
+        Number(snapshot.counts.suppressed_rows) !== 0 ||
+        visibility.anonymous.set_visible !== false ||
+        Number(visibility.anonymous.card_count) !== 0 ||
+        visibility.authenticated.set_visible !== true ||
+        Number(visibility.authenticated.card_count) !== snapshot.rows.length) {
+      throw new Error(`Independent release readback failed: ${JSON.stringify({
+        release_status: snapshot.release_control?.release_status ?? null,
+        suppressed_rows: snapshot.counts.suppressed_rows,
+        visibility,
+      })}`);
+    }
+    const summary = { ...base, status: "independent_release_readback_complete",
+      counts: snapshot.counts, release_control: snapshot.release_control,
+      visibility, database_writes: 0, storage_writes: 0 };
+    await writeArtifacts(args.outDir, {
+      "run_plan.json": base,
+      "closure_snapshot.json": snapshot,
+      "summary.json": summary,
+    }, repo.commit_sha);
+    process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+  } finally {
+    await client.end().catch(() => {});
   }
-  const visibility = await visibilityCounts(client, snapshot);
-  const summary = { ...base, status: "independent_release_readback_complete",
-    counts: snapshot.counts, release_control: snapshot.release_control,
-    visibility, database_writes: 0, storage_writes: 0 };
-  await writeArtifacts(args.outDir, {
-    "run_plan.json": base,
-    "closure_snapshot.json": snapshot,
-    "summary.json": summary,
-  }, repo.commit_sha);
-  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-  await client.end();
 }
 
 main().catch((error) => {
