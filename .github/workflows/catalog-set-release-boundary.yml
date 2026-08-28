@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Inspect or apply the frozen set release-boundary migration
+        description: Inspect, apply, or verify the frozen set release-boundary migration
         required: true
         type: choice
         options:
           - dry_run
           - apply
+          - verify
       expected_sha:
         description: Exact merged commit SHA that must be checked out
         required: true
@@ -59,6 +60,7 @@ jobs:
           git diff --check
 
       - name: Inspect exact pending migration
+        if: ${{ inputs.mode != 'verify' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -79,7 +81,7 @@ jobs:
             --yes
 
       - name: Verify schema, grants, and rollback-only OP16 override
-        if: ${{ inputs.mode == 'apply' }}
+        if: ${{ inputs.mode != 'dry_run' }}
         shell: bash
         run: |
           set -euo pipefail
