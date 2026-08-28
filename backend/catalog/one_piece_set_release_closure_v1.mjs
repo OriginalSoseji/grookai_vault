@@ -311,6 +311,53 @@ export function evaluateOnePieceSetReleaseReadinessV1(snapshot) {
   };
 }
 
+export function evaluateOnePieceSetActivationReadinessV1(
+  snapshot,
+  currentVisibility = null,
+) {
+  const baseline = evaluateOnePieceSetReleaseReadinessV1(snapshot);
+  const releaseStatus = snapshot?.release_control?.release_status ?? null;
+  const suppressedRows = Number(snapshot?.counts?.suppressed_rows ?? 0);
+  const count = Number(snapshot?.counts?.cohort_rows ?? 0);
+  const findings = baseline.findings.filter((finding) =>
+    finding !== "set_not_hidden_before_activation");
+  const add = (condition, code) => {
+    if (!condition) findings.push(code);
+  };
+
+  if (releaseStatus === "hidden") {
+    add(baseline.findings.length === findings.length,
+      "set_not_hidden_before_activation");
+  } else if (releaseStatus === "signed_in" || releaseStatus === null) {
+    add(suppressedRows > 0, "active_set_has_no_suppressed_increment");
+    add(currentVisibility?.anonymous?.set_visible === false,
+      "active_set_anonymous_visibility_mismatch");
+    add(Number(currentVisibility?.anonymous?.card_count) === 0,
+      "active_set_anonymous_card_count_mismatch");
+    add(currentVisibility?.authenticated?.set_visible === true,
+      "active_set_authenticated_visibility_mismatch");
+    add(Number(currentVisibility?.authenticated?.card_count) ===
+      count - suppressedRows,
+    "active_set_existing_card_count_mismatch");
+  } else {
+    findings.push("release_status_not_activatable");
+  }
+
+  return {
+    valid: findings.length === 0,
+    findings: [...new Set(findings)],
+    release_mode: releaseStatus === "hidden"
+      ? "initial_hidden_release"
+      : releaseStatus === "signed_in"
+        ? "governed_active_increment"
+        : releaseStatus === null
+          ? "legacy_active_increment"
+          : `unexpected_release_status:${releaseStatus}`,
+    cohort_rows: count,
+    suppressed_rows: suppressedRows,
+  };
+}
+
 export function evaluateOnePieceIndependentReleaseReadbackV1(
   snapshot,
   visibility,

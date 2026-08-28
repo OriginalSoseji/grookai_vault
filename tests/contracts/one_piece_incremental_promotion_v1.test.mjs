@@ -143,6 +143,41 @@ test("incremental rows for an already-live target set remain suppressed", () => 
   assert.equal(validateOnePieceIncrementalPromotionPlanV1(plan).valid, true);
 });
 
+test("exact card numbers accept one adjacent source-name transposition", () => {
+  const plan = buildOnePieceIncrementalPromotionPlanV1({
+    asOf: "2026-08-28",
+    setCode: "OP17",
+    setName: "The World's Strongest Warriors",
+    releaseDate: "2026-08-28",
+    officialSeriesId: "569117",
+    warehouseProducts: [warehouseProduct({
+      id: 712603,
+      name: "Crone Oil",
+      number: "OP17-021",
+    })],
+    officialRecords: [{
+      ...officialRecords[0],
+      official_variant_id: "OP17-021",
+      card_number: "OP17-021",
+      official_name: "Crone Oli",
+      normalized_official_name: "crone oli",
+    }],
+    existingSetCodes: ["OP17"],
+  });
+  assert.equal(plan.source_counts.source_name_mismatch_holds, 0);
+  assert.equal(plan.counts.card_prints, 1);
+  assert.equal(
+    plan.payload.rows[0].source_evidence.evidence_payload.source_product
+      .source_name_support_kind,
+    "single_adjacent_transposition_with_exact_card_number",
+  );
+  assert.equal(plan.payload.rows[0].card_print.name, "Crone Oli");
+  assert.equal(
+    plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1.status,
+    "suppressed",
+  );
+});
+
 test("promo-number SP products remain owned by the P set", () => {
   const promoOfficial = [{
     ...officialRecords[0],
