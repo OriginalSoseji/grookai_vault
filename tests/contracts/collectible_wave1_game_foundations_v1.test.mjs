@@ -27,6 +27,32 @@ const REVIEWED_APPLY_PLAN_SHA256 =
   "236f134edc8eb264fa2b4645219b3424ccbc07c0606d24ab24a6c4ad2ca37604";
 const REVIEWED_APPLY_READBACK_SHA256 =
   "29a4159947ecc7c58e7e345183e58c5c987a7d4876bc91d3b1f434d8ce435d71";
+const REVIEWED_MANIFEST_SHA256 = {
+  apply: "34cdc963e3bbbf43d0c6be5b4ac4f3c81c0036614dc3e480b7afaa17c706dc34",
+  reconciliation: "a813475d6aad596a692a5b4828f066c10d5c857fd045009b28b37c8824a66322",
+  rollback: "3003d7a2dcf6103156d3502d1a2640778e00e4f91ceaea417487246a5e85aac8",
+};
+const REVIEWED_APPLY_ARTIFACT_SHA256 = {
+  "apply_execution.json": "147f56120bd267ab4e91c4ffd647113db99994d14ea6edb7c37cbf67bdaa5522",
+  "apply_plan.json": "236f134edc8eb264fa2b4645219b3424ccbc07c0606d24ab24a6c4ad2ca37604",
+  "apply_readback.json": "29a4159947ecc7c58e7e345183e58c5c987a7d4876bc91d3b1f434d8ce435d71",
+};
+const REVIEWED_ROLLBACK_ARTIFACT_SHA256 = {
+  "post_rollback_readback.json": "4ddbb85904c21662446544ddb70363242532d927c8fd16972becc8e60f0b4113",
+  "protected_before.json": "4ddbb85904c21662446544ddb70363242532d927c8fd16972becc8e60f0b4113",
+  "REPORT.md": "fa6a0d4db88da37b541094b2bfbd7e5a346a66ebc3f11c92624dea0fd4ccef7c",
+  "run_plan.json": "775ace1681b089d412d75653d576419bff36edba5b0ee0c7dbde99ee0c10d24b",
+  "summary.json": "f913cc6759f5677a53779a7223ec5d065795bab81ea87619d86c6cf588a77520",
+  "transaction_proof.json": "1888b16247e1d6e425301dc5b20dbd6d2a0cc70116cb7b9a980a3f41a492bcbe",
+};
+const REVIEWED_RECONCILIATION_ARTIFACT_SHA256 = {
+  "artifact_limitations.json": "f5e4cc3eb189b6b6e1dc930422ac02a935e5f303160f6b0d861b304f91d51e7d",
+  "database_snapshot_summary.json": "5f84f764c5629a2fafcb6c0916bed1029a03d313f582e11731e437bd3ecb7e5c",
+  "provenance.json": "888b774aa8581c93aff539a49bc49c7bbfc9fb8ef3521129f4fc276e8b7d938c",
+  "remote_artifact_hashes.json": "8e25093f344b778bda55eb18ebe25b4263d7b7ecbd4ce7ab77a7b82fc2d597fe",
+  "run_plan.json": "aa7843b47b693aabbcdda82e6cae602be88cc262a15e623e1d0b041ea82b96bb",
+  "summary.json": "da5852d8174691581fd51b783fda1615fe8cc1f001473dfef00b690e510b0e1b",
+};
 const REVIEWED_LEDGER_STATEMENT_SHA256 = [
   "cc1ca0c4e8824501dcfc07a67fd729fac677ee38a9d9306c79197f00bd41510b",
   "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
@@ -70,6 +96,17 @@ const APPLY_CREDENTIAL_PATTERNS = [
   /\b(?:access|refresh)[_-]?token["']?\s*[:=]/i,
   /\b(?:api|secret)[_-]?key["']?\s*[:=]/i,
 ];
+const NO_WRITE_RECONCILIATION_BOUNDARIES = {
+  database_writes: false,
+  storage_access: false,
+  storage_writes: false,
+  image_access: false,
+  pricing_access: false,
+  canonical_writes: false,
+  publication_writes: false,
+  vault_access: false,
+  writer_dispatches: false,
+};
 const RUNNER = fs.readFileSync(path.join(
   ROOT,
   "scripts",
@@ -237,8 +274,18 @@ test("rollback runner writes the plan before connecting and never commits", () =
 });
 
 test("production rollback artifacts reconcile and prove exact restoration", () => {
-  const hashes = JSON.parse(fs.readFileSync(path.join(AUDIT_DIR, "artifact_hashes.json")));
+  const hashesBody = fs.readFileSync(path.join(AUDIT_DIR, "artifact_hashes.json"));
+  assert.equal(
+    crypto.createHash("sha256").update(hashesBody).digest("hex"),
+    REVIEWED_MANIFEST_SHA256.rollback,
+  );
+  const hashes = JSON.parse(hashesBody);
+  assert.deepEqual(
+    hashes.artifacts.map((artifact) => artifact.artifact_path).sort(),
+    Object.keys(REVIEWED_ROLLBACK_ARTIFACT_SHA256).sort(),
+  );
   for (const artifact of hashes.artifacts) {
+    assert.equal(artifact.sha256, REVIEWED_ROLLBACK_ARTIFACT_SHA256[artifact.artifact_path]);
     const body = fs.readFileSync(path.join(AUDIT_DIR, artifact.artifact_path));
     assert.equal(
       crypto.createHash("sha256").update(body).digest("hex"),
@@ -275,13 +322,19 @@ test("production rollback artifacts reconcile and prove exact restoration", () =
 });
 
 test("durable apply artifacts reconcile to the authorized four-row foundation", () => {
-  const hashes = JSON.parse(fs.readFileSync(path.join(APPLY_AUDIT_DIR, "artifact_hashes.json")));
+  const hashesBody = fs.readFileSync(path.join(APPLY_AUDIT_DIR, "artifact_hashes.json"));
+  assert.equal(
+    crypto.createHash("sha256").update(hashesBody).digest("hex"),
+    REVIEWED_MANIFEST_SHA256.apply,
+  );
+  const hashes = JSON.parse(hashesBody);
   assert.equal(hashes.algorithm, "sha256");
   assert.deepEqual(
     hashes.artifacts.map((artifact) => artifact.artifact_path).sort(),
     REQUIRED_APPLY_ARTIFACT_PATHS,
   );
   for (const artifact of hashes.artifacts) {
+    assert.equal(artifact.sha256, REVIEWED_APPLY_ARTIFACT_SHA256[artifact.artifact_path]);
     const body = fs.readFileSync(path.join(APPLY_AUDIT_DIR, artifact.artifact_path));
     assert.equal(
       crypto.createHash("sha256").update(body).digest("hex"),
@@ -324,6 +377,7 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   );
   assert.deepEqual(execution.authorized_durable_changes, plan.authorized_durable_changes);
   assert.deepEqual(execution.forbidden_durable_changes, plan.forbidden_durable_changes);
+  assert.equal(execution.command_metadata.secrets_recorded, false);
   assert.equal(execution.result.status, "success");
   assert.deepEqual(execution.result.applied_migrations, [
     "20260828024500_collectible_wave1_game_foundations_v1.sql",
@@ -391,9 +445,14 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
 });
 
 test("post-foundation reconciliation reaches all candidates without writes", () => {
-  const hashes = JSON.parse(fs.readFileSync(
+  const hashesBody = fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "preserved_artifact_hashes.json"),
-  ));
+  );
+  assert.equal(
+    crypto.createHash("sha256").update(hashesBody).digest("hex"),
+    REVIEWED_MANIFEST_SHA256.reconciliation,
+  );
+  const hashes = JSON.parse(hashesBody);
   const remoteArtifactHashes = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "remote_artifact_hashes.json"),
   ));
@@ -404,6 +463,10 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
     REQUIRED_RECONCILIATION_ARTIFACT_PATHS,
   );
   for (const artifact of hashes.artifacts) {
+    assert.equal(
+      artifact.sha256,
+      REVIEWED_RECONCILIATION_ARTIFACT_SHA256[artifact.artifact_path],
+    );
     const body = fs.readFileSync(path.join(RECONCILIATION_AUDIT_DIR, artifact.artifact_path));
     assert.equal(
       crypto.createHash("sha256").update(body).digest("hex"),
@@ -437,7 +500,26 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   const artifactLimitations = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "artifact_limitations.json"),
   ));
-  assert.equal(provenance.workflow_run_id, 33137460263);
+  assert.deepEqual(provenance, {
+    version: "COLLECTIBLE_WAVE1_POST_FOUNDATION_RECONCILIATION_PROVENANCE_V1",
+    workflow_run_id: 33137460263,
+    workflow_url: "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33137460263",
+    workflow_head_sha: "06ce213cda46e58244102d744a4835358fcc09eb",
+    artifact_id: 9672587771,
+    artifact_name: "collectible-wave1-canonical-reconciliation-33137460263",
+    artifact_archive_digest:
+      "sha256:0e3a4560c782534a9eed05eb04d5869d159b75854135e2ba441a70fa72978518",
+    artifact_expires_at: "2026-11-26T02:57:26Z",
+    selected_files_preserved_locally: [
+      "artifact_limitations.json",
+      "database_snapshot_summary.json",
+      "remote_artifact_hashes.json",
+      "run_plan.json",
+      "summary.json",
+    ],
+    large_row_artifacts_remain_in_github_actions: true,
+    database_writes: false,
+  });
   assert.equal(plan.actual_head_sha, "06ce213cda46e58244102d744a4835358fcc09eb");
   assert.equal(plan.expected_candidate_sha256, FROZEN_RECONCILIATION_CANDIDATE_SHA256);
   assert.equal(summary.parser_candidate_sha256, FROZEN_RECONCILIATION_CANDIDATE_SHA256);
@@ -488,15 +570,6 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   assert.equal(summary.database_proof.transaction_read_only, "on");
   assert.equal(summary.database_proof.transaction_ended_with, "rollback");
   assert.equal(summary.database_proof.database_writes, false);
-  assert.deepEqual(summary.boundaries, {
-    database_writes: false,
-    storage_access: false,
-    storage_writes: false,
-    image_access: false,
-    pricing_access: false,
-    canonical_writes: false,
-    publication_writes: false,
-    vault_access: false,
-    writer_dispatches: false,
-  });
+  assert.deepEqual(plan.boundaries, NO_WRITE_RECONCILIATION_BOUNDARIES);
+  assert.deepEqual(summary.boundaries, NO_WRITE_RECONCILIATION_BOUNDARIES);
 });
