@@ -135,7 +135,7 @@ outside the migration ledger changed.
 
 ## Validation
 
-- New search-repair contract tests: `9/9` passed.
+- New search-repair contract tests: `10/10` passed.
 - Targeted search, visibility, cross-TCG, migration-recovery, ACL, and pricing
   boundary suites: `50/50` passed.
 - Rollback-only production smoke: passed.

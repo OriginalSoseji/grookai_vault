@@ -20,6 +20,7 @@ const MIGRATION_PATH = path.join(
   "migrations",
   "20260828021500_print_identity_search_visible_bound_v1.sql",
 );
+const RECORDED_READBACK_PATH = path.join(AUDIT_DIR, "apply_readback.json");
 const FUNCTION_REGPROCEDURE =
   "public.search_print_identity_v1(text,text,text,text,integer,integer)";
 const EXPECTED_FUNCTION_SHA256 =
@@ -81,6 +82,9 @@ async function main() {
   assert.ok(process.argv.includes("--read-only"), "pass --read-only");
   assert.ok(process.env.SUPABASE_DB_URL, "SUPABASE_DB_URL is required");
   const migration = await fs.readFile(MIGRATION_PATH, "utf8");
+  const recordedReadback = JSON.parse(
+    await fs.readFile(RECORDED_READBACK_PATH, "utf8"),
+  );
   const client = new pg.Client({ connectionString: process.env.SUPABASE_DB_URL });
   await client.connect();
 
@@ -126,8 +130,8 @@ async function main() {
 
     const readback = {
       version: "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_APPLY_READBACK_V1",
-      recorded_at: new Date().toISOString(),
-      source_commit: "0787eeb3da606a67fc0ef73434d80d74ee42ccf1",
+      recorded_at: recordedReadback.recorded_at,
+      source_commit: recordedReadback.source_commit,
       execution_mode: "production_read_only",
       migration: {
         version: ledgerRows[0].version,
@@ -149,13 +153,13 @@ async function main() {
       database_writes_during_readback: false,
     };
 
-    await fs.writeFile(
-      path.join(AUDIT_DIR, "apply_readback.json"),
-      `${JSON.stringify(readback, null, 2)}\n`,
-      "utf8",
+    assert.deepEqual(
+      readback,
+      recordedReadback,
+      "production readback no longer matches the immutable recorded evidence",
     );
     console.log(JSON.stringify({
-      status: "apply_readback_passed",
+      status: "immutable_apply_readback_verified",
       latest_migration: readback.latest_migration,
       function_sha256: functionState.definition_sha256,
       probes: probes.map(({ role, row_count, game_codes }) => ({ role, row_count, game_codes })),

@@ -27,6 +27,10 @@ const ROLLBACK_RUNNER = fs.readFileSync(
   path.join(ROOT, "scripts", "audits", "print_identity_search_visible_bound_rollback_v1.mjs"),
   "utf8",
 );
+const READBACK_RUNNER = fs.readFileSync(
+  path.join(ROOT, "scripts", "audits", "print_identity_search_visible_bound_readback_v1.mjs"),
+  "utf8",
+);
 const AUDIT = path.join(
   ROOT,
   "docs",
@@ -182,6 +186,13 @@ test("production rollback artifact proves role behavior and zero durable drift",
   assert.deepEqual(ROLLBACK_PROOF.probes[0].game_codes, ["pokemon"]);
   assert.ok(ROLLBACK_PROOF.probes[1].game_codes.includes("mtg"));
   assert.doesNotMatch(ROLLBACK_PROOF_TEXT, /(?:postgres(?:ql)?:\/\/|SUPABASE_DB_URL|password)/i);
+});
+
+test("production readback verifier preserves immutable audit artifacts", () => {
+  assert.match(READBACK_RUNNER, /RECORDED_READBACK_PATH/);
+  assert.match(READBACK_RUNNER, /assert\.deepEqual\(\s*readback,\s*recordedReadback/);
+  assert.match(READBACK_RUNNER, /immutable_apply_readback_verified/);
+  assert.doesNotMatch(READBACK_RUNNER, /fs\.writeFile/);
 });
 
 test("permanent apply artifacts reconcile and contain no credentials", () => {
