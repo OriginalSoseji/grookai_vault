@@ -312,6 +312,16 @@ function imageUrls(row) {
   const productImage =
     `https://product-images.tcgplayer.com/fit-in/1000x1000/` +
     `${row.source_product_id}.jpg`;
+  if (row.governed_external_image) {
+    return [{
+      role: "governed_external_exact_product",
+      authority: "verified_external_exact_product",
+      hosts: ["www.tcgintel.app"],
+      url: row.governed_external_image.download_url,
+      evidence_url: row.governed_external_image.evidence_url,
+      expected_sha256: row.governed_external_image.expected_sha256,
+    }];
+  }
   const candidates = [
     {
       role: "tcgplayer_high_resolution",
@@ -338,16 +348,6 @@ function imageUrls(row) {
       authority: "bandai_official_exact_base_art",
       hosts: ["en.onepiece-cardgame.com"],
       url: row.official_base_image.image_url,
-    });
-  }
-  if (row.governed_external_image) {
-    candidates.push({
-      role: "governed_external_exact_product",
-      authority: "verified_external_exact_product",
-      hosts: ["www.tcgintel.app"],
-      url: row.governed_external_image.download_url,
-      evidence_url: row.governed_external_image.evidence_url,
-      expected_sha256: row.governed_external_image.expected_sha256,
     });
   }
   return candidates.filter((candidate, index, values) =>
