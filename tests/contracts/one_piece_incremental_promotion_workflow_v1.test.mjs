@@ -16,7 +16,9 @@ test("set release migration workflow is frozen, singular, and rollback-proven", 
   assert.match(migrationWorkflow, /test "\$\(git rev-parse HEAD\)" = "\$EXPECTED_SHA"/);
   assert.match(migrationWorkflow, /git merge-base --is-ancestor "\$EXPECTED_SHA" origin\/main/);
   assert.match(migrationWorkflow, /test "\$pending_count" = "1"/);
-  assert.match(migrationWorkflow, /op16_hidden,false/);
+  assert.match(migrationWorkflow, /\^grants,t,f,f\$/);
+  assert.match(migrationWorkflow, /\^op16_before,t\$/);
+  assert.match(migrationWorkflow, /\^op16_hidden,f\$/);
   assert.match(migrationWorkflow, /rollback_absence\.txt/);
 });
 

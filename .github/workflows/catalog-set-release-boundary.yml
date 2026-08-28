@@ -123,10 +123,10 @@ jobs:
           SQL
 
           grep -q '^table,1$' migration_readback.csv
-          grep -q '^grants,true,false,false$' migration_readback.csv
+          grep -q '^grants,t,f,f$' migration_readback.csv
           grep -q '^functions,3$' migration_readback.csv
-          grep -q '^op16_before,true$' migration_readback.csv
-          grep -q '^op16_hidden,false$' migration_readback.csv
+          grep -q '^op16_before,t$' migration_readback.csv
+          grep -q '^op16_hidden,f$' migration_readback.csv
 
           psql "$SUPABASE_DB_URL" --no-psqlrc --set ON_ERROR_STOP=1 \
             --tuples-only --no-align --command="select count(*) from public.catalog_set_release_controls control join public.sets target_set on target_set.id=control.set_id where target_set.game='one_piece' and upper(target_set.code)='OP16';" \
