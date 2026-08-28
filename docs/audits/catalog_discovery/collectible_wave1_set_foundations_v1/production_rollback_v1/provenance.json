@@ -1,0 +1,17 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_PROVENANCE_V1",
+  "workflow_run_id": 33171480355,
+  "workflow_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33171480355",
+  "workflow_head_sha": "51f47be5a79e5e05391f6b2193a30729e53fc2ac",
+  "artifact_id": 9685801358,
+  "artifact_name": "collectible-wave1-set-foundations-rollback-33171480355",
+  "artifact_archive_bytes": 52283,
+  "artifact_archive_digest": "sha256:7852fe5bf459e9c8fbef728d9429112e58402455a7bf471215c93126263c911c",
+  "artifact_expires_at": "2026-11-26T12:32:22Z",
+  "migration_sha256": "0bef87cb2f487e84729a93aa2ba1bfb9b90cc559a10e981de34dcd1d7a8305fb",
+  "payload_fingerprint_sha256": "fa0674bc2563e57c8ab02e2bf19f44805328bdb0b56ad98ed807323e45b51668",
+  "run_plan_fingerprint_sha256": "e6daef9af7c9f0a489cd4c42a3f223194348dc0cca41268debb07a739497581c",
+  "all_workflow_files_preserved_locally": true,
+  "database_writes": false,
+  "transaction_ended_with": "rollback"
+}

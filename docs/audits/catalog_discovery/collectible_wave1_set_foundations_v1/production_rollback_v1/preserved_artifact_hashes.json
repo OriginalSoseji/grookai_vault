@@ -1,0 +1,55 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "artifact_path": "artifact_hashes.json",
+      "bytes": 1018,
+      "sha256": "bee07cf1fb983ce263295eddfe86a301f86eb4fb532a82722b99b94a59708ee4"
+    },
+    {
+      "artifact_path": "post_rollback_readback.json",
+      "bytes": 2986,
+      "sha256": "96fa13a347c21d1d03c111854d3c91666feedd27e5d385d287ccdefed7840103"
+    },
+    {
+      "artifact_path": "protected_before.json",
+      "bytes": 2986,
+      "sha256": "96fa13a347c21d1d03c111854d3c91666feedd27e5d385d287ccdefed7840103"
+    },
+    {
+      "artifact_path": "provenance.json",
+      "bytes": 972,
+      "sha256": "2839e2594680cd56cc6a1470083031e84f4232a49c030b0ee29245ab95011f75"
+    },
+    {
+      "artifact_path": "reconciliation_report.json",
+      "bytes": 1073,
+      "sha256": "4adee8f2d924dc6aa2b704564078799475155d68d6a67f01e12815ab3cf990f2"
+    },
+    {
+      "artifact_path": "remote_artifact_hashes.json",
+      "bytes": 1182,
+      "sha256": "457546d96b020c9fb1dc3290f5bd4d08f5355566d5b38cd5e8c3fd8e55534ea6"
+    },
+    {
+      "artifact_path": "REPORT.md",
+      "bytes": 450,
+      "sha256": "ae2e53369ee96a35ce81af677f7067cdfc66d2f1e55308e6e8fdca099fe3de4f"
+    },
+    {
+      "artifact_path": "run_plan.json",
+      "bytes": 1526,
+      "sha256": "b877fc377de8565c2c2e94f954adf71c08e6c8f3ce88e4ad6a6652baa359b2ab"
+    },
+    {
+      "artifact_path": "summary.json",
+      "bytes": 1215,
+      "sha256": "a00d2010a36549797503594129fe673764a1930972eaef9ff858d2112f5ed0c3"
+    },
+    {
+      "artifact_path": "transaction_proof.json",
+      "bytes": 743226,
+      "sha256": "6c880b9a5d15718186352b725bc3df0c156415f3d07c9f32ea9a85bd5d63ff5e"
+    }
+  ]
+}

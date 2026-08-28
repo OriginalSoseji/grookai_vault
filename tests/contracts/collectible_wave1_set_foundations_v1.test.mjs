@@ -252,3 +252,106 @@ test("contract stops before durable apply and preserves every forbidden domain",
     /cards, identit(?:y|ies),\s+printings, mappings, images, pricing,\s+publication/,
   );
 });
+
+test("permanent checkpoint preserves and reconciles the production rollback proof", () => {
+  const auditDir = path.join(
+    ROOT,
+    "docs",
+    "audits",
+    "catalog_discovery",
+    "collectible_wave1_set_foundations_v1",
+    "production_rollback_v1",
+  );
+  const reviewed = {
+    "artifact_hashes.json": [1018,
+      "bee07cf1fb983ce263295eddfe86a301f86eb4fb532a82722b99b94a59708ee4"],
+    "post_rollback_readback.json": [2986,
+      "96fa13a347c21d1d03c111854d3c91666feedd27e5d385d287ccdefed7840103"],
+    "protected_before.json": [2986,
+      "96fa13a347c21d1d03c111854d3c91666feedd27e5d385d287ccdefed7840103"],
+    "provenance.json": [972,
+      "2839e2594680cd56cc6a1470083031e84f4232a49c030b0ee29245ab95011f75"],
+    "reconciliation_report.json": [1073,
+      "4adee8f2d924dc6aa2b704564078799475155d68d6a67f01e12815ab3cf990f2"],
+    "remote_artifact_hashes.json": [1182,
+      "457546d96b020c9fb1dc3290f5bd4d08f5355566d5b38cd5e8c3fd8e55534ea6"],
+    "REPORT.md": [450,
+      "ae2e53369ee96a35ce81af677f7067cdfc66d2f1e55308e6e8fdca099fe3de4f"],
+    "run_plan.json": [1526,
+      "b877fc377de8565c2c2e94f954adf71c08e6c8f3ce88e4ad6a6652baa359b2ab"],
+    "summary.json": [1215,
+      "a00d2010a36549797503594129fe673764a1930972eaef9ff858d2112f5ed0c3"],
+    "transaction_proof.json": [743226,
+      "6c880b9a5d15718186352b725bc3df0c156415f3d07c9f32ea9a85bd5d63ff5e"],
+  };
+  const preserved = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "preserved_artifact_hashes.json",
+  )));
+  assert.equal(preserved.algorithm, "sha256");
+  assert.deepEqual(
+    preserved.artifacts.map((row) => row.artifact_path).sort(),
+    Object.keys(reviewed).sort(),
+  );
+  for (const [artifactPath, [bytes, digest]] of Object.entries(reviewed)) {
+    const body = fs.readFileSync(path.join(auditDir, artifactPath));
+    const manifestRow = preserved.artifacts.find((row) => row.artifact_path === artifactPath);
+    assert.equal(body.length, bytes, artifactPath);
+    assert.equal(manifestRow.bytes, bytes, artifactPath);
+    assert.equal(manifestRow.sha256, digest, artifactPath);
+    assert.equal(crypto.createHash("sha256").update(body).digest("hex"), digest, artifactPath);
+    assert.doesNotMatch(body.toString("utf8"), /postgres(?:ql)?:\/\/|SUPABASE_DB_URL/);
+  }
+
+  const provenance = JSON.parse(fs.readFileSync(path.join(auditDir, "provenance.json")));
+  assert.equal(provenance.workflow_run_id, 33171480355);
+  assert.equal(provenance.workflow_head_sha,
+    "51f47be5a79e5e05391f6b2193a30729e53fc2ac");
+  assert.equal(provenance.artifact_id, 9685801358);
+  assert.equal(provenance.migration_sha256, REVIEWED_MIGRATION_SHA256);
+  assert.equal(provenance.database_writes, false);
+  assert.equal(provenance.transaction_ended_with, "rollback");
+
+  const summary = JSON.parse(fs.readFileSync(path.join(auditDir, "summary.json")));
+  const transaction = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "transaction_proof.json",
+  )));
+  const reconciliation = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "reconciliation_report.json",
+  )));
+  assert.equal(summary.status, "rollback_proof_passed_zero_durable_change");
+  assert.equal(summary.rollback_succeeded, true);
+  assert.equal(summary.findings.length, 0);
+  assert.equal(transaction.transient_readback.sets.length, 505);
+  assert.equal(new Set(transaction.transient_readback.sets.map((row) => row.id)).size, 505);
+  assert.equal(new Set(transaction.transient_readback.sets.map((row) => row.code)).size, 505);
+  assert.deepEqual(transaction.transient_readback.rls_visible_set_counts,
+    { anon: 0, authenticated: 0 });
+  assert.equal(
+    fs.readFileSync(path.join(auditDir, "protected_before.json"), "utf8"),
+    fs.readFileSync(path.join(auditDir, "post_rollback_readback.json"), "utf8"),
+  );
+  assert.equal(reconciliation.status, "reconciled");
+  assert.equal(reconciliation.reconciliation_mismatch_count, 0);
+  assert.equal(reconciliation.durable_database_writes, 0);
+
+  const checkpoint = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "catalog_discovery",
+    "2026-08-28_COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_V1.md",
+  ), "utf8");
+  assert.match(checkpoint, /Stop before durable apply/);
+  assert.match(checkpoint, new RegExp(REVIEWED_MIGRATION_SHA256));
+  const index = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "catalog_discovery",
+    "INDEX.md",
+  ), "utf8");
+  assert.match(index, /COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_V1\.md/);
+});

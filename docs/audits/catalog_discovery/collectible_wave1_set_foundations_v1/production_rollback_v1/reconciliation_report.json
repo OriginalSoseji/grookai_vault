@@ -1,0 +1,39 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_RECONCILIATION_V1",
+  "status": "reconciled",
+  "producer_sha_matches": true,
+  "migration_sha_matches": true,
+  "payload_fingerprint_matches": true,
+  "run_plan_fingerprint_matches": true,
+  "transient_set_count": 505,
+  "unique_transient_set_id_count": 505,
+  "unique_transient_set_code_count": 505,
+  "selected_by_game": {
+    "gundam": 5,
+    "yugioh": 500
+  },
+  "transient_protected_count_deltas": {
+    "sets": 505,
+    "all_other_protected_domains": 0
+  },
+  "dependency_row_count": 0,
+  "request_visibility": {
+    "anon": false,
+    "authenticated": false,
+    "service_role": false
+  },
+  "rls_visible_set_counts": {
+    "anon": 0,
+    "authenticated": 0
+  },
+  "migration_ledger_delta": 0,
+  "release_control_delta": 0,
+  "rollback_succeeded": true,
+  "before_after_exact": true,
+  "post_rollback_transaction_read_only": true,
+  "summary_finding_count": 0,
+  "artifact_hash_mismatch_count": 0,
+  "credential_or_url_leak_count": 0,
+  "durable_database_writes": 0,
+  "reconciliation_mismatch_count": 0
+}
