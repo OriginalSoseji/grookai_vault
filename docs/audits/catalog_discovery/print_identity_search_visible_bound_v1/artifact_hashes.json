@@ -1,0 +1,10 @@
+{
+  "version": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_ROLLBACK_PROOF_V1",
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "rollback_proof.json",
+      "sha256": "99f1b6d7f64eaf331eea16273bcb819ab17048c6e4e204e8fd40d9d2efbfb078"
+    }
+  ]
+}
