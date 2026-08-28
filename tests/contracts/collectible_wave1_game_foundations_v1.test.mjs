@@ -23,6 +23,8 @@ const MIGRATION = fs.readFileSync(path.join(
 ), "utf8");
 const REVIEWED_MIGRATION_SHA256 =
   "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23";
+const REVIEWED_APPLY_PLAN_SHA256 =
+  "236f134edc8eb264fa2b4645219b3424ccbc07c0606d24ab24a6c4ad2ca37604";
 const REVIEWED_LEDGER_STATEMENT_SHA256 = [
   "cc1ca0c4e8824501dcfc07a67fd729fac677ee38a9d9306c79197f00bd41510b",
   "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
@@ -277,10 +279,15 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   assert.equal(migrationSha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(plan.migration.sha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(readback.migration_file_sha256, REVIEWED_MIGRATION_SHA256);
+  const applyPlanSha256 = crypto.createHash("sha256").update(planBody).digest("hex");
+  assert.equal(applyPlanSha256, REVIEWED_APPLY_PLAN_SHA256);
+  assert.equal(execution.apply_plan_sha256, REVIEWED_APPLY_PLAN_SHA256);
   assert.equal(
     execution.apply_plan_sha256,
-    crypto.createHash("sha256").update(planBody).digest("hex"),
+    applyPlanSha256,
   );
+  assert.deepEqual(execution.authorized_durable_changes, plan.authorized_durable_changes);
+  assert.deepEqual(execution.forbidden_durable_changes, plan.forbidden_durable_changes);
   assert.equal(execution.result.status, "success");
   assert.deepEqual(execution.result.applied_migrations, [
     "20260828024500_collectible_wave1_game_foundations_v1.sql",
