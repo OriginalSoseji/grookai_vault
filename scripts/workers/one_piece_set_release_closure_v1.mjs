@@ -16,6 +16,7 @@ import {
   normalizeOnePieceSetCodeV1,
   ONE_PIECE_SET_IMAGE_BUCKET,
   ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
+  resolveOnePieceOfficialBaseImageV1,
   validateOnePieceSetImagePointersV1,
 } from "../../backend/catalog/one_piece_set_release_closure_v1.mjs";
 import { inspectOnePieceImage } from
@@ -163,6 +164,7 @@ async function fetchOfficialSeries(seriesId) {
     unique_number_count: new Set(records.map((row) => row.card_number)).size,
     body_sha256: hashOnePieceSetReleaseClosureV1(body),
     final_url: finalUrl,
+    records,
   };
 }
 
@@ -192,6 +194,7 @@ async function loadClosureRows(client, setCode) {
            coalesce(evidence.active_evidence_count,0)::int active_evidence_count,
            coalesce(mapping.active_mapping_count,0)::int active_mapping_count,
            mapping.source_product_id,
+           product.name source_product_name,
            product.image_url source_image_url
     from public.card_prints cp
     left join lateral (
@@ -286,7 +289,13 @@ function imageCandidates(snapshot) {
     !isOnePieceSelfHostedExactImageV1(
       row,
       snapshot.image_public_base_url,
-    ));
+    )).map((row) => ({
+      ...row,
+      official_base_image: resolveOnePieceOfficialBaseImageV1(
+        row,
+        snapshot.official?.records,
+      ),
+    }));
 }
 
 function imageUrls(row) {
@@ -297,7 +306,39 @@ function imageUrls(row) {
   }
   const high = new URL(source);
   high.pathname = high.pathname.replace(/_200w\.jpg$/i, "_in_1000x1000.jpg");
-  return [...new Set([high.toString(), source.toString()])];
+  const productImage =
+    `https://product-images.tcgplayer.com/fit-in/1000x1000/` +
+    `${row.source_product_id}.jpg`;
+  const candidates = [
+    {
+      role: "tcgplayer_high_resolution",
+      authority: "tcgplayer_exact_product",
+      hosts: ["tcgplayer-cdn.tcgplayer.com"],
+      url: high.toString(),
+    },
+    {
+      role: "tcgplayer_source_fallback",
+      authority: "tcgplayer_exact_product",
+      hosts: ["tcgplayer-cdn.tcgplayer.com"],
+      url: source.toString(),
+    },
+    {
+      role: "tcgplayer_product_image_host",
+      authority: "tcgplayer_exact_product",
+      hosts: ["product-images.tcgplayer.com"],
+      url: productImage,
+    },
+  ];
+  if (row.official_base_image?.status === "exact_official_base_image") {
+    candidates.push({
+      role: "bandai_official_exact_base_art",
+      authority: "bandai_official_exact_base_art",
+      hosts: ["en.onepiece-cardgame.com"],
+      url: row.official_base_image.image_url,
+    });
+  }
+  return candidates.filter((candidate, index, values) =>
+    values.findIndex((other) => other.url === candidate.url) === index);
 }
 
 async function responseBuffer(response) {
@@ -308,23 +349,33 @@ async function responseBuffer(response) {
 
 async function downloadImage(row) {
   const errors = [];
-  for (const url of imageUrls(row)) {
+  for (const candidate of imageUrls(row)) {
     try {
-      const response = await fetch(url, {
+      const response = await fetch(candidate.url, {
         redirect: "follow",
         signal: AbortSignal.timeout(45_000),
         headers: { "user-agent": USER_AGENT, accept: "image/*" },
       });
-      if (!response.ok ||
-          new URL(response.url).hostname.toLowerCase() !== "tcgplayer-cdn.tcgplayer.com") {
+      if (!response.ok || !candidate.hosts.includes(
+        new URL(response.url).hostname.toLowerCase(),
+      )) {
         throw new Error(`http_or_redirect:${response.status}`);
       }
       const buffer = await responseBuffer(response);
       const image = inspectOnePieceImage(buffer, response.headers.get("content-type"));
       if (!image.valid_image) throw new Error(image.diagnostics.join(","));
-      return { buffer, image };
+      return {
+        buffer,
+        image: {
+          ...image,
+          source_download_role: candidate.role,
+          source_authority: candidate.authority,
+          source_download_url: candidate.url,
+          source_final_url: response.url,
+        },
+      };
     } catch (error) {
-      errors.push(`${url}:${error.message}`);
+      errors.push(`${candidate.role}:${candidate.url}:${error.message}`);
     }
   }
   throw new Error(`Image download failed for ${row.gv_id}: ${errors.join("|")}`);
@@ -339,7 +390,13 @@ async function mapLimit(values, limit, mapper) {
       try {
         results[index] = { ok: true, value: await mapper(values[index]) };
       } catch (error) {
-        results[index] = { ok: false, error: error.message, input: values[index] };
+        results[index] = {
+          ok: false,
+          error: error.message,
+          input: values[index],
+          created_pointer: error.createdPointer ?? null,
+          cleanup_verified: error.cleanupVerified ?? null,
+        };
       }
     }
   }
@@ -356,7 +413,7 @@ function storageClient(args) {
     global: { headers: { "user-agent": USER_AGENT } },
   });
   return {
-    client,
+    storage: client.storage,
     publicBaseUrl: imagePublicBaseUrl(args),
   };
 }
@@ -406,9 +463,12 @@ async function uploadOne(storage, publicBaseUrl, row) {
       try {
         await removeCreated(storage, [pointer]);
       } catch (cleanupError) {
-        throw new Error(
+        const wrapped = new Error(
           `${error.message}; storage_cleanup_failed:${cleanupError.message}`,
         );
+        wrapped.createdPointer = pointer;
+        wrapped.cleanupVerified = false;
+        throw wrapped;
       }
     }
     throw error;
@@ -450,14 +510,15 @@ async function applyPointers(client, setCode, pointers) {
       id uuid primary key, image_url text, image_alt_url text,
       image_source text, image_hash text, image_status text,
       image_res jsonb, image_path text, image_note text,
-      source_product_id bigint, source_image_url text
+      source_product_id bigint, source_product_name text,
+      source_image_url text
     ) on commit drop`);
     await client.query(`insert into op_set_image_pointer_v1
       select * from jsonb_to_recordset($1::jsonb) as x(
         id uuid, image_url text, image_alt_url text, image_source text,
         image_hash text, image_status text, image_res jsonb,
         image_path text, image_note text, source_product_id bigint,
-        source_image_url text
+        source_product_name text, source_image_url text
       )`, [JSON.stringify(pointers.map((pointer) => ({
       id: pointer.card_print_id,
       image_url: pointer.image_url,
@@ -469,6 +530,7 @@ async function applyPointers(client, setCode, pointers) {
       image_path: pointer.image_path,
       image_note: pointer.image_note,
       source_product_id: pointer.source_product_id,
+      source_product_name: pointer.source_product_name,
       source_image_url: pointer.source_image_url,
     })))]);
     const mappingLock = await client.query(`
@@ -482,6 +544,7 @@ async function applyPointers(client, setCode, pointers) {
       join public.tcgcsv_source_products product
         on product.category_id=68
        and product.product_id=payload.source_product_id
+       and product.name=payload.source_product_name
        and product.image_url=payload.source_image_url
       for share of mapping, product
     `);
@@ -641,25 +704,70 @@ async function main() {
     const selected = args.mode === "image-canary"
       ? candidates.slice(0, Math.min(args.canarySize, candidates.length))
       : candidates;
+    await writeArtifacts(args.outDir, {
+      "run_plan.json": base,
+      "before_snapshot.json": snapshot,
+      "selected_image_candidates.json": selected,
+    }, repo.commit_sha);
     const storage = storageClient(args);
     const results = await mapLimit(selected, args.concurrency, (row) =>
-      uploadOne(storage.client, storage.publicBaseUrl, row));
+      uploadOne(storage.storage, storage.publicBaseUrl, row));
     const failures = results.filter((result) => !result.ok);
     const successes = results.filter((result) => result.ok).map((result) => result.value);
     const created = successes.filter((result) => result.created).map((result) => result.pointer);
     if (failures.length) {
-      await removeCreated(storage.client, created);
+      const failedCreated = failures.map((failure) => failure.created_pointer)
+        .filter(Boolean);
+      let rollback;
+      let cleanupError = null;
+      try {
+        rollback = await removeCreated(
+          storage.storage,
+          [...created, ...failedCreated],
+        );
+      } catch (error) {
+        cleanupError = error.message;
+        rollback = {
+          removed: null,
+          absent: null,
+          cleanup_verified: false,
+        };
+      }
+      await writeArtifacts(args.outDir, {
+        "run_plan.json": base,
+        "before_snapshot.json": snapshot,
+        "selected_image_candidates.json": selected,
+        "image_failures.json": failures,
+        "summary.json": {
+          ...base,
+          status: cleanupError
+            ? "image_operation_failed_cleanup_unverified"
+            : "image_operation_failed_zero_created_object_residue",
+          selected: selected.length,
+          failures: failures.length,
+          successes_before_rollback: successes.length,
+          rollback,
+          cleanup_error: cleanupError,
+          database_writes: 0,
+        },
+      }, repo.commit_sha);
+      if (cleanupError) {
+        throw new Error(
+          `Image upload failures with unverified cleanup: ${cleanupError}; ` +
+          JSON.stringify(failures),
+        );
+      }
       throw new Error(`Image upload failures: ${JSON.stringify(failures)}`);
     }
     const pointers = successes.map((result) => result.pointer);
     const validation = validateOnePieceSetImagePointersV1(pointers, selected.length);
     if (!validation.valid) {
-      await removeCreated(storage.client, created);
+      await removeCreated(storage.storage, created);
       throw new Error(validation.findings.join(","));
     }
     let mutation;
     if (args.mode === "image-canary") {
-      const rollback = await removeCreated(storage.client, created);
+      const rollback = await removeCreated(storage.storage, created);
       mutation = { database_writes: 0, created: created.length, ...rollback };
     } else {
       try {
@@ -667,7 +775,7 @@ async function main() {
         mutation = { database_writes: updated, created: created.length,
           reused_verified: successes.length - created.length };
       } catch (error) {
-        await removeCreated(storage.client, created);
+        await removeCreated(storage.storage, created);
         throw error;
       }
     }
@@ -699,6 +807,7 @@ async function main() {
     await writeArtifacts(args.outDir, {
       "run_plan.json": base,
       "before_snapshot.json": snapshot,
+      "selected_image_candidates.json": selected,
       "image_pointers.json": pointers,
       "after_snapshot.json": after,
       "summary.json": summary,

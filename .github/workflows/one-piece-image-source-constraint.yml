@@ -1,0 +1,147 @@
+name: One Piece Image Source Constraint
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Inspect, apply, or verify the frozen image-source migration
+        required: true
+        type: choice
+        options:
+          - dry_run
+          - apply
+          - verify
+      expected_sha:
+        description: Exact merged main commit SHA
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: one-piece-image-source-constraint-v1
+  cancel-in-progress: false
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TARGET_MIGRATION: '20260828173000'
+      TARGET_FILE: supabase/migrations/20260828173000_one_piece_self_hosted_image_sources_v1.sql
+      MODE: ${{ inputs.mode }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify frozen boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$EXPECTED_SHA" origin/main
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "$TARGET_FILE"
+          node --test tests/contracts/one_piece_image_source_constraint_v1.test.mjs
+          git diff --check
+
+      - name: Inspect exact pending migration
+        if: ${{ inputs.mode != 'verify' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          pending_count="$(grep -Ec '^[[:space:]]*•[[:space:]]+[0-9]{14}' migration_dry_run.txt || true)"
+          test "$pending_count" = "1"
+
+      - name: Apply frozen migration
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --yes
+
+      - name: Verify constraint and rollback-only source writes
+        if: ${{ inputs.mode != 'dry_run' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql "$SUPABASE_DB_URL" --no-psqlrc --set ON_ERROR_STOP=1 \
+            --tuples-only --no-align --field-separator=, <<'SQL' | tee constraint_readback.csv
+          select 'constraint', count(*)
+          from pg_constraint constraint_row
+          join pg_class relation on relation.oid=constraint_row.conrelid
+          join pg_namespace namespace on namespace.oid=relation.relnamespace
+          where namespace.nspname='public'
+            and relation.relname='card_prints'
+            and constraint_row.conname='card_prints_image_source_check'
+            and constraint_row.convalidated
+            and pg_get_constraintdef(constraint_row.oid) like '%self_hosted_tcgplayer_exact_product_v1%'
+            and pg_get_constraintdef(constraint_row.oid) like '%self_hosted_bandai_official_exact_base_art_v1%';
+
+          select 'durable_before', count(*)
+          from public.card_prints
+          where image_source in (
+            'self_hosted_tcgplayer_exact_product_v1',
+            'self_hosted_bandai_official_exact_base_art_v1'
+          );
+
+          begin;
+          update public.card_prints
+          set image_source='self_hosted_tcgplayer_exact_product_v1'
+          where id=(select id from public.card_prints where game_id is not null order by id limit 1);
+          select 'tcgplayer_accepted', count(*)
+          from public.card_prints
+          where image_source='self_hosted_tcgplayer_exact_product_v1';
+          update public.card_prints
+          set image_source='self_hosted_bandai_official_exact_base_art_v1'
+          where id=(select id from public.card_prints where image_source='self_hosted_tcgplayer_exact_product_v1' order by id limit 1);
+          select 'bandai_accepted', count(*)
+          from public.card_prints
+          where image_source='self_hosted_bandai_official_exact_base_art_v1';
+          rollback;
+
+          select 'durable_after', count(*)
+          from public.card_prints
+          where image_source in (
+            'self_hosted_tcgplayer_exact_product_v1',
+            'self_hosted_bandai_official_exact_base_art_v1'
+          );
+          SQL
+
+          grep -q '^constraint,1$' constraint_readback.csv
+          before="$(awk -F, '$1=="durable_before"{print $2}' constraint_readback.csv)"
+          after="$(awk -F, '$1=="durable_after"{print $2}' constraint_readback.csv)"
+          test -n "$before"
+          test "$before" = "$after"
+          awk -F, '$1=="tcgplayer_accepted" && $2>=1{ok=1} END{exit !ok}' constraint_readback.csv
+          awk -F, '$1=="bandai_accepted" && $2>=1{ok=1} END{exit !ok}' constraint_readback.csv
+
+      - name: Upload immutable migration evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-piece-image-source-constraint-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            constraint_readback.csv
+          if-no-files-found: warn
+          retention-days: 90

@@ -7,6 +7,7 @@ import {
   buildOnePieceSetImagePointerV1,
   evaluateOnePieceSetReleaseReadinessV1,
   isOnePieceSelfHostedExactImageV1,
+  resolveOnePieceOfficialBaseImageV1,
   validateOnePieceSetImagePointersV1,
 } from "../../backend/catalog/one_piece_set_release_closure_v1.mjs";
 
@@ -29,6 +30,7 @@ function row(overrides = {}) {
     name: "Card",
     number: "OP17-001",
     source_product_id: "700001",
+    source_product_name: "Card",
     source_image_url: "https://tcgplayer-cdn.tcgplayer.com/product/700001_200w.jpg",
     active_identity_count: 1,
     active_evidence_count: 1,
@@ -52,7 +54,20 @@ function snapshot(rows = [row()]) {
     releaseControl: { release_status: "hidden" },
     rows,
     sourcePricing: { market_product_count: 1 },
-    official: { artwork_record_count: 1, unique_number_count: 1 },
+    official: {
+      artwork_record_count: 1,
+      unique_number_count: 1,
+      records: [{
+        official_variant_id: "OP17-001",
+        card_number: "OP17-001",
+        variant_suffix: null,
+        official_name: "Card",
+        normalized_official_name: "card",
+        image_url:
+          "https://en.onepiece-cardgame.com/images/cardlist/card/OP17-001.png",
+        source_url: "https://en.onepiece-cardgame.com/cardlist/",
+      }],
+    },
     imagePublicBaseUrl: IMAGE_PUBLIC_BASE_URL,
   });
 }
@@ -100,6 +115,19 @@ test("snapshot fingerprint binds current image URLs", () => {
   );
 });
 
+test("official base artwork requires exact base product identity", () => {
+  const records = snapshot().official.records;
+  assert.equal(resolveOnePieceOfficialBaseImageV1(
+    row(), records,
+  ).status, "exact_official_base_image");
+  assert.equal(resolveOnePieceOfficialBaseImageV1(
+    row({ source_product_name: "Card (Alternate Art)" }), records,
+  ).status, "not_exact_base_product_name");
+  assert.equal(resolveOnePieceOfficialBaseImageV1(
+    row(), [...records, { ...records[0], image_url: "https://example.test/2.png" }],
+  ).status, "official_base_image_ambiguous");
+});
+
 test("image and evidence gaps block activation", () => {
   const result = evaluateOnePieceSetReleaseReadinessV1(snapshot([row({
     active_evidence_count: 0,
@@ -123,11 +151,52 @@ test("image pointers are deterministic and appearance-backed", () => {
       size_bytes: 2000,
       width: 700,
       height: 978,
+      source_authority: "tcgplayer_exact_product",
+      source_download_url:
+        "https://tcgplayer-cdn.tcgplayer.com/product/700001_200w.jpg",
     },
     publicBaseUrl: "https://example.supabase.co/storage/v1/object/public/external-card-images",
   });
   assert.match(pointer.image_path, /^one-piece\/card-prints\/tcgplayer\/700001\//);
   assert.equal(validateOnePieceSetImagePointersV1([pointer], 1).valid, true);
+  assert.throws(() => buildOnePieceSetImagePointerV1({
+    row: row(),
+    image: {
+      sha256: "b".repeat(64),
+      format: "jpeg",
+      content_type: "image/jpeg",
+      size_bytes: 2000,
+      width: 700,
+      height: 978,
+      source_authority: "unknown",
+    },
+    publicBaseUrl: IMAGE_PUBLIC_BASE_URL,
+  }));
+});
+
+test("official base image pointers preserve separate authority", () => {
+  const pointer = buildOnePieceSetImagePointerV1({
+    row: row(),
+    image: {
+      sha256: "c".repeat(64),
+      format: "png",
+      content_type: "image/png",
+      size_bytes: 3000,
+      width: 700,
+      height: 978,
+      source_authority: "bandai_official_exact_base_art",
+      source_download_url:
+        "https://en.onepiece-cardgame.com/images/cardlist/card/OP17-001.png",
+    },
+    publicBaseUrl: IMAGE_PUBLIC_BASE_URL,
+  });
+  assert.equal(pointer.image_source,
+    "self_hosted_bandai_official_exact_base_art_v1");
+  assert.match(pointer.image_path,
+    /^one-piece\/card-prints\/bandai-official\/700001\//);
+  assert.equal(validateOnePieceSetImagePointersV1([pointer], 1).valid, true);
+  assert.equal(isOnePieceSelfHostedExactImageV1(
+    pointer, IMAGE_PUBLIC_BASE_URL), true);
 });
 
 test("workflow freezes main provenance and keeps closure modes bounded", () => {
@@ -139,6 +208,10 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(worker, /activation canary left durable residue/i);
   assert.match(worker, /Snapshot-bound mapping revalidation failed/i);
   assert.match(worker, /storage_cleanup_failed/i);
+  assert.match(worker, /storage: client\.storage/);
+  assert.match(worker, /image_operation_failed_zero_created_object_residue/);
+  assert.match(worker, /image_operation_failed_cleanup_unverified/);
+  assert.match(worker, /created_pointer: error\.createdPointer/);
   assert.match(worker, /Independent release readback failed/i);
   assert.match(worker, /finally \{[\s\S]*?client\.end\(\)/i);
   assert.doesNotMatch(worker, /vault_entries|embeddings|semantic_search/i);
