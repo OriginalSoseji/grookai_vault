@@ -1,0 +1,39 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_APPLY_PROPOSAL_V1",
+  "status": "proposal_ready_no_write_authority",
+  "repository": {
+    "branch": "",
+    "commit_sha": "63c75e308d56878647ae400c37c3ac9a43c17095",
+    "tracked_worktree_clean": true
+  },
+  "selected_set_count": 505,
+  "excluded_set_count": 551,
+  "selected_by_game": {
+    "gundam": 5,
+    "yugioh": 500
+  },
+  "payload_fingerprint_sha256": "fa0674bc2563e57c8ab02e2bf19f44805328bdb0b56ad98ed807323e45b51668",
+  "run_plan_fingerprint_sha256": "a082904c3f679d1e48687350ee7a621f5c0c731b4d3905b0700ac1dd8b63cc69",
+  "preflight_findings": [],
+  "database_parent_migration": "20260828024500",
+  "database_collision_counts": {
+    "ids": 0,
+    "codes": 0,
+    "source_proposals": 0,
+    "game_names": 0
+  },
+  "boundaries": {
+    "database_access": "read_only",
+    "database_writes": false,
+    "migration_generated": false,
+    "migration_ledger_writes": false,
+    "card_writes": false,
+    "identity_writes": false,
+    "mapping_writes": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false
+  }
+}

@@ -264,3 +264,97 @@ test("governing contract preserves the no-migration and no-write stop boundary",
   assert.match(contract, /551 source rows remain excluded/);
   assert.match(contract, /Stop after the exact production read-only proposal/);
 });
+
+test("permanent checkpoint is bound to the reconciled merged workflow artifact", () => {
+  const auditDir = path.join(
+    ROOT,
+    "docs",
+    "audits",
+    "catalog_discovery",
+    "collectible_wave1_set_apply_proposal_v1",
+  );
+  const reviewedFiles = {
+    "REPORT.md": {
+      bytes: 2915,
+      sha256: "bfc2692d269be93c113fc0e52720e612e17b3d4023adb38edf942cadc98ca578",
+    },
+    "database_preflight.json": {
+      bytes: 1771,
+      sha256: "e7736b4cd86d989e1c75a400350b81b1d4fa2ab8d014f0712f0256f5e9cd12fe",
+    },
+    "provenance.json": {
+      bytes: 1134,
+      sha256: "ddf439e6ab0408fbf7ff130620c46035a752d25de80c4b835716d11089920b94",
+    },
+    "reconciliation_report.json": {
+      bytes: 1214,
+      sha256: "b5ce33157a38fbc7de8fe74d612d9420f8239758a53e2b5c75de716793c2c433",
+    },
+    "remote_artifact_hashes.json": {
+      bytes: 1198,
+      sha256: "afa7e6ce6d2e1019bac9583012a613ecc8c36a63ad0d005f7b7de667e2554742",
+    },
+    "run_plan.json": {
+      bytes: 2175,
+      sha256: "92033fa7118a98fe1ad7d4108135e410947163d535a728d4a802f8f903a70964",
+    },
+    "summary.json": {
+      bytes: 1159,
+      sha256: "91f8d9b0d6aa6a352344b8d22661040de673ed99e708f494433c7da23dbf8c7f",
+    },
+  };
+  const preserved = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "preserved_artifact_hashes.json",
+  ), "utf8"));
+  assert.equal(preserved.algorithm, "sha256");
+  assert.deepEqual(
+    preserved.artifacts.map((row) => row.artifact_path).sort(),
+    Object.keys(reviewedFiles).sort(),
+  );
+  for (const [artifactPath, expected] of Object.entries(reviewedFiles)) {
+    const bytes = fs.readFileSync(path.join(auditDir, artifactPath));
+    const recorded = preserved.artifacts.find((row) => row.artifact_path === artifactPath);
+    assert.equal(bytes.length, expected.bytes, artifactPath);
+    assert.equal(recorded.bytes, expected.bytes, artifactPath);
+    assert.equal(recorded.sha256, expected.sha256, artifactPath);
+    assert.equal(
+      crypto.createHash("sha256").update(bytes).digest("hex"),
+      expected.sha256,
+      artifactPath,
+    );
+  }
+  const provenance = JSON.parse(fs.readFileSync(path.join(auditDir, "provenance.json")));
+  assert.equal(provenance.workflow_run_id, 33146520564);
+  assert.equal(provenance.workflow_head_sha,
+    "63c75e308d56878647ae400c37c3ac9a43c17095");
+  assert.equal(provenance.artifact_id, 9675986021);
+  assert.equal(provenance.payload_fingerprint_sha256,
+    "fa0674bc2563e57c8ab02e2bf19f44805328bdb0b56ad98ed807323e45b51668");
+  const reconciliation = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "reconciliation_report.json",
+  )));
+  assert.equal(reconciliation.status, "reconciled");
+  assert.equal(reconciliation.source_partition_unique_count, 1056);
+  assert.equal(reconciliation.reconciliation_mismatch_count, 0);
+  assert.equal(reconciliation.database_writes, 0);
+  assert.equal(reconciliation.migration_generated, false);
+  const checkpoint = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "catalog_discovery",
+    "2026-08-28_COLLECTIBLE_WAVE1_SET_APPLY_PROPOSAL_V1.md",
+  ), "utf8");
+  assert.match(checkpoint, /Stop before durable apply/);
+  assert.match(checkpoint, /rollback-only production proof/);
+  const index = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "catalog_discovery",
+    "INDEX.md",
+  ), "utf8");
+  assert.match(index, /COLLECTIBLE_WAVE1_SET_APPLY_PROPOSAL_V1\.md/);
+});

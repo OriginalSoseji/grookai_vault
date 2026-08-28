@@ -1,0 +1,38 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_APPLY_PROPOSAL_V1_RECONCILIATION",
+  "status": "reconciled",
+  "producer_sha_matches_workflow": true,
+  "run_plan_sha_matches_workflow": true,
+  "artifact_manifest_entry_count": 7,
+  "artifact_hash_match_count": 7,
+  "artifact_byte_match_count": 7,
+  "artifact_hash_mismatch_count": 0,
+  "artifact_byte_mismatch_count": 0,
+  "artifact_url_leak_count": 0,
+  "selected_set_count": 505,
+  "selected_unique_id_count": 505,
+  "selected_unique_code_count": 505,
+  "selected_unique_source_proposal_count": 505,
+  "selected_by_game": {
+    "gundam": 5,
+    "yugioh": 500
+  },
+  "excluded_set_count": 551,
+  "excluded_unique_source_proposal_count": 551,
+  "source_partition_unique_count": 1056,
+  "source_partition_expected_count": 1056,
+  "validation_failure_bytes": 0,
+  "database_transaction_read_only": true,
+  "database_parent_migration": "20260828024500",
+  "database_collision_counts": {
+    "planned_ids": 0,
+    "planned_codes": 0,
+    "planned_source_proposals": 0,
+    "planned_same_game_names": 0
+  },
+  "rollback_selector_count": 505,
+  "automatic_rollback_authorized": false,
+  "database_writes": 0,
+  "migration_generated": false,
+  "reconciliation_mismatch_count": 0
+}
