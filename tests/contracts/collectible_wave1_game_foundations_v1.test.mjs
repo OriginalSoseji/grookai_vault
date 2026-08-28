@@ -37,6 +37,11 @@ const FROZEN_RECONCILIATION_CANDIDATE_SHA256 =
   "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f";
 const FROZEN_RECONCILIATION_ROWS_SHA256 =
   "74cd15a1912ffce9b11c8622ffdd4f9597af27f6072fe630fa445423fb2936cd";
+const REQUIRED_APPLY_ARTIFACT_PATHS = [
+  "apply_execution.json",
+  "apply_plan.json",
+  "apply_readback.json",
+];
 const RUNNER = fs.readFileSync(path.join(
   ROOT,
   "scripts",
@@ -241,6 +246,11 @@ test("production rollback artifacts reconcile and prove exact restoration", () =
 
 test("durable apply artifacts reconcile to the authorized four-row foundation", () => {
   const hashes = JSON.parse(fs.readFileSync(path.join(APPLY_AUDIT_DIR, "artifact_hashes.json")));
+  assert.equal(hashes.algorithm, "sha256");
+  assert.deepEqual(
+    hashes.artifacts.map((artifact) => artifact.artifact_path).sort(),
+    REQUIRED_APPLY_ARTIFACT_PATHS,
+  );
   for (const artifact of hashes.artifacts) {
     const body = fs.readFileSync(path.join(APPLY_AUDIT_DIR, artifact.artifact_path));
     assert.equal(
@@ -251,7 +261,8 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
     assert.doesNotMatch(body.toString("utf8"), /(?:postgres(?:ql)?:\/\/|password|SUPABASE_DB_URL)/i);
   }
 
-  const plan = JSON.parse(fs.readFileSync(path.join(APPLY_AUDIT_DIR, "apply_plan.json")));
+  const planBody = fs.readFileSync(path.join(APPLY_AUDIT_DIR, "apply_plan.json"));
+  const plan = JSON.parse(planBody);
   const execution = JSON.parse(fs.readFileSync(
     path.join(APPLY_AUDIT_DIR, "apply_execution.json"),
   ));
@@ -266,6 +277,10 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   assert.equal(migrationSha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(plan.migration.sha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(readback.migration_file_sha256, REVIEWED_MIGRATION_SHA256);
+  assert.equal(
+    execution.apply_plan_sha256,
+    crypto.createHash("sha256").update(planBody).digest("hex"),
+  );
   assert.equal(execution.result.status, "success");
   assert.deepEqual(execution.result.applied_migrations, [
     "20260828024500_collectible_wave1_game_foundations_v1.sql",
