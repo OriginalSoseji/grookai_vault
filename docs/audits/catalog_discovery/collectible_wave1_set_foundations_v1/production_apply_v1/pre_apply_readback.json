@@ -1,0 +1,106 @@
+{
+  "games": [
+    {
+      "id": "47434700-0000-4000-8000-000000000001",
+      "code": "gundam",
+      "name": "Gundam Card Game",
+      "slug": "gundam-card-game"
+    },
+    {
+      "id": "59474f00-0000-4000-8000-000000000001",
+      "code": "yugioh",
+      "name": "Yu-Gi-Oh!",
+      "slug": "yu-gi-oh"
+    }
+  ],
+  "sets_columns": [
+    "id",
+    "game",
+    "code",
+    "name",
+    "release_date",
+    "source",
+    "logo_url",
+    "symbol_url",
+    "created_at",
+    "updated_at",
+    "last_synced_at",
+    "printed_total",
+    "printed_set_abbrev",
+    "set_role",
+    "identity_domain_default",
+    "hero_image_url",
+    "hero_image_source",
+    "identity_model"
+  ],
+  "sets_force_rls": false,
+  "latest_migration": "20260828024500",
+  "protected_counts": {
+    "sets": 2891,
+    "games": 6,
+    "card_prints": 170166,
+    "vault_items": 445,
+    "legacy_cards": 10,
+    "identity_rows": 165962,
+    "printing_rows": 227881,
+    "sealed_families": 242,
+    "sealed_variants": 390,
+    "storage_objects": 167734,
+    "release_controls": 4,
+    "external_mappings": 276822,
+    "vault_item_instances": 3394,
+    "external_printing_mappings": 144577
+  },
+  "release_controls": [
+    {
+      "evidence": {
+        "default": "fail_closed",
+        "foundation_scope": "game_metadata_only",
+        "storage_upload_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "game_code": "gundam",
+      "release_status": "hidden",
+      "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1"
+    },
+    {
+      "evidence": {
+        "default": "fail_closed",
+        "foundation_scope": "game_metadata_only",
+        "storage_upload_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "game_code": "yugioh",
+      "release_status": "hidden",
+      "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1"
+    }
+  ],
+  "sets_rls_enabled": true,
+  "planned_row_count": 505,
+  "sets_release_policy": {
+    "qual": "catalog_game_visible_to_request_v1(game)",
+    "roles": [
+      "public"
+    ],
+    "permissive": "RESTRICTIVE"
+  },
+  "transaction_read_only": true,
+  "conflicting_lock_count": 0,
+  "set_unique_definitions": [
+    "CREATE UNIQUE INDEX sets_game_code_key ON public.sets USING btree (game, code)",
+    "CREATE UNIQUE INDEX sets_pkey ON public.sets USING btree (id)",
+    "CREATE UNIQUE INDEX sets_unique_game_code ON public.sets USING btree (game, code)",
+    "CREATE UNIQUE INDEX uq_sets_code ON public.sets USING btree (code)",
+    "PRIMARY KEY (id)",
+    "UNIQUE (game, code)"
+  ],
+  "existing_wave1_set_count": 0,
+  "candidate_migration_count": 0,
+  "planned_id_collision_count": 0,
+  "existing_selected_set_count": 0,
+  "planned_code_collision_count": 0,
+  "planned_game_name_collision_count": 0,
+  "planned_source_proposal_collision_count": 0
+}

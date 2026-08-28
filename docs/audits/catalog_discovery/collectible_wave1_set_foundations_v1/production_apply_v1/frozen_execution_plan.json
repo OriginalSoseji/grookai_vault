@@ -1,0 +1,53 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1_FROZEN_EXECUTION_PLAN",
+  "recorded_at": "2026-08-28T14:27:58.915Z",
+  "repository": {
+    "commit_sha": "02aa12d9eddb719c4d6d1286aba55fc5a21a87dc",
+    "branch": "main",
+    "default_branch": "main"
+  },
+  "migration": {
+    "version": "20260828063000",
+    "name": "collectible_wave1_set_foundations_v1",
+    "file": "supabase/migrations/20260828063000_collectible_wave1_set_foundations_v1.sql",
+    "bytes": 562059,
+    "sha256": "0bef87cb2f487e84729a93aa2ba1bfb9b90cc559a10e981de34dcd1d7a8305fb",
+    "ledger_statement_count": 9,
+    "ledger_statement_sha256": [
+      "305c1a82f827e14a5a781aa216eb9c15c2dd5c247739b1b49b6da4f0b6599936",
+      "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
+      "97ec123af92713348fc9e0c021e151e063aafd6e95623570c5de3ca3bb7a4444",
+      "54962db296ded9e19171f0225f5201081a3ba0d81d9a9f3a4638cabec74d986a",
+      "25bd11bedfeda4f789ac27840e8fd8da21ddfc85818d66d789ef46ff43fb7e72",
+      "c12ef92844a084fa447154083feeb39d3731e8239f300518a591594bbe8dc2cc",
+      "7854b0e5225ab4382947a84a87f2297709ca43008a31db6f1a16cd2b568269e9",
+      "f0e030d3085e1237e2ce12333c55f6acbbc1afaf673fa835fc2cfc9c67fb70c9",
+      "9505cacb7c710ed17125fcc6cb3669e8ddca6c8cd8af6a31f6b3cd64604c3098"
+    ]
+  },
+  "payload": {
+    "rows": 505,
+    "bytes": 570890,
+    "sha256": "2c07787bf965909a2b9f0a6296e45d6a2407c7faf28d70069c23a305beec7144",
+    "fingerprint_sha256": "fa0674bc2563e57c8ab02e2bf19f44805328bdb0b56ad98ed807323e45b51668"
+  },
+  "rollback_authority": {
+    "run_plan_fingerprint_sha256": "e6daef9af7c9f0a489cd4c42a3f223194348dc0cca41268debb07a739497581c",
+    "status": "passed_zero_durable_change"
+  },
+  "authorized_durable_changes": {
+    "public_sets_inserted": 505,
+    "yugioh_sets_inserted": 500,
+    "gundam_sets_inserted": 5,
+    "migration_ledger_rows_inserted": 1
+  },
+  "forbidden_durable_changes": {
+    "existing_rows_updated_or_deleted": 0,
+    "cards_identities_printings_mappings": 0,
+    "storage_images_pricing_publication_vault": 0,
+    "release_control_changes": 0,
+    "app_visibility_enabled": false
+  },
+  "execution_acknowledgement": "DURABLE_APPLY_505_HIDDEN_SETS",
+  "fingerprint_sha256": "15d21c171e9065cbb487e9de78d79050a6ec5758e051069d8564493952ab7d68"
+}

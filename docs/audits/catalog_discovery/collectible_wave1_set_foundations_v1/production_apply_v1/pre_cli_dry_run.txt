@@ -1,0 +1,8 @@
+npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+DRY RUN: migrations will *not* be pushed to the database.
+Connecting to remote database...
+Would push these migrations:
+ • 20260828063000_collectible_wave1_set_foundations_v1.sql
+Finished supabase db push.
+A new version of Supabase CLI is available: v2.116.0 (currently installed v2.90.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli

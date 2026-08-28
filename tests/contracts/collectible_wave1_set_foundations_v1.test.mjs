@@ -469,3 +469,185 @@ test("permanent checkpoint preserves and reconciles the production rollback proo
   ), "utf8");
   assert.match(index, /COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_V1\.md/);
 });
+
+test("permanent checkpoint preserves the exact durable production apply proof", () => {
+  const auditDir = path.join(
+    ROOT,
+    "docs",
+    "audits",
+    "catalog_discovery",
+    "collectible_wave1_set_foundations_v1",
+    "production_apply_v1",
+  );
+  const reviewed = {
+    "REPORT.md": [351,
+      "52051ff0969e77c3237c0f49c5aed36bf94ababf307295b90d0dd832f7c7cc7e"],
+    "apply_cli.txt": [496,
+      "8b7efa8c2212ab4b967fecdfb129a0f249a4106c48477aba9ee2d62fb75674f9"],
+    "apply_execution.json": [2175,
+      "22fcf71a87bf258cda20ded5bbc041bc975bc7a2c34e9b7977be6449572a4bd4"],
+    "apply_plan.json": [3046,
+      "92f2f3abcd4da6de85cfdd9def050915f7bfbd927124d1de1a17736e114a0b26"],
+    "apply_readback.json": [709506,
+      "a47a625bf0109b19a628dbe5964c9ec32635d0920ef4042aa9bdc93cb801b5b2"],
+    "artifact_hashes.json": [1841,
+      "d99a4eee8c9f7d8bfbb314a0c877acde17f38fa8a81a5e0b05db65c0e6619618"],
+    "fresh_independent_verification.json": [762,
+      "df24574b2588407c0e540d1f690fe2c48b5489ffafc636c878e4f45de9cb7672"],
+    "frozen_execution_plan.json": [2293,
+      "1ba988452d4b36d22831ae1308b04907992e9bdb531f8588404ed4427bf4d384"],
+    "independent_readback.json": [709506,
+      "a47a625bf0109b19a628dbe5964c9ec32635d0920ef4042aa9bdc93cb801b5b2"],
+    "pre_apply_readback.json": [2986,
+      "96fa13a347c21d1d03c111854d3c91666feedd27e5d385d287ccdefed7840103"],
+    "pre_cli_dry_run.txt": [527,
+      "f8b95836271ad9e78f2771a2492cc6cd4236b49b4e165ef4c0cdf89530f0ca3a"],
+    "provenance.json": [1368,
+      "793ae575a7246eb38c437171c3b5e584c70e3f31f5de3b28a2b3fbdc5dd9086c"],
+    "reconciliation_report.json": [3327,
+      "e53eebf6c6b6d591f79a79f3468aaf7f271e983b7174860b4b1a1ceab629f10e"],
+    "summary.json": [3292,
+      "0adc2813482d69e55de4705d063c9d9798c3cc1406457815d6a83ac619ba35f0"],
+  };
+  const preserved = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "preserved_artifact_hashes.json",
+  )));
+  assert.equal(preserved.algorithm, "sha256");
+  assert.deepEqual(
+    preserved.artifacts.map((row) => row.artifact_path).sort(),
+    Object.keys(reviewed).sort(),
+  );
+  for (const [artifactPath, [bytes, digest]] of Object.entries(reviewed)) {
+    const body = fs.readFileSync(path.join(auditDir, artifactPath));
+    const manifestRow = preserved.artifacts.find((row) => row.artifact_path === artifactPath);
+    assert.equal(body.length, bytes, artifactPath);
+    assert.equal(manifestRow.bytes, bytes, artifactPath);
+    assert.equal(manifestRow.sha256, digest, artifactPath);
+    assert.equal(crypto.createHash("sha256").update(body).digest("hex"), digest, artifactPath);
+    assert.doesNotMatch(body.toString("utf8"), /postgres(?:ql)?:\/\/|SUPABASE_DB_URL/);
+  }
+
+  const provenance = JSON.parse(fs.readFileSync(path.join(auditDir, "provenance.json")));
+  assert.equal(provenance.workflow_run_id, 33180216578);
+  assert.equal(provenance.workflow_head_sha,
+    "02aa12d9eddb719c4d6d1286aba55fc5a21a87dc");
+  assert.equal(provenance.artifact_id, 9689389148);
+  assert.equal(provenance.migration_sha256, REVIEWED_MIGRATION_SHA256);
+  assert.deepEqual(provenance.database_write, {
+    public_sets_inserted: 505,
+    yugioh_sets_inserted: 500,
+    gundam_sets_inserted: 5,
+    migration_ledger_rows_inserted: 1,
+  });
+  assert.equal(provenance.forbidden_durable_changes, 0);
+  assert.equal(provenance.application_visibility_enabled, false);
+
+  const plan = JSON.parse(fs.readFileSync(path.join(auditDir, "apply_plan.json")));
+  const execution = JSON.parse(fs.readFileSync(path.join(auditDir, "apply_execution.json")));
+  const readback = JSON.parse(fs.readFileSync(path.join(auditDir, "apply_readback.json")));
+  const independent = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "independent_readback.json",
+  )));
+  const summary = JSON.parse(fs.readFileSync(path.join(auditDir, "summary.json")));
+  const reconciliation = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "reconciliation_report.json",
+  )));
+  const fresh = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "fresh_independent_verification.json",
+  )));
+  const ledgerHashes = [
+    "305c1a82f827e14a5a781aa216eb9c15c2dd5c247739b1b49b6da4f0b6599936",
+    "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
+    "97ec123af92713348fc9e0c021e151e063aafd6e95623570c5de3ca3bb7a4444",
+    "54962db296ded9e19171f0225f5201081a3ba0d81d9a9f3a4638cabec74d986a",
+    "25bd11bedfeda4f789ac27840e8fd8da21ddfc85818d66d789ef46ff43fb7e72",
+    "c12ef92844a084fa447154083feeb39d3731e8239f300518a591594bbe8dc2cc",
+    "7854b0e5225ab4382947a84a87f2297709ca43008a31db6f1a16cd2b568269e9",
+    "f0e030d3085e1237e2ce12333c55f6acbbc1afaf673fa835fc2cfc9c67fb70c9",
+    "9505cacb7c710ed17125fcc6cb3669e8ddca6c8cd8af6a31f6b3cd64604c3098",
+  ];
+
+  assert.equal(plan.apply_plan_fingerprint_sha256,
+    "718016cb8dbe86e5486d20d1f23a13f96f0e014d4b5bf4e900789ad03e9c4816");
+  assert.deepEqual(plan.migration.ledger_statement_sha256, ledgerHashes);
+  assert.equal(execution.result.status, "success");
+  assert.deepEqual(execution.result.applied_migrations,
+    ["20260828063000_collectible_wave1_set_foundations_v1.sql"]);
+  assert.equal(execution.result.other_migrations_applied, 0);
+  assert.deepEqual(execution.attributable_write_proof.target_dependent_rows, {
+    card_prints: 0,
+    legacy_cards: 0,
+    identities: 0,
+    printings: 0,
+    external_mappings: 0,
+    external_printing_mappings: 0,
+  });
+  assert.equal(readback.sets.length, 505);
+  assert.equal(new Set(readback.sets.map((row) => row.id)).size, 505);
+  assert.equal(new Set(readback.sets.map((row) => row.code)).size, 505);
+  assert.deepEqual(
+    readback.sets.reduce((counts, row) => ({
+      ...counts,
+      [row.game]: (counts[row.game] ?? 0) + 1,
+    }), {}),
+    { gundam: 5, yugioh: 500 },
+  );
+  assert.deepEqual(readback.ledger_rows, [{
+    name: "collectible_wave1_set_foundations_v1",
+    version: COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION,
+    statement_count: 9,
+  }]);
+  assert.deepEqual(readback.ledger_statement_sha256, ledgerHashes);
+  assert.deepEqual(readback.rls_visible_set_counts, { anon: 0, authenticated: 0 });
+  assert.deepEqual(readback.visibility, {
+    anon: { gundam: false, yugioh: false },
+    authenticated: { gundam: false, yugioh: false },
+    service_role: { gundam: false, yugioh: false },
+  });
+  assert.equal(readback.card_print_count, 0);
+  assert.equal(readback.legacy_card_count, 0);
+  assert.equal(readback.identity_count, 0);
+  assert.equal(readback.printing_count, 0);
+  assert.equal(readback.external_mapping_count, 0);
+  assert.equal(readback.external_printing_mapping_count, 0);
+  assert.equal(readback.database_writes_during_readback, false);
+  assert.deepEqual(independent, readback);
+  assert.equal(summary.status, "durable_apply_verified");
+  assert.equal(summary.findings.length, 0);
+  assert.equal(summary.database_writes_during_readback, false);
+  assert.equal(reconciliation.status, "reconciled");
+  assert.equal(reconciliation.findings.length, 0);
+  assert.equal(reconciliation.independent_attributable_readback_matches, true);
+  assert.equal(fresh.status, "durable_apply_verified");
+  assert.equal(fresh.database_writes, false);
+  assert.equal(fresh.findings.length, 0);
+
+  const checkpoint = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "catalog_discovery",
+    "2026-08-28_COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1.md",
+  ), "utf8");
+  assert.match(checkpoint, /Prepare a hidden, artifact-only card identity proposal/);
+  assert.match(checkpoint, new RegExp(REVIEWED_MIGRATION_SHA256));
+  const domainIndex = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "catalog_discovery",
+    "INDEX.md",
+  ), "utf8");
+  assert.match(domainIndex, /COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1\.md/);
+  const globalIndex = fs.readFileSync(path.join(
+    ROOT,
+    "docs",
+    "checkpoints",
+    "CHECKPOINT_INDEX.md",
+  ), "utf8");
+  assert.match(globalIndex, /COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1/);
+});

@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-08-28 Collectible Wave 1 Set Foundations Apply V1](./2026-08-28_COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1.md)
 - [2026-08-28 Collectible Wave 1 Set Foundations Rollback V1](./2026-08-28_COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_V1.md)
 - [2026-08-28 Collectible Wave 1 Set Apply Proposal V1](./2026-08-28_COLLECTIBLE_WAVE1_SET_APPLY_PROPOSAL_V1.md)
 - [2026-08-28 Collectible Wave 1 Game Foundations V1](./2026-08-28_COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1.md)
