@@ -77,6 +77,33 @@ test("game aliases are deterministic and canonical cards require game ownership"
   );
 });
 
+test("numberless canonical cards remain safely unmatchable", () => {
+  const snapshot = canonicalSnapshot();
+  const numberless = {
+    ...snapshot.cards.at(-1),
+    id: "dddddddd-dddd-4ddd-8ddd-dddddddddd99",
+    number: null,
+    mappings: [{
+      source: "gcg-api",
+      external_id: "numberless-source-row",
+      active: true,
+    }],
+  };
+  snapshot.cards.push(numberless);
+
+  assert.equal(validateCanonicalSnapshotV1(snapshot).card_count, 5);
+  assert.equal(
+    reconcileCollectibleCandidateV1(candidate(), snapshot).decision,
+    "exact_existing_identity",
+  );
+
+  const mapped = reconcileCollectibleCandidateV1(candidate({
+    source_candidate_id: "numberless-source-row",
+  }), snapshot);
+  assert.equal(mapped.decision, "conflicting_candidate");
+  assert.ok(mapped.reason_codes.includes("source_mapping_coordinate_conflict"));
+});
+
 test("exact mapping plus exact coordinates resolves one canonical identity", () => {
   const row = reconcileCollectibleCandidateV1(candidate(), canonicalSnapshot());
   assert.equal(row.decision, "exact_existing_identity");

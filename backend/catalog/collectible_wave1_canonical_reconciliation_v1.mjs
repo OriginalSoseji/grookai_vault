@@ -169,7 +169,7 @@ export function validateCanonicalSnapshotV1(snapshot) {
   const cardIds = new Set();
   for (const card of snapshot.cards) {
     if (!text(card?.id) || !text(card?.game_id) || !text(card?.set_id) || !text(card?.name) ||
-        !text(card?.number) || cardIds.has(card.id)) {
+        cardIds.has(card.id)) {
       throw new Error("canonical snapshot contains an invalid or duplicate card");
     }
     if (!gameIds.has(card.game_id)) {
