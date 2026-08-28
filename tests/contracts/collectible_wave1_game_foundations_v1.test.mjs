@@ -259,9 +259,11 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   });
   assert.equal(readback.latest_migration, "20260828024500");
   assert.equal(readback.ledger_rows.length, 1);
-  assert.equal(readback.games.length, 2);
-  assert.equal(readback.release_controls.length, 2);
-  assert.ok(readback.release_controls.every((row) => row.release_status === "hidden"));
+  assert.deepEqual(evaluateWave1FoundationTransientV1({
+    games: readback.games,
+    release_controls: readback.release_controls,
+    visibility: readback.visibility,
+  }), []);
   assert.deepEqual(readback.visibility, {
     anon: { gundam: false, yugioh: false },
     authenticated: { gundam: false, yugioh: false },
