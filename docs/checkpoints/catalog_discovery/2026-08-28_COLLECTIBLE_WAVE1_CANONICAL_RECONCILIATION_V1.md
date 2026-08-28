@@ -10,6 +10,15 @@ commit. All 46,259 candidates were preserved and classified exactly once. No
 production game foundation currently exists for either candidate game, so all
 rows correctly remain blocked and no promotion plan is authorized.
 
+## Subsequent Gate
+
+The aggregate-only 124-card alternative-artwork limitation recorded below was
+resolved as source metadata addressability by
+`2026-08-28_COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_V1.md`. The source
+cards and stable source image IDs are now individually addressable, while the
+artwork-to-printing mapping correctly remains unresolved. Historical statements
+below describe the state at the time of this reconciliation proof.
+
 ## Context
 
 Parser Wave 1 produced source-owned printing candidates without granting them
