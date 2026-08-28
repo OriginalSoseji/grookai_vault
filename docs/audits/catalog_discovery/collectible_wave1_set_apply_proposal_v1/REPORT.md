@@ -39,8 +39,11 @@ shared-code, language, name, or source-completeness review requirements.
   evidence.
 - Card identity domains remain null because this set-only gate does not
   authorize card identity.
-- Large row artifacts remain in GitHub Actions until
-  `2026-11-26T06:00:52Z`; compact permanent evidence is committed here.
+- The exact 505-row `set_apply_payload.jsonl` is committed here with its
+  workflow-produced byte count and SHA-256 so the next gate does not depend on
+  GitHub Actions retention.
+- The remaining large row artifacts remain in GitHub Actions until
+  `2026-11-26T06:00:52Z`; their exact hashes remain committed here.
 
 ## What Must Never Be Broken
 

@@ -275,8 +275,8 @@ test("permanent checkpoint is bound to the reconciled merged workflow artifact",
   );
   const reviewedFiles = {
     "REPORT.md": {
-      bytes: 2915,
-      sha256: "bfc2692d269be93c113fc0e52720e612e17b3d4023adb38edf942cadc98ca578",
+      bytes: 3105,
+      sha256: "6613ecbaceeccbca9427f72c32e06050ed8743554e3698313d87c09de3f53511",
     },
     "database_preflight.json": {
       bytes: 1771,
@@ -297,6 +297,10 @@ test("permanent checkpoint is bound to the reconciled merged workflow artifact",
     "run_plan.json": {
       bytes: 2175,
       sha256: "92033fa7118a98fe1ad7d4108135e410947163d535a728d4a802f8f903a70964",
+    },
+    "set_apply_payload.jsonl": {
+      bytes: 570890,
+      sha256: "2c07787bf965909a2b9f0a6296e45d6a2407c7faf28d70069c23a305beec7144",
     },
     "summary.json": {
       bytes: 1159,
@@ -324,6 +328,21 @@ test("permanent checkpoint is bound to the reconciled merged workflow artifact",
       artifactPath,
     );
   }
+  const payloadRows = fs.readFileSync(
+    path.join(auditDir, "set_apply_payload.jsonl"),
+    "utf8",
+  ).trim().split("\n").map((line) => JSON.parse(line));
+  assert.equal(payloadRows.length, 505);
+  assert.equal(new Set(payloadRows.map((row) => row.id)).size, 505);
+  assert.equal(new Set(payloadRows.map((row) => row.code)).size, 505);
+  assert.equal(new Set(payloadRows.map((row) => row.source_set_proposal_id)).size, 505);
+  assert.deepEqual(
+    payloadRows.reduce((counts, row) => ({
+      ...counts,
+      [row.game]: (counts[row.game] ?? 0) + 1,
+    }), {}),
+    { gundam: 5, yugioh: 500 },
+  );
   const provenance = JSON.parse(fs.readFileSync(path.join(auditDir, "provenance.json")));
   assert.equal(provenance.workflow_run_id, 33146520564);
   assert.equal(provenance.workflow_head_sha,

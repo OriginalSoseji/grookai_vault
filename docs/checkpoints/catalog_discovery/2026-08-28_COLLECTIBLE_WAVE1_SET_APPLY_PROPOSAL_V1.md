@@ -35,6 +35,8 @@ Build an artifact-only apply proposal for exactly 505 rows:
 - all 551 other rows preserved as explicit exclusions.
 
 No migration was generated and no durable write was authorized.
+The exact 505-row payload is preserved permanently at
+`docs/audits/catalog_discovery/collectible_wave1_set_apply_proposal_v1/set_apply_payload.jsonl`.
 
 ## Alternatives Rejected
 
