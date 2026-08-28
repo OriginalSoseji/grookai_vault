@@ -269,6 +269,11 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
     authenticated: { gundam: false, yugioh: false },
     service_role: { gundam: false, yugioh: false },
   });
+  assert.deepEqual(readback.security, {
+    games_rls_enabled: true,
+    release_controls_rls_enabled: true,
+    release_control_acl: "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+  });
   assert.deepEqual(readback.new_game_catalog_counts, {
     sets: 0,
     cards: 0,
