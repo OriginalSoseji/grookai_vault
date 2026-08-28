@@ -1,0 +1,29 @@
+{
+  "version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_ROLLBACK_V1",
+  "recorded_at": "2026-08-28T02:41:32.586Z",
+  "status": "rollback_canary_passed_zero_durable_change",
+  "repository": {
+    "branch": "feature/collectible-wave1-game-foundations-v1",
+    "commit_sha": "13e86363c116deab8fa3ed7604264b36b1a6e6ae"
+  },
+  "migration": {
+    "version": "20260828024500",
+    "path": "supabase/migrations/20260828024500_collectible_wave1_game_foundations_v1.sql",
+    "sha256": "0feaf92c8bb2102c28e6d617525429ea8b3bb6c6c2648f7a9ec99a0e65b5b110",
+    "statement_count": 6
+  },
+  "run_plan_fingerprint_sha256": "090756a707b8dc1ebd0ec73380610a5ba5b0f35c1fb36606cd705e54841996ba",
+  "statements_executed": 6,
+  "rollback_succeeded": true,
+  "post_rollback_read_only": true,
+  "findings": [],
+  "boundaries": {
+    "execution_mode": "production_rollback_only",
+    "durable_database_writes": 0,
+    "migration_ledger_writes": 0,
+    "set_card_identity_printing_mapping_writes": 0,
+    "storage_image_pricing_publication_vault_writes": 0,
+    "identity_domain_constraint_changes": 0,
+    "app_visibility_enabled": false
+  }
+}

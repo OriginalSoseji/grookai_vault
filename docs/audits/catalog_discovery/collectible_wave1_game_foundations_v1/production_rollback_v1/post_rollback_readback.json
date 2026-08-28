@@ -1,0 +1,33 @@
+{
+  "latest_migration": "20260828021500",
+  "protected_counts": {
+    "sets": 2891,
+    "games": 4,
+    "card_prints": 170166,
+    "vault_items": 445,
+    "identity_rows": 165962,
+    "printing_rows": 227881,
+    "sealed_families": 242,
+    "sealed_variants": 390,
+    "storage_objects": 167734,
+    "release_controls": 2,
+    "external_mappings": 276822,
+    "vault_item_instances": 3394,
+    "external_printing_mappings": 144577
+  },
+  "games_rls_enabled": true,
+  "transaction_read_only": true,
+  "conflicting_lock_count": 0,
+  "candidate_game_id_count": 0,
+  "candidate_game_code_count": 0,
+  "candidate_game_slug_count": 0,
+  "candidate_migration_count": 0,
+  "visibility_function_count": 4,
+  "identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))",
+  "anon_release_control_select": false,
+  "release_controls_rls_enabled": true,
+  "service_release_control_insert": true,
+  "service_release_control_select": true,
+  "candidate_release_control_count": 0,
+  "authenticated_release_control_select": false
+}

@@ -1,0 +1,81 @@
+{
+  "transaction_started": true,
+  "statements_planned": 6,
+  "statements_executed": 6,
+  "transient_readback": {
+    "games": [
+      {
+        "id": "47434700-0000-4000-8000-000000000001",
+        "code": "gundam",
+        "name": "Gundam Card Game",
+        "slug": "gundam-card-game"
+      },
+      {
+        "id": "59474f00-0000-4000-8000-000000000001",
+        "code": "yugioh",
+        "name": "Yu-Gi-Oh!",
+        "slug": "yu-gi-oh"
+      }
+    ],
+    "migration_count": 0,
+    "protected_counts": {
+      "sets": 2891,
+      "games": 6,
+      "card_prints": 170166,
+      "vault_items": 445,
+      "identity_rows": 165962,
+      "printing_rows": 227881,
+      "sealed_families": 242,
+      "sealed_variants": 390,
+      "storage_objects": 167734,
+      "release_controls": 4,
+      "external_mappings": 276822,
+      "vault_item_instances": 3394,
+      "external_printing_mappings": 144577
+    },
+    "release_controls": [
+      {
+        "evidence": {
+          "default": "fail_closed",
+          "foundation_scope": "game_metadata_only",
+          "storage_upload_authorizes_visibility": false,
+          "price_publication_authorizes_visibility": false,
+          "canonical_promotion_authorizes_visibility": false
+        },
+        "game_code": "gundam",
+        "release_status": "hidden",
+        "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1"
+      },
+      {
+        "evidence": {
+          "default": "fail_closed",
+          "foundation_scope": "game_metadata_only",
+          "storage_upload_authorizes_visibility": false,
+          "price_publication_authorizes_visibility": false,
+          "canonical_promotion_authorizes_visibility": false
+        },
+        "game_code": "yugioh",
+        "release_status": "hidden",
+        "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1"
+      }
+    ],
+    "identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))",
+    "visibility": {
+      "anon": {
+        "gundam": false,
+        "yugioh": false
+      },
+      "authenticated": {
+        "gundam": false,
+        "yugioh": false
+      },
+      "service_role": {
+        "gundam": false,
+        "yugioh": false
+      }
+    }
+  },
+  "findings": [],
+  "rollback_attempted": true,
+  "rollback_succeeded": true
+}

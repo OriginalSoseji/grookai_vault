@@ -1,0 +1,29 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "artifact_path": "post_rollback_readback.json",
+      "sha256": "4ddbb85904c21662446544ddb70363242532d927c8fd16972becc8e60f0b4113"
+    },
+    {
+      "artifact_path": "protected_before.json",
+      "sha256": "4ddbb85904c21662446544ddb70363242532d927c8fd16972becc8e60f0b4113"
+    },
+    {
+      "artifact_path": "REPORT.md",
+      "sha256": "355113028d4c269539333da3e4c3c7e0dec9cfc0dd519d4edd8edda300f00e2b"
+    },
+    {
+      "artifact_path": "run_plan.json",
+      "sha256": "3c20a48709ef5da272cb75fe677871376cdbe7e6fdc8d9d369c4eeca7b15fe4c"
+    },
+    {
+      "artifact_path": "summary.json",
+      "sha256": "9b20c7730dd4ce6049f208ddfa537988c97646bb75059eb9c350e133422c179b"
+    },
+    {
+      "artifact_path": "transaction_proof.json",
+      "sha256": "1888b16247e1d6e425301dc5b20dbd6d2a0cc70116cb7b9a980a3f41a492bcbe"
+    }
+  ]
+}

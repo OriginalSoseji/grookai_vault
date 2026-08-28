@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
@@ -26,6 +27,14 @@ const RUNNER = fs.readFileSync(path.join(
   "audits",
   "collectible_wave1_game_foundations_rollback_v1.mjs",
 ), "utf8");
+const AUDIT_DIR = path.join(
+  ROOT,
+  "docs",
+  "audits",
+  "catalog_discovery",
+  "collectible_wave1_game_foundations_v1",
+  "production_rollback_v1",
+);
 
 function baseline(overrides = {}) {
   return {
@@ -156,4 +165,36 @@ test("rollback runner writes the plan before connecting and never commits", () =
   assert.doesNotMatch(RUNNER, /client\.query\(["'`]commit/i);
   assert.match(RUNNER, /durable_database_writes:\s*0/);
   assert.match(RUNNER, /identity_domain_constraint_changes:\s*0/);
+});
+
+test("production rollback artifacts reconcile and prove exact restoration", () => {
+  const hashes = JSON.parse(fs.readFileSync(path.join(AUDIT_DIR, "artifact_hashes.json")));
+  for (const artifact of hashes.artifacts) {
+    const body = fs.readFileSync(path.join(AUDIT_DIR, artifact.artifact_path));
+    assert.equal(
+      crypto.createHash("sha256").update(body).digest("hex"),
+      artifact.sha256,
+      artifact.artifact_path,
+    );
+    assert.doesNotMatch(body.toString("utf8"), /(?:postgres(?:ql)?:\/\/|password|SUPABASE_DB_URL)/i);
+  }
+
+  const summary = JSON.parse(fs.readFileSync(path.join(AUDIT_DIR, "summary.json")));
+  const before = fs.readFileSync(path.join(AUDIT_DIR, "protected_before.json"), "utf8");
+  const after = fs.readFileSync(path.join(AUDIT_DIR, "post_rollback_readback.json"), "utf8");
+  const transaction = JSON.parse(fs.readFileSync(
+    path.join(AUDIT_DIR, "transaction_proof.json"),
+  ));
+  assert.equal(summary.status, "rollback_canary_passed_zero_durable_change");
+  assert.equal(summary.rollback_succeeded, true);
+  assert.equal(summary.findings.length, 0);
+  assert.equal(before, after);
+  assert.equal(transaction.transient_readback.games.length, 2);
+  assert.equal(transaction.transient_readback.release_controls.length, 2);
+  assert.equal(transaction.findings.length, 0);
+  assert.deepEqual(transaction.transient_readback.visibility, {
+    anon: { gundam: false, yugioh: false },
+    authenticated: { gundam: false, yugioh: false },
+    service_role: { gundam: false, yugioh: false },
+  });
 });
