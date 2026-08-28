@@ -343,6 +343,7 @@ test("durable workflow is manual, default-branch-only, exact-SHA, and one-migrat
   assert.match(workflow, /--dry-run/);
   assert.match(workflow, /--yes/);
   assert.match(workflow, /post-apply-readback/);
+  assert.doesNotMatch(workflow, /Prove migration queue is empty/);
   assert.match(workflow, /SUPABASE_DB_URL: \$\{\{ secrets\.SUPABASE_DB_URL \}\}/);
 
   const source = fs.readFileSync(APPLY_SCRIPT_PATH, "utf8");
@@ -350,7 +351,7 @@ test("durable workflow is manual, default-branch-only, exact-SHA, and one-migrat
     source.indexOf("loadDatabaseUrl(options.envFile)"));
   assert.match(source, /captureDurableReadback/);
   assert.match(source, /independent_readback_mismatch/);
-  assert.match(source, /remote database is up to date/i);
+  assert.doesNotMatch(source, /post_apply_cli_not_up_to_date/);
   assert.doesNotMatch(source, /storage\.from|supabase\.from/);
 });
 

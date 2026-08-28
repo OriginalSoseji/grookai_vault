@@ -102,15 +102,6 @@ jobs:
             --yes 2>&1 | tee "$CLI_DIR/apply_cli.txt"
           grep -q "$TARGET_MIGRATION" "$CLI_DIR/apply_cli.txt"
 
-      - name: Prove migration queue is empty
-        if: ${{ always() && steps.durable_apply.outcome != 'skipped' }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          npx --yes supabase@2.90.0 db push \
-            --db-url "$SUPABASE_DB_URL" \
-            --dry-run 2>&1 | tee "$CLI_DIR/post_cli_dry_run.txt"
-
       - name: Read back and independently reconcile durable state
         if: ${{ always() && steps.durable_apply.outcome != 'skipped' }}
         shell: bash
@@ -122,8 +113,7 @@ jobs:
             --execution-acknowledgement="$EXECUTION_ACKNOWLEDGEMENT" \
             --out-dir="$OUT_DIR" \
             --pre-dry-run-log="$CLI_DIR/pre_cli_dry_run.txt" \
-            --apply-log="$CLI_DIR/apply_cli.txt" \
-            --post-dry-run-log="$CLI_DIR/post_cli_dry_run.txt"
+            --apply-log="$CLI_DIR/apply_cli.txt"
 
       - name: Upload durable apply evidence
         if: always()

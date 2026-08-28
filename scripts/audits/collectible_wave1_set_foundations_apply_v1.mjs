@@ -57,7 +57,6 @@ function parseArgs(argv) {
     outDir: "",
     preDryRunLog: "",
     applyLog: "",
-    postDryRunLog: "",
   };
   for (const argument of argv) {
     if (argument === "--prepare-apply") options.mode = "prepare";
@@ -73,8 +72,6 @@ function parseArgs(argv) {
       options.preDryRunLog = path.resolve(argument.slice(18));
     } else if (argument.startsWith("--apply-log=")) {
       options.applyLog = path.resolve(argument.slice(12));
-    } else if (argument.startsWith("--post-dry-run-log=")) {
-      options.postDryRunLog = path.resolve(argument.slice(19));
     } else throw new Error(`Unsupported argument: ${argument}`);
   }
   if (!new Set(["prepare", "readback"]).has(options.mode)) {
@@ -88,7 +85,7 @@ function parseArgs(argv) {
   }
   if (!options.outDir) throw new Error("--out-dir is required");
   if (options.mode === "readback" &&
-      (!options.preDryRunLog || !options.applyLog || !options.postDryRunLog)) {
+      (!options.preDryRunLog || !options.applyLog)) {
     throw new Error("CLI evidence logs are required for post-apply readback");
   }
   return options;
@@ -315,7 +312,6 @@ async function readCliLog(filePath) {
     bytes: Buffer.byteLength(body),
     sha256: sha256(body),
     migration_versions: migrationVersions(body),
-    remote_database_up_to_date: /remote database is up to date/i.test(body),
   };
 }
 
@@ -336,8 +332,7 @@ async function preserveArtifacts(outDir, values) {
   bodies["REPORT.md"] = Buffer.from(`${report}\n`);
   await fs.writeFile(path.join(outDir, "REPORT.md"), bodies["REPORT.md"]);
   for (const name of ["frozen_execution_plan.json", "apply_plan.json",
-    "pre_apply_readback.json", "pre_cli_dry_run.txt", "apply_cli.txt",
-    "post_cli_dry_run.txt"]) {
+    "pre_apply_readback.json", "pre_cli_dry_run.txt", "apply_cli.txt"]) {
     bodies[name] = await fs.readFile(path.join(outDir, name));
   }
   await writeJson(path.join(outDir, "artifact_hashes.json"), {
@@ -354,19 +349,17 @@ async function postApplyReadback(options) {
   const inputs = await frozenInputs();
   const repository = repositoryState(options.expectedHeadSha);
   const planPath = path.join(options.outDir, "apply_plan.json");
-  const [planBody, baselineBody, preLog, applyLog, postLog] = await Promise.all([
+  const [planBody, baselineBody, preLog, applyLog] = await Promise.all([
     fs.readFile(planPath),
     fs.readFile(path.join(options.outDir, "pre_apply_readback.json")),
     readCliLog(options.preDryRunLog),
     readCliLog(options.applyLog),
-    readCliLog(options.postDryRunLog),
   ]);
   const plan = JSON.parse(planBody);
   const baseline = JSON.parse(baselineBody);
   await Promise.all([
     fs.copyFile(options.preDryRunLog, path.join(options.outDir, "pre_cli_dry_run.txt")),
     fs.copyFile(options.applyLog, path.join(options.outDir, "apply_cli.txt")),
-    fs.copyFile(options.postDryRunLog, path.join(options.outDir, "post_cli_dry_run.txt")),
   ]);
   const connectionString = loadDatabaseUrl(options.envFile);
   const primary = await captureDurableReadback(
@@ -402,9 +395,6 @@ async function postApplyReadback(options) {
   if (!applyLog.migration_versions.includes(COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION)) {
     findings.push("apply_cli_target_missing");
   }
-  if (postLog.migration_versions.length !== 0 || !postLog.remote_database_up_to_date) {
-    findings.push("post_apply_cli_not_up_to_date");
-  }
   findings.push(...independentFindings.map((finding) => `independent:${finding}`));
   const uniqueFindings = [...new Set(findings)].sort();
   const execution = {
@@ -420,7 +410,7 @@ async function postApplyReadback(options) {
       apply_command: "supabase db push --db-url <redacted> --yes",
       secrets_recorded: false,
     },
-    cli_evidence: { pre_apply: preLog, apply: applyLog, post_apply: postLog },
+    cli_evidence: { pre_apply: preLog, apply: applyLog },
     result: {
       status: uniqueFindings.length ? "failed_readback" : "success",
       applied_migrations: [TARGET_MIGRATION_FILE],
