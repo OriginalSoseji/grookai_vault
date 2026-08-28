@@ -274,6 +274,9 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   const rollbackBaseline = JSON.parse(fs.readFileSync(
     path.join(AUDIT_DIR, "protected_before.json"),
   ));
+  const independentReadOnlyVerification = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "database_snapshot_summary.json"),
+  ));
 
   const migrationSha256 = crypto.createHash("sha256").update(MIGRATION).digest("hex");
   assert.equal(migrationSha256, REVIEWED_MIGRATION_SHA256);
@@ -334,6 +337,24 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   assert.equal(readback.identity_domain_constraint, rollbackBaseline.identity_domain_constraint);
   assert.equal(readback.reconciliation.visibility_failures, 0);
   assert.equal(readback.database_writes_during_readback, false);
+  assert.deepEqual(independentReadOnlyVerification, {
+    database_access: true,
+    database_writes: false,
+    transaction_ended_with: "rollback",
+    ssl_mode: "require",
+    ssl_transport: "encrypted",
+    certificate_authority_verification: "not_configured_for_existing_connection",
+    default_transaction_read_only: "on",
+    transaction_read_only: "on",
+    schema: {
+      required_column_count: 25,
+      missing_columns: [],
+    },
+    game_count: 2,
+    candidate_game_set_count: 0,
+    candidate_game_card_count: 0,
+    snapshot_sha256: "2b2b7336c2dfc75ea553d44249586472a5702b5b7529c48de3015d20a2a3880c",
+  });
 });
 
 test("post-foundation reconciliation reaches all candidates without writes", () => {
@@ -360,6 +381,9 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   const remoteArtifactHashes = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "remote_artifact_hashes.json"),
   ));
+  const artifactLimitations = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "artifact_limitations.json"),
+  ));
   assert.equal(provenance.workflow_run_id, 33137460263);
   assert.equal(plan.actual_head_sha, "06ce213cda46e58244102d744a4835358fcc09eb");
   assert.equal(plan.expected_candidate_sha256, FROZEN_RECONCILIATION_CANDIDATE_SHA256);
@@ -378,6 +402,16 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   assert.equal(summary.reconciled_candidate_count, 46259);
   assert.deepEqual(summary.decision_counts, { new_candidate: 46259 });
   assert.equal(summary.blocking_decision_count, 0);
+  assert.equal(summary.status, "completed_with_blockers");
+  assert.equal(summary.artifact_limitation_count, 1);
+  assert.equal(summary.unresolved_variant_row_count, 0);
+  assert.equal(summary.unresolved_variant_aggregate_source_count, 124);
+  assert.deepEqual(artifactLimitations, [{
+    limitation: "unresolved_alternative_artwork_scope_not_row_addressable",
+    aggregate_source_count: 124,
+    row_addressable_count: 0,
+    decision: "preserve_aggregate_and_block_promotion_until_parser_metadata_refinement",
+  }]);
   assert.equal(summary.database_proof.game_count, 2);
   assert.equal(summary.database_proof.candidate_game_set_count, 0);
   assert.equal(summary.database_proof.candidate_game_card_count, 0);
