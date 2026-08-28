@@ -1,0 +1,18 @@
+{
+  "database_access": true,
+  "database_writes": false,
+  "transaction_ended_with": "rollback",
+  "ssl_mode": "require",
+  "ssl_transport": "encrypted",
+  "certificate_authority_verification": "not_configured_for_existing_connection",
+  "default_transaction_read_only": "on",
+  "transaction_read_only": "on",
+  "schema": {
+    "required_column_count": 25,
+    "missing_columns": []
+  },
+  "game_count": 2,
+  "candidate_game_set_count": 0,
+  "candidate_game_card_count": 0,
+  "snapshot_sha256": "2b2b7336c2dfc75ea553d44249586472a5702b5b7529c48de3015d20a2a3880c"
+}

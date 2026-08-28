@@ -1,0 +1,66 @@
+{
+  "version": "COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_V1",
+  "mode": "shadow-only-read-only-reconciliation",
+  "expected_head_sha": "06ce213cda46e58244102d744a4835358fcc09eb",
+  "actual_head_sha": "06ce213cda46e58244102d744a4835358fcc09eb",
+  "fixture_mode": false,
+  "parser_run_id": "33118951166",
+  "parser_head_sha": "90afb4b7f33ff5b37c8c2183889bccae486b734b",
+  "expected_candidate_sha256": "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f",
+  "parser_candidate_count": 46259,
+  "candidate_games": [
+    "gundam",
+    "yugioh"
+  ],
+  "candidate_game_aliases": [
+    "gundam",
+    "gundam-card-game",
+    "gundam_card_game",
+    "yu-gi-oh",
+    "yu_gi_oh",
+    "yugioh"
+  ],
+  "verified_parser_artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 1398,
+      "sha256": "4344592f7ea620019c3b9e4bc7a1933bf5ba72134ab2673479d77d5871ca778e"
+    },
+    {
+      "path": "candidate_index.jsonl",
+      "bytes": 56865223,
+      "sha256": "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f"
+    },
+    {
+      "path": "validation_failures.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source_snapshots.json",
+      "bytes": 3013,
+      "sha256": "1fe6c4f871579ae9af86feca1ea7ca4cfd0858b527cf8d5875af1bc4bda8b573"
+    },
+    {
+      "path": "completeness_report.json",
+      "bytes": 1310,
+      "sha256": "30bdaff50d82af573780ab445ed700e3335c77ce160012fb543d278b3aade4e8"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 762,
+      "sha256": "4d71ad8786528c64ac29f6e038566565ffdb15d5aa21671db30be96e49cbe609"
+    }
+  ],
+  "boundaries": {
+    "database_writes": false,
+    "storage_access": false,
+    "storage_writes": false,
+    "image_access": false,
+    "pricing_access": false,
+    "canonical_writes": false,
+    "publication_writes": false,
+    "vault_access": false,
+    "writer_dispatches": false
+  }
+}

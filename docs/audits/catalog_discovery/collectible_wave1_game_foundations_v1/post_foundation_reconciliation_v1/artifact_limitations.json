@@ -1,0 +1,8 @@
+[
+  {
+    "limitation": "unresolved_alternative_artwork_scope_not_row_addressable",
+    "aggregate_source_count": 124,
+    "row_addressable_count": 0,
+    "decision": "preserve_aggregate_and_block_promotion_until_parser_metadata_refinement"
+  }
+]

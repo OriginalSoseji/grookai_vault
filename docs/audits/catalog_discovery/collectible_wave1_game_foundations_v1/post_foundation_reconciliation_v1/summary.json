@@ -1,0 +1,47 @@
+{
+  "version": "COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_V1",
+  "mode": "shadow-only-read-only-reconciliation",
+  "status": "completed_with_blockers",
+  "parser_run_id": "33118951166",
+  "parser_candidate_sha256": "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f",
+  "selected_candidate_count": 46259,
+  "reconciled_candidate_count": 46259,
+  "decision_bucket_count_sum": 46259,
+  "decision_counts": {
+    "new_candidate": 46259
+  },
+  "blocking_decision_count": 0,
+  "unresolved_variant_row_count": 0,
+  "unresolved_variant_aggregate_source_count": 124,
+  "artifact_limitation_count": 1,
+  "database_proof": {
+    "database_access": true,
+    "database_writes": false,
+    "transaction_ended_with": "rollback",
+    "ssl_mode": "require",
+    "ssl_transport": "encrypted",
+    "certificate_authority_verification": "not_configured_for_existing_connection",
+    "default_transaction_read_only": "on",
+    "transaction_read_only": "on",
+    "schema": {
+      "required_column_count": 25,
+      "missing_columns": []
+    },
+    "game_count": 2,
+    "candidate_game_set_count": 0,
+    "candidate_game_card_count": 0,
+    "snapshot_sha256": "2b2b7336c2dfc75ea553d44249586472a5702b5b7529c48de3015d20a2a3880c"
+  },
+  "boundaries": {
+    "database_writes": false,
+    "storage_access": false,
+    "storage_writes": false,
+    "image_access": false,
+    "pricing_access": false,
+    "canonical_writes": false,
+    "publication_writes": false,
+    "vault_access": false,
+    "writer_dispatches": false
+  },
+  "completed_at": "2026-08-28T02:58:20.878Z"
+}

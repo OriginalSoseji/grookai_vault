@@ -35,6 +35,22 @@ const AUDIT_DIR = path.join(
   "collectible_wave1_game_foundations_v1",
   "production_rollback_v1",
 );
+const APPLY_AUDIT_DIR = path.join(
+  ROOT,
+  "docs",
+  "audits",
+  "catalog_discovery",
+  "collectible_wave1_game_foundations_v1",
+  "production_apply_v1",
+);
+const RECONCILIATION_AUDIT_DIR = path.join(
+  ROOT,
+  "docs",
+  "audits",
+  "catalog_discovery",
+  "collectible_wave1_game_foundations_v1",
+  "post_foundation_reconciliation_v1",
+);
 
 function baseline(overrides = {}) {
   return {
@@ -205,4 +221,98 @@ test("production rollback artifacts reconcile and prove exact restoration", () =
     authenticated: { gundam: false, yugioh: false },
     service_role: { gundam: false, yugioh: false },
   });
+});
+
+test("durable apply artifacts reconcile to the authorized four-row foundation", () => {
+  const hashes = JSON.parse(fs.readFileSync(path.join(APPLY_AUDIT_DIR, "artifact_hashes.json")));
+  for (const artifact of hashes.artifacts) {
+    const body = fs.readFileSync(path.join(APPLY_AUDIT_DIR, artifact.artifact_path));
+    assert.equal(
+      crypto.createHash("sha256").update(body).digest("hex"),
+      artifact.sha256,
+      artifact.artifact_path,
+    );
+    assert.doesNotMatch(body.toString("utf8"), /(?:postgres(?:ql)?:\/\/|password|SUPABASE_DB_URL)/i);
+  }
+
+  const plan = JSON.parse(fs.readFileSync(path.join(APPLY_AUDIT_DIR, "apply_plan.json")));
+  const execution = JSON.parse(fs.readFileSync(
+    path.join(APPLY_AUDIT_DIR, "apply_execution.json"),
+  ));
+  const readback = JSON.parse(fs.readFileSync(
+    path.join(APPLY_AUDIT_DIR, "apply_readback.json"),
+  ));
+  const rollbackBaseline = JSON.parse(fs.readFileSync(
+    path.join(AUDIT_DIR, "protected_before.json"),
+  ));
+
+  assert.equal(plan.migration.sha256, crypto.createHash("sha256").update(MIGRATION).digest("hex"));
+  assert.equal(execution.result.status, "success");
+  assert.deepEqual(execution.result.applied_migrations, [
+    "20260828024500_collectible_wave1_game_foundations_v1.sql",
+  ]);
+  assert.equal(execution.result.other_migrations_applied, 0);
+  assert.deepEqual(execution.post_apply_cli_reconciliation, {
+    remote_latest_version: "20260828024500",
+    pending_migration_count: 0,
+    dry_run_result: "remote_database_up_to_date",
+  });
+  assert.equal(readback.latest_migration, "20260828024500");
+  assert.equal(readback.ledger_rows.length, 1);
+  assert.equal(readback.games.length, 2);
+  assert.equal(readback.release_controls.length, 2);
+  assert.ok(readback.release_controls.every((row) => row.release_status === "hidden"));
+  assert.deepEqual(readback.visibility, {
+    anon: { gundam: false, yugioh: false },
+    authenticated: { gundam: false, yugioh: false },
+    service_role: { gundam: false, yugioh: false },
+  });
+  assert.deepEqual(readback.new_game_catalog_counts, {
+    sets: 0,
+    cards: 0,
+    printings: 0,
+    identities: 0,
+  });
+  assert.deepEqual(compareWave1ProtectedCountsV1(
+    rollbackBaseline.protected_counts,
+    readback.protected_counts,
+    { games: 2, release_controls: 2 },
+  ), []);
+  assert.equal(readback.identity_domain_constraint, rollbackBaseline.identity_domain_constraint);
+  assert.equal(readback.reconciliation.visibility_failures, 0);
+  assert.equal(readback.database_writes_during_readback, false);
+});
+
+test("post-foundation reconciliation reaches all candidates without writes", () => {
+  const hashes = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "preserved_artifact_hashes.json"),
+  ));
+  for (const artifact of hashes.artifacts) {
+    const body = fs.readFileSync(path.join(RECONCILIATION_AUDIT_DIR, artifact.artifact_path));
+    assert.equal(
+      crypto.createHash("sha256").update(body).digest("hex"),
+      artifact.sha256,
+      artifact.artifact_path,
+    );
+  }
+  const summary = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "summary.json"),
+  ));
+  const plan = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "run_plan.json"),
+  ));
+  const provenance = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "provenance.json"),
+  ));
+  assert.equal(provenance.workflow_run_id, 33137460263);
+  assert.equal(plan.actual_head_sha, "06ce213cda46e58244102d744a4835358fcc09eb");
+  assert.equal(summary.selected_candidate_count, 46259);
+  assert.equal(summary.reconciled_candidate_count, 46259);
+  assert.deepEqual(summary.decision_counts, { new_candidate: 46259 });
+  assert.equal(summary.blocking_decision_count, 0);
+  assert.equal(summary.database_proof.game_count, 2);
+  assert.equal(summary.database_proof.candidate_game_set_count, 0);
+  assert.equal(summary.database_proof.candidate_game_card_count, 0);
+  assert.equal(summary.database_proof.database_writes, false);
+  assert.ok(Object.values(summary.boundaries).every((value) => value === false));
 });

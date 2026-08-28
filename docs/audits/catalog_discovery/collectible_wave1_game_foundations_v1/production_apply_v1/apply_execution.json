@@ -1,0 +1,45 @@
+{
+  "version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_APPLY_EXECUTION_V1",
+  "recorded_at": "2026-08-28T02:54:22.9741608Z",
+  "source_commit": "06ce213cda46e58244102d744a4835358fcc09eb",
+  "apply_plan_sha256": "236f134edc8eb264fa2b4645219b3424ccbc07c0606d24ab24a6c4ad2ca37604",
+  "command_metadata": {
+    "tool": "supabase_cli",
+    "version": "2.90.0",
+    "dry_run_command": "supabase db push --db-url <redacted> --dry-run",
+    "apply_command": "supabase db push --db-url <redacted> --yes",
+    "secrets_recorded": false
+  },
+  "result": {
+    "status": "success",
+    "offered_migrations": [
+      "20260828024500_collectible_wave1_game_foundations_v1.sql"
+    ],
+    "applied_migrations": [
+      "20260828024500_collectible_wave1_game_foundations_v1.sql"
+    ],
+    "other_migrations_applied": 0,
+    "cli_errors": 0
+  },
+  "post_apply_cli_reconciliation": {
+    "remote_latest_version": "20260828024500",
+    "pending_migration_count": 0,
+    "dry_run_result": "remote_database_up_to_date"
+  },
+  "authorized_durable_changes": {
+    "game_rows_inserted": 2,
+    "hidden_release_control_rows_inserted": 2,
+    "migration_ledger_rows_inserted": 1
+  },
+  "forbidden_durable_changes": {
+    "existing_rows_updated_or_deleted": 0,
+    "set_card_identity_printing_mapping_rows": 0,
+    "identity_domain_constraint_changes": 0,
+    "storage_image_pricing_publication_vault_rows": 0,
+    "app_visibility_enabled": false
+  },
+  "readback": {
+    "status": "passed",
+    "artifact": "apply_readback.json"
+  }
+}

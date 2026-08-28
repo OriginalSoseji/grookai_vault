@@ -1,0 +1,29 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "artifact_path": "artifact_limitations.json",
+      "sha256": "f5e4cc3eb189b6b6e1dc930422ac02a935e5f303160f6b0d861b304f91d51e7d"
+    },
+    {
+      "artifact_path": "database_snapshot_summary.json",
+      "sha256": "5f84f764c5629a2fafcb6c0916bed1029a03d313f582e11731e437bd3ecb7e5c"
+    },
+    {
+      "artifact_path": "provenance.json",
+      "sha256": "888b774aa8581c93aff539a49bc49c7bbfc9fb8ef3521129f4fc276e8b7d938c"
+    },
+    {
+      "artifact_path": "remote_artifact_hashes.json",
+      "sha256": "8e25093f344b778bda55eb18ebe25b4263d7b7ecbd4ce7ab77a7b82fc2d597fe"
+    },
+    {
+      "artifact_path": "run_plan.json",
+      "sha256": "aa7843b47b693aabbcdda82e6cae602be88cc262a15e623e1d0b041ea82b96bb"
+    },
+    {
+      "artifact_path": "summary.json",
+      "sha256": "da5852d8174691581fd51b783fda1615fe8cc1f001473dfef00b690e510b0e1b"
+    }
+  ]
+}

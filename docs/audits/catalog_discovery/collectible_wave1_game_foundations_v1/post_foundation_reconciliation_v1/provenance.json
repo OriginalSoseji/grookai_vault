@@ -1,0 +1,19 @@
+{
+  "version": "COLLECTIBLE_WAVE1_POST_FOUNDATION_RECONCILIATION_PROVENANCE_V1",
+  "workflow_run_id": 33137460263,
+  "workflow_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33137460263",
+  "workflow_head_sha": "06ce213cda46e58244102d744a4835358fcc09eb",
+  "artifact_id": 9672587771,
+  "artifact_name": "collectible-wave1-canonical-reconciliation-33137460263",
+  "artifact_archive_digest": "sha256:0e3a4560c782534a9eed05eb04d5869d159b75854135e2ba441a70fa72978518",
+  "artifact_expires_at": "2026-11-26T02:57:26Z",
+  "selected_files_preserved_locally": [
+    "artifact_limitations.json",
+    "database_snapshot_summary.json",
+    "remote_artifact_hashes.json",
+    "run_plan.json",
+    "summary.json"
+  ],
+  "large_row_artifacts_remain_in_github_actions": true,
+  "database_writes": false
+}

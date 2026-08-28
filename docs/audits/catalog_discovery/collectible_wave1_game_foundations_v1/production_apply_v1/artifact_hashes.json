@@ -1,0 +1,17 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "artifact_path": "apply_execution.json",
+      "sha256": "147f56120bd267ab4e91c4ffd647113db99994d14ea6edb7c37cbf67bdaa5522"
+    },
+    {
+      "artifact_path": "apply_plan.json",
+      "sha256": "236f134edc8eb264fa2b4645219b3424ccbc07c0606d24ab24a6c4ad2ca37604"
+    },
+    {
+      "artifact_path": "apply_readback.json",
+      "sha256": "29a4159947ecc7c58e7e345183e58c5c987a7d4876bc91d3b1f434d8ce435d71"
+    }
+  ]
+}
