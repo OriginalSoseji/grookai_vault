@@ -311,6 +311,43 @@ export function evaluateOnePieceSetReleaseReadinessV1(snapshot) {
   };
 }
 
+export function evaluateOnePieceIndependentReleaseReadbackV1(
+  snapshot,
+  visibility,
+) {
+  const findings = [];
+  const count = Number(snapshot?.counts?.cohort_rows ?? 0);
+  const releaseStatus = snapshot?.release_control?.release_status ?? null;
+  const require = (condition, code) => {
+    if (!condition) findings.push(code);
+  };
+
+  require(count > 0, "empty_release_cohort");
+  require(releaseStatus === "signed_in" || releaseStatus === null,
+    "release_status_not_signed_in");
+  require(Number(snapshot?.counts?.suppressed_rows) === 0,
+    "suppressed_rows_present");
+  require(visibility?.anonymous?.set_visible === false,
+    "anonymous_set_visible");
+  require(Number(visibility?.anonymous?.card_count) === 0,
+    "anonymous_cards_visible");
+  require(visibility?.authenticated?.set_visible === true,
+    "authenticated_set_not_visible");
+  require(Number(visibility?.authenticated?.card_count) === count,
+    "authenticated_card_count_mismatch");
+
+  return {
+    valid: findings.length === 0,
+    findings,
+    release_mode: releaseStatus === "signed_in"
+      ? "governed_signed_in"
+      : releaseStatus === null
+        ? "legacy_active_without_release_control"
+        : `unexpected_release_status:${releaseStatus}`,
+    cohort_rows: count,
+  };
+}
+
 export function validateOnePieceSetImagePointersV1(pointers, expectedCount) {
   const findings = [];
   if (pointers.length !== expectedCount) findings.push("pointer_count_mismatch");

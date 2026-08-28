@@ -10,6 +10,7 @@ import { Client } from "pg";
 import {
   buildOnePieceSetClosureSnapshotV1,
   buildOnePieceSetImagePointerV1,
+  evaluateOnePieceIndependentReleaseReadbackV1,
   evaluateOnePieceSetReleaseReadinessV1,
   hashOnePieceSetReleaseClosureV1,
   isOnePieceSelfHostedExactImageV1,
@@ -890,21 +891,36 @@ async function main() {
     return;
     }
     const visibility = await visibilityCounts(client, snapshot);
-    if (snapshot.release_control?.release_status !== "signed_in" ||
-        Number(snapshot.counts.suppressed_rows) !== 0 ||
-        visibility.anonymous.set_visible !== false ||
-        Number(visibility.anonymous.card_count) !== 0 ||
-        visibility.authenticated.set_visible !== true ||
-        Number(visibility.authenticated.card_count) !== snapshot.rows.length) {
+    const releaseReadback = evaluateOnePieceIndependentReleaseReadbackV1(
+      snapshot,
+      visibility,
+    );
+    if (!releaseReadback.valid) {
+      await writeArtifacts(args.outDir, {
+        "run_plan.json": base,
+        "closure_snapshot.json": snapshot,
+        "summary.json": {
+          ...base,
+          status: "independent_release_readback_failed",
+          counts: snapshot.counts,
+          release_control: snapshot.release_control,
+          visibility,
+          release_readback: releaseReadback,
+          database_writes: 0,
+          storage_writes: 0,
+        },
+      }, repo.commit_sha);
       throw new Error(`Independent release readback failed: ${JSON.stringify({
         release_status: snapshot.release_control?.release_status ?? null,
         suppressed_rows: snapshot.counts.suppressed_rows,
         visibility,
+        findings: releaseReadback.findings,
       })}`);
     }
     const summary = { ...base, status: "independent_release_readback_complete",
       counts: snapshot.counts, release_control: snapshot.release_control,
-      visibility, database_writes: 0, storage_writes: 0 };
+      visibility, release_readback: releaseReadback,
+      database_writes: 0, storage_writes: 0 };
     await writeArtifacts(args.outDir, {
       "run_plan.json": base,
       "closure_snapshot.json": snapshot,

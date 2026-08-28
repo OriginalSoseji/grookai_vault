@@ -5,6 +5,7 @@ import test from "node:test";
 import {
   buildOnePieceSetClosureSnapshotV1,
   buildOnePieceSetImagePointerV1,
+  evaluateOnePieceIndependentReleaseReadbackV1,
   evaluateOnePieceSetReleaseReadinessV1,
   isOnePieceSelfHostedExactImageV1,
   isOnePieceGovernedExternalImageProductV1,
@@ -76,6 +77,66 @@ function snapshot(rows = [row()]) {
 
 test("a fully traced hidden cohort is ready for activation", () => {
   assert.deepEqual(evaluateOnePieceSetReleaseReadinessV1(snapshot()).findings, []);
+});
+
+test("independent readback accepts governed and proven legacy signed-in visibility", () => {
+  const visibility = {
+    anonymous: { set_visible: false, card_count: 0 },
+    authenticated: { set_visible: true, card_count: 1 },
+  };
+  const governed = snapshot();
+  governed.release_control = { release_status: "signed_in" };
+  assert.deepEqual(
+    evaluateOnePieceIndependentReleaseReadbackV1(governed, visibility),
+    {
+      valid: true,
+      findings: [],
+      release_mode: "governed_signed_in",
+      cohort_rows: 1,
+    },
+  );
+
+  const legacy = snapshot();
+  legacy.release_control = null;
+  assert.deepEqual(
+    evaluateOnePieceIndependentReleaseReadbackV1(legacy, visibility),
+    {
+      valid: true,
+      findings: [],
+      release_mode: "legacy_active_without_release_control",
+      cohort_rows: 1,
+    },
+  );
+});
+
+test("independent readback rejects hidden, public, suppressed, and incomplete states", () => {
+  const hidden = snapshot();
+  const invalidVisibility = {
+    anonymous: { set_visible: true, card_count: 1 },
+    authenticated: { set_visible: false, card_count: 0 },
+  };
+  const result = evaluateOnePieceIndependentReleaseReadbackV1(
+    hidden,
+    invalidVisibility,
+  );
+  assert.equal(result.valid, false);
+  assert.deepEqual(result.findings, [
+    "release_status_not_signed_in",
+    "anonymous_set_visible",
+    "anonymous_cards_visible",
+    "authenticated_set_not_visible",
+    "authenticated_card_count_mismatch",
+  ]);
+
+  const suppressed = snapshot([row({ visibility_status: "suppressed" })]);
+  suppressed.release_control = null;
+  assert.deepEqual(
+    evaluateOnePieceIndependentReleaseReadbackV1(suppressed, {
+      anonymous: { set_visible: false, card_count: 0 },
+      authenticated: { set_visible: true, card_count: 1 },
+    }).findings,
+    ["suppressed_rows_present"],
+  );
 });
 
 test("legacy identity pointers count as exact when Storage evidence is complete", () => {
@@ -302,6 +363,7 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(worker, /image_operation_failed_cleanup_unverified/);
   assert.match(worker, /created_pointer: error\.createdPointer/);
   assert.match(worker, /Independent release readback failed/i);
+  assert.match(worker, /independent_release_readback_failed/i);
   assert.match(worker, /finally \{[\s\S]*?client\.end\(\)/i);
   assert.doesNotMatch(worker, /vault_entries|embeddings|semantic_search/i);
 });
