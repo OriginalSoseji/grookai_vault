@@ -13,6 +13,7 @@ import {
   evaluateOnePieceSetReleaseReadinessV1,
   hashOnePieceSetReleaseClosureV1,
   isOnePieceSelfHostedExactImageV1,
+  isOnePieceGovernedExternalImageProductV1,
   normalizeOnePieceSetCodeV1,
   ONE_PIECE_SET_IMAGE_BUCKET,
   ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
@@ -286,19 +287,25 @@ function assertSnapshotBinding(snapshot, args) {
 }
 
 function imageCandidates(snapshot) {
-  return snapshot.rows.filter((row) =>
-    !isOnePieceSelfHostedExactImageV1(
-      row,
-      snapshot.image_public_base_url,
-    )).map((row) => ({
+  return snapshot.rows.map((row) => {
+    const governedExternalImage =
+      resolveOnePieceGovernedExternalExactImageV1(row);
+    if (isOnePieceGovernedExternalImageProductV1(row) &&
+        !governedExternalImage) {
+      throw new Error(`Governed external image identity drift: ${row.gv_id}`);
+    }
+    return {
       ...row,
       official_base_image: resolveOnePieceOfficialBaseImageV1(
         row,
         snapshot.official?.records,
       ),
-      governed_external_image:
-        resolveOnePieceGovernedExternalExactImageV1(row),
-    }));
+      governed_external_image: governedExternalImage,
+    };
+  }).filter((row) => !isOnePieceSelfHostedExactImageV1(
+      row,
+      snapshot.image_public_base_url,
+    ));
 }
 
 function imageUrls(row) {
@@ -529,14 +536,15 @@ async function applyPointers(client, setCode, pointers) {
       image_source text, image_hash text, image_status text,
       image_res jsonb, image_path text, image_note text,
       source_product_id bigint, source_product_name text,
-      source_image_url text
+      source_image_url text, card_name text, card_number text
     ) on commit drop`);
     await client.query(`insert into op_set_image_pointer_v1
       select * from jsonb_to_recordset($1::jsonb) as x(
         id uuid, image_url text, image_alt_url text, image_source text,
         image_hash text, image_status text, image_res jsonb,
         image_path text, image_note text, source_product_id bigint,
-        source_product_name text, source_image_url text
+        source_product_name text, source_image_url text,
+        card_name text, card_number text
       )`, [JSON.stringify(pointers.map((pointer) => ({
       id: pointer.card_print_id,
       image_url: pointer.image_url,
@@ -550,6 +558,8 @@ async function applyPointers(client, setCode, pointers) {
       source_product_id: pointer.source_product_id,
       source_product_name: pointer.source_product_name,
       source_image_url: pointer.source_image_url,
+      card_name: pointer.name,
+      card_number: pointer.number,
     })))]);
     const mappingLock = await client.query(`
       select payload.id
@@ -564,7 +574,11 @@ async function applyPointers(client, setCode, pointers) {
        and product.product_id=payload.source_product_id
        and product.name=payload.source_product_name
        and product.image_url=payload.source_image_url
-      for share of mapping, product
+      join public.card_prints card
+        on card.id=payload.id
+       and card.name=payload.card_name
+       and card.number is not distinct from payload.card_number
+      for share of mapping, product, card
     `);
     if (mappingLock.rowCount !== pointers.length) {
       throw new Error(
@@ -583,6 +597,8 @@ async function applyPointers(client, setCode, pointers) {
       image_note=payload.image_note
       from op_set_image_pointer_v1 payload
       where card.id=payload.id
+        and card.name=payload.card_name
+        and card.number is not distinct from payload.card_number
         and (
           card.set_id=(select id from public.sets where game='one_piece' and upper(code)=$1)
           or card.data_quality_flags #>> '{app_visibility_v1,release_set_code}'=$1

@@ -126,7 +126,8 @@ export function isOnePieceSelfHostedExactImageV1(row, publicBaseUrl) {
   );
   const expectedAuthority = ONE_PIECE_SET_IMAGE_AUTHORITIES[imageSource];
   const governedExternal = resolveOnePieceGovernedExternalExactImageV1(row);
-  const governedSourceRequired = governedExternal !== null;
+  const governedSourceRequired =
+    isOnePieceGovernedExternalImageProductV1(row);
   let imageUrl;
   let expectedUrl;
   try {
@@ -168,6 +169,14 @@ export function resolveOnePieceGovernedExternalExactImageV1(row) {
     return null;
   }
   return override;
+}
+
+export function isOnePieceGovernedExternalImageProductV1(row) {
+  const productId = String(row?.source_product_id ?? "").trim();
+  return Object.hasOwn(
+    ONE_PIECE_GOVERNED_EXTERNAL_EXACT_IMAGE_OVERRIDES_V1,
+    productId,
+  );
 }
 
 export function resolveOnePieceOfficialBaseImageV1(row, officialRecords) {

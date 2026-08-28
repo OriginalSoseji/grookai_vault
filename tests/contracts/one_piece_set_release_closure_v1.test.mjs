@@ -7,6 +7,7 @@ import {
   buildOnePieceSetImagePointerV1,
   evaluateOnePieceSetReleaseReadinessV1,
   isOnePieceSelfHostedExactImageV1,
+  isOnePieceGovernedExternalImageProductV1,
   resolveOnePieceGovernedExternalExactImageV1,
   resolveOnePieceOfficialBaseImageV1,
   validateOnePieceSetImagePointersV1,
@@ -223,6 +224,8 @@ test("governed external exact image overrides are identity and hash pinned", () 
     ...exact,
     source_product_name: "Monkey.D.Luffy",
   }), null);
+  assert.equal(isOnePieceGovernedExternalImageProductV1(exact), true);
+  assert.equal(isOnePieceGovernedExternalImageProductV1(row()), false);
 
   const pointer = buildOnePieceSetImagePointerV1({
     row: exact,
@@ -256,6 +259,11 @@ test("governed external exact image overrides are identity and hash pinned", () 
       `${"f".repeat(32)}.jpg`,
   }, IMAGE_PUBLIC_BASE_URL), false);
   assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...row(),
+    source_product_id: exact.source_product_id,
+    source_product_name: "Identity drift",
+  }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
     ...pointer,
     source_product_name: "Monkey.D.Luffy",
   }, IMAGE_PUBLIC_BASE_URL), false);
@@ -284,6 +292,10 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(worker, /begin transaction isolation level serializable/i);
   assert.match(worker, /activation canary left durable residue/i);
   assert.match(worker, /Snapshot-bound mapping revalidation failed/i);
+  assert.match(worker, /Governed external image identity drift/i);
+  assert.match(worker, /card\.name=payload\.card_name/i);
+  assert.match(worker,
+    /card\.number is not distinct from payload\.card_number/i);
   assert.match(worker, /storage_cleanup_failed/i);
   assert.match(worker, /storage: client\.storage/);
   assert.match(worker, /image_operation_failed_zero_created_object_residue/);
