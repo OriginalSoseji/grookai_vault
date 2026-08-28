@@ -48,6 +48,20 @@ const REQUIRED_APPLY_ARTIFACT_PATHS = [
   "apply_plan.json",
   "apply_readback.json",
 ];
+const REQUIRED_RECONCILIATION_ARTIFACT_PATHS = [
+  "artifact_limitations.json",
+  "database_snapshot_summary.json",
+  "provenance.json",
+  "remote_artifact_hashes.json",
+  "run_plan.json",
+  "summary.json",
+];
+const REMOTE_PRESERVED_RECONCILIATION_ARTIFACT_PATHS = [
+  "artifact_limitations.json",
+  "database_snapshot_summary.json",
+  "run_plan.json",
+  "summary.json",
+];
 const APPLY_CREDENTIAL_PATTERNS = [
   /(?:postgres(?:ql)?:\/\/|SUPABASE_DB_URL|DATABASE_URL|PGPASSWORD|password)/i,
   /SUPABASE_(?:SECRET|SERVICE_ROLE|ANON|PUBLISHABLE)_KEY/i,
@@ -380,12 +394,35 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   const hashes = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "preserved_artifact_hashes.json"),
   ));
+  const remoteArtifactHashes = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "remote_artifact_hashes.json"),
+  ));
+  assert.equal(hashes.algorithm, "sha256");
+  assert.equal(remoteArtifactHashes.algorithm, "sha256");
+  assert.deepEqual(
+    hashes.artifacts.map((artifact) => artifact.artifact_path).sort(),
+    REQUIRED_RECONCILIATION_ARTIFACT_PATHS,
+  );
   for (const artifact of hashes.artifacts) {
     const body = fs.readFileSync(path.join(RECONCILIATION_AUDIT_DIR, artifact.artifact_path));
     assert.equal(
       crypto.createHash("sha256").update(body).digest("hex"),
       artifact.sha256,
       artifact.artifact_path,
+    );
+    for (const credentialPattern of APPLY_CREDENTIAL_PATTERNS) {
+      assert.doesNotMatch(body.toString("utf8"), credentialPattern);
+    }
+  }
+  for (const artifactPath of REMOTE_PRESERVED_RECONCILIATION_ARTIFACT_PATHS) {
+    const body = fs.readFileSync(path.join(RECONCILIATION_AUDIT_DIR, artifactPath));
+    assert.deepEqual(
+      remoteArtifactHashes.artifacts.find((artifact) => artifact.path === artifactPath),
+      {
+        path: artifactPath,
+        bytes: body.byteLength,
+        sha256: crypto.createHash("sha256").update(body).digest("hex"),
+      },
     );
   }
   const summary = JSON.parse(fs.readFileSync(
@@ -396,9 +433,6 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   ));
   const provenance = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "provenance.json"),
-  ));
-  const remoteArtifactHashes = JSON.parse(fs.readFileSync(
-    path.join(RECONCILIATION_AUDIT_DIR, "remote_artifact_hashes.json"),
   ));
   const artifactLimitations = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "artifact_limitations.json"),
