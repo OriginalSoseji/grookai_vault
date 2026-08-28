@@ -330,7 +330,9 @@ function reconcileCandidate(candidate, snapshot, index) {
   const cardsInSet = matchingSets.flatMap((set) =>
     index.cardsByGameAndSet.get(compoundKey(foundations[0].id, set.id)) ?? []);
   const coordinates = candidate.identity_coordinates;
-  const numberMatches = cardsInSet.filter((card) =>
+  const cardsInIdentitySet = cardsInSet.filter((card) =>
+    cardSetMatches(candidate, card));
+  const numberMatches = cardsInIdentitySet.filter((card) =>
     canonicalCardCoordinates(card).some((row) =>
       numberKey(row.number) === numberKey(coordinates.collector_number)));
   const nameAndNumberMatches = numberMatches.filter((card) =>

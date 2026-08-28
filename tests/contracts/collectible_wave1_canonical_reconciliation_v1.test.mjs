@@ -146,6 +146,41 @@ test("active identity coordinates are authoritative with parent fallback only", 
   assert.equal(legacyParentMustNotMatch.decision, "new_candidate");
 });
 
+test("active identity set-code aliases do not cross-match sibling cards", () => {
+  const snapshot = canonicalSnapshot();
+  const first = snapshot.cards.find((row) => row.id ===
+    "dddddddd-dddd-4ddd-8ddd-ddddddddddd1");
+  first.identities = [{
+    identity_domain: "gundam_card",
+    set_code_identity: "GX-A",
+    printed_number: "001",
+    normalized_printed_name: "shared unit",
+    is_active: true,
+  }];
+  first.mappings = [];
+  snapshot.cards.push({
+    ...first,
+    id: "dddddddd-dddd-4ddd-8ddd-dddddddddd98",
+    identities: [{
+      ...first.identities[0],
+      set_code_identity: "GX-B",
+    }],
+  });
+
+  const exact = reconcileCollectibleCandidateV1(candidate({
+    source_candidate_id: "identity-alias-only",
+    identity_coordinates: {
+      ...candidate().identity_coordinates,
+      set_code: "GX-A",
+      set_or_product: "Fixture Gundam Set One",
+      collector_number: "001",
+      card_name: "Shared Unit",
+    },
+  }), snapshot);
+  assert.equal(exact.decision, "exact_existing_identity");
+  assert.deepEqual(exact.canonical_match_ids, [first.id]);
+});
+
 test("missing game foundation blocks rather than creating a false match", () => {
   const snapshot = canonicalSnapshot();
   const removedGameId = snapshot.games.find((row) => row.code === "gundam").id;
@@ -261,6 +296,7 @@ test("worker is transaction-read-only and has no persistence authority", () => {
   assert.match(worker, /begin isolation level repeatable read read only/i);
   assert.match(worker, /transaction_ended_with: "rollback"/);
   assert.match(worker, /from public\.sets s\s+join public\.games g/);
+  assert.match(worker, /from public\.games\s+where lower\(coalesce\(code, ''\)\) = any\(\$1::text\[\]\)\s+or lower\(coalesce\(slug, ''\)\) = any\(\$1::text\[\]\)/);
   assert.doesNotMatch(worker, /from public\.sets s\s+left join public\.games g/);
   assert.match(worker, /g\.id = cp\.game_id\s+and \(lower\(g\.code\) = lower\(s\.game\) or lower\(g\.slug\) = lower\(s\.game\)\)/);
   assert.match(worker, /where identity\.card_print_id = cp\.id\s+and identity\.is_active = true/);

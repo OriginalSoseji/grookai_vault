@@ -251,8 +251,10 @@ async function loadDatabaseSnapshot(databaseUrl, candidateGames) {
     const games = (await client.query(`
       select id::text, code::text, name::text, slug::text
       from public.games
+      where lower(coalesce(code, '')) = any($1::text[])
+         or lower(coalesce(slug, '')) = any($1::text[])
       order by code, id
-    `)).rows;
+    `, [candidateGames])).rows;
     const sets = (await client.query(`
       select
         s.id::text,
