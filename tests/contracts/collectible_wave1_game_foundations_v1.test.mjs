@@ -25,6 +25,8 @@ const REVIEWED_MIGRATION_SHA256 =
   "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23";
 const REVIEWED_APPLY_PLAN_SHA256 =
   "236f134edc8eb264fa2b4645219b3424ccbc07c0606d24ab24a6c4ad2ca37604";
+const REVIEWED_APPLY_READBACK_SHA256 =
+  "29a4159947ecc7c58e7e345183e58c5c987a7d4876bc91d3b1f434d8ce435d71";
 const REVIEWED_LEDGER_STATEMENT_SHA256 = [
   "cc1ca0c4e8824501dcfc07a67fd729fac677ee38a9d9306c79197f00bd41510b",
   "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
@@ -43,6 +45,14 @@ const REQUIRED_APPLY_ARTIFACT_PATHS = [
   "apply_execution.json",
   "apply_plan.json",
   "apply_readback.json",
+];
+const APPLY_CREDENTIAL_PATTERNS = [
+  /(?:postgres(?:ql)?:\/\/|SUPABASE_DB_URL|DATABASE_URL|PGPASSWORD|password)/i,
+  /SUPABASE_(?:SECRET|SERVICE_ROLE|ANON|PUBLISHABLE)_KEY/i,
+  /Authorization["']?\s*:\s*["']?\s*Bearer\s+/i,
+  /\bBearer\s+[A-Za-z0-9._~+/=-]{16,}/i,
+  /\b(?:access|refresh)[_-]?token["']?\s*[:=]/i,
+  /\b(?:api|secret)[_-]?key["']?\s*[:=]/i,
 ];
 const RUNNER = fs.readFileSync(path.join(
   ROOT,
@@ -219,7 +229,9 @@ test("production rollback artifacts reconcile and prove exact restoration", () =
       artifact.sha256,
       artifact.artifact_path,
     );
-    assert.doesNotMatch(body.toString("utf8"), /(?:postgres(?:ql)?:\/\/|password|SUPABASE_DB_URL)/i);
+    for (const credentialPattern of APPLY_CREDENTIAL_PATTERNS) {
+      assert.doesNotMatch(body.toString("utf8"), credentialPattern);
+    }
   }
 
   const summary = JSON.parse(fs.readFileSync(path.join(AUDIT_DIR, "summary.json")));
@@ -268,9 +280,8 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   const execution = JSON.parse(fs.readFileSync(
     path.join(APPLY_AUDIT_DIR, "apply_execution.json"),
   ));
-  const readback = JSON.parse(fs.readFileSync(
-    path.join(APPLY_AUDIT_DIR, "apply_readback.json"),
-  ));
+  const readbackBody = fs.readFileSync(path.join(APPLY_AUDIT_DIR, "apply_readback.json"));
+  const readback = JSON.parse(readbackBody);
   const rollbackBaseline = JSON.parse(fs.readFileSync(
     path.join(AUDIT_DIR, "protected_before.json"),
   ));
@@ -282,6 +293,10 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
   assert.equal(migrationSha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(plan.migration.sha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(readback.migration_file_sha256, REVIEWED_MIGRATION_SHA256);
+  assert.equal(
+    crypto.createHash("sha256").update(readbackBody).digest("hex"),
+    REVIEWED_APPLY_READBACK_SHA256,
+  );
   const applyPlanSha256 = crypto.createHash("sha256").update(planBody).digest("hex");
   assert.equal(applyPlanSha256, REVIEWED_APPLY_PLAN_SHA256);
   assert.equal(execution.apply_plan_sha256, REVIEWED_APPLY_PLAN_SHA256);
