@@ -21,6 +21,18 @@ const MIGRATION = fs.readFileSync(path.join(
   "migrations",
   `${COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_MIGRATION_VERSION}_collectible_wave1_game_foundations_v1.sql`,
 ), "utf8");
+const REVIEWED_MIGRATION_SHA256 =
+  "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23";
+const REVIEWED_LEDGER_STATEMENT_SHA256 = [
+  "cc1ca0c4e8824501dcfc07a67fd729fac677ee38a9d9306c79197f00bd41510b",
+  "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
+  "2a7dc6e25b6682427164df121630da0e1671c80948018698644f6a683af40d74",
+  "8f606d40cd281e9d4d8c56e40f6d555d32163bde2b4c6c72a8b8f60b52656672",
+  "54ab0181a94383fbe40425b9b9a88382bddd681e14e2e426c3d0d8aa36d57b60",
+  "0e0ccc23d4c763e0cdcb92c0e6bf99f7183f81cfb4e304cf1d92e274aa88c656",
+  "2ba373b661cc892a598cd87ff447c424ad78612eee271b3594a11a15e72cb087",
+  "9505cacb7c710ed17125fcc6cb3669e8ddca6c8cd8af6a31f6b3cd64604c3098",
+];
 const RUNNER = fs.readFileSync(path.join(
   ROOT,
   "scripts",
@@ -246,7 +258,10 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
     path.join(AUDIT_DIR, "protected_before.json"),
   ));
 
-  assert.equal(plan.migration.sha256, crypto.createHash("sha256").update(MIGRATION).digest("hex"));
+  const migrationSha256 = crypto.createHash("sha256").update(MIGRATION).digest("hex");
+  assert.equal(migrationSha256, REVIEWED_MIGRATION_SHA256);
+  assert.equal(plan.migration.sha256, REVIEWED_MIGRATION_SHA256);
+  assert.equal(readback.migration_file_sha256, REVIEWED_MIGRATION_SHA256);
   assert.equal(execution.result.status, "success");
   assert.deepEqual(execution.result.applied_migrations, [
     "20260828024500_collectible_wave1_game_foundations_v1.sql",
@@ -258,7 +273,12 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
     dry_run_result: "remote_database_up_to_date",
   });
   assert.equal(readback.latest_migration, "20260828024500");
-  assert.equal(readback.ledger_rows.length, 1);
+  assert.deepEqual(readback.ledger_rows, [{
+    name: "collectible_wave1_game_foundations_v1",
+    version: "20260828024500",
+    statement_count: 8,
+  }]);
+  assert.deepEqual(readback.ledger_statement_sha256, REVIEWED_LEDGER_STATEMENT_SHA256);
   assert.deepEqual(evaluateWave1FoundationTransientV1({
     games: readback.games,
     release_controls: readback.release_controls,
@@ -320,6 +340,9 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   assert.equal(summary.database_proof.game_count, 2);
   assert.equal(summary.database_proof.candidate_game_set_count, 0);
   assert.equal(summary.database_proof.candidate_game_card_count, 0);
+  assert.equal(summary.database_proof.default_transaction_read_only, "on");
+  assert.equal(summary.database_proof.transaction_read_only, "on");
+  assert.equal(summary.database_proof.transaction_ended_with, "rollback");
   assert.equal(summary.database_proof.database_writes, false);
   assert.ok(Object.values(summary.boundaries).every((value) => value === false));
 });
