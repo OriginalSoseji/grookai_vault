@@ -1,0 +1,68 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1_EXECUTION",
+  "recorded_at": "2026-08-28T14:28:11.736Z",
+  "source_commit": "02aa12d9eddb719c4d6d1286aba55fc5a21a87dc",
+  "apply_plan_sha256": "92f2f3abcd4da6de85cfdd9def050915f7bfbd927124d1de1a17736e114a0b26",
+  "apply_plan_fingerprint_sha256": "718016cb8dbe86e5486d20d1f23a13f96f0e014d4b5bf4e900789ad03e9c4816",
+  "command_metadata": {
+    "tool": "supabase_cli",
+    "version": "2.90.0",
+    "dry_run_command": "supabase db push --db-url <redacted> --dry-run",
+    "apply_command": "supabase db push --db-url <redacted> --yes",
+    "secrets_recorded": false
+  },
+  "cli_evidence": {
+    "pre_apply": {
+      "path": "pre_cli_dry_run.txt",
+      "bytes": 527,
+      "sha256": "f8b95836271ad9e78f2771a2492cc6cd4236b49b4e165ef4c0cdf89530f0ca3a",
+      "migration_versions": [
+        "20260828063000"
+      ]
+    },
+    "apply": {
+      "path": "apply_cli.txt",
+      "bytes": 496,
+      "sha256": "8b7efa8c2212ab4b967fecdfb129a0f249a4106c48477aba9ee2d62fb75674f9",
+      "migration_versions": [
+        "20260828063000"
+      ]
+    }
+  },
+  "result": {
+    "status": "success",
+    "applied_migrations": [
+      "20260828063000_collectible_wave1_set_foundations_v1.sql"
+    ],
+    "other_migrations_applied": 0
+  },
+  "attributable_write_proof": {
+    "frozen_migration_sha256": "0bef87cb2f487e84729a93aa2ba1bfb9b90cc559a10e981de34dcd1d7a8305fb",
+    "cli_pending_migration_versions": [
+      "20260828063000"
+    ],
+    "exact_target_set_rows": 505,
+    "exact_target_ledger_rows": 1,
+    "target_dependent_rows": {
+      "card_prints": 0,
+      "legacy_cards": 0,
+      "identities": 0,
+      "printings": 0,
+      "external_mappings": 0,
+      "external_printing_mappings": 0
+    }
+  },
+  "authorized_durable_changes": {
+    "public_sets_inserted": 505,
+    "yugioh_sets_inserted": 500,
+    "gundam_sets_inserted": 5,
+    "migration_ledger_rows_inserted": 1
+  },
+  "forbidden_durable_changes": {
+    "existing_rows_updated_or_deleted": 0,
+    "cards_identities_printings_mappings": 0,
+    "storage_images_pricing_publication_vault": 0,
+    "release_control_changes": 0,
+    "app_visibility_enabled": false
+  }
+}

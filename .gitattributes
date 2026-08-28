@@ -8,3 +8,4 @@
 *.json text eol=lf
 *.md text eol=lf
 docs/audits/japanese_master_index_v4/sets/raw/*.html -text -diff
+docs/audits/catalog_discovery/collectible_wave1_set_foundations_v1/production_apply_v1/* -text -diff

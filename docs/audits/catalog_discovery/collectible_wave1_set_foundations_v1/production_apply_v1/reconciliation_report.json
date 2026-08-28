@@ -1,0 +1,114 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1_RECONCILIATION",
+  "status": "reconciled",
+  "findings": [],
+  "exact_set_rows": 505,
+  "exact_unique_ids": 505,
+  "exact_unique_codes": 505,
+  "migration_ledger_rows": 1,
+  "cli_evidence": {
+    "pre_apply": {
+      "path": "pre_cli_dry_run.txt",
+      "bytes": 527,
+      "sha256": "f8b95836271ad9e78f2771a2492cc6cd4236b49b4e165ef4c0cdf89530f0ca3a",
+      "migration_versions": [
+        "20260828063000"
+      ]
+    },
+    "apply": {
+      "path": "apply_cli.txt",
+      "bytes": 496,
+      "sha256": "8b7efa8c2212ab4b967fecdfb129a0f249a4106c48477aba9ee2d62fb75674f9",
+      "migration_versions": [
+        "20260828063000"
+      ]
+    }
+  },
+  "independent_attributable_readback_matches": true,
+  "protected_count_diagnostics": {
+    "card_prints": {
+      "before": 170166,
+      "after": 170166,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "external_mappings": {
+      "before": 276822,
+      "after": 276822,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "external_printing_mappings": {
+      "before": 144577,
+      "after": 144577,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "games": {
+      "before": 6,
+      "after": 6,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "identity_rows": {
+      "before": 165962,
+      "after": 165962,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "legacy_cards": {
+      "before": 10,
+      "after": 10,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "printing_rows": {
+      "before": 227881,
+      "after": 227881,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "release_controls": {
+      "before": 4,
+      "after": 4,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "sealed_families": {
+      "before": 242,
+      "after": 242,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "sealed_variants": {
+      "before": 390,
+      "after": 390,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "sets": {
+      "before": 2891,
+      "after": 3396,
+      "delta": 505,
+      "attribution": "contains_authorized_505_set_insert_plus_concurrent_activity"
+    },
+    "storage_objects": {
+      "before": 167734,
+      "after": 167734,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "vault_item_instances": {
+      "before": 3394,
+      "after": 3394,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    },
+    "vault_items": {
+      "before": 445,
+      "after": 445,
+      "delta": 0,
+      "attribution": "concurrent_activity_diagnostic_not_attributed_to_frozen_migration"
+    }
+  }
+}
