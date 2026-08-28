@@ -234,6 +234,9 @@ test("durable validation requires the exact ledger, rows, hidden RLS, and only 5
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ migration_count: 0 }), databaseRows, baseline(),
   ).includes("migration_ledger_count_mismatch"));
+  assert.deepEqual(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable({ latest_migration: "20260828070000" }), databaseRows, baseline(),
+  ), []);
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ sets: databaseRows.slice(1) }), databaseRows, baseline(),
   ).includes("durable_set_rows_mismatch"));

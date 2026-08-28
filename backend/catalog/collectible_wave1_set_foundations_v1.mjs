@@ -341,9 +341,6 @@ export function evaluateCollectibleWave1SetDurableReadbackV1(
   if (stableJsonWave1SetApplyV1(readback?.sets ?? []) !==
       stableJsonWave1SetApplyV1(expectedRows ?? [])) findings.push("durable_set_rows_mismatch");
   if (readback?.transaction_read_only !== true) findings.push("transaction_not_read_only");
-  if (readback?.latest_migration !== COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION) {
-    findings.push("latest_migration_mismatch");
-  }
   if (number(readback?.migration_count) !== 1) findings.push("migration_ledger_count_mismatch");
   const ledgerRows = readback?.ledger_rows ?? [];
   if (ledgerRows.length !== 1 ||

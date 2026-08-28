@@ -87,6 +87,9 @@ must offer and apply only that migration, target-dependent rows must remain
 zero, release controls must remain exact, and both read-only readbacks must
 reconcile the complete target state. This prevents legitimate concurrent Vault,
 Storage, pricing, or ingestion activity from invalidating a successful apply.
+Likewise, the target ledger row must reconcile exactly once, but a later
+authorized migration may advance the global migration head during readback; the
+observed latest version is diagnostic and is not target-apply failure evidence.
 
 Stop after durable apply evidence is permanently checkpointed. No later card,
 image, pricing, publication, or visibility gate is implied by this set apply.

@@ -294,6 +294,7 @@ function protectedCountDiagnostics(before, after) {
 function attributableReadback(readback) {
   const copy = structuredClone(readback);
   delete copy.protected_counts;
+  delete copy.latest_migration;
   return copy;
 }
 
