@@ -207,18 +207,6 @@ test("official base image pointers preserve separate authority", () => {
   assert.equal(validateOnePieceSetImagePointersV1([pointer], 1).valid, true);
   assert.equal(isOnePieceSelfHostedExactImageV1(
     pointer, IMAGE_PUBLIC_BASE_URL), true);
-  assert.equal(isOnePieceSelfHostedExactImageV1({
-    ...pointer,
-    image_hash: "f".repeat(64),
-    image_path: `one-piece/card-prints/verified-external/707248/${"f".repeat(32)}.jpg`,
-    image_url: "https://project.supabase.co/storage/v1/object/public/" +
-      "external-card-images/one-piece/card-prints/verified-external/707248/" +
-      `${"f".repeat(32)}.jpg`,
-  }, IMAGE_PUBLIC_BASE_URL), false);
-  assert.equal(isOnePieceSelfHostedExactImageV1({
-    ...pointer,
-    source_product_name: "Monkey.D.Luffy",
-  }, IMAGE_PUBLIC_BASE_URL), false);
 });
 
 test("governed external exact image overrides are identity and hash pinned", () => {
@@ -259,6 +247,18 @@ test("governed external exact image overrides are identity and hash pinned", () 
   assert.equal(validateOnePieceSetImagePointersV1([pointer], 1).valid, true);
   assert.equal(isOnePieceSelfHostedExactImageV1(
     pointer, IMAGE_PUBLIC_BASE_URL), true);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...pointer,
+    image_hash: "f".repeat(64),
+    image_path: `one-piece/card-prints/verified-external/707248/${"f".repeat(32)}.jpg`,
+    image_url: "https://project.supabase.co/storage/v1/object/public/" +
+      "external-card-images/one-piece/card-prints/verified-external/707248/" +
+      `${"f".repeat(32)}.jpg`,
+  }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...pointer,
+    source_product_name: "Monkey.D.Luffy",
+  }, IMAGE_PUBLIC_BASE_URL), false);
   assert.equal(validateOnePieceSetImagePointersV1([{
     ...pointer,
     source_expected_sha256: "f".repeat(64),
