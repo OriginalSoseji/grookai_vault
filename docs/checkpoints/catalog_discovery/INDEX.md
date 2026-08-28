@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-08-28 Collectible Wave 1 Canonical Reconciliation V1](./2026-08-28_COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_V1.md)
 - [2026-08-27 Collectible Shadow Parser Wave 1 V1](./2026-08-27_COLLECTIBLE_SHADOW_PARSER_WAVE1_V1.md)
 - [2026-08-27 Collectible Shadow Adapters V1](./2026-08-27_COLLECTIBLE_SHADOW_ADAPTERS_V1.md)
 - [2026-08-27 Catalog Shadow Automation V1](./2026-08-27_CATALOG_SHADOW_AUTOMATION_V1.md)
