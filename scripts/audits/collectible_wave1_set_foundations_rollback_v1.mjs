@@ -566,6 +566,9 @@ export {
   MIGRATION_PATH,
   PAYLOAD_PATH,
   captureBaseline,
+  captureTransient,
   evaluateRestoration,
   parseArgs,
+  roleVisibility,
+  rlsVisibleSetCount,
 };
