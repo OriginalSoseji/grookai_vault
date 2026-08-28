@@ -1,0 +1,115 @@
+{
+  "version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_APPLY_READBACK_V1",
+  "recorded_at": "2026-08-28T02:54:22.9741608Z",
+  "source_commit": "06ce213cda46e58244102d744a4835358fcc09eb",
+  "execution_mode": "production_read_only",
+  "migration_file_sha256": "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23",
+  "latest_migration": "20260828024500",
+  "ledger_rows": [
+    {
+      "name": "collectible_wave1_game_foundations_v1",
+      "version": "20260828024500",
+      "statement_count": 8
+    }
+  ],
+  "ledger_statement_sha256": [
+    "cc1ca0c4e8824501dcfc07a67fd729fac677ee38a9d9306c79197f00bd41510b",
+    "901a8f219b041b443972daceaae55f976beebb077e5a3b5b123105240af28d97",
+    "2a7dc6e25b6682427164df121630da0e1671c80948018698644f6a683af40d74",
+    "8f606d40cd281e9d4d8c56e40f6d555d32163bde2b4c6c72a8b8f60b52656672",
+    "54ab0181a94383fbe40425b9b9a88382bddd681e14e2e426c3d0d8aa36d57b60",
+    "0e0ccc23d4c763e0cdcb92c0e6bf99f7183f81cfb4e304cf1d92e274aa88c656",
+    "2ba373b661cc892a598cd87ff447c424ad78612eee271b3594a11a15e72cb087",
+    "9505cacb7c710ed17125fcc6cb3669e8ddca6c8cd8af6a31f6b3cd64604c3098"
+  ],
+  "games": [
+    {
+      "id": "47434700-0000-4000-8000-000000000001",
+      "code": "gundam",
+      "name": "Gundam Card Game",
+      "slug": "gundam-card-game"
+    },
+    {
+      "id": "59474f00-0000-4000-8000-000000000001",
+      "code": "yugioh",
+      "name": "Yu-Gi-Oh!",
+      "slug": "yu-gi-oh"
+    }
+  ],
+  "release_controls": [
+    {
+      "evidence": {
+        "default": "fail_closed",
+        "foundation_scope": "game_metadata_only",
+        "storage_upload_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "game_code": "gundam",
+      "release_status": "hidden",
+      "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1"
+    },
+    {
+      "evidence": {
+        "default": "fail_closed",
+        "foundation_scope": "game_metadata_only",
+        "storage_upload_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "game_code": "yugioh",
+      "release_status": "hidden",
+      "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1"
+    }
+  ],
+  "visibility": {
+    "anon": {
+      "gundam": false,
+      "yugioh": false
+    },
+    "authenticated": {
+      "gundam": false,
+      "yugioh": false
+    },
+    "service_role": {
+      "gundam": false,
+      "yugioh": false
+    }
+  },
+  "new_game_catalog_counts": {
+    "sets": 0,
+    "cards": 0,
+    "printings": 0,
+    "identities": 0
+  },
+  "protected_counts": {
+    "sets": 2891,
+    "games": 6,
+    "card_prints": 170166,
+    "vault_items": 445,
+    "identity_rows": 165962,
+    "printing_rows": 227881,
+    "sealed_families": 242,
+    "sealed_variants": 390,
+    "storage_objects": 167734,
+    "release_controls": 4,
+    "external_mappings": 276822,
+    "vault_item_instances": 3394,
+    "external_printing_mappings": 144577
+  },
+  "security": {
+    "games_rls_enabled": true,
+    "release_controls_rls_enabled": true,
+    "release_control_acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}"
+  },
+  "identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))",
+  "reconciliation": {
+    "exact_game_rows": 2,
+    "exact_hidden_release_controls": 2,
+    "visibility_failures": 0,
+    "unauthorized_protected_count_changes": 0,
+    "identity_domain_constraint_changes": 0,
+    "catalog_rows_created": 0
+  },
+  "database_writes_during_readback": false
+}

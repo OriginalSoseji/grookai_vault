@@ -1,0 +1,38 @@
+{
+  "version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_APPLY_PLAN_V1",
+  "recorded_at": "2026-08-28T02:52:50.9886694Z",
+  "source_commit": "06ce213cda46e58244102d744a4835358fcc09eb",
+  "source_pull_request": 286,
+  "migration": {
+    "version": "20260828024500",
+    "name": "collectible_wave1_game_foundations_v1",
+    "path": "supabase/migrations/20260828024500_collectible_wave1_game_foundations_v1.sql",
+    "sha256": "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23"
+  },
+  "rollback_authority": {
+    "run_plan_fingerprint_sha256": "832173f4ec0378b14ea52ccb56da95cd78ded2f80fd16f2707894a8effad9edf",
+    "status": "rollback_canary_passed_zero_durable_change",
+    "findings": 0,
+    "baseline_restored_exactly": true
+  },
+  "preflight": {
+    "remote_latest_migration": "20260828021500",
+    "candidate_game_rows": 0,
+    "candidate_release_control_rows": 0,
+    "cli_dry_run_expected_migrations": [
+      "20260828024500_collectible_wave1_game_foundations_v1.sql"
+    ]
+  },
+  "authorized_durable_changes": {
+    "game_rows_inserted": 2,
+    "hidden_release_control_rows_inserted": 2,
+    "migration_ledger_rows_inserted": 1
+  },
+  "forbidden_durable_changes": {
+    "existing_rows_updated_or_deleted": 0,
+    "set_card_identity_printing_mapping_rows": 0,
+    "identity_domain_constraint_changes": 0,
+    "storage_image_pricing_publication_vault_rows": 0,
+    "app_visibility_enabled": false
+  }
+}
