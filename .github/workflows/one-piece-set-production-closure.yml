@@ -75,6 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$SUPABASE_DB_URL"
+          test -n "$SUPABASE_URL"
           test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
           git fetch --no-tags origin main
           git merge-base --is-ancestor "$EXPECTED_SHA" origin/main
@@ -85,7 +86,6 @@ jobs:
             [[ "$EXPECTED_SNAPSHOT_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
           fi
           if [[ "$MODE" == image-* ]]; then
-            test -n "$SUPABASE_URL"
             test -n "$SUPABASE_SECRET_KEY"
           fi
           node --check backend/catalog/one_piece_set_release_closure_v1.mjs
