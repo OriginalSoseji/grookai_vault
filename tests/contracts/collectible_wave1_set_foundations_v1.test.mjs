@@ -143,8 +143,9 @@ function durable(overrides = {}) {
     ledger_rows: [{
       version: COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION,
       name: "collectible_wave1_set_foundations_v1",
-      statement_count: 7,
+      statement_count: 2,
     }],
+    ledger_statement_sha256: ["ledger-a", "ledger-b"],
     protected_counts: { sets: 605, card_prints: 200, storage_objects: 300 },
     release_controls: baseline().release_controls,
     ...overrides,
@@ -229,24 +230,30 @@ test("transient validation requires exact rows, no dependencies, and hidden RLS"
 
 test("durable validation requires the exact ledger, rows, hidden RLS, and only 505 sets", () => {
   assert.deepEqual(evaluateCollectibleWave1SetDurableReadbackV1(
-    durable(), databaseRows, baseline(),
+    durable(), databaseRows, baseline(), ["ledger-a", "ledger-b"],
   ), []);
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
-    durable({ migration_count: 0 }), databaseRows, baseline(),
+    durable({ migration_count: 0 }), databaseRows, baseline(), ["ledger-a", "ledger-b"],
   ).includes("migration_ledger_count_mismatch"));
   assert.deepEqual(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ latest_migration: "20260828070000" }), databaseRows, baseline(),
+    ["ledger-a", "ledger-b"],
   ), []);
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable({ ledger_statement_sha256: ["ledger-a", "wrong"] }), databaseRows, baseline(),
+    ["ledger-a", "ledger-b"],
+  ).includes("migration_ledger_statements_mismatch"));
+  assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ sets: databaseRows.slice(1) }), databaseRows, baseline(),
+    ["ledger-a", "ledger-b"],
   ).includes("durable_set_rows_mismatch"));
   assert.deepEqual(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ protected_counts: { sets: 605, card_prints: 201, storage_objects: 300 } }),
-    databaseRows, baseline(),
+    databaseRows, baseline(), ["ledger-a", "ledger-b"],
   ), []);
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ rls_visible_set_counts: { anon: 1, authenticated: 0 } }),
-    databaseRows, baseline(),
+    databaseRows, baseline(), ["ledger-a", "ledger-b"],
   ).includes("sets_visible_through_rls:anon"));
 });
 

@@ -79,6 +79,9 @@ direct set rows through anon/authenticated RLS, unchanged release controls, and
 zero changes in cards, identities, printings, mappings, images, pricing,
 publication, Storage, or Vault data. A second read-only connection must repeat
 the verification.
+The ledger statement count, order, and SHA-256 list must exactly match the
+statements derived from the reviewed migration bytes; a merely nonempty ledger
+row is not sufficient evidence.
 
 Global production table counts are retained as concurrency diagnostics, not as
 post-commit pass/fail assertions. The collateral-write proof is attributable:

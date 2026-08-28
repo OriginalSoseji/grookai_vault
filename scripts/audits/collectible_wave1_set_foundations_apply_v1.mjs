@@ -19,6 +19,8 @@ import {
   renderCollectibleWave1SetFoundationsMigrationV1,
 } from "../../backend/catalog/collectible_wave1_set_foundations_v1.mjs";
 import { marketEvidenceDbUrl } from "../lib/market_evidence_db_query_v1.mjs";
+import { splitSealedMigrationStatementsV1 } from
+  "../../backend/pricing/cross_tcg_sealed_product_schema_apply_v1.mjs";
 import { pgSslConfig } from "./japanese_master_index_v4/read_only_guard_v1.mjs";
 import {
   MIGRATION_PATH,
@@ -125,7 +127,10 @@ async function frozenInputs() {
   if (sha256(migrationBody) !== REVIEWED_MIGRATION_SHA256) {
     throw new Error("Reviewed migration SHA-256 mismatch");
   }
-  return { payloadBody, migrationBody, databaseRows };
+  const ledgerStatementSha256 = splitSealedMigrationStatementsV1(
+    migrationBody.toString("utf8"),
+  ).map((statement) => sha256(statement));
+  return { payloadBody, migrationBody, databaseRows, ledgerStatementSha256 };
 }
 
 function repositoryState(expectedHeadSha) {
@@ -178,6 +183,8 @@ async function prepareApply(options) {
       file: `supabase/migrations/${TARGET_MIGRATION_FILE}`,
       bytes: inputs.migrationBody.length,
       sha256: sha256(inputs.migrationBody),
+      ledger_statement_count: inputs.ledgerStatementSha256.length,
+      ledger_statement_sha256: inputs.ledgerStatementSha256,
     },
     payload: {
       rows: inputs.databaseRows.length,
@@ -376,11 +383,13 @@ async function postApplyReadback(options) {
     primary,
     inputs.databaseRows,
     baseline,
+    inputs.ledgerStatementSha256,
   );
   const independentFindings = evaluateCollectibleWave1SetDurableReadbackV1(
     independent,
     inputs.databaseRows,
     baseline,
+    inputs.ledgerStatementSha256,
   );
   if (JSON.stringify(attributableReadback(primary)) !==
       JSON.stringify(attributableReadback(independent))) {

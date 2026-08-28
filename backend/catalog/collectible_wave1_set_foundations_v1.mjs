@@ -336,6 +336,7 @@ export function evaluateCollectibleWave1SetDurableReadbackV1(
   readback,
   expectedRows,
   baseline,
+  expectedLedgerStatementSha256,
 ) {
   const findings = [];
   if (stableJsonWave1SetApplyV1(readback?.sets ?? []) !==
@@ -346,8 +347,12 @@ export function evaluateCollectibleWave1SetDurableReadbackV1(
   if (ledgerRows.length !== 1 ||
       ledgerRows[0]?.version !== COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION ||
       ledgerRows[0]?.name !== "collectible_wave1_set_foundations_v1" ||
-      number(ledgerRows[0]?.statement_count) < 1) {
+      number(ledgerRows[0]?.statement_count) !== expectedLedgerStatementSha256?.length) {
     findings.push("migration_ledger_row_mismatch");
+  }
+  if (stableJsonWave1SetApplyV1(readback?.ledger_statement_sha256 ?? []) !==
+      stableJsonWave1SetApplyV1(expectedLedgerStatementSha256 ?? [])) {
+    findings.push("migration_ledger_statements_mismatch");
   }
   for (const field of ["card_print_count", "legacy_card_count", "identity_count",
     "printing_count", "external_mapping_count", "external_printing_mapping_count"]) {
