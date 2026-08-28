@@ -259,6 +259,13 @@ test("governed external exact image overrides are identity and hash pinned", () 
     ...pointer,
     source_product_name: "Monkey.D.Luffy",
   }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...row(),
+    name: exact.name,
+    number: exact.number,
+    source_product_id: exact.source_product_id,
+    source_product_name: exact.source_product_name,
+  }, IMAGE_PUBLIC_BASE_URL), false);
   assert.equal(validateOnePieceSetImagePointersV1([{
     ...pointer,
     source_expected_sha256: "f".repeat(64),

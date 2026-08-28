@@ -125,10 +125,8 @@ export function isOnePieceSelfHostedExactImageV1(row, publicBaseUrl) {
     /^one-piece\/card-prints\/(tcgplayer|bandai-official|verified-external)\/(\d+)\/([0-9a-f]{32})\.(jpg|png)$/,
   );
   const expectedAuthority = ONE_PIECE_SET_IMAGE_AUTHORITIES[imageSource];
-  const governedExternal = imageSource ===
-    "self_hosted_verified_external_exact_product_v1"
-    ? resolveOnePieceGovernedExternalExactImageV1(row)
-    : null;
+  const governedExternal = resolveOnePieceGovernedExternalExactImageV1(row);
+  const governedSourceRequired = governedExternal !== null;
   let imageUrl;
   let expectedUrl;
   try {
@@ -143,11 +141,14 @@ export function isOnePieceSelfHostedExactImageV1(row, publicBaseUrl) {
   return /^\d+$/.test(productId) &&
     row?.image_status === "exact" &&
     Boolean(expectedAuthority) &&
+    (expectedAuthority !== "verified-external" || governedSourceRequired) &&
+    (!governedSourceRequired || imageSource ===
+      "self_hosted_verified_external_exact_product_v1") &&
     imagePathMatch?.[1] === expectedAuthority &&
     imagePathMatch?.[2] === productId &&
     imagePathMatch?.[3] === imageHash.slice(0, 32) &&
     /^[0-9a-f]{64}$/.test(imageHash) &&
-    (expectedAuthority !== "verified-external" ||
+    (!governedSourceRequired ||
       governedExternal?.expected_sha256 === imageHash) &&
     imageUrl.protocol === "https:" &&
     imageUrl.origin === expectedUrl.origin &&
