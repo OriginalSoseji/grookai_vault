@@ -1,0 +1,51 @@
+{
+  "version": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_APPLY_PLAN_V1",
+  "created_at": "2026-08-28T02:13:51.1778826Z",
+  "source_commit": "0787eeb3da606a67fc0ef73434d80d74ee42ccf1",
+  "source_branch": "main",
+  "target_project_ref": "ycdxbpibncqcchqiihfz",
+  "supabase_cli_version": "2.90.0",
+  "preflight": {
+    "remote_latest_version": "20260826070000",
+    "local_remote_history_reconciled_through_latest": true,
+    "pending_migration_count": 1,
+    "dry_run_passed": true
+  },
+  "migration": {
+    "version": "20260828021500",
+    "name": "print_identity_search_visible_bound_v1",
+    "path": "supabase/migrations/20260828021500_print_identity_search_visible_bound_v1.sql",
+    "sha256": "91bdbe7829e4e53a77620bbc22f3dfa6acccb70061bb80b0fcc00bfc209c1269",
+    "bytes": 18005
+  },
+  "rollback_proof": {
+    "status": "passed",
+    "artifact_sha256": "99f1b6d7f64eaf331eea16273bcb819ab17048c6e4e204e8fd40d9d2efbfb078",
+    "function_restored": true,
+    "ledger_unchanged": true
+  },
+  "authorized_changes": [
+    "replace public.search_print_identity_v1 with the reviewed function body",
+    "replace the function comment",
+    "revoke public and grant anon/authenticated/service_role execute",
+    "emit transactional PostgREST schema reload notification",
+    "record one Supabase migration ledger row for version 20260828021500"
+  ],
+  "forbidden_changes": [
+    "table data writes outside the Supabase migration ledger",
+    "game or release-control writes",
+    "card, set, printing, mapping, identity, image, pricing, publication, or Vault writes",
+    "Storage access or writes",
+    "historical migration edits or ledger rewrites"
+  ],
+  "expected_readback": {
+    "latest_migration_version": "20260828021500",
+    "function_comment_prefix": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_V1",
+    "function_acl_unchanged": true,
+    "function_signature_unchanged": true,
+    "anonymous_golem_game_codes": [
+      "pokemon"
+    ],
+    "authenticated_golem_must_include": "mtg"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "version": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_APPLY_READBACK_V1",
+  "recorded_at": "2026-08-28T02:15:35.915Z",
+  "source_commit": "0787eeb3da606a67fc0ef73434d80d74ee42ccf1",
+  "execution_mode": "production_read_only",
+  "migration": {
+    "version": "20260828021500",
+    "name": "print_identity_search_visible_bound_v1",
+    "file_sha256": "91bdbe7829e4e53a77620bbc22f3dfa6acccb70061bb80b0fcc00bfc209c1269",
+    "ledger_statement_count": 7,
+    "ledger_statement_sha256": [
+      "1559309fd555f69cf47b0779b83e05d3573697270cc69ae87cecb45556c0b955",
+      "cef1052b59504f35c3c464c8880353c72145e794a8a40e80e472a15be1f1b3f4",
+      "28f0a55fc31ab9bff53b43827f9328b486b59bb2a7bf7391cd7fd5a1bf0fab30",
+      "137f50268003fba519106389d78ff6fbd0b5ed3751d7b74705b38680b5457f8e",
+      "c38c1f5f3c4af66de6abab140de1ff73c2ab77370036006286be1439c50080ae",
+      "5bb10b5d320bb06077517ed9fc42fd9d5ce1c4b9ecc69c2a08163e0be4b6c851",
+      "9505cacb7c710ed17125fcc6cb3669e8ddca6c8cd8af6a31f6b3cd64604c3098"
+    ]
+  },
+  "latest_migration": {
+    "version": "20260828021500",
+    "name": "print_identity_search_visible_bound_v1",
+    "statement_count": 7
+  },
+  "function": {
+    "identity_arguments": "q text, set_code_in text, number_in text, object_type_in text, limit_in integer, offset_in integer",
+    "result_type": "TABLE(search_document_id text, object_type text, parent_gv_id text, printing_gv_id text, display_name text, display_discriminator text, route_path text, route_query text, matched_fields text[], rank_score integer)",
+    "definition_sha256": "18298b24d75efe5fda01c8242ed132ec6e1fc65226d02ac64bbb7f1a54eb5fbd",
+    "definition_bytes": 17170,
+    "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+    "comment": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_V1. Preserves V1 output while applying request-role catalog visibility before bounding high-priority names and deciding whether lower-ranked candidate families can be skipped."
+  },
+  "probes": [
+    {
+      "role": "anon",
+      "row_count": 25,
+      "game_codes": [
+        "pokemon"
+      ],
+      "sample_parent_gv_ids": [
+        "GV-PK-AR-19",
+        "GV-PK-AR-19",
+        "GV-PK-DR-5",
+        "GV-PK-DR-5",
+        "GV-PK-EX-14"
+      ]
+    },
+    {
+      "role": "authenticated",
+      "row_count": 25,
+      "game_codes": [
+        "mtg"
+      ],
+      "sample_parent_gv_ids": [
+        "GV-MTG-SF-1FB69A6D-B02D-46F1-AF7B-CFD8A2363ED2",
+        "GV-MTG-SF-2D84926D-5892-4C62-A943-FAC9F0DDC569",
+        "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E",
+        "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E",
+        "GV-MTG-SF-406E2960-F560-48BB-B4A6-4BD35889A8F8"
+      ]
+    },
+    {
+      "role": "service_role",
+      "row_count": 25,
+      "game_codes": [
+        "mtg"
+      ],
+      "sample_parent_gv_ids": [
+        "GV-MTG-SF-1FB69A6D-B02D-46F1-AF7B-CFD8A2363ED2",
+        "GV-MTG-SF-2D84926D-5892-4C62-A943-FAC9F0DDC569",
+        "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E",
+        "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E",
+        "GV-MTG-SF-406E2960-F560-48BB-B4A6-4BD35889A8F8"
+      ]
+    }
+  ],
+  "reconciliation": {
+    "expected_function_hash_matches": true,
+    "expected_acl_matches": true,
+    "expected_comment_matches": true,
+    "migration_ledger_row_exactly_once": true,
+    "result_visibility_failures": 0
+  },
+  "database_writes_during_readback": false
+}
