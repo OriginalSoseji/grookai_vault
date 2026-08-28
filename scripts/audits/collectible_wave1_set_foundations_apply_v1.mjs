@@ -278,6 +278,25 @@ function migrationVersions(log) {
   return [...new Set(log.match(/\b20\d{12}(?=_|\b)/g) ?? [])].sort();
 }
 
+function protectedCountDiagnostics(before, after) {
+  return Object.fromEntries([...new Set([
+    ...Object.keys(before ?? {}),
+    ...Object.keys(after ?? {}),
+  ])].sort().map((key) => [key, {
+    before: Number(before?.[key] ?? 0),
+    after: Number(after?.[key] ?? 0),
+    delta: Number(after?.[key] ?? 0) - Number(before?.[key] ?? 0),
+    attribution: key === "sets" ? "contains_authorized_505_set_insert_plus_concurrent_activity" :
+      "concurrent_activity_diagnostic_not_attributed_to_frozen_migration",
+  }]));
+}
+
+function attributableReadback(readback) {
+  const copy = structuredClone(readback);
+  delete copy.protected_counts;
+  return copy;
+}
+
 async function readCliLog(filePath) {
   const body = await fs.readFile(filePath, "utf8");
   if (/postgres(?:ql)?:\/\/|SUPABASE_DB_URL|(?:password|passwd|pwd)\s*[=:]/i.test(body)) {
@@ -362,7 +381,8 @@ async function postApplyReadback(options) {
     inputs.databaseRows,
     baseline,
   );
-  if (JSON.stringify(primary) !== JSON.stringify(independent)) {
+  if (JSON.stringify(attributableReadback(primary)) !==
+      JSON.stringify(attributableReadback(independent))) {
     findings.push("independent_readback_mismatch");
   }
   if (JSON.stringify(preLog.migration_versions) !==
@@ -396,6 +416,20 @@ async function postApplyReadback(options) {
       applied_migrations: [TARGET_MIGRATION_FILE],
       other_migrations_applied: 0,
     },
+    attributable_write_proof: {
+      frozen_migration_sha256: REVIEWED_MIGRATION_SHA256,
+      cli_pending_migration_versions: preLog.migration_versions,
+      exact_target_set_rows: primary.sets.length,
+      exact_target_ledger_rows: primary.ledger_rows.length,
+      target_dependent_rows: {
+        card_prints: Number(primary.card_print_count),
+        legacy_cards: Number(primary.legacy_card_count),
+        identities: Number(primary.identity_count),
+        printings: Number(primary.printing_count),
+        external_mappings: Number(primary.external_mapping_count),
+        external_printing_mappings: Number(primary.external_printing_mapping_count),
+      },
+    },
     ...authorizedBoundaries(),
   };
   const summary = {
@@ -413,6 +447,10 @@ async function postApplyReadback(options) {
     }), {}),
     migration_ledger_rows: primary.ledger_rows.length,
     rls_visible_set_counts: primary.rls_visible_set_counts,
+    protected_count_diagnostics: protectedCountDiagnostics(
+      baseline.protected_counts,
+      primary.protected_counts,
+    ),
     findings: uniqueFindings,
     database_writes_during_readback: false,
   };
@@ -431,7 +469,13 @@ async function postApplyReadback(options) {
         exact_unique_codes: new Set(primary.sets.map((row) => row.code)).size,
         migration_ledger_rows: primary.ledger_rows.length,
         cli_evidence: execution.cli_evidence,
-        independent_readback_matches: JSON.stringify(primary) === JSON.stringify(independent),
+        independent_attributable_readback_matches:
+          JSON.stringify(attributableReadback(primary)) ===
+          JSON.stringify(attributableReadback(independent)),
+        protected_count_diagnostics: protectedCountDiagnostics(
+          baseline.protected_counts,
+          primary.protected_counts,
+        ),
       },
       "summary.json": summary,
     },

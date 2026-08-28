@@ -372,11 +372,6 @@ export function evaluateCollectibleWave1SetDurableReadbackV1(
       stableJsonWave1SetApplyV1(baseline?.release_controls ?? [])) {
     findings.push("release_controls_changed");
   }
-  findings.push(...compareCollectibleWave1ProtectedCountsV1(
-    baseline?.protected_counts,
-    readback?.protected_counts,
-    { sets: 505 },
-  ));
   return [...new Set(findings)].sort();
 }
 

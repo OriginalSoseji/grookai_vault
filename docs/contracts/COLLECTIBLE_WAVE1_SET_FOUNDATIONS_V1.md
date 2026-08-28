@@ -80,5 +80,13 @@ zero changes in cards, identities, printings, mappings, images, pricing,
 publication, Storage, or Vault data. A second read-only connection must repeat
 the verification.
 
+Global production table counts are retained as concurrency diagnostics, not as
+post-commit pass/fail assertions. The collateral-write proof is attributable:
+the frozen migration bytes permit only the exact `public.sets` insert, the CLI
+must offer and apply only that migration, target-dependent rows must remain
+zero, release controls must remain exact, and both read-only readbacks must
+reconcile the complete target state. This prevents legitimate concurrent Vault,
+Storage, pricing, or ingestion activity from invalidating a successful apply.
+
 Stop after durable apply evidence is permanently checkpointed. No later card,
 image, pricing, publication, or visibility gate is implied by this set apply.

@@ -237,10 +237,10 @@ test("durable validation requires the exact ledger, rows, hidden RLS, and only 5
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ sets: databaseRows.slice(1) }), databaseRows, baseline(),
   ).includes("durable_set_rows_mismatch"));
-  assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
+  assert.deepEqual(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ protected_counts: { sets: 605, card_prints: 201, storage_objects: 300 } }),
     databaseRows, baseline(),
-  ).includes("protected_count_mismatch:card_prints:200:201"));
+  ), []);
   assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
     durable({ rls_visible_set_counts: { anon: 1, authenticated: 0 } }),
     databaseRows, baseline(),
