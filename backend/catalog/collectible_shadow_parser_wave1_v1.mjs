@@ -7,6 +7,8 @@ export const COLLECTIBLE_SHADOW_PARSER_WAVE1_VERSION =
   "COLLECTIBLE_SHADOW_PARSER_WAVE1_V1";
 export const COLLECTIBLE_SHADOW_CANDIDATE_SCHEMA_VERSION =
   "COLLECTIBLE_SHADOW_CANDIDATE_V1";
+export const COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_VERSION =
+  "COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_V1";
 
 const WAVE1_SOURCE_IDS = Object.freeze([
   "yugioh_ygoprodeck_api_v7",
@@ -15,6 +17,10 @@ const WAVE1_SOURCE_IDS = Object.freeze([
 
 function clean(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function unique(values) {
+  return [...new Set(values.filter(Boolean))].sort();
 }
 
 function stableJson(value) {
@@ -153,6 +159,71 @@ export function parseYugiohYgoprodeckCandidatesV1(
     cards_without_printing_evidence: cardsWithoutPrintingEvidence,
     cards_with_unresolved_alternative_artwork: cardsWithUnresolvedAlternativeArtwork,
   });
+}
+
+export function extractYugiohAlternativeArtworkEvidenceV1(
+  payload,
+  sourceEvidenceSha256,
+  candidates,
+) {
+  if (!Array.isArray(payload?.data)) {
+    throw new Error("YGOPRODeck payload must contain a data array");
+  }
+  if (!/^[0-9a-f]{64}$/.test(clean(sourceEvidenceSha256))) {
+    throw new Error("alternative-artwork evidence requires a source response SHA-256");
+  }
+  if (!Array.isArray(candidates)) {
+    throw new Error("alternative-artwork evidence requires parsed candidates");
+  }
+
+  const candidateIdsBySourceCard = new Map();
+  for (const candidate of candidates) {
+    const sourceCardId = clean(candidate?.identity_coordinates?.source_card_id);
+    if (!sourceCardId) continue;
+    if (!candidateIdsBySourceCard.has(sourceCardId)) {
+      candidateIdsBySourceCard.set(sourceCardId, []);
+    }
+    candidateIdsBySourceCard.get(sourceCardId).push(candidate.shadow_candidate_id);
+  }
+
+  const rows = [];
+  for (const card of payload.data) {
+    const images = Array.isArray(card?.card_images) ? card.card_images : [];
+    if (images.length <= 1) continue;
+    const sourceCardId = clean(card?.id);
+    const sourceImageIds = unique(images.map((image) => clean(image?.id)));
+    if (!sourceCardId) {
+      throw new Error("alternative-artwork source card is missing its source ID");
+    }
+    if (sourceImageIds.length !== images.length) {
+      throw new Error(
+        `alternative-artwork source card ${sourceCardId} lacks distinct stable image IDs`,
+      );
+    }
+    const printingCandidateIds = unique(candidateIdsBySourceCard.get(sourceCardId) ?? []);
+    rows.push({
+      variant_evidence_version: COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_VERSION,
+      variant_evidence_id:
+        `yugioh_ygoprodeck_api_v7:${sourceCardId}:alternative_artwork`,
+      source_id: "yugioh_ygoprodeck_api_v7",
+      source_card_id: sourceCardId,
+      source_evidence_sha256: sourceEvidenceSha256,
+      source_image_ids: sourceImageIds,
+      source_image_count: sourceImageIds.length,
+      source_printing_candidate_ids: printingCandidateIds,
+      source_printing_candidate_count: printingCandidateIds.length,
+      candidate_scope_status: printingCandidateIds.length > 0
+        ? "source_card_printing_candidates_identified"
+        : "source_card_has_no_printing_candidates",
+      mapping_status: "unresolved_artwork_to_printing",
+      canonical_authority: false,
+      write_authority: false,
+      image_content_accessed: false,
+      image_republication_authorized: false,
+    });
+  }
+  return rows.sort((left, right) =>
+    left.variant_evidence_id.localeCompare(right.variant_evidence_id));
 }
 
 export function parseGundamGcgApiCandidatesV1(

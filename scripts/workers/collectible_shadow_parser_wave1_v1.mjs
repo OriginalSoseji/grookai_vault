@@ -7,7 +7,9 @@ import { fileURLToPath } from "node:url";
 
 import {
   COLLECTIBLE_SHADOW_PARSER_WAVE1_VERSION,
+  COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_VERSION,
   collectibleShadowParserWave1SourcesV1,
+  extractYugiohAlternativeArtworkEvidenceV1,
   parseGundamGcgApiCandidatesV1,
   parseYugiohYgoprodeckCandidatesV1,
 } from "../../backend/catalog/collectible_shadow_parser_wave1_v1.mjs";
@@ -15,10 +17,27 @@ import {
 const DEFAULT_MAX_RESPONSE_BYTES = 128 * 1024 * 1024;
 const DEFAULT_REQUEST_TIMEOUT_MS = 60_000;
 const USER_AGENT = "GrookaiVaultShadowParser/1.0 (+https://grookai.com)";
+const FROZEN_YUGIOH_ALT_ART_SOURCE_SHA256 =
+  "883c6da2281e2594608c04b21280ae10bd94d0f5d642269760f698314b337a97";
+const FROZEN_YUGIOH_ALT_ART_SOURCE_CARD_COUNT = 124;
+const FIXTURE_YUGIOH_ALT_ART_SOURCE_SHA256 =
+  "67e6c5579148eb9c8bd299c4f78c96a8a955175ded920f31090432596fd070b8";
+const FIXTURE_YUGIOH_ALT_ART_SOURCE_CARD_COUNT = 1;
+
+function expectedYugiohAltArtInput(options) {
+  return options.fixtureDir ? {
+    sourceSha256: FIXTURE_YUGIOH_ALT_ART_SOURCE_SHA256,
+    sourceCardCount: FIXTURE_YUGIOH_ALT_ART_SOURCE_CARD_COUNT,
+  } : {
+    sourceSha256: FROZEN_YUGIOH_ALT_ART_SOURCE_SHA256,
+    sourceCardCount: FROZEN_YUGIOH_ALT_ART_SOURCE_CARD_COUNT,
+  };
+}
 
 function parseArgs(argv) {
   const options = {
     expectedHeadSha: process.env.GITHUB_SHA ?? null,
+    emitYugiohAltArtIndex: false,
     fixtureDir: null,
     maxResponseBytes: DEFAULT_MAX_RESPONSE_BYTES,
     outDir: null,
@@ -28,6 +47,8 @@ function parseArgs(argv) {
   for (const token of argv) {
     if (token.startsWith("--expected-head-sha=")) {
       options.expectedHeadSha = token.slice(20);
+    } else if (token === "--emit-yugioh-alt-art-index") {
+      options.emitYugiohAltArtIndex = true;
     } else if (token.startsWith("--fixture-dir=")) {
       options.fixtureDir = path.resolve(token.slice(14));
     } else if (token.startsWith("--max-response-bytes=")) {
@@ -56,6 +77,13 @@ function parseArgs(argv) {
   }
   if (options.expectedHeadSha && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha)) {
     throw new Error("--expected-head-sha must be a lowercase 40-character SHA");
+  }
+  if (options.emitYugiohAltArtIndex &&
+      (options.sourceIds?.size !== 1 ||
+       !options.sourceIds.has("yugioh_ygoprodeck_api_v7"))) {
+    throw new Error(
+      "--emit-yugioh-alt-art-index requires --source-ids=yugioh_ygoprodeck_api_v7",
+    );
   }
   return options;
 }
@@ -99,7 +127,15 @@ function serializeError(error) {
     code: error?.code ?? null,
     cause_message: error?.cause?.message ?? null,
     cause_code: error?.cause?.code ?? null,
+    evidence: error?.evidence ?? null,
   };
+}
+
+function refinementFailure(message, snapshots, evidence) {
+  const error = new Error(message);
+  error.snapshots = snapshots;
+  error.evidence = evidence;
+  return error;
 }
 
 async function readBoundedResponse(response, maxResponseBytes) {
@@ -260,6 +296,37 @@ async function runYugioh(binding, options) {
     cards.value,
     cards.snapshot.response_sha256,
   );
+  const sourceSnapshots = [manifest.snapshot, sets.snapshot, cards.snapshot];
+  let alternativeArtworkEvidence = [];
+  if (options.emitYugiohAltArtIndex) {
+    const expectedInput = expectedYugiohAltArtInput(options);
+    if (cards.snapshot.response_sha256 !== expectedInput.sourceSha256) {
+      throw refinementFailure(
+        "YGOPRODeck source response drifted from the frozen refinement input",
+        sourceSnapshots,
+        {
+          expected_source_sha256: expectedInput.sourceSha256,
+          observed_source_sha256: cards.snapshot.response_sha256,
+        },
+      );
+    }
+    alternativeArtworkEvidence = extractYugiohAlternativeArtworkEvidenceV1(
+      cards.value,
+      cards.snapshot.response_sha256,
+      parsed.candidates,
+    );
+    if (alternativeArtworkEvidence.length !== expectedInput.sourceCardCount) {
+      throw refinementFailure(
+        "YGOPRODeck alternative-artwork source-card count drifted",
+        sourceSnapshots,
+        {
+          expected_source_card_count: expectedInput.sourceCardCount,
+          observed_source_card_count: alternativeArtworkEvidence.length,
+          source_sha256: cards.snapshot.response_sha256,
+        },
+      );
+    }
+  }
   const expectedSetNames = unique((Array.isArray(sets.value) ? sets.value : [])
     .map((row) => String(row?.set_name ?? "").trim()));
   const observedSetNames = unique(parsed.candidates
@@ -271,7 +338,8 @@ async function runYugioh(binding, options) {
     status: parsed.failures.length === 0 ? "parsed" : "parsed_with_failures",
     candidates: parsed.candidates,
     failures: parsed.failures.map((row) => ({ source_id: prefix, ...row })),
-    snapshots: [manifest.snapshot, sets.snapshot, cards.snapshot],
+    alternative_artwork_evidence: alternativeArtworkEvidence,
+    snapshots: sourceSnapshots,
     completeness: {
       source_id: prefix,
       database_version: manifest.value?.[0]?.database_version ?? null,
@@ -283,6 +351,15 @@ async function runYugioh(binding, options) {
       unresolved_variant_classes: {
         alternative_artwork_mapping: parsed.metrics.cards_with_unresolved_alternative_artwork,
       },
+      alternative_artwork_row_addressability: options.emitYugiohAltArtIndex ? {
+        evidence_version: COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_VERSION,
+        source_card_count: alternativeArtworkEvidence.length,
+        printing_candidate_reference_count: alternativeArtworkEvidence.reduce(
+          (sum, row) => sum + row.source_printing_candidate_count, 0),
+        source_cards_without_printing_candidates: alternativeArtworkEvidence.filter(
+          (row) => row.source_printing_candidate_count === 0).length,
+        artwork_to_printing_mapping_status: "unresolved",
+      } : null,
       review_status: parsed.failures.length === 0 && missingSets.length === 0
         ? "likely_complete"
         : "needs_review",
@@ -370,12 +447,13 @@ async function runSource(binding, options) {
       source_id: binding.source.source_id,
       status: "source_failed",
       candidates: [],
+      alternative_artwork_evidence: [],
       failures: [{
         source_id: binding.source.source_id,
         failure_class: "source_or_parser_failure",
         error: serializeError(error),
       }],
-      snapshots: [],
+      snapshots: Array.isArray(error?.snapshots) ? error.snapshots : [],
       completeness: {
         source_id: binding.source.source_id,
         review_status: "source_failed",
@@ -415,12 +493,20 @@ async function main() {
     canonical_writes: false,
     writer_dispatches: false,
   };
+  const expectedAltArtInput = expectedYugiohAltArtInput(options);
   const runPlan = {
     version: COLLECTIBLE_SHADOW_PARSER_WAVE1_VERSION,
     mode: "shadow-only",
     expected_head_sha: options.expectedHeadSha,
     actual_head_sha: actualHeadSha,
     fixture_mode: Boolean(options.fixtureDir),
+    emit_yugioh_alt_art_index: options.emitYugiohAltArtIndex,
+    alt_art_refinement: options.emitYugiohAltArtIndex ? {
+      version: COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_VERSION,
+      expected_source_sha256: expectedAltArtInput.sourceSha256,
+      expected_source_card_count: expectedAltArtInput.sourceCardCount,
+      mapping_authority: "unresolved_artwork_to_printing",
+    } : null,
     max_response_bytes: options.maxResponseBytes,
     request_timeout_ms: options.requestTimeoutMs,
     sources: selected.map((binding) => ({
@@ -447,6 +533,10 @@ async function main() {
   const candidates = results.flatMap((row) => row.candidates)
     .sort((left, right) => left.shadow_candidate_id.localeCompare(right.shadow_candidate_id));
   const failures = results.flatMap((row) => row.failures);
+  const alternativeArtworkEvidence = results.flatMap(
+    (row) => row.alternative_artwork_evidence ?? [],
+  ).sort((left, right) =>
+    left.variant_evidence_id.localeCompare(right.variant_evidence_id));
   const snapshots = results.flatMap((row) => row.snapshots);
   const completeness = results.map((row) => row.completeness);
   const duplicateIds = candidates.map((row) => row.shadow_candidate_id)
@@ -470,17 +560,29 @@ async function main() {
     candidate_count: candidates.length,
     validation_failure_count: failures.length,
     review_source_count: reviewSources.length,
+    alternative_artwork_source_card_count: alternativeArtworkEvidence.length,
+    alternative_artwork_printing_candidate_reference_count:
+      alternativeArtworkEvidence.reduce(
+        (sum, row) => sum + row.source_printing_candidate_count, 0),
     source_statuses: Object.fromEntries(results.map((row) => [row.source_id, row.status])),
     boundaries,
     completed_at: new Date().toISOString(),
   };
-  for (const [name, value, writer] of [
+  const outputArtifacts = [
     ["candidate_index.jsonl", candidates, writeJsonl],
     ["validation_failures.jsonl", failures, writeJsonl],
     ["source_snapshots.json", snapshots, writeJson],
     ["completeness_report.json", completeness, writeJson],
     ["summary.json", summary, writeJson],
-  ]) {
+  ];
+  if (options.emitYugiohAltArtIndex) {
+    outputArtifacts.splice(1, 0, [
+      "alternative_artwork_index.jsonl",
+      alternativeArtworkEvidence,
+      writeJsonl,
+    ]);
+  }
+  for (const [name, value, writer] of outputArtifacts) {
     const bytes = await writer(path.join(options.outDir, name), value);
     artifacts.push({ path: name, bytes: bytes.length, sha256: sha256(bytes) });
   }
@@ -489,6 +591,11 @@ async function main() {
     artifacts,
   });
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+  if (options.emitYugiohAltArtIndex &&
+      (sourceFailures.length > 0 ||
+       alternativeArtworkEvidence.length !== expectedAltArtInput.sourceCardCount)) {
+    process.exitCode = 1;
+  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
