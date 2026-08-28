@@ -1,0 +1,105 @@
+{
+  "games": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "code": "yugioh",
+      "name": "Yu-Gi-Oh!",
+      "slug": "yu-gi-oh"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "code": "gundam",
+      "name": "Gundam Card Game",
+      "slug": "gundam-card-game"
+    }
+  ],
+  "sets": [
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      "game_id": "11111111-1111-4111-8111-111111111111",
+      "game": "yugioh",
+      "code": "FSA",
+      "name": "Fixture Set Alpha"
+    },
+    {
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2",
+      "game_id": "11111111-1111-4111-8111-111111111111",
+      "game": "yugioh",
+      "code": "FSB",
+      "name": "Fixture Set Beta"
+    },
+    {
+      "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
+      "game_id": "22222222-2222-4222-8222-222222222222",
+      "game": "gundam",
+      "code": "GX01",
+      "name": "Fixture Gundam Set One"
+    }
+  ],
+  "cards": [
+    {
+      "id": "cccccccc-cccc-4ccc-8ccc-ccccccccccc1",
+      "game_id": "11111111-1111-4111-8111-111111111111",
+      "set_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      "set_code": "FSA",
+      "set_name": "Fixture Set Alpha",
+      "name": "Fixture Dragon",
+      "number": "FSA-EN001",
+      "variant_key": "super-rare",
+      "rarity": "Super Rare",
+      "identities": [],
+      "mappings": []
+    },
+    {
+      "id": "cccccccc-cccc-4ccc-8ccc-ccccccccccc2",
+      "game_id": "11111111-1111-4111-8111-111111111111",
+      "set_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+      "set_code": "FSA",
+      "set_name": "Fixture Set Alpha",
+      "name": "Fixture Dragon",
+      "number": "FSA-EN001",
+      "variant_key": "ultra-rare",
+      "rarity": "Ultra Rare",
+      "identities": [],
+      "mappings": []
+    },
+    {
+      "id": "cccccccc-cccc-4ccc-8ccc-ccccccccccc3",
+      "game_id": "11111111-1111-4111-8111-111111111111",
+      "set_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2",
+      "set_code": "FSB",
+      "set_name": "Fixture Set Beta",
+      "name": "Fixture Spell",
+      "number": "FSB-EN002",
+      "variant_key": "rare",
+      "rarity": "Rare",
+      "identities": [],
+      "mappings": [
+        {
+          "source": "yugioh_ygoprodeck_api_v7",
+          "external_id": "1002|FSB-EN002|Rare",
+          "active": true
+        }
+      ]
+    },
+    {
+      "id": "dddddddd-dddd-4ddd-8ddd-ddddddddddd1",
+      "game_id": "22222222-2222-4222-8222-222222222222",
+      "set_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
+      "set_code": "GX01",
+      "set_name": "Fixture Gundam Set One",
+      "name": "Fixture Unit Alpha",
+      "number": "GX01-001",
+      "variant_key": "r",
+      "rarity": "R",
+      "identities": [],
+      "mappings": [
+        {
+          "source": "gcg-api",
+          "external_id": "GX01-001",
+          "active": true
+        }
+      ]
+    }
+  ]
+}
