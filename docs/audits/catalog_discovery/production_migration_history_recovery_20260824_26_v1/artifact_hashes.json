@@ -1,0 +1,14 @@
+{
+  "version": "PRODUCTION_MIGRATION_HISTORY_RECOVERY_20260824_26_V1",
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "production_ledger_manifest.json",
+      "sha256": "8f9b3d01a259219a9986e0483eba2010c05e98034cb049d159573f57629da861"
+    },
+    {
+      "path": "production_schema_readback.json",
+      "sha256": "8d4d876c8da1be922529078710c4f72a2e41a252a5cbcc74376c877a33a911ba"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "artifact_recorded_at": "2026-08-28T01:37:48.7456181Z",
+  "recovery_base_commit": "515d98fb59a467429b3f2fda3f0426e94d36b863",
+  "indexes": [
+    {
+      "name": "card_printings_finish_key_idx",
+      "ready": true,
+      "valid": true,
+      "comment": null,
+      "definition": "CREATE INDEX card_printings_finish_key_idx ON public.card_printings USING btree (finish_key)"
+    },
+    {
+      "name": "card_prints_gv_id_trgm_idx",
+      "ready": true,
+      "valid": true,
+      "comment": "Bounds PostgREST gv_id ILIKE lookups used by canonical image routing and collector search.",
+      "definition": "CREATE INDEX card_prints_gv_id_trgm_idx ON public.card_prints USING gin (gv_id gin_trgm_ops) WHERE (gv_id IS NOT NULL)"
+    },
+    {
+      "name": "market_price_qualification_run_publish_id_idx",
+      "ready": true,
+      "valid": true,
+      "comment": null,
+      "definition": "CREATE INDEX market_price_qualification_run_publish_id_idx ON public.market_price_qualification_decisions USING btree (run_id, id) WHERE ((eligible = true) AND (decision = 'publish'::text) AND (publication_lane = 'current'::text))"
+    },
+    {
+      "name": "tcgcsv_source_artifacts_sync_run_kind_latest_idx",
+      "ready": true,
+      "valid": true,
+      "comment": "Bounds publication provenance lookup to one TCGCSV source run and artifact kind while retaining the latest artifact hash as index-only evidence.",
+      "definition": "CREATE INDEX tcgcsv_source_artifacts_sync_run_kind_latest_idx ON public.tcgcsv_source_artifacts USING btree (sync_run_id, artifact_kind, created_at DESC, id DESC) INCLUDE (sha256)"
+    }
+  ],
+  "ledger_rows": [
+    {
+      "name": "tcgcsv_source_artifact_lookup_performance_v1",
+      "version": "20260824021500",
+      "statement_count": 2
+    },
+    {
+      "name": "tcgplayer_market_snapshot_paging_v1",
+      "version": "20260824033000",
+      "statement_count": 1
+    },
+    {
+      "name": "operations_notification_severity_v2",
+      "version": "20260824043000",
+      "statement_count": 1
+    },
+    {
+      "name": "print_identity_search_candidate_first_v1",
+      "version": "20260824170000",
+      "statement_count": 1
+    },
+    {
+      "name": "catalog_parent_visibility_direct_v1",
+      "version": "20260824173000",
+      "statement_count": 1
+    },
+    {
+      "name": "print_identity_search_bounded_candidates_v1",
+      "version": "20260824174500",
+      "statement_count": 1
+    },
+    {
+      "name": "retire_mee_public_pricing_compatibility_v1",
+      "version": "20260826053000",
+      "statement_count": 1
+    },
+    {
+      "name": "card_prints_gv_id_trgm_performance_v1",
+      "version": "20260826070000",
+      "statement_count": 2
+    }
+  ],
+  "pricing_view": {
+    "acl": "{postgres=arwdDxtm/postgres,service_role=r/postgres}",
+    "comment": "Retired compatibility surface. Production V1 clients must use get_market_pricing_read_model_v1; this view intentionally returns zero rows.",
+    "options": [
+      "security_invoker=true"
+    ],
+    "definition_sha256": "969c17731b9e9111e20b89aac6fbc7850373d192ade4c40a029a4e7f410cf96c",
+    "definition_bytes": 738
+  },
+  "search_function": {
+    "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+    "comment": "PRINT_IDENTITY_SEARCH_BOUNDED_CANDIDATES_V1. Preserves V1 output and release visibility while bounding high-priority names and skipping lower-ranked candidate families only after the requested page is satisfied.",
+    "definition_sha256": "2c98e4b710a177ec922b663d6a7f50162c84c3882c870abc308a373cc79e5613",
+    "definition_bytes": 17069
+  },
+  "latest_migration": "20260826070000",
+  "operations_function": {
+    "acl": "{postgres=X/postgres,service_role=X/postgres}",
+    "comment": null,
+    "definition_sha256": "b31076597c72a597d1fb970d71df3fa491a6fa2ab60b1a5fb4ac6c4c455e6775",
+    "definition_bytes": 3633
+  },
+  "visibility_function": {
+    "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+    "comment": "CATALOG_PARENT_VISIBILITY_DIRECT_V1. Equivalent fail-closed Pokemon/public/signed-in release rule resolved without nested helper calls.",
+    "definition_sha256": "7a0ab2e64eaba72bd6f8ebd8013059fe3473c26ce8a89e84fa4a7e668ce268f6",
+    "definition_bytes": 818
+  },
+  "operations_constraint": {
+    "comment": "Private operations severity vocabulary: critical=SEV-1, high=SEV-2, warning=SEV-3, info=successful or forecast notice.",
+    "validated": true,
+    "definition": "CHECK ((severity = ANY (ARRAY['critical'::text, 'high'::text, 'warning'::text, 'info'::text])))"
+  },
+  "transaction_read_only": true,
+  "database_writes": false
+}
