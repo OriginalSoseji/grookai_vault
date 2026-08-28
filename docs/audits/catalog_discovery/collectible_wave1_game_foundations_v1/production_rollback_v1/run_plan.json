@@ -1,0 +1,44 @@
+{
+  "version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_ROLLBACK_V1",
+  "recorded_at": "2026-08-28T02:47:40.705Z",
+  "repository": {
+    "branch": "feature/collectible-wave1-game-foundations-v1",
+    "commit_sha": "a45742a156b5192449483b76df476a2a1f27ea12"
+  },
+  "migration": {
+    "version": "20260828024500",
+    "path": "supabase/migrations/20260828024500_collectible_wave1_game_foundations_v1.sql",
+    "sha256": "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23",
+    "statement_count": 6
+  },
+  "exact_scope": {
+    "games": [
+      {
+        "id": "59474f00-0000-4000-8000-000000000001",
+        "code": "yugioh",
+        "name": "Yu-Gi-Oh!",
+        "slug": "yu-gi-oh"
+      },
+      {
+        "id": "47434700-0000-4000-8000-000000000001",
+        "code": "gundam",
+        "name": "Gundam Card Game",
+        "slug": "gundam-card-game"
+      }
+    ],
+    "release_status": "hidden",
+    "release_version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1",
+    "game_rows": 2,
+    "release_control_rows": 2
+  },
+  "boundaries": {
+    "execution_mode": "production_rollback_only",
+    "durable_database_writes": 0,
+    "migration_ledger_writes": 0,
+    "set_card_identity_printing_mapping_writes": 0,
+    "storage_image_pricing_publication_vault_writes": 0,
+    "identity_domain_constraint_changes": 0,
+    "app_visibility_enabled": false
+  },
+  "run_plan_fingerprint_sha256": "832173f4ec0378b14ea52ccb56da95cd78ded2f80fd16f2707894a8effad9edf"
+}
