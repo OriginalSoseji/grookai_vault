@@ -41,6 +41,8 @@ const FROZEN_RECONCILIATION_CANDIDATE_SHA256 =
   "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f";
 const FROZEN_RECONCILIATION_ROWS_SHA256 =
   "74cd15a1912ffce9b11c8622ffdd4f9597af27f6072fe630fa445423fb2936cd";
+const EMPTY_SHA256 =
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 const REQUIRED_APPLY_ARTIFACT_PATHS = [
   "apply_execution.json",
   "apply_plan.json",
@@ -272,7 +274,9 @@ test("durable apply artifacts reconcile to the authorized four-row foundation", 
       artifact.sha256,
       artifact.artifact_path,
     );
-    assert.doesNotMatch(body.toString("utf8"), /(?:postgres(?:ql)?:\/\/|password|SUPABASE_DB_URL)/i);
+    for (const credentialPattern of APPLY_CREDENTIAL_PATTERNS) {
+      assert.doesNotMatch(body.toString("utf8"), credentialPattern);
+    }
   }
 
   const planBody = fs.readFileSync(path.join(APPLY_AUDIT_DIR, "apply_plan.json"));
@@ -410,6 +414,22 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
         path: artifactPath,
         bytes: 24992246,
         sha256: FROZEN_RECONCILIATION_ROWS_SHA256,
+      },
+    );
+  }
+  for (const artifactPath of [
+    "exact_existing_identity.jsonl",
+    "ambiguous_candidates.jsonl",
+    "conflicting_candidates.jsonl",
+    "blocked_candidates.jsonl",
+    "unresolved_variants.jsonl",
+  ]) {
+    assert.deepEqual(
+      remoteArtifactHashes.artifacts.find((artifact) => artifact.path === artifactPath),
+      {
+        path: artifactPath,
+        bytes: 0,
+        sha256: EMPTY_SHA256,
       },
     );
   }
