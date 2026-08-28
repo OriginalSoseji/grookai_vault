@@ -1,0 +1,40 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "artifact_path": "database_preflight.json",
+      "bytes": 1771,
+      "sha256": "e7736b4cd86d989e1c75a400350b81b1d4fa2ab8d014f0712f0256f5e9cd12fe"
+    },
+    {
+      "artifact_path": "excluded_review_rows.jsonl",
+      "bytes": 180653,
+      "sha256": "ac138a3542d15c02054c5deacff4c3fa67559df5889ef155cd6f3c2fc2a53f53"
+    },
+    {
+      "artifact_path": "REPORT.md",
+      "bytes": 489,
+      "sha256": "ded82c3936d774ff121f2c57ed5fac64d32d5de091118776b7ae14256a0aa2aa"
+    },
+    {
+      "artifact_path": "rollback_contract.json",
+      "bytes": 33012,
+      "sha256": "5b59010507a7f81184b66b7967d93f5339e57879c8fdd64f188168352750e1d0"
+    },
+    {
+      "artifact_path": "set_apply_payload.jsonl",
+      "bytes": 570890,
+      "sha256": "2c07787bf965909a2b9f0a6296e45d6a2407c7faf28d70069c23a305beec7144"
+    },
+    {
+      "artifact_path": "summary.json",
+      "bytes": 1159,
+      "sha256": "91f8d9b0d6aa6a352344b8d22661040de673ed99e708f494433c7da23dbf8c7f"
+    },
+    {
+      "artifact_path": "validation_failures.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

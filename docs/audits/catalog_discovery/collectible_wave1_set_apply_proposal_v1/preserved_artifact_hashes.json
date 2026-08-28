@@ -1,0 +1,45 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "artifact_path": "REPORT.md",
+      "bytes": 3105,
+      "sha256": "6613ecbaceeccbca9427f72c32e06050ed8743554e3698313d87c09de3f53511"
+    },
+    {
+      "artifact_path": "database_preflight.json",
+      "bytes": 1771,
+      "sha256": "e7736b4cd86d989e1c75a400350b81b1d4fa2ab8d014f0712f0256f5e9cd12fe"
+    },
+    {
+      "artifact_path": "provenance.json",
+      "bytes": 1134,
+      "sha256": "ddf439e6ab0408fbf7ff130620c46035a752d25de80c4b835716d11089920b94"
+    },
+    {
+      "artifact_path": "reconciliation_report.json",
+      "bytes": 1214,
+      "sha256": "b5ce33157a38fbc7de8fe74d612d9420f8239758a53e2b5c75de716793c2c433"
+    },
+    {
+      "artifact_path": "remote_artifact_hashes.json",
+      "bytes": 1198,
+      "sha256": "afa7e6ce6d2e1019bac9583012a613ecc8c36a63ad0d005f7b7de667e2554742"
+    },
+    {
+      "artifact_path": "run_plan.json",
+      "bytes": 2175,
+      "sha256": "92033fa7118a98fe1ad7d4108135e410947163d535a728d4a802f8f903a70964"
+    },
+    {
+      "artifact_path": "set_apply_payload.jsonl",
+      "bytes": 570890,
+      "sha256": "2c07787bf965909a2b9f0a6296e45d6a2407c7faf28d70069c23a305beec7144"
+    },
+    {
+      "artifact_path": "summary.json",
+      "bytes": 1159,
+      "sha256": "91f8d9b0d6aa6a352344b8d22661040de673ed99e708f494433c7da23dbf8c7f"
+    }
+  ]
+}
