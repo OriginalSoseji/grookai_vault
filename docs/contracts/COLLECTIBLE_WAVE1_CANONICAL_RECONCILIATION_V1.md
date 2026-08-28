@@ -63,6 +63,9 @@ Each candidate receives exactly one primary decision:
 2. `exact_existing_identity`
    - One active source mapping and matching coordinates, or one exact
      game/set/number/name/rarity coordinate owner.
+   - Active `card_print_identity` coordinates are authoritative. Legacy parent
+     card fields are a compatibility fallback only when no complete active
+     identity coordinate exists.
 3. `ambiguous_candidate`
    - Multiple game foundations, source-mapping owners, sets, or canonical
      coordinate owners could satisfy the claim.

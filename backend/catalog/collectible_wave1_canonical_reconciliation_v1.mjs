@@ -67,12 +67,34 @@ function compoundKey(...values) {
   return values.map((value) => text(value)).join("\u0000");
 }
 
+function canonicalCardCoordinates(card) {
+  const activeIdentities = (card.identities ?? []).filter((identity) =>
+    identity?.is_active !== false &&
+    text(identity?.set_code_identity) &&
+    text(identity?.printed_number) &&
+    text(identity?.normalized_printed_name));
+  if (activeIdentities.length > 0) {
+    return activeIdentities.map((identity) => ({
+      set_code: identity.set_code_identity,
+      number: identity.printed_number,
+      name: identity.normalized_printed_name,
+    }));
+  }
+  return [{
+    set_code: card.set_code,
+    number: card.number,
+    name: card.name,
+  }];
+}
+
 function buildCanonicalIndex(snapshot) {
   const gamesByAlias = new Map();
   const setsByGameAndCode = new Map();
   const setsByGameAndName = new Map();
   const cardsByGameAndSet = new Map();
   const cardsBySourceMapping = new Map();
+  const setsById = new Map();
+  const indexedSetAliases = new Set();
 
   for (const game of snapshot.games) {
     for (const alias of unique([
@@ -86,9 +108,20 @@ function buildCanonicalIndex(snapshot) {
   for (const set of snapshot.sets) {
     addIndexed(setsByGameAndCode, compoundKey(set.game_id, key(set.code)), set);
     addIndexed(setsByGameAndName, compoundKey(set.game_id, key(set.name)), set);
+    setsById.set(set.id, set);
+    indexedSetAliases.add(compoundKey(set.game_id, key(set.code), set.id));
   }
   for (const card of snapshot.cards) {
     addIndexed(cardsByGameAndSet, compoundKey(card.game_id, card.set_id), card);
+    const canonicalSet = setsById.get(card.set_id);
+    for (const coordinates of canonicalCardCoordinates(card)) {
+      const alias = key(coordinates.set_code);
+      const aliasMarker = compoundKey(card.game_id, alias, card.set_id);
+      if (alias && canonicalSet && !indexedSetAliases.has(aliasMarker)) {
+        addIndexed(setsByGameAndCode, compoundKey(card.game_id, alias), canonicalSet);
+        indexedSetAliases.add(aliasMarker);
+      }
+    }
     for (const mapping of card.mappings ?? []) {
       if (mapping.active === false) continue;
       addIndexed(cardsBySourceMapping, compoundKey(
@@ -110,15 +143,19 @@ function buildCanonicalIndex(snapshot) {
 function cardSetMatches(candidate, canonicalCard) {
   const coordinates = candidate.identity_coordinates ?? {};
   const sourceSetCode = key(coordinates.set_code);
-  if (sourceSetCode) return sourceSetCode === key(canonicalCard.set_code);
+  if (sourceSetCode) {
+    return canonicalCardCoordinates(canonicalCard).some((row) =>
+      sourceSetCode === key(row.set_code));
+  }
   return key(coordinates.set_or_product) === key(canonicalCard.set_name);
 }
 
 function cardCoordinatesMatch(candidate, canonicalCard) {
   const coordinates = candidate.identity_coordinates ?? {};
   return cardSetMatches(candidate, canonicalCard) &&
-    numberKey(coordinates.collector_number) === numberKey(canonicalCard.number) &&
-    key(coordinates.card_name) === key(canonicalCard.name) &&
+    canonicalCardCoordinates(canonicalCard).some((row) =>
+      numberKey(coordinates.collector_number) === numberKey(row.number) &&
+      key(coordinates.card_name) === key(row.name)) &&
     sameOptional(coordinates.rarity, canonicalCard.rarity);
 }
 
@@ -294,9 +331,12 @@ function reconcileCandidate(candidate, snapshot, index) {
     index.cardsByGameAndSet.get(compoundKey(foundations[0].id, set.id)) ?? []);
   const coordinates = candidate.identity_coordinates;
   const numberMatches = cardsInSet.filter((card) =>
-    numberKey(card.number) === numberKey(coordinates.collector_number));
+    canonicalCardCoordinates(card).some((row) =>
+      numberKey(row.number) === numberKey(coordinates.collector_number)));
   const nameAndNumberMatches = numberMatches.filter((card) =>
-    key(card.name) === key(coordinates.card_name));
+    canonicalCardCoordinates(card).some((row) =>
+      numberKey(row.number) === numberKey(coordinates.collector_number) &&
+      key(row.name) === key(coordinates.card_name)));
   const exactMatches = nameAndNumberMatches.filter((card) =>
     sameOptional(coordinates.rarity, card.rarity));
 

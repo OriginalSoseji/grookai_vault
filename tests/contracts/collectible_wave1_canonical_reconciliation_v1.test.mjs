@@ -115,6 +115,37 @@ test("exact mapping plus exact coordinates resolves one canonical identity", () 
   assert.equal(row.write_authority, false);
 });
 
+test("active identity coordinates are authoritative with parent fallback only", () => {
+  const snapshot = canonicalSnapshot();
+  const canonical = snapshot.cards.find((row) => row.id ===
+    "dddddddd-dddd-4ddd-8ddd-ddddddddddd1");
+  canonical.name = "Legacy Parent Name";
+  canonical.number = "LEGACY-001";
+  canonical.set_code = "LEGACY";
+  canonical.identities = [{
+    identity_domain: "gundam_card",
+    set_code_identity: "GX01",
+    printed_number: "GX01-001",
+    normalized_printed_name: "fixture unit alpha",
+    is_active: true,
+  }];
+
+  const exact = reconcileCollectibleCandidateV1(candidate({
+    source_candidate_id: "unmapped-active-identity",
+  }), snapshot);
+  assert.equal(exact.decision, "exact_existing_identity");
+  assert.deepEqual(exact.reason_codes, ["exact_canonical_coordinates"]);
+
+  canonical.name = "Fixture Unit Alpha";
+  canonical.number = "GX01-001";
+  canonical.set_code = "GX01";
+  canonical.identities[0].printed_number = "GX01-099";
+  const legacyParentMustNotMatch = reconcileCollectibleCandidateV1(candidate({
+    source_candidate_id: "unmapped-parent-fallback",
+  }), snapshot);
+  assert.equal(legacyParentMustNotMatch.decision, "new_candidate");
+});
+
 test("missing game foundation blocks rather than creating a false match", () => {
   const snapshot = canonicalSnapshot();
   const removedGameId = snapshot.games.find((row) => row.code === "gundam").id;
