@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-08-28 One Piece OP16/OP17 Production Closure V1](./2026-08-28_ONE_PIECE_OP16_OP17_PRODUCTION_CLOSURE_V1.md)
 - [2026-08-28 Collectible Wave 1 Set Foundations Apply V1](./2026-08-28_COLLECTIBLE_WAVE1_SET_FOUNDATIONS_APPLY_V1.md)
 - [2026-08-28 Collectible Wave 1 Set Foundations Rollback V1](./2026-08-28_COLLECTIBLE_WAVE1_SET_FOUNDATIONS_ROLLBACK_V1.md)
 - [2026-08-28 Collectible Wave 1 Set Apply Proposal V1](./2026-08-28_COLLECTIBLE_WAVE1_SET_APPLY_PROPOSAL_V1.md)
