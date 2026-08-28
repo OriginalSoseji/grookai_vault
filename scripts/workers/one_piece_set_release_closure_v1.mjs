@@ -16,6 +16,7 @@ import {
   normalizeOnePieceSetCodeV1,
   ONE_PIECE_SET_IMAGE_BUCKET,
   ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
+  resolveOnePieceGovernedExternalExactImageV1,
   resolveOnePieceOfficialBaseImageV1,
   validateOnePieceSetImagePointersV1,
 } from "../../backend/catalog/one_piece_set_release_closure_v1.mjs";
@@ -295,6 +296,8 @@ function imageCandidates(snapshot) {
         row,
         snapshot.official?.records,
       ),
+      governed_external_image:
+        resolveOnePieceGovernedExternalExactImageV1(row),
     }));
 }
 
@@ -337,6 +340,16 @@ function imageUrls(row) {
       url: row.official_base_image.image_url,
     });
   }
+  if (row.governed_external_image) {
+    candidates.push({
+      role: "governed_external_exact_product",
+      authority: "verified_external_exact_product",
+      hosts: ["www.tcgintel.app"],
+      url: row.governed_external_image.download_url,
+      evidence_url: row.governed_external_image.evidence_url,
+      expected_sha256: row.governed_external_image.expected_sha256,
+    });
+  }
   return candidates.filter((candidate, index, values) =>
     values.findIndex((other) => other.url === candidate.url) === index);
 }
@@ -364,6 +377,9 @@ async function downloadImage(row) {
       const buffer = await responseBuffer(response);
       const image = inspectOnePieceImage(buffer, response.headers.get("content-type"));
       if (!image.valid_image) throw new Error(image.diagnostics.join(","));
+      if (candidate.expected_sha256 && image.sha256 !== candidate.expected_sha256) {
+        throw new Error(`expected_hash_mismatch:${image.sha256}`);
+      }
       return {
         buffer,
         image: {
@@ -372,6 +388,8 @@ async function downloadImage(row) {
           source_authority: candidate.authority,
           source_download_url: candidate.url,
           source_final_url: response.url,
+          source_evidence_url: candidate.evidence_url ?? null,
+          source_expected_sha256: candidate.expected_sha256 ?? null,
         },
       };
     } catch (error) {
