@@ -124,6 +124,15 @@ test("official base artwork requires exact base product identity", () => {
     row({ source_product_name: "Card (Alternate Art)" }), records,
   ).status, "not_exact_base_product_name");
   assert.equal(resolveOnePieceOfficialBaseImageV1(
+    row({ source_product_name: "Card (001)" }), records,
+  ).product_name_support, "exact_canonical_name_plus_printed_serial");
+  assert.equal(resolveOnePieceOfficialBaseImageV1(
+    row({ source_product_name: "Card (002)" }), records,
+  ).status, "not_exact_base_product_name");
+  assert.equal(resolveOnePieceOfficialBaseImageV1(
+    row({ source_product_name: "Card (001) (Alternate Art)" }), records,
+  ).status, "not_exact_base_product_name");
+  assert.equal(resolveOnePieceOfficialBaseImageV1(
     row(), [...records, { ...records[0], image_url: "https://example.test/2.png" }],
   ).status, "official_base_image_ambiguous");
 });

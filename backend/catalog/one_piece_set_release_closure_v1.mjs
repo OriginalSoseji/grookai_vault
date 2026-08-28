@@ -123,7 +123,13 @@ export function resolveOnePieceOfficialBaseImageV1(row, officialRecords) {
     row?.source_product_name,
   );
   const canonicalName = normalizeOnePieceOfficialNameV1(row?.name);
-  if (!sourceName || sourceName !== canonicalName) {
+  const printedSerial = String(row?.number ?? "").match(/-(\d{3})$/)?.[1];
+  const productNameSupport = sourceName === canonicalName
+    ? "exact_canonical_name"
+    : printedSerial && sourceName === `${canonicalName} ${printedSerial}`
+      ? "exact_canonical_name_plus_printed_serial"
+      : null;
+  if (!sourceName || !productNameSupport) {
     return { status: "not_exact_base_product_name", image_url: null };
   }
   const matches = (officialRecords ?? []).filter((record) =>
@@ -143,6 +149,7 @@ export function resolveOnePieceOfficialBaseImageV1(row, officialRecords) {
     image_url: matches[0].image_url,
     official_variant_id: matches[0].official_variant_id,
     source_url: matches[0].source_url,
+    product_name_support: productNameSupport,
   };
 }
 
