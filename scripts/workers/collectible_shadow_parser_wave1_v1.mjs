@@ -127,7 +127,15 @@ function serializeError(error) {
     code: error?.code ?? null,
     cause_message: error?.cause?.message ?? null,
     cause_code: error?.cause?.code ?? null,
+    evidence: error?.evidence ?? null,
   };
+}
+
+function refinementFailure(message, snapshots, evidence) {
+  const error = new Error(message);
+  error.snapshots = snapshots;
+  error.evidence = evidence;
+  return error;
 }
 
 async function readBoundedResponse(response, maxResponseBytes) {
@@ -288,11 +296,19 @@ async function runYugioh(binding, options) {
     cards.value,
     cards.snapshot.response_sha256,
   );
+  const sourceSnapshots = [manifest.snapshot, sets.snapshot, cards.snapshot];
   let alternativeArtworkEvidence = [];
   if (options.emitYugiohAltArtIndex) {
     const expectedInput = expectedYugiohAltArtInput(options);
     if (cards.snapshot.response_sha256 !== expectedInput.sourceSha256) {
-      throw new Error("YGOPRODeck source response drifted from the frozen refinement input");
+      throw refinementFailure(
+        "YGOPRODeck source response drifted from the frozen refinement input",
+        sourceSnapshots,
+        {
+          expected_source_sha256: expectedInput.sourceSha256,
+          observed_source_sha256: cards.snapshot.response_sha256,
+        },
+      );
     }
     alternativeArtworkEvidence = extractYugiohAlternativeArtworkEvidenceV1(
       cards.value,
@@ -300,7 +316,15 @@ async function runYugioh(binding, options) {
       parsed.candidates,
     );
     if (alternativeArtworkEvidence.length !== expectedInput.sourceCardCount) {
-      throw new Error("YGOPRODeck alternative-artwork source-card count drifted");
+      throw refinementFailure(
+        "YGOPRODeck alternative-artwork source-card count drifted",
+        sourceSnapshots,
+        {
+          expected_source_card_count: expectedInput.sourceCardCount,
+          observed_source_card_count: alternativeArtworkEvidence.length,
+          source_sha256: cards.snapshot.response_sha256,
+        },
+      );
     }
   }
   const expectedSetNames = unique((Array.isArray(sets.value) ? sets.value : [])
@@ -315,7 +339,7 @@ async function runYugioh(binding, options) {
     candidates: parsed.candidates,
     failures: parsed.failures.map((row) => ({ source_id: prefix, ...row })),
     alternative_artwork_evidence: alternativeArtworkEvidence,
-    snapshots: [manifest.snapshot, sets.snapshot, cards.snapshot],
+    snapshots: sourceSnapshots,
     completeness: {
       source_id: prefix,
       database_version: manifest.value?.[0]?.database_version ?? null,
@@ -429,7 +453,7 @@ async function runSource(binding, options) {
         failure_class: "source_or_parser_failure",
         error: serializeError(error),
       }],
-      snapshots: [],
+      snapshots: Array.isArray(error?.snapshots) ? error.snapshots : [],
       completeness: {
         source_id: binding.source.source_id,
         review_status: "source_failed",

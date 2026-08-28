@@ -338,11 +338,26 @@ test("alternative-artwork refinement preserves failure artifacts on source drift
     path.join(output, "validation_failures.jsonl"),
     "utf8",
   ).trim().split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line));
+  const snapshots = JSON.parse(fs.readFileSync(
+    path.join(output, "source_snapshots.json"),
+    "utf8",
+  ));
   assert.equal(summary.status, "completed_with_source_failures");
   assert.equal(summary.failed_source_count, 1);
   assert.equal(summary.alternative_artwork_source_card_count, 0);
   assert.equal(failures.length, 1);
   assert.match(failures[0].error.message, /source response drifted/);
+  assert.equal(snapshots.length, 3);
+  const cardSnapshot = snapshots.find((row) => /cardinfo\.php/.test(row.source_url));
+  assert.match(cardSnapshot.response_sha256, /^[0-9a-f]{64}$/);
+  assert.notEqual(
+    cardSnapshot.response_sha256,
+    failures[0].error.evidence.expected_source_sha256,
+  );
+  assert.equal(
+    cardSnapshot.response_sha256,
+    failures[0].error.evidence.observed_source_sha256,
+  );
   assert.ok(fs.existsSync(path.join(output, "artifact_hashes.json")));
 });
 
