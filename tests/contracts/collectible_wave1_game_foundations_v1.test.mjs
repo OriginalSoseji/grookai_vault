@@ -70,6 +70,10 @@ test("foundation seeds exactly two deterministic hidden games", () => {
   );
   assert.match(MIGRATION, /'hidden'/);
   assert.match(MIGRATION, new RegExp(COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_VERSION));
+  assert.match(
+    MIGRATION,
+    /release_version = 'COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1'[\s\S]*?and evidence = jsonb_build_object/,
+  );
 });
 
 test("migration cannot mutate catalog, identity, product, or user data", () => {
@@ -186,6 +190,10 @@ test("production rollback artifacts reconcile and prove exact restoration", () =
     path.join(AUDIT_DIR, "transaction_proof.json"),
   ));
   assert.equal(summary.status, "rollback_canary_passed_zero_durable_change");
+  assert.equal(
+    summary.migration.sha256,
+    crypto.createHash("sha256").update(MIGRATION).digest("hex"),
+  );
   assert.equal(summary.rollback_succeeded, true);
   assert.equal(summary.findings.length, 0);
   assert.equal(before, after);

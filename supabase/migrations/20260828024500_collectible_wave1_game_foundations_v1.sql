@@ -136,6 +136,13 @@ begin
     where game_code in ('yugioh', 'gundam')
       and release_status = 'hidden'
       and release_version = 'COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1'
+      and evidence = jsonb_build_object(
+        'default', 'fail_closed',
+        'canonical_promotion_authorizes_visibility', false,
+        'price_publication_authorizes_visibility', false,
+        'storage_upload_authorizes_visibility', false,
+        'foundation_scope', 'game_metadata_only'
+      )
   ) <> 2 then
     raise exception 'Wave 1 release controls did not reconcile to exactly two hidden rows';
   end if;
