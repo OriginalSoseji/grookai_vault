@@ -33,6 +33,10 @@ const REVIEWED_LEDGER_STATEMENT_SHA256 = [
   "2ba373b661cc892a598cd87ff447c424ad78612eee271b3594a11a15e72cb087",
   "9505cacb7c710ed17125fcc6cb3669e8ddca6c8cd8af6a31f6b3cd64604c3098",
 ];
+const FROZEN_RECONCILIATION_CANDIDATE_SHA256 =
+  "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f";
+const FROZEN_RECONCILIATION_ROWS_SHA256 =
+  "74cd15a1912ffce9b11c8622ffdd4f9597af27f6072fe630fa445423fb2936cd";
 const RUNNER = fs.readFileSync(path.join(
   ROOT,
   "scripts",
@@ -331,8 +335,23 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   const provenance = JSON.parse(fs.readFileSync(
     path.join(RECONCILIATION_AUDIT_DIR, "provenance.json"),
   ));
+  const remoteArtifactHashes = JSON.parse(fs.readFileSync(
+    path.join(RECONCILIATION_AUDIT_DIR, "remote_artifact_hashes.json"),
+  ));
   assert.equal(provenance.workflow_run_id, 33137460263);
   assert.equal(plan.actual_head_sha, "06ce213cda46e58244102d744a4835358fcc09eb");
+  assert.equal(plan.expected_candidate_sha256, FROZEN_RECONCILIATION_CANDIDATE_SHA256);
+  assert.equal(summary.parser_candidate_sha256, FROZEN_RECONCILIATION_CANDIDATE_SHA256);
+  for (const artifactPath of ["reconciliation_index.jsonl", "new_candidates.jsonl"]) {
+    assert.deepEqual(
+      remoteArtifactHashes.artifacts.find((artifact) => artifact.path === artifactPath),
+      {
+        path: artifactPath,
+        bytes: 24992246,
+        sha256: FROZEN_RECONCILIATION_ROWS_SHA256,
+      },
+    );
+  }
   assert.equal(summary.selected_candidate_count, 46259);
   assert.equal(summary.reconciled_candidate_count, 46259);
   assert.deepEqual(summary.decision_counts, { new_candidate: 46259 });
@@ -344,5 +363,15 @@ test("post-foundation reconciliation reaches all candidates without writes", () 
   assert.equal(summary.database_proof.transaction_read_only, "on");
   assert.equal(summary.database_proof.transaction_ended_with, "rollback");
   assert.equal(summary.database_proof.database_writes, false);
-  assert.ok(Object.values(summary.boundaries).every((value) => value === false));
+  assert.deepEqual(summary.boundaries, {
+    database_writes: false,
+    storage_access: false,
+    storage_writes: false,
+    image_access: false,
+    pricing_access: false,
+    canonical_writes: false,
+    publication_writes: false,
+    vault_access: false,
+    writer_dispatches: false,
+  });
 });
