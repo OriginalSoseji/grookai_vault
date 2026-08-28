@@ -67,13 +67,40 @@ function clientOptions(connectionString, mode) {
 }
 
 async function fetchOfficialSeries(seriesId) {
-  const requestUrl = `https://en.onepiece-cardgame.com/cardlist/?series=${seriesId}`;
-  const response = await fetch(requestUrl, {
-    headers: { "User-Agent": USER_AGENT },
-    signal: AbortSignal.timeout(30_000),
+  const requestUrl = "https://en.onepiece-cardgame.com/cardlist/";
+  const marker = "__GROOKAI_CURL_META__";
+  const response = execFileSync("curl", [
+    "--fail-with-body",
+    "--silent",
+    "--show-error",
+    "--location",
+    "--max-time",
+    "30",
+    "--request",
+    "POST",
+    "--user-agent",
+    USER_AGENT,
+    "--header",
+    "Content-Type: application/x-www-form-urlencoded",
+    "--data-urlencode",
+    `series=${seriesId}`,
+    "--write-out",
+    `\n${marker}%{http_code}\t%{url_effective}`,
+    requestUrl,
+  ], {
+    encoding: "utf8",
+    maxBuffer: 16 * 1024 * 1024,
+    timeout: 35_000,
+    windowsHide: true,
   });
-  if (!response.ok) throw new Error(`Official One Piece series returned HTTP ${response.status}`);
-  const body = await response.text();
+  const markerIndex = response.lastIndexOf(`\n${marker}`);
+  if (markerIndex < 0) throw new Error("Official One Piece response metadata was missing");
+  const body = response.slice(0, markerIndex);
+  const [httpStatusRaw, finalUrl] = response.slice(markerIndex + marker.length + 1).trim().split("\t");
+  const httpStatus = Number(httpStatusRaw);
+  if (httpStatus !== 200) {
+    throw new Error(`Official One Piece series returned HTTP ${httpStatus}`);
+  }
   const series = {
     series_id: String(seriesId),
     label: "incremental official series",
@@ -83,15 +110,17 @@ async function fetchOfficialSeries(seriesId) {
   const records = parseOnePieceOfficialCardListHtmlV1({
     html: body,
     series,
-    finalUrl: response.url,
+    finalUrl,
   });
   return {
     records,
     snapshot: {
+      request_method: "POST",
       request_url: requestUrl,
-      final_url: response.url,
+      request_form: { series: String(seriesId) },
+      final_url: finalUrl,
       fetched_at: new Date().toISOString(),
-      http_status: response.status,
+      http_status: httpStatus,
       byte_size: Buffer.byteLength(body),
       body_sha256: sha256(body),
       parsed_record_count: records.length,
@@ -143,6 +172,10 @@ async function collisionPreflight(client, plan) {
       "select count(*)::int as count from public.sets where id=$1::uuid or (game='one_piece' and upper(code)=$2)",
       [plan.payload.set.id, plan.payload.set.code],
     )).rows[0].count) : 0,
+    set_release_controls: plan.payload.set_release_control ? Number((await client.query(
+      "select count(*)::int as count from public.catalog_set_release_controls where set_id=$1::uuid",
+      [plan.payload.set_release_control.set_id],
+    )).rows[0].count) : 0,
     card_prints: rows.length ? Number((await client.query(`
       select count(*)::int as count from public.card_prints
       where id=any($1::uuid[]) or gv_id=any($2::text[])
@@ -178,6 +211,18 @@ async function insertPlan(client, plan) {
       plan.payload.set.release_date,
       JSON.stringify(plan.payload.set.source),
       plan.payload.set.identity_domain_default,
+    ]);
+  }
+  if (plan.payload.set_release_control) {
+    await client.query(`insert into public.catalog_set_release_controls (
+      set_id,release_status,release_version,evidence,activated_at,activated_by
+    ) values ($1::uuid,$2,$3,$4::jsonb,$5::timestamptz,$6)`, [
+      plan.payload.set_release_control.set_id,
+      plan.payload.set_release_control.release_status,
+      plan.payload.set_release_control.release_version,
+      JSON.stringify(plan.payload.set_release_control.evidence),
+      plan.payload.set_release_control.activated_at,
+      plan.payload.set_release_control.activated_by,
     ]);
   }
   const rows = plan.payload.rows;
@@ -237,6 +282,10 @@ async function readback(client, plan) {
       "select count(*)::int as count from public.sets where id=$1::uuid",
       [plan.payload.set.id],
     )).rows[0].count) : 0,
+    set_release_controls: plan.payload.set_release_control ? Number((await client.query(
+      "select count(*)::int as count from public.catalog_set_release_controls where set_id=$1::uuid and release_status='hidden'",
+      [plan.payload.set_release_control.set_id],
+    )).rows[0].count) : 0,
     card_prints: cardIds.length ? Number((await client.query(
       "select count(*)::int as count from public.card_prints where id=any($1::uuid[])", [cardIds],
     )).rows[0].count) : 0,
@@ -278,6 +327,8 @@ async function main() {
     target: { set_code: options.setCode, official_series_id: options.officialSeriesId },
     boundaries: {
       insert_only: true,
+      set_release_status: "hidden",
+      public_visibility_changes: 0,
       updates: 0,
       deletes: 0,
       child_printings: 0,

@@ -22,6 +22,8 @@ import {
 
 export const ONE_PIECE_INCREMENTAL_PROMOTION_VERSION =
   "ONE_PIECE_INCREMENTAL_CANONICAL_PROMOTION_V1";
+export const ONE_PIECE_INCREMENTAL_SET_RELEASE_VERSION =
+  "ONE_PIECE_INCREMENTAL_SET_RELEASE_CONTROL_V1";
 
 function clean(value) {
   return String(value ?? "").normalize("NFKC").trim();
@@ -62,7 +64,7 @@ function targetIds(productId, identityHash) {
   };
 }
 
-function buildRow(binding, set) {
+function buildRow(binding, set, releaseSetCode, suppressReleaseSetRows) {
   const productId = Number(binding.source_product_id);
   const official = binding.official_authority;
   const variantKey = `tcgplayer_product_${productId}`;
@@ -120,6 +122,10 @@ function buildRow(binding, set) {
     evidence_subject: evidenceSubject,
     evidence_payload: evidencePayload,
   }));
+  const shouldSuppress = set.code !== releaseSetCode || suppressReleaseSetRows;
+  const suppressionReason = set.code !== releaseSetCode
+    ? "cross_set_row_staged_with_hidden_incremental_release"
+    : "existing_set_incremental_row_staged_for_release";
   return {
     source_product_id: productId,
     card_print: {
@@ -143,9 +149,18 @@ function buildRow(binding, set) {
       image_note: "Official and source images remain evidence-only until self-hosting promotion.",
       data_quality_flags: {
         catalog_incremental_promotion: ONE_PIECE_INCREMENTAL_PROMOTION_VERSION,
+        incremental_release_cohort: releaseSetCode,
         exact_printing_children_deferred: true,
         image_acquisition_deferred: true,
         image_pointer_deferred: true,
+        ...(shouldSuppress ? {
+          app_visibility_v1: {
+            status: "suppressed",
+            reason: suppressionReason,
+            release_set_code: releaseSetCode,
+            policy_version: ONE_PIECE_INCREMENTAL_SET_RELEASE_VERSION,
+          },
+        } : {}),
       },
       ai_metadata: {
         canonical_authority: "bandai_official_number_name_plus_tcgplayer_product",
@@ -258,17 +273,32 @@ export function buildOnePieceIncrementalPromotionPlanV1({
       image_policy: "evidence_only_until_self_hosted",
     },
   };
+  const targetSetAlreadyExists = canonicalSetCodes.has(code);
   const rows = releaseEligible ? missingExact.map((row) => {
     const printedSetCode = setCodeFromCardNumber(row.card_number);
     return buildRow(row, printedSetCode === code ? set : {
       id: setId(printedSetCode),
       code: printedSetCode,
-    });
+    }, code, targetSetAlreadyExists);
   }) : [];
   const createSet = releaseEligible && rows.length > 0 &&
-    !new Set(existingSetCodes.map((value) => clean(value).toUpperCase())).has(code);
+    !targetSetAlreadyExists;
   const payload = {
     set: createSet ? set : null,
+    set_release_control: createSet ? {
+      set_id: set.id,
+      release_status: "hidden",
+      release_version: ONE_PIECE_INCREMENTAL_SET_RELEASE_VERSION,
+      evidence: {
+        staged_by: ONE_PIECE_INCREMENTAL_PROMOTION_VERSION,
+        default: "fail_closed",
+        canonical_promotion_authorizes_visibility: false,
+        image_promotion_authorizes_visibility: false,
+        price_publication_authorizes_visibility: false,
+      },
+      activated_at: null,
+      activated_by: null,
+    } : null,
     rows,
   };
   const plan = {
@@ -312,6 +342,7 @@ export function buildOnePieceIncrementalPromotionPlanV1({
     ],
     counts: {
       sets: createSet ? 1 : 0,
+      set_release_controls: createSet ? 1 : 0,
       card_prints: rows.length,
       identities: rows.length,
       evidence: rows.length,
@@ -319,6 +350,10 @@ export function buildOnePieceIncrementalPromotionPlanV1({
     },
     boundaries: {
       insert_only: true,
+      set_release_status: "hidden",
+      public_visibility_changes: 0,
+      staged_rows_suppressed: rows.filter((row) =>
+        row.card_print.data_quality_flags?.app_visibility_v1?.status === "suppressed").length,
       child_printings: 0,
       don_writes: 0,
       sealed_writes: 0,
@@ -339,9 +374,24 @@ export function buildOnePieceIncrementalPromotionPlanV1({
 export function validateOnePieceIncrementalPromotionPlanV1(plan) {
   const findings = [];
   const rows = plan?.payload?.rows ?? [];
+  const releaseSetCode = clean(plan?.target).split(":").at(-1)?.toUpperCase() ?? "";
   if (plan?.version !== ONE_PIECE_INCREMENTAL_PROMOTION_VERSION) findings.push("version_mismatch");
   if (!plan?.release_eligible && (rows.length > 0 || plan?.payload?.set)) {
     findings.push("future_release_contains_writes");
+  }
+  if (plan?.payload?.set) {
+    const control = plan?.payload?.set_release_control;
+    if (!control || control.set_id !== plan.payload.set.id) {
+      findings.push("missing_atomic_set_release_control");
+    } else if (control.release_status !== "hidden" || control.activated_at !== null) {
+      findings.push("new_set_release_control_not_hidden");
+    }
+  } else if (plan?.payload?.set_release_control) {
+    findings.push("orphan_set_release_control");
+  }
+  if (!plan?.payload?.set_release_control && rows.some((row) =>
+    row.card_print.data_quality_flags?.app_visibility_v1?.status !== "suppressed")) {
+    findings.push("existing_set_incremental_row_not_suppressed");
   }
   for (const field of ["source_product_id", "card_print.id", "identity.id"]) {
     const values = rows.map((row) => field.split(".").reduce((value, key) => value?.[key], row));
@@ -358,6 +408,10 @@ export function validateOnePieceIncrementalPromotionPlanV1(plan) {
     }
     if (row.source_evidence.card_print_identity_id !== row.identity.id) {
       findings.push(`identity_evidence_mismatch:${row.source_product_id}`);
+    }
+    if (row.card_print.set_code !== releaseSetCode &&
+        row.card_print.data_quality_flags?.app_visibility_v1?.status !== "suppressed") {
+      findings.push(`cross_set_row_not_suppressed:${row.source_product_id}`);
     }
   }
   if (plan?.payload_fingerprint_sha256 !== sha256(stableJson(plan?.payload))) {

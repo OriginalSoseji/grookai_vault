@@ -70,10 +70,15 @@ test("released One Piece incremental promotion emits only exact number/name bind
   });
   assert.equal(plan.status, "release_eligible");
   assert.equal(plan.counts.sets, 1);
+  assert.equal(plan.counts.set_release_controls, 1);
   assert.equal(plan.counts.card_prints, 1);
   assert.equal(plan.holds.length, 1);
   assert.equal(plan.payload.rows[0].card_print.image_url, null);
   assert.equal(plan.payload.rows[0].source_evidence.source_key, "tcgplayer_bandai_official");
+  assert.equal(plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1, undefined);
+  assert.equal(plan.payload.set_release_control.set_id, plan.payload.set.id);
+  assert.equal(plan.payload.set_release_control.release_status, "hidden");
+  assert.equal(plan.payload.set_release_control.activated_at, null);
   assert.equal(validateOnePieceIncrementalPromotionPlanV1(plan).valid, true);
 });
 
@@ -102,6 +107,40 @@ test("SP products preserve their older printed-set ownership", () => {
   assert.equal(plan.source_counts.cross_set_parent_candidates, 1);
   assert.equal(plan.payload.rows[0].card_print.set_code, "EB04");
   assert.notEqual(plan.payload.rows[0].card_print.set_id, plan.payload.set.id);
+  assert.equal(
+    plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1.status,
+    "suppressed",
+  );
+  assert.equal(
+    plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1.release_set_code,
+    "OP17",
+  );
+  assert.equal(plan.boundaries.staged_rows_suppressed, 1);
+});
+
+test("incremental rows for an already-live target set remain suppressed", () => {
+  const plan = buildOnePieceIncrementalPromotionPlanV1({
+    asOf: "2026-08-28",
+    setCode: "OP17",
+    setName: "The World's Strongest Warriors",
+    releaseDate: "2026-08-28",
+    officialSeriesId: "569117",
+    warehouseProducts: [warehouseProduct({
+      id: 700005,
+      name: "Monkey.D.Luffy",
+      number: "OP17-001",
+    })],
+    officialRecords,
+    existingSetCodes: ["OP17"],
+  });
+  assert.equal(plan.payload.set, null);
+  assert.equal(plan.payload.set_release_control, null);
+  assert.equal(
+    plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1.status,
+    "suppressed",
+  );
+  assert.equal(plan.boundaries.public_visibility_changes, 0);
+  assert.equal(validateOnePieceIncrementalPromotionPlanV1(plan).valid, true);
 });
 
 test("promo-number SP products remain owned by the P set", () => {
@@ -137,5 +176,10 @@ test("One Piece promotion worker is release-gated, insert-only, and self-hosting
   assert.match(worker, /begin transaction isolation level repeatable read read only/i);
   assert.match(worker, /Apply requires the exact clean frozen commit/);
   assert.match(worker, /post_rollback_readback/);
+  assert.match(worker, /--request[\s\S]*?POST/);
+  assert.match(worker, /--data-urlencode[\s\S]*?series=/);
+  assert.match(worker, /insert into public\.catalog_set_release_controls/i);
+  assert.doesNotMatch(worker, /cardlist\/\?series=/i);
+  assert.doesNotMatch(worker, /--insecure|(?:^|["'])-k(?:["']|$)/i);
   assert.doesNotMatch(worker, /\bupdate\s+public\.|\bdelete\s+from\b|\btruncate\b/i);
 });

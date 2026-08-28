@@ -1,0 +1,125 @@
+name: One Piece Incremental Promotion
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Plan, rollback-prove, or apply one exact hidden set payload
+        required: true
+        type: choice
+        options:
+          - plan
+          - dry-run
+          - apply
+      set_code:
+        description: Canonical compact set code
+        required: true
+        default: OP17
+        type: string
+      official_series_id:
+        description: Bandai official card-list series ID
+        required: true
+        default: '569117'
+        type: string
+      as_of:
+        description: Frozen UTC release date (YYYY-MM-DD)
+        required: true
+        default: '2026-08-28'
+        type: string
+      expected_sha:
+        description: Exact merged commit SHA that must be checked out
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: one-piece-incremental-promotion-v1
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      DISPATCH_MODE: ${{ inputs.mode }}
+      SET_CODE: ${{ inputs.set_code }}
+      OFFICIAL_SERIES_ID: ${{ inputs.official_series_id }}
+      AS_OF: ${{ inputs.as_of }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - name: Check out frozen ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify frozen writer boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$EXPECTED_SHA" origin/main
+          test -z "$(git status --porcelain --untracked-files=no)"
+          [[ "$SET_CODE" =~ ^(OP|ST|EB|PRB)[0-9]{2}$ ]]
+          [[ "$OFFICIAL_SERIES_ID" =~ ^[0-9]+$ ]]
+          [[ "$AS_OF" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]
+          node --check backend/catalog/one_piece_incremental_promotion_v1.mjs
+          node --check scripts/workers/one_piece_incremental_promotion_v1.mjs
+          node --test \
+            tests/contracts/catalog_set_release_controls_v1.test.mjs \
+            tests/contracts/one_piece_incremental_promotion_v1.test.mjs
+          git diff --check
+
+      - name: Execute frozen promotion mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/one-piece-incremental-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/one_piece_incremental_promotion_v1.mjs \
+            --mode="$DISPATCH_MODE" \
+            --as-of="$AS_OF" \
+            --set-code="$SET_CODE" \
+            --official-series-id="$OFFICIAL_SERIES_ID" \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --out-dir="$OUT_DIR"
+
+      - name: Verify hidden staging boundary
+        if: ${{ inputs.mode != 'plan' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const plan = JSON.parse(fs.readFileSync(`${process.env.OUT_DIR}/promotion_plan.json`, 'utf8'));
+          if (plan.payload?.set && plan.payload?.set_release_control?.release_status !== 'hidden') {
+            throw new Error('New One Piece set was not staged hidden');
+          }
+          if (plan.boundaries?.public_visibility_changes !== undefined &&
+              plan.boundaries.public_visibility_changes !== 0) {
+            throw new Error('Promotion changed public visibility');
+          }
+          NODE
+
+      - name: Upload immutable run evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-piece-incremental-${{ inputs.mode }}-${{ inputs.set_code }}-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

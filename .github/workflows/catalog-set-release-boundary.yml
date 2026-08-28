@@ -1,0 +1,146 @@
+name: Catalog Set Release Boundary
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Inspect or apply the frozen set release-boundary migration
+        required: true
+        type: choice
+        options:
+          - dry_run
+          - apply
+      expected_sha:
+        description: Exact merged commit SHA that must be checked out
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalog-set-release-boundary-v1
+  cancel-in-progress: false
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TARGET_MIGRATION: '20260828110000'
+      TARGET_FILE: supabase/migrations/20260828110000_catalog_set_release_controls_v1.sql
+      DISPATCH_MODE: ${{ inputs.mode }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - name: Check out frozen ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify frozen boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$EXPECTED_SHA" origin/main
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "$TARGET_FILE"
+          node --test tests/contracts/catalog_set_release_controls_v1.test.mjs
+          git diff --check
+
+      - name: Inspect exact pending migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          pending_count="$(grep -Ec '^[[:space:]]*•[[:space:]]+[0-9]{14}' migration_dry_run.txt || true)"
+          test "$pending_count" = "1"
+
+      - name: Apply frozen migration
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --yes
+
+      - name: Verify schema, grants, and rollback-only OP16 override
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql "$SUPABASE_DB_URL" --no-psqlrc --set ON_ERROR_STOP=1 \
+            --tuples-only --no-align --field-separator=, <<'SQL' | tee migration_readback.csv
+          select 'table', count(*)
+          from information_schema.tables
+          where table_schema = 'public' and table_name = 'catalog_set_release_controls';
+
+          select 'grants',
+            has_table_privilege('service_role', 'public.catalog_set_release_controls', 'select'),
+            has_table_privilege('authenticated', 'public.catalog_set_release_controls', 'select'),
+            has_table_privilege('anon', 'public.catalog_set_release_controls', 'select');
+
+          select 'functions', count(*)
+          from pg_proc p
+          join pg_namespace n on n.oid = p.pronamespace
+          where n.nspname = 'public'
+            and p.proname in (
+              'catalog_set_visible_to_request_v1',
+              'catalog_card_print_visible_to_request_v1',
+              'catalog_parent_gv_id_visible_to_request_v1'
+            );
+
+          begin;
+          select set_config('request.jwt.claim.role', 'authenticated', true);
+          select 'op16_before', public.catalog_set_visible_to_request_v1(
+            (select id from public.sets where game = 'one_piece' and upper(code) = 'OP16')
+          );
+          insert into public.catalog_set_release_controls (
+            set_id, release_status, release_version, evidence
+          )
+          select id, 'hidden', 'CATALOG_SET_RELEASE_CONTROLS_V1_ROLLBACK_PROOF',
+            '{"rollback_only":true}'::jsonb
+          from public.sets
+          where game = 'one_piece' and upper(code) = 'OP16';
+          select 'op16_hidden', public.catalog_set_visible_to_request_v1(
+            (select id from public.sets where game = 'one_piece' and upper(code) = 'OP16')
+          );
+          rollback;
+          SQL
+
+          grep -q '^table,1$' migration_readback.csv
+          grep -q '^grants,true,false,false$' migration_readback.csv
+          grep -q '^functions,3$' migration_readback.csv
+          grep -q '^op16_before,true$' migration_readback.csv
+          grep -q '^op16_hidden,false$' migration_readback.csv
+
+          psql "$SUPABASE_DB_URL" --no-psqlrc --set ON_ERROR_STOP=1 \
+            --tuples-only --no-align --command="select count(*) from public.catalog_set_release_controls control join public.sets target_set on target_set.id=control.set_id where target_set.game='one_piece' and upper(target_set.code)='OP16';" \
+            | tr -d '[:space:]' | tee rollback_absence.txt
+          grep -q '^0$' rollback_absence.txt
+
+      - name: Upload bounded evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-set-release-boundary-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            migration_readback.csv
+            rollback_absence.txt
+          if-no-files-found: warn
+          retention-days: 90
