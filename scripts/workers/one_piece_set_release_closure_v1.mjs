@@ -773,11 +773,17 @@ async function main() {
     repository: repo,
     target: { set_code: args.setCode, official_series_id: args.officialSeriesId },
     snapshot_fingerprint_sha256: snapshot.snapshot_fingerprint_sha256,
-  };
+    };
     if (args.mode === "audit") {
-    const readiness = evaluateOnePieceSetReleaseReadinessV1(snapshot);
+    const releaseStatus = snapshot.release_control?.release_status ?? null;
+    const visibility = releaseStatus === "hidden"
+      ? null
+      : await visibilityCounts(client, snapshot);
+    const readiness = releaseStatus === "hidden"
+      ? evaluateOnePieceSetReleaseReadinessV1(snapshot)
+      : evaluateOnePieceSetActivationReadinessV1(snapshot, visibility);
     const summary = { ...base, status: "read_only_audit_complete", counts: snapshot.counts,
-      release_control: snapshot.release_control, readiness, database_writes: 0,
+      release_control: snapshot.release_control, visibility, readiness, database_writes: 0,
       storage_writes: 0 };
     await writeArtifacts(args.outDir, {
       "run_plan.json": base,

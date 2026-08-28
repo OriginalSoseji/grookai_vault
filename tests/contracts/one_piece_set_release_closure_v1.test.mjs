@@ -387,6 +387,8 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(worker, /Snapshot changed before activation/i);
   assert.match(worker, /activation canary left durable residue/i);
   assert.match(worker, /evaluateOnePieceSetActivationReadinessV1/i);
+  assert.match(worker,
+    /args\.mode === "audit"[\s\S]*?visibilityCounts\(client, snapshot\)[\s\S]*?evaluateOnePieceSetActivationReadinessV1\(snapshot, visibility\)/i);
   assert.match(worker, /Suppressed row update mismatch/i);
   assert.match(worker, /Snapshot-bound mapping revalidation failed/i);
   assert.match(worker, /Governed external image identity drift/i);
