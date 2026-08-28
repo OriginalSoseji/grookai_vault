@@ -5,6 +5,18 @@
     {
       "path": "rollback_proof.json",
       "sha256": "99f1b6d7f64eaf331eea16273bcb819ab17048c6e4e204e8fd40d9d2efbfb078"
+    },
+    {
+      "path": "apply_plan.json",
+      "sha256": "3f76cbf5664fbd0b17b0fc4ba6af89f0e779ca183b1901aa823187a7eaf292a2"
+    },
+    {
+      "path": "apply_execution.json",
+      "sha256": "2f58215d74d717dab5ea6ddc9a487d5b2c834ea897e210a7de014c4e390c2f77"
+    },
+    {
+      "path": "apply_readback.json",
+      "sha256": "3dcf444c751b8c9e9379bb5c2186d953144442da7dc3ebc7f7a908a2e1a91725"
     }
   ]
 }

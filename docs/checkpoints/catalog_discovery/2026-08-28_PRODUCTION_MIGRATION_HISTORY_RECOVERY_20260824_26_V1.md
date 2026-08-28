@@ -181,12 +181,16 @@ preserving the function signature, result shape, ACLs, and release policy.
 
 ## Explicit Next Gate
 
-Implement issue `#282` as one bounded forward-only search migration. Add a
-regression with enough hidden and visible same-name rows to prove hidden rows
-cannot consume the anonymous candidate bound. Verify anonymous,
-authenticated, and service-role behavior plus unchanged RPC shape and ACLs.
+Completion note: issue `#282` was implemented and applied as
+`20260828021500_print_identity_search_visible_bound_v1`; see
+`2026-08-28_PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_V1.md`. The game-foundation
+gate described below is now active.
 
-After that repair is reviewed, applied, and read back, define the separate
-Yu-Gi-Oh/Gundam game-foundation gate: exactly two deterministic game rows and
-two hidden release-control rows, stopping before cards, sets, printings,
-mappings, images, pricing, publication, or Vault writes.
+The historical gate required issue `#282` to be implemented as one bounded
+forward-only search migration with mixed hidden/visible regression coverage.
+That repair is now complete.
+
+The active gate is the separate Yu-Gi-Oh/Gundam game-foundation project:
+exactly two deterministic game rows and two hidden release-control rows,
+stopping before cards, sets, printings, mappings, images, pricing,
+publication, or Vault writes.

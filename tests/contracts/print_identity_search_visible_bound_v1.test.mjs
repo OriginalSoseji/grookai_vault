@@ -39,6 +39,13 @@ const ROLLBACK_PROOF = JSON.parse(ROLLBACK_PROOF_TEXT);
 const ARTIFACT_HASHES = JSON.parse(
   fs.readFileSync(path.join(AUDIT, "artifact_hashes.json"), "utf8"),
 );
+const APPLY_PLAN = JSON.parse(fs.readFileSync(path.join(AUDIT, "apply_plan.json"), "utf8"));
+const APPLY_EXECUTION = JSON.parse(
+  fs.readFileSync(path.join(AUDIT, "apply_execution.json"), "utf8"),
+);
+const APPLY_READBACK = JSON.parse(
+  fs.readFileSync(path.join(AUDIT, "apply_readback.json"), "utf8"),
+);
 
 function cteBody(sql, cteName, nextCteName) {
   const start = sql.indexOf(`${cteName} as materialized (`);
@@ -175,4 +182,43 @@ test("production rollback artifact proves role behavior and zero durable drift",
   assert.deepEqual(ROLLBACK_PROOF.probes[0].game_codes, ["pokemon"]);
   assert.ok(ROLLBACK_PROOF.probes[1].game_codes.includes("mtg"));
   assert.doesNotMatch(ROLLBACK_PROOF_TEXT, /(?:postgres(?:ql)?:\/\/|SUPABASE_DB_URL|password)/i);
+});
+
+test("permanent apply artifacts reconcile and contain no credentials", () => {
+  assert.deepEqual(
+    ARTIFACT_HASHES.artifacts.map((artifact) => artifact.path).sort(),
+    ["apply_execution.json", "apply_plan.json", "apply_readback.json", "rollback_proof.json"],
+  );
+  for (const artifact of ARTIFACT_HASHES.artifacts) {
+    const text = fs.readFileSync(path.join(AUDIT, artifact.path), "utf8");
+    const actualHash = crypto.createHash("sha256").update(text).digest("hex");
+    assert.equal(actualHash, artifact.sha256, artifact.path);
+    assert.doesNotMatch(text, /(?:postgres(?:ql)?:\/\/|SUPABASE_DB_URL|password)/i);
+  }
+
+  assert.equal(APPLY_PLAN.preflight.pending_migration_count, 1);
+  assert.equal(APPLY_PLAN.preflight.dry_run_passed, true);
+  assert.equal(APPLY_EXECUTION.result.status, "success");
+  assert.deepEqual(APPLY_EXECUTION.result.applied_migrations, [
+    "20260828021500_print_identity_search_visible_bound_v1.sql",
+  ]);
+  assert.equal(APPLY_EXECUTION.result.other_migrations_applied, 0);
+  assert.equal(APPLY_EXECUTION.post_apply_cli_reconciliation.pending_migration_count, 0);
+  assert.equal(
+    APPLY_EXECUTION.post_apply_cli_reconciliation.dry_run_result,
+    "remote_database_up_to_date",
+  );
+  assert.equal(APPLY_READBACK.latest_migration.version, "20260828021500");
+  assert.equal(APPLY_READBACK.latest_migration.statement_count, 7);
+  assert.equal(
+    APPLY_READBACK.function.definition_sha256,
+    "18298b24d75efe5fda01c8242ed132ec6e1fc65226d02ac64bbb7f1a54eb5fbd",
+  );
+  assert.equal(APPLY_READBACK.reconciliation.result_visibility_failures, 0);
+  assert.equal(APPLY_READBACK.database_writes_during_readback, false);
+  assert.deepEqual(APPLY_READBACK.probes.map((probe) => probe.role), [
+    "anon",
+    "authenticated",
+    "service_role",
+  ]);
 });

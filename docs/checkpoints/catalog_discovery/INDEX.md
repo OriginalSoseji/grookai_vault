@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-08-28 Print Identity Search Visible Bound V1](./2026-08-28_PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_V1.md)
 - [2026-08-28 Production Migration History Recovery 20260824-26 V1](./2026-08-28_PRODUCTION_MIGRATION_HISTORY_RECOVERY_20260824_26_V1.md)
 - [2026-08-28 Collectible Wave 1 Alternative Artwork Row Addressability V1](./2026-08-28_COLLECTIBLE_WAVE1_ALT_ART_ROW_ADDRESSABILITY_V1.md)
 - [2026-08-28 Collectible Wave 1 Canonical Reconciliation V1](./2026-08-28_COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_V1.md)
