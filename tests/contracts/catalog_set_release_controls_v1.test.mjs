@@ -29,6 +29,14 @@ test("missing set controls inherit the game release while explicit controls over
 test("card and parent visibility resolve through the set boundary", () => {
   assert.match(sql, /catalog_card_print_visible_to_request_v1[\s\S]*?catalog_set_visible_to_request_v1\(card\.set_id\)/i);
   assert.match(sql, /catalog_parent_gv_id_visible_to_request_v1[\s\S]*?catalog_set_visible_to_request_v1\(card\.set_id\)/i);
+  assert.match(
+    sql,
+    /catalog_card_print_visible_to_request_v1[\s\S]*?card\.data_quality_flags #>> '\{app_visibility_v1,status\}'[\s\S]*?<> 'suppressed'/i,
+  );
+  assert.match(
+    sql,
+    /catalog_parent_gv_id_visible_to_request_v1[\s\S]*?card\.data_quality_flags #>> '\{app_visibility_v1,status\}'[\s\S]*?<> 'suppressed'/i,
+  );
   assert.match(sql, /sets_catalog_release_visibility_v1[\s\S]*?catalog_set_visible_to_request_v1\(id\)/i);
   assert.match(sql, /card_prints_catalog_release_visibility_v1[\s\S]*?catalog_card_print_visible_to_request_v1\(id\)/i);
 });

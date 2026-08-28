@@ -83,6 +83,10 @@ as $$
       end
       from public.card_prints card
       where card.id = p_card_print_id
+        and coalesce(
+          card.data_quality_flags #>> '{app_visibility_v1,status}',
+          'visible'
+        ) <> 'suppressed'
     ),
     false
   );
@@ -106,6 +110,10 @@ as $$
       end
       from public.card_prints card
       where card.gv_id = p_parent_gv_id
+        and coalesce(
+          card.data_quality_flags #>> '{app_visibility_v1,status}',
+          'visible'
+        ) <> 'suppressed'
     ),
     false
   );
