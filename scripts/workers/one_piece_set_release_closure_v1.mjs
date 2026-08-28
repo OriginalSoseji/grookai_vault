@@ -648,6 +648,45 @@ async function activateSet(client, snapshot, args, rollback) {
   try {
     let releaseRows = 0;
     if (releaseStatus === "hidden") {
+      const lock = await client.query(`select set_id
+        from public.catalog_set_release_controls
+        where set_id=$1::uuid and release_status='hidden'
+        for update`, [snapshot.set.id]);
+      if (lock.rowCount !== 1) throw new Error("Hidden set release control lock mismatch");
+    } else if (releaseStatus === "signed_in") {
+      const lock = await client.query(`select set_id
+        from public.catalog_set_release_controls
+        where set_id=$1::uuid and release_status='signed_in'
+        for update`, [snapshot.set.id]);
+      if (lock.rowCount !== 1) throw new Error("Active set release control lock mismatch");
+    } else {
+      const lock = await client.query(`select catalog_set.id
+        from public.sets catalog_set
+        where catalog_set.id=$1::uuid
+          and not exists (
+            select 1 from public.catalog_set_release_controls control
+            where control.set_id=catalog_set.id
+          )
+        for update of catalog_set`, [snapshot.set.id]);
+      if (lock.rowCount !== 1) throw new Error("Legacy active set lock mismatch");
+    }
+
+    const lockedSnapshot = await captureSnapshot(
+      client,
+      args.setCode,
+      snapshot.official,
+      snapshot.image_public_base_url,
+    );
+    if (lockedSnapshot.snapshot_fingerprint_sha256 !==
+        snapshot.snapshot_fingerprint_sha256) {
+      throw new Error(
+        `Snapshot changed before activation: ` +
+        `${lockedSnapshot.snapshot_fingerprint_sha256} != ` +
+        `${snapshot.snapshot_fingerprint_sha256}`,
+      );
+    }
+
+    if (releaseStatus === "hidden") {
       const update = await client.query(`update public.catalog_set_release_controls
         set release_status='signed_in',
             release_version=$2,
@@ -667,22 +706,6 @@ async function activateSet(client, snapshot, args, rollback) {
       ]);
       if (update.rowCount !== 1) throw new Error("Set release control update mismatch");
       releaseRows = update.rowCount;
-    } else if (releaseStatus === "signed_in") {
-      const lock = await client.query(`select set_id
-        from public.catalog_set_release_controls
-        where set_id=$1::uuid and release_status='signed_in'
-        for update`, [snapshot.set.id]);
-      if (lock.rowCount !== 1) throw new Error("Active set release control lock mismatch");
-    } else {
-      const lock = await client.query(`select catalog_set.id
-        from public.sets catalog_set
-        where catalog_set.id=$1::uuid
-          and not exists (
-            select 1 from public.catalog_set_release_controls control
-            where control.set_id=catalog_set.id
-          )
-        for update of catalog_set`, [snapshot.set.id]);
-      if (lock.rowCount !== 1) throw new Error("Legacy active set lock mismatch");
     }
     const unsuppressed = await client.query(`update public.card_prints
       set data_quality_flags=jsonb_set(
