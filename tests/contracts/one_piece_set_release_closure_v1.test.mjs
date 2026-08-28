@@ -7,6 +7,8 @@ import {
   buildOnePieceSetImagePointerV1,
   evaluateOnePieceSetReleaseReadinessV1,
   isOnePieceSelfHostedExactImageV1,
+  isOnePieceGovernedExternalImageProductV1,
+  resolveOnePieceGovernedExternalExactImageV1,
   resolveOnePieceOfficialBaseImageV1,
   validateOnePieceSetImagePointersV1,
 } from "../../backend/catalog/one_piece_set_release_closure_v1.mjs";
@@ -208,6 +210,80 @@ test("official base image pointers preserve separate authority", () => {
     pointer, IMAGE_PUBLIC_BASE_URL), true);
 });
 
+test("governed external exact image overrides are identity and hash pinned", () => {
+  const exact = row({
+    name: "Monkey.D.Luffy",
+    number: "OP16-095",
+    source_product_id: "707248",
+    source_product_name: "Monkey.D.Luffy (Round 1 Promo)",
+  });
+  const override = resolveOnePieceGovernedExternalExactImageV1(exact);
+  assert.equal(override?.expected_sha256,
+    "629a3a0fc1995dcd7e36174d126677c57903f8e52fb280d07598357e0c3f1859");
+  assert.equal(resolveOnePieceGovernedExternalExactImageV1({
+    ...exact,
+    source_product_name: "Monkey.D.Luffy",
+  }), null);
+  assert.equal(isOnePieceGovernedExternalImageProductV1(exact), true);
+  assert.equal(isOnePieceGovernedExternalImageProductV1(row()), false);
+
+  const pointer = buildOnePieceSetImagePointerV1({
+    row: exact,
+    image: {
+      sha256: override.expected_sha256,
+      format: "jpeg",
+      content_type: "image/jpeg",
+      size_bytes: 252040,
+      width: 868,
+      height: 1213,
+      source_authority: "verified_external_exact_product",
+      source_download_url: override.download_url,
+      source_evidence_url: override.evidence_url,
+      source_expected_sha256: override.expected_sha256,
+    },
+    publicBaseUrl: IMAGE_PUBLIC_BASE_URL,
+  });
+  assert.equal(pointer.image_source,
+    "self_hosted_verified_external_exact_product_v1");
+  assert.match(pointer.image_path,
+    /^one-piece\/card-prints\/verified-external\/707248\//);
+  assert.equal(validateOnePieceSetImagePointersV1([pointer], 1).valid, true);
+  assert.equal(isOnePieceSelfHostedExactImageV1(
+    pointer, IMAGE_PUBLIC_BASE_URL), true);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...pointer,
+    image_hash: "f".repeat(64),
+    image_path: `one-piece/card-prints/verified-external/707248/${"f".repeat(32)}.jpg`,
+    image_url: "https://project.supabase.co/storage/v1/object/public/" +
+      "external-card-images/one-piece/card-prints/verified-external/707248/" +
+      `${"f".repeat(32)}.jpg`,
+  }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...row(),
+    source_product_id: exact.source_product_id,
+    source_product_name: "Identity drift",
+  }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...pointer,
+    source_product_name: "Monkey.D.Luffy",
+  }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(isOnePieceSelfHostedExactImageV1({
+    ...row(),
+    name: exact.name,
+    number: exact.number,
+    source_product_id: exact.source_product_id,
+    source_product_name: exact.source_product_name,
+  }, IMAGE_PUBLIC_BASE_URL), false);
+  assert.equal(validateOnePieceSetImagePointersV1([{
+    ...pointer,
+    source_expected_sha256: "f".repeat(64),
+  }], 1).valid, false);
+  assert.equal(validateOnePieceSetImagePointersV1([{
+    ...pointer,
+    source_product_name: "Monkey.D.Luffy",
+  }], 1).valid, false);
+});
+
 test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(workflow, /git merge-base --is-ancestor "\$EXPECTED_SHA" origin\/main/);
   assert.match(workflow, /options:[\s\S]*?- audit[\s\S]*?- image-canary[\s\S]*?- image-apply[\s\S]*?- activation-canary[\s\S]*?- activate[\s\S]*?- verify/);
@@ -216,6 +292,10 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(worker, /begin transaction isolation level serializable/i);
   assert.match(worker, /activation canary left durable residue/i);
   assert.match(worker, /Snapshot-bound mapping revalidation failed/i);
+  assert.match(worker, /Governed external image identity drift/i);
+  assert.match(worker, /card\.name=payload\.card_name/i);
+  assert.match(worker,
+    /card\.number is not distinct from payload\.card_number/i);
   assert.match(worker, /storage_cleanup_failed/i);
   assert.match(worker, /storage: client\.storage/);
   assert.match(worker, /image_operation_failed_zero_created_object_residue/);

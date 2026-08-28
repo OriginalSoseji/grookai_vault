@@ -11,7 +11,24 @@ const ONE_PIECE_SET_IMAGE_AUTHORITIES = Object.freeze({
   identity: "tcgplayer",
   self_hosted_tcgplayer_exact_product_v1: "tcgplayer",
   self_hosted_bandai_official_exact_base_art_v1: "bandai-official",
+  self_hosted_verified_external_exact_product_v1: "verified-external",
 });
+
+export const ONE_PIECE_GOVERNED_EXTERNAL_EXACT_IMAGE_OVERRIDES_V1 =
+  Object.freeze({
+    "707248": Object.freeze({
+      card_number: "OP16-095",
+      canonical_name: "Monkey.D.Luffy",
+      source_product_name: "Monkey.D.Luffy (Round 1 Promo)",
+      download_url:
+        "https://www.tcgintel.app/_next/image?" +
+        "url=%2Fcards%2FRound1%2Fround1-op-luffy.webp&w=1200&q=90",
+      evidence_url:
+        "https://www.tcgintel.app/blog/round1-one-piece-card-game-value",
+      expected_sha256:
+        "629a3a0fc1995dcd7e36174d126677c57903f8e52fb280d07598357e0c3f1859",
+    }),
+  });
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -45,21 +62,28 @@ export function buildOnePieceSetImagePointerV1({
   publicBaseUrl,
 }) {
   const extension = image.format === "png" ? "png" : "jpg";
-  const official = image.source_authority ===
-    "bandai_official_exact_base_art";
-  if (!official && image.source_authority !== "tcgplayer_exact_product") {
+  const authority = image.source_authority;
+  const official = authority === "bandai_official_exact_base_art";
+  const verifiedExternal = authority === "verified_external_exact_product";
+  if (!official && !verifiedExternal && authority !== "tcgplayer_exact_product") {
     throw new Error(`Unsupported image authority: ${image.source_authority}`);
   }
-  const pathAuthority = official ? "bandai-official" : "tcgplayer";
+  const pathAuthority = official
+    ? "bandai-official"
+    : verifiedExternal ? "verified-external" : "tcgplayer";
   const imageSource = official
     ? "self_hosted_bandai_official_exact_base_art_v1"
-    : "self_hosted_tcgplayer_exact_product_v1";
+    : verifiedExternal
+      ? "self_hosted_verified_external_exact_product_v1"
+      : "self_hosted_tcgplayer_exact_product_v1";
   const path = `one-piece/card-prints/${pathAuthority}/` +
     `${row.source_product_id}/` +
     `${image.sha256.slice(0, 32)}.${extension}`;
   return {
     card_print_id: row.card_print_id,
     gv_id: row.gv_id,
+    name: row.name,
+    number: row.number,
     source_product_id: Number(row.source_product_id),
     source_product_name: row.source_product_name,
     source_image_url: row.source_image_url,
@@ -74,10 +98,16 @@ export function buildOnePieceSetImagePointerV1({
       ? `Exact Bandai official base artwork self-hosted and hash-verified by ` +
         `${ONE_PIECE_SET_RELEASE_CLOSURE_VERSION}; product name, card name, ` +
         `printed number, and base-variant status agreed.`
+      : verifiedExternal
+        ? `Exact external product image self-hosted and hash-verified by ` +
+          `${ONE_PIECE_SET_RELEASE_CLOSURE_VERSION}; canonical identity, ` +
+          `source product identity, printed number, and expected image hash agreed.`
       : `Exact TCGPlayer product image self-hosted and hash-verified by ` +
         `${ONE_PIECE_SET_RELEASE_CLOSURE_VERSION}.`,
     source_download_url: image.source_download_url ?? null,
     source_download_authority: image.source_authority ?? null,
+    source_evidence_url: image.source_evidence_url ?? null,
+    source_expected_sha256: image.source_expected_sha256 ?? null,
     content_type: image.content_type,
     size_bytes: image.size_bytes,
     width: image.width,
@@ -92,9 +122,12 @@ export function isOnePieceSelfHostedExactImageV1(row, publicBaseUrl) {
   const imageSource = String(row?.image_source ?? "").trim();
   const imageHash = String(row?.image_hash ?? "");
   const imagePathMatch = imagePath.match(
-    /^one-piece\/card-prints\/(tcgplayer|bandai-official)\/(\d+)\/([0-9a-f]{32})\.(jpg|png)$/,
+    /^one-piece\/card-prints\/(tcgplayer|bandai-official|verified-external)\/(\d+)\/([0-9a-f]{32})\.(jpg|png)$/,
   );
   const expectedAuthority = ONE_PIECE_SET_IMAGE_AUTHORITIES[imageSource];
+  const governedExternal = resolveOnePieceGovernedExternalExactImageV1(row);
+  const governedSourceRequired =
+    isOnePieceGovernedExternalImageProductV1(row);
   let imageUrl;
   let expectedUrl;
   try {
@@ -109,13 +142,41 @@ export function isOnePieceSelfHostedExactImageV1(row, publicBaseUrl) {
   return /^\d+$/.test(productId) &&
     row?.image_status === "exact" &&
     Boolean(expectedAuthority) &&
+    (expectedAuthority !== "verified-external" || governedSourceRequired) &&
+    (!governedSourceRequired || imageSource ===
+      "self_hosted_verified_external_exact_product_v1") &&
     imagePathMatch?.[1] === expectedAuthority &&
     imagePathMatch?.[2] === productId &&
     imagePathMatch?.[3] === imageHash.slice(0, 32) &&
     /^[0-9a-f]{64}$/.test(imageHash) &&
+    (!governedSourceRequired ||
+      governedExternal?.expected_sha256 === imageHash) &&
     imageUrl.protocol === "https:" &&
     imageUrl.origin === expectedUrl.origin &&
     imageUrl.pathname === expectedUrl.pathname;
+}
+
+export function resolveOnePieceGovernedExternalExactImageV1(row) {
+  const productId = String(row?.source_product_id ?? "").trim();
+  const override = ONE_PIECE_GOVERNED_EXTERNAL_EXACT_IMAGE_OVERRIDES_V1[
+    productId
+  ];
+  if (!override) return null;
+  if (String(row?.number ?? "").trim().toUpperCase() !== override.card_number ||
+      String(row?.name ?? "").trim() !== override.canonical_name ||
+      String(row?.source_product_name ?? "").trim() !==
+        override.source_product_name) {
+    return null;
+  }
+  return override;
+}
+
+export function isOnePieceGovernedExternalImageProductV1(row) {
+  const productId = String(row?.source_product_id ?? "").trim();
+  return Object.hasOwn(
+    ONE_PIECE_GOVERNED_EXTERNAL_EXACT_IMAGE_OVERRIDES_V1,
+    productId,
+  );
 }
 
 export function resolveOnePieceOfficialBaseImageV1(row, officialRecords) {
@@ -257,14 +318,18 @@ export function validateOnePieceSetImagePointersV1(pointers, expectedCount) {
     const expectedAuthority =
       ONE_PIECE_SET_IMAGE_AUTHORITIES[pointer.image_source];
     const pathMatch = String(pointer.image_path ?? "").match(
-      /^one-piece\/card-prints\/(tcgplayer|bandai-official)\/(\d+)\/([0-9a-f]{32})\.(jpg|png)$/,
+      /^one-piece\/card-prints\/(tcgplayer|bandai-official|verified-external)\/(\d+)\/([0-9a-f]{32})\.(jpg|png)$/,
     );
     const expectedDownloadAuthority = expectedAuthority === "bandai-official"
       ? "bandai_official_exact_base_art"
-      : "tcgplayer_exact_product";
+      : expectedAuthority === "verified-external"
+        ? "verified_external_exact_product"
+        : "tcgplayer_exact_product";
     const allowedDownloadHosts = expectedAuthority === "bandai-official"
       ? ["en.onepiece-cardgame.com"]
-      : ["tcgplayer-cdn.tcgplayer.com", "product-images.tcgplayer.com"];
+      : expectedAuthority === "verified-external"
+        ? ["www.tcgintel.app"]
+        : ["tcgplayer-cdn.tcgplayer.com", "product-images.tcgplayer.com"];
     let sourceDownloadHost = null;
     try {
       const sourceDownloadUrl = new URL(pointer.source_download_url);
@@ -274,6 +339,15 @@ export function validateOnePieceSetImagePointersV1(pointers, expectedCount) {
     } catch {
       // Invalid source URLs fail through the common pointer finding below.
     }
+    const externalOverride = expectedAuthority === "verified-external"
+      ? resolveOnePieceGovernedExternalExactImageV1(pointer)
+      : null;
+    const externalSourceValid = expectedAuthority !== "verified-external" ||
+      (externalOverride !== null &&
+       pointer.source_download_url === externalOverride.download_url &&
+       pointer.source_evidence_url === externalOverride.evidence_url &&
+       pointer.source_expected_sha256 === externalOverride.expected_sha256 &&
+       pointer.image_hash === externalOverride.expected_sha256);
     if (!pointer.card_print_id || !pointer.gv_id ||
         !Number.isInteger(pointer.source_product_id) ||
         !/^[0-9a-f]{64}$/.test(pointer.image_hash ?? "") ||
@@ -283,6 +357,7 @@ export function validateOnePieceSetImagePointersV1(pointers, expectedCount) {
         pointer.image_status !== "exact" ||
         pointer.source_download_authority !== expectedDownloadAuthority ||
         !allowedDownloadHosts.includes(sourceDownloadHost) ||
+        !externalSourceValid ||
         !Number.isInteger(pointer.width) || pointer.width < 100 ||
         !Number.isInteger(pointer.height) || pointer.height < 100 ||
         Number(pointer.size_bytes) <= 1000) {
