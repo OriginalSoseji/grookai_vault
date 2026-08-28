@@ -69,8 +69,22 @@ not evidence drift.
 - zero Storage, image, AI, pricing publication, or Vault writes;
 - no new migration may be added until this historical chain is merged.
 
+## Known Forward Repair
+
+Automated review confirmed that the live bounded search definition limits its
+`name_seed` before request-role catalog visibility is applied. Hidden catalog
+rows can therefore consume the bound and underfill an anonymous result page.
+This is an existing production behavior, not recovery drift.
+
+The recovered historical migration must remain byte- and statement-traceable
+to the production ledger. It must not be rewritten to conceal this defect.
+Issue `#282` governs a new forward-only migration that moves visibility ahead
+of the candidate limit while preserving the function signature, result shape,
+ACLs, and fail-closed release policy.
+
 ## Stop Condition
 
 Stop after the eight files, recovery evidence, tests, reviewed PR, and
-permanent checkpoint are merged. Then rebase the separately bounded
-Yu-Gi-Oh/Gundam game-foundation gate on the repaired migration chain.
+permanent checkpoint are merged. Then complete issue `#282` as a separate
+forward-only migration before rebasing the bounded Yu-Gi-Oh/Gundam
+game-foundation gate on the repaired migration chain.

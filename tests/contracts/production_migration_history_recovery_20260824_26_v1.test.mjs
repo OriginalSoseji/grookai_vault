@@ -154,4 +154,6 @@ test("contract forbids reapply and production mutation", () => {
   assert.match(contract, /zero migration-ledger writes/);
   assert.match(contract, /zero schema or data mutation/);
   assert.match(contract, /no new migration may be added until this historical chain is merged/);
+  assert.match(contract, /Issue `#282` governs a new forward-only migration/);
+  assert.match(contract, /must not be rewritten to conceal this defect/);
 });
