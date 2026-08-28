@@ -1,0 +1,83 @@
+name: Collectible Wave 1 Set Foundations Rollback Proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_head_sha:
+        description: Exact merged default-branch SHA to prove
+        required: true
+        type: string
+      execution_acknowledgement:
+        description: Must equal ROLLBACK_ONLY_505_SETS
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: collectible-wave1-set-foundations-rollback-v1
+  cancel-in-progress: false
+
+jobs:
+  rollback-proof:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      NODE_OPTIONS: --use-system-ca
+      EXPECTED_HEAD_SHA: ${{ inputs.expected_head_sha }}
+      EXECUTION_ACKNOWLEDGEMENT: ${{ inputs.execution_acknowledgement }}
+    steps:
+      - name: Check out frozen commit
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.expected_head_sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify frozen rollback boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_REF" = "refs/heads/${{ github.event.repository.default_branch }}"
+          test "$EXPECTED_HEAD_SHA" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test "$EXECUTION_ACKNOWLEDGEMENT" = "ROLLBACK_ONLY_505_SETS"
+
+      - name: Verify migration-proof contracts
+        run: |
+          node --check backend/catalog/collectible_wave1_set_foundations_v1.mjs
+          node --check scripts/audits/collectible_wave1_set_foundations_rollback_v1.mjs
+          node --test tests/contracts/collectible_wave1_set_foundations_v1.test.mjs
+          git diff --check
+
+      - name: Execute production rollback-only proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/collectible-wave1-set-foundations-rollback-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/audits/collectible_wave1_set_foundations_rollback_v1.mjs \
+            --execute-rollback-only \
+            --expected-head-sha="$EXPECTED_HEAD_SHA" \
+            --out-dir="$OUT_DIR"
+
+      - name: Upload rollback proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collectible-wave1-set-foundations-rollback-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
