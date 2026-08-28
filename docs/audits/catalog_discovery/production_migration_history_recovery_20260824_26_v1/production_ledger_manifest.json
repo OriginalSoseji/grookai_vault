@@ -1,0 +1,127 @@
+{
+  "version": "PRODUCTION_MIGRATION_HISTORY_RECOVERY_20260824_26_V1",
+  "artifact_recorded_at": "2026-08-28T01:39:24.5800909Z",
+  "recovery_base_commit": "515d98fb59a467429b3f2fda3f0426e94d36b863",
+  "source": "production_supabase_migrations_schema_migrations_read_only",
+  "latest_observed_version": "20260826070000",
+  "database_writes": false,
+  "rows": [
+    {
+      "version": "20260824021500",
+      "name": "tcgcsv_source_artifact_lookup_performance_v1",
+      "ledger_statement_count": 2,
+      "ledger_statement_sha256": [
+        "79112a0a554137a0cf283e97856a9b18576ce9dbbcf25376ac4afc498e3276ad",
+        "e952687fe5aea56f8f3186fda3880609436b445b9fd67a31edae08093e67d681"
+      ],
+      "recovered_path": "supabase/migrations/20260824021500_tcgcsv_source_artifact_lookup_performance_v1.sql",
+      "recovered_file_sha256": "06db5728f69efa1962a527dc4b47167556391513a49beca4de0224560653edb8",
+      "recovered_file_bytes": 423,
+      "normalization": "replaced ledger-escaped comment delimiters with the live valid SQL string literal; index definition and comment text are unchanged",
+      "ledger_statement_trimmed_sha256": [
+        "79112a0a554137a0cf283e97856a9b18576ce9dbbcf25376ac4afc498e3276ad",
+        "e952687fe5aea56f8f3186fda3880609436b445b9fd67a31edae08093e67d681"
+      ]
+    },
+    {
+      "version": "20260824033000",
+      "name": "tcgplayer_market_snapshot_paging_v1",
+      "ledger_statement_count": 1,
+      "ledger_statement_sha256": [
+        "5a27b7ddc302fed6f251e5ed9a25868ce17679152885c8f95817a1cee021dd16"
+      ],
+      "recovered_path": "supabase/migrations/20260824033000_tcgplayer_market_snapshot_paging_v1.sql",
+      "recovered_file_sha256": "fe6265f6b75d04fef735eacd6db6488f699b1c1d89973effa4830f0a1896544f",
+      "recovered_file_bytes": 238,
+      "ledger_statement_trimmed_sha256": [
+        "5a27b7ddc302fed6f251e5ed9a25868ce17679152885c8f95817a1cee021dd16"
+      ]
+    },
+    {
+      "version": "20260824043000",
+      "name": "operations_notification_severity_v2",
+      "ledger_statement_count": 1,
+      "ledger_statement_sha256": [
+        "792d6f65c866b26a5ab0905db93cf3e899c3e62da9e25a8b4a6b98b5f6a91841"
+      ],
+      "recovered_path": "supabase/migrations/20260824043000_operations_notification_severity_v2.sql",
+      "recovered_file_sha256": "792d6f65c866b26a5ab0905db93cf3e899c3e62da9e25a8b4a6b98b5f6a91841",
+      "recovered_file_bytes": 4694,
+      "ledger_statement_trimmed_sha256": [
+        "da0d96fae5bed916075e591255ef8d1b9c9fdce09570903de1f99537508ff7c6"
+      ]
+    },
+    {
+      "version": "20260824170000",
+      "name": "print_identity_search_candidate_first_v1",
+      "ledger_statement_count": 1,
+      "ledger_statement_sha256": [
+        "c7d9871dbd5e600d003fd56b19276e6a8e824185f393dd1fb40a01d8f8cdddeb"
+      ],
+      "recovered_path": "supabase/migrations/20260824170000_print_identity_search_candidate_first_v1.sql",
+      "recovered_file_sha256": "c7d9871dbd5e600d003fd56b19276e6a8e824185f393dd1fb40a01d8f8cdddeb",
+      "recovered_file_bytes": 17062,
+      "ledger_statement_trimmed_sha256": [
+        "eee92e3efbbe312560ab602d399d02d6fd39a574df4e1e193ecafca259a9a234"
+      ]
+    },
+    {
+      "version": "20260824173000",
+      "name": "catalog_parent_visibility_direct_v1",
+      "ledger_statement_count": 1,
+      "ledger_statement_sha256": [
+        "677de329b6dd00443b3fffa414663b912bd5a58794e387823fb992eec71e7020"
+      ],
+      "recovered_path": "supabase/migrations/20260824173000_catalog_parent_visibility_direct_v1.sql",
+      "recovered_file_sha256": "677de329b6dd00443b3fffa414663b912bd5a58794e387823fb992eec71e7020",
+      "recovered_file_bytes": 1403,
+      "ledger_statement_trimmed_sha256": [
+        "dad5cea7ac3a42e3bebcbd00f7db19fa9441d39b77816c9889bb9cd6da33b1f0"
+      ]
+    },
+    {
+      "version": "20260824174500",
+      "name": "print_identity_search_bounded_candidates_v1",
+      "ledger_statement_count": 1,
+      "ledger_statement_sha256": [
+        "9bd4785a329008737fd5cb8e5755542733bda3a4ed5e59ffda360f9b813c05bc"
+      ],
+      "recovered_path": "supabase/migrations/20260824174500_print_identity_search_bounded_candidates_v1.sql",
+      "recovered_file_sha256": "9bd4785a329008737fd5cb8e5755542733bda3a4ed5e59ffda360f9b813c05bc",
+      "recovered_file_bytes": 17915,
+      "ledger_statement_trimmed_sha256": [
+        "88ac23fe4d9431c59c3f1010e4fda2202917d85afc454364f35add837a3f53c4"
+      ]
+    },
+    {
+      "version": "20260826053000",
+      "name": "retire_mee_public_pricing_compatibility_v1",
+      "ledger_statement_count": 1,
+      "ledger_statement_sha256": [
+        "4cf137744186f3100a5afb08743d2100eaafbb63d7f9e35effcd103f77e144a9"
+      ],
+      "recovered_path": "supabase/migrations/20260826053000_retire_mee_public_pricing_compatibility_v1.sql",
+      "recovered_file_sha256": "4cf137744186f3100a5afb08743d2100eaafbb63d7f9e35effcd103f77e144a9",
+      "recovered_file_bytes": 1457,
+      "ledger_statement_trimmed_sha256": [
+        "03af7829c45eceb808a6622b9cd6fa2372b2e88d0cbc7ad285dacd523966043f"
+      ]
+    },
+    {
+      "version": "20260826070000",
+      "name": "card_prints_gv_id_trgm_performance_v1",
+      "ledger_statement_count": 2,
+      "ledger_statement_sha256": [
+        "5dfc639dcf8da652453fce74e7f217d23d02ec5ed9dec5a4ca6c20a907202471",
+        "de329017ff51619c3aa65caf2ec5fffa6751aa4cc0cb58b060098c0ac90b042a"
+      ],
+      "recovered_path": "supabase/migrations/20260826070000_card_prints_gv_id_trgm_performance_v1.sql",
+      "recovered_file_sha256": "984df0e9420dd725105567668df0bd3c0ebf34e65a62418c666041df5da9a9ff",
+      "recovered_file_bytes": 495,
+      "ledger_statement_trimmed_sha256": [
+        "5dfc639dcf8da652453fce74e7f217d23d02ec5ed9dec5a4ca6c20a907202471",
+        "de329017ff51619c3aa65caf2ec5fffa6751aa4cc0cb58b060098c0ac90b042a"
+      ]
+    }
+  ]
+}
