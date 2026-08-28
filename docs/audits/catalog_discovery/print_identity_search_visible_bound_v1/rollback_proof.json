@@ -1,0 +1,136 @@
+{
+  "version": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_ROLLBACK_PROOF_V1",
+  "started_at": "2026-08-28T02:06:17.652Z",
+  "completed_at": "2026-08-28T02:06:20.692Z",
+  "execution_mode": "production_rollback_only",
+  "migration_path": "supabase/migrations/20260828021500_print_identity_search_visible_bound_v1.sql",
+  "migration_sha256": "91bdbe7829e4e53a77620bbc22f3dfa6acccb70061bb80b0fcc00bfc209c1269",
+  "migration_applied": false,
+  "durable_database_writes": false,
+  "transaction_rolled_back": true,
+  "ledger_before": {
+    "version": "20260826070000",
+    "name": "card_prints_gv_id_trgm_performance_v1"
+  },
+  "ledger_after": {
+    "version": "20260826070000",
+    "name": "card_prints_gv_id_trgm_performance_v1"
+  },
+  "function_before": {
+    "identity_arguments": "q text, set_code_in text, number_in text, object_type_in text, limit_in integer, offset_in integer",
+    "result_type": "TABLE(search_document_id text, object_type text, parent_gv_id text, printing_gv_id text, display_name text, display_discriminator text, route_path text, route_query text, matched_fields text[], rank_score integer)",
+    "definition_sha256": "2c98e4b710a177ec922b663d6a7f50162c84c3882c870abc308a373cc79e5613",
+    "definition_bytes": 17069,
+    "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+    "comment": "PRINT_IDENTITY_SEARCH_BOUNDED_CANDIDATES_V1. Preserves V1 output and release visibility while bounding high-priority names and skipping lower-ranked candidate families only after the requested page is satisfied."
+  },
+  "function_transient": {
+    "identity_arguments": "q text, set_code_in text, number_in text, object_type_in text, limit_in integer, offset_in integer",
+    "result_type": "TABLE(search_document_id text, object_type text, parent_gv_id text, printing_gv_id text, display_name text, display_discriminator text, route_path text, route_query text, matched_fields text[], rank_score integer)",
+    "definition_sha256": "18298b24d75efe5fda01c8242ed132ec6e1fc65226d02ac64bbb7f1a54eb5fbd",
+    "definition_bytes": 17170,
+    "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+    "comment": "PRINT_IDENTITY_SEARCH_VISIBLE_BOUND_V1. Preserves V1 output while applying request-role catalog visibility before bounding high-priority names and deciding whether lower-ranked candidate families can be skipped."
+  },
+  "function_after_rollback": {
+    "identity_arguments": "q text, set_code_in text, number_in text, object_type_in text, limit_in integer, offset_in integer",
+    "result_type": "TABLE(search_document_id text, object_type text, parent_gv_id text, printing_gv_id text, display_name text, display_discriminator text, route_path text, route_query text, matched_fields text[], rank_score integer)",
+    "definition_sha256": "2c98e4b710a177ec922b663d6a7f50162c84c3882c870abc308a373cc79e5613",
+    "definition_bytes": 17069,
+    "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+    "comment": "PRINT_IDENTITY_SEARCH_BOUNDED_CANDIDATES_V1. Preserves V1 output and release visibility while bounding high-priority names and skipping lower-ranked candidate families only after the requested page is satisfied."
+  },
+  "probe_selection": {
+    "query": "golem",
+    "anonymous_visible": 22,
+    "anonymous_hidden": 30
+  },
+  "probes": [
+    {
+      "role": "anon",
+      "row_count": 25,
+      "game_codes": [
+        "pokemon"
+      ],
+      "sample": [
+        {
+          "parent_gv_id": "GV-PK-AR-19",
+          "printing_gv_id": "GV-PK-AR-19-RH",
+          "display_name": "Golem",
+          "game_code": "pokemon"
+        },
+        {
+          "parent_gv_id": "GV-PK-AR-19",
+          "printing_gv_id": "GV-PK-AR-19-STD",
+          "display_name": "Golem",
+          "game_code": "pokemon"
+        },
+        {
+          "parent_gv_id": "GV-PK-DR-5",
+          "printing_gv_id": "GV-PK-DR-5-HOLO",
+          "display_name": "Golem",
+          "game_code": "pokemon"
+        },
+        {
+          "parent_gv_id": "GV-PK-DR-5",
+          "printing_gv_id": "GV-PK-DR-5-RH",
+          "display_name": "Golem",
+          "game_code": "pokemon"
+        },
+        {
+          "parent_gv_id": "GV-PK-EX-14",
+          "printing_gv_id": "GV-PK-EX-14-HOLO",
+          "display_name": "Golem",
+          "game_code": "pokemon"
+        }
+      ]
+    },
+    {
+      "role": "authenticated",
+      "row_count": 25,
+      "game_codes": [
+        "mtg"
+      ],
+      "sample": [
+        {
+          "parent_gv_id": "GV-MTG-SF-1FB69A6D-B02D-46F1-AF7B-CFD8A2363ED2",
+          "printing_gv_id": "GV-MTG-SF-1FB69A6D-B02D-46F1-AF7B-CFD8A2363ED2-NORMAL",
+          "display_name": "Golem",
+          "game_code": "mtg"
+        },
+        {
+          "parent_gv_id": "GV-MTG-SF-2D84926D-5892-4C62-A943-FAC9F0DDC569",
+          "printing_gv_id": "GV-MTG-SF-2D84926D-5892-4C62-A943-FAC9F0DDC569-NORMAL",
+          "display_name": "Golem",
+          "game_code": "mtg"
+        },
+        {
+          "parent_gv_id": "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E",
+          "printing_gv_id": "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E-FOIL",
+          "display_name": "Golem",
+          "game_code": "mtg"
+        },
+        {
+          "parent_gv_id": "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E",
+          "printing_gv_id": "GV-MTG-SF-33A88096-DCFD-4ACB-A092-B51507EDD13E-NORMAL",
+          "display_name": "Golem",
+          "game_code": "mtg"
+        },
+        {
+          "parent_gv_id": "GV-MTG-SF-406E2960-F560-48BB-B4A6-4BD35889A8F8",
+          "printing_gv_id": "GV-MTG-SF-406E2960-F560-48BB-B4A6-4BD35889A8F8-FOIL",
+          "display_name": "Golem",
+          "game_code": "mtg"
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "table_writes": false,
+    "release_control_writes": false,
+    "storage_access": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false
+  }
+}
