@@ -209,6 +209,11 @@ SHA-256 values reconciled exactly.
 
 ## Explicit Next Gate
 
+Historical note: production migration history was subsequently recovered in
+`2026-08-28_PRODUCTION_MIGRATION_HISTORY_RECOVERY_20260824_26_V1.md`. Review of
+that recovery identified search visibility issue `#282`, which now must be
+completed before the game-foundation gate described below.
+
 Define and dry-run a separate bounded Yu-Gi-Oh and Gundam game-foundation
 contract. The gate may specify exact game and hidden release-control rows, but
 must stop before any card, set, printing, mapping, image, pricing, publication,
