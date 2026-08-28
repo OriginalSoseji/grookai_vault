@@ -6,6 +6,7 @@ import {
   buildOnePieceSetClosureSnapshotV1,
   buildOnePieceSetImagePointerV1,
   evaluateOnePieceIndependentReleaseReadbackV1,
+  evaluateOnePieceSetActivationReadinessV1,
   evaluateOnePieceSetReleaseReadinessV1,
   isOnePieceSelfHostedExactImageV1,
   isOnePieceGovernedExternalImageProductV1,
@@ -137,6 +138,38 @@ test("independent readback rejects hidden, public, suppressed, and incomplete st
     }).findings,
     ["suppressed_rows_present"],
   );
+});
+
+test("activation readiness accepts only fully proven active-set increments", () => {
+  const incremental = snapshot([row({ visibility_status: "suppressed" })]);
+  incremental.release_control = { release_status: "signed_in" };
+  assert.deepEqual(evaluateOnePieceSetActivationReadinessV1(incremental, {
+    anonymous: { set_visible: false, card_count: 0 },
+    authenticated: { set_visible: true, card_count: 0 },
+  }), {
+    valid: true,
+    findings: [],
+    release_mode: "governed_active_increment",
+    cohort_rows: 1,
+    suppressed_rows: 1,
+  });
+
+  const noIncrement = snapshot();
+  noIncrement.release_control = { release_status: "signed_in" };
+  assert.deepEqual(
+    evaluateOnePieceSetActivationReadinessV1(noIncrement, {
+      anonymous: { set_visible: false, card_count: 0 },
+      authenticated: { set_visible: true, card_count: 1 },
+    }).findings,
+    ["active_set_has_no_suppressed_increment"],
+  );
+
+  const exposed = snapshot([row({ visibility_status: "suppressed" })]);
+  exposed.release_control = null;
+  assert.equal(evaluateOnePieceSetActivationReadinessV1(exposed, {
+    anonymous: { set_visible: true, card_count: 1 },
+    authenticated: { set_visible: true, card_count: 0 },
+  }).valid, false);
 });
 
 test("legacy identity pointers count as exact when Storage evidence is complete", () => {
@@ -352,6 +385,8 @@ test("workflow freezes main provenance and keeps closure modes bounded", () => {
   assert.match(workflow, /test -n "\$SUPABASE_URL"/);
   assert.match(worker, /begin transaction isolation level serializable/i);
   assert.match(worker, /activation canary left durable residue/i);
+  assert.match(worker, /evaluateOnePieceSetActivationReadinessV1/i);
+  assert.match(worker, /Suppressed row update mismatch/i);
   assert.match(worker, /Snapshot-bound mapping revalidation failed/i);
   assert.match(worker, /Governed external image identity drift/i);
   assert.match(worker, /card\.name=payload\.card_name/i);

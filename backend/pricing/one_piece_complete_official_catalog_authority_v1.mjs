@@ -223,6 +223,18 @@ function levenshtein(left, right) {
   return previous[right.length];
 }
 
+function isSingleAdjacentTransposition(left, right) {
+  if (left.length !== right.length || left === right) return false;
+  const mismatches = [];
+  for (let index = 0; index < left.length; index += 1) {
+    if (left[index] !== right[index]) mismatches.push(index);
+  }
+  return mismatches.length === 2 &&
+    mismatches[1] === mismatches[0] + 1 &&
+    left[mismatches[0]] === right[mismatches[1]] &&
+    left[mismatches[1]] === right[mismatches[0]];
+}
+
 function sourceNameSupportKind(sourceName, officialName) {
   const source = normalizeOnePieceOfficialNameV1(sourceName);
   const official = normalizeOnePieceOfficialNameV1(officialName);
@@ -232,6 +244,9 @@ function sourceNameSupportKind(sourceName, officialName) {
   }
   const sourcePrefix = source.split(" ").slice(0, official.split(" ").length)
     .join(" ");
+  if (isSingleAdjacentTransposition(sourcePrefix, official)) {
+    return "single_adjacent_transposition_with_exact_card_number";
+  }
   const distance = levenshtein(sourcePrefix, official);
   const maximumDistance = official.length >= 12 ? 2 : 1;
   if (distance <= maximumDistance &&

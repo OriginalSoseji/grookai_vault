@@ -11,6 +11,7 @@ import {
   buildOnePieceSetClosureSnapshotV1,
   buildOnePieceSetImagePointerV1,
   evaluateOnePieceIndependentReleaseReadbackV1,
+  evaluateOnePieceSetActivationReadinessV1,
   evaluateOnePieceSetReleaseReadinessV1,
   hashOnePieceSetReleaseClosureV1,
   isOnePieceSelfHostedExactImageV1,
@@ -634,28 +635,55 @@ async function visibilityCounts(client, snapshot) {
 }
 
 async function activateSet(client, snapshot, args, rollback) {
-  const readiness = evaluateOnePieceSetReleaseReadinessV1(snapshot);
+  const releaseStatus = snapshot.release_control?.release_status ?? null;
+  const beforeVisibility = releaseStatus === "hidden"
+    ? null
+    : await visibilityCounts(client, snapshot);
+  const readiness = evaluateOnePieceSetActivationReadinessV1(
+    snapshot,
+    beforeVisibility,
+  );
   if (!readiness.valid) throw new Error(`Readiness failed: ${readiness.findings.join(",")}`);
   await client.query("begin transaction isolation level serializable");
   try {
-    const update = await client.query(`update public.catalog_set_release_controls
-      set release_status='signed_in',
-          release_version=$2,
-          evidence=coalesce(evidence,'{}'::jsonb) || $3::jsonb,
-          activated_at=now(),
-          activated_by='one_piece_set_release_closure_v1',
-          updated_at=now()
-      where set_id=$1::uuid and release_status='hidden'
-      returning set_id`, [
-      snapshot.set.id,
-      ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
-      JSON.stringify({
-        closure_snapshot_fingerprint_sha256: snapshot.snapshot_fingerprint_sha256,
-        producer_commit_sha: args.expectedHeadSha,
-        release_set_code: args.setCode,
-      }),
-    ]);
-    if (update.rowCount !== 1) throw new Error("Set release control update mismatch");
+    let releaseRows = 0;
+    if (releaseStatus === "hidden") {
+      const update = await client.query(`update public.catalog_set_release_controls
+        set release_status='signed_in',
+            release_version=$2,
+            evidence=coalesce(evidence,'{}'::jsonb) || $3::jsonb,
+            activated_at=now(),
+            activated_by='one_piece_set_release_closure_v1',
+            updated_at=now()
+        where set_id=$1::uuid and release_status='hidden'
+        returning set_id`, [
+        snapshot.set.id,
+        ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
+        JSON.stringify({
+          closure_snapshot_fingerprint_sha256: snapshot.snapshot_fingerprint_sha256,
+          producer_commit_sha: args.expectedHeadSha,
+          release_set_code: args.setCode,
+        }),
+      ]);
+      if (update.rowCount !== 1) throw new Error("Set release control update mismatch");
+      releaseRows = update.rowCount;
+    } else if (releaseStatus === "signed_in") {
+      const lock = await client.query(`select set_id
+        from public.catalog_set_release_controls
+        where set_id=$1::uuid and release_status='signed_in'
+        for update`, [snapshot.set.id]);
+      if (lock.rowCount !== 1) throw new Error("Active set release control lock mismatch");
+    } else {
+      const lock = await client.query(`select catalog_set.id
+        from public.sets catalog_set
+        where catalog_set.id=$1::uuid
+          and not exists (
+            select 1 from public.catalog_set_release_controls control
+            where control.set_id=catalog_set.id
+          )
+        for update of catalog_set`, [snapshot.set.id]);
+      if (lock.rowCount !== 1) throw new Error("Legacy active set lock mismatch");
+    }
     const unsuppressed = await client.query(`update public.card_prints
       set data_quality_flags=jsonb_set(
         coalesce(data_quality_flags,'{}'::jsonb),
@@ -666,6 +694,11 @@ async function activateSet(client, snapshot, args, rollback) {
       where data_quality_flags #>> '{app_visibility_v1,release_set_code}'=$1
         and data_quality_flags #>> '{app_visibility_v1,status}'='suppressed'
       returning id`, [args.setCode]);
+    if (unsuppressed.rowCount !== Number(snapshot.counts.suppressed_rows)) {
+      throw new Error(
+        `Suppressed row update mismatch ${unsuppressed.rowCount}/${snapshot.counts.suppressed_rows}`,
+      );
+    }
     const visibility = await visibilityCounts(client, snapshot);
     if (visibility.anonymous.set_visible !== false ||
         Number(visibility.anonymous.card_count) !== 0 ||
@@ -677,8 +710,10 @@ async function activateSet(client, snapshot, args, rollback) {
     else await client.query("commit");
     return {
       committed: !rollback,
-      release_rows: update.rowCount,
+      release_rows: releaseRows,
       unsuppressed_rows: unsuppressed.rowCount,
+      release_mode: readiness.release_mode,
+      before_visibility: beforeVisibility,
       visibility,
     };
   } catch (error) {
@@ -867,8 +902,11 @@ async function main() {
         after.snapshot_fingerprint_sha256 !== snapshot.snapshot_fingerprint_sha256) {
       throw new Error("Activation canary left durable residue");
     }
+    const expectedReleaseStatus = snapshot.release_control?.release_status === "hidden"
+      ? "signed_in"
+      : snapshot.release_control?.release_status ?? null;
     if (args.mode === "activate" &&
-        (after.release_control?.release_status !== "signed_in" ||
+        ((after.release_control?.release_status ?? null) !== expectedReleaseStatus ||
          Number(after.counts.suppressed_rows) !== 0)) {
       throw new Error("Activation durable readback failed");
     }
