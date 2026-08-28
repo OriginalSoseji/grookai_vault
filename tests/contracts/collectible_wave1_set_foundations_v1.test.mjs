@@ -9,6 +9,7 @@ import {
   COLLECTIBLE_WAVE1_SET_FOUNDATIONS_PAYLOAD,
   collectibleWave1SetDatabaseRowsV1,
   compareCollectibleWave1ProtectedCountsV1,
+  evaluateCollectibleWave1SetDurableReadbackV1,
   evaluateCollectibleWave1SetRollbackBaselineV1,
   evaluateCollectibleWave1SetTransientV1,
   parseCollectibleWave1SetPayloadV1,
@@ -16,6 +17,11 @@ import {
 } from "../../backend/catalog/collectible_wave1_set_foundations_v1.mjs";
 import { parseArgs } from
   "../../scripts/audits/collectible_wave1_set_foundations_rollback_v1.mjs";
+import {
+  EXECUTION_ACKNOWLEDGEMENT as APPLY_ACKNOWLEDGEMENT,
+  migrationVersions,
+  parseArgs as parseApplyArgs,
+} from "../../scripts/audits/collectible_wave1_set_foundations_apply_v1.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..", "..");
 const PAYLOAD_PATH = path.join(
@@ -43,6 +49,18 @@ const WORKFLOW_PATH = path.join(
   ".github",
   "workflows",
   "collectible-wave1-set-foundations-rollback.yml",
+);
+const APPLY_SCRIPT_PATH = path.join(
+  ROOT,
+  "scripts",
+  "audits",
+  "collectible_wave1_set_foundations_apply_v1.mjs",
+);
+const APPLY_WORKFLOW_PATH = path.join(
+  ROOT,
+  ".github",
+  "workflows",
+  "collectible-wave1-set-foundations-apply.yml",
 );
 const CONTRACT_PATH = path.join(
   ROOT,
@@ -112,6 +130,23 @@ function transient(overrides = {}) {
       service_role: { gundam: false, yugioh: false },
     },
     rls_visible_set_counts: { anon: 0, authenticated: 0 },
+    ...overrides,
+  };
+}
+
+function durable(overrides = {}) {
+  return {
+    ...transient(),
+    transaction_read_only: true,
+    latest_migration: COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION,
+    migration_count: 1,
+    ledger_rows: [{
+      version: COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION,
+      name: "collectible_wave1_set_foundations_v1",
+      statement_count: 7,
+    }],
+    protected_counts: { sets: 605, card_prints: 200, storage_objects: 300 },
+    release_controls: baseline().release_controls,
     ...overrides,
   };
 }
@@ -192,6 +227,26 @@ test("transient validation requires exact rows, no dependencies, and hidden RLS"
   }), databaseRows).includes("game_not_hidden:anon:yugioh"));
 });
 
+test("durable validation requires the exact ledger, rows, hidden RLS, and only 505 sets", () => {
+  assert.deepEqual(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable(), databaseRows, baseline(),
+  ), []);
+  assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable({ migration_count: 0 }), databaseRows, baseline(),
+  ).includes("migration_ledger_count_mismatch"));
+  assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable({ sets: databaseRows.slice(1) }), databaseRows, baseline(),
+  ).includes("durable_set_rows_mismatch"));
+  assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable({ protected_counts: { sets: 605, card_prints: 201, storage_objects: 300 } }),
+    databaseRows, baseline(),
+  ).includes("protected_count_mismatch:card_prints:200:201"));
+  assert.ok(evaluateCollectibleWave1SetDurableReadbackV1(
+    durable({ rls_visible_set_counts: { anon: 1, authenticated: 0 } }),
+    databaseRows, baseline(),
+  ).includes("sets_visible_through_rls:anon"));
+});
+
 test("protected counts permit only the 505 transient set rows", () => {
   assert.deepEqual(compareCollectibleWave1ProtectedCountsV1(
     { sets: 100, cards: 200, vault_items: 10 },
@@ -241,12 +296,60 @@ test("workflow is manual, default-branch-only, exact-SHA, and rollback-only", ()
   assert.doesNotMatch(workflow, /db push|--yes|apply/);
 });
 
-test("contract stops before durable apply and preserves every forbidden domain", () => {
+test("durable apply runner is inert without the exact mode, SHA, acknowledgement, and logs", () => {
+  assert.throws(() => parseApplyArgs([]), /Exactly one/);
+  assert.throws(() => parseApplyArgs(["--prepare-apply"]), /expected-head-sha/);
+  assert.throws(() => parseApplyArgs([
+    "--prepare-apply",
+    `--expected-head-sha=${"a".repeat(40)}`,
+    "--out-dir=tmp/apply",
+  ]), /execution-acknowledgement/);
+  const prepared = parseApplyArgs([
+    "--prepare-apply",
+    `--expected-head-sha=${"a".repeat(40)}`,
+    `--execution-acknowledgement=${APPLY_ACKNOWLEDGEMENT}`,
+    "--out-dir=tmp/apply",
+  ]);
+  assert.equal(prepared.mode, "prepare");
+  assert.throws(() => parseApplyArgs([
+    "--post-apply-readback",
+    `--expected-head-sha=${"a".repeat(40)}`,
+    `--execution-acknowledgement=${APPLY_ACKNOWLEDGEMENT}`,
+    "--out-dir=tmp/apply",
+  ]), /CLI evidence logs/);
+  assert.deepEqual(migrationVersions(
+    "Dry run 20260828063000_collectible_wave1_set_foundations_v1.sql",
+  ), [COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION]);
+});
+
+test("durable workflow is manual, default-branch-only, exact-SHA, and one-migration-only", () => {
+  const workflow = fs.readFileSync(APPLY_WORKFLOW_PATH, "utf8");
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.doesNotMatch(workflow, /\b(?:schedule|push|pull_request):/);
+  assert.match(workflow, /github\.event\.repository\.default_branch/);
+  assert.match(workflow, /DURABLE_APPLY_505_HIDDEN_SETS/);
+  assert.match(workflow, /ref: \$\{\{ inputs\.expected_head_sha \}\}/);
+  assert.match(workflow, /supabase@2\.90\.0 db push/);
+  assert.match(workflow, /--dry-run/);
+  assert.match(workflow, /--yes/);
+  assert.match(workflow, /post-apply-readback/);
+  assert.match(workflow, /SUPABASE_DB_URL: \$\{\{ secrets\.SUPABASE_DB_URL \}\}/);
+
+  const source = fs.readFileSync(APPLY_SCRIPT_PATH, "utf8");
+  assert.ok(source.indexOf('"frozen_execution_plan.json"') <
+    source.indexOf("loadDatabaseUrl(options.envFile)"));
+  assert.match(source, /captureDurableReadback/);
+  assert.match(source, /independent_readback_mismatch/);
+  assert.match(source, /remote database is up to date/i);
+  assert.doesNotMatch(source, /storage\.from|supabase\.from/);
+});
+
+test("contract authorizes only the exact durable apply and preserves every forbidden domain", () => {
   const contract = fs.readFileSync(CONTRACT_PATH, "utf8");
   assert.match(contract, /exactly 505 rows into `public\.sets`/);
   assert.match(contract, /zero direct set rows/);
-  assert.match(contract, /Stop after the rollback-only production proof/);
-  assert.match(contract, /Durable apply requires a separate decision/);
+  assert.match(contract, /exactly one migration-ledger row/);
+  assert.match(contract, /Durable Apply Gate/);
   assert.match(
     contract,
     /cards, identit(?:y|ies),\s+printings, mappings, images, pricing,\s+publication/,

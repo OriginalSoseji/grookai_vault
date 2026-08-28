@@ -64,10 +64,21 @@ release controls or authorize app visibility.
 9. Roll back and independently prove the complete baseline was restored.
 10. Hash and permanently checkpoint every bounded proof artifact.
 
-## Stop Boundary
+## Durable Apply Gate
 
-Stop after the rollback-only production proof and permanent checkpoint.
+The separately authorized durable gate may execute only migration SHA-256
+`0bef87cb2f487e84729a93aa2ba1bfb9b90cc559a10e981de34dcd1d7a8305fb`
+from an exact merged default-branch SHA. Before execution it must prove that
+production history ends at `20260828024500`, no target set exists or collides,
+and the Supabase CLI offers only migration `20260828063000`.
 
-Durable apply requires a separate decision naming the migration SHA-256,
-payload fingerprint, run-plan fingerprint, exact row counts, and successful
-rollback proof. No later card or visibility gate is implied by a set apply.
+The durable change is limited to exactly 505 `public.sets` rows and exactly one migration-ledger row.
+Post-apply readback must reconcile every owned set field,
+the 500/5 game partition, the exact ledger row, hidden request visibility, zero
+direct set rows through anon/authenticated RLS, unchanged release controls, and
+zero changes in cards, identities, printings, mappings, images, pricing,
+publication, Storage, or Vault data. A second read-only connection must repeat
+the verification.
+
+Stop after durable apply evidence is permanently checkpointed. No later card,
+image, pricing, publication, or visibility gate is implied by this set apply.

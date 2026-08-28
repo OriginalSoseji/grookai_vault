@@ -332,6 +332,54 @@ export function evaluateCollectibleWave1SetTransientV1(readback, expectedRows) {
   return [...new Set(findings)].sort();
 }
 
+export function evaluateCollectibleWave1SetDurableReadbackV1(
+  readback,
+  expectedRows,
+  baseline,
+) {
+  const findings = [];
+  if (stableJsonWave1SetApplyV1(readback?.sets ?? []) !==
+      stableJsonWave1SetApplyV1(expectedRows ?? [])) findings.push("durable_set_rows_mismatch");
+  if (readback?.transaction_read_only !== true) findings.push("transaction_not_read_only");
+  if (readback?.latest_migration !== COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION) {
+    findings.push("latest_migration_mismatch");
+  }
+  if (number(readback?.migration_count) !== 1) findings.push("migration_ledger_count_mismatch");
+  const ledgerRows = readback?.ledger_rows ?? [];
+  if (ledgerRows.length !== 1 ||
+      ledgerRows[0]?.version !== COLLECTIBLE_WAVE1_SET_FOUNDATIONS_MIGRATION_VERSION ||
+      ledgerRows[0]?.name !== "collectible_wave1_set_foundations_v1" ||
+      number(ledgerRows[0]?.statement_count) < 1) {
+    findings.push("migration_ledger_row_mismatch");
+  }
+  for (const field of ["card_print_count", "legacy_card_count", "identity_count",
+    "printing_count", "external_mapping_count", "external_printing_mapping_count"]) {
+    if (number(readback?.[field]) !== 0) findings.push(`${field}_not_zero`);
+  }
+  for (const role of ["anon", "authenticated", "service_role"]) {
+    for (const game of ["gundam", "yugioh"]) {
+      if (readback?.visibility?.[role]?.[game] !== false) {
+        findings.push(`game_not_hidden:${role}:${game}`);
+      }
+    }
+  }
+  for (const role of ["anon", "authenticated"]) {
+    if (number(readback?.rls_visible_set_counts?.[role]) !== 0) {
+      findings.push(`sets_visible_through_rls:${role}`);
+    }
+  }
+  if (stableJsonWave1SetApplyV1(readback?.release_controls ?? []) !==
+      stableJsonWave1SetApplyV1(baseline?.release_controls ?? [])) {
+    findings.push("release_controls_changed");
+  }
+  findings.push(...compareCollectibleWave1ProtectedCountsV1(
+    baseline?.protected_counts,
+    readback?.protected_counts,
+    { sets: 505 },
+  ));
+  return [...new Set(findings)].sort();
+}
+
 export function collectibleWave1SetProofFingerprintV1(value) {
   return wave1SetApplyFingerprintV1(value);
 }
