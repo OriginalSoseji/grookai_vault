@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-08-27T13:15:06.527Z",
+  "generated_at": "2026-08-28T15:36:58.243Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -14,8 +14,8 @@
     "note": "Default Node TLS verification."
   },
   "summary": {
-    "sets": 203,
-    "evidence_rows": 238134,
+    "sets": 204,
+    "evidence_rows": 235656,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -79,7 +79,7 @@
       },
       {
         "source_key": "bulbapedia_set_list",
-        "evidence_rows": 11916
+        "evidence_rows": 12108
       },
       {
         "source_key": "bulbapedia_sm_black_star_promos",
@@ -387,7 +387,7 @@
       },
       {
         "source_key": "pkmncards",
-        "evidence_rows": 19288
+        "evidence_rows": 19677
       },
       {
         "source_key": "pkmncards_identity_gap",
@@ -443,7 +443,7 @@
       },
       {
         "source_key": "pokemontcg_api",
-        "evidence_rows": 51838
+        "evidence_rows": 51664
       },
       {
         "source_key": "pokemonwizard_variant_exact",
@@ -639,7 +639,7 @@
       },
       {
         "source_key": "tcgplayer_price_guide",
-        "evidence_rows": 23857
+        "evidence_rows": 21316
       },
       {
         "source_key": "tcgplayer_pro_catalog_page",
@@ -2987,7 +2987,7 @@
       },
       {
         "source_key": "thepricedex_price_list",
-        "evidence_rows": 57926
+        "evidence_rows": 57582
       },
       {
         "source_key": "vendortools_ascended_heroes_spidops_019",
@@ -2996,44 +2996,41 @@
     ],
     "cards_by_status": {
       "api_agreed": 9,
-      "candidate_unconfirmed": 96,
+      "candidate_unconfirmed": 98,
       "human_source_verified": 78,
-      "master_verified": 21510
+      "master_verified": 21508
     },
     "printings_by_status": {
-      "master_verified": 37762,
+      "master_verified": 37563,
       "human_source_verified": 395,
       "api_agreed": 1,
-      "candidate_unconfirmed": 109
+      "candidate_unconfirmed": 308
     },
     "conflicts": 0,
-    "manual_review": 213,
-    "suppressed_structured_finish_candidates": 1957,
+    "manual_review": 424,
+    "suppressed_structured_finish_candidates": 1886,
     "source_availability_by_status": {
-      "bulbapedia_set_list|collected": 90,
+      "bulbapedia_set_list|collected": 91,
       "bulbapedia_set_list|error": 112,
       "bulbapedia_set_list|unavailable": 1,
       "human_fixtures|collected": 1,
-      "pkmncards|collected": 153,
-      "pkmncards|error": 50,
-      "pokemontcg_api|cached_snapshot": 18,
-      "pokemontcg_api|collected": 146,
-      "pokemontcg_api|collected_plus_cached_snapshot": 10,
-      "pokemontcg_api|unavailable": 29,
+      "pkmncards|collected": 157,
+      "pkmncards|error": 46,
+      "pkmncards|unavailable": 1,
+      "pokemontcg_api|cached_snapshot": 173,
+      "pokemontcg_api|error": 31,
       "tcgdex|collected": 199,
-      "tcgdex|unavailable": 4,
-      "tcgplayer_price_guide|cached_snapshot": 15,
-      "tcgplayer_price_guide|collected": 128,
-      "tcgplayer_price_guide|collected_plus_cached_snapshot": 9,
-      "tcgplayer_price_guide|unavailable": 51,
-      "thepricedex_price_list|collected": 175,
-      "thepricedex_price_list|error": 27,
+      "tcgdex|unavailable": 5,
+      "tcgplayer_price_guide|cached_snapshot": 145,
+      "tcgplayer_price_guide|unavailable": 59,
+      "thepricedex_price_list|collected": 128,
+      "thepricedex_price_list|error": 75,
       "thepricedex_price_list|unavailable": 1
     },
     "continuity_carry_forward": {
-      "printing_count": 0,
+      "printing_count": 10,
       "policy": "preserve_historical_authority_until_explicit_revalidation_or_revocation",
-      "alias_remap_count": 0
+      "alias_remap_count": 2
     }
   },
   "artifact_manifest": {
