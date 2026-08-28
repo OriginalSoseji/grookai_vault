@@ -13,10 +13,15 @@ const promotionWorkflow = fs.readFileSync(
 
 test("set release migration workflow is frozen, singular, and rollback-proven", () => {
   assert.match(migrationWorkflow, /ref: \$\{\{ inputs\.expected_sha \}\}/);
+  assert.match(migrationWorkflow, /options:[\s\S]*?- dry_run[\s\S]*?- apply[\s\S]*?- verify/);
   assert.match(migrationWorkflow, /test "\$\(git rev-parse HEAD\)" = "\$EXPECTED_SHA"/);
   assert.match(migrationWorkflow, /git merge-base --is-ancestor "\$EXPECTED_SHA" origin\/main/);
   assert.match(migrationWorkflow, /test "\$pending_count" = "1"/);
-  assert.match(migrationWorkflow, /op16_hidden,false/);
+  assert.match(migrationWorkflow, /Inspect exact pending migration[\s\S]*?inputs\.mode != 'verify'/);
+  assert.match(migrationWorkflow, /Verify schema, grants, and rollback-only OP16 override[\s\S]*?inputs\.mode != 'dry_run'/);
+  assert.match(migrationWorkflow, /\^grants,t,f,f\$/);
+  assert.match(migrationWorkflow, /\^op16_before,t\$/);
+  assert.match(migrationWorkflow, /\^op16_hidden,f\$/);
   assert.match(migrationWorkflow, /rollback_absence\.txt/);
 });
 
