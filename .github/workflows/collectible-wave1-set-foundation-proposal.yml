@@ -1,0 +1,122 @@
+name: Collectible Wave 1 Set Foundation Proposal
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+concurrency:
+  group: collectible-wave1-set-foundation-proposal-v1
+  cancel-in-progress: false
+
+jobs:
+  propose:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CATALOG_AUTOMATION_MODE: shadow-only
+      NODE_OPTIONS: --use-system-ca
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Verify proposal contracts
+        run: |
+          node --check backend/catalog/collectible_wave1_set_foundation_proposal_v1.mjs
+          node --check scripts/workers/collectible_wave1_set_foundation_proposal_v1.mjs
+          node --test tests/contracts/collectible_wave1_set_foundation_proposal_v1.test.mjs
+          git diff --check
+
+      - name: Download exact Parser Wave 1 artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: collectible-shadow-parser-wave1-33118951166
+          path: ${{ runner.temp }}/parser-wave1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: "33118951166"
+
+      - name: Download exact alternative-artwork artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: collectible-wave1-alt-art-row-addressability-33132457407
+          path: ${{ runner.temp }}/alt-art-wave1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: "33132457407"
+
+      - name: Fetch frozen set manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/wave1-set-manifests"
+          curl --fail --location --silent --show-error --max-time 60 \
+            https://db.ygoprodeck.com/api/v7/cardsets.php \
+            --output "$RUNNER_TEMP/wave1-set-manifests/yugioh_cardsets.json"
+          curl --fail --location --silent --show-error --max-time 60 \
+            https://api.gcgapi.com/v1/sets \
+            --output "$RUNNER_TEMP/wave1-set-manifests/gundam_sets.json"
+
+      - name: Build artifact-only set proposal
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/${{ github.event.repository.default_branch }}"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          OUT_DIR="$RUNNER_TEMP/collectible-wave1-set-proposal-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/collectible_wave1_set_foundation_proposal_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --expected-head-sha="$GITHUB_SHA" \
+            --parser-artifact-dir="$RUNNER_TEMP/parser-wave1" \
+            --alt-art-artifact-dir="$RUNNER_TEMP/alt-art-wave1" \
+            --yugioh-set-manifest="$RUNNER_TEMP/wave1-set-manifests/yugioh_cardsets.json" \
+            --gundam-set-manifest="$RUNNER_TEMP/wave1-set-manifests/gundam_sets.json"
+
+      - name: Report proposal blockers
+        if: always() && env.OUT_DIR != ''
+        uses: actions/github-script@v8
+        env:
+          OUT_DIR: ${{ env.OUT_DIR }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = `${process.env.OUT_DIR}/summary.json`;
+            if (!fs.existsSync(summaryPath)) return;
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            const title = '[Collectible Wave 1 Set Proposal] Review rows';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            const body = `Manifest sets: ${summary.manifest_set_count}\n` +
+              `Candidates reconciled: ${summary.reconciled_candidate_count}\n` +
+              `Shared-code collisions: ${summary.set_code_collision_count}\n` +
+              `Set conflicts: ${summary.candidate_set_conflict_count}\n` +
+              `Source gaps: ${summary.source_gap_count}\n` +
+              `Alternative-artwork rows: ${summary.alternative_artwork_row_count}\n\n` +
+              `No database, Storage, image, pricing, publication, or Vault access occurred.\n\n` +
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Upload set proposal evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collectible-wave1-set-foundation-proposal-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
