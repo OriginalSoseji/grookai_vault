@@ -1,14 +1,14 @@
 {
   "version": "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_ROLLBACK_V1",
-  "recorded_at": "2026-08-28T02:41:25.688Z",
+  "recorded_at": "2026-08-28T02:47:40.705Z",
   "repository": {
     "branch": "feature/collectible-wave1-game-foundations-v1",
-    "commit_sha": "13e86363c116deab8fa3ed7604264b36b1a6e6ae"
+    "commit_sha": "a45742a156b5192449483b76df476a2a1f27ea12"
   },
   "migration": {
     "version": "20260828024500",
     "path": "supabase/migrations/20260828024500_collectible_wave1_game_foundations_v1.sql",
-    "sha256": "0feaf92c8bb2102c28e6d617525429ea8b3bb6c6c2648f7a9ec99a0e65b5b110",
+    "sha256": "155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23",
     "statement_count": 6
   },
   "exact_scope": {
@@ -40,5 +40,5 @@
     "identity_domain_constraint_changes": 0,
     "app_visibility_enabled": false
   },
-  "run_plan_fingerprint_sha256": "090756a707b8dc1ebd0ec73380610a5ba5b0f35c1fb36606cd705e54841996ba"
+  "run_plan_fingerprint_sha256": "832173f4ec0378b14ea52ccb56da95cd78ded2f80fd16f2707894a8effad9edf"
 }

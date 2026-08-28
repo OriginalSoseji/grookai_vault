@@ -1,8 +1,8 @@
 # Collectible Wave 1 Game Foundations Rollback V1
 
 - Status: `rollback_canary_passed_zero_durable_change`
-- Repository SHA: `13e86363c116deab8fa3ed7604264b36b1a6e6ae`
-- Migration SHA-256: `0feaf92c8bb2102c28e6d617525429ea8b3bb6c6c2648f7a9ec99a0e65b5b110`
+- Repository SHA: `a45742a156b5192449483b76df476a2a1f27ea12`
+- Migration SHA-256: `155dbe28f33ea0f44f7f5dd240e5f962fa487cabc7be1809b20ec803d7272e23`
 - Transient game inserts: `2`
 - Transient hidden control inserts: `2`
 - Rollback succeeded: `true`
