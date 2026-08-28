@@ -1,0 +1,56 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATION_PROPOSAL_V1",
+  "mode": "artifact-only",
+  "status": "completed_with_review_rows",
+  "selected_candidate_count": 46259,
+  "assigned_candidate_count": 46257,
+  "candidate_source_gap_count": 2,
+  "manifest_set_count": 1056,
+  "manifest_set_counts_by_game": {
+    "gundam": 24,
+    "yugioh": 1032
+  },
+  "proposal_status_counts": {
+    "candidate_name_conflict": 19,
+    "language_marker_conflicts_with_parser_en+shared_source_code": 13,
+    "manifest_without_candidates": 2,
+    "manifest_without_candidates+shared_source_code": 3,
+    "review_ready": 505,
+    "shared_source_code": 514
+  },
+  "manifest_source_gap_count": 5,
+  "source_gap_count": 7,
+  "set_code_collision_count": 142,
+  "collision_relationship_counts": {
+    "disjoint_collector_namespaces": 87,
+    "insufficient_candidates": 3,
+    "overlapping_collector_namespaces": 52
+  },
+  "candidate_set_conflict_count": 32,
+  "candidate_only_set_coordinate_count": 1,
+  "alternative_artwork_row_count": 124,
+  "alternative_artwork_candidate_reference_count": 1679,
+  "alternative_artwork_set_candidate_reference_count": 1266,
+  "alternative_artwork_missing_candidate_reference_count": 0,
+  "alternative_artwork_unmapped_manifest_candidate_count": 0,
+  "reconciled_candidate_count": 46259,
+  "candidate_reconciliation_mismatch_count": 0,
+  "validation_failure_count": 0,
+  "source_manifest_bodies_persisted": false,
+  "source_image_urls_persisted": false,
+  "secrets_recorded": false,
+  "boundaries": {
+    "database_access": false,
+    "database_writes": false,
+    "storage_access": false,
+    "storage_writes": false,
+    "image_downloads": false,
+    "image_url_persistence": false,
+    "source_body_persistence": false,
+    "canonical_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false,
+    "writer_dispatches": false
+  }
+}

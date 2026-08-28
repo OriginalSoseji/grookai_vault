@@ -389,3 +389,97 @@ test("frozen hashes and governing contract preserve the exact stop boundary", ()
   assert.match(contract, /Stop after one exact-artifact proposal run/);
   assert.match(contract, /Do not\s+create or update sets/);
 });
+
+test("production proposal checkpoint is bound to the reviewed workflow artifact", () => {
+  const auditDir = path.join(
+    ROOT,
+    "docs",
+    "audits",
+    "catalog_discovery",
+    "collectible_wave1_set_foundation_proposal_v1",
+  );
+  const reviewedFiles = {
+    "provenance.json": {
+      bytes: 885,
+      sha256: "dc46b79763940d443b5e9d69b184a6dfcb0565df3d947408d643d48689bded3f",
+    },
+    "reconciliation_report.json": {
+      bytes: 817,
+      sha256: "c757e0c1e9401dfdc0a76c45ecc37f98d1aa953e3cca41de51f1405d5b15b0b7",
+    },
+    "remote_artifact_hashes.json": {
+      bytes: 1652,
+      sha256: "45467a551a5d987abf6b5fb136623b8c830fc29abd909f6369ab292e7b1f9c6a",
+    },
+    "REPORT.md": {
+      bytes: 3145,
+      sha256: "396b99e41fb51ad75c46f0faca13409c6abc7b765b8c8f7f7442ada6de9091af",
+    },
+    "run_plan.json": {
+      bytes: 3984,
+      sha256: "ee6e4cac4ce5a1309dbf60a41c7b99d76cff58aeeeaa2ea424940f9645f6f4e2",
+    },
+    "summary.json": {
+      bytes: 1888,
+      sha256: "40dc7eea7964b4a04547ea0c851cd2adfa82fec2de44778732e7af352bec4fbc",
+    },
+  };
+  const preservedManifest = JSON.parse(fs.readFileSync(
+    path.join(auditDir, "preserved_artifact_hashes.json"),
+    "utf8",
+  ));
+  assert.equal(preservedManifest.algorithm, "sha256");
+  assert.deepEqual(
+    preservedManifest.artifacts.map((row) => row.artifact_path).sort(),
+    Object.keys(reviewedFiles).sort(),
+  );
+  for (const [artifactPath, expected] of Object.entries(reviewedFiles)) {
+    const bytes = fs.readFileSync(path.join(auditDir, artifactPath));
+    const recorded = preservedManifest.artifacts.find((row) =>
+      row.artifact_path === artifactPath);
+    assert.equal(bytes.length, expected.bytes, artifactPath);
+    assert.equal(recorded.bytes, expected.bytes, artifactPath);
+    assert.equal(recorded.sha256, expected.sha256, artifactPath);
+    assert.equal(
+      crypto.createHash("sha256").update(bytes).digest("hex"),
+      expected.sha256,
+      artifactPath,
+    );
+  }
+
+  const provenance = JSON.parse(fs.readFileSync(path.join(auditDir, "provenance.json")));
+  assert.equal(provenance.workflow_run_id, 33142767700);
+  assert.equal(
+    provenance.workflow_head_sha,
+    "843f73d33427d54aa98ab3248f097498f5cce2ef",
+  );
+  assert.equal(provenance.artifact_id, 9674581333);
+  assert.equal(
+    provenance.artifact_archive_digest,
+    "sha256:b32503f3af32564ddd42cb6e68ad2ea86282f91c62b9d70951a697a0c056fcc0",
+  );
+  assert.equal(provenance.database_access, false);
+  assert.equal(provenance.database_writes, false);
+  assert.equal(provenance.storage_access, false);
+  assert.equal(provenance.storage_writes, false);
+
+  const report = JSON.parse(fs.readFileSync(
+    path.join(auditDir, "reconciliation_report.json"),
+  ));
+  assert.equal(report.reconciliation_status, "passed");
+  assert.equal(report.candidate_count, 46259);
+  assert.equal(report.candidate_unique_count, 46259);
+  assert.equal(report.candidate_reconciliation_mismatch_count, 0);
+  assert.equal(report.set_count, 1056);
+  assert.equal(report.set_unique_count, 1056);
+  assert.equal(report.url_leak_count, 0);
+  assert.equal(report.boundary_true_count, 0);
+
+  const runPlan = JSON.parse(fs.readFileSync(path.join(auditDir, "run_plan.json")));
+  const summary = JSON.parse(fs.readFileSync(path.join(auditDir, "summary.json")));
+  assert.equal(runPlan.actual_head_sha, provenance.workflow_head_sha);
+  assert.equal(summary.selected_candidate_count, report.candidate_count);
+  assert.equal(summary.candidate_reconciliation_mismatch_count, 0);
+  assert.ok(Object.values(runPlan.boundaries).every((value) => value === false));
+  assert.ok(Object.values(summary.boundaries).every((value) => value === false));
+});

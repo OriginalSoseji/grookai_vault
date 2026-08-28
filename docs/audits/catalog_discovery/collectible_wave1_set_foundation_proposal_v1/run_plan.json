@@ -1,0 +1,114 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATION_PROPOSAL_V1",
+  "mode": "artifact-only",
+  "actual_head_sha": "843f73d33427d54aa98ab3248f097498f5cce2ef",
+  "expected_head_sha": "843f73d33427d54aa98ab3248f097498f5cce2ef",
+  "fixture_mode": false,
+  "inputs": {
+    "parser": {
+      "workflow_run_id": "33118951166",
+      "artifact_id": "9665669509",
+      "candidate_count": 46259,
+      "candidate_sha256": "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f",
+      "verified_artifacts": [
+        {
+          "path": "candidate_index.jsonl",
+          "bytes": 56865223,
+          "sha256": "30396cddfaff99e8f5ca1b11cc09942e88e99e6d8b586454e5fa67268bc3bb9f"
+        },
+        {
+          "path": "completeness_report.json",
+          "bytes": 1310,
+          "sha256": "30bdaff50d82af573780ab445ed700e3335c77ce160012fb543d278b3aade4e8"
+        },
+        {
+          "path": "run_plan.json",
+          "bytes": 1398,
+          "sha256": "4344592f7ea620019c3b9e4bc7a1933bf5ba72134ab2673479d77d5871ca778e"
+        },
+        {
+          "path": "source_snapshots.json",
+          "bytes": 3013,
+          "sha256": "1fe6c4f871579ae9af86feca1ea7ca4cfd0858b527cf8d5875af1bc4bda8b573"
+        },
+        {
+          "path": "summary.json",
+          "bytes": 762,
+          "sha256": "4d71ad8786528c64ac29f6e038566565ffdb15d5aa21671db30be96e49cbe609"
+        },
+        {
+          "path": "validation_failures.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    "alternative_artwork": {
+      "workflow_run_id": "33132457407",
+      "artifact_id": "9670781463",
+      "index_sha256": "ac33edbe569b8a1bb020366780182c4d3f293291fde46a10d8f76b257cbacddf",
+      "verified_artifacts": [
+        {
+          "path": "alternative_artwork_index.jsonl",
+          "bytes": 175038,
+          "sha256": "ac33edbe569b8a1bb020366780182c4d3f293291fde46a10d8f76b257cbacddf"
+        },
+        {
+          "path": "candidate_index.jsonl",
+          "bytes": 54804853,
+          "sha256": "fd74d6fa88158338b7b3a619243c3419fb697828b0240458ee254489a644089f"
+        },
+        {
+          "path": "completeness_report.json",
+          "bytes": 1176,
+          "sha256": "c22f6f57a326aa10419420293c80e4243f5f4c8a6547fcd028e9130b932028ce"
+        },
+        {
+          "path": "run_plan.json",
+          "bytes": 1417,
+          "sha256": "8052f74285c2ea04ae50eee5782e57b152f8bcae8b38f355a3ecf2de3352ecca"
+        },
+        {
+          "path": "source_snapshots.json",
+          "bytes": 1487,
+          "sha256": "55a6ee7260dd22dea51de25de7b659528780e62843f3f789b2ba67ffb2854cfc"
+        },
+        {
+          "path": "summary.json",
+          "bytes": 841,
+          "sha256": "6890b0823da5ad841df75f7a3a74d2119864f7b8dd0766872a93bfc8a3347516"
+        },
+        {
+          "path": "validation_failures.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    "set_manifests": {
+      "yugioh_ygoprodeck_api_v7": "16c47dcdceffe4ea0b221b75efaeace5d8bd9f888795f061369023ce8ed1c999",
+      "gundam_gcg_api_v1": "e3c7c641711ccbabc42c6c191bd7ca6c5715c74c669d78002bc1ad85c500a14e"
+    }
+  },
+  "mapping_policy": {
+    "yugioh": "exact_case_sensitive_source_set_name",
+    "gundam": "exact_source_set_code",
+    "shared_source_codes": "diagnostic_only_never_invent_or_merge",
+    "collector_namespace_signatures": "diagnostic_only",
+    "alternative_artwork": "join_only_never_assign_artwork_to_printing"
+  },
+  "boundaries": {
+    "database_access": false,
+    "database_writes": false,
+    "storage_access": false,
+    "storage_writes": false,
+    "image_downloads": false,
+    "image_url_persistence": false,
+    "source_body_persistence": false,
+    "canonical_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false,
+    "writer_dispatches": false
+  }
+}
