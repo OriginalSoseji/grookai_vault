@@ -1,0 +1,55 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "alternative_artwork_set_overlays.jsonl",
+      "bytes": 450374,
+      "sha256": "34120ff357296feee19f1b1c695c4ec9209f7e650d771415899da52674f7cd39"
+    },
+    {
+      "path": "candidate_only_set_coordinates.jsonl",
+      "bytes": 634,
+      "sha256": "d13d0b01151eeb1879b305f02081bf6d73dec6174acb7ec307824753712b1a09"
+    },
+    {
+      "path": "candidate_set_assignments.jsonl",
+      "bytes": 27671743,
+      "sha256": "b70207accaa82e01437c3eec4ffe3c128fc3e7e747b70b62e087fcb18b40fd5e"
+    },
+    {
+      "path": "candidate_set_conflicts.jsonl",
+      "bytes": 21437,
+      "sha256": "cec9342f96b44926c0cc5015496589fd386f0878ee87219bf1cf7c5ee7ce5efe"
+    },
+    {
+      "path": "run_plan.json",
+      "bytes": 3984,
+      "sha256": "ee6e4cac4ce5a1309dbf60a41c7b99d76cff58aeeeaa2ea424940f9645f6f4e2"
+    },
+    {
+      "path": "set_candidates.jsonl",
+      "bytes": 878931,
+      "sha256": "382e1a26fc2e3c57766445949c9fc0f0051544eb4f552c88bcf2654bddc320bb"
+    },
+    {
+      "path": "set_code_collisions.jsonl",
+      "bytes": 153542,
+      "sha256": "ef620dea8815cc07d5e0a7f4b1d82f67b4780e0377792362dee884c7ef044dcb"
+    },
+    {
+      "path": "source_gaps.jsonl",
+      "bytes": 4084,
+      "sha256": "227956570cfa32214d41ea62752917286f322dc7ca105b3c5633709247e5f350"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1888,
+      "sha256": "40dc7eea7964b4a04547ea0c851cd2adfa82fec2de44778732e7af352bec4fbc"
+    },
+    {
+      "path": "validation_failures.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": "COLLECTIBLE_WAVE1_SET_FOUNDATION_PROPOSAL_PROVENANCE_V1",
+  "workflow_run_id": 33142767700,
+  "workflow_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33142767700",
+  "workflow_head_sha": "843f73d33427d54aa98ab3248f097498f5cce2ef",
+  "artifact_id": 9674581333,
+  "artifact_name": "collectible-wave1-set-foundation-proposal-33142767700",
+  "artifact_size_in_bytes": 1997063,
+  "artifact_archive_digest": "sha256:b32503f3af32564ddd42cb6e68ad2ea86282f91c62b9d70951a697a0c056fcc0",
+  "artifact_expires_at": "2026-11-26T04:46:09Z",
+  "selected_files_preserved_locally": [
+    "reconciliation_report.json",
+    "remote_artifact_hashes.json",
+    "run_plan.json",
+    "summary.json"
+  ],
+  "large_row_artifacts_remain_in_github_actions": true,
+  "database_access": false,
+  "database_writes": false,
+  "storage_access": false,
+  "storage_writes": false
+}
