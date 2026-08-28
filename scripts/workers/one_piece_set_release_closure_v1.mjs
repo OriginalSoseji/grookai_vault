@@ -12,6 +12,7 @@ import {
   buildOnePieceSetImagePointerV1,
   evaluateOnePieceSetReleaseReadinessV1,
   hashOnePieceSetReleaseClosureV1,
+  isOnePieceSelfHostedExactImageV1,
   normalizeOnePieceSetCodeV1,
   ONE_PIECE_SET_IMAGE_BUCKET,
   ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
@@ -82,6 +83,11 @@ function parseArgs(argv) {
     throw new Error("Mutation and verification modes require an exact snapshot fingerprint");
   }
   if (!args.databaseUrl) throw new Error("SUPABASE_DB_URL is required");
+  if (!args.supabaseUrl) throw new Error("SUPABASE_URL is required");
+  const supabaseUrl = new URL(args.supabaseUrl);
+  if (supabaseUrl.protocol !== "https:") {
+    throw new Error("SUPABASE_URL must use HTTPS");
+  }
   if (!Number.isInteger(args.concurrency) || args.concurrency < 1 || args.concurrency > 30) {
     throw new Error("Concurrency must be between 1 and 30");
   }
@@ -237,10 +243,20 @@ async function loadSourcePricing(client, rows) {
   return result.rows[0];
 }
 
-async function captureSnapshot(client, setCode, official) {
+function imagePublicBaseUrl(args) {
+  return `${args.supabaseUrl.replace(/\/$/, "")}/storage/v1/object/public/` +
+    ONE_PIECE_SET_IMAGE_BUCKET;
+}
+
+async function captureSnapshot(client, setCode, official, publicBaseUrl) {
   const closure = await loadClosureRows(client, setCode);
   const sourcePricing = await loadSourcePricing(client, closure.rows);
-  return buildOnePieceSetClosureSnapshotV1({ ...closure, sourcePricing, official });
+  return buildOnePieceSetClosureSnapshotV1({
+    ...closure,
+    sourcePricing,
+    official,
+    imagePublicBaseUrl: publicBaseUrl,
+  });
 }
 
 async function writeArtifacts(dir, files, producerSha) {
@@ -267,9 +283,10 @@ function assertSnapshotBinding(snapshot, args) {
 
 function imageCandidates(snapshot) {
   return snapshot.rows.filter((row) =>
-    !(row.image_status === "exact" &&
-      String(row.image_source ?? "").startsWith("self_hosted_") &&
-      row.image_path && row.image_hash));
+    !isOnePieceSelfHostedExactImageV1(
+      row,
+      snapshot.image_public_base_url,
+    ));
 }
 
 function imageUrls(row) {
@@ -340,8 +357,7 @@ function storageClient(args) {
   });
   return {
     client,
-    publicBaseUrl: `${args.supabaseUrl.replace(/\/$/, "")}/storage/v1/object/public/` +
-      ONE_PIECE_SET_IMAGE_BUCKET,
+    publicBaseUrl: imagePublicBaseUrl(args),
   };
 }
 
@@ -577,13 +593,19 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const repo = repository(args);
   const official = await fetchOfficialSeries(args.officialSeriesId);
+  const publicBaseUrl = imagePublicBaseUrl(args);
   const client = new Client(clientOptions(args.databaseUrl, args.mode));
   await client.connect();
   try {
     let snapshot;
     try {
       await client.query("begin transaction isolation level repeatable read read only");
-      snapshot = await captureSnapshot(client, args.setCode, official);
+      snapshot = await captureSnapshot(
+        client,
+        args.setCode,
+        official,
+        publicBaseUrl,
+      );
       await client.query("commit");
     } catch (error) {
       await client.query("rollback").catch(() => {});
@@ -649,7 +671,12 @@ async function main() {
         throw error;
       }
     }
-    const after = await captureSnapshot(client, args.setCode, official);
+    const after = await captureSnapshot(
+      client,
+      args.setCode,
+      official,
+      publicBaseUrl,
+    );
     const summary = { ...base,
       status: args.mode === "image-canary"
         ? "image_canary_passed_zero_residue"
@@ -686,7 +713,12 @@ async function main() {
       args,
       args.mode === "activation-canary",
     );
-    const after = await captureSnapshot(client, args.setCode, official);
+    const after = await captureSnapshot(
+      client,
+      args.setCode,
+      official,
+      publicBaseUrl,
+    );
     if (args.mode === "activation-canary" &&
         after.snapshot_fingerprint_sha256 !== snapshot.snapshot_fingerprint_sha256) {
       throw new Error("Activation canary left durable residue");

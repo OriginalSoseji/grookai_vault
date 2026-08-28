@@ -61,12 +61,48 @@ export function buildOnePieceSetImagePointerV1({
   };
 }
 
+export function isOnePieceSelfHostedExactImageV1(row, publicBaseUrl) {
+  const productId = String(row?.source_product_id ?? "").trim();
+  const imagePath = String(row?.image_path ?? "").trim();
+  const imageSource = String(row?.image_source ?? "").trim();
+  const imageHash = String(row?.image_hash ?? "");
+  const expectedPathPrefix =
+    `one-piece/card-prints/tcgplayer/${productId}/`;
+  const imagePathMatch = imagePath.match(
+    /^one-piece\/card-prints\/tcgplayer\/(\d+)\/([0-9a-f]{32})\.(jpg|png)$/,
+  );
+  let imageUrl;
+  let expectedUrl;
+  try {
+    imageUrl = new URL(String(row?.image_url ?? ""));
+    expectedUrl = new URL(
+      `${String(publicBaseUrl).replace(/\/$/, "")}/${imagePath}`,
+    );
+  } catch {
+    return false;
+  }
+
+  return /^\d+$/.test(productId) &&
+    row?.image_status === "exact" &&
+    ["identity", "self_hosted_tcgplayer_exact_product_v1"].includes(
+      imageSource,
+    ) &&
+    imagePath.startsWith(expectedPathPrefix) &&
+    imagePathMatch?.[1] === productId &&
+    imagePathMatch?.[2] === imageHash.slice(0, 32) &&
+    /^[0-9a-f]{64}$/.test(imageHash) &&
+    imageUrl.protocol === "https:" &&
+    imageUrl.origin === expectedUrl.origin &&
+    imageUrl.pathname === expectedUrl.pathname;
+}
+
 export function buildOnePieceSetClosureSnapshotV1({
   set,
   releaseControl,
   rows,
   sourcePricing,
   official,
+  imagePublicBaseUrl,
 }) {
   const cohort = [...rows].sort((left, right) =>
     left.card_print_id.localeCompare(right.card_print_id));
@@ -78,10 +114,9 @@ export function buildOnePieceSetClosureSnapshotV1({
     active_evidence: cohort.filter((row) => Number(row.active_evidence_count) >= 1).length,
     exact_tcgplayer_mappings: cohort.filter((row) => Number(row.active_mapping_count) === 1).length,
     duplicate_tcgplayer_mappings: cohort.filter((row) => Number(row.active_mapping_count) > 1).length,
-    self_hosted_exact_images: cohort.filter((row) =>
-      row.image_status === "exact" &&
-      String(row.image_source ?? "").startsWith("self_hosted_") &&
-      Boolean(row.image_path) && Boolean(row.image_hash)).length,
+    self_hosted_exact_images: cohort.filter(
+      (row) => isOnePieceSelfHostedExactImageV1(row, imagePublicBaseUrl),
+    ).length,
     image_source_references: cohort.filter((row) => Boolean(row.source_image_url)).length,
     suppressed_rows: cohort.filter((row) => row.visibility_status === "suppressed").length,
     warehouse_market_products: Number(sourcePricing?.market_product_count ?? 0),
@@ -98,6 +133,8 @@ export function buildOnePieceSetClosureSnapshotV1({
     active_identity_count: Number(row.active_identity_count),
     active_evidence_count: Number(row.active_evidence_count),
     active_mapping_count: Number(row.active_mapping_count),
+    image_url: row.image_url,
+    image_alt_url: row.image_alt_url,
     image_source: row.image_source,
     image_status: row.image_status,
     image_path: row.image_path,
@@ -106,6 +143,7 @@ export function buildOnePieceSetClosureSnapshotV1({
   }));
   const core = {
     version: ONE_PIECE_SET_RELEASE_CLOSURE_VERSION,
+    image_public_base_url: imagePublicBaseUrl,
     set,
     release_control: releaseControl,
     counts,
