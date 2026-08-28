@@ -40,3 +40,11 @@ test("all active privileged catalog reads enforce card-level set visibility", ()
   assert.match(sql, /get_public_set_card_counts_v1[\s\S]*?catalog_card_print_visible_to_request_v1\(card\.id\)/i);
   assert.match(sql, /get_public_set_catalog_facets_v1[\s\S]*?catalog_card_print_visible_to_request_v1\(card\.id\)/i);
 });
+
+test("ordinary search can enter a hidden game only through a released set", () => {
+  assert.match(
+    sql,
+    /authorized_game[\s\S]*?catalog_game_visible_to_request_v1\(game\.code\)[\s\S]*?or exists[\s\S]*?catalog_set_visible_to_request_v1\(released_set\.id\)/i,
+  );
+  assert.match(sql, /where public\.catalog_card_print_visible_to_request_v1\(card\.id\)/i);
+});

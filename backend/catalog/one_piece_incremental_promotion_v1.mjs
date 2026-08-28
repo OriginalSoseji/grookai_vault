@@ -64,7 +64,7 @@ function targetIds(productId, identityHash) {
   };
 }
 
-function buildRow(binding, set, releaseSetCode) {
+function buildRow(binding, set, releaseSetCode, suppressReleaseSetRows) {
   const productId = Number(binding.source_product_id);
   const official = binding.official_authority;
   const variantKey = `tcgplayer_product_${productId}`;
@@ -122,6 +122,10 @@ function buildRow(binding, set, releaseSetCode) {
     evidence_subject: evidenceSubject,
     evidence_payload: evidencePayload,
   }));
+  const shouldSuppress = set.code !== releaseSetCode || suppressReleaseSetRows;
+  const suppressionReason = set.code !== releaseSetCode
+    ? "cross_set_row_staged_with_hidden_incremental_release"
+    : "existing_set_incremental_row_staged_for_release";
   return {
     source_product_id: productId,
     card_print: {
@@ -149,10 +153,10 @@ function buildRow(binding, set, releaseSetCode) {
         exact_printing_children_deferred: true,
         image_acquisition_deferred: true,
         image_pointer_deferred: true,
-        ...(set.code !== releaseSetCode ? {
+        ...(shouldSuppress ? {
           app_visibility_v1: {
             status: "suppressed",
-            reason: "cross_set_row_staged_with_hidden_incremental_release",
+            reason: suppressionReason,
             release_set_code: releaseSetCode,
             policy_version: ONE_PIECE_INCREMENTAL_SET_RELEASE_VERSION,
           },
@@ -269,15 +273,16 @@ export function buildOnePieceIncrementalPromotionPlanV1({
       image_policy: "evidence_only_until_self_hosted",
     },
   };
+  const targetSetAlreadyExists = canonicalSetCodes.has(code);
   const rows = releaseEligible ? missingExact.map((row) => {
     const printedSetCode = setCodeFromCardNumber(row.card_number);
     return buildRow(row, printedSetCode === code ? set : {
       id: setId(printedSetCode),
       code: printedSetCode,
-    }, code);
+    }, code, targetSetAlreadyExists);
   }) : [];
   const createSet = releaseEligible && rows.length > 0 &&
-    !new Set(existingSetCodes.map((value) => clean(value).toUpperCase())).has(code);
+    !targetSetAlreadyExists;
   const payload = {
     set: createSet ? set : null,
     set_release_control: createSet ? {
@@ -347,8 +352,8 @@ export function buildOnePieceIncrementalPromotionPlanV1({
       insert_only: true,
       set_release_status: "hidden",
       public_visibility_changes: 0,
-      cross_set_rows_suppressed: rows.filter((row) =>
-        row.card_print.set_code !== code).length,
+      staged_rows_suppressed: rows.filter((row) =>
+        row.card_print.data_quality_flags?.app_visibility_v1?.status === "suppressed").length,
       child_printings: 0,
       don_writes: 0,
       sealed_writes: 0,
@@ -383,6 +388,10 @@ export function validateOnePieceIncrementalPromotionPlanV1(plan) {
     }
   } else if (plan?.payload?.set_release_control) {
     findings.push("orphan_set_release_control");
+  }
+  if (!plan?.payload?.set_release_control && rows.some((row) =>
+    row.card_print.data_quality_flags?.app_visibility_v1?.status !== "suppressed")) {
+    findings.push("existing_set_incremental_row_not_suppressed");
   }
   for (const field of ["source_product_id", "card_print.id", "identity.id"]) {
     const values = rows.map((row) => field.split(".").reduce((value, key) => value?.[key], row));

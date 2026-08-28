@@ -196,6 +196,12 @@ as $$
     join public.games game
       on lower(game.code) = normalized.game_code_norm
     where public.catalog_game_visible_to_request_v1(game.code)
+      or exists (
+        select 1
+        from public.sets released_set
+        where lower(released_set.game) = lower(game.code)
+          and public.catalog_set_visible_to_request_v1(released_set.id)
+      )
   ),
   inferred_scope as (
     select

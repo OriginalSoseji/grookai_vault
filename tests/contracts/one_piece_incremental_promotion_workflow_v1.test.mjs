@@ -14,6 +14,7 @@ const promotionWorkflow = fs.readFileSync(
 test("set release migration workflow is frozen, singular, and rollback-proven", () => {
   assert.match(migrationWorkflow, /ref: \$\{\{ inputs\.expected_sha \}\}/);
   assert.match(migrationWorkflow, /test "\$\(git rev-parse HEAD\)" = "\$EXPECTED_SHA"/);
+  assert.match(migrationWorkflow, /git merge-base --is-ancestor "\$EXPECTED_SHA" origin\/main/);
   assert.match(migrationWorkflow, /test "\$pending_count" = "1"/);
   assert.match(migrationWorkflow, /op16_hidden,false/);
   assert.match(migrationWorkflow, /rollback_absence\.txt/);
@@ -22,6 +23,7 @@ test("set release migration workflow is frozen, singular, and rollback-proven", 
 test("One Piece promotion workflow preserves exact hidden staging and artifacts", () => {
   assert.match(promotionWorkflow, /options:[\s\S]*?- plan[\s\S]*?- dry-run[\s\S]*?- apply/);
   assert.match(promotionWorkflow, /ref: \$\{\{ inputs\.expected_sha \}\}/);
+  assert.match(promotionWorkflow, /git merge-base --is-ancestor "\$EXPECTED_SHA" origin\/main/);
   assert.match(promotionWorkflow, /--expected-head-sha="\$EXPECTED_SHA"/);
   assert.match(promotionWorkflow, /set_release_control\?\.release_status !== 'hidden'/);
   assert.match(promotionWorkflow, /actions\/upload-artifact@v4/);

@@ -115,7 +115,32 @@ test("SP products preserve their older printed-set ownership", () => {
     plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1.release_set_code,
     "OP17",
   );
-  assert.equal(plan.boundaries.cross_set_rows_suppressed, 1);
+  assert.equal(plan.boundaries.staged_rows_suppressed, 1);
+});
+
+test("incremental rows for an already-live target set remain suppressed", () => {
+  const plan = buildOnePieceIncrementalPromotionPlanV1({
+    asOf: "2026-08-28",
+    setCode: "OP17",
+    setName: "The World's Strongest Warriors",
+    releaseDate: "2026-08-28",
+    officialSeriesId: "569117",
+    warehouseProducts: [warehouseProduct({
+      id: 700005,
+      name: "Monkey.D.Luffy",
+      number: "OP17-001",
+    })],
+    officialRecords,
+    existingSetCodes: ["OP17"],
+  });
+  assert.equal(plan.payload.set, null);
+  assert.equal(plan.payload.set_release_control, null);
+  assert.equal(
+    plan.payload.rows[0].card_print.data_quality_flags.app_visibility_v1.status,
+    "suppressed",
+  );
+  assert.equal(plan.boundaries.public_visibility_changes, 0);
+  assert.equal(validateOnePieceIncrementalPromotionPlanV1(plan).valid, true);
 });
 
 test("promo-number SP products remain owned by the P set", () => {
