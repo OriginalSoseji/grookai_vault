@@ -3849,7 +3849,19 @@ async function main() {
       console.warn(`[master-index] PokemonTCG.io set inventory unavailable: ${error.message ?? error}`);
       return [];
     }),
-    fetchTcgdexSets(options),
+    fetchTcgdexSets(options)
+      .then((rows) => {
+        if (options.sources.includes('tcgdex') && rows.length === 0) {
+          throw new Error('TCGdex returned no physical English set rows');
+        }
+        return rows;
+      })
+      .catch((error) => {
+        throw new Error(
+          `[SOURCE_UNAVAILABLE] TCGdex set inventory unavailable: ${error.message ?? error}`,
+          { cause: error },
+        );
+      }),
   ]);
   const pokemonSets = pokemonSetsResult;
   const pokemonLiveUnavailable = pokemonSets.length === 0 && Boolean(pokemonTcgSnapshot?.set_configs?.length);
