@@ -19,6 +19,7 @@ jobs:
     timeout-minutes: 60
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       PGOPTIONS: "-c default_transaction_read_only=on"
       CATALOG_AUTOMATION_MODE: shadow-only
     steps:
@@ -37,10 +38,13 @@ jobs:
       - name: Verify shadow reconciliation contracts
         run: |
           node --check backend/catalog/catalog_shadow_automation_v1.mjs
+          node --check backend/catalog/cross_tcg_set_publication_gate_v1.mjs
           node --check scripts/workers/catalog_shadow_reconciliation_v1.mjs
+          node --check scripts/workers/cross_tcg_set_publication_gate_v1.mjs
           node --check scripts/workers/universal_catalog_discovery_v1.mjs
           node --test \
             tests/contracts/catalog_shadow_automation_v1.test.mjs \
+            tests/contracts/cross_tcg_set_publication_gate_v1.test.mjs \
             tests/contracts/universal_catalog_discovery_v1.test.mjs
           git diff --check
 
@@ -68,6 +72,57 @@ jobs:
             --discovery-dir="$DISCOVERY_DIR" \
             --out-dir="$SHADOW_DIR" \
             --expected-head-sha="$GITHUB_SHA"
+
+      - name: Audit released sets through the publication gate
+        id: set_publication_gate
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          PUBLICATION_GATE_DIR="$RUNNER_TEMP/set-publication-gate-$GITHUB_RUN_ID"
+          echo "PUBLICATION_GATE_DIR=$PUBLICATION_GATE_DIR" >> "$GITHUB_ENV"
+          set +e
+          node scripts/workers/cross_tcg_set_publication_gate_v1.mjs \
+            --out-dir="$PUBLICATION_GATE_DIR" \
+            --expected-head-sha="$GITHUB_SHA"
+          gate_status=$?
+          set -e
+          cat "$PUBLICATION_GATE_DIR/CROSS_TCG_SET_PUBLICATION_GATE_REPORT.md" >> "$GITHUB_STEP_SUMMARY"
+          exit "$gate_status"
+
+      - name: Open or update set publication gate issue
+        if: ${{ steps.set_publication_gate.outcome == 'failure' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '[Catalog Publication] Released set gate blocked';
+            const body = `One or more released sets failed the game-scope, card, or self-hosted media contract. No canonical writer was dispatched.\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Close resolved set publication gate issue
+        if: ${{ steps.set_publication_gate.outcome == 'success' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '[Catalog Publication] Released set gate blocked';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, state: 'closed',
+            });
 
       - name: Open or update shadow reconciliation failure issue
         if: failure()
@@ -146,5 +201,11 @@ jobs:
           path: |
             ${{ env.DISCOVERY_DIR }}
             ${{ env.SHADOW_DIR }}
+            ${{ env.PUBLICATION_GATE_DIR }}
           if-no-files-found: error
           retention-days: 90
+
+      - name: Enforce released set publication gate
+        if: ${{ always() && steps.set_publication_gate.outcome == 'failure' }}
+        shell: bash
+        run: exit 1
