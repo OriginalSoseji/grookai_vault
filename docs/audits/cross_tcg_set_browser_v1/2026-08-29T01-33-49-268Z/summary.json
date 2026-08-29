@@ -1,0 +1,223 @@
+{
+  "version": "CROSS_TCG_SET_BROWSER_FINAL_SMOKE_V1_1",
+  "temporary_user_deleted": true,
+  "checks": [
+    {
+      "name": "one_piece_vocabulary",
+      "pass": true
+    },
+    {
+      "name": "one_piece_product_filters",
+      "pass": true
+    },
+    {
+      "name": "one_piece_36_covers",
+      "pass": true,
+      "count": 36
+    },
+    {
+      "name": "one_piece_covers_loaded",
+      "pass": true,
+      "failed": []
+    },
+    {
+      "name": "one_piece_zero_proxy_covers",
+      "pass": true,
+      "proxy_count": 0
+    },
+    {
+      "name": "mobile_no_overflow",
+      "pass": true,
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    {
+      "name": "starter_deck_filter_returns_st30",
+      "pass": true
+    },
+    {
+      "name": "starter_deck_package_art",
+      "pass": true,
+      "count": 1,
+      "cover": {
+        "alt": "STARTER DECK EX -Luffy & Ace- [ST-30] cover art",
+        "src": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/external-card-images/set-covers/one_piece/st30/tcgplayer/692138/bd78579a1113f9bb28b3bc4e.jpg",
+        "loaded": true
+      }
+    },
+    {
+      "name": "op17_detail_opens",
+      "pass": true
+    },
+    {
+      "name": "mtg_vocabulary",
+      "pass": true
+    },
+    {
+      "name": "mtg_product_filters",
+      "pass": true
+    },
+    {
+      "name": "mtg_current_release_first",
+      "pass": true,
+      "first": "The Hobbit"
+    },
+    {
+      "name": "mtg_36_covers_loaded_direct",
+      "pass": true,
+      "count": 36,
+      "bad": []
+    },
+    {
+      "name": "mtg_expansion_lane_tempest",
+      "pass": true
+    },
+    {
+      "name": "mtg_expansion_lane_theros",
+      "pass": true
+    },
+    {
+      "name": "mtg_expansion_lane_time_spiral",
+      "pass": true
+    },
+    {
+      "name": "mtg_expansion_lane_prophecy",
+      "pass": true
+    },
+    {
+      "name": "mtg_expansion_lane_planeshift",
+      "pass": true
+    },
+    {
+      "name": "mtg_expansion_lane_portal",
+      "pass": true
+    },
+    {
+      "name": "no_failed_image_responses",
+      "pass": true,
+      "failed": []
+    }
+  ],
+  "timings": [
+    {
+      "route": "/login?next=%2Fsets%3Fgame%3Done_piece",
+      "status": 200,
+      "ready_ms": 233
+    },
+    {
+      "route": "/sets?game=one_piece (post-login)",
+      "status": 200,
+      "ready_ms": 736
+    },
+    {
+      "route": "/sets?game=one_piece&q=ST30&lane=deck",
+      "status": 200,
+      "ready_ms": 369
+    },
+    {
+      "route": "/sets/op17?game=one_piece",
+      "status": 200,
+      "ready_ms": 1323
+    },
+    {
+      "route": "/sets?game=mtg",
+      "status": 200,
+      "ready_ms": 497
+    },
+    {
+      "route": "/sets?game=mtg&q=Tempest&lane=main",
+      "status": 200,
+      "ready_ms": 877
+    },
+    {
+      "route": "/sets?game=mtg&q=Theros&lane=main",
+      "status": 200,
+      "ready_ms": 720
+    },
+    {
+      "route": "/sets?game=mtg&q=Time%20Spiral&lane=main",
+      "status": 200,
+      "ready_ms": 595
+    },
+    {
+      "route": "/sets?game=mtg&q=Prophecy&lane=main",
+      "status": 200,
+      "ready_ms": 466
+    },
+    {
+      "route": "/sets?game=mtg&q=Planeshift&lane=main",
+      "status": 200,
+      "ready_ms": 496
+    },
+    {
+      "route": "/sets?game=mtg&q=Portal&lane=main",
+      "status": 200,
+      "ready_ms": 459
+    }
+  ],
+  "failed_responses": [
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:3101/_vercel/insights/script.js",
+      "status": 404,
+      "type": "script"
+    }
+  ],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "artifact_directory": "C:\\grookai_vault_one_piece_op17_release\\docs\\audits\\cross_tcg_set_browser_v1\\2026-08-29T01-33-49-268Z"
+}
