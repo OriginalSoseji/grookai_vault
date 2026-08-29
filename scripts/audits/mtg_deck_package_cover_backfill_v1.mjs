@@ -7,11 +7,11 @@ import process from "node:process";
 import { createClient } from "@supabase/supabase-js";
 
 import {
-  chooseMtgPackageProduct,
   chooseMtgSourceGroup,
   isMtgDeckRelease,
   MTG_DECK_PACKAGE_COVER_POLICY_VERSION,
   normalizeMtgSetCode,
+  rankMtgPackageProducts,
 } from "../../backend/catalog/mtg_deck_package_cover_policy_v1.mjs";
 import { inspectOnePieceImage } from "../../backend/pricing/one_piece_st01_language_and_image_readiness_v1.mjs";
 
@@ -98,6 +98,7 @@ function packageDownloadUrls(product) {
   high.pathname = high.pathname.replace(/_200w\.jpg$/i, "_in_1000x1000.jpg");
   return [
     high.toString(),
+    `https://product-images.tcgplayer.com/${product.product_id}.jpg`,
     `https://product-images.tcgplayer.com/fit-in/1000x1000/${product.product_id}.jpg`,
     source.toString(),
   ].filter((value, index, values) => values.indexOf(value) === index);
@@ -207,17 +208,40 @@ async function loadCandidates(client) {
   for (const set of deckSets) {
     const groupMatch = groupMatches.get(set.id);
     if (!groupMatch) continue;
-    const packageMatch = chooseMtgPackageProduct(
+    const packageMatches = rankMtgPackageProducts(
       productsByGroup.get(groupMatch.group.group_id) ?? [],
       groupMatch.group,
     );
-    if (!packageMatch) continue;
+    if (packageMatches.length === 0) continue;
     const alreadyExact =
       set.hero_image_url?.includes(`/set-covers/mtg/${normalizeMtgSetCode(set.code)}/tcgplayer/`) ?? false;
     if (alreadyExact) continue;
-    candidates.push({ set, groupMatch, packageMatch });
+    candidates.push({ set, groupMatch, packageMatches });
   }
   return { setCount: sets.length, deckSetCount: deckSets.length, groupMatchCount: groupMatches.size, candidates };
+}
+
+async function resolveAvailablePackage(candidate) {
+  const unavailable = [];
+  for (const packageMatch of candidate.packageMatches) {
+    try {
+      const download = await downloadPackageImage(packageMatch.product);
+      return {
+        set: candidate.set,
+        groupMatch: candidate.groupMatch,
+        packageMatch,
+        packageProductRank: unavailable.length + 1,
+        higherRankedUnavailableProductIds: unavailable.map((entry) => entry.product_id),
+        download,
+      };
+    } catch (error) {
+      unavailable.push({
+        product_id: packageMatch.product.product_id,
+        reason: error.message,
+      });
+    }
+  }
+  return null;
 }
 
 async function main() {
@@ -233,8 +257,16 @@ async function main() {
   const loaded = await loadCandidates(client);
   const producerCommitSha = gitValue("rev-parse", "HEAD");
   const producerBranch = gitValue("branch", "--show-current");
-  const selected = args.maxSets === null ? loaded.candidates : loaded.candidates.slice(0, args.maxSets);
-  const rows = selected.map(({ set, groupMatch, packageMatch }) => ({
+  const candidatePool = args.maxSets === null ? loaded.candidates : loaded.candidates.slice(0, args.maxSets);
+  const resolved = await mapLimit(candidatePool, 4, resolveAvailablePackage);
+  const selected = resolved.filter(Boolean);
+  const rows = selected.map(({
+    set,
+    groupMatch,
+    packageMatch,
+    packageProductRank,
+    higherRankedUnavailableProductIds,
+  }) => ({
     set_id: set.id,
     game: set.game,
     set_code: set.code,
@@ -250,6 +282,8 @@ async function main() {
     package_product_id: packageMatch.product.product_id,
     package_product_name: packageMatch.product.name,
     package_product_score: packageMatch.score,
+    package_product_rank: packageProductRank,
+    higher_ranked_unavailable_product_ids: higherRankedUnavailableProductIds,
     package_source_image_url: packageMatch.product.image_url,
     package_source_url: packageMatch.product.source_url,
   }));
@@ -294,11 +328,8 @@ async function main() {
     return;
   }
 
-  const downloaded = await mapLimit(selected, 8, async ({ packageMatch }) =>
-    downloadPackageImage(packageMatch.product),
-  );
-  const prepared = selected.map((candidate, index) => {
-    const download = downloaded[index];
+  const prepared = selected.map((candidate) => {
+    const download = candidate.download;
     const extension = download.image.format === "png" ? "png" : "jpg";
     const objectPath = `set-covers/mtg/${normalizeMtgSetCode(candidate.set.code)}/tcgplayer/${candidate.packageMatch.product.product_id}/${download.image.sha256.slice(0, 24)}.${extension}`;
     return { candidate, download, objectPath };

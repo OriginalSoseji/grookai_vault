@@ -5,6 +5,7 @@ import {
   chooseMtgPackageProduct,
   chooseMtgSourceGroup,
   isMtgDeckRelease,
+  rankMtgPackageProducts,
   scoreMtgPackageProduct,
 } from "../../backend/catalog/mtg_deck_package_cover_policy_v1.mjs";
 
@@ -104,4 +105,29 @@ test("overview package outranks an individual deck when both exist", () => {
     group,
   );
   assert.equal(result?.product.product_id, 1);
+});
+
+test("package ranking preserves deterministic fallbacks", () => {
+  const group = { name: "Commander 2015" };
+  const result = rankMtgPackageProducts(
+    [
+      {
+        product_id: 3,
+        name: "Commander 2015 - Plunder the Graves Commander Deck",
+        image_url: "https://example.invalid/deck-three.jpg",
+      },
+      {
+        product_id: 2,
+        name: "Commander 2015 - Plunder the Graves Commander Deck",
+        image_url: "https://example.invalid/deck-two.jpg",
+      },
+      {
+        product_id: 1,
+        name: "Commander 2015 - Set of 5",
+        image_url: "https://example.invalid/set.jpg",
+      },
+    ],
+    group,
+  );
+  assert.deepEqual(result.map((entry) => entry.product.product_id), [1, 2, 3]);
 });

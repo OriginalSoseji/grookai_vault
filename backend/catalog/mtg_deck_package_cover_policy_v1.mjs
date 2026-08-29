@@ -133,8 +133,8 @@ export function scoreMtgPackageProduct(product, group) {
   return score;
 }
 
-export function chooseMtgPackageProduct(products, group) {
-  const candidates = products
+export function rankMtgPackageProducts(products, group) {
+  return products
     .map((product) => ({ product, score: scoreMtgPackageProduct(product, group) }))
     .filter((entry) => entry.score > 0)
     .sort(
@@ -142,5 +142,9 @@ export function chooseMtgPackageProduct(products, group) {
         right.score - left.score ||
         Number(left.product.product_id) - Number(right.product.product_id),
     );
+}
+
+export function chooseMtgPackageProduct(products, group) {
+  const candidates = rankMtgPackageProducts(products, group);
   return candidates[0] ?? null;
 }
