@@ -11,11 +11,14 @@ import {
   buildPokemonMasterIndexUpdateCandidatesV1,
   CATALOG_GAP_STATUSES,
   classifyPokemonDatabaseSetScopesV1,
+  isOptionalCatalogSourceFallbackV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
+  mapPoolSettledV1,
   normalizeCatalogSetCode,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
   reconcileCatalogSets,
+  runDegradedCatalogSourceLaneV1,
   summarizeCatalogReconciliation,
 } from "../../backend/catalog/universal_catalog_discovery_v1.mjs";
 import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
@@ -30,6 +33,65 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", ".
 function source(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), "utf8");
 }
+
+test("source network failures degrade one lane while integrity failures remain fatal", async () => {
+  const failures = [];
+  const fallback = await runDegradedCatalogSourceLaneV1({
+    authority: "TCGdex English Pokemon",
+    failures,
+    fallback: [],
+    recordedAt: () => "2026-08-29T00:00:00.000Z",
+    operation: async () => {
+      throw new Error("[SOURCE_UNAVAILABLE] Source fetch failed: timeout");
+    },
+  });
+  assert.deepEqual(fallback, []);
+  assert.deepEqual(failures, [{
+    authority: "TCGdex English Pokemon",
+    failure_class: "source_unavailable",
+    message: "[SOURCE_UNAVAILABLE] Source fetch failed: timeout",
+    recorded_at: "2026-08-29T00:00:00.000Z",
+  }]);
+  await assert.rejects(
+    runDegradedCatalogSourceLaneV1({
+      authority: "TCGdex English Pokemon",
+      failures: [],
+      fallback: [],
+      operation: async () => {
+        throw new Error("[SOURCE_INTEGRITY_FAILURE] invalid JSON");
+      },
+    }),
+    /SOURCE_INTEGRITY_FAILURE/,
+  );
+});
+
+test("optional sources fall back only for outages and expected absence", () => {
+  assert.equal(isOptionalCatalogSourceFallbackV1({
+    catalogSourceFailureClass: "SOURCE_UNAVAILABLE",
+  }), true);
+  assert.equal(isOptionalCatalogSourceFallbackV1({ httpStatus: 404 }), true);
+  assert.equal(isOptionalCatalogSourceFallbackV1({
+    catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE",
+  }), false);
+  assert.equal(isOptionalCatalogSourceFallbackV1(new SyntaxError("invalid JSON")), false);
+});
+
+test("source worker pools settle in-flight tasks before propagating a failure", async () => {
+  const completed = [];
+  let releaseSlowTask;
+  const slowTask = new Promise((resolve) => {
+    releaseSlowTask = resolve;
+  });
+  const pool = mapPoolSettledV1(["slow", "failure"], 2, async (value) => {
+    if (value === "failure") throw new Error("lane unavailable");
+    await slowTask;
+    completed.push(value);
+    return value;
+  });
+  releaseSlowTask();
+  await assert.rejects(pool, /lane unavailable/);
+  assert.deepEqual(completed, ["slow"]);
+});
 
 test("catalog normalization preserves Japanese authority text and canonicalizes OP codes", () => {
   assert.equal(normalizeCatalogText("拡張パック「ストームエメラルダ」"), "拡張パック ストームエメラルダ");
@@ -502,6 +564,12 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /pokemon_master_index_reconciliation\.json/);
   assert.match(worker, /pokemon_master_index_update_candidates\.json/);
   assert.match(worker, /canonical_promotion_candidates\.json/);
+  assert.match(worker, /source_failures\.json/);
+  assert.match(worker, /degraded_source_unavailable/);
+  assert.match(worker, /runDegradedCatalogSourceLaneV1/);
+  assert.match(worker, /mapPoolSettledV1/);
+  assert.match(worker, /isOptionalCatalogSourceFallbackV1/);
+  assert.doesNotMatch(worker, /HTTP 404\|fetch failed\|timeout/);
   assert.match(worker, /english_master_index_set_alias_normalization_v1\.json/);
   assert.match(worker, /setOwnerRemaps/);
   assert.match(worker, /cp\.set_id = s\.id/);
@@ -516,6 +584,8 @@ test("discovery worker is structurally read-only and uses official adapters", ()
     /node --check scripts\/audits\/verified_master_set_index_v1_build_english_master_index\.mjs/,
   );
   assert.match(workflow, /Pokemon Master Index.*Language evidence update queue/s);
+  assert.match(workflow, /\[Catalog Discovery\] Source lane unavailable/);
+  assert.match(workflow, /false catalog gaps/);
 });
 
 test("English Master Index rebuild permanently folds Shiny Vault into Hidden Fates", () => {

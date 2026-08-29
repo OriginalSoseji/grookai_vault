@@ -3,6 +3,58 @@ import crypto from "node:crypto";
 export const UNIVERSAL_CATALOG_DISCOVERY_VERSION =
   "UNIVERSAL_CATALOG_DISCOVERY_V1";
 
+export function isOptionalCatalogSourceFallbackV1(error) {
+  return error?.catalogSourceFailureClass === "SOURCE_UNAVAILABLE" ||
+    error?.httpStatus === 404;
+}
+
+export async function mapPoolSettledV1(values, concurrency, task) {
+  if (!Array.isArray(values) || !Number.isInteger(concurrency) || concurrency < 1 ||
+      typeof task !== "function") {
+    throw new Error("A value array, positive concurrency, and task are required");
+  }
+  const results = new Array(values.length);
+  let cursor = 0;
+  async function worker() {
+    while (cursor < values.length) {
+      const index = cursor;
+      cursor += 1;
+      results[index] = await task(values[index], index);
+    }
+  }
+  const settlements = await Promise.allSettled(
+    Array.from({ length: Math.min(concurrency, values.length) }, worker),
+  );
+  const rejected = settlements.find((settlement) => settlement.status === "rejected");
+  if (rejected) throw rejected.reason;
+  return results;
+}
+
+export async function runDegradedCatalogSourceLaneV1({
+  authority,
+  operation,
+  failures,
+  fallback,
+  recordedAt = () => new Date().toISOString(),
+}) {
+  if (!authority || typeof operation !== "function" || !Array.isArray(failures)) {
+    throw new Error("A source authority, operation, and failure collection are required");
+  }
+  try {
+    return await operation();
+  } catch (error) {
+    const message = String(error?.message ?? error);
+    if (!message.includes("[SOURCE_UNAVAILABLE]")) throw error;
+    failures.push({
+      authority,
+      failure_class: "source_unavailable",
+      message,
+      recorded_at: recordedAt(),
+    });
+    return typeof fallback === "function" ? fallback() : fallback;
+  }
+}
+
 export const CATALOG_GAP_STATUSES = Object.freeze({
   AMBIGUOUS_SOURCE_IDENTITY: "ambiguous_source_identity",
   EXACT_COMPLETE: "exact_complete",
