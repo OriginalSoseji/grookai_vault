@@ -1,0 +1,114 @@
+name: Collectible Wave 1 Card Identity Proposal
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+concurrency:
+  group: collectible-wave1-card-identity-proposal-v1
+  cancel-in-progress: false
+
+jobs:
+  propose:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CATALOG_AUTOMATION_MODE: shadow-only
+      PGOPTIONS: "-c default_transaction_read_only=on -c statement_timeout=180000"
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify proposal contracts
+        run: |
+          node --check backend/catalog/collectible_wave1_card_identity_proposal_v1.mjs
+          node --check scripts/workers/collectible_wave1_card_identity_proposal_v1.mjs
+          node --test tests/contracts/collectible_wave1_card_identity_proposal_v1.test.mjs
+          git diff --check
+
+      - name: Download exact Parser Wave 1 artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: collectible-shadow-parser-wave1-33118951166
+          path: ${{ runner.temp }}/parser-wave1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: "33118951166"
+
+      - name: Download exact alternative-artwork artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: collectible-wave1-alt-art-row-addressability-33132457407
+          path: ${{ runner.temp }}/alt-art-wave1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: "33132457407"
+
+      - name: Build read-only card identity proposal
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/${{ github.event.repository.default_branch }}"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -n "$SUPABASE_DB_URL"
+          OUT_DIR="$RUNNER_TEMP/collectible-wave1-card-proposal-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/collectible_wave1_card_identity_proposal_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --expected-head-sha="$GITHUB_SHA" \
+            --parser-artifact-dir="$RUNNER_TEMP/parser-wave1" \
+            --alt-art-artifact-dir="$RUNNER_TEMP/alt-art-wave1" \
+            --set-apply-payload="docs/audits/catalog_discovery/collectible_wave1_set_apply_proposal_v1/set_apply_payload.jsonl"
+
+      - name: Report proposal findings
+        if: always() && env.OUT_DIR != ''
+        uses: actions/github-script@v8
+        env:
+          OUT_DIR: ${{ env.OUT_DIR }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = `${process.env.OUT_DIR}/summary.json`;
+            if (!fs.existsSync(summaryPath)) return;
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            const title = '[Collectible Wave 1 Card Proposal] Review findings';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            const body = `Parent proposals: ${summary.metrics.proposed_parent_count}\n` +
+              `Proposal ready: ${summary.metrics.parent_status_counts.proposal_ready || 0}\n` +
+              `Review required: ${summary.metrics.review_required_parent_count}\n` +
+              `Excluded source printings: ${summary.metrics.excluded_source_printing_count}\n` +
+              `Reconciliation mismatches: ${summary.metrics.candidate_reconciliation_mismatch_count}\n\n` +
+              `No database, Storage, image, pricing, publication, search, or Vault writes occurred.\n\n` +
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Upload immutable proposal evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collectible-wave1-card-identity-proposal-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
