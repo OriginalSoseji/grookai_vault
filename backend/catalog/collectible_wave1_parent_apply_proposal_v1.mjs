@@ -128,6 +128,18 @@ function gvNumberToken(number) {
   return token;
 }
 
+export function generatedWave1NumberPlainV1(number) {
+  const value = clean(number);
+  if (!value) return null;
+  if (/^[A-Za-z][0-9]+$/.test(value)) return value.toUpperCase();
+  if (/[0-9]/.test(value)) return value.replace(/\/.*$/, "").replace(/[^0-9]/g, "");
+  return value;
+}
+
+function printedIdentityModifier(number) {
+  return `collector_number:${cleanLower(number)}`;
+}
+
 export function canonicalWave1ParentCardIdV1(parentProposalId) {
   const value = clean(parentProposalId);
   if (!/^(?:gundam|yugioh):card-proposal:[0-9a-f]{24}$/.test(value)) {
@@ -176,7 +188,7 @@ function parentPayload(parent) {
   const { game, policy } = validateParent(parent);
   const cardPrintId = canonicalWave1ParentCardIdV1(parent.parent_proposal_id);
   const normalizedName = cleanLower(parent.normalized_card_name);
-  const numberPlain = clean(parent.normalized_collector_number).toUpperCase();
+  const numberPlain = generatedWave1NumberPlainV1(parent.collector_number);
   const identityPayload = {
     game_code: game,
     language_code: "en",
@@ -217,7 +229,7 @@ function parentPayload(parent) {
       gv_id: canonicalWave1ParentGvIdV1(parent),
       identity_domain: policy.identity_domain,
       print_identity_key: `${policy.identity_domain}:${identityHash}`,
-      printed_identity_modifier: null,
+      printed_identity_modifier: printedIdentityModifier(parent.collector_number),
       set_identity_model: "standard",
       data_quality_flags: {
         app_visibility: "hidden_by_game_release_control",
@@ -389,8 +401,12 @@ export function buildCollectibleWave1ParentApplyProposalV1({
     [sourceEvidenceRows, ["id", "acquisition_key", "evidence_key_hash"]],
   ]) for (const field of fields) assertUnique(rows, field);
 
-  const setCoordinates = cardPrints.map((row) =>
-    `${row.set_id}\u0000${row.number_plain}\u0000${row.variant_key ?? ""}`);
+  const setCoordinates = cardPrints.map((row) => [
+    row.set_id,
+    row.number_plain,
+    row.printed_identity_modifier ?? "",
+    row.variant_key ?? "",
+  ].join("\u0000"));
   if (new Set(setCoordinates).size !== setCoordinates.length) {
     throw new Error("Proposed standard-set parent coordinates collide");
   }
@@ -493,18 +509,18 @@ export function renderCollectibleWave1ParentMigrationCandidateV1(proposal) {
     `  on public.card_print_identity is\n` +
     `  'Versioned canonical identity domains, including hidden English Yu-Gi-Oh and Gundam parent identity.';\n\n` +
     `insert into public.card_prints (\n` +
-    `  id,game_id,set_id,name,number,number_plain,variant_key,rarity,image_url,\n` +
+    `  id,game_id,set_id,name,number,variant_key,rarity,image_url,\n` +
     `  image_alt_url,image_source,image_status,tcgplayer_id,external_ids,set_code,\n` +
     `  gv_id,identity_domain,print_identity_key,printed_identity_modifier,\n` +
     `  set_identity_model,data_quality_flags,ai_metadata\n` +
-    `) select row.id,row.game_id,row.set_id,row.name,row.number,row.number_plain,\n` +
+    `) select row.id,row.game_id,row.set_id,row.name,row.number,\n` +
     `  row.variant_key,row.rarity,row.image_url,row.image_alt_url,row.image_source,\n` +
     `  row.image_status,row.tcgplayer_id,row.external_ids,row.set_code,row.gv_id,\n` +
     `  row.identity_domain,row.print_identity_key,row.printed_identity_modifier,\n` +
     `  row.set_identity_model,row.data_quality_flags,row.ai_metadata\n` +
     `from jsonb_to_recordset(${cardJson}) as row(\n` +
-    `  id uuid,game_id uuid,set_id uuid,name text,number text,number_plain text,\n` +
-    `  variant_key text,rarity text,image_url text,image_alt_url text,image_source text,\n` +
+    `  id uuid,game_id uuid,set_id uuid,name text,number text,variant_key text,\n` +
+    `  rarity text,image_url text,image_alt_url text,image_source text,\n` +
     `  image_status text,tcgplayer_id text,external_ids jsonb,set_code text,gv_id text,\n` +
     `  identity_domain text,print_identity_key text,printed_identity_modifier text,\n` +
     `  set_identity_model text,data_quality_flags jsonb,ai_metadata jsonb\n` +
