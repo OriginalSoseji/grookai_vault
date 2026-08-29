@@ -19,6 +19,7 @@ const VERSION = "MTG_DECK_PACKAGE_COVER_BACKFILL_V1";
 const BUCKET = "external-card-images";
 const PAGE_SIZE = 1000;
 const USER_AGENT = "GrookaiVaultMtgDeckCover/1.0 catalog-ops@grookai.com";
+const DOWNLOAD_ATTEMPTS = 3;
 
 function parseArgs(argv) {
   const result = { apply: false, expectedPlanFingerprint: "", maxSets: null };
@@ -105,22 +106,29 @@ function packageDownloadUrls(product) {
 async function downloadPackageImage(product) {
   const failures = [];
   for (const url of packageDownloadUrls(product)) {
-    try {
-      const response = await fetch(url, {
-        redirect: "follow",
-        signal: AbortSignal.timeout(45_000),
-        headers: { accept: "image/*", "user-agent": USER_AGENT },
-      });
-      const host = new URL(response.url).hostname.toLowerCase();
-      if (!response.ok || !["tcgplayer-cdn.tcgplayer.com", "product-images.tcgplayer.com"].includes(host)) {
-        throw new Error(`http_or_redirect:${response.status}`);
+    for (let attempt = 1; attempt <= DOWNLOAD_ATTEMPTS; attempt += 1) {
+      try {
+        const response = await fetch(url, {
+          redirect: "follow",
+          signal: AbortSignal.timeout(45_000),
+          headers: { accept: "image/*", "user-agent": USER_AGENT },
+        });
+        const host = new URL(response.url).hostname.toLowerCase();
+        if (!response.ok || !["tcgplayer-cdn.tcgplayer.com", "product-images.tcgplayer.com"].includes(host)) {
+          throw new Error(`http_or_redirect:${response.status}`);
+        }
+        const buffer = Buffer.from(await response.arrayBuffer());
+        const image = inspectOnePieceImage(buffer, response.headers.get("content-type"));
+        if (!image.valid_image) throw new Error(image.diagnostics.join(","));
+        return { buffer, image, source_url: url, final_url: response.url };
+      } catch (error) {
+        failures.push(
+          `${url}:attempt_${attempt}:${error.message}:${error.cause?.code ?? "no_code"}`,
+        );
+        if (attempt < DOWNLOAD_ATTEMPTS) {
+          await new Promise((resolve) => setTimeout(resolve, attempt * 750));
+        }
       }
-      const buffer = Buffer.from(await response.arrayBuffer());
-      const image = inspectOnePieceImage(buffer, response.headers.get("content-type"));
-      if (!image.valid_image) throw new Error(image.diagnostics.join(","));
-      return { buffer, image, source_url: url, final_url: response.url };
-    } catch (error) {
-      failures.push(`${url}:${error.message}`);
     }
   }
   throw new Error(`package_image_download_failed:${product.product_id}:${failures.join("|")}`);
