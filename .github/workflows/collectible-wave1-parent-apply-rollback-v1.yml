@@ -1,0 +1,106 @@
+name: Collectible Wave 1 Parent Apply Rollback Proof
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+concurrency:
+  group: collectible-wave1-parent-apply-rollback-v1
+  cancel-in-progress: false
+
+jobs:
+  prove:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CATALOG_AUTOMATION_MODE: rollback-proof-only
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify rollback-proof contracts
+        run: |
+          node --check backend/catalog/collectible_wave1_parent_apply_proposal_v1.mjs
+          node --check scripts/audits/collectible_wave1_parent_apply_rollback_v1.mjs
+          node --test tests/contracts/collectible_wave1_parent_apply_proposal_v1.test.mjs
+          git diff --check
+
+      - name: Download exact parent identity proposal
+        uses: actions/download-artifact@v5
+        with:
+          name: collectible-wave1-card-identity-proposal-33239106476
+          path: ${{ runner.temp }}/card-identity-proposal
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: "33239106476"
+
+      - name: Execute exact production rollback proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/${{ github.event.repository.default_branch }}"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -n "$SUPABASE_DB_URL"
+          OUT_DIR="$RUNNER_TEMP/collectible-wave1-parent-rollback-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/audits/collectible_wave1_parent_apply_rollback_v1.mjs \
+            --execute-rollback-only \
+            --artifact-dir="$RUNNER_TEMP/card-identity-proposal" \
+            --out-dir="$OUT_DIR" \
+            --expected-head-sha="$GITHUB_SHA"
+
+      - name: Report rollback-proof findings
+        if: always() && env.OUT_DIR != ''
+        uses: actions/github-script@v8
+        env:
+          OUT_DIR: ${{ env.OUT_DIR }}
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = `${process.env.OUT_DIR}/summary.json`;
+            if (!fs.existsSync(summaryPath)) return;
+            const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            const title = '[Collectible Wave 1 Parent Apply] Rollback proof';
+            const body = `Status: ${summary.status}\n` +
+              `Parent rows: ${summary.metrics.card_print_count}\n` +
+              `Identity rows: ${summary.metrics.identity_count}\n` +
+              `Source evidence rows: ${summary.metrics.source_evidence_count}\n` +
+              `Rollback proved: ${summary.rollback_proved}\n` +
+              `Findings: ${summary.findings.length}\n\n` +
+              `Durable database writes: 0\nMigration-ledger writes: 0\n` +
+              `App visibility enabled: false\n\n` +
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });
+
+      - name: Upload immutable rollback-proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: collectible-wave1-parent-apply-rollback-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
