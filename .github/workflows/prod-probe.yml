@@ -84,6 +84,11 @@ jobs:
             exit 1
           }
           jq -e 'type == "array"' "$artifact_dir/search_cards.json" > /dev/null
+          jq -e 'all(.[]; .latest_price_cents == null and .latest_price == null)' \
+            "$artifact_dir/search_cards.json" > /dev/null || {
+              echo "search_cards exposed legacy pricing to an anonymous caller" >&2
+              exit 1
+            }
           jq -e '(.items | type == "array") and (.count | type == "number")' \
             "$artifact_dir/wall_feed.json" > /dev/null
 
