@@ -306,5 +306,14 @@ test("English Master Index classifies a missing TCGdex set inventory as source d
     "utf8",
   );
   assert.match(builder, /\[SOURCE_UNAVAILABLE\] TCGdex set inventory unavailable/);
-  assert.match(builder, /fetchTcgdexSets\(options\)\.catch/);
+  assert.match(builder, /fetchTcgdexSets\(options\)[\s\S]*?\.catch/);
+});
+
+test("English Master Index preserves its baseline when TCGdex returns an empty inventory", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(builder, /options\.sources\.includes\('tcgdex'\) && rows\.length === 0/);
+  assert.match(builder, /TCGdex returned no physical English set rows/);
 });

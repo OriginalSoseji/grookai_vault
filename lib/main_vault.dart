@@ -2196,10 +2196,23 @@ class VaultPageState extends State<VaultPage> {
     return cardPrintId.isNotEmpty || gvviId.isNotEmpty;
   }
 
-  Widget _buildVaultMessage(String title, String body) {
+  Widget _buildVaultMessage(
+    String title,
+    String body, {
+    String? actionLabel,
+    VoidCallback? onAction,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14),
-      child: _ProductEmptyState(title: title, body: body),
+      child: Column(
+        children: [
+          _ProductEmptyState(title: title, body: body),
+          if (actionLabel != null && onAction != null) ...[
+            const SizedBox(height: 12),
+            OutlinedButton(onPressed: onAction, child: Text(actionLabel)),
+          ],
+        ],
+      ),
     );
   }
 
@@ -2348,15 +2361,26 @@ class VaultPageState extends State<VaultPage> {
             _buildVaultCollectionSlivers(searchedRows, columns: columns),
           );
         } else {
+          final pricingFilterActive = _pricingFilter != _VaultPricingFilter.all;
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                _search.trim().isEmpty
+                _search.trim().isEmpty && !pricingFilterActive
                     ? 'Your vault is empty'
+                    : pricingFilterActive
+                    ? _pricingFilter == _VaultPricingFilter.priced
+                          ? 'No priced cards'
+                          : 'No unpriced cards'
                     : 'No matching cards',
-                _search.trim().isEmpty
+                _search.trim().isEmpty && !pricingFilterActive
                     ? 'Scan or search to add your first card.'
+                    : pricingFilterActive
+                    ? 'No cards match the current pricing filter.'
                     : 'Try a different search term or clear the current query.',
+                actionLabel: pricingFilterActive ? 'Show all prices' : null,
+                onAction: pricingFilterActive
+                    ? () => _setPricingFilter(_VaultPricingFilter.all)
+                    : null,
               ),
             ),
           );

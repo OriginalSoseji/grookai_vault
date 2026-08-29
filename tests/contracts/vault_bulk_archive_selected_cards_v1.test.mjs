@@ -51,3 +51,14 @@ test("Vault exposes explicit selection, pricing filters, and bulk removal", () =
   assert.match(vaultUi, /archiveSelectedVaultCards/);
   assert.match(vaultUi, /Memories and transaction history remain/);
 });
+
+test("Vault distinguishes an empty pricing filter from an empty collection", () => {
+  assert.match(vaultUi, /pricingFilterActive/);
+  assert.match(vaultUi, /No priced cards/);
+  assert.match(vaultUi, /No unpriced cards/);
+  assert.match(vaultUi, /Show all prices/);
+  assert.match(
+    vaultUi,
+    /_setPricingFilter\(_VaultPricingFilter\.all\)/,
+  );
+});
