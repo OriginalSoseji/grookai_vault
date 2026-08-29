@@ -74,3 +74,5 @@ Before exposing a new game in the game selector:
 8. Record cover coverage and route performance in the release checkpoint.
 9. Report exact package, exact set art, representative-card fallback, and
    unresolved media counts separately.
+10. Pass `CROSS_TCG_SET_PUBLICATION_GATE_V1` before changing the game or set
+    release control to `signed_in` or `public`.
