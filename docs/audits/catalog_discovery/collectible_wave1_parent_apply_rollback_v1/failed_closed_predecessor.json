@@ -1,0 +1,13 @@
+{
+  "workflow_run_id": 33255291975,
+  "producer_sha": "41b8fa52b94307db775d7b81b2a519da0be0b745",
+  "status": "failed_closed",
+  "failure": "cannot insert a non-DEFAULT value into column number_plain",
+  "failure_class": "generated_column_contract_mismatch",
+  "rollback_attempted": true,
+  "rollback_succeeded": true,
+  "durable_database_writes": 0,
+  "migration_ledger_writes": 0,
+  "repair": "omit generated number_plain from the insert, model its production expression for readback, and preserve the complete printed collector number in printed_identity_modifier",
+  "repair_regression_contract_added": true
+}

@@ -1,0 +1,16 @@
+{
+  "proof_version": "COLLECTIBLE_WAVE1_PARENT_APPLY_ROLLBACK_V1",
+  "workflow_run_id": 33255537521,
+  "workflow_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33255537521",
+  "artifact_id": 9715725035,
+  "artifact_name": "collectible-wave1-parent-apply-rollback-33255537521",
+  "artifact_archive_size_bytes": 31873444,
+  "producer_sha": "de0df6e52154c700054621e30adf55799cfac95f",
+  "implementation_pull_request": 322,
+  "repair_pull_request": 325,
+  "failed_closed_predecessor_run_id": 33255291975,
+  "failed_closed_predecessor_artifact_id": 9715632723,
+  "payload_fingerprint_sha256": "8f100ff767f0aedb309c25774e1860f5035a9500ed379235d81ed46cd66ee094",
+  "remote_artifact_hash_mismatch_count": 0,
+  "durable_database_writes": 0
+}

@@ -1,0 +1,61 @@
+{
+  "migration_statement_count": 9,
+  "readback": {
+    "card_print_count": 26719,
+    "identity_count": 26719,
+    "source_evidence_count": 31766,
+    "expected_card_payload_sha256": "cfde02cea7e22ca339633e4eb89f788fa20ec290a3b44b2f35a254667871a985",
+    "actual_card_payload_sha256": "cfde02cea7e22ca339633e4eb89f788fa20ec290a3b44b2f35a254667871a985",
+    "expected_identity_payload_sha256": "b8bfd78252ff56183bf4ef1ee3ff68d9099060fb56082c7dae1511521b3d907e",
+    "actual_identity_payload_sha256": "b8bfd78252ff56183bf4ef1ee3ff68d9099060fb56082c7dae1511521b3d907e",
+    "expected_evidence_payload_sha256": "19dda56891eade1b8beec9a9bf241dc96a0d6a076412d20e85580a1b85590db3",
+    "actual_evidence_payload_sha256": "19dda56891eade1b8beec9a9bf241dc96a0d6a076412d20e85580a1b85590db3",
+    "anon_visible_card_count": 0,
+    "authenticated_visible_card_count": 0,
+    "identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text, 'gundam_eng_parent'::text, 'yugioh_eng_parent'::text])))",
+    "migration_versions_unchanged": true,
+    "protected_counts": {
+      "sets": 3397,
+      "games": 6,
+      "card_prints": 197054,
+      "vault_items": 445,
+      "legacy_cards": 10,
+      "identity_rows": 192850,
+      "printing_rows": 227881,
+      "sealed_families": 242,
+      "sealed_variants": 390,
+      "storage_objects": 169068,
+      "release_controls": 4,
+      "external_mappings": 276991,
+      "source_evidence_rows": 161402,
+      "vault_item_instances": 3394,
+      "external_printing_mappings": 144577
+    },
+    "attributable_writes": [
+      {
+        "relname": "card_print_identity",
+        "inserted": "26719",
+        "updated": "0",
+        "deleted": "0",
+        "hot_updated": "0"
+      },
+      {
+        "relname": "card_print_identity_source_evidence",
+        "inserted": "31766",
+        "updated": "0",
+        "deleted": "0",
+        "hot_updated": "0"
+      },
+      {
+        "relname": "card_prints",
+        "inserted": "26719",
+        "updated": "0",
+        "deleted": "0",
+        "hot_updated": "0"
+      }
+    ]
+  },
+  "error": null,
+  "rollback_attempted": true,
+  "rollback_succeeded": true
+}

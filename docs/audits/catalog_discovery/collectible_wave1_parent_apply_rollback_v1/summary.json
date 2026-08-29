@@ -1,0 +1,26 @@
+{
+  "version": "COLLECTIBLE_WAVE1_PARENT_APPLY_ROLLBACK_V1",
+  "status": "rollback_proved_candidate_not_applied",
+  "actual_head_sha": "de0df6e52154c700054621e30adf55799cfac95f",
+  "payload_fingerprint_sha256": "8f100ff767f0aedb309c25774e1860f5035a9500ed379235d81ed46cd66ee094",
+  "metrics": {
+    "card_print_count": 26719,
+    "identity_count": 26719,
+    "source_evidence_count": 31766,
+    "parent_counts_by_game": {
+      "gundam": 206,
+      "yugioh": 26513
+    },
+    "evidence_counts_by_game": {
+      "gundam": 251,
+      "yugioh": 31515
+    },
+    "review_required_rows_excluded": 1116,
+    "reconciliation_mismatch_count": 0
+  },
+  "rollback_proved": true,
+  "database_writes": 0,
+  "migration_ledger_writes": 0,
+  "app_visibility_enabled": false,
+  "findings": []
+}
