@@ -1103,6 +1103,23 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
   assert.match(HEALTH, /source_continuity_mode/);
   assert.match(HEALTH, /eligible_snapshot_reconciliation_mismatch/);
   assert.match(HEALTH, /broken_source_to_publication_trace/);
+  assert.match(
+    HEALTH,
+    /selected_publication_set as \([\s\S]*publication_set\.run_id/,
+  );
+  assert.match(
+    HEALTH,
+    /snapshot_totals as \([\s\S]*snapshot\.publication_set_id = publication_set\.id/,
+  );
+  assert.match(
+    HEALTH,
+    /snapshots\.snapshot_count - snapshots\.traced_snapshot_count[\s\S]*as broken_trace_count/,
+  );
+  assert.doesNotMatch(
+    HEALTH,
+    /join public\.tcgcsv_source_price_daily_observations observation/,
+  );
+  assert.doesNotMatch(HEALTH, /\),\s*select\s+source\.run_key/);
   assert.match(HEALTH, /minimum_current_prices/);
   assert.match(HEALTH, /durable_pipeline_run_not_reconciled/);
   assert.match(HEALTH, /current_publication_pointer_mismatch/);
