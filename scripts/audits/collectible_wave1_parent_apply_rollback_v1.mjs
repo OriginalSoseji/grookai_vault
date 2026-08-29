@@ -212,6 +212,7 @@ function plannedCardRows(proposal) {
     gv_id: row.gv_id,
     set_id: row.set_id,
     number_plain: row.number_plain,
+    printed_identity_modifier: row.printed_identity_modifier,
     variant_key: row.variant_key,
   }));
 }
@@ -253,7 +254,8 @@ async function captureBaseline(
     const { rows } = await client.query(`
       with planned_cards as materialized (
         select * from jsonb_to_recordset($1::jsonb) as row(
-          id uuid,gv_id text,set_id uuid,number_plain text,variant_key text
+          id uuid,gv_id text,set_id uuid,number_plain text,
+          printed_identity_modifier text,variant_key text
         )
       ), planned_identities as materialized (
         select * from jsonb_to_recordset($2::jsonb) as row(
@@ -281,6 +283,8 @@ async function captureBaseline(
         'existing_standard_coordinate_count',(select count(*) from public.card_prints existing
           join planned_cards planned on planned.set_id=existing.set_id
             and planned.number_plain=existing.number_plain
+            and coalesce(planned.printed_identity_modifier,'')=
+              coalesce(existing.printed_identity_modifier,'')
             and coalesce(planned.variant_key,'')=coalesce(existing.variant_key,'')
             and existing.set_identity_model='standard'),
         'existing_identity_id_count',(select count(*) from public.card_print_identity existing

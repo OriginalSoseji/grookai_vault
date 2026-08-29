@@ -13,6 +13,7 @@ import {
   canonicalWave1ParentCardIdV1,
   canonicalWave1ParentGvIdV1,
   evaluateCollectibleWave1ParentPreflightV1,
+  generatedWave1NumberPlainV1,
   renderCollectibleWave1ParentMigrationCandidateV1,
 } from "../../backend/catalog/collectible_wave1_parent_apply_proposal_v1.mjs";
 
@@ -210,6 +211,21 @@ test("parent rows never promote source rarity, product IDs, finishes, or variant
     row.evidence_payload.source_printing_evidence.normalized_variant_key === null));
 });
 
+test("generated number_plain is modeled without writing the generated column", () => {
+  assert.equal(generatedWave1NumberPlainV1("LOB-EN001"), "001");
+  assert.equal(generatedWave1NumberPlainV1("L5DD-ENY10"), "510");
+  assert.equal(generatedWave1NumberPlainV1("A12"), "A12");
+  const result = proposal();
+  assert.equal(new Set(result.cardPrints.map((row) => [
+    row.set_id,
+    row.number_plain,
+    row.printed_identity_modifier,
+    row.variant_key ?? "",
+  ].join("|"))).size, 26719);
+  assert.ok(result.cardPrints.every((row) =>
+    row.printed_identity_modifier === `collector_number:${row.number.toLowerCase()}`));
+});
+
 test("canonical parent UUIDs and GV-IDs are deterministic and globally unique", () => {
   const result = proposal();
   assert.equal(new Set(result.cardPrints.map((row) => row.id)).size, 26719);
@@ -241,6 +257,9 @@ test("migration candidate is exact, domain-aware, and does not write the ledger"
   assert.match(sql, /insert into public\.card_print_identity\s*\(/i);
   assert.match(sql, /insert into public\.card_print_identity_source_evidence/i);
   assert.match(sql, new RegExp(proposal().payload_fingerprint_sha256));
+  const cardInsertColumns = sql.match(/insert into public\.card_prints \(([\s\S]*?)\) select/i)?.[1];
+  assert.ok(cardInsertColumns);
+  assert.doesNotMatch(cardInsertColumns, /number_plain/);
   assert.doesNotMatch(sql, /insert into supabase_migrations|update\s+public\.|delete\s+from|truncate/i);
   assert.equal(COLLECTIBLE_WAVE1_PARENT_MIGRATION_VERSION, "20260829230000");
 });
