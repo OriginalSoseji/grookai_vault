@@ -54,6 +54,10 @@ test('config comparison is field exact', () => {
     normalizeAutoscaleConfig({ growth_percent: '50', min_increment_gb: '4', max_size_gb: '600' }),
     { growth_percent: 50, min_increment_gb: 4, max_size_gb: 600 },
   );
+  assert.deepEqual(
+    normalizeAutoscaleConfig({ growth_percent: null, min_increment_gb: null, max_size_gb: 600 }),
+    { growth_percent: 0, min_increment_gb: 0, max_size_gb: 600 },
+  );
 });
 
 test('worker is apply-gated, preflight-pinned, read back, and rollback-capable', () => {
@@ -72,4 +76,3 @@ test('workflow is manual and contains no database credential', () => {
   assert.match(workflow, /max-size-gb 600/);
   assert.doesNotMatch(workflow, /SUPABASE_DB_URL/);
 });
-

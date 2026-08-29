@@ -22,8 +22,8 @@ function integer(value, name) {
 
 export function normalizeAutoscaleConfig(value) {
   return {
-    growth_percent: integer(value?.growth_percent, 'growth_percent'),
-    min_increment_gb: integer(value?.min_increment_gb, 'min_increment_gb'),
+    growth_percent: integer(value?.growth_percent ?? 0, 'growth_percent'),
+    min_increment_gb: integer(value?.min_increment_gb ?? 0, 'min_increment_gb'),
     max_size_gb: integer(value?.max_size_gb, 'max_size_gb'),
   };
 }
