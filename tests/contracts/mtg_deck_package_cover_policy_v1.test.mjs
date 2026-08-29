@@ -68,6 +68,53 @@ test("standalone Duel Deck evidence cannot satisfy an anthology printing", () =>
   assert.equal(result, null);
 });
 
+test("governed derived-set mappings select the containing product group", () => {
+  const result = chooseMtgSourceGroup(
+    {
+      code: "dvd",
+      name: "Duel Decks Anthology: Divine vs. Demonic",
+      set_type: "duel_deck",
+    },
+    [
+      { group_id: 1, name: "Duel Decks: Divine vs. Demonic", abbreviation: "DVD" },
+      { group_id: 2, name: "Duel Decks: Anthology", abbreviation: "DD3" },
+    ],
+  );
+  assert.equal(result?.group.group_id, 2);
+  assert.equal(result?.match_reason, "governed_set_group_override");
+});
+
+test("a product whose name exactly matches its group is package evidence", () => {
+  assert.ok(scoreMtgPackageProduct(
+    {
+      product_id: 90957,
+      name: "Premium Deck Series: Slivers",
+      image_url: "https://example.invalid/slivers.jpg",
+    },
+    { name: "Premium Deck Series: Slivers" },
+  ) > 0);
+});
+
+test("a group-qualified Deck suffix is package evidence without admitting generic deck text", () => {
+  const group = { name: "Premium Deck Series: Fire and Lightning" };
+  assert.ok(scoreMtgPackageProduct(
+    {
+      product_id: 78736,
+      name: "Premium Deck Series: Fire and Lightning Deck",
+      image_url: "https://example.invalid/fire.jpg",
+    },
+    group,
+  ) > 0);
+  assert.equal(scoreMtgPackageProduct(
+    {
+      product_id: 1,
+      name: "Deck of Many Things",
+      image_url: "https://example.invalid/card.jpg",
+    },
+    group,
+  ), -1);
+});
+
 test("package scoring rejects cards that merely contain Commander", () => {
   const group = { name: "Duel Decks: Elves vs. Goblins" };
   assert.equal(
@@ -140,6 +187,9 @@ test("apply rollback is compare-and-swap guarded and covers reconciliation", () 
   );
   assert.match(runner, /\.eq\("hero_image_url", writtenUrl\)/);
   assert.match(runner, /\.eq\("hero_image_source", "manual"\)/);
+  assert.match(runner, /storage_object_still_present/);
+  assert.match(runner, /--set-codes=/);
+  assert.match(runner, /target_set_resolution_incomplete/);
   assert.match(
     runner,
     /try \{[\s\S]*set_pointer_readback_mismatch[\s\S]*result\.json[\s\S]*\} catch \(error\) \{[\s\S]*rollbackExecution/,

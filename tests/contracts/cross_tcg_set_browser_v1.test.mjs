@@ -29,5 +29,23 @@ test("private representative images are copied into the public cover bucket", ()
   assert.match(backfill, /requires_public_cover_copy/);
   assert.match(backfill, /downloadRepresentativeImage/);
   assert.match(backfill, /set-covers\/\$\{row\.game\}/);
+  assert.match(backfill, /sourceStoragePath\.startsWith\(expectedPrefix\)/);
+  assert.match(backfill, /--set-codes=/);
+  assert.match(backfill, /--expected-plan-fingerprint=/);
+  assert.match(backfill, /plan_fingerprint_mismatch/);
+  assert.match(backfill, /\.eq\("hero_image_url", entry\.writtenUrl\)/);
+  assert.match(backfill, /storage_object_still_present/);
+  assert.match(backfill, /rollbackExecution/);
   assert.doesNotMatch(backfill, /\/api\/canon\/cards\/\$\{encodeURIComponent\(card\.gv_id\)\}\/image/);
+});
+
+test("the cover-gap runner is frozen, fingerprinted, and publication-verified", () => {
+  const workflow = source(".github/workflows/cross-tcg-set-cover-gap-repair.yml");
+  assert.match(workflow, /expected_sha:/);
+  assert.match(workflow, /one_piece_plan_fingerprint:/);
+  assert.match(workflow, /mtg_plan_fingerprint:/);
+  assert.match(workflow, /--set-codes=don,eb02,eb03,eb04,op15,p/);
+  assert.match(workflow, /--set-codes=dvd,evg,gs1,gvl,h09,jvc,oe01,ohop,opc2,opca,pd2,pd3/);
+  assert.match(workflow, /cross_tcg_set_publication_gate_v1\.mjs/);
+  assert.doesNotMatch(workflow, /card_prints.*(?:insert|update|delete)/i);
 });
