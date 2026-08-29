@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -130,4 +131,17 @@ test("package ranking preserves deterministic fallbacks", () => {
     group,
   );
   assert.deepEqual(result.map((entry) => entry.product.product_id), [1, 2, 3]);
+});
+
+test("apply rollback is compare-and-swap guarded and covers reconciliation", () => {
+  const runner = readFileSync(
+    new URL("../../scripts/audits/mtg_deck_package_cover_backfill_v1.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(runner, /\.eq\("hero_image_url", writtenUrl\)/);
+  assert.match(runner, /\.eq\("hero_image_source", "manual"\)/);
+  assert.match(
+    runner,
+    /try \{[\s\S]*set_pointer_readback_mismatch[\s\S]*result\.json[\s\S]*\} catch \(error\) \{[\s\S]*rollbackExecution/,
+  );
 });

@@ -151,6 +151,59 @@ async function verifyStoredObject(storage, objectPath, expectedHash) {
   if (hash !== expectedHash) throw new Error(`storage_hash_mismatch:${objectPath}`);
 }
 
+function publicObjectUrl(objectPath) {
+  return `${process.env.SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${objectPath}`;
+}
+
+async function rollbackExecution(client, updatedRows, createdObjects) {
+  const unsafeObjectPaths = new Set();
+  const failures = [];
+
+  for (const entry of [...updatedRows].reverse()) {
+    const set = entry.candidate.set;
+    const writtenUrl = publicObjectUrl(entry.objectPath);
+    let query = client
+      .from("sets")
+      .update({
+        hero_image_url: set.hero_image_url,
+        hero_image_source: set.hero_image_source,
+      })
+      .eq("id", set.id)
+      .eq("game", "mtg")
+      .eq("code", set.code)
+      .eq("hero_image_url", writtenUrl)
+      .eq("hero_image_source", "manual");
+    const { data, error } = await query.select("id");
+    if (error) {
+      unsafeObjectPaths.add(entry.objectPath);
+      failures.push(`pointer:${set.code}:${error.message}`);
+      continue;
+    }
+    if (data?.length === 1) continue;
+
+    const { data: current, error: currentError } = await client
+      .from("sets")
+      .select("hero_image_url")
+      .eq("id", set.id)
+      .maybeSingle();
+    if (currentError || current?.hero_image_url === writtenUrl) {
+      unsafeObjectPaths.add(entry.objectPath);
+      failures.push(
+        `pointer:${set.code}:${currentError?.message ?? `compare_and_swap_miss:${data?.length ?? 0}`}`,
+      );
+    }
+  }
+
+  const removableObjects = createdObjects.filter((objectPath) => !unsafeObjectPaths.has(objectPath));
+  if (removableObjects.length > 0) {
+    const { error } = await client.storage.from(BUCKET).remove(removableObjects);
+    if (error) failures.push(`storage:${error.message}`);
+  }
+  if (failures.length > 0) {
+    throw new Error(`rollback_incomplete:${failures.join("|")}`);
+  }
+}
+
 async function loadCandidates(client) {
   const sets = await fetchAll(() =>
     client
@@ -355,7 +408,7 @@ async function main() {
 
     for (const entry of prepared) {
       const set = entry.candidate.set;
-      const heroImageUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${entry.objectPath}`;
+      const heroImageUrl = publicObjectUrl(entry.objectPath);
       let query = client
         .from("sets")
         .update({ hero_image_url: heroImageUrl, hero_image_source: "manual" })
@@ -387,52 +440,47 @@ async function main() {
         },
       });
     }
-  } catch (error) {
-    for (const entry of [...updatedRows].reverse()) {
-      await client
+
+    const ids = appliedRows.map((row) => row.set_id);
+    const readback = [];
+    for (let offset = 0; offset < ids.length; offset += 100) {
+      const { data, error } = await client
         .from("sets")
-        .update({
-          hero_image_url: entry.candidate.set.hero_image_url,
-          hero_image_source: entry.candidate.set.hero_image_source,
-        })
-        .eq("id", entry.candidate.set.id);
+        .select("id,game,code,hero_image_url,hero_image_source")
+        .in("id", ids.slice(offset, offset + 100));
+      if (error) throw new Error(`set_pointer_readback_failed:${error.message}`);
+      readback.push(...(data ?? []));
     }
-    if (createdObjects.length > 0) await client.storage.from(BUCKET).remove(createdObjects);
+    const expected = new Map(appliedRows.map((row) => [row.set_id, row]));
+    const mismatches = readback.filter((row) => {
+      const target = expected.get(row.id);
+      return !target || row.hero_image_url !== target.hero_image_url || row.hero_image_source !== "manual";
+    });
+    if (readback.length !== appliedRows.length || mismatches.length > 0) {
+      throw new Error(`set_pointer_readback_mismatch:${readback.length}:${appliedRows.length}:${mismatches.length}`);
+    }
+
+    const result = {
+      version: VERSION,
+      policy_version: MTG_DECK_PACKAGE_COVER_POLICY_VERSION,
+      mode: "apply",
+      plan_fingerprint_sha256: planFingerprint,
+      applied_set_count: appliedRows.length,
+      created_storage_object_count: createdObjects.length,
+      readback_count: readback.length,
+      reconciliation_mismatch_count: 0,
+      rows: appliedRows,
+    };
+    await fs.writeFile(path.join(auditDirectory, "result.json"), `${JSON.stringify(result, null, 2)}\n`);
+    console.log(JSON.stringify({ auditDirectory, ...result, rows: undefined }, null, 2));
+  } catch (error) {
+    try {
+      await rollbackExecution(client, updatedRows, createdObjects);
+    } catch (rollbackError) {
+      throw new AggregateError([error, rollbackError], "apply_failed_and_rollback_incomplete");
+    }
     throw error;
   }
-
-  const ids = appliedRows.map((row) => row.set_id);
-  const readback = [];
-  for (let offset = 0; offset < ids.length; offset += 100) {
-    const { data, error } = await client
-      .from("sets")
-      .select("id,game,code,hero_image_url,hero_image_source")
-      .in("id", ids.slice(offset, offset + 100));
-    if (error) throw new Error(`set_pointer_readback_failed:${error.message}`);
-    readback.push(...(data ?? []));
-  }
-  const expected = new Map(appliedRows.map((row) => [row.set_id, row]));
-  const mismatches = readback.filter((row) => {
-    const target = expected.get(row.id);
-    return !target || row.hero_image_url !== target.hero_image_url || row.hero_image_source !== "manual";
-  });
-  if (readback.length !== appliedRows.length || mismatches.length > 0) {
-    throw new Error(`set_pointer_readback_mismatch:${readback.length}:${appliedRows.length}:${mismatches.length}`);
-  }
-
-  const result = {
-    version: VERSION,
-    policy_version: MTG_DECK_PACKAGE_COVER_POLICY_VERSION,
-    mode: "apply",
-    plan_fingerprint_sha256: planFingerprint,
-    applied_set_count: appliedRows.length,
-    created_storage_object_count: createdObjects.length,
-    readback_count: readback.length,
-    reconciliation_mismatch_count: 0,
-    rows: appliedRows,
-  };
-  await fs.writeFile(path.join(auditDirectory, "result.json"), `${JSON.stringify(result, null, 2)}\n`);
-  console.log(JSON.stringify({ auditDirectory, ...result, rows: undefined }, null, 2));
 }
 
 main().catch((error) => {
