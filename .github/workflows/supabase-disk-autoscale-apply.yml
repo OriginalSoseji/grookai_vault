@@ -1,0 +1,53 @@
+name: Supabase Disk Autoscale Apply (guarded)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-disk-autoscale-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ycdxbpibncqcchqiihfz
+
+    steps:
+      - name: Checkout exact dispatch SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Apply and read back approved autoscale configuration
+        run: >-
+          node scripts/ops/supabase_disk_autoscale_apply_v1.mjs
+          --apply
+          --project-ref "$SUPABASE_PROJECT_REF"
+          --expected-growth-percent 0
+          --expected-min-increment-gb 0
+          --expected-max-size-gb 600
+          --growth-percent 50
+          --min-increment-gb 4
+          --max-size-gb 600
+          --output-dir audit-artifacts/supabase-disk-autoscale-apply
+
+      - name: Upload mutation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-disk-autoscale-apply-${{ github.run_id }}
+          path: audit-artifacts/supabase-disk-autoscale-apply
+          if-no-files-found: error
+          retention-days: 30
+

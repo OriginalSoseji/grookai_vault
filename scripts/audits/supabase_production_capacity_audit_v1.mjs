@@ -66,7 +66,7 @@ export function buildCapacityAudit(payloads, options = {}) {
     minIops: numberOrNull(options.minIops) ?? 3000,
     minThroughputMibps: numberOrNull(options.minThroughputMibps) ?? 125,
     growthPercent: numberOrNull(options.growthPercent) ?? 50,
-    maxDiskGb: numberOrNull(options.maxDiskGb) ?? 60000,
+    maxDiskGb: numberOrNull(options.maxDiskGb) ?? 600,
     maxUtilizationPercent: numberOrNull(options.maxUtilizationPercent) ?? 85,
   };
 

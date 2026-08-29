@@ -38,7 +38,7 @@ function healthyPayloads() {
       timestamp: '2026-08-29T00:00:00Z',
       metrics: { fs_size_bytes: 303_000, fs_used_bytes: 218_160, fs_avail_bytes: 84_840 },
     },
-    autoscale: { growth_percent: 50, min_increment_gb: 4, max_size_gb: 60000 },
+    autoscale: { growth_percent: 50, min_increment_gb: 4, max_size_gb: 600 },
     health: [
       { name: 'auth', healthy: true },
       { name: 'rest', healthy: true },
