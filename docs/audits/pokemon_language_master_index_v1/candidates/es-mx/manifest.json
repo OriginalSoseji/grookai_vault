@@ -1,8 +1,8 @@
 {
   "canonical_authority": false,
   "card_count": 1467,
-  "cards_fingerprint_sha256": "e1fa7f119de5d9005f702ef9aa794f8a921aa28005f8e86378a01c48c83f5b5d",
-  "complete_source_set_count": 9,
+  "cards_fingerprint_sha256": "aebd0b85ab8868683f83f459aafe855eae8460ace356a58c7b51d8250bcc08e7",
+  "complete_source_set_count": 8,
   "language": "es-mx",
   "observed_card_count": 1467,
   "observed_set_count": 9,
@@ -11,11 +11,11 @@
   "revalidation_set_count": 0,
   "revalidation_source_anomaly_count": 0,
   "set_count": 9,
-  "sets_fingerprint_sha256": "68b397388a5fc5ab8a748242f7ec9744ae88381a5fd3a02110afca3b65133169",
-  "source": "tcgdex_v2",
+  "sets_fingerprint_sha256": "70bdbccdd3429229bd77393e62246180562f9e1c2eae8064b7d1ec1164ab26dd",
+  "source": "tcgdex_github_snapshot",
   "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
   "source_anomaly_count": 0,
   "source_authority": "candidate_only",
-  "source_commit_sha": null,
+  "source_commit_sha": "5e7911b3d703804f7a9065f5edcd99e1a5efb1cf",
   "version": "POKEMON_LANGUAGE_MASTER_INDEX_V1"
 }
