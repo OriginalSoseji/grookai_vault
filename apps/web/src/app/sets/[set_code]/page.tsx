@@ -25,16 +25,21 @@ type PublicSetDetail = NonNullable<Awaited<ReturnType<typeof getPublicSetByCode>
 export async function generateMetadata(
   props: {
     params: Promise<{ set_code: string }>;
+    searchParams?: Promise<{ game?: string }>;
   }
 ): Promise<Metadata> {
   const params = await props.params;
-  const setDetail = await getCachedPublicSetByCode(params.set_code);
+  const searchParams = await props.searchParams;
+  const gameCode = searchParams?.game?.trim().toLowerCase();
+  const setDetail = await getCachedPublicSetByCode(params.set_code, gameCode);
   if (!setDetail) {
     notFound();
   }
 
   const siteOrigin = getSiteOrigin();
-  const canonicalUrl = `${siteOrigin}/sets/${encodeURIComponent(setDetail.code)}`;
+  const canonicalUrl = `${siteOrigin}/sets/${encodeURIComponent(setDetail.code)}${
+    setDetail.game_code === "pokemon" ? "" : `?game=${encodeURIComponent(setDetail.game_code)}`
+  }`;
   const gameLabel = setDetail.game_code === "one_piece"
     ? "One Piece Card Game"
     : setDetail.game_code === "mtg"
@@ -96,7 +101,7 @@ async function SetPageContent({
   const supabase = await createServerComponentClient();
   const [authResponse, initialCards] = await Promise.all([
     supabase.auth.getUser(),
-    getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK),
+    getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK, setDetail.game_code),
   ]);
   const user = authResponse.data.user;
   const requestScopedCatalogClient =
@@ -106,10 +111,13 @@ async function SetPageContent({
     setDetail.code,
     user?.id ?? null,
     requestScopedCatalogClient,
+    setDetail.game_code,
   );
   const [setLogoPath, worldChampionshipDecklist] = await Promise.all([
     getSetLogoAssetPathMap([setDetail.code]).then((logos) => logos.get(setDetail.code)),
-    getPublicWorldChampionshipDecklist(setDetail.code),
+    setDetail.game_code === "pokemon"
+      ? getPublicWorldChampionshipDecklist(setDetail.code)
+      : Promise.resolve(null),
   ]);
   const releaseLabel = formatReleaseDate(setDetail.release_date);
   const completionPercent = masterSetStats.completionPercent ?? 0;
@@ -130,7 +138,11 @@ async function SetPageContent({
   return (
     <main className="gv-page-shell gv-mobile-safe-content">
       <div className="gv-page-container gv-page-rhythm py-5">
-      <TrackPageEvent eventName="page_view_set" path={`/sets/${setDetail.code}`} setCode={setDetail.code} />
+      <TrackPageEvent
+        eventName="page_view_set"
+        path={`/sets/${setDetail.code}${setDetail.game_code === "pokemon" ? "" : `?game=${setDetail.game_code}`}`}
+        setCode={setDetail.code}
+      />
       <section className="gv-set-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-10">
         <div className="relative z-[1] grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,440px)] lg:items-end">
           <div className="space-y-5">
@@ -142,7 +154,19 @@ async function SetPageContent({
               ) : null}
             </div>
 
-            {setLogoPath ? (
+            {setDetail.hero_image_url ? (
+              <div className="relative aspect-[16/9] max-w-[32rem] overflow-hidden rounded-lg border border-slate-200/70 bg-slate-100 dark:border-white/[0.08] dark:bg-slate-900">
+                <Image
+                  src={setDetail.hero_image_url}
+                  alt={`${setDetail.name} cover art`}
+                  fill
+                  sizes="(max-width: 768px) 92vw, 512px"
+                  className="object-contain p-4"
+                  priority
+                  unoptimized
+                />
+              </div>
+            ) : setLogoPath ? (
               <div className="gv-set-logo-stage flex max-w-[28rem] items-center justify-center px-6 py-5">
                 <Image src={setLogoPath} alt="" width={440} height={150} className="max-h-24 w-auto object-contain" priority />
               </div>
@@ -314,6 +338,7 @@ async function SetPageContent({
         </div>
         <PublicSetCardGrid
           setCode={setDetail.code}
+          gameCode={setDetail.game_code}
           initialCards={initialCardsWithPricing}
           totalCount={setDetail.card_count}
           chunkSize={INITIAL_CARD_CHUNK}
@@ -327,10 +352,13 @@ async function SetPageContent({
 export default async function SetPage(
   props: {
     params: Promise<{ set_code: string }>;
+    searchParams?: Promise<{ game?: string }>;
   }
 ) {
   const params = await props.params;
-  const setDetail = await getCachedPublicSetByCode(params.set_code);
+  const searchParams = await props.searchParams;
+  const gameCode = searchParams?.game?.trim().toLowerCase();
+  const setDetail = await getCachedPublicSetByCode(params.set_code, gameCode);
   if (!setDetail) {
     notFound();
   }

@@ -20,7 +20,10 @@ import {
   escapePostgrestLikePattern,
   getManifestCardPrintCount,
 } from "@/lib/publicSetCanonicalization";
-import { resolveVisiblePublicSetCodes } from "@/lib/publicSetExactCodes";
+import {
+  resolveVisiblePublicSetCodes,
+  resolveVisiblePublicSetReferences,
+} from "@/lib/publicSetExactCodes";
 import publicSetCardCountManifest from "@/lib/publicSetCardCounts.generated.json";
 import {
   matchesPublicSetSearch,
@@ -47,6 +50,10 @@ type SetRow = {
   printed_total: number | null;
   release_date: string | null;
   created_at: string | null;
+  hero_image_url: string | null;
+  hero_image_source: string | null;
+  set_role: string | null;
+  catalog_set_type: string | null;
 };
 
 type PublicSetCardCountRow = {
@@ -154,7 +161,9 @@ function getReleaseYear(releaseDate?: string | null) {
 }
 
 function getSetSortDate(row: Pick<SetRow, "release_date" | "created_at">) {
-  return row.release_date ?? row.created_at ?? undefined;
+  // Catalog insertion time is not a release date. Falling back to created_at
+  // makes newly ingested legacy/unknown sets outrank current releases.
+  return row.release_date ?? undefined;
 }
 
 async function mapPublicSetCardPrintings(rows?: PublicCardPrintingOptionRow[]) {
@@ -213,7 +222,11 @@ const PUBLIC_SET_LIST_SELECT = `
   printed_set_abbrev,
   printed_total,
   release_date,
-  created_at
+  created_at,
+  hero_image_url,
+  hero_image_source,
+  set_role,
+  catalog_set_type:source->scryfall->>set_type
 `;
 
 const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
@@ -224,14 +237,22 @@ const PUBLIC_SET_COUNT_CHUNK_SIZE = 500;
 
 async function getAllVisibleSetRows(
   supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  gameCode?: string | null,
 ) {
   const rows: SetRow[] = [];
   for (let offset = 0; ; offset += PUBLIC_SET_ROW_PAGE_SIZE) {
-    const { data, error } = await supabase
+    let query = supabase
       .from("sets")
       .select(PUBLIC_SET_LIST_SELECT)
-      .order("id", { ascending: true })
-      .range(offset, offset + PUBLIC_SET_ROW_PAGE_SIZE - 1);
+      .order("id", { ascending: true });
+    const normalizedGameCode = gameCode?.trim().toLowerCase();
+    if (normalizedGameCode) {
+      query = query.eq("game", normalizedGameCode);
+    }
+    const { data, error } = await query.range(
+      offset,
+      offset + PUBLIC_SET_ROW_PAGE_SIZE - 1,
+    );
     if (error) {
       throw new Error(error.message);
     }
@@ -274,7 +295,36 @@ async function getDynamicPublicSetCardCounts(
   return counts;
 }
 
-function mapSetRowToSummary(row: SetRow, canonicalCardCount: number): PublicSetSummary | null {
+async function getVisibleCardCountBySetIds(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  setIds: string[],
+) {
+  const exactSetIds = Array.from(new Set(setIds.map((id) => id.trim()).filter(Boolean)));
+  if (exactSetIds.length === 0) {
+    return 0;
+  }
+
+  const { count, error } = await supabase
+    .from("card_prints")
+    .select("id", { count: "exact", head: true })
+    .in("set_id", exactSetIds)
+    .not("gv_id", "is", null);
+  if (error) {
+    throw new Error(`[sets.card-count-by-id] ${error.message}`);
+  }
+  return count ?? 0;
+}
+
+function getCatalogSetType(row: Pick<SetRow, "set_role" | "catalog_set_type">) {
+  const value = row.catalog_set_type ?? row.set_role;
+  return typeof value === "string" && value.trim() ? value.trim().toLowerCase() : undefined;
+}
+
+function mapSetRowToSummary(
+  row: SetRow,
+  canonicalCardCount: number,
+  cardCountIsExact = true,
+): PublicSetSummary | null {
   if (!row.code || !row.name) {
     return null;
   }
@@ -292,6 +342,10 @@ function mapSetRowToSummary(row: SetRow, canonicalCardCount: number): PublicSetS
     sort_date: getSetSortDate(row),
     release_year: getReleaseYear(row.release_date),
     card_count: canonicalCardCount + getBaseSetPrintRunLaneCardCountAdjustment(code),
+    card_count_is_exact: cardCountIsExact,
+    hero_image_url: row.hero_image_url?.trim() || undefined,
+    hero_image_source: row.hero_image_source?.trim() || undefined,
+    catalog_set_type: getCatalogSetType(row),
     normalized_code: normalizeSetCode(code),
     normalized_name: normalizeSetQuery(displayName),
     normalized_tokens: tokenizeSetWords(displayName),
@@ -299,15 +353,23 @@ function mapSetRowToSummary(row: SetRow, canonicalCardCount: number): PublicSetS
   };
 }
 
-export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
+export const getPublicSets = cache(async (
+  gameCode?: string,
+  includeDynamicCounts = true,
+): Promise<PublicSetSummary[]> => {
   const supabase = await createServerSupabase();
-  const visibleRows = await getAllVisibleSetRows(supabase);
-  const dynamicCounts = await getDynamicPublicSetCardCounts(
-    supabase,
-    visibleRows.map((row) => row.code ?? ""),
-  );
+  const visibleRows = await getAllVisibleSetRows(supabase, gameCode);
+  const dynamicCounts = includeDynamicCounts
+    ? await getDynamicPublicSetCardCounts(
+        supabase,
+        visibleRows.map((row) => row.code ?? ""),
+      )
+    : new Map<string, number>();
 
-  const equivalentSetsByCode = new Map<string, { row: SetRow; cardCount: number }>();
+  const equivalentSetsByCode = new Map<
+    string,
+    { row: SetRow; cardCount: number; cardCountIsExact: boolean }
+  >();
 
   for (const row of visibleRows) {
     const normalizedCode = normalizeSetCode(row.code);
@@ -315,21 +377,24 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
       continue;
     }
 
-    const cardCount = Math.max(
-      getManifestCardPrintCount(publicSetCardCounts, normalizedCode),
-      dynamicCounts.get(normalizedCode) ?? 0,
-    );
+    const manifestCount = getManifestCardPrintCount(publicSetCardCounts, normalizedCode);
+    const cardCount = includeDynamicCounts
+      ? Math.max(manifestCount, dynamicCounts.get(normalizedCode) ?? 0)
+      : Math.max(manifestCount, row.printed_total ?? 0);
     const existing = equivalentSetsByCode.get(normalizedCode);
     equivalentSetsByCode.set(normalizedCode, {
       row: existing ? choosePreferredEquivalentSetRow(existing.row, row) : row,
       cardCount: Math.max(existing?.cardCount ?? 0, cardCount),
+      cardCountIsExact: Boolean(
+        existing?.cardCountIsExact || includeDynamicCounts || manifestCount > 0,
+      ),
     });
   }
 
   const canonicalSetsByName = new Map<string, PublicSetSummary>();
 
-  for (const { row, cardCount } of equivalentSetsByCode.values()) {
-    const candidate = mapSetRowToSummary(row, cardCount);
+  for (const { row, cardCount, cardCountIsExact } of equivalentSetsByCode.values()) {
+    const candidate = mapSetRowToSummary(row, cardCount, cardCountIsExact);
     if (!candidate) continue;
 
     const canonicalNameKey = `${candidate.game_code}:${normalizeSetQuery(candidate.name)}`;
@@ -344,7 +409,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   }
 
   return [...canonicalSetsByName.values()]
-    .filter((setInfo) => setInfo.card_count > 0)
+    .filter((setInfo) => !setInfo.card_count_is_exact || setInfo.card_count > 0)
     .sort((left, right) => {
       const leftDate = parseSetSortTimestamp(left);
       const rightDate = parseSetSortTimestamp(right);
@@ -365,6 +430,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
 
 export const getPublicSetByCode = cache(async function getPublicSetByCode(
   setCode: string,
+  gameCode?: string,
 ): Promise<PublicSetSummary | null> {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode) {
@@ -372,10 +438,15 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   }
 
   const supabase = await createServerSupabase();
-  const { data, error } = await supabase
+  let query = supabase
     .from("sets")
     .select(PUBLIC_SET_DETAIL_SELECT)
     .ilike("code", escapePostgrestLikePattern(normalizedCode));
+  const normalizedGameCode = gameCode?.trim().toLowerCase();
+  if (normalizedGameCode) {
+    query = query.eq("game", normalizedGameCode);
+  }
+  const { data, error } = await query;
 
   if (error) {
     throw new Error(error.message);
@@ -386,11 +457,10 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
     (preferred, row) => (preferred ? choosePreferredEquivalentSetRow(preferred, row) : row),
     null,
   );
-  const dynamicCounts = await getDynamicPublicSetCardCounts(
+  const combinedCardCount = await getVisibleCardCountBySetIds(
     supabase,
-    rows.map((row) => row.code ?? ""),
+    rows.map((row) => row.id ?? ""),
   );
-  const combinedCardCount = [...dynamicCounts.values()].reduce((sum, count) => sum + count, 0);
   const setInfo = preferredRow ? mapSetRowToSummary(preferredRow, combinedCardCount) : null;
   return setInfo && setInfo.card_count > 0 ? setInfo : null;
 });
@@ -399,6 +469,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   setCode: string,
   offset = 0,
   limit = 36,
+  gameCode?: string,
 ): Promise<PublicSetCard[]> {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode || limit <= 0) {
@@ -406,8 +477,13 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   }
 
   const supabase = await createServerSupabase();
-  const exactSetCodes = await resolveVisiblePublicSetCodes(supabase, normalizedCode);
-  if (exactSetCodes.length === 0) {
+  const exactSetReferences = await resolveVisiblePublicSetReferences(
+    supabase,
+    normalizedCode,
+    gameCode,
+  );
+  const exactSetIds = exactSetReferences.map((reference) => reference.id);
+  if (exactSetIds.length === 0) {
     return [];
   }
 
@@ -437,7 +513,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       supabase
         .from("card_prints")
         .select(selectClause)
-        .in("set_code", exactSetCodes)
+        .in("set_id", exactSetIds)
         .not("gv_id", "is", null)
         .order("number_plain", { ascending: true, nullsFirst: false })
         .order("number", { ascending: true })
@@ -478,7 +554,7 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
-    .in("set_code", exactSetCodes)
+    .in("set_id", exactSetIds)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
     .order("number", { ascending: true })
@@ -626,23 +702,24 @@ async function mapPublicSetCardRows(
 
 export const getPublicSetDetail = cache(async function getPublicSetDetail(
   setCode: string,
+  gameCode?: string,
 ): Promise<PublicSetDetail | null> {
-  const setInfo = await getPublicSetByCode(setCode);
+  const setInfo = await getPublicSetByCode(setCode, gameCode);
   if (!setInfo) {
     return null;
   }
 
   return {
     ...setInfo,
-    cards: await getAllPublicSetCards(setInfo.code),
+    cards: await getAllPublicSetCards(setInfo.code, setInfo.game_code),
   };
 });
 
-async function getAllPublicSetCards(setCode: string) {
+async function getAllPublicSetCards(setCode: string, gameCode?: string) {
   const pageSize = 500;
   const cards: PublicSetCard[] = [];
   for (let offset = 0; ; offset += pageSize) {
-    const page = await getPublicSetCards(setCode, offset, pageSize);
+    const page = await getPublicSetCards(setCode, offset, pageSize, gameCode);
     cards.push(...page);
     if (page.length < pageSize) return cards;
   }

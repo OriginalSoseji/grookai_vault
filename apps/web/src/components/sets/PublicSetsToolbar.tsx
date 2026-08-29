@@ -11,16 +11,17 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import {
-  PUBLIC_SET_ERA_OPTIONS,
   PUBLIC_SET_FILTER_OPTIONS,
-  PUBLIC_SET_LANE_OPTIONS,
-  normalizePublicSetEra,
   normalizePublicSetFilter,
-  normalizePublicSetLane,
-  type PublicSetEra,
   type PublicSetFilter,
-  type PublicSetLane,
 } from "@/lib/publicSets.shared";
+import {
+  getPublicSetBrowseConfig,
+  normalizePublicSetBrowseGroup,
+  normalizePublicSetProductLane,
+  type PublicSetBrowseGroup,
+  type PublicSetProductLane,
+} from "@/lib/publicSetBrowseConfig";
 import {
   PUBLIC_LANGUAGE_SCOPE_OPTIONS,
   normalizePublicLanguageScope,
@@ -38,10 +39,14 @@ export default function PublicSetsToolbar() {
   const searchParams = useSearchParams();
   const currentQuery = searchParams.get("q") ?? "";
   const currentFilter = normalizePublicSetFilter(searchParams.get("filter"));
-  const currentEra = normalizePublicSetEra(searchParams.get("era"));
-  const currentLane = normalizePublicSetLane(searchParams.get("lane"));
   const currentLanguageScope = normalizePublicLanguageScope(searchParams.get("lang"));
   const currentGameScope = normalizePublicGameScope(searchParams.get("game"));
+  const browseConfig = getPublicSetBrowseConfig(currentGameScope);
+  const currentGroup = normalizePublicSetBrowseGroup(
+    searchParams.get("group") ?? searchParams.get("era"),
+    currentGameScope,
+  );
+  const currentLane = normalizePublicSetProductLane(searchParams.get("lane"), currentGameScope);
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
@@ -53,8 +58,8 @@ export default function PublicSetsToolbar() {
   function buildNextUrl(
     nextQuery: string,
     nextFilter: PublicSetFilter,
-    nextEra: PublicSetEra,
-    nextLane: PublicSetLane,
+    nextGroup: PublicSetBrowseGroup,
+    nextLane: PublicSetProductLane,
     nextLanguageScope: PublicLanguageScope = currentLanguageScope,
     nextGameScope: PublicGameScope = currentGameScope,
   ) {
@@ -69,8 +74,8 @@ export default function PublicSetsToolbar() {
       params.set("filter", nextFilter);
     }
 
-    if (nextEra !== "all") {
-      params.set("era", nextEra);
+    if (nextGroup !== "all") {
+      params.set("group", nextGroup);
     }
 
     if (nextLane !== "all") {
@@ -95,19 +100,19 @@ export default function PublicSetsToolbar() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push(buildNextUrl(query, currentFilter, currentEra, currentLane));
+    router.push(buildNextUrl(query, currentFilter, currentGroup, currentLane));
   }
 
   function handleFilterChange(nextFilter: PublicSetFilter) {
-    router.push(buildNextUrl(query, nextFilter, currentEra, currentLane));
+    router.push(buildNextUrl(query, nextFilter, currentGroup, currentLane));
   }
 
-  function handleEraChange(nextEra: PublicSetEra) {
-    router.push(buildNextUrl(query, currentFilter, nextEra, currentLane));
+  function handleGroupChange(nextGroup: PublicSetBrowseGroup) {
+    router.push(buildNextUrl(query, currentFilter, nextGroup, currentLane));
   }
 
-  function handleLaneChange(nextLane: PublicSetLane) {
-    router.push(buildNextUrl(query, currentFilter, currentEra, nextLane));
+  function handleLaneChange(nextLane: PublicSetProductLane) {
+    router.push(buildNextUrl(query, currentFilter, currentGroup, nextLane));
   }
 
   function handleLanguageChange(nextLanguageScope: PublicLanguageScope) {
@@ -115,8 +120,8 @@ export default function PublicSetsToolbar() {
       buildNextUrl(
         query,
         currentFilter,
-        currentEra,
-        currentLane,
+        currentGroup,
+        "all",
         nextLanguageScope,
       ),
     );
@@ -154,7 +159,7 @@ export default function PublicSetsToolbar() {
   const hasActiveFilters =
     currentQuery.trim().length > 0 ||
     currentFilter !== "all" ||
-    currentEra !== "all" ||
+    currentGroup !== "all" ||
     currentLane !== "all";
 
   return (
@@ -225,15 +230,19 @@ export default function PublicSetsToolbar() {
               </div>
             </SearchToolbarField>
 
-            <SearchToolbarField label="Era" className="min-w-0">
+            <SearchToolbarField label={browseConfig.groupLabel} className="min-w-0">
               <SearchToolbarSelect
-                id="public-sets-era"
-                value={currentEra}
-                onChange={(event) => handleEraChange(normalizePublicSetEra(event.target.value))}
-                aria-label="Filter sets by era"
+                id="public-sets-group"
+                value={currentGroup}
+                onChange={(event) =>
+                  handleGroupChange(
+                    normalizePublicSetBrowseGroup(event.target.value, currentGameScope),
+                  )
+                }
+                aria-label={`Filter sets by ${browseConfig.groupLabel.toLowerCase()}`}
                 tone="soft"
               >
-                {PUBLIC_SET_ERA_OPTIONS.map((option) => (
+                {browseConfig.groups.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
@@ -245,11 +254,15 @@ export default function PublicSetsToolbar() {
               <SearchToolbarSelect
                 id="public-sets-lane"
                 value={currentLane}
-                onChange={(event) => handleLaneChange(normalizePublicSetLane(event.target.value))}
+                onChange={(event) =>
+                  handleLaneChange(
+                    normalizePublicSetProductLane(event.target.value, currentGameScope),
+                  )
+                }
                 aria-label="Filter sets by type"
                 tone="soft"
               >
-                {PUBLIC_SET_LANE_OPTIONS.map((option) => (
+                {browseConfig.lanes.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>

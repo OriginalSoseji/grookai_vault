@@ -71,8 +71,9 @@ test("set discovery paginates beyond the PostgREST row ceiling", () => {
   assert.match(source, /const PUBLIC_SET_ROW_PAGE_SIZE = 1000/);
   assert.match(source, /async function getAllVisibleSetRows/);
   assert.match(source, /\.order\("id", \{ ascending: true \}\)/);
-  assert.match(source, /\.range\(offset, offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1\)/);
-  assert.match(listFunctionSource, /getAllVisibleSetRows\(supabase\)/);
+  assert.match(source, /\.range\(\s*offset,\s*offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1,?\s*\)/);
+  assert.match(listFunctionSource, /getAllVisibleSetRows\(supabase, gameCode\)/);
+  assert.match(source, /query = query\.eq\("game", normalizedGameCode\)/);
 });
 
 test("canonical aliases are selected by reconciled catalog rows, not printed total", () => {
@@ -101,18 +102,25 @@ test("set detail counts exact visible set lanes without relationship aggregates"
   assert.doesNotMatch(source, /card_prints\(count\)/);
   assert.match(detailFunctionSource, /select\(PUBLIC_SET_DETAIL_SELECT\)/);
   assert.match(detailFunctionSource, /\.ilike\("code", escapePostgrestLikePattern\(normalizedCode\)\)/);
-  assert.match(detailFunctionSource, /getDynamicPublicSetCardCounts/);
+  assert.match(detailFunctionSource, /getVisibleCardCountBySetIds/);
+  assert.match(detailFunctionSource, /rows\.map\(\(row\) => row\.id \?\? ""\)/);
   assert.match(detailFunctionSource, /combinedCardCount/);
   assert.doesNotMatch(detailFunctionSource, /\.maybeSingle\(\)/);
   assert.doesNotMatch(detailFunctionSource, /getPublicSetByCode[\s\S]*?const sets = await getPublicSets\(\)/);
 });
 
-test("card reads resolve visible set metadata before exact indexed set-code queries", () => {
+test("card reads resolve visible game-scoped set metadata before exact indexed set-id queries", () => {
   assert.match(exactCodesSource, /\.from\("sets"\)/);
   assert.match(exactCodesSource, /\.ilike\("code"/);
+  assert.match(exactCodesSource, /query = query\.eq\("game", normalizedGameCode\)/);
   assert.doesNotMatch(source, /\.ilike\("set_code"/);
-  assert.match(cardsFunctionSource, /resolveVisiblePublicSetCodes/);
-  assert.match(cardsFunctionSource, /\.in\("set_code", exactSetCodes\)/);
+  assert.match(cardsFunctionSource, /resolveVisiblePublicSetReferences/);
+  assert.match(cardsFunctionSource, /\.in\("set_id", exactSetIds\)/);
+});
+
+test("release sorting never treats catalog ingestion time as a release date", () => {
+  assert.match(source, /return row\.release_date \?\? undefined/);
+  assert.doesNotMatch(source, /row\.release_date \?\? row\.created_at/);
 });
 
 test("dynamic set counts are bounded and enforce catalog visibility", () => {
@@ -157,8 +165,8 @@ test("checked-in count manifest has a valid bounded snapshot", () => {
   assert.ok(Number.isFinite(Date.parse(manifest.generated_at)));
 });
 
-test("full card loading is scoped to one selected set", () => {
-  assert.match(source, /getAllPublicSetCards\(setInfo\.code\)/);
+test("full card loading is scoped to one selected game and set", () => {
+  assert.match(source, /getAllPublicSetCards\(setInfo\.code, setInfo\.game_code\)/);
   assert.match(source, /const pageSize = 500/);
 });
 

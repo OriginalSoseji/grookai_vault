@@ -4,7 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
-import { resolveVisiblePublicSetCodes } from "@/lib/publicSetExactCodes";
+import { resolveVisiblePublicSetReferences } from "@/lib/publicSetExactCodes";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
@@ -44,14 +44,23 @@ function chunkValues<T>(values: T[], size = QUERY_CHUNK_SIZE) {
   return chunks;
 }
 
-async function fetchSetCardPrintIds(supabase: SupabaseClient, setCode: string) {
+async function fetchSetCardPrintIds(
+  supabase: SupabaseClient,
+  setCode: string,
+  gameCode?: string | null,
+) {
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode) {
     return [];
   }
 
-  const exactSetCodes = await resolveVisiblePublicSetCodes(supabase, normalizedCode);
-  if (exactSetCodes.length === 0) {
+  const exactSetReferences = await resolveVisiblePublicSetReferences(
+    supabase,
+    normalizedCode,
+    gameCode,
+  );
+  const exactSetIds = exactSetReferences.map((reference) => reference.id);
+  if (exactSetIds.length === 0) {
     return [];
   }
   const ids: string[] = [];
@@ -62,7 +71,7 @@ async function fetchSetCardPrintIds(supabase: SupabaseClient, setCode: string) {
     const { data, error } = await supabase
       .from("card_prints")
       .select("id")
-      .in("set_code", exactSetCodes)
+      .in("set_id", exactSetIds)
       .not("gv_id", "is", null)
       .range(offset, offset + pageSize - 1);
 
@@ -161,9 +170,10 @@ export async function getPublicSetMasterSetStats(
   setCode: string,
   userId: string | null | undefined,
   requestScopedCatalogClient?: SupabaseClient,
+  gameCode?: string | null,
 ): Promise<PublicSetMasterSetStats> {
   const supabase = requestScopedCatalogClient ?? createPublicServerClient();
-  const cardPrintIds = await fetchSetCardPrintIds(supabase, setCode);
+  const cardPrintIds = await fetchSetCardPrintIds(supabase, setCode, gameCode);
   const printings = await fetchCardPrintings(supabase, cardPrintIds);
   const parentIdsWithChildPrintings = new Set(printings.map((printing) => printing.cardPrintId));
   const fallbackParentIds = cardPrintIds.filter((id) => !parentIdsWithChildPrintings.has(id));

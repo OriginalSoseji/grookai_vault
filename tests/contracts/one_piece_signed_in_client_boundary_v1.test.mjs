@@ -27,7 +27,11 @@ test("card and set loaders preserve request-role catalog visibility", () => {
   assert.doesNotMatch(setLoader, /card_prints\(count\)/);
   assert.match(setLoader, /get_public_set_card_counts_v1/);
   assert.match(setLoader, /getAllVisibleSetRows/);
-  assert.match(setLoader, /\.range\(offset, offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1\)/);
+  assert.match(
+    setLoader,
+    /\.range\(\s*offset,\s*offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1,?\s*\)/,
+  );
+  assert.match(setLoader, /query = query\.eq\("game", normalizedGameCode\)/);
   assert.doesNotMatch(setLoader, /\.ilike\("set_code"/);
   assert.match(setLoader, /candidate\.game_code/);
   assert.match(setStatsLoader, /createPublicServerClient/);
@@ -36,12 +40,12 @@ test("card and set loaders preserve request-role catalog visibility", () => {
     /getPublicSetMasterSetStats\(\s*setCode:\s*string,\s*userId:[\s\S]*requestScopedCatalogClient\?: SupabaseClient/,
   );
   assert.match(setStatsLoader, /requestScopedCatalogClient \?\? createPublicServerClient\(\)/);
-  assert.match(setStatsLoader, /fetchSetCardPrintIds\(supabase, setCode\)/);
+  assert.match(setStatsLoader, /fetchSetCardPrintIds\(supabase, setCode, gameCode\)/);
   assert.match(setStatsLoader, /fetchCardPrintings\(supabase, cardPrintIds\)/);
   assert.match(setPage, /user\?\.id && setDetail\.game_code !== "pokemon" \? supabase : undefined/);
   assert.match(
     setPage,
-    /getPublicSetMasterSetStats\(\s*setDetail\.code,\s*user\?\.id \?\? null,\s*requestScopedCatalogClient,/,
+    /getPublicSetMasterSetStats\(\s*setDetail\.code,\s*user\?\.id \?\? null,\s*requestScopedCatalogClient,\s*setDetail\.game_code,/,
   );
 });
 
@@ -53,7 +57,7 @@ test("web set browse is dynamic and exposes an explicit game scope", () => {
 
   assert.match(setsPage, /dynamic = "force-dynamic"/);
   assert.match(setsPage, /revalidate = 0/);
-  assert.match(setsPage, /matchesPublicGameScope/);
+  assert.match(setsPage, /getPublicSets\(gameScope, false\)/);
   assert.match(toolbar, /PUBLIC_GAME_SCOPE_OPTIONS/);
   assert.match(toolbar, /aria-label="Filter sets by game"/);
   assert.match(results, /matchesPublicGameScope/);

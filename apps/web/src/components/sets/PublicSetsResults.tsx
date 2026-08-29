@@ -16,25 +16,27 @@ import {
   normalizePublicGameScope,
 } from "@/lib/publicGameScope";
 import {
-  getPublicSetEra,
-  getPublicSetEraLabel,
-  getPublicSetLane,
-  getPublicSetLaneLabel,
   isSpecialPublicSet,
-  normalizePublicSetEra,
   matchesPublicSetSearch,
-  normalizePublicSetLane,
   normalizePublicSetFilter,
   normalizeSetSearchQuery,
   normalizeSetQuery,
-  PUBLIC_SET_ERA_OPTIONS,
   PUBLIC_SET_FILTER_OPTIONS,
-  PUBLIC_SET_LANE_OPTIONS,
-  type PublicSetEra,
   type PublicSetSummary,
 } from "@/lib/publicSets.shared";
+import {
+  getPublicSetBrowseConfig,
+  getPublicSetBrowseGroup,
+  getPublicSetGroupLabel,
+  getPublicSetProductLane,
+  getPublicSetProductLaneLabel,
+  normalizePublicSetBrowseGroup,
+  normalizePublicSetProductLane,
+  type PublicSetBrowseGame,
+  type PublicSetBrowseGroup,
+} from "@/lib/publicSetBrowseConfig";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type PublicSetsResultsProps = {
   sets: PublicSetSummary[];
@@ -119,17 +121,18 @@ function applyPublicSetFilterAndSortClient(sets: PublicSetSummary[], rawFilter?:
   }
 }
 
-function applySetEraAndLaneFilters(
+function applySetGroupAndLaneFilters(
   sets: PublicSetSummary[],
-  rawEra?: string | null,
+  rawGroup: string | null | undefined,
   rawLane?: string | null,
+  game: PublicSetBrowseGame = "pokemon",
 ) {
-  const era = normalizePublicSetEra(rawEra);
-  const lane = normalizePublicSetLane(rawLane);
+  const group = normalizePublicSetBrowseGroup(rawGroup, game);
+  const lane = normalizePublicSetProductLane(rawLane, game);
 
   return sets
-    .filter((setInfo) => era === "all" || getPublicSetEra(setInfo) === era)
-    .filter((setInfo) => lane === "all" || getPublicSetLane(setInfo) === lane);
+    .filter((setInfo) => group === "all" || getPublicSetBrowseGroup(setInfo, game) === group)
+    .filter((setInfo) => lane === "all" || getPublicSetProductLane(setInfo, game) === lane);
 }
 
 function countByValue<TValue extends string>(
@@ -144,19 +147,23 @@ function countByValue<TValue extends string>(
   return counts;
 }
 
-function groupSetsByEra(sets: PublicSetSummary[]) {
-  const groups = new Map<PublicSetEra, PublicSetSummary[]>();
+function groupSetsByBrowseGroup(
+  sets: PublicSetSummary[],
+  game: ReturnType<typeof normalizePublicGameScope>,
+) {
+  const config = getPublicSetBrowseConfig(game);
+  const groups = new Map<PublicSetBrowseGroup, PublicSetSummary[]>();
   for (const setInfo of sets) {
-    const era = getPublicSetEra(setInfo);
-    const group = groups.get(era) ?? [];
+    const groupValue = getPublicSetBrowseGroup(setInfo, game);
+    const group = groups.get(groupValue) ?? [];
     group.push(setInfo);
-    groups.set(era, group);
+    groups.set(groupValue, group);
   }
 
-  return PUBLIC_SET_ERA_OPTIONS
+  return config.groups
     .filter((option) => option.value !== "all")
     .map((option) => ({
-      era: option.value,
+      group: option.value,
       label: option.label,
       sets: groups.get(option.value) ?? [],
     }))
@@ -168,7 +175,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const searchParams = useSearchParams();
   const rawQuery = searchParams.get("q") ?? "";
   const rawFilter = searchParams.get("filter") ?? "all";
-  const rawEra = searchParams.get("era") ?? "all";
+  const rawGroup = searchParams.get("group") ?? searchParams.get("era") ?? "all";
   const rawLane = searchParams.get("lane") ?? "all";
   const rawLanguageScope = searchParams.get("lang") ?? "all";
   const rawGameScope = searchParams.get("game") ?? "pokemon";
@@ -176,47 +183,54 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   const [visibleSetCount, setVisibleSetCount] = useState(INITIAL_VISIBLE_SET_COUNT);
   const normalizedQuery = normalizeSetQuery(rawQuery);
   const activeFilter = normalizePublicSetFilter(rawFilter);
-  const activeEra = normalizePublicSetEra(rawEra);
-  const activeLane = normalizePublicSetLane(rawLane);
   const activeLanguageScope = normalizePublicLanguageScope(rawLanguageScope);
   const activeGameScope = normalizePublicGameScope(rawGameScope);
-  const gameScopedSets = useMemo(
-    () => sets.filter((setInfo) => matchesPublicGameScope(setInfo, activeGameScope)),
-    [sets, activeGameScope],
+  const browseConfig = getPublicSetBrowseConfig(activeGameScope);
+  const activeGroup = normalizePublicSetBrowseGroup(rawGroup, activeGameScope);
+  const activeLane = normalizePublicSetProductLane(rawLane, activeGameScope);
+  const gameScopedSets = sets.filter((setInfo) =>
+    matchesPublicGameScope(setInfo, activeGameScope),
   );
-  const languageScopedSets = useMemo(
-    () => gameScopedSets.filter((setInfo) => matchesPublicSetLanguageScope(setInfo, activeLanguageScope)),
-    [gameScopedSets, activeLanguageScope],
+  const languageScopedSets = gameScopedSets.filter((setInfo) =>
+    matchesPublicSetLanguageScope(setInfo, activeLanguageScope),
   );
-  const searchedSets = useMemo(
-    () => filterPublicSetsClient(languageScopedSets, rawQuery),
-    [languageScopedSets, rawQuery],
-  );
-  const filteredAndSortedSets = useMemo(
-    () =>
-      applyPublicSetFilterAndSortClient(
-        applySetEraAndLaneFilters(searchedSets, activeEra, activeLane),
-        activeFilter,
-      ),
-    [searchedSets, activeEra, activeLane, activeFilter],
+  const searchedSets = filterPublicSetsClient(languageScopedSets, rawQuery);
+  const filteredAndSortedSets = applyPublicSetFilterAndSortClient(
+    applySetGroupAndLaneFilters(
+      searchedSets,
+      activeGroup,
+      activeLane,
+      activeGameScope,
+    ),
+    activeFilter,
   );
   const visibleSets = filteredAndSortedSets.slice(0, visibleSetCount);
+  const prioritySetCodes = new Set(visibleSets.slice(0, 6).map((setInfo) => setInfo.code));
   const hasMoreSets = visibleSets.length < filteredAndSortedSets.length;
   const activeFilterLabel = PUBLIC_SET_FILTER_OPTIONS.find((option) => option.value === activeFilter)?.label ?? "All Sets";
-  const activeEraLabel = getPublicSetEraLabel(activeEra);
-  const activeLaneLabel = getPublicSetLaneLabel(activeLane);
+  const activeGroupLabel = getPublicSetGroupLabel(activeGroup, activeGameScope);
+  const activeLaneLabel = getPublicSetProductLaneLabel(activeLane, activeGameScope);
   const activeLanguageScopeLabel = getPublicLanguageScopeLabel(activeLanguageScope);
   const activeGameScopeLabel = getPublicGameScopeLabel(activeGameScope);
   const setLogoPathByCode = new Map(logoEntries);
-  const laneScopedSets = searchedSets.filter((setInfo) => activeLane === "all" || getPublicSetLane(setInfo) === activeLane);
-  const eraScopedSets = searchedSets.filter((setInfo) => activeEra === "all" || getPublicSetEra(setInfo) === activeEra);
-  const eraCounts = countByValue(laneScopedSets, getPublicSetEra);
-  const laneCounts = countByValue(eraScopedSets, getPublicSetLane);
-  const groupedVisibleSets = groupSetsByEra(visibleSets);
-  const shouldGroupByEra =
-    activeGameScope === "pokemon" &&
+  const laneScopedSets = searchedSets.filter(
+    (setInfo) => activeLane === "all" || getPublicSetProductLane(setInfo, activeGameScope) === activeLane,
+  );
+  const groupScopedSets = searchedSets.filter(
+    (setInfo) => activeGroup === "all" || getPublicSetBrowseGroup(setInfo, activeGameScope) === activeGroup,
+  );
+  const groupCounts = countByValue(
+    laneScopedSets,
+    (setInfo) => getPublicSetBrowseGroup(setInfo, activeGameScope),
+  );
+  const laneCounts = countByValue(
+    groupScopedSets,
+    (setInfo) => getPublicSetProductLane(setInfo, activeGameScope),
+  );
+  const groupedVisibleSets = groupSetsByBrowseGroup(visibleSets, activeGameScope);
+  const shouldGroupByRelease =
     !normalizedQuery &&
-    activeEra === "all" &&
+    activeGroup === "all" &&
     activeFilter !== "a-z" &&
     activeFilter !== "oldest";
   const resultLabel = normalizedQuery
@@ -225,7 +239,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
 
   useEffect(() => {
     setVisibleSetCount(INITIAL_VISIBLE_SET_COUNT);
-  }, [normalizedQuery, activeFilter, activeEra, activeLane, activeLanguageScope, activeGameScope]);
+  }, [normalizedQuery, activeFilter, activeGroup, activeLane, activeLanguageScope, activeGameScope]);
 
   function buildFacetHref(updates: Record<string, string | null>) {
     const params = new URLSearchParams(searchParams.toString());
@@ -236,6 +250,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
         params.set(key, value);
       }
     }
+    params.delete("era");
 
     const queryString = params.toString();
     return queryString ? `${pathname}?${queryString}` : pathname;
@@ -256,9 +271,9 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
                 {activeFilterLabel}
               </span>
             ) : null}
-            {activeEra !== "all" ? (
+            {activeGroup !== "all" ? (
               <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
-                {activeEraLabel}
+                {activeGroupLabel}
               </span>
             ) : null}
             {activeLane !== "all" ? (
@@ -278,35 +293,34 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
         )}
       />
 
-      {activeGameScope === "pokemon" ? (
       <div className="gv-premium-surface space-y-4 px-4 py-4 sm:px-5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <p className="gv-eyebrow">Browse by era</p>
+            <p className="gv-eyebrow">{browseConfig.groupTitle}</p>
             <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-              Jump into the catalog by release era instead of paging through every set.
+              {browseConfig.groupDescription}
             </p>
           </div>
           <Link
-            href={buildFacetHref({ era: null, lane: activeLane })}
+            href={buildFacetHref({ group: null, lane: activeLane })}
             className={`inline-flex shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold transition ${
-              activeEra === "all"
+              activeGroup === "all"
                 ? "bg-slate-950 text-white dark:bg-slate-100 dark:text-slate-950"
                 : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
             }`}
           >
-            All eras
+            {browseConfig.groups[0].label}
           </Link>
         </div>
 
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {PUBLIC_SET_ERA_OPTIONS.filter((option) => option.value !== "all").map((option) => {
-            const count = eraCounts.get(option.value) ?? 0;
-            const active = activeEra === option.value;
+          {browseConfig.groups.filter((option) => option.value !== "all").map((option) => {
+            const count = groupCounts.get(option.value) ?? 0;
+            const active = activeGroup === option.value;
             return (
               <Link
                 key={option.value}
-                href={buildFacetHref({ era: option.value })}
+                href={buildFacetHref({ group: option.value })}
                 className={`rounded-[18px] border px-3 py-3 transition ${
                   active
                     ? "border-slate-950 bg-slate-950 text-white shadow-sm dark:border-slate-100 dark:bg-slate-100 dark:text-slate-950"
@@ -327,8 +341,8 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
         </div>
 
         <div className="flex flex-wrap gap-2 border-t border-slate-200/70 pt-4 dark:border-slate-800/70">
-          {PUBLIC_SET_LANE_OPTIONS.map((option) => {
-            const count = option.value === "all" ? eraScopedSets.length : laneCounts.get(option.value) ?? 0;
+          {browseConfig.lanes.map((option) => {
+            const count = option.value === "all" ? groupScopedSets.length : laneCounts.get(option.value) ?? 0;
             const active = activeLane === option.value;
             return (
               <Link
@@ -347,14 +361,13 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
           })}
         </div>
       </div>
-      ) : null}
 
       {filteredAndSortedSets.length > 0 ? (
         <div className="space-y-5">
-          {shouldGroupByEra ? (
+          {shouldGroupByRelease ? (
             <div className="space-y-8">
               {groupedVisibleSets.map((group) => (
-                <section key={group.era} className="space-y-3">
+                <section key={group.group} className="space-y-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <p className="gv-eyebrow">{group.label}</p>
@@ -363,10 +376,10 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
                       </h3>
                     </div>
                     <Link
-                      href={buildFacetHref({ era: group.era })}
+                      href={buildFacetHref({ group: group.group })}
                       className="hidden rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 sm:inline-flex"
                     >
-                      Open era
+                      Open group
                     </Link>
                   </div>
                   <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -376,6 +389,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
                         setInfo={setInfo}
                         compareCards={compareCards}
                         logoPath={setLogoPathByCode.get(setInfo.code)}
+                        priority={prioritySetCodes.has(setInfo.code)}
                       />
                     ))}
                   </div>
@@ -390,6 +404,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
                   setInfo={setInfo}
                   compareCards={compareCards}
                   logoPath={setLogoPathByCode.get(setInfo.code)}
+                  priority={prioritySetCodes.has(setInfo.code)}
                 />
               ))}
             </div>

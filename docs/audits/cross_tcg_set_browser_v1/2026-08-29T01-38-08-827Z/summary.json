@@ -1,0 +1,137 @@
+{
+  "version": "CROSS_TCG_SET_BROWSER_FINAL_SMOKE_V1_2",
+  "temporary_user_deleted": true,
+  "checks": [
+    {
+      "name": "one_piece_vocabulary",
+      "pass": true
+    },
+    {
+      "name": "one_piece_filters",
+      "pass": true
+    },
+    {
+      "name": "one_piece_36_direct_loaded",
+      "pass": true,
+      "count": 36,
+      "bad": []
+    },
+    {
+      "name": "mobile_no_overflow",
+      "pass": true
+    },
+    {
+      "name": "st30_package_filter",
+      "pass": true
+    },
+    {
+      "name": "op17_detail",
+      "pass": true
+    },
+    {
+      "name": "mtg_vocabulary",
+      "pass": true
+    },
+    {
+      "name": "mtg_filters",
+      "pass": true
+    },
+    {
+      "name": "mtg_first_current",
+      "pass": true
+    },
+    {
+      "name": "mtg_36_direct_loaded",
+      "pass": true,
+      "count": 36,
+      "bad": []
+    },
+    {
+      "name": "mtg_main_tempest",
+      "pass": true
+    },
+    {
+      "name": "mtg_main_theros",
+      "pass": true
+    },
+    {
+      "name": "mtg_main_time_spiral",
+      "pass": true
+    },
+    {
+      "name": "mtg_main_prophecy",
+      "pass": true
+    },
+    {
+      "name": "mtg_main_planeshift",
+      "pass": true
+    },
+    {
+      "name": "mtg_main_portal",
+      "pass": true
+    },
+    {
+      "name": "no_failed_images",
+      "pass": true,
+      "failed": []
+    }
+  ],
+  "timings": [
+    {
+      "route": "/login?next=%2Fsets%3Fgame%3Done_piece",
+      "status": 200,
+      "ready_ms": 320
+    },
+    {
+      "route": "/sets?game=one_piece (post-login)",
+      "status": 200,
+      "ready_ms": 983
+    },
+    {
+      "route": "/sets?game=one_piece&q=ST30&lane=deck",
+      "status": 200,
+      "ready_ms": 527
+    },
+    {
+      "route": "/sets/op17?game=one_piece",
+      "status": 200,
+      "ready_ms": 1280
+    },
+    {
+      "route": "/sets?game=mtg",
+      "status": 200,
+      "ready_ms": 553
+    },
+    {
+      "route": "/sets?game=mtg&q=Tempest&lane=main",
+      "status": 200,
+      "ready_ms": 802
+    },
+    {
+      "route": "/sets?game=mtg&q=Theros&lane=main",
+      "status": 200,
+      "ready_ms": 547
+    },
+    {
+      "route": "/sets?game=mtg&q=Time%20Spiral&lane=main",
+      "status": 200,
+      "ready_ms": 459
+    },
+    {
+      "route": "/sets?game=mtg&q=Prophecy&lane=main",
+      "status": 200,
+      "ready_ms": 485
+    },
+    {
+      "route": "/sets?game=mtg&q=Planeshift&lane=main",
+      "status": 200,
+      "ready_ms": 519
+    },
+    {
+      "route": "/sets?game=mtg&q=Portal&lane=main",
+      "status": 200,
+      "ready_ms": 489
+    }
+  ],
+  "artifact_directory": "C:\\grookai_vault_one_piece_op17_release\\docs\\audits\\cross_tcg_set_browser_v1\\2026-08-29T01-38-08-827Z"
+}
