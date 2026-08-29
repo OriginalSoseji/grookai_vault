@@ -8,6 +8,10 @@ import {
   COLLECTIBLE_WAVE1_CARD_IDENTITY_PROPOSAL_VERSION,
   buildCollectibleWave1CardIdentityProposalV1,
 } from "../../backend/catalog/collectible_wave1_card_identity_proposal_v1.mjs";
+import { COLLECTIBLE_WAVE1_GAMES } from
+  "../../backend/catalog/collectible_wave1_game_foundations_v1.mjs";
+import { setReadbackFindings } from
+  "../../scripts/workers/collectible_wave1_card_identity_proposal_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const HASH = "a".repeat(64);
@@ -221,6 +225,70 @@ test("proposal output is stable regardless of candidate order", () => {
     selectedSetRows: [setRow()],
   });
   assert.deepEqual(left, right);
+});
+
+test("production readback fails closed on any selected-set or game foundation drift", () => {
+  const expected = {
+    ...setRow({ id: "92cd6829-35bc-5f33-97b0-5d93613e004b", game: "gundam" }),
+    release_date: null,
+    printed_total: null,
+    printed_set_abbrev: "LOB",
+    set_role: null,
+    identity_domain_default: null,
+    identity_model: "standard",
+    logo_url: null,
+    symbol_url: null,
+    hero_image_url: null,
+    hero_image_source: null,
+  };
+  expected.source = {
+    ...expected.source,
+    canonical_apply_version: "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_V1",
+    canonical_payload_fingerprint_sha256:
+      "fa0674bc2563e57c8ab02e2bf19f44805328bdb0b56ad98ed807323e45b51668",
+  };
+  const controls = COLLECTIBLE_WAVE1_GAMES.map((game) => ({
+    game_code: game.code,
+    release_status: "hidden",
+    release_version: "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1",
+  }));
+  const cleanFindings = setReadbackFindings(
+    [expected],
+    [structuredClone(expected)],
+    COLLECTIBLE_WAVE1_GAMES.map((game) => ({ ...game })),
+    controls,
+    0,
+  );
+  assert.deepEqual(cleanFindings, []);
+
+  for (const mutate of [
+    (row) => { row.source.source_set_name = "drifted"; },
+    (row) => { row.source.source_set_code = "DRIFT"; },
+    (row) => { row.source.source_id = "drifted_source"; },
+    (row) => { row.identity_model = "drifted"; },
+  ]) {
+    const drifted = structuredClone(expected);
+    mutate(drifted);
+    assert.deepEqual(setReadbackFindings(
+      [expected],
+      [drifted],
+      COLLECTIBLE_WAVE1_GAMES.map((game) => ({ ...game })),
+      controls,
+      0,
+    ), [`selected_set_row_mismatch:${expected.id}`]);
+  }
+
+  for (const field of ["name", "slug"]) {
+    const games = COLLECTIBLE_WAVE1_GAMES.map((game) => ({ ...game }));
+    games[0][field] = "drifted";
+    assert.deepEqual(setReadbackFindings(
+      [expected],
+      [structuredClone(expected)],
+      games,
+      controls,
+      0,
+    ), ["game_foundations_mismatch"]);
+  }
 });
 
 test("the live worker and workflow remain default-branch, read-only, and artifact-only", () => {

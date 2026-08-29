@@ -11,6 +11,10 @@ import {
   COLLECTIBLE_WAVE1_CARD_IDENTITY_PROPOSAL_VERSION,
   buildCollectibleWave1CardIdentityProposalV1,
 } from "../../backend/catalog/collectible_wave1_card_identity_proposal_v1.mjs";
+import {
+  COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_VERSION,
+  COLLECTIBLE_WAVE1_GAMES,
+} from "../../backend/catalog/collectible_wave1_game_foundations_v1.mjs";
 
 const { Client } = pg;
 const FROZEN_INPUTS = Object.freeze({
@@ -260,7 +264,63 @@ function requireSslTransport(databaseUrl) {
   return url.toString();
 }
 
-function setReadbackFindings(expectedRows, actualRows, games, controls, cardCount) {
+function dateOnly(value) {
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return value ?? null;
+}
+
+function expectedPersistedSetRow(row) {
+  return {
+    id: row.id,
+    game: row.game,
+    code: row.code,
+    name: row.name,
+    release_date: dateOnly(row.release_date),
+    source: {
+      ...row.source,
+      canonical_apply_version: "COLLECTIBLE_WAVE1_SET_FOUNDATIONS_V1",
+      canonical_payload_fingerprint_sha256:
+        FROZEN_INPUTS.selected_sets.canonical_payload_fingerprint_sha256,
+    },
+    printed_total: row.printed_total ?? null,
+    printed_set_abbrev: row.printed_set_abbrev ?? null,
+    set_role: row.set_role ?? null,
+    identity_domain_default: row.identity_domain_default ?? null,
+    identity_model: row.identity_model,
+    logo_url: row.logo_url ?? null,
+    symbol_url: row.symbol_url ?? null,
+    hero_image_url: row.hero_image_url ?? null,
+    hero_image_source: row.hero_image_source ?? null,
+  };
+}
+
+function actualPersistedSetRow(row) {
+  return {
+    id: row.id,
+    game: row.game,
+    code: row.code,
+    name: row.name,
+    release_date: dateOnly(row.release_date),
+    source: row.source,
+    printed_total: row.printed_total ?? null,
+    printed_set_abbrev: row.printed_set_abbrev ?? null,
+    set_role: row.set_role ?? null,
+    identity_domain_default: row.identity_domain_default ?? null,
+    identity_model: row.identity_model,
+    logo_url: row.logo_url ?? null,
+    symbol_url: row.symbol_url ?? null,
+    hero_image_url: row.hero_image_url ?? null,
+    hero_image_source: row.hero_image_source ?? null,
+  };
+}
+
+export function setReadbackFindings(
+  expectedRows,
+  actualRows,
+  games,
+  controls,
+  cardCount,
+) {
   const findings = [];
   const expectedById = new Map(expectedRows.map((row) => [row.id, row]));
   if (actualRows.length !== expectedRows.length) findings.push("selected_set_count_mismatch");
@@ -270,25 +330,22 @@ function setReadbackFindings(expectedRows, actualRows, games, controls, cardCoun
       findings.push(`unexpected_set:${actual.id}`);
       continue;
     }
-    if (actual.game !== expected.game || actual.code !== expected.code ||
-        actual.name !== expected.name ||
-        actual.printed_set_abbrev !== expected.printed_set_abbrev ||
-        actual.source?.set_proposal_id !== expected.source_set_proposal_id ||
-        actual.source?.canonical_payload_fingerprint_sha256 !==
-          FROZEN_INPUTS.selected_sets.canonical_payload_fingerprint_sha256) {
+    if (stableJson(actualPersistedSetRow(actual)) !==
+        stableJson(expectedPersistedSetRow(expected))) {
       findings.push(`selected_set_row_mismatch:${actual.id}`);
     }
   }
-  if (games.length !== 2 || !games.some((row) =>
-    row.code === "yugioh" && row.id === "59474f00-0000-4000-8000-000000000001") ||
-      !games.some((row) =>
-        row.code === "gundam" && row.id === "47434700-0000-4000-8000-000000000001")) {
+  const sortedGames = [...games].sort((left, right) => left.code.localeCompare(right.code));
+  const expectedGames = [...COLLECTIBLE_WAVE1_GAMES]
+    .map((row) => ({ ...row }))
+    .sort((left, right) => left.code.localeCompare(right.code));
+  if (stableJson(sortedGames) !== stableJson(expectedGames)) {
     findings.push("game_foundations_mismatch");
   }
   for (const game of ["yugioh", "gundam"]) {
     const control = controls.find((row) => row.game_code === game);
     if (!control || control.release_status !== "hidden" ||
-        control.release_version !== "COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_V1") {
+        control.release_version !== COLLECTIBLE_WAVE1_GAME_FOUNDATIONS_VERSION) {
       findings.push(`hidden_release_control_mismatch:${game}`);
     }
   }
@@ -317,7 +374,11 @@ async function loadProductionReadback(databaseUrl, selectedSetRows) {
     const setIds = selectedSetRows.map((row) => row.id);
     const sets = (await client.query(`
       select id::text, game::text, code::text, name::text,
-        printed_set_abbrev::text, source
+        release_date, source, printed_total,
+        printed_set_abbrev::text, set_role::text,
+        identity_domain_default::text, identity_model::text,
+        logo_url::text, symbol_url::text, hero_image_url::text,
+        hero_image_source::text
       from public.sets
       where id = any($1::uuid[])
       order by id
