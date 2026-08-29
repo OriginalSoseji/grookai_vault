@@ -18,7 +18,7 @@ jobs:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN: '1'
       TCGPLAYER_MARKET_SCHEDULE_MODE: shadow
-      TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: '1'
+      TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: '2'
       TCGPLAYER_MARKET_SCHEDULE_RETRY_DELAYS_SECONDS: '60'
       TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING: '10000'
       TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES: '180'
@@ -64,7 +64,7 @@ jobs:
             --mode=shadow \
             "--run-key=$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY" \
             "--out-root=$TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT" \
-            --max-attempts=1 \
+            --max-attempts=2 \
             "--expected-commit-sha=$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
 
       - name: Publish shadow summary

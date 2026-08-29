@@ -265,6 +265,43 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function acquireSchedulerLockV1(url, onConnectionError) {
+  const client = new Client({
+    connectionString: url,
+    ssl: sslConfig(url),
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 30_000,
+    statement_timeout: 30_000,
+    keepAlive: true,
+    keepAliveInitialDelayMillis: 10_000,
+  });
+  client.on("error", onConnectionError);
+  try {
+    await client.connect();
+    const lock = await client.query(
+      "select pg_try_advisory_lock(hashtext($1)) as acquired",
+      [LOCK_NAME],
+    );
+    if (!lock.rows[0]?.acquired) {
+      throw new Error("scheduled market pipeline overlap lock was not acquired");
+    }
+    return client;
+  } catch (error) {
+    client.removeListener("error", onConnectionError);
+    await client.end().catch(() => {});
+    throw error;
+  }
+}
+
+async function releaseSchedulerLockV1(client, onConnectionError) {
+  if (!client) return;
+  await client
+    .query("select pg_advisory_unlock(hashtext($1))", [LOCK_NAME])
+    .catch(() => {});
+  client.removeListener("error", onConnectionError);
+  await client.end().catch(() => {});
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const loadedCanary = args.canaryDefinitionPath
@@ -404,22 +441,16 @@ async function main() {
       "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
     );
   }
-  const lockClient = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
-    connectionTimeoutMillis: 15_000,
-    query_timeout: 30_000,
-    statement_timeout: 30_000,
-  });
-  await lockClient.connect();
-  const lock = await lockClient.query(
-    "select pg_try_advisory_lock(hashtext($1)) as acquired",
-    [LOCK_NAME],
+  let lockConnectionError = null;
+  let activePipelineAbortController = null;
+  const onLockConnectionError = (error) => {
+    lockConnectionError ??= error;
+    activePipelineAbortController?.abort(error);
+  };
+  let lockClient = await acquireSchedulerLockV1(
+    url,
+    onLockConnectionError,
   );
-  if (!lock.rows[0]?.acquired) {
-    await lockClient.end();
-    throw new Error("scheduled market pipeline overlap lock was not acquired");
-  }
 
   let finalStatus = "failed";
   let finalClassification = "retry_exhausted";
@@ -448,6 +479,11 @@ async function main() {
         );
       }
 
+      const abortController = new AbortController();
+      activePipelineAbortController = abortController;
+      if (lockConnectionError) {
+        abortController.abort(lockConnectionError);
+      }
       try {
         const result = await execFileAsync(process.execPath, pipelineArgs, {
           cwd: REPO_ROOT,
@@ -455,7 +491,13 @@ async function main() {
           timeout: 6 * 60 * 60 * 1000,
           maxBuffer: 128 * 1024 * 1024,
           windowsHide: true,
+          signal: abortController.signal,
         });
+        if (lockConnectionError) {
+          throw new Error(
+            `scheduled overlap lock connection lost: ${lockConnectionError.message}`,
+          );
+        }
         await fs.writeFile(stdoutPath, result.stdout ?? "");
         await fs.writeFile(stderrPath, result.stderr ?? "");
         completedAttempts = attempt;
@@ -474,10 +516,27 @@ async function main() {
         );
         break;
       } catch (error) {
+        const effectiveError = lockConnectionError
+          ? Object.assign(
+              new Error(
+                `scheduled overlap lock connection lost: ${lockConnectionError.message}`,
+              ),
+              {
+                stdout: error.stdout ?? "",
+                stderr: [
+                  error.stderr,
+                  error.stack,
+                  lockConnectionError.stack,
+                ]
+                  .filter(Boolean)
+                  .join("\n"),
+              },
+            )
+          : error;
         await fs.writeFile(stdoutPath, error.stdout ?? "");
         await fs.writeFile(
           stderrPath,
-          error.stderr ?? String(error.stack ?? error),
+          effectiveError.stderr ?? String(effectiveError.stack ?? effectiveError),
         );
         completedAttempts = attempt;
         const state = await readPipelineState(pipelineRunDir);
@@ -485,9 +544,9 @@ async function main() {
         const classification = classifyMarketPipelineFailureV1({
           failedPhase: phase,
           errorText: [
-            error.message,
-            error.stdout,
-            error.stderr,
+            effectiveError.message,
+            effectiveError.stdout,
+            effectiveError.stderr,
             state?.phases?.[phase]?.error,
           ]
             .filter(Boolean)
@@ -504,6 +563,7 @@ async function main() {
             classification: classification.classification,
             retryable: classification.retryable,
             will_retry: willRetry,
+            lock_connection_error: lockConnectionError?.message ?? null,
             failed_phase: phase,
             started_at: startedAt,
             finished_at: new Date().toISOString(),
@@ -512,14 +572,41 @@ async function main() {
           })}\n`,
         );
         if (!willRetry) break;
+        if (lockConnectionError) {
+          await releaseSchedulerLockV1(lockClient, onLockConnectionError);
+          lockClient = null;
+          await delay(retryDelayMsV1(args.retryDelaysSeconds, attempt));
+          lockConnectionError = null;
+          try {
+            lockClient = await acquireSchedulerLockV1(
+              url,
+              onLockConnectionError,
+            );
+          } catch (reacquireError) {
+            finalClassification = "retryable_lock_reacquire_failure";
+            await fs.appendFile(
+              attemptsPath,
+              `${JSON.stringify({
+                attempt,
+                status: "lock_reacquire_failed",
+                classification: finalClassification,
+                error: String(reacquireError.message ?? reacquireError),
+                finished_at: new Date().toISOString(),
+              })}\n`,
+            );
+            break;
+          }
+          continue;
+        }
         await delay(retryDelayMsV1(args.retryDelaysSeconds, attempt));
+      } finally {
+        if (activePipelineAbortController === abortController) {
+          activePipelineAbortController = null;
+        }
       }
     }
   } finally {
-    await lockClient
-      .query("select pg_advisory_unlock(hashtext($1))", [LOCK_NAME])
-      .catch(() => {});
-    await lockClient.end().catch(() => {});
+    await releaseSchedulerLockV1(lockClient, onLockConnectionError);
   }
 
   const summary = {

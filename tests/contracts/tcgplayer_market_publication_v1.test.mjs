@@ -1046,6 +1046,14 @@ test("scheduled runner is safe by default and preserves one durable run key acro
   );
   assert.match(SCHEDULED_RUNNER, /canary_definition_sha256/);
   assert.match(SCHEDULED_RUNNER, /classification\.retryable/);
+  assert.match(SCHEDULED_RUNNER, /acquireSchedulerLockV1/);
+  assert.match(SCHEDULED_RUNNER, /keepAlive:\s*true/);
+  assert.match(SCHEDULED_RUNNER, /client\.on\("error", onConnectionError\)/);
+  assert.match(SCHEDULED_RUNNER, /activePipelineAbortController\?\.abort\(error\)/);
+  assert.match(SCHEDULED_RUNNER, /abortController\.abort\(lockConnectionError\)/);
+  assert.match(SCHEDULED_RUNNER, /signal:\s*abortController\.signal/);
+  assert.match(SCHEDULED_RUNNER, /lock_connection_error/);
+  assert.match(SCHEDULED_RUNNER, /retryable_lock_reacquire_failure/);
   assert.match(SCHEDULED_RUNNER, /canonical_identity_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /vault_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /modeled_value_writes:\s*false/);
