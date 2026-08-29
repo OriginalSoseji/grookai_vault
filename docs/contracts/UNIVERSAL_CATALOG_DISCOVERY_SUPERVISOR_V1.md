@@ -34,6 +34,11 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
 - English Pokemon discovery compares every registered set and fetches current detail for missing and recent sets. Discovery does not authorize an English canonical write path.
 - Search aliases are game-scoped. An alias in one TCG cannot reinterpret another TCG's query.
 - Large warehouse collections are represented by counts in audit snapshots. Full source rows remain in the database and are not duplicated into scheduled artifacts.
+- A transport timeout, 429, or upstream 5xx degrades only that source lane. The
+  unavailable lane contributes no inferred gaps, while other authorities and
+  the released-set publication gate continue.
+- Source integrity and parser failures remain fatal. Network degradation may
+  never convert malformed evidence into catalog candidates.
 
 ## Reconciliation Status
 
@@ -48,7 +53,11 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
 
 The GitHub supervisor runs every six hours and on demand. Each run creates a frozen plan, source hashes, database snapshot, complete reconciliation, actionable gap list, recent Japanese-card gaps, search-alias candidates, summary, report, and artifact hashes.
 
-One deduplicated GitHub issue is opened or updated while actionable gaps exist. Source/parser/DB failures use a separate supervisor-failure issue. Successful no-gap runs close the active gap issue.
+One deduplicated GitHub issue is opened or updated while actionable gaps exist.
+Unavailable source lanes use a dedicated source-availability issue and a
+`source_failures.json` artifact. Source integrity, parser, and database failures
+use the separate supervisor-failure issue. Successful healthy runs close the
+active source and catalog-gap issues.
 
 ## Promotion Boundary
 

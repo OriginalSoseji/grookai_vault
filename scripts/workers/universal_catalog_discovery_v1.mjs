@@ -16,6 +16,7 @@ import {
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
   reconcileCatalogSets,
+  runDegradedCatalogSourceLaneV1,
   sha256,
   stableJson,
   summarizeCatalogReconciliation,
@@ -1025,7 +1026,15 @@ async function writeReport(filePath, summary, gaps, recentJapaneseCards) {
     `- Actionable set gaps: \`${summary.actionable_gap_count}\``,
     `- Recent Japanese cards scanned: \`${recentJapaneseCards.scanned_card_count}\``,
     `- Missing recent Japanese cards: \`${recentJapaneseCards.missing_card_count}\``,
+    `- Unavailable source lanes: \`${summary.source_failure_count}\``,
     `- Database mode: \`${summary.database_mode}\``,
+    "",
+    "## Source Availability",
+    "",
+    ...(summary.source_failures.length === 0
+      ? ["All configured source lanes completed."]
+      : summary.source_failures.map((failure) =>
+          `- \`${failure.authority}\`: ${failure.failure_class}`)),
     "",
     "## Actionable Set Gaps",
     "",
@@ -1113,23 +1122,48 @@ async function main() {
   ];
   database.english_alias_resolutions = englishAliasOverlay.resolutions;
   const sourceSnapshots = [];
+  const sourceFailures = [];
   const [onePieceSets, mtgSets, pokemonEnglishSets, japaneseSets] = await Promise.all([
-    options.sourceOnly ? Promise.resolve([]) : discoverOnePiece(
-      database.sets,
-      database.one_piece_warehouse_products,
-      sourceSnapshots,
-      options,
-    ),
+    options.sourceOnly ? Promise.resolve([]) : runDegradedCatalogSourceLaneV1({
+      authority: "Bandai One Piece",
+      failures: sourceFailures,
+      fallback: [],
+      operation: () => discoverOnePiece(
+        database.sets,
+        database.one_piece_warehouse_products,
+        sourceSnapshots,
+        options,
+      ),
+    }),
     options.sourceOnly
       ? Promise.resolve([])
-      : discoverMtg(database.sets, sourceSnapshots, options),
-    options.sourceOnly ? Promise.resolve([]) : discoverPokemonEnglish(
-      database.sets,
-      sourceSnapshots,
-      options,
-      englishMasterIndex,
-    ),
-    discoverJapaneseProducts(sourceSnapshots, options, japaneseCandidateSnapshot),
+      : runDegradedCatalogSourceLaneV1({
+          authority: "Scryfall",
+          failures: sourceFailures,
+          fallback: [],
+          operation: () => discoverMtg(database.sets, sourceSnapshots, options),
+        }),
+    options.sourceOnly ? Promise.resolve([]) : runDegradedCatalogSourceLaneV1({
+      authority: "TCGdex English Pokemon",
+      failures: sourceFailures,
+      fallback: [],
+      operation: () => discoverPokemonEnglish(
+        database.sets,
+        sourceSnapshots,
+        options,
+        englishMasterIndex,
+      ),
+    }),
+    runDegradedCatalogSourceLaneV1({
+      authority: "Pokemon Card Japan products",
+      failures: sourceFailures,
+      fallback: [],
+      operation: () => discoverJapaneseProducts(
+        sourceSnapshots,
+        options,
+        japaneseCandidateSnapshot,
+      ),
+    }),
   ]);
   const recentJapaneseCards = options.sourceOnly
     ? {
@@ -1145,8 +1179,26 @@ async function main() {
         cards: [],
         source_only_skip: true,
       }
-    : await discoverRecentJapaneseCards(database, sourceSnapshots, options);
+    : await runDegradedCatalogSourceLaneV1({
+        authority: "Pokemon Card Japan recent cards",
+        failures: sourceFailures,
+        fallback: {
+          scanned_card_count: 0,
+          existing_card_count: 0,
+          missing_card_count: 0,
+          official_evidence_gap_count: 0,
+          detected_card_count: 0,
+          detail_request_count: 0,
+          detail_fetch_count: 0,
+          detail_fetch_truncated: false,
+          card_id_window: null,
+          cards: [],
+          source_unavailable: true,
+        },
+        operation: () => discoverRecentJapaneseCards(database, sourceSnapshots, options),
+      });
   const sourceSets = [...onePieceSets, ...mtgSets, ...pokemonEnglishSets, ...japaneseSets];
+  sourceFailures.sort((left, right) => left.authority.localeCompare(right.authority));
   const reconciliation = reconcileCatalogSets({
     sourceSets,
     databaseSets: database.sets,
@@ -1162,6 +1214,9 @@ async function main() {
       detail_fetch_count: recentJapaneseCards.detail_fetch_count,
     },
     source_request_count: sourceSnapshots.length,
+    run_status: sourceFailures.length === 0 ? "completed" : "degraded_source_unavailable",
+    source_failure_count: sourceFailures.length,
+    source_failures: sourceFailures,
     completed_at: new Date().toISOString(),
   };
   const gaps = reconciliation.filter((row) => [
@@ -1228,6 +1283,7 @@ async function main() {
       artifact_policy: "counts_only_for_large_database_collections",
     }),
     writeJson(path.join(options.outDir, "source_snapshots.json"), sourceSnapshots),
+    writeJson(path.join(options.outDir, "source_failures.json"), sourceFailures),
     writeJson(path.join(options.outDir, "source_sets.json"), sourceSets),
     writeJson(path.join(options.outDir, "catalog_reconciliation.json"), reconciliation),
     writeJson(path.join(options.outDir, "actionable_gaps.json"), gaps),

@@ -3,6 +3,31 @@ import crypto from "node:crypto";
 export const UNIVERSAL_CATALOG_DISCOVERY_VERSION =
   "UNIVERSAL_CATALOG_DISCOVERY_V1";
 
+export async function runDegradedCatalogSourceLaneV1({
+  authority,
+  operation,
+  failures,
+  fallback,
+  recordedAt = () => new Date().toISOString(),
+}) {
+  if (!authority || typeof operation !== "function" || !Array.isArray(failures)) {
+    throw new Error("A source authority, operation, and failure collection are required");
+  }
+  try {
+    return await operation();
+  } catch (error) {
+    const message = String(error?.message ?? error);
+    if (!message.includes("[SOURCE_UNAVAILABLE]")) throw error;
+    failures.push({
+      authority,
+      failure_class: "source_unavailable",
+      message,
+      recorded_at: recordedAt(),
+    });
+    return typeof fallback === "function" ? fallback() : fallback;
+  }
+}
+
 export const CATALOG_GAP_STATUSES = Object.freeze({
   AMBIGUOUS_SOURCE_IDENTITY: "ambiguous_source_identity",
   EXACT_COMPLETE: "exact_complete",

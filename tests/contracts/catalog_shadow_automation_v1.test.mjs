@@ -121,6 +121,13 @@ test("an empty shadow candidate queue closes rather than opens an issue", () => 
   assert.match(shadow, /if \(existing\) await github\.rest\.issues\.update/);
 });
 
+test("shadow reconciliation reports degraded source lanes without dispatching writers", () => {
+  const shadow = workflow("catalog-incremental-promotion.yml");
+  assert.match(shadow, /\[Catalog Discovery\] Source lane unavailable/);
+  assert.match(shadow, /false catalog gaps/);
+  assert.match(shadow, /cross_tcg_set_publication_gate_v1\.mjs/);
+});
+
 test("shadow workflows check out and reconcile the exact triggering SHA", () => {
   for (const name of [
     "catalog-incremental-promotion.yml",
