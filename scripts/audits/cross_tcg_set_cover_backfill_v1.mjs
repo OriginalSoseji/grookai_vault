@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -7,7 +8,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import { inspectOnePieceImage } from "../../backend/pricing/one_piece_st01_language_and_image_readiness_v1.mjs";
 
-const VERSION = "CROSS_TCG_SET_COVER_BACKFILL_V1_1";
+const VERSION = "CROSS_TCG_SET_COVER_BACKFILL_V1_2";
 const BUCKET = "external-card-images";
 const USER_AGENT = "GrookaiVaultSetCoverBackfill/1.0 catalog-ops@grookai.com";
 const PAGE_SIZE = 1000;
@@ -15,18 +16,39 @@ const DEFAULT_GAMES = ["one_piece", "mtg"];
 const PACKAGE_DOWNLOAD_ATTEMPTS = 3;
 
 function parseArgs(argv) {
-  const args = { apply: false, games: DEFAULT_GAMES, replace: false };
+  const args = {
+    apply: false,
+    games: DEFAULT_GAMES,
+    replace: false,
+    setCodes: null,
+    expectedPlanFingerprint: "",
+  };
   for (const token of argv) {
     if (token === "--apply") args.apply = true;
     else if (token === "--replace") args.replace = true;
     else if (token.startsWith("--games=")) {
       args.games = token.slice("--games=".length).split(",").map(normalizeGame).filter(Boolean);
+    } else if (token.startsWith("--set-codes=")) {
+      args.setCodes = [...new Set(token.slice("--set-codes=".length)
+        .split(",")
+        .map(normalizeCode)
+        .filter(Boolean))].sort();
+    } else if (token.startsWith("--expected-plan-fingerprint=")) {
+      args.expectedPlanFingerprint = token
+        .slice("--expected-plan-fingerprint=".length)
+        .trim();
     } else {
       throw new Error(`Unsupported argument: ${token}`);
     }
   }
   if (args.games.length === 0 || args.games.some((game) => !DEFAULT_GAMES.includes(game))) {
     throw new Error("--games must contain one_piece and/or mtg");
+  }
+  if (args.setCodes && args.setCodes.length === 0) {
+    throw new Error("--set-codes must contain at least one set code");
+  }
+  if (args.apply && !/^[0-9a-f]{64}$/.test(args.expectedPlanFingerprint)) {
+    throw new Error("--apply requires --expected-plan-fingerprint=<sha256>");
   }
   return args;
 }
@@ -67,6 +89,10 @@ function stable(value) {
 
 function fingerprint(value) {
   return sha256(JSON.stringify(stable(value)));
+}
+
+function gitValue(...args) {
+  return execFileSync("git", args, { encoding: "utf8" }).trim();
 }
 
 async function fetchAll(buildQuery) {
@@ -194,7 +220,10 @@ async function findRepresentativeCard(client, set) {
     .split("/")
     .map((part) => decodeURIComponent(part))
     .join("/");
-  const isPublicCoverObject = accessMode === "public" && sourceStorageBucket === BUCKET;
+  const expectedPrefix = `set-covers/${normalizeGame(set.game)}/${normalizeCode(set.code)}/`;
+  const isPublicCoverObject = accessMode === "public" &&
+    sourceStorageBucket === BUCKET &&
+    sourceStoragePath.startsWith(expectedPrefix);
   return {
     card_print_id: card.id,
     gv_id: card.gv_id,
@@ -292,6 +321,49 @@ async function verifyObject(storage, objectPath, expectedHash) {
   if (sha256(buffer) !== expectedHash) throw new Error(`storage_hash_mismatch:${objectPath}`);
 }
 
+function publicObjectUrl(supabaseUrl, objectPath) {
+  return `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${objectPath}`;
+}
+
+async function rollbackExecution(client, updatedRows, createdObjects) {
+  const unsafeObjectPaths = new Set();
+  const failures = [];
+  for (const entry of [...updatedRows].reverse()) {
+    const row = entry.row;
+    let query = client
+      .from("sets")
+      .update({
+        hero_image_url: row.previous_hero_image_url,
+        hero_image_source: row.previous_hero_image_source,
+      })
+      .eq("id", row.set_id)
+      .eq("game", row.game)
+      .eq("code", row.set_code)
+      .eq("hero_image_url", entry.writtenUrl)
+      .eq("hero_image_source", "manual");
+    const { data, error } = await query.select("id");
+    if (error || data?.length !== 1) {
+      if (entry.objectPath) unsafeObjectPaths.add(entry.objectPath);
+      failures.push(
+        `pointer:${row.game}:${row.set_code}:${error?.message ?? `compare_and_swap_miss:${data?.length ?? 0}`}`,
+      );
+    }
+  }
+  const removable = createdObjects.filter((objectPath) => !unsafeObjectPaths.has(objectPath));
+  if (removable.length > 0) {
+    const { error } = await client.storage.from(BUCKET).remove(removable);
+    if (error) failures.push(`storage:${error.message}`);
+    for (const objectPath of removable) {
+      if (await objectExists(client.storage, objectPath)) {
+        failures.push(`storage_object_still_present:${objectPath}`);
+      }
+    }
+  }
+  if (failures.length > 0) {
+    throw new Error(`rollback_incomplete:${failures.join("|")}`);
+  }
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const supabaseUrl = process.env.SUPABASE_URL;
@@ -310,7 +382,16 @@ async function main() {
       .eq("game", game)
       .order("code", { ascending: true })));
   }
-  const eligibleSets = sets.filter((set) => args.replace || !set.hero_image_url);
+  const requestedSetCodes = args.setCodes ? new Set(args.setCodes) : null;
+  const targetedSets = requestedSetCodes
+    ? sets.filter((set) => requestedSetCodes.has(normalizeCode(set.code)))
+    : sets;
+  if (requestedSetCodes) {
+    const found = new Set(targetedSets.map((set) => normalizeCode(set.code)));
+    const missing = args.setCodes.filter((code) => !found.has(code));
+    if (missing.length > 0) throw new Error(`target_set_codes_not_found:${missing.join(",")}`);
+  }
+  const eligibleSets = targetedSets.filter((set) => args.replace || !set.hero_image_url);
   const onePiecePackages = args.games.includes("one_piece")
     ? await loadOnePiecePackages(client, eligibleSets.filter((set) => set.game === "one_piece"))
     : new Map();
@@ -335,14 +416,28 @@ async function main() {
       representative,
     };
   });
-  const planFingerprint = fingerprint({ version: VERSION, rows: planRows });
+  const producerCommitSha = gitValue("rev-parse", "HEAD");
+  const producerBranch = gitValue("branch", "--show-current");
+  const planFingerprint = fingerprint({
+    version: VERSION,
+    producer_commit_sha: producerCommitSha,
+    games: args.games,
+    requested_set_codes: args.setCodes,
+    rows: planRows,
+  });
+  if (args.apply && planFingerprint !== args.expectedPlanFingerprint) {
+    throw new Error(`plan_fingerprint_mismatch:${planFingerprint}:${args.expectedPlanFingerprint}`);
+  }
   const runStamp = new Date().toISOString().replace(/[:.]/g, "-");
   const auditDirectory = path.resolve("docs/audits/cross_tcg_set_cover_backfill_v1", runStamp);
   await fs.mkdir(auditDirectory, { recursive: true });
   await fs.writeFile(path.join(auditDirectory, "plan.json"), JSON.stringify({
     version: VERSION,
     mode: args.apply ? "apply" : "dry_run",
+    producer_commit_sha: producerCommitSha,
+    producer_branch: producerBranch,
     games: args.games,
+    requested_set_codes: args.setCodes,
     selected_set_count: planRows.length,
     exact_package_count: planRows.filter((row) => row.planned_cover_kind === "exact_package").length,
     representative_card_count: planRows.filter((row) => row.planned_cover_kind === "representative_card").length,
@@ -378,7 +473,7 @@ async function main() {
           createdObjects.push(objectPath);
         }
         await verifyObject(client.storage, objectPath, downloaded.image.sha256);
-        heroImageUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${objectPath}`;
+        heroImageUrl = publicObjectUrl(supabaseUrl, objectPath);
         storedImage = {
           cover_source_kind: "exact_package",
           object_path: objectPath,
@@ -405,7 +500,7 @@ async function main() {
           createdObjects.push(objectPath);
         }
         await verifyObject(client.storage, objectPath, downloaded.image.sha256);
-        heroImageUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${objectPath}`;
+        heroImageUrl = publicObjectUrl(supabaseUrl, objectPath);
         storedImage = {
           cover_source_kind: "representative_card",
           object_path: objectPath,
@@ -423,27 +518,28 @@ async function main() {
         throw new Error(`set_cover_url_unresolved:${row.game}:${row.set_code}`);
       }
 
-      const { data, error } = await client
+      let query = client
         .from("sets")
         .update({ hero_image_url: heroImageUrl, hero_image_source: "manual" })
         .eq("id", row.set_id)
         .eq("game", row.game)
-        .eq("code", row.set_code)
+        .eq("code", row.set_code);
+      query = row.previous_hero_image_url
+        ? query.eq("hero_image_url", row.previous_hero_image_url)
+        : query.is("hero_image_url", null);
+      query = row.previous_hero_image_source
+        ? query.eq("hero_image_source", row.previous_hero_image_source)
+        : query.is("hero_image_source", null);
+      const { data, error } = await query
         .select("id,game,code,hero_image_url,hero_image_source");
       if (error || data?.length !== 1) {
         throw new Error(`set_update_failed:${row.game}:${row.set_code}:${error?.message ?? data?.length}`);
       }
-      updatedRows.push(row);
+      updatedRows.push({ row, writtenUrl: heroImageUrl, objectPath: storedImage?.object_path ?? null });
       appliedRows.push({ ...row, hero_image_url: heroImageUrl, hero_image_source: "manual", stored_image: storedImage });
     }
   } catch (error) {
-    for (const row of [...updatedRows].reverse()) {
-      await client.from("sets").update({
-        hero_image_url: row.previous_hero_image_url,
-        hero_image_source: row.previous_hero_image_source,
-      }).eq("id", row.set_id);
-    }
-    if (createdObjects.length > 0) await client.storage.from(BUCKET).remove(createdObjects);
+    await rollbackExecution(client, updatedRows, createdObjects);
     throw error;
   }
 
@@ -462,13 +558,7 @@ async function main() {
     return !expected || row.hero_image_url !== expected.hero_image_url || row.hero_image_source !== "manual";
   });
   if (readback.length !== appliedRows.length || mismatches.length > 0) {
-    for (const row of [...updatedRows].reverse()) {
-      await client.from("sets").update({
-        hero_image_url: row.previous_hero_image_url,
-        hero_image_source: row.previous_hero_image_source,
-      }).eq("id", row.set_id);
-    }
-    if (createdObjects.length > 0) await client.storage.from(BUCKET).remove(createdObjects);
+    await rollbackExecution(client, updatedRows, createdObjects);
     throw new Error(`readback_reconciliation_failed:${readback.length}:${appliedRows.length}:${mismatches.length}`);
   }
 

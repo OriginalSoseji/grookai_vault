@@ -15,20 +15,30 @@ import {
 } from "../../backend/catalog/mtg_deck_package_cover_policy_v1.mjs";
 import { inspectOnePieceImage } from "../../backend/pricing/one_piece_st01_language_and_image_readiness_v1.mjs";
 
-const VERSION = "MTG_DECK_PACKAGE_COVER_BACKFILL_V1";
+const VERSION = "MTG_DECK_PACKAGE_COVER_BACKFILL_V1_1";
 const BUCKET = "external-card-images";
 const PAGE_SIZE = 1000;
 const USER_AGENT = "GrookaiVaultMtgDeckCover/1.0 catalog-ops@grookai.com";
 const DOWNLOAD_ATTEMPTS = 3;
 
 function parseArgs(argv) {
-  const result = { apply: false, expectedPlanFingerprint: "", maxSets: null };
+  const result = {
+    apply: false,
+    expectedPlanFingerprint: "",
+    maxSets: null,
+    setCodes: null,
+  };
   for (const token of argv) {
     if (token === "--apply") result.apply = true;
     else if (token.startsWith("--expected-plan-fingerprint=")) {
       result.expectedPlanFingerprint = token.slice("--expected-plan-fingerprint=".length).trim();
     } else if (token.startsWith("--max-sets=")) {
       result.maxSets = Number.parseInt(token.slice("--max-sets=".length), 10);
+    } else if (token.startsWith("--set-codes=")) {
+      result.setCodes = [...new Set(token.slice("--set-codes=".length)
+        .split(",")
+        .map(normalizeMtgSetCode)
+        .filter(Boolean))].sort();
     } else {
       throw new Error(`Unsupported argument: ${token}`);
     }
@@ -38,6 +48,9 @@ function parseArgs(argv) {
   }
   if (result.maxSets !== null && (!Number.isInteger(result.maxSets) || result.maxSets <= 0)) {
     throw new Error("--max-sets must be a positive integer");
+  }
+  if (result.setCodes && result.setCodes.length === 0) {
+    throw new Error("--set-codes must contain at least one set code");
   }
   return result;
 }
@@ -198,13 +211,18 @@ async function rollbackExecution(client, updatedRows, createdObjects) {
   if (removableObjects.length > 0) {
     const { error } = await client.storage.from(BUCKET).remove(removableObjects);
     if (error) failures.push(`storage:${error.message}`);
+    for (const objectPath of removableObjects) {
+      if (await objectExists(client.storage, objectPath)) {
+        failures.push(`storage_object_still_present:${objectPath}`);
+      }
+    }
   }
   if (failures.length > 0) {
     throw new Error(`rollback_incomplete:${failures.join("|")}`);
   }
 }
 
-async function loadCandidates(client) {
+async function loadCandidates(client, requestedSetCodes) {
   const sets = await fetchAll(() =>
     client
       .from("sets")
@@ -212,7 +230,16 @@ async function loadCandidates(client) {
       .eq("game", "mtg")
       .order("code", { ascending: true }),
   );
-  const deckSets = sets.filter(isMtgDeckRelease);
+  const allDeckSets = sets.filter(isMtgDeckRelease);
+  const requested = requestedSetCodes ? new Set(requestedSetCodes) : null;
+  const deckSets = requested
+    ? allDeckSets.filter((set) => requested.has(normalizeMtgSetCode(set.code)))
+    : allDeckSets;
+  if (requested) {
+    const found = new Set(deckSets.map((set) => normalizeMtgSetCode(set.code)));
+    const missing = requestedSetCodes.filter((code) => !found.has(code));
+    if (missing.length > 0) throw new Error(`target_set_codes_not_found:${missing.join(",")}`);
+  }
 
   const { data: categoryRows, error: categoryError } = await client
     .from("tcgcsv_source_categories")
@@ -258,20 +285,46 @@ async function loadCandidates(client) {
   }
 
   const candidates = [];
+  const unresolved = [];
   for (const set of deckSets) {
+    const alreadyExact =
+      set.hero_image_url?.includes(`/set-covers/mtg/${normalizeMtgSetCode(set.code)}/tcgplayer/`) ?? false;
+    if (alreadyExact) continue;
     const groupMatch = groupMatches.get(set.id);
-    if (!groupMatch) continue;
+    if (!groupMatch) {
+      unresolved.push({
+        set_id: set.id,
+        set_code: set.code,
+        set_name: set.name,
+        reason: "source_group_unresolved",
+      });
+      continue;
+    }
     const packageMatches = rankMtgPackageProducts(
       productsByGroup.get(groupMatch.group.group_id) ?? [],
       groupMatch.group,
     );
-    if (packageMatches.length === 0) continue;
-    const alreadyExact =
-      set.hero_image_url?.includes(`/set-covers/mtg/${normalizeMtgSetCode(set.code)}/tcgplayer/`) ?? false;
-    if (alreadyExact) continue;
+    if (packageMatches.length === 0) {
+      unresolved.push({
+        set_id: set.id,
+        set_code: set.code,
+        set_name: set.name,
+        group_id: groupMatch.group.group_id,
+        group_name: groupMatch.group.name,
+        reason: "package_product_unresolved",
+      });
+      continue;
+    }
     candidates.push({ set, groupMatch, packageMatches });
   }
-  return { setCount: sets.length, deckSetCount: deckSets.length, groupMatchCount: groupMatches.size, candidates };
+  return {
+    setCount: sets.length,
+    deckSetCount: allDeckSets.length,
+    targetedSetCount: deckSets.length,
+    groupMatchCount: groupMatches.size,
+    candidates,
+    unresolved,
+  };
 }
 
 async function resolveAvailablePackage(candidate) {
@@ -307,19 +360,17 @@ async function main() {
     global: { headers: { "user-agent": USER_AGENT } },
   });
 
-  const loaded = await loadCandidates(client);
+  const loaded = await loadCandidates(client, args.setCodes);
   const producerCommitSha = gitValue("rev-parse", "HEAD");
   const producerBranch = gitValue("branch", "--show-current");
   const candidatePool = args.maxSets === null ? loaded.candidates : loaded.candidates.slice(0, args.maxSets);
-  const resolved = await mapLimit(candidatePool, 4, resolveAvailablePackage);
-  const selected = resolved.filter(Boolean);
-  const rows = selected.map(({
+  const rows = candidatePool.map(({
     set,
     groupMatch,
-    packageMatch,
-    packageProductRank,
-    higherRankedUnavailableProductIds,
-  }) => ({
+    packageMatches,
+  }) => {
+    const packageMatch = packageMatches[0];
+    return ({
     set_id: set.id,
     game: set.game,
     set_code: set.code,
@@ -335,15 +386,26 @@ async function main() {
     package_product_id: packageMatch.product.product_id,
     package_product_name: packageMatch.product.name,
     package_product_score: packageMatch.score,
-    package_product_rank: packageProductRank,
-    higher_ranked_unavailable_product_ids: higherRankedUnavailableProductIds,
+    package_product_rank: 1,
+    higher_ranked_unavailable_product_ids: [],
     package_source_image_url: packageMatch.product.image_url,
     package_source_url: packageMatch.product.source_url,
-  }));
+    authorized_package_candidates: packageMatches.map((entry, index) => ({
+      rank: index + 1,
+      product_id: entry.product.product_id,
+      product_name: entry.product.name,
+      score: entry.score,
+      image_url: entry.product.image_url,
+      source_url: entry.product.source_url,
+    })),
+  });
+  });
   const planFingerprint = fingerprint({
     version: VERSION,
     policy_version: MTG_DECK_PACKAGE_COVER_POLICY_VERSION,
     producer_commit_sha: producerCommitSha,
+    requested_set_codes: args.setCodes,
+    unresolved: loaded.unresolved,
     rows,
   });
   if (args.apply && planFingerprint !== args.expectedPlanFingerprint) {
@@ -361,9 +423,13 @@ async function main() {
     mode: args.apply ? "apply" : "dry_run",
     catalog_set_count: loaded.setCount,
     deck_set_count: loaded.deckSetCount,
+    targeted_set_count: loaded.targetedSetCount,
     source_group_match_count: loaded.groupMatchCount,
     exact_package_upgrade_count: rows.length,
+    unresolved_count: loaded.unresolved.length,
+    unresolved: loaded.unresolved,
     max_sets: args.maxSets,
+    requested_set_codes: args.setCodes,
     plan_fingerprint_sha256: planFingerprint,
     boundaries: {
       storage_bucket: BUCKET,
@@ -380,6 +446,19 @@ async function main() {
     console.log(JSON.stringify({ auditDirectory, ...plan, rows: undefined }, null, 2));
     return;
   }
+
+  if (loaded.unresolved.length > 0) {
+    throw new Error(`target_set_resolution_incomplete:${loaded.unresolved.map((row) => row.set_code).join(",")}`);
+  }
+
+  const resolved = await mapLimit(candidatePool, 4, resolveAvailablePackage);
+  const unavailableSetCodes = candidatePool
+    .filter((candidate, index) => !resolved[index])
+    .map((candidate) => candidate.set.code);
+  if (unavailableSetCodes.length > 0) {
+    throw new Error(`authorized_package_images_unavailable:${unavailableSetCodes.join(",")}`);
+  }
+  const selected = resolved;
 
   const prepared = selected.map((candidate) => {
     const download = candidate.download;
@@ -425,6 +504,12 @@ async function main() {
       updatedRows.push(entry);
       appliedRows.push({
         ...rows.find((row) => row.set_id === set.id),
+        package_product_id: entry.candidate.packageMatch.product.product_id,
+        package_product_name: entry.candidate.packageMatch.product.name,
+        package_product_score: entry.candidate.packageMatch.score,
+        package_product_rank: entry.candidate.packageProductRank,
+        higher_ranked_unavailable_product_ids:
+          entry.candidate.higherRankedUnavailableProductIds,
         hero_image_url: heroImageUrl,
         hero_image_source: "manual",
         stored_image: {

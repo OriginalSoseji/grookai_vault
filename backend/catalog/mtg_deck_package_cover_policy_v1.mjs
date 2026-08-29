@@ -9,6 +9,19 @@ const DECK_SET_TYPES = new Set([
   "premium_deck",
 ]);
 
+export const MTG_DECK_SOURCE_GROUP_OVERRIDES_V1 = Object.freeze({
+  dvd: "dd3",
+  evg: "dd3",
+  gvl: "dd3",
+  h09: "pds",
+  jvc: "dd3",
+  oe01: "ac2",
+  ohop: "hop",
+  opca: "pca",
+  opc2: "pc2",
+  pd3: "grv",
+});
+
 const PACKAGE_CUES = [
   /\bcommander deck\b/,
   /\bduel decks?\b/,
@@ -86,9 +99,12 @@ export function scoreMtgSetGroupMatch(set, group) {
   if (!isMtgDeckRelease(set) || !groupIsCompatible(set, group)) return -1;
   const code = normalizeMtgSetCode(set.code);
   const abbreviation = normalizeMtgSetCode(group.abbreviation);
+  const governedGroup = MTG_DECK_SOURCE_GROUP_OVERRIDES_V1[code] ?? null;
+  if (governedGroup && abbreviation !== governedGroup) return -1;
   const setName = normalizeMtgCatalogText(set.name);
   const groupName = normalizeMtgCatalogText(group.name);
   let score = 0;
+  if (governedGroup === abbreviation) score += 2000;
   if (code && abbreviation === code) score += 1000;
   if (setName && groupName === setName) score += 900;
   if (tokenSignature(setName) === tokenSignature(groupName)) score += 700;
@@ -109,7 +125,10 @@ export function chooseMtgSourceGroup(set, groups) {
   return {
     ...candidates[0],
     match_reason:
-      candidates[0].score >= 1900
+      MTG_DECK_SOURCE_GROUP_OVERRIDES_V1[normalizeMtgSetCode(set.code)] ===
+        normalizeMtgSetCode(candidates[0].group.abbreviation)
+        ? "governed_set_group_override"
+        : candidates[0].score >= 1900
         ? "exact_code_and_name"
         : candidates[0].score >= 1000
           ? "exact_group_abbreviation"
@@ -121,11 +140,16 @@ export function scoreMtgPackageProduct(product, group) {
   if (!product.image_url) return -1;
   const productName = normalizeMtgCatalogText(product.name);
   const groupName = normalizeMtgCatalogText(group.name);
+  const exactGroupProduct = productName === groupName;
+  const groupQualifiedDeckProduct = productName === `${groupName} deck`;
   if (/\bdisplay commander\b|\bthick stock\b/.test(productName)) return -1;
-  if (!PACKAGE_CUES.some((pattern) => pattern.test(productName))) return -1;
+  if (!exactGroupProduct && !groupQualifiedDeckProduct &&
+      !PACKAGE_CUES.some((pattern) => pattern.test(productName))) return -1;
 
   let score = 100;
-  if (productName.startsWith(`${groupName} `) || productName === groupName) score += 200;
+  if (productName.startsWith(`${groupName} `) || exactGroupProduct) score += 200;
+  if (exactGroupProduct) score += 500;
+  if (groupQualifiedDeckProduct) score += 500;
   if (/\b(set of \d+|deck display|deck case|box set)\b/.test(productName)) score += 500;
   if (/\b(commander deck|duel decks?|starter commander deck)\b/.test(productName)) score += 350;
   if (/\b(theme deck|event deck|welcome deck|preconstructed deck)\b/.test(productName)) score += 300;
