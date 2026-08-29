@@ -11,7 +11,9 @@ import {
   buildPokemonMasterIndexUpdateCandidatesV1,
   CATALOG_GAP_STATUSES,
   classifyPokemonDatabaseSetScopesV1,
+  isOptionalCatalogSourceFallbackV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
+  mapPoolSettledV1,
   normalizeCatalogSetCode,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
@@ -61,6 +63,34 @@ test("source network failures degrade one lane while integrity failures remain f
     }),
     /SOURCE_INTEGRITY_FAILURE/,
   );
+});
+
+test("optional sources fall back only for outages and expected absence", () => {
+  assert.equal(isOptionalCatalogSourceFallbackV1({
+    catalogSourceFailureClass: "SOURCE_UNAVAILABLE",
+  }), true);
+  assert.equal(isOptionalCatalogSourceFallbackV1({ httpStatus: 404 }), true);
+  assert.equal(isOptionalCatalogSourceFallbackV1({
+    catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE",
+  }), false);
+  assert.equal(isOptionalCatalogSourceFallbackV1(new SyntaxError("invalid JSON")), false);
+});
+
+test("source worker pools settle in-flight tasks before propagating a failure", async () => {
+  const completed = [];
+  let releaseSlowTask;
+  const slowTask = new Promise((resolve) => {
+    releaseSlowTask = resolve;
+  });
+  const pool = mapPoolSettledV1(["slow", "failure"], 2, async (value) => {
+    if (value === "failure") throw new Error("lane unavailable");
+    await slowTask;
+    completed.push(value);
+    return value;
+  });
+  releaseSlowTask();
+  await assert.rejects(pool, /lane unavailable/);
+  assert.deepEqual(completed, ["slow"]);
 });
 
 test("catalog normalization preserves Japanese authority text and canonicalizes OP codes", () => {
@@ -537,6 +567,9 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /source_failures\.json/);
   assert.match(worker, /degraded_source_unavailable/);
   assert.match(worker, /runDegradedCatalogSourceLaneV1/);
+  assert.match(worker, /mapPoolSettledV1/);
+  assert.match(worker, /isOptionalCatalogSourceFallbackV1/);
+  assert.doesNotMatch(worker, /HTTP 404\|fetch failed\|timeout/);
   assert.match(worker, /english_master_index_set_alias_normalization_v1\.json/);
   assert.match(worker, /setOwnerRemaps/);
   assert.match(worker, /cp\.set_id = s\.id/);

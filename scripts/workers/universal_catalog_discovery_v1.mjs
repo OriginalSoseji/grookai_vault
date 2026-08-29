@@ -12,7 +12,9 @@ import {
   catalogSetScope,
   CATALOG_GAP_STATUSES,
   classifyPokemonDatabaseSetScopesV1,
+  isOptionalCatalogSourceFallbackV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
+  mapPoolSettledV1,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
   reconcileCatalogSets,
@@ -194,20 +196,6 @@ function compactSetCode(value) {
   return clean(value).toLocaleLowerCase("und").replace(/[^a-z0-9]+/g, "");
 }
 
-async function mapPool(values, concurrency, task) {
-  const results = new Array(values.length);
-  let cursor = 0;
-  async function worker() {
-    while (cursor < values.length) {
-      const index = cursor;
-      cursor += 1;
-      results[index] = await task(values[index], index);
-    }
-  }
-  await Promise.all(Array.from({ length: Math.min(concurrency, values.length) }, worker));
-  return results;
-}
-
 function parseArgs(argv) {
   const options = {
     asOf: new Date().toISOString().slice(0, 10),
@@ -289,7 +277,11 @@ async function fetchSource(url, { responseType = "text", delayMs = 0 } = {}) {
         ));
         continue;
       }
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      if (!response.ok) {
+        const error = new Error(`HTTP ${response.status}`);
+        error.httpStatus = response.status;
+        throw error;
+      }
       const body = await response.text();
       return {
         request_url: url,
@@ -307,10 +299,15 @@ async function fetchSource(url, { responseType = "text", delayMs = 0 } = {}) {
   }
   const cause = String(lastError?.message ?? lastError);
   const unavailable = /fetch failed|timed? ?out|timeout|HTTP (?:429|5\d\d)/i.test(cause);
-  throw new Error(
+  const wrapped = new Error(
     `[${unavailable ? "SOURCE_UNAVAILABLE" : "SOURCE_INTEGRITY_FAILURE"}] ` +
     `Source fetch failed for ${url}: ${cause}`,
   );
+  wrapped.catalogSourceFailureClass = unavailable
+    ? "SOURCE_UNAVAILABLE"
+    : "SOURCE_INTEGRITY_FAILURE";
+  wrapped.httpStatus = lastError?.httpStatus ?? null;
+  throw wrapped;
 }
 
 function sourceMetadata(snapshot) {
@@ -612,7 +609,7 @@ async function discoverPokemonEnglish(
       `${options.maxDetailFetches}`,
     );
   }
-  const details = await mapPool(detailCandidates, 6, async (set) => {
+  const details = await mapPoolSettledV1(detailCandidates, 6, async (set) => {
     const url = `https://api.tcgdex.net/v2/en/sets/${encodeURIComponent(set.id)}`;
     const snapshot = await fetchSource(url, { responseType: "json", delayMs: 80 });
     sourceSnapshots.push(sourceMetadata(snapshot));
@@ -805,13 +802,12 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
             sourceSetCode,
           );
         } catch (error) {
+          if (!isOptionalCatalogSourceFallbackV1(error)) throw error;
           if (candidatePayload) {
             tcgdexSet = parseTcgdexJapaneseSetPayload(
               JSON.stringify(candidatePayload),
               sourceSetCode,
             );
-          } else if (!/HTTP 404|fetch failed|timeout/i.test(String(error.message))) {
-            throw error;
           }
         }
         const checklistUrl = `https://limitlesstcg.com/cards/jp/${encodeURIComponent(sourceSetCode)}?show=all`;

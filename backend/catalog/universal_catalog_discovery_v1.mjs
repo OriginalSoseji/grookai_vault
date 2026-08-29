@@ -3,6 +3,33 @@ import crypto from "node:crypto";
 export const UNIVERSAL_CATALOG_DISCOVERY_VERSION =
   "UNIVERSAL_CATALOG_DISCOVERY_V1";
 
+export function isOptionalCatalogSourceFallbackV1(error) {
+  return error?.catalogSourceFailureClass === "SOURCE_UNAVAILABLE" ||
+    error?.httpStatus === 404;
+}
+
+export async function mapPoolSettledV1(values, concurrency, task) {
+  if (!Array.isArray(values) || !Number.isInteger(concurrency) || concurrency < 1 ||
+      typeof task !== "function") {
+    throw new Error("A value array, positive concurrency, and task are required");
+  }
+  const results = new Array(values.length);
+  let cursor = 0;
+  async function worker() {
+    while (cursor < values.length) {
+      const index = cursor;
+      cursor += 1;
+      results[index] = await task(values[index], index);
+    }
+  }
+  const settlements = await Promise.allSettled(
+    Array.from({ length: Math.min(concurrency, values.length) }, worker),
+  );
+  const rejected = settlements.find((settlement) => settlement.status === "rejected");
+  if (rejected) throw rejected.reason;
+  return results;
+}
+
 export async function runDegradedCatalogSourceLaneV1({
   authority,
   operation,

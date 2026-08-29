@@ -125,6 +125,10 @@ test("shadow reconciliation reports degraded source lanes without dispatching wr
   const shadow = workflow("catalog-incremental-promotion.yml");
   assert.match(shadow, /\[Catalog Discovery\] Source lane unavailable/);
   assert.match(shadow, /false catalog gaps/);
+  assert.match(
+    shadow,
+    /name: Reconcile catalog source availability issue\s+continue-on-error: true/,
+  );
   assert.match(shadow, /cross_tcg_set_publication_gate_v1\.mjs/);
 });
 

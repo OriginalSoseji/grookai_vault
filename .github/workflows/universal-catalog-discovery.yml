@@ -56,6 +56,7 @@ jobs:
 
       - name: Reconcile catalog source availability issue
         if: always() && steps.discovery.outcome == 'success'
+        continue-on-error: true
         uses: actions/github-script@v7
         env:
           OUT_DIR: ${{ steps.discovery.outputs.out_dir }}

@@ -37,7 +37,10 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
 - A transport timeout, 429, or upstream 5xx degrades only that source lane. The
   unavailable lane contributes no inferred gaps, while other authorities and
   the released-set publication gate continue.
+- A failed concurrent source lane settles all in-flight requests before evidence
+  counts, hashes, or artifacts are finalized.
 - Source integrity and parser failures remain fatal. Network degradation may
+  use a frozen candidate fallback only for an outage or expected 404 and may
   never convert malformed evidence into catalog candidates.
 
 ## Reconciliation Status
@@ -57,7 +60,8 @@ One deduplicated GitHub issue is opened or updated while actionable gaps exist.
 Unavailable source lanes use a dedicated source-availability issue and a
 `source_failures.json` artifact. Source integrity, parser, and database failures
 use the separate supervisor-failure issue. Successful healthy runs close the
-active source and catalog-gap issues.
+active source and catalog-gap issues. GitHub issue reconciliation is
+observability-only and cannot block downstream catalog publication audits.
 
 ## Promotion Boundary
 
