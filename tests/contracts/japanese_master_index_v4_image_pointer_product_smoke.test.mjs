@@ -264,9 +264,11 @@ test('web and Flutter set loaders preserve mixed-case canonical set codes', () =
     'utf8',
   );
   assert.match(webExactCodeResolver, /\.ilike\("code"/);
-  assert.match(webSetLoader, /\.in\("set_code", exactSetCodes\)/);
+  assert.match(webSetLoader, /resolveVisiblePublicSetReferences/);
+  assert.match(webSetLoader, /\.in\("set_id", exactSetIds\)/);
   assert.doesNotMatch(webSetLoader, /\.eq\("set_code", normalizedCode\)/);
-  assert.match(webSetStats, /\.in\("set_code", exactSetCodes\)/);
+  assert.match(webSetStats, /resolveVisiblePublicSetReferences/);
+  assert.match(webSetStats, /\.in\("set_id", exactSetIds\)/);
   assert.match(flutterSetLoader, /_resolveVisibleExactSetCodes/);
   assert.match(flutterSetLoader, /\.inFilter\('set_code', exactSetCodes\)/);
   assert.doesNotMatch(flutterSetLoader, /\.ilike\('set_code'/);
