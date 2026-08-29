@@ -29,9 +29,11 @@ test('full-scope workflow is shadow-only and has no publication limit', () => {
 });
 
 test('full-scope workflow preserves artifacts even when a phase fails', () => {
+  assert.match(workflow, /timeout-minutes: 330/);
+  assert.match(workflow, /SCHEDULE_MAX_ATTEMPTS: '1'/);
+  assert.match(workflow, /--max-attempts=1/);
   assert.match(workflow, /if: always\(\)/);
   assert.match(workflow, /scheduled_summary\.json/);
   assert.match(workflow, /pipeline_state\.json/);
   assert.match(workflow, /upload-artifact@v4/);
 });
-

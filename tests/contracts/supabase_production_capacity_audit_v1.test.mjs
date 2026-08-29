@@ -9,8 +9,8 @@ import {
 function healthyPayloads() {
   return {
     project: {
-      ref: 'ycdxbpibncqcchqiihfz',
-      organization_slug: 'rksadomjkuoxvrbhsmxu',
+      id: 'ycdxbpibncqcchqiihfz',
+      organization_id: 'rksadomjkuoxvrbhsmxu',
       name: "OriginalSoseji's Project",
       region: 'us-east-2',
       status: 'ACTIVE_HEALTHY',
@@ -18,11 +18,11 @@ function healthyPayloads() {
     },
     addons: {
       selected_addons: [
-        { type: 'compute_instance', variant: { id: 'ci_medium', name: 'Medium' } },
+        { type: 'compute_instance', variant: { identifier: 'ci_medium', name: 'Medium' } },
       ],
     },
     disk: {
-      attributes: { size_gb: 303, type: 'gp3', iops: 3000, throughput_mibps: 125 },
+      attributes: { size_gb: 303, type: 'gp3', iops: 3000, throughput_mbps: 125 },
       last_modified_at: '2026-08-27T00:00:00Z',
     },
     diskUtil: {
@@ -55,7 +55,7 @@ test('healthy purchased production capacity passes every gate', () => {
 
 test('wrong project identity fails closed', () => {
   const payloads = healthyPayloads();
-  payloads.project.ref = 'restore-drill-project';
+  payloads.project.id = 'restore-drill-project';
   const report = buildCapacityAudit(payloads, options);
   assert.equal(report.summary.status, 'FAIL');
   assert.ok(report.summary.failed_ids.includes('production_project_identity'));
@@ -81,4 +81,3 @@ test('markdown makes the non-observable Spend Cap boundary explicit', () => {
   assert.match(markdown, /Spend Cap state is not exposed/);
   assert.match(markdown, /No database or control-plane mutation was performed/);
 });
-

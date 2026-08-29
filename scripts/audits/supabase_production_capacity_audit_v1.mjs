@@ -38,13 +38,20 @@ function selectedCompute(addons) {
   const rows = Array.isArray(addons?.selected_addons) ? addons.selected_addons : [];
   const selection = rows.find((row) => {
     const type = String(row.type ?? row.addon_type ?? '').toLowerCase();
-    const id = String(row.variant?.id ?? row.id ?? '').toLowerCase();
+    const id = String(
+      row.variant?.identifier ?? row.variant?.id ?? row.identifier ?? row.id ?? '',
+    ).toLowerCase();
     return type.includes('compute') || id.startsWith('ci_');
   });
   if (!selection) return null;
   return {
     type: selection.type ?? selection.addon_type ?? null,
-    variant_id: selection.variant?.id ?? selection.id ?? null,
+    variant_id:
+      selection.variant?.identifier
+      ?? selection.variant?.id
+      ?? selection.identifier
+      ?? selection.id
+      ?? null,
     variant_name: selection.variant?.name ?? selection.name ?? null,
   };
 }
@@ -64,6 +71,9 @@ export function buildCapacityAudit(payloads, options = {}) {
   };
 
   const project = payloads.project ?? {};
+  const projectRef = project.ref ?? project.id ?? null;
+  const organizationIdentity =
+    project.organization_slug ?? project.organization_id ?? null;
   const compute = selectedCompute(payloads.addons);
   const disk = payloads.disk?.attributes ?? {};
   const diskMetrics = payloads.diskUtil?.metrics ?? {};
@@ -80,15 +90,15 @@ export function buildCapacityAudit(payloads, options = {}) {
   const assertions = [
     {
       id: 'production_project_identity',
-      pass: project.ref === expected.projectRef,
-      observed: project.ref ?? null,
+      pass: projectRef === expected.projectRef,
+      observed: projectRef,
       expected: expected.projectRef,
       severity: 'critical',
     },
     {
       id: 'organization_identity',
-      pass: !expected.organizationSlug || project.organization_slug === expected.organizationSlug,
-      observed: project.organization_slug ?? null,
+      pass: !expected.organizationSlug || organizationIdentity === expected.organizationSlug,
+      observed: organizationIdentity,
       expected: expected.organizationSlug,
       severity: 'critical',
     },
@@ -111,12 +121,13 @@ export function buildCapacityAudit(payloads, options = {}) {
       pass: numberOrNull(disk.size_gb) >= expected.minDiskGb
         && String(disk.type ?? '').toLowerCase() === expected.diskType.toLowerCase()
         && numberOrNull(disk.iops) >= expected.minIops
-        && numberOrNull(disk.throughput_mibps) >= expected.minThroughputMibps,
+        && numberOrNull(disk.throughput_mbps ?? disk.throughput_mibps)
+          >= expected.minThroughputMibps,
       observed: {
         size_gb: numberOrNull(disk.size_gb),
         type: disk.type ?? null,
         iops: numberOrNull(disk.iops),
-        throughput_mibps: numberOrNull(disk.throughput_mibps),
+        throughput_mbps: numberOrNull(disk.throughput_mbps ?? disk.throughput_mibps),
       },
       expected: {
         min_size_gb: expected.minDiskGb,
@@ -163,8 +174,8 @@ export function buildCapacityAudit(payloads, options = {}) {
     collected_at: options.collectedAt ?? new Date().toISOString(),
     read_only: true,
     project: {
-      ref: project.ref ?? null,
-      organization_slug: project.organization_slug ?? null,
+      ref: projectRef,
+      organization_id: organizationIdentity,
       name: project.name ?? null,
       region: project.region ?? null,
       status: project.status ?? null,
@@ -176,7 +187,7 @@ export function buildCapacityAudit(payloads, options = {}) {
       size_gb: numberOrNull(disk.size_gb),
       type: disk.type ?? null,
       iops: numberOrNull(disk.iops),
-      throughput_mibps: numberOrNull(disk.throughput_mibps),
+      throughput_mbps: numberOrNull(disk.throughput_mbps ?? disk.throughput_mibps),
       last_modified_at: payloads.disk?.last_modified_at ?? null,
       utilization: {
         observed_at: payloads.diskUtil?.timestamp ?? null,
@@ -288,4 +299,3 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     process.exitCode = 1;
   });
 }
-
