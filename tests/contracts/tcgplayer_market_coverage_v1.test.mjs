@@ -61,6 +61,7 @@ test("ordinary exact publish row belongs to denominator and numerator", () => {
   const result = classifyTcgplayerMarketCoverageRowV1(coverageRow());
 
   assert.equal(result.policy_version, TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2);
+  assert.equal(result.category_id, 3);
   assert.equal(result.in_denominator, true);
   assert.equal(result.in_numerator, true);
   assert.equal(result.denominator_exclusion_reason, null);
@@ -424,4 +425,22 @@ test("coverage audit is read-only and produces governed artifacts", () => {
   );
   assert.match(AUDIT, /artifact_hashes\.json/);
   assert.doesNotMatch(AUDIT, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
+});
+
+test("coverage audit reads frozen run evidence without a warehouse-wide observation join", () => {
+  assert.match(AUDIT, /market_price_pipeline_candidates candidate/);
+  assert.match(AUDIT, /selected_publication_set as materialized/);
+  assert.match(AUDIT, /current_snapshots as materialized/);
+  assert.match(AUDIT, /row\.decision === "publish" && row\.category_id === 3/);
+  assert.match(AUDIT, /candidate\.candidate_payload ->> 'source_product_name'/);
+  assert.match(AUDIT, /decision\.evidence ->> 'source_product_active'/);
+  assert.match(AUDIT, /product_scope_policy_version/);
+  assert.match(AUDIT, /product_scope_result/);
+  assert.match(AUDIT, /TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3/);
+  assert.match(AUDIT, /currentPublicationOutOfScopeCount > 0/);
+  assert.match(AUDIT, /product_scope_rule_id/);
+  assert.doesNotMatch(
+    AUDIT,
+    /join public\.tcgcsv_source_price_daily_observations/,
+  );
 });

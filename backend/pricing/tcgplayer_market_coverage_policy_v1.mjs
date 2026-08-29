@@ -143,6 +143,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
 
   return {
     policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+    category_id: Number(row.category_id ?? rowEvidence.category_id),
     decision_id: row.id ?? null,
     source_observation_id: row.source_observation_id ?? null,
     source_product_id: Number(row.source_product_id),

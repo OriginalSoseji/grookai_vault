@@ -12,7 +12,7 @@ import {
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_2,
+  TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
 
 const { Client } = pg;
@@ -238,19 +238,34 @@ async function main() {
            decision.card_printing_id,
            decision.variant_assignment_status,
            decision.evidence,
-           observation.group_id as source_group_id,
-           product.name as source_product_name,
-           product.source_active as source_product_active,
-           product.catalog_metadata_status as source_product_catalog_status,
-           source_group.name as source_group_name,
+           case
+             when candidate.candidate_payload ->> 'group_id' ~ '^[0-9]+$'
+               then (candidate.candidate_payload ->> 'group_id')::integer
+             else null
+           end as source_group_id,
+           candidate.candidate_payload ->> 'source_product_name'
+             as source_product_name,
+           coalesce(
+             (decision.evidence ->> 'source_product_active')::boolean,
+             false
+           ) as source_product_active,
+           decision.evidence ->> 'source_product_catalog_status'
+             as source_product_catalog_status,
+           coalesce(
+             candidate.candidate_payload ->> 'source_group_name',
+             source_group.name
+           ) as source_group_name,
            source_group.published_on::text as source_group_published_on
          from public.market_price_qualification_decisions decision
-         join public.tcgcsv_source_price_daily_observations observation
-           on observation.id = decision.source_observation_id
-         join public.tcgcsv_source_products product
-           on product.product_id = decision.source_product_id
-         join public.tcgcsv_source_groups source_group
-           on source_group.group_id = observation.group_id
+         join public.market_price_pipeline_candidates candidate
+           on candidate.id = decision.pipeline_candidate_id
+          and candidate.run_id = decision.run_id
+         left join public.tcgcsv_source_groups source_group
+           on source_group.group_id = case
+             when candidate.candidate_payload ->> 'group_id' ~ '^[0-9]+$'
+               then (candidate.candidate_payload ->> 'group_id')::integer
+             else null
+           end
          where decision.run_id = $1::uuid
          order by decision.source_product_id,
                   decision.source_subtype_name,
@@ -262,15 +277,17 @@ async function main() {
       minimumCoveragePercent: args.minimumCoveragePercent,
     });
     const { rows: classifiedRows, ...summary } = result;
-    const shadowPublicationOutOfScope = classifiedRows.filter(
-      (row) => row.decision === "publish" && !row.product_scope.in_scope,
+    const pokemonShadowPublicationRows = classifiedRows.filter(
+      (row) => row.decision === "publish" && row.category_id === 3,
+    );
+    const shadowPublicationOutOfScope = pokemonShadowPublicationRows.filter(
+      (row) => !row.product_scope.in_scope,
     );
     const shadowPublicationScope = {
       policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
       status:
         shadowPublicationOutOfScope.length === 0 ? "passed" : "failed",
-      row_count: classifiedRows.filter((row) => row.decision === "publish")
-        .length,
+      row_count: pokemonShadowPublicationRows.length,
       out_of_scope_count: shadowPublicationOutOfScope.length,
       out_of_scope_rows: shadowPublicationOutOfScope,
     };
@@ -283,51 +300,84 @@ async function main() {
       ];
       summary.status = "failed";
     }
-    const currentPublicationRows = (
+    const currentPublicationAudit = (
       await client.query(
-        `select
-           snapshot.source_product_id,
-           product.name as source_product_name,
-           source_group.name as source_group_name,
-           coalesce(
-             (decision.evidence ->> 'has_printed_number_evidence')::boolean,
-             false
-           ) as has_printed_number_evidence
-         from public.market_price_current_publication pointer
-         join public.market_price_publication_snapshots snapshot
-           on snapshot.publication_set_id = pointer.publication_set_id
-         join public.market_price_qualification_decisions decision
-           on decision.id = snapshot.qualification_decision_id
-         join public.tcgcsv_source_products product
-           on product.product_id = snapshot.source_product_id
-         join public.tcgcsv_source_price_daily_observations observation
-           on observation.id = snapshot.source_observation_id
-         join public.tcgcsv_source_groups source_group
-           on source_group.group_id = observation.group_id
-         where pointer.singleton
-         order by snapshot.source_product_id, snapshot.source_subtype_name`,
+        `with selected_publication_set as materialized (
+           select pointer.publication_set_id
+           from public.market_price_current_publication pointer
+           where pointer.singleton
+           limit 1
+         ),
+         current_snapshots as materialized (
+           select
+             snapshot.source_product_id,
+             snapshot.source_subtype_name,
+             snapshot.qualification_decision_id
+           from public.market_price_publication_snapshots snapshot
+           join selected_publication_set selected
+             on selected.publication_set_id = snapshot.publication_set_id
+         )
+         select
+           count(*)::integer as row_count,
+           count(*) filter (
+             where decision.evidence ->> 'product_scope_policy_version'
+                     is distinct from $1::text
+                or decision.evidence ->> 'product_scope_result'
+                     is distinct from 'in_scope'
+           )::integer as out_of_scope_count
+          from current_snapshots snapshot
+          join public.market_price_qualification_decisions decision
+            on decision.id = snapshot.qualification_decision_id
+        `,
+        [TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3],
       )
-    ).rows;
-    const currentPublicationClassifications = currentPublicationRows.map(
-      (row) => ({
-        ...row,
-        product_scope: classifyTcgplayerMarketProductScopeV1_2(row),
-      }),
+    ).rows[0];
+    const currentPublicationOutOfScopeCount = Number(
+      currentPublicationAudit.out_of_scope_count,
     );
-    const currentPublicationOutOfScope =
-      currentPublicationClassifications.filter(
-        (row) => !row.product_scope.in_scope,
-      );
+    let currentPublicationOutOfScope = [];
+    if (currentPublicationOutOfScopeCount > 0) {
+      currentPublicationOutOfScope = (
+        await client.query(
+          `with selected_publication_set as materialized (
+             select pointer.publication_set_id
+             from public.market_price_current_publication pointer
+             where pointer.singleton
+             limit 1
+           )
+           select
+             snapshot.source_product_id,
+             snapshot.source_subtype_name,
+             decision.id as qualification_decision_id,
+             decision.evidence ->> 'product_scope_policy_version'
+               as product_scope_policy_version,
+             decision.evidence ->> 'product_scope_result'
+               as product_scope_result,
+             decision.evidence ->> 'product_scope_rule_id'
+               as product_scope_rule_id
+           from public.market_price_publication_snapshots snapshot
+           join selected_publication_set selected
+             on selected.publication_set_id = snapshot.publication_set_id
+           join public.market_price_qualification_decisions decision
+             on decision.id = snapshot.qualification_decision_id
+           where decision.evidence ->> 'product_scope_policy_version'
+                   is distinct from $1::text
+              or decision.evidence ->> 'product_scope_result'
+                   is distinct from 'in_scope'
+           order by snapshot.source_product_id, snapshot.source_subtype_name`,
+          [TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3],
+        )
+      ).rows;
+    }
     const currentPublicationScope = {
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
-      status:
-        currentPublicationOutOfScope.length === 0 ? "passed" : "failed",
-      row_count: currentPublicationClassifications.length,
-      out_of_scope_count: currentPublicationOutOfScope.length,
+      policy_version: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3,
+      status: currentPublicationOutOfScopeCount === 0 ? "passed" : "failed",
+      row_count: Number(currentPublicationAudit.row_count),
+      out_of_scope_count: currentPublicationOutOfScopeCount,
       out_of_scope_rows: currentPublicationOutOfScope,
     };
     summary.current_publication_scope_status = currentPublicationScope.status;
-    if (currentPublicationOutOfScope.length > 0) {
+    if (currentPublicationOutOfScopeCount > 0) {
       summary.findings = [
         ...summary.findings,
         "current_publication_contains_v1_2_scope_exclusion",
