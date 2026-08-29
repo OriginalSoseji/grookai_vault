@@ -10,16 +10,18 @@ on:
         options:
           - plan
           - apply
+      lane:
+        description: Exact independently atomic repair lane
+        required: true
+        type: choice
+        options:
+          - one_piece
+          - mtg
       expected_sha:
         description: Exact merged main producer SHA
         required: true
         type: string
-      one_piece_plan_fingerprint:
-        description: Required for apply mode
-        required: false
-        default: ""
-        type: string
-      mtg_plan_fingerprint:
+      expected_plan_fingerprint:
         description: Required for apply mode
         required: false
         default: ""
@@ -40,10 +42,11 @@ jobs:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      CATALOG_AUTOMATION_MODE: shadow-only
       MODE: ${{ inputs.mode }}
+      LANE: ${{ inputs.lane }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
-      ONE_PIECE_PLAN_FINGERPRINT: ${{ inputs.one_piece_plan_fingerprint }}
-      MTG_PLAN_FINGERPRINT: ${{ inputs.mtg_plan_fingerprint }}
+      EXPECTED_PLAN_FINGERPRINT: ${{ inputs.expected_plan_fingerprint }}
 
     steps:
       - name: Check out frozen main producer
@@ -71,8 +74,7 @@ jobs:
           git merge-base --is-ancestor "$EXPECTED_SHA" origin/main
           test -z "$(git status --porcelain --untracked-files=no)"
           if [[ "$MODE" == "apply" ]]; then
-            [[ "$ONE_PIECE_PLAN_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
-            [[ "$MTG_PLAN_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
+            [[ "$EXPECTED_PLAN_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
           fi
           node --check scripts/audits/cross_tcg_set_cover_backfill_v1.mjs
           node --check scripts/audits/mtg_deck_package_cover_backfill_v1.mjs
@@ -84,6 +86,7 @@ jobs:
           git diff --check
 
       - name: Execute exact One Piece cover repair
+        if: ${{ inputs.lane == 'one_piece' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -93,11 +96,12 @@ jobs:
             "--set-codes=don,eb02,eb03,eb04,op15,p"
           )
           if [[ "$MODE" == "apply" ]]; then
-            args+=("--apply" "--expected-plan-fingerprint=$ONE_PIECE_PLAN_FINGERPRINT")
+            args+=("--apply" "--expected-plan-fingerprint=$EXPECTED_PLAN_FINGERPRINT")
           fi
           node scripts/audits/cross_tcg_set_cover_backfill_v1.mjs "${args[@]}"
 
       - name: Execute exact MTG package repair
+        if: ${{ inputs.lane == 'mtg' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -105,7 +109,7 @@ jobs:
             "--set-codes=dvd,evg,gs1,gvl,h09,jvc,oe01,ohop,opc2,opca,pd2,pd3"
           )
           if [[ "$MODE" == "apply" ]]; then
-            args+=("--apply" "--expected-plan-fingerprint=$MTG_PLAN_FINGERPRINT")
+            args+=("--apply" "--expected-plan-fingerprint=$EXPECTED_PLAN_FINGERPRINT")
           fi
           node scripts/audits/mtg_deck_package_cover_backfill_v1.mjs "${args[@]}"
 
@@ -125,7 +129,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cross-tcg-set-cover-gap-repair-${{ inputs.mode }}-${{ github.run_id }}
+          name: cross-tcg-set-cover-gap-repair-${{ inputs.lane }}-${{ inputs.mode }}-${{ github.run_id }}
           path: |
             docs/audits/cross_tcg_set_cover_backfill_v1
             docs/audits/mtg_deck_package_cover_backfill_v1

@@ -26,10 +26,12 @@ without changing canonical cards, pricing, Vault data, or release controls.
 
 ## Apply Boundary
 
-Apply mode requires the exact merged producer SHA and both plan fingerprints.
-Set pointers use compare-and-swap against their frozen prior values. Failure
-rolls back only pointers changed by the execution and only objects created by
-the execution, then verifies removed objects are absent.
+One Piece and MTG execute as separate independently atomic lanes. Apply mode
+requires the exact merged producer SHA and that lane's plan fingerprint. Set
+pointers use compare-and-swap against their frozen prior values. Failure rolls
+back only pointers changed by that lane and only objects created by that lane,
+then verifies removed objects are absent. A failure in one lane cannot leave a
+different lane partially applied by the same workflow execution.
 
 The workflow may write only:
 
