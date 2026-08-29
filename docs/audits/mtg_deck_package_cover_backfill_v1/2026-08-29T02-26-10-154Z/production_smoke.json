@@ -1,0 +1,40 @@
+{
+  "version": "MTG_DECK_PACKAGE_COVER_PRODUCTION_SMOKE_V1",
+  "production_url": "https://grookaivault.com",
+  "signed_in_disposable_user_deleted": true,
+  "database_readback": {
+    "mtg_sets": 946,
+    "mtg_nonblank_covers": 946,
+    "mtg_exact_package_covers": 70,
+    "mtg_representative_fallbacks": 876,
+    "one_piece_sets": 61,
+    "one_piece_nonblank_covers": 61
+  },
+  "image_delivery": {
+    "mtg_package_urls_checked": 70,
+    "http_200_images": 70,
+    "failures": 0
+  },
+  "signed_in_routes": [
+    {
+      "route": "/sets?game=mtg&lane=deck&q=C15",
+      "expected_result": "Commander 2015",
+      "package_url_contains": "/set-covers/mtg/c15/tcgplayer/107622/",
+      "image_loaded": true,
+      "pokemon_era_language_present": false
+    },
+    {
+      "route": "/sets?game=one_piece&group=st&lane=deck&q=ST30",
+      "expected_result": "STARTER DECK EX -Luffy & Ace- [ST-30]",
+      "package_url_contains": "/set-covers/one_piece/st30/tcgplayer/692138/",
+      "image_loaded": true,
+      "pokemon_era_language_present": false
+    }
+  ],
+  "boundaries": {
+    "canonical_card_writes": false,
+    "pricing_writes": false,
+    "vault_writes": false,
+    "release_control_writes": false
+  }
+}
