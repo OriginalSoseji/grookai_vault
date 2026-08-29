@@ -5,6 +5,15 @@ import {
   buildCapacityAudit,
   renderCapacityAuditMarkdown,
 } from '../../scripts/audits/supabase_production_capacity_audit_v1.mjs';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+const auditSource = readFileSync(
+  path.join(ROOT, 'scripts', 'audits', 'supabase_production_capacity_audit_v1.mjs'),
+  'utf8',
+);
 
 function healthyPayloads() {
   return {
@@ -80,4 +89,9 @@ test('markdown makes the non-observable Spend Cap boundary explicit', () => {
   const markdown = renderCapacityAuditMarkdown(buildCapacityAudit(healthyPayloads(), options));
   assert.match(markdown, /Spend Cap state is not exposed/);
   assert.match(markdown, /No database or control-plane mutation was performed/);
+});
+
+test('health request omits the Management API timeout serialization trap', () => {
+  assert.match(auditSource, /health\?services=auth,rest,realtime,storage,db/);
+  assert.doesNotMatch(auditSource, /health\?[^`]*timeout_ms=/);
 });

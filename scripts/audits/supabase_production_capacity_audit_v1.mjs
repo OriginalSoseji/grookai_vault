@@ -279,7 +279,7 @@ async function main() {
     fetchJson(`/v1/projects/${encodedRef}/config/disk`, accessToken),
     fetchJson(`/v1/projects/${encodedRef}/config/disk/util`, accessToken),
     fetchJson(`/v1/projects/${encodedRef}/config/disk/autoscale`, accessToken),
-    fetchJson(`/v1/projects/${encodedRef}/health?services=auth,rest,realtime,storage,db&timeout_ms=30000`, accessToken),
+    fetchJson(`/v1/projects/${encodedRef}/health?services=auth,rest,realtime,storage,db`, accessToken),
   ]);
 
   const report = buildCapacityAudit(
