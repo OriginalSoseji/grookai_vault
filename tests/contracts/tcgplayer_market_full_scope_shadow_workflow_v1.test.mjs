@@ -16,6 +16,7 @@ test('full-scope workflow is manual and frozen to the dispatch SHA', () => {
   assert.match(workflow, /ref: \$\{\{ github\.sha \}\}/);
   assert.match(workflow, /EXPECTED_COMMIT_SHA: \$\{\{ github\.sha \}\}/);
   assert.match(workflow, /--expected-commit-sha=/);
+  assert.doesNotMatch(workflow, /SCHEDULE_OUT_ROOT: \$\{\{ runner\.temp \}\}/);
 });
 
 test('full-scope workflow is shadow-only and has no publication limit', () => {
@@ -36,4 +37,5 @@ test('full-scope workflow preserves artifacts even when a phase fails', () => {
   assert.match(workflow, /scheduled_summary\.json/);
   assert.match(workflow, /pipeline_state\.json/);
   assert.match(workflow, /upload-artifact@v4/);
+  assert.match(workflow, /path: \$\{\{ env\.TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT \}\}/);
 });

@@ -24,7 +24,7 @@ jobs:
       TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES: '180'
       TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES: '30'
       TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS: '36'
-      TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT: ${{ runner.temp }}/tcgplayer-market-full-scope-shadow
+      TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT: /tmp/tcgplayer-market-full-scope-shadow-${{ github.run_id }}
       TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA: ${{ github.sha }}
       TCGPLAYER_MARKET_SCHEDULE_RUN_KEY: TCGPLAYER-MARKET-FULL-SHADOW-${{ github.run_id }}
 
@@ -99,6 +99,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tcgplayer-market-full-scope-shadow-${{ github.run_id }}
-          path: ${{ runner.temp }}/tcgplayer-market-full-scope-shadow
+          path: ${{ env.TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT }}
           if-no-files-found: error
           retention-days: 30
