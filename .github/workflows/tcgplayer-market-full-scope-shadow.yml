@@ -1,0 +1,104 @@
+name: TCGPlayer Market Full-Scope Shadow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tcgplayer-market-full-scope-shadow
+  cancel-in-progress: false
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN: '1'
+      TCGPLAYER_MARKET_SCHEDULE_MODE: shadow
+      TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: '1'
+      TCGPLAYER_MARKET_SCHEDULE_RETRY_DELAYS_SECONDS: '60'
+      TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING: '10000'
+      TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES: '180'
+      TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES: '30'
+      TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS: '36'
+      TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT: ${{ runner.temp }}/tcgplayer-market-full-scope-shadow
+      TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA: ${{ github.sha }}
+      TCGPLAYER_MARKET_SCHEDULE_RUN_KEY: TCGPLAYER-MARKET-FULL-SHADOW-${{ github.run_id }}
+
+    steps:
+      - name: Check out exact dispatch SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Preflight frozen shadow boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test "$TCGPLAYER_MARKET_SCHEDULE_MODE" = "shadow"
+          test -z "${TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT:-}"
+
+      - name: Run full-source shadow
+        timeout-minutes: 330
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs \
+            --run \
+            --mode=shadow \
+            "--run-key=$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY" \
+            "--out-root=$TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT" \
+            --max-attempts=1 \
+            "--expected-commit-sha=$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
+
+      - name: Publish shadow summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          summary="$(find "$TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT" -name scheduled_summary.json -print 2>/dev/null | sort | tail -1 || true)"
+          pipeline_state="$(find "$TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT" -name pipeline_state.json -print 2>/dev/null | sort | tail -1 || true)"
+          {
+            echo "## TCGPlayer full-scope shadow"
+            echo
+            echo "- Producing SHA: \`$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA\`"
+            echo "- Publication activation: \`false\`"
+            echo "- Publication limit: \`none\`"
+            if [[ -n "$summary" ]]; then
+              echo
+              echo '```json'
+              cat "$summary"
+              echo '```'
+            fi
+            if [[ -n "$pipeline_state" ]]; then
+              echo
+              echo '```json'
+              cat "$pipeline_state"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload immutable shadow evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcgplayer-market-full-scope-shadow-${{ github.run_id }}
+          path: ${{ runner.temp }}/tcgplayer-market-full-scope-shadow
+          if-no-files-found: error
+          retention-days: 30
