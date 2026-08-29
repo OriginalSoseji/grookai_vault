@@ -35,6 +35,12 @@ The domains are:
 These names deliberately describe parent identity. They do not claim an exact
 printing, rarity, finish, edition, treatment, or artwork variant.
 
+`card_prints.number_plain` is a production-generated column and is never
+written directly. Because its numeric projection collapses lettered Yu-Gi-Oh
+collector-number sections, each parent carries an objective
+`printed_identity_modifier` derived from the complete printed collector number.
+This preserves exact source coordinates without inventing a variant or finish.
+
 ## Source Evidence
 
 Every one of the 31,766 selected source printing candidates becomes an
