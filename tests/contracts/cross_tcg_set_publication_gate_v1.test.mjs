@@ -62,6 +62,19 @@ test("a representative deck cover is accepted but records a package-art gap", ()
   assert.deepEqual(result.issues.map((issue) => issue.code), ["deck_package_art_gap"]);
 });
 
+test("a legacy public self-hosted representative remains eligible with an explicit namespace gap", () => {
+  const result = evaluate({
+    code: "DON",
+    name: "DON!! Cards",
+    hero_image_url:
+      `${ORIGIN}/storage/v1/object/public/external-card-images/` +
+      "one-piece/card-prints/tcgplayer/655898/image.jpg",
+  });
+  assert.equal(result.decision, "eligible_with_coverage_gap");
+  assert.equal(result.cover_kind, "representative_card");
+  assert.ok(result.issues.some((issue) => issue.code === "legacy_cover_namespace_gap"));
+});
+
 test("missing, external, private, cross-game, and broken media block publication", () => {
   const cases = [
     [{ hero_image_url: null }, "missing_set_cover"],

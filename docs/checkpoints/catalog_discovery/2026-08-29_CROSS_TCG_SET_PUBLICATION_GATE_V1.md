@@ -23,6 +23,8 @@ media identity, and a successful image probe.
 - A deck using representative art receives a coverage warning rather than
   taking the release offline.
 - Blank, external, private, mismatched, and broken media block.
+- Legacy public self-hosted representative paths remain usable but are reported
+  as namespace coverage gaps rather than exact package or set art.
 - Future TCGs fail closed until their vocabulary and product lanes are explicit.
 - The workflow records immutable artifacts and opens a dedicated GitHub issue
   on regression.

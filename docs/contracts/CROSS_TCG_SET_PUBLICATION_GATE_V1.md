@@ -28,12 +28,14 @@ Every released set must have:
 - an explicit versioned browse configuration for its game;
 - a supported product lane for that game;
 - at least one canonical `card_prints` row with a GV-ID;
-- a public HTTPS cover in Grookai's governed self-hosted set-cover namespace;
-- a cover path whose game and set code match the canonical set row; and
+- a public HTTPS cover in Grookai's self-hosted Storage authority;
+- game/set-matched media identity for governed set-cover paths; and
 - a live URL that returns an image content type.
 
 External hotlinks, private Storage URLs, application image proxies, blank
 covers, cross-game paths, broken URLs, and empty released sets block the gate.
+Older public self-hosted representative paths remain eligible but receive
+`legacy_cover_namespace_gap`; they are not reported as exact package or set art.
 
 ## Cover Authority
 

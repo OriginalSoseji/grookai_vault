@@ -21,6 +21,11 @@ export const CROSS_TCG_SET_PUBLICATION_GAME_POLICIES = Object.freeze({
 
 const RELEASED_STATUSES = new Set(["signed_in", "public"]);
 const PUBLIC_COVER_BUCKET = "external-card-images";
+const LEGACY_PUBLIC_MEDIA_PREFIXES = Object.freeze({
+  pokemon: Object.freeze(["pokemon/", "pokemon-card-images/"]),
+  one_piece: Object.freeze(["one-piece/card-prints/"]),
+  mtg: Object.freeze(["mtg/card-prints/", "mtg/"]),
+});
 
 function text(value) {
   return String(value ?? "").trim();
@@ -140,8 +145,8 @@ export function inspectSetCoverMediaV1(row, { allowedStorageOrigins = [] } = {})
     };
   }
 
-  const prefix = `/storage/v1/object/public/${PUBLIC_COVER_BUCKET}/set-covers/`;
-  if (!url.pathname.startsWith(prefix)) {
+  const publicBucketPrefix = `/storage/v1/object/public/${PUBLIC_COVER_BUCKET}/`;
+  if (!url.pathname.startsWith(publicBucketPrefix)) {
     return {
       valid: false,
       cover_kind: "private_or_ungoverned",
@@ -150,15 +155,32 @@ export function inspectSetCoverMediaV1(row, { allowedStorageOrigins = [] } = {})
     };
   }
 
-  const objectPath = decodeURIComponent(url.pathname.slice(
-    `/storage/v1/object/public/${PUBLIC_COVER_BUCKET}/`.length,
-  ));
+  const objectPath = decodeURIComponent(url.pathname.slice(publicBucketPrefix.length));
   const expectedPrefix = `set-covers/${game}/${code}/`;
-  if (!game || !code || !objectPath.startsWith(expectedPrefix)) {
+  if (objectPath.startsWith("set-covers/") && (!game || !code || !objectPath.startsWith(expectedPrefix))) {
     return {
       valid: false,
       cover_kind: "identity_mismatch",
       issue_code: "set_cover_game_or_code_mismatch",
+      object_path: objectPath,
+    };
+  }
+
+  if (!objectPath.startsWith("set-covers/")) {
+    const legacyPrefixes = LEGACY_PUBLIC_MEDIA_PREFIXES[game] ?? [];
+    if (!legacyPrefixes.some((prefix) => objectPath.startsWith(prefix))) {
+      return {
+        valid: false,
+        cover_kind: "identity_mismatch",
+        issue_code: "set_cover_game_or_code_mismatch",
+        object_path: objectPath,
+      };
+    }
+    return {
+      valid: true,
+      cover_kind: "representative_card",
+      issue_code: null,
+      warning_code: "legacy_cover_namespace_gap",
       object_path: objectPath,
     };
   }
@@ -173,6 +195,7 @@ export function inspectSetCoverMediaV1(row, { allowedStorageOrigins = [] } = {})
     valid: true,
     cover_kind: coverKind,
     issue_code: null,
+    warning_code: null,
     object_path: objectPath,
   };
 }
@@ -214,10 +237,17 @@ export function evaluateSetPublicationCandidateV1(row, options = {}) {
   const media = inspectSetCoverMediaV1(row, options);
   if (!media.valid) {
     issues.push(issue(media.issue_code, "blocker", { hero_image_url: text(row?.hero_image_url) || null }));
-  } else if (productLane === "deck" && media.cover_kind !== "exact_package") {
-    issues.push(issue("deck_package_art_gap", "warning", {
-      accepted_cover_kind: media.cover_kind,
-    }));
+  } else {
+    if (media.warning_code) {
+      issues.push(issue(media.warning_code, "warning", {
+        accepted_cover_kind: media.cover_kind,
+      }));
+    }
+    if (productLane === "deck" && media.cover_kind !== "exact_package") {
+      issues.push(issue("deck_package_art_gap", "warning", {
+        accepted_cover_kind: media.cover_kind,
+      }));
+    }
   }
 
   const probe = row?.image_probe ?? null;
