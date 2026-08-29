@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-08-29 Cross-TCG Set Cover Gap Repair V1](./2026-08-29_CROSS_TCG_SET_COVER_GAP_REPAIR_V1.md)
 - [2026-08-29 Cross-TCG Set Browser V1](./2026-08-29_CROSS_TCG_SET_BROWSER_V1.md)
 - [2026-08-29 Cross-TCG Set Publication Gate V1](./2026-08-29_CROSS_TCG_SET_PUBLICATION_GATE_V1.md)
 - [2026-08-28 One Piece OP16/OP17 Production Closure V1](./2026-08-28_ONE_PIECE_OP16_OP17_PRODUCTION_CLOSURE_V1.md)
