@@ -3911,14 +3911,6 @@ export async function getExploreRowsForGameScopedTextSearch(
 ): Promise<ExploreRow[]> {
   assertValueSortPricingEnabled(sortMode, options.includePricing ?? false);
   const supabase = await createServerComponentClient();
-  const { data: gameRow, error: gameError } = await supabase
-    .from("games")
-    .select("id")
-    .eq("code", gameScope)
-    .maybeSingle();
-  if (gameError) throw new Error(gameError.message);
-  const gameId = typeof gameRow?.id === "string" ? gameRow.id.trim() : "";
-  if (!gameId) return [];
 
   const selectClause =
     "id,gv_id,name,number,number_plain,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
@@ -4054,6 +4046,15 @@ export async function getExploreRowsForGameScopedTextSearch(
     const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
     return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
   }
+
+  const { data: gameRow, error: gameError } = await supabase
+    .from("games")
+    .select("id")
+    .eq("code", gameScope)
+    .maybeSingle();
+  if (gameError) throw new Error(gameError.message);
+  const gameId = typeof gameRow?.id === "string" ? gameRow.id.trim() : "";
+  if (!gameId) return [];
 
   let releaseScopedSetCodes: string[] | null = null;
   if (typeof releaseYearMin === "number" || typeof releaseYearMax === "number") {

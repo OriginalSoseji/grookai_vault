@@ -13,6 +13,10 @@ function source(relativePath) {
 test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
   const route = source("apps/web/src/app/api/resolver/search/route.ts");
   const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
+  const boundedLookup = lookup.slice(
+    lookup.indexOf("export async function getExploreRowsForGameScopedTextSearch"),
+    lookup.indexOf("if (canUseBoundedGameRpc)"),
+  );
 
   assert.match(route, /getExploreRowsForLanguageScopedTextSearch/);
   assert.match(
@@ -20,6 +24,11 @@ test("ordinary Pokemon card-name search uses the bounded cross-TCG RPC", () => {
     /getExploreRowsForGameScopedTextSearch\(\s*boundedQuery,\s*"pokemon"/,
   );
   assert.match(lookup, /search_game_card_prints_v4/);
+  assert.doesNotMatch(boundedLookup, /\.from\("games"\)/);
+  assert.match(
+    lookup,
+    /if \(canUseBoundedGameRpc\)[\s\S]*?return sortRows\([\s\S]*?\.from\("games"\)/,
+  );
   assert.match(lookup, /gameScope: PublicGameScope/);
   assert.match(lookup, /gameScope === "pokemon" \? options\.languageScope \?\? "all" : "all"/);
   assert.match(lookup, /single alphanumeric token can be either a collector number or a card/);
