@@ -13,6 +13,9 @@ The Sets experience is game-aware. A collector selecting a game sees that game's
 - Every visible set tile has media with a stable aspect ratio.
 - Exact self-hosted set or package art is preferred.
 - Deck releases use self-hosted package art when an exact package source exists.
+- Package selection ranks exact products deterministically and verifies the image
+  before pointer activation. An unavailable overview-package image may fall back
+  to another exact package from the same source group; it may not cross sets.
 - A self-hosted representative card image is the governed fallback for a release without exact cover/package art.
 - Set covers must resolve through a public, cacheable self-hosted URL. Private catalog images must be copied into the governed public set-cover namespace before their pointer is activated.
 - External image hotlinks are not an accepted display dependency.
@@ -69,3 +72,5 @@ Before exposing a new game in the game selector:
 6. Prove list, detail, and pagination reads remain game-scoped.
 7. Run desktop and mobile visual smoke tests.
 8. Record cover coverage and route performance in the release checkpoint.
+9. Report exact package, exact set art, representative-card fallback, and
+   unresolved media counts separately.

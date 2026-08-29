@@ -11,7 +11,12 @@ uses Pokemon era language.
 - One Piece exact package covers: 55, including OP16, OP17, and all 36 starter
   decks.
 - One Piece exact representative-card fallbacks: 6.
-- MTG sets: 946/946 with nonblank exact representative-card covers.
+- MTG sets: 946/946 with nonblank self-hosted covers.
+- MTG exact package covers: 70.
+- MTG exact representative-card fallbacks: 876.
+- MTG deck-classified releases: 96, with 70 exact package covers and 26
+  representative-card fallbacks where no unambiguous live package source was
+  available.
 - MTG direct public cover URLs: 946/946; per-card proxy URLs: 0.
 - Invalid or external cover authorities: 0.
 - Database readback mismatches: 0.
@@ -77,6 +82,16 @@ back all 946 rows with zero reconciliation mismatches.
 MTG refinement fingerprint:
 `309eebcd14bb99ba1536bda695645b0eeb44d23eb3be188c7f6dceb1d4552605`.
 
+The MTG deck-package refinement then ranked exact TCGPlayer products, preflighted
+their image bytes, copied 70 package images into the public content-addressed
+set-cover namespace, and changed only those 70 set cover pointers. One stale
+overview-package image for Forgotten Realms Commander was replaced by the exact
+Draconic Rage package from the same source group. The apply created 70 objects,
+read back 70 pointers, and recorded zero reconciliation mismatches.
+
+MTG deck-package plan fingerprint:
+`aa2295235cecaeee37458f780a016e3a59a7416982b6a8688466efccba04f485`.
+
 The same repair also:
 
 - changed set-detail totals to count exact game-scoped set IDs;
@@ -98,6 +113,13 @@ run. It proved:
 - `The Hobbit` is the first current MTG set in the verified catalog order;
 - OP17 opens from the set browser and renders card rows.
 - ten anonymously fetched MTG set-cover samples return HTTP 200 image responses.
+- all 70 MTG package-cover URLs return HTTP 200 image responses with nonempty
+  image bodies;
+- the signed-in production MTG deck filter renders Commander 2015 with its exact
+  self-hosted package image;
+- the signed-in production One Piece deck filter still renders ST-30 with its
+  exact self-hosted package image;
+- neither production route renders Pokemon `Browse by era` language.
 
 Ready timings from the local production build:
 
@@ -128,6 +150,12 @@ Ready timings from the local production build:
   `b31a5092edfd3fa10442ff3b50cfc4abfa52e8ea1b557da1bafb109de019036b`.
 - MTG refinement apply result:
   `ac249bbe2b6f8c4b80cc42bb608d3c8ece9f1fc4aa2307d7642f3d11139bcb01`.
+- MTG deck-package authoritative dry-run plan:
+  `4448b0254e09766eb0dcf23a6638dcd6ddbe16dac21ce2eee44d69199c181a48`.
+- MTG deck-package apply plan:
+  `6e3feb28488ccc456047a2ed15e9919bf68dd679f1977ae43abcb32192c2c3ad`.
+- MTG deck-package apply result:
+  `1acb5d9224fcb89f54af4a95920deaf463d6d4312d44cf02b033b86cedf491ba`.
 
 ## Invariants
 
@@ -144,6 +172,8 @@ Ready timings from the local production build:
 
 ## Next Gate
 
-Merge and deploy this branch, then run the same signed-in One Piece/MTG smoke
-against the deployed URL. Future TCG adapters must adopt
+Merge the package-source policy and permanent audit artifacts. The remaining 26
+MTG deck releases may receive exact package art later when an unambiguous source
+is available; their self-hosted representative covers are valid production
+fallbacks and do not block this release. Future TCG adapters must adopt
 `CROSS_TCG_SET_BROWSER_V1` before activation.
