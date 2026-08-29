@@ -1,0 +1,15 @@
+{
+  "fixture": false,
+  "database_access": true,
+  "database_writes": false,
+  "transaction_ended_with": "rollback",
+  "default_transaction_read_only": "on",
+  "transaction_read_only": "on",
+  "selected_set_count": 505,
+  "selected_set_sha256": "5266a4e845c81215a5afefc12a8280ac55ee2c76113ca93c57cee479c536a6b9",
+  "game_foundation_count": 2,
+  "hidden_release_control_count": 2,
+  "target_set_card_count": 0,
+  "finding_count": 0,
+  "findings": []
+}

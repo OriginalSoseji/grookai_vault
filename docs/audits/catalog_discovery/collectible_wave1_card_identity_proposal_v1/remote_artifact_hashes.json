@@ -1,0 +1,50 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "run_plan.json",
+      "bytes": 3944,
+      "sha256": "02e72c591aa077d81c500153d3322ae05a6963fd59e5360caada75a439e5ee41"
+    },
+    {
+      "path": "parent_card_identity_proposals.jsonl",
+      "bytes": 34992301,
+      "sha256": "ff10aebfb949fe16e4e8d9794eb66511cc21f09f4b4f04ef6144a9e8aaab5c4d"
+    },
+    {
+      "path": "source_printing_evidence.jsonl",
+      "bytes": 26231300,
+      "sha256": "d8dc7622c5550cace29648d2baeda41257450ce1f2ea84b4de6e87000efc44d1"
+    },
+    {
+      "path": "candidate_dispositions.jsonl",
+      "bytes": 22304443,
+      "sha256": "f6f5d386198ac4cd3c0a9ed28ec50453c48a57e9665abaaf4ddad64d92a3ed4b"
+    },
+    {
+      "path": "excluded_candidates.jsonl",
+      "bytes": 5812481,
+      "sha256": "d710a31d61d296d5b915bf5a45c9a55fbc576c6a1abad2b918100d7840f2a296"
+    },
+    {
+      "path": "review_required_parents.jsonl",
+      "bytes": 1489773,
+      "sha256": "9f96d8034206fd43f842f2db1f6b2d88ae93049661673e35ac4a8ef71ce0fcce"
+    },
+    {
+      "path": "database_readback.json",
+      "bytes": 451,
+      "sha256": "ffce972021185f0cd60581c59054a4673b4892e36a77518eef8bdcf658972789"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2194,
+      "sha256": "814e61e1589b4b05e24dd5366475ab65cba5bd7770a09bbeba061cc48f538107"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 789,
+      "sha256": "43c0e8d670e90b61b30e9466cf185772592d63103b5905abbd3b28038bd78ea6"
+    }
+  ]
+}
