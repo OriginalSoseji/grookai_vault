@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import { inspectOnePieceImage } from "../../backend/pricing/one_piece_st01_language_and_image_readiness_v1.mjs";
 
-const VERSION = "CROSS_TCG_SET_COVER_BACKFILL_V1";
+const VERSION = "CROSS_TCG_SET_COVER_BACKFILL_V1_1";
 const BUCKET = "external-card-images";
 const USER_AGENT = "GrookaiVaultSetCoverBackfill/1.0 catalog-ops@grookai.com";
 const PAGE_SIZE = 1000;
@@ -183,9 +183,18 @@ async function findRepresentativeCard(client, set) {
   if (!url.hostname.toLowerCase().endsWith(".supabase.co") || !url.pathname.includes("/storage/v1/object/")) {
     throw new Error(`[${set.game}:${set.code}] representative image is not self-hosted`);
   }
-  const isPublicStorageObject = url.pathname.includes(
-    `/storage/v1/object/public/${BUCKET}/`,
+  const storageMatch = url.pathname.match(
+    /^\/storage\/v1\/object\/(public|authenticated|sign)\/([^/]+)\/(.+)$/,
   );
+  if (!storageMatch) {
+    throw new Error(`[${set.game}:${set.code}] representative storage object cannot be resolved`);
+  }
+  const [, accessMode, sourceStorageBucket, encodedSourcePath] = storageMatch;
+  const sourceStoragePath = encodedSourcePath
+    .split("/")
+    .map((part) => decodeURIComponent(part))
+    .join("/");
+  const isPublicCoverObject = accessMode === "public" && sourceStorageBucket === BUCKET;
   return {
     card_print_id: card.id,
     gv_id: card.gv_id,
@@ -194,10 +203,26 @@ async function findRepresentativeCard(client, set) {
     source_image_url: card.image_url,
     source_image_path: card.image_path,
     source_image_status: card.image_status,
-    hero_image_url: isPublicStorageObject
-      ? card.image_url
-      : `/api/canon/cards/${encodeURIComponent(card.gv_id)}/image`,
+    source_storage_bucket: sourceStorageBucket,
+    source_storage_path: sourceStoragePath,
+    hero_image_url: isPublicCoverObject ? card.image_url : null,
+    requires_public_cover_copy: !isPublicCoverObject,
   };
+}
+
+async function downloadRepresentativeImage(client, representative) {
+  const { data, error } = await client.storage
+    .from(representative.source_storage_bucket)
+    .download(representative.source_storage_path);
+  if (error || !data) {
+    throw new Error(`representative_download:${error?.message ?? "missing"}`);
+  }
+  const buffer = Buffer.from(await data.arrayBuffer());
+  const image = inspectOnePieceImage(buffer, data.type);
+  if (!image.valid_image) {
+    throw new Error(`representative_image_invalid:${image.diagnostics.join(",")}`);
+  }
+  return { buffer, image };
 }
 
 async function loadOnePiecePackages(client, sets) {
@@ -355,6 +380,7 @@ async function main() {
         await verifyObject(client.storage, objectPath, downloaded.image.sha256);
         heroImageUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${objectPath}`;
         storedImage = {
+          cover_source_kind: "exact_package",
           object_path: objectPath,
           sha256: downloaded.image.sha256,
           size_bytes: downloaded.image.size_bytes,
@@ -364,6 +390,37 @@ async function main() {
           source_final_url: downloaded.finalUrl,
           created_by_execution: !existed,
         };
+      } else if (row.representative.requires_public_cover_copy) {
+        const downloaded = await downloadRepresentativeImage(client, row.representative);
+        const extension = downloaded.image.format === "png" ? "png" : "jpg";
+        const objectPath = `set-covers/${row.game}/${normalizeCode(row.set_code)}/representative/${normalizeCode(row.representative.gv_id)}/${downloaded.image.sha256.slice(0, 24)}.${extension}`;
+        const existed = await objectExists(client.storage, objectPath);
+        if (!existed) {
+          const { error } = await client.storage.from(BUCKET).upload(objectPath, downloaded.buffer, {
+            upsert: false,
+            contentType: downloaded.image.content_type,
+            cacheControl: "31536000",
+          });
+          if (error) throw new Error(`storage_upload:${error.message}`);
+          createdObjects.push(objectPath);
+        }
+        await verifyObject(client.storage, objectPath, downloaded.image.sha256);
+        heroImageUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${objectPath}`;
+        storedImage = {
+          cover_source_kind: "representative_card",
+          object_path: objectPath,
+          sha256: downloaded.image.sha256,
+          size_bytes: downloaded.image.size_bytes,
+          width: downloaded.image.width,
+          height: downloaded.image.height,
+          source_storage_bucket: row.representative.source_storage_bucket,
+          source_storage_path: row.representative.source_storage_path,
+          created_by_execution: !existed,
+        };
+      }
+
+      if (!heroImageUrl) {
+        throw new Error(`set_cover_url_unresolved:${row.game}:${row.set_code}`);
       }
 
       const { data, error } = await client

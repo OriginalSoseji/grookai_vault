@@ -37,6 +37,7 @@ type SetCandidate = {
   code?: string | null;
   name?: string | null;
   release_year?: number;
+  catalog_set_type?: string | null;
 };
 
 type BrowseOption<TValue extends string> = {
@@ -218,8 +219,25 @@ export function getPublicSetProductLane(
   }
 
   if (game === "mtg") {
-    if (/token|memorabilia|art series|minigame/.test(haystack) || code.startsWith("t")) return "token";
-    if (/promo|promotional|judge gift|play network|wizards play network/.test(haystack) || code.startsWith("p")) return "promo";
+    const catalogSetType = normalizedText(setInfo.catalog_set_type);
+    if (["token", "memorabilia", "minigame"].includes(catalogSetType)) return "token";
+    if (catalogSetType === "promo") return "promo";
+    if (["commander", "duel_deck", "premium_deck", "planechase", "archenemy"].includes(catalogSetType)) return "deck";
+    if ([
+      "alchemy",
+      "arsenal",
+      "box",
+      "draft_innovation",
+      "from_the_vault",
+      "funny",
+      "masterpiece",
+      "masters",
+      "spellbook",
+      "treasure_chest",
+    ].includes(catalogSetType)) return "special";
+    if (["core", "expansion", "starter"].includes(catalogSetType)) return "main";
+    if (/token|memorabilia|art series|minigame/.test(haystack)) return "token";
+    if (/promo|promotional|judge gift|play network|wizards play network/.test(haystack)) return "promo";
     if (/commander|deck|duel deck|planechase|archenemy/.test(haystack)) return "deck";
     if (/masters|remastered|antholog|conspiracy|horizon|supplement|box topper|masterpiece|secret lair/.test(haystack)) return "special";
     return "main";

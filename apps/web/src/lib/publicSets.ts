@@ -52,6 +52,8 @@ type SetRow = {
   created_at: string | null;
   hero_image_url: string | null;
   hero_image_source: string | null;
+  set_role: string | null;
+  catalog_set_type: string | null;
 };
 
 type PublicSetCardCountRow = {
@@ -222,7 +224,9 @@ const PUBLIC_SET_LIST_SELECT = `
   release_date,
   created_at,
   hero_image_url,
-  hero_image_source
+  hero_image_source,
+  set_role,
+  catalog_set_type:source->scryfall->>set_type
 `;
 
 const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
@@ -291,6 +295,31 @@ async function getDynamicPublicSetCardCounts(
   return counts;
 }
 
+async function getVisibleCardCountBySetIds(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  setIds: string[],
+) {
+  const exactSetIds = Array.from(new Set(setIds.map((id) => id.trim()).filter(Boolean)));
+  if (exactSetIds.length === 0) {
+    return 0;
+  }
+
+  const { count, error } = await supabase
+    .from("card_prints")
+    .select("id", { count: "exact", head: true })
+    .in("set_id", exactSetIds)
+    .not("gv_id", "is", null);
+  if (error) {
+    throw new Error(`[sets.card-count-by-id] ${error.message}`);
+  }
+  return count ?? 0;
+}
+
+function getCatalogSetType(row: Pick<SetRow, "set_role" | "catalog_set_type">) {
+  const value = row.catalog_set_type ?? row.set_role;
+  return typeof value === "string" && value.trim() ? value.trim().toLowerCase() : undefined;
+}
+
 function mapSetRowToSummary(
   row: SetRow,
   canonicalCardCount: number,
@@ -316,6 +345,7 @@ function mapSetRowToSummary(
     card_count_is_exact: cardCountIsExact,
     hero_image_url: row.hero_image_url?.trim() || undefined,
     hero_image_source: row.hero_image_source?.trim() || undefined,
+    catalog_set_type: getCatalogSetType(row),
     normalized_code: normalizeSetCode(code),
     normalized_name: normalizeSetQuery(displayName),
     normalized_tokens: tokenizeSetWords(displayName),
@@ -427,11 +457,10 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
     (preferred, row) => (preferred ? choosePreferredEquivalentSetRow(preferred, row) : row),
     null,
   );
-  const dynamicCounts = await getDynamicPublicSetCardCounts(
+  const combinedCardCount = await getVisibleCardCountBySetIds(
     supabase,
-    rows.map((row) => row.code ?? ""),
+    rows.map((row) => row.id ?? ""),
   );
-  const combinedCardCount = [...dynamicCounts.values()].reduce((sum, count) => sum + count, 0);
   const setInfo = preferredRow ? mapSetRowToSummary(preferredRow, combinedCardCount) : null;
   return setInfo && setInfo.card_count > 0 ? setInfo : null;
 });

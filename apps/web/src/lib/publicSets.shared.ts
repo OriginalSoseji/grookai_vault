@@ -173,6 +173,7 @@ export type PublicSetSummary = {
   card_count_is_exact?: boolean;
   hero_image_url?: string;
   hero_image_source?: string;
+  catalog_set_type?: string;
   normalized_code: string;
   normalized_name: string;
   normalized_tokens: string[];

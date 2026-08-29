@@ -14,6 +14,7 @@ The Sets experience is game-aware. A collector selecting a game sees that game's
 - Exact self-hosted set or package art is preferred.
 - Deck releases use self-hosted package art when an exact package source exists.
 - A self-hosted representative card image is the governed fallback for a release without exact cover/package art.
+- Set covers must resolve through a public, cacheable self-hosted URL. Private catalog images must be copied into the governed public set-cover namespace before their pointer is activated.
 - External image hotlinks are not an accepted display dependency.
 - Empty media panels are not an accepted state.
 - Product filters and release group labels come from the versioned game configuration.
@@ -35,6 +36,7 @@ The Sets experience is game-aware. A collector selecting a game sees that game's
 
 - Release grouping: current, 2020-2024, 2010-2019, legacy, and date pending.
 - Product types: expansions, supplemental sets, Commander/decks, promos, tokens and extras.
+- Product classification uses authoritative catalog set type when present. One-letter set-code prefixes are not product-type evidence.
 
 ## Media Authority
 
@@ -48,7 +50,9 @@ The fallback treatment prevents layout collapse but does not satisfy cover cover
 ## Performance Contract
 
 - Set metadata is filtered by game in PostgREST, not after downloading every game.
+- Set-detail counts use exact game-scoped set IDs, not cross-game set-code aggregates.
 - The list page does not require exact card counts before the first useful render.
+- Set-cover media is delivered directly from public self-hosted Storage and never through a per-card application proxy.
 - Initial set detail loads at most 24 card identities.
 - Secondary progress and pricing work cannot change game/set identity.
 - The final list keeps stable item order and lazy-loads offscreen media.

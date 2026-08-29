@@ -44,6 +44,24 @@ test("Magic releases use release periods and Magic product types", () => {
   assert.equal(getPublicSetProductLane({ code: "fic", name: "Final Fantasy Commander" }, "mtg"), "deck");
   assert.equal(getPublicSetProductLane({ code: "tfin", name: "Final Fantasy Tokens" }, "mtg"), "token");
   assert.equal(getPublicSetProductLane({ code: "pfin", name: "Final Fantasy Promos" }, "mtg"), "promo");
+  for (const code of ["tmp", "ths", "tsp", "pcy", "pls"]) {
+    assert.equal(
+      getPublicSetProductLane({ code, catalog_set_type: "expansion" }, "mtg"),
+      "main",
+    );
+  }
+  assert.equal(
+    getPublicSetProductLane({ code: "por", catalog_set_type: "starter" }, "mtg"),
+    "main",
+  );
+  assert.equal(
+    getPublicSetProductLane({ code: "tfin", catalog_set_type: "token" }, "mtg"),
+    "token",
+  );
+  assert.equal(
+    getPublicSetProductLane({ code: "pfin", catalog_set_type: "promo" }, "mtg"),
+    "promo",
+  );
   assert.equal(getPublicSetBrowseConfig("mtg").groupLabel, "Release period");
 });
 

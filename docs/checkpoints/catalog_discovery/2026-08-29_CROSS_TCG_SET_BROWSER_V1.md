@@ -12,10 +12,11 @@ uses Pokemon era language.
   decks.
 - One Piece exact representative-card fallbacks: 6.
 - MTG sets: 946/946 with nonblank exact representative-card covers.
+- MTG direct public cover URLs: 946/946; per-card proxy URLs: 0.
 - Invalid or external cover authorities: 0.
 - Database readback mismatches: 0.
-- Final signed-in browser checks: 7/7 passed.
-- Targeted contracts: 22/22 passed.
+- Final exact-build signed-in browser checks: 17/17 passed.
+- Targeted contracts: 26/26 passed.
 - Production Next.js build: passed.
 
 ## Context
@@ -38,7 +39,9 @@ had set cover pointers.
   groups, and product lanes.
 - Use exact self-hosted package art where package identity is proven.
 - Use exact self-hosted representative-card art where package art is absent.
-- Keep MTG representative art behind the signed-in canonical image boundary.
+- Copy MTG representative cover bytes from the governed private card-image bucket
+  into the public content-addressed set-cover namespace. Canonical card image
+  pointers and access rules remain unchanged.
 - Never use catalog insertion time as a release date.
 - Eager-load the first six visible covers; retain lazy loading afterward.
 
@@ -66,6 +69,22 @@ no image bytes and created no new objects.
 Refinement fingerprint:
 `4eb9047e7fcbf92101d18ad50612d267bbd40c6649f8db1f5add564cfe2e8d53`.
 
+The MTG delivery refinement copied the existing representative image bytes into
+946 unique public `external-card-images/set-covers/mtg/...` objects and replaced
+only the corresponding set cover pointers. It applied and independently read
+back all 946 rows with zero reconciliation mismatches.
+
+MTG refinement fingerprint:
+`309eebcd14bb99ba1536bda695645b0eeb44d23eb3be188c7f6dceb1d4552605`.
+
+The same repair also:
+
+- changed set-detail totals to count exact game-scoped set IDs;
+- replaced broad MTG `t*`/`p*` product inference with authoritative Scryfall set
+  type plus narrow name fallbacks;
+- proved `TMP`, `THS`, `TSP`, `PCY`, `PLS`, and `POR` remain in the correct MTG
+  browse lane.
+
 ## Runtime Proof
 
 The final smoke used a temporary confirmed account, then deleted it after the
@@ -78,12 +97,14 @@ run. It proved:
 - current MTG releases sort before unknown-date sets;
 - `The Hobbit` is the first current MTG set in the verified catalog order;
 - OP17 opens from the set browser and renders card rows.
+- ten anonymously fetched MTG set-cover samples return HTTP 200 image responses.
 
 Ready timings from the local production build:
 
-- One Piece list after sign-in: 988 ms.
-- MTG list: 426 ms.
-- OP17 detail: 1,237 ms.
+- One Piece list after sign-in: 983 ms.
+- MTG list: 553 ms.
+- ST30 filtered deck result: 527 ms.
+- OP17 detail: 1,280 ms.
 
 ## Artifact Hashes
 
@@ -97,6 +118,16 @@ Ready timings from the local production build:
   `4b722aaace3f38b782fbd8686cfb2f348bcb3c360d38e49c8461cf7528116be2`.
 - Final browser summary:
   `7997bed8f73388cc9eaa78dadea07a51bc26958320acae15e28834a2ff314610`.
+- Final V1.1 browser summary:
+  `4e1e4779193f5b36c2a895fbeffd77b050518abb40529302ad377a95154b8a46`.
+- Final exact-build V1.2 browser summary:
+  `19d4f5dbd65681b4af1561a663f652c33ca3ac04df16874716007e1e8d0e02c0`.
+- MTG refinement dry-run plan:
+  `2ac032c5a2a92bb51d08e62880d27c9d023c405d08aaefaa426de86a2be07399`.
+- MTG refinement apply plan:
+  `b31a5092edfd3fa10442ff3b50cfc4abfa52e8ea1b557da1bafb109de019036b`.
+- MTG refinement apply result:
+  `ac249bbe2b6f8c4b80cc42bb608d3c8ece9f1fc4aa2307d7642f3d11139bcb01`.
 
 ## Invariants
 
@@ -106,6 +137,7 @@ Ready timings from the local production build:
 - Non-Pokemon signed-in visibility remains fail-closed.
 - A set tile may use package art or a representative card, but it must never be
   blank.
+- Public set covers must not depend on the per-card application image proxy.
 - Future TCGs must define their own grouping and product vocabulary before app
   visibility.
 - Set and card reads must retain game identity through every route and query.
