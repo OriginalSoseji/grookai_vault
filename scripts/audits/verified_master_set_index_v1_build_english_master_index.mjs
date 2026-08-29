@@ -3849,7 +3849,12 @@ async function main() {
       console.warn(`[master-index] PokemonTCG.io set inventory unavailable: ${error.message ?? error}`);
       return [];
     }),
-    fetchTcgdexSets(options),
+    fetchTcgdexSets(options).catch((error) => {
+      throw new Error(
+        `[SOURCE_UNAVAILABLE] TCGdex set inventory unavailable: ${error.message ?? error}`,
+        { cause: error },
+      );
+    }),
   ]);
   const pokemonSets = pokemonSetsResult;
   const pokemonLiveUnavailable = pokemonSets.length === 0 && Boolean(pokemonTcgSnapshot?.set_configs?.length);

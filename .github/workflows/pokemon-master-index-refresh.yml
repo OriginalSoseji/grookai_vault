@@ -82,10 +82,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs \
-            --output-dir "$CANDIDATE_DIR" \
-            --concurrency 8 \
-            --skip-db-audit 2>&1 | tee "$REPORT_DIR/master_index_build.log"
+          if node scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs \
+              --output-dir "$CANDIDATE_DIR" \
+              --concurrency 8 \
+              --skip-db-audit 2>&1 | tee "$REPORT_DIR/master_index_build.log"; then
+            printf '{"status":"healthy","preserved_prior_english_master_index":false}\n' \
+              > "$REPORT_DIR/source_health.json"
+          elif grep -q 'Error: \[SOURCE_UNAVAILABLE\]' "$REPORT_DIR/master_index_build.log"; then
+            test -d "$BASELINE_DIR"
+            cp -a "$BASELINE_DIR/." "$CANDIDATE_DIR/"
+            printf '{"status":"source_inventory_unavailable","preserved_prior_english_master_index":true,"canonical_writes":false,"database_writes":false,"storage_writes":false}\n' \
+              > "$REPORT_DIR/source_health.json"
+          else
+            printf 'English Master Index rebuild failed an integrity gate; publication is blocked.\n' >&2
+            exit 1
+          fi
           node scripts/workers/english_pokemon_master_index_refresh_v1.mjs \
             --mode=plan \
             --baseline-dir="$BASELINE_DIR" \
@@ -207,6 +218,10 @@ jobs:
             const failures = summary.required_live_language_failures || [];
             const errors = summary.source_error_languages || [];
             const anomalies = summary.source_anomaly_languages || [];
+            const englishHealthPath = `${process.env.REPORT_DIR}/source_health.json`;
+            const englishHealth = fs.existsSync(englishHealthPath)
+              ? JSON.parse(fs.readFileSync(englishHealthPath, 'utf8'))
+              : null;
             const japaneseHealthPath = `${process.env.JAPANESE_REPORT_DIR}/source_health.json`;
             const japaneseHealth = fs.existsSync(japaneseHealthPath)
               ? JSON.parse(fs.readFileSync(japaneseHealthPath, 'utf8'))
@@ -217,7 +232,8 @@ jobs:
             });
             const existing = issues.find((issue) => issue.title === title);
             if (failures.length === 0 && errors.length === 0 &&
-                anomalies.length === 0 && !japaneseHealth) {
+                anomalies.length === 0 && englishHealth?.status === 'healthy' &&
+                !japaneseHealth) {
               if (existing) await github.rest.issues.update({
                 owner: context.repo.owner, repo: context.repo.repo,
                 issue_number: existing.number, state: 'closed',
@@ -230,6 +246,7 @@ jobs:
               `Required live scopes without a usable baseline: ${JSON.stringify(failures)}`,
               `Source errors with preserved baselines: ${JSON.stringify(errors)}`,
               `Scopes with quarantined source anomalies: ${JSON.stringify(anomalies)}`,
+              `English source inventory: ${JSON.stringify(englishHealth)}`,
               `Japanese source discovery: ${JSON.stringify(japaneseHealth)}`,
               '',
               'No candidate-only row received canonical authority.',

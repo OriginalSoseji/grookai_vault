@@ -265,6 +265,9 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.match(workflow, /source_discovery_unavailable/);
   assert.match(workflow, /preserved_prior_master_index/);
   assert.match(workflow, /SOURCE_UNAVAILABLE/);
+  assert.match(workflow, /preserved_prior_english_master_index/);
+  assert.match(workflow, /cp -a "\$BASELINE_DIR\/\." "\$CANDIDATE_DIR\/"/);
+  assert.match(workflow, /English source inventory/);
   assert.match(workflow, /failed an integrity gate/);
   assert.match(workflow, /if RESPONSE="\$\(gh api/);
   assert.match(workflow, /pokemon-language-candidate-dir/);
@@ -295,4 +298,13 @@ test("English Master Index publishes folded subset ownership for discovery", () 
   assert.match(builder, /english_master_index_folded_subset_owner_v1/);
   assert.match(builder, /source_set_key/);
   assert.match(builder, /canonical_set_key/);
+});
+
+test("English Master Index classifies a missing TCGdex set inventory as source debt", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(builder, /\[SOURCE_UNAVAILABLE\] TCGdex set inventory unavailable/);
+  assert.match(builder, /fetchTcgdexSets\(options\)\.catch/);
 });
