@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
@@ -310,4 +311,72 @@ test("the live worker and workflow remain default-branch, read-only, and artifac
   assert.match(workflow, /run-id: "33132457407"/);
   assert.match(workflow, /CATALOG_AUTOMATION_MODE: shadow-only/);
   assert.doesNotMatch(workflow, /supabase db push|psql|storage.*upload/i);
+});
+
+test("the permanent checkpoint is bound to the reconciled default-branch artifact", () => {
+  const auditRoot = path.join(
+    ROOT,
+    "docs/audits/catalog_discovery/collectible_wave1_card_identity_proposal_v1",
+  );
+  const preserved = JSON.parse(fs.readFileSync(path.join(
+    auditRoot,
+    "preserved_artifact_hashes.json",
+  ), "utf8"));
+  assert.deepEqual(preserved, {
+    algorithm: "sha256",
+    artifacts: [
+      {
+        path: "database_readback.json",
+        bytes: 451,
+        sha256: "ffce972021185f0cd60581c59054a4673b4892e36a77518eef8bdcf658972789",
+      },
+      {
+        path: "provenance.json",
+        bytes: 813,
+        sha256: "fb357d791c13ce38663856cdb4e6acedbb78a3d4492056d64bcb7b19cd1098c5",
+      },
+      {
+        path: "remote_artifact_hashes.json",
+        bytes: 1484,
+        sha256: "59407526c003a9e1a37d6241cf3563458433ea1e0e7ffc7a80bf0f86a8692542",
+      },
+      {
+        path: "REPORT.md",
+        bytes: 789,
+        sha256: "43c0e8d670e90b61b30e9466cf185772592d63103b5905abbd3b28038bd78ea6",
+      },
+      {
+        path: "run_plan.json",
+        bytes: 3944,
+        sha256: "02e72c591aa077d81c500153d3322ae05a6963fd59e5360caada75a439e5ee41",
+      },
+      {
+        path: "summary.json",
+        bytes: 2194,
+        sha256: "814e61e1589b4b05e24dd5366475ab65cba5bd7770a09bbeba061cc48f538107",
+      },
+    ],
+  });
+  for (const artifact of preserved.artifacts) {
+    const bytes = fs.readFileSync(path.join(auditRoot, artifact.path));
+    assert.equal(bytes.length, artifact.bytes);
+    assert.equal(
+      crypto.createHash("sha256").update(bytes).digest("hex"),
+      artifact.sha256,
+    );
+  }
+
+  const summary = JSON.parse(fs.readFileSync(path.join(auditRoot, "summary.json"), "utf8"));
+  const provenance = JSON.parse(fs.readFileSync(path.join(
+    auditRoot,
+    "provenance.json",
+  ), "utf8"));
+  assert.equal(summary.actual_head_sha, provenance.producer_sha);
+  assert.equal(summary.proposal_fingerprint_sha256, provenance.proposal_fingerprint_sha256);
+  assert.equal(summary.metrics.selected_candidate_count, 46259);
+  assert.equal(summary.metrics.candidate_reconciliation_mismatch_count, 0);
+  assert.equal(summary.database_readback.database_writes, false);
+  assert.equal(summary.database_readback.transaction_ended_with, "rollback");
+  assert.equal(provenance.workflow_run_id, 33239106476);
+  assert.equal(provenance.remote_artifact_hash_mismatch_count, 0);
 });

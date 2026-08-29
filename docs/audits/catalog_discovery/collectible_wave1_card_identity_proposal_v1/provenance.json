@@ -1,0 +1,18 @@
+{
+  "checkpoint_version": "COLLECTIBLE_WAVE1_CARD_IDENTITY_PROPOSAL_V1",
+  "repository": "OriginalSoseji/grookai_vault",
+  "producer_sha": "d568c746f15ab506992dde19c7e2db01cd2c93a7",
+  "pull_request": 318,
+  "workflow_run_id": 33239106476,
+  "workflow_run_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33239106476",
+  "artifact_id": 9710816572,
+  "artifact_name": "collectible-wave1-card-identity-proposal-33239106476",
+  "artifact_expires_at": "2026-11-27T06:42:16Z",
+  "proposal_fingerprint_sha256": "968e0329fc021a8f5602c3f253876671127a11ba33749ce79baaaae21c01157f",
+  "remote_artifact_hash_mismatch_count": 0,
+  "production_transaction": "repeatable_read_read_only_rollback",
+  "database_writes": false,
+  "storage_access": false,
+  "image_access": false,
+  "writer_dispatches": false
+}
