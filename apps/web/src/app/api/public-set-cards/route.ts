@@ -10,6 +10,7 @@ export const revalidate = 0;
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const setCode = searchParams.get("set_code");
+  const gameCode = searchParams.get("game")?.trim().toLowerCase() || undefined;
 
   if (!setCode) {
     return NextResponse.json({ items: [], error: "Missing set_code." }, { status: 400 });
@@ -27,7 +28,7 @@ export async function GET(request: Request) {
       data: { user },
     } = await supabase.auth.getUser();
     const itemsWithOwnership = await applyOwnedPrintingCountsToSetCards(
-      await getPublicSetCards(setCode, offset, limit),
+      await getPublicSetCards(setCode, offset, limit, gameCode),
       user?.id ?? null,
     );
     const items = user?.id

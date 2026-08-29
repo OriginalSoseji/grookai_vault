@@ -28,6 +28,7 @@ import type { PublicSetCard } from "@/lib/publicSets.shared";
 
 type PublicSetCardGridProps = {
   setCode: string;
+  gameCode: string;
   initialCards: PublicSetCard[];
   totalCount: number;
   chunkSize?: number;
@@ -46,6 +47,7 @@ function getDefaultPrintingId(card: PublicSetCard) {
 
 export default function PublicSetCardGrid({
   setCode,
+  gameCode,
   initialCards,
   totalCount,
   chunkSize = 36,
@@ -80,7 +82,7 @@ export default function PublicSetCardGrid({
 
     try {
       const response = await fetch(
-        `/api/public-set-cards?set_code=${encodeURIComponent(setCode)}&offset=${nextOffset}&limit=${chunkSize}`,
+        `/api/public-set-cards?set_code=${encodeURIComponent(setCode)}&game=${encodeURIComponent(gameCode)}&offset=${nextOffset}&limit=${chunkSize}`,
       );
 
       if (!response.ok) {

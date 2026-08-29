@@ -1,0 +1,61 @@
+{
+  "version": "CROSS_TCG_SET_BROWSER_FINAL_SMOKE_V1",
+  "temporary_user_deleted": true,
+  "checks": [
+    {
+      "name": "one_piece_mobile_36_covers",
+      "pass": true
+    },
+    {
+      "name": "one_piece_mobile_images_loaded",
+      "pass": true,
+      "bad": []
+    },
+    {
+      "name": "one_piece_no_card_proxy_covers",
+      "pass": true,
+      "proxy_count": 0
+    },
+    {
+      "name": "mobile_no_overflow",
+      "pass": true,
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    {
+      "name": "mtg_hobbit_first",
+      "pass": true,
+      "first": "The Hobbit"
+    },
+    {
+      "name": "mtg_not_pokemon_vocabulary",
+      "pass": true
+    },
+    {
+      "name": "op17_cards_open",
+      "pass": true
+    }
+  ],
+  "timings": [
+    {
+      "route": "/login?next=%2Fsets%3Fgame%3Done_piece",
+      "status": 200,
+      "ready_ms": 305
+    },
+    {
+      "route": "/sets?game=one_piece (post-login)",
+      "status": 200,
+      "ready_ms": 988
+    },
+    {
+      "route": "/sets?game=mtg",
+      "status": 200,
+      "ready_ms": 426
+    },
+    {
+      "route": "/sets/op17?game=one_piece",
+      "status": 200,
+      "ready_ms": 1237
+    }
+  ]
+}
