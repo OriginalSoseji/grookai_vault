@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-08-29 Collectible Wave 1 Parent Apply Rollback V1](./2026-08-29_COLLECTIBLE_WAVE1_PARENT_APPLY_ROLLBACK_V1.md)
 - [2026-08-29 Collectible Wave 1 Card Identity Proposal V1](./2026-08-29_COLLECTIBLE_WAVE1_CARD_IDENTITY_PROPOSAL_V1.md)
 - [2026-08-29 Cross-TCG Set Cover Gap Repair V1](./2026-08-29_CROSS_TCG_SET_COVER_GAP_REPAIR_V1.md)
 - [2026-08-29 Cross-TCG Set Browser V1](./2026-08-29_CROSS_TCG_SET_BROWSER_V1.md)

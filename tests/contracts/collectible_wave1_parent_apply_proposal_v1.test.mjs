@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
@@ -341,4 +342,50 @@ test("game policies remain parent-grain, hidden, and separate", () => {
     "yugioh_eng_parent");
   assert.notEqual(COLLECTIBLE_WAVE1_PARENT_GAME_POLICY.gundam.game_id,
     COLLECTIBLE_WAVE1_PARENT_GAME_POLICY.yugioh.game_id);
+});
+
+test("permanent checkpoint pins the exact successful rollback-proof evidence", () => {
+  const auditDir = path.join(
+    ROOT,
+    "docs/audits/catalog_discovery/collectible_wave1_parent_apply_rollback_v1",
+  );
+  const expected = [
+    ["failed_closed_predecessor.json", 614, "be0068d5d3f0eb120b879a7191f57a4adb96d86193a8b506752af75fd1f7de00"],
+    ["production_proof.json", 1685, "26e8d4add77d2ed4837e120ada592b567865b22e752673e5b6a275c18666be01"],
+    ["provenance.json", 754, "d98cfdf04e2c56b071af6d792f245e6b072bd86dd42957d27310ddbb420c9c96"],
+    ["remote_artifact_hashes.json", 1454, "4a2c14a41076e71f1d12f02c8ada64fc05ff0870aeda8827a4c8124c6357334d"],
+    ["REPORT.md", 470, "547c765769a167466164382c10fb9a6bb3505ec7fccc24c25d914b22d5da559c"],
+    ["summary.json", 778, "a81bfb8a80409805697d5d560f893632ac4fa3c2bdd9a8e00d0e69105f7f4dfc"],
+    ["transaction_readback.json", 2298, "217e3be6a25db0a32cd8515bf2252983212d52aa79f3387edb5eb2f0c5e9a40e"],
+  ];
+  const manifest = JSON.parse(fs.readFileSync(path.join(
+    auditDir,
+    "preserved_artifact_hashes.json",
+  )));
+  assert.deepEqual(manifest.artifacts.map((row) => [row.path, row.bytes, row.sha256]),
+    expected);
+  for (const [file, bytes, digest] of expected) {
+    const body = fs.readFileSync(path.join(auditDir, file));
+    assert.equal(body.length, bytes, file);
+    assert.equal(crypto.createHash("sha256").update(body).digest("hex"), digest, file);
+  }
+  const summary = JSON.parse(fs.readFileSync(path.join(auditDir, "summary.json")));
+  const proof = JSON.parse(fs.readFileSync(path.join(auditDir, "production_proof.json")));
+  const provenance = JSON.parse(fs.readFileSync(path.join(auditDir, "provenance.json")));
+  assert.equal(summary.status, "rollback_proved_candidate_not_applied");
+  assert.equal(summary.findings.length, 0);
+  assert.equal(proof.baseline_and_post_rollback_byte_identical, true);
+  assert.equal(proof.durable_database_writes, 0);
+  assert.equal(provenance.workflow_run_id, 33255537521);
+  assert.equal(provenance.producer_sha,
+    "de0df6e52154c700054621e30adf55799cfac95f");
+  const checkpoint = fs.readFileSync(path.join(
+    ROOT,
+    "docs/checkpoints/catalog_discovery/2026-08-29_COLLECTIBLE_WAVE1_PARENT_APPLY_ROLLBACK_V1.md",
+  ), "utf8");
+  assert.match(checkpoint, /Stop before the 1,116 review rows/);
+  assert.match(checkpoint, /exactly one migration-ledger entry/);
+  assert.match(checkpoint, /90-day retention/);
+  assert.match(checkpoint, /not a permanent executable checkpoint/);
+  assert.match(checkpoint, /Hashes alone do not\s+authorize or reconstruct/);
 });

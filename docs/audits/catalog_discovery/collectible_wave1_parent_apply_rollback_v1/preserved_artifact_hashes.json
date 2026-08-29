@@ -1,0 +1,12 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {"path":"failed_closed_predecessor.json","bytes":614,"sha256":"be0068d5d3f0eb120b879a7191f57a4adb96d86193a8b506752af75fd1f7de00"},
+    {"path":"production_proof.json","bytes":1685,"sha256":"26e8d4add77d2ed4837e120ada592b567865b22e752673e5b6a275c18666be01"},
+    {"path":"provenance.json","bytes":754,"sha256":"d98cfdf04e2c56b071af6d792f245e6b072bd86dd42957d27310ddbb420c9c96"},
+    {"path":"remote_artifact_hashes.json","bytes":1454,"sha256":"4a2c14a41076e71f1d12f02c8ada64fc05ff0870aeda8827a4c8124c6357334d"},
+    {"path":"REPORT.md","bytes":470,"sha256":"547c765769a167466164382c10fb9a6bb3505ec7fccc24c25d914b22d5da559c"},
+    {"path":"summary.json","bytes":778,"sha256":"a81bfb8a80409805697d5d560f893632ac4fa3c2bdd9a8e00d0e69105f7f4dfc"},
+    {"path":"transaction_readback.json","bytes":2298,"sha256":"217e3be6a25db0a32cd8515bf2252983212d52aa79f3387edb5eb2f0c5e9a40e"}
+  ]
+}

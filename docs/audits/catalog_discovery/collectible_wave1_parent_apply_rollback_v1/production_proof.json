@@ -1,0 +1,47 @@
+{
+  "proof_version": "COLLECTIBLE_WAVE1_PARENT_APPLY_PRODUCTION_PROOF_V1",
+  "latest_migration_before_and_after": "20260828180000",
+  "selected_set_count": 505,
+  "selected_set_payload_mismatch_count": 0,
+  "planned_rows": {
+    "card_prints": 26719,
+    "card_print_identity": 26719,
+    "card_print_identity_source_evidence": 31766
+  },
+  "preflight_collisions": {
+    "card_print_id": 0,
+    "gv_id": 0,
+    "standard_coordinate": 0,
+    "identity_id": 0,
+    "identity_domain_hash": 0,
+    "evidence_id": 0,
+    "evidence_active_lane": 0,
+    "existing_target_set_cards": 0,
+    "candidate_migration_ledger": 0
+  },
+  "pre_transaction_identity_domain_constraint": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))",
+  "protected_counts_before_and_after": {
+    "sets": 3397,
+    "games": 6,
+    "card_prints": 170335,
+    "vault_items": 445,
+    "legacy_cards": 10,
+    "identity_rows": 166131,
+    "printing_rows": 227881,
+    "sealed_families": 242,
+    "sealed_variants": 390,
+    "storage_objects": 169068,
+    "release_controls": 4,
+    "external_mappings": 276991,
+    "source_evidence_rows": 129636,
+    "vault_item_instances": 3394,
+    "external_printing_mappings": 144577
+  },
+  "baseline_post_rollback_sha256": "2cc77b8bb67a71744597cf3e95a0370aeb8bc31eba80061a56178b4aeed630d8",
+  "baseline_and_post_rollback_byte_identical": true,
+  "hidden_release_controls_unchanged": true,
+  "anon_visible_card_count": 0,
+  "authenticated_visible_card_count": 0,
+  "migration_ledger_writes": 0,
+  "durable_database_writes": 0
+}

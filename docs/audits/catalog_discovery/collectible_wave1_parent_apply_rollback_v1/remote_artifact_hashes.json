@@ -1,0 +1,16 @@
+{
+  "algorithm": "sha256",
+  "artifacts": [
+    {"path":"REPORT.md","bytes":470,"sha256":"547c765769a167466164382c10fb9a6bb3505ec7fccc24c25d914b22d5da559c"},
+    {"path":"card_print_payload.jsonl","bytes":25376277,"sha256":"d60af3c83f72420989ce836b1acc660bd187ca3a458ab8b21c5a3c1c142f235a"},
+    {"path":"database_preflight.json","bytes":10876,"sha256":"2cc77b8bb67a71744597cf3e95a0370aeb8bc31eba80061a56178b4aeed630d8"},
+    {"path":"identity_payload.jsonl","bytes":22961255,"sha256":"502a9e638406aeb39cbf3b51c4cdf0cd7d59c1f96d715c1021f0d26d086a5ade"},
+    {"path":"migration_candidate.sql","bytes":94895406,"sha256":"5070d8738a2479aa0703488939b79bd488718800d3464e8e0ca9a99f5824ae4b"},
+    {"path":"post_rollback.json","bytes":10876,"sha256":"2cc77b8bb67a71744597cf3e95a0370aeb8bc31eba80061a56178b4aeed630d8"},
+    {"path":"rollback_contract.json","bytes":3920341,"sha256":"048383a4d7e71c2d6b958e244e0d2977b1de60a0b1be2ef758bf24a80667263b"},
+    {"path":"run_plan.json","bytes":2269,"sha256":"63be39ab977b12288de8476c1046bee4040454cb04eecb09d1056a8fb7147cd3"},
+    {"path":"source_evidence_payload.jsonl","bytes":46553287,"sha256":"4a9b60d3d0ddb8062c6af63abd9a872c1527f6c4d9f33a7e9e57c7193ac4b7aa"},
+    {"path":"summary.json","bytes":778,"sha256":"a81bfb8a80409805697d5d560f893632ac4fa3c2bdd9a8e00d0e69105f7f4dfc"},
+    {"path":"transaction_readback.json","bytes":2298,"sha256":"217e3be6a25db0a32cd8515bf2252983212d52aa79f3387edb5eb2f0c5e9a40e"}
+  ]
+}
