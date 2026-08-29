@@ -238,7 +238,7 @@ export const COLLECTIBLE_SHADOW_ADAPTERS = Object.freeze([
     displayName: "Cardfight!! Vanguard",
     domain: COLLECTIBLE_DOMAINS.TCG_CARD,
     identityContract: "tcg_card_v1",
-    officialSourceUrl: "https://en.cf-vanguard.com/cardlist/cardsearch/",
+    officialSourceUrl: "https://en.cf-vanguard.com/cardlist/",
     operator: "Bushiroad",
   }),
   adapter({
@@ -247,7 +247,7 @@ export const COLLECTIBLE_SHADOW_ADAPTERS = Object.freeze([
     displayName: "Weiss Schwarz",
     domain: COLLECTIBLE_DOMAINS.TCG_CARD,
     identityContract: "tcg_card_v1",
-    officialSourceUrl: "https://en.ws-tcg.com/cardlist/list/",
+    officialSourceUrl: "https://en.ws-tcg.com/cardlist/",
     operator: "Bushiroad",
   }),
   adapter({
@@ -256,7 +256,7 @@ export const COLLECTIBLE_SHADOW_ADAPTERS = Object.freeze([
     displayName: "Funko",
     domain: COLLECTIBLE_DOMAINS.VINYL_FIGURE,
     identityContract: "vinyl_figure_v1",
-    officialSourceUrl: "https://funko.com/all-funko-products/",
+    officialSourceUrl: "https://funko.com/search/",
     operator: "Funko",
   }),
   adapter({

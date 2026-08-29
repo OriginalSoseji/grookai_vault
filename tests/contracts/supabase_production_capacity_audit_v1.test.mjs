@@ -62,6 +62,18 @@ test('healthy purchased production capacity passes every gate', () => {
   assert.equal(report.disk.utilization.utilization_percent, 72);
 });
 
+test('null custom growth uses the documented paid-plan 50 percent default', () => {
+  const payloads = healthyPayloads();
+  payloads.autoscale.growth_percent = null;
+  payloads.autoscale.min_increment_gb = null;
+  const report = buildCapacityAudit(payloads, options);
+  assert.equal(report.summary.status, 'PASS');
+  assert.equal(report.disk.autoscale.raw_growth_percent, null);
+  assert.equal(report.disk.autoscale.effective_growth_percent, 50);
+  assert.equal(report.disk.autoscale.growth_source, 'supabase_paid_plan_default');
+  assert.equal(report.disk.autoscale.max_size_gb, 600);
+});
+
 test('wrong project identity fails closed', () => {
   const payloads = healthyPayloads();
   payloads.project.id = 'restore-drill-project';

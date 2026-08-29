@@ -80,6 +80,12 @@ export function buildCapacityAudit(payloads, options = {}) {
   const diskMetrics = payloads.diskUtil?.metrics ?? {};
   const autoscale = payloads.autoscale ?? {};
   const health = compactServiceHealth(payloads.health);
+  const rawAutoscaleGrowthPercent = numberOrNull(autoscale.growth_percent);
+  const effectiveAutoscaleGrowthPercent =
+    rawAutoscaleGrowthPercent ?? expected.growthPercent;
+  const autoscaleGrowthSource = rawAutoscaleGrowthPercent === null
+    ? 'supabase_paid_plan_default'
+    : 'project_custom_config';
 
   const sizeBytes = numberOrNull(diskMetrics.fs_size_bytes);
   const usedBytes = numberOrNull(diskMetrics.fs_used_bytes);
@@ -140,10 +146,12 @@ export function buildCapacityAudit(payloads, options = {}) {
     },
     {
       id: 'disk_autoscale_configuration',
-      pass: numberOrNull(autoscale.growth_percent) === expected.growthPercent
+      pass: effectiveAutoscaleGrowthPercent === expected.growthPercent
         && numberOrNull(autoscale.max_size_gb) >= expected.maxDiskGb,
       observed: {
-        growth_percent: numberOrNull(autoscale.growth_percent),
+        raw_growth_percent: rawAutoscaleGrowthPercent,
+        effective_growth_percent: effectiveAutoscaleGrowthPercent,
+        growth_source: autoscaleGrowthSource,
         min_increment_gb: numberOrNull(autoscale.min_increment_gb),
         max_size_gb: numberOrNull(autoscale.max_size_gb),
       },
@@ -198,7 +206,9 @@ export function buildCapacityAudit(payloads, options = {}) {
         utilization_percent: utilizationPercent,
       },
       autoscale: {
-        growth_percent: numberOrNull(autoscale.growth_percent),
+        raw_growth_percent: rawAutoscaleGrowthPercent,
+        effective_growth_percent: effectiveAutoscaleGrowthPercent,
+        growth_source: autoscaleGrowthSource,
         min_increment_gb: numberOrNull(autoscale.min_increment_gb),
         max_size_gb: numberOrNull(autoscale.max_size_gb),
       },
@@ -229,6 +239,7 @@ export function renderCapacityAuditMarkdown(report) {
     `- Compute: \`${report.compute?.variant_id ?? 'unknown'}\``,
     `- Disk: \`${report.disk.size_gb ?? 'unknown'} GB ${report.disk.type ?? ''}\``,
     `- Disk used: \`${report.disk.utilization.utilization_percent ?? 'unknown'}%\``,
+    `- Autoscale growth: \`${report.disk.autoscale.effective_growth_percent ?? 'unknown'}% (${report.disk.autoscale.growth_source ?? 'unknown'})\``,
     `- Autoscale maximum: \`${report.disk.autoscale.max_size_gb ?? 'unknown'} GB\``,
     '',
     '## Assertions',

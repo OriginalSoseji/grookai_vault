@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `PRODUCTION_RELEASE_AND_AUTOMATION_STATUS_20260829_V1.md` - `2026-08-29` - CONTROLLED BETA READY / FULL PUBLIC RELEASE NOT YET PROVEN - Reconciles current CI, web/search, MEE, catalog automation, Supabase capacity, eight-week release gates, and the exact ordered path to a final synchronized candidate and 72-hour soak.
 - `GVVI_VENDOR_QR_V1_20260817.md` - `2026-08-17` - ISOLATED IMPLEMENTATION / PRODUCTION CANARY GATE - Locks persistent GVVI QR identity, Wall/QR landing convergence, database-backed vendor eligibility, asking-price presentation, encrypted referral attribution, owner export/print controls, and the migration-free production boundary.
 - `SAMSUNG_PRODUCTION_CRAWL_AND_PRINTING_IDENTITY_20260812_V1.md` - `2026-08-12` - MIGRATION AND SIGNED CANDIDATE VERIFIED / STORE DISTRIBUTION GATE OPEN - Records the comprehensive signed-in Samsung crawl, Grookai Object exact-printing propagation, production Memory RPC apply and authenticated readback, green CI, matching-certificate signed Android install, emulator render proof, and the remaining store-distribution acceptance gate.
 - `../../audits/collector_memory_printing_identity_v1/20260812_MIGRATION_AND_SIGNED_ANDROID_PROOF.md` - `2026-08-12` - COMPLETE - Preserves the frozen commits, migration and APK hashes, strict local replay, production schema/security readback, rollback-only authenticated RPC execution proof, GitHub CI runs, and signed Samsung/emulator evidence.

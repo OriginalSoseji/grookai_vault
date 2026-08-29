@@ -361,13 +361,14 @@ test("alternative-artwork refinement preserves failure artifacts on source drift
   assert.ok(fs.existsSync(path.join(output, "artifact_hashes.json")));
 });
 
-test("Wave 1 workflow is manual, exact-SHA, and secret-free", () => {
+test("Wave 1 workflow is daily, exact-SHA, and secret-free", () => {
   const workflow = fs.readFileSync(
     path.join(ROOT, ".github", "workflows", "collectible-shadow-parser-wave1.yml"),
     "utf8",
   );
   assert.match(workflow, /workflow_dispatch:/);
-  assert.doesNotMatch(workflow, /schedule:/);
+  assert.match(workflow, /schedule:/);
+  assert.match(workflow, /cron:\s*"3 8 \* \* \*"/);
   assert.match(workflow, /CATALOG_AUTOMATION_MODE:\s*shadow-only/);
   assert.match(workflow, /ref:\s*\$\{\{ github\.sha \}\}/);
   assert.doesNotMatch(workflow, /SUPABASE|DATABASE_URL|POSTGRES|--apply|--mode=apply/);
@@ -381,7 +382,8 @@ test("Wave 1 contract preserves metadata and rights boundaries", () => {
   assert.match(contract, /documented public API/);
   assert.match(contract, /ODbL 1\.0/);
   assert.match(contract, /must never contain:/);
-  assert.match(contract, /Stop after one bounded live shadow run/);
+  assert.match(contract, /Each execution stops after one bounded shadow run/);
+  assert.match(contract, /must not write candidates to production/);
 });
 
 test("alternative-artwork refinement workflow is immutable, bounded, and secret-free", () => {

@@ -2,7 +2,7 @@
 
 ## Status
 
-`BOUNDED SHADOW CANARY`
+`SCHEDULED SHADOW AUTOMATION`
 
 ## Objective
 
@@ -114,6 +114,8 @@ Any mismatch remains `needs_review`. It cannot be repaired by inventing rows.
 10. Artifacts are SHA-256 reconciled.
 11. Redirected source URLs are recorded without query strings or fragments.
 12. Auxiliary manifest and set payloads must pass source-specific schema checks.
+13. The scheduled run executes once daily after the source-probe window.
+14. A failed or incomplete source remains review evidence and never dispatches a writer.
 
 ## Required Artifacts
 
@@ -127,10 +129,10 @@ Any mismatch remains `needs_review`. It cannot be repaired by inventing rows.
 
 ## Stop Condition
 
-Stop after one bounded live shadow run and artifact reconciliation. Do not
-schedule parsing, write candidates to production, acquire images, or promote
-canonical identity until the completeness report is reviewed and a separate
-gate is authorized.
+Each execution stops after one bounded shadow run and artifact reconciliation.
+The workflow may run daily, but it must not write candidates to production,
+acquire images, or promote canonical identity. Any canonical write remains a
+separate, explicitly governed gate.
 
 The separately governed read-only comparison gate is defined by
 `COLLECTIBLE_WAVE1_CANONICAL_RECONCILIATION_V1.md`. It does not expand this
