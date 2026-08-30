@@ -1,0 +1,92 @@
+name: Founder Notification Dispatcher Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_source_commit:
+        description: Commit that introduced the dispatcher source being deployed
+        required: true
+        default: 29adcd383045343f3ba1fac53047b70405c4e368
+      expected_source_sha256:
+        description: Expected SHA-256 of notification-dispatcher/index.ts
+        required: true
+        default: aadfad4d99d4cfbf06180ac978685eecec4e3b65aa0ee59fdbd059cb666726d9
+
+permissions:
+  contents: read
+
+concurrency:
+  group: founder-notification-dispatcher-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ycdxbpibncqcchqiihfz
+      EXPECTED_SOURCE_COMMIT: ${{ inputs.expected_source_commit }}
+      EXPECTED_SOURCE_SHA256: ${{ inputs.expected_source_sha256 }}
+
+    steps:
+      - name: Checkout frozen source commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_source_commit }}
+          fetch-depth: 0
+
+      - name: Verify frozen source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SOURCE_COMMIT"
+          actual_sha="$(sha256sum supabase/functions/notification-dispatcher/index.ts | awk '{print $1}')"
+          test "$actual_sha" = "$EXPECTED_SOURCE_SHA256"
+          mkdir -p deploy-artifacts
+          {
+            echo "workflow_commit=$(git rev-parse HEAD)"
+            echo "source_commit=$EXPECTED_SOURCE_COMMIT"
+            echo "source_sha256=$actual_sha"
+            echo "project_ref=$SUPABASE_PROJECT_REF"
+          } > deploy-artifacts/deployment-metadata.txt
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.90.0
+
+      - name: Deploy notification dispatcher
+        shell: bash
+        run: |
+          set -euo pipefail
+          supabase functions deploy notification-dispatcher \
+            --project-ref "$SUPABASE_PROJECT_REF" \
+            --no-verify-jwt
+          supabase functions list \
+            --project-ref "$SUPABASE_PROJECT_REF" \
+            > deploy-artifacts/functions-list.txt
+          grep -q "notification-dispatcher" deploy-artifacts/functions-list.txt
+
+      - name: Verify access-controlled endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          endpoint="https://${SUPABASE_PROJECT_REF}.supabase.co/functions/v1/notification-dispatcher"
+          status="$(curl --silent --show-error \
+            --output deploy-artifacts/unauthorized-response.txt \
+            --write-out '%{http_code}' \
+            --request POST \
+            --header 'content-type: application/json' \
+            --data '{}' \
+            "$endpoint")"
+          echo "unauthorized_http_status=$status" >> deploy-artifacts/deployment-metadata.txt
+          test "$status" = "401"
+
+      - name: Upload deployment evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: founder-notification-dispatcher-deployment
+          path: deploy-artifacts
+          if-no-files-found: error
