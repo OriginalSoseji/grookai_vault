@@ -94,6 +94,7 @@
                 <data android:pathPrefix="/b/" />
                 <data android:pathPrefix="/binder-invites/" />
                 <data android:pathPrefix="/binder-templates/" />
+                <data android:pathPrefix="/founder/notifications" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

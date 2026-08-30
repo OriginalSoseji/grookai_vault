@@ -1447,6 +1447,12 @@ export default async function FounderPage() {
             description="View and copy early access emails captured through the public landing page."
           />
           <FounderToolCard
+            href="/founder/notifications"
+            eyebrow="Alerts"
+            title="Founder Notifications"
+            description="Review private pricing, ingestion, catalog, and production alerts with their source evidence."
+          />
+          <FounderToolCard
             href="/founder/pricing"
             eyebrow="Pricing"
             title="TCGPlayer Market"

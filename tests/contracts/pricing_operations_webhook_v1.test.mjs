@@ -85,15 +85,15 @@ test("shared-secret operations functions bypass the Supabase JWT gateway", () =>
   );
 });
 
-test("dispatcher treats operations alerts as non-card critical notifications", () => {
+test("dispatcher routes operations alerts to the founder notification inbox", () => {
   assert.match(dispatcher, /outbox\.event_type === "operations_alert"/);
   assert.match(dispatcher, /notification_dispatcher_claim_operations_alert_v1/);
   assert.match(dispatcher, /if \(!isOperationsAlert && !row\.card_print_id\)/);
   assert.match(dispatcher, /if \(!isOperationsAlert\) \{\s+const reserved/s);
-  assert.match(
-    dispatcher,
-    /Open Founder Ops for details/,
-  );
+  assert.match(dispatcher, /payload\.severity/);
+  assert.match(dispatcher, /payload\.event/);
+  assert.match(dispatcher, /grookai:\/\/founder\/notifications\?notification_id=/);
+  assert.match(dispatcher, /grookaivault\.com\/founder\/notifications\?notification_id=/);
 });
 
 test("systemd notifier and installer require the protected webhook bearer", () => {

@@ -46,6 +46,9 @@ test("notification app links route through the canonical route service", () => {
   assert.match(routeService, /scheme == 'grookaivault'/);
   assert.match(routeService, /host == 'card'/);
   assert.match(routeService, /GrookaiCanonicalRoute\.card\(segments\.first\)/);
+  assert.match(routeService, /GrookaiCanonicalRouteKind\.founderNotifications/);
+  assert.match(routeService, /GrookaiCanonicalRoute\.founderNotifications/);
+  assert.match(shell, /FounderNotificationsScreen/);
 });
 
 test("app RPCs enforce auth-owned token registration and tap tracking", () => {

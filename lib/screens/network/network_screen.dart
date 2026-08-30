@@ -15,6 +15,7 @@ import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/network/pulse_service.dart';
+import '../../services/notifications/founder_notification_service.dart';
 import '../../services/provisional/provisional_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -28,6 +29,7 @@ import '../../widgets/provisional/provisional_card_section.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../dex/grookai_dex_screen.dart';
 import '../dex/grookai_dex_species_screen.dart';
+import '../founder/founder_notifications_screen.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../grookai_objects/collector_memory_route_screen.dart';
 import 'pulse_memory_detail_screen.dart';
@@ -155,6 +157,8 @@ class NetworkScreenState extends State<NetworkScreen> {
   final PulseService _pulseService = PulseService(
     client: Supabase.instance.client,
   );
+  final FounderNotificationService _founderNotificationService =
+      FounderNotificationService(client: Supabase.instance.client);
 
   _NetworkHomeSegment _segment = kPulseSurfaceEnabled
       ? _NetworkHomeSegment.pulse
@@ -176,6 +180,14 @@ class NetworkScreenState extends State<NetworkScreen> {
   String? _pulseError;
   PulseUnreadSnapshot _pulseUnreadSnapshot = PulseUnreadSnapshot.empty;
   List<PulseItem> _pulseItems = const <PulseItem>[];
+  FounderNotificationUnreadSnapshot _founderNotificationUnread =
+      FounderNotificationUnreadSnapshot.empty;
+  List<FounderNotificationItem> _founderNotifications =
+      const <FounderNotificationItem>[];
+  bool _founderNotificationsLoading = false;
+  bool _founderNotificationAccessChecked = false;
+  bool _founderNotificationAccessLoading = false;
+  bool _hasFounderNotificationAccess = false;
   DateTime? _pulseNextCursorCreatedAt;
   String? _pulseNextCursorEventId;
   Map<String, OwnershipState> _ownershipStatesByCardPrintId =
@@ -450,6 +462,10 @@ class NetworkScreenState extends State<NetworkScreen> {
       }
     });
 
+    if (!older) {
+      unawaited(_ensureFounderNotificationsForPulse(resetGeneration));
+    }
+
     try {
       final unreadFuture = older ? null : _fetchPulseUnreadBestEffort();
       final pageFuture = _pulseService.fetchItems(
@@ -499,6 +515,35 @@ class NetworkScreenState extends State<NetworkScreen> {
     }
   }
 
+  Future<void> _ensureFounderNotificationsForPulse(int resetGeneration) async {
+    if (_founderNotificationAccessLoading) return;
+    if (_founderNotificationAccessChecked) {
+      if (_hasFounderNotificationAccess) {
+        await _loadFounderNotificationsForPulse(
+          resetGeneration: resetGeneration,
+        );
+      }
+      return;
+    }
+
+    _founderNotificationAccessLoading = true;
+    try {
+      final hasAccess = await _founderNotificationService.hasAccess();
+      if (!mounted) return;
+      _founderNotificationAccessChecked = true;
+      _hasFounderNotificationAccess = hasAccess;
+      if (hasAccess) {
+        await _loadFounderNotificationsForPulse(
+          resetGeneration: _resetGeneration,
+        );
+      }
+    } catch (error) {
+      debugPrint('[FOUNDER_NOTIFICATIONS_V1] entitlement_check_failed=$error');
+    } finally {
+      _founderNotificationAccessLoading = false;
+    }
+  }
+
   Future<PulseUnreadSnapshot?> _fetchPulseUnreadBestEffort() async {
     try {
       return await _pulseService.fetchUnread();
@@ -520,7 +565,7 @@ class NetworkScreenState extends State<NetworkScreen> {
     setState(() {
       _pulseUnreadSnapshot = snapshot;
     });
-    widget.onPulseUnreadChanged?.call(snapshot.unreadCount);
+    _notifyCombinedPulseUnread();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || resetGeneration != _resetGeneration) {
@@ -542,10 +587,84 @@ class NetworkScreenState extends State<NetworkScreen> {
       setState(() {
         _pulseUnreadSnapshot = PulseUnreadSnapshot.empty;
       });
-      widget.onPulseUnreadChanged?.call(0);
+      _notifyCombinedPulseUnread();
     } catch (error) {
       debugPrint('[PULSE_E4] mark_seen_failed=$error');
     }
+  }
+
+  Future<void> _loadFounderNotificationsForPulse({
+    required int resetGeneration,
+  }) async {
+    if (mounted) {
+      setState(() => _founderNotificationsLoading = true);
+    }
+    try {
+      final overview = await _founderNotificationService.fetchOverview(
+        limit: 5,
+      );
+      if (!mounted || resetGeneration != _resetGeneration) return;
+
+      setState(() {
+        _founderNotifications = overview.items;
+        _founderNotificationUnread = overview.unread;
+        _founderNotificationsLoading = false;
+      });
+      _notifyCombinedPulseUnread();
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted || resetGeneration != _resetGeneration) return;
+        unawaited(
+          _markFounderNotificationsSeen(
+            overview.unread,
+            resetGeneration: resetGeneration,
+          ),
+        );
+      });
+    } catch (error) {
+      if (!mounted || resetGeneration != _resetGeneration) return;
+      debugPrint('[FOUNDER_NOTIFICATIONS_V1] pulse_preview_failed=$error');
+      setState(() => _founderNotificationsLoading = false);
+    }
+  }
+
+  Future<void> _markFounderNotificationsSeen(
+    FounderNotificationUnreadSnapshot snapshot, {
+    required int resetGeneration,
+  }) async {
+    if (!snapshot.hasCursor) return;
+    try {
+      await _founderNotificationService.markSeen(snapshot);
+      if (!mounted || resetGeneration != _resetGeneration) return;
+      setState(() {
+        _founderNotificationUnread = FounderNotificationUnreadSnapshot.empty;
+        _founderNotifications = _founderNotifications
+            .map((item) => item.copyWith(isUnread: false))
+            .toList(growable: false);
+      });
+      _notifyCombinedPulseUnread();
+    } catch (error) {
+      debugPrint('[FOUNDER_NOTIFICATIONS_V1] mark_seen_failed=$error');
+    }
+  }
+
+  void _notifyCombinedPulseUnread() {
+    widget.onPulseUnreadChanged?.call(
+      _pulseUnreadSnapshot.unreadCount + _founderNotificationUnread.unreadCount,
+    );
+  }
+
+  Future<void> _openFounderNotifications({String? notificationId}) async {
+    await Navigator.of(context, rootNavigator: true).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            FounderNotificationsScreen(initialNotificationId: notificationId),
+      ),
+    );
+    if (!mounted) return;
+    unawaited(
+      _loadFounderNotificationsForPulse(resetGeneration: _resetGeneration),
+    );
   }
 
   Future<void> _restoreCachedRows() async {
@@ -735,7 +854,9 @@ class NetworkScreenState extends State<NetworkScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                   child: _NetworkSegmentToggle(
                     value: _segment,
-                    pulseUnreadCount: _pulseUnreadSnapshot.unreadCount,
+                    pulseUnreadCount:
+                        _pulseUnreadSnapshot.unreadCount +
+                        _founderNotificationUnread.unreadCount,
                     onChanged: (segment) {
                       unawaited(_setSegment(segment));
                     },
@@ -800,6 +921,15 @@ class NetworkScreenState extends State<NetworkScreen> {
               // PERFORMANCE_P1_NETWORK_LAZY_RENDER
               // Uses lazy sliver rendering so Pulse scales without
               // eager whole-page builds in grid or list modes.
+              if (_segment == _NetworkHomeSegment.pulse)
+                _FounderNotificationPulseSliver(
+                  items: _founderNotifications,
+                  loading: _founderNotificationsLoading,
+                  onOpenAll: () => _openFounderNotifications(),
+                  onOpenItem: (item) => _openFounderNotifications(
+                    notificationId: item.notificationId,
+                  ),
+                ),
               if (_segment == _NetworkHomeSegment.pulse)
                 _PulseContentSliver(
                   items: _pulseItems,
@@ -1012,6 +1142,74 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
         : null,
     rankingScore: intValue('rankingScore'),
   );
+}
+
+class _FounderNotificationPulseSliver extends StatelessWidget {
+  const _FounderNotificationPulseSliver({
+    required this.items,
+    required this.loading,
+    required this.onOpenAll,
+    required this.onOpenItem,
+  });
+
+  final List<FounderNotificationItem> items;
+  final bool loading;
+  final Future<void> Function() onOpenAll;
+  final Future<void> Function(FounderNotificationItem item) onOpenItem;
+
+  @override
+  Widget build(BuildContext context) {
+    if (items.isEmpty) {
+      return SliverToBoxAdapter(
+        child: loading
+            ? const Padding(
+                padding: EdgeInsets.fromLTRB(16, 2, 16, 8),
+                child: LinearProgressIndicator(minHeight: 2),
+              )
+            : const SizedBox.shrink(),
+      );
+    }
+
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4, 0, 0, 8),
+              child: Row(
+                children: [
+                  const Icon(Icons.notifications_active_outlined, size: 18),
+                  const SizedBox(width: 7),
+                  Expanded(
+                    child: Text(
+                      'Founder alerts',
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => unawaited(onOpenAll()),
+                    child: const Text('See all'),
+                  ),
+                ],
+              ),
+            ),
+            for (var index = 0; index < items.length; index++) ...[
+              FounderNotificationRow(
+                item: items[index],
+                compact: true,
+                onTap: () => unawaited(onOpenItem(items[index])),
+              ),
+              if (index != items.length - 1) const SizedBox(height: 7),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _PulseContentSliver extends StatelessWidget {
@@ -1531,6 +1729,15 @@ class _PulseItemRow extends StatelessWidget {
             builder: (_) => BinderTemplatesScreen(
               initialTemplateId: route.value,
               featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.founderNotifications:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => FounderNotificationsScreen(
+              initialNotificationId: route.value.isEmpty ? null : route.value,
             ),
           ),
         );

@@ -20,7 +20,8 @@
           "/binders/*",
           "/b/*",
           "/binder-invites/*",
-          "/binder-templates/*"
+          "/binder-templates/*",
+          "/founder/notifications*"
         ]
       }
     ]

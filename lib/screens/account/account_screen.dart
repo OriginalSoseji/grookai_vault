@@ -8,8 +8,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../services/account/account_profile_service.dart';
 import '../../services/network/founder_insight_service.dart';
 import '../../services/network/local_discovery_settings_service.dart';
+import '../../services/notifications/founder_notification_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../widgets/founder/founder_market_signals_section.dart';
+import '../founder/founder_notifications_screen.dart';
 import '../founder/founder_metrics_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
@@ -51,6 +53,7 @@ class _AccountScreenState extends State<AccountScreen> {
   bool _founderInsightsLoading = false;
   String? _founderInsightsError;
   FounderInsightBundle? _founderInsights;
+  bool _hasFounderAccess = false;
 
   AccountProfileData? _profile;
   bool _publicProfileEnabled = false;
@@ -86,6 +89,9 @@ class _AccountScreenState extends State<AccountScreen> {
     });
 
     try {
+      final founderAccessFuture = FounderNotificationService(
+        client: _client,
+      ).hasAccess().catchError((_) => false);
       final profile = await AccountProfileService.loadCurrentProfile(
         client: _client,
       );
@@ -104,6 +110,7 @@ class _AccountScreenState extends State<AccountScreen> {
         localDiscoveryError =
             'Nearby collector settings are unavailable right now.';
       }
+      final hasFounderAccess = await founderAccessFuture;
 
       if (!mounted) {
         return;
@@ -111,6 +118,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
       _hydrateProfile(profile, wallEntry.state);
       setState(() {
+        _hasFounderAccess = hasFounderAccess;
         if (!_isFounderUser && _activeSegment == _AccountSegment.vendorTools) {
           _activeSegment = _AccountSegment.profile;
         }
@@ -131,8 +139,7 @@ class _AccountScreenState extends State<AccountScreen> {
     }
   }
 
-  bool get _isFounderUser =>
-      FounderInsightService.isFounderUser(_client.auth.currentUser);
+  bool get _isFounderUser => _hasFounderAccess;
 
   void _hydrateProfile(
     AccountProfileData profile,
@@ -451,6 +458,14 @@ class _AccountScreenState extends State<AccountScreen> {
   Future<void> _openFounderMetrics() async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) => const FounderMetricsScreen()),
+    );
+  }
+
+  Future<void> _openFounderNotifications() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => const FounderNotificationsScreen(),
+      ),
     );
   }
 
@@ -990,6 +1005,13 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
             ],
             const SizedBox(height: 12),
+            _AccountLinkTile(
+              icon: Icons.notifications_active_outlined,
+              title: 'Founder Notifications',
+              subtitle:
+                  'Private history for pricing, ingestion, catalog, and production alerts',
+              onTap: _openFounderNotifications,
+            ),
             _AccountLinkTile(
               icon: Icons.insights_rounded,
               title: 'North Star Metrics',
