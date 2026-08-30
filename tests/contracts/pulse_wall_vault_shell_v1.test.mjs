@@ -98,6 +98,29 @@ test("append pagination cannot invalidate active-page ownership hydration", () =
   );
 });
 
+test("Network retries governed pricing after fail-open first paint", () => {
+  const screen = readSource("lib/screens/network/network_screen.dart");
+  const loadRows = screen.match(
+    /Future<void> _loadRows\([\s\S]*?Future<void> _loadProvisionalCards/,
+  )?.[0];
+  const pricingHelper = screen.match(
+    /Future<void> _primeDeferredPricing\([\s\S]*?Future<void> _loadProvisionalCards/,
+  )?.[0];
+
+  assert.ok(loadRows, "network row loader must be present");
+  assert.ok(pricingHelper, "deferred pricing recovery must be present");
+  assert.match(loadRows, /NETWORK_DEFERRED_PRICING_RECOVERY_V1/);
+  assert.match(loadRows, /_primeDeferredPricing\(/);
+  assert.match(
+    pricingHelper,
+    /CardSurfacePricingService[\s\S]*?fetchByCardPrintIds/,
+  );
+  assert.match(pricingHelper, /const Duration\(seconds: 8\)/);
+  assert.match(pricingHelper, /resetGeneration != _resetGeneration/);
+  assert.match(pricingHelper, /row\.copyWith\(pricing: pricing\)/);
+  assert.match(pricingHelper, /unawaited\(_cacheRows\(enrichedRows\)\)/);
+});
+
 test("app startup does not prewarm the scanner", () => {
   const shell = readSource("lib/main_shell.dart");
   const init = shell.match(/void initState\(\) \{[\s\S]*?AppBootTiming\.mark\('app_shell_init_state_complete'\);/)?.[0];

@@ -322,6 +322,15 @@ class NetworkScreenState extends State<NetworkScreen> {
           resetGeneration: resetGeneration,
         ),
       );
+      // NETWORK_DEFERRED_PRICING_RECOVERY_V1
+      // First paint remains fail-open, but a transient enrichment timeout must
+      // not leave otherwise valid Network rows permanently unpriced.
+      unawaited(
+        _primeDeferredPricing(
+          rows: page.rows,
+          resetGeneration: resetGeneration,
+        ),
+      );
     } catch (error) {
       if (!mounted || resetGeneration != _resetGeneration) {
         return;
@@ -343,6 +352,64 @@ class NetworkScreenState extends State<NetworkScreen> {
           _loading = false;
         }
       });
+    }
+  }
+
+  Future<void> _primeDeferredPricing({
+    required List<NetworkStreamRow> rows,
+    required int resetGeneration,
+  }) async {
+    final missingCardPrintIds = rows
+        .where((row) => row.pricing?.hasVisibleValue != true)
+        .map((row) => row.cardPrintId.trim())
+        .where((cardPrintId) => cardPrintId.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (missingCardPrintIds.isEmpty) {
+      return;
+    }
+
+    try {
+      final pricingByCardPrintId =
+          await CardSurfacePricingService.fetchByCardPrintIds(
+            client: _client,
+            cardPrintIds: missingCardPrintIds,
+          ).timeout(
+            const Duration(seconds: 8),
+            onTimeout: () => const <String, CardSurfacePricingData>{},
+          );
+      if (!mounted ||
+          resetGeneration != _resetGeneration ||
+          pricingByCardPrintId.isEmpty) {
+        return;
+      }
+
+      var changed = false;
+      final enrichedRows = _rows
+          .map((row) {
+            if (row.pricing?.hasVisibleValue == true) {
+              return row;
+            }
+            final pricing = pricingByCardPrintId[row.cardPrintId.trim()];
+            if (pricing?.hasVisibleValue != true) {
+              return row;
+            }
+            changed = true;
+            return row.copyWith(pricing: pricing);
+          })
+          .toList(growable: false);
+      if (!changed) {
+        return;
+      }
+
+      setState(() {
+        _rows = enrichedRows;
+      });
+      unawaited(_cacheRows(enrichedRows));
+    } catch (error) {
+      debugPrint(
+        '[NETWORK_DEFERRED_PRICING_RECOVERY_V1] pricing_failed=$error',
+      );
     }
   }
 
