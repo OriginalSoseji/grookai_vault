@@ -15,8 +15,8 @@ database, Storage, image-pointer, pricing, publication, or Vault writes.
 | Catalog Shadow Reconciliation | every 6 hours | `33275641165` | success, zero promotion candidates |
 | Pokemon Master Index Refresh | daily | `33265698781` | success with quarantined source anomalies |
 | MTG Catalog Supervisor | every 15 minutes | `33275454924` | 945/945 eligible sets complete, no dispatch |
-| Collectible Shadow Adapter Probes | daily | `33279435200` | 10/16 healthy before endpoint repair |
-| Collectible Shadow Parser Wave 1 | daily after this change | `33238112330` historical manual proof | 46,302 candidates, zero validation failures, one review source |
+| Collectible Shadow Adapter Probes | daily | `33280393291` | 11/16 healthy; five source constraints preserved |
+| Collectible Shadow Parser Wave 1 | daily | `33280394160` | 46,302 candidates, zero validation failures, one review source |
 
 ## Fresh Discovery Truth
 
@@ -72,17 +72,21 @@ The registry contains `20` adapters:
 - `3` sports-card adapters;
 - `1` comics adapter.
 
-Run `33279435200` proved ten healthy official probes. Three failed endpoints were
-repaired to current official roots:
+Run `33280393291` used exact SHA
+`3edc990157a5b454f26868226e08790d478c55c0` and proved eleven healthy official
+probes. Three failed endpoints were changed to current official roots:
 
 - Cardfight Vanguard: `/cardlist/`;
 - Weiss Schwarz: `/cardlist/`;
 - Funko: `/search/`.
 
-Those three repairs require one committed live probe before they count as
-healthy automation. Three genuine source constraints remain:
+The live proof cleared Funko. Vanguard and Weiss still returned identical HTTP
+500 responses from the GitHub runner even though the official pages are current
+and locally reachable. Five source constraints therefore remain visible:
 
 - Flesh and Blood official gallery: HTTP 403;
+- Cardfight Vanguard official card list: HTTP 500 from the GitHub runner;
+- Weiss Schwarz official card list: HTTP 500 from the GitHub runner;
 - Topps official checklist: HTTP 403;
 - Panini official checklist: HTTP 403.
 
@@ -92,10 +96,23 @@ the only expanded adapters with active typed parsers today.
 
 ## Parser Automation Change
 
-Wave 1 parsing is changed from manual-only to a daily `08:03 UTC` run after the
-daily source probes. The worker remains secret-free and has no database,
-Storage, image-download, or writer capability. Any source drift creates review
-evidence and cannot promote identity.
+Wave 1 parsing now runs daily at `08:03 UTC` after the daily source probes. Live
+run `33280394160` used exact SHA
+`3edc990157a5b454f26868226e08790d478c55c0` and produced:
+
+- `46,302` candidates;
+- `0` validation failures;
+- `2/2` sources parsed;
+- `1` source requiring review;
+- Yu-Gi-Oh: `44,486` printing candidates with `124` unresolved alternative-art
+  mappings;
+- Gundam: `1,816` candidates with manifest and payload counts reconciled.
+
+The worker remains secret-free and has no database, Storage, image-download, or
+writer capability. Every manifest-listed artifact hash matched local readback.
+The GitHub artifact archive digest is
+`sha256:cef3fe10d3e990264fd611c7c54eddd3d76abb3bab23ad832e0d6ca151ee1740`.
+Any source drift creates review evidence and cannot promote identity.
 
 ## Current Boundaries
 
@@ -107,15 +124,9 @@ evidence and cannot promote identity.
 
 ## Exact Next Gate
 
-Commit the endpoint and scheduler repairs, run the adapter probe and Wave 1
-parser from that exact SHA, then require:
-
-- at least `13/16` healthy probes;
-- Wave 1 candidate and artifact reconciliation;
-- zero validation failures;
-- unchanged no-write boundaries.
-
-Flesh and Blood, Topps, Panini, comics, and the twelve registered adapters that
-do not yet have typed parsers remain backlog. They do not block the Pokemon,
-MTG, or One Piece launch catalogs.
-
+Keep the daily no-write schedules active and alert on source-health regression.
+Add typed parsers one governed source at a time; do not retry source-blocked
+sites aggressively or substitute unlicensed data. Flesh and Blood, Vanguard,
+Weiss, Topps, Panini, comics, and the twelve registered adapters that do not yet
+have typed parsers remain backlog. They do not block the Pokemon, MTG, or One
+Piece launch catalogs.

@@ -2,7 +2,7 @@
 
 ## Status
 
-`HEALTHY_CAPACITY_WITH_GROWTH_POLICY_REQUIRED`
+`HEALTHY_CAPACITY_MONITORED`
 
 This checkpoint supersedes the capacity values in
 `2026-08-27_SUPABASE_PRODUCTION_CAPACITY_V1.md`. It does not authorize data
@@ -43,8 +43,34 @@ records both values:
 - effective growth source: `supabase_paid_plan_default`;
 - maximum disk size: `600 GB`.
 
-Replaying the exact readback through the corrected policy passes `8/8`
-assertions. The 600 GB ceiling and the utilization threshold remain mandatory.
+Committed live run `33280395126` used exact SHA
+`3edc990157a5b454f26868226e08790d478c55c0` and passed `8/8` assertions against
+fresh Management API data:
+
+- utilization: `72.1%`;
+- used: `243,744,915,456 bytes`;
+- available: `94,324,305,920 bytes`;
+- autoscale ceiling: `600 GB`;
+- effective paid-plan growth: `50%`;
+- five monitored services: healthy.
+
+The GitHub artifact archive digest is
+`sha256:509c24329885e36b6b2235f9294cf8e0e9d0667de2754abf360ca99f6e2bd357`.
+The 600 GB ceiling and utilization threshold remain mandatory.
+
+Post-MEE read-only run `33282501714` passed `8/8` again after the full-source
+pricing shadow completed:
+
+- utilization: `72.47%`;
+- used: `245,013,364,736 bytes`;
+- available: `93,055,856,640 bytes`;
+- service health: `5/5` healthy;
+- artifact archive digest:
+  `sha256:09b7c689c56642aa089e91482e758fccf16c39491ce088eba42f9f9def563196`.
+
+The production-sized pricing run increased observed disk use by approximately
+`1.27 GB` from the earlier same-day capacity readback. This is material growth
+to monitor, but it does not exhaust current launch headroom.
 
 ## Spend Cap
 
@@ -86,7 +112,7 @@ retention, partitioning, and compaction design.
 
 ## Exact Next Gate
 
-Allow the corrected read-only capacity workflow to run from the committed code,
-verify `8/8` assertions against fresh Management API data, then measure seven-day
-growth before selecting a retention or partitioning design.
-
+Keep the six-hour read-only monitor active and measure seven-day growth before
+selecting a retention or partitioning design. Any utilization above the warning
+threshold, autoscale-ceiling regression, or unhealthy service is an operational
+alert; it does not authorize deletion.

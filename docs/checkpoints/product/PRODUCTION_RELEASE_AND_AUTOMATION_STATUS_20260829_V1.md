@@ -15,14 +15,16 @@ are not all proven.
 
 - Pricing repair source SHA:
   `8457d8281fb7465b496837831b30adfd45fa69cd`
+- Operations automation source SHA:
+  `3edc990157a5b454f26868226e08790d478c55c0`
 - Branch used for isolated work: `fix/mee-health-bounded-current-run`
-- Signed APK workflow: `33279077708`, success
-- Signed APK artifact ID: `9722522874`
+- Signed APK workflow: `33280377639`, success
+- Signed APK artifact ID: `9722900305`
 - Signed artifact archive digest:
-  `sha256:a3d97950b05395a8cf000597512d30f4113fac89282b6092d3438714b76b2d5d`
-- CodeQL workflow: `33279077479`, success
-- Runtime contracts: `33279077700`, success
-- Legacy-key guard: `33279077697`, success
+  `sha256:595afb6fa0a56076aa2b92817a4250756241a39736683eb5ccb1ecb1a63511de`
+- CodeQL workflow: `33280377281`, success
+- Runtime contracts: `33280377757`, success
+- Legacy-key guard: `33280377681`, success
 - Production web deployment source:
   `d3e6a861371522e47f0526302294e62b6a13199b`
 - Production signed-out web journey: `22/22` routes and `2/2` login
@@ -74,21 +76,49 @@ The governed TCGPlayer canary is formally complete:
 - zero stale rows, broken traces, missing provenance, or terminal alerts;
 - authenticated reads passed and anonymous reads remained denied.
 
-The fresh full-scope shadow is run `33279087655` on exact SHA `8457d828`.
-At checkpoint drafting time it is still in progress and remains shadow-only.
-The lock-loss repair now aborts a child when the advisory-lock connection drops,
-reacquires the lock, and permits one bounded retry without changing the durable
-run key.
+The repaired full-scope shadow run `33279087655` passed on exact SHA
+`8457d8281fb7465b496837831b30adfd45fa69cd` in one attempt:
 
-Pricing is not fully released until all of the following occur:
+- runtime: `1h19m14s`;
+- source requests: `9,320`;
+- products: `502,549`;
+- source price rows: `547,735`;
+- qualification decisions: `206,345`;
+- eligible traced snapshots: `164,135`;
+- quarantined: `30,550`;
+- excluded: `11,660`;
+- reconciliation mismatches: `0`;
+- failed phases: `0`;
+- publication activation by this shadow run: `false`.
 
-1. the full-scope shadow passes and artifacts reconcile;
-2. all 17 required product surfaces are captured and reconciled against the
+All nine governed file hashes matched ZIP-stream readback, including the
+`767,285,756` byte qualification decision ledger. The GitHub artifact is ID
+`9723305223`, archive digest
+`sha256:267468120af048bdf1032ce58c5186b5521f6ef008de808b092d3dc38c8f8068`.
+
+Full signed-in production pricing was already activated by reconciled run
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-08-29-publication`:
+
+- run state: `verified`;
+- exact-printing current prices: `164,134`;
+- parent `From` prices: `105,026`;
+- broken source-to-price traces: `0`;
+- current coverage: `95.293%`;
+- read-performance worst p95 across six cases: `168.242 ms` against a `500 ms`
+  target;
+- authenticated execution/read: proven;
+- anonymous pricing access: remains denied by policy.
+
+Pricing is therefore functional and broadly published for signed-in users. Its
+remaining release proof is:
+
+1. capture and reconcile all 17 required deployed product surfaces against the
    shared pricing read model;
-3. signed-in full-eligible publication is activated through the governed gate;
-4. seven unattended full-production cycles pass.
-
-No full-scope publication activation is authorized by this checkpoint.
+2. complete the frozen seven-cycle observation contract. Four scheduled
+   production publications from August 26-29 share commit
+   `4b6064a5fb7eeacb7887c240735fc6dd8ffec06f` and are verified, but the formal
+   seven-cycle gate is not yet closed;
+3. preserve rollback and alert evidence through that observation window.
 
 ## Search
 
@@ -112,8 +142,8 @@ Launch-critical catalog truth:
   sets deferred; supervisor active every 15 minutes.
 - One Piece: 61 source sets tracked; OP16 and OP17 production closure proven;
   source-behind and ambiguous states remain explicit.
-- Expanded collectibles: 20 adapters registered, 16 probed daily, 2 typed
-  parsers, no automatic writers.
+- Expanded collectibles: 20 adapters registered, 16 probed daily, 11 currently
+  healthy, 2 typed parsers, no automatic writers.
 
 The expanded background system is an evidence and candidate factory, not a
 completed cross-collectible canonical catalog. That distinction is intentional.
@@ -127,11 +157,14 @@ Current production capacity:
 - project `ACTIVE_HEALTHY`;
 - Medium compute;
 - 320 GB gp3 disk;
-- 71.68% utilization;
-- 95.75 GB available;
+- 72.47% utilization after the full-source MEE shadow;
+- 93.06 GB available;
 - 600 GB autoscale ceiling;
 - effective paid-plan autoscale growth 50%;
 - all five monitored services healthy.
+
+Post-MEE read-only run `33282501714` passed all `8/8` capacity assertions at
+`72.47%` utilization.
 
 The immediate infrastructure is adequate for a controlled launch. Fast evidence
 growth still requires a no-delete retention and partitioning design. Spend Cap
@@ -144,13 +177,13 @@ state is not exposed by the supported project API and is not inferred here.
 - One Piece and MTG signed-in catalog foundations are functional.
 - TCGPlayer canary behavior is proven.
 - Production Supabase is healthy with materially improved capacity.
-- Core catalog discovery, reconciliation, Pokemon indexing, and MTG supervision
-  are unattended and fail closed.
-- Current CI on the repaired pricing SHA is green.
+- Core catalog discovery, reconciliation, Pokemon indexing, MTG supervision,
+  expanded adapter probes, and Wave 1 parsing are unattended and fail closed.
+- Current CI on operations SHA `3edc990157` is green, and the terminal pricing
+  shadow is pinned to repaired pricing SHA `8457d8281f`.
 
 ## What Is Not Complete
 
-- Full-scope MEE publication and seven-cycle proof.
 - All 17 deployed pricing-surface captures.
 - One synchronized final web/Android/iOS candidate.
 - Five non-soak release prerequisites and the final 72-hour soak.
@@ -162,12 +195,14 @@ state is not exposed by the supported project API and is not inferred here.
 
 ## Ordered Completion Plan
 
-1. Finish and reconcile MEE run `33279087655`.
-2. Commit and live-prove the no-write parser schedule, source URL repairs, and
-   capacity audit correction.
-3. If the MEE shadow passes, capture all 17 pricing surfaces and activate the
-   bounded signed-in full-eligible pricing publication.
-4. Observe seven unattended pricing cycles.
+1. Preserve MEE run `33279087655` as the terminal repaired full-scope shadow
+   proof; do not rerun it without a new failure class.
+2. Keep the live-proven no-write parser, adapter probes, and capacity audit
+   monitored; current proofs are runs `33280394160`, `33280393291`, and
+   `33280395126`.
+3. Capture all 17 pricing surfaces against the already active signed-in
+   full-eligible publication.
+4. Finish the frozen seven-cycle pricing observation.
 5. Freeze one final source SHA after launch-blocking repairs stop.
 6. Deploy that SHA to production web, signed Android, and TestFlight; record
    immutable deployment/build identifiers and hashes.
@@ -189,8 +224,8 @@ state is not exposed by the supported project API and is not inferred here.
 
 ## Exact Next Gate
 
-Wait for full-scope MEE run `33279087655` to reach a terminal state, preserve and
-hash its artifacts, and classify its result. In parallel, commit and run the
-no-write catalog and capacity monitors. Do not freeze the final release candidate
-or start the soak until the pricing result is known.
-
+Use the active full-scope pricing publication to capture the 17 deployed pricing
+surfaces, while the fixed-code production-cycle observation continues. In
+parallel, freeze one synchronized app release candidate and close Journeys A, C,
+F, the cross-platform matrix, and store readback. Do not start the final 72-hour
+app soak until those prerequisites are proven.
