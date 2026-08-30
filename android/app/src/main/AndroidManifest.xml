@@ -69,6 +69,7 @@
                 <data android:host="b" />
                 <data android:host="binder-invites" />
                 <data android:host="binder-templates" />
+                <data android:host="founder" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>

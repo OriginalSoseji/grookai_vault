@@ -261,6 +261,19 @@ void main() {
     }
   });
 
+  test('Android custom scheme registers the founder notification host', () {
+    final manifest = File(
+      'android/app/src/main/AndroidManifest.xml',
+    ).readAsStringSync();
+    final customSchemeFilter = RegExp(
+      r'<intent-filter[^>]*>([\s\S]*?)</intent-filter>',
+    ).allMatches(manifest).map((match) => match.group(1)!).firstWhere(
+      (filter) => filter.contains('android:scheme="grookai"'),
+    );
+
+    expect(customSchemeFilter, contains('android:host="founder"'));
+  });
+
   test('unsupported notification app links are ignored', () {
     expect(
       GrookaiWebRouteService.parseCanonicalUri(Uri.parse('other://card/GV-1')),
