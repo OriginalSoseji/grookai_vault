@@ -69,14 +69,14 @@ test("local Debug signing is automatic while release signing remains manual", ()
   assert.match(releaseConfig, /Grookai Vault App Store Push/);
 });
 
-test("iOS declares only release privacy purpose strings used by the app", () => {
+test("iOS declares release privacy purpose strings required by app and linked media APIs", () => {
   for (const key of [
     "NSCameraUsageDescription",
+    "NSLocationWhenInUseUsageDescription",
     "NSPhotoLibraryUsageDescription",
   ]) {
     assert.match(infoPlist, new RegExp(`<key>${key}</key>\\s*<string>[^<]+</string>`));
   }
-  assert.doesNotMatch(infoPlist, /NSLocationWhenInUseUsageDescription/);
   assert.doesNotMatch(infoPlist, /NSPhotoLibraryAddUsageDescription/);
 });
 
