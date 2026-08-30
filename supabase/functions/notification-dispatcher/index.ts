@@ -497,12 +497,18 @@ function formatNotification(
   if (outbox.event_type === "operations_alert") {
     const unit = cleanString(outbox.payload.unit) ?? "pricing pipeline";
     const host = cleanString(outbox.payload.host) ?? "production";
+    const severity = cleanString(outbox.payload.severity) ?? "critical";
+    const event = cleanString(outbox.payload.event) ?? "pipeline event";
+    const sourceNotificationId =
+      cleanString(outbox.payload.notification_id) ?? notificationId;
     return {
       notificationId,
       title: `Grookai operations alert · ${unit}`,
-      body: `${host} reported a critical pipeline failure. Open Founder Ops for details.`,
-      deepLink: "grookai://",
-      webUrl: "https://grookaivault.com/founder",
+      body: `${host} reported ${severity} ${event.replaceAll("_", " ")}. Open Founder Notifications for details.`,
+      deepLink:
+        `grookai://founder/notifications?notification_id=${encodeURIComponent(sourceNotificationId)}`,
+      webUrl:
+        `https://grookaivault.com/founder/notifications?notification_id=${encodeURIComponent(sourceNotificationId)}`,
     };
   }
 

@@ -97,6 +97,22 @@ void main() {
     }
   });
 
+  test('founder alert links route to the permanent notification inbox', () {
+    for (final link in <String>[
+      'grookai://founder/notifications?notification_id=ops-123',
+      'grookaivault://founder/notifications?notification_id=ops-123',
+      'https://grookaivault.com/founder/notifications?notification_id=ops-123',
+      '/founder/notifications?notification_id=ops-123',
+    ]) {
+      final route = GrookaiWebRouteService.parseCanonicalUri(Uri.parse(link));
+
+      expect(route, isNotNull, reason: link);
+      expect(route!.kind, GrookaiCanonicalRouteKind.founderNotifications);
+      expect(route.value, 'ops-123');
+      expect(route.path, '/founder/notifications?notification_id=ops-123');
+    }
+  });
+
   test('network links retain discover and following segment intent', () {
     for (final entry in <(String, String)>[
       ('grookai://network?segment=discover', 'discover'),

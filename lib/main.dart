@@ -25,6 +25,7 @@ import 'screens/auth/sign_in_continuation_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/dex/grookai_dex_species_screen.dart';
+import 'screens/founder/founder_notifications_screen.dart';
 import 'screens/network/network_inbox_screen.dart';
 import 'screens/network/network_nearby_map_screen.dart';
 import 'screens/network/network_nearby_screen.dart';
@@ -3214,6 +3215,7 @@ class _MyAppState extends State<MyApp> {
                 case GrookaiCanonicalRouteKind.feed:
                 case GrookaiCanonicalRouteKind.binderLibrary:
                 case GrookaiCanonicalRouteKind.binderInvitation:
+                case GrookaiCanonicalRouteKind.founderNotifications:
                   break;
               }
             }

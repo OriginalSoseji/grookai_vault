@@ -17,6 +17,7 @@ enum GrookaiCanonicalRouteKind {
   binderInvitation,
   binderExplore,
   binderTemplate,
+  founderNotifications,
 }
 
 class GrookaiCanonicalRoute {
@@ -161,6 +162,19 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.founderNotifications({
+    String notificationId = '',
+  }) {
+    final normalized = notificationId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.founderNotifications,
+      path: normalized.isEmpty
+          ? '/founder/notifications'
+          : '/founder/notifications?notification_id=${Uri.encodeQueryComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
   final GrookaiCanonicalRouteKind kind;
   final String path;
   final String value;
@@ -270,6 +284,13 @@ class GrookaiWebRouteService {
       }
       return GrookaiCanonicalRoute.binder(segments[1]);
     }
+    if (head == 'founder' &&
+        segments.length >= 2 &&
+        segments[1].toLowerCase() == 'notifications') {
+      return GrookaiCanonicalRoute.founderNotifications(
+        notificationId: uri.queryParameters['notification_id'] ?? '',
+      );
+    }
     if (segments.length < 2) {
       return null;
     }
@@ -371,6 +392,13 @@ class GrookaiWebRouteService {
     }
     if (host == 'binder-templates' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.binderTemplate(segments.first);
+    }
+    if (host == 'founder' &&
+        segments.isNotEmpty &&
+        segments.first.toLowerCase() == 'notifications') {
+      return GrookaiCanonicalRoute.founderNotifications(
+        notificationId: uri.queryParameters['notification_id'] ?? '',
+      );
     }
 
     // Also accept slash-style app links such as grookai:///card/GV-PK-...
