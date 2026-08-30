@@ -432,13 +432,18 @@ class PublicSetsService {
     required SupabaseClient client,
   }) async {
     try {
-      final rawRows = await client.rpc(
-        'get_public_catalog_sets_v2',
-        params: const {'p_game_code': null},
+      // PostgREST caps set-returning RPC responses at 1,000 rows. Fetch each
+      // supported catalog independently so a large MTG lane cannot truncate
+      // One Piece or Pokemon from the signed-in Sets screen.
+      final gameRows = await Future.wait(
+        PublicCatalogGame.values.map(
+          (game) => _fetchPublicCatalogGameRows(
+            client: client,
+            gameCode: game.databaseCode,
+          ),
+        ),
       );
-      return (rawRows as List<dynamic>)
-          .map((row) => Map<String, dynamic>.from(row as Map))
-          .toList(growable: false);
+      return gameRows.expand((rows) => rows).toList(growable: false);
     } on PostgrestException catch (error) {
       // A short compatibility path keeps older deployments usable while the
       // additive RPC migration reaches production. Other RPC failures remain
@@ -460,6 +465,19 @@ class PublicSetsService {
             'card_count': cardCountsByCode[_normalizeCode(row['code'])] ?? 0,
           },
         )
+        .toList(growable: false);
+  }
+
+  static Future<List<Map<String, dynamic>>> _fetchPublicCatalogGameRows({
+    required SupabaseClient client,
+    required String gameCode,
+  }) async {
+    final rawRows = await client.rpc(
+      'get_public_catalog_sets_v2',
+      params: {'p_game_code': gameCode},
+    );
+    return (rawRows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
         .toList(growable: false);
   }
 

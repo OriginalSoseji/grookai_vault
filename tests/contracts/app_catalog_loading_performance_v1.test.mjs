@@ -36,6 +36,9 @@ test("Flutter Sets uses the populated catalog RPC with bounded compatibility and
   const screen = source("lib/screens/sets/public_sets_screen.dart");
 
   assert.match(service, /get_public_catalog_sets_v2/);
+  assert.match(service, /PublicCatalogGame\.values\.map/);
+  assert.match(service, /gameCode: game\.databaseCode/);
+  assert.doesNotMatch(service, /params: const \{'p_game_code': null\}/);
   assert.match(service, /_setCountChunkSize = 200/);
   assert.match(service, /_setCatalogCacheTtl = Duration\(minutes: 5\)/);
   assert.match(service, /bool forceRefresh = false/);

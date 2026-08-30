@@ -125,55 +125,80 @@ void main() {
     },
   );
 
-  test('set index uses the bounded populated catalog RPC and caches it', () async {
-    final requests = <http.Request>[];
-    final client = SupabaseClient(
-      'https://example.supabase.co',
-      'public-anon-key',
-      httpClient: MockClient((request) async {
-        requests.add(request);
-        return http.Response(
-          jsonEncode([
-            {
-              'id': '10000000-0000-0000-0000-000000000001',
-              'game': 'pokemon',
-              'code': 'duplicate-short',
-              'name': 'Duplicate Set',
-              'release_date': '2020-01-01',
-              'created_at': '2020-01-01T00:00:00Z',
-              'card_count': 10,
-            },
-            {
-              'id': '10000000-0000-0000-0000-000000000002',
-              'game': 'pokemon',
-              'code': 'duplicate-complete',
-              'name': 'Duplicate Set',
-              'release_date': '2020-01-01',
-              'created_at': '2020-01-01T00:00:00Z',
-              'card_count': 12,
-            },
-          ]),
-          200,
-          request: request,
-          headers: {'content-type': 'application/json'},
-        );
-      }),
-    );
-    addTearDown(client.dispose);
+  test(
+    'set index uses the bounded populated catalog RPC and caches it',
+    () async {
+      final requests = <http.Request>[];
+      final client = SupabaseClient(
+        'https://example.supabase.co',
+        'public-anon-key',
+        httpClient: MockClient((request) async {
+          requests.add(request);
+          final params = jsonDecode(request.body) as Map<String, dynamic>;
+          final gameCode = params['p_game_code'];
+          return http.Response(
+            jsonEncode(
+              gameCode == 'pokemon'
+                  ? [
+                      {
+                        'id': '10000000-0000-0000-0000-000000000001',
+                        'game': 'pokemon',
+                        'code': 'duplicate-short',
+                        'name': 'Duplicate Set',
+                        'release_date': '2020-01-01',
+                        'created_at': '2020-01-01T00:00:00Z',
+                        'card_count': 10,
+                      },
+                      {
+                        'id': '10000000-0000-0000-0000-000000000002',
+                        'game': 'pokemon',
+                        'code': 'duplicate-complete',
+                        'name': 'Duplicate Set',
+                        'release_date': '2020-01-01',
+                        'created_at': '2020-01-01T00:00:00Z',
+                        'card_count': 12,
+                      },
+                    ]
+                  : const [],
+            ),
+            200,
+            request: request,
+            headers: {'content-type': 'application/json'},
+          );
+        }),
+      );
+      addTearDown(client.dispose);
 
-    final sets = await PublicSetsService.fetchSets(client: client);
-    final cachedSets = await PublicSetsService.fetchSets(client: client);
+      final sets = await PublicSetsService.fetchSets(client: client);
+      final cachedSets = await PublicSetsService.fetchSets(client: client);
 
-    expect(sets, hasLength(1));
-    expect(sets.single.code, 'duplicate-complete');
-    expect(sets.single.cardCount, 12);
-    expect(identical(sets, cachedSets), isTrue);
-    expect(requests, hasLength(1));
-    expect(requests.single.url.path, '/rest/v1/rpc/get_public_catalog_sets_v2');
+      expect(sets, hasLength(1));
+      expect(sets.single.code, 'duplicate-complete');
+      expect(sets.single.cardCount, 12);
+      expect(identical(sets, cachedSets), isTrue);
+      expect(requests, hasLength(3));
+      expect(
+        requests.every(
+          (request) =>
+              request.url.path == '/rest/v1/rpc/get_public_catalog_sets_v2',
+        ),
+        isTrue,
+      );
+      expect(
+        requests
+            .map(
+              (request) =>
+                  (jsonDecode(request.body)
+                      as Map<String, dynamic>)['p_game_code'],
+            )
+            .toSet(),
+        {'pokemon', 'one_piece', 'mtg'},
+      );
 
-    await PublicSetsService.fetchSets(client: client, forceRefresh: true);
-    expect(requests, hasLength(2));
-  });
+      await PublicSetsService.fetchSets(client: client, forceRefresh: true);
+      expect(requests, hasLength(6));
+    },
+  );
 
   test('set route aliases resolve to their canonical codes', () {
     expect(PublicSetsService.resolveSetRouteCode('Shiny Vault'), 'sma');
