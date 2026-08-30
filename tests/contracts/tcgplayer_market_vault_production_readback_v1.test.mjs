@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   evaluateTcgplayerMarketVaultProductionReadbackV1,
+  selectTcgplayerMarketPublicVaultSampleGroupV1,
 } from "../../backend/pricing/tcgplayer_market_vault_production_readback_policy_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -78,6 +79,8 @@ function evidence() {
         card_print_id: "card-print-1",
         priced_copy_count: 2,
         unpriced_copy_count: 1,
+        public_copy_count: 3,
+        private_copy_count: 0,
         reconciled_total_usd: 24.68,
         independent_total_usd: 24.68,
         latest_observed_at: "2026-07-28T08:15:00.000Z",
@@ -226,10 +229,53 @@ test("a production proof requires at least one priced exact copy", () => {
   );
 });
 
+test("shared product proof sample excludes private and mixed vault groups", () => {
+  const selected = selectTcgplayerMarketPublicVaultSampleGroupV1([
+    {
+      card_print_id: "card-print-1",
+      priced_copy_count: 1,
+      unpriced_copy_count: 0,
+      public_copy_count: 0,
+      private_copy_count: 1,
+    },
+    {
+      card_print_id: "card-print-2",
+      priced_copy_count: 1,
+      unpriced_copy_count: 1,
+      public_copy_count: 1,
+      private_copy_count: 1,
+    },
+    {
+      card_print_id: "card-print-3",
+      priced_copy_count: 1,
+      unpriced_copy_count: 0,
+      public_copy_count: 1,
+      private_copy_count: 0,
+    },
+  ]);
+
+  assert.equal(selected?.card_print_id, "card-print-3");
+});
+
+test("readback policy rejects a private cross-surface sample", () => {
+  const input = evidence();
+  input.exact_pricing.sample_group.public_copy_count = 0;
+  input.exact_pricing.sample_group.private_copy_count = 3;
+  const result = evaluateTcgplayerMarketVaultProductionReadbackV1(input);
+  assert.equal(result.status, "failed");
+  assert.ok(
+    result.findings.includes(
+      "vault_exact_pricing_sample_group_not_fully_public",
+    ),
+  );
+});
+
 test("production readback is read-only, hashed, and omits owner identifiers", () => {
   assert.match(AUDIT, /begin read only/i);
   assert.doesNotMatch(AUDIT, /\b(insert|update|delete|truncate)\s+public\./i);
   assert.match(AUDIT, /customer_identifiers_in_artifacts:\s*false/);
+  assert.match(AUDIT, /intent::text as intent/);
+  assert.match(AUDIT, /selectTcgplayerMarketPublicVaultSampleGroupV1/);
   assert.match(AUDIT, /artifact_hashes\.json/);
   assert.match(AUDIT, /--require-pass/);
   assert.match(AUDIT, /value\("expected-commit-sha"\)/);

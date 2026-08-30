@@ -9,6 +9,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   evaluateTcgplayerMarketVaultProductionReadbackV1,
+  selectTcgplayerMarketPublicVaultSampleGroupV1,
   TCGPLAYER_MARKET_VAULT_PRODUCTION_READBACK_POLICY_V1,
 } from "../../backend/pricing/tcgplayer_market_vault_production_readback_policy_v1.mjs";
 
@@ -357,7 +358,8 @@ async function queryRuntimeEvidence(client, relationExists) {
       `select
          id::text as instance_id,
          card_print_id::text as card_print_id,
-         card_printing_id::text as card_printing_id
+         card_printing_id::text as card_printing_id,
+         intent::text as intent
        from public.vault_item_instances
        where user_id = $1::uuid
          and archived_at is null
@@ -382,6 +384,9 @@ async function queryRuntimeEvidence(client, relationExists) {
 
   const expectedIds = new Set(
     expectedTargets.map((row) => row.instance_id),
+  );
+  const expectedIntentByInstanceId = new Map(
+    expectedTargets.map((row) => [row.instance_id, row.intent]),
   );
   const authenticatedIds = authenticatedTargets.map(
     (row) => row.instance_id,
@@ -468,11 +473,19 @@ async function queryRuntimeEvidence(client, relationExists) {
       card_print_id: target.card_print_id,
       priced_copy_count: 0,
       unpriced_copy_count: 0,
+      public_copy_count: 0,
+      private_copy_count: 0,
       reconciled_total_usd: 0,
       independent_total_usd: 0,
       latest_observed_at: null,
       latest_published_at: null,
     };
+    const intent = expectedIntentByInstanceId.get(target.instance_id);
+    if (["sell", "trade", "showcase"].includes(intent)) {
+      group.public_copy_count += 1;
+    } else {
+      group.private_copy_count += 1;
+    }
     const rpcRow = availableByPrintingId.get(target.card_printing_id);
     if (rpcRow) {
       const rpcAmount = money(rpcRow.market_close);
@@ -506,21 +519,21 @@ async function queryRuntimeEvidence(client, relationExists) {
     }
     groupTotals.set(target.card_print_id, group);
   }
-  const sampleGroup =
-    [...groupTotals.values()]
-      .filter((group) => group.priced_copy_count > 0)
-      .sort((left, right) =>
-        left.card_print_id.localeCompare(right.card_print_id),
-      )
-      .map((group) => ({
-        ...group,
+  const selectedSampleGroup =
+    selectTcgplayerMarketPublicVaultSampleGroupV1([
+      ...groupTotals.values(),
+    ]);
+  const sampleGroup = selectedSampleGroup
+    ? {
+        ...selectedSampleGroup,
         reconciled_total_usd: Number(
-          group.reconciled_total_usd.toFixed(6),
+          selectedSampleGroup.reconciled_total_usd.toFixed(6),
         ),
         independent_total_usd: Number(
-          group.independent_total_usd.toFixed(6),
+          selectedSampleGroup.independent_total_usd.toFixed(6),
         ),
-      }))[0] ?? null;
+      }
+    : null;
 
   return {
     access: {

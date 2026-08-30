@@ -15,6 +15,26 @@ function includesOption(options, expected) {
   return Array.isArray(options) && options.includes(expected);
 }
 
+export function selectTcgplayerMarketPublicVaultSampleGroupV1(groups = []) {
+  return groups
+    .filter((group) => {
+      const pricedCopyCount = integer(group.priced_copy_count);
+      const unpricedCopyCount = integer(group.unpriced_copy_count);
+      const publicCopyCount = integer(group.public_copy_count);
+      const privateCopyCount = integer(group.private_copy_count);
+      return (
+        pricedCopyCount > 0 &&
+        publicCopyCount === pricedCopyCount + unpricedCopyCount &&
+        privateCopyCount === 0
+      );
+    })
+    .sort((left, right) =>
+      String(left.card_print_id ?? "").localeCompare(
+        String(right.card_print_id ?? ""),
+      ),
+    )[0] ?? null;
+}
+
 function directViewAuthorityIsValid(schema) {
   return (
     includesOption(schema.relation_options, "security_invoker=false") &&
@@ -159,6 +179,14 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
     ) {
       findings.push("vault_exact_pricing_sample_group_total_mismatch");
     }
+    if (
+      integer(sampleGroup.public_copy_count) !==
+        integer(sampleGroup.priced_copy_count) +
+          integer(sampleGroup.unpriced_copy_count) ||
+      integer(sampleGroup.private_copy_count) !== 0
+    ) {
+      findings.push("vault_exact_pricing_sample_group_not_fully_public");
+    }
   }
   if (
     Math.abs(
@@ -244,6 +272,8 @@ export function evaluateTcgplayerMarketVaultProductionReadbackV1(
             card_print_id: sampleGroup.card_print_id ?? null,
             priced_copy_count: integer(sampleGroup.priced_copy_count),
             unpriced_copy_count: integer(sampleGroup.unpriced_copy_count),
+            public_copy_count: integer(sampleGroup.public_copy_count),
+            private_copy_count: integer(sampleGroup.private_copy_count),
             reconciled_total_usd: money(
               sampleGroup.reconciled_total_usd,
             ),
