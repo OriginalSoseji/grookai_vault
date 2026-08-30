@@ -494,10 +494,14 @@ class PublicCollectorService {
       return PublicCollectorSurfaceResult.notFound();
     }
 
-    final profile = await loadPublicProfileBySlug(
-      client: client,
-      slug: normalizedSlug,
-    );
+    // The wall views are public-safe and independently enforce visibility, so
+    // profile metadata and wall content can load together. Keeping them serial
+    // made every Wall visit pay two full network round trips before first paint.
+    final initialResults = await Future.wait<dynamic>([
+      loadPublicProfileBySlug(client: client, slug: normalizedSlug),
+      loadCollectorWallViewBySlug(client: client, slug: normalizedSlug),
+    ]);
+    final profile = initialResults[0] as PublicCollectorProfile?;
 
     if (profile == null) {
       return PublicCollectorSurfaceResult.notFound();
@@ -507,10 +511,7 @@ class PublicCollectorService {
       return PublicCollectorSurfaceResult.unavailable();
     }
 
-    final wallView = await loadCollectorWallViewBySlug(
-      client: client,
-      slug: profile.slug,
-    );
+    final wallView = initialResults[1] as CollectorWallView;
 
     if (wallView.wallCards.isEmpty && wallView.sections.isEmpty) {
       return PublicCollectorSurfaceResult.empty(profile);

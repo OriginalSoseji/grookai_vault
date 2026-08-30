@@ -23,13 +23,19 @@ test("privileged image lookup cannot bypass request-role catalog visibility", ()
   assert.match(route, /createServerComponentClient/);
   assert.match(route, /request\.headers\.get\("authorization"\)/);
   assert.match(route, /createSupabaseClient\(url, publishableKey/);
-  assert.match(route, /catalog_card_print_visible_to_request_v1/);
-  assert.match(route, /!\(await catalogCardVisibleToRequest\(request, cardPrintId\)\)/);
+  assert.match(route, /sets\(game,catalog_set_release_controls\(release_status\)\)/);
+  assert.match(route, /games\(code,catalog_game_release_controls\(release_status\)\)/);
+  assert.match(route, /function catalogImageAccess/);
+  assert.match(route, /explicitSetStatus === "hidden"/);
+  assert.match(route, /if \(access === "hidden"\) return false/);
+  assert.match(route, /return requestIsAuthenticated\(request\)/);
+  assert.doesNotMatch(route, /catalog_card_print_visible_to_request_v1/);
 });
 
 test("signed-in-only catalog images never enter a public CDN cache", () => {
   assert.match(route, /catalog_game_release_controls/);
-  assert.match(route, /control\?\.release_status === "public"/);
+  assert.match(route, /explicitSetStatus === "public"/);
+  assert.match(route, /gameStatus === "public"/);
   assert.match(route, /cacheScope === "public"/);
   assert.match(route, /"private, no-store"/);
 });
