@@ -40,6 +40,10 @@ function parseArgs(argv) {
       process.env.TCGPLAYER_MARKET_FULL_ACTIVATION_RUN_ID || "",
     expectedCommitSha:
       process.env.TCGPLAYER_MARKET_FULL_EXPECTED_COMMIT_SHA || "",
+    expectedCoverageCommitSha:
+      process.env.TCGPLAYER_MARKET_FULL_COVERAGE_COMMIT_SHA || "",
+    expectedPerformanceCommitSha:
+      process.env.TCGPLAYER_MARKET_FULL_PERFORMANCE_COMMIT_SHA || "",
     coverageSummary:
       process.env.TCGPLAYER_MARKET_FULL_COVERAGE_SUMMARY || "",
     performanceSummary:
@@ -58,6 +62,16 @@ function parseArgs(argv) {
     } else if (arg.startsWith("--expected-commit-sha=")) {
       args.expectedCommitSha = arg
         .slice("--expected-commit-sha=".length)
+        .trim()
+        .toLowerCase();
+    } else if (arg.startsWith("--expected-coverage-commit-sha=")) {
+      args.expectedCoverageCommitSha = arg
+        .slice("--expected-coverage-commit-sha=".length)
+        .trim()
+        .toLowerCase();
+    } else if (arg.startsWith("--expected-performance-commit-sha=")) {
+      args.expectedPerformanceCommitSha = arg
+        .slice("--expected-performance-commit-sha=".length)
         .trim()
         .toLowerCase();
     } else if (arg.startsWith("--coverage-summary=")) {
@@ -89,6 +103,18 @@ function parseArgs(argv) {
   }
   if (!/^[a-f0-9]{40}$/.test(args.expectedCommitSha)) {
     throw new Error("--expected-commit-sha must be a full lowercase SHA");
+  }
+  args.expectedCoverageCommitSha ||= args.expectedCommitSha;
+  args.expectedPerformanceCommitSha ||= args.expectedCommitSha;
+  if (!/^[a-f0-9]{40}$/.test(args.expectedCoverageCommitSha)) {
+    throw new Error(
+      "--expected-coverage-commit-sha must be a full lowercase SHA",
+    );
+  }
+  if (!/^[a-f0-9]{40}$/.test(args.expectedPerformanceCommitSha)) {
+    throw new Error(
+      "--expected-performance-commit-sha must be a full lowercase SHA",
+    );
   }
   if (!args.coverageSummary) {
     throw new Error("--coverage-summary is required");
@@ -541,6 +567,8 @@ async function main() {
       requiredCycles: args.requiredCycles,
       scheduleToleranceMinutes: args.scheduleToleranceMinutes,
       expectedCommitSha: args.expectedCommitSha,
+      expectedCoverageCommitSha: args.expectedCoverageCommitSha,
+      expectedPerformanceCommitSha: args.expectedPerformanceCommitSha,
       coverage,
       performance,
       ...evidence,
@@ -559,6 +587,8 @@ async function main() {
       window_start: args.windowStart,
       activation_run_id: args.activationRunId,
       expected_commit_sha: args.expectedCommitSha,
+      expected_coverage_commit_sha: args.expectedCoverageCommitSha,
+      expected_performance_commit_sha: args.expectedPerformanceCommitSha,
       as_of: asOf,
       evidence_through: evidenceThrough,
       required_cycles: args.requiredCycles,

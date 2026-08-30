@@ -260,7 +260,7 @@ test("current lineage, source, access, rollback, and alerts fail closed", () => 
   assert.ok(result.findings.includes("publication_rollback_not_available"));
 });
 
-test("coverage and performance evidence must be clean and same-commit", () => {
+test("coverage and performance evidence must be clean and match their explicit pins", () => {
   const result = evaluateTcgplayerMarketFullRolloutObservationV1(
     baseInput({
       coverage: coverage({
@@ -288,6 +288,29 @@ test("coverage and performance evidence must be clean and same-commit", () => {
   assert.ok(result.findings.includes("fresh_read_performance_gate_not_passed"));
 });
 
+test("independently produced evidence passes when every lane has an explicit SHA pin", () => {
+  const coverageCommit = "abcdef1234567890abcdef1234567890abcdef12";
+  const performanceCommit = "fedcba0987654321fedcba0987654321fedcba09";
+  const result = evaluateTcgplayerMarketFullRolloutObservationV1(
+    baseInput({
+      expectedCoverageCommitSha: coverageCommit,
+      expectedPerformanceCommitSha: performanceCommit,
+      coverage: coverage({ producing_commit_sha: coverageCommit }),
+      performance: performance({ producing_commit_sha: performanceCommit }),
+    }),
+  );
+  assert.equal(result.status, "observing");
+  assert.deepEqual(result.findings, []);
+  assert.equal(
+    result.run_evidence.expected_coverage_commit_sha,
+    coverageCommit,
+  );
+  assert.equal(
+    result.run_evidence.expected_performance_commit_sha,
+    performanceCommit,
+  );
+});
+
 test("the observer is read-only and preserves governed evidence artifacts", () => {
   assert.match(SCRIPT, /begin read only|database_reads_only:\s*true/i);
   assert.match(SCRIPT, /coverage_summary_input\.json/);
@@ -295,6 +318,8 @@ test("the observer is read-only and preserves governed evidence artifacts", () =
   assert.match(SCRIPT, /artifact_hashes\.json/);
   assert.match(SCRIPT, /observer_commit_sha:\s*gitValue/);
   assert.match(SCRIPT, /observer_tracked_worktree_clean/);
+  assert.match(SCRIPT, /--expected-coverage-commit-sha/);
+  assert.match(SCRIPT, /--expected-performance-commit-sha/);
   assert.match(SCRIPT, /--require-pass/);
   assert.doesNotMatch(
     SCRIPT,

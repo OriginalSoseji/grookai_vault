@@ -11,7 +11,7 @@ import {
 } from "./tcgplayer_market_publication_policy_v1.mjs";
 
 export const TCGPLAYER_MARKET_FULL_ROLLOUT_OBSERVATION_POLICY_V1 =
-  "TCGPLAYER_MARKET_FULL_ROLLOUT_OBSERVATION_POLICY_V1";
+  "TCGPLAYER_MARKET_FULL_ROLLOUT_OBSERVATION_POLICY_V1_1";
 
 const MINUTE_MS = 60 * 1000;
 
@@ -223,6 +223,8 @@ export function evaluateTcgplayerMarketFullRolloutObservationV1({
   scheduleMinuteUtc = 15,
   scheduleToleranceMinutes = 90,
   expectedCommitSha,
+  expectedCoverageCommitSha = expectedCommitSha,
+  expectedPerformanceCommitSha = expectedCommitSha,
   activationRun,
   scheduledRuns = [],
   terminalAlerts = [],
@@ -236,8 +238,22 @@ export function evaluateTcgplayerMarketFullRolloutObservationV1({
   const start = instant(windowStart, "windowStart");
   const end = instant(asOf, "asOf");
   const commitSha = string(expectedCommitSha).toLowerCase();
+  const coverageCommitSha = string(expectedCoverageCommitSha).toLowerCase();
+  const performanceCommitSha = string(
+    expectedPerformanceCommitSha,
+  ).toLowerCase();
   if (!/^[a-f0-9]{40}$/.test(commitSha)) {
     throw new Error("expectedCommitSha must be a full lowercase commit SHA");
+  }
+  if (!/^[a-f0-9]{40}$/.test(coverageCommitSha)) {
+    throw new Error(
+      "expectedCoverageCommitSha must be a full lowercase commit SHA",
+    );
+  }
+  if (!/^[a-f0-9]{40}$/.test(performanceCommitSha)) {
+    throw new Error(
+      "expectedPerformanceCommitSha must be a full lowercase commit SHA",
+    );
   }
   if (
     !Number.isFinite(scheduleToleranceMinutes) ||
@@ -384,13 +400,13 @@ export function evaluateTcgplayerMarketFullRolloutObservationV1({
   evaluatePerformance(performance, findings);
   if (
     string(coverage?.producing_commit_sha) &&
-    string(coverage?.producing_commit_sha) !== commitSha
+    string(coverage?.producing_commit_sha) !== coverageCommitSha
   ) {
     findings.push("coverage_producing_commit_mismatch");
   }
   if (
     string(performance?.producing_commit_sha) &&
-    string(performance?.producing_commit_sha) !== commitSha
+    string(performance?.producing_commit_sha) !== performanceCommitSha
   ) {
     findings.push("performance_producing_commit_mismatch");
   }
@@ -427,6 +443,8 @@ export function evaluateTcgplayerMarketFullRolloutObservationV1({
     },
     run_evidence: {
       expected_commit_sha: commitSha,
+      expected_coverage_commit_sha: coverageCommitSha,
+      expected_performance_commit_sha: performanceCommitSha,
       expected_policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
       activation_run_key: activationRun?.run_key ?? null,
       scheduled_run_count: runs.length,
