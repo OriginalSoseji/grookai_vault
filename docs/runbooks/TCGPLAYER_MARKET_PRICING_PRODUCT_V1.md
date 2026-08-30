@@ -530,6 +530,13 @@ The observer reads production state and copies the governed coverage and
 performance summaries into a hashed audit package. It performs no writes,
 publication activation, grant changes, rollback, or deployment.
 
+The frozen August 2026 full-rollout gate is also observed by
+`.github/workflows/tcgplayer-market-full-rollout-observation.yml`. The workflow
+runs daily after the production cycle, checks out an immutable observer/evidence
+commit, verifies every evidence hash before reading production, and switches to
+`--require-pass` only after the seventh-cycle deadline. It has `contents: read`
+permission and no database mutation command.
+
 ## Public Rollout
 
 Keep RPC execution authenticated-only during the signed-in canary.

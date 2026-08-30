@@ -1,0 +1,130 @@
+name: TCGPlayer Market Full Rollout Observation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 11 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tcgplayer-market-full-rollout-observation
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FULL_WINDOW_START: "2026-08-26T08:15:00.000Z"
+      FULL_REQUIRED_END: "2026-09-02T09:45:00.000Z"
+      FINAL_OBSERVATION_DEADLINE: "2026-09-03T11:15:00.000Z"
+      FULL_ACTIVATION_RUN_ID: "70ab50a3-1603-47d3-96ab-30c42515e7fa"
+      FULL_EXPECTED_RUNTIME_SHA: "4b6064a5fb7eeacb7887c240735fc6dd8ffec06f"
+      FULL_EXPECTED_COVERAGE_SHA: "0adeba22428e798496ce3141b34f32cabd6d8ccd"
+      FULL_EXPECTED_PERFORMANCE_SHA: "00e03d05fc8f6f80ecf5523140611991e617f581"
+      OBSERVER_SOURCE_SHA: "364a4ba968548f0c4535bb5ca4370f78b828b2a5"
+      COVERAGE_SUMMARY: "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/coverage/summary.json"
+      PERFORMANCE_SUMMARY: "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/performance/summary.json"
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+
+    steps:
+      - name: Determine observation requirement
+        id: window
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          now_epoch="$(date -u +%s)"
+          required_end_epoch="$(date -u -d "${FULL_REQUIRED_END}" +%s)"
+          final_deadline_epoch="$(date -u -d "${FINAL_OBSERVATION_DEADLINE}" +%s)"
+
+          if (( now_epoch > final_deadline_epoch )) &&
+             [[ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]]; then
+            echo "observe=false" >> "$GITHUB_OUTPUT"
+            echo "require_pass=false" >> "$GITHUB_OUTPUT"
+            echo "The frozen seven-cycle observation window is complete." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          echo "observe=true" >> "$GITHUB_OUTPUT"
+          if (( now_epoch >= required_end_epoch )); then
+            echo "require_pass=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "require_pass=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out frozen observer and evidence
+        if: ${{ steps.window.outputs.observe == 'true' }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.OBSERVER_SOURCE_SHA }}
+
+      - name: Verify frozen evidence hashes
+        if: ${{ steps.window.outputs.observe == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "9de5a4793dd205b4c275810b8f983acbf106c82840ebef5a5723fc2b75c8b3f3  ${COVERAGE_SUMMARY}" | sha256sum --check --strict
+          echo "2c9830a051f5eddea4466b0175e936accd183f16e22691fc53a3fe254f389f82  $(dirname "${COVERAGE_SUMMARY}")/run_plan.json" | sha256sum --check --strict
+          echo "75774460cced0c301ebde72e12206ecae8906fcdfc1fa641ec6ae57d6be89375  ${PERFORMANCE_SUMMARY}" | sha256sum --check --strict
+          echo "574a193b7117216587e223971e69a13400544d648e58ca7e251660e0b6b34bb1  $(dirname "${PERFORMANCE_SUMMARY}")/run_plan.json" | sha256sum --check --strict
+
+      - name: Set up Node
+        if: ${{ steps.window.outputs.observe == 'true' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        if: ${{ steps.window.outputs.observe == 'true' }}
+        run: npm ci --no-audit --no-fund
+
+      - name: Observe frozen full rollout
+        if: ${{ steps.window.outputs.observe == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          require_pass=()
+          if [[ "${{ steps.window.outputs.require_pass }}" == "true" ]]; then
+            require_pass=(--require-pass)
+          fi
+
+          node scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs \
+            "--window-start=${FULL_WINDOW_START}" \
+            "--activation-run-id=${FULL_ACTIVATION_RUN_ID}" \
+            "--expected-commit-sha=${FULL_EXPECTED_RUNTIME_SHA}" \
+            "--expected-coverage-commit-sha=${FULL_EXPECTED_COVERAGE_SHA}" \
+            "--expected-performance-commit-sha=${FULL_EXPECTED_PERFORMANCE_SHA}" \
+            "--coverage-summary=${COVERAGE_SUMMARY}" \
+            "--performance-summary=${PERFORMANCE_SUMMARY}" \
+            --required-cycles=7 \
+            --schedule-tolerance-minutes=90 \
+            --out-root="$RUNNER_TEMP/tcgplayer-market-full-rollout-observation" \
+            "${require_pass[@]}"
+
+          latest_summary="$(
+            find "$RUNNER_TEMP/tcgplayer-market-full-rollout-observation" \
+              -type f -name summary.json -print | sort | tail -1
+          )"
+          test -n "$latest_summary"
+
+          {
+            echo "## TCGPlayer Market full rollout"
+            echo
+            echo '```json'
+            cat "$latest_summary"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload observation evidence
+        if: ${{ always() && steps.window.outputs.observe == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcgplayer-market-full-rollout-observation-${{ github.run_id }}
+          path: ${{ runner.temp }}/tcgplayer-market-full-rollout-observation
+          if-no-files-found: error
+          retention-days: 30
