@@ -1,0 +1,64 @@
+{
+  "audit_version": "TCGPLAYER_MARKET_READ_PERFORMANCE_AUDIT_V1",
+  "policy_version": "TCGPLAYER_MARKET_PERFORMANCE_POLICY_V1",
+  "commit_sha": "00e03d05fc8f6f80ecf5523140611991e617f581",
+  "branch": "fix/mee-health-bounded-current-run",
+  "started_at": "2026-08-29T20:04:36.788Z",
+  "endpoint_host": "ycdxbpibncqcchqiihfz.supabase.co",
+  "rpc": "get_market_pricing_read_model_v1",
+  "http_credential_mode": "service_role_transport",
+  "direct_database_role": "authenticated",
+  "iterations": 30,
+  "warmups": 3,
+  "target_p95_ms": 500,
+  "max_representative_batch": 200,
+  "parent_sample_count": 105026,
+  "printing_sample_count": 164134,
+  "function_definition_sha256": "c2b85aae19a14ec5b2e682720fb00215757ede62de48306801bff687bc3f0e42",
+  "cases": [
+    {
+      "case_id": "parent_detail_1",
+      "scope": "parent",
+      "requested_id_count": 1,
+      "expected_row_count": 1
+    },
+    {
+      "case_id": "parent_grid_25",
+      "scope": "parent",
+      "requested_id_count": 25,
+      "expected_row_count": 25
+    },
+    {
+      "case_id": "parent_grid_representative",
+      "scope": "parent",
+      "requested_id_count": 200,
+      "expected_row_count": 200
+    },
+    {
+      "case_id": "printing_detail_1",
+      "scope": "card_printing",
+      "requested_id_count": 1,
+      "expected_row_count": 1
+    },
+    {
+      "case_id": "printing_batch_50",
+      "scope": "card_printing",
+      "requested_id_count": 50,
+      "expected_row_count": 50
+    },
+    {
+      "case_id": "printing_batch_representative",
+      "scope": "card_printing",
+      "requested_id_count": 200,
+      "expected_row_count": 200
+    }
+  ],
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "publication_writes": false,
+    "mapping_writes": false,
+    "customer_state_writes": false,
+    "secrets_persisted": false
+  }
+}
