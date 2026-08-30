@@ -19,6 +19,7 @@ const inbox = readFileSync(
   "utf8",
 );
 const pulse = readFileSync("lib/screens/network/network_screen.dart", "utf8");
+const account = readFileSync("lib/screens/account/account_screen.dart", "utf8");
 const routeService = readFileSync(
   "lib/services/navigation/grookai_web_route_service.dart",
   "utf8",
@@ -59,12 +60,21 @@ test("founder RPCs bound reads and enforce monotonic unread cursors", () => {
   assert.match(migration, /least\(greatest\(coalesce\(p_limit, 50\), 1\), 100\)/i);
   assert.match(migration, /founder_notification_cursor_requires_pair/i);
   assert.match(migration, /founder_notification_seen_cursor_requires_pair/i);
-  assert.match(migration, /founder_notification_seen_cursor_cannot_move_backwards/i);
+  assert.match(
+    migration,
+    /\(excluded\.seen_through_received_at, excluded\.seen_through_event_id\)/i,
+  );
+  assert.match(
+    migration,
+    /> \(\s*public\.founder_notification_viewer_state\.seen_through_received_at/is,
+  );
   assert.match(migration, /order by events\.received_at desc, events\.id desc/i);
 });
 
 test("mobile service reads history and maintains the private seen cursor", () => {
   assert.match(service, /founder_notification_items_v1/);
+  assert.match(service, /founder_notification_item_v1/);
+  assert.match(service, /current_user_has_founder_entitlement_v1/);
   assert.match(service, /founder_notification_unread_count_v1/);
   assert.match(service, /founder_notification_mark_seen_v1/);
   assert.match(service, /latestReceivedAt/);
@@ -76,6 +86,13 @@ test("Pulse exposes a concise founder projection and a permanent evidence inbox"
   assert.match(pulse, /FounderNotificationRow/);
   assert.match(pulse, /FounderNotificationsScreen/);
   assert.match(pulse, /_founderNotificationUnread/);
+  assert.match(pulse, /_founderNotificationService\.hasAccess\(\)/);
+  assert.doesNotMatch(pulse, /FounderInsightService\.isFounderUser/);
+  assert.match(
+    account,
+    /FounderNotificationService\(\s*client: _client,?\s*\)/,
+  );
+  assert.match(account, /_hasFounderAccess/);
   assert.match(inbox, /Founder Notifications/);
   assert.match(inbox, /Action/);
   assert.match(inbox, /Updates/);
@@ -91,4 +108,5 @@ test("push, app, and web routes converge on the same founder inbox", () => {
   assert.match(routeService, /notification_id/);
   assert.match(webInbox, /requireFounderAccess/);
   assert.match(webInbox, /operations_notification_events/);
+  assert.match(webInbox, /\.eq\("notification_id", requestedId\)/);
 });

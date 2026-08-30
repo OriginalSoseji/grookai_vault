@@ -13,7 +13,6 @@ import '../../services/diagnostics/app_boot_timing.dart';
 import '../../services/identity/canon_image_url_service.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
-import '../../services/network/founder_insight_service.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/network/pulse_service.dart';
 import '../../services/notifications/founder_notification_service.dart';
@@ -186,6 +185,9 @@ class NetworkScreenState extends State<NetworkScreen> {
   List<FounderNotificationItem> _founderNotifications =
       const <FounderNotificationItem>[];
   bool _founderNotificationsLoading = false;
+  bool _founderNotificationAccessChecked = false;
+  bool _founderNotificationAccessLoading = false;
+  bool _hasFounderNotificationAccess = false;
   DateTime? _pulseNextCursorCreatedAt;
   String? _pulseNextCursorEventId;
   Map<String, OwnershipState> _ownershipStatesByCardPrintId =
@@ -460,11 +462,8 @@ class NetworkScreenState extends State<NetworkScreen> {
       }
     });
 
-    if (!older &&
-        FounderInsightService.isFounderUser(_client.auth.currentUser)) {
-      unawaited(
-        _loadFounderNotificationsForPulse(resetGeneration: resetGeneration),
-      );
+    if (!older) {
+      unawaited(_ensureFounderNotificationsForPulse(resetGeneration));
     }
 
     try {
@@ -513,6 +512,35 @@ class NetworkScreenState extends State<NetworkScreen> {
         _pulseLoading = false;
         _pulseLoadingOlder = false;
       });
+    }
+  }
+
+  Future<void> _ensureFounderNotificationsForPulse(int resetGeneration) async {
+    if (_founderNotificationAccessLoading) return;
+    if (_founderNotificationAccessChecked) {
+      if (_hasFounderNotificationAccess) {
+        await _loadFounderNotificationsForPulse(
+          resetGeneration: resetGeneration,
+        );
+      }
+      return;
+    }
+
+    _founderNotificationAccessLoading = true;
+    try {
+      final hasAccess = await _founderNotificationService.hasAccess();
+      if (!mounted) return;
+      _founderNotificationAccessChecked = true;
+      _hasFounderNotificationAccess = hasAccess;
+      if (hasAccess) {
+        await _loadFounderNotificationsForPulse(
+          resetGeneration: _resetGeneration,
+        );
+      }
+    } catch (error) {
+      debugPrint('[FOUNDER_NOTIFICATIONS_V1] entitlement_check_failed=$error');
+    } finally {
+      _founderNotificationAccessLoading = false;
     }
   }
 

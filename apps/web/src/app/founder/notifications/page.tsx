@@ -86,7 +86,24 @@ export default async function FounderNotificationsPage({
     .order("id", { ascending: false })
     .limit(100);
 
-  const rows = ((data ?? []) as FounderNotificationRow[]).sort((left, right) => {
+  let rows = (data ?? []) as FounderNotificationRow[];
+  if (
+    requestedId &&
+    !rows.some((row) => row.notification_id === requestedId)
+  ) {
+    const { data: requestedRow } = await admin
+      .from("operations_notification_events")
+      .select(
+        "id,notification_id,event_type,severity,source_host,source_unit,source_commit_sha,payload,received_at",
+      )
+      .eq("notification_id", requestedId)
+      .maybeSingle();
+    if (requestedRow) {
+      rows = [requestedRow as FounderNotificationRow, ...rows];
+    }
+  }
+
+  rows = rows.sort((left, right) => {
     const leftRequested = left.notification_id === requestedId ? 1 : 0;
     const rightRequested = right.notification_id === requestedId ? 1 : 0;
     return rightRequested - leftRequested;

@@ -210,6 +210,7 @@ void main() {
           '/dex/*',
           '/network*',
           '/feed*',
+          '/founder/notifications*',
         ]),
       );
     },
@@ -254,6 +255,7 @@ void main() {
       '/b/',
       '/binder-invites/',
       '/binder-templates/',
+      '/founder/notifications',
     ]) {
       expect(manifest, contains('"$path"'), reason: path);
     }

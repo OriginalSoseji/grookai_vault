@@ -158,6 +158,81 @@ $$;
 comment on function public.founder_notification_items_v1(integer, timestamptz, uuid, boolean) is
 'Founder-entitlement-checked read model over the append-only operations notification ledger. No collector can read this history.';
 
+create or replace function public.founder_notification_item_v1(
+  p_notification_id text
+)
+returns table (
+  id uuid,
+  notification_id text,
+  event_type text,
+  severity text,
+  source_host text,
+  source_unit text,
+  source_commit_sha text,
+  payload jsonb,
+  recipient_count integer,
+  received_at timestamptz,
+  is_unread boolean
+)
+language plpgsql
+stable
+security definer
+set search_path = public
+as $$
+declare
+  v_uid uuid := auth.uid();
+  v_notification_id text := nullif(btrim(p_notification_id), '');
+begin
+  if v_uid is null then
+    raise exception 'not_authenticated' using errcode = '28000';
+  end if;
+
+  if not public.current_user_has_founder_entitlement_v1() then
+    raise exception 'founder_access_required' using errcode = '42501';
+  end if;
+
+  if v_notification_id is null then
+    raise exception 'founder_notification_id_required';
+  end if;
+
+  return query
+  with state as (
+    select
+      viewer.seen_through_received_at,
+      viewer.seen_through_event_id
+    from public.founder_notification_viewer_state viewer
+    where viewer.user_id = v_uid
+  )
+  select
+    events.id,
+    events.notification_id,
+    events.event_type,
+    events.severity,
+    events.source_host,
+    events.source_unit,
+    events.source_commit_sha,
+    events.payload,
+    events.recipient_count,
+    events.received_at,
+    (
+      state.seen_through_received_at is null
+      or events.received_at > state.seen_through_received_at
+      or (
+        events.received_at = state.seen_through_received_at
+        and events.id > state.seen_through_event_id
+      )
+    ) as is_unread
+  from public.operations_notification_events events
+  left join state on true
+  where events.notification_id = v_notification_id
+  order by events.received_at desc, events.id desc
+  limit 1;
+end;
+$$;
+
+comment on function public.founder_notification_item_v1(text) is
+'Founder-only exact alert lookup used by durable push and web deep links.';
+
 create or replace function public.founder_notification_unread_count_v1()
 returns table (
   unread_count integer,
@@ -233,7 +308,6 @@ set search_path = public
 as $$
 declare
   v_uid uuid := auth.uid();
-  v_existing public.founder_notification_viewer_state%rowtype;
 begin
   if v_uid is null then
     raise exception 'not_authenticated' using errcode = '28000';
@@ -245,24 +319,6 @@ begin
 
   if (p_seen_through_received_at is null) <> (p_seen_through_event_id is null) then
     raise exception 'founder_notification_seen_cursor_requires_pair';
-  end if;
-
-  select *
-  into v_existing
-  from public.founder_notification_viewer_state viewer
-  where viewer.user_id = v_uid;
-
-  if p_seen_through_received_at is not null
-     and v_existing.user_id is not null
-     and v_existing.seen_through_received_at is not null
-     and (
-       p_seen_through_received_at < v_existing.seen_through_received_at
-       or (
-         p_seen_through_received_at = v_existing.seen_through_received_at
-         and p_seen_through_event_id < v_existing.seen_through_event_id
-       )
-     ) then
-    raise exception 'founder_notification_seen_cursor_cannot_move_backwards';
   end if;
 
   insert into public.founder_notification_viewer_state (
@@ -279,14 +335,30 @@ begin
   )
   on conflict on constraint founder_notification_viewer_state_pkey do update
   set
-    seen_through_received_at = coalesce(
-      excluded.seen_through_received_at,
-      public.founder_notification_viewer_state.seen_through_received_at
-    ),
-    seen_through_event_id = coalesce(
-      excluded.seen_through_event_id,
-      public.founder_notification_viewer_state.seen_through_event_id
-    ),
+    seen_through_received_at = case
+      when excluded.seen_through_received_at is null
+        then public.founder_notification_viewer_state.seen_through_received_at
+      when public.founder_notification_viewer_state.seen_through_received_at is null
+        or (excluded.seen_through_received_at, excluded.seen_through_event_id)
+          > (
+            public.founder_notification_viewer_state.seen_through_received_at,
+            public.founder_notification_viewer_state.seen_through_event_id
+          )
+        then excluded.seen_through_received_at
+      else public.founder_notification_viewer_state.seen_through_received_at
+    end,
+    seen_through_event_id = case
+      when excluded.seen_through_received_at is null
+        then public.founder_notification_viewer_state.seen_through_event_id
+      when public.founder_notification_viewer_state.seen_through_received_at is null
+        or (excluded.seen_through_received_at, excluded.seen_through_event_id)
+          > (
+            public.founder_notification_viewer_state.seen_through_received_at,
+            public.founder_notification_viewer_state.seen_through_event_id
+          )
+        then excluded.seen_through_event_id
+      else public.founder_notification_viewer_state.seen_through_event_id
+    end,
     last_opened_at = now();
 
   return query
@@ -311,6 +383,11 @@ grant execute on function public.current_user_has_founder_entitlement_v1()
 revoke all on function public.founder_notification_items_v1(integer, timestamptz, uuid, boolean)
   from public, anon;
 grant execute on function public.founder_notification_items_v1(integer, timestamptz, uuid, boolean)
+  to authenticated, service_role;
+
+revoke all on function public.founder_notification_item_v1(text)
+  from public, anon;
+grant execute on function public.founder_notification_item_v1(text)
   to authenticated, service_role;
 
 revoke all on function public.founder_notification_unread_count_v1()

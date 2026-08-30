@@ -48,10 +48,21 @@ class _FounderNotificationsScreenState
 
     try {
       final overview = await _service.fetchOverview(limit: 100);
+      final requested = widget.initialNotificationId?.trim() ?? '';
+      var items = overview.items;
+      if (requested.isNotEmpty &&
+          !items.any(
+            (item) => item.id == requested || item.notificationId == requested,
+          )) {
+        final exactItem = await _service.fetchItem(requested);
+        if (exactItem != null) {
+          items = <FounderNotificationItem>[exactItem, ...items];
+        }
+      }
       if (!mounted) return;
 
       setState(() {
-        _items = overview.items;
+        _items = items;
         _loading = false;
       });
 

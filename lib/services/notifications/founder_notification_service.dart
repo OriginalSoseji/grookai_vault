@@ -137,6 +137,14 @@ class FounderNotificationService {
 
   final SupabaseClient _client;
 
+  Future<bool> hasAccess() async {
+    if (_client.auth.currentUser == null) return false;
+    final response = await _client.rpc(
+      'current_user_has_founder_entitlement_v1',
+    );
+    return response == true || response?.toString().toLowerCase() == 'true';
+  }
+
   Future<FounderNotificationOverview> fetchOverview({int limit = 5}) async {
     final results = await Future.wait<dynamic>([
       fetchItems(limit: limit),
@@ -176,6 +184,19 @@ class FounderNotificationService {
         )
         .whereType<FounderNotificationItem>()
         .toList(growable: false);
+  }
+
+  Future<FounderNotificationItem?> fetchItem(String notificationId) async {
+    if (_client.auth.currentUser == null || notificationId.trim().isEmpty) {
+      return null;
+    }
+
+    final response = await _client.rpc(
+      'founder_notification_item_v1',
+      params: <String, dynamic>{'p_notification_id': notificationId.trim()},
+    );
+    final row = _firstMap(response);
+    return row == null ? null : FounderNotificationItem.fromJson(row);
   }
 
   Future<FounderNotificationUnreadSnapshot> fetchUnread() async {

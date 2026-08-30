@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../services/account/account_profile_service.dart';
 import '../../services/network/founder_insight_service.dart';
 import '../../services/network/local_discovery_settings_service.dart';
+import '../../services/notifications/founder_notification_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../widgets/founder/founder_market_signals_section.dart';
 import '../founder/founder_notifications_screen.dart';
@@ -52,6 +53,7 @@ class _AccountScreenState extends State<AccountScreen> {
   bool _founderInsightsLoading = false;
   String? _founderInsightsError;
   FounderInsightBundle? _founderInsights;
+  bool _hasFounderAccess = false;
 
   AccountProfileData? _profile;
   bool _publicProfileEnabled = false;
@@ -87,6 +89,9 @@ class _AccountScreenState extends State<AccountScreen> {
     });
 
     try {
+      final founderAccessFuture = FounderNotificationService(
+        client: _client,
+      ).hasAccess().catchError((_) => false);
       final profile = await AccountProfileService.loadCurrentProfile(
         client: _client,
       );
@@ -105,6 +110,7 @@ class _AccountScreenState extends State<AccountScreen> {
         localDiscoveryError =
             'Nearby collector settings are unavailable right now.';
       }
+      final hasFounderAccess = await founderAccessFuture;
 
       if (!mounted) {
         return;
@@ -112,6 +118,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
       _hydrateProfile(profile, wallEntry.state);
       setState(() {
+        _hasFounderAccess = hasFounderAccess;
         if (!_isFounderUser && _activeSegment == _AccountSegment.vendorTools) {
           _activeSegment = _AccountSegment.profile;
         }
@@ -132,8 +139,7 @@ class _AccountScreenState extends State<AccountScreen> {
     }
   }
 
-  bool get _isFounderUser =>
-      FounderInsightService.isFounderUser(_client.auth.currentUser);
+  bool get _isFounderUser => _hasFounderAccess;
 
   void _hydrateProfile(
     AccountProfileData profile,
