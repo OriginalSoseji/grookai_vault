@@ -1,0 +1,75 @@
+{
+  "schema_version": "APP_CANDIDATE_309_SYNC_SUMMARY_V1",
+  "as_of": "2026-08-30T18:38:45Z",
+  "status": "candidate_synchronized_automated_gates_passed_external_gates_open",
+  "completion_allowed": false,
+  "candidate": {
+    "source_commit": "39f9911173d7c5053f49cbb04b22d9c1b3ff624f",
+    "pull_request": 331,
+    "version": "1.0.0",
+    "build_number": 309
+  },
+  "web": {
+    "origin": "https://grookaivault.com",
+    "deployment_id": "5aJnbAAAtCsyVdn6bQK9dV45UEMA",
+    "deployment_status": "completed",
+    "route_cases": 22,
+    "route_passes": 22,
+    "personal_action_cases": 2,
+    "personal_action_passes": 2,
+    "failures": 0
+  },
+  "android": {
+    "workflow_run_id": "33326883149",
+    "package": "com.grookai.vault",
+    "version_code": 309,
+    "version_name": "1.0.0",
+    "apk_sha256": "5c4182ea14980c835714622e68bef4e0a73dac710bda7f975c3aa1a73b0174cf",
+    "apk_size_bytes": 81917116,
+    "installed_target": "emulator-5556",
+    "process_fatal_count": 0,
+    "network_limitation": "The emulator had no default route, so production-network behavior is not claimed from this target."
+  },
+  "ios": {
+    "bundle_id": "com.cesar.grookaivault",
+    "version": "1.0.0",
+    "build_number": 309,
+    "processing_state": "VALID",
+    "testflight_available_email_at": "2026-08-30T18:15:36Z",
+    "missing_purpose_string_warning_observed": false,
+    "archive_codesign": "passed",
+    "ipa_sha256": "88cbf1f9626c5088ad15456d44defe6ba13d2089393609e9c3cafd059495b674",
+    "ipa_size_bytes": 28858462,
+    "simulator_launch": "passed",
+    "simulator_card_deep_link": "passed",
+    "simulator_error_or_fault_count": 0,
+    "physical_install_status": {
+      "iphone_15_pro": 293,
+      "iphone_17_pro": 308,
+      "candidate_309_installed": false
+    }
+  },
+  "deterministic_state_matrix": {
+    "expected": 76,
+    "passed": 76,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "repository_verification": {
+    "targeted_release_tests": "22 passed",
+    "flutter_analyze": "passed",
+    "flutter_test_pre_merge": "616 passed",
+    "full_shipcheck_flutter_suite": "635 passed",
+    "pull_request_ci": "passed"
+  },
+  "open_release_gates": [
+    "fresh-user ten-second comprehension",
+    "physical iPhone installation and candidate-scoped journeys",
+    "clean-account Want-to-match-to-message-to-opt-out reconciliation",
+    "final cross-platform physical state matrix",
+    "Google Play developer-account and listing evidence",
+    "72-hour immutable-candidate soak"
+  ],
+  "soak_started": false
+}

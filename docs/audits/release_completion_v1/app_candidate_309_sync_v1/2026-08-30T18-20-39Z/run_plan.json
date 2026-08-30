@@ -1,0 +1,30 @@
+{
+  "schema_version": "APP_CANDIDATE_309_SYNC_RUN_PLAN_V1",
+  "created_at": "2026-08-30T18:20:39.915Z",
+  "candidate": {
+    "source_commit": "39f9911173d7c5053f49cbb04b22d9c1b3ff624f",
+    "pull_request": 331,
+    "version": "1.0.0",
+    "build_number": 309
+  },
+  "surfaces": [
+    "production_web",
+    "signed_android_release",
+    "app_store_connect_testflight",
+    "ios_simulator"
+  ],
+  "checks": [
+    "production signed-out web journeys",
+    "deterministic 76-state UI matrix",
+    "Android package and process readback",
+    "iOS archive, IPA, TestFlight, simulator launch, and deep-link readback"
+  ],
+  "boundaries": {
+    "database_writes": false,
+    "application_data_writes": false,
+    "store_publication": false,
+    "testflight_upload": true,
+    "production_web_deployment": true,
+    "soak_start": false
+  }
+}

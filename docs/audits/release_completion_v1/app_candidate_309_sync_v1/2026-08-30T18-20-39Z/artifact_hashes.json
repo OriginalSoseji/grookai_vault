@@ -1,0 +1,182 @@
+{
+  "schema_version": "APP_CANDIDATE_309_ARTIFACT_HASHES_V1",
+  "generated_at": "2026-08-30T18:42:47.374Z",
+  "artifact_count": 35,
+  "artifacts": [
+    {
+      "path": "REPORT.md",
+      "size_bytes": 3878,
+      "sha256": "872fa41140a117b6dcf03e27aad5dbb636eda12f8762780c83cdbd6b70c457e0"
+    },
+    {
+      "path": "android_launch_12s.png",
+      "size_bytes": 120541,
+      "sha256": "443be519c35431c8859fb4b37a8866980df536430b5bc5213debd8e656000e1e"
+    },
+    {
+      "path": "ios_simulator_card_deeplink.png",
+      "size_bytes": 1428416,
+      "sha256": "1d9e1285f3cc5ecf8e4ff6574cf9722acb8e50bf427e7befd2a42f2462e5d5ba"
+    },
+    {
+      "path": "ios_simulator_launch.png",
+      "size_bytes": 1047497,
+      "sha256": "6c5b261b2a23374be7dbe3bfaceb8699a903b0cf84f32182adc46ffdfbbad68b"
+    },
+    {
+      "path": "run_plan.json",
+      "size_bytes": 833,
+      "sha256": "a95ac8270c844d3d7c334223c513590dc5a414bdbf0a0e80ac203085e97c0d43"
+    },
+    {
+      "path": "signed_out_web/REPORT.md",
+      "size_bytes": 2145,
+      "sha256": "d93213e5e769da1b2328bc58ece1f2ea7dc03bfb666963e7691b5c18f1eea7f3"
+    },
+    {
+      "path": "signed_out_web/artifact_hashes.json",
+      "size_bytes": 2491,
+      "sha256": "4becf436c3474030c078e1ac4a1b32bc3938d734e144873cfd6835cb22e87965"
+    },
+    {
+      "path": "signed_out_web/desktop_account_deletion.png",
+      "size_bytes": 103065,
+      "sha256": "ee57113f2b50f31dc8962112de7f5803b6a2d44a1ea722c39492ee1a5ef09c9a"
+    },
+    {
+      "path": "signed_out_web/desktop_binders.png",
+      "size_bytes": 39984,
+      "sha256": "f3bcaea95f9499daf70749c211188d43039e3c1eaf5867b2c90afa4f6d2cf9ca"
+    },
+    {
+      "path": "signed_out_web/desktop_card.png",
+      "size_bytes": 672799,
+      "sha256": "a818f70cdf10dca33e46830b53b2ca4973c667da7e7f9f6595645fe4da334751"
+    },
+    {
+      "path": "signed_out_web/desktop_card_personal_action.png",
+      "size_bytes": 41798,
+      "sha256": "f49e67806800487e50f80194ccede4a26dbbcca8f88d251627a47bc72cb6130e"
+    },
+    {
+      "path": "signed_out_web/desktop_home.png",
+      "size_bytes": 863698,
+      "sha256": "0984475c6b0f37dbe52e896e337334417abb9641084ba58576c6e3936406628f"
+    },
+    {
+      "path": "signed_out_web/desktop_network.png",
+      "size_bytes": 971582,
+      "sha256": "a310e299483305f1f5754fea8461d5e1196851a186937c8f909c033cc7348e7d"
+    },
+    {
+      "path": "signed_out_web/desktop_privacy.png",
+      "size_bytes": 105941,
+      "sha256": "39118cdcff10ba227152f3ffaabebcb53852cb548b4e7da329f0c28389f52315"
+    },
+    {
+      "path": "signed_out_web/desktop_scan.png",
+      "size_bytes": 39587,
+      "sha256": "0e4a3e755b5206381b2d4e508189188476f6aa17f239b7cba6333f5eed8c5ca1"
+    },
+    {
+      "path": "signed_out_web/desktop_support.png",
+      "size_bytes": 58356,
+      "sha256": "18f0d6b3361b5bfcb7750ca2d0a7a4b804fac10165e1f6e5ce5eec9d21c66bd2"
+    },
+    {
+      "path": "signed_out_web/desktop_terms.png",
+      "size_bytes": 116157,
+      "sha256": "102982b4cd81d6408605e77125577b7aaf0df32aa0b5f97463e8ee70cd587707"
+    },
+    {
+      "path": "signed_out_web/desktop_vault.png",
+      "size_bytes": 40505,
+      "sha256": "8afb8f0f42400a8a7a3eb6bb8a12ac594586604b9d0147017397d2acf1f4ee2d"
+    },
+    {
+      "path": "signed_out_web/desktop_wall.png",
+      "size_bytes": 40280,
+      "sha256": "d65f8413bdce8766437083932429dd44b0aa2bfaf2f3f73cef2a7630d15bbca2"
+    },
+    {
+      "path": "signed_out_web/narrow_account_deletion.png",
+      "size_bytes": 101475,
+      "sha256": "5d737d12475b270078ce8db2097d728709fad19d62cef29b06c31558a99f1b66"
+    },
+    {
+      "path": "signed_out_web/narrow_binders.png",
+      "size_bytes": 35847,
+      "sha256": "f7eb73e474accd213906cd6fe4c7779c57f8631411f1edf328a60df5cf141bca"
+    },
+    {
+      "path": "signed_out_web/narrow_card.png",
+      "size_bytes": 340605,
+      "sha256": "c83e06cb05fabfadb6941e0a979edd4e54c57add705031f12d6c004cca8eb451"
+    },
+    {
+      "path": "signed_out_web/narrow_card_personal_action.png",
+      "size_bytes": 40697,
+      "sha256": "5fb9ffa556c922f84da54d6831b25c03a4b86b44aad6081e0de7c342321f6360"
+    },
+    {
+      "path": "signed_out_web/narrow_home.png",
+      "size_bytes": 376286,
+      "sha256": "4e05eea121ecd9c727031243e76f251da5e6fcc52ea2ea6845f4d9bae249b5aa"
+    },
+    {
+      "path": "signed_out_web/narrow_network.png",
+      "size_bytes": 732581,
+      "sha256": "b203610d9f1eecef1c40a7aa50006dd2ae8d7babe87c3afe3d5d50f0d71386a3"
+    },
+    {
+      "path": "signed_out_web/narrow_privacy.png",
+      "size_bytes": 102949,
+      "sha256": "832f1ae5d952e4bbb929f2a878bd4e08c2e3e1f4025490598dd3aae2250367f3"
+    },
+    {
+      "path": "signed_out_web/narrow_scan.png",
+      "size_bytes": 36844,
+      "sha256": "1b2479df776b4a2409e32a722b3b435b9bb65ae6556d8c00f6b966b9626e0aa6"
+    },
+    {
+      "path": "signed_out_web/narrow_support.png",
+      "size_bytes": 57987,
+      "sha256": "91fa7677ebcac557a2d688c157b1a4612c6213b1ddc42d104a82ad021ffcb7b7"
+    },
+    {
+      "path": "signed_out_web/narrow_terms.png",
+      "size_bytes": 116638,
+      "sha256": "58c34a0bacb52da1dc4d4cfca8ce0295d11dce3c695b5db703f84f5d9e9b0ca5"
+    },
+    {
+      "path": "signed_out_web/narrow_vault.png",
+      "size_bytes": 37731,
+      "sha256": "fc52031be1d3e4fee5d672ec207c494f9fd33b9281065fe8298aaec923a0b680"
+    },
+    {
+      "path": "signed_out_web/narrow_wall.png",
+      "size_bytes": 36252,
+      "sha256": "fd16bb071d28b3770bd61cd07f9f0ebb6eccb4620c91af0250b9453ce8c2fac8"
+    },
+    {
+      "path": "signed_out_web/run_plan.json",
+      "size_bytes": 1989,
+      "sha256": "21f627bb02497e438d9a5b782082e747b05ce7a8daec6a48b255007b16974175"
+    },
+    {
+      "path": "signed_out_web/summary.json",
+      "size_bytes": 44138,
+      "sha256": "440464d2c9b92bad9d6d5c8003bee192daaabd9554a2e5f9d6e5822f23778272"
+    },
+    {
+      "path": "state_matrix_summary.json",
+      "size_bytes": 604,
+      "sha256": "6e09b9ea9361b04884ef695c4649ac567457506caea45d223442f77d5cc2e39f"
+    },
+    {
+      "path": "summary.json",
+      "size_bytes": 2522,
+      "sha256": "d6de598457dc2acf4d779eea41817b93c4125f68fcab8ac59684517a7a6ce9c5"
+    }
+  ]
+}

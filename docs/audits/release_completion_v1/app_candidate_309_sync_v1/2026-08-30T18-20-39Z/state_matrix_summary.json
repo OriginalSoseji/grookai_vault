@@ -1,0 +1,13 @@
+{
+  "schema_version": "APP_CANDIDATE_309_STATE_MATRIX_SUMMARY_V1",
+  "source_commit": "39f9911173d7c5053f49cbb04b22d9c1b3ff624f",
+  "command": "npx playwright test tests/parity/release-convergence.spec.ts --reporter=json --project=canonical-samsung --workers=1",
+  "started_at": "2026-08-30T18:28:09.883Z",
+  "duration_ms": 106354.48,
+  "expected": 76,
+  "skipped": 0,
+  "unexpected": 0,
+  "flaky": 0,
+  "status": "passed",
+  "raw_output_boundary": "The raw reporter output is retained outside Git because Playwright serializes the process environment. Only this non-sensitive aggregate is permanent."
+}
