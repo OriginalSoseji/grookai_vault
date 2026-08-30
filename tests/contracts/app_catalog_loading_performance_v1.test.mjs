@@ -53,6 +53,9 @@ test("canonical public images resolve release authority in the card lookup", () 
   assert.match(route, /catalog_set_release_controls\(release_status\)/);
   assert.match(route, /catalog_game_release_controls\(release_status\)/);
   assert.match(route, /function catalogImageAccess/);
+  assert.match(route, /data_quality_flags/);
+  assert.match(route, /app_visibility_v1/);
+  assert.match(route, /appVisibilityStatus\.trim\(\)\.toLowerCase\(\) === "suppressed"/);
   assert.match(route, /if \(gameCode === "pokemon"\)/);
   assert.match(route, /requestIsAuthenticated/);
   assert.doesNotMatch(route, /\.rpc\(\s*"catalog_card_print_visible_to_request_v1"/);

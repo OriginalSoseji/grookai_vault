@@ -228,12 +228,13 @@ const PUBLIC_SET_LIST_SELECT = `
 const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
 
 const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<Record<string, number>>;
+const PUBLIC_CATALOG_GAME_CODES = ["pokemon", "one_piece", "mtg"] as const;
 
-async function getVisiblePopulatedSetRows(
+async function getVisiblePopulatedSetRowsForGame(
   supabase: Awaited<ReturnType<typeof createServerSupabase>>,
-  gameCode?: string | null,
+  gameCode: string,
 ) {
-  const normalizedGameCode = gameCode?.trim().toLowerCase() || null;
+  const normalizedGameCode = gameCode.trim().toLowerCase();
   const { data, error } = await supabase.rpc("get_public_catalog_sets_v2", {
     p_game_code: normalizedGameCode,
   });
@@ -241,6 +242,26 @@ async function getVisiblePopulatedSetRows(
     throw new Error(`[sets.catalog] ${error.message}`);
   }
   return (data ?? []) as SetRow[];
+}
+
+async function getVisiblePopulatedSetRows(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  gameCode?: string | null,
+) {
+  const normalizedGameCode = gameCode?.trim().toLowerCase();
+  if (normalizedGameCode) {
+    return getVisiblePopulatedSetRowsForGame(supabase, normalizedGameCode);
+  }
+
+  // PostgREST caps set-returning RPC responses at 1,000 rows. Unscoped web
+  // callers still need every supported catalog, so keep each request below
+  // the cap and combine the release-aware game lanes in memory.
+  const gameRows = await Promise.all(
+    PUBLIC_CATALOG_GAME_CODES.map((code) =>
+      getVisiblePopulatedSetRowsForGame(supabase, code),
+    ),
+  );
+  return gameRows.flat();
 }
 
 async function getVisibleCardCountBySetIds(

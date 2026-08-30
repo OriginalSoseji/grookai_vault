@@ -80,6 +80,9 @@ test("set discovery uses one game-scoped read-model call instead of client pagin
   assert.match(source, /async function getVisiblePopulatedSetRows/);
   assert.match(source, /p_game_code: normalizedGameCode/);
   assert.match(listFunctionSource, /getVisiblePopulatedSetRows\(supabase, gameCode\)/);
+  assert.match(source, /PUBLIC_CATALOG_GAME_CODES = \["pokemon", "one_piece", "mtg"\]/);
+  assert.match(source, /await Promise\.all\(/);
+  assert.match(source, /getVisiblePopulatedSetRowsForGame\(supabase, code\)/);
   assert.doesNotMatch(source, /PUBLIC_SET_ROW_PAGE_SIZE/);
   assert.doesNotMatch(listFunctionSource, /\.range\(/);
   assert.match(catalogMigrationSource, /requested_game is null or lower\(target\.game\) = requested_game/);

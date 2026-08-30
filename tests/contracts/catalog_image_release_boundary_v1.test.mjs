@@ -26,6 +26,9 @@ test("privileged image lookup cannot bypass request-role catalog visibility", ()
   assert.match(route, /sets\(game,catalog_set_release_controls\(release_status\)\)/);
   assert.match(route, /games\(code,catalog_game_release_controls\(release_status\)\)/);
   assert.match(route, /function catalogImageAccess/);
+  assert.match(route, /data_quality_flags/);
+  assert.match(route, /app_visibility_v1/);
+  assert.match(route, /appVisibilityStatus\.trim\(\)\.toLowerCase\(\) === "suppressed"/);
   assert.match(route, /explicitSetStatus === "hidden"/);
   assert.match(route, /if \(access === "hidden"\) return false/);
   assert.match(route, /return requestIsAuthenticated\(request\)/);

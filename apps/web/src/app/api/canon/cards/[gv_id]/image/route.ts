@@ -29,6 +29,7 @@ type CardImageRow = {
   card_print_id?: string | null;
   image_source?: string | null;
   image_path?: string | null;
+  data_quality_flags?: Record<string, unknown> | null;
   sets?: CatalogSetAccess | CatalogSetAccess[] | null;
   games?: CatalogGameAccess | CatalogGameAccess[] | null;
 };
@@ -56,7 +57,7 @@ type CatalogGameAccess = {
 type CatalogImageAccess = "hidden" | "signed_in" | "public";
 
 const CARD_IMAGE_ACCESS_SELECT =
-  "id,game_id,set_id,image_source,image_path,sets(game,catalog_set_release_controls(release_status)),games(code,catalog_game_release_controls(release_status))";
+  "id,game_id,set_id,image_source,image_path,data_quality_flags,sets(game,catalog_set_release_controls(release_status)),games(code,catalog_game_release_controls(release_status))";
 
 function resolveIdentityImageLocation(
   row: CardImageRow | null | undefined,
@@ -99,6 +100,18 @@ function releaseStatus(
 }
 
 function catalogImageAccess(row: CardImageRow | null | undefined): CatalogImageAccess {
+  const appVisibility = row?.data_quality_flags?.app_visibility_v1;
+  const appVisibilityStatus =
+    appVisibility && typeof appVisibility === "object" && !Array.isArray(appVisibility)
+      ? (appVisibility as Record<string, unknown>).status
+      : null;
+  if (
+    typeof appVisibilityStatus === "string" &&
+    appVisibilityStatus.trim().toLowerCase() === "suppressed"
+  ) {
+    return "hidden";
+  }
+
   const set = firstRelation(row?.sets);
   const explicitSetStatus = releaseStatus(set?.catalog_set_release_controls);
   if (explicitSetStatus === "public") return "public";
