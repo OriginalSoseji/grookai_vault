@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md`
+
+This checkpoint records the active full-eligible signed-in publication, the
+independently pinned runtime/coverage/performance evidence lanes, the `4/7`
+clean live observation, the `17/17` surface proof, and the read-only scheduled
+workflow that will enforce the final seven-cycle pass.
+
+Decision locked there:
+
+- operational completion is controlled by the row-level observer result after
+  seven healthy scheduled cycles; neither elapsed time nor four clean cycles
+  may close the gate early
+
+Unresolved risk afterward:
+
+- Aug 31, Sep 1, and Sep 2 remain unobserved, and anonymous pricing remains
+  blocked by separate licensing and public-display authority
+
 ### `PRICING_CHECKPOINT_94_TCGPLAYER_CANARY_FINAL_PASS.md`
 
 This checkpoint records the corrected, hash-verified final replay of the

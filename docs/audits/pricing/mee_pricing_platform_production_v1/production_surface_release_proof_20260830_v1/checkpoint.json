@@ -1,0 +1,35 @@
+{
+  "checkpoint_version": "TCGPLAYER_MARKET_PRICING_SURFACE_RELEASE_CHECKPOINT_V1",
+  "status": "surface_gate_passed_operational_cycles_pending",
+  "producing_commit_sha": "92da2a80a295f72b7a97f4436f98e63863d3a807",
+  "deployed_commit_sha": "92da2a80a295f72b7a97f4436f98e63863d3a807",
+  "deployment_id": "dpl_GYc4Wwt3J16FApuQEkS8SQthN4YC",
+  "surface_proof": {
+    "required": 17,
+    "passed": 17,
+    "failed": 0,
+    "findings": []
+  },
+  "vault_readback": {
+    "status": "passed",
+    "target_count": 11,
+    "priced_copy_count": 10,
+    "unpriced_copy_count": 1,
+    "duplicate_instance_count": 0,
+    "total_usd": 2061.21,
+    "sample_card_print_id": "14dff926-f0b8-4034-a7ff-92a18c47a3de",
+    "sample_price_usd": 86.72
+  },
+  "apk": {
+    "path": "android/app-release.apk",
+    "sha256": "f885935c1d986ad06328b6c80ed45450bc3c2de65e194899e25aa6ba97e6fe0a"
+  },
+  "boundaries": {
+    "surface_verifier_database_writes": 0,
+    "tracked_worktree_clean": true,
+    "temporary_session_files_removed": true,
+    "post_proof_commit_created": false,
+    "anonymous_pricing_unchanged": true
+  },
+  "next_gate": "seven_unattended_full_production_cycles"
+}

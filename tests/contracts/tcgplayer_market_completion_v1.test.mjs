@@ -92,13 +92,13 @@ test("repository completion state covers the exact governed requirement set", ()
   assert.equal(result.completion_allowed, false);
   assert.equal(result.counts.required, 30);
   assert.equal(result.counts.represented, 30);
-  assert.equal(result.counts.passed, 23);
-  assert.equal(result.counts.pending, 6);
+  assert.equal(result.counts.passed, 26);
+  assert.equal(result.counts.pending, 3);
   assert.equal(result.counts.blocked_external, 1);
   assert.deepEqual(result.findings, []);
 });
 
-test("repository state records both pricing migrations as deployed", () => {
+test("repository state records deployed migrations and passed surface proof", () => {
   const byId = new Map(
     STATE.requirements.map((row) => [row.requirement_id, row]),
   );
@@ -124,15 +124,28 @@ test("repository state records both pricing migrations as deployed", () => {
     ),
   );
 
-  assert.equal(surfaces.status, "pending");
-  assert.match(surfaces.current_truth, /read-model completion/);
-  assert.match(surfaces.current_truth, /exact-Vault migration/);
-  assert.match(surfaces.next_gate, /source-to-render proof/);
+  assert.equal(surfaces.status, "passed");
+  assert.equal(surfaces.next_gate, null);
+  assert.match(surfaces.current_truth, /17 required authenticated/i);
+  assert.match(surfaces.current_truth, /zero amount, scope, timestamp/i);
   assert.ok(
     surfaces.evidence.includes(
-      "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md",
+      "docs/audits/pricing/mee_pricing_platform_production_v1/production_surface_release_proof_20260830_v1/REPORT.md",
     ),
   );
+});
+
+test("repository state leaves only the governed time and public gates open", () => {
+  const open = STATE.requirements
+    .filter((row) => row.status !== "passed")
+    .map((row) => [row.requirement_id, row.status]);
+
+  assert.deepEqual(open, [
+    ["seven_unattended_full_eligible_cycles", "pending"],
+    ["pricing_checkpoints_complete", "pending"],
+    ["public_rollout_gates_before_anonymous_access", "pending"],
+    ["source_licensing_attribution_display_confirmed", "blocked_external"],
+  ]);
 });
 
 test("completion audit is read-only and can enforce the final gate", () => {

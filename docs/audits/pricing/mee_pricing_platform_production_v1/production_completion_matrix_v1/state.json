@@ -109,10 +109,10 @@
     },
     {
       "requirement_id": "all_supported_surfaces_shared_interface",
-      "status": "pending",
-      "current_truth": "Repository code for Card Detail, search, set grids, market history, web, Flutter, and exact-printing Vault totals consumes the governed pricing interface. The shared read-model completion and exact-Vault migrations are deployed. A fail-closed 17-surface capture and reconciliation verifier exists; latest-client deployment provenance and same-commit production captures remain pending.",
-      "next_gate": "Deploy the clean post-canary rollout SHA, capture all 17 authenticated web and Flutter surfaces from that exact commit, and require source-to-render proof with zero amount, scope, timestamp, source, provenance, or Vault-total mismatches before marking this production requirement passed.",
-      "evidence": ["docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md", "docs/audits/pricing/mee_pricing_platform_production_v1/product_surface_proof_readiness/2026-07-28T15-16-32-768Z/REPORT.md", "docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md", "scripts/audits/tcgplayer_market_product_surface_proof_v1.mjs", "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md"]
+      "status": "passed",
+      "current_truth": "All 17 required authenticated web and Flutter surfaces reconciled their rendered exact-printing values against the governed read model at deployed commit 92da2a80a295f72b7a97f4436f98e63863d3a807. The verifier found zero amount, scope, timestamp, source, provenance, or Vault-total mismatches.",
+      "next_gate": null,
+      "evidence": ["docs/audits/pricing/TCGPLAYER_MARKET_PRODUCT_SURFACES_V1_20260727.md", "docs/audits/pricing/mee_pricing_platform_production_v1/production_surface_release_proof_20260830_v1/REPORT.md", "docs/audits/pricing/mee_pricing_platform_production_v1/production_surface_release_proof_20260830_v1/checkpoint.json", "docs/contracts/TCGPLAYER_MARKET_PRODUCT_SURFACE_PROOF_V1.md", "scripts/audits/tcgplayer_market_product_surface_proof_v1.mjs", "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql", "docs/checkpoints/pricing/PRICING_CHECKPOINT_29_VAULT_EXACT_PRINTING_PRICING.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_31_EXACT_VAULT_PRODUCTION_VERIFIER.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_33_PRODUCT_SURFACE_PROOF_READINESS.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md"]
     },
     {
       "requirement_id": "grookai_value_retired_from_v1_product_path",
@@ -166,23 +166,23 @@
     {
       "requirement_id": "seven_unattended_full_eligible_cycles",
       "status": "pending",
-      "current_truth": "The exact-commit full-rollout observer and production scope guards are implemented; full-eligible unattended publication has not begun.",
-      "next_gate": "After corrected V1.2 signed-in activation, prove seven consecutive unattended full-eligible cycles with healthy telemetry and reconciliation.",
-      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md", "backend/pricing/tcgplayer_market_full_rollout_observation_policy_v1.mjs", "scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs", "docs/checkpoints/pricing/PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md"]
+      "current_truth": "The full-eligible signed-in publication is active and the frozen observer has reconciled four of seven required scheduled production cycles with zero findings, terminal alerts, missing due slots, unmatched runs, stale rows, missing provenance, invalid-policy rows, or broken traces.",
+      "next_gate": "Allow the Aug 31, Sep 1, and Sep 2 scheduled cycles to complete; require the Sep 2 automatic observer to pass at 7/7 before closing this requirement.",
+      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_19_TCGPLAYER_MARKET_CANARY_SCHEDULE_ACTIVATION.md", "backend/pricing/tcgplayer_market_full_rollout_observation_policy_v1.mjs", "scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs", ".github/workflows/tcgplayer-market-full-rollout-observation.yml", "docs/checkpoints/pricing/PRICING_CHECKPOINT_27_FULL_ROLLOUT_GUARDS_AND_SEVEN_CYCLE_OBSERVER.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md"]
     },
     {
       "requirement_id": "minimum_95_percent_exact_mapping_coverage",
-      "status": "pending",
-      "current_truth": "A read-only V1.2 audit at the current repository SHA measured 95.247 percent coverage with zero unclassified gaps, but the frozen canary publication still uses the earlier scope and a fresh rollout-producing shadow is required.",
-      "next_gate": "Run a fresh full eligible V1.2 shadow after the canary, reconcile the new mappings, and require at least 95 percent coverage without scope mismatches.",
-      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md"]
+      "status": "passed",
+      "current_truth": "The governed full-scope V1.2 coverage audit passed at 95.293 percent with 31,176 exact rows across a 32,716-row denominator, above the frozen 95 percent Production V1 threshold.",
+      "next_gate": null,
+      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_24_TCGPLAYER_SCOPE_V1_2_AND_MAPPING_APPLY_READINESS.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md", "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/coverage/summary.json", "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/coverage/run_plan.json", "docs/checkpoints/pricing/PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md"]
     },
     {
       "requirement_id": "all_remaining_gaps_deterministic",
-      "status": "pending",
-      "current_truth": "The current read-only V1.2 audit classifies all 1,553 denominator gaps with deterministic reasons and reports zero unclassified rows, but launch-state reconciliation awaits the fresh rollout-producing shadow.",
-      "next_gate": "Recompute the complete gap ledger from the corrected full shadow and prove every remaining row has a deterministic reason.",
-      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md"]
+      "status": "passed",
+      "current_truth": "The governed V1.2 coverage audit classifies all 1,540 remaining denominator gaps with deterministic reasons and reports zero unclassified rows.",
+      "next_gate": null,
+      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_23_TCGPLAYER_EXACT_MAPPING_PLAN_V1.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_25_TCGPLAYER_EXACT_MAPPING_APPLY_V1.md", "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/coverage/summary.json", "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/coverage/run_plan.json", "docs/checkpoints/pricing/PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md"]
     },
     {
       "requirement_id": "production_runbooks_complete",
@@ -194,16 +194,16 @@
     {
       "requirement_id": "pricing_checkpoints_complete",
       "status": "pending",
-      "current_truth": "Pricing decisions and current production evidence are checkpointed through the exact two-migration apply-readiness proof; final rollout truth is not yet available.",
-      "next_gate": "Update the pricing checkpoint pack after the 72-hour canary, corrected full rollout, seven cycles, and final licensing decision.",
-      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md"]
+      "current_truth": "Pricing decisions and production evidence are checkpointed through the passed canary, full signed-in activation, 17-surface proof, 95.293 percent coverage proof, and automated 4/7 full-rollout observation. Final seven-cycle truth is not yet available.",
+      "next_gate": "After the automatic observer passes at 7/7, add the final Production V1 completion checkpoint while preserving the separate licensing blocker.",
+      "evidence": ["docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_32_MIGRATION_APPLY_READINESS.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_94_TCGPLAYER_CANARY_FINAL_PASS.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md"]
     },
     {
       "requirement_id": "public_rollout_gates_before_anonymous_access",
       "status": "pending",
-      "current_truth": "Authenticated execution is granted and anonymous execution is denied; public rollout remains closed.",
-      "next_gate": "Complete the canary, corrected full signed-in rollout, seven unattended cycles, and licensing/display gate before changing anonymous grants.",
-      "evidence": ["docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T11-18-26-600Z/summary.json", "supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql"]
+      "current_truth": "Full-eligible signed-in publication is active, authenticated reads pass, and anonymous execution remains denied at both grant and runtime boundaries. Public anonymous rollout remains closed.",
+      "next_gate": "Complete seven unattended cycles and obtain licensing/display authority before considering any anonymous grant change.",
+      "evidence": ["docs/audits/pricing/mee_pricing_platform_production_v1/canary_observation_progress/2026-07-28T11-18-26-600Z/summary.json", "supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql", ".github/workflows/tcgplayer-market-full-rollout-observation.yml", "docs/checkpoints/pricing/PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md"]
     },
     {
       "requirement_id": "source_licensing_attribution_display_confirmed",
