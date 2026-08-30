@@ -79,13 +79,15 @@ test("canon identity images prefer stable card image routes over raw signed URLs
   assert.match(proxy, /\/api\/canon\/cards\/\$\{encodeURIComponent\(normalizedGvId\)\}\/image/);
   assert.match(resolver, /buildCanonCardImageProxyUrl\(cardPrint\?\.gv_id \?\? cardPrint\?\.printing_gv_id\) \?\? buildCanonImageProxyUrl\(imagePath\)/);
   assert.match(route, /\.from\("card_prints"\)/);
-  assert.match(route, /\.select\("id,game_id,gv_id,image_source,image_path"\)/);
+  assert.match(route, /CARD_IMAGE_ACCESS_SELECT/);
+  assert.match(route, /catalog_set_release_controls\(release_status\)/);
+  assert.match(route, /catalog_game_release_controls\(release_status\)/);
   assert.match(route, /\.from\("card_printings"\)/);
   assert.match(route, /\.select\("card_print_id,printing_gv_id,image_source,image_path"\)/);
   assert.match(route, /\.eq\("id", cardPrinting\.card_print_id\)/);
   assert.match(route, /parentImageLocation/);
   assert.match(route, /resolveCanonCardImageStorageLocation/);
-  assert.match(route, /catalog_card_print_visible_to_request_v1/);
+  assert.doesNotMatch(route, /catalog_card_print_visible_to_request_v1/);
   assert.match(route, /\.from\(imageLocation\.bucket\)/);
   assert.match(route, /\.download\(imageLocation\.path\)/);
   assert.match(route, /public, max-age=0, s-maxage=300, stale-while-revalidate=600/);

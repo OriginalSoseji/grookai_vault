@@ -25,10 +25,39 @@ function getContentTypeForPath(path: string) {
 type CardImageRow = {
   id?: string | null;
   game_id?: string | null;
+  set_id?: string | null;
   card_print_id?: string | null;
   image_source?: string | null;
   image_path?: string | null;
+  data_quality_flags?: Record<string, unknown> | null;
+  sets?: CatalogSetAccess | CatalogSetAccess[] | null;
+  games?: CatalogGameAccess | CatalogGameAccess[] | null;
 };
+
+type CatalogReleaseControl = {
+  release_status?: string | null;
+};
+
+type CatalogSetAccess = {
+  game?: string | null;
+  catalog_set_release_controls?:
+    | CatalogReleaseControl
+    | CatalogReleaseControl[]
+    | null;
+};
+
+type CatalogGameAccess = {
+  code?: string | null;
+  catalog_game_release_controls?:
+    | CatalogReleaseControl
+    | CatalogReleaseControl[]
+    | null;
+};
+
+type CatalogImageAccess = "hidden" | "signed_in" | "public";
+
+const CARD_IMAGE_ACCESS_SELECT =
+  "id,game_id,set_id,image_source,image_path,data_quality_flags,sets(game,catalog_set_release_controls(release_status)),games(code,catalog_game_release_controls(release_status))";
 
 function resolveIdentityImageLocation(
   row: CardImageRow | null | undefined,
@@ -57,49 +86,63 @@ async function createCatalogRequestClient(request: NextRequest) {
   return createServerComponentClient();
 }
 
-async function catalogCardVisibleToRequest(
-  request: NextRequest,
-  cardPrintId: string,
-) {
-  const requestClient = await createCatalogRequestClient(request);
-  const { data, error } = await requestClient.rpc(
-    "catalog_card_print_visible_to_request_v1",
-    { p_card_print_id: cardPrintId },
-  );
-
-  return !error && data === true;
+function firstRelation<T>(value: T | T[] | null | undefined): T | null {
+  if (Array.isArray(value)) {
+    return value[0] ?? null;
+  }
+  return value ?? null;
 }
 
-async function catalogImageCacheScope(
-  admin: ReturnType<typeof createServerAdminClient>,
-  gameId?: string | null,
+function releaseStatus(
+  value: CatalogReleaseControl | CatalogReleaseControl[] | null | undefined,
 ) {
-  if (!gameId) {
-    return "private" as const;
+  return firstRelation(value)?.release_status?.trim().toLowerCase() ?? null;
+}
+
+function catalogImageAccess(row: CardImageRow | null | undefined): CatalogImageAccess {
+  const appVisibility = row?.data_quality_flags?.app_visibility_v1;
+  const appVisibilityStatus =
+    appVisibility && typeof appVisibility === "object" && !Array.isArray(appVisibility)
+      ? (appVisibility as Record<string, unknown>).status
+      : null;
+  if (
+    typeof appVisibilityStatus === "string" &&
+    appVisibilityStatus.trim().toLowerCase() === "suppressed"
+  ) {
+    return "hidden";
   }
 
-  const { data: game, error: gameError } = await admin
-    .from("games")
-    .select("code")
-    .eq("id", gameId)
-    .maybeSingle();
-  const gameCode = game?.code?.trim().toLowerCase();
-  if (gameError || !gameCode) {
-    return "private" as const;
-  }
+  const set = firstRelation(row?.sets);
+  const explicitSetStatus = releaseStatus(set?.catalog_set_release_controls);
+  if (explicitSetStatus === "public") return "public";
+  if (explicitSetStatus === "signed_in") return "signed_in";
+  if (explicitSetStatus === "hidden") return "hidden";
+
+  const game = firstRelation(row?.games);
+  const gameCode = (set?.game ?? game?.code ?? "").trim().toLowerCase();
   if (gameCode === "pokemon") {
-    return "public" as const;
+    return "public";
   }
 
-  const { data: control, error: controlError } = await admin
-    .from("catalog_game_release_controls")
-    .select("release_status")
-    .eq("game_code", gameCode)
-    .maybeSingle();
+  const gameStatus = releaseStatus(game?.catalog_game_release_controls);
+  if (gameStatus === "public") return "public";
+  if (gameStatus === "signed_in") return "signed_in";
+  return "hidden";
+}
 
-  return !controlError && control?.release_status === "public"
-    ? ("public" as const)
-    : ("private" as const);
+async function requestIsAuthenticated(request: NextRequest) {
+  const requestClient = await createCatalogRequestClient(request);
+  const { data, error } = await requestClient.auth.getUser();
+  return !error && Boolean(data.user);
+}
+
+async function catalogImageVisibleToRequest(
+  request: NextRequest,
+  access: CatalogImageAccess,
+) {
+  if (access === "public") return true;
+  if (access === "hidden") return false;
+  return requestIsAuthenticated(request);
 }
 
 export async function GET(
@@ -117,7 +160,7 @@ export async function GET(
   const admin = createServerAdminClient();
   let cardPrintResult = await admin
     .from("card_prints")
-    .select("id,game_id,gv_id,image_source,image_path")
+    .select(`gv_id,${CARD_IMAGE_ACCESS_SELECT}`)
     .eq("gv_id", gvId)
     .maybeSingle();
   if (!cardPrintResult.error && !cardPrintResult.data) {
@@ -126,7 +169,7 @@ export async function GET(
     // recovering those stale URLs during the cache transition.
     cardPrintResult = await admin
       .from("card_prints")
-      .select("id,game_id,gv_id,image_source,image_path")
+      .select(`gv_id,${CARD_IMAGE_ACCESS_SELECT}`)
       .ilike("gv_id", gvId)
       .maybeSingle();
   }
@@ -137,7 +180,7 @@ export async function GET(
   }
 
   let cardPrintId = cardPrint?.id ?? null;
-  let gameId = cardPrint?.game_id ?? null;
+  let accessRow: CardImageRow | null = cardPrint ?? null;
   let imageLocation = resolveIdentityImageLocation(cardPrint);
   if (!cardPrint || !imageLocation) {
     let cardPrintingResult = await admin
@@ -166,7 +209,7 @@ export async function GET(
       // inheritance inside Grookai's canonical image boundary.
       const parentResult = await admin
         .from("card_prints")
-        .select("id,game_id,image_source,image_path")
+        .select(CARD_IMAGE_ACCESS_SELECT)
         .eq("id", cardPrinting.card_print_id)
         .maybeSingle();
       const parentImageLocation = resolveIdentityImageLocation(
@@ -183,30 +226,31 @@ export async function GET(
         );
       }
       cardPrintId = parentResult.data.id;
-      gameId = parentResult.data.game_id;
+      accessRow = parentResult.data;
       imageLocation = parentImageLocation;
     } else {
       const parentResult = await admin
         .from("card_prints")
-        .select("game_id")
+        .select(CARD_IMAGE_ACCESS_SELECT)
         .eq("id", cardPrinting.card_print_id)
         .maybeSingle();
-      if (parentResult.error) {
+      if (parentResult.error || !parentResult.data) {
         return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
       }
-      gameId = parentResult.data?.game_id ?? null;
+      accessRow = parentResult.data;
     }
   }
 
+  const access = catalogImageAccess(accessRow);
   if (
     !cardPrintId ||
     !imageLocation ||
-    !(await catalogCardVisibleToRequest(request, cardPrintId))
+    !(await catalogImageVisibleToRequest(request, access))
   ) {
     return NextResponse.json({ error: "Image unavailable." }, { status: 404 });
   }
 
-  const cacheScope = await catalogImageCacheScope(admin, gameId);
+  const cacheScope = access === "public" ? "public" : "private";
 
   const { data, error } = await admin.storage
     .from(imageLocation.bucket)

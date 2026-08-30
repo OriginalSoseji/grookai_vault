@@ -25,13 +25,10 @@ test("card and set loaders preserve request-role catalog visibility", () => {
   assert.match(setLoader, /await createServerSupabase\(\)/);
   assert.match(setLoader, /game,/);
   assert.doesNotMatch(setLoader, /card_prints\(count\)/);
-  assert.match(setLoader, /get_public_set_card_counts_v1/);
-  assert.match(setLoader, /getAllVisibleSetRows/);
-  assert.match(
-    setLoader,
-    /\.range\(\s*offset,\s*offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1,?\s*\)/,
-  );
-  assert.match(setLoader, /query = query\.eq\("game", normalizedGameCode\)/);
+  assert.match(setLoader, /get_public_catalog_sets_v2/);
+  assert.match(setLoader, /getVisiblePopulatedSetRows/);
+  assert.match(setLoader, /p_game_code: normalizedGameCode/);
+  assert.doesNotMatch(setLoader, /PUBLIC_SET_COUNT_CHUNK_SIZE/);
   assert.doesNotMatch(setLoader, /\.ilike\("set_code"/);
   assert.match(setLoader, /candidate\.game_code/);
   assert.match(setStatsLoader, /createPublicServerClient/);
@@ -57,7 +54,7 @@ test("web set browse is dynamic and exposes an explicit game scope", () => {
 
   assert.match(setsPage, /dynamic = "force-dynamic"/);
   assert.match(setsPage, /revalidate = 0/);
-  assert.match(setsPage, /getPublicSets\(gameScope, false\)/);
+  assert.match(setsPage, /getPublicSets\(gameScope\)/);
   assert.match(toolbar, /PUBLIC_GAME_SCOPE_OPTIONS/);
   assert.match(toolbar, /aria-label="Filter sets by game"/);
   assert.match(results, /matchesPublicGameScope/);
@@ -73,7 +70,7 @@ test("Flutter set browse defaults to Pokemon and isolates One Piece explicitly",
   assert.match(service, /PublicCatalogGame game = PublicCatalogGame\.pokemon/);
   assert.match(service, /\.where\(\(setInfo\) => setInfo\.game == game\)/);
   assert.match(service, /'game,code,name,/);
-  assert.match(service, /get_public_set_card_counts_v1/);
+  assert.match(service, /get_public_catalog_sets_v2/);
   assert.match(service, /_fetchAllVisibleSetRows/);
   assert.match(service, /\.range\(offset, offset \+ _setRowPageSize - 1\)/);
   assert.match(service, /\.inFilter\('set_code', exactSetCodes\)/);

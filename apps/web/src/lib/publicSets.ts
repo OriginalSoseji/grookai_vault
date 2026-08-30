@@ -54,11 +54,7 @@ type SetRow = {
   hero_image_source: string | null;
   set_role: string | null;
   catalog_set_type: string | null;
-};
-
-type PublicSetCardCountRow = {
-  set_code: string | null;
-  card_count: number | string | null;
+  card_count?: number | string | null;
 };
 
 type PublicSetCardRow = {
@@ -232,67 +228,40 @@ const PUBLIC_SET_LIST_SELECT = `
 const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;
 
 const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<Record<string, number>>;
-const PUBLIC_SET_ROW_PAGE_SIZE = 1000;
-const PUBLIC_SET_COUNT_CHUNK_SIZE = 500;
+const PUBLIC_CATALOG_GAME_CODES = ["pokemon", "one_piece", "mtg"] as const;
 
-async function getAllVisibleSetRows(
+async function getVisiblePopulatedSetRowsForGame(
+  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  gameCode: string,
+) {
+  const normalizedGameCode = gameCode.trim().toLowerCase();
+  const { data, error } = await supabase.rpc("get_public_catalog_sets_v2", {
+    p_game_code: normalizedGameCode,
+  });
+  if (error) {
+    throw new Error(`[sets.catalog] ${error.message}`);
+  }
+  return (data ?? []) as SetRow[];
+}
+
+async function getVisiblePopulatedSetRows(
   supabase: Awaited<ReturnType<typeof createServerSupabase>>,
   gameCode?: string | null,
 ) {
-  const rows: SetRow[] = [];
-  for (let offset = 0; ; offset += PUBLIC_SET_ROW_PAGE_SIZE) {
-    let query = supabase
-      .from("sets")
-      .select(PUBLIC_SET_LIST_SELECT)
-      .order("id", { ascending: true });
-    const normalizedGameCode = gameCode?.trim().toLowerCase();
-    if (normalizedGameCode) {
-      query = query.eq("game", normalizedGameCode);
-    }
-    const { data, error } = await query.range(
-      offset,
-      offset + PUBLIC_SET_ROW_PAGE_SIZE - 1,
-    );
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const page = (data ?? []) as SetRow[];
-    rows.push(...page);
-    if (page.length < PUBLIC_SET_ROW_PAGE_SIZE) {
-      return rows;
-    }
-  }
-}
-
-async function getDynamicPublicSetCardCounts(
-  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
-  setCodes: string[],
-) {
-  const exactCodes = Array.from(new Set(setCodes.map((code) => code.trim()).filter(Boolean)));
-  if (exactCodes.length === 0) {
-    return new Map<string, number>();
+  const normalizedGameCode = gameCode?.trim().toLowerCase();
+  if (normalizedGameCode) {
+    return getVisiblePopulatedSetRowsForGame(supabase, normalizedGameCode);
   }
 
-  const counts = new Map<string, number>();
-  for (let offset = 0; offset < exactCodes.length; offset += PUBLIC_SET_COUNT_CHUNK_SIZE) {
-    const { data, error } = await supabase.rpc("get_public_set_card_counts_v1", {
-      p_set_codes: exactCodes.slice(offset, offset + PUBLIC_SET_COUNT_CHUNK_SIZE),
-    });
-    if (error) {
-      throw new Error(`[sets.card-counts] ${error.message}`);
-    }
-
-    for (const row of (data ?? []) as PublicSetCardCountRow[]) {
-      const normalizedCode = normalizeSetCode(row.set_code);
-      const parsedCount = Number(row.card_count ?? 0);
-      if (!normalizedCode || !Number.isFinite(parsedCount) || parsedCount < 0) {
-        continue;
-      }
-      counts.set(normalizedCode, (counts.get(normalizedCode) ?? 0) + parsedCount);
-    }
-  }
-  return counts;
+  // PostgREST caps set-returning RPC responses at 1,000 rows. Unscoped web
+  // callers still need every supported catalog, so keep each request below
+  // the cap and combine the release-aware game lanes in memory.
+  const gameRows = await Promise.all(
+    PUBLIC_CATALOG_GAME_CODES.map((code) =>
+      getVisiblePopulatedSetRowsForGame(supabase, code),
+    ),
+  );
+  return gameRows.flat();
 }
 
 async function getVisibleCardCountBySetIds(
@@ -355,16 +324,9 @@ function mapSetRowToSummary(
 
 export const getPublicSets = cache(async (
   gameCode?: string,
-  includeDynamicCounts = true,
 ): Promise<PublicSetSummary[]> => {
   const supabase = await createServerSupabase();
-  const visibleRows = await getAllVisibleSetRows(supabase, gameCode);
-  const dynamicCounts = includeDynamicCounts
-    ? await getDynamicPublicSetCardCounts(
-        supabase,
-        visibleRows.map((row) => row.code ?? ""),
-      )
-    : new Map<string, number>();
+  const visibleRows = await getVisiblePopulatedSetRows(supabase, gameCode);
 
   const equivalentSetsByCode = new Map<
     string,
@@ -378,16 +340,16 @@ export const getPublicSets = cache(async (
     }
 
     const manifestCount = getManifestCardPrintCount(publicSetCardCounts, normalizedCode);
-    const cardCount = includeDynamicCounts
-      ? Math.max(manifestCount, dynamicCounts.get(normalizedCode) ?? 0)
-      : Math.max(manifestCount, row.printed_total ?? 0);
+    const readModelCount = Number(row.card_count ?? 0);
+    const cardCount = Math.max(
+      manifestCount,
+      Number.isFinite(readModelCount) ? readModelCount : 0,
+    );
     const existing = equivalentSetsByCode.get(normalizedCode);
     equivalentSetsByCode.set(normalizedCode, {
       row: existing ? choosePreferredEquivalentSetRow(existing.row, row) : row,
       cardCount: Math.max(existing?.cardCount ?? 0, cardCount),
-      cardCountIsExact: Boolean(
-        existing?.cardCountIsExact || includeDynamicCounts || manifestCount > 0,
-      ),
+      cardCountIsExact: true,
     });
   }
 

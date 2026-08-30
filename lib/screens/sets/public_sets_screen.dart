@@ -38,14 +38,17 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
     super.dispose();
   }
 
-  Future<void> _load() async {
+  Future<void> _load({bool forceRefresh = false}) async {
     setState(() {
       _loading = true;
       _error = null;
     });
 
     try {
-      final sets = await PublicSetsService.fetchSets(client: _client);
+      final sets = await PublicSetsService.fetchSets(
+        client: _client,
+        forceRefresh: forceRefresh,
+      );
       if (!mounted) {
         return;
       }
@@ -118,14 +121,14 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
         actions: [
           IconButton(
             tooltip: 'Reload',
-            onPressed: _load,
+            onPressed: () => _load(forceRefresh: true),
             icon: const Icon(Icons.refresh),
           ),
         ],
       ),
       body: SafeArea(
         child: RefreshIndicator(
-          onRefresh: _load,
+          onRefresh: () => _load(forceRefresh: true),
           child: ListView(
             padding: const EdgeInsets.fromLTRB(18, 12, 18, 28),
             children: [

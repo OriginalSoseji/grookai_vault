@@ -27,7 +27,7 @@ export default async function SetsPage(props: SetsPageProps) {
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
   const gameScope = normalizePublicGameScope(searchParams?.game);
   const browseConfig = getPublicSetBrowseConfig(gameScope);
-  const gameSets = await getPublicSets(gameScope, false);
+  const gameSets = await getPublicSets(gameScope);
   const sets = gameSets.filter(
     (setInfo) => matchesPublicSetLanguageScope(setInfo, languageScope),
   );

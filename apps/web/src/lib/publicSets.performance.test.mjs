@@ -29,6 +29,13 @@ const countVisibilityMigrationSource = fs.readFileSync(
   ),
   "utf8",
 );
+const catalogMigrationSource = fs.readFileSync(
+  path.resolve(
+    here,
+    "../../../../supabase/migrations/20260830193000_public_catalog_sets_performance_v2.sql",
+  ),
+  "utf8",
+);
 const manifest = JSON.parse(fs.readFileSync(path.join(here, "publicSetCardCounts.generated.json"), "utf8"));
 const webPackage = JSON.parse(fs.readFileSync(path.resolve(here, "../../package.json"), "utf8"));
 const listFunctionSource = source.slice(
@@ -49,9 +56,11 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.doesNotMatch(source, /\.from\("card_prints"\)\s*\.select\("set_code"\)/s);
   assert.doesNotMatch(listFunctionSource, /card_prints\(count\)/);
   assert.match(listFunctionSource, /getManifestCardPrintCount/);
-  assert.match(listFunctionSource, /getDynamicPublicSetCardCounts/);
   assert.doesNotMatch(listFunctionSource, /getManifestCardPrintCount[\s\S]*?=== 0/);
-  assert.match(source, /rpc\("get_public_set_card_counts_v1"/);
+  assert.match(source, /rpc\("get_public_catalog_sets_v2"/);
+  assert.match(catalogMigrationSource, /count\(\*\)::bigint as card_count/);
+  assert.match(catalogMigrationSource, /from public\.card_prints card/);
+  assert.doesNotMatch(catalogMigrationSource, /catalog_card_print_visible_to_request_v1/);
   assert.match(generatorSource, /group by lower\(trim\(set_code\)\)/);
   assert.match(generatorSource, /const PAGE_SIZE = 1000/);
   assert.match(generatorSource, /connectionTimeoutMillis/);
@@ -67,13 +76,16 @@ test("set discovery uses bounded database-side counts instead of transferring ev
   assert.doesNotMatch(source, /Math\.max\(row\.printed_total \?\? 0, 1\)/);
 });
 
-test("set discovery paginates beyond the PostgREST row ceiling", () => {
-  assert.match(source, /const PUBLIC_SET_ROW_PAGE_SIZE = 1000/);
-  assert.match(source, /async function getAllVisibleSetRows/);
-  assert.match(source, /\.order\("id", \{ ascending: true \}\)/);
-  assert.match(source, /\.range\(\s*offset,\s*offset \+ PUBLIC_SET_ROW_PAGE_SIZE - 1,?\s*\)/);
-  assert.match(listFunctionSource, /getAllVisibleSetRows\(supabase, gameCode\)/);
-  assert.match(source, /query = query\.eq\("game", normalizedGameCode\)/);
+test("set discovery uses one game-scoped read-model call instead of client pagination", () => {
+  assert.match(source, /async function getVisiblePopulatedSetRows/);
+  assert.match(source, /p_game_code: normalizedGameCode/);
+  assert.match(listFunctionSource, /getVisiblePopulatedSetRows\(supabase, gameCode\)/);
+  assert.match(source, /PUBLIC_CATALOG_GAME_CODES = \["pokemon", "one_piece", "mtg"\]/);
+  assert.match(source, /await Promise\.all\(/);
+  assert.match(source, /getVisiblePopulatedSetRowsForGame\(supabase, code\)/);
+  assert.doesNotMatch(source, /PUBLIC_SET_ROW_PAGE_SIZE/);
+  assert.doesNotMatch(listFunctionSource, /\.range\(/);
+  assert.match(catalogMigrationSource, /requested_game is null or lower\(target\.game\) = requested_game/);
 });
 
 test("canonical aliases are selected by reconciled catalog rows, not printed total", () => {

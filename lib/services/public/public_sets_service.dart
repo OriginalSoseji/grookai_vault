@@ -242,7 +242,10 @@ class PublicSetLaneOption {
 
 class PublicSetsService {
   static const _setRowPageSize = 1000;
-  static const _setCountChunkSize = 500;
+  static const _setCountChunkSize = 200;
+  static const _setCatalogCacheTtl = Duration(minutes: 5);
+  static final Expando<Map<String, _PublicSetsCacheEntry>> _setCatalogCache =
+      Expando<Map<String, _PublicSetsCacheEntry>>();
   static const _publicSetRouteAliases = <String, String>{
     'shiny vault': 'sma',
     'shiny-vault': 'sma',
@@ -347,14 +350,19 @@ class PublicSetsService {
 
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
+    bool forceRefresh = false,
   }) async {
-    final setRows = await _fetchAllVisibleSetRows(client: client);
+    final audience = client.auth.currentUser == null ? 'public' : 'signed_in';
+    final cached = _setCatalogCache[client]?[audience];
+    if (!forceRefresh &&
+        cached != null &&
+        DateTime.now().difference(cached.loadedAt) < _setCatalogCacheTtl) {
+      return cached.sets;
+    }
+
+    final setRows = await _fetchPublicCatalogSetRows(client: client);
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
-    final cardCountsByCode = await _fetchExactSetCardCounts(
-      client: client,
-      exactSetCodes: setRows.map((row) => _cleanText(row['code'])),
-    );
     for (final row in setRows) {
       final code = _normalizeCode(row['code']);
       final name = _cleanText(row['name']);
@@ -373,7 +381,7 @@ class PublicSetsService {
       final row = entry.value;
       final candidate = _mapSetRowToSummary(
         row,
-        cardCount: cardCountsByCode[entry.key] ?? 0,
+        cardCount: _intValue(row['card_count']),
       );
       if (candidate == null) {
         continue;
@@ -410,7 +418,67 @@ class PublicSetsService {
       return left.name.toLowerCase().compareTo(right.name.toLowerCase());
     });
 
-    return sets;
+    final immutableSets = List<PublicSetSummary>.unmodifiable(sets);
+    final cache = _setCatalogCache[client] ?? <String, _PublicSetsCacheEntry>{};
+    cache[audience] = _PublicSetsCacheEntry(
+      loadedAt: DateTime.now(),
+      sets: immutableSets,
+    );
+    _setCatalogCache[client] = cache;
+    return immutableSets;
+  }
+
+  static Future<List<Map<String, dynamic>>> _fetchPublicCatalogSetRows({
+    required SupabaseClient client,
+  }) async {
+    try {
+      // PostgREST caps set-returning RPC responses at 1,000 rows. Fetch each
+      // supported catalog independently so a large MTG lane cannot truncate
+      // One Piece or Pokemon from the signed-in Sets screen.
+      final gameRows = await Future.wait(
+        PublicCatalogGame.values.map(
+          (game) => _fetchPublicCatalogGameRows(
+            client: client,
+            gameCode: game.databaseCode,
+          ),
+        ),
+      );
+      return gameRows.expand((rows) => rows).toList(growable: false);
+    } on PostgrestException catch (error) {
+      // A short compatibility path keeps older deployments usable while the
+      // additive RPC migration reaches production. Other RPC failures remain
+      // visible instead of silently turning the catalog into an empty state.
+      if (error.code != 'PGRST202' && error.code != '404') {
+        rethrow;
+      }
+    }
+
+    final setRows = await _fetchAllVisibleSetRows(client: client);
+    final cardCountsByCode = await _fetchExactSetCardCounts(
+      client: client,
+      exactSetCodes: setRows.map((row) => _cleanText(row['code'])),
+    );
+    return setRows
+        .map(
+          (row) => <String, dynamic>{
+            ...row,
+            'card_count': cardCountsByCode[_normalizeCode(row['code'])] ?? 0,
+          },
+        )
+        .toList(growable: false);
+  }
+
+  static Future<List<Map<String, dynamic>>> _fetchPublicCatalogGameRows({
+    required SupabaseClient client,
+    required String gameCode,
+  }) async {
+    final rawRows = await client.rpc(
+      'get_public_catalog_sets_v2',
+      params: {'p_game_code': gameCode},
+    );
+    return (rawRows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList(growable: false);
   }
 
   static Future<List<Map<String, dynamic>>> _fetchAllVisibleSetRows({
@@ -1392,6 +1460,13 @@ class PublicSetsService {
 
     return url;
   }
+}
+
+class _PublicSetsCacheEntry {
+  const _PublicSetsCacheEntry({required this.loadedAt, required this.sets});
+
+  final DateTime loadedAt;
+  final List<PublicSetSummary> sets;
 }
 
 class _SortablePublicSetPrintingOption {
