@@ -13,32 +13,32 @@
     "source_ref": "origin/main"
   },
   "final_candidate": {
-    "source_commit": "82d5f8b26cb914f405cde4ea13fd395456134574",
-    "verifier_commit": "042ed6e26572aa450de415d84a662105599bb165",
-    "merged_pull_request": null,
+    "source_commit": "39f9911173d7c5053f49cbb04b22d9c1b3ff624f",
+    "verifier_commit": "39f9911173d7c5053f49cbb04b22d9c1b3ff624f",
+    "merged_pull_request": 331,
     "web": {
-      "deployment_id": "dpl_ADj4mujyQR5TQUt6FhpE6cR5Cy7J",
-      "deployment_url": "https://grookai-vault-3085jdxhe-sosejis-projects.vercel.app",
+      "deployment_id": "5aJnbAAAtCsyVdn6bQK9dV45UEMA",
+      "deployment_url": "https://vercel.com/sosejis-projects/grookai-vault/5aJnbAAAtCsyVdn6bQK9dV45UEMA",
       "origin": "https://grookaivault.com",
-      "status": "proven_signed_out_and_signed_in"
+      "status": "proven_signed_out_candidate_309_signed_in_candidate_rerun_pending"
     },
     "android": {
-      "workflow_run_id": "31222690149",
-      "artifact_id": "9011141315",
+      "workflow_run_id": "33326883149",
+      "artifact_id": null,
       "package": "com.grookai.vault",
-      "version": "1.0.0 (21)",
-      "apk_sha256": "7444381f364809a9348fad4d5f5f5437c01f96153bdb92e71f08c59dbcca5289",
-      "status": "artifact_emulator_recovery_and_fresh_install_proven_installed_samsung_physical_journeys_pending"
+      "version": "1.0.0 (309)",
+      "apk_sha256": "5c4182ea14980c835714622e68bef4e0a73dac710bda7f975c3aa1a73b0174cf",
+      "status": "signed_artifact_and_emulator_launch_proven_candidate_309_physical_journeys_pending"
     },
     "ios_testflight": {
-      "build": "1.0.0 (286)",
-      "build_id": "fde361e1-dcfd-43b7-bc80-ff9cf647e426",
-      "ipa_sha256": "1d42d6948f5406919405c025f188341ee766fbd713356e830d283ff9f230d4b9",
+      "build": "1.0.0 (309)",
+      "build_id": null,
+      "ipa_sha256": "88cbf1f9626c5088ad15456d44defe6ba13d2089393609e9c3cafd059495b674",
       "processing_state": "VALID",
-      "internal_state": "IN_BETA_TESTING",
-      "external_state": "IN_BETA_TESTING",
-      "beta_review_state": "APPROVED",
-      "status": "proven_physical_journeys_pending"
+      "internal_state": "AVAILABLE_TO_TEST",
+      "external_state": "not_reverified",
+      "beta_review_state": "not_reverified",
+      "status": "valid_and_available_to_test_candidate_309_physical_install_and_journeys_pending"
     },
     "soak_status": "not_started"
   },
@@ -95,7 +95,8 @@
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_c3a0aead_v1/2026-08-07T20-39-31-829Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
-        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md"
+        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
+        "docs/audits/release_completion_v1/app_candidate_309_sync_v1/2026-08-30T18-20-39Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Fresh-user ten-second comprehension result",
@@ -177,7 +178,8 @@
         "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_c3a0aead_v1/2026-08-07T20-39-31-829Z/REPORT.md",
         "docs/audits/release_completion_v1/signed_out_web_final_candidate_82d5f8b_v1/2026-08-07T23-04-42-176Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
+        "docs/audits/release_completion_v1/app_candidate_309_sync_v1/2026-08-30T18-20-39Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Repeat supported signed-out locked-feature and preserved-destination proof on the physical iPhone/TestFlight final candidate"
@@ -205,7 +207,8 @@
         "docs/audits/release_completion_v1/signed_in_web_final_candidate_82d5f8b_v1/2026-08-07T23-22-49-126Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
-        "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md"
+        "docs/audits/release_completion_v1/device_android/final_candidate_physical_journeys_and_state_matrix_v1/2026-08-08T00-51-59Z/REPORT.md",
+        "docs/audits/release_completion_v1/app_candidate_309_sync_v1/2026-08-30T18-20-39Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Final-candidate iPhone and Android execution of required loading, empty, error, offline, private, signed-out, text-scaling, and recovery states; signed-in production desktop and narrow-web route truth passed"
@@ -248,7 +251,8 @@
         "docs/audits/release_completion_v1/device_android/signed_main_exact_printing_app_link_v1/2026-08-07T17-35-18Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_distribution_v1/2026-08-07T20-47-52Z/REPORT.md",
         "docs/audits/release_completion_v1/final_candidate_blocker_repair_v1/2026-08-07T23-26-39Z/REPORT.md",
-        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md"
+        "docs/audits/release_completion_v1/final_candidate_remaining_automated_gates_v1/2026-08-07T23-44-30Z/REPORT.md",
+        "docs/audits/release_completion_v1/app_candidate_309_sync_v1/2026-08-30T18-20-39Z/REPORT.md"
       ],
       "required_next_evidence": [
         "Establish or identify the intended Google Play developer account, then review the current Play listing and assets; App Store metadata and intended TestFlight groups are proven"
