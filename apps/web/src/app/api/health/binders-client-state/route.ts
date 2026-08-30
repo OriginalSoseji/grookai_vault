@@ -56,6 +56,9 @@ export function GET() {
         process.env.VERCEL_GIT_COMMIT_SHA ??
         process.env.GIT_COMMIT_SHA ??
         "unavailable",
+      release_proof_policies: {
+        pricing_vault_sample: "fully_public_only_v1",
+      },
       clients_dark: Object.values(webFlags).every(
         (enabled) => enabled === false,
       ),

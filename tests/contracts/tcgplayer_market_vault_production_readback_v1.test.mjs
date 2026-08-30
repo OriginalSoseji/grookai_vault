@@ -20,6 +20,20 @@ const AUDIT = readFileSync(
   ),
   "utf8",
 );
+const DEPLOYMENT_HEALTH_ROUTE = readFileSync(
+  path.join(
+    ROOT,
+    "apps",
+    "web",
+    "src",
+    "app",
+    "api",
+    "health",
+    "binders-client-state",
+    "route.ts",
+  ),
+  "utf8",
+);
 
 function evidence() {
   return {
@@ -286,5 +300,9 @@ test("production readback is read-only, hashed, and omits owner identifiers", ()
   assert.match(
     AUDIT,
     /tracked worktree must be clean with --require-pass/,
+  );
+  assert.match(
+    DEPLOYMENT_HEALTH_ROUTE,
+    /pricing_vault_sample:\s*"fully_public_only_v1"/,
   );
 });
