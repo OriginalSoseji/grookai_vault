@@ -1,0 +1,35 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "apply_plan.json",
+      "sha256": "5b9a0f486d1beda725cf0e055d828a1f6bffa6d3ed2371d0f788e9f83372de8d"
+    },
+    {
+      "path": "APPLY_PLAN.md",
+      "sha256": "e08f5eab6621d4439ce460988c00cc131fa36b0c897bdb28032a187f41e87f12"
+    },
+    {
+      "path": "execution_summary.json",
+      "sha256": "37edf180189d6642ca90463eff2cee6640e71b7b703aa08720c774b02054506d"
+    },
+    {
+      "path": "edge_deployment_summary.json",
+      "sha256": "17e1bde957f019465fed699947a2adc88c4528786465542be15c9a3b189dd285"
+    }
+  ],
+  "bound_inputs": [
+    {
+      "path": "supabase/migrations/20260830233000_founder_operations_command_center_v1.sql",
+      "sha256": "02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb"
+    },
+    {
+      "path": "supabase/functions/notification-dispatcher/index.ts",
+      "sha256": "01dfb600766d9713bf940b9545e748de4f9f1e9d97bb454034034d4472c17095"
+    },
+    {
+      "path": "supabase/functions/operations-webhook-v1/index.ts",
+      "sha256": "c4498a7ad0850d94355aae620f5bc0b3ad56638a2f24a8e194a89dbcac91105e"
+    }
+  ]
+}
