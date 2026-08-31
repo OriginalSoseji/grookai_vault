@@ -25,6 +25,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   PublicSetFilter _activeFilter = PublicSetFilter.all;
   PublicSetEra _activeEra = PublicSetEra.all;
   PublicSetLane _activeLane = PublicSetLane.all;
+  String _activeReleaseYear = PublicSetsService.allReleaseYears;
 
   @override
   void initState() {
@@ -83,6 +84,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       game: _activeGame,
       era: _activeEra,
       lane: _activeLane,
+      releaseYear: _activeReleaseYear,
     );
     final queryMatchedSets = PublicSetsService.filterAndSortSets(
       sets: _sets,
@@ -91,15 +93,22 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       game: _activeGame,
       lane: _activeLane,
     );
-    final eraScopedSets = PublicSetsService.filterAndSortSets(
+    final periodScopedSets = PublicSetsService.filterAndSortSets(
       sets: _sets,
       query: _searchController.text,
       filter: PublicSetFilter.all,
       game: _activeGame,
       era: _activeEra,
+      releaseYear: _activeReleaseYear,
     );
     final eraCounts = PublicSetsService.countSetsByEra(queryMatchedSets);
-    final laneCounts = PublicSetsService.countSetsByLane(eraScopedSets);
+    final releaseYearCounts = PublicSetsService.countSetsByReleaseYear(
+      queryMatchedSets,
+    );
+    final releaseYearOptions = PublicSetsService.releaseYearOptions(
+      queryMatchedSets,
+    );
+    final laneCounts = PublicSetsService.countSetsByLane(periodScopedSets);
     final groupedSets = PublicSetsService.groupSetsByEra(filteredSets);
     final shouldGroupByEra =
         trimmedQuery.isEmpty &&
@@ -203,6 +212,9 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                         setState(() {
                           _activeGame = selection.first;
                           _activeEra = PublicSetEra.all;
+                          _activeReleaseYear =
+                              PublicSetsService.allReleaseYears;
+                          _activeLane = PublicSetLane.all;
                         });
                       },
                     ),
@@ -223,14 +235,32 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                           });
                         },
                       ),
+                    ] else ...[
+                      const SizedBox(height: 12),
+                      _SetChoiceRow<String, PublicSetReleaseYearOption>(
+                        label: 'Release year',
+                        values: releaseYearOptions,
+                        selectedValue: _activeReleaseYear,
+                        countFor: (value) =>
+                            value == PublicSetsService.allReleaseYears
+                            ? queryMatchedSets.length
+                            : releaseYearCounts[value] ?? 0,
+                        valueFor: (option) => option.value,
+                        labelFor: (option) => option.label,
+                        onSelected: (value) {
+                          setState(() {
+                            _activeReleaseYear = value;
+                          });
+                        },
+                      ),
                     ],
                     const SizedBox(height: 12),
                     _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
                       label: 'Lane',
-                      values: PublicSetsService.laneOptions,
+                      values: PublicSetsService.laneOptionsForGame(_activeGame),
                       selectedValue: _activeLane,
                       countFor: (value) => value == PublicSetLane.all
-                          ? eraScopedSets.length
+                          ? periodScopedSets.length
                           : laneCounts[value] ?? 0,
                       valueFor: (option) => option.value,
                       labelFor: (option) => option.label,
@@ -244,38 +274,73 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                 ),
               ),
               const SizedBox(height: 18),
-              _SetsSurfaceCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const _SetsSectionHeader(
-                      title: 'Browse by era',
-                      description:
-                          'Jump into the catalog by release era instead of scrolling through every set.',
-                    ),
-                    const SizedBox(height: 14),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: PublicSetsService.eraOptions
-                          .where((option) => option.value != PublicSetEra.all)
-                          .map((option) {
-                            return GvChip(
-                              label: option.label,
-                              count: eraCounts[option.value] ?? 0,
-                              selected: _activeEra == option.value,
-                              onSelected: (_) {
-                                setState(() {
-                                  _activeEra = option.value;
-                                });
-                              },
-                            );
-                          })
-                          .toList(),
-                    ),
-                  ],
+              if (_activeGame == PublicCatalogGame.pokemon)
+                _SetsSurfaceCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const _SetsSectionHeader(
+                        title: 'Browse by era',
+                        description:
+                            'Jump into the Pokemon catalog by release era.',
+                      ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: PublicSetsService.eraOptions
+                            .where((option) => option.value != PublicSetEra.all)
+                            .map((option) {
+                              return GvChip(
+                                label: option.label,
+                                count: eraCounts[option.value] ?? 0,
+                                selected: _activeEra == option.value,
+                                onSelected: (_) {
+                                  setState(() {
+                                    _activeEra = option.value;
+                                  });
+                                },
+                              );
+                            })
+                            .toList(),
+                      ),
+                    ],
+                  ),
+                )
+              else
+                _SetsSurfaceCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _SetsSectionHeader(
+                        title: 'Browse by release year',
+                        description:
+                            'Jump into the ${_activeGame.label} catalog by release year.',
+                      ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: releaseYearOptions.map((option) {
+                          final count =
+                              option.value == PublicSetsService.allReleaseYears
+                              ? queryMatchedSets.length
+                              : releaseYearCounts[option.value] ?? 0;
+                          return GvChip(
+                            label: option.label,
+                            count: count,
+                            selected: _activeReleaseYear == option.value,
+                            onSelected: (_) {
+                              setState(() {
+                                _activeReleaseYear = option.value;
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               const SizedBox(height: 18),
               _SetsSurfaceCard(
                 child: _SetsSectionHeader(
