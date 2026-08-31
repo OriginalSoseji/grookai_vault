@@ -123,6 +123,8 @@ async function parseSetDescriptor(descriptorPath, repositoryRoot) {
   if (!setId || names.size === 0) return null;
   const cardCount = property(setObject, "cardCount");
   const officialCount = integerValue(property(cardCount, "official"));
+  const releaseDateNode = property(setObject, "releaseDate");
+  const releaseDate = stringValue(releaseDateNode) ?? languageMap(releaseDateNode).get("en") ?? null;
   const cardFiles = (await fs.readdir(setDirectory, { withFileTypes: true }))
     .filter((entry) => entry.isFile() && entry.name.endsWith(".ts"))
     .map((entry) => path.join(setDirectory, entry.name))
@@ -144,8 +146,53 @@ async function parseSetDescriptor(descriptorPath, repositoryRoot) {
     names,
     officialCount,
     totalCount: cards.length,
+    releaseDate,
     sourceReference: path.relative(repositoryRoot, descriptorPath).replaceAll("\\", "/"),
     cards,
+  };
+}
+
+export async function parseTcgdexGithubEnglishSetSourceTreeV1({
+  repositoryRoot,
+  sourceCommitSha,
+  concurrency = 8,
+}) {
+  const descriptorPaths = await collectSetDescriptorPaths(path.join(repositoryRoot, "data"));
+  const parsedSets = (await mapPool(descriptorPaths, concurrency, async (descriptorPath) => {
+    const setDirectory = descriptorPath.slice(0, -3);
+    const setSource = await fs.readFile(descriptorPath, "utf8");
+    const setObject = exportedObject(setSource, descriptorPath, "set");
+    if (!setObject || !property(setObject, "serie")) return null;
+    const id = stringValue(property(setObject, "id"));
+    const name = languageMap(property(setObject, "name")).get("en");
+    if (!id || !name) return null;
+    const sourceReference = path.relative(repositoryRoot, descriptorPath).replaceAll("\\", "/");
+    if (sourceReference.startsWith("data/Pokémon TCG Pocket/")) return null;
+    const cardCount = property(setObject, "cardCount");
+    const releaseDateNode = property(setObject, "releaseDate");
+    const total = (await fs.readdir(setDirectory, { withFileTypes: true }))
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".ts")).length;
+    return {
+      id,
+      name,
+      cardCount: {
+        official: integerValue(property(cardCount, "official")),
+        total,
+      },
+      releaseDate: stringValue(releaseDateNode) ??
+        languageMap(releaseDateNode).get("en") ?? null,
+      sourceReference,
+    };
+  })).filter(Boolean).sort((left, right) => left.id.localeCompare(right.id));
+  if (parsedSets.length === 0) {
+    throw new Error("TCGdex GitHub English set snapshot is empty.");
+  }
+  return {
+    status: "available",
+    source: "tcgdex_github_snapshot",
+    source_commit_sha: sourceCommitSha,
+    repository_url: REPOSITORY_URL,
+    sets: parsedSets,
   };
 }
 
@@ -188,6 +235,7 @@ export async function parseTcgdexGithubLanguageSourceTreeV1({
           official: parsedSet.officialCount,
           total: parsedSet.totalCount,
         },
+        releaseDate: parsedSet.releaseDate,
         sourceReference: parsedSet.sourceReference,
       });
       for (const card of translatedCards) {
@@ -236,6 +284,36 @@ export async function loadTcgdexGithubLanguageSnapshotsV1({ concurrency = 8 } = 
     return await parseTcgdexGithubLanguageSourceTreeV1({
       repositoryRoot,
       sourceCommitSha,
+      concurrency,
+    });
+  } finally {
+    await fs.rm(temporaryRoot, { recursive: true, force: true });
+  }
+}
+
+export async function loadTcgdexGithubEnglishSetSnapshotV1({ concurrency = 8 } = {}) {
+  const temporaryRoot = await fs.mkdtemp(path.join(os.tmpdir(), "tcgdex-english-sets-"));
+  const repositoryRoot = path.join(temporaryRoot, "cards-database");
+  try {
+    await execFileAsync("git", [
+      "clone",
+      "--depth=1",
+      "--filter=blob:none",
+      "--sparse",
+      REPOSITORY_URL,
+      repositoryRoot,
+    ], { timeout: 300_000, maxBuffer: 10 * 1024 * 1024 });
+    await execFileAsync("git", [
+      "-C", repositoryRoot, "sparse-checkout", "set", "data",
+    ], { timeout: 300_000, maxBuffer: 10 * 1024 * 1024 });
+    const { stdout } = await execFileAsync(
+      "git",
+      ["-C", repositoryRoot, "rev-parse", "HEAD"],
+      { timeout: 30_000 },
+    );
+    return await parseTcgdexGithubEnglishSetSourceTreeV1({
+      repositoryRoot,
+      sourceCommitSha: stdout.trim(),
       concurrency,
     });
   } finally {

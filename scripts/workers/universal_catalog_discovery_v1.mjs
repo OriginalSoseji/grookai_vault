@@ -57,6 +57,8 @@ import {
   POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
   pokemonLanguageFingerprint,
 } from "../../backend/catalog/pokemon_language_master_index_v1.mjs";
+import { loadTcgdexGithubEnglishSetSnapshotV1 } from
+  "../../backend/catalog/tcgdex_github_language_source_v1.mjs";
 
 const USER_AGENT = "GrookaiVaultCatalogDiscovery/1.0 catalog-ops@grookai.com";
 const DEFAULT_RECENT_DAYS = 180;
@@ -586,7 +588,77 @@ async function discoverPokemonEnglish(
   englishMasterIndex,
 ) {
   const registryUrl = "https://api.tcgdex.net/v2/en/sets";
-  const registrySnapshot = await fetchSource(registryUrl, { responseType: "json" });
+  let registrySnapshot;
+  try {
+    registrySnapshot = await fetchSource(registryUrl, { responseType: "json" });
+  } catch (error) {
+    if (!isOptionalCatalogSourceFallbackV1(error)) throw error;
+    const githubSnapshot = await loadTcgdexGithubEnglishSetSnapshotV1({ concurrency: 8 });
+    const serializedSets = stableJson(githubSnapshot.sets);
+    const sourceRoot = `${githubSnapshot.repository_url}/tree/` +
+      githubSnapshot.source_commit_sha;
+    sourceSnapshots.push({
+      request_url: githubSnapshot.repository_url,
+      final_url: `${sourceRoot}/data`,
+      http_status: 200,
+      fetched_at: new Date().toISOString(),
+      body_sha256: sha256(serializedSets),
+      byte_size: Buffer.byteLength(serializedSets),
+      source_transport: "git_sparse_clone",
+      source_commit_sha: githubSnapshot.source_commit_sha,
+      fallback_for: registryUrl,
+    });
+    const databaseEnglish = databaseSets.filter((row) =>
+      row.game_code === "pokemon" && catalogSetScope(row) === "pokemon en");
+    const databaseByCode = new Map();
+    for (const row of databaseEnglish) {
+      for (const code of [row.code, ...(row.code_aliases ?? [])]) {
+        databaseByCode.set(compactSetCode(code), row);
+      }
+    }
+    const databaseByName = new Map(
+      databaseEnglish.map((row) => [normalizeCatalogText(row.name), row]),
+    );
+    return githubSnapshot.sets.map((set) => {
+      const database = databaseByCode.get(compactSetCode(set.id)) ??
+        databaseByName.get(normalizeCatalogText(set.name)) ?? null;
+      const expected = Number(set.cardCount?.total);
+      const validCount = Number.isSafeInteger(expected) && expected >= 0 ? expected : null;
+      const masterCards = englishMasterIndex.cardsBySet.get(clean(set.id)) ?? [];
+      const masterIndexComplete = validCount !== null && masterCards.length === validCount &&
+        masterCards.every((card) => card.status === "master_verified" &&
+          Number(card.source_count) >= 2);
+      const encodedReference = set.sourceReference.split("/").map(encodeURIComponent).join("/");
+      const sourceUrl = `${githubSnapshot.repository_url}/blob/` +
+        `${githubSnapshot.source_commit_sha}/${encodedReference}`;
+      return {
+        game_code: "pokemon",
+        catalog_scope: "pokemon_en",
+        source_id: "tcgdex_english_set_registry",
+        source_set_id: clean(set.id),
+        code: clean(set.id),
+        name: clean(set.name),
+        aliases: [clean(set.name)],
+        release_date: clean(set.releaseDate ?? database?.release_date) || null,
+        expected_card_count: validCount,
+        count_scope: "full_set",
+        count_evidence: [{
+          authority: "tcgdex_official_github_snapshot",
+          scope: "full_set",
+          count: validCount,
+          source_url: sourceUrl,
+          source_commit_sha: githubSnapshot.source_commit_sha,
+        }, ...(masterIndexComplete ? [{
+          authority: "english_master_index_completion_v1",
+          scope: "full_set",
+          count: masterCards.length,
+          source_count_floor: Math.min(...masterCards.map((card) => Number(card.source_count))),
+          artifact_sha256: englishMasterIndex.cardsSha256,
+        }] : [])],
+        source_url: sourceUrl,
+      };
+    });
+  }
   sourceSnapshots.push(sourceMetadata(registrySnapshot));
   const registry = Array.isArray(registrySnapshot.body) ? registrySnapshot.body : [];
   const databaseEnglish = databaseSets.filter((row) =>

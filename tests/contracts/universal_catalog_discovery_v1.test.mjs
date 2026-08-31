@@ -557,6 +557,8 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /parseOnePieceOfficialSeriesOptionsV1/);
   assert.match(worker, /api\.scryfall\.com\/sets/);
   assert.match(worker, /api\.tcgdex\.net\/v2\/en\/sets/);
+  assert.match(worker, /loadTcgdexGithubEnglishSetSnapshotV1/);
+  assert.match(worker, /tcgdex_official_github_snapshot/);
   assert.match(worker, /tcgdex_english_set_registry/);
   assert.match(worker, /serie\?\.id !== "tcgp"/);
   assert.match(worker, /pokemon-card\.com\/card-search\/resultAPI\.php/);

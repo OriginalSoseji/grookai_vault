@@ -15,7 +15,10 @@ import {
   TCGDEX_LIVE_POKEMON_LANGUAGE_SCOPES,
   TCGDEX_POKEMON_LANGUAGE_SCOPES,
 } from "../../backend/catalog/pokemon_language_master_index_v1.mjs";
-import { parseTcgdexGithubLanguageSourceTreeV1 } from
+import {
+  parseTcgdexGithubEnglishSetSourceTreeV1,
+  parseTcgdexGithubLanguageSourceTreeV1,
+} from
   "../../backend/catalog/tcgdex_github_language_source_v1.mjs";
 
 const sets = [
@@ -147,6 +150,7 @@ test("official GitHub source fallback extracts multilingual identity without exe
       id: "sv-test",
       name: { en: "Set One", fr: "Serie Un" },
       cardCount: { official: 1 },
+      releaseDate: "2026-08-01",
       serie: {},
     };
     export default base1;
@@ -163,6 +167,14 @@ test("official GitHub source fallback extracts multilingual identity without exe
   fs.writeFileSync(path.join(asian, "Set Japan", "001.ts"), `
     const card = { name: { ja: "ピカチュウ", th: "พิคาชู" } };
   `);
+  const pocket = path.join(root, "data", "Pokémon TCG Pocket");
+  fs.mkdirSync(path.join(pocket, "Pocket Set"), { recursive: true });
+  fs.writeFileSync(path.join(pocket, "Pocket Set.ts"), `
+    const set = { id: "A1", name: { en: "Pocket Set" }, serie: {}, cardCount: { official: 1 } };
+  `);
+  fs.writeFileSync(path.join(pocket, "Pocket Set", "001.ts"), `
+    const card = { name: { en: "Pocket Pikachu" } };
+  `);
 
   const parsed = await parseTcgdexGithubLanguageSourceTreeV1({
     repositoryRoot: root,
@@ -170,11 +182,21 @@ test("official GitHub source fallback extracts multilingual identity without exe
     concurrency: 2,
   });
   assert.equal(parsed.source_commit_sha, "abc123");
-  assert.equal(parsed.snapshots.en.cards[0].name, "Pikachu");
+  assert.equal(parsed.snapshots.en.cards.find((card) => card.id === "sv-test-001").name,
+    "Pikachu");
   assert.equal(parsed.snapshots.fr.cards[0].id, "sv-test-001");
   assert.equal(parsed.snapshots.ja.cards[0].name, "ピカチュウ");
   assert.equal(parsed.snapshots.th.status, "available");
   assert.equal(parsed.snapshots.de.status, "provider_no_cards");
+  const englishSets = await parseTcgdexGithubEnglishSetSourceTreeV1({
+    repositoryRoot: root,
+    sourceCommitSha: "abc123",
+    concurrency: 2,
+  });
+  assert.equal(englishSets.status, "available");
+  assert.deepEqual(englishSets.sets.map((set) => set.id), ["sv-test"]);
+  assert.equal(englishSets.sets[0].cardCount.total, 1);
+  assert.equal(englishSets.sets[0].releaseDate, "2026-08-01");
   const normalized = normalizePokemonLanguageSourceSnapshotV1({
     language: "ja",
     sets: parsed.snapshots.ja.sets,
