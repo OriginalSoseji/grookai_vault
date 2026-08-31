@@ -3,7 +3,7 @@ name: Prod Edge Probe (read-only)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '23 * * * *'
   push:
     branches: [ main ]
     paths:

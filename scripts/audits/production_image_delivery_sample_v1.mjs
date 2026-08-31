@@ -301,7 +301,7 @@ function markdown(report) {
 export async function runImageDeliverySampleV1({ argv = process.argv.slice(2), now = new Date() } = {}) {
   const args = parseArgs(argv);
   const supabaseUrl = clean(process.env.SUPABASE_URL);
-  const serviceKey = clean(process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY);
+  const serviceKey = clean(process.env.SUPABASE_SECRET_KEY);
   const dbUrl = clean(process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL);
   if (!supabaseUrl || !serviceKey || !dbUrl) throw new Error('SUPABASE_URL, service key, and database URL are required');
   const proxyBearerToken = clean(process.env.CARD_IMAGE_PROXY_BEARER_TOKEN);

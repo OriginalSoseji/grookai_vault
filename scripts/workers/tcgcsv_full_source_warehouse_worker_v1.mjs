@@ -10,6 +10,7 @@ import pg from "pg";
 
 import "../../backend/env.mjs";
 import {
+  classifyTcgcsvSourceFetchErrorV1,
   isRetryableTcgcsvSourceFetchErrorV1,
   tcgcsvSourceRetryDelayMsV1,
 } from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
@@ -266,8 +267,20 @@ class Fetcher {
         });
         break;
       } catch (error) {
+        const responseBody = await fs.readFile(fullPath, "utf8").catch(() => "");
+        const responseHeaders = await fs.readFile(headerPath, "utf8").catch(() => "");
+        const classification = classifyTcgcsvSourceFetchErrorV1(error, {
+          responseBody,
+          responseHeaders,
+        });
+        if (classification.circuit_break) {
+          error.code = "TCGCSV_SOURCE_BLOCKED";
+          error.message = `[TCGCSV_SOURCE_BLOCKED] provider access is blocked; circuit opened before retry (${url})`;
+          error.tcgcsv_source_failure = classification;
+          throw error;
+        }
         if (
-          !isRetryableTcgcsvSourceFetchErrorV1(error) ||
+          !isRetryableTcgcsvSourceFetchErrorV1(error, { responseBody, responseHeaders }) ||
           retry >= this.requestRetries
         ) {
           error.message = `${error.message} (failed after ${retry + 1} attempts)`;

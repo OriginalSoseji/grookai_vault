@@ -340,7 +340,7 @@ test('automation sources enforce read-only provider methods and do not persist c
   const metrics = fs.readFileSync('scripts/audits/production_supabase_metrics_snapshot_v1.mjs', 'utf8');
   const adapter = fs.readFileSync('scripts/ops/supabase_management_get_v1.ps1', 'utf8');
   for (const source of [provider, metrics, adapter]) {
-    assert.doesNotMatch(source, /fs\.writeFile\([^\n]*(?:SUPABASE_ACCESS_TOKEN|SUPABASE_SECRET_KEY|SUPABASE_SERVICE_ROLE_KEY)/);
+    assert.doesNotMatch(source, /fs\.writeFile\([^\n]*(?:SUPABASE_ACCESS_TOKEN|SUPABASE_SECRET_KEY)/);
   }
   assert.match(provider, /method: 'GET'/);
   assert.match(metrics, /method: 'GET'/);

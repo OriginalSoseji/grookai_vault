@@ -200,3 +200,59 @@ test("MEE-11M allows dynamic nightly fetch hashes only when explicitly requested
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("MEE-11M records a completed acquisition and fresh query receipt when the provider returns zero matches", async () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "mee-11m-zero-"));
+  try {
+    const artifact = fetchArtifact(dir);
+    writeJsonl(artifact.artifacts.request_results_jsonl, [{
+      query_key: "query-1",
+      query_text: "Pokemon Pikachu PSA 10",
+      gv_id: "GV-PK-TEST-1",
+      strategy: "strict_identity",
+      fetch_status: "fetched_success",
+      response_status: 200,
+      provider_total: 0,
+      fetched_item_count: 0,
+      payload_hash: "empty-payload-hash",
+    }]);
+    writeJsonl(artifact.artifacts.raw_snapshots_jsonl, [{
+      query_key: "query-1",
+      source: "ebay_active",
+      provider_route: "ebay_browse_api",
+      provider_total: 0,
+      fetched_item_count: 0,
+      payload_hash: "empty-payload-hash",
+      gv_id: "GV-PK-TEST-1",
+      strategy: "strict_identity",
+      raw_payload: { total: 0, itemSummaries: [] },
+      projected_observations: [],
+    }]);
+    writeJsonl(artifact.artifacts.projected_observations_jsonl, []);
+    artifact.summary = {
+      approved_request_count: 1,
+      attempted_request_count: 1,
+      successful_request_count: 1,
+      failed_request_count: 0,
+      projected_observation_count: 0,
+      fetch_status_counts: { fetched_success: 1 },
+      acquisition_outcome: "fetched_success_no_results",
+      successful_zero_result: true,
+    };
+
+    const plan = await buildMarketListingAcquisitionDailyBatchBackfillPlanV1({
+      fetchArtifact: artifact,
+      outputDir: path.join(dir, "rows"),
+      generatedAt: "2026-08-31T03:22:00.000Z",
+    });
+
+    assert.equal(plan.ready_for_apply_approval, true);
+    assert.equal(plan.summary.successful_zero_result, true);
+    assert.equal(plan.proposed_table_row_counts.market_listing_acquisition_runs, 1);
+    assert.equal(plan.proposed_table_row_counts.market_listing_query_cache, 1);
+    assert.equal(plan.proposed_table_row_counts.market_listing_observations, 0);
+    assert.equal(plan.proposed_table_row_counts.market_listing_price_events, 0);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

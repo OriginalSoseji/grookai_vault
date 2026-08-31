@@ -939,6 +939,9 @@ test("pipeline freezes provenance, resumes completed phases, and keeps write bou
   assert.match(PIPELINE, /vault_writes:\s*false/);
   assert.match(PIPELINE, /synthetic_value_calculation:\s*false/);
   assert.match(PIPELINE, /clean tracked working tree/);
+  assert.match(PIPELINE, /degraded_cached_source/);
+  assert.match(PIPELINE, /circuit_break_then_fresh_completed_cache_only/);
+  assert.match(PIPELINE, /evaluateTcgcsvCachedSourceContinuityV1/);
 });
 
 test("full source syncs cannot use a ceiling below the observed TCGCSV workload", () => {
@@ -1057,6 +1060,16 @@ test("warehouse price observations retain exact source artifact lineage", () => 
 });
 
 test("scheduled failure policy retries source transport failures but stops invariant failures", () => {
+  assert.deepEqual(
+    classifyMarketPipelineFailureV1({
+      failedPhase: "warehouse_current_sync",
+      errorText: "[TCGCSV_SOURCE_BLOCKED] HTTP 403 application blocked",
+    }),
+    {
+      classification: "non_retryable_invariant_failure",
+      retryable: false,
+    },
+  );
   assert.deepEqual(
     classifyMarketPipelineFailureV1({
       failedPhase: "warehouse_current_sync",
