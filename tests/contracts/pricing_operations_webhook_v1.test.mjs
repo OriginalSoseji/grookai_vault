@@ -6,6 +6,10 @@ const migration = readFileSync(
   "supabase/migrations/20260728050000_pricing_operations_notification_webhook_v1.sql",
   "utf8",
 );
+const severityMigration = readFileSync(
+  "supabase/migrations/20260824043000_operations_notification_severity_v2.sql",
+  "utf8",
+);
 const webhook = readFileSync(
   "supabase/functions/operations-webhook-v1/index.ts",
   "utf8",
@@ -72,6 +76,18 @@ test("operations webhook requires its own bearer and dispatches the exact alert"
   assert.match(webhook, /operations_notification_id: notificationId/);
   assert.match(webhook, /MAX_PAYLOAD_BYTES/);
   assert.doesNotMatch(webhook, /service_role.*eyJ/i);
+});
+
+test("operations webhook and database share the four-level severity vocabulary", () => {
+  for (const severity of ["critical", "high", "warning", "info"]) {
+    assert.match(webhook, new RegExp(`\\"${severity}\\"`));
+    assert.match(severityMigration, new RegExp(`'${severity}'`));
+  }
+  assert.match(webhook, /OPERATIONS_SEVERITIES\.has/);
+  assert.match(
+    severityMigration,
+    /severity in \('critical', 'high', 'warning', 'info'\)/,
+  );
 });
 
 test("shared-secret operations functions bypass the Supabase JWT gateway", () => {

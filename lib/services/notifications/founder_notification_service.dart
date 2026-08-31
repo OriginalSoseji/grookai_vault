@@ -82,6 +82,7 @@ class FounderNotificationItem {
 
   String get unitState => _text(payload['unit_state']);
   String get journalTail => _text(payload['journal_tail']);
+  String get workItemId => _text(payload['work_item_id']);
 
   FounderNotificationItem copyWith({bool? isUnread}) {
     return FounderNotificationItem(

@@ -5,6 +5,12 @@ import { corsJson } from "../_shared/cors.ts";
 type Json = Record<string, unknown>;
 
 const MAX_PAYLOAD_BYTES = 256 * 1024;
+const OPERATIONS_SEVERITIES = new Set([
+  "critical",
+  "high",
+  "warning",
+  "info",
+]);
 
 function cleanString(value: unknown): string | null {
   if (typeof value !== "string") return null;
@@ -43,7 +49,7 @@ function authorize(req: Request): Response | null {
 function validatePayload(payload: Json): string | null {
   if (!cleanString(payload.notification_id)) return "missing_notification_id";
   if (!cleanString(payload.event)) return "missing_event";
-  if (cleanString(payload.severity) !== "critical") {
+  if (!OPERATIONS_SEVERITIES.has(cleanString(payload.severity) ?? "")) {
     return "unsupported_severity";
   }
   if (!cleanString(payload.host)) return "missing_host";

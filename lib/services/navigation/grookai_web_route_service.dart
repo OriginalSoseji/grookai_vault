@@ -18,6 +18,7 @@ enum GrookaiCanonicalRouteKind {
   binderExplore,
   binderTemplate,
   founderNotifications,
+  founderOperations,
 }
 
 class GrookaiCanonicalRoute {
@@ -175,6 +176,17 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.founderOperations({String workItemId = ''}) {
+    final normalized = workItemId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.founderOperations,
+      path: normalized.isEmpty
+          ? '/founder/operations'
+          : '/founder/operations?work_item_id=${Uri.encodeQueryComponent(normalized)}',
+      value: normalized,
+    );
+  }
+
   final GrookaiCanonicalRouteKind kind;
   final String path;
   final String value;
@@ -291,6 +303,13 @@ class GrookaiWebRouteService {
         notificationId: uri.queryParameters['notification_id'] ?? '',
       );
     }
+    if (head == 'founder' &&
+        segments.length >= 2 &&
+        segments[1].toLowerCase() == 'operations') {
+      return GrookaiCanonicalRoute.founderOperations(
+        workItemId: uri.queryParameters['work_item_id'] ?? '',
+      );
+    }
     if (segments.length < 2) {
       return null;
     }
@@ -398,6 +417,13 @@ class GrookaiWebRouteService {
         segments.first.toLowerCase() == 'notifications') {
       return GrookaiCanonicalRoute.founderNotifications(
         notificationId: uri.queryParameters['notification_id'] ?? '',
+      );
+    }
+    if (host == 'founder' &&
+        segments.isNotEmpty &&
+        segments.first.toLowerCase() == 'operations') {
+      return GrookaiCanonicalRoute.founderOperations(
+        workItemId: uri.queryParameters['work_item_id'] ?? '',
       );
     }
 

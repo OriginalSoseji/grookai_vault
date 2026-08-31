@@ -12,6 +12,7 @@ import '../../services/notifications/founder_notification_service.dart';
 import '../../services/public/public_collector_service.dart';
 import '../../widgets/founder/founder_market_signals_section.dart';
 import '../founder/founder_notifications_screen.dart';
+import '../founder/founder_operations_screen.dart';
 import '../founder/founder_metrics_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
@@ -466,6 +467,12 @@ class _AccountScreenState extends State<AccountScreen> {
       MaterialPageRoute<void>(
         builder: (_) => const FounderNotificationsScreen(),
       ),
+    );
+  }
+
+  Future<void> _openFounderOperations() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const FounderOperationsScreen()),
     );
   }
 
@@ -1011,6 +1018,13 @@ class _AccountScreenState extends State<AccountScreen> {
               subtitle:
                   'Private history for pricing, ingestion, catalog, and production alerts',
               onTap: _openFounderNotifications,
+            ),
+            _AccountLinkTile(
+              icon: Icons.admin_panel_settings_outlined,
+              title: 'Founder Operations',
+              subtitle:
+                  'Review frozen work items, follow commands, and monitor agent health',
+              onTap: _openFounderOperations,
             ),
             _AccountLinkTile(
               icon: Icons.insights_rounded,

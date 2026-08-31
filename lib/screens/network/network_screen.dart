@@ -30,6 +30,7 @@ import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../dex/grookai_dex_screen.dart';
 import '../dex/grookai_dex_species_screen.dart';
 import '../founder/founder_notifications_screen.dart';
+import '../founder/founder_operations_screen.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../grookai_objects/collector_memory_route_screen.dart';
 import 'pulse_memory_detail_screen.dart';
@@ -667,6 +668,12 @@ class NetworkScreenState extends State<NetworkScreen> {
     );
   }
 
+  Future<void> _openFounderOperations() async {
+    await Navigator.of(context, rootNavigator: true).push(
+      MaterialPageRoute<void>(builder: (_) => const FounderOperationsScreen()),
+    );
+  }
+
   Future<void> _restoreCachedRows() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -925,7 +932,9 @@ class NetworkScreenState extends State<NetworkScreen> {
                 _FounderNotificationPulseSliver(
                   items: _founderNotifications,
                   loading: _founderNotificationsLoading,
+                  hasAccess: _hasFounderNotificationAccess,
                   onOpenAll: () => _openFounderNotifications(),
+                  onOpenOperations: _openFounderOperations,
                   onOpenItem: (item) => _openFounderNotifications(
                     notificationId: item.notificationId,
                   ),
@@ -1148,25 +1157,30 @@ class _FounderNotificationPulseSliver extends StatelessWidget {
   const _FounderNotificationPulseSliver({
     required this.items,
     required this.loading,
+    required this.hasAccess,
     required this.onOpenAll,
+    required this.onOpenOperations,
     required this.onOpenItem,
   });
 
   final List<FounderNotificationItem> items;
   final bool loading;
+  final bool hasAccess;
   final Future<void> Function() onOpenAll;
+  final Future<void> Function() onOpenOperations;
   final Future<void> Function(FounderNotificationItem item) onOpenItem;
 
   @override
   Widget build(BuildContext context) {
-    if (items.isEmpty) {
+    if (!hasAccess && !loading) {
+      return const SliverToBoxAdapter(child: SizedBox.shrink());
+    }
+    if (items.isEmpty && loading) {
       return SliverToBoxAdapter(
-        child: loading
-            ? const Padding(
-                padding: EdgeInsets.fromLTRB(16, 2, 16, 8),
-                child: LinearProgressIndicator(minHeight: 2),
-              )
-            : const SizedBox.shrink(),
+        child: const Padding(
+          padding: EdgeInsets.fromLTRB(16, 2, 16, 8),
+          child: LinearProgressIndicator(minHeight: 2),
+        ),
       );
     }
 
@@ -1194,6 +1208,11 @@ class _FounderNotificationPulseSliver extends StatelessWidget {
                     onPressed: () => unawaited(onOpenAll()),
                     child: const Text('See all'),
                   ),
+                  IconButton(
+                    tooltip: 'Open Founder Operations',
+                    onPressed: () => unawaited(onOpenOperations()),
+                    icon: const Icon(Icons.admin_panel_settings_outlined),
+                  ),
                 ],
               ),
             ),
@@ -1205,6 +1224,14 @@ class _FounderNotificationPulseSliver extends StatelessWidget {
               ),
               if (index != items.length - 1) const SizedBox(height: 7),
             ],
+            if (items.isEmpty)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+                child: Text(
+                  'No active founder alerts.',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
           ],
         ),
       ),
@@ -1738,6 +1765,15 @@ class _PulseItemRow extends StatelessWidget {
           MaterialPageRoute<void>(
             builder: (_) => FounderNotificationsScreen(
               initialNotificationId: route.value.isEmpty ? null : route.value,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.founderOperations:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => FounderOperationsScreen(
+              initialWorkItemId: route.value.isEmpty ? null : route.value,
             ),
           ),
         );
