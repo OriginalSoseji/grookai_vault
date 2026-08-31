@@ -1,0 +1,48 @@
+{
+  "version": "FOUNDER_OPERATIONS_COMMAND_CENTER_REPAIR_EXECUTION_V1",
+  "recorded_at": "2026-08-31T05:41:54.7333889Z",
+  "status": "applied_and_readback_passed",
+  "source_commit_sha": "ea998c1f5ff18d55f8cd701b2bf793c3e2aae464",
+  "migration_sha256": "ce541b5db59618ed223739d3f545da7d1807fe747901721b4dbece55c64aa892",
+  "migration_history": {
+    "version": "20260831054500",
+    "name": "founder_operations_command_center_repair_v1",
+    "row_count": 1,
+    "remote_head": "20260831054500"
+  },
+  "behavior_proof": {
+    "queued_decision_race": "blocked; work item remained queued",
+    "expired_command_retry": "blocked; work item remained failed",
+    "future_deferred_visibility": "excluded from needs_action list and count",
+    "publisher_lifecycle": "running before publication; succeeded only after all rows; failed on partial publication failure"
+  },
+  "production_readback": {
+    "function_count": 2,
+    "counts_security_definer": true,
+    "decide_security_definer": true,
+    "state_guard_present": true,
+    "deadline_guard_present": true,
+    "count_due_filter_present": true,
+    "anon_counts_execute": false,
+    "anon_decide_execute": false,
+    "authenticated_counts_execute": true,
+    "authenticated_decide_execute": true,
+    "row_counts": {
+      "founder_work_items": 0,
+      "founder_decisions": 0,
+      "operations_commands": 0,
+      "operations_agent_runs": 0,
+      "operations_control_state": 1
+    }
+  },
+  "boundaries": {
+    "catalog_rows_written": 0,
+    "pricing_rows_written": 0,
+    "vault_rows_written": 0,
+    "storage_objects_written": 0,
+    "work_items_written": 0,
+    "commands_written": 0,
+    "approvals_written": 0,
+    "automation_enabled": false
+  }
+}

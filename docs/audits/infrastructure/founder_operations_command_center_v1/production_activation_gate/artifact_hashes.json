@@ -16,12 +16,28 @@
     {
       "path": "edge_deployment_summary.json",
       "sha256": "17e1bde957f019465fed699947a2adc88c4528786465542be15c9a3b189dd285"
+    },
+    {
+      "path": "repair_apply_plan.json",
+      "sha256": "0e237fd3501f6d23befb85cb906ee0e82cbd1043519944aeae94bf05c8169806"
+    },
+    {
+      "path": "repair_execution_summary.json",
+      "sha256": "dde16ccadc0c016a9b98f77503eed5dea512c34029ab63eee001469188a3605b"
+    },
+    {
+      "path": "REPAIR_EXECUTION.md",
+      "sha256": "d8cfab52900e45cb9187d7fb6d4a415c7c6907ab25710302768ca53bef4a824f"
     }
   ],
   "bound_inputs": [
     {
       "path": "supabase/migrations/20260830233000_founder_operations_command_center_v1.sql",
       "sha256": "02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb"
+    },
+    {
+      "path": "supabase/migrations/20260831054500_founder_operations_command_center_repair_v1.sql",
+      "sha256": "ce541b5db59618ed223739d3f545da7d1807fe747901721b4dbece55c64aa892"
     },
     {
       "path": "supabase/functions/notification-dispatcher/index.ts",
