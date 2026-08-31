@@ -71,8 +71,9 @@ process.
 3. The web route is deployed and auth-gated. The merged Android client has been
    built and launched on an emulator; signed-in mobile evidence remains
    pending.
-4. No production work item, decision, command, incident, agent, canonical row,
-   Storage object, pricing row, Vault row, approval, or writer command exists.
+4. Founder Operations tables contain no work item, decision, command, incident,
+   agent, run, attempt, or approval rows. This activation work created no
+   canonical, Storage, pricing, or Vault rows and invoked no writer command.
 5. `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE` is not enabled by this work.
 6. Scheduled catalog discovery remains artifact-only while that variable is not
    exactly `true`.
