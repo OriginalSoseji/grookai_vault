@@ -396,7 +396,7 @@ const report = {
     missing_scripts: missingScripts,
   },
   execution,
-  run_outcome: successfulZeroResult ? "completed_no_results" : findings.length ? "failed" : "completed",
+  run_outcome: findings.length ? "failed" : successfulZeroResult ? "completed_no_results" : "completed",
   boundary: {
     provider_calls: args.run && execution.some((phase) => phase.phase === "daily_batch_fetch"),
     db_writes: args.run && execution.some((phase) => ["daily_batch_backfill_apply", "card_candidate_rollup_apply", "strict_filtered_rollup_apply"].includes(phase.phase)),

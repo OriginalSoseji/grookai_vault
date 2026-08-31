@@ -11,6 +11,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   classifyTcgcsvSourceFetchErrorV1,
+  isTcgcsvSourceBlockedErrorV1,
   isRetryableTcgcsvSourceFetchErrorV1,
   tcgcsvSourceRetryDelayMsV1,
 } from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
@@ -42,6 +43,10 @@ const HISTORICAL_ADVISORY_LOCK_NAME = "grookai:tcgcsv:historical:v1";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
 const CURL_BIN = os.platform() === "win32" ? "curl.exe" : "curl";
 const { Client } = pg;
+
+function rethrowTcgcsvSourceBlock(error) {
+  if (isTcgcsvSourceBlockedErrorV1(error)) throw error;
+}
 
 function positiveIntFromEnv(name, fallback) {
   const raw = process.env[name];
@@ -1323,6 +1328,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
               totals.updated += priceResult.updated;
               totals.noOp += priceResult.noOp;
             } catch (error) {
+              rethrowTcgcsvSourceBlock(error);
               failedFetches.push({ category_id: categoryId, group_id: groupId, error: error.message });
             }
             if (totals.groupCount > 0 && (totals.productCount + totals.priceRowCount) % 50000 < 1000) {
@@ -1331,6 +1337,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
             }
           }
         } catch (error) {
+          rethrowTcgcsvSourceBlock(error);
           failedFetches.push({ category_id: categoryId, group_id: null, error: error.message });
         }
         await checkpoint(runId);
@@ -1422,10 +1429,12 @@ async function runCurrentSync(args, runKey, artifactRoot) {
           const prices = (pricesPayload.results ?? []).map((price) => ({ ...price, categoryId, groupId }));
           allPrices.push(...prices);
         } catch (error) {
+          rethrowTcgcsvSourceBlock(error);
           failedFetches.push({ category_id: categoryId, group_id: groupId, error: error.message });
         }
       }
     } catch (error) {
+      rethrowTcgcsvSourceBlock(error);
       failedFetches.push({ category_id: categoryId, group_id: null, error: error.message });
     }
   }
