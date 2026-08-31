@@ -200,6 +200,96 @@ export async function collectGitHubWorkflowComponentsV1(
   }));
 }
 
+export function classifyDirectEdgeProbeV1({ httpStatus = null, transportError = null } = {}) {
+  if (transportError) {
+    return {
+      status: 'failed',
+      reason: `Direct production edge probe failed: ${transportError}`
+    };
+  }
+  if (Number.isInteger(httpStatus) && httpStatus >= 200 && httpStatus < 300) {
+    return {
+      status: 'healthy',
+      reason: `Direct production edge probe returned HTTP ${httpStatus}.`
+    };
+  }
+  return {
+    status: 'failed',
+    reason: `Direct production edge probe returned HTTP ${httpStatus ?? 'unknown'}.`
+  };
+}
+
+export async function collectDirectEdgeProbeV1(
+  { url = process.env.SUPABASE_URL?.trim(), key = process.env.SUPABASE_SECRET_KEY?.trim(), now = new Date() } = {},
+  { request = fetch } = {}
+) {
+  if (!url || !key) {
+    return {
+      component_id: 'prod-edge-probe',
+      provider: 'direct_supabase_edge_http',
+      status: 'unmeasured',
+      reason: 'Direct production edge probe credentials are not configured.',
+      evidence: { observed_at: now.toISOString(), endpoint: 'wall_feed' }
+    };
+  }
+
+  let httpStatus = null;
+  let transportError = null;
+  try {
+    const response = await request(`${url.replace(/\/$/, '')}/functions/v1/wall_feed`, {
+      method: 'GET',
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        'User-Agent': 'grookai-production-control-plane-v1'
+      },
+      signal: AbortSignal.timeout(30_000)
+    });
+    httpStatus = response.status;
+  } catch (error) {
+    transportError = error?.message ?? String(error);
+  }
+
+  const classification = classifyDirectEdgeProbeV1({ httpStatus, transportError });
+  return {
+    component_id: 'prod-edge-probe',
+    provider: 'direct_supabase_edge_http',
+    ...classification,
+    observed_at: now.toISOString(),
+    evidence: {
+      observed_at: now.toISOString(),
+      endpoint: 'wall_feed',
+      method: 'GET',
+      http_status: httpStatus
+    }
+  };
+}
+
+export function applyDirectEdgeFallbackV1(githubResults, directProbe) {
+  return githubResults.map((result) => {
+    if (result.component_id !== 'prod-edge-probe' || result.status === 'healthy') return result;
+    if (directProbe?.status !== 'healthy') {
+      return directProbe?.status === 'failed'
+        ? {
+            ...directProbe,
+            evidence: {
+              ...directProbe.evidence,
+              github_workflow: result
+            }
+          }
+        : result;
+    }
+    return {
+      ...directProbe,
+      reason: `${directProbe.reason} GitHub workflow evidence was ${result.status}; direct runtime evidence is authoritative for endpoint availability.`,
+      evidence: {
+        ...directProbe.evidence,
+        github_workflow: result
+      }
+    };
+  });
+}
+
 function makeSupabaseClient() {
   const url = process.env.SUPABASE_URL?.trim();
   const key = process.env.SUPABASE_SECRET_KEY?.trim();
@@ -802,7 +892,12 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
 
   const githubToken = resolveGitHubToken();
   const githubComponents = topology.components.filter((component) => workflowFile(component));
-  const githubResults = await collectGitHubWorkflowComponentsV1(githubComponents, githubToken, now);
+  let githubResults = await collectGitHubWorkflowComponentsV1(githubComponents, githubToken, now);
+  const githubEdgeProbe = githubResults.find((result) => result.component_id === 'prod-edge-probe');
+  if (githubEdgeProbe && githubEdgeProbe.status !== 'healthy') {
+    const directEdgeProbe = await collectDirectEdgeProbeV1({ now });
+    githubResults = applyDirectEdgeFallbackV1(githubResults, directEdgeProbe);
+  }
   let supabaseResults;
   try {
     supabaseResults = await collectSupabase(makeSupabaseClient(), topology, now);

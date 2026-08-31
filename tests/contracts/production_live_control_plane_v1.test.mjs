@@ -5,13 +5,16 @@ import path from 'node:path';
 import test from 'node:test';
 
 import {
+  applyDirectEdgeFallbackV1,
   applyRuntimeTimerStateV1,
+  classifyDirectEdgeProbeV1,
   classifyOperationsAlertDeliveryV1,
   classifyPricingRunV1,
   classifyNewSetDiscoveryV1,
   classifyScannerIdentityV1,
   classifySourceSyncV1,
   classifyWorkflowRunV1,
+  collectDirectEdgeProbeV1,
   collectGitHubWorkflowComponentsV1,
   controlPlaneAlertFingerprintV1,
   controlPlaneAlertFindingsV1,
@@ -79,6 +82,80 @@ test('components sharing one workflow use one provider payload', async () => {
   assert.deepEqual(results.map((row) => row.component_id), ['vercel-web', 'prod-edge-probe']);
   assert.deepEqual(results.map((row) => row.status), ['healthy', 'healthy']);
   assert.deepEqual(results.map((row) => row.evidence.run_id), [123, 123]);
+});
+
+test('stale GitHub edge evidence is replaced by a healthy direct runtime probe', async () => {
+  const secret = 'service-secret-that-must-not-be-recorded';
+  let requestedUrl = null;
+  const direct = await collectDirectEdgeProbeV1({
+    url: 'https://example.supabase.co/',
+    key: secret,
+    now: NOW
+  }, {
+    request: async (url, options) => {
+      requestedUrl = url;
+      assert.equal(options.headers.apikey, secret);
+      assert.equal(options.headers.Authorization, `Bearer ${secret}`);
+      return { status: 200 };
+    }
+  });
+  const [result] = applyDirectEdgeFallbackV1([{
+    component_id: 'prod-edge-probe',
+    provider: 'github_actions',
+    status: 'stale',
+    reason: 'Latest successful workflow is stale.',
+    evidence: { run_id: 123 }
+  }], direct);
+
+  assert.equal(requestedUrl, 'https://example.supabase.co/functions/v1/wall_feed');
+  assert.equal(result.status, 'healthy');
+  assert.equal(result.provider, 'direct_supabase_edge_http');
+  assert.equal(result.evidence.github_workflow.evidence.run_id, 123);
+  assert.doesNotMatch(JSON.stringify(result), new RegExp(secret));
+});
+
+test('healthy GitHub edge evidence remains authoritative without replacement', () => {
+  const github = {
+    component_id: 'prod-edge-probe',
+    provider: 'github_actions',
+    status: 'healthy',
+    evidence: { run_id: 456 }
+  };
+  assert.deepEqual(applyDirectEdgeFallbackV1([github], {
+    component_id: 'prod-edge-probe',
+    provider: 'direct_supabase_edge_http',
+    status: 'failed'
+  }), [github]);
+});
+
+test('direct edge failures stay failed and retain GitHub evidence', () => {
+  assert.equal(classifyDirectEdgeProbeV1({ httpStatus: 500 }).status, 'failed');
+  assert.equal(classifyDirectEdgeProbeV1({ transportError: 'timeout' }).status, 'failed');
+  const [result] = applyDirectEdgeFallbackV1([{
+    component_id: 'prod-edge-probe',
+    provider: 'github_actions',
+    status: 'stale',
+    evidence: { run_id: 789 }
+  }], {
+    component_id: 'prod-edge-probe',
+    provider: 'direct_supabase_edge_http',
+    status: 'failed',
+    reason: 'Direct production edge probe returned HTTP 500.',
+    evidence: { http_status: 500 }
+  });
+  assert.equal(result.status, 'failed');
+  assert.equal(result.evidence.github_workflow.evidence.run_id, 789);
+});
+
+test('missing direct edge credentials do not hide stale GitHub evidence', async () => {
+  const direct = await collectDirectEdgeProbeV1({ url: null, key: null, now: NOW });
+  const github = {
+    component_id: 'prod-edge-probe',
+    provider: 'github_actions',
+    status: 'stale',
+    evidence: { run_id: 987 }
+  };
+  assert.deepEqual(applyDirectEdgeFallbackV1([github], direct), [github]);
 });
 
 test('runtime provenance prefers the immutable release SHA over environment metadata', async () => {
