@@ -45,6 +45,7 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(install, /MEE_REFERENCE_WAREHOUSE_DELTA_ALLOW_RUN"\s+"1"/);
   assert.match(install, /MEE_NIGHTLY_REFERENCE_LIMIT"\s+"5000"/);
   assert.match(install, /MEE_REFERENCE_REFRESH_SOURCES"\s+"pokemontcg_io_reference"/);
+  assert.match(install, /export MEE_RUNTIME_ARTIFACT_ROOT="\$\{artifact_root\}"/);
   assert.match(install, /market_evidence_engine_overnight_worklist_v1\.mjs --limit="\$\{reference_limit\}" --out-dir="\$\{artifact_root\}"/);
   assert.match(install, /market_evidence_engine_query_plan_v1\.mjs --limit="\$\{reference_limit\}" --out-dir="\$\{artifact_root\}"/);
   assert.match(install, /market_evidence_engine_acquisition_batch_v1\.mjs --sources="\$\{reference_sources\}" --limit="\$\{reference_limit\}" --out-dir="\$\{artifact_root\}"/);
