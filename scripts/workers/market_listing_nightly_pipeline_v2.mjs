@@ -72,6 +72,23 @@ export function shouldSkipZeroResultDownstreamV2({ state, phaseKey }) {
   return successfulZeroResultFetchStateV2(state) && ZERO_RESULT_DOWNSTREAM_PHASES.has(phaseKey);
 }
 
+export function buildZeroResultSkippedPhaseV2({ phaseKey, previous = null, timestamp = new Date().toISOString() }) {
+  return {
+    phase: phaseKey,
+    command: `skip ${phaseKey}: successful zero-result receipt applied`,
+    status: 0,
+    started_at: timestamp,
+    finished_at: timestamp,
+    outcome: "skipped_successful_no_results",
+    skipped: true,
+    provider_calls: false,
+    db_writes: false,
+    replaced_status: previous?.status ?? null,
+    stdout_tail: "",
+    stderr_tail: "",
+  };
+}
+
 function parseArgs(argv) {
   const callCeilingRaw = argv.find((arg) => arg.startsWith("--call-ceiling="))?.slice("--call-ceiling=".length);
   const callCeiling = Number.parseInt(callCeilingRaw ?? String(DEFAULT_CALL_CEILING), 10);
@@ -706,21 +723,10 @@ async function main() {
     if (shouldSkipZeroResultDownstreamV2({ state, phaseKey: definition.key })) {
       const previous = state.phases?.[definition.key] ?? null;
       if (previous?.status !== 0 || previous?.outcome !== "skipped_successful_no_results") {
-        const timestamp = new Date().toISOString();
-        const phase = {
-          phase: definition.key,
-          command: definition.command().join(" "),
-          status: 0,
-          started_at: timestamp,
-          finished_at: timestamp,
-          outcome: "skipped_successful_no_results",
-          skipped: true,
-          provider_calls: false,
-          db_writes: false,
-          replaced_status: previous?.status ?? null,
-          stdout_tail: "",
-          stderr_tail: "",
-        };
+        const phase = buildZeroResultSkippedPhaseV2({
+          phaseKey: definition.key,
+          previous,
+        });
         state.phases[definition.key] = phase;
         saveState(statePath, state);
         await appendPhaseLedger(state.run_key, phase, statePath);
