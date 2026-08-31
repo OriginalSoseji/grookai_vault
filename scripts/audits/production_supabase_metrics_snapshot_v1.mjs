@@ -157,8 +157,8 @@ export function evaluateMetricsSeriesV1(series) {
 }
 
 async function scrape(projectRef) {
-  const secret = text(process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY);
-  if (!secret) throw new Error('SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY is required');
+  const secret = text(process.env.SUPABASE_SECRET_KEY);
+  if (!secret) throw new Error('SUPABASE_SECRET_KEY is required');
   const authorization = Buffer.from(`service_role:${secret}`).toString('base64');
   const response = await fetch(`https://${projectRef}.supabase.co/customer/v1/privileged/metrics`, {
     method: 'GET',
