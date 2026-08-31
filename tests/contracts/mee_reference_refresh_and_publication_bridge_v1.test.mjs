@@ -30,7 +30,7 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(service, /market_evidence_engine_overnight_worklist_v1\.mjs --limit="\$reference_limit" --out-dir="\$artifact_root"/);
   assert.match(service, /market_evidence_engine_query_plan_v1\.mjs --limit="\$reference_limit" --out-dir="\$artifact_root"/);
   assert.match(service, /market_evidence_engine_acquisition_batch_v1\.mjs/);
-  assert.match(service, /market_evidence_engine_acquisition_batch_v1\.mjs --sources="\$reference_sources" --limit="\$reference_limit"/);
+  assert.match(service, /market_evidence_engine_acquisition_batch_v1\.mjs --sources="\$reference_sources" --limit="\$reference_limit" --out-dir="\$artifact_root"/);
   assert.match(service, /mee_reference_source_refresh_worker_v1\.mjs --run/);
   assert.match(service, /mee_reference_source_refresh_worker_v1\.mjs --run --sources="\$reference_sources" --limit="\$reference_limit"/);
   assert.match(service, /market_evidence_engine_normalized_reference_v1\.mjs/);
@@ -47,7 +47,7 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(install, /MEE_REFERENCE_REFRESH_SOURCES"\s+"pokemontcg_io_reference"/);
   assert.match(install, /market_evidence_engine_overnight_worklist_v1\.mjs --limit="\$\{reference_limit\}" --out-dir="\$\{artifact_root\}"/);
   assert.match(install, /market_evidence_engine_query_plan_v1\.mjs --limit="\$\{reference_limit\}" --out-dir="\$\{artifact_root\}"/);
-  assert.match(install, /market_evidence_engine_acquisition_batch_v1\.mjs --sources="\$\{reference_sources\}" --limit="\$\{reference_limit\}"/);
+  assert.match(install, /market_evidence_engine_acquisition_batch_v1\.mjs --sources="\$\{reference_sources\}" --limit="\$\{reference_limit\}" --out-dir="\$\{artifact_root\}"/);
   assert.match(install, /market_evidence_engine_normalized_reference_v1\.mjs/);
   assert.match(install, /mee_reference_source_refresh_worker_v1\.mjs --dry-run --sources="\$\{reference_sources\}" --limit="\$\{reference_limit\}"/);
   assert.match(install, /mee_reference_warehouse_delta_writer_v1\.mjs --dry-run/);
