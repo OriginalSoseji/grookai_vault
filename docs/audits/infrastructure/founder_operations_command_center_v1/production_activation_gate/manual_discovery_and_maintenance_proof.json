@@ -1,0 +1,71 @@
+{
+  "version": "FOUNDER_OPERATIONS_MANUAL_DISCOVERY_AND_MAINTENANCE_PROOF_V1",
+  "recorded_at": "2026-08-31T10:41:00Z",
+  "production_main_sha": "1bda773a28d1fc444a6180a4cb27d29cb6b981eb",
+  "source_reliability_repair": {
+    "pull_request": "https://github.com/OriginalSoseji/grookai_vault/pull/340",
+    "source_commit_sha": "f99e4e4c442681145ae24aa2b2cb1a8e327b9c4e",
+    "merge_commit_sha": "1bda773a28d1fc444a6180a4cb27d29cb6b981eb",
+    "repair": "The TCGdex v2 API remains preferred. Source-availability failures fall back to the official commit-pinned TCGdex cards-database repository.",
+    "live_fallback_proof": {
+      "source_commit_sha": "d88210d806d1b55d7832847beaed692c0bb7bfee",
+      "english_paper_set_count": 199,
+      "pocket_set_count": 0,
+      "missing_total_count": 0,
+      "elapsed_seconds": 16.09
+    }
+  },
+  "manual_discovery": {
+    "workflow_run_id": 33382816387,
+    "workflow_run_uri": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33382816387",
+    "head_sha": "1bda773a28d1fc444a6180a4cb27d29cb6b981eb",
+    "run_status": "completed",
+    "source_failure_count": 0,
+    "source_set_count": 1258,
+    "actionable_gap_count": 8,
+    "canonical_promotion_candidate_count": 0,
+    "founder_work_item_count": 0,
+    "publisher_mode": "artifact_only",
+    "database_writes": false,
+    "canonical_writes": false,
+    "storage_writes": false,
+    "writer_dispatches": false,
+    "candidate_gate_result": "blocked_no_authority_complete_candidate",
+    "artifact_hashes": {
+      "run_plan.json": "3a1b1bf865b4c56048457fbea502e40263b69eeb85c17d7bf4b092245069999a",
+      "summary.json": "b216c58fb7ea64cc3dcca8df7200975a6ff7e5d252fda14efcd6c457fe555607",
+      "source_failures.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "actionable_gaps.json": "e221b80281cf1e34335ab86cad21034486fcf95b79f068d48448e541f819d26e",
+      "canonical_promotion_candidates.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "founder_work_items/summary.json": "f3745e730d4370a91cde6453d20c2b8893185d5e9fc29e4e441af86001b77974",
+      "founder_work_items/founder_work_items.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "maintenance": {
+    "checked_at": "2026-08-31T10:40:27.915199+00:00",
+    "receipt": {
+      "maintenance_version": "OPERATIONS_MAINTENANCE_V1",
+      "expired_work_items": 0,
+      "expired_commands": 0,
+      "expired_leases": 0,
+      "stale_incidents_opened": 0,
+      "stale_incidents_recovered": 0
+    },
+    "post_readback": {
+      "work_items": 0,
+      "decisions": 0,
+      "commands": 0,
+      "agents": 0,
+      "incidents": 0,
+      "agent_runs": 0,
+      "command_attempts": 0
+    }
+  },
+  "activation": {
+    "repository_variable": "FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE",
+    "status": "unset",
+    "scheduled_publication_enabled": false,
+    "scheduled_maintenance_enabled": false
+  },
+  "remaining_gate": "Wait for discovery to emit an authority-complete canonical promotion candidate, publish exactly one review-only work item, verify it in an authenticated mobile client, record a fingerprint-bound review-only decision, and prove that no command or canonical writer is created."
+}

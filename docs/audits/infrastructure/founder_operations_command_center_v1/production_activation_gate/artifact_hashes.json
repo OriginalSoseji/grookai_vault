@@ -28,6 +28,14 @@
     {
       "path": "REPAIR_EXECUTION.md",
       "sha256": "d8cfab52900e45cb9187d7fb6d4a415c7c6907ab25710302768ca53bef4a824f"
+    },
+    {
+      "path": "manual_discovery_and_maintenance_proof.json",
+      "sha256": "59c10ba050b52cfd0b141c682dbaa26a210496ab446ff891221276ee8b9710cc"
+    },
+    {
+      "path": "MANUAL_DISCOVERY_AND_MAINTENANCE_PROOF.md",
+      "sha256": "3ed52a42ad56f783caf9072e4b880b889f6f43188ac75f84bd97b20a469a54ea"
     }
   ],
   "bound_inputs": [

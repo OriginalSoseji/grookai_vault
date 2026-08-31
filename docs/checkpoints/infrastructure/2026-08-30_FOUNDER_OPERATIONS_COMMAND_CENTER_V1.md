@@ -2,12 +2,14 @@
 
 ## Status
 
-`IMPLEMENTED AND LOCALLY VERIFIED / NOT PRODUCTION APPLIED`
+`PRODUCTION FOUNDATION APPLIED / AUTOMATION DISABLED / LIVE CANDIDATE GATE PENDING`
 
 - Branch: `feature/founder-operations-command-center-v1`
 - Base SHA: `66afd877471518d34af8266762014ca54635d2fe`
 - Primary implementation SHA: `212107ece442c8aca2d431063158ca19051b8d82`
-- Date: `2026-08-30`
+- Production merge SHA: `7533f603d6118143b7afab30312ba0b4c3b70e98`
+- Source reliability merge SHA: `1bda773a28d1fc444a6180a4cb27d29cb6b981eb`
+- Last verified: `2026-08-31`
 
 ## Context
 
@@ -63,22 +65,31 @@ process.
 
 ## Current Truths
 
-1. The production migration has **not** been applied.
-2. The modified Edge functions have **not** been deployed by this work.
-3. No production operations rows, canonical rows, Storage objects, pricing rows,
-   Vault rows, approvals, or writer commands were created.
-4. `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE` is not enabled by this work.
-5. Scheduled catalog discovery remains artifact-only while that variable is not
+1. The base and additive repair migrations are applied and read back in
+   production.
+2. The notification dispatcher and operations webhook are deployed.
+3. The web route is deployed and auth-gated. The merged Android client has been
+   built and launched on an emulator; signed-in mobile evidence remains
+   pending.
+4. No production work item, decision, command, incident, agent, canonical row,
+   Storage object, pricing row, Vault row, approval, or writer command exists.
+5. `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE` is not enabled by this work.
+6. Scheduled catalog discovery remains artifact-only while that variable is not
    exactly `true`.
-6. Scheduled maintenance is skipped while that variable is not exactly `true`.
-7. The catalog set candidate action is review-only:
+7. Scheduled maintenance is skipped while that variable is not exactly `true`.
+8. The catalog set candidate action is review-only:
    `execution_enabled=false`, `database_writes=false`, and
    `writer_dispatches=false` in its frozen proposal.
-8. No source-specific hidden-set writer is connected to V1 yet.
-9. Universal Catalog Discovery is the only registered adapter implemented in
+9. No source-specific hidden-set writer is connected to V1 yet.
+10. Universal Catalog Discovery is the only registered adapter implemented in
    this checkpoint. Other production agents remain future integrations.
-10. The web surface is intentionally read-only. Governed decisions are mobile
-    only in V1.
+11. The web surface is intentionally read-only. Governed decisions are mobile
+   only in V1.
+12. Manual discovery run `33382816387` completed with `1,258` source sets,
+    zero source failures, eight authority-blocked gaps, zero canonical
+    promotion candidates, and zero founder work items.
+13. Manual maintenance completed with an all-zero receipt and all operational
+    row counts remained zero.
 
 ## Security Invariants
 
@@ -122,6 +133,15 @@ process.
   maintenance.
 - The first smoke found an ambiguous heartbeat upsert; the migration was
   repaired to use the named unique constraint and then passed from zero.
+- Production migration and security readback passed for the base and additive
+  repair migrations.
+- PR `#340` added an official commit-pinned TCGdex repository fallback for API
+  availability failures. Targeted contracts passed `54/54`, the full local
+  shipcheck passed, and all GitHub/CodeQL/Vercel checks passed.
+- Manual post-merge discovery run `33382816387` completed with zero source
+  failures and zero writes.
+- Manual maintenance returned zero expired work items, commands, leases, or
+  stale-agent incidents; post-readback remained empty.
 
 ## Artifact Hashes
 
@@ -152,21 +172,15 @@ process.
 
 ## Explicit Next Gate
 
-1. Merge or deploy the verified feature SHA without enabling the activation
-   variable.
-2. Create a production migration apply plan locked to migration SHA-256
-   `02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb`.
-3. Apply the migration and independently read back every table, trigger, RLS
-   policy, grant, and RPC signature.
-4. Deploy the notification dispatcher and operations webhook changes.
-5. Deploy the web and mobile clients; verify founder-only access and fallback
-   behavior with the queue still empty.
-6. Run one manual Universal Catalog Discovery artifact build and publish exactly
-   one review-only set candidate through the service RPC.
-7. Open that item from the phone, verify evidence and fingerprint, and record a
-   review-only approval. Confirm no command and no canonical writer were created.
-8. Run maintenance once manually and verify its receipt plus agent health.
-9. Only after those proofs, set `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE=true`
+1. Keep scheduled discovery artifact-only until it emits a genuine
+   authority-complete canonical promotion candidate.
+2. Publish exactly one such candidate as a review-only work item through the
+   service RPC. Do not substitute an authority-blocked gap or a synthetic row.
+3. Open that item from an authenticated mobile client, verify evidence and the
+   plan fingerprint, and record a review-only decision.
+4. Confirm the decision creates no command and invokes no canonical writer.
+5. Verify founder-only signed-in mobile access and agent-health rendering.
+6. Only after those proofs, set `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE=true`
    to enable scheduled review-item publication and maintenance.
-10. Build and separately approve a source-specific hidden-set executor package
-    before attempting the Definition-of-Done hidden-set write/readback proof.
+7. Build and separately approve a source-specific hidden-set executor package
+   before attempting the Definition-of-Done hidden-set write/readback proof.
