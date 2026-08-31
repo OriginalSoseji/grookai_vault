@@ -212,12 +212,18 @@ test("live publisher registers and heartbeats the agent before publishing work i
   assert.equal(calls[2].body.p_item.work_item_key, workItems[0].work_item_key);
 });
 
-test("scheduled discovery builds artifact-only work items", () => {
+test("scheduled discovery publishes only behind the explicit control-plane activation gate", () => {
   assert.match(workflow, /catalog_founder_work_item_publisher_v1\.mjs/);
-  assert.match(workflow, /database_writes.*false/);
+  assert.match(workflow, /FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE/);
+  assert.match(workflow, /PUBLISH_ARGS=\(\)/);
+  assert.match(workflow, /PUBLISH_ARGS\+=\(--publish\)/);
+  assert.match(workflow, /EXPECTED_DATABASE_WRITES=false/);
   assert.match(workflow, /writer_dispatches.*false/);
   const workItemStep = workflow.match(/- name: Build founder set review work items[\s\S]*?(?=\n      - name:|$)/)?.[0] ?? "";
-  assert.doesNotMatch(workItemStep, /--publish/);
+  assert.match(
+    workItemStep,
+    /if \[\[ "\$FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE" == "true" \]\][\s\S]*PUBLISH_ARGS\+=\(--publish\)/,
+  );
 });
 
 test("maintenance schedule is activation-gated and the worker requires an explicit run flag", () => {

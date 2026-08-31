@@ -61,12 +61,23 @@ jobs:
       - name: Build founder set review work items
         if: always() && steps.discovery.outcome == 'success'
         shell: bash
+        env:
+          FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE: ${{ vars.FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           set -euo pipefail
+          PUBLISH_ARGS=()
+          EXPECTED_DATABASE_WRITES=false
+          if [[ "$FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE" == "true" ]]; then
+            PUBLISH_ARGS+=(--publish)
+            EXPECTED_DATABASE_WRITES=true
+          fi
           node scripts/workers/catalog_founder_work_item_publisher_v1.mjs \
             --discovery-dir="${{ steps.discovery.outputs.out_dir }}" \
-            --out-dir="${{ steps.discovery.outputs.out_dir }}/founder_work_items"
-          test "$(node -p "require('${{ steps.discovery.outputs.out_dir }}/founder_work_items/summary.json').database_writes")" = "false"
+            --out-dir="${{ steps.discovery.outputs.out_dir }}/founder_work_items" \
+            "${PUBLISH_ARGS[@]}"
+          test "$(node -p "require('${{ steps.discovery.outputs.out_dir }}/founder_work_items/summary.json').database_writes")" = "$EXPECTED_DATABASE_WRITES"
           test "$(node -p "require('${{ steps.discovery.outputs.out_dir }}/founder_work_items/summary.json').writer_dispatches")" = "false"
 
       - name: Reconcile catalog source availability issue
