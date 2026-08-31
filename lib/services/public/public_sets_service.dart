@@ -240,7 +240,16 @@ class PublicSetLaneOption {
   final String label;
 }
 
+class PublicSetReleaseYearOption {
+  const PublicSetReleaseYearOption({required this.value, required this.label});
+
+  final String value;
+  final String label;
+}
+
 class PublicSetsService {
+  static const allReleaseYears = 'all';
+  static const datePendingReleaseYear = 'date_pending';
   static const _setRowPageSize = 1000;
   static const _setCountChunkSize = 200;
   static const _setCatalogCacheTtl = Duration(minutes: 5);
@@ -347,6 +356,32 @@ class PublicSetsService {
     PublicSetLaneOption(value: PublicSetLane.deck, label: 'Decks & kits'),
     PublicSetLaneOption(value: PublicSetLane.world, label: 'Worlds decks'),
   ];
+
+  static List<PublicSetLaneOption> laneOptionsForGame(PublicCatalogGame game) {
+    return switch (game) {
+      PublicCatalogGame.pokemon => laneOptions,
+      PublicCatalogGame.onePiece => const <PublicSetLaneOption>[
+        PublicSetLaneOption(value: PublicSetLane.all, label: 'All products'),
+        PublicSetLaneOption(value: PublicSetLane.main, label: 'Booster sets'),
+        PublicSetLaneOption(
+          value: PublicSetLane.special,
+          label: 'Special products',
+        ),
+        PublicSetLaneOption(value: PublicSetLane.promo, label: 'Promos'),
+        PublicSetLaneOption(value: PublicSetLane.deck, label: 'Starter decks'),
+      ],
+      PublicCatalogGame.mtg => const <PublicSetLaneOption>[
+        PublicSetLaneOption(value: PublicSetLane.all, label: 'All products'),
+        PublicSetLaneOption(value: PublicSetLane.main, label: 'Card sets'),
+        PublicSetLaneOption(
+          value: PublicSetLane.special,
+          label: 'Special products',
+        ),
+        PublicSetLaneOption(value: PublicSetLane.promo, label: 'Promos'),
+        PublicSetLaneOption(value: PublicSetLane.deck, label: 'Decks & kits'),
+      ],
+    };
+  }
 
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
@@ -841,6 +876,7 @@ class PublicSetsService {
     PublicCatalogGame game = PublicCatalogGame.pokemon,
     PublicSetEra era = PublicSetEra.all,
     PublicSetLane lane = PublicSetLane.all,
+    String releaseYear = allReleaseYears,
   }) {
     final queryTokens = _normalizeSearchTokens(query);
     var filtered = sets
@@ -852,6 +888,7 @@ class PublicSetsService {
         .where(
           (setInfo) => lane == PublicSetLane.all || getSetLane(setInfo) == lane,
         )
+        .where((setInfo) => _matchesReleaseYear(setInfo, releaseYear))
         .toList();
 
     switch (filter) {
@@ -930,7 +967,9 @@ class PublicSetsService {
     final haystack = '$code $name';
 
     if (code.startsWith('wcd') || haystack.contains('world championship')) {
-      return PublicSetLane.world;
+      return setInfo.game == PublicCatalogGame.pokemon
+          ? PublicSetLane.world
+          : PublicSetLane.deck;
     }
 
     if (haystack.contains('promo') ||
@@ -958,6 +997,25 @@ class PublicSetsService {
   static bool isSpecialSet(PublicSetSummary setInfo) {
     final code = _normalizeName(setInfo.code);
     final name = _normalizeName(setInfo.name);
+
+    if (setInfo.game == PublicCatalogGame.onePiece) {
+      return const <String>[
+        'extra booster',
+        'premium booster',
+        'treasure booster',
+        'devil fruits collection',
+        'anniversary set',
+      ].any(name.contains);
+    }
+
+    if (setInfo.game == PublicCatalogGame.mtg) {
+      return const <String>[
+        'secret lair',
+        'from the vault',
+        'signature spellbook',
+        'masterpiece series',
+      ].any(name.contains);
+    }
 
     if (code.contains('pt5') || code.contains('.5')) {
       return true;
@@ -1009,6 +1067,41 @@ class PublicSetsService {
     return counts;
   }
 
+  static List<PublicSetReleaseYearOption> releaseYearOptions(
+    List<PublicSetSummary> sets,
+  ) {
+    final years =
+        sets
+            .map((setInfo) => setInfo.releaseYear)
+            .whereType<int>()
+            .toSet()
+            .toList()
+          ..sort((left, right) => right.compareTo(left));
+    return <PublicSetReleaseYearOption>[
+      const PublicSetReleaseYearOption(
+        value: allReleaseYears,
+        label: 'All years',
+      ),
+      ...years.map(
+        (year) => PublicSetReleaseYearOption(value: '$year', label: '$year'),
+      ),
+      if (sets.any((setInfo) => setInfo.releaseYear == null))
+        const PublicSetReleaseYearOption(
+          value: datePendingReleaseYear,
+          label: 'Date pending',
+        ),
+    ];
+  }
+
+  static Map<String, int> countSetsByReleaseYear(List<PublicSetSummary> sets) {
+    final counts = <String, int>{};
+    for (final setInfo in sets) {
+      final key = setInfo.releaseYear?.toString() ?? datePendingReleaseYear;
+      counts[key] = (counts[key] ?? 0) + 1;
+    }
+    return counts;
+  }
+
   static Map<PublicSetEra, List<PublicSetSummary>> groupSetsByEra(
     List<PublicSetSummary> sets,
   ) {
@@ -1017,6 +1110,19 @@ class PublicSetsService {
       (groups[getSetEra(setInfo)] ??= <PublicSetSummary>[]).add(setInfo);
     }
     return groups;
+  }
+
+  static bool _matchesReleaseYear(
+    PublicSetSummary setInfo,
+    String releaseYear,
+  ) {
+    if (releaseYear == allReleaseYears) {
+      return true;
+    }
+    if (releaseYear == datePendingReleaseYear) {
+      return setInfo.releaseYear == null;
+    }
+    return setInfo.releaseYear?.toString() == releaseYear;
   }
 
   static Future<List<PublicSetCard>> _fetchSetCardsForDetail({

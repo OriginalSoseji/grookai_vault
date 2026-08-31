@@ -5,9 +5,9 @@
   "locale": "en-US",
   "version_string": "1.0",
   "build_marketing_version": "1.0.0",
-  "build_number": "310",
-  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build310.xcarchive",
-  "export_path": "build/ios/export/GrookaiVault-1.0.0-build310",
+  "build_number": "311",
+  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build311.xcarchive",
+  "export_path": "build/ios/export/GrookaiVault-1.0.0-build311",
   "export_options_plist": "ios/ExportOptionsAppStore.plist",
   "app_info_localization": {
     "subtitle": "Your Pokemon card vault",
@@ -69,7 +69,7 @@
     "privacyPolicyUrl": "https://grookaivault.com/privacy"
   },
   "beta_build_localization": {
-    "whatsNew": "Sets now load reliably with faster shared data access. Founder alerts appear in Pulse and open a permanent notification inbox with detailed evidence."
+    "whatsNew": "Sets now load reliably with TCG-specific browsing for Pokemon, One Piece, and Magic. Founder alerts appear in Pulse and open a permanent notification inbox."
   },
   "screenshot_sets": [
     {
