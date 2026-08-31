@@ -967,7 +967,9 @@ class PublicSetsService {
     final haystack = '$code $name';
 
     if (code.startsWith('wcd') || haystack.contains('world championship')) {
-      return PublicSetLane.world;
+      return setInfo.game == PublicCatalogGame.pokemon
+          ? PublicSetLane.world
+          : PublicSetLane.deck;
     }
 
     if (haystack.contains('promo') ||

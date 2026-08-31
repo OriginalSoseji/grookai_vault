@@ -104,4 +104,16 @@ void main() {
       PublicSetLane.special,
     );
   });
+
+  test('MTG World Championship products remain exposed as decks', () {
+    const setInfo = PublicSetSummary(
+      code: 'wc97',
+      name: 'World Championship Decks 1997',
+      cardCount: 64,
+      game: PublicCatalogGame.mtg,
+      releaseYear: 1997,
+    );
+
+    expect(PublicSetsService.getSetLane(setInfo), PublicSetLane.deck);
+  });
 }
