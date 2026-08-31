@@ -276,6 +276,13 @@ test("immutable release installer leaves the timer disabled by default", () => {
   assert.match(installer, /if \[\[ "\$\{ENABLE_TIMER\}" == "1" \]\]/);
 });
 
+test("pricing release installer rotates both producing commit pins", () => {
+  const installer = read("deploy/scripts/install-tcgplayer-market-pipeline-release-v2.sh");
+  assert.match(installer, /TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA/);
+  assert.match(installer, /TCGPLAYER_MARKET_EXPECTED_COMMIT_SHA/);
+  assert.match(installer, /\$\{key\}=\$\{release_sha\}/);
+});
+
 test("nightly service writes artifacts outside the release checkout", () => {
   const service = read("deploy/systemd/grookai-mee-nightly.service");
   assert.match(service, /MEE_RUNTIME_ARTIFACT_ROOT=\/var\/lib\/grookai\/mee\/audits/);
