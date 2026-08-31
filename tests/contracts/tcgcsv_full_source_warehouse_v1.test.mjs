@@ -25,6 +25,8 @@ const migration = readFileSync(
 );
 const worker = readFileSync("scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs", "utf8");
 const contract = readFileSync("docs/contracts/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md", "utf8");
+const service = readFileSync("deploy/systemd/grookai-tcgcsv-warehouse.service", "utf8");
+const installer = readFileSync("deploy/scripts/install-tcgcsv-warehouse-systemd.sh", "utf8");
 
 test("TCGCSV full warehouse is service-role-only", () => {
   for (const table of [
@@ -68,6 +70,10 @@ test("TCGCSV current access is daily and request pacing cannot be lowered", () =
   assert.throws(() => assertTcgcsvRequestDelayV1(249), /at least 250ms/);
   assert.match(worker, /skipped_provider_cooldown/);
   assert.match(worker, /recordCurrentFailure/);
+  assert.match(service, /Environment=TCGCSV_REQUEST_DELAY_MS=250/);
+  assert.doesNotMatch(service, /Environment=TCGCSV_REQUEST_DELAY_MS=100/);
+  assert.doesNotMatch(installer, /--limit-categories=1/);
+  assert.match(installer, /Installation must never contact the provider/);
 });
 
 test("TCGCSV worker retries transient source fetches and fails closed on partial ingestion", () => {

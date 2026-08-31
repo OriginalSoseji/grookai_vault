@@ -9,7 +9,7 @@ User=grookai
 WorkingDirectory=/opt/grookai_vault_mee_nightly
 EnvironmentFile=/etc/grookai/mee-nightly.env
 Environment=TCGCSV_FULL_SYNC_REQUEST_CEILING=10000
-Environment=TCGCSV_REQUEST_DELAY_MS=100
+Environment=TCGCSV_REQUEST_DELAY_MS=250
 Environment=TCGCSV_DIMENSION_BATCH_SIZE=1000
 Environment=TCGCSV_ARTIFACT_BATCH_SIZE=1000
 Environment=TCGCSV_PRICE_OBSERVATION_BATCH_SIZE=2000

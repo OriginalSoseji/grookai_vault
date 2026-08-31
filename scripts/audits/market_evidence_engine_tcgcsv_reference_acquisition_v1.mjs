@@ -12,6 +12,12 @@ import {
   matchingTcgcsvGroupsForItemV1,
 } from '../../backend/pricing/market_evidence_tcgcsv_reference_acquisition_v1.mjs';
 import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
+import { assertTcgcsvRequestDelayV1 } from '../../backend/pricing/tcgcsv_source_access_policy_v1.mjs';
+import {
+  classifyTcgcsvSourceFetchErrorV1,
+  isRetryableTcgcsvSourceFetchErrorV1,
+  tcgcsvSourceRetryDelayMsV1,
+} from '../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs';
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -23,7 +29,11 @@ const CURL_BIN = os.platform() === 'win32' ? 'curl.exe' : 'curl';
 const CATEGORY_ID = 3;
 const BASE_URL = `https://tcgcsv.com/tcgplayer/${CATEGORY_ID}`;
 const SOURCE = 'tcgcsv_reference';
-const REQUEST_DELAY_MS = Number.parseInt(process.env.TCGCSV_REQUEST_DELAY_MS ?? '100', 10);
+const REQUEST_DELAY_MS = assertTcgcsvRequestDelayV1(
+  Number.parseInt(process.env.TCGCSV_REQUEST_DELAY_MS ?? '250', 10),
+);
+const USER_AGENT = 'GrookaiVaultTCGCSVWarehouse/1.0';
+let lastNetworkRequestAt = 0;
 
 function parseArgs(argv) {
   const parsed = {
@@ -82,22 +92,43 @@ async function fetchJsonCached(url, cacheFile, { refreshCache }) {
   let stdout = null;
   let lastError = null;
   for (let attempt = 1; attempt <= 4; attempt += 1) {
+    const elapsedMs = Date.now() - lastNetworkRequestAt;
+    if (lastNetworkRequestAt > 0 && elapsedMs < REQUEST_DELAY_MS) {
+      await new Promise((resolve) => setTimeout(resolve, REQUEST_DELAY_MS - elapsedMs));
+    }
+    lastNetworkRequestAt = Date.now();
     try {
       ({ stdout } = await execFileAsync(CURL_BIN, [
         '--ssl-no-revoke',
         '--silent',
         '--show-error',
         '--location',
+        '--fail-with-body',
         '--max-time',
         '120',
         '--user-agent',
-        'GrookaiMarketEvidenceAudit/1.0',
+        USER_AGENT,
         url,
       ], { timeout: 140000, maxBuffer: 80 * 1024 * 1024 }));
       break;
     } catch (error) {
       lastError = error;
-      await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+      const responseBody = String(error?.stdout ?? '');
+      const responseHeaders = String(error?.stderr ?? '');
+      const classification = classifyTcgcsvSourceFetchErrorV1(error, { responseBody, responseHeaders });
+      if (classification.circuit_break) {
+        error.code = 'TCGCSV_SOURCE_BLOCKED';
+        error.message = `[TCGCSV_SOURCE_BLOCKED] provider access is blocked; reference acquisition circuit opened before retry (${url})`;
+        throw error;
+      }
+      if (!isRetryableTcgcsvSourceFetchErrorV1(error, { responseBody, responseHeaders }) || attempt >= 4) {
+        throw error;
+      }
+      await new Promise((resolve) => setTimeout(resolve, tcgcsvSourceRetryDelayMsV1({
+        retryNumber: attempt,
+        baseDelayMs: 1000,
+        requestDelayMs: REQUEST_DELAY_MS,
+      })));
     }
   }
   if (stdout === null) throw lastError;
@@ -136,7 +167,6 @@ async function loadGroupPayload(groupId, cacheDir, options) {
     path.join(cacheDir, `${groupId}_products.json`),
     options,
   );
-  if (options.refreshCache && REQUEST_DELAY_MS > 0) await sleep(REQUEST_DELAY_MS);
   const pricesPayload = await fetchJsonCached(
     `${BASE_URL}/${groupId}/prices`,
     path.join(cacheDir, `${groupId}_prices.json`),

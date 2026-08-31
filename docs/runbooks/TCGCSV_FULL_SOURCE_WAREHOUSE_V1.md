@@ -1,5 +1,12 @@
 # TCGCSV Full Source Warehouse V1 Runbook
 
+Provider access is governed by `TCGCSV_SOURCE_ACCESS_POLICY_V1`: current
+catalog access is limited to one window per rolling 24 hours, every request is
+paced by at least 250 ms, and provider block responses open an immediate
+circuit breaker. Installation checks are offline and must not probe TCGCSV.
+Do not restore the retired 100 ms unit template or its networked installer
+smoke test.
+
 ## Boundary
 
 This worker mirrors TCGCSV into private source warehouse tables only. It must not publish prices or mutate Grookai identity, vault, image, or app-facing pricing tables.

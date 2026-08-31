@@ -51,12 +51,9 @@ require_env_value "SUPABASE_DB_URL"
 
 node --check scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs
 node --check scripts/workers/tcgcsv_historical_load_guard_v1.mjs
-node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs \
-  --mode=current \
-  --dry-run \
-  --limit-categories=1 \
-  --limit-groups=1 \
-  --out-dir=.tmp/tcgcsv_full_source_warehouse_systemd_smoke
+
+# Installation must never contact the provider. The scheduled worker performs
+# the governed last-updated check after its cadence gate opens.
 
 tmp_service="$(mktemp)"
 sed "s#^WorkingDirectory=.*#WorkingDirectory=${REPO_DIR}#" "deploy/systemd/${SERVICE_NAME}" > "${tmp_service}"
