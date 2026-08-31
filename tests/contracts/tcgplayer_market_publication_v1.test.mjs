@@ -13,6 +13,7 @@ import {
   classifyMarketPipelineFailureV1,
   parseRetryDelaysV1,
   retryDelayMsV1,
+  scheduledStatusForFailureClassificationV1,
 } from "../../backend/pricing/tcgplayer_market_operations_policy_v1.mjs";
 import {
   evaluateTcgplayerCurrentSourceHealthV1,
@@ -1066,9 +1067,17 @@ test("scheduled failure policy retries source transport failures but stops invar
       errorText: "[TCGCSV_SOURCE_BLOCKED] HTTP 403 application blocked",
     }),
     {
-      classification: "non_retryable_invariant_failure",
+      classification: "blocked_external_source",
       retryable: false,
     },
+  );
+  assert.equal(
+    scheduledStatusForFailureClassificationV1("blocked_external_source"),
+    "blocked_external",
+  );
+  assert.equal(
+    scheduledStatusForFailureClassificationV1("non_retryable_invariant_failure"),
+    "failed",
   );
   assert.deepEqual(
     classifyMarketPipelineFailureV1({
@@ -1142,6 +1151,8 @@ test("scheduled runner is safe by default and preserves one durable run key acro
   );
   assert.match(SCHEDULED_RUNNER, /canary_definition_sha256/);
   assert.match(SCHEDULED_RUNNER, /classification\.retryable/);
+  assert.match(SCHEDULED_RUNNER, /scheduledStatusForFailureClassificationV1/);
+  assert.match(SCHEDULED_RUNNER, /finalStatus === "failed"/);
   assert.match(SCHEDULED_RUNNER, /canonical_identity_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /vault_writes:\s*false/);
   assert.match(SCHEDULED_RUNNER, /modeled_value_writes:\s*false/);
