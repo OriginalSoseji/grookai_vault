@@ -27,7 +27,7 @@ jobs:
       - name: Run bounded maintenance
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: node scripts/workers/operations_maintenance_v1.mjs --run | tee operations_maintenance_result.json
       - name: Preserve maintenance receipt
         if: always()

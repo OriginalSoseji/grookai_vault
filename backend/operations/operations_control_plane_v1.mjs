@@ -218,7 +218,7 @@ export async function callOperationsRpcV1({
   fetchImpl = fetch,
 }) {
   if (!/^https:\/\//.test(String(supabaseUrl ?? ""))) throw new Error("HTTPS SUPABASE_URL is required");
-  if (!String(serviceRoleKey ?? "").trim()) throw new Error("SUPABASE_SERVICE_ROLE_KEY is required");
+  if (!String(serviceRoleKey ?? "").trim()) throw new Error("SUPABASE_SECRET_KEY is required");
   if (!/^[a-z0-9_]+$/.test(String(functionName ?? ""))) throw new Error("Invalid RPC function name");
   const response = await fetchImpl(`${String(supabaseUrl).replace(/\/$/, "")}/rest/v1/rpc/${functionName}`, {
     method: "POST",

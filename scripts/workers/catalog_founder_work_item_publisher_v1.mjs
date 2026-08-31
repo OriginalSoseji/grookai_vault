@@ -59,7 +59,7 @@ async function main() {
       agent,
       workItems,
       supabaseUrl: process.env.PROD_SUPABASE_URL ?? process.env.SUPABASE_URL,
-      serviceRoleKey: process.env.PROD_SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY,
+      serviceRoleKey: process.env.SUPABASE_SECRET_KEY,
     });
     await writeJson(path.join(options.outDir, "publication_receipts.json"), receipts);
   }
