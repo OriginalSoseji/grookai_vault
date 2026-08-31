@@ -16,6 +16,13 @@ TIMER_NAME="grookai-tcgplayer-market-pipeline.timer"
 [[ -f "${ENV_FILE}" ]] || { echo "Missing protected environment file: ${ENV_FILE}" >&2; exit 1; }
 
 release_sha="$(git -C "${RELEASE_DIR}" rev-parse HEAD)"
+for key in TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA TCGPLAYER_MARKET_EXPECTED_COMMIT_SHA; do
+  if grep -q "^${key}=" "${ENV_FILE}"; then
+    sudo sed -i "s|^${key}=.*|${key}=${release_sha}|" "${ENV_FILE}"
+  else
+    printf '%s=%s\n' "${key}" "${release_sha}" | sudo tee -a "${ENV_FILE}" >/dev/null
+  fi
+done
 sudo -u grookai npm --prefix "${RELEASE_DIR}" ci
 sudo -u grookai node --check "${RELEASE_DIR}/scripts/workers/tcgplayer_market_publication_worker_v1.mjs"
 sudo -u grookai node --check "${RELEASE_DIR}/scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs"

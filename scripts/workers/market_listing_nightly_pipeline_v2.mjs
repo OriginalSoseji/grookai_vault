@@ -29,6 +29,13 @@ const AUDIT_ROOT = resolveMeeAuditRootV1(REPO_ROOT);
 const PACKAGE_ID = "MARKET-LISTING-NIGHTLY-PIPELINE-V2";
 const PIPELINE_KEY = "mee_listing_ingest_v2";
 const DEFAULT_CALL_CEILING = 4000;
+const ZERO_RESULT_DOWNSTREAM_PHASES = new Set([
+  "card_candidate_rollup_plan",
+  "card_candidate_rollup_apply",
+  "strict_filtered_rollup_plan",
+  "strict_filtered_rollup_apply",
+  "run_scoped_readback",
+]);
 
 export function safeRunSlugV2(value) {
   const slug = String(value ?? "").replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 140);
@@ -52,6 +59,17 @@ export function parseChildJsonV2(text) {
     }
   }
   return null;
+}
+
+export function successfulZeroResultFetchStateV2(state) {
+  const fetch = state?.phases?.daily_batch_fetch;
+  return fetch?.status === 0
+    && fetch?.child_output?.summary?.successful_zero_result === true
+    && fetch?.child_output?.summary?.acquisition_outcome === "fetched_success_no_results";
+}
+
+export function shouldSkipZeroResultDownstreamV2({ state, phaseKey }) {
+  return successfulZeroResultFetchStateV2(state) && ZERO_RESULT_DOWNSTREAM_PHASES.has(phaseKey);
 }
 
 function parseArgs(argv) {
@@ -685,6 +703,30 @@ async function main() {
 
   let definitions = phaseDefinitionsV2({ callCeiling: args.callCeiling, state, cursor: state.cursor });
   for (const definition of definitions.slice(1)) {
+    if (shouldSkipZeroResultDownstreamV2({ state, phaseKey: definition.key })) {
+      const previous = state.phases?.[definition.key] ?? null;
+      if (previous?.status !== 0 || previous?.outcome !== "skipped_successful_no_results") {
+        const timestamp = new Date().toISOString();
+        const phase = {
+          phase: definition.key,
+          command: definition.command().join(" "),
+          status: 0,
+          started_at: timestamp,
+          finished_at: timestamp,
+          outcome: "skipped_successful_no_results",
+          skipped: true,
+          provider_calls: false,
+          db_writes: false,
+          replaced_status: previous?.status ?? null,
+          stdout_tail: "",
+          stderr_tail: "",
+        };
+        state.phases[definition.key] = phase;
+        saveState(statePath, state);
+        await appendPhaseLedger(state.run_key, phase, statePath);
+      }
+      continue;
+    }
     resumed = phaseSucceeded(state, definition.key);
     if (resumed) continue;
 
@@ -744,13 +786,15 @@ async function main() {
   }
 
   const phaseRows = Object.values(state.phases);
-  state.outcome = classifyPipelineOutcomeV1(phaseRows);
+  const zeroResultReceiptApplied = successfulZeroResultFetchStateV2(state)
+    && state.phases?.daily_batch_backfill_apply?.status === 0;
+  state.outcome = zeroResultReceiptApplied ? "completed_no_results" : classifyPipelineOutcomeV1(phaseRows);
   state.completed_at = new Date().toISOString();
   saveState(statePath, state);
 
   const summaryPhase = {
     phase: "pipeline_summary",
-    status: state.outcome === "completed" || state.outcome === "completed_with_warnings" ? 0 : 1,
+    status: ["completed", "completed_with_warnings", "completed_no_results"].includes(state.outcome) ? 0 : 1,
     started_at: state.created_at,
     finished_at: state.completed_at,
     report_path: statePath,
