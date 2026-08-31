@@ -9,6 +9,8 @@ import {
   pipelineStateIsResumableV2,
   phaseReportSupportsResumeV2,
   selectFrozenDryRunPathV2,
+  shouldSkipZeroResultDownstreamV2,
+  successfulZeroResultFetchStateV2,
   validateFrozenDryRunPlanV2,
 } from "../../scripts/workers/market_listing_nightly_pipeline_v2.mjs";
 import {
@@ -37,6 +39,36 @@ test("V2 pipeline uses exact artifact handoffs and run-scoped projection", () =>
   assert.match(script, /--frozen-dry-run=/);
   assert.match(script, /--frozen-dry-run-if-incomplete=/);
   assert.match(script, /frozen dry-run plan must be inside the governed MEE artifact root/);
+});
+
+test("V2 persists a successful zero-result receipt and skips data-dependent phases", () => {
+  const state = {
+    phases: {
+      daily_batch_fetch: {
+        status: 0,
+        child_output: {
+          summary: {
+            successful_zero_result: true,
+            acquisition_outcome: "fetched_success_no_results",
+          },
+        },
+      },
+      daily_batch_backfill_apply: { status: 0 },
+    },
+  };
+
+  assert.equal(successfulZeroResultFetchStateV2(state), true);
+  assert.equal(shouldSkipZeroResultDownstreamV2({ state, phaseKey: "card_candidate_rollup_plan" }), true);
+  assert.equal(shouldSkipZeroResultDownstreamV2({ state, phaseKey: "run_scoped_readback" }), true);
+  assert.equal(shouldSkipZeroResultDownstreamV2({ state, phaseKey: "daily_batch_backfill_apply" }), false);
+  assert.equal(successfulZeroResultFetchStateV2({
+    phases: {
+      daily_batch_fetch: {
+        status: 0,
+        child_output: { summary: { successful_zero_result: true, acquisition_outcome: "fetched_success" } },
+      },
+    },
+  }), false);
 });
 
 test("V2 conditionally selects a frozen plan only for an incomplete cursor", () => {
