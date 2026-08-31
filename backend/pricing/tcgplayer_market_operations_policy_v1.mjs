@@ -1,11 +1,14 @@
 export const TCGPLAYER_MARKET_OPERATIONS_POLICY_V1 =
   "TCGPLAYER_MARKET_OPERATIONS_POLICY_V1";
 
-const NON_RETRYABLE_PATTERNS = [
+const EXTERNAL_SOURCE_BLOCK_PATTERNS = [
   /TCGCSV_SOURCE_BLOCKED/i,
   /flagged for overuse/i,
   /application.*blocked/i,
   /\bHTTP\s*403\b/i,
+];
+
+const NON_RETRYABLE_PATTERNS = [
   /reconciliation.*mismatch/i,
   /source-to-publication trace/i,
   /resume refused/i,
@@ -40,6 +43,12 @@ export function classifyMarketPipelineFailureV1({
   errorText = "",
 } = {}) {
   const text = String(errorText ?? "");
+  if (EXTERNAL_SOURCE_BLOCK_PATTERNS.some((pattern) => pattern.test(text))) {
+    return {
+      classification: "blocked_external_source",
+      retryable: false,
+    };
+  }
   if (NON_RETRYABLE_PATTERNS.some((pattern) => pattern.test(text))) {
     return {
       classification: "non_retryable_invariant_failure",
@@ -71,6 +80,10 @@ export function classifyMarketPipelineFailureV1({
     classification: "non_retryable_unclassified_failure",
     retryable: false,
   };
+}
+
+export function scheduledStatusForFailureClassificationV1(classification) {
+  return classification === "blocked_external_source" ? "blocked_external" : "failed";
 }
 
 export function retryDelayMsV1(delaysSeconds, completedAttemptCount) {

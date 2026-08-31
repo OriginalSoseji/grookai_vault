@@ -13,6 +13,7 @@ import {
   classifyMarketPipelineFailureV1,
   parseRetryDelaysV1,
   retryDelayMsV1,
+  scheduledStatusForFailureClassificationV1,
 } from "../../backend/pricing/tcgplayer_market_operations_policy_v1.mjs";
 import {
   loadTcgplayerMarketCanaryDefinitionV1,
@@ -494,13 +495,16 @@ async function main() {
             .join("\n"),
         });
         finalClassification = classification.classification;
+        finalStatus = scheduledStatusForFailureClassificationV1(
+          classification.classification,
+        );
         const willRetry =
           classification.retryable && attempt < args.maxAttempts;
         await fs.appendFile(
           attemptsPath,
           `${JSON.stringify({
             attempt,
-            status: "failed",
+            status: finalStatus,
             classification: classification.classification,
             retryable: classification.retryable,
             will_retry: willRetry,
@@ -537,7 +541,7 @@ async function main() {
     scheduled_summary_sha256: await sha256File(summaryPath),
   });
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-  if (finalStatus !== "completed") process.exitCode = 1;
+  if (finalStatus === "failed") process.exitCode = 1;
 }
 
 main().catch((error) => {
