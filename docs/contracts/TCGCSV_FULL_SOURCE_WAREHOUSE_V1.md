@@ -66,13 +66,14 @@ Current sync behavior:
 1. If the exact run key already completed with matching code and contract
    provenance, return that terminal result without a source request or database
    mutation.
-2. Fetch `last-updated.txt`.
-3. Fetch categories.
-4. Fetch groups for each non-empty category.
-5. Fetch products and prices for each group.
-6. Upsert latest category/group/product dimensions.
-7. Upsert current-day price observations.
-8. If the run is complete, mark dimensions not seen in the run as `missing_from_latest_source`; never delete them.
+2. Enforce one provider network-attempt window per rolling 24 hours.
+3. Fetch `last-updated.txt`.
+4. Fetch categories.
+5. Fetch groups for each non-empty category.
+6. Fetch products and prices for each group.
+7. Upsert latest category/group/product dimensions.
+8. Upsert current-day price observations.
+9. If the run is complete, mark dimensions not seen in the run as `missing_from_latest_source`; never delete them.
 
 ## Historical Backfill
 
@@ -95,6 +96,8 @@ Run status values:
 - `failed`
 - `aborted_request_ceiling`
 - `skipped_no_change`
+- `skipped_provider_cooldown` (artifact-only; not inserted as the latest source
+  database run)
 
 A run with some failed categories/groups is `partial_success`, not `completed`.
 
@@ -103,7 +106,12 @@ A run with some failed categories/groups is `partial_success`, not `completed`.
 - Dry-run is the default.
 - `--apply` is required for database writes.
 - Request ceiling defaults to `10,000`.
-- Request delay defaults to `100ms`.
+- Request delay defaults to `250ms` and cannot be configured lower.
+- Scheduled current syncs inside the 24-hour provider window make zero source
+  requests. A near-boundary run may wait for at most 30 minutes before the
+  source request begins.
+- Provider-block responses open the circuit immediately and are recorded as
+  durable failed source-attempt evidence.
 - Transient source fetches retry three times by default with bounded
   exponential delay; every attempt counts against the request ceiling.
 - Exhausted fetch failures produce `partial_success` and a nonzero process

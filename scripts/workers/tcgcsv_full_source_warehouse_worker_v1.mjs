@@ -19,6 +19,11 @@ import {
   evaluateTcgcsvSourceRunResumeV1,
   TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
 } from "../../backend/pricing/tcgcsv_source_run_resume_policy_v1.mjs";
+import {
+  assertTcgcsvRequestDelayV1,
+  evaluateTcgcsvCurrentSyncAccessV1,
+  TCGCSV_MINIMUM_REQUEST_DELAY_MS_V1,
+} from "../../backend/pricing/tcgcsv_source_access_policy_v1.mjs";
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -32,9 +37,10 @@ const WORKER_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_WORKER_V1";
 const PARSER_VERSION = "TCGCSV_FULL_SOURCE_PARSER_V1";
 const SCHEMA_CONTRACT_VERSION = "TCGCSV_FULL_SOURCE_WAREHOUSE_V1";
 const DEFAULT_REQUEST_CEILING = 10_000;
-const DEFAULT_REQUEST_DELAY_MS = 100;
+const DEFAULT_REQUEST_DELAY_MS = TCGCSV_MINIMUM_REQUEST_DELAY_MS_V1;
 const DEFAULT_REQUEST_RETRIES = 3;
 const DEFAULT_RETRY_BASE_DELAY_MS = 1_000;
+const CURRENT_SYNC_MAX_CADENCE_WAIT_MINUTES = 30;
 const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
 const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 2000;
 const DEFAULT_PRICE_BATCH_DELAY_MS = 25;
@@ -127,7 +133,7 @@ function parseArgs(argv) {
 
   if (!["current", "historical"].includes(args.mode)) throw new Error("--mode must be current or historical");
   if (!Number.isInteger(args.requestCeiling) || args.requestCeiling < 1) throw new Error("--request-ceiling must be positive");
-  if (!Number.isInteger(args.requestDelayMs) || args.requestDelayMs < 0) throw new Error("--request-delay-ms must be non-negative");
+  assertTcgcsvRequestDelayV1(args.requestDelayMs);
   if (!Number.isInteger(args.requestRetries) || args.requestRetries < 0) throw new Error("--request-retries must be non-negative");
   if (!Number.isInteger(args.retryBaseDelayMs) || args.retryBaseDelayMs < 1) throw new Error("--retry-base-delay-ms must be positive");
   if (args.limitCategories !== null && (!Number.isInteger(args.limitCategories) || args.limitCategories < 1)) {
@@ -282,6 +288,7 @@ class Fetcher {
           error.code = "TCGCSV_SOURCE_BLOCKED";
           error.message = `[TCGCSV_SOURCE_BLOCKED] provider access is blocked; circuit opened before retry (${url})`;
           error.tcgcsv_source_failure = classification;
+          error.request_count = this.requestCount;
           throw error;
         }
         if (
@@ -289,6 +296,7 @@ class Fetcher {
           retry >= this.requestRetries
         ) {
           error.message = `${error.message} (failed after ${retry + 1} attempts)`;
+          error.request_count = this.requestCount;
           throw error;
         }
         console.error(
@@ -1050,6 +1058,46 @@ async function latestCompletedCurrentMarker(client) {
   return result.rows[0]?.source_marker ?? null;
 }
 
+async function latestCurrentNetworkAttempt(client) {
+  const result = await client.query(
+    `select run_key, status, request_count,
+            coalesce(finished_at, started_at, created_at) as attempted_at
+     from public.tcgcsv_source_sync_runs
+     where sync_mode = 'current_full_sync'
+       and request_count > 0
+     order by coalesce(finished_at, started_at, created_at) desc, id desc
+     limit 1`,
+  );
+  return result.rows[0] ?? null;
+}
+
+async function enforceCurrentSyncCadence(args) {
+  if (!args.apply || args.force) {
+    return { allowed: true, reason: args.force ? "explicit_force" : "dry_run" };
+  }
+
+  const client = await connectDb();
+  let previousAttempt;
+  try {
+    previousAttempt = await latestCurrentNetworkAttempt(client);
+  } finally {
+    await client.end().catch(() => {});
+  }
+
+  let decision = evaluateTcgcsvCurrentSyncAccessV1(previousAttempt);
+  if (decision.allowed) return decision;
+
+  const maxWaitMs = CURRENT_SYNC_MAX_CADENCE_WAIT_MINUTES * 60_000;
+  if (decision.wait_ms <= maxWaitMs) {
+    console.error(
+      `[tcgcsv-full] provider cadence wait_ms=${decision.wait_ms} previous_attempt_at=${decision.previous_attempt_at}`,
+    );
+    await sleep(decision.wait_ms + 1_000);
+    decision = evaluateTcgcsvCurrentSyncAccessV1(previousAttempt);
+  }
+  return decision;
+}
+
 async function sourceRunByKey(client, runKey) {
   const result = await client.query(
     `select
@@ -1146,6 +1194,23 @@ function parseCategoryGroupFromPricePath(filePath, observedOn) {
 async function runCurrentSync(args, runKey, artifactRoot) {
   const resumedRun = await resumeSuccessfulCurrentRun(args, runKey);
   if (resumedRun) return resumedRun;
+
+  const cadence = await enforceCurrentSyncCadence(args);
+  if (!cadence.allowed) {
+    return {
+      run: {
+        run_key: runKey,
+        sync_mode: "current_full_sync",
+        status: "skipped_provider_cooldown",
+        request_count: 0,
+        started_at: args.actualStartedAt,
+        finished_at: new Date().toISOString(),
+        payload: { source_access_policy: cadence },
+      },
+      summary: { skipped: true, source_access_policy: cadence },
+      artifacts: [],
+    };
+  }
 
   const fetcher = new Fetcher({
     requestCeiling: args.requestCeiling,
@@ -1687,6 +1752,30 @@ async function recordHistoricalFailure(args, runKey, error) {
   }
 }
 
+async function recordCurrentFailure(args, runKey, error) {
+  if (!args.apply || args.mode !== "current") return;
+  const client = await connectDb();
+  try {
+    await upsertRun(client, {
+      run_key: runKey,
+      sync_mode: "current_full_sync",
+      status: "failed",
+      observed_on: isoDate(),
+      request_count: Number(error?.request_count ?? 0),
+      failed_count: 1,
+      error: String(error?.message ?? error).slice(0, 4000),
+      started_at: args.actualStartedAt,
+      finished_at: new Date().toISOString(),
+      payload: {
+        failure_code: error?.code ?? null,
+        source_failure: error?.tcgcsv_source_failure ?? null,
+      },
+    });
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 async function writeSummary(outDir, runKey, result) {
   await fs.mkdir(outDir, { recursive: true });
   const fullPath = path.join(outDir, `${runKey}_summary.json`);
@@ -1774,6 +1863,7 @@ async function main() {
         artifacts: [],
       };
     } else {
+      await recordCurrentFailure(args, runKey, error);
       await recordHistoricalFailure(args, runKey, error);
       throw error;
     }

@@ -316,6 +316,170 @@ function makeSupabaseClient() {
   });
 }
 
+const BACKGROUND_CATALOG_COMPONENTS_V1 = Object.freeze([
+  'cross-tcg-sealed',
+  'funko-catalog',
+  'japanese-master-index',
+  'one-piece-expansion'
+]);
+
+const BACKGROUND_TIMER_UNITS_V1 = Object.freeze({
+  'cross-tcg-sealed': 'grookai-cross-tcg-sealed.timer',
+  'funko-catalog': 'grookai-funko-catalog.timer',
+  'japanese-master-index': 'grookai-japanese-master-index.timer',
+  'one-piece-expansion': 'grookai-one-piece-expansion.timer'
+});
+
+export function classifyBackgroundCatalogLaneV1({
+  implemented,
+  catalogRows,
+  supervisorState,
+  errors = []
+}) {
+  if (errors.length > 0) {
+    return {
+      status: 'failed',
+      reason: 'One or more background catalog read probes failed.'
+    };
+  }
+  if (!implemented) {
+    return {
+      status: 'degraded',
+      reason: 'The background catalog contract is not implemented on the release branch.'
+    };
+  }
+  if (Number(catalogRows ?? 0) <= 0) {
+    return {
+      status: 'degraded',
+      reason: 'The background catalog foundation is implemented but has no durable catalog rows.'
+    };
+  }
+  if (supervisorState === 'active') {
+    return {
+      status: 'healthy',
+      reason: 'Durable catalog rows exist and the unattended supervisor timer is active.'
+    };
+  }
+  return {
+    status: 'degraded',
+    reason: `Durable catalog rows exist, but unattended supervision is ${supervisorState ?? 'not observed'}.`
+  };
+}
+
+async function countSupabaseRows(supabase, table, filters = {}) {
+  let query = supabase.from(table).select('id', { count: 'exact', head: true });
+  for (const [column, value] of Object.entries(filters)) query = query.eq(column, value);
+  const result = await query;
+  return {
+    count: Number(result.count ?? 0),
+    error: safeError(result.error)
+  };
+}
+
+async function readGameCatalogV1(supabase, gameCode) {
+  const game = await queryOne(
+    supabase.from('games').select('id,code,name').eq('code', gameCode)
+  );
+  if (game.error || !game.data) {
+    return {
+      game: game.data,
+      set_count: 0,
+      card_count: 0,
+      errors: game.error ? [game.error] : []
+    };
+  }
+  const [sets, cards] = await Promise.all([
+    countSupabaseRows(supabase, 'sets', { game_id: game.data.id }),
+    countSupabaseRows(supabase, 'card_prints', { game_id: game.data.id })
+  ]);
+  return {
+    game: game.data,
+    set_count: sets.count,
+    card_count: cards.count,
+    errors: [sets.error, cards.error].filter(Boolean)
+  };
+}
+
+async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
+  const runtimeProbes = process.env.GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED === '1';
+  const definitionById = new Map(
+    topology.components
+      .filter((component) => BACKGROUND_CATALOG_COMPONENTS_V1.includes(component.id))
+      .map((component) => [component.id, component])
+  );
+  const supervisorState = (componentId) => runtimeProbes
+    ? systemdState(BACKGROUND_TIMER_UNITS_V1[componentId])
+    : 'not_observed';
+
+  const [japanese, onePiece, funko, sealedFamilies, sealedVariants, sealedCandidates] = await Promise.all([
+    readGameCatalogV1(supabase, 'pokemon_japan'),
+    readGameCatalogV1(supabase, 'one_piece'),
+    readGameCatalogV1(supabase, 'funko'),
+    countSupabaseRows(supabase, 'sealed_product_families'),
+    countSupabaseRows(supabase, 'sealed_product_variants'),
+    countSupabaseRows(supabase, 'sealed_product_candidates')
+  ]);
+
+  const catalogResult = (componentId, catalog, extra = {}) => {
+    const definition = definitionById.get(componentId);
+    const state = supervisorState(componentId);
+    const implemented = Boolean(definition?.source_files?.length)
+      && definition?.execution_plane !== 'not_merged';
+    const errors = catalog.errors ?? [];
+    return {
+      component_id: componentId,
+      provider: 'supabase_catalog_and_systemd',
+      ...classifyBackgroundCatalogLaneV1({
+        implemented,
+        catalogRows: catalog.card_count,
+        supervisorState: state,
+        errors
+      }),
+      observed_at: now.toISOString(),
+      evidence: {
+        game: catalog.game ?? null,
+        set_count: catalog.set_count ?? 0,
+        card_count: catalog.card_count ?? 0,
+        supervisor_timer: BACKGROUND_TIMER_UNITS_V1[componentId],
+        supervisor_state: state,
+        errors,
+        ...extra
+      }
+    };
+  };
+
+  const sealedErrors = [sealedFamilies.error, sealedVariants.error, sealedCandidates.error].filter(Boolean);
+  const sealedRows = sealedFamilies.count + sealedVariants.count + sealedCandidates.count;
+  const sealedState = supervisorState('cross-tcg-sealed');
+  const sealedDefinition = definitionById.get('cross-tcg-sealed');
+  const sealed = {
+    component_id: 'cross-tcg-sealed',
+    provider: 'supabase_catalog_and_systemd',
+    ...classifyBackgroundCatalogLaneV1({
+      implemented: Boolean(sealedDefinition?.source_files?.length),
+      catalogRows: sealedRows,
+      supervisorState: sealedState,
+      errors: sealedErrors
+    }),
+    observed_at: now.toISOString(),
+    evidence: {
+      family_count: sealedFamilies.count,
+      variant_count: sealedVariants.count,
+      candidate_count: sealedCandidates.count,
+      supervisor_timer: BACKGROUND_TIMER_UNITS_V1['cross-tcg-sealed'],
+      supervisor_state: sealedState,
+      errors: sealedErrors
+    }
+  };
+
+  return [
+    sealed,
+    catalogResult('funko-catalog', funko),
+    catalogResult('japanese-master-index', japanese),
+    catalogResult('one-piece-expansion', onePiece)
+  ];
+}
+
 async function queryOne(builder) {
   const { data, error } = await builder.limit(1).maybeSingle();
   return { data: data ?? null, error: safeError(error) };
@@ -579,7 +743,14 @@ async function collectNewSetDiscovery(rootDir, topology, now) {
 async function collectSupabase(supabase, topology, now) {
   if (!supabase) {
     return topology.components
-      .filter((component) => ['supabase-core', 'operations-alert-delivery', 'tcgplayer-market-pipeline', 'mee-nightly'].includes(component.id))
+      .filter((component) => [
+        'supabase-core',
+        'operations-alert-delivery',
+        'tcgplayer-market-pipeline',
+        'tcgplayer-source-sync',
+        'mee-nightly',
+        ...BACKGROUND_CATALOG_COMPONENTS_V1
+      ].includes(component.id))
       .map((component) => ({
         component_id: component.id,
         provider: 'supabase',
@@ -719,6 +890,8 @@ async function collectSupabase(supabase, topology, now) {
       errors: meeErrors
     }
   });
+
+  results.push(...await collectBackgroundCatalogComponentsV1(supabase, topology, now));
 
   return results;
 }
@@ -920,7 +1093,14 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
     supabaseResults = await collectSupabase(makeSupabaseClient(), topology, now);
   } catch (error) {
     supabaseResults = topology.components
-      .filter((component) => ['supabase-core', 'tcgplayer-market-pipeline', 'mee-nightly'].includes(component.id))
+      .filter((component) => [
+        'supabase-core',
+        'operations-alert-delivery',
+        'tcgplayer-market-pipeline',
+        'tcgplayer-source-sync',
+        'mee-nightly',
+        ...BACKGROUND_CATALOG_COMPONENTS_V1
+      ].includes(component.id))
       .map((component) => ({
         component_id: component.id,
         provider: 'supabase',

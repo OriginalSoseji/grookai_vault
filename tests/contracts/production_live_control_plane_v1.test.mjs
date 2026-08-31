@@ -8,6 +8,7 @@ import {
   applyDirectEdgeFallbackV1,
   applyRuntimeTimerStateV1,
   classifyDirectEdgeProbeV1,
+  classifyBackgroundCatalogLaneV1,
   classifyOperationsAlertDeliveryV1,
   classifyPricingRunV1,
   classifyNewSetDiscoveryV1,
@@ -208,6 +209,44 @@ test('new-set discovery is healthy only when the report is successful and fresh'
     findings: [],
     counts: {}
   }, NOW).status, 'stale');
+});
+
+test('background catalog adapters distinguish data health from unattended supervision', () => {
+  assert.equal(classifyBackgroundCatalogLaneV1({
+    implemented: true,
+    catalogRows: 100,
+    supervisorState: 'active'
+  }).status, 'healthy');
+  assert.equal(classifyBackgroundCatalogLaneV1({
+    implemented: true,
+    catalogRows: 100,
+    supervisorState: 'not_observed'
+  }).status, 'degraded');
+  assert.equal(classifyBackgroundCatalogLaneV1({
+    implemented: false,
+    catalogRows: 0,
+    supervisorState: 'unknown'
+  }).status, 'degraded');
+  assert.equal(classifyBackgroundCatalogLaneV1({
+    implemented: true,
+    catalogRows: 100,
+    supervisorState: 'active',
+    errors: [{ message: 'read failed' }]
+  }).status, 'failed');
+});
+
+test('all four deferred background lanes have registered read-only adapters', async () => {
+  const source = await fs.readFile('scripts/audits/production_live_control_plane_v1.mjs', 'utf8');
+  for (const componentId of [
+    'cross-tcg-sealed',
+    'funko-catalog',
+    'japanese-master-index',
+    'one-piece-expansion'
+  ]) {
+    assert.match(source, new RegExp(`['\"]${componentId}['\"]`));
+  }
+  assert.match(source, /collectBackgroundCatalogComponentsV1/);
+  assert.match(source, /supabase_catalog_and_systemd/);
 });
 
 test('failed GitHub workflow is never hidden by freshness', () => {

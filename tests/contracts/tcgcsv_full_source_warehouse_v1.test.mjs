@@ -13,6 +13,11 @@ import {
   TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
 } from "../../backend/pricing/tcgcsv_source_run_resume_policy_v1.mjs";
 import { evaluateTcgcsvCachedSourceContinuityV1 } from "../../backend/pricing/tcgcsv_cached_source_continuity_v1.mjs";
+import {
+  assertTcgcsvRequestDelayV1,
+  evaluateTcgcsvCurrentSyncAccessV1,
+  TCGCSV_MINIMUM_REQUEST_DELAY_MS_V1,
+} from "../../backend/pricing/tcgcsv_source_access_policy_v1.mjs";
 
 const migration = readFileSync(
   "supabase/migrations/20260715110000_tcgcsv_full_source_warehouse_v1.sql",
@@ -48,6 +53,21 @@ test("TCGCSV worker defaults to dry-run and records no public pricing boundary",
   assert.match(worker, /identity_writes:\s*false/);
   assert.match(worker, /vault_writes:\s*false/);
   assert.match(worker, /app_visible_pricing:\s*false/);
+});
+
+test("TCGCSV current access is daily and request pacing cannot be lowered", () => {
+  const previous = { attempted_at: "2026-08-30T12:00:00.000Z" };
+  assert.equal(evaluateTcgcsvCurrentSyncAccessV1(previous, {
+    now: new Date("2026-08-31T11:59:59.000Z"),
+  }).allowed, false);
+  assert.equal(evaluateTcgcsvCurrentSyncAccessV1(previous, {
+    now: new Date("2026-08-31T12:00:00.000Z"),
+  }).allowed, true);
+  assert.equal(TCGCSV_MINIMUM_REQUEST_DELAY_MS_V1, 250);
+  assert.equal(assertTcgcsvRequestDelayV1(250), 250);
+  assert.throws(() => assertTcgcsvRequestDelayV1(249), /at least 250ms/);
+  assert.match(worker, /skipped_provider_cooldown/);
+  assert.match(worker, /recordCurrentFailure/);
 });
 
 test("TCGCSV worker retries transient source fetches and fails closed on partial ingestion", () => {

@@ -43,7 +43,7 @@ The systemd installer requires `MEE_NIGHTLY_PROVIDER_CALLS_ENABLED=1` unless `ME
 Optional:
 
 - `MEE_NIGHTLY_REFERENCE_LIMIT`, default `5000`, caps the nightly TCGCSV reference target batch.
-- `TCGCSV_REQUEST_DELAY_MS`, default `100`, throttles refreshed TCGCSV product/price requests.
+- `TCGCSV_REQUEST_DELAY_MS`, default and minimum `250`, throttles refreshed TCGCSV product/price requests.
 - `MEE_DB_QUERY_TIMEOUT_MS`, default `180000`, caps shared MEE readback queries so a slow DB check fails visibly instead of hanging the worker.
 
 The nightly worker refreshes TCGCSV alongside the eBay listing ingest when provider calls are enabled. TCGCSV rows are written only through the guarded reference evidence path; they do not publish prices, update app-visible pricing, or write `pricing_observations`.
