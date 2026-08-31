@@ -5,6 +5,7 @@ import path from "node:path";
 import test from "node:test";
 
 import {
+  buildZeroResultSkippedPhaseV2,
   findFrozenDryRunPlanForCursorV2,
   pipelineStateIsResumableV2,
   phaseReportSupportsResumeV2,
@@ -69,6 +70,29 @@ test("V2 persists a successful zero-result receipt and skips data-dependent phas
       },
     },
   }), false);
+});
+
+test("V2 replaces a failed zero-result downstream phase without resolving its missing artifact", () => {
+  const phase = buildZeroResultSkippedPhaseV2({
+    phaseKey: "card_candidate_rollup_apply",
+    previous: { status: 1 },
+    timestamp: "2026-08-31T15:00:00.000Z",
+  });
+
+  assert.deepEqual(phase, {
+    phase: "card_candidate_rollup_apply",
+    command: "skip card_candidate_rollup_apply: successful zero-result receipt applied",
+    status: 0,
+    started_at: "2026-08-31T15:00:00.000Z",
+    finished_at: "2026-08-31T15:00:00.000Z",
+    outcome: "skipped_successful_no_results",
+    skipped: true,
+    provider_calls: false,
+    db_writes: false,
+    replaced_status: 1,
+    stdout_tail: "",
+    stderr_tail: "",
+  });
 });
 
 test("V2 conditionally selects a frozen plan only for an incomplete cursor", () => {
