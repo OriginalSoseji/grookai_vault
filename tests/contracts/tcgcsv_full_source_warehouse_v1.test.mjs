@@ -195,6 +195,16 @@ test("TCGCSV source block opens the circuit and does not retry", () => {
   });
 });
 
+test("a transport failure mentioning a URL segment named 403 does not open the source circuit", () => {
+  const error = {
+    code: 28,
+    message: "curl request timed out for https://tcgcsv.com/tcgplayer/403/groups",
+  };
+  assert.equal(isTcgcsvSourceBlockedErrorV1(error), false);
+  assert.equal(isRetryableTcgcsvSourceFetchErrorV1(error), true);
+  assert.match(worker, /rethrowTcgcsvSourceBlock\(error\);/);
+});
+
 test("fresh completed TCGCSV evidence permits explicit degraded cache continuity", () => {
   const decision = evaluateTcgcsvCachedSourceContinuityV1({
     run_key: "source-1",

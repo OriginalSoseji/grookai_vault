@@ -22,7 +22,8 @@ const RETRYABLE_MESSAGE_PATTERNS = [
 ];
 
 const SOURCE_BLOCKED_PATTERNS = [
-  /\b403\b/,
+  /\[TCGCSV_SOURCE_BLOCKED\]/i,
+  /(?:returned error:|HTTP\/\S+\s+)\s*403\b/i,
   /flagged for overuse/i,
   /application.*blocked/i,
   /access.*forbidden/i,
