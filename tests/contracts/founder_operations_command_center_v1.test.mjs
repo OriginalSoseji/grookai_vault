@@ -20,6 +20,9 @@ const source = (file) => fs.readFileSync(path.join(ROOT, file), "utf8");
 const migration = source(
   "supabase/migrations/20260830233000_founder_operations_command_center_v1.sql",
 );
+const repairMigration = source(
+  "supabase/migrations/20260831054500_founder_operations_command_center_repair_v1.sql",
+);
 const mobileService = source(
   "lib/services/operations/founder_operations_service.dart",
 );
@@ -185,7 +188,7 @@ test("operations payload sanitizer rejects secret-shaped fields", () => {
   assert.doesNotThrow(() => assertOperationsPayloadSafeV1({ source_commit_sha: "abc" }));
 });
 
-test("live publisher registers and heartbeats the agent before publishing work items", async () => {
+test("live publisher reports running and succeeds only after every work item publishes", async () => {
   const calls = [];
   const fetchImpl = async (url, request) => {
     calls.push({ url, body: JSON.parse(request.body) });
@@ -208,8 +211,55 @@ test("live publisher registers and heartbeats the agent before publishing work i
   });
   assert.match(calls[0].url, /operations_register_agent_v1$/);
   assert.match(calls[1].url, /operations_agent_heartbeat_v1$/);
+  assert.equal(calls[1].body.p_heartbeat.status, "running");
   assert.match(calls[2].url, /operations_publish_work_item_v1$/);
   assert.equal(calls[2].body.p_item.work_item_key, workItems[0].work_item_key);
+  assert.match(calls[3].url, /operations_agent_heartbeat_v1$/);
+  assert.equal(calls[3].body.p_heartbeat.status, "succeeded");
+  assert.equal(calls[3].body.p_heartbeat.summary.published_count, 1);
+});
+
+test("live publisher records failed after a partial publication failure", async () => {
+  const calls = [];
+  const fetchImpl = async (url, request) => {
+    const body = JSON.parse(request.body);
+    calls.push({ url, body });
+    if (url.endsWith("operations_publish_work_item_v1")) {
+      return { ok: false, status: 503, json: async () => ({ message: "unavailable" }) };
+    }
+    return { ok: true, status: 200, json: async () => [{ ok: true }] };
+  };
+  const workItems = buildCatalogSetWorkItemsV1({
+    candidates: [catalogFixture()],
+    discoverySummary: {},
+    artifactHashes: {},
+    sourceCommitSha: "c".repeat(40),
+    sourceRunUri: null,
+  });
+  await assert.rejects(
+    publishCatalogWorkItemsV1({
+      agent: buildCatalogDiscoveryAgentV1(),
+      workItems,
+      supabaseUrl: "https://example.supabase.co",
+      serviceRoleKey: "test-service-role",
+      fetchImpl,
+    }),
+    /Operations RPC operations_publish_work_item_v1 failed/,
+  );
+  const heartbeats = calls.filter((call) => call.url.endsWith("operations_agent_heartbeat_v1"));
+  assert.deepEqual(heartbeats.map((call) => call.body.p_heartbeat.status), ["running", "failed"]);
+  assert.equal(heartbeats[1].body.p_heartbeat.summary.published_count, 0);
+});
+
+test("repair migration closes decision races, retry expiry, and deferred count drift", () => {
+  assert.match(
+    repairMigration,
+    /p_decision in \('defer', 'approve', 'reject', 'request_repair'\)[\s\S]*v_item\.state not in \('ready_for_review', 'deferred'\)/,
+  );
+  assert.match(repairMigration, /command_retry_deadline_expired/);
+  assert.match(repairMigration, /v_failed_command\.execution_deadline_at <= now\(\)/);
+  assert.match(repairMigration, /viewer\.snoozed_until is null or viewer\.snoozed_until <= now\(\)/);
+  assert.match(repairMigration, /w\.deferred_until is null or w\.deferred_until <= now\(\)/);
 });
 
 test("scheduled discovery publishes only behind the explicit control-plane activation gate", () => {

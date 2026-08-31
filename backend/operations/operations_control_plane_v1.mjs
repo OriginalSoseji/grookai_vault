@@ -312,6 +312,7 @@ export async function publishCatalogWorkItemsV1({
     body: { p_agent: agent },
     fetchImpl,
   });
+  const runKey = `publisher-${operationsSha256V1(workItems).slice(0, 20)}`;
   await callOperationsRpcV1({
     supabaseUrl,
     serviceRoleKey,
@@ -319,23 +320,62 @@ export async function publishCatalogWorkItemsV1({
     body: {
       p_heartbeat: {
         agent_key: agent.agent_key,
-        run_key: `publisher-${operationsSha256V1(workItems).slice(0, 20)}`,
-        status: "succeeded",
-        summary: { work_item_count: workItems.length },
+        run_key: runKey,
+        status: "running",
+        summary: { work_item_count: workItems.length, published_count: 0 },
       },
     },
     fetchImpl,
   });
   const receipts = [];
-  for (const item of workItems) {
-    const receipt = await callOperationsRpcV1({
+  try {
+    for (const item of workItems) {
+      const receipt = await callOperationsRpcV1({
+        supabaseUrl,
+        serviceRoleKey,
+        functionName: "operations_publish_work_item_v1",
+        body: { p_item: item },
+        fetchImpl,
+      });
+      receipts.push({ work_item_key: item.work_item_key, receipt });
+    }
+    await callOperationsRpcV1({
       supabaseUrl,
       serviceRoleKey,
-      functionName: "operations_publish_work_item_v1",
-      body: { p_item: item },
+      functionName: "operations_agent_heartbeat_v1",
+      body: {
+        p_heartbeat: {
+          agent_key: agent.agent_key,
+          run_key: runKey,
+          status: "succeeded",
+          summary: {
+            work_item_count: workItems.length,
+            published_count: receipts.length,
+          },
+        },
+      },
       fetchImpl,
     });
-    receipts.push({ work_item_key: item.work_item_key, receipt });
+  } catch (error) {
+    await callOperationsRpcV1({
+      supabaseUrl,
+      serviceRoleKey,
+      functionName: "operations_agent_heartbeat_v1",
+      body: {
+        p_heartbeat: {
+          agent_key: agent.agent_key,
+          run_key: runKey,
+          status: "failed",
+          summary: {
+            work_item_count: workItems.length,
+            published_count: receipts.length,
+            error_class: error instanceof Error ? error.name : "UnknownError",
+          },
+        },
+      },
+      fetchImpl,
+    }).catch(() => {});
+    throw error;
   }
   return receipts;
 }
