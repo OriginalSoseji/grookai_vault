@@ -37,6 +37,24 @@ test('successful fresh GitHub workflow is healthy', () => {
   assert.equal(result.status, 'healthy');
 });
 
+test('active GitHub workflow is healthy only inside its bounded execution window', () => {
+  const component = { max_staleness_minutes: 90, max_runtime_minutes: 30 };
+  const active = {
+    status: 'in_progress',
+    run_started_at: '2026-08-24T00:50:00.000Z',
+    updated_at: '2026-08-24T00:59:00.000Z'
+  };
+  const healthy = classifyWorkflowRunV1(component, active, NOW);
+  assert.equal(healthy.status, 'healthy');
+  assert.equal(healthy.runtime_minutes, 10);
+
+  const stuck = classifyWorkflowRunV1(component, {
+    ...active,
+    run_started_at: '2026-08-23T23:00:00.000Z'
+  }, NOW);
+  assert.equal(stuck.status, 'degraded');
+});
+
 test('production edge probe avoids the top-of-hour scheduler congestion window', async () => {
   const workflow = await fs.readFile('.github/workflows/prod-edge-probe.yml', 'utf8');
   const topology = JSON.parse(await fs.readFile('backend/operations/production_topology_v1.json', 'utf8'));

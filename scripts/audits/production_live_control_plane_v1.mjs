@@ -88,11 +88,27 @@ function workflowFile(component) {
 
 export function classifyWorkflowRunV1(component, run, now = new Date()) {
   if (!run) return { status: 'unmeasured', reason: 'No workflow run evidence returned.' };
-  const observedAt = run.updated_at ?? run.created_at ?? null;
+  const observedAt = run.updated_at ?? run.run_started_at ?? run.created_at ?? null;
   const ageMinutes = minutesSince(observedAt, now);
   const maxStaleness = Number(component.max_staleness_minutes ?? 0);
 
   if (run.status !== 'completed') {
+    const runStartedAt = run.run_started_at ?? run.created_at ?? observedAt;
+    const runtimeMinutes = minutesSince(runStartedAt, now);
+    const maxRuntimeMinutes = Number(component.max_runtime_minutes ?? 30);
+    if (
+      ['queued', 'in_progress', 'pending', 'waiting', 'requested'].includes(run.status)
+      && Number.isFinite(runtimeMinutes)
+      && runtimeMinutes <= maxRuntimeMinutes
+    ) {
+      return {
+        status: 'healthy',
+        reason: `Latest workflow is ${run.status} within its ${maxRuntimeMinutes}-minute execution window.`,
+        observed_at: observedAt,
+        age_minutes: ageMinutes,
+        runtime_minutes: runtimeMinutes
+      };
+    }
     return { status: 'degraded', reason: `Latest workflow is ${run.status}.`, observed_at: observedAt, age_minutes: ageMinutes };
   }
   if (run.conclusion !== 'success') {
@@ -192,6 +208,7 @@ export async function collectGitHubWorkflowComponentsV1(
             conclusion: run.conclusion,
             head_sha: run.head_sha,
             created_at: run.created_at,
+            run_started_at: run.run_started_at,
             updated_at: run.updated_at,
             html_url: run.html_url
           }
