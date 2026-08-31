@@ -52,6 +52,11 @@ if [[ ! -f "scripts/audits/market_evidence_engine_query_plan_v1.mjs" ]]; then
   exit 1
 fi
 
+if [[ ! -f "scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs" ]]; then
+  echo "Missing MEE worklist script. Set REPO_DIR to the Grookai repo path." >&2
+  exit 1
+fi
+
 if [[ ! -f "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs" ]]; then
   echo "Missing MEE acquisition batch script. Set REPO_DIR to the Grookai repo path." >&2
   exit 1
@@ -111,8 +116,10 @@ if [[ -z "${reference_sources}" ]]; then
   reference_sources="pokemontcg_io_reference"
 fi
 
-node scripts/audits/market_evidence_engine_query_plan_v1.mjs --limit="${reference_limit}"
-node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs --sources="${reference_sources}" --limit="${reference_limit}"
+artifact_root="${MEE_RUNTIME_ARTIFACT_ROOT:-/var/lib/grookai/mee/audits}"
+node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs --limit="${reference_limit}" --out-dir="${artifact_root}"
+node scripts/audits/market_evidence_engine_query_plan_v1.mjs --limit="${reference_limit}" --out-dir="${artifact_root}"
+node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs --sources="${reference_sources}" --limit="${reference_limit}" --out-dir="${artifact_root}"
 node --check scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs
 node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --dry-run --sources="${reference_sources}" --limit="${reference_limit}"
 if ! node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --dry-run; then
