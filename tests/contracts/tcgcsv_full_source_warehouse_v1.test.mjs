@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
+  classifyTcgcsvSourceFetchErrorV1,
+  isTcgcsvSourceBlockedErrorV1,
   isRetryableTcgcsvSourceFetchErrorV1,
   tcgcsvSourceRetryDelayMsV1,
 } from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
@@ -10,6 +12,7 @@ import {
   evaluateTcgcsvSourceRunResumeV1,
   TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
 } from "../../backend/pricing/tcgcsv_source_run_resume_policy_v1.mjs";
+import { evaluateTcgcsvCachedSourceContinuityV1 } from "../../backend/pricing/tcgcsv_cached_source_continuity_v1.mjs";
 
 const migration = readFileSync(
   "supabase/migrations/20260715110000_tcgcsv_full_source_warehouse_v1.sql",
@@ -175,6 +178,63 @@ test("TCGCSV source retry policy retries transport failures but not permanent HT
     }),
     10_000,
   );
+});
+
+test("TCGCSV source block opens the circuit and does not retry", () => {
+  const error = {
+    code: 22,
+    message: "The requested URL returned error: 403",
+    stderr: "Your application has been flagged for overuse and has been blocked.",
+  };
+  assert.equal(isTcgcsvSourceBlockedErrorV1(error), true);
+  assert.equal(isRetryableTcgcsvSourceFetchErrorV1(error), false);
+  assert.deepEqual(classifyTcgcsvSourceFetchErrorV1(error), {
+    classification: "source_blocked",
+    retryable: false,
+    circuit_break: true,
+  });
+});
+
+test("a transport failure mentioning a URL segment named 403 does not open the source circuit", () => {
+  const error = {
+    code: 28,
+    message: "curl request timed out for https://tcgcsv.com/tcgplayer/403/groups",
+  };
+  assert.equal(isTcgcsvSourceBlockedErrorV1(error), false);
+  assert.equal(isRetryableTcgcsvSourceFetchErrorV1(error), true);
+  assert.match(worker, /rethrowTcgcsvSourceBlock\(error\);/);
+});
+
+test("fresh completed TCGCSV evidence permits explicit degraded cache continuity", () => {
+  const decision = evaluateTcgcsvCachedSourceContinuityV1({
+    run_key: "source-1",
+    status: "completed",
+    source_marker: "2026-08-30",
+    finished_at: "2026-08-30T12:00:00.000Z",
+    price_row_count: 100,
+    failed_count: 0,
+  }, {
+    now: new Date("2026-08-31T12:00:00.000Z"),
+    maxAgeHours: 36,
+  });
+  assert.equal(decision.accepted, true);
+  assert.equal(decision.continuity_mode, "degraded_cached_source");
+  assert.equal(decision.source_age_hours, 24);
+});
+
+test("stale TCGCSV evidence fails closed during a source block", () => {
+  const decision = evaluateTcgcsvCachedSourceContinuityV1({
+    run_key: "source-old",
+    status: "completed",
+    finished_at: "2026-08-28T12:00:00.000Z",
+    price_row_count: 100,
+    failed_count: 0,
+  }, {
+    now: new Date("2026-08-31T12:00:00.000Z"),
+    maxAgeHours: 36,
+  });
+  assert.equal(decision.accepted, false);
+  assert.ok(decision.findings.includes("cached_source_outside_freshness_window"));
 });
 
 test("TCGCSV contract preserves source-only and historical archive rules", () => {

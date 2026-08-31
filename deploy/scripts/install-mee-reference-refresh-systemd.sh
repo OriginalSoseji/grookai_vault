@@ -52,6 +52,11 @@ if [[ ! -f "scripts/audits/market_evidence_engine_query_plan_v1.mjs" ]]; then
   exit 1
 fi
 
+if [[ ! -f "scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs" ]]; then
+  echo "Missing MEE worklist script. Set REPO_DIR to the Grookai repo path." >&2
+  exit 1
+fi
+
 if [[ ! -f "scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs" ]]; then
   echo "Missing MEE acquisition batch script. Set REPO_DIR to the Grookai repo path." >&2
   exit 1
@@ -92,6 +97,7 @@ ensure_env_line "MEE_REFERENCE_REFRESH_ALLOW_RUN" "1"
 ensure_env_line "MEE_REFERENCE_REFRESH_ALLOW_PROVIDER_CALLS" "1"
 ensure_env_line "MEE_REFERENCE_REFRESH_ALLOW_INTERNAL_WRITES" "0"
 ensure_env_line "MEE_REFERENCE_WAREHOUSE_DELTA_ALLOW_RUN" "1"
+ensure_env_line "MEE_REFERENCE_REFRESH_SOURCES" "pokemontcg_io_reference"
 if [[ -z "$(env_value MEE_NIGHTLY_REFERENCE_LIMIT)" ]]; then
   ensure_env_line "MEE_NIGHTLY_REFERENCE_LIMIT" "5000"
 fi
@@ -105,11 +111,17 @@ reference_limit="$(env_value MEE_NIGHTLY_REFERENCE_LIMIT)"
 if [[ -z "${reference_limit}" ]]; then
   reference_limit="5000"
 fi
+reference_sources="$(env_value MEE_REFERENCE_REFRESH_SOURCES)"
+if [[ -z "${reference_sources}" ]]; then
+  reference_sources="pokemontcg_io_reference"
+fi
 
-node scripts/audits/market_evidence_engine_query_plan_v1.mjs --limit="${reference_limit}"
-node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs --sources=pokemontcg_io_reference,tcgcsv_reference --limit="${reference_limit}"
+artifact_root="${MEE_RUNTIME_ARTIFACT_ROOT:-/var/lib/grookai/mee/audits}"
+node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs --limit="${reference_limit}" --out-dir="${artifact_root}"
+node scripts/audits/market_evidence_engine_query_plan_v1.mjs --limit="${reference_limit}" --out-dir="${artifact_root}"
+node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs --sources="${reference_sources}" --limit="${reference_limit}" --out-dir="${artifact_root}"
 node --check scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs
-node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --dry-run --sources=pokemontcg_io_reference,tcgcsv_reference --limit="${reference_limit}"
+node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --dry-run --sources="${reference_sources}" --limit="${reference_limit}"
 if ! node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --dry-run; then
   echo "Reference warehouse delta dry-run reported source artifact findings." >&2
   echo "Continuing install because the timer runs source refresh before the delta writer." >&2

@@ -21,7 +21,50 @@ const RETRYABLE_MESSAGE_PATTERNS = [
   /timeout/i,
 ];
 
-export function isRetryableTcgcsvSourceFetchErrorV1(error) {
+const SOURCE_BLOCKED_PATTERNS = [
+  /\[TCGCSV_SOURCE_BLOCKED\]/i,
+  /(?:returned error:|HTTP\/\S+\s+)\s*403\b/i,
+  /flagged for overuse/i,
+  /application.*blocked/i,
+  /access.*forbidden/i,
+];
+
+function errorText(error, context = {}) {
+  return [
+    error?.message,
+    error?.stderr,
+    error?.stdout,
+    context.responseBody,
+    context.responseHeaders,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+export function classifyTcgcsvSourceFetchErrorV1(error, context = {}) {
+  const text = errorText(error, context);
+  if (SOURCE_BLOCKED_PATTERNS.some((pattern) => pattern.test(text))) {
+    return {
+      classification: "source_blocked",
+      retryable: false,
+      circuit_break: true,
+    };
+  }
+  const retryable = isRetryableTcgcsvSourceFetchErrorV1(error, context);
+  return {
+    classification: retryable ? "transient_source_or_transport_failure" : "permanent_source_failure",
+    retryable,
+    circuit_break: false,
+  };
+}
+
+export function isTcgcsvSourceBlockedErrorV1(error, context = {}) {
+  return classifyTcgcsvSourceFetchErrorV1(error, context).classification === "source_blocked";
+}
+
+export function isRetryableTcgcsvSourceFetchErrorV1(error, context = {}) {
+  const text = errorText(error, context);
+  if (SOURCE_BLOCKED_PATTERNS.some((pattern) => pattern.test(text))) return false;
   const numericCode = Number(error?.code);
   if (
     Number.isInteger(numericCode) &&
@@ -29,9 +72,6 @@ export function isRetryableTcgcsvSourceFetchErrorV1(error) {
   ) {
     return true;
   }
-  const text = [error?.message, error?.stderr, error?.stdout]
-    .filter(Boolean)
-    .join("\n");
   return RETRYABLE_MESSAGE_PATTERNS.some((pattern) => pattern.test(text));
 }
 

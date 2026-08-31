@@ -2,6 +2,10 @@ export const TCGPLAYER_MARKET_OPERATIONS_POLICY_V1 =
   "TCGPLAYER_MARKET_OPERATIONS_POLICY_V1";
 
 const NON_RETRYABLE_PATTERNS = [
+  /TCGCSV_SOURCE_BLOCKED/i,
+  /flagged for overuse/i,
+  /application.*blocked/i,
+  /\bHTTP\s*403\b/i,
   /reconciliation.*mismatch/i,
   /source-to-publication trace/i,
   /resume refused/i,

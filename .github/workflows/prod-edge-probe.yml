@@ -3,7 +3,8 @@ name: Prod Edge Probe (read-only)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    # Avoid GitHub Actions' highest-load minute, where scheduled runs can be delayed or dropped.
+    - cron: '23 * * * *'
   push:
     branches: [ main ]
     paths:
