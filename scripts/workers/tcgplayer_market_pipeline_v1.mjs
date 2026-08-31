@@ -4,8 +4,11 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
+import pg from "pg";
 
 import "../../backend/env.mjs";
+import { evaluateTcgcsvCachedSourceContinuityV1 } from "../../backend/pricing/tcgcsv_cached_source_continuity_v1.mjs";
+import { isTcgcsvSourceBlockedErrorV1 } from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +26,7 @@ const DEFAULT_PHASE_TIMEOUT_MINUTES = 240;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const { Client } = pg;
 
 function parseArgs(argv) {
   const args = {
@@ -201,6 +205,44 @@ async function sha256File(filePath) {
     .digest("hex");
 }
 
+function databaseUrl() {
+  return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
+}
+
+function sslConfig(url) {
+  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
+    ? false
+    : { rejectUnauthorized: false };
+}
+
+async function latestCompletedSourceRun() {
+  const url = databaseUrl();
+  if (!url) throw new Error("cached source continuity check requires a database URL");
+  const client = new Client({
+    connectionString: url,
+    ssl: sslConfig(url),
+    connectionTimeoutMillis: 15_000,
+    query_timeout: 30_000,
+    statement_timeout: 30_000,
+  });
+  await client.connect();
+  try {
+    const result = await client.query(
+      `select run_key, status, source_marker, finished_at, price_row_count, failed_count
+         from public.tcgcsv_source_sync_runs
+        where sync_mode = 'current_full_sync'
+          and status = 'completed'
+          and failed_count = 0
+          and finished_at is not null
+        order by finished_at desc, created_at desc, id desc
+        limit 1`,
+    );
+    return result.rows[0] ?? null;
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 async function runPhase({
   phase,
   command,
@@ -323,6 +365,7 @@ async function main() {
         : null,
       freshness_hours: args.freshnessHours,
       phase_state_authority: "database",
+      source_block_policy: "circuit_break_then_fresh_completed_cache_only",
     },
     boundaries: {
       canonical_identity_writes: false,
@@ -381,15 +424,43 @@ async function main() {
       `--request-ceiling=${args.requestCeiling}`,
       `--out-dir=${path.join(runDir, "warehouse")}`,
     ];
-    await runPhase({
-      phase: "warehouse_current_sync",
-      command: process.execPath,
-      args: warehouseArgs,
-      runDir,
-      state,
-      statePath,
-      timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
-    });
+    try {
+      await runPhase({
+        phase: "warehouse_current_sync",
+        command: process.execPath,
+        args: warehouseArgs,
+        runDir,
+        state,
+        statePath,
+        timeoutMs: args.phaseTimeoutMinutes * 60 * 1000,
+      });
+    } catch (error) {
+      if (!isTcgcsvSourceBlockedErrorV1(error)) throw error;
+      const cachedSource = await latestCompletedSourceRun();
+      const continuity = evaluateTcgcsvCachedSourceContinuityV1(cachedSource, {
+        maxAgeHours: args.freshnessHours,
+      });
+      if (!continuity.accepted) {
+        throw new Error(
+          `[TCGCSV_SOURCE_BLOCKED] cached source continuation refused: ${continuity.findings.join(",")}`,
+          { cause: error },
+        );
+      }
+      state.status = "running";
+      delete state.finished_at;
+      state.source_continuity = continuity;
+      state.phases.warehouse_current_sync = {
+        ...state.phases.warehouse_current_sync,
+        status: "degraded_cached_source",
+        provider_condition: "source_blocked",
+        cached_source: continuity,
+        recovered_at: new Date().toISOString(),
+      };
+      await writeJson(statePath, state);
+      process.stdout.write(
+        `[market-pipeline] phase=warehouse_current_sync status=degraded_cached_source source_run=${continuity.source_run_key}\n`,
+      );
+    }
   }
 
   const activeAskArgs = [
@@ -471,6 +542,7 @@ async function main() {
         status: state.status,
         mode: runPlan.mode,
         commit_sha: commitSha,
+        source_continuity: state.source_continuity ?? null,
         artifact_dir: relative(runDir),
       },
       null,

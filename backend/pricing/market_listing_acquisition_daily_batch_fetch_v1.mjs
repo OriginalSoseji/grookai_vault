@@ -190,6 +190,20 @@ export async function buildMarketListingAcquisitionDailyBatchFetchV1({
   const requestResultsManifestHash = requestResultsHash.digest("hex");
   const rawSnapshotManifestHash = rawSnapshotHash.digest("hex");
   const observationManifestHash = observationHash.digest("hex");
+  const attemptedRequestCount = Object.values(fetchStatusCounts).reduce((sum, count) => sum + count, 0);
+  const successfulRequestCount = fetchStatusCounts.fetched_success ?? 0;
+  const failedRequestCount = fetchStatusCounts.fetched_error ?? 0;
+  const acquisitionSucceeded =
+    findings.length === 0 &&
+    requests.length > 0 &&
+    attemptedRequestCount === requests.length &&
+    successfulRequestCount === requests.length &&
+    failedRequestCount === 0;
+  const acquisitionOutcome = !acquisitionSucceeded
+    ? "failed"
+    : projectedObservationCount > 0
+      ? "fetched_with_results"
+      : "fetched_success_no_results";
   const packageFingerprint = sha256({
     package_id: "MARKET-LISTING-ACQUISITION-DAILY-BATCH-FETCH-V1",
     version: MARKET_LISTING_ACQUISITION_DAILY_BATCH_FETCH_VERSION,
@@ -223,7 +237,11 @@ export async function buildMarketListingAcquisitionDailyBatchFetchV1({
     projected_observation_manifest_hash_sha256: observationManifestHash,
     summary: {
       approved_request_count: requests.length,
-      attempted_request_count: Object.values(fetchStatusCounts).reduce((sum, count) => sum + count, 0),
+      attempted_request_count: attemptedRequestCount,
+      successful_request_count: successfulRequestCount,
+      failed_request_count: failedRequestCount,
+      acquisition_outcome: acquisitionOutcome,
+      successful_zero_result: acquisitionOutcome === "fetched_success_no_results",
       fetch_status_counts: sortedObject(fetchStatusCounts),
       provider_total_sum: providerTotalSum,
       fetched_item_count: fetchedItemCount,
@@ -260,6 +278,6 @@ export async function buildMarketListingAcquisitionDailyBatchFetchV1({
       global_apply: false,
     },
     findings,
-    ready_for_local_db_backfill_plan: findings.length === 0 && projectedObservationCount > 0,
+    ready_for_local_db_backfill_plan: acquisitionSucceeded,
   };
 }

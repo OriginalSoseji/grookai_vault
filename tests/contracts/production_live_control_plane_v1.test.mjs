@@ -34,6 +34,15 @@ test('successful fresh GitHub workflow is healthy', () => {
   assert.equal(result.status, 'healthy');
 });
 
+test('production edge probe avoids the top-of-hour scheduler congestion window', async () => {
+  const workflow = await fs.readFile('.github/workflows/prod-edge-probe.yml', 'utf8');
+  const topology = JSON.parse(await fs.readFile('backend/operations/production_topology_v1.json', 'utf8'));
+  const component = topology.components.find((item) => item.id === 'prod-edge-probe');
+  assert.match(workflow, /cron: '23 \* \* \* \*'/);
+  assert.equal(component.schedule, '23 * * * *');
+  assert.equal(component.max_staleness_minutes, 150);
+});
+
 test('public GitHub workflow collection does not require an authorization token', async () => {
   const source = await import('node:fs/promises').then((fs) => fs.readFile(
     'scripts/audits/production_live_control_plane_v1.mjs',

@@ -98,8 +98,8 @@
       "execution_plane": "github_actions",
       "deployment_expectation": "scheduled",
       "live_verification": "required",
-      "schedule": "0 * * * *",
-      "max_staleness_minutes": 90,
+      "schedule": "23 * * * *",
+      "max_staleness_minutes": 150,
       "source_files": [
         ".github/workflows/prod-edge-probe.yml"
       ],

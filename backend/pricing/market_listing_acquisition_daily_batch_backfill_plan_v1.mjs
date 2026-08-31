@@ -427,6 +427,8 @@ export async function buildMarketListingAcquisitionDailyBatchBackfillPlanV1({
     },
     summary: {
       source_projected_observation_count: fetchArtifact.summary?.projected_observation_count ?? null,
+      acquisition_outcome: fetchArtifact.summary?.acquisition_outcome ?? null,
+      successful_zero_result: fetchArtifact.summary?.successful_zero_result === true,
       deduped_observation_count: rowCounts.observationRows,
       evidence_class_counts: sortedObject(evidenceClassCounts),
       exclusion_flag_counts: sortedObject(exclusionFlagCounts),
@@ -462,6 +464,9 @@ export async function buildMarketListingAcquisitionDailyBatchBackfillPlanV1({
       global_apply: false,
     },
     findings,
-    ready_for_apply_approval: findings.length === 0 && rowCounts.observationRows > 0,
+    ready_for_apply_approval:
+      findings.length === 0 &&
+      rowCounts.acquisitionRunRows === 1 &&
+      rowCounts.queryCacheRows === (fetchArtifact.summary?.attempted_request_count ?? 0),
   };
 }
