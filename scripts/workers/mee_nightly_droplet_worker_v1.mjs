@@ -11,6 +11,10 @@ import {
   resolveMeeAuditRootV1,
   resolveMeeRuntimePathV1,
 } from "../../backend/pricing/mee_runtime_artifacts_v1.mjs";
+import {
+  classifySameDayListingIngestReuseV1,
+  utcDayBoundsV1,
+} from "../../backend/pricing/mee_same_day_listing_ingest_reuse_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -600,6 +604,34 @@ async function appendPhaseRunLedger({ args, phase, result, phaseStartedAt, skipp
   }
 }
 
+async function findReusableSameDayListingIngest(lock, workerStartedAt) {
+  if (!lock?.lock_client) return { evidence: null, rejected_candidates: [], error: "lock_client_missing" };
+  const bounds = utcDayBoundsV1(workerStartedAt);
+  try {
+    const result = await lock.lock_client.query(
+      `select id, pipeline, phase, run_key, status, failed_count, started_at, finished_at, payload
+         from public.market_pricing_pipeline_phase_runs
+        where pipeline = 'mee_nightly'
+          and phase = 'listing_ingest'
+          and status = 'succeeded'
+          and started_at >= $1::timestamptz
+          and started_at < $2::timestamptz
+        order by finished_at desc nulls last
+        limit 10`,
+      [bounds.start, new Date(bounds.end).toISOString()],
+    );
+    const rejectedCandidates = [];
+    for (const row of result.rows ?? []) {
+      const decision = classifySameDayListingIngestReuseV1(row, workerStartedAt);
+      if (decision.reusable) return { evidence: decision.evidence, rejected_candidates: rejectedCandidates, error: null };
+      rejectedCandidates.push({ phase_run_id: row.id, run_key: row.run_key, reasons: decision.reasons });
+    }
+    return { evidence: null, rejected_candidates: rejectedCandidates, error: null };
+  } catch (error) {
+    return { evidence: null, rejected_candidates: [], error: error.message };
+  }
+}
+
 async function acquireLock(args) {
   const connectionString = directDbUrl();
   if (!connectionString) {
@@ -865,6 +897,39 @@ try {
         if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
         continue;
       }
+      if (args.run && phase.key === "listing_ingest") {
+        const reuse = await findReusableSameDayListingIngest(lock, startedAt);
+        if (reuse.error) warnings.push("same_day_listing_ingest_reuse_probe_failed");
+        if (reuse.evidence) {
+          const reason = "same_utc_day_successful_listing_ingest_reused";
+          const skipped = {
+            phase: phase.key,
+            skipped: true,
+            reason,
+            status: 0,
+            provider_calls: false,
+            db_writes: false,
+            reused_evidence: reuse.evidence,
+          };
+          const ledger = await appendPhaseRunLedger({
+            args,
+            phase,
+            result: {
+              ...skipped,
+              command: null,
+              actual_command: null,
+              stdout_tail: JSON.stringify({ reused_evidence: reuse.evidence }),
+              stderr_tail: "",
+            },
+            phaseStartedAt: new Date().toISOString(),
+            skipped: true,
+            reason,
+          });
+          execution.push({ ...skipped, ledger });
+          if (ledger?.status === 1) findings.push(`phase_ledger_write_failed:${phase.key}`);
+          continue;
+        }
+      }
       const command = fillCommand(args.run ? phase.command : phase.dryRunCommand, args);
       const phaseStartedAt = new Date().toISOString();
       const result = runCommand(command, phase.timeoutMs);
@@ -930,6 +995,7 @@ const payload = {
     stderr_tail: phase.stderr_tail,
     skipped: phase.skipped,
     reason: phase.reason,
+    reused_evidence: phase.reused_evidence,
     ledger: phase.ledger,
   })),
   boundary,

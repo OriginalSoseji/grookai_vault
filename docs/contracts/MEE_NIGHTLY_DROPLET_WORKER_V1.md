@@ -47,6 +47,10 @@ Both the nightly service and retention service must route terminal failures to
 1. Acquire a Postgres advisory lock.
 2. Run bounded fast MEE readback. This first readback is a warning-only preflight so stale review/reporting debt cannot block eBay acquisition; the final fast readback remains blocking.
 3. Run bounded market listing ingestion, or skip provider acquisition when running normalization-only.
+   A repeated run on the same UTC day reuses only a prior authoritative,
+   successful `listing_ingest` ledger result with a valid child acquisition
+   run and sealed write boundaries. It never reuses failed, malformed,
+   cross-day, or boundary-violating evidence.
 4. Build the TCGCSV reference query plan and acquisition batch.
 5. Refresh TCGCSV reference evidence when provider calls are enabled.
 6. Normalize the newest reference acquisition artifact.
@@ -99,6 +103,9 @@ Both the nightly service and retention service must route terminal failures to
 - `--call-ceiling` must not exceed `MEE_NIGHTLY_MAX_CALL_CEILING`.
 - The worker takes a DB advisory lock before running.
 - Any failed blocking phase stops later phases. The bounded preflight readback is non-blocking and records an execution warning when it fails.
+- A same-day retry must not repeat a provider call after an authoritative
+  successful acquisition. The reuse decision is evidence-backed and recorded
+  in both the worker artifact and phase ledger.
 - Final readback must prove public pricing remains sealed.
 
 ## Current Boundary

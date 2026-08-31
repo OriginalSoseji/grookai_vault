@@ -177,6 +177,12 @@ sudo systemctl stop grookai-mee-nightly.service
 ## Recovery
 
 If a blocking phase fails, do not rerun blindly. Read the JSON audit artifact, identify the failed phase, then run dry-run mode before a manual `--run`.
+If a later repair run has already completed `listing_ingest` successfully on
+the same UTC day, the outer nightly worker reuses that authoritative ledger
+evidence and continues its no-provider phases. The report must show
+`same_utc_day_successful_listing_ingest_reused` and identify the reused phase
+and source-acquisition run. This does not weaken the inner pipeline's refusal
+to refetch a failed run key.
 The first `preflight_fast_readback` phase is warning-only and bounded so stale reporting debt cannot block eBay acquisition; the final fast readback remains the blocking public-boundary proof.
 
 If a Supabase readback query is still running more than 30 minutes after the

@@ -20,6 +20,7 @@ const timerPath = "deploy/systemd/grookai-mee-nightly.timer";
 const cronPath = "deploy/cron/grookai-mee-nightly.cron";
 const installerPath = "deploy/scripts/install-mee-nightly-systemd.sh";
 const verifierPath = "deploy/scripts/verify-mee-nightly-systemd.sh";
+const reusePolicyPath = "backend/pricing/mee_same_day_listing_ingest_reuse_v1.mjs";
 
 test("MEE nightly droplet worker artifacts are present", () => {
   for (const artifactPath of [
@@ -33,9 +34,56 @@ test("MEE nightly droplet worker artifacts are present", () => {
     cronPath,
     installerPath,
     verifierPath,
+    reusePolicyPath,
   ]) {
     assert.equal(exists(artifactPath), true, artifactPath);
   }
+});
+
+test("MEE reuses only authoritative same-UTC-day listing ingest evidence", async () => {
+  const { classifySameDayListingIngestReuseV1 } = await import(`../../${reusePolicyPath}`);
+  const valid = {
+    id: "phase-run-1",
+    pipeline: "mee_nightly",
+    phase: "listing_ingest",
+    run_key: "MEE-DROPLET-2026-08-31-REPAIR-1453",
+    status: "succeeded",
+    failed_count: 0,
+    started_at: "2026-08-31T15:37:29.794Z",
+    finished_at: "2026-08-31T15:37:34.114Z",
+    payload: {
+      child_report: {
+        package_id: "MARKET-LISTING-NIGHTLY-PIPELINE-V2",
+        outcome: "completed_no_results",
+        provider_phase_count: 1,
+        source_acquisition_run: { id: "source-run-1", run_key: "MEE-11L-DAILY-BATCH-1" },
+        boundary: {
+          public_pricing_writes: false,
+          app_visible_pricing_writes: false,
+          canonical_identity_writes: false,
+          vault_writes: false,
+          deletes: false,
+        },
+      },
+    },
+  };
+
+  assert.equal(classifySameDayListingIngestReuseV1(valid, "2026-08-31T20:41:07Z").reusable, true);
+  assert.equal(
+    classifySameDayListingIngestReuseV1({ ...valid, started_at: "2026-08-30T23:59:59Z" }, "2026-08-31T20:41:07Z").reusable,
+    false,
+  );
+  assert.equal(
+    classifySameDayListingIngestReuseV1({ ...valid, status: "failed" }, "2026-08-31T20:41:07Z").reusable,
+    false,
+  );
+  assert.equal(
+    classifySameDayListingIngestReuseV1({
+      ...valid,
+      payload: { child_report: { ...valid.payload.child_report, boundary: { public_pricing_writes: true } } },
+    }, "2026-08-31T20:41:07Z").reusable,
+    false,
+  );
 });
 
 test("MEE nightly droplet worker defaults to dry-run and gates live runs", () => {
@@ -66,6 +114,8 @@ test("MEE nightly droplet worker defaults to dry-run and gates live runs", () =>
   assert.match(script, /pg_advisory_unlock\(hashtext/);
   assert.match(script, /nonBlocking:\s*true/);
   assert.match(script, /non_blocking_preflight_failed/);
+  assert.match(script, /same_utc_day_successful_listing_ingest_reused/);
+  assert.match(script, /findReusableSameDayListingIngest/);
 });
 
 test("MEE DB query helper enforces bounded readback timeouts", () => {
