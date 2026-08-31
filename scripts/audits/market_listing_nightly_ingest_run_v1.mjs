@@ -225,7 +225,24 @@ function executePhase(phase, args) {
     status: result.status,
     stdout_tail: (result.stdout ?? "").slice(-4000),
     stderr_tail: (result.stderr ?? "").slice(-4000),
+    parsed_stdout: parsePhaseJson(result.stdout),
   };
+}
+
+function parsePhaseJson(stdout) {
+  const text = String(stdout ?? "").trim();
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
+function successfulZeroResultFetch(result) {
+  return result?.status === 0 &&
+    result?.parsed_stdout?.summary?.successful_zero_result === true &&
+    result?.parsed_stdout?.summary?.acquisition_outcome === "fetched_success_no_results";
 }
 
 function approvalPrompt(report) {
@@ -312,10 +329,29 @@ if (args.run && findings.length) {
 }
 
 const execution = [];
+let successfulZeroResult = false;
 if (args.run && findings.length === 0) {
-  for (const phase of PHASES) {
+  for (const [phaseIndex, phase] of PHASES.entries()) {
+    if (
+      successfulZeroResult &&
+      phaseIndex > PHASES.findIndex((candidate) => candidate.key === "daily_batch_backfill_apply")
+    ) {
+      execution.push({
+        phase: phase.key,
+        command: commandText(phase.command, args),
+        status: 0,
+        outcome: "skipped_successful_no_results",
+        stdout_tail: "",
+        stderr_tail: "",
+        parsed_stdout: null,
+      });
+      continue;
+    }
     const result = executePhase(phase, args);
     execution.push(result);
+    if (phase.key === "daily_batch_fetch") {
+      successfulZeroResult = successfulZeroResultFetch(result);
+    }
     if (result.status !== 0) {
       findings.push(`phase_failed:${phase.key}`);
       break;
@@ -359,6 +395,7 @@ const report = {
     missing_scripts: missingScripts,
   },
   execution,
+  run_outcome: successfulZeroResult ? "completed_no_results" : findings.length ? "failed" : "completed",
   boundary: {
     provider_calls: args.run && execution.some((phase) => phase.phase === "daily_batch_fetch"),
     db_writes: args.run && execution.some((phase) => ["daily_batch_backfill_apply", "card_candidate_rollup_apply", "strict_filtered_rollup_apply"].includes(phase.phase)),

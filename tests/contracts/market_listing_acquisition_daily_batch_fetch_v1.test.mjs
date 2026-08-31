@@ -160,3 +160,34 @@ test("MEE-11L allows dynamic nightly batch hashes only when explicitly requested
     rmSync(artifactDir, { recursive: true, force: true });
   }
 });
+
+test("MEE-11L treats a successful provider response with zero matches as a completed no-result acquisition", async () => {
+  const artifactDir = mkdtempSync(path.join(tmpdir(), "mee-11l-zero-"));
+  try {
+    const report = await buildMarketListingAcquisitionDailyBatchFetchV1({
+      batchPlan: batchPlan(),
+      artifactDir,
+      generatedAt: "2026-08-31T03:22:00.000Z",
+      fetchListing: async (request) => ({
+        query_key: request.query_key,
+        source: "ebay_active",
+        provider_route: "ebay_browse_api",
+        response_status: 200,
+        provider_total: 0,
+        fetched_item_count: 0,
+        payload_hash: "empty-payload-hash",
+        raw_payload: { total: 0, itemSummaries: [] },
+        projected_observations: [],
+      }),
+    });
+
+    assert.equal(report.ready_for_local_db_backfill_plan, true);
+    assert.equal(report.summary.acquisition_outcome, "fetched_success_no_results");
+    assert.equal(report.summary.successful_zero_result, true);
+    assert.equal(report.summary.successful_request_count, 1);
+    assert.equal(report.summary.failed_request_count, 0);
+    assert.equal(report.summary.projected_observation_count, 0);
+  } finally {
+    rmSync(artifactDir, { recursive: true, force: true });
+  }
+});

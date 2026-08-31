@@ -17,6 +17,9 @@ test("nightly ingest run wrapper is gated before provider calls or warehouse wri
   assert.match(script, /daily_batch_backfill_apply_dynamic_idempotency_required/);
   assert.match(script, /dynamic_idempotent_apply/);
   assert.match(script, /run_blocked_by_preflight_findings/);
+  assert.match(script, /fetched_success_no_results/);
+  assert.match(script, /skipped_successful_no_results/);
+  assert.match(script, /completed_no_results/);
   assert.match(script, /Patch daily batch backfill apply to support dynamic package fingerprints and idempotent delta inserts/);
   assert.match(script, /market_listing_acquisition_daily_batch_fetch_v1\.mjs/);
   assert.match(script, /market_listing_acquisition_daily_batch_backfill_apply_v1\.mjs/);
