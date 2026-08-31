@@ -376,7 +376,10 @@ async function countSupabaseRows(supabase, table, filters = {}) {
   };
 }
 
-async function readGameCatalogV1(supabase, gameCode) {
+async function readGameCatalogV1(supabase, gameCode, {
+  setGameCode = gameCode,
+  identityDomain = null
+} = {}) {
   const game = await queryOne(
     supabase.from('games').select('id,code,name').eq('code', gameCode)
   );
@@ -389,8 +392,13 @@ async function readGameCatalogV1(supabase, gameCode) {
     };
   }
   const [sets, cards] = await Promise.all([
-    countSupabaseRows(supabase, 'sets', { game_id: game.data.id }),
-    countSupabaseRows(supabase, 'card_prints', { game_id: game.data.id })
+    countSupabaseRows(supabase, 'sets', { game: setGameCode }),
+    identityDomain
+      ? countSupabaseRows(supabase, 'card_print_identity', {
+          identity_domain: identityDomain,
+          is_active: true
+        })
+      : countSupabaseRows(supabase, 'card_prints', { game_id: game.data.id })
   ]);
   return {
     game: game.data,
@@ -412,7 +420,10 @@ async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
     : 'not_observed';
 
   const [japanese, onePiece, funko, sealedFamilies, sealedVariants, sealedCandidates] = await Promise.all([
-    readGameCatalogV1(supabase, 'pokemon_japan'),
+    readGameCatalogV1(supabase, 'pokemon', {
+      setGameCode: 'pokemon_jpn',
+      identityDomain: 'pokemon_jpn'
+    }),
     readGameCatalogV1(supabase, 'one_piece'),
     readGameCatalogV1(supabase, 'funko'),
     countSupabaseRows(supabase, 'sealed_product_families'),

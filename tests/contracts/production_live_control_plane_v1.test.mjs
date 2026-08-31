@@ -247,6 +247,9 @@ test('all four deferred background lanes have registered read-only adapters', as
   }
   assert.match(source, /collectBackgroundCatalogComponentsV1/);
   assert.match(source, /supabase_catalog_and_systemd/);
+  assert.match(source, /setGameCode: 'pokemon_jpn'/);
+  assert.match(source, /identityDomain: 'pokemon_jpn'/);
+  assert.match(source, /countSupabaseRows\(supabase, 'sets', \{ game: setGameCode \}\)/);
 });
 
 test('failed GitHub workflow is never hidden by freshness', () => {
