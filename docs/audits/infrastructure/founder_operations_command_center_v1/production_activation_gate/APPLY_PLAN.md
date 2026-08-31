@@ -6,7 +6,7 @@
 - Migration: `20260830233000_founder_operations_command_center_v1.sql`
 - Migration SHA-256: `02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb`
 - Ledger fingerprint: `e9f0988184dad7cd2034f6d8a29d0c6630a2e13f7a06eb5dadf0f44862bc5572`
-- Apply-plan fingerprint: `7e8f8f3b8d6a76d05dadf0a358726dcea7cec647d89fd2108cf3574fb7253b0d`
+- Apply-plan fingerprint: `da0069bb9502815b4e4e3cfefda9465864bc3d40468fa02b89f1f3a4e210952a`
 
 ## Production Preflight
 
@@ -17,10 +17,11 @@ roles and prerequisite functions are present.
 
 ## Exact Boundary
 
-The apply may execute only the checked-in migration and insert its exact
-single-statement payload into `supabase_migrations.schema_migrations` in the
-same transaction. It may not write catalog, pricing, Vault, Storage, founder
-work-item, command, approval, client configuration, or automation data.
+The apply may execute only the checked-in migration, create its one disabled
+`operations_control_state` singleton, and insert its exact single-statement
+payload into `supabase_migrations.schema_migrations` in the same transaction.
+It may not write catalog, pricing, Vault, Storage, founder work-item, command,
+approval, client configuration, or automation data.
 
 Post-commit verification must independently prove schema objects, triggers,
 RLS, policies, grants, RPC signatures, exact migration history, and unchanged

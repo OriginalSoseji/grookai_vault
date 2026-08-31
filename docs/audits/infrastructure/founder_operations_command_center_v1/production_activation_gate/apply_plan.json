@@ -36,7 +36,8 @@
   },
   "authorized_writes": {
     "schema_migration": 1,
-    "migration_ledger_rows": 1
+    "migration_ledger_rows": 1,
+    "operations_control_state_singleton_rows": 1
   },
   "forbidden_writes": [
     "canonical catalog rows",
@@ -49,5 +50,5 @@
     "application configuration",
     "automation activation"
   ],
-  "apply_plan_fingerprint_sha256": "7e8f8f3b8d6a76d05dadf0a358726dcea7cec647d89fd2108cf3574fb7253b0d"
+  "apply_plan_fingerprint_sha256": "da0069bb9502815b4e4e3cfefda9465864bc3d40468fa02b89f1f3a4e210952a"
 }
