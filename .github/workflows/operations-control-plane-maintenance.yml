@@ -1,0 +1,39 @@
+name: Operations control-plane maintenance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: operations-control-plane-maintenance
+  cancel-in-progress: false
+
+jobs:
+  maintain:
+    if: github.event_name == 'workflow_dispatch' || vars.FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate maintenance worker
+        run: node --check scripts/workers/operations_maintenance_v1.mjs
+      - name: Run bounded maintenance
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: node scripts/workers/operations_maintenance_v1.mjs --run | tee operations_maintenance_result.json
+      - name: Preserve maintenance receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: operations-maintenance-${{ github.run_id }}-${{ github.run_attempt }}
+          path: operations_maintenance_result.json
+          if-no-files-found: warn
+          retention-days: 30

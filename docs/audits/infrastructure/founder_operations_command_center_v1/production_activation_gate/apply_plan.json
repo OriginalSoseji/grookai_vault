@@ -1,0 +1,54 @@
+{
+  "version": "FOUNDER_OPERATIONS_COMMAND_CENTER_PRODUCTION_APPLY_PLAN_V1",
+  "recorded_at": "2026-08-31T04:24:06.4559704Z",
+  "status": "frozen_not_executed",
+  "source_commit_sha": "a5fdcbc09571934266d967f6fc039c9ce3ea3123",
+  "branch": "feature/founder-operations-command-center-v1",
+  "database": "production",
+  "migration": {
+    "path": "supabase/migrations/20260830233000_founder_operations_command_center_v1.sql",
+    "version": "20260830233000",
+    "name": "founder_operations_command_center_v1",
+    "bytes": 82473,
+    "sha256": "02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb"
+  },
+  "ledger": {
+    "statement_count": 1,
+    "statement_bytes": 82456,
+    "statement_sha256": "9ab875478617349fdce5881a21e100a6370f5a6c7fef04f8537cac086094b898",
+    "fingerprint_sha256": "e9f0988184dad7cd2034f6d8a29d0c6630a2e13f7a06eb5dadf0f44862bc5572"
+  },
+  "preflight": {
+    "transaction_read_only": true,
+    "current_ledger_head": "20260830210500",
+    "candidate_ledger_rows": 0,
+    "later_migration_rows": 0,
+    "target_relation_collisions": 0,
+    "target_function_collisions": 0,
+    "required_roles_present": 3,
+    "required_prerequisites_present": 7,
+    "baseline_counts": {
+      "games": 6,
+      "sets": 3397,
+      "card_prints": 170335,
+      "vault_items": 447
+    }
+  },
+  "authorized_writes": {
+    "schema_migration": 1,
+    "migration_ledger_rows": 1,
+    "operations_control_state_singleton_rows": 1
+  },
+  "forbidden_writes": [
+    "canonical catalog rows",
+    "pricing rows",
+    "vault rows",
+    "storage objects",
+    "founder work items",
+    "operations commands",
+    "approvals",
+    "application configuration",
+    "automation activation"
+  ],
+  "apply_plan_fingerprint_sha256": "da0069bb9502815b4e4e3cfefda9465864bc3d40468fa02b89f1f3a4e210952a"
+}

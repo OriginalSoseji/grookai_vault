@@ -501,14 +501,20 @@ function formatNotification(
     const event = cleanString(outbox.payload.event) ?? "pipeline event";
     const sourceNotificationId =
       cleanString(outbox.payload.notification_id) ?? notificationId;
+    const workItemId = cleanString(outbox.payload.work_item_id);
+    const explicitTitle = cleanString(outbox.payload.title);
+    const explicitSummary = cleanString(outbox.payload.summary);
     return {
       notificationId,
-      title: `Grookai operations alert · ${unit}`,
-      body: `${host} reported ${severity} ${event.replaceAll("_", " ")}. Open Founder Notifications for details.`,
-      deepLink:
-        `grookai://founder/notifications?notification_id=${encodeURIComponent(sourceNotificationId)}`,
-      webUrl:
-        `https://grookaivault.com/founder/notifications?notification_id=${encodeURIComponent(sourceNotificationId)}`,
+      title: explicitTitle ?? `Grookai operations alert · ${unit}`,
+      body: explicitSummary ??
+        `${host} reported ${severity} ${event.replaceAll("_", " ")}. Open Founder Notifications for details.`,
+      deepLink: workItemId
+        ? `grookai://founder/operations?work_item_id=${encodeURIComponent(workItemId)}`
+        : `grookai://founder/notifications?notification_id=${encodeURIComponent(sourceNotificationId)}`,
+      webUrl: workItemId
+        ? `https://grookaivault.com/founder/operations?work_item_id=${encodeURIComponent(workItemId)}`
+        : `https://grookaivault.com/founder/notifications?notification_id=${encodeURIComponent(sourceNotificationId)}`,
     };
   }
 

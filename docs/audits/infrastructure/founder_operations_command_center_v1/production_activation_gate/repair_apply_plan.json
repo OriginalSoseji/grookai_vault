@@ -1,0 +1,40 @@
+{
+  "version": "FOUNDER_OPERATIONS_COMMAND_CENTER_REPAIR_APPLY_PLAN_V1",
+  "recorded_at": "2026-08-31T05:41:54.7333889Z",
+  "status": "executed",
+  "database": "production",
+  "branch": "feature/founder-operations-command-center-v1",
+  "source_commit_sha": "ea998c1f5ff18d55f8cd701b2bf793c3e2aae464",
+  "migration": {
+    "path": "supabase/migrations/20260831054500_founder_operations_command_center_repair_v1.sql",
+    "version": "20260831054500",
+    "name": "founder_operations_command_center_repair_v1",
+    "bytes": 11916,
+    "sha256": "ce541b5db59618ed223739d3f545da7d1807fe747901721b4dbece55c64aa892"
+  },
+  "preflight": {
+    "linked_project_ref": "ycdxbpibncqcchqiihfz",
+    "previous_remote_head": "20260830233000",
+    "pending_migrations": [
+      "20260831054500_founder_operations_command_center_repair_v1.sql"
+    ],
+    "disposable_postgres_behavior_smoke": "passed",
+    "contract_tests": "17/17 passed",
+    "full_shipcheck": "passed"
+  },
+  "authorized_writes": [
+    "replace founder_operations_counts_v1 function",
+    "replace founder_operations_decide_v1 function",
+    "repair migration ledger row"
+  ],
+  "forbidden_writes": [
+    "canonical catalog rows",
+    "pricing rows",
+    "vault rows",
+    "storage objects",
+    "founder work items",
+    "operations commands",
+    "approvals",
+    "automation activation"
+  ]
+}

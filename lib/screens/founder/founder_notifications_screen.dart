@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/notifications/founder_notification_service.dart';
+import 'founder_operations_screen.dart';
 
 enum _FounderNotificationFilter { all, actionNeeded, updates }
 
@@ -137,6 +138,15 @@ class _FounderNotificationsScreenState
       appBar: AppBar(
         title: const Text('Founder Notifications'),
         actions: [
+          IconButton(
+            tooltip: 'Open Founder Operations',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const FounderOperationsScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.admin_panel_settings_outlined),
+          ),
           IconButton(
             tooltip: 'Refresh notifications',
             onPressed: _loading ? null : _load,
@@ -430,6 +440,20 @@ class FounderNotificationDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+            if (item.workItemId.isNotEmpty) ...[
+              FilledButton.icon(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => FounderOperationsScreen(
+                      initialWorkItemId: item.workItemId,
+                    ),
+                  ),
+                ),
+                icon: const Icon(Icons.rule_folder_outlined),
+                label: const Text('Open work item'),
+              ),
+              const SizedBox(height: 16),
+            ],
             _FounderNotificationDetailSection(
               title: 'Evidence',
               children: entries

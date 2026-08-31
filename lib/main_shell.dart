@@ -780,6 +780,15 @@ class _AppShellState extends State<AppShell> {
           ),
         );
         break;
+      case GrookaiCanonicalRouteKind.founderOperations:
+        unawaited(
+          _pushPage<void>(
+            FounderOperationsScreen(
+              initialWorkItemId: route.value.isEmpty ? null : route.value,
+            ),
+          ),
+        );
+        break;
     }
   }
 

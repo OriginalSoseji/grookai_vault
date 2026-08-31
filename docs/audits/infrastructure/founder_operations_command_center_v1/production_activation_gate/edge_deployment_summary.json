@@ -1,0 +1,32 @@
+{
+  "version": "FOUNDER_OPERATIONS_EDGE_DEPLOYMENT_V1",
+  "recorded_at": "2026-08-31T04:46:40Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "execution_commit_sha": "a21147a2ea4b8ddd5e193c7866d9bcbfb574395a",
+  "functions": [
+    {
+      "name": "notification-dispatcher",
+      "source_sha256": "01dfb600766d9713bf940b9545e748de4f9f1e9d97bb454034034d4472c17095",
+      "deployed_version": 16,
+      "status": "ACTIVE",
+      "verify_jwt": false,
+      "bundle_sha256": "6c8eefa6c77e21e49d897aab47e41e9c10e80e4cf1c7e5fd2e33868d013a73ff",
+      "unauthenticated_post_http_status": 401
+    },
+    {
+      "name": "operations-webhook-v1",
+      "source_sha256": "c4498a7ad0850d94355aae620f5bc0b3ad56638a2f24a8e194a89dbcac91105e",
+      "deployed_version": 4,
+      "status": "ACTIVE",
+      "verify_jwt": false,
+      "bundle_sha256": "639d559cef8265f4aab2fb9f1850912ac19903c8299545e96ac3921979217d6e",
+      "unauthenticated_post_http_status": 401
+    }
+  ],
+  "boundaries": {
+    "activation_variable_changed": false,
+    "work_items_published": 0,
+    "commands_created": 0,
+    "canonical_writes": 0
+  }
+}

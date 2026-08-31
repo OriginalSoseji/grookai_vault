@@ -1,0 +1,1172 @@
+{
+  "version": "FOUNDER_OPERATIONS_COMMAND_CENTER_PRODUCTION_APPLY_V1",
+  "recorded_at": "2026-08-31T04:35:06.856Z",
+  "status": "applied_and_fresh_readback_passed",
+  "execution_commit_sha": "a21147a2ea4b8ddd5e193c7866d9bcbfb574395a",
+  "source_feature_commit_sha": "a5fdcbc09571934266d967f6fc039c9ce3ea3123",
+  "branch": "feature/founder-operations-command-center-v1",
+  "apply_plan_fingerprint_sha256": "da0069bb9502815b4e4e3cfefda9465864bc3d40468fa02b89f1f3a4e210952a",
+  "migration_sha256": "02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb",
+  "ledger_statement_sha256": "9ab875478617349fdce5881a21e100a6370f5a6c7fef04f8537cac086094b898",
+  "committed": true,
+  "protected_boundary_before": {
+    "sets": 3397,
+    "games": 6,
+    "card_prints": 170335,
+    "vault_items": 447
+  },
+  "protected_boundary_after": {
+    "sets": 3397,
+    "games": 6,
+    "card_prints": 170335,
+    "vault_items": 447
+  },
+  "readback": {
+    "table_count": 15,
+    "rls_enabled_count": 15,
+    "policy_count": 15,
+    "trigger_count": 16,
+    "function_count": 19,
+    "target_row_counts": {
+      "operations_agents": 0,
+      "operations_agent_runs": 0,
+      "operations_incidents": 0,
+      "operations_incident_events": 0,
+      "operations_evidence_objects": 0,
+      "founder_work_items": 0,
+      "founder_work_item_evidence": 0,
+      "founder_work_item_events": 0,
+      "founder_decisions": 0,
+      "operations_commands": 0,
+      "operations_command_attempts": 0,
+      "operations_command_events": 0,
+      "operations_control_state": 1,
+      "founder_work_item_viewer_state": 0,
+      "founder_agent_control_decisions": 0
+    },
+    "control_state": [
+      {
+        "singleton": true,
+        "execution_paused": false,
+        "pause_reason": null,
+        "updated_by": null
+      }
+    ],
+    "migration_ledger": {
+      "version": "20260830233000",
+      "name": "founder_operations_command_center_v1",
+      "statement_count": 1,
+      "statement_sha256": "9ab875478617349fdce5881a21e100a6370f5a6c7fef04f8537cac086094b898"
+    },
+    "relations": [
+      {
+        "table_name": "founder_agent_control_decisions",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "founder_decisions",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "founder_work_item_events",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "founder_work_item_evidence",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "founder_work_item_viewer_state",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "founder_work_items",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_agent_runs",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_agents",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_command_attempts",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_command_events",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_commands",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_control_state",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_evidence_objects",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_incident_events",
+        "rls_enabled": true,
+        "rls_forced": false
+      },
+      {
+        "table_name": "operations_incidents",
+        "rls_enabled": true,
+        "rls_forced": false
+      }
+    ],
+    "policies": [
+      {
+        "table_name": "founder_agent_control_decisions",
+        "policyname": "founder_agent_control_decisions_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "founder_decisions",
+        "policyname": "founder_decisions_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "founder_work_item_events",
+        "policyname": "founder_work_item_events_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "founder_work_item_evidence",
+        "policyname": "founder_work_item_evidence_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "founder_work_item_viewer_state",
+        "policyname": "founder_work_item_viewer_state_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "founder_work_items",
+        "policyname": "founder_work_items_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_agent_runs",
+        "policyname": "operations_agent_runs_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_agents",
+        "policyname": "operations_agents_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_command_attempts",
+        "policyname": "operations_command_attempts_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_command_events",
+        "policyname": "operations_command_events_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_commands",
+        "policyname": "operations_commands_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_control_state",
+        "policyname": "operations_control_state_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_evidence_objects",
+        "policyname": "operations_evidence_objects_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_incident_events",
+        "policyname": "operations_incident_events_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "table_name": "operations_incidents",
+        "policyname": "operations_incidents_service_role_all",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      }
+    ],
+    "triggers": [
+      {
+        "table_name": "founder_agent_control_decisions",
+        "trigger_name": "trg_founder_agent_control_decisions_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_agent_control_decisions_append_only BEFORE DELETE OR UPDATE ON public.founder_agent_control_decisions FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "founder_decisions",
+        "trigger_name": "trg_founder_decisions_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_decisions_append_only BEFORE DELETE OR UPDATE ON public.founder_decisions FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "founder_work_item_events",
+        "trigger_name": "trg_founder_work_item_events_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_work_item_events_append_only BEFORE DELETE OR UPDATE ON public.founder_work_item_events FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "founder_work_item_evidence",
+        "trigger_name": "trg_founder_work_item_evidence_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_work_item_evidence_append_only BEFORE DELETE OR UPDATE ON public.founder_work_item_evidence FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "founder_work_item_viewer_state",
+        "trigger_name": "trg_founder_work_item_viewer_state_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_work_item_viewer_state_updated_at BEFORE UPDATE ON public.founder_work_item_viewer_state FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      },
+      {
+        "table_name": "founder_work_items",
+        "trigger_name": "trg_founder_work_items_protect_frozen_fields",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_work_items_protect_frozen_fields BEFORE UPDATE ON public.founder_work_items FOR EACH ROW EXECUTE FUNCTION protect_founder_work_item_frozen_fields_v1()"
+      },
+      {
+        "table_name": "founder_work_items",
+        "trigger_name": "trg_founder_work_items_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_founder_work_items_updated_at BEFORE UPDATE ON public.founder_work_items FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      },
+      {
+        "table_name": "operations_agent_runs",
+        "trigger_name": "trg_operations_agent_runs_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_agent_runs_updated_at BEFORE UPDATE ON public.operations_agent_runs FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      },
+      {
+        "table_name": "operations_agents",
+        "trigger_name": "trg_operations_agents_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_agents_updated_at BEFORE UPDATE ON public.operations_agents FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      },
+      {
+        "table_name": "operations_command_attempts",
+        "trigger_name": "trg_operations_command_attempts_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_command_attempts_updated_at BEFORE UPDATE ON public.operations_command_attempts FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      },
+      {
+        "table_name": "operations_command_events",
+        "trigger_name": "trg_operations_command_events_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_command_events_append_only BEFORE DELETE OR UPDATE ON public.operations_command_events FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "operations_commands",
+        "trigger_name": "trg_operations_commands_protect_frozen_fields",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_commands_protect_frozen_fields BEFORE UPDATE ON public.operations_commands FOR EACH ROW EXECUTE FUNCTION protect_operations_command_frozen_fields_v1()"
+      },
+      {
+        "table_name": "operations_commands",
+        "trigger_name": "trg_operations_commands_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_commands_updated_at BEFORE UPDATE ON public.operations_commands FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      },
+      {
+        "table_name": "operations_evidence_objects",
+        "trigger_name": "trg_operations_evidence_objects_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_evidence_objects_append_only BEFORE DELETE OR UPDATE ON public.operations_evidence_objects FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "operations_incident_events",
+        "trigger_name": "trg_operations_incident_events_append_only",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_incident_events_append_only BEFORE DELETE OR UPDATE ON public.operations_incident_events FOR EACH ROW EXECUTE FUNCTION prevent_operations_append_only_mutation_v1()"
+      },
+      {
+        "table_name": "operations_incidents",
+        "trigger_name": "trg_operations_incidents_updated_at",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_operations_incidents_updated_at BEFORE UPDATE ON public.operations_incidents FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+      }
+    ],
+    "functions": [
+      {
+        "function_name": "founder_operations_agent_health_v1",
+        "arguments": "",
+        "security_definer": true
+      },
+      {
+        "function_name": "founder_operations_control_agent_v1",
+        "arguments": "p_agent_key text, p_action text, p_note text, p_idempotency_key text, p_client_schema_version text",
+        "security_definer": true
+      },
+      {
+        "function_name": "founder_operations_counts_v1",
+        "arguments": "",
+        "security_definer": true
+      },
+      {
+        "function_name": "founder_operations_decide_v1",
+        "arguments": "p_work_item_id uuid, p_expected_version integer, p_expected_fingerprint text, p_decision text, p_idempotency_key text, p_client_schema_version text, p_note text, p_defer_until timestamp with time zone",
+        "security_definer": true
+      },
+      {
+        "function_name": "founder_operations_work_item_v1",
+        "arguments": "p_work_item_id uuid",
+        "security_definer": true
+      },
+      {
+        "function_name": "founder_operations_work_items_v1",
+        "arguments": "p_queue text, p_limit integer",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_agent_heartbeat_v1",
+        "arguments": "p_heartbeat jsonb",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_claim_command_v1",
+        "arguments": "p_executor_key text, p_lease_seconds integer",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_complete_command_v1",
+        "arguments": "p_command_id uuid, p_lease_token uuid, p_status text, p_preflight jsonb, p_reconciliation jsonb, p_error_summary jsonb",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_publish_incident_v1",
+        "arguments": "p_incident jsonb",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_publish_work_item_v1",
+        "arguments": "p_item jsonb",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_recover_incident_v1",
+        "arguments": "p_incident_key text, p_resolution_note text",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_register_agent_v1",
+        "arguments": "p_agent jsonb",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_require_service_role_v1",
+        "arguments": "",
+        "security_definer": false
+      },
+      {
+        "function_name": "operations_run_maintenance_v1",
+        "arguments": "",
+        "security_definer": true
+      },
+      {
+        "function_name": "operations_try_enqueue_notification_v1",
+        "arguments": "p_payload jsonb",
+        "security_definer": true
+      },
+      {
+        "function_name": "prevent_operations_append_only_mutation_v1",
+        "arguments": "",
+        "security_definer": false
+      },
+      {
+        "function_name": "protect_founder_work_item_frozen_fields_v1",
+        "arguments": "",
+        "security_definer": false
+      },
+      {
+        "function_name": "protect_operations_command_frozen_fields_v1",
+        "arguments": "",
+        "security_definer": false
+      }
+    ],
+    "table_privileges": [
+      {
+        "table_name": "founder_agent_control_decisions",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_agent_control_decisions",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_agent_control_decisions",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "founder_decisions",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_decisions",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_decisions",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "founder_work_item_events",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_item_events",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_item_events",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "founder_work_item_evidence",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_item_evidence",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_item_evidence",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "founder_work_item_viewer_state",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_item_viewer_state",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_item_viewer_state",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "founder_work_items",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_items",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "founder_work_items",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_agent_runs",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_agent_runs",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_agent_runs",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_agents",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_agents",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_agents",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_command_attempts",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_command_attempts",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_command_attempts",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_command_events",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_command_events",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_command_events",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_commands",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_commands",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_commands",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_control_state",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_control_state",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_control_state",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_evidence_objects",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_evidence_objects",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_evidence_objects",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_incident_events",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_incident_events",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_incident_events",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      },
+      {
+        "table_name": "operations_incidents",
+        "role_name": "anon",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_incidents",
+        "role_name": "authenticated",
+        "can_select": false,
+        "can_insert": false,
+        "can_update": false,
+        "can_delete": false
+      },
+      {
+        "table_name": "operations_incidents",
+        "role_name": "service_role",
+        "can_select": true,
+        "can_insert": true,
+        "can_update": true,
+        "can_delete": true
+      }
+    ],
+    "function_privileges": [
+      {
+        "function_name": "founder_operations_agent_health_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "founder_operations_agent_health_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_agent_health_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_control_agent_v1",
+        "arguments": "p_agent_key text, p_action text, p_note text, p_idempotency_key text, p_client_schema_version text",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "founder_operations_control_agent_v1",
+        "arguments": "p_agent_key text, p_action text, p_note text, p_idempotency_key text, p_client_schema_version text",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_control_agent_v1",
+        "arguments": "p_agent_key text, p_action text, p_note text, p_idempotency_key text, p_client_schema_version text",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_counts_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "founder_operations_counts_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_counts_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_decide_v1",
+        "arguments": "p_work_item_id uuid, p_expected_version integer, p_expected_fingerprint text, p_decision text, p_idempotency_key text, p_client_schema_version text, p_note text, p_defer_until timestamp with time zone",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "founder_operations_decide_v1",
+        "arguments": "p_work_item_id uuid, p_expected_version integer, p_expected_fingerprint text, p_decision text, p_idempotency_key text, p_client_schema_version text, p_note text, p_defer_until timestamp with time zone",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_decide_v1",
+        "arguments": "p_work_item_id uuid, p_expected_version integer, p_expected_fingerprint text, p_decision text, p_idempotency_key text, p_client_schema_version text, p_note text, p_defer_until timestamp with time zone",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_work_item_v1",
+        "arguments": "p_work_item_id uuid",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "founder_operations_work_item_v1",
+        "arguments": "p_work_item_id uuid",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_work_item_v1",
+        "arguments": "p_work_item_id uuid",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_work_items_v1",
+        "arguments": "p_queue text, p_limit integer",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "founder_operations_work_items_v1",
+        "arguments": "p_queue text, p_limit integer",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "founder_operations_work_items_v1",
+        "arguments": "p_queue text, p_limit integer",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_agent_heartbeat_v1",
+        "arguments": "p_heartbeat jsonb",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_agent_heartbeat_v1",
+        "arguments": "p_heartbeat jsonb",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_agent_heartbeat_v1",
+        "arguments": "p_heartbeat jsonb",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_claim_command_v1",
+        "arguments": "p_executor_key text, p_lease_seconds integer",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_claim_command_v1",
+        "arguments": "p_executor_key text, p_lease_seconds integer",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_claim_command_v1",
+        "arguments": "p_executor_key text, p_lease_seconds integer",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_complete_command_v1",
+        "arguments": "p_command_id uuid, p_lease_token uuid, p_status text, p_preflight jsonb, p_reconciliation jsonb, p_error_summary jsonb",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_complete_command_v1",
+        "arguments": "p_command_id uuid, p_lease_token uuid, p_status text, p_preflight jsonb, p_reconciliation jsonb, p_error_summary jsonb",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_complete_command_v1",
+        "arguments": "p_command_id uuid, p_lease_token uuid, p_status text, p_preflight jsonb, p_reconciliation jsonb, p_error_summary jsonb",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_publish_incident_v1",
+        "arguments": "p_incident jsonb",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_publish_incident_v1",
+        "arguments": "p_incident jsonb",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_publish_incident_v1",
+        "arguments": "p_incident jsonb",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_publish_work_item_v1",
+        "arguments": "p_item jsonb",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_publish_work_item_v1",
+        "arguments": "p_item jsonb",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_publish_work_item_v1",
+        "arguments": "p_item jsonb",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_recover_incident_v1",
+        "arguments": "p_incident_key text, p_resolution_note text",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_recover_incident_v1",
+        "arguments": "p_incident_key text, p_resolution_note text",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_recover_incident_v1",
+        "arguments": "p_incident_key text, p_resolution_note text",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_register_agent_v1",
+        "arguments": "p_agent jsonb",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_register_agent_v1",
+        "arguments": "p_agent jsonb",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_register_agent_v1",
+        "arguments": "p_agent jsonb",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_require_service_role_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_require_service_role_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_require_service_role_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_run_maintenance_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_run_maintenance_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_run_maintenance_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "operations_try_enqueue_notification_v1",
+        "arguments": "p_payload jsonb",
+        "role_name": "anon",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_try_enqueue_notification_v1",
+        "arguments": "p_payload jsonb",
+        "role_name": "authenticated",
+        "can_execute": false
+      },
+      {
+        "function_name": "operations_try_enqueue_notification_v1",
+        "arguments": "p_payload jsonb",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "prevent_operations_append_only_mutation_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": true
+      },
+      {
+        "function_name": "prevent_operations_append_only_mutation_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "prevent_operations_append_only_mutation_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "protect_founder_work_item_frozen_fields_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": true
+      },
+      {
+        "function_name": "protect_founder_work_item_frozen_fields_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "protect_founder_work_item_frozen_fields_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      },
+      {
+        "function_name": "protect_operations_command_frozen_fields_v1",
+        "arguments": "",
+        "role_name": "anon",
+        "can_execute": true
+      },
+      {
+        "function_name": "protect_operations_command_frozen_fields_v1",
+        "arguments": "",
+        "role_name": "authenticated",
+        "can_execute": true
+      },
+      {
+        "function_name": "protect_operations_command_frozen_fields_v1",
+        "arguments": "",
+        "role_name": "service_role",
+        "can_execute": true
+      }
+    ]
+  },
+  "boundaries": {
+    "canonical_catalog_rows_written": 0,
+    "pricing_rows_written": 0,
+    "vault_rows_written": 0,
+    "storage_objects_written": 0,
+    "work_items_written": 0,
+    "commands_written": 0,
+    "approvals_written": 0,
+    "automation_enabled": false
+  }
+}
