@@ -541,7 +541,7 @@ async function main() {
     scheduled_summary_sha256: await sha256File(summaryPath),
   });
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-  if (finalStatus === "failed") process.exitCode = 1;
+  if (finalStatus !== "completed") process.exitCode = 1;
 }
 
 main().catch((error) => {
