@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_96_HEALTH_TIMEOUT_REPAIRED_SEVEN_CYCLE_RESTARTED.md`
+
+This checkpoint records the production post-publication health timeout, the
+indexed aggregate repair, the immutable runtime deployment and rollback path,
+and the replacement seven-cycle window over the exact repaired SHA.
+
+Decision locked there:
+
+- the prior `4/7` window cannot be combined with the repaired runtime; the
+  observer must resolve and monitor seven distinct September 2-8 unattended
+  cycles from the exact deployed commit
+
+Unresolved risk afterward:
+
+- the first repaired unattended cycle has not occurred yet, all seven cycles
+  remain time-gated, and anonymous pricing remains licensing-gated
+
 ### `PRICING_CHECKPOINT_95_FULL_ROLLOUT_OBSERVER_AUTOMATED_4_OF_7.md`
 
 This checkpoint records the active full-eligible signed-in publication, the
