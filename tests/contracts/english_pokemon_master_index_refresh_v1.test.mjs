@@ -317,3 +317,64 @@ test("English Master Index preserves its baseline when TCGdex returns an empty i
   assert.match(builder, /options\.sources\.includes\('tcgdex'\) && rows\.length === 0/);
   assert.match(builder, /TCGdex returned no physical English set rows/);
 });
+
+test("English Master Index fills partial live inventories from its audited source snapshot", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(
+    builder,
+    /appendMissing:\s*Boolean\(pokemonTcgSnapshot\?\.set_configs\?\.length\)/,
+  );
+  assert.match(builder, /independent checklist adapters can still collect current evidence/);
+});
+
+test("English Master Index can bypass an unhealthy live PokemonTCG inventory while retaining its snapshot", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(builder, /arg === '--skip-live-pokemontcg'/);
+  assert.match(builder, /if \(options\.skipLivePokemonTcg\) return \[\]/);
+  assert.match(builder, /loadPokemonTcgSourceSnapshot\(options\)/);
+});
+
+test("English Master Index reapplies set filters after snapshot configuration merge", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(
+    builder,
+    /const setConfigs = filterAndLimitSetConfigs\([\s\S]*?mergePokemonTcgSnapshotSetConfigs\(/,
+  );
+  assert.match(builder, /function filterAndLimitSetConfigs\(configs, options\)/);
+});
+
+test("English Master Index scopes combined Trainer Kit pages to the requested half deck", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(builder, /'tk-sm-r': 'Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_\(TCG\)'/);
+  assert.match(builder, /const normalizedKey = String\(key \?\? ''\)\.trim\(\)\.toLowerCase\(\)/);
+  assert.match(builder, /function parseBulbapediaDeckListPage\(html, expectedSetName\)/);
+  assert.match(builder, /normalizeSetLookup\(`\$\{subjectMatch\[1\]\} Half Deck`\)/);
+  assert.match(builder, /\? '#Deck_lists' : '#Set_lists'/);
+  assert.match(builder, /const derivedBulbapediaTitle = bulbapediaTitleForSet\(snapshotSet\.key, snapshotSet\.set_name\)/);
+  assert.match(builder, /merged\.push\(normalizedSnapshotSet\)/);
+});
+
+test("English Master Index can pair commit-pinned TCGdex identities with human checklist evidence", () => {
+  const builder = fs.readFileSync(
+    new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(builder, /loadTcgdexGithubLanguageSnapshotsV1/);
+  assert.match(builder, /source_key: 'tcgdex_github_snapshot'/);
+  assert.match(builder, /source_kind: 'structured_api'/);
+  assert.match(builder, /TCGdex repository card-count mismatch/);
+  assert.match(builder, /source_url: encodeURI\(sourceUrl\)/);
+  assert.match(builder, /This source does not emit finish truth or create printings/);
+});
