@@ -104,6 +104,12 @@ class FounderOperationsWorkItem {
   final DateTime? snoozedUntil;
 
   bool get executionEnabled => commandPolicy['execution_enabled'] == true;
+  Map<String, dynamic> get outcomeWorkflow =>
+      _map(planPayload['outcome_workflow']);
+  bool get isOutcomeWorkflow =>
+      outcomeWorkflow['version'] == 'FOUNDER_OUTCOME_WORKFLOW_V1';
+  List<Map<String, dynamic>> get outcomeStages =>
+      _mapList(outcomeWorkflow['stages']);
   bool get isActionable => state == 'ready_for_review' || state == 'deferred';
   bool get isRetryable => state == 'failed';
 
@@ -201,6 +207,7 @@ class FounderOperationsWorkItemDetail {
     required this.decisions,
     required this.events,
     required this.command,
+    required this.workflowStages,
   });
 
   final Map<String, dynamic> workItem;
@@ -209,6 +216,7 @@ class FounderOperationsWorkItemDetail {
   final List<Map<String, dynamic>> decisions;
   final List<Map<String, dynamic>> events;
   final Map<String, dynamic>? command;
+  final List<Map<String, dynamic>> workflowStages;
 
   factory FounderOperationsWorkItemDetail.fromJson(Map<String, dynamic> json) {
     return FounderOperationsWorkItemDetail(
@@ -218,6 +226,7 @@ class FounderOperationsWorkItemDetail {
       decisions: _mapList(json['decisions']),
       events: _mapList(json['events']),
       command: json['command'] is Map ? _map(json['command']) : null,
+      workflowStages: _mapList(json['workflow_stages']),
     );
   }
 }

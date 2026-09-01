@@ -65,6 +65,10 @@ body. Agent pause and resume are immediate control-plane safety operations,
 recorded in a separate append-only founder control ledger, and are allowed only
 when the registered agent policy explicitly opts in.
 
+Multi-stage work follows `FOUNDER_OUTCOME_WORKFLOW_V1`: one approval freezes the
+terminal outcome and every registered stage. Normal stage continuation never
+requires another founder decision.
+
 ## Command Boundary
 
 Commands contain an allowlisted `action_type`, frozen scope, executor version,
