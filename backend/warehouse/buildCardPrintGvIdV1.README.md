@@ -13,6 +13,9 @@ Stamped rows must be reproducible and collision-safe. Manual string construction
 - In-process function input, not a CLI worker.
 - Required identity fields include set code or printed set token, printed number, and optional `variantKey`.
 - Prize Pack stamped input uses the routed base set code and `variantKey = play_pokemon_stamp`.
+- Trainer Kits use printed abbreviation `TK` plus the canonical set code because `TK` alone is
+  shared by many independent half decks. For example, `tk-hs-g` card 1 is
+  `GV-PK-TK-tk-hs-g-1`, not `GV-PK-TK-1`.
 
 ## 4. Outputs
 
@@ -51,6 +54,7 @@ Stamped rows must be reproducible and collision-safe. Manual string construction
 
 - `gv_id_number_token_missing`.
 - Wrong set token because the source family was used instead of effective routed set code.
+- Trainer Kit collision caused by omitting the canonical set-code segment after `GV-PK-TK-`.
 - Missing variant suffix for a stamped row.
 - Collision with an existing stamped target.
 
@@ -59,4 +63,5 @@ Stamped rows must be reproducible and collision-safe. Manual string construction
 - GV ID matches the expected routed set token and printed number.
 - Prize Pack stamped GV IDs include the `PLAY-POKEMON-STAMP` suffix.
 - Base rows keep their original GV IDs.
+- Trainer Kit GV IDs remain unique across sets that share printed abbreviation `TK`.
 - Executor dry-run confirms no duplicate target before apply.

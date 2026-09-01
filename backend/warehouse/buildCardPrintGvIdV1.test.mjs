@@ -115,6 +115,38 @@ test('special deck and energy mini sets use default base namespace tokens', () =
   );
 });
 
+test('trainer kits scope the shared TK abbreviation by canonical set code', () => {
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'tk-hs-g',
+      printedSetAbbrev: 'TK',
+      number: '1',
+      numberPlain: '1',
+    }),
+    'GV-PK-TK-tk-hs-g-1',
+  );
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'tk-hs-r',
+      printedSetAbbrev: 'TK',
+      number: '1',
+      numberPlain: '1',
+    }),
+    'GV-PK-TK-tk-hs-r-1',
+  );
+
+  assert.equal(
+    buildCardPrintGvIdV1({
+      setCode: 'tk1a',
+      printedSetAbbrev: 'TK',
+      number: '1',
+      variantKey: 'reverse_holo',
+    }),
+    'GV-PK-TK-tk1a-1-RH',
+  );
+});
+
 test('governed printed identity modifiers append stable gv id suffixes', () => {
   assert.equal(resolvePrintedIdentityModifierGvIdSuffixV1('edition:first_edition'), 'FIRST-EDITION');
   assert.equal(resolvePrintedIdentityModifierGvIdSuffixV1('trainer_subject:giovanni'), 'GIOVANNI');
