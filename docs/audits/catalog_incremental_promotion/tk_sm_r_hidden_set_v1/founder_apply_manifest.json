@@ -1,0 +1,127 @@
+{
+  "version": "TK_SM_R_FOUNDER_APPLY_MANIFEST_V1",
+  "agent_key": "tk-sm-r-hidden-set-apply-v1",
+  "work_item_type": "catalog_hidden_set_apply",
+  "action_type": "apply_tk_sm_r_hidden_set_v1",
+  "executor_version": "TK_SM_R_HIDDEN_SET_APPLY_EXECUTOR_V1",
+  "source_set_code": "tk-sm-r",
+  "database_set_code": "tk-sm-r",
+  "payload_fingerprint_sha256": "0738b8f38e4c7289a41d5fe0e31e92d4baa33395a70188f1531926d72e0964f8",
+  "master_package_fingerprint_sha256": "402d0155e76b27c0707fbb6a6d997cf12d39a44c2f1b0591d69d396b45b085a5",
+  "source_snapshot_fingerprint_sha256": "e33dc444135e98cc7e45fcdd3e97ebdb7a7125028a5e3c0a81ef04fda2f249ec",
+  "package_fingerprint_sha256": "35d64d8f5fb24c6f8d8ffbba5c5ad56eb569a0709a94b20831333731283e4f32",
+  "expected_persistence_fingerprint_sha256": "d4b22b625cd753bb17d47e76c07b3508a55811871f8eaafcb8cedfb855e2ec37",
+  "rollback_proof": {
+    "github_run_id": "33476218428",
+    "producer_commit_sha": "e3d2dcaa98f2a9beecc3a970082c3949259ab27f",
+    "run_uri": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33476218428",
+    "report_sha256": "f5dc5691d19bb8a51e26784f3ac469b06ad37cf7071fdc5d2ab16bd31c82feb0",
+    "rollback_absence_verified": true
+  },
+  "expected_counts": {
+    "card_prints": 11,
+    "identities": 11,
+    "evidence": 22,
+    "family_reviews": 11,
+    "image_candidates": 0
+  },
+  "expected_rows": [
+    {
+      "card_print_id": "53e9b75d-3e19-5207-832a-870d568069d8",
+      "gv_id": "GV-PK-TK-1",
+      "name": "Lightning Energy",
+      "number": "1",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "edc41d45-e885-51c9-9f0e-4d7503e4a6a8",
+      "gv_id": "GV-PK-TK-3",
+      "name": "Lightning Energy",
+      "number": "3",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "ce5e30a5-712b-5b01-9b74-a616676eac9e",
+      "gv_id": "GV-PK-TK-5",
+      "name": "Lightning Energy",
+      "number": "5",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "f51fd15c-8e28-50b4-85ca-1acf95b18fea",
+      "gv_id": "GV-PK-TK-7",
+      "name": "Lightning Energy",
+      "number": "7",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "9d330b0e-27aa-5ce6-be41-60ed55a8f882",
+      "gv_id": "GV-PK-TK-8",
+      "name": "Lightning Energy",
+      "number": "8",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "693e99ab-6b67-5d11-8199-d3697f6ce90a",
+      "gv_id": "GV-PK-TK-9",
+      "name": "Lightning Energy",
+      "number": "9",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "2885ccbb-ebff-506d-a049-439806442109",
+      "gv_id": "GV-PK-TK-10",
+      "name": "Lightning Energy",
+      "number": "10",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "c6bb687f-2ee2-5447-a189-a8b8354e93e8",
+      "gv_id": "GV-PK-TK-12",
+      "name": "Lightning Energy",
+      "number": "12",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "761ff6bc-7cec-5129-be98-a0aa90d7afc9",
+      "gv_id": "GV-PK-TK-24",
+      "name": "Psychic Energy",
+      "number": "24",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "517efade-0500-520d-ac22-6b82906c769f",
+      "gv_id": "GV-PK-TK-27",
+      "name": "Psychic Energy",
+      "number": "27",
+      "evidence_count": 2
+    },
+    {
+      "card_print_id": "974c70d7-5c17-5c15-98cc-319ba25810ba",
+      "gv_id": "GV-PK-TK-28",
+      "name": "Psychic Energy",
+      "number": "28",
+      "evidence_count": 2
+    }
+  ],
+  "paths": {
+    "master_dir": "docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/master",
+    "source_set_file": "docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/tcgdex_repository_set_snapshot.json",
+    "package_manifest": "docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/package_manifest.json"
+  },
+  "boundaries": {
+    "parent_card_print_inserts_only": true,
+    "identity_inserts_only": true,
+    "source_evidence_inserts_only": true,
+    "family_review_inserts_only": true,
+    "child_printing_writes": false,
+    "external_mapping_writes": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false,
+    "updates": false,
+    "deletes": false
+  }
+}
