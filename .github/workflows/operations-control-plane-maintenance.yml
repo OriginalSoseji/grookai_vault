@@ -41,3 +41,92 @@ jobs:
           path: operations_maintenance_result.json
           if-no-files-found: warn
           retention-days: 30
+
+  dispatch-approved-command:
+    if: github.event_name == 'workflow_dispatch' || vars.FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE == 'true'
+    needs: maintain
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    concurrency:
+      group: founder-approved-command-execution-v1
+      cancel-in-progress: false
+    env:
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Resolve one allowlisted approved command without leasing it
+        id: resolve-command
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$PROD_SUPABASE_URL"
+          test -n "$SUPABASE_SECRET_KEY"
+          OUT_DIR="$RUNNER_TEMP/founder-command-dispatcher-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node --check backend/operations/founder_command_dispatcher_v1.mjs
+          node --check scripts/workers/founder_command_dispatcher_v1.mjs
+          node scripts/workers/founder_command_dispatcher_v1.mjs \
+            --out-dir="$OUT_DIR"
+
+      - name: Report idle queue
+        if: steps.resolve-command.outputs.command_found != 'true'
+        shell: bash
+        run: echo "No registered approved command is queued." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check out the command's frozen source revision
+        if: steps.resolve-command.outputs.command_found == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.resolve-command.outputs.source_commit_sha }}
+
+      - name: Install frozen executor dependencies
+        if: steps.resolve-command.outputs.command_found == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.resolve-command.outputs.command_found == 'true'
+        run: npm ci --ignore-scripts
+
+      - name: Execute the registered frozen command
+        if: steps.resolve-command.outputs.command_found == 'true'
+        shell: bash
+        env:
+          TK_SM_R_EXPECTED_COMMAND_ID: ${{ steps.resolve-command.outputs.command_id }}
+          TK_SM_R_EXPECTED_SOURCE_COMMIT: ${{ steps.resolve-command.outputs.source_commit_sha }}
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "${{ steps.resolve-command.outputs.source_commit_sha }}"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          case "${{ steps.resolve-command.outputs.workflow_handler }}" in
+            tk_sm_r_hidden_set_apply_v1)
+              test "${{ steps.resolve-command.outputs.action_type }}" = "apply_tk_sm_r_hidden_set_v1"
+              test "${{ steps.resolve-command.outputs.executor_version }}" = "TK_SM_R_HIDDEN_SET_APPLY_EXECUTOR_V1"
+              node scripts/workers/tk_sm_r_founder_command_executor_v1.mjs \
+                --run \
+                --out-dir="$OUT_DIR/executor"
+              ;;
+            *)
+              echo "Unregistered founder command workflow handler" >&2
+              exit 1
+              ;;
+          esac
+
+      - name: Upload command execution evidence
+        if: always() && env.OUT_DIR != '' && (steps.resolve-command.outputs.command_found == 'true' || failure())
+        uses: actions/upload-artifact@v4
+        with:
+          name: founder-command-dispatcher-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
