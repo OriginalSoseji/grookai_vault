@@ -4,6 +4,7 @@ import path from "node:path";
 import "../../backend/env.mjs";
 import {
   buildCatalogDiscoveryAgentV1,
+  buildCatalogSetWorkItemKeyV1,
   buildCatalogSetWorkItemsV1,
   operationsSha256V1,
   publishCatalogWorkItemsV1,
@@ -61,8 +62,16 @@ async function main() {
   const outcomePackages = options.outcomePackagesFile
     ? await readJson(options.outcomePackagesFile)
     : [];
-  const candidateTargetKeys = new Set(candidates.map((candidate) =>
-    catalogIncrementalTargetForGapV1(candidate)?.key).filter(Boolean));
+  const candidateByTargetKey = new Map();
+  for (const candidate of candidates) {
+    const targetKey = catalogIncrementalTargetForGapV1(candidate)?.key;
+    if (!targetKey) continue;
+    if (candidateByTargetKey.has(targetKey)) {
+      throw new Error(`Catalog candidates contain duplicate target: ${targetKey}`);
+    }
+    candidateByTargetKey.set(targetKey, candidate);
+  }
+  const candidateTargetKeys = new Set(candidateByTargetKey.keys());
   const executableTargetKeys = new Set(outcomePackages.map((row) => row.target_key));
   if (executableTargetKeys.size !== outcomePackages.length) {
     throw new Error("Catalog outcome packages contain duplicate targets");
@@ -91,6 +100,12 @@ async function main() {
   });
   const outcomeWorkItems = outcomePackages.map((outcomePackage) =>
     buildCatalogSetOutcomeWorkItemV1({ outcomePackage, sourceRunUri }));
+  const reviewSupersessions = outcomePackages.map((outcomePackage, index) => ({
+    replacement_work_item_key: outcomeWorkItems[index].work_item_key,
+    review_work_item_keys: [buildCatalogSetWorkItemKeyV1(
+      candidateByTargetKey.get(outcomePackage.target_key),
+    )],
+  }));
   const workItems = [...outcomeWorkItems, ...reviewWorkItems];
   await fs.mkdir(options.outDir, { recursive: true });
   await writeJson(path.join(options.outDir, "agent_registration.json"), [
@@ -109,6 +124,7 @@ async function main() {
       receipts.push(...await publishCatalogWorkItemsV1({
         agent: outcomeAgent,
         workItems: outcomeWorkItems,
+        reviewSupersessions,
         ...credentials,
       }));
     }
@@ -121,6 +137,8 @@ async function main() {
     }
     await writeJson(path.join(options.outDir, "publication_receipts.json"), receipts);
   }
+  const supersededReviewWorkItemCount = receipts.reduce((total, row) =>
+    total + Number(row.review_supersession_receipt?.[0]?.superseded_review_count ?? 0), 0);
   const report = {
     version: "CATALOG_FOUNDER_WORK_ITEM_PUBLISHER_V1",
     mode: options.publish ? "publish" : "artifact_only",
@@ -130,6 +148,8 @@ async function main() {
     work_item_count: workItems.length,
     executable_outcome_work_item_count: outcomeWorkItems.length,
     review_only_work_item_count: reviewWorkItems.length,
+    review_supersession_request_count: reviewSupersessions.length,
+    superseded_review_work_item_count: supersededReviewWorkItemCount,
     published_count: receipts.length,
     database_writes: options.publish,
     canonical_writes: false,

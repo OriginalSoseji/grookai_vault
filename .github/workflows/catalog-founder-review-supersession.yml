@@ -1,0 +1,107 @@
+name: Catalog Founder Review Supersession
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Inspect or apply the frozen catalog review supersession migration
+        required: true
+        type: choice
+        options:
+          - dry_run
+          - apply
+      expected_sha:
+        description: Exact pushed commit SHA that must be checked out
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalog-founder-review-supersession-v1
+  cancel-in-progress: false
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TARGET_MIGRATION: '20260901190000'
+      TARGET_FILE: supabase/migrations/20260901190000_catalog_founder_review_supersession_v1.sql
+      DISPATCH_MODE: ${{ inputs.mode }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - name: Check out frozen ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_sha }}
+          fetch-depth: 0
+
+      - name: Verify frozen boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "$TARGET_FILE"
+          grep -q "operations_supersede_catalog_reviews_v1" "$TARGET_FILE"
+          sha256sum "$TARGET_FILE" | tee migration_sha256.txt
+
+      - name: Inspect exact pending migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          pending_count="$(grep -Ec '^[[:space:]]*•[[:space:]]+[0-9]{14}' migration_dry_run.txt || true)"
+          test "$pending_count" = "1"
+
+      - name: Apply frozen migration
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.90.0 db push --db-url "$SUPABASE_DB_URL" --yes
+
+      - name: Read back function and privileges
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql "$SUPABASE_DB_URL" --no-psqlrc --tuples-only --no-align \
+            --field-separator=, <<'SQL' | tee migration_readback.csv
+          select 'ledger', count(*)
+          from supabase_migrations.schema_migrations
+          where version = '20260901190000';
+
+          select
+            'function',
+            p.prosecdef,
+            has_function_privilege('service_role', p.oid, 'execute'),
+            has_function_privilege('authenticated', p.oid, 'execute'),
+            has_function_privilege('anon', p.oid, 'execute')
+          from pg_proc p
+          join pg_namespace n on n.oid = p.pronamespace
+          where n.nspname = 'public'
+            and p.proname = 'operations_supersede_catalog_reviews_v1';
+          SQL
+          grep -q '^ledger,1$' migration_readback.csv
+          grep -q '^function,t,t,f,f$' migration_readback.csv
+
+      - name: Upload bounded evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-founder-review-supersession-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            migration_sha256.txt
+            migration_dry_run.txt
+            migration_readback.csv
+          if-no-files-found: warn
+          retention-days: 90
