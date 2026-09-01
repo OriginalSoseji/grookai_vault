@@ -278,7 +278,11 @@ test("scheduled discovery publishes only behind the explicit control-plane activ
 
 test("maintenance schedule is activation-gated and the worker requires an explicit run flag", () => {
   assert.match(maintenanceWorkflow, /FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE/);
+  assert.match(maintenanceWorkflow, /SUPABASE_URL: \$\{\{ secrets\.PROD_SUPABASE_URL \}\}/);
   assert.match(maintenanceWorkflow, /SUPABASE_SECRET_KEY/);
+  assert.match(maintenanceWorkflow, /set -euo pipefail/);
+  assert.match(maintenanceWorkflow, /test -n "\$SUPABASE_URL"/);
+  assert.match(maintenanceWorkflow, /test -n "\$SUPABASE_SECRET_KEY"/);
   assert.match(maintenanceWorkflow, /operations_maintenance_result\.json/);
   assert.match(maintenanceWorker, /explicit --run/);
   assert.match(maintenanceWorker, /runOperationsMaintenanceV1/);
