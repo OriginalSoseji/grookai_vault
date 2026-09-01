@@ -35,6 +35,9 @@ const maintenanceWorkflow = source(
   ".github/workflows/operations-control-plane-maintenance.yml",
 );
 const maintenanceWorker = source("scripts/workers/operations_maintenance_v1.mjs");
+const actionClaimMigration = source(
+  "supabase/migrations/20260901070000_founder_operations_action_claim_v1.sql",
+);
 
 function catalogFixture() {
   return {
@@ -109,6 +112,17 @@ test("commands require a service lease and successful reconciliation", () => {
   )?.[0] ?? "";
   assert.match(commandGrant, /to service_role/i);
   assert.doesNotMatch(commandGrant, /authenticated/i);
+});
+
+test("source-specific executors lease only their allowed action and version", () => {
+  assert.match(actionClaimMigration, /operations_claim_command_action_v1/);
+  assert.match(actionClaimMigration, /c\.action_type = btrim\(p_action_type\)/);
+  assert.match(actionClaimMigration, /c\.executor_version = btrim\(p_executor_version\)/);
+  assert.match(actionClaimMigration, /c\.action_type = any\(a\.allowed_command_actions\)/);
+  assert.match(actionClaimMigration, /w\.state = 'queued'/);
+  assert.match(actionClaimMigration, /for update of c, w skip locked/);
+  assert.match(actionClaimMigration, /to service_role/);
+  assert.doesNotMatch(actionClaimMigration, /to authenticated/);
 });
 
 test("incident lifecycle is correlated, recoverable, and isolated from notification failure", () => {

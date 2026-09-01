@@ -101,6 +101,20 @@ The first production use case is a released set candidate:
 No set becomes publicly visible unless publication is an independently
 allowlisted and explicitly displayed part of the approved plan.
 
+### Source-Specific Execution
+
+An executor that can mutate canonical data must lease by both allowlisted
+`action_type` and exact `executor_version`. It must not use the generic command
+lease to claim whichever queued command happens to be oldest.
+
+Before mutation, the executor must match the command fingerprint, execution
+manifest hash, source commit, authority fingerprints, expected row identities,
+counts, and exclusions. A partial or conflicting production state fails closed.
+An empty exact scope may be applied once. An already-present exact scope is
+treated as idempotent completion evidence, which allows safe reconciliation if
+the database commit succeeded but the prior command-completion signal was lost.
+The latter path never repeats the canonical writer.
+
 ## Security Invariants
 
 1. All operations tables use RLS and are denied to `anon` and `authenticated`.
@@ -112,9 +126,11 @@ allowlisted and explicitly displayed part of the approved plan.
 7. Expired, superseded, terminal, or already-decided versions fail closed.
 8. Decisions and execution events are append-only.
 9. Commands are idempotent and leased for exactly one active attempt.
-10. Executors revalidate scope and fingerprint before mutation.
-11. Logs and evidence exposed to clients contain no credentials or private data.
-12. A global kill switch and per-agent pause can prevent new execution.
+10. Canonical executors lease only their allowlisted action and exact executor version.
+11. Executors revalidate scope and fingerprint before mutation.
+12. Exact durable readback may reconcile a lost completion signal but may not repeat a writer.
+13. Logs and evidence exposed to clients contain no credentials or private data.
+14. A global kill switch and per-agent pause can prevent new execution.
 
 ## Notification Policy
 
