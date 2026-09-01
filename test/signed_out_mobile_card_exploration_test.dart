@@ -6,6 +6,9 @@ void main() {
   test('signed-out mobile entry exposes public card exploration', () {
     final main = File('lib/main.dart').readAsStringSync();
     final shell = File('lib/main_shell.dart').readAsStringSync();
+    final cardPrintModel = File(
+      'lib/models/card_print.dart',
+    ).readAsStringSync();
 
     expect(shell, contains("label: const Text('Explore cards')"));
     expect(shell, contains('const _SignedOutCatalogScreen()'));
@@ -14,6 +17,15 @@ void main() {
     expect(main, contains("entrySurface: 'public_card_link'"));
     expect(main, contains("_signedIn ? 'Continue' : 'Sign in'"));
     expect(main, contains('popUntil((route) => route.isFirst)'));
+    expect(cardPrintModel, contains("'search_game_card_prints_v4'"));
+    expect(
+      cardPrintModel.indexOf('final governedRows = await'),
+      lessThan(
+        cardPrintModel.indexOf('final gameId = await _resolveCatalogGameId'),
+      ),
+    );
+    expect(cardPrintModel, contains("'game_code_in': gameScope"));
+    expect(cardPrintModel, contains("'q': query.isEmpty ? null : query"));
   });
 
   test('guest catalog excludes personalized and mutating behavior', () {
