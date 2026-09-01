@@ -20,12 +20,24 @@ export const ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1 = Object.freeze([
   }),
 ]);
 
+export const ENGLISH_POKEMON_SOURCE_ALIAS_OWNERS_V1 = Object.freeze([
+  Object.freeze({
+    source_set_key: "miscp",
+    source_set_name: "Miscellaneous Promos",
+    canonical_set_key: "misc",
+    canonical_set_name: "Miscellaneous Cards & Products",
+    authority: "english_master_index_source_alias_owner_v1",
+    note: "TCGdex exposes Ancient Mew under miscp, while the governed English catalog already owns the same one-card promotional lane under misc.",
+  }),
+]);
+
 export function mergeEnglishPokemonFoldedSubsetOwnersV1(
   artifactOwners = [],
 ) {
   const bySource = new Map();
   for (const owner of [
     ...ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1,
+    ...ENGLISH_POKEMON_SOURCE_ALIAS_OWNERS_V1,
     ...(artifactOwners ?? []),
   ]) {
     const source = String(owner?.source_set_key ?? "").trim().toLowerCase();
