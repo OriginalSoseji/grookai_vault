@@ -270,9 +270,10 @@ test("scheduled discovery publishes only behind the explicit control-plane activ
   assert.match(workflow, /EXPECTED_DATABASE_WRITES=false/);
   assert.match(workflow, /writer_dispatches.*false/);
   const workItemStep = workflow.match(/- name: Build founder set review work items[\s\S]*?(?=\n      - name:|$)/)?.[0] ?? "";
+  assert.match(workItemStep, /SUPABASE_URL: \$\{\{ secrets\.PROD_SUPABASE_URL \}\}/);
   assert.match(
     workItemStep,
-    /if \[\[ "\$FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE" == "true" \]\][\s\S]*PUBLISH_ARGS\+=\(--publish\)/,
+    /if \[\[ "\$FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE" == "true" \]\][\s\S]*test -n "\$SUPABASE_URL"[\s\S]*test -n "\$SUPABASE_SECRET_KEY"[\s\S]*PUBLISH_ARGS\+=\(--publish\)/,
   );
 });
 
