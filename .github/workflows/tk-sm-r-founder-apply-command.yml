@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: founder-approved-command-execution-v1
+  group: tk-sm-r-founder-apply-command-v1
   cancel-in-progress: false
 
 jobs:

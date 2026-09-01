@@ -16,6 +16,7 @@ const source = (file) => fs.readFileSync(path.join(ROOT, file), "utf8");
 const maintenanceWorkflow = source(".github/workflows/operations-control-plane-maintenance.yml");
 const manualWorkflow = source(".github/workflows/tk-sm-r-founder-apply-command.yml");
 const worker = source("scripts/workers/founder_command_dispatcher_v1.mjs");
+const sourceExecutor = source("scripts/workers/tk_sm_r_founder_command_executor_v1.mjs");
 
 const validCommand = {
   command_id: "39fc4f45-ba76-497e-a88f-1d383e2a766f",
@@ -106,11 +107,18 @@ test("maintenance schedule polls safely and executes only a hard-coded registere
   assert.doesNotMatch(maintenanceWorkflow, /actions: write/);
 });
 
-test("manual fallback and scheduled dispatcher share a non-cancelling execution lock", () => {
-  assert.match(manualWorkflow, /group: founder-approved-command-execution-v1/);
+test("manual fallback cannot be replaced by scheduled dispatcher concurrency", () => {
+  assert.match(manualWorkflow, /group: tk-sm-r-founder-apply-command-v1/);
   assert.match(manualWorkflow, /cancel-in-progress: false/);
   assert.match(maintenanceWorkflow, /group: founder-approved-command-execution-v1/);
   assert.match(maintenanceWorkflow, /cancel-in-progress: false/);
+  assert.doesNotMatch(manualWorkflow, /group: founder-approved-command-execution-v1/);
+});
+
+test("database command claim is the authoritative exactly-once execution boundary", () => {
+  assert.match(sourceExecutor, /operations_claim_command_action_v1/);
+  assert.match(sourceExecutor, /p_expected_command_id: expectedCommandId/);
+  assert.match(sourceExecutor, /status: "no_queued_command"/);
 });
 
 test("dispatcher worker exports only bounded metadata and has no write mode", () => {

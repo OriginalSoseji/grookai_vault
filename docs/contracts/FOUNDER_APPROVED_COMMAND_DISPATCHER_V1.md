@@ -59,10 +59,13 @@ Adding a future executor requires:
    expired; they are never executed through a fallback.
 6. Dynamic shell commands, script paths, SQL, URLs, and environment overrides
    are prohibited.
-7. Manual and scheduled execution share a non-cancelling concurrency lock.
-8. The global execution pause and per-agent pause remain authoritative.
-9. A missing, malformed, stale, expired, or drifted command fails closed.
-10. No command is successful without exact durable readback reconciliation.
+7. Manual and scheduled workflows use separate non-cancelling GitHub concurrency
+   groups so a scheduled tick cannot replace a pending manual fallback.
+8. The source-specific executor's atomic exact-command database lease is the
+   authoritative exactly-once execution boundary across both workflows.
+9. The global execution pause and per-agent pause remain authoritative.
+10. A missing, malformed, stale, expired, or drifted command fails closed.
+11. No command is successful without exact durable readback reconciliation.
 
 ## Operational Policy
 
