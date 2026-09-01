@@ -47,8 +47,12 @@ test("immutable release retention restores the frozen capacity floor", () => {
   const script = read("scripts/ops/grookai_immutable_release_retention_v1.sh");
   const contract = read("docs/contracts/GROOKAI_IMMUTABLE_RELEASE_RETENTION_V1.md");
   const service = read("deploy/systemd/grookai-immutable-release-retention.service");
+  const capacityDropIn = read(
+    "deploy/systemd/grookai-immutable-release-retention.service.d/capacity-target.conf",
+  );
   assert.match(script, /GROOKAI_RELEASE_RETENTION_TARGET_FREE_BYTES:-21474836480/);
   assert.match(service, /GROOKAI_RELEASE_RETENTION_TARGET_FREE_BYTES=15000000000/);
+  assert.match(capacityDropIn, /GROOKAI_RELEASE_RETENTION_TARGET_FREE_BYTES=15000000000/);
   assert.match(script, /GROOKAI_RELEASE_RETENTION_MINIMUM_AGE_HOURS:-24/);
   assert.match(script, /eligible releases cannot restore the target free-space floor/);
   assert.match(script, /target free-space floor was not reached/);
@@ -80,4 +84,6 @@ test("immutable release retention is installed as an alerted daily timer", () =>
   assert.match(installer, /bash "\$source_script"/);
   assert.match(installer, /installed script hash mismatch/);
   assert.match(installer, /systemctl enable --now "\$TIMER_NAME"/);
+  assert.match(installer, /source_capacity_drop_in/);
+  assert.match(installer, /CAPACITY_DROP_IN_NAME/);
 });

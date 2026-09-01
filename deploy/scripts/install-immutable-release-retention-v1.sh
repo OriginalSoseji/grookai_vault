@@ -8,6 +8,7 @@ RUN_NOW="${RUN_NOW:-1}"
 SCRIPT_NAME="grookai_immutable_release_retention_v1.sh"
 SERVICE_NAME="grookai-immutable-release-retention.service"
 TIMER_NAME="grookai-immutable-release-retention.timer"
+CAPACITY_DROP_IN_NAME="capacity-target.conf"
 
 [[ "${EUID}" -eq 0 ]] || { echo "installer must run as root" >&2; exit 1; }
 [[ -d "$RELEASE_DIR/.git" ]] || { echo "RELEASE_DIR must be a Git checkout" >&2; exit 1; }
@@ -25,7 +26,8 @@ done
 source_script="$RELEASE_DIR/scripts/ops/$SCRIPT_NAME"
 source_service="$RELEASE_DIR/deploy/systemd/$SERVICE_NAME"
 source_timer="$RELEASE_DIR/deploy/systemd/$TIMER_NAME"
-for source_path in "$source_script" "$source_service" "$source_timer"; do
+source_capacity_drop_in="$RELEASE_DIR/deploy/systemd/$SERVICE_NAME.d/$CAPACITY_DROP_IN_NAME"
+for source_path in "$source_script" "$source_service" "$source_timer" "$source_capacity_drop_in"; do
   [[ -f "$source_path" ]] || { echo "missing install source: $source_path" >&2; exit 1; }
 done
 
@@ -38,6 +40,9 @@ install -d -o root -g root -m 0755 -- "$INSTALL_ROOT"
 install -o root -g root -m 0755 -- "$source_script" "$INSTALL_ROOT/$SCRIPT_NAME"
 install -o root -g root -m 0644 -- "$source_service" "/etc/systemd/system/$SERVICE_NAME"
 install -o root -g root -m 0644 -- "$source_timer" "/etc/systemd/system/$TIMER_NAME"
+install -d -o root -g root -m 0755 -- "/etc/systemd/system/$SERVICE_NAME.d"
+install -o root -g root -m 0644 -- "$source_capacity_drop_in" \
+  "/etc/systemd/system/$SERVICE_NAME.d/$CAPACITY_DROP_IN_NAME"
 systemctl daemon-reload
 systemctl disable --now "$TIMER_NAME" >/dev/null 2>&1 || true
 systemctl reset-failed "$SERVICE_NAME" >/dev/null 2>&1 || true
