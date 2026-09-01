@@ -94,3 +94,16 @@ not broadened retroactively. New multi-stage operations must publish the full
 outcome before the phone decision; omitted work cannot be inferred after
 approval.
 
+## Registered Domain Workflows
+
+`catalog_set_completion_v1` is the first canonical-write domain workflow. It
+accepts only a code-registered catalog writer, an exact target identity, a
+clean collision preflight, a non-empty expected row-count map, the source
+commit, and the writer's payload fingerprint. Its final stage is successful
+only when the writer reports a committed transaction and exact durable
+readback for every approved count. It cannot write Storage, image pointers,
+pricing, Vault data, public visibility, updates, deletes, or another target.
+
+Catalog candidates that cannot produce this complete package remain
+review-only. A review-only item is never converted into write authority by an
+executor.

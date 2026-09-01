@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -12,6 +12,12 @@ import {
   FOUNDER_OUTCOME_WORKFLOW_RECIPE_REGISTRY_V1,
   validateFounderOutcomeCommandV1,
 } from "../../backend/operations/founder_outcome_workflow_v1.mjs";
+import {
+  buildCatalogWriterInvocationV1,
+  CATALOG_OUTCOME_WRITER_REGISTRY_V1,
+  validateCatalogFounderOutcomePackageV1,
+  validateCatalogWriterResultV1,
+} from "../../backend/operations/catalog_founder_outcome_v1.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 
@@ -53,26 +59,83 @@ function transientFailureClass(error) {
   return "registered_workflow_stage_failed";
 }
 
-const STAGE_HANDLERS = Object.freeze({
-  async verify_frozen_scope_v1({ stage, workflow }) {
-    return {
-      reconciled: true,
-      verification: "frozen_scope_validated",
-      stage_fingerprint: stage.stage_fingerprint,
-      workflow_fingerprint: workflow.workflow_fingerprint,
-      canonical_writes: false,
-    };
-  },
-  async verify_terminal_contract_v1({ stage, workflow }) {
-    return {
-      reconciled: true,
-      verification: "terminal_contract_validated",
-      stage_fingerprint: stage.stage_fingerprint,
-      terminal_outcome: workflow.terminal_outcome,
-      canonical_writes: false,
-    };
-  },
-});
+function buildStageHandlers({ headSha, outDir }) {
+  return Object.freeze({
+    async verify_frozen_scope_v1({ stage, workflow }) {
+      return {
+        reconciled: true,
+        verification: "frozen_scope_validated",
+        stage_fingerprint: stage.stage_fingerprint,
+        workflow_fingerprint: workflow.workflow_fingerprint,
+        canonical_writes: false,
+      };
+    },
+    async verify_terminal_contract_v1({ stage, workflow }) {
+      return {
+        reconciled: true,
+        verification: "terminal_contract_validated",
+        stage_fingerprint: stage.stage_fingerprint,
+        terminal_outcome: workflow.terminal_outcome,
+        canonical_writes: false,
+      };
+    },
+    async verify_catalog_frozen_scope_v1({ stage, workflow }) {
+      const outcomePackage = stage.expected_effects?.catalog_outcome_package;
+      validateCatalogFounderOutcomePackageV1(outcomePackage, { sourceCommitSha: headSha });
+      return {
+        reconciled: true,
+        verification: "catalog_frozen_scope_validated",
+        stage_fingerprint: stage.stage_fingerprint,
+        workflow_fingerprint: workflow.workflow_fingerprint,
+        target_key: outcomePackage.target_key,
+        package_fingerprint_sha256: outcomePackage.package_fingerprint_sha256,
+        canonical_writes: false,
+      };
+    },
+    async apply_catalog_frozen_plan_v1({ stage }) {
+      const outcomePackage = stage.expected_effects?.catalog_outcome_package;
+      validateCatalogFounderOutcomePackageV1(outcomePackage, { sourceCommitSha: headSha });
+      const writerDir = path.join(
+        outDir,
+        "catalog_writer",
+        outcomePackage.target_key.replace(/[^a-z0-9_-]+/gi, "_"),
+      );
+      const invocation = buildCatalogWriterInvocationV1(outcomePackage, {
+        headSha,
+        outDir: writerDir,
+      });
+      await writeJson(path.join(writerDir, "invocation.json"), {
+        writer_key: outcomePackage.writer_key,
+        target_key: outcomePackage.target_key,
+        source_commit_sha: headSha,
+        package_fingerprint_sha256: outcomePackage.package_fingerprint_sha256,
+        arguments: invocation.args.slice(1),
+        environment_keys: Object.keys(invocation.env).sort(),
+        secrets_excluded: true,
+      });
+      const execution = spawnSync(process.execPath, invocation.args, {
+        cwd: ROOT,
+        env: { ...process.env, ...invocation.env },
+        encoding: "utf8",
+        maxBuffer: 64 * 1024 * 1024,
+      });
+      await writeJson(path.join(writerDir, "executor_process.json"), {
+        exit_code: execution.status,
+        signal: execution.signal,
+        stdout: execution.stdout,
+        stderr: execution.stderr,
+      });
+      if (execution.status !== 0) {
+        throw new Error(
+          `Registered catalog writer failed (${execution.status}): ${String(execution.stderr ?? "").slice(-2000)}`,
+        );
+      }
+      const writer = CATALOG_OUTCOME_WRITER_REGISTRY_V1[outcomePackage.writer_key];
+      const summary = JSON.parse(await fs.readFile(path.join(writerDir, writer.summary_file), "utf8"));
+      return validateCatalogWriterResultV1(outcomePackage, summary);
+    },
+  });
+}
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
@@ -127,7 +190,7 @@ async function main() {
     const execution = await executeFounderOutcomeWorkflowV1({
       workflow,
       registry: FOUNDER_OUTCOME_WORKFLOW_RECIPE_REGISTRY_V1,
-      handlers: STAGE_HANDLERS,
+      handlers: buildStageHandlers({ headSha, outDir: options.outDir }),
       completedStageKeys: progress?.completed_stage_keys ?? [],
       stageAttemptCounts: (progress?.receipts ?? [])
         .filter((receipt) => receipt?.status === "started")

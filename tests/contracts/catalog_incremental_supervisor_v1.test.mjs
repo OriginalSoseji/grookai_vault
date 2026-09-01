@@ -16,6 +16,37 @@ test("catalog promotion supervisor routes exact supported gap shapes", () => {
   assert.equal(plan.unsupported.length, 0);
 });
 
+test("founder outcome planning can select one exact eligible target", () => {
+  const gaps = [
+    { game_code: "mtg", status: "missing_set", source_code: "abc" },
+    {
+      game_code: "pokemon",
+      source_id: "pokemon_card_official_jp_products",
+      status: "incomplete_cards",
+      source_code: "MEM",
+      source_set_id: "958",
+      database_code: "jpn-product-x",
+      expected_card_count: 18,
+      master_index_gate: { decision: "canonical_delta_eligible", language: "ja" },
+      count_evidence: [{
+        authority: "limitless_jp_structured_checklist",
+        scope: "numbered_base_set",
+        count: 18,
+      }],
+    },
+  ];
+  const exact = buildCatalogIncrementalSupervisorPlanV1(gaps, 5, {
+    targetKey: "mtg:abc",
+    outcomeEligibleOnly: true,
+  });
+  assert.deepEqual(exact.targets.map((row) => row.key), ["mtg:abc"]);
+  assert.equal(exact.targets[0].writer_key, "mtg_incremental_promotion_v1");
+  const eligible = buildCatalogIncrementalSupervisorPlanV1(gaps, 5, {
+    outcomeEligibleOnly: true,
+  });
+  assert.deepEqual(eligible.targets.map((row) => row.key), ["mtg:abc"]);
+});
+
 test("partial and source-ambiguous gaps stay outside unattended promotion", () => {
   const plan = buildCatalogIncrementalSupervisorPlanV1([
     { game_code: "mtg", status: "incomplete_cards", source_code: "abc" },

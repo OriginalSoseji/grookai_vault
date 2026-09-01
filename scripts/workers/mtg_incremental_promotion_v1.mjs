@@ -32,6 +32,7 @@ function parseArgs(argv) {
     asOf: new Date().toISOString().slice(0, 10),
     setCode: "hob",
     expectedHeadSha: null,
+    expectedPayloadFingerprint: null,
     databaseUrl: process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? null,
     outDir: path.join("docs", "audits", "mtg_incremental_promotion_v1", stamp),
   };
@@ -40,6 +41,9 @@ function parseArgs(argv) {
     else if (token.startsWith("--as-of=")) options.asOf = token.slice(8);
     else if (token.startsWith("--set-code=")) options.setCode = token.slice(11).toLowerCase();
     else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
+    else if (token.startsWith("--expected-payload-fingerprint=")) {
+      options.expectedPayloadFingerprint = token.slice(31);
+    }
     else if (token.startsWith("--db-url=")) options.databaseUrl = token.slice(9);
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else throw new Error(`Unknown argument: ${token}`);
@@ -52,6 +56,10 @@ function parseArgs(argv) {
   if (!options.databaseUrl) throw new Error("SUPABASE_DB_URL is required");
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
+  }
+  if (options.mode === "apply" &&
+      !/^[0-9a-f]{64}$/.test(options.expectedPayloadFingerprint ?? "")) {
+    throw new Error("Apply requires --expected-payload-fingerprint");
   }
   return options;
 }
@@ -242,6 +250,10 @@ async function main() {
       quality_flag: "mtg_incremental_promotion_v1",
       include_source_card_release_evidence: true,
     });
+    if (options.expectedPayloadFingerprint &&
+        options.expectedPayloadFingerprint !== payload.writer_payload_fingerprint) {
+      throw new Error("Expected payload fingerprint does not match the frozen MTG plan");
+    }
     const promotion = buildMtgCanonicalSetPromotionContractV1(payload);
     const shouldMutate = releaseEligible && databaseState === "absent";
     let transactionResult = {
