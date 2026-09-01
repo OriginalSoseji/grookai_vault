@@ -218,6 +218,10 @@ test("catalog review supersession is service-only, target-bound, and append-only
     /action_type <> 'review_catalog_set_candidate'/,
   );
   assert.match(catalogReviewSupersessionMigration, /catalog_review_replacement_target_mismatch/);
+  assert.match(
+    catalogReviewSupersessionMigration,
+    /coalesce\([\s\S]*source_code[\s\S]*source_set_id/,
+  );
   assert.match(catalogReviewSupersessionMigration, /state = 'superseded'/);
   assert.match(catalogReviewSupersessionMigration, /insert into public\.founder_work_item_events/);
   assert.match(

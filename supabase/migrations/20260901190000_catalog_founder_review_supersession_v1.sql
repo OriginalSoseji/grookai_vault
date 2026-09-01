@@ -89,8 +89,8 @@ begin
 
     v_review_game_code := lower(btrim(v_review.scope ->> 'game_code'));
     v_review_set_key := lower(btrim(coalesce(
-      nullif(v_review.scope ->> 'source_set_id', ''),
-      nullif(v_review.scope ->> 'source_code', '')
+      nullif(v_review.scope ->> 'source_code', ''),
+      nullif(v_review.scope ->> 'source_set_id', '')
     )));
     if v_review_set_key is null
        or v_review_set_key = ''
