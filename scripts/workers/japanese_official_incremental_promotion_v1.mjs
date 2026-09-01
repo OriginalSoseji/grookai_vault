@@ -43,6 +43,7 @@ function parseArgs(argv) {
     databaseSetCode: null,
     productId: null,
     expectedHeadSha: null,
+    expectedPayloadFingerprint: null,
     outDir: path.join(
       "docs", "audits", "japanese_official_incremental_promotion_v1", stamp,
     ),
@@ -60,6 +61,8 @@ function parseArgs(argv) {
     } else if (token.startsWith("--product-id=")) options.productId = token.slice(13);
     else if (token.startsWith("--expected-head-sha=")) {
       options.expectedHeadSha = token.slice(20);
+    } else if (token.startsWith("--expected-payload-fingerprint=")) {
+      options.expectedPayloadFingerprint = token.slice(31);
     } else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else throw new Error(`Unknown argument: ${token}`);
   }
@@ -75,6 +78,10 @@ function parseArgs(argv) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(options.asOf)) throw new Error("Invalid --as-of");
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
+  }
+  if (options.mode === "apply" &&
+      !/^[0-9a-f]{64}$/.test(options.expectedPayloadFingerprint ?? "")) {
+    throw new Error("Apply requires --expected-payload-fingerprint");
   }
   return options;
 }
@@ -242,6 +249,10 @@ async function main() {
     const validation = validateJapaneseOfficialIncrementalSetPlanV1(promotion);
     if (!validation.valid) throw new Error(validation.findings.join(","));
     await computeIdentityHashes(client, promotion);
+    if (options.expectedPayloadFingerprint &&
+        options.expectedPayloadFingerprint !== promotion.payload_fingerprint_sha256) {
+      throw new Error("Expected payload fingerprint does not match the frozen official Japanese plan");
+    }
     const collisions = await collisionPreflight(client, promotion);
     const expectedReadback = {
       cards: promotion.counts.card_prints,

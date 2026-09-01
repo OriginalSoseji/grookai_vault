@@ -51,6 +51,7 @@ function parseArgs(argv) {
     pokemonProductId: DEFAULT_PRODUCT_ID,
     officialCardIds: ["50301"],
     expectedHeadSha: null,
+    expectedPayloadFingerprint: null,
     concurrency: 4,
     outDir: path.join("docs", "audits", "catalog_incremental_promotion_v1", stamp),
   };
@@ -64,6 +65,9 @@ function parseArgs(argv) {
     else if (token.startsWith("--official-card-ids=")) {
       options.officialCardIds = token.slice(20).split(",").map(clean).filter(Boolean);
     } else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
+    else if (token.startsWith("--expected-payload-fingerprint=")) {
+      options.expectedPayloadFingerprint = token.slice(31);
+    }
     else if (token.startsWith("--concurrency=")) options.concurrency = Number(token.slice(14));
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else throw new Error(`Unknown argument: ${token}`);
@@ -77,6 +81,10 @@ function parseArgs(argv) {
       options.concurrency > 8) throw new Error("Invalid --concurrency");
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
+  }
+  if (options.mode === "apply" &&
+      !/^[0-9a-f]{64}$/.test(options.expectedPayloadFingerprint ?? "")) {
+    throw new Error("Apply requires --expected-payload-fingerprint");
   }
   return options;
 }
@@ -497,6 +505,10 @@ async function main() {
     const validation = validateJapaneseIncrementalSetPlanV1(setPlan);
     if (!validation.valid) throw new Error(validation.findings.join(","));
     await computeIdentityHashes(client, setPlan);
+    if (options.expectedPayloadFingerprint &&
+        options.expectedPayloadFingerprint !== setPlan.payload_fingerprint_sha256) {
+      throw new Error("Expected payload fingerprint does not match the frozen Japanese plan");
+    }
 
     const enrichmentRows = [];
     for (const cardId of options.officialCardIds) {

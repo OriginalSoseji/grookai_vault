@@ -29,6 +29,7 @@ function parseArgs(argv) {
     setCode: "OP17",
     officialSeriesId: "569117",
     expectedHeadSha: null,
+    expectedPayloadFingerprint: null,
     databaseUrl: process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? null,
     outDir: path.join("docs", "audits", "one_piece_incremental_promotion_v1", stamp),
   };
@@ -38,6 +39,9 @@ function parseArgs(argv) {
     else if (token.startsWith("--set-code=")) options.setCode = token.slice(11).toUpperCase();
     else if (token.startsWith("--official-series-id=")) options.officialSeriesId = token.slice(21);
     else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
+    else if (token.startsWith("--expected-payload-fingerprint=")) {
+      options.expectedPayloadFingerprint = token.slice(31);
+    }
     else if (token.startsWith("--db-url=")) options.databaseUrl = token.slice(9);
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else throw new Error(`Unknown argument: ${token}`);
@@ -51,6 +55,10 @@ function parseArgs(argv) {
   if (!options.databaseUrl) throw new Error("SUPABASE_DB_URL is required");
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
+  }
+  if (options.mode === "apply" &&
+      !/^[0-9a-f]{64}$/.test(options.expectedPayloadFingerprint ?? "")) {
+    throw new Error("Apply requires --expected-payload-fingerprint");
   }
   return options;
 }
@@ -367,6 +375,10 @@ async function main() {
     });
     const validation = validateOnePieceIncrementalPromotionPlanV1(plan);
     if (!validation.valid) throw new Error(validation.findings.join(","));
+    if (options.expectedPayloadFingerprint &&
+        options.expectedPayloadFingerprint !== plan.payload_fingerprint_sha256) {
+      throw new Error("Expected payload fingerprint does not match the frozen One Piece plan");
+    }
     const collisions = await collisionPreflight(client, plan);
     const expected = plan.counts;
     let transactionResult = { action: "plan_only", expected };

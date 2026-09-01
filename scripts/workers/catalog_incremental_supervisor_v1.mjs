@@ -17,6 +17,8 @@ function parseArgs(argv) {
     outDir: null,
     expectedHeadSha: process.env.GITHUB_SHA ?? null,
     maxTargets: 5,
+    targetKey: null,
+    outcomeEligibleOnly: false,
   };
   for (const token of argv) {
     if (token.startsWith("--mode=")) options.mode = token.slice(7);
@@ -25,6 +27,8 @@ function parseArgs(argv) {
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
     else if (token.startsWith("--max-targets=")) options.maxTargets = Number(token.slice(14));
+    else if (token.startsWith("--target-key=")) options.targetKey = token.slice(13);
+    else if (token === "--outcome-eligible-only") options.outcomeEligibleOnly = true;
     else throw new Error(`Unknown argument: ${token}`);
   }
   if (!new Set(["plan", "dry-run", "apply"]).has(options.mode)) {
@@ -40,6 +44,9 @@ function parseArgs(argv) {
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
   }
+  if (options.targetKey && !/^[a-z0-9_:-]+$/i.test(options.targetKey)) {
+    throw new Error("Invalid --target-key");
+  }
   return options;
 }
 
@@ -47,11 +54,14 @@ async function readJson(file) {
   return JSON.parse(await fs.readFile(file, "utf8"));
 }
 
-function targetForGap(gap) {
+export function catalogIncrementalTargetForGapV1(gap) {
   if (gap.status === "missing_set" && gap.game_code === "mtg" && gap.source_code) {
     return {
       key: `mtg:${String(gap.source_code).toLowerCase()}`,
+      writer_key: "mtg_incremental_promotion_v1",
+      founder_outcome_eligible: true,
       worker: "scripts/workers/mtg_incremental_promotion_v1.mjs",
+      target: { set_code: String(gap.source_code).toLowerCase() },
       args: [`--set-code=${String(gap.source_code).toLowerCase()}`],
     };
   }
@@ -59,7 +69,13 @@ function targetForGap(gap) {
       gap.source_code && gap.source_set_id) {
     return {
       key: `one_piece:${String(gap.source_code).toUpperCase()}`,
+      writer_key: "one_piece_incremental_promotion_v1",
+      founder_outcome_eligible: true,
       worker: "scripts/workers/one_piece_incremental_promotion_v1.mjs",
+      target: {
+        set_code: String(gap.source_code).toUpperCase(),
+        official_series_id: String(gap.source_set_id),
+      },
       args: [
         `--set-code=${String(gap.source_code).toUpperCase()}`,
         `--official-series-id=${gap.source_set_id}`,
@@ -77,7 +93,13 @@ function targetForGap(gap) {
       gap.source_code && gap.database_code) {
     return {
       key: `pokemon_en:${String(gap.source_code).toLowerCase()}`,
+      writer_key: "english_pokemon_incremental_promotion_v1",
+      founder_outcome_eligible: true,
       worker: "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
+      target: {
+        source_set_code: String(gap.source_code),
+        database_set_code: String(gap.database_code),
+      },
       args: [
         `--source-set-code=${gap.source_code}`,
         `--database-set-code=${gap.database_code}`,
@@ -94,7 +116,14 @@ function targetForGap(gap) {
       gap.source_code && gap.database_code && gap.source_set_id) {
     return {
       key: `pokemon_jpn:${String(gap.source_code).toUpperCase()}`,
+      writer_key: "japanese_structured_incremental_promotion_v1",
+      founder_outcome_eligible: true,
       worker: "scripts/workers/catalog_incremental_promotion_v1.mjs",
+      target: {
+        pokemon_set_code: String(gap.source_code),
+        pokemon_database_set_code: String(gap.database_code),
+        pokemon_product_id: String(gap.source_set_id),
+      },
       args: [
         `--pokemon-set-code=${gap.source_code}`,
         `--pokemon-db-set-code=${gap.database_code}`,
@@ -113,8 +142,15 @@ function targetForGap(gap) {
       gap.source_code && gap.database_code && gap.source_set_id) {
     return {
       key: `pokemon_jpn_official:${String(gap.source_code).toUpperCase()}`,
+      writer_key: "japanese_official_incremental_promotion_v1",
+      founder_outcome_eligible: false,
       worker: "scripts/workers/japanese_official_incremental_promotion_v1.mjs",
       requires_discovery_dir: true,
+      target: {
+        source_set_code: String(gap.source_code),
+        database_set_code: String(gap.database_code),
+        product_id: String(gap.source_set_id),
+      },
       args: [
         `--source-set-code=${gap.source_code}`,
         `--database-set-code=${gap.database_code}`,
@@ -125,12 +161,15 @@ function targetForGap(gap) {
   return null;
 }
 
-export function buildCatalogIncrementalSupervisorPlanV1(gaps, maxTargets = 5) {
+export function buildCatalogIncrementalSupervisorPlanV1(gaps, maxTargets = 5, {
+  targetKey = null,
+  outcomeEligibleOnly = false,
+} = {}) {
   const targets = [];
   const unsupported = [];
   const seen = new Set();
   for (const gap of gaps ?? []) {
-    const target = targetForGap(gap);
+    const target = catalogIncrementalTargetForGapV1(gap);
     if (!target) {
       unsupported.push({
         game_code: gap.game_code,
@@ -142,10 +181,14 @@ export function buildCatalogIncrementalSupervisorPlanV1(gaps, maxTargets = 5) {
     }
     if (seen.has(target.key)) continue;
     seen.add(target.key);
+    if (targetKey && target.key !== targetKey) continue;
+    if (outcomeEligibleOnly && target.founder_outcome_eligible !== true) continue;
     targets.push(target);
   }
   return {
     version: CATALOG_INCREMENTAL_SUPERVISOR_VERSION,
+    requested_target_key: targetKey,
+    outcome_eligible_only: outcomeEligibleOnly,
     targets: targets.slice(0, maxTargets),
     deferred_target_count: Math.max(0, targets.length - maxTargets),
     unsupported,
@@ -196,7 +239,10 @@ async function main() {
   );
   const discoverySummary = await readJson(path.join(options.discoveryDir, "summary.json"));
   const plan = {
-    ...buildCatalogIncrementalSupervisorPlanV1(gaps, options.maxTargets),
+    ...buildCatalogIncrementalSupervisorPlanV1(gaps, options.maxTargets, {
+      targetKey: options.targetKey,
+      outcomeEligibleOnly: options.outcomeEligibleOnly,
+    }),
     mode: options.mode,
     as_of: options.asOf,
     expected_head_sha: options.expectedHeadSha,
@@ -209,13 +255,16 @@ async function main() {
       no_partial_set_repairs: true,
     },
   };
+  if (options.targetKey && plan.targets.length !== 1) {
+    throw new Error(`Exact supervisor target was not admitted: ${options.targetKey}`);
+  }
   const planBody = await writeJson(path.join(options.outDir, "supervisor_plan.json"), plan);
   const results = [];
   for (const [index, target] of plan.targets.entries()) {
     const targetDir = path.join(options.outDir, "targets", `${String(index + 1).padStart(2, "0")}_${target.key.replace(/[^a-z0-9_-]+/gi, "_")}`);
     const result = executeTarget(options, target, targetDir);
     results.push(result);
-    if (result.exit_code !== 0) break;
+    if (result.exit_code !== 0 && options.mode === "apply") break;
   }
   const failed = results.filter((result) => result.exit_code !== 0);
   const imageCandidates = [];
@@ -273,7 +322,7 @@ async function main() {
     })),
   });
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-  if (failed.length > 0 || plan.deferred_target_count > 0) process.exitCode = 1;
+  if (failed.length > 0) process.exitCode = 1;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

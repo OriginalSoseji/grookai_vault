@@ -16,7 +16,7 @@ concurrency:
 jobs:
   discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       PGOPTIONS: "-c default_transaction_read_only=on"
@@ -38,10 +38,14 @@ jobs:
           node --check backend/operations/operations_control_plane_v1.mjs
           node --check scripts/workers/universal_catalog_discovery_v1.mjs
           node --check scripts/workers/catalog_founder_work_item_publisher_v1.mjs
+          node --check scripts/workers/catalog_incremental_supervisor_v1.mjs
+          node --check scripts/workers/catalog_founder_outcome_packager_v1.mjs
+          node --check scripts/workers/founder_outcome_workflow_executor_v1.mjs
           node --check scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs
           node --test \
             tests/contracts/universal_catalog_discovery_v1.test.mjs \
-            tests/contracts/founder_operations_command_center_v1.test.mjs
+            tests/contracts/founder_operations_command_center_v1.test.mjs \
+            tests/contracts/catalog_founder_outcome_v1.test.mjs
 
       - name: Run official-source reconciliation
         id: discovery
@@ -58,7 +62,32 @@ jobs:
         shell: bash
         run: cat "${{ steps.discovery.outputs.out_dir }}/UNIVERSAL_CATALOG_DISCOVERY_REPORT.md" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Build founder set review work items
+      - name: Build exact catalog outcome preflights
+        if: always() && steps.discovery.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          SUPERVISOR_DIR="${{ steps.discovery.outputs.out_dir }}/catalog_outcome_preflight"
+          PACKAGE_DIR="${{ steps.discovery.outputs.out_dir }}/catalog_outcome_packages"
+          SUPERVISOR_EXIT=0
+          node scripts/workers/catalog_incremental_supervisor_v1.mjs \
+            --mode=plan \
+            --as-of="$(date -u +%F)" \
+            --max-targets=10 \
+            --outcome-eligible-only \
+            --discovery-dir="${{ steps.discovery.outputs.out_dir }}" \
+            --out-dir="$SUPERVISOR_DIR" || SUPERVISOR_EXIT=$?
+          test -f "$SUPERVISOR_DIR/supervisor_plan.json"
+          test -f "$SUPERVISOR_DIR/execution_results.json"
+          node scripts/workers/catalog_founder_outcome_packager_v1.mjs \
+            --supervisor-dir="$SUPERVISOR_DIR" \
+            --out-dir="$PACKAGE_DIR" \
+            --source-commit-sha="$GITHUB_SHA" \
+            --source-run-id="$GITHUB_RUN_ID"
+          echo "Catalog preflight supervisor exit: $SUPERVISOR_EXIT" >> "$GITHUB_STEP_SUMMARY"
+          cat "$PACKAGE_DIR/summary.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Build founder catalog decision work items
         if: always() && steps.discovery.outcome == 'success'
         shell: bash
         env:
@@ -78,6 +107,7 @@ jobs:
           node scripts/workers/catalog_founder_work_item_publisher_v1.mjs \
             --discovery-dir="${{ steps.discovery.outputs.out_dir }}" \
             --out-dir="${{ steps.discovery.outputs.out_dir }}/founder_work_items" \
+            --outcome-packages-file="${{ steps.discovery.outputs.out_dir }}/catalog_outcome_packages/founder_outcome_packages.json" \
             "${PUBLISH_ARGS[@]}"
           test "$(node -p "require('${{ steps.discovery.outputs.out_dir }}/founder_work_items/summary.json').database_writes")" = "$EXPECTED_DATABASE_WRITES"
           test "$(node -p "require('${{ steps.discovery.outputs.out_dir }}/founder_work_items/summary.json').writer_dispatches")" = "false"

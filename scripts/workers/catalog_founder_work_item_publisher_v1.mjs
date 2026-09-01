@@ -8,12 +8,27 @@ import {
   operationsSha256V1,
   publishCatalogWorkItemsV1,
 } from "../../backend/operations/operations_control_plane_v1.mjs";
+import {
+  buildCatalogSetOutcomeAgentV1,
+  buildCatalogSetOutcomeWorkItemV1,
+} from "../../backend/operations/catalog_founder_outcome_v1.mjs";
+import {
+  catalogIncrementalTargetForGapV1,
+} from "./catalog_incremental_supervisor_v1.mjs";
 
 function parseArgs(argv) {
-  const options = { discoveryDir: null, outDir: null, publish: false };
+  const options = {
+    discoveryDir: null,
+    outDir: null,
+    outcomePackagesFile: null,
+    publish: false,
+  };
   for (const token of argv) {
     if (token.startsWith("--discovery-dir=")) options.discoveryDir = token.slice(16);
     else if (token.startsWith("--out-dir=")) options.outDir = token.slice(10);
+    else if (token.startsWith("--outcome-packages-file=")) {
+      options.outcomePackagesFile = path.resolve(token.slice(24));
+    }
     else if (token === "--publish") options.publish = true;
     else throw new Error(`Unknown argument: ${token}`);
   }
@@ -37,30 +52,73 @@ async function main() {
     readJson(path.join(options.discoveryDir, "summary.json")),
     readJson(path.join(options.discoveryDir, "artifact_hashes.json")),
   ]);
-  const agent = buildCatalogDiscoveryAgentV1();
+  const reviewAgent = buildCatalogDiscoveryAgentV1();
+  const outcomeAgent = buildCatalogSetOutcomeAgentV1();
   const sourceCommitSha = process.env.GITHUB_SHA ?? process.env.COMMIT_SHA ?? null;
   const sourceRunUri = process.env.GITHUB_SERVER_URL && process.env.GITHUB_REPOSITORY && process.env.GITHUB_RUN_ID
     ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
     : null;
-  const workItems = buildCatalogSetWorkItemsV1({
-    candidates,
+  const outcomePackages = options.outcomePackagesFile
+    ? await readJson(options.outcomePackagesFile)
+    : [];
+  const candidateTargetKeys = new Set(candidates.map((candidate) =>
+    catalogIncrementalTargetForGapV1(candidate)?.key).filter(Boolean));
+  const executableTargetKeys = new Set(outcomePackages.map((row) => row.target_key));
+  if (executableTargetKeys.size !== outcomePackages.length) {
+    throw new Error("Catalog outcome packages contain duplicate targets");
+  }
+  for (const outcomePackage of outcomePackages) {
+    if (!candidateTargetKeys.has(outcomePackage.target_key)) {
+      throw new Error(`Catalog outcome target is absent from this discovery run: ${outcomePackage.target_key}`);
+    }
+    if (outcomePackage.source_commit_sha !== sourceCommitSha) {
+      throw new Error("Catalog outcome package source commit does not match the publishing run");
+    }
+    if (process.env.GITHUB_RUN_ID && outcomePackage.source_run_id !== process.env.GITHUB_RUN_ID) {
+      throw new Error("Catalog outcome package source run does not match the publishing run");
+    }
+  }
+  const reviewCandidates = candidates.filter((candidate) => {
+    const target = catalogIncrementalTargetForGapV1(candidate);
+    return !target || !executableTargetKeys.has(target.key);
+  });
+  const reviewWorkItems = buildCatalogSetWorkItemsV1({
+    candidates: reviewCandidates,
     discoverySummary: summary,
     artifactHashes,
     sourceCommitSha,
     sourceRunUri,
   });
+  const outcomeWorkItems = outcomePackages.map((outcomePackage) =>
+    buildCatalogSetOutcomeWorkItemV1({ outcomePackage, sourceRunUri }));
+  const workItems = [...outcomeWorkItems, ...reviewWorkItems];
   await fs.mkdir(options.outDir, { recursive: true });
-  await writeJson(path.join(options.outDir, "agent_registration.json"), agent);
+  await writeJson(path.join(options.outDir, "agent_registration.json"), [
+    outcomeAgent,
+    reviewAgent,
+  ]);
   await writeJson(path.join(options.outDir, "founder_work_items.json"), workItems);
 
   let receipts = [];
   if (options.publish) {
-    receipts = await publishCatalogWorkItemsV1({
-      agent,
-      workItems,
+    const credentials = {
       supabaseUrl: process.env.PROD_SUPABASE_URL ?? process.env.SUPABASE_URL,
       serviceRoleKey: process.env.SUPABASE_SECRET_KEY,
-    });
+    };
+    if (outcomeWorkItems.length > 0) {
+      receipts.push(...await publishCatalogWorkItemsV1({
+        agent: outcomeAgent,
+        workItems: outcomeWorkItems,
+        ...credentials,
+      }));
+    }
+    if (reviewWorkItems.length > 0) {
+      receipts.push(...await publishCatalogWorkItemsV1({
+        agent: reviewAgent,
+        workItems: reviewWorkItems,
+        ...credentials,
+      }));
+    }
     await writeJson(path.join(options.outDir, "publication_receipts.json"), receipts);
   }
   const report = {
@@ -70,6 +128,8 @@ async function main() {
     source_run_uri: sourceRunUri,
     candidate_count: candidates.length,
     work_item_count: workItems.length,
+    executable_outcome_work_item_count: outcomeWorkItems.length,
+    review_only_work_item_count: reviewWorkItems.length,
     published_count: receipts.length,
     database_writes: options.publish,
     canonical_writes: false,
