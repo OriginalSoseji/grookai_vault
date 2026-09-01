@@ -22,6 +22,8 @@ import { collectHumanFixtureEvidence } from './verified_master_set_index_v1/sour
 import { assertMe04FinishTruthV1 } from './me04_finish_truth_v1.mjs';
 import { ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1 } from
   '../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs';
+import { loadTcgdexGithubLanguageSnapshotsV1 } from
+  '../../backend/catalog/tcgdex_github_language_source_v1.mjs';
 
 const require = createRequire(import.meta.url);
 const dotenv = require('dotenv');
@@ -36,7 +38,7 @@ for (const envPath of ['.env.local', '.env']) {
 const DEFAULT_MASTER_OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const DEFAULT_POKEMONTCG_SNAPSHOT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'source_snapshots', 'pokemontcg_api_source_snapshot_v1.json.gz');
 const DEFAULT_POKEMONTCG_PRESERVATION_SNAPSHOT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'source_snapshots', 'pokemontcg_api_preservation_overrides_v1.json');
-const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex', 'pkmncards', 'bulbapedia']);
+const SUPPORTED_SOURCES = new Set(['tcgdex', 'tcgdex_github', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex', 'pkmncards', 'bulbapedia']);
 const FOLDED_SUBSET_SET_CONFIGS = new Map(
   ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1.map((owner) => [
     owner.source_set_key,
@@ -184,6 +186,7 @@ function parseArgs(argv) {
     concurrency: 4,
     skipDbAudit: false,
     skipHumanFixtures: false,
+    skipLivePokemonTcg: false,
     dryRun: false,
     fixtureDir: path.join(DEFAULT_OUTPUT_DIR, 'source_fixtures'),
     pokemontcgSnapshotPath: DEFAULT_POKEMONTCG_SNAPSHOT_PATH,
@@ -217,6 +220,8 @@ function parseArgs(argv) {
       options.skipDbAudit = true;
     } else if (arg === '--skip-human-fixtures') {
       options.skipHumanFixtures = true;
+    } else if (arg === '--skip-live-pokemontcg') {
+      options.skipLivePokemonTcg = true;
     } else if (arg === '--fixture-dir') {
       options.fixtureDir = next;
       index += 1;
@@ -302,7 +307,7 @@ function slugifyForPkmnCards(value) {
 }
 
 function pkmnCardsSlugForSet(key, setName) {
-  const normalizedKey = normalizeText(key);
+  const normalizedKey = String(key ?? '').trim().toLowerCase();
   const normalizedName = normalizeText(setName);
   const overrides = {
     basep: 'wizards-black-star-promos',
@@ -330,7 +335,7 @@ function pkmnCardsSlugForSet(key, setName) {
 }
 
 function bulbapediaTitleForSet(key, setName) {
-  const normalizedKey = normalizeText(key);
+  const normalizedKey = String(key ?? '').trim().toLowerCase();
   const normalizedName = normalizeText(setName);
   const overrides = {
     basep: 'Wizards_Black_Star_Promos_(TCG)',
@@ -344,6 +349,8 @@ function bulbapediaTitleForSet(key, setName) {
     xyp: 'XY_Black_Star_Promos_(TCG)',
     ascended_heroes: 'Ascended_Heroes_(TCG)',
     sp: 'Sample_Set_(TCG)',
+    'tk-sm-l': 'Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)',
+    'tk-sm-r': 'Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)',
     wp: 'W_Promotional_cards',
   };
   if (overrides[normalizedKey]) return overrides[normalizedKey];
@@ -369,6 +376,7 @@ function isPhysicalEnglishTcgSet(set) {
 
 async function fetchPokemonTcgSets(options) {
   if (!options.sources.includes('pokemontcg_api')) return [];
+  if (options.skipLivePokemonTcg) return [];
   const headers = {};
   if (process.env.POKEMONAPI_API_KEY) headers['X-Api-Key'] = process.env.POKEMONAPI_API_KEY;
   const sets = [];
@@ -434,36 +442,46 @@ function mergePokemonTcgSnapshotSetConfigs(setConfigs, snapshot, { appendMissing
   }
 
   for (const snapshotSet of snapshot.set_configs) {
-    const key = normalizeText(snapshotSet.key);
-    const nameMatches = byName.get(normalizeSetLookup(snapshotSet.set_name)) ?? [];
+    const derivedBulbapediaTitle = bulbapediaTitleForSet(snapshotSet.key, snapshotSet.set_name);
+    const normalizedSnapshotSet = {
+      ...snapshotSet,
+      source_aliases: {
+        ...(snapshotSet.source_aliases ?? {}),
+        pkmncards: pkmnCardsSlugForSet(snapshotSet.key, snapshotSet.set_name),
+        bulbapedia: derivedBulbapediaTitle,
+        bulbapedia_set_list: derivedBulbapediaTitle,
+      },
+    };
+    const key = normalizeText(normalizedSnapshotSet.key);
+    const nameMatches = byName.get(normalizeSetLookup(normalizedSnapshotSet.set_name)) ?? [];
     const existing = byKey.get(key) ?? (nameMatches.length === 1 ? nameMatches[0] : null);
     if (existing) {
-      existing.pokemontcg = existing.pokemontcg ?? snapshotSet.pokemontcg ?? null;
-      existing.manual_aliases = uniqueSorted([...(existing.manual_aliases ?? []), ...(snapshotSet.manual_aliases ?? [])]);
+      existing.pokemontcg = existing.pokemontcg ?? normalizedSnapshotSet.pokemontcg ?? null;
+      existing.manual_aliases = uniqueSorted([...(existing.manual_aliases ?? []), ...(normalizedSnapshotSet.manual_aliases ?? [])]);
       existing.source_aliases = {
-        ...(snapshotSet.source_aliases ?? {}),
+        ...(normalizedSnapshotSet.source_aliases ?? {}),
         ...(existing.source_aliases ?? {}),
-        pokemontcg_api: existing.source_aliases?.pokemontcg_api ?? snapshotSet.source_aliases?.pokemontcg_api ?? null,
+        pokemontcg_api: existing.source_aliases?.pokemontcg_api ?? normalizedSnapshotSet.source_aliases?.pokemontcg_api ?? null,
       };
       existing.source_status = {
-        ...(snapshotSet.source_status ?? {}),
+        ...(normalizedSnapshotSet.source_status ?? {}),
         ...(existing.source_status ?? {}),
         pokemontcg_api: existing.source_status?.pokemontcg_api === 'available'
           ? 'available'
-          : (snapshotSet.source_status?.pokemontcg_api ?? existing.source_status?.pokemontcg_api ?? 'unavailable'),
+          : (normalizedSnapshotSet.source_status?.pokemontcg_api ?? existing.source_status?.pokemontcg_api ?? 'unavailable'),
       };
       existing.source_totals = {
-        ...(snapshotSet.source_totals ?? {}),
+        ...(normalizedSnapshotSet.source_totals ?? {}),
         ...(existing.source_totals ?? {}),
-        pokemontcg_api: existing.source_totals?.pokemontcg_api ?? snapshotSet.source_totals?.pokemontcg_api ?? {},
+        pokemontcg_api: existing.source_totals?.pokemontcg_api ?? normalizedSnapshotSet.source_totals?.pokemontcg_api ?? {},
       };
       byKey.set(normalizeText(existing.key), existing);
       continue;
     }
 
     if (appendMissing) {
-      merged.push(snapshotSet);
-      byKey.set(key, snapshotSet);
+      merged.push(normalizedSnapshotSet);
+      byKey.set(key, normalizedSnapshotSet);
     }
   }
 
@@ -593,6 +611,10 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
     });
   }
 
+  return filterAndLimitSetConfigs(configs, options);
+}
+
+function filterAndLimitSetConfigs(configs, options) {
   const filtered = configs
     .filter((set) => {
       if (!options.setFilter) return true;
@@ -1185,7 +1207,7 @@ function parseBulbapediaRarity(rarityCell) {
 function parseBulbapediaSetPage(html, expectedSetName) {
   const source = String(html ?? '');
   const start = source.indexOf('id="Set_lists"');
-  if (start === -1) return [];
+  if (start === -1) return parseBulbapediaDeckListPage(source, expectedSetName);
   const nextHeading = source.indexOf('<h2', start + 1);
   const section = source.slice(start, nextHeading === -1 ? source.length : nextHeading);
   const expected = normalizeSetLookup(expectedSetName);
@@ -1214,6 +1236,44 @@ function parseBulbapediaSetPage(html, expectedSetName) {
   return sortByCardNumber(rows);
 }
 
+function parseBulbapediaDeckListPage(html, expectedSetName) {
+  const source = String(html ?? '');
+  const start = source.indexOf('id="Deck_lists"');
+  if (start === -1) return [];
+  const nextHeading = source.indexOf('<h2', start + 1);
+  const section = source.slice(start, nextHeading === -1 ? source.length : nextHeading);
+  const subjectMatch = String(expectedSetName ?? '').match(/\(([^()]+)\)\s*$/);
+  if (!subjectMatch) return [];
+  const expectedHeading = normalizeSetLookup(`${subjectMatch[1]} Half Deck`);
+  const headings = [...section.matchAll(/<big><b>([\s\S]*?)<\/b><\/big>/g)];
+  const headingIndex = headings.findIndex(
+    (entry) => normalizeSetLookup(stripHtml(entry[1])) === expectedHeading,
+  );
+  if (headingIndex === -1) return [];
+  const heading = headings[headingIndex];
+  const scopedSection = section.slice(
+    heading.index,
+    headings[headingIndex + 1]?.index ?? section.length,
+  );
+  const rows = [];
+  const seen = new Set();
+  for (const match of scopedSection.matchAll(/<tr\b[\s\S]*?<\/tr>/g)) {
+    const cells = [...match[0].matchAll(/<(?:td|th)\b[\s\S]*?<\/(?:td|th)>/g)]
+      .map((cell) => cell[0]);
+    if (cells.length < 2) continue;
+    const numberText = stripHtml(cells[0]);
+    if (!/^\d+\/\d+$/.test(numberText)) continue;
+    const cardNumber = numberText.split('/')[0].trim();
+    const cardName = parseBulbapediaCardName(cells[1]);
+    if (!cardName || !/[A-Za-z0-9]/.test(cardName)) continue;
+    const key = `${cardNumber}|${cardName}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    rows.push({ card_number: cardNumber, card_name: cardName, rarity: null });
+  }
+  return sortByCardNumber(rows);
+}
+
 async function collectBulbapediaEvidenceForSet(setConfig, options, retrievedAt) {
   if (!options.sources.includes('bulbapedia')) return [];
   const url = bulbapediaUrl(setConfig);
@@ -1226,7 +1286,7 @@ async function collectBulbapediaEvidenceForSet(setConfig, options, retrievedAt) 
   return parsedRows.map((row) => ({
     source_key: 'bulbapedia_set_list',
     source_kind: 'human_readable_checklist',
-    source_url: `${url}#Set_lists`,
+    source_url: `${url}${/\btrainer kit\b/i.test(setConfig.set_name) ? '#Deck_lists' : '#Set_lists'}`,
     set_key: setConfig.key,
     set_name: setConfig.set_name,
     card_number: row.card_number,
@@ -1280,6 +1340,43 @@ async function collectTcgdexCardsForSet(setConfig, options, retrievedAt) {
     return fetchJson(`${options.tcgdexBaseUrl}/cards/${encodeURIComponent(stub.id)}`);
   });
   return details.filter(Boolean).flatMap((card) => tcgdexCardEvidence(card, setConfig, retrievedAt));
+}
+
+function tcgdexGithubCardEvidence(card, setConfig, snapshot, retrievedAt) {
+  const sourceUrl = `https://github.com/tcgdex/cards-database/blob/${snapshot.source_commit_sha}/${card.sourceReference}`;
+  return {
+    source_key: 'tcgdex_github_snapshot',
+    source_kind: 'structured_api',
+    source_url: encodeURI(sourceUrl),
+    set_key: setConfig.key,
+    set_name: setConfig.set_name,
+    card_number: card.localId,
+    card_name: card.name,
+    finish_key: null,
+    rarity: null,
+    language: 'en',
+    evidence_type: 'card_identity',
+    evidence_label: `TCGdex repository card ${card.id}`,
+    retrieved_at: retrievedAt,
+    raw_snapshot_ref: `tcgdex_github:${snapshot.source_commit_sha}:${card.sourceReference}`,
+    source_card_name: card.name,
+    source_set_name: setConfig.set_name,
+    notes: 'Commit-pinned TCGdex repository identity evidence used when the live API is unavailable. This source does not emit finish truth or create printings.',
+  };
+}
+
+function collectTcgdexGithubEvidenceForSet(setConfig, options, retrievedAt) {
+  const snapshot = options.tcgdexGithubSnapshot;
+  if (!snapshot || !options.sources.includes('tcgdex_github')) return [];
+  const setId = setConfig.source_aliases.tcgdex;
+  if (!setId) return [];
+  const sourceSet = snapshot.snapshots.en.sets.find((row) => row.id === setId);
+  if (!sourceSet) return [];
+  const cards = snapshot.snapshots.en.cards.filter((row) => row.id.startsWith(`${setId}-`));
+  if (cards.length !== sourceSet.cardCount.total) {
+    throw new Error(`TCGdex repository card-count mismatch for ${setId}: expected ${sourceSet.cardCount.total}, received ${cards.length}`);
+  }
+  return cards.flatMap((card) => tcgdexGithubCardEvidence(card, setConfig, snapshot, retrievedAt));
 }
 
 function sourceAvailabilityFromSet(setConfig, sourceKey, rows, error = null) {
@@ -1780,6 +1877,34 @@ async function collectEvidenceForSet(setConfig, options, retrievedAt) {
       availability.push(sourceAvailabilityFromSet(setConfig, 'tcgdex', sourceRows));
     } catch (error) {
       availability.push(sourceAvailabilityFromSet(setConfig, 'tcgdex', [], error));
+    }
+  }
+
+  if (options.sources.includes('tcgdex_github')) {
+    try {
+      const sourceRows = collectTcgdexGithubEvidenceForSet(setConfig, options, retrievedAt);
+      rows.push(...sourceRows);
+      availability.push({
+        set_key: setConfig.key,
+        set_name: setConfig.set_name,
+        source_key: 'tcgdex_github_snapshot',
+        source_alias: options.tcgdexGithubSnapshot?.source_commit_sha ?? null,
+        configured_status: options.tcgdexGithubSnapshot ? 'available' : 'unavailable',
+        runtime_status: sourceRows.length > 0 ? 'collected' : 'unavailable',
+        evidence_rows: sourceRows.length,
+        error: null,
+      });
+    } catch (error) {
+      availability.push({
+        set_key: setConfig.key,
+        set_name: setConfig.set_name,
+        source_key: 'tcgdex_github_snapshot',
+        source_alias: options.tcgdexGithubSnapshot?.source_commit_sha ?? null,
+        configured_status: options.tcgdexGithubSnapshot ? 'available' : 'unavailable',
+        runtime_status: 'error',
+        evidence_rows: 0,
+        error: String(error.message ?? error),
+      });
     }
   }
 
@@ -3844,7 +3969,11 @@ async function main() {
 
   console.log(`[master-index] fetching set inventories from ${options.sources.join(', ')}`);
   const pokemonTcgSnapshot = await loadPokemonTcgSourceSnapshot(options);
-  const [pokemonSetsResult, tcgdexSets] = await Promise.all([
+  const tcgdexGithubSnapshot = options.sources.includes('tcgdex_github')
+    ? await loadTcgdexGithubLanguageSnapshotsV1({ concurrency: options.concurrency })
+    : null;
+  options.tcgdexGithubSnapshot = tcgdexGithubSnapshot;
+  const [pokemonSetsResult, liveTcgdexSets] = await Promise.all([
     fetchPokemonTcgSets(options).catch((error) => {
       console.warn(`[master-index] PokemonTCG.io set inventory unavailable: ${error.message ?? error}`);
       return [];
@@ -3863,16 +3992,28 @@ async function main() {
         );
       }),
   ]);
+  const tcgdexSetsById = new Map(
+    (tcgdexGithubSnapshot?.snapshots?.en?.sets ?? []).map((set) => [set.id, set]),
+  );
+  for (const set of liveTcgdexSets) tcgdexSetsById.set(set.id, set);
+  const tcgdexSets = [...tcgdexSetsById.values()];
   const pokemonSets = pokemonSetsResult;
   const pokemonLiveUnavailable = pokemonSets.length === 0 && Boolean(pokemonTcgSnapshot?.set_configs?.length);
   if (pokemonLiveUnavailable) {
     options.skipLivePokemonTcg = true;
     console.log(`[master-index] enriching canonical set configs with cached PokemonTCG.io aliases from ${options.pokemontcgSnapshotPath}`);
   }
-  const setConfigs = mergePokemonTcgSnapshotSetConfigs(
-    buildSetConfigs({ pokemonSets, tcgdexSets, options }),
-    pokemonTcgSnapshot,
-    { appendMissing: pokemonLiveUnavailable },
+  const setConfigs = filterAndLimitSetConfigs(
+    mergePokemonTcgSnapshotSetConfigs(
+      buildSetConfigs({ pokemonSets, tcgdexSets, options }),
+      pokemonTcgSnapshot,
+      // Live inventories are authoritative for overlapping sets, but neither live
+      // registry is guaranteed to enumerate legacy side products such as Trainer
+      // Kits. The audited snapshot fills only missing set configurations so their
+      // independent checklist adapters can still collect current evidence.
+      { appendMissing: Boolean(pokemonTcgSnapshot?.set_configs?.length) },
+    ),
+    options,
   );
   console.log(`[master-index] selected ${setConfigs.length} English sets`);
 
