@@ -17,14 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      FULL_WINDOW_START: "2026-08-26T08:15:00.000Z"
-      FULL_REQUIRED_END: "2026-09-02T09:45:00.000Z"
-      FINAL_OBSERVATION_DEADLINE: "2026-09-03T11:15:00.000Z"
-      FULL_ACTIVATION_RUN_ID: "70ab50a3-1603-47d3-96ab-30c42515e7fa"
-      FULL_EXPECTED_RUNTIME_SHA: "4b6064a5fb7eeacb7887c240735fc6dd8ffec06f"
+      FULL_WINDOW_START: "2026-09-01T20:13:30.190Z"
+      FULL_REQUIRED_END: "2026-09-08T09:45:00.000Z"
+      FINAL_OBSERVATION_DEADLINE: "2026-09-09T11:15:00.000Z"
+      FULL_ACTIVATION_RUN_ID: "auto"
+      FULL_EXPECTED_RUNTIME_SHA: "b93aa87de5f2acb83d17369e85de0ab3b94ac414"
       FULL_EXPECTED_COVERAGE_SHA: "0adeba22428e798496ce3141b34f32cabd6d8ccd"
       FULL_EXPECTED_PERFORMANCE_SHA: "00e03d05fc8f6f80ecf5523140611991e617f581"
-      OBSERVER_SOURCE_SHA: "364a4ba968548f0c4535bb5ca4370f78b828b2a5"
+      OBSERVER_SOURCE_SHA: "01e669d08f18579cb35e5b96d70780c11baea198"
       COVERAGE_SUMMARY: "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/coverage/summary.json"
       PERFORMANCE_SUMMARY: "docs/audits/pricing/mee_pricing_platform_production_v1/full_rollout_gate_inputs_v1/performance/summary.json"
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
