@@ -264,6 +264,50 @@ function integerOrNull(value) {
   return Number.isSafeInteger(parsed) && parsed >= 0 ? parsed : null;
 }
 
+export function resolvePokemonEnglishIdentityCountV1({ registrySet, detail = null }) {
+  const declaredTotal = integerOrNull(
+    detail?.cardCount?.total ?? registrySet?.cardCount?.total,
+  );
+  if (!detail) {
+    return {
+      expected_card_count: declaredTotal,
+      count_scope: "full_set",
+      declared_total: declaredTotal,
+      observed_identity_row_count: null,
+    };
+  }
+  if (!Array.isArray(detail.cards)) {
+    throw new Error(
+      `[SOURCE_INTEGRITY_FAILURE] TCGdex set ${clean(detail?.id ?? registrySet?.id)} ` +
+      "detail payload is missing a card identity array",
+    );
+  }
+
+  const identityKeys = detail.cards.map((card) => {
+    const id = clean(card?.id);
+    if (id) return `id:${id.toLocaleLowerCase("und")}`;
+    const localId = clean(card?.localId);
+    const name = clean(card?.name);
+    return localId && name
+      ? `coordinate:${localId.toLocaleLowerCase("und")}|${name.toLocaleLowerCase("und")}`
+      : null;
+  }).filter(Boolean);
+  const uniqueIdentityKeys = new Set(identityKeys);
+  if (identityKeys.length !== detail.cards.length ||
+      uniqueIdentityKeys.size !== identityKeys.length) {
+    throw new Error(
+      `[SOURCE_INTEGRITY_FAILURE] TCGdex set ${clean(detail?.id ?? registrySet?.id)} ` +
+      "contains missing or duplicate card identity rows",
+    );
+  }
+  return {
+    expected_card_count: uniqueIdentityKeys.size,
+    count_scope: "source_observed_identity_rows",
+    declared_total: declaredTotal,
+    observed_identity_row_count: uniqueIdentityKeys.size,
+  };
+}
+
 function compareDate(value, asOf) {
   const date = clean(value);
   return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date.localeCompare(asOf) : -1;
@@ -314,7 +358,8 @@ export function reconcileCatalogSets({ sourceSets, databaseSets, asOf }) {
     const countScope = clean(source.count_scope) || "full_set";
     const hasCompleteCountAuthority = countScope === "full_set" ||
       countScope === "canonical_parent_rows" ||
-      countScope === "canonical_parent_rows_owned_by_set";
+      countScope === "canonical_parent_rows_owned_by_set" ||
+      (countScope === "source_observed_identity_rows" && expected !== null && expected > 0);
     let status;
     const normalizedSourceCode = normalizeCatalogSetCode(source.game_code, source.code);
     if (normalizedSourceCode &&
