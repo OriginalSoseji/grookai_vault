@@ -13,6 +13,7 @@ test("catalog promotion supervisor routes exact supported gap shapes", () => {
     { game_code: "pokemon", source_id: "pokemon_card_official_jp_products", status: "incomplete_cards", source_code: "M6", source_set_id: "955", database_code: "jpn-product-x", master_index_gate: { decision: "canonical_delta_eligible", language: "ja" }, count_evidence: [{ authority: "tcgdex_japanese_structured_api", scope: "full_set" }] },
   ]);
   assert.deepEqual(plan.targets.map((row) => row.key), ["mtg:abc", "one_piece:OP17", "pokemon_jpn:M6"]);
+  assert.ok(plan.targets[2].args.includes("--official-card-ids="));
   assert.equal(plan.unsupported.length, 0);
 });
 

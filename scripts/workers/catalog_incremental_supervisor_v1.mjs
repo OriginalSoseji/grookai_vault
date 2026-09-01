@@ -128,6 +128,7 @@ export function catalogIncrementalTargetForGapV1(gap) {
         `--pokemon-set-code=${gap.source_code}`,
         `--pokemon-db-set-code=${gap.database_code}`,
         `--pokemon-product-id=${gap.source_set_id}`,
+        "--official-card-ids=",
       ],
     };
   }

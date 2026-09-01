@@ -55,6 +55,10 @@ alters the payload fails closed and requires a newly prepared phone item.
 - English Pokemon Master-Index-gated incremental completion;
 - Japanese Pokemon structured full-set incremental completion.
 
+Generic Japanese full-set outcomes explicitly disable the worker's optional
+single-card enrichment input. Additional official-card evidence is a separate
+targeted workflow and cannot be written under a set-completion approval.
+
 The frozen-official Japanese checklist lane remains review-only until its
 source package can be reproduced by the executor without broadening authority.
 Any future writer must separately adopt expected-payload fingerprint checking,
