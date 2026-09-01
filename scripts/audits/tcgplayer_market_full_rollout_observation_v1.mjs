@@ -101,6 +101,14 @@ function parseArgs(argv) {
   if (!args.activationRunId) {
     throw new Error("--activation-run-id is required");
   }
+  if (
+    args.activationRunId !== "auto" &&
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      args.activationRunId,
+    )
+  ) {
+    throw new Error("--activation-run-id must be a UUID or auto");
+  }
   if (!/^[a-f0-9]{40}$/.test(args.expectedCommitSha)) {
     throw new Error("--expected-commit-sha must be a full lowercase SHA");
   }
@@ -195,14 +203,30 @@ async function readGovernedSummary(summaryPath, commitField) {
 }
 
 async function queryEvidence(client, args, asOf, evidenceThrough) {
-  const activationRun = (
-    await client.query(
-      `select *
-       from public.market_price_pipeline_runs
-       where id = $1::uuid`,
-      [args.activationRunId],
-    )
-  ).rows[0] ?? null;
+  const activationRun = args.activationRunId === "auto"
+    ? (
+        await client.query(
+          `select *
+           from public.market_price_pipeline_runs
+           where run_mode = 'production'
+             and started_at > $1::timestamptz
+             and started_at <= $2::timestamptz
+             and git_commit_sha = $3
+             and run_key like
+               'TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-%-publication'
+           order by started_at, id
+           limit 1`,
+          [args.windowStart, evidenceThrough, args.expectedCommitSha],
+        )
+      ).rows[0] ?? null
+    : (
+        await client.query(
+          `select *
+           from public.market_price_pipeline_runs
+           where id = $1::uuid`,
+          [args.activationRunId],
+        )
+      ).rows[0] ?? null;
 
   const scheduledRuns = (
     await client.query(
@@ -234,23 +258,7 @@ async function queryEvidence(client, args, asOf, evidenceThrough) {
 
   const current = (
     await client.query(
-      `with totals as (
-         select
-           count(*)::integer as exact_price_count,
-           count(*) filter (
-             where currency = 'USD' and market_price > 0
-           )::integer as positive_usd_count,
-           count(*) filter (
-             where provenance_id is null
-           )::integer as missing_provenance_count,
-           count(*) filter (
-             where freshness <> 'fresh' or age_seconds > 36 * 60 * 60
-           )::integer as stale_price_count,
-           (array_agg(card_printing_id order by card_printing_id))[1]::text
-             as sample_card_printing_id
-         from public.v_market_price_current_v1
-       ),
-       current_rows as (
+      `with current_rows as (
          select snapshot.*, decision.id as decision_id,
                 decision.policy_version as decision_policy_version,
                 decision.eligible,
@@ -265,11 +273,49 @@ async function queryEvidence(client, args, asOf, evidenceThrough) {
                 decision.card_print_id as decision_card_print_id,
                 decision.card_printing_id as decision_card_printing_id
          from public.market_price_current_publication pointer
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = pointer.publication_set_id
+          and publication_set.run_id = pointer.run_id
+          and publication_set.publication_state = 'published'
+         join public.market_price_pipeline_runs pipeline_run
+           on pipeline_run.id = pointer.run_id
+          and pipeline_run.reconciliation_state = 'reconciled'
+          and pipeline_run.state in ('published', 'verified')
          join public.market_price_publication_snapshots snapshot
            on snapshot.publication_set_id = pointer.publication_set_id
+          and snapshot.run_id = pointer.run_id
+          and snapshot.publication_state = 'published'
          left join public.market_price_qualification_decisions decision
            on decision.id = snapshot.qualification_decision_id
          where pointer.singleton
+           and not exists (
+             select 1
+             from public.card_printing_truth_reviews truth_review
+             where truth_review.card_printing_id = snapshot.card_printing_id
+               and truth_review.active = true
+               and truth_review.public_visibility in (
+                 'hidden_pending_review',
+                 'hidden_unsupported'
+               )
+           )
+       ),
+       totals as (
+         select
+           count(*)::integer as exact_price_count,
+           count(*) filter (
+             where currency = 'USD' and market_price > 0
+           )::integer as positive_usd_count,
+           count(*) filter (
+             where provenance_id is null
+           )::integer as missing_provenance_count,
+           count(*) filter (
+             where source_sync_finished_at is null
+                or source_sync_finished_at <
+                   $1::timestamptz - interval '36 hours'
+           )::integer as stale_price_count,
+           (array_agg(card_printing_id order by card_printing_id))[1]::text
+             as sample_card_printing_id
+         from current_rows
        ),
        integrity as (
          select
@@ -325,6 +371,7 @@ async function queryEvidence(client, args, asOf, evidenceThrough) {
        from totals
        cross join integrity
        left join pointer on true`,
+      [asOf],
     )
   ).rows[0];
 
@@ -462,6 +509,12 @@ async function queryEvidence(client, args, asOf, evidenceThrough) {
         current.previous_publication_set_id,
       ),
     },
+    activation_resolution: {
+      mode: args.activationRunId === "auto" ? "first_exact_runtime_run" : "explicit_id",
+      requested_id: args.activationRunId,
+      resolved_id: activationRun?.id ?? null,
+      expected_commit_sha: args.expectedCommitSha,
+    },
   };
 }
 
@@ -585,7 +638,8 @@ async function main() {
       observer_tracked_worktree_clean:
         gitValue(["status", "--porcelain", "--untracked-files=no"]) === "",
       window_start: args.windowStart,
-      activation_run_id: args.activationRunId,
+      activation_run_id: evidence.activation_resolution.resolved_id,
+      activation_resolution: evidence.activation_resolution,
       expected_commit_sha: args.expectedCommitSha,
       expected_coverage_commit_sha: args.expectedCoverageCommitSha,
       expected_performance_commit_sha: args.expectedPerformanceCommitSha,

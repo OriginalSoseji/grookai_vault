@@ -321,6 +321,15 @@ test("the observer is read-only and preserves governed evidence artifacts", () =
   assert.match(SCRIPT, /--expected-coverage-commit-sha/);
   assert.match(SCRIPT, /--expected-performance-commit-sha/);
   assert.match(SCRIPT, /--require-pass/);
+  assert.match(SCRIPT, /args\.activationRunId === "auto"/);
+  assert.match(SCRIPT, /git_commit_sha = \$3/);
+  assert.match(SCRIPT, /first_exact_runtime_run/);
+  assert.match(SCRIPT, /from current_rows/);
+  assert.match(SCRIPT, /from public\.card_printing_truth_reviews truth_review/);
+  assert.match(SCRIPT, /truth_review\.active = true/);
+  assert.match(SCRIPT, /hidden_pending_review/);
+  assert.doesNotMatch(SCRIPT, /card_printing_truth_review_queue/);
+  assert.doesNotMatch(SCRIPT, /from public\.v_market_price_current_v1/i);
   assert.doesNotMatch(
     SCRIPT,
     /\b(insert\s+into|update\s+public\.|delete\s+from|grant\s+execute)\b/i,
