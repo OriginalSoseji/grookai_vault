@@ -349,6 +349,8 @@ function bulbapediaTitleForSet(key, setName) {
     xyp: 'XY_Black_Star_Promos_(TCG)',
     ascended_heroes: 'Ascended_Heroes_(TCG)',
     sp: 'Sample_Set_(TCG)',
+    'tk-hs-g': 'HS_Trainer_Kit_(TCG)',
+    'tk-hs-r': 'HS_Trainer_Kit_(TCG)',
     'tk-sm-l': 'Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)',
     'tk-sm-r': 'Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)',
     wp: 'W_Promotional_cards',

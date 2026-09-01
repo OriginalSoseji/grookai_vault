@@ -18,6 +18,7 @@ import {
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
   reconcileCatalogSets,
+  resolvePokemonEnglishIdentityCountV1,
   runDegradedCatalogSourceLaneV1,
   summarizeCatalogReconciliation,
 } from "../../backend/catalog/universal_catalog_discovery_v1.mjs";
@@ -155,6 +156,92 @@ test("partial product counts cannot falsely prove a Japanese set complete", () =
   });
   assert.equal(row.status, CATALOG_GAP_STATUSES.PRESENT_UNVERIFIED);
   assert.equal(row.count_scope, "official_product_linked");
+});
+
+test("Pokemon English discovery uses observed identity rows instead of a conflicting product total", () => {
+  const count = resolvePokemonEnglishIdentityCountV1({
+    registrySet: { id: "mfb", cardCount: { total: 48 } },
+    detail: {
+      id: "mfb",
+      cardCount: { total: 48 },
+      cards: Array.from({ length: 34 }, (_, index) => ({
+        id: `mfb-${index + 1}`,
+        localId: String(index + 1),
+        name: `Card ${index + 1}`,
+      })),
+    },
+  });
+  assert.deepEqual(count, {
+    expected_card_count: 34,
+    count_scope: "source_observed_identity_rows",
+    declared_total: 48,
+    observed_identity_row_count: 34,
+  });
+  const [row] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "mfb",
+      name: "My First Battle",
+      expected_card_count: count.expected_card_count,
+      count_scope: count.count_scope,
+    }],
+    databaseSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "mfb",
+      name: "My First Battle",
+      card_count: 34,
+    }],
+    asOf: "2026-09-01",
+  });
+  assert.equal(row.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
+});
+
+test("Pokemon English discovery does not promote declared totals without identity rows", () => {
+  const count = resolvePokemonEnglishIdentityCountV1({
+    registrySet: { id: "sp", cardCount: { total: 10 } },
+    detail: { id: "sp", cardCount: { total: 10 }, cards: [] },
+  });
+  assert.deepEqual(count, {
+    expected_card_count: 0,
+    count_scope: "source_observed_identity_rows",
+    declared_total: 10,
+    observed_identity_row_count: 0,
+  });
+  const [row] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "sp",
+      name: "Sample",
+      expected_card_count: count.expected_card_count,
+      count_scope: count.count_scope,
+    }],
+    databaseSets: [],
+    asOf: "2026-09-01",
+  });
+  assert.equal(row.status, CATALOG_GAP_STATUSES.SOURCE_NO_ELIGIBLE_CARDS);
+});
+
+test("Pokemon English observed identity rows reject duplicate source identities", () => {
+  assert.throws(() => resolvePokemonEnglishIdentityCountV1({
+    registrySet: { id: "bad", cardCount: { total: 2 } },
+    detail: {
+      id: "bad",
+      cards: [
+        { id: "bad-1", localId: "1", name: "One" },
+        { id: "bad-1", localId: "1", name: "One" },
+      ],
+    },
+  }), /SOURCE_INTEGRITY_FAILURE/);
+});
+
+test("Pokemon English fetched details reject a missing card identity array", () => {
+  assert.throws(() => resolvePokemonEnglishIdentityCountV1({
+    registrySet: { id: "malformed", cardCount: { total: 12 } },
+    detail: { id: "malformed", cardCount: { total: 12 } },
+  }), /SOURCE_INTEGRITY_FAILURE.*missing a card identity array/);
 });
 
 test("exact set code wins over duplicate display-name candidates", () => {
@@ -560,6 +647,9 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /loadTcgdexGithubEnglishSetSnapshotV1/);
   assert.match(worker, /tcgdex_official_github_snapshot/);
   assert.match(worker, /tcgdex_english_set_registry/);
+  assert.match(worker, /const masterIndexComplete = validCount !== null && validCount > 0/);
+  assert.match(worker, /scope: "declared_product_total"/);
+  assert.match(worker, /canonical_identity_count_authority: false/);
   assert.match(worker, /serie\?\.id !== "tcgp"/);
   assert.match(worker, /pokemon-card\.com\/card-search\/resultAPI\.php/);
   assert.match(worker, /recent_japanese_card_gaps\.json/);

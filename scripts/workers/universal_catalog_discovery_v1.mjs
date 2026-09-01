@@ -18,6 +18,7 @@ import {
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
   reconcileCatalogSets,
+  resolvePokemonEnglishIdentityCountV1,
   runDegradedCatalogSourceLaneV1,
   sha256,
   stableJson,
@@ -673,8 +674,16 @@ async function discoverPokemonEnglish(
   const matchedDatabaseSet = (set) => databaseByCode.get(compactSetCode(set.id)) ??
     databaseByName.get(normalizeCatalogText(set.name)) ?? null;
   const latestIds = new Set(registry.slice(-30).map((set) => clean(set.id)));
-  const detailCandidates = registry.filter((set) =>
-    !matchedDatabaseSet(set) || latestIds.has(clean(set.id)));
+  const detailCandidates = registry.filter((set) => {
+    const database = matchedDatabaseSet(set);
+    const declaredTotal = Number(set?.cardCount?.total);
+    const databaseCount = Number(database?.card_count);
+    const apparentShortfall = database &&
+      Number.isSafeInteger(declaredTotal) && declaredTotal >= 0 &&
+      Number.isSafeInteger(databaseCount) && databaseCount >= 0 &&
+      databaseCount < declaredTotal;
+    return !database || latestIds.has(clean(set.id)) || apparentShortfall;
+  });
   if (detailCandidates.length > options.maxDetailFetches) {
     throw new Error(
       `English Pokemon detail fetch exceeds safety cap: ${detailCandidates.length}/` +
@@ -692,10 +701,14 @@ async function discoverPokemonEnglish(
     detailsById.get(clean(set.id))?.serie?.id !== "tcgp").map((set) => {
     const database = matchedDatabaseSet(set);
     const detail = detailsById.get(clean(set.id));
-    const expected = Number(detail?.cardCount?.total ?? set?.cardCount?.total);
-    const validCount = Number.isSafeInteger(expected) && expected >= 0 ? expected : null;
+    const identityCount = resolvePokemonEnglishIdentityCountV1({
+      registrySet: set,
+      detail,
+    });
+    const validCount = identityCount.expected_card_count;
     const masterCards = englishMasterIndex.cardsBySet.get(clean(set.id)) ?? [];
-    const masterIndexComplete = validCount !== null && masterCards.length === validCount &&
+    const masterIndexComplete = validCount !== null && validCount > 0 &&
+      masterCards.length === validCount &&
       masterCards.every((card) => card.status === "master_verified" &&
         Number(card.source_count) >= 2);
     return {
@@ -708,19 +721,27 @@ async function discoverPokemonEnglish(
       aliases: [clean(set.name)],
       release_date: clean(detail?.releaseDate ?? database?.release_date) || null,
       expected_card_count: validCount,
-      count_scope: "full_set",
+      count_scope: identityCount.count_scope,
       count_evidence: [{
         authority: "tcgdex_english_structured_api",
-        scope: "full_set",
+        scope: identityCount.count_scope,
         count: validCount,
         source_url: detail
           ? `https://api.tcgdex.net/v2/en/sets/${encodeURIComponent(set.id)}`
           : registryUrl,
-      }, ...(masterIndexComplete ? [{
-        authority: "english_master_index_completion_v1",
-        scope: "full_set",
-        count: masterCards.length,
-        source_count_floor: Math.min(...masterCards.map((card) => Number(card.source_count))),
+      }, ...(identityCount.observed_identity_row_count !== null &&
+        identityCount.declared_total !== null &&
+        identityCount.declared_total !== identityCount.observed_identity_row_count ? [{
+          authority: "tcgdex_english_structured_api",
+          scope: "declared_product_total",
+          count: identityCount.declared_total,
+          source_url: `https://api.tcgdex.net/v2/en/sets/${encodeURIComponent(set.id)}`,
+          canonical_identity_count_authority: false,
+        }] : []), ...(masterIndexComplete ? [{
+          authority: "english_master_index_completion_v1",
+          scope: "full_set",
+          count: masterCards.length,
+          source_count_floor: Math.min(...masterCards.map((card) => Number(card.source_count))),
         artifact_sha256: englishMasterIndex.cardsSha256,
       }] : [])],
       source_url: `https://api.tcgdex.net/v2/en/sets/${encodeURIComponent(set.id)}`,

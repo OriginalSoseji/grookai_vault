@@ -357,6 +357,8 @@ test("English Master Index scopes combined Trainer Kit pages to the requested ha
     new URL("../../scripts/audits/verified_master_set_index_v1_build_english_master_index.mjs", import.meta.url),
     "utf8",
   );
+  assert.match(builder, /'tk-hs-g': 'HS_Trainer_Kit_\(TCG\)'/);
+  assert.match(builder, /'tk-hs-r': 'HS_Trainer_Kit_\(TCG\)'/);
   assert.match(builder, /'tk-sm-r': 'Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_\(TCG\)'/);
   assert.match(builder, /const normalizedKey = String\(key \?\? ''\)\.trim\(\)\.toLowerCase\(\)/);
   assert.match(builder, /function parseBulbapediaDeckListPage\(html, expectedSetName\)/);
