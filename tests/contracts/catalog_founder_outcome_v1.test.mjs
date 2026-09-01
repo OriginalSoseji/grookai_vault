@@ -89,6 +89,44 @@ test("writer invocation comes from code registry and pins commit, target, and pa
   assert.equal(Object.keys(invocation.env).length, 0);
 });
 
+test("generic Japanese outcomes cannot inherit the legacy single-card enrichment", () => {
+  const target = {
+    key: "pokemon_jpn:M6",
+    writer_key: "japanese_structured_incremental_promotion_v1",
+    founder_outcome_eligible: true,
+    worker: "scripts/workers/catalog_incremental_promotion_v1.mjs",
+    target: {
+      pokemon_set_code: "M6",
+      pokemon_database_set_code: "jpn-product-test",
+      pokemon_product_id: "955",
+    },
+  };
+  const outcomePackage = buildCatalogFounderOutcomePackageV1({
+    target,
+    result: { target: target.key, exit_code: 0 },
+    summary: {
+      mode: "plan",
+      payload_fingerprint_sha256: "d".repeat(64),
+      transaction_result: {
+        expected: { cards: 5, identities: 5, evidence: 10, family_reviews: 5 },
+      },
+    },
+    preflightProof: {
+      collision_preflight: { cards: 0, identities: 0, evidence: 0, family_reviews: 0 },
+    },
+    artifactHashes: { "summary.json": "e".repeat(64) },
+    sourceCommitSha: "a".repeat(40),
+    sourceRunId: "123456",
+    asOf: "2026-09-01",
+  });
+  const invocation = buildCatalogWriterInvocationV1(outcomePackage, {
+    headSha: "a".repeat(40),
+    outDir: path.join(ROOT, ".tmp", "japanese-catalog-outcome-test"),
+  });
+  assert.ok(invocation.args.includes("--official-card-ids="));
+  assert.ok(!invocation.args.some((arg) => arg.includes("50301")));
+});
+
 test("changed targets, collisions, and unregistered writers fail closed", () => {
   const changed = structuredClone(mtgPackage());
   changed.target.set_code = "evil";

@@ -415,6 +415,7 @@ export function buildCatalogWriterInvocationV1(outcomePackage, { headSha, outDir
       `--pokemon-set-code=${target.pokemon_set_code}`,
       `--pokemon-db-set-code=${target.pokemon_database_set_code}`,
       `--pokemon-product-id=${target.pokemon_product_id}`,
+      "--official-card-ids=",
     );
   }
   const env = {};
