@@ -94,6 +94,8 @@ test("maintenance schedule polls safely and executes only a hard-coded registere
   assert.match(maintenanceWorkflow, /schedule:[\s\S]*\*\/15 \* \* \* \*/);
   assert.match(maintenanceWorkflow, /dispatch-approved-command:/);
   assert.match(maintenanceWorkflow, /FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE/);
+  assert.match(maintenanceWorkflow, /github\.ref == 'refs\/heads\/main'/);
+  assert.match(maintenanceWorkflow, /test "\$GITHUB_REF_NAME" = "main"/);
   assert.match(maintenanceWorkflow, /founder_command_dispatcher_v1\.mjs/);
   assert.match(maintenanceWorkflow, /steps\.resolve-command\.outputs\.command_found == 'true'/);
   assert.match(maintenanceWorkflow, /ref: \$\{\{ steps\.resolve-command\.outputs\.source_commit_sha \}\}/);
