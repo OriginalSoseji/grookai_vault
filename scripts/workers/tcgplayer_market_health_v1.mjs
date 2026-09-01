@@ -186,17 +186,50 @@ async function main() {
          left join public.market_price_pipeline_phase_attempts phase
            on phase.run_id = pipeline_run.id
        ),
-       current_totals as (
-         select
-           count(*)::integer as current_exact_price_count,
-           count(distinct card_print_id)::integer as current_parent_price_count,
-           max(observed_at) as latest_published_source_at
-         from public.v_market_price_current_v1
-       ),
        current_publication as (
          select publication_set_id, run_id, activated_at
          from public.market_price_current_publication
          where singleton = true
+       ),
+       current_totals as (
+         select
+           count(distinct snapshot.card_printing_id)::integer
+             as current_exact_price_count,
+           count(distinct snapshot.card_print_id)::integer
+             as current_parent_price_count,
+           max(snapshot.source_sync_finished_at)
+             as latest_published_source_at
+         from current_publication current_state
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = current_state.publication_set_id
+          and publication_set.run_id = current_state.run_id
+          and publication_set.publication_state = 'published'
+         join public.market_price_pipeline_runs pipeline_run
+           on pipeline_run.id = current_state.run_id
+          and pipeline_run.reconciliation_state = 'reconciled'
+          and pipeline_run.state in ('published', 'verified')
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.publication_set_id = current_state.publication_set_id
+          and snapshot.run_id = current_state.run_id
+          and snapshot.publication_state = 'published'
+          and snapshot.freshness_state = 'fresh'
+          and snapshot.source_sync_finished_at >= now() - interval '36 hours'
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+          and decision.eligible = true
+          and decision.decision = 'publish'
+          and decision.publication_lane = 'current'
+         where not exists (
+           select 1
+           from public.card_printing_truth_reviews truth_review
+           where truth_review.card_printing_id = snapshot.card_printing_id
+             and truth_review.active = true
+             and truth_review.public_visibility in (
+               'hidden_pending_review',
+               'hidden_unsupported'
+             )
+         )
        )
        select
          source.run_key as latest_source_run_key,

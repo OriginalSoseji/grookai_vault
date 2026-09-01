@@ -1151,6 +1151,23 @@ test("health probe checks freshness, reconciliation, and source-to-publication t
     HEALTH,
     /join public\.tcgcsv_source_price_daily_observations observation/,
   );
+  assert.doesNotMatch(HEALTH, /from public\.v_market_price_current_v1/);
+  assert.match(
+    HEALTH,
+    /current_totals as \([\s\S]*from current_publication current_state/,
+  );
+  assert.match(
+    HEALTH,
+    /snapshot\.publication_set_id = current_state\.publication_set_id/,
+  );
+  assert.match(
+    HEALTH,
+    /snapshot\.source_sync_finished_at >= now\(\) - interval '36 hours'/,
+  );
+  assert.match(
+    HEALTH,
+    /not exists \([\s\S]*public\.card_printing_truth_reviews truth_review/,
+  );
   assert.doesNotMatch(HEALTH, /\),\s*select\s+source\.run_key/);
   assert.match(HEALTH, /minimum_current_prices/);
   assert.match(HEALTH, /durable_pipeline_run_not_reconciled/);
