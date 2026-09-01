@@ -26,6 +26,7 @@ import { deriveEnglishPokemonCanonicalAliasOverlayV1 } from
   "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 import {
   ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1,
+  ENGLISH_POKEMON_SOURCE_ALIAS_OWNERS_V1,
   mergeEnglishPokemonFoldedSubsetOwnersV1,
 } from "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
@@ -369,7 +370,8 @@ test("Master Index subset ownership resolves before canonical promotion", () => 
 });
 
 test("Master Index owner contract preserves both folded English subset shells", () => {
-  const owners = mergeEnglishPokemonFoldedSubsetOwnersV1();
+  const owners = mergeEnglishPokemonFoldedSubsetOwnersV1().filter((row) =>
+    row.authority === "english_master_index_folded_subset_owner_v1");
   assert.deepEqual(owners.map((row) => [
     row.source_set_key,
     row.canonical_set_key,
@@ -378,6 +380,71 @@ test("Master Index owner contract preserves both folded English subset shells", 
     ["sma", "sm115"],
   ]);
   assert.equal(ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1.length, 2);
+});
+
+test("TCGdex Miscellaneous Promos resolves to the governed Ancient Mew owner", () => {
+  assert.deepEqual(ENGLISH_POKEMON_SOURCE_ALIAS_OWNERS_V1.map((row) => [
+    row.source_set_key,
+    row.canonical_set_key,
+  ]), [["miscp", "misc"]]);
+
+  const owners = mergeEnglishPokemonFoldedSubsetOwnersV1();
+  const overlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
+    databaseSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "misc",
+      name: "Miscellaneous Cards & Products",
+      card_count: 1,
+    }],
+    databaseCards: [{ set_code: "misc", number: "1", name: "Ancient Mew" }],
+    masterCards: [{
+      set_key: "miscp",
+      card_number: "001",
+      card_name: "Ancient Mew",
+      status: "candidate_unconfirmed",
+      source_count: 1,
+    }],
+    masterSetRemaps: owners,
+  });
+  assert.deepEqual(overlay.sets[0].code_aliases, ["miscp"]);
+  assert.deepEqual(overlay.resolutions.find((row) => row.source_code === "miscp"), {
+    source_code: "miscp",
+    canonical_code: "misc",
+    evidence_card_count: null,
+    evidence_row_count: null,
+    authority: "english_master_index_source_alias_owner_v1",
+  });
+
+  const [reconciled] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      source_id: "tcgdex_english_set_registry",
+      source_set_id: "miscp",
+      code: "miscp",
+      name: "Miscellaneous Promos",
+      expected_card_count: 1,
+      count_scope: "source_observed_identity_rows",
+      source_url: "https://api.tcgdex.net/v2/en/sets/miscp",
+    }],
+    databaseSets: overlay.sets,
+    asOf: "2026-09-01",
+  });
+  assert.equal(reconciled.database_code, "misc");
+  assert.equal(reconciled.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
+
+  const master = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [reconciled],
+    englishMasterCards: [],
+    englishAliasResolutions: overlay.resolutions,
+  });
+  assert.equal(master.rows[0].master_index_status, "alias_or_subset_owner_resolved");
+  assert.equal(master.rows[0].promotion_decision, "no_write_existing_canonical_owner");
+  assert.deepEqual(buildCanonicalPromotionCandidatesV1({
+    actionableGaps: [],
+    pokemonMasterIndexReconciliation: master,
+  }), []);
 });
 
 test("new Pokemon sources stage in the Master Index before canonical writes", () => {
