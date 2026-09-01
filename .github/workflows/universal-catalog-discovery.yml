@@ -63,13 +63,15 @@ jobs:
         shell: bash
         env:
           FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE: ${{ vars.FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: |
           set -euo pipefail
           PUBLISH_ARGS=()
           EXPECTED_DATABASE_WRITES=false
           if [[ "$FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE" == "true" ]]; then
+            test -n "$SUPABASE_URL"
+            test -n "$SUPABASE_SECRET_KEY"
             PUBLISH_ARGS+=(--publish)
             EXPECTED_DATABASE_WRITES=true
           fi

@@ -2,14 +2,16 @@
 
 ## Status
 
-`PRODUCTION FOUNDATION APPLIED / AUTOMATION DISABLED / LIVE CANDIDATE GATE PENDING`
+`LIVE REVIEW ITEM PUBLISHED / PHONE DECISION PENDING / AUTOMATION DISABLED`
 
 - Branch: `feature/founder-operations-command-center-v1`
 - Base SHA: `66afd877471518d34af8266762014ca54635d2fe`
 - Primary implementation SHA: `212107ece442c8aca2d431063158ca19051b8d82`
 - Production merge SHA: `7533f603d6118143b7afab30312ba0b4c3b70e98`
 - Source reliability merge SHA: `1bda773a28d1fc444a6180a4cb27d29cb6b981eb`
-- Last verified: `2026-08-31`
+- Authority repair merge SHA: `b9a2b509477f8dec906c906475f2186456015089`
+- RPC digest repair merge SHA: `b734bf925bf219c3138b08e1970ec2d747d313e0`
+- Last verified: `2026-09-01`
 
 ## Context
 
@@ -65,15 +67,16 @@ process.
 
 ## Current Truths
 
-1. The base and additive repair migrations are applied and read back in
-   production.
+1. The base and both additive repair migrations are applied and read back in
+   production. The base file remains byte-identical at its approved SHA-256.
 2. The notification dispatcher and operations webhook are deployed.
-3. The web route is deployed and auth-gated. The merged Android client has been
-   built and launched on an emulator; signed-in mobile evidence remains
-   pending.
-4. Founder Operations tables contain no work item, decision, command, incident,
-   agent, run, attempt, or approval rows. This activation work created no
-   canonical, Storage, pricing, or Vault rows and invoked no writer command.
+3. The web route is deployed and auth-gated. The phone notification for the
+   live review item was delivered; signed-in physical-phone decision evidence
+   remains pending.
+4. Exactly one legitimate `tk-sm-r` review-only work item is live in
+   `ready_for_review`. It has zero decisions and zero commands. This activation
+   work created no canonical, Storage, pricing, or Vault rows and invoked no
+   writer command.
 5. `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE` is not enabled by this work.
 6. Scheduled catalog discovery remains artifact-only while that variable is not
    exactly `true`.
@@ -91,6 +94,18 @@ process.
     promotion candidates, and zero founder work items.
 13. Manual maintenance completed with an all-zero receipt and all operational
     row counts remained zero.
+14. English Master Index authority repair proved all 30 Alolan Raichu Trainer
+    Kit coordinates with commit-pinned TCGdex repository and scoped Bulbapedia
+    evidence. The resulting candidate reconciles 30 expected rows against 19
+    canonical rows and proposes 11 missing rows for review only.
+15. Work-item publication initially failed closed because `digest` was not
+    schema-qualified under the RPC search path. Additive migration
+    `20260901030000` uses `extensions.digest`; publication then succeeded.
+16. Live work item `8fd61c41-d4d2-484a-a312-4891826d529e` has plan fingerprint
+    `55da1ae9e45adbc85c2e1b58ca0fad242209352d8d6f2ddba537b55b2d2d6ed7`
+    and `execution_enabled=false`.
+17. Instant notification `0887fd8d-2071-4c58-b677-7eb66bfccdbb` was delivered
+    successfully in one attempt.
 
 ## Security Invariants
 
@@ -173,15 +188,12 @@ process.
 
 ## Explicit Next Gate
 
-1. Keep scheduled discovery artifact-only until it emits a genuine
-   authority-complete canonical promotion candidate.
-2. Publish exactly one such candidate as a review-only work item through the
-   service RPC. Do not substitute an authority-blocked gap or a synthetic row.
-3. Open that item from an authenticated mobile client, verify evidence and the
+1. Open live work item `8fd61c41-d4d2-484a-a312-4891826d529e` from an
+   authenticated physical-phone client and verify evidence and the
    plan fingerprint, and record a review-only decision.
-4. Confirm the decision creates no command and invokes no canonical writer.
-5. Verify founder-only signed-in mobile access and agent-health rendering.
-6. Only after those proofs, set `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE=true`
+2. Confirm the decision creates no command and invokes no canonical writer.
+3. Verify founder-only signed-in mobile access and agent-health rendering.
+4. Only after those proofs, set `FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE=true`
    to enable scheduled review-item publication and maintenance.
-7. Build and separately approve a source-specific hidden-set executor package
+5. Build and separately approve a source-specific hidden-set executor package
    before attempting the Definition-of-Done hidden-set write/readback proof.

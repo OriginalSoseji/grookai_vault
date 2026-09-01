@@ -999,9 +999,16 @@ class _StringList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rows = value is List
-        ? value.map(_text).where((row) => row.isNotEmpty).toList()
-        : <String>[_text(value)];
+    final List<String> rows;
+    if (value is Iterable) {
+      final Iterable<dynamic> entries = value as Iterable<dynamic>;
+      rows = entries
+          .map<String>((entry) => _text(entry))
+          .where((row) => row.isNotEmpty)
+          .toList(growable: false);
+    } else {
+      rows = <String>[_text(value)];
+    }
     return Column(
       children: rows
           .map(

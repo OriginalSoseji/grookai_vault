@@ -26,9 +26,13 @@ jobs:
         run: node --check scripts/workers/operations_maintenance_v1.mjs
       - name: Run bounded maintenance
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-        run: node scripts/workers/operations_maintenance_v1.mjs --run | tee operations_maintenance_result.json
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_URL"
+          test -n "$SUPABASE_SECRET_KEY"
+          node scripts/workers/operations_maintenance_v1.mjs --run | tee operations_maintenance_result.json
       - name: Preserve maintenance receipt
         if: always()
         uses: actions/upload-artifact@v4

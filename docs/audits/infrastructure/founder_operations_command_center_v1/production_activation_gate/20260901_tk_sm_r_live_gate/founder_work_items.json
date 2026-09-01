@@ -1,0 +1,118 @@
+[
+  {
+    "work_item_key": "catalog-set:pokemon:tcgdex_english_set_registry:tk-sm-r",
+    "work_item_type": "catalog_set_candidate_review",
+    "action_type": "review_catalog_set_candidate",
+    "agent_key": "universal-catalog-discovery-v1",
+    "title": "Review Pokemon set: SM trainer Kit (Alolan Raichu)",
+    "summary": "incomplete_cards from tcgdex_english_set_registry; review official evidence before a source-specific writer package is built.",
+    "domain": "catalog",
+    "risk_level": "medium",
+    "scope": {
+      "game_code": "pokemon",
+      "source_id": "tcgdex_english_set_registry",
+      "source_set_id": "tk-sm-r",
+      "source_code": "tk-sm-r",
+      "source_name": "SM trainer Kit (Alolan Raichu)",
+      "release_date": null,
+      "expected_card_count": 30,
+      "canonical_reconciliation_status": "incomplete_cards",
+      "missing_card_count": 11
+    },
+    "exclusions": [
+      "no database writes",
+      "no Storage writes",
+      "no image pointer updates",
+      "no pricing or Vault writes",
+      "no public visibility change",
+      "no writer dispatch"
+    ],
+    "plan_payload": {
+      "proposal_kind": "catalog_set_candidate_review",
+      "proposal_version": "FOUNDER_WORK_ITEM_COMMAND_V1",
+      "created_at": "2026-09-01T02:53:56.594Z",
+      "source_commit_sha": "b9a2b509477f8dec906c906475f2186456015089",
+      "source_run_uri": null,
+      "discovery_summary_fingerprint_sha256": "3233db188eb3ab520de5a2511a96e9228968d2f0ef49798123e1b69ca6f256f7",
+      "candidate": {
+        "candidate_database_codes": [
+          "tk-sm-r"
+        ],
+        "catalog_scope": "pokemon en",
+        "count_evidence": [
+          {
+            "authority": "tcgdex_english_structured_api",
+            "count": 30,
+            "scope": "full_set",
+            "source_url": "https://api.tcgdex.net/v2/en/sets"
+          }
+        ],
+        "count_scope": "full_set",
+        "database_card_count": 19,
+        "database_code": "tk-sm-r",
+        "database_name": "SM Trainer Kit (Alolan Raichu)",
+        "expected_card_count": 30,
+        "game_code": "pokemon",
+        "missing_card_count": 11,
+        "release_date": null,
+        "source_code": "tk-sm-r",
+        "source_id": "tcgdex_english_set_registry",
+        "source_name": "SM trainer Kit (Alolan Raichu)",
+        "source_set_id": "tk-sm-r",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/tk-sm-r",
+        "status": "incomplete_cards",
+        "master_index_gate": {
+          "version": "POKEMON_LANGUAGE_MASTER_INDEX_RECONCILIATION_V1",
+          "language": "en",
+          "master_index_status": "master_verified",
+          "canonical_owner_code": "tk-sm-r",
+          "decision": "canonical_delta_eligible"
+        }
+      },
+      "review_boundary": {
+        "database_writes": false,
+        "storage_writes": false,
+        "publication_writes": false,
+        "writer_dispatches": false
+      }
+    },
+    "plan_fingerprint": "55da1ae9e45adbc85c2e1b58ca0fad242209352d8d6f2ddba537b55b2d2d6ed7",
+    "source_commit_sha": "b9a2b509477f8dec906c906475f2186456015089",
+    "contract_version": "FOUNDER_WORK_ITEM_COMMAND_V1",
+    "executor_version": null,
+    "requires_recent_auth": false,
+    "command_policy": {
+      "execution_enabled": false,
+      "reason": "review_only_until_source_specific_writer_package_is_frozen"
+    },
+    "expires_at": "2026-09-08T02:53:56.594Z",
+    "evidence": [
+      {
+        "evidence_key": "b9a2b509477f8dec906c906475f2186456015089:canonical_promotion_candidates.json",
+        "sha256": "7d6d901ecf7afea6fec025889b0955320e963d25895cefb2f1c3c46daedbd8d6",
+        "media_type": "application/json",
+        "source_uri": null,
+        "durable_uri": null,
+        "retention_class": "workflow_90_day",
+        "role": "frozen_plan",
+        "summary": "Universal catalog discovery canonical_promotion_candidates.json",
+        "metadata": {
+          "artifact_name": "canonical_promotion_candidates.json"
+        }
+      },
+      {
+        "evidence_key": "b9a2b509477f8dec906c906475f2186456015089:summary.json",
+        "sha256": "7c259786ce1e7f9c9a2e81dc9a6f644d7a5f0f18d779beb62591a5d3e7d610e0",
+        "media_type": "application/json",
+        "source_uri": null,
+        "durable_uri": null,
+        "retention_class": "workflow_90_day",
+        "role": "run_summary",
+        "summary": "Universal catalog discovery summary.json",
+        "metadata": {
+          "artifact_name": "summary.json"
+        }
+      }
+    ]
+  }
+]
