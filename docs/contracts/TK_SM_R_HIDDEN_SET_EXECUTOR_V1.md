@@ -15,12 +15,14 @@ authority.
 - TCGdex repository commit: `d88210d806d1b55d7832847beaed692c0bb7bfee`.
 - Every packaged card identity is `master_verified` by at least two independent
   sources, including the scoped Bulbapedia half-deck checklist.
+- Every source key is bound to its authority, kind, and URL in one aligned
+  `source_evidence` tuple; parallel compatibility arrays must preserve that order.
 - Scoped Master Index package SHA-256:
-  `1be691235b987a06a19a881b796ea02787a280f39df34e7f69968c3f92d37abb`.
+  `402d0155e76b27c0707fbb6a6d997cf12d39a44c2f1b0591d69d396b45b085a5`.
 - Frozen source snapshot SHA-256:
   `e33dc444135e98cc7e45fcdd3e97ebdb7a7125028a5e3c0a81ef04fda2f249ec`.
 - Complete package fingerprint SHA-256:
-  `09a82463a29803f70d9e98aa472bfca3a84dff1b8f69fead5d2818c98769972e`.
+  `35d64d8f5fb24c6f8d8ffbba5c5ad56eb569a0709a94b20831333731283e4f32`.
 
 ## Write Boundary
 

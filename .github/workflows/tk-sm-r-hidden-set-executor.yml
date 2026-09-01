@@ -57,16 +57,29 @@ jobs:
             --master-dir=docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/master \
             --source-set-file=docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/tcgdex_repository_set_snapshot.json \
             --skip-card-detail-fetch \
-            --expected-master-package-fingerprint=1be691235b987a06a19a881b796ea02787a280f39df34e7f69968c3f92d37abb \
+            --expected-master-package-fingerprint=402d0155e76b27c0707fbb6a6d997cf12d39a44c2f1b0591d69d396b45b085a5 \
             --expected-source-snapshot-fingerprint=e33dc444135e98cc7e45fcdd3e97ebdb7a7125028a5e3c0a81ef04fda2f249ec \
             --out-dir="$OUT_DIR"
-          node --input-type=module - "$OUT_DIR/report.json" <<'NODE'
+          node --input-type=module - "$OUT_DIR/report.json" \
+            "docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/package_manifest.json" <<'NODE'
           import fs from "node:fs";
           const report = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+          const manifest = JSON.parse(fs.readFileSync(process.argv[3], "utf8"));
+          const coordinates = (rows) => rows.map((row) => ({
+            number: String(row.number),
+            name: String(row.name),
+          })).sort((left, right) =>
+            left.number.localeCompare(right.number, undefined, { numeric: true })
+            || left.name.localeCompare(right.name));
           if (!report.pass) throw new Error("dry-run report did not pass");
           if (report.counts.card_prints !== 11 || report.counts.identities !== 11 ||
               report.counts.family_reviews !== 11) {
             throw new Error(`unexpected insert counts: ${JSON.stringify(report.counts)}`);
+          }
+          const expectedCoordinates = coordinates(manifest.expected_insert_coordinates);
+          const actualCoordinates = coordinates(report.rows);
+          if (JSON.stringify(actualCoordinates) !== JSON.stringify(expectedCoordinates)) {
+            throw new Error(`coordinate drift: ${JSON.stringify({ expectedCoordinates, actualCoordinates })}`);
           }
           if (!report.inserted_readback || report.inserted_readback.card_prints !== 11) {
             throw new Error("transaction insert readback is missing");

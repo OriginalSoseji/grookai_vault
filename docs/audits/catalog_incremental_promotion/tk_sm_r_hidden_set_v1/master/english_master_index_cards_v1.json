@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_CARDS_V1",
-  "generated_at": "2026-09-01T04:51:04.232Z",
+  "generated_at": "2026-09-01T05:39:45.181Z",
   "audit_only": true,
   "db_writes": false,
   "cards": [
@@ -15,17 +15,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/1.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -44,17 +49,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/10.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -80,19 +90,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11824/zubat-sm-trainer-kit-alolan-raichu-11-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/11.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/11.ts",
-        "https://www.tcgcollector.com/cards/11824/zubat-sm-trainer-kit-alolan-raichu-11-30"
+        "https://www.tcgcollector.com/cards/11824/zubat-sm-trainer-kit-alolan-raichu-11-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/11.ts"
       ]
     },
     {
@@ -106,17 +136,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/12.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -142,19 +177,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11828/spearow-sm-trainer-kit-alolan-raichu-13-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/13.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/13.ts",
-        "https://www.tcgcollector.com/cards/11828/spearow-sm-trainer-kit-alolan-raichu-13-30"
+        "https://www.tcgcollector.com/cards/11828/spearow-sm-trainer-kit-alolan-raichu-13-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/13.ts"
       ]
     },
     {
@@ -175,19 +230,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11819/pikachu-sm-trainer-kit-alolan-raichu-14-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/14.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/14.ts",
-        "https://www.tcgcollector.com/cards/11819/pikachu-sm-trainer-kit-alolan-raichu-14-30"
+        "https://www.tcgcollector.com/cards/11819/pikachu-sm-trainer-kit-alolan-raichu-14-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/14.ts"
       ]
     },
     {
@@ -208,19 +283,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13450/potion-sm-trainer-kit-alolan-raichu-15-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/15.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/15.ts",
-        "https://www.tcgcollector.com/cards/13450/potion-sm-trainer-kit-alolan-raichu-15-30"
+        "https://www.tcgcollector.com/cards/13450/potion-sm-trainer-kit-alolan-raichu-15-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/15.ts"
       ]
     },
     {
@@ -241,19 +336,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11826/grubbin-sm-trainer-kit-alolan-raichu-16-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/16.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/16.ts",
-        "https://www.tcgcollector.com/cards/11826/grubbin-sm-trainer-kit-alolan-raichu-16-30"
+        "https://www.tcgcollector.com/cards/11826/grubbin-sm-trainer-kit-alolan-raichu-16-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/16.ts"
       ]
     },
     {
@@ -274,19 +389,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11817/alolan-raichu-sm-trainer-kit-alolan-raichu-17-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/17.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/17.ts",
-        "https://www.tcgcollector.com/cards/11817/alolan-raichu-sm-trainer-kit-alolan-raichu-17-30"
+        "https://www.tcgcollector.com/cards/11817/alolan-raichu-sm-trainer-kit-alolan-raichu-17-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/17.ts"
       ]
     },
     {
@@ -307,19 +442,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13440/bewear-sm-trainer-kit-alolan-raichu-18-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/18.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/18.ts",
-        "https://www.tcgcollector.com/cards/13440/bewear-sm-trainer-kit-alolan-raichu-18-30"
+        "https://www.tcgcollector.com/cards/13440/bewear-sm-trainer-kit-alolan-raichu-18-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/18.ts"
       ]
     },
     {
@@ -340,19 +495,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13451/hau-sm-trainer-kit-alolan-raichu-19-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/19.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/19.ts",
-        "https://www.tcgcollector.com/cards/13451/hau-sm-trainer-kit-alolan-raichu-19-30"
+        "https://www.tcgcollector.com/cards/13451/hau-sm-trainer-kit-alolan-raichu-19-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/19.ts"
       ]
     },
     {
@@ -373,19 +548,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13443/lightning-energy-sm-trainer-kit-alolan-raichu-2-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/2.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/2.ts",
-        "https://www.tcgcollector.com/cards/13443/lightning-energy-sm-trainer-kit-alolan-raichu-2-30"
+        "https://www.tcgcollector.com/cards/13443/lightning-energy-sm-trainer-kit-alolan-raichu-2-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/2.ts"
       ]
     },
     {
@@ -406,19 +601,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13452/psychic-energy-sm-trainer-kit-alolan-raichu-20-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/20.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/20.ts",
-        "https://www.tcgcollector.com/cards/13452/psychic-energy-sm-trainer-kit-alolan-raichu-20-30"
+        "https://www.tcgcollector.com/cards/13452/psychic-energy-sm-trainer-kit-alolan-raichu-20-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/20.ts"
       ]
     },
     {
@@ -439,19 +654,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13458/great-ball-sm-trainer-kit-alolan-raichu-21-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/21.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/21.ts",
-        "https://www.tcgcollector.com/cards/13458/great-ball-sm-trainer-kit-alolan-raichu-21-30"
+        "https://www.tcgcollector.com/cards/13458/great-ball-sm-trainer-kit-alolan-raichu-21-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/21.ts"
       ]
     },
     {
@@ -472,19 +707,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13439/drowzee-sm-trainer-kit-alolan-raichu-22-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/22.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/22.ts",
-        "https://www.tcgcollector.com/cards/13439/drowzee-sm-trainer-kit-alolan-raichu-22-30"
+        "https://www.tcgcollector.com/cards/13439/drowzee-sm-trainer-kit-alolan-raichu-22-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/22.ts"
       ]
     },
     {
@@ -505,19 +760,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13456/hau-sm-trainer-kit-alolan-raichu-23-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/23.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/23.ts",
-        "https://www.tcgcollector.com/cards/13456/hau-sm-trainer-kit-alolan-raichu-23-30"
+        "https://www.tcgcollector.com/cards/13456/hau-sm-trainer-kit-alolan-raichu-23-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/23.ts"
       ]
     },
     {
@@ -531,17 +806,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/24.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -567,19 +847,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13457/great-ball-sm-trainer-kit-alolan-raichu-25-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/25.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/25.ts",
-        "https://www.tcgcollector.com/cards/13457/great-ball-sm-trainer-kit-alolan-raichu-25-30"
+        "https://www.tcgcollector.com/cards/13457/great-ball-sm-trainer-kit-alolan-raichu-25-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/25.ts"
       ]
     },
     {
@@ -600,19 +900,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11825/togedemaru-sm-trainer-kit-alolan-raichu-26-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/26.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/26.ts",
-        "https://www.tcgcollector.com/cards/11825/togedemaru-sm-trainer-kit-alolan-raichu-26-30"
+        "https://www.tcgcollector.com/cards/11825/togedemaru-sm-trainer-kit-alolan-raichu-26-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/26.ts"
       ]
     },
     {
@@ -626,17 +946,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/27.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -655,17 +980,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/28.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -691,19 +1021,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11818/pikachu-sm-trainer-kit-alolan-raichu-29-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/29.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/29.ts",
-        "https://www.tcgcollector.com/cards/11818/pikachu-sm-trainer-kit-alolan-raichu-29-30"
+        "https://www.tcgcollector.com/cards/11818/pikachu-sm-trainer-kit-alolan-raichu-29-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/29.ts"
       ]
     },
     {
@@ -717,17 +1067,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/3.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -753,19 +1108,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11816/alolan-raichu-sm-trainer-kit-alolan-raichu-30-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/30.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/30.ts",
-        "https://www.tcgcollector.com/cards/11816/alolan-raichu-sm-trainer-kit-alolan-raichu-30-30"
+        "https://www.tcgcollector.com/cards/11816/alolan-raichu-sm-trainer-kit-alolan-raichu-30-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/30.ts"
       ]
     },
     {
@@ -786,19 +1161,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/11827/stufful-sm-trainer-kit-alolan-raichu-4-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/4.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/4.ts",
-        "https://www.tcgcollector.com/cards/11827/stufful-sm-trainer-kit-alolan-raichu-4-30"
+        "https://www.tcgcollector.com/cards/11827/stufful-sm-trainer-kit-alolan-raichu-4-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/4.ts"
       ]
     },
     {
@@ -812,17 +1207,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/5.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -848,19 +1248,39 @@
       ],
       "source_authorities": [
         "bulbapedia.bulbagarden.net",
-        "github.com",
-        "tcgcollector.com"
+        "tcgcollector.com",
+        "github.com"
       ],
       "source_kinds": [
-        "collector_reference",
         "human_readable_checklist",
+        "collector_reference",
         "structured_api"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgcollector_card_variants",
+          "source_authority": "tcgcollector.com",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.tcgcollector.com/cards/13441/golbat-sm-trainer-kit-alolan-raichu-6-30"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/6.ts"
+        }
       ],
       "evidence_count": 3,
       "evidence_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists",
-        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/6.ts",
-        "https://www.tcgcollector.com/cards/13441/golbat-sm-trainer-kit-alolan-raichu-6-30"
+        "https://www.tcgcollector.com/cards/13441/golbat-sm-trainer-kit-alolan-raichu-6-30",
+        "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/6.ts"
       ]
     },
     {
@@ -874,17 +1294,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/7.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -903,17 +1328,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/8.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [
@@ -932,17 +1362,22 @@
       "finish_key": null,
       "rarity_values": [],
       "source_count": 2,
-      "sources": [
-        "bulbapedia_set_list",
-        "tcgdex_github_snapshot"
-      ],
-      "source_authorities": [
-        "bulbapedia.bulbagarden.net",
-        "github.com"
-      ],
-      "source_kinds": [
-        "human_readable_checklist",
-        "structured_api"
+      "sources": ["bulbapedia_set_list", "tcgdex_github_snapshot"],
+      "source_authorities": ["bulbapedia.bulbagarden.net", "github.com"],
+      "source_kinds": ["human_readable_checklist", "structured_api"],
+      "source_evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "human_readable_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Trainer_Kit%3A_Lycanroc_%26_Alolan_Raichu_(TCG)#Deck_lists"
+        },
+        {
+          "source_key": "tcgdex_github_snapshot",
+          "source_authority": "github.com",
+          "source_kind": "structured_api",
+          "source_url": "https://github.com/tcgdex/cards-database/blob/d88210d806d1b55d7832847beaed692c0bb7bfee/data/Trainer%20kits/SM%20trainer%20Kit%20(Alolan%20Raichu)/9.ts"
+        }
       ],
       "evidence_count": 2,
       "evidence_urls": [

@@ -3698,6 +3698,9 @@ async function writeJson(outputDir, fileName, data, options = {}) {
 }
 
 function evidenceUrlsForFact(row) {
+  if (Array.isArray(row.source_evidence) && row.source_evidence.length > 0) {
+    return row.source_evidence.map((evidence) => evidence.source_url ?? null);
+  }
   return uniqueSorted((row.evidence ?? []).map((evidence) => evidence.source_url));
 }
 

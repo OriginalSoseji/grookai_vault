@@ -57,6 +57,12 @@ test("all 30 identities are independently supported and source-pinned", () => {
   assert.ok(cards.cards.every((row) => Number(row.source_count) >= 2));
   assert.ok(cards.cards.every((row) => row.sources.includes("bulbapedia_set_list")));
   assert.ok(cards.cards.every((row) => row.sources.includes("tcgdex_github_snapshot")));
+  assert.ok(cards.cards.every((row) => row.source_evidence.length === row.sources.length));
+  assert.ok(cards.cards.every((row) => row.source_evidence.every((source, index) =>
+    source.source_key === row.sources[index]
+    && source.source_authority === row.source_authorities[index]
+    && source.source_kind === row.source_kinds[index]
+    && source.source_url === row.evidence_urls[index])));
   const cardsBytes = fs.readFileSync(new URL("master/english_master_index_cards_v1.json", ROOT));
   const setsBytes = fs.readFileSync(new URL("master/english_master_index_sets_v1.json", ROOT));
   const sourceBytes = fs.readFileSync(new URL("tcgdex_repository_set_snapshot.json", ROOT));
@@ -121,6 +127,8 @@ test("workflow is manual, rollback-only, and exact-set bound", () => {
   assert.match(workflow, /--database-set-code=tk-sm-r/);
   assert.match(workflow, /rollback_absence_readback/);
   assert.match(workflow, /Object\.values\(report\.rollback_absence_readback\)/);
+  assert.match(workflow, /manifest\.expected_insert_coordinates/);
+  assert.match(workflow, /coordinate drift/);
 });
 
 test("package boundaries prohibit adjacent product writes", () => {

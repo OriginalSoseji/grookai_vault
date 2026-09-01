@@ -43,6 +43,7 @@ function classifyAbsentRows(rows) {
 function evidenceSummary(row) {
   return {
     source_key: row.source_key,
+    source_authority: sourceAuthorityKey(row),
     source_kind: row.source_kind,
     source_url: row.source_url,
     evidence_type: row.evidence_type,
@@ -53,6 +54,24 @@ function evidenceSummary(row) {
     retrieved_at: row.retrieved_at,
     raw_snapshot_ref: row.raw_snapshot_ref,
   };
+}
+
+function alignedSourceEvidence(rows) {
+  const bySource = new Map();
+  for (const row of [...rows].sort(compareEvidenceRows)) {
+    const sourceKey = rawText(row.source_key);
+    if (!sourceKey || bySource.has(sourceKey)) continue;
+    bySource.set(sourceKey, {
+      source_key: sourceKey,
+      source_authority: sourceAuthorityKey(row),
+      source_kind: rawText(row.source_kind) || null,
+      source_url: rawText(row.source_url) || null,
+    });
+  }
+  return [...bySource.values()].sort((left, right) =>
+    left.source_key.localeCompare(right.source_key)
+    || String(left.source_authority ?? '').localeCompare(String(right.source_authority ?? ''))
+    || String(left.source_url ?? '').localeCompare(String(right.source_url ?? '')));
 }
 
 function isAmbiguousCardRows(rows) {
@@ -83,6 +102,7 @@ function compareEvidenceRows(left, right) {
 
 function buildFactRecord(rows, status, { finishTruth = false } = {}) {
   const orderedRows = [...rows].sort(compareEvidenceRows);
+  const sourceEvidence = alignedSourceEvidence(orderedRows);
   const first = orderedRows[0];
   return {
     status,
@@ -93,9 +113,10 @@ function buildFactRecord(rows, status, { finishTruth = false } = {}) {
     finish_key: finishTruth ? first.finish_key : null,
     rarity_values: uniqueSorted(rows.map((row) => row.rarity)),
     source_count: uniqueSorted(rows.map(sourceAuthorityKey)).length,
-    sources: uniqueSorted(rows.map((row) => row.source_key)),
-    source_authorities: uniqueSorted(rows.map(sourceAuthorityKey)),
-    source_kinds: uniqueSorted(rows.map((row) => row.source_kind)),
+    sources: sourceEvidence.map((row) => row.source_key),
+    source_authorities: sourceEvidence.map((row) => row.source_authority),
+    source_kinds: sourceEvidence.map((row) => row.source_kind),
+    source_evidence: sourceEvidence,
     evidence: orderedRows.map(evidenceSummary),
   };
 }

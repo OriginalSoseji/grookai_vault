@@ -12,10 +12,10 @@
     "all_cards_master_verified": true,
     "minimum_independent_sources_per_card": 2,
     "hashes": {
-      "cards_sha256": "71c8912cb09dd99a023477e2bf20fd7ed9d5f0f06b9d184ce02a1e27b503aaf2",
-      "sets_sha256": "2ab3948a3cc6675b1ef1edfc707406f40aeb1c0f3d46ea4f49664523cd06a377",
+      "cards_sha256": "282e7a18f1d8b00378c43778668073c6144ba68a2a6ac8cf23d969f60a715188",
+      "sets_sha256": "de31f94e0661da5072a2fd59822a50e882fa41749fc90050a225fa57019d27a9",
       "source_set_sha256": "e33dc444135e98cc7e45fcdd3e97ebdb7a7125028a5e3c0a81ef04fda2f249ec",
-      "master_package_sha256": "1be691235b987a06a19a881b796ea02787a280f39df34e7f69968c3f92d37abb"
+      "master_package_sha256": "402d0155e76b27c0707fbb6a6d997cf12d39a44c2f1b0591d69d396b45b085a5"
     }
   },
   "prior_review_only_decision": {
@@ -86,5 +86,5 @@
       "name": "Psychic Energy"
     }
   ],
-  "package_fingerprint_sha256": "09a82463a29803f70d9e98aa472bfca3a84dff1b8f69fead5d2818c98769972e"
+  "package_fingerprint_sha256": "35d64d8f5fb24c6f8d8ffbba5c5ad56eb569a0709a94b20831333731283e4f32"
 }

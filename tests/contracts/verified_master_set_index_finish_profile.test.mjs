@@ -93,6 +93,54 @@ test('classification order is deterministic across source completion order', () 
   );
 });
 
+test('classification keeps source provenance fields aligned', () => {
+  const records = [
+    {
+      source_key: 'source_z',
+      source_authority: 'z.example',
+      source_kind: 'structured_api',
+      source_url: 'https://z.example/card',
+      set_key: 'a',
+      set_name: 'Set A',
+      card_number: '1',
+      card_name: 'Example',
+      finish_key: null,
+      language: 'en',
+    },
+    {
+      source_key: 'source_a',
+      source_authority: 'a.example',
+      source_kind: 'human_readable_checklist',
+      source_url: 'https://a.example/card',
+      set_key: 'a',
+      set_name: 'Set A',
+      card_number: '1',
+      card_name: 'Example',
+      finish_key: null,
+      language: 'en',
+    },
+  ];
+
+  const [fact] = classifyEvidence(records).cards;
+  assert.deepEqual(fact.source_evidence, [
+    {
+      source_key: 'source_a',
+      source_authority: 'a.example',
+      source_kind: 'human_readable_checklist',
+      source_url: 'https://a.example/card',
+    },
+    {
+      source_key: 'source_z',
+      source_authority: 'z.example',
+      source_kind: 'structured_api',
+      source_url: 'https://z.example/card',
+    },
+  ]);
+  assert.deepEqual(fact.sources, fact.source_evidence.map((row) => row.source_key));
+  assert.deepEqual(fact.source_authorities, fact.source_evidence.map((row) => row.source_authority));
+  assert.deepEqual(fact.source_kinds, fact.source_evidence.map((row) => row.source_kind));
+});
+
 test('general parallel rules do not promote to exact card-level finish truth', () => {
   const records = [
     {
