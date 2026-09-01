@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-09-01 TK-SM-R Phone-To-Executor Automation V1](./2026-09-01_TK_SM_R_PHONE_TO_EXECUTOR_AUTOMATION_V1.md)
 - [2026-08-29 Collectible Shadow Automation Status V2](./2026-08-29_COLLECTIBLE_SHADOW_AUTOMATION_STATUS_V2.md)
 - [2026-08-29 Collectible Wave 1 Parent Apply Rollback V1](./2026-08-29_COLLECTIBLE_WAVE1_PARENT_APPLY_ROLLBACK_V1.md)
 - [2026-08-29 Collectible Wave 1 Card Identity Proposal V1](./2026-08-29_COLLECTIBLE_WAVE1_CARD_IDENTITY_PROPOSAL_V1.md)
