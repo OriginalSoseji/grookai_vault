@@ -7,12 +7,14 @@ import { fileURLToPath } from "node:url";
 import {
   assertOperationsPayloadSafeV1,
   buildCatalogDiscoveryAgentV1,
+  buildCatalogSetWorkItemKeyV1,
   buildCatalogSetWorkItemsV1,
   operationsSha256V1,
   publishCatalogWorkItemsV1,
   publishOperationsIncidentV1,
   recoverOperationsIncidentV1,
   runOperationsMaintenanceV1,
+  supersedeCatalogReviewWorkItemsV1,
 } from "../../backend/operations/operations_control_plane_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -37,6 +39,12 @@ const maintenanceWorkflow = source(
 const maintenanceWorker = source("scripts/workers/operations_maintenance_v1.mjs");
 const actionClaimMigration = source(
   "supabase/migrations/20260901070000_founder_operations_action_claim_v1.sql",
+);
+const catalogReviewSupersessionMigration = source(
+  "supabase/migrations/20260901190000_catalog_founder_review_supersession_v1.sql",
+);
+const catalogReviewSupersessionWorkflow = source(
+  ".github/workflows/catalog-founder-review-supersession.yml",
 );
 
 function catalogFixture() {
@@ -192,6 +200,71 @@ test("catalog candidate work item preserves evidence and cannot dispatch a write
   assert.equal(item.plan_payload.review_boundary.writer_dispatches, false);
   assert.equal(item.evidence.length, 2);
   assert.equal(item.plan_fingerprint, operationsSha256V1(item.plan_payload));
+  assert.equal(buildCatalogSetWorkItemKeyV1(candidate), item.work_item_key);
+});
+
+test("catalog review supersession is service-only, target-bound, and append-only", () => {
+  assert.match(
+    catalogReviewSupersessionMigration,
+    /create or replace function public\.operations_supersede_catalog_reviews_v1/,
+  );
+  assert.match(catalogReviewSupersessionMigration, /operations_require_service_role_v1\(\)/);
+  assert.match(
+    catalogReviewSupersessionMigration,
+    /action_type <> 'execute_registered_outcome_workflow_v1'/,
+  );
+  assert.match(
+    catalogReviewSupersessionMigration,
+    /action_type <> 'review_catalog_set_candidate'/,
+  );
+  assert.match(catalogReviewSupersessionMigration, /catalog_review_replacement_target_mismatch/);
+  assert.match(
+    catalogReviewSupersessionMigration,
+    /coalesce\([\s\S]*source_code[\s\S]*source_set_id/,
+  );
+  assert.match(catalogReviewSupersessionMigration, /state = 'superseded'/);
+  assert.match(catalogReviewSupersessionMigration, /insert into public\.founder_work_item_events/);
+  assert.match(
+    catalogReviewSupersessionMigration,
+    /revoke all on function public\.operations_supersede_catalog_reviews_v1\(uuid, text\[\]\)[\s\S]*from public, anon, authenticated/,
+  );
+  assert.doesNotMatch(
+    catalogReviewSupersessionMigration,
+    /\b(insert into|update|delete from) public\.(?:sets|card_prints|card_print_identity|card_printings|external_mappings)\b/i,
+  );
+  assert.match(catalogReviewSupersessionWorkflow, /TARGET_MIGRATION: '20260901190000'/);
+  assert.match(catalogReviewSupersessionWorkflow, /pending_count[\s\S]*test "\$pending_count" = "1"/);
+  assert.match(catalogReviewSupersessionWorkflow, /has_function_privilege\('service_role'/);
+  assert.match(catalogReviewSupersessionWorkflow, /has_function_privilege\('authenticated'/);
+  assert.match(catalogReviewSupersessionWorkflow, /has_function_privilege\('anon'/);
+});
+
+test("catalog review supersession client sends only the replacement and bounded review keys", async () => {
+  const calls = [];
+  const fetchImpl = async (url, request) => {
+    calls.push({ url, body: JSON.parse(request.body) });
+    return {
+      ok: true,
+      status: 200,
+      json: async () => [{
+        replacement_work_item_id: "72697c06-b231-4f7d-9fe7-2cba141efd59",
+        matched_review_count: 1,
+        superseded_review_count: 1,
+      }],
+    };
+  };
+  await supersedeCatalogReviewWorkItemsV1({
+    replacementWorkItemId: "72697c06-b231-4f7d-9fe7-2cba141efd59",
+    reviewWorkItemKeys: ["catalog-set:pokemon:tcgdex_english_set_registry:tk-hs-g"],
+    supabaseUrl: "https://example.supabase.co",
+    serviceRoleKey: "test-service-role",
+    fetchImpl,
+  });
+  assert.match(calls[0].url, /operations_supersede_catalog_reviews_v1$/);
+  assert.deepEqual(calls[0].body, {
+    p_replacement_work_item_id: "72697c06-b231-4f7d-9fe7-2cba141efd59",
+    p_review_work_item_keys: ["catalog-set:pokemon:tcgdex_english_set_registry:tk-hs-g"],
+  });
 });
 
 test("operations payload sanitizer rejects secret-shaped fields", () => {
@@ -231,6 +304,64 @@ test("live publisher reports running and succeeds only after every work item pub
   assert.match(calls[3].url, /operations_agent_heartbeat_v1$/);
   assert.equal(calls[3].body.p_heartbeat.status, "succeeded");
   assert.equal(calls[3].body.p_heartbeat.summary.published_count, 1);
+});
+
+test("live publisher completes review supersession before reporting success", async () => {
+  const calls = [];
+  const replacementId = "72697c06-b231-4f7d-9fe7-2cba141efd59";
+  const fetchImpl = async (url, request) => {
+    const body = JSON.parse(request.body);
+    calls.push({ url, body });
+    if (url.endsWith("operations_publish_work_item_v1")) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => [{ work_item_id: replacementId, created: true }],
+      };
+    }
+    if (url.endsWith("operations_supersede_catalog_reviews_v1")) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => [{
+          replacement_work_item_id: replacementId,
+          matched_review_count: 1,
+          superseded_review_count: 1,
+        }],
+      };
+    }
+    return { ok: true, status: 200, json: async () => [{ ok: true }] };
+  };
+  const [baseItem] = buildCatalogSetWorkItemsV1({
+    candidates: [catalogFixture()],
+    discoverySummary: {},
+    artifactHashes: {},
+    sourceCommitSha: "d".repeat(40),
+    sourceRunUri: null,
+  });
+  const outcomeItem = {
+    ...baseItem,
+    work_item_key: "catalog-outcome:one_piece-op-17",
+    work_item_type: "founder_outcome_workflow",
+    action_type: "execute_registered_outcome_workflow_v1",
+    command_policy: { execution_enabled: true },
+  };
+  const receipts = await publishCatalogWorkItemsV1({
+    agent: buildCatalogDiscoveryAgentV1(),
+    workItems: [outcomeItem],
+    reviewSupersessions: [{
+      replacement_work_item_key: outcomeItem.work_item_key,
+      review_work_item_keys: [baseItem.work_item_key],
+    }],
+    supabaseUrl: "https://example.supabase.co",
+    serviceRoleKey: "test-service-role",
+    fetchImpl,
+  });
+  assert.match(calls[2].url, /operations_publish_work_item_v1$/);
+  assert.match(calls[3].url, /operations_supersede_catalog_reviews_v1$/);
+  assert.match(calls[4].url, /operations_agent_heartbeat_v1$/);
+  assert.equal(calls[4].body.p_heartbeat.status, "succeeded");
+  assert.equal(receipts[0].review_supersession_receipt[0].superseded_review_count, 1);
 });
 
 test("live publisher records failed after a partial publication failure", async () => {

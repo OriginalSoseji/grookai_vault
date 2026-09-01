@@ -368,6 +368,8 @@ test("publisher accepts only packages from the same candidate, commit, and run",
     const report = JSON.parse(fs.readFileSync(path.join(outDir, "summary.json"), "utf8"));
     assert.equal(report.executable_outcome_work_item_count, 1);
     assert.equal(report.review_only_work_item_count, 0);
+    assert.equal(report.review_supersession_request_count, 1);
+    assert.equal(report.superseded_review_work_item_count, 0);
 
     fs.writeFileSync(packagesFile, JSON.stringify([mtgPackage({ sourceRunId: "999" })]));
     const stale = spawnSync(process.execPath, args, {

@@ -117,6 +117,15 @@ function titleGame(gameCode) {
   return clean(gameCode) || "Collectible";
 }
 
+export function buildCatalogSetWorkItemKeyV1(candidate) {
+  const gameCode = clean(candidate?.game_code);
+  const sourceSetKey = clean(
+    candidate?.source_set_id || candidate?.source_code || candidate?.source_name,
+  );
+  return ["catalog-set", safeKey(gameCode), safeKey(candidate?.source_id), safeKey(sourceSetKey)]
+    .filter(Boolean).join(":");
+}
+
 export function buildCatalogSetWorkItemsV1({
   candidates,
   discoverySummary,
@@ -130,7 +139,6 @@ export function buildCatalogSetWorkItemsV1({
   const summaryFingerprint = operationsSha256V1(discoverySummary ?? {});
   return candidates.map((candidate) => {
     const gameCode = clean(candidate.game_code);
-    const sourceSetKey = clean(candidate.source_set_id || candidate.source_code || candidate.source_name);
     const planPayload = {
       proposal_kind: "catalog_set_candidate_review",
       proposal_version: FOUNDER_WORK_ITEM_CONTRACT_VERSION,
@@ -147,8 +155,7 @@ export function buildCatalogSetWorkItemsV1({
       },
     };
     const planFingerprint = operationsSha256V1(planPayload);
-    const itemKey = ["catalog-set", safeKey(gameCode), safeKey(candidate.source_id), safeKey(sourceSetKey)]
-      .filter(Boolean).join(":");
+    const itemKey = buildCatalogSetWorkItemKeyV1(candidate);
     const evidence = [];
     for (const name of ["canonical_promotion_candidates.json", "summary.json"]) {
       const sha256 = clean(artifactHashes?.[name]);
@@ -310,15 +317,60 @@ export async function runOutcomeWorkflowRetryMaintenanceV1({
   });
 }
 
+export async function supersedeCatalogReviewWorkItemsV1({
+  replacementWorkItemId,
+  reviewWorkItemKeys,
+  supabaseUrl,
+  serviceRoleKey,
+  fetchImpl = fetch,
+}) {
+  if (!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(
+    String(replacementWorkItemId ?? ""),
+  )) {
+    throw new Error("Catalog replacement work item ID is invalid");
+  }
+  const keys = [...new Set((reviewWorkItemKeys ?? []).map((key) => String(key).trim()))];
+  if (keys.length < 1 || keys.length > 16 || keys.some((key) =>
+    !/^catalog-set:[a-z0-9_.-]+:[a-z0-9_.-]+:[a-z0-9_.-]+$/.test(key))) {
+    throw new Error("Catalog review work item keys are invalid");
+  }
+  return callOperationsRpcV1({
+    supabaseUrl,
+    serviceRoleKey,
+    functionName: "operations_supersede_catalog_reviews_v1",
+    body: {
+      p_replacement_work_item_id: replacementWorkItemId,
+      p_review_work_item_keys: keys,
+    },
+    fetchImpl,
+  });
+}
+
 export async function publishCatalogWorkItemsV1({
   agent,
   workItems,
+  reviewSupersessions = [],
   supabaseUrl,
   serviceRoleKey,
   fetchImpl = fetch,
 }) {
   validateOperationsAgentV1(agent);
   workItems.forEach(validateFounderWorkItemV1);
+  if (!Array.isArray(reviewSupersessions)) {
+    throw new Error("Catalog review supersessions must be an array");
+  }
+  const workItemKeys = new Set(workItems.map((item) => item.work_item_key));
+  const supersessionByReplacementKey = new Map();
+  for (const entry of reviewSupersessions) {
+    const replacementKey = String(entry?.replacement_work_item_key ?? "").trim();
+    if (!workItemKeys.has(replacementKey) || supersessionByReplacementKey.has(replacementKey)) {
+      throw new Error("Catalog review supersession replacement is invalid");
+    }
+    const reviewKeys = [...new Set((entry?.review_work_item_keys ?? []).map((key) =>
+      String(key).trim()))];
+    if (reviewKeys.length < 1) throw new Error("Catalog review supersession keys are required");
+    supersessionByReplacementKey.set(replacementKey, reviewKeys);
+  }
   await callOperationsRpcV1({
     supabaseUrl,
     serviceRoleKey,
@@ -351,7 +403,25 @@ export async function publishCatalogWorkItemsV1({
         body: { p_item: item },
         fetchImpl,
       });
-      receipts.push({ work_item_key: item.work_item_key, receipt });
+      let supersessionReceipt = null;
+      const reviewWorkItemKeys = supersessionByReplacementKey.get(item.work_item_key);
+      if (reviewWorkItemKeys) {
+        const replacementWorkItemId = Array.isArray(receipt)
+          ? receipt[0]?.work_item_id
+          : receipt?.work_item_id;
+        supersessionReceipt = await supersedeCatalogReviewWorkItemsV1({
+          replacementWorkItemId,
+          reviewWorkItemKeys,
+          supabaseUrl,
+          serviceRoleKey,
+          fetchImpl,
+        });
+      }
+      receipts.push({
+        work_item_key: item.work_item_key,
+        receipt,
+        ...(supersessionReceipt ? { review_supersession_receipt: supersessionReceipt } : {}),
+      });
     }
     await callOperationsRpcV1({
       supabaseUrl,
