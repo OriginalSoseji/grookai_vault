@@ -1,5 +1,6 @@
 # Catalog Discovery Checkpoints
 
+- [2026-09-01 Trainer Kit Catalog Completion And Queue Hygiene V1](./2026-09-01_TRAINER_KIT_CATALOG_COMPLETION_AND_QUEUE_HYGIENE_V1.md)
 - [2026-09-01 Catalog Founder Outcome Automation V1](./2026-09-01_CATALOG_FOUNDER_OUTCOME_AUTOMATION_V1.md)
 - [2026-09-01 TK-SM-R Phone-To-Executor Automation V1](./2026-09-01_TK_SM_R_PHONE_TO_EXECUTOR_AUTOMATION_V1.md)
 - [2026-08-29 Collectible Shadow Automation Status V2](./2026-08-29_COLLECTIBLE_SHADOW_AUTOMATION_STATUS_V2.md)
