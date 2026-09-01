@@ -104,12 +104,21 @@ jobs:
         env:
           TK_SM_R_EXPECTED_COMMAND_ID: ${{ steps.resolve-command.outputs.command_id }}
           TK_SM_R_EXPECTED_SOURCE_COMMIT: ${{ steps.resolve-command.outputs.source_commit_sha }}
+          FOUNDER_OUTCOME_EXPECTED_COMMAND_ID: ${{ steps.resolve-command.outputs.command_id }}
+          FOUNDER_OUTCOME_EXPECTED_SOURCE_COMMIT: ${{ steps.resolve-command.outputs.source_commit_sha }}
         run: |
           set -euo pipefail
           test -n "$SUPABASE_DB_URL"
           test "$(git rev-parse HEAD)" = "${{ steps.resolve-command.outputs.source_commit_sha }}"
           test -z "$(git status --porcelain --untracked-files=no)"
           case "${{ steps.resolve-command.outputs.workflow_handler }}" in
+            founder_outcome_workflow_v1)
+              test "${{ steps.resolve-command.outputs.action_type }}" = "execute_registered_outcome_workflow_v1"
+              test "${{ steps.resolve-command.outputs.executor_version }}" = "FOUNDER_OUTCOME_WORKFLOW_EXECUTOR_V1"
+              node scripts/workers/founder_outcome_workflow_executor_v1.mjs \
+                --run \
+                --out-dir="$OUT_DIR/executor"
+              ;;
             tk_sm_r_hidden_set_apply_v1)
               test "${{ steps.resolve-command.outputs.action_type }}" = "apply_tk_sm_r_hidden_set_v1"
               test "${{ steps.resolve-command.outputs.executor_version }}" = "TK_SM_R_HIDDEN_SET_APPLY_EXECUTOR_V1"

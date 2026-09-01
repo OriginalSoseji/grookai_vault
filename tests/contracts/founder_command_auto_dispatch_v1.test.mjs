@@ -26,34 +26,38 @@ const validCommand = {
   plan_fingerprint: "19b9d6bd2cb94112598a18c5ca16092524e2aeb8d6b74ed5715d4764d157f485",
   execution_deadline_at: "2026-09-01T10:27:55.764536Z",
 };
+const tkSmRRegistryEntry = FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1.find(
+  (entry) => entry.action_type === validCommand.action_type,
+);
 
 test("dispatcher registry is explicit, unique, and source-specific", () => {
   assert.equal(validateFounderCommandExecutorRegistryV1(FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1), FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1);
   assert.deepEqual(FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1.map((entry) => entry.action_type), [
+    "execute_registered_outcome_workflow_v1",
     "apply_tk_sm_r_hidden_set_v1",
   ]);
   assert.throws(() => validateFounderCommandExecutorRegistryV1([]), /non-empty array/);
   assert.throws(() => validateFounderCommandExecutorRegistryV1([
-    FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1[0],
-    { ...FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1[0], registry_key: "duplicate_key" },
+    tkSmRRegistryEntry,
+    { ...tkSmRRegistryEntry, registry_key: "duplicate_key" },
   ]), /Duplicate founder command action/);
 });
 
 test("resolved commands must match the registered action, executor, SHA, fingerprint, and deadline", () => {
   const result = validateResolvedFounderCommandV1(
     validCommand,
-    FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1[0],
+    tkSmRRegistryEntry,
     new Date("2026-09-01T09:30:00Z"),
   );
   assert.equal(result.workflow_handler, "tk_sm_r_hidden_set_apply_v1");
   assert.throws(() => validateResolvedFounderCommandV1(
     { ...validCommand, action_type: "arbitrary_shell" },
-    FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1[0],
+    tkSmRRegistryEntry,
     new Date("2026-09-01T09:30:00Z"),
   ), /action is not registered/);
   assert.throws(() => validateResolvedFounderCommandV1(
     { ...validCommand, execution_deadline_at: "2026-09-01T09:29:59Z" },
-    FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1[0],
+    tkSmRRegistryEntry,
     new Date("2026-09-01T09:30:00Z"),
   ), /deadline is invalid or expired/);
 });
@@ -72,8 +76,9 @@ test("dispatcher returns idle without claiming or writing when no command is que
   assert.equal(report.status, "idle");
   assert.equal(report.command_found, false);
   assert.equal(report.canonical_writes, false);
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 2);
   assert.match(calls[0].url, /operations_peek_command_action_v1$/);
+  assert.match(calls[1].url, /operations_peek_command_action_v1$/);
   assert.doesNotMatch(calls[0].url, /claim|complete|decide/);
 });
 
@@ -82,7 +87,14 @@ test("dispatcher resolves exact metadata but leaves the lease to the frozen exec
     supabaseUrl: "https://example.supabase.co",
     serviceRoleKey: "test-service-role",
     now: new Date("2026-09-01T09:30:00Z"),
-    fetchImpl: async () => ({ ok: true, status: 200, json: async () => validCommand }),
+    fetchImpl: async (_url, request) => {
+      const body = JSON.parse(request.body);
+      return {
+        ok: true,
+        status: 200,
+        json: async () => body.p_action_type === validCommand.action_type ? validCommand : null,
+      };
+    },
   });
   assert.equal(report.status, "resolved");
   assert.equal(report.command_found, true);
@@ -102,6 +114,8 @@ test("maintenance schedule polls safely and executes only a hard-coded registere
   assert.match(maintenanceWorkflow, /ref: \$\{\{ steps\.resolve-command\.outputs\.source_commit_sha \}\}/);
   assert.match(maintenanceWorkflow, /case "\$\{\{ steps\.resolve-command\.outputs\.workflow_handler \}\}" in/);
   assert.match(maintenanceWorkflow, /tk_sm_r_founder_command_executor_v1\.mjs/);
+  assert.match(maintenanceWorkflow, /founder_outcome_workflow_executor_v1\.mjs/);
+  assert.match(maintenanceWorkflow, /execute_registered_outcome_workflow_v1/);
   assert.match(maintenanceWorkflow, /Unregistered founder command workflow handler/);
   assert.doesNotMatch(maintenanceWorkflow, /english_pokemon_incremental_promotion_v1\.mjs/);
   assert.doesNotMatch(maintenanceWorkflow, /actions: write/);

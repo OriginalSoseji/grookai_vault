@@ -4,6 +4,11 @@ import {
   TK_SM_R_APPLY_EXECUTOR_KEY,
   TK_SM_R_APPLY_EXECUTOR_VERSION,
 } from "./tk_sm_r_founder_apply_v1.mjs";
+import {
+  FOUNDER_OUTCOME_WORKFLOW_ACTION,
+  FOUNDER_OUTCOME_WORKFLOW_EXECUTOR_KEY,
+  FOUNDER_OUTCOME_WORKFLOW_EXECUTOR_VERSION,
+} from "./founder_outcome_workflow_v1.mjs";
 
 export const FOUNDER_COMMAND_DISPATCHER_VERSION = "FOUNDER_COMMAND_DISPATCHER_V1";
 
@@ -12,6 +17,13 @@ const SHA1_PATTERN = /^[a-f0-9]{40}$/;
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 
 export const FOUNDER_COMMAND_EXECUTOR_REGISTRY_V1 = Object.freeze([
+  Object.freeze({
+    registry_key: "founder_outcome_workflow_v1",
+    action_type: FOUNDER_OUTCOME_WORKFLOW_ACTION,
+    executor_key: FOUNDER_OUTCOME_WORKFLOW_EXECUTOR_KEY,
+    executor_version: FOUNDER_OUTCOME_WORKFLOW_EXECUTOR_VERSION,
+    workflow_handler: "founder_outcome_workflow_v1",
+  }),
   Object.freeze({
     registry_key: "tk_sm_r_hidden_set_apply_v1",
     action_type: TK_SM_R_APPLY_ACTION,

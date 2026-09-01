@@ -98,6 +98,11 @@ The first production use case is a released set candidate:
    readback reconciliation.
 10. The work item records the result and emits a completion notification.
 
+When the proposed operation requires multiple normal stages, the work item must
+freeze those stages as one Founder Outcome Workflow. The founder approves the
+complete outcome once; the service advances all registered stages and reports
+only terminal success or a safety exception.
+
 No set becomes publicly visible unless publication is an independently
 allowlisted and explicitly displayed part of the approved plan.
 

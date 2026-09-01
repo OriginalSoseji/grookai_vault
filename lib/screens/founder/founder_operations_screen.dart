@@ -438,19 +438,38 @@ class _FounderOperationsWorkItemScreenState
 
   Future<void> _confirmApprove() async {
     final execution = widget.item.executionEnabled;
+    final outcomeWorkflow = widget.item.isOutcomeWorkflow;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(execution ? 'Approve and queue?' : 'Approve review?'),
+        title: Text(
+          outcomeWorkflow
+              ? 'Approve complete outcome?'
+              : execution
+              ? 'Approve and queue?'
+              : 'Approve review?',
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               execution
-                  ? 'The service executor will receive only this frozen scope and must re-run preflight before writing.'
+                  ? outcomeWorkflow
+                        ? 'Every listed stage will run automatically from this frozen plan. You only return here for completion or a genuine exception.'
+                        : 'The service executor will receive only this frozen scope and must re-run preflight before writing.'
                   : 'This records approval of the review package. No executor or database writer is enabled for this item.',
             ),
+            if (outcomeWorkflow) ...[
+              const SizedBox(height: 12),
+              Text('${widget.item.outcomeStages.length} registered stages'),
+              Text(
+                _text(
+                  (widget.item.outcomeWorkflow['terminal_outcome']
+                      as Map?)?['summary'],
+                ),
+              ),
+            ],
             const SizedBox(height: 12),
             Text('Version ${widget.item.version}'),
             Text('Fingerprint ${_shortHash(widget.item.planFingerprint)}'),
@@ -616,6 +635,14 @@ class _FounderOperationsWorkItemScreenState
           title: 'Explicit exclusions',
           child: _StringList(value: widget.item.exclusions),
         ),
+        if (widget.item.isOutcomeWorkflow)
+          _DetailSection(
+            title: 'Automatic outcome workflow',
+            child: _OutcomeWorkflowProgress(
+              workflow: widget.item.outcomeWorkflow,
+              receipts: detail.workflowStages,
+            ),
+          ),
         _DetailSection(
           title: 'Authority',
           child: _KeyValueList(
@@ -756,7 +783,9 @@ class _FounderOperationsWorkItemScreenState
                       item.isRetryable
                           ? 'Retry bounded command'
                           : item.executionEnabled
-                          ? 'Approve and queue'
+                          ? item.isOutcomeWorkflow
+                                ? 'Approve complete outcome'
+                                : 'Approve and queue'
                           : 'Approve review',
                     ),
                   ),
@@ -932,6 +961,81 @@ class _OperationsAgentRow extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _OutcomeWorkflowProgress extends StatelessWidget {
+  const _OutcomeWorkflowProgress({
+    required this.workflow,
+    required this.receipts,
+  });
+
+  final Map<String, dynamic> workflow;
+  final List<Map<String, dynamic>> receipts;
+
+  @override
+  Widget build(BuildContext context) {
+    final stages =
+        (workflow['stages'] is List
+                ? workflow['stages'] as List
+                : const <dynamic>[])
+            .whereType<Map>()
+            .map((stage) => Map<String, dynamic>.from(stage))
+            .toList(growable: false);
+    final latestByStage = <String, Map<String, dynamic>>{};
+    for (final receipt in receipts) {
+      final key = _text(receipt['stage_key']);
+      if (key.isNotEmpty) latestByStage[key] = receipt;
+    }
+    final terminal = workflow['terminal_outcome'] is Map
+        ? Map<String, dynamic>.from(workflow['terminal_outcome'] as Map)
+        : const <String, dynamic>{};
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _text(terminal['summary']),
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        const SizedBox(height: 12),
+        ...stages.indexed.map((entry) {
+          final index = entry.$1;
+          final stage = entry.$2;
+          final stageKey = _text(stage['stage_key']);
+          final status = _text(latestByStage[stageKey]?['status']);
+          final succeeded = status == 'succeeded';
+          final failed = status == 'failed';
+          return ListTile(
+            contentPadding: EdgeInsets.zero,
+            dense: true,
+            leading: Icon(
+              succeeded
+                  ? Icons.check_circle_rounded
+                  : failed
+                  ? Icons.error_rounded
+                  : status == 'started'
+                  ? Icons.sync_rounded
+                  : Icons.radio_button_unchecked_rounded,
+              color: succeeded
+                  ? Colors.green
+                  : failed
+                  ? Theme.of(context).colorScheme.error
+                  : null,
+            ),
+            title: Text('${index + 1}. ${_displayToken(stageKey)}'),
+            subtitle: Text(
+              status.isEmpty
+                  ? '${_displayToken(_text(stage['mode']))} · queued after approval'
+                  : _displayToken(status),
+            ),
+          );
+        }),
+        const SizedBox(height: 8),
+        const Text(
+          'One approval covers every listed stage. Execution stops only for a frozen safety exception.',
+        ),
+      ],
     );
   }
 }

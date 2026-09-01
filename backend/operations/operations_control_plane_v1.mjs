@@ -296,6 +296,20 @@ export async function runOperationsMaintenanceV1({
   });
 }
 
+export async function runOutcomeWorkflowRetryMaintenanceV1({
+  supabaseUrl,
+  serviceRoleKey,
+  fetchImpl = fetch,
+}) {
+  return callOperationsRpcV1({
+    supabaseUrl,
+    serviceRoleKey,
+    functionName: "operations_requeue_retryable_outcome_workflows_v1",
+    body: {},
+    fetchImpl,
+  });
+}
+
 export async function publishCatalogWorkItemsV1({
   agent,
   workItems,
