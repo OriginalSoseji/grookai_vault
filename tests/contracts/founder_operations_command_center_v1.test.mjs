@@ -323,3 +323,27 @@ test("work-item notifications deep-link to operations while legacy alerts remain
   assert.match(dispatcher, /grookai:\/\/founder\/operations\?work_item_id=/);
   assert.match(dispatcher, /grookai:\/\/founder\/notifications\?notification_id=/);
 });
+
+test("work-item publication resolves pgcrypto through the extensions schema", () => {
+  const migration = fs.readFileSync(
+    new URL(
+      "../../supabase/migrations/20260901030000_founder_operations_publish_digest_schema_fix_v1.sql",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(migration, /create or replace function public\.operations_publish_work_item_v1\(p_item jsonb\)/);
+  assert.match(
+    migration,
+    /extensions\.digest\(convert_to\(v_payload::text, 'UTF8'\), 'sha256'\)/,
+  );
+  assert.match(
+    migration,
+    /revoke all on function public\.operations_publish_work_item_v1\(jsonb\) from public, anon, authenticated/,
+  );
+  assert.match(
+    migration,
+    /grant execute on function public\.operations_publish_work_item_v1\(jsonb\) to service_role/,
+  );
+  assert.doesNotMatch(migration, /\b(?:insert|update|delete|truncate)\s+(?:public\.)?card_prints\b/i);
+});
