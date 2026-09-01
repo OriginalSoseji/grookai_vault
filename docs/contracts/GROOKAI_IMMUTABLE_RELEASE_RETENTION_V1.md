@@ -36,7 +36,11 @@ authority of this contract.
 - Git-checkout releases must have no tracked or untracked changes.
 - Packaged control-plane releases must carry a valid `.release-sha` or
   `RELEASE_COMMIT_SHA` identity marker.
-- Removal stops as soon as the 20 GiB free-space floor is restored.
+- Removal stops as soon as the configured free-space floor is restored.
+- The standalone script defaults to 20 GiB. The 120 GB production worker
+  service uses a 15 GB floor so the target remains attainable while active and
+  rollback releases are protected. MEE runtime-artifact retention uses the
+  same production floor.
 - The script fails closed if candidates cannot restore the floor.
 - No runtime evidence is archived or deleted by this action.
 
@@ -56,8 +60,8 @@ sudo bash scripts/ops/grookai_immutable_release_retention_v1.sh --apply
 ```
 
 After apply, verify the active symlinks and process working directories remain
-unchanged, the current release worktree is clean, free space is at least 20
-GiB, and the MEE artifact-retention service passes.
+unchanged, the current release worktree is clean, free space is at least the
+configured service floor, and the MEE artifact-retention service passes.
 
 ## Scheduling
 

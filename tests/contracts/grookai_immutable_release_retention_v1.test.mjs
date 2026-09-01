@@ -46,12 +46,15 @@ test("immutable release retention protects live and rollback releases", () => {
 test("immutable release retention restores the frozen capacity floor", () => {
   const script = read("scripts/ops/grookai_immutable_release_retention_v1.sh");
   const contract = read("docs/contracts/GROOKAI_IMMUTABLE_RELEASE_RETENTION_V1.md");
+  const service = read("deploy/systemd/grookai-immutable-release-retention.service");
   assert.match(script, /GROOKAI_RELEASE_RETENTION_TARGET_FREE_BYTES:-21474836480/);
+  assert.match(service, /GROOKAI_RELEASE_RETENTION_TARGET_FREE_BYTES=15000000000/);
   assert.match(script, /GROOKAI_RELEASE_RETENTION_MINIMUM_AGE_HOURS:-24/);
   assert.match(script, /eligible releases cannot restore the target free-space floor/);
   assert.match(script, /target free-space floor was not reached/);
   assert.match(script, /status=capacity_restored/);
   assert.match(contract, /No runtime evidence is archived or deleted/);
+  assert.match(contract, /120 GB production worker/);
 });
 
 test("immutable release retention is installed as an alerted daily timer", () => {

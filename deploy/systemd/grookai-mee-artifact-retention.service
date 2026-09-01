@@ -10,6 +10,7 @@ Type=oneshot
 User=root
 WorkingDirectory=/opt/grookai_mee_current
 EnvironmentFile=/etc/grookai/mee-nightly.env
+Environment=MEE_RETENTION_TARGET_FREE_BYTES=15000000000
 ExecStartPre=+/usr/bin/touch /run/lock/grookai-mee-nightly.lock
 ExecStartPre=+/usr/bin/chown root:grookai /run/lock/grookai-mee-nightly.lock
 ExecStartPre=+/usr/bin/chmod 0660 /run/lock/grookai-mee-nightly.lock

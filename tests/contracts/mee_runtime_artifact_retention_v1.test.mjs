@@ -29,6 +29,7 @@ test("MEE retention is serialized, alerted, and scheduled before acquisition", (
   assert.match(service, /flock -n \/run\/lock\/grookai-mee-nightly\.lock/);
   assert.match(service, /chown root:grookai \/run\/lock\/grookai-mee-nightly\.lock/);
   assert.match(service, /User=root/);
+  assert.match(service, /MEE_RETENTION_TARGET_FREE_BYTES=15000000000/);
   assert.match(service, /OnFailure=grookai-operations-webhook@%n\.service/);
   assert.match(service, /mee_runtime_artifact_retention_v1\.sh --apply/);
   assert.match(timer, /OnCalendar=\*-\*-\* 01:45:00 UTC/);
