@@ -1,0 +1,14 @@
+{
+  "version": "CATALOG_FOUNDER_WORK_ITEM_PUBLISHER_V1",
+  "mode": "publish",
+  "source_commit_sha": "b9a2b509477f8dec906c906475f2186456015089",
+  "source_run_uri": null,
+  "candidate_count": 1,
+  "work_item_count": 1,
+  "published_count": 1,
+  "database_writes": true,
+  "canonical_writes": false,
+  "storage_writes": false,
+  "writer_dispatches": false,
+  "work_item_fingerprint_sha256": "8de422ccdd129ef70b7666b37d50b0848f50b5b9d0189d3abbbea24a1bc15c32"
+}

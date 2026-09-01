@@ -1,0 +1,83 @@
+{
+  "version": "FOUNDER_OPERATIONS_TK_SM_R_LIVE_GATE_V1",
+  "recorded_at": "2026-09-01T03:11:08.5485947Z",
+  "status": "review_item_published_phone_decision_pending",
+  "migrations": {
+    "base_version": "20260830233000",
+    "base_sha256": "02072d8460785539a6ceed76eef18e39f2fc4eaa99afb5e5064f4b2e24f90fdb",
+    "base_remote_readback": true,
+    "first_repair_version": "20260831054500",
+    "first_repair_remote_readback": true,
+    "digest_schema_fix_version": "20260901030000",
+    "digest_schema_fix_sha256": "eb40d3a3c5f63f81e3342b4b55884d638f6fc1c0905d5b8965c7d6b3349aa0d1",
+    "digest_schema_fix_remote_readback": true
+  },
+  "source": {
+    "authority_repair_commit_sha": "6a6e6d3fde099602e2db41b286a42a497d2172b5",
+    "authority_repair_merge_sha": "b9a2b509477f8dec906c906475f2186456015089",
+    "digest_fix_commit_sha": "47ffdd7b7e41586d6a4fc3a1f6f72689284b07e5",
+    "digest_fix_merge_sha": "b734bf925bf219c3138b08e1970ec2d747d313e0"
+  },
+  "candidate": {
+    "game_code": "pokemon",
+    "language": "en",
+    "source_set_id": "tk-sm-r",
+    "set_name": "SM Trainer Kit (Alolan Raichu)",
+    "expected_card_count": 30,
+    "database_card_count": 19,
+    "missing_card_count": 11,
+    "master_index_status": "master_verified",
+    "master_index_card_rows": 30,
+    "master_index_evidence_rows": 99,
+    "canonical_writes": false
+  },
+  "work_item": {
+    "id": "8fd61c41-d4d2-484a-a312-4891826d529e",
+    "key": "catalog-set:pokemon:tcgdex_english_set_registry:tk-sm-r",
+    "version": 1,
+    "state": "ready_for_review",
+    "plan_fingerprint": "55da1ae9e45adbc85c2e1b58ca0fad242209352d8d6f2ddba537b55b2d2d6ed7",
+    "source_commit_sha": "b9a2b509477f8dec906c906475f2186456015089",
+    "execution_enabled": false,
+    "decision_count": 0,
+    "command_count": 0,
+    "canonical_writes": false,
+    "storage_writes": false,
+    "pricing_writes": false,
+    "vault_writes": false
+  },
+  "notification": {
+    "outbox_id": "0887fd8d-2071-4c58-b677-7eb66bfccdbb",
+    "event_type": "operations_alert",
+    "tier": "instant",
+    "sent_at": "2026-09-01T02:54:01.726492+00:00",
+    "failed_at": null,
+    "attempts": 1
+  },
+  "deployments": {
+    "web": {
+      "production_sha": "b734bf925bf219c3138b08e1970ec2d747d313e0",
+      "deployment_id": 6193633764,
+      "state": "success",
+      "route_status": 200,
+      "route_result": "redirected_to_login"
+    },
+    "notification_dispatcher": {
+      "status": "ACTIVE",
+      "version": 16,
+      "sha256": "6c8eefa6c77e21e49d897aab47e41e9c10e80e4cf1c7e5fd2e33868d013a73ff",
+      "unauthenticated_probe_status": 401
+    },
+    "operations_webhook_v1": {
+      "status": "ACTIVE",
+      "version": 4,
+      "sha256": "639d559cef8265f4aab2fb9f1850912ac19903c8299545e96ac3921979217d6e",
+      "unauthenticated_probe_status": 401
+    }
+  },
+  "activation": {
+    "repository_variable": "FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE",
+    "enabled": false,
+    "reason": "Physical-phone founder decision has not been read back."
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "work_item_key": "catalog-set:pokemon:tcgdex_english_set_registry:tk-sm-r",
+    "receipt": [
+      {
+        "work_item_id": "8fd61c41-d4d2-484a-a312-4891826d529e",
+        "work_item_version": 1,
+        "work_item_state": "ready_for_review",
+        "created": true
+      }
+    ]
+  }
+]
