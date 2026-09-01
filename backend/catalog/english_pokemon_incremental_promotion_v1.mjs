@@ -33,6 +33,17 @@ function coordinate(number, name) {
 }
 
 function sourcePairs(card) {
+  if (Array.isArray(card?.source_evidence) && card.source_evidence.length > 0) {
+    if (card.source_evidence.length < 2 || Number(card?.source_count) < 2) {
+      throw new Error(`Master Index card ${card?.set_key}:${card?.card_number} lacks two sources`);
+    }
+    return card.source_evidence.map((source) => ({
+      source_key: clean(source?.source_key),
+      source_url: clean(source?.source_url) || null,
+      source_authority: clean(source?.source_authority) || null,
+      source_kind: clean(source?.source_kind) || null,
+    }));
+  }
   const sources = card?.sources ?? [];
   const urls = card?.evidence_urls ?? [];
   if (sources.length < 2 || urls.length < 2 || Number(card?.source_count) < 2) {
@@ -118,6 +129,19 @@ function resolveFamily(card, detail, speciesRows) {
       family_key: `${category}:${slug(card.card_name)}`,
       family_status: "resolved_non_species_identity",
       normalized_family_candidate: `${category}:${slug(card.card_name)}`,
+      species_id: null,
+    };
+  }
+  const normalizedName = normalizeEnglishPokemonCardNameV1(card.card_name);
+  if (/^(?:grass|fire|water|lightning|psychic|fighting|darkness|metal|fairy) energy$/.test(
+    normalizedName,
+  )) {
+    return {
+      card_domain: "energy",
+      card_type: normalizedName.replace(/\s+energy$/, ""),
+      family_key: `energy:${slug(card.card_name)}`,
+      family_status: "resolved_non_species_identity",
+      normalized_family_candidate: `energy:${slug(card.card_name)}`,
       species_id: null,
     };
   }

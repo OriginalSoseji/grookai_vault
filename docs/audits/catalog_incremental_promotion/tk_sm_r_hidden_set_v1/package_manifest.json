@@ -1,0 +1,90 @@
+{
+  "version": "TK_SM_R_HIDDEN_SET_EXECUTOR_PACKAGE_V1",
+  "target": "pokemon_en:tk-sm-r",
+  "source_set_code": "tk-sm-r",
+  "database_set_code": "tk-sm-r",
+  "expected_full_set_count": 30,
+  "observed_existing_parent_count": 19,
+  "expected_insert_parent_count": 11,
+  "authority": {
+    "source_commit_sha": "d88210d806d1b55d7832847beaed692c0bb7bfee",
+    "source_replay_card_count": 30,
+    "all_cards_master_verified": true,
+    "minimum_independent_sources_per_card": 2,
+    "hashes": {
+      "cards_sha256": "282e7a18f1d8b00378c43778668073c6144ba68a2a6ac8cf23d969f60a715188",
+      "sets_sha256": "de31f94e0661da5072a2fd59822a50e882fa41749fc90050a225fa57019d27a9",
+      "source_set_sha256": "e33dc444135e98cc7e45fcdd3e97ebdb7a7125028a5e3c0a81ef04fda2f249ec",
+      "master_package_sha256": "402d0155e76b27c0707fbb6a6d997cf12d39a44c2f1b0591d69d396b45b085a5"
+    }
+  },
+  "prior_review_only_decision": {
+    "work_item_id": "8fd61c41-d4d2-484a-a312-4891826d529e",
+    "decision_id": "b2bc866f-3fe8-44c2-82bc-9ac9de228fa4",
+    "plan_fingerprint": "55da1ae9e45adbc85c2e1b58ca0fad242209352d8d6f2ddba537b55b2d2d6ed7",
+    "execution_enabled": false,
+    "authorizes_apply": false
+  },
+  "boundaries": {
+    "parent_card_print_inserts_only": true,
+    "identity_inserts_only": true,
+    "source_evidence_inserts_only": true,
+    "family_review_inserts_only": true,
+    "child_printing_writes": false,
+    "external_mapping_writes": false,
+    "storage_writes": false,
+    "image_pointer_writes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "vault_writes": false,
+    "updates": false,
+    "deletes": false
+  },
+  "expected_insert_coordinates": [
+    {
+      "number": "1",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "3",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "5",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "7",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "8",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "9",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "10",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "12",
+      "name": "Lightning Energy"
+    },
+    {
+      "number": "24",
+      "name": "Psychic Energy"
+    },
+    {
+      "number": "27",
+      "name": "Psychic Energy"
+    },
+    {
+      "number": "28",
+      "name": "Psychic Energy"
+    }
+  ],
+  "package_fingerprint_sha256": "35d64d8f5fb24c6f8d8ffbba5c5ad56eb569a0709a94b20831333731283e4f32"
+}

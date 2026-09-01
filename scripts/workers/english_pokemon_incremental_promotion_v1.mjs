@@ -40,7 +40,11 @@ function parseArgs(argv) {
     sourceSetCode: null,
     databaseSetCode: null,
     expectedHeadSha: null,
+    expectedPayloadFingerprint: null,
+    expectedMasterPackageFingerprint: null,
+    expectedSourceSnapshotFingerprint: null,
     sourceSetFile: null,
+    skipCardDetailFetch: false,
     masterDir: DEFAULT_MASTER_DIR,
     outDir: path.join("docs", "audits", "english_pokemon_incremental_promotion_v1", stamp),
   };
@@ -51,7 +55,15 @@ function parseArgs(argv) {
     else if (token.startsWith("--source-set-code=")) options.sourceSetCode = token.slice(18);
     else if (token.startsWith("--database-set-code=")) options.databaseSetCode = token.slice(20);
     else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
+    else if (token.startsWith("--expected-payload-fingerprint=")) {
+      options.expectedPayloadFingerprint = token.slice(31);
+    } else if (token.startsWith("--expected-master-package-fingerprint=")) {
+      options.expectedMasterPackageFingerprint = token.slice(38);
+    } else if (token.startsWith("--expected-source-snapshot-fingerprint=")) {
+      options.expectedSourceSnapshotFingerprint = token.slice(39);
+    }
     else if (token.startsWith("--source-set-file=")) options.sourceSetFile = path.resolve(token.slice(18));
+    else if (token === "--skip-card-detail-fetch") options.skipCardDetailFetch = true;
     else if (token.startsWith("--master-dir=")) options.masterDir = path.resolve(token.slice(13));
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else throw new Error(`Unknown argument: ${token}`);
@@ -68,8 +80,23 @@ function parseArgs(argv) {
     throw new Error("Apply requires --expected-head-sha");
   }
   if (options.mode === "apply" &&
-      path.resolve(options.masterDir) !== path.resolve(DEFAULT_MASTER_DIR)) {
-    throw new Error("Apply requires the checked-in default English Master Index");
+      !/^[0-9a-f]{64}$/.test(options.expectedPayloadFingerprint ?? "")) {
+    throw new Error("Apply requires --expected-payload-fingerprint");
+  }
+  if (options.mode === "apply" && path.resolve(options.masterDir) !== path.resolve(DEFAULT_MASTER_DIR) &&
+      !/^[0-9a-f]{64}$/.test(options.expectedMasterPackageFingerprint ?? "")) {
+    throw new Error(
+      "Apply with a scoped Master Index package requires --expected-master-package-fingerprint",
+    );
+  }
+  if (options.mode === "apply" && options.sourceSetFile &&
+      !/^[0-9a-f]{64}$/.test(options.expectedSourceSnapshotFingerprint ?? "")) {
+    throw new Error(
+      "Apply with a frozen source set requires --expected-source-snapshot-fingerprint",
+    );
+  }
+  if (options.mode === "apply" && options.skipCardDetailFetch && !options.sourceSetFile) {
+    throw new Error("Apply may skip card detail fetch only with a frozen source set");
   }
   return options;
 }
@@ -109,8 +136,29 @@ async function readMasterIndex(options) {
     hashes: {
       cards_sha256: sha256(cardsBytes),
       sets_sha256: sha256(setsBytes),
+      package_sha256: sha256(stableJson({
+        cards_sha256: sha256(cardsBytes),
+        sets_sha256: sha256(setsBytes),
+      })),
     },
   };
+}
+
+function expectedApplyApproval(
+  options,
+  payloadFingerprint,
+  masterPackageFingerprint,
+  sourceSnapshotFingerprint,
+) {
+  return [
+    "I approve ENGLISH_POKEMON_INCREMENTAL_PROMOTION_V1 apply only",
+    `source_set=${options.sourceSetCode}`,
+    `database_set=${options.databaseSetCode}`,
+    `payload_fingerprint=${payloadFingerprint}`,
+    `master_package_fingerprint=${masterPackageFingerprint}`,
+    `source_snapshot_fingerprint=${sourceSnapshotFingerprint}`,
+    `commit_sha=${options.expectedHeadSha}`,
+  ].join("; ");
 }
 
 async function fetchTcgdexSet(setCode, sourceSetFile = null) {
@@ -452,11 +500,13 @@ async function main() {
   let report;
   try {
     const database = await loadDatabase(client, options);
-    const tcgdexDetails = await fetchMissingTcgdexDetails({
-      sourceSet: tcgdex.set,
-      masterCards: master.cards,
-      existingCards: database.existingCards,
-    });
+    const tcgdexDetails = options.skipCardDetailFetch
+      ? { details: [], snapshots: [] }
+      : await fetchMissingTcgdexDetails({
+        sourceSet: tcgdex.set,
+        masterCards: master.cards,
+        existingCards: database.existingCards,
+      });
     const plan = buildEnglishPokemonIncrementalSetPlanV1({
       set: database.set,
       sourceSet: tcgdex.set,
@@ -469,6 +519,30 @@ async function main() {
     plan.payload_fingerprint_sha256 = sha256(stableJson(plan.payload));
     const validation = validateEnglishPokemonIncrementalSetPlanV1(plan);
     if (!validation.valid) throw new Error(`Plan validation failed: ${validation.findings.join(",")}`);
+    if (options.expectedPayloadFingerprint &&
+        options.expectedPayloadFingerprint !== plan.payload_fingerprint_sha256) {
+      throw new Error("Expected payload fingerprint does not match the frozen plan");
+    }
+    if (options.expectedMasterPackageFingerprint &&
+        options.expectedMasterPackageFingerprint !== master.hashes.package_sha256) {
+      throw new Error("Expected Master Index package fingerprint does not match");
+    }
+    if (options.expectedSourceSnapshotFingerprint &&
+        options.expectedSourceSnapshotFingerprint !== tcgdex.snapshot.body_sha256) {
+      throw new Error("Expected source snapshot fingerprint does not match");
+    }
+    if (options.mode === "apply") {
+      const approval = process.env.ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL ?? "";
+      const expectedApproval = expectedApplyApproval(
+        options,
+        plan.payload_fingerprint_sha256,
+        master.hashes.package_sha256,
+        tcgdex.snapshot.body_sha256,
+      );
+      if (approval !== expectedApproval) {
+        throw new Error(`Exact approval missing. Expected: ${expectedApproval}`);
+      }
+    }
     await writeJson(path.join(options.outDir, "preflight_plan.json"), plan);
     const collisions = await collisionPreflight(client, plan);
     let insertedReadback = null;

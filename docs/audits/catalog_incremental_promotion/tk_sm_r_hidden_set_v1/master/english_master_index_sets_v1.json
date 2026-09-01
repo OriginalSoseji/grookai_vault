@@ -1,0 +1,48 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SETS_V1",
+  "generated_at": "2026-09-01T05:39:45.181Z",
+  "audit_only": true,
+  "db_writes": false,
+  "sets": [
+    {
+      "key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "pokemontcg": null,
+      "tcgdex": "tk-sm-r",
+      "manual_aliases": [],
+      "release_date": "2017-04-21",
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-sm-r",
+        "official_checklist_pdf": null,
+        "official_pokemon_checklist": null,
+        "thepricedex": "tk-sm-r",
+        "thepricedex_price_list": "tk-sm-r",
+        "pkmncards": "sm-trainer-kit-alolan-raichu",
+        "bulbapedia": "Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)",
+        "bulbapedia_set_list": "Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available",
+        "official_checklist_pdf": "unavailable",
+        "official_pokemon_checklist": "unavailable",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    }
+  ]
+}
