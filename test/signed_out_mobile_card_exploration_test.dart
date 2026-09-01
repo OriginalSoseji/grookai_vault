@@ -26,6 +26,9 @@ void main() {
     );
     expect(cardPrintModel, contains("'game_code_in': gameScope"));
     expect(cardPrintModel, contains("'q': query.isEmpty ? null : query"));
+    expect(cardPrintModel, contains("'set_code_in': setCode"));
+    expect(cardPrintModel, contains("'number_in': number"));
+    expect(cardPrintModel, contains('_filterByRarity(page, options.rarity)'));
   });
 
   test('guest catalog excludes personalized and mutating behavior', () {

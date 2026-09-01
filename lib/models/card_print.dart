@@ -434,24 +434,42 @@ class CardPrintRepository {
     required CardSearchOptions options,
     required String gameScope,
     required String query,
+    String? setCode,
+    String? number,
   }) async {
-    final response = await client.rpc(
-      'search_game_card_prints_v4',
-      params: {
-        'game_code_in': gameScope,
-        'q': query.isEmpty ? null : query,
-        'set_code_in': null,
-        'number_in': null,
-        'illustrator_in': null,
-        'language_scope_in': _normalizeLanguageScope(options.languageScope),
-        'limit_in': options.limit.clamp(1, 64),
-        'offset_in': 0,
-      },
-    );
-    if (response is! List) {
-      return const <CardPrint>[];
+    final requestedLimit = options.limit.clamp(1, 500);
+    final rows = <CardPrint>[];
+    var offset = 0;
+
+    while (rows.length < requestedLimit && offset <= 10000) {
+      final response = await client.rpc(
+        'search_game_card_prints_v4',
+        params: {
+          'game_code_in': gameScope,
+          'q': query.isEmpty ? null : query,
+          'set_code_in': setCode,
+          'number_in': number,
+          'illustrator_in': null,
+          'language_scope_in': _normalizeLanguageScope(options.languageScope),
+          'limit_in': 64,
+          'offset_in': offset,
+        },
+      );
+      if (response is! List || response.isEmpty) {
+        break;
+      }
+
+      final page = await _fromRowsWithCanonImages(response);
+      rows.addAll(_filterByRarity(page, options.rarity));
+      if (response.length < 64) {
+        break;
+      }
+      offset += response.length;
     }
-    return _fromRowsWithCanonImages(response);
+
+    return rows.length <= requestedLimit
+        ? rows
+        : rows.sublist(0, requestedLimit);
   }
 
   static Future<String?> _resolveCatalogGameId(
@@ -689,29 +707,26 @@ class CardPrintRepository {
     // Anonymous clients cannot rely on direct `games`/`card_prints` reads. The
     // governed RPC is release-aware, bounded, and explicitly granted to anon.
     // It is also the local fallback when the web resolver is unavailable.
-    try {
-      final governedRows = await _searchGameCardPrintsV4(
-        client: client,
-        options: options,
-        gameScope: gameScope,
-        query: trimmed,
-      );
-      if (trimmed.isEmpty || governedRows.isNotEmpty) {
+    if (trimmed.isEmpty) {
+      try {
+        final governedRows = await _searchGameCardPrintsV4(
+          client: client,
+          options: options,
+          gameScope: gameScope,
+          query: trimmed,
+        );
         if (kDebugMode) debugPrint('search:game_v4');
         return governedRows;
+      } catch (error) {
+        if (kDebugMode) {
+          debugPrint('search:game_v4_failed fallback=legacy error=$error');
+        }
       }
-    } catch (error) {
-      if (kDebugMode) {
-        debugPrint('search:game_v4_failed fallback=legacy error=$error');
+
+      final gameId = await _resolveCatalogGameId(client, gameScope);
+      if (gameId == null) {
+        return const <CardPrint>[];
       }
-    }
-
-    final gameId = await _resolveCatalogGameId(client, gameScope);
-    if (gameId == null) {
-      return const <CardPrint>[];
-    }
-
-    if (trimmed.isEmpty) {
       final List<dynamic> data = await client
           .from('card_prints')
           .select(_cardPrintSelect)
@@ -759,6 +774,35 @@ class CardPrintRepository {
     final isSetPlusNumber = hasSetToken && numberInfo.hasNumber;
     final isSetOnly =
         hasSetToken && !numberInfo.hasNumber && tokens.rawTokens.length == 1;
+
+    final governedQuery = nameTokens.isNotEmpty
+        ? nameTokens.join(' ').trim()
+        : !hasSetToken && !numberInfo.hasNumber
+        ? trimmed
+        : '';
+    try {
+      final governedRows = await _searchGameCardPrintsV4(
+        client: client,
+        options: options,
+        gameScope: gameScope,
+        query: governedQuery,
+        setCode: hasSetToken ? maybeSet : null,
+        number: numberInfo.hasNumber ? numberInfo.norm : null,
+      );
+      if (governedRows.isNotEmpty) {
+        if (kDebugMode) debugPrint('search:game_v4');
+        return governedRows;
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('search:game_v4_failed fallback=legacy error=$error');
+      }
+    }
+
+    final gameId = await _resolveCatalogGameId(client, gameScope);
+    if (gameId == null) {
+      return const <CardPrint>[];
+    }
 
     List<dynamic> data;
     String mode;
