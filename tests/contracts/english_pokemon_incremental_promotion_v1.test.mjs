@@ -117,6 +117,40 @@ test("Energy identity remains resolvable from an exact printed name without live
   assert.equal(plan.payload.rows[0].family_review.family_link_promotion_allowed, false);
 });
 
+test("Trainer Kit payloads retain collision-free set-scoped GV IDs", () => {
+  function trainerKitPlan(setCode) {
+    const energy = {
+      ...masterCard("1", "Lightning Energy"),
+      key: `${setCode}|1|lightning energy`,
+      set_key: setCode,
+    };
+    return buildEnglishPokemonIncrementalSetPlanV1({
+      set: {
+        id: "10000000-0000-0000-0000-000000000002",
+        code: setCode,
+        name: `Trainer Kit ${setCode}`,
+        printed_set_abbrev: "TK",
+      },
+      sourceSet: {
+        id: setCode,
+        name: `Trainer Kit ${setCode}`,
+        cardCount: { total: 1 },
+      },
+      masterCards: [energy],
+      speciesRows: SPECIES,
+    });
+  }
+
+  const gyarados = trainerKitPlan("tk-hs-g");
+  const raichu = trainerKitPlan("tk-hs-r");
+  assert.equal(gyarados.payload.rows[0].card_print.gv_id, "GV-PK-TK-tk-hs-g-1");
+  assert.equal(raichu.payload.rows[0].card_print.gv_id, "GV-PK-TK-tk-hs-r-1");
+  assert.notEqual(
+    gyarados.payload.rows[0].card_print.gv_id,
+    raichu.payload.rows[0].card_print.gv_id,
+  );
+});
+
 test("partial or single-source Master Index evidence never admits a payload", () => {
   assert.throws(() => buildEnglishPokemonIncrementalSetPlanV1({
     set: SET,

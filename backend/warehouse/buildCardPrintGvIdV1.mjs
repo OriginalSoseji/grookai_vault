@@ -81,6 +81,21 @@ function normalizeUpperHyphenToken(value) {
     .toUpperCase();
 }
 
+function normalizeLowerHyphenToken(value) {
+  const normalized = normalizeTextOrNull(value);
+  if (!normalized) {
+    return null;
+  }
+
+  return normalized
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}
+
 function normalizeUpperAlnumToken(value) {
   const normalized = normalizeTextOrNull(value);
   if (!normalized) {
@@ -229,6 +244,7 @@ export function resolveCol1PrintedNumberTokenV1(input = {}) {
 export function resolveGvIdNamespaceDecisionV1(input = {}) {
   const printedSetToken = normalizeUpperHyphenToken(input.printedSetAbbrev);
   const setCodeToken = normalizeUpperHyphenToken(input.setCode);
+  const lowerSetCodeToken = normalizeLowerHyphenToken(input.setCode);
   const baseSetToken = printedSetToken || setCodeToken;
 
   if (!baseSetToken) {
@@ -236,6 +252,20 @@ export function resolveGvIdNamespaceDecisionV1(input = {}) {
   }
 
   const setCodeKey = normalizeLowerRegistryKey(input.setCode);
+  const trainerKitFamilyDetected = baseSetToken === 'TK' &&
+    /^tk(?:-|[0-9])/.test(lowerSetCodeToken ?? '');
+  if (trainerKitFamilyDetected) {
+    return {
+      family: 'TK',
+      namespace_contract: 'trainer_kit_set_scoped_namespace_v1',
+      set_code_key: setCodeKey,
+      set_code_token: lowerSetCodeToken,
+      set_token: 'TK',
+      year_token: null,
+      source: 'set_code_with_shared_printed_abbreviation',
+    };
+  }
+
   const col1FamilyDetected =
     setCodeKey === COL1_SET_CODE_KEY || baseSetToken === COL1_NAMESPACE_TOKEN;
   if (col1FamilyDetected) {
@@ -348,6 +378,10 @@ export function buildCardPrintGvIdV1(input = {}) {
   emitNamespaceDecision(input, namespaceDecision);
 
   const setToken = namespaceDecision.set_token;
+  const baseIdentityPrefix =
+    namespaceDecision.namespace_contract === 'trainer_kit_set_scoped_namespace_v1'
+      ? `${BASE_PREFIX}-${setToken}-${namespaceDecision.set_code_token}`
+      : `${BASE_PREFIX}-${setToken}`;
   const rawNumberToken =
     namespaceDecision.namespace_contract === 'col1_identity_contract_v1'
       ? resolveCol1PrintedNumberTokenV1(input)
@@ -364,21 +398,21 @@ export function buildCardPrintGvIdV1(input = {}) {
   }
 
   if (!variantToken || BASE_VARIANT_KEYS.has(variantToken.toLowerCase())) {
-    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${rawNumberToken}`, input);
+    return applyPrintedIdentityModifierSuffixV1(`${baseIdentityPrefix}-${rawNumberToken}`, input);
   }
 
   if (SUFFIX_ONLY_VARIANT_KEYS.has(variantToken)) {
-    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${rawNumberToken}${variantToken}`, input);
+    return applyPrintedIdentityModifierSuffixV1(`${baseIdentityPrefix}-${rawNumberToken}${variantToken}`, input);
   }
 
   if (PREFIX_ONLY_VARIANT_KEYS.has(variantToken)) {
-    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${variantToken}${rawNumberToken}`, input);
+    return applyPrintedIdentityModifierSuffixV1(`${baseIdentityPrefix}-${variantToken}${rawNumberToken}`, input);
   }
 
   const prefixedFamilyMatch = variantToken.match(/^([A-Z]{2,})([AB])$/);
   if (prefixedFamilyMatch) {
     const [, prefixToken, suffixToken] = prefixedFamilyMatch;
-    return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${prefixToken}${rawNumberToken}${suffixToken}`, input);
+    return applyPrintedIdentityModifierSuffixV1(`${baseIdentityPrefix}-${prefixToken}${rawNumberToken}${suffixToken}`, input);
   }
 
   const suffixToken = resolveGvIdExtensionTokenV2(input.variantKey);
@@ -386,5 +420,5 @@ export function buildCardPrintGvIdV1(input = {}) {
     throw new Error('gv_id_variant_suffix_missing');
   }
 
-  return applyPrintedIdentityModifierSuffixV1(`${BASE_PREFIX}-${setToken}-${rawNumberToken}-${suffixToken}`, input);
+  return applyPrintedIdentityModifierSuffixV1(`${baseIdentityPrefix}-${rawNumberToken}-${suffixToken}`, input);
 }
