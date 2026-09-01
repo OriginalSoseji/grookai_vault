@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-08-28T15:36:58.243Z
+Generated: 2026-09-01T17:13:30.231Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,27 +13,26 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 204 |
-| evidence rows | 235656 |
+| evidence rows | 238081 |
 | conflicts | 0 |
-| manual review | 424 |
+| manual review | 144 |
 
 ## Cards By Status
 
 | status | count |
 | --- | --- |
 | api_agreed | 9 |
-| candidate_unconfirmed | 98 |
+| candidate_unconfirmed | 27 |
 | human_source_verified | 78 |
-| master_verified | 21508 |
+| master_verified | 21579 |
 
 ## Printings By Status
 
 | status | count |
 | --- | --- |
-| api_agreed | 1 |
-| candidate_unconfirmed | 308 |
+| candidate_unconfirmed | 109 |
 | human_source_verified | 395 |
-| master_verified | 37563 |
+| master_verified | 37763 |
 
 ## Source Evidence Rows
 
@@ -54,7 +53,7 @@ Transport: Default Node TLS verification.
 | bulbapedia_prize_pack_current_gap_finish | 19 |
 | bulbapedia_prize_pack_foil | 16 |
 | bulbapedia_prize_pack_normal | 77 |
-| bulbapedia_set_list | 12108 |
+| bulbapedia_set_list | 12024 |
 | bulbapedia_sm_black_star_promos | 3 |
 | bulbapedia_sv01 | 8 |
 | bulbapedia_sv03_additional_card_marker | 10 |
@@ -131,7 +130,7 @@ Transport: Default Node TLS verification.
 | official_pokemon_legacy_checklist | 20 |
 | official_pokemon_svi_cardlist_en | 8 |
 | packmagik_ascended_heroes_team_rockets_great_ball_205 | 1 |
-| pkmncards | 19677 |
+| pkmncards | 19288 |
 | pkmncards_identity_gap | 17 |
 | pkmncollectors_futsal | 4 |
 | pkmncollectors_sm1_energy | 9 |
@@ -145,7 +144,7 @@ Transport: Default Node TLS verification.
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 51664 |
+| pokemontcg_api | 51838 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -194,7 +193,7 @@ Transport: Default Node TLS verification.
 | tcgdex | 49012 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 21316 |
+| tcgplayer_price_guide | 23696 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -781,26 +780,29 @@ Transport: Default Node TLS verification.
 | tcgsearch_card_page | 14 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
 | tcgstats_mfb_price_guide | 33 |
-| thepricedex_price_list | 57582 |
+| thepricedex_price_list | 57926 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Source Availability
 
 | source | runtime status | count |
 | --- | --- | --- |
-| bulbapedia_set_list | collected | 91 |
-| bulbapedia_set_list | error | 112 |
+| bulbapedia_set_list | collected | 94 |
+| bulbapedia_set_list | error | 109 |
 | bulbapedia_set_list | unavailable | 1 |
 | human_fixtures | collected | 1 |
-| pkmncards | collected | 157 |
-| pkmncards | error | 46 |
-| pkmncards | unavailable | 1 |
-| pokemontcg_api | cached_snapshot | 173 |
-| pokemontcg_api | error | 31 |
+| pkmncards | collected | 153 |
+| pkmncards | error | 51 |
+| pokemontcg_api | cached_snapshot | 12 |
+| pokemontcg_api | collected | 151 |
+| pokemontcg_api | collected_plus_cached_snapshot | 11 |
+| pokemontcg_api | unavailable | 30 |
 | tcgdex | collected | 199 |
 | tcgdex | unavailable | 5 |
-| tcgplayer_price_guide | cached_snapshot | 145 |
-| tcgplayer_price_guide | unavailable | 59 |
-| thepricedex_price_list | collected | 128 |
-| thepricedex_price_list | error | 75 |
+| tcgplayer_price_guide | cached_snapshot | 12 |
+| tcgplayer_price_guide | collected | 128 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 13 |
+| tcgplayer_price_guide | unavailable | 51 |
+| thepricedex_price_list | collected | 175 |
+| thepricedex_price_list | error | 28 |
 | thepricedex_price_list | unavailable | 1 |
