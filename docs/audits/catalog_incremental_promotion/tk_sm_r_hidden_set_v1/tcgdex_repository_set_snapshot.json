@@ -1,0 +1,196 @@
+{
+  "version": "TK_SM_R_TCGDEX_REPOSITORY_SET_SNAPSHOT_V1",
+  "source": "tcgdex_github_snapshot",
+  "repository_url": "https://github.com/tcgdex/cards-database.git",
+  "source_commit_sha": "d88210d806d1b55d7832847beaed692c0bb7bfee",
+  "id": "tk-sm-r",
+  "name": "SM trainer Kit (Alolan Raichu)",
+  "cardCount": {
+    "official": 30,
+    "total": 30
+  },
+  "releaseDate": "2017-04-21",
+  "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu).ts",
+  "cards": [
+    {
+      "id": "tk-sm-r-1",
+      "localId": "1",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/1.ts"
+    },
+    {
+      "id": "tk-sm-r-10",
+      "localId": "10",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/10.ts"
+    },
+    {
+      "id": "tk-sm-r-11",
+      "localId": "11",
+      "name": "Zubat",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/11.ts"
+    },
+    {
+      "id": "tk-sm-r-12",
+      "localId": "12",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/12.ts"
+    },
+    {
+      "id": "tk-sm-r-13",
+      "localId": "13",
+      "name": "Spearow",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/13.ts"
+    },
+    {
+      "id": "tk-sm-r-14",
+      "localId": "14",
+      "name": "Pikachu",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/14.ts"
+    },
+    {
+      "id": "tk-sm-r-15",
+      "localId": "15",
+      "name": "Potion",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/15.ts"
+    },
+    {
+      "id": "tk-sm-r-16",
+      "localId": "16",
+      "name": "Grubbin",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/16.ts"
+    },
+    {
+      "id": "tk-sm-r-17",
+      "localId": "17",
+      "name": "Alolan Raichu",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/17.ts"
+    },
+    {
+      "id": "tk-sm-r-18",
+      "localId": "18",
+      "name": "Bewear",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/18.ts"
+    },
+    {
+      "id": "tk-sm-r-19",
+      "localId": "19",
+      "name": "Hau",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/19.ts"
+    },
+    {
+      "id": "tk-sm-r-2",
+      "localId": "2",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/2.ts"
+    },
+    {
+      "id": "tk-sm-r-20",
+      "localId": "20",
+      "name": "Psychic Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/20.ts"
+    },
+    {
+      "id": "tk-sm-r-21",
+      "localId": "21",
+      "name": "Great Ball",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/21.ts"
+    },
+    {
+      "id": "tk-sm-r-22",
+      "localId": "22",
+      "name": "Drowzee",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/22.ts"
+    },
+    {
+      "id": "tk-sm-r-23",
+      "localId": "23",
+      "name": "Hau",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/23.ts"
+    },
+    {
+      "id": "tk-sm-r-24",
+      "localId": "24",
+      "name": "Psychic Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/24.ts"
+    },
+    {
+      "id": "tk-sm-r-25",
+      "localId": "25",
+      "name": "Great Ball",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/25.ts"
+    },
+    {
+      "id": "tk-sm-r-26",
+      "localId": "26",
+      "name": "Togedemaru",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/26.ts"
+    },
+    {
+      "id": "tk-sm-r-27",
+      "localId": "27",
+      "name": "Psychic Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/27.ts"
+    },
+    {
+      "id": "tk-sm-r-28",
+      "localId": "28",
+      "name": "Psychic Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/28.ts"
+    },
+    {
+      "id": "tk-sm-r-29",
+      "localId": "29",
+      "name": "Pikachu",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/29.ts"
+    },
+    {
+      "id": "tk-sm-r-3",
+      "localId": "3",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/3.ts"
+    },
+    {
+      "id": "tk-sm-r-30",
+      "localId": "30",
+      "name": "Alolan Raichu",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/30.ts"
+    },
+    {
+      "id": "tk-sm-r-4",
+      "localId": "4",
+      "name": "Stufful",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/4.ts"
+    },
+    {
+      "id": "tk-sm-r-5",
+      "localId": "5",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/5.ts"
+    },
+    {
+      "id": "tk-sm-r-6",
+      "localId": "6",
+      "name": "Golbat",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/6.ts"
+    },
+    {
+      "id": "tk-sm-r-7",
+      "localId": "7",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/7.ts"
+    },
+    {
+      "id": "tk-sm-r-8",
+      "localId": "8",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/8.ts"
+    },
+    {
+      "id": "tk-sm-r-9",
+      "localId": "9",
+      "name": "Lightning Energy",
+      "sourceReference": "data/Trainer kits/SM trainer Kit (Alolan Raichu)/9.ts"
+    }
+  ]
+}

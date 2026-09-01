@@ -121,6 +121,19 @@ function resolveFamily(card, detail, speciesRows) {
       species_id: null,
     };
   }
+  const normalizedName = normalizeEnglishPokemonCardNameV1(card.card_name);
+  if (/^(?:grass|fire|water|lightning|psychic|fighting|darkness|metal|fairy) energy$/.test(
+    normalizedName,
+  )) {
+    return {
+      card_domain: "energy",
+      card_type: normalizedName.replace(/\s+energy$/, ""),
+      family_key: `energy:${slug(card.card_name)}`,
+      family_status: "resolved_non_species_identity",
+      normalized_family_candidate: `energy:${slug(card.card_name)}`,
+      species_id: null,
+    };
+  }
   const dexIds = [...new Set((detail?.dexId ?? []).map(Number)
     .filter((value) => Number.isSafeInteger(value) && value > 0))];
   let matches = dexIds.length === 1 && speciesByDex.has(dexIds[0])

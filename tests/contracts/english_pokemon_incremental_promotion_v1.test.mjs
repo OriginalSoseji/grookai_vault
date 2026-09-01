@@ -103,6 +103,20 @@ test("Trainer details resolve a non-species family", () => {
   assert.equal(plan.payload.rows[0].identity.identity_payload.card_type, "supporter");
 });
 
+test("Energy identity remains resolvable from an exact printed name without live detail", () => {
+  const energy = masterCard("1", "Lightning Energy");
+  const plan = buildEnglishPokemonIncrementalSetPlanV1({
+    set: SET,
+    sourceSet: { ...SOURCE_SET, cardCount: { total: 1 } },
+    masterCards: [energy],
+    speciesRows: SPECIES,
+    tcgdexDetails: [],
+  });
+  assert.equal(plan.payload.rows[0].identity.identity_payload.card_domain, "energy");
+  assert.equal(plan.payload.rows[0].identity.identity_payload.card_type, "lightning");
+  assert.equal(plan.payload.rows[0].family_review.family_link_promotion_allowed, false);
+});
+
 test("partial or single-source Master Index evidence never admits a payload", () => {
   assert.throws(() => buildEnglishPokemonIncrementalSetPlanV1({
     set: SET,
@@ -185,7 +199,12 @@ test("worker source enforces rollback and forbidden-write boundaries", () => {
     "utf8",
   );
   assert.match(worker, /Apply requires --expected-head-sha/);
-  assert.match(worker, /Apply requires the checked-in default English Master Index/);
+  assert.match(worker, /Apply requires --expected-payload-fingerprint/);
+  assert.match(worker, /Apply with a scoped Master Index package requires --expected-master-package-fingerprint/);
+  assert.match(worker, /Apply with a frozen source set requires --expected-source-snapshot-fingerprint/);
+  assert.match(worker, /Apply may skip card detail fetch only with a frozen source set/);
+  assert.match(worker, /ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL/);
+  assert.match(worker, /Exact approval missing/);
   assert.match(worker, /fetchMissingTcgdexDetails/);
   assert.match(worker, /--source-set-file=/);
   assert.match(worker, /frozen_local_https_snapshot/);

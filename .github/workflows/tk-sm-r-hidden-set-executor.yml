@@ -1,0 +1,87 @@
+name: TK-SM-R Hidden Set Executor Dry Run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tk-sm-r-hidden-set-executor-v1
+  cancel-in-progress: false
+
+jobs:
+  rollback-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      CATALOG_AUTOMATION_MODE: shadow-only
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify frozen package and worker contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check scripts/workers/english_pokemon_incremental_promotion_v1.mjs
+          node --test \
+            tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
+            tests/contracts/tk_sm_r_hidden_set_executor_v1.test.mjs
+          git diff --check
+
+      - name: Prove exact 11-row transaction and rollback absence
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/tk-sm-r-hidden-set-executor-$GITHUB_RUN_ID"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/english_pokemon_incremental_promotion_v1.mjs \
+            --mode=dry-run \
+            --as-of="$(date -u +%F)" \
+            --source-set-code=tk-sm-r \
+            --database-set-code=tk-sm-r \
+            --master-dir=docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/master \
+            --source-set-file=docs/audits/catalog_incremental_promotion/tk_sm_r_hidden_set_v1/tcgdex_repository_set_snapshot.json \
+            --skip-card-detail-fetch \
+            --expected-master-package-fingerprint=1be691235b987a06a19a881b796ea02787a280f39df34e7f69968c3f92d37abb \
+            --expected-source-snapshot-fingerprint=e33dc444135e98cc7e45fcdd3e97ebdb7a7125028a5e3c0a81ef04fda2f249ec \
+            --out-dir="$OUT_DIR"
+          node --input-type=module - "$OUT_DIR/report.json" <<'NODE'
+          import fs from "node:fs";
+          const report = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+          if (!report.pass) throw new Error("dry-run report did not pass");
+          if (report.counts.card_prints !== 11 || report.counts.identities !== 11 ||
+              report.counts.family_reviews !== 11) {
+            throw new Error(`unexpected insert counts: ${JSON.stringify(report.counts)}`);
+          }
+          if (!report.inserted_readback || report.inserted_readback.card_prints !== 11) {
+            throw new Error("transaction insert readback is missing");
+          }
+          if (!report.rollback_absence_readback ||
+              Object.values(report.rollback_absence_readback).some((value) => Number(value) !== 0)) {
+            throw new Error("rollback absence readback failed");
+          }
+          NODE
+
+      - name: Upload immutable rollback proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tk-sm-r-hidden-set-executor-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
