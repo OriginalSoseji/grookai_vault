@@ -437,6 +437,9 @@ enum _ShellDestination {
 }
 
 class _AppShellState extends State<AppShell> {
+  static const String _scannerStateNoticeDismissedPreference =
+      'scanner_state_notice_dismissed_v1';
+
   final SupabaseClient _supabase = Supabase.instance.client;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<HomePageState> _homeKey = GlobalKey();
@@ -452,6 +455,7 @@ class _AppShellState extends State<AppShell> {
   bool _handlingCanonicalLink = false;
   bool _handlingDebugAction = false;
   bool _scannerPrewarmInFlight = false;
+  bool _scannerFlowInFlight = false;
   bool _bottomNavCollapsed = false;
   bool _relationshipRouteLoading = false;
   int _pulseUnreadCount = 0;
@@ -1192,6 +1196,23 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
+    if (_scannerFlowInFlight) {
+      return;
+    }
+    _scannerFlowInFlight = true;
+
+    try {
+      await _runScanFlow();
+    } finally {
+      _scannerFlowInFlight = false;
+    }
+  }
+
+  Future<void> _runScanFlow() async {
+    if (!await _confirmScannerStateNotice()) {
+      return;
+    }
+
     if (kScannerV5Enabled) {
       final action = await _pushPage<ScanCaptureV5Exit>(
         const ScanCaptureV5Screen(),
@@ -1257,6 +1278,37 @@ class _AppShellState extends State<AppShell> {
     if (mounted) {
       unawaited(_prewarmScanCardSurface(reason: 'identity_return'));
     }
+  }
+
+  Future<bool> _confirmScannerStateNotice() async {
+    SharedPreferences? preferences;
+    try {
+      preferences = await SharedPreferences.getInstance();
+      if (preferences.getBool(_scannerStateNoticeDismissedPreference) == true) {
+        return true;
+      }
+    } catch (error) {
+      debugPrint('Scanner notice preference read failed: $error');
+    }
+
+    if (!mounted) {
+      return false;
+    }
+
+    final decision = await showScannerStateNoticeDialog(context);
+    if (decision == null) {
+      return false;
+    }
+
+    if (decision.doNotShowAgain && preferences != null) {
+      try {
+        await preferences.setBool(_scannerStateNoticeDismissedPreference, true);
+      } catch (error) {
+        debugPrint('Scanner notice preference write failed: $error');
+      }
+    }
+
+    return decision.proceed;
   }
 
   Future<void> _maybeShowOnboardingForLanding() async {
