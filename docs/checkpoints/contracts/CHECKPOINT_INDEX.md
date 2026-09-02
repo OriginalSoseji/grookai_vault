@@ -1,5 +1,15 @@
 # Contract Checkpoint Index
 
+## REPOSITORY_RECONCILIATION_PROJECT_20260901_V1
+
+Status: INITIATED
+
+Date: 2026-09-01
+
+Scope: Preservation-first branch and worktree reconciliation into a fresh-main candidate, with no deletion or production mutation
+
+File: `docs/checkpoints/contracts/REPOSITORY_RECONCILIATION_PROJECT_20260901_V1.md`
+
 ## CONTRACT_RUNTIME_LAYER_V1
 
 Status: ACTIVE  
