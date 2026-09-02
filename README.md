@@ -2,9 +2,17 @@
 
 [![Prod Edge Probe](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/prod-edge-probe.yml/badge.svg?branch=main)](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/prod-edge-probe.yml)
 
-# Grookai Vault
-
 Flutter + Supabase app for TCG collection management.
+
+## Start Here
+
+- Operators and Codex: `docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md`
+- Engineering rules: `docs/GROOKAI_RULEBOOK.md`
+- Documentation map: `docs/INDEX.md`
+
+The operator playbook records how to find existing accounts, browser sessions,
+worktrees, devices, store apps, remote Mac access, release state, pricing
+operations, and database safety boundaries before asking for setup again.
 
 ## Start Here: Engineering Rules
 Before making any backend, schema, ingestion, pricing, or Supabase changes, read:
