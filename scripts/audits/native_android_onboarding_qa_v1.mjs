@@ -35,7 +35,7 @@ function adb(args, options = {}) {
 }
 
 function serviceKey() {
-  return process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+  return process.env.SUPABASE_SECRET_KEY || "";
 }
 
 function supabaseUrl() {

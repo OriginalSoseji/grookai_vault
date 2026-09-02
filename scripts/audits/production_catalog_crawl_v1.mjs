@@ -12,7 +12,6 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..", "..");
 const DEFAULT_ORIGIN = "https://grookaivault.com";
 const requireFromWeb = createRequire(path.join(ROOT, "apps", "web", "package.json"));
-const { createServerClient } = requireFromWeb("@supabase/ssr");
 
 function argument(name, fallback = "") {
   return (
@@ -36,7 +35,7 @@ function connectionString() {
 }
 
 function serviceKey() {
-  return process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+  return process.env.SUPABASE_SECRET_KEY || "";
 }
 
 function supabaseUrl() {
@@ -144,6 +143,7 @@ async function deleteTemporaryAccount(account) {
 }
 
 async function establishServerAuthCookies(context, account, origin) {
+  const { createServerClient } = requireFromWeb("@supabase/ssr");
   const cookieJar = [];
   const client = createServerClient(
     supabaseUrl(),
