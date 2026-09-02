@@ -186,9 +186,9 @@ function collectLiveEvidence(repoRoot, candidate, authorityRef, liveWorktrees, r
     });
   }
   for (const remoteRef of candidate.remote_refs) {
-    const fullRef = `refs/remotes/${remoteRef}`;
-    const localTrackingSha = refSha(repoRoot, fullRef);
     const remoteBranchName = remoteRef.replace(/^origin\//, "");
+    const fullRef = `refs/remotes/origin/${remoteBranchName}`;
+    const localTrackingSha = refSha(repoRoot, fullRef);
     const currentSha = remoteHeads.rows.get(remoteBranchName) ?? null;
     const expected = sourceRow(candidate, "remote_branch", remoteRef);
     refs.push({
@@ -330,6 +330,7 @@ file, or write to the database or Storage.
 - Bundle file: \`${recoveryManifest.bundle_file}\`
 - Bundle bytes: \`${recoveryManifest.bundle_bytes}\`
 - Bundle SHA-256: \`${recoveryManifest.bundle_sha256}\`
+- Supersedes recovery release: \`${recoveryManifest.supersedes_release_tag ?? "none"}\`
 - Local bundle verification: \`${recoveryManifest.local_bundle_verification.passed}\`
 - Remote asset readback hash match: \`${remoteReadback.bundle_hash_matches}\`
 - Downloaded bundle verification: \`${remoteReadback.downloaded_bundle_verification.passed}\`
@@ -399,6 +400,7 @@ export function main() {
   const recoveryRoot = path.resolve(argument("recovery-root", DEFAULT_RECOVERY_ROOT));
   const recoveryRepository = argument("recovery-repo", DEFAULT_RECOVERY_REPOSITORY);
   const releaseTag = argument("release-tag");
+  const supersedesReleaseTag = argument("supersedes-release-tag");
   const publishRecovery = hasFlag("publish-recovery");
   if (publishRecovery && !releaseTag) throw new Error("--release-tag is required with --publish-recovery.");
 
@@ -412,6 +414,11 @@ export function main() {
 
   const openPullRequests = currentOpenPullRequests(repoRoot);
   const remoteHeads = currentRemoteHeads(repoRoot);
+  const authorityBranchName = authorityRef.replace(/^origin\//, "");
+  const liveAuthoritySha = remoteHeads.rows.get(authorityBranchName) ?? null;
+  if (remoteHeads.status !== "available" || liveAuthoritySha !== authoritySha) {
+    throw new Error("Local authority does not match the live remote authority head.");
+  }
   const repositoryReferences = scanRepositoryReferences(repoRoot, candidates, authorityRef);
   const scheduledTasks = scanScheduledTaskReferences(candidates);
   const runningProcesses = scanRunningProcessReferences(candidates);
@@ -468,6 +475,7 @@ export function main() {
     bundle_sha256: sha256(readFileSync(bundlePath)),
     local_bundle_verification: localBundleVerification,
     recovery_repository: recoveryRepository, release_tag: releaseTag ?? null,
+    supersedes_release_tag: supersedesReleaseTag ?? null,
     delete_authorized: false,
   };
   const bundleManifestFile = `${bundleFile}.manifest.json`;

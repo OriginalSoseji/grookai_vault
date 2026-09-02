@@ -64,6 +64,15 @@ test("remote head inventory is required only for remote candidates", () => {
   assert.equal(localOnly.selection_status, "selected_for_recovery");
 });
 
+test("planner constructs remote tracking refs under origin and verifies live authority", () => {
+  const source = fs.readFileSync(
+    "scripts/repository/build_prearchive_recovery_plan.mjs",
+    "utf8",
+  );
+  assert.match(source, /refs\/remotes\/origin\/\$\{remoteBranchName\}/);
+  assert.match(source, /liveAuthoritySha !== authoritySha/);
+});
+
 test("generated recovery artifacts reconcile and authorize no deletion", () => {
   const root = "docs/audits/repository_prearchive_recovery_20260902";
   if (!fs.existsSync(root)) return;
