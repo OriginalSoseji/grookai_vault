@@ -30,6 +30,16 @@ test("production catalog crawl covers all governed TCG, collection, and social s
     assert.ok(names.has(required), `${required} must be crawled`);
   }
   assert.equal(routes.length, 13);
+
+  const expectedSetHeadings = new Map([
+    ["pokemon_sets", "Browse Pokemon TCG Sets"],
+    ["one_piece_sets", "Browse One Piece Card Game Releases"],
+    ["mtg_sets", "Browse Magic: The Gathering Sets"],
+  ]);
+  for (const [name, heading] of expectedSetHeadings) {
+    const route = routes.find((candidate) => candidate.name === name);
+    assert.ok(route?.expected.includes(heading), `${name} must assert the current catalog heading`);
+  }
 });
 
 test("production catalog crawl uses a disposable account, read-only catalog SQL, and verified cleanup", () => {
