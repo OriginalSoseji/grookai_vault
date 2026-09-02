@@ -127,12 +127,28 @@ const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
 const int _kSearchInitialBatchSize = 24;
 const int _kSearchFollowupBatchSize = 24;
 const int _kSearchResolverLimit = 32;
-const List<String> _kSentenceSearchExamples = <String>[
-  'Charizard from 151',
-  'Japanese Pikachu promo',
-  'Umbreon alt art',
-  'Lugia silver tempest secret rare',
-];
+List<String> _sentenceSearchExamplesForGame(String gameScope) {
+  return switch (gameScope) {
+    'mtg' => const <String>[
+      'Lightning Bolt 1993-2024 foil',
+      'Sol Ring foil',
+      'Black Lotus from Alpha',
+      'Liliana 2015-2024 foil',
+    ],
+    'one_piece' => const <String>[
+      'Monkey D. Luffy from OP05',
+      'Nami from OP01',
+      'Shanks from OP09',
+      'Roronoa Zoro from OP01',
+    ],
+    _ => const <String>[
+      'Gengar 2000-2024 reverse holo',
+      'Charizard from 151',
+      'Exeggutor Poké Ball',
+      'Pikachu 2014-2024 reverse holo',
+    ],
+  };
+}
 const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
     <MapEntry<String, String>>[
       MapEntry<String, String>('all', 'All'),
@@ -679,8 +695,12 @@ class _CatalogSearchField extends StatelessWidget {
 }
 
 class _SentenceSearchExamples extends StatelessWidget {
-  const _SentenceSearchExamples({required this.onSelected});
+  const _SentenceSearchExamples({
+    required this.gameScope,
+    required this.onSelected,
+  });
 
+  final String gameScope;
   final ValueChanged<String> onSelected;
 
   @override
@@ -710,7 +730,7 @@ class _SentenceSearchExamples extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final example in _kSentenceSearchExamples)
+            for (final example in _sentenceSearchExamplesForGame(gameScope))
               ActionChip(
                 avatar: const Icon(Icons.search_rounded, size: 17),
                 label: Text(example),
@@ -5522,9 +5542,10 @@ class HomePageState extends State<HomePage> {
                                   kFeedDebugOverlay &&
                                   _showFeedDebugOverlay,
                             ),
-                            if (showingCuratedLanding) ...[
+                            if (trimmed.isEmpty && !widget.signedOutBrowse) ...[
                               const SizedBox(height: 12),
                               _SentenceSearchExamples(
+                                gameScope: _gameScope,
                                 onSelected: _runSentenceSearchExample,
                               ),
                             ],

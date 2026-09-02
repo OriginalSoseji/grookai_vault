@@ -28,14 +28,14 @@ const FILLER_PHRASES = [
 ];
 
 const FINISH_PATTERNS: Array<{ pattern: RegExp; key: string; label: string; residual: string }> = [
-  { pattern: /\betched(?:\s+foils?)?\b/gi, key: "etched", label: "Etched Foil", residual: "etched foil" },
-  { pattern: /\bfoils?\b/gi, key: "foil", label: "Foil", residual: "foil" },
+  { pattern: /\bmaster\s*ball(?:\s+reverse(?:\s+holos?)?)?\b/gi, key: "masterball", label: "Master Ball Reverse", residual: "master ball reverse" },
+  { pattern: /\bpok[eé]?\s*ball(?:\s+reverse(?:\s+holos?)?)?\b/gi, key: "pokeball", label: "Poke Ball Reverse", residual: "poke ball reverse" },
   { pattern: /\brocket\s+reverse\s+holos?\b/gi, key: "rocket_reverse", label: "Rocket Reverse", residual: "rocket reverse" },
-  { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
   { pattern: /\bcosmos\s+holos?\b/gi, key: "cosmos", label: "Cosmos Holo", residual: "cosmos holo" },
   { pattern: /\bcracked\s+ice(?:\s+holos?)?\b/gi, key: "cracked_ice", label: "Cracked Ice", residual: "cracked ice" },
-  { pattern: /\bpok[eé]?\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "pokeball", label: "Poke Ball Reverse", residual: "poke ball reverse" },
-  { pattern: /\bmaster\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "masterball", label: "Master Ball Reverse", residual: "master ball reverse" },
+  { pattern: /\betched(?:\s+foils?)?\b/gi, key: "etched", label: "Etched Foil", residual: "etched foil" },
+  { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
+  { pattern: /\bfoils?\b/gi, key: "foil", label: "Foil", residual: "foil" },
   { pattern: /\bholos?\b/gi, key: "holo", label: "Holo", residual: "holo" },
   { pattern: /\bnormal\b|\bnon[-\s]?holos?\b|\bstandard\b/gi, key: "normal", label: "Normal", residual: "normal" },
 ];
@@ -99,6 +99,20 @@ function normalizeWhitespace(value: string) {
 
 function unique(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+function isStandaloneParallelCardName(query: string, finishKey: string) {
+  if (finishKey !== "pokeball" && finishKey !== "masterball") {
+    return false;
+  }
+
+  const identityText = normalizeWhitespace(query)
+    .replace(/\b(?:cards?|printings?|versions?|english|physical)\b/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return finishKey === "pokeball"
+    ? /^pok[eé]?\s*ball$/i.test(identityText)
+    : /^master\s*ball$/i.test(identityText);
 }
 
 function parseYearRange(query: string) {
@@ -206,6 +220,9 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   for (const finish of FINISH_PATTERNS) {
     finish.pattern.lastIndex = 0;
     if (finish.pattern.test(residual)) {
+      if (isStandaloneParallelCardName(residual, finish.key)) {
+        continue;
+      }
       finish.pattern.lastIndex = 0;
       finishKeys.push(finish.key);
       interpretedLabels.push(finish.label);

@@ -49,6 +49,7 @@ const SET_FETCH_PAGE_SIZE = 500;
 const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 160;
+const MAX_STRUCTURED_PARENT_CANDIDATES = 2048;
 const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
 const VALUE_SORT_CANDIDATE_LIMIT = SEARCH_LIMIT;
 const SPECIES_FAMILY_SEARCH_LIMIT = 360;
@@ -489,6 +490,50 @@ function normalizeSetCode(value?: string | null) {
 
 function normalizeIllustrator(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function trimNonAsciiAlphaNumericBoundaries(value: string) {
+  let start = 0;
+  let end = value.length;
+  const isAsciiAlphaNumeric = (code: number) =>
+    (code >= 48 && code <= 57) ||
+    (code >= 65 && code <= 90) ||
+    (code >= 97 && code <= 122);
+
+  while (start < end && !isAsciiAlphaNumeric(value.charCodeAt(start))) {
+    start += 1;
+  }
+  while (end > start && !isAsciiAlphaNumeric(value.charCodeAt(end - 1))) {
+    end -= 1;
+  }
+
+  return value.slice(start, end);
+}
+
+function filterRowsByReleaseYear(
+  rows: CardPrintLookupRow[],
+  setMetadataByCode: Map<string, PublicSetMetadata>,
+  releaseYearMin?: number,
+  releaseYearMax?: number,
+) {
+  if (
+    typeof releaseYearMin !== "number" &&
+    typeof releaseYearMax !== "number"
+  ) {
+    return rows;
+  }
+
+  return rows.filter((row) => {
+    const releaseYear = setMetadataByCode.get(row.set_code ?? "")?.release_year;
+    if (typeof releaseYear !== "number") return false;
+    if (typeof releaseYearMin === "number" && releaseYear < releaseYearMin) {
+      return false;
+    }
+    if (typeof releaseYearMax === "number" && releaseYear > releaseYearMax) {
+      return false;
+    }
+    return true;
+  });
 }
 
 function uniqueValues(values: string[]) {
@@ -3921,7 +3966,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     const setIntent = resolveGameScopedSetSearchIntent(searchText, gameScope);
     if (setIntent.setCodes.length > 0) {
       inferredSetCodes = setIntent.setCodes;
-      searchText = setIntent.remainingQuery;
+      searchText = setIntent.remainingQuery.replace(/\bfrom\b\s*$/i, "").trim();
     }
   }
   if (inferredSetCodes.length === 0 && searchText) {
@@ -3972,31 +4017,49 @@ export async function getExploreRowsForGameScopedTextSearch(
     sortMode === "value_high" || sortMode === "value_low";
   const directGvIdSearch = searchText.toUpperCase().startsWith("GV-");
   const canUseBoundedGameRpc =
-    typeof releaseYearMin !== "number" &&
-    typeof releaseYearMax !== "number" &&
     !valueSortRequested &&
     !variantKey &&
     identityFilter !== "classic_collection" &&
-    !shouldRequireChildScope &&
     (options.stampLabels?.length ?? 0) === 0;
 
   if (canUseBoundedGameRpc) {
-    const runBoundedSearch = (
+    const expandCandidateWindow =
+      Boolean(nameText || collectorToken) &&
+      (shouldRequireChildScope ||
+        typeof releaseYearMin === "number" ||
+        typeof releaseYearMax === "number");
+    const maxCandidates = expandCandidateWindow
+      ? MAX_STRUCTURED_PARENT_CANDIDATES
+      : SEARCH_LIMIT;
+    const runBoundedSearch = async (
       queryText: string | null,
       numberText: string | null,
       setCode: string | null,
-    ) =>
-      supabase.rpc("search_game_card_prints_v4", {
-        game_code_in: gameScope,
-        q: queryText,
-        set_code_in: setCode,
-        number_in: numberText,
-        illustrator_in: exactIllustrator || null,
-        language_scope_in:
-          gameScope === "pokemon" ? options.languageScope ?? "all" : "all",
-        limit_in: SEARCH_LIMIT,
-        offset_in: 0,
-      });
+    ) => {
+      const boundedRows: CardPrintLookupRow[] = [];
+      for (
+        let offset = 0;
+        offset < maxCandidates;
+        offset += SEARCH_LIMIT
+      ) {
+        const { data, error } = await supabase.rpc("search_game_card_prints_v4", {
+          game_code_in: gameScope,
+          q: queryText,
+          set_code_in: setCode,
+          number_in: numberText,
+          illustrator_in: exactIllustrator || null,
+          language_scope_in:
+            gameScope === "pokemon" ? options.languageScope ?? "all" : "all",
+          limit_in: SEARCH_LIMIT,
+          offset_in: offset,
+        });
+        if (error) return { data: [] as CardPrintLookupRow[], error };
+        const pageRows = (data ?? []) as CardPrintLookupRow[];
+        boundedRows.push(...pageRows);
+        if (pageRows.length < SEARCH_LIMIT) break;
+      }
+      return { data: boundedRows, error: null };
+    };
     const boundedSetCodes = inferredSetCodes.length > 0 ? inferredSetCodes : [null];
     const initialSearches = await Promise.all(boundedSetCodes.map((setCode) =>
       runBoundedSearch(nameText || null, collectorToken || null, setCode)));
@@ -4015,26 +4078,61 @@ export async function getExploreRowsForGameScopedTextSearch(
       data = nameRetries.flatMap((result) => result.data ?? []);
     }
 
+    // One Piece canonical names can preserve franchise punctuation such as
+    // `Monkey.D.Luffy`, while collectors naturally type `Monkey D. Luffy`.
+    // Retry the bounded, set-scoped lookup with the final identity token; the
+    // RPC still enforces game and release visibility.
+    if (
+      (data ?? []).length === 0 &&
+      gameScope === "one_piece" &&
+      nameText.includes(".")
+    ) {
+      const punctuationToken = nameText.split(/\s+/).at(-1) ?? "";
+      const punctuationFallback =
+        trimNonAsciiAlphaNumericBoundaries(punctuationToken);
+      if (punctuationFallback.length >= 3) {
+        const nameRetries = await Promise.all(boundedSetCodes.map((setCode) =>
+          runBoundedSearch(punctuationFallback, null, setCode)));
+        const retryError = nameRetries.find((result) => result.error)?.error;
+        if (retryError) throw new Error(retryError.message);
+        data = nameRetries.flatMap((result) => result.data ?? []);
+      }
+    }
+
     const parentRows = [...new Map(
       ((data ?? []) as CardPrintLookupRow[]).map((row) => [row.id, row]),
     ).values()];
+    if (parentRows.length === 0) return [];
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
+    const releaseScopedParentRows = filterRowsByReleaseYear(
+      parentRows,
+      setMetadataByCode,
+      releaseYearMin,
+      releaseYearMax,
+    );
+    if (releaseScopedParentRows.length === 0) return [];
+    const lookupRows = shouldRequireChildScope
+      ? await fetchSmartDiscoveryChildRows(
+          { ...options, sortMode },
+          releaseScopedParentRows,
+        )
+      : releaseScopedParentRows;
     const pricingByCardId = options.includePricing
-      ? await getPublicPricingByCardIds(supabase, parentRows.map((row) => row.id), {
+      ? await getPublicPricingByCardIds(supabase, lookupRows.map((row) => row.id), {
           requireComplete: false,
         })
       : new Map<string, PublicPricingRecord>();
     const rows = await buildExploreRows(
-      parentRows,
+      lookupRows,
       new Map<string, string>(),
       setMetadataByCode,
       pricingByCardId,
       {
         skipChildDisplayImageFallbacks:
-          parentRows.length > 24 ||
-          parentRows.every((row) =>
+          lookupRows.length > 24 ||
+          lookupRows.every((row) =>
             Boolean(
               row.image_path ||
                 row.image_url ||

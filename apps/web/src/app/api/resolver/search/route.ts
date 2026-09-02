@@ -11,7 +11,6 @@ import {
   getExploreRowsForLanguageScopedTextSearch,
   getExploreRowsForGameScopedTextSearch,
   getExploreRowsForSmartFilterDiscovery,
-  getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
 import {
   matchesPublicLanguageScope,
@@ -19,7 +18,10 @@ import {
 } from "@/lib/publicLanguageScope";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
-import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
+import {
+  resolveGameScopedSetSearchIntent,
+  resolvePublicSetRouteCode,
+} from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { normalizePublicGameScope } from "@/lib/publicGameScope";
@@ -360,6 +362,15 @@ export async function GET(request: NextRequest) {
   const smartSearchIntent = buildSmartSearchIntent(rawQuery);
   const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
+  const inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
+  const inlineExactSetCode =
+    !exactSetCode && inlineSetIntent.setCodes.length === 1
+      ? inlineSetIntent.setCodes[0]
+      : "";
+  const effectiveExactSetCode = exactSetCode || inlineExactSetCode;
+  const routedQuery = inlineExactSetCode
+    ? inlineSetIntent.remainingQuery.replace(/\bfrom\b\s*$/i, "").trim()
+    : query;
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const explicitYearMin = parseReleaseYearBound(request.nextUrl.searchParams.get("year_min"));
   const explicitYearMax = parseReleaseYearBound(request.nextUrl.searchParams.get("year_max"));
@@ -403,19 +414,24 @@ export async function GET(request: NextRequest) {
   const hasSmartImageIntent = Boolean(effectiveSmartSearchIntent.imageState && effectiveSmartSearchIntent.imageState !== "any");
   const hasSmartOwnershipIntent = Boolean(effectiveSmartSearchIntent.ownedState && effectiveSmartSearchIntent.ownedState !== "any");
   const hasSmartStampIntent = effectiveSmartSearchIntent.stampLabels.length > 0;
+  const hasInlineSetIntent = inlineSetIntent.setCodes.length > 0;
   const shouldUseStructuredTextExpansion =
     Boolean(query) &&
-    (hasSmartFinishIntent || hasSmartImageIntent || hasSmartStampIntent);
+    (hasInlineSetIntent ||
+      hasSmartFinishIntent ||
+      hasSmartImageIntent ||
+      hasSmartStampIntent);
   const hasCatalogDiscoveryScope =
     gameScope !== "pokemon" ||
-    Boolean(exactSetCode) ||
+    Boolean(effectiveExactSetCode) ||
     typeof exactReleaseYear === "number" ||
     typeof exactIllustrator === "string" ||
     isIdentityFilterActive(identityFilter) ||
     hasSmartYearRange ||
     hasSmartFinishIntent ||
     hasSmartImageIntent ||
-    hasSmartStampIntent;
+    hasSmartStampIntent ||
+    hasInlineSetIntent;
   const shouldUseSmartFilterDiscovery =
     !query &&
     hasCatalogDiscoveryScope &&
@@ -425,7 +441,7 @@ export async function GET(request: NextRequest) {
     !hasCatalogDiscoveryScope &&
     !hasSmartOwnershipIntent;
 
-  if (!query && gameScope === "pokemon" && !exactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
+  if (!query && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
       {
         ok: false,
@@ -485,8 +501,8 @@ export async function GET(request: NextRequest) {
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
     const resolvedSearchPromise = gameScope !== "pokemon"
-      ? getExploreRowsForGameScopedTextSearch(query, gameScope, sortMode, {
-          exactSetCode,
+      ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
+          exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
           exactIllustrator,
           identityFilter,
@@ -506,7 +522,7 @@ export async function GET(request: NextRequest) {
       ? getOwnedCardPrintIdsForUser(userId).then((ownedCardPrintIds) =>
           getExploreRowsForOwnedSmartFilterDiscovery(ownedCardPrintIds, {
             sortMode,
-            exactSetCode,
+            exactSetCode: effectiveExactSetCode,
             exactReleaseYear,
             exactIllustrator,
             identityFilter,
@@ -526,7 +542,7 @@ export async function GET(request: NextRequest) {
         }))
       : shouldUseFastTextSearch
         ? getExploreRowsForLanguageScopedTextSearch(
-            query,
+            routedQuery,
             languageScope,
             sortMode,
             includePricingDuringResolution,
@@ -539,7 +555,7 @@ export async function GET(request: NextRequest) {
       : shouldUseSmartFilterDiscovery
         ? getExploreRowsForSmartFilterDiscovery({
             sortMode,
-            exactSetCode,
+            exactSetCode: effectiveExactSetCode,
             exactReleaseYear,
             exactIllustrator,
             identityFilter,
@@ -557,9 +573,8 @@ export async function GET(request: NextRequest) {
             degraded: false,
           }))
         : shouldUseStructuredTextExpansion
-          ? getExploreRowsForSmartStructuredTextSearch(query, {
-              sortMode,
-              exactSetCode,
+          ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
+              exactSetCode: effectiveExactSetCode,
               exactReleaseYear,
               exactIllustrator,
               identityFilter,
@@ -580,10 +595,10 @@ export async function GET(request: NextRequest) {
               smartSearchIntent: effectiveSmartSearchIntent,
               degraded: false,
             }))
-          : resolveQueryWithMeta(query, {
+          : resolveQueryWithMeta(routedQuery, {
               mode: "ranked",
               sortMode,
-              exactSetCode,
+              exactSetCode: effectiveExactSetCode,
               exactReleaseYear,
               exactIllustrator,
               identityFilter,
@@ -605,7 +620,7 @@ export async function GET(request: NextRequest) {
       includeProvisional
         ? getPublicProvisionalCardsFailClosed({
             query: rawQuery,
-            setCode: exactSetCode,
+            setCode: effectiveExactSetCode,
             limit: 12,
           })
         : Promise.resolve([]),

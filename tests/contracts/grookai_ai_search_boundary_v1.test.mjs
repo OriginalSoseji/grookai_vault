@@ -7,7 +7,7 @@ import vm from 'node:vm';
 const require = createRequire(import.meta.url);
 const ts = require('typescript');
 
-function loadTsModule(relativePath) {
+function loadTsModule(relativePath, mocks = {}) {
   const source = readFileSync(new URL(relativePath, import.meta.url), 'utf8');
   const transpiled = ts.transpileModule(source, {
     compilerOptions: {
@@ -23,7 +23,7 @@ function loadTsModule(relativePath) {
     module,
     exports: module.exports,
     process,
-    require,
+    require: (id) => mocks[id] ?? require(id),
   };
   vm.runInNewContext(transpiled, sandbox, { filename: relativePath });
   return module.exports;
@@ -52,6 +52,42 @@ test('Grookai Search maps collector parallel language to live finish keys', () =
   assert.equal(pokeBall.residualQuery, 'Pikachu');
   assert.deepEqual(Array.from(masterBall.finishKeys), ['masterball']);
   assert.equal(masterBall.residualQuery, 'Pikachu');
+
+  const plainPokeBall = buildSmartSearchIntent('Exeggutor Poké Ball');
+  const plainMasterBall = buildSmartSearchIntent('Pikachu Master Ball');
+  assert.deepEqual(Array.from(plainPokeBall.finishKeys), ['pokeball']);
+  assert.equal(plainPokeBall.residualQuery, 'Exeggutor');
+  assert.deepEqual(Array.from(plainMasterBall.finishKeys), ['masterball']);
+  assert.equal(plainMasterBall.residualQuery, 'Pikachu');
+
+  const pokeBallCard = buildSmartSearchIntent('Poké Ball');
+  const masterBallCard = buildSmartSearchIntent('Master Ball card');
+  assert.deepEqual(Array.from(pokeBallCard.finishKeys), []);
+  assert.equal(pokeBallCard.residualQuery, 'Poké Ball');
+  assert.deepEqual(Array.from(masterBallCard.finishKeys), []);
+  assert.equal(masterBallCard.residualQuery, 'Master Ball');
+});
+
+test('Grookai Search preserves name, year, and finish intent across TCGs', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+
+  const pokemon = buildSmartSearchIntent('Gengar 2000-2024 reverse holo');
+  assert.equal(pokemon.residualQuery, 'Gengar');
+  assert.equal(pokemon.releaseYearMin, 2000);
+  assert.equal(pokemon.releaseYearMax, 2024);
+  assert.deepEqual(Array.from(pokemon.finishKeys), ['reverse']);
+
+  const magic = buildSmartSearchIntent('Lightning Bolt 1993-2024 foil');
+  assert.equal(magic.residualQuery, 'Lightning Bolt');
+  assert.equal(magic.releaseYearMin, 1993);
+  assert.equal(magic.releaseYearMax, 2024);
+  assert.deepEqual(Array.from(magic.finishKeys), ['foil']);
+
+  const setLanguage = buildSmartSearchIntent('Charizard from 151');
+  assert.equal(setLanguage.residualQuery, 'Charizard from 151');
+
+  const canonicalName = buildSmartSearchIntent('Mail from Bill');
+  assert.equal(canonicalName.residualQuery, 'Mail from Bill');
 });
 
 test('Grookai Search parses plain artist and illustrator year-range language', () => {
@@ -107,20 +143,83 @@ test('Grookai Search normalization preserves accented collector labels', () => {
   assert.equal(normalizeSearchText('Pokémon_Together-Stamp'), 'pokemon together stamp');
 });
 
-test('smart structured variant search uses number and set aware candidate discovery', () => {
+test('smart structured variant search uses bounded game-aware candidate discovery', () => {
+  const route = readFileSync(
+    new URL('../../apps/web/src/app/api/resolver/search/route.ts', import.meta.url),
+    'utf8',
+  );
   const source = readFileSync(
     new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
     'utf8',
   );
 
   assert.match(
-    source,
-    /getExploreRowsForSmartStructuredTextSearch[\s\S]*fetchLanguageScopedTextRows\(\s*query,\s*options\.languageScope \?\? "all",\s*\)/,
+    route,
+    /shouldUseStructuredTextExpansion[\s\S]*getExploreRowsForGameScopedTextSearch\(routedQuery, gameScope, sortMode/,
+  );
+  assert.match(
+    route,
+    /inlineSetIntent = resolveGameScopedSetSearchIntent\(query, gameScope\)[\s\S]*effectiveExactSetCode[\s\S]*routedQuery/,
   );
   assert.match(
     source,
-    /getExploreRowsForSmartStructuredTextSearch[\s\S]*textFilteredRows = releaseFilteredRows\.filter\(\(row\) =>[\s\S]*rowMatchesSmartDiscoveryText\(row, rawQuery\)/,
+    /canUseBoundedGameRpc[\s\S]*search_game_card_prints_v4[\s\S]*fetchSmartDiscoveryChildRows[\s\S]*releaseFilteredRows/,
   );
+  assert.match(
+    source,
+    /gameScope === "one_piece"[\s\S]*punctuationFallback[\s\S]*runBoundedSearch\(punctuationFallback/,
+  );
+  assert.match(
+    source,
+    /function trimNonAsciiAlphaNumericBoundaries[\s\S]*while \(start < end[\s\S]*while \(end > start/,
+  );
+  assert.doesNotMatch(source, /\[\^a-z0-9\]\+\|\[\^a-z0-9\]\+/);
+  assert.match(
+    source,
+    /MAX_STRUCTURED_PARENT_CANDIDATES[\s\S]*offset_in: offset/,
+  );
+  assert.match(
+    source,
+    /if \(parentRows\.length === 0\) return \[\];[\s\S]*filterRowsByReleaseYear[\s\S]*fetchSmartDiscoveryChildRows/,
+  );
+});
+
+test('collector sentence suggestions are scoped to Pokemon, Magic, and One Piece', () => {
+  const { getCollectorSearchPresets, getCollectorSearchSuggestions } = loadTsModule(
+    '../../apps/web/src/lib/search/collectorSearchSuggestions.ts',
+  );
+
+  assert.equal(getCollectorSearchSuggestions('pokemon')[0].query, 'Gengar 2000-2024 reverse holo');
+  assert.equal(getCollectorSearchSuggestions('mtg')[0].query, 'Lightning Bolt 1993-2024 foil');
+  assert.equal(getCollectorSearchSuggestions('one_piece')[0].query, 'Monkey D. Luffy from OP05');
+  assert.equal(getCollectorSearchPresets('mtg')[0].label, 'Lightning Bolt 1993-2024 foil');
+
+  const explore = readFileSync(
+    new URL('../../apps/web/src/components/explore/ExplorePageClient.tsx', import.meta.url),
+    'utf8',
+  );
+  assert.match(explore, /buildScopedExploreHref\(`q=\$\{encodeURIComponent\(preset\.query\)\}`\)/);
+});
+
+test('inline set language resolves per TCG without corrupting canonical card names', () => {
+  const { resolveGameScopedSetSearchIntent } = loadTsModule(
+    '../../apps/web/src/lib/publicSets.shared.ts',
+    { '@/lib/resolver/shorthand': { SET_SHORTHANDS: {} } },
+  );
+
+  const pokemon = resolveGameScopedSetSearchIntent('Charizard from 151', 'pokemon');
+  const onePiece = resolveGameScopedSetSearchIntent('Monkey D. Luffy from OP05', 'one_piece');
+  const magic = resolveGameScopedSetSearchIntent('Black Lotus from Alpha', 'mtg');
+  const canonicalName = resolveGameScopedSetSearchIntent('Mail from Bill', 'pokemon');
+
+  assert.deepEqual(Array.from(pokemon.setCodes), ['sv03.5']);
+  assert.equal(pokemon.remainingQuery, 'charizard from');
+  assert.deepEqual(Array.from(onePiece.setCodes), ['op05']);
+  assert.equal(onePiece.remainingQuery, 'monkey d. luffy from');
+  assert.deepEqual(Array.from(magic.setCodes), ['lea']);
+  assert.equal(magic.remainingQuery, 'black lotus from');
+  assert.deepEqual(Array.from(canonicalName.setCodes), []);
+  assert.equal(canonicalName.remainingQuery, 'Mail from Bill');
 });
 
 test('Grookai Search keeps canonical variants discoverable when printing coverage is incomplete', () => {

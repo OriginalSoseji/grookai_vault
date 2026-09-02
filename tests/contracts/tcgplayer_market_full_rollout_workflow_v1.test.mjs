@@ -15,7 +15,7 @@ test("full rollout observer uses immutable read-only evidence", () => {
   assert.doesNotMatch(workflow, /contents: write|id-token: write/);
   assert.match(
     workflow,
-    /OBSERVER_SOURCE_SHA: "364a4ba968548f0c4535bb5ca4370f78b828b2a5"/,
+    /OBSERVER_SOURCE_SHA: "01e669d08f18579cb35e5b96d70780c11baea198"/,
   );
   assert.match(workflow, /Verify frozen evidence hashes/);
   assert.match(workflow, /--expected-coverage-commit-sha=/);
@@ -28,7 +28,7 @@ test("full rollout observer uses immutable read-only evidence", () => {
 });
 
 test("full rollout observer requires the final pass only after the frozen window", () => {
-  assert.match(workflow, /FULL_REQUIRED_END: "2026-09-02T09:45:00\.000Z"/);
+  assert.match(workflow, /FULL_REQUIRED_END: "2026-09-08T09:45:00\.000Z"/);
   assert.match(workflow, /if \(\( now_epoch >= required_end_epoch \)\)/);
   assert.match(workflow, /require_pass=\(--require-pass\)/);
   assert.match(workflow, /FINAL_OBSERVATION_DEADLINE/);
