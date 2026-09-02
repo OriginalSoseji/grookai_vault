@@ -280,7 +280,7 @@ export function buildProductionCatalogRoutesV1(samples) {
     {
       name: "pokemon_sets",
       path: "/sets?game=pokemon",
-      expected: ["Browse Trading Card Sets", "Pokemon"],
+      expected: ["Browse Pokemon TCG Sets", "Pokemon"],
     },
     {
       name: "pokemon_card",
@@ -295,7 +295,7 @@ export function buildProductionCatalogRoutesV1(samples) {
     {
       name: "one_piece_sets",
       path: "/sets?game=one_piece",
-      expected: ["Browse Trading Card Sets", "One Piece"],
+      expected: ["Browse One Piece Card Game Releases", "One Piece"],
     },
     {
       name: "one_piece_card",
@@ -310,7 +310,7 @@ export function buildProductionCatalogRoutesV1(samples) {
     {
       name: "mtg_sets",
       path: "/sets?game=mtg",
-      expected: ["Browse Trading Card Sets", "Magic"],
+      expected: ["Browse Magic: The Gathering Sets", "Magic"],
     },
     {
       name: "mtg_card",
