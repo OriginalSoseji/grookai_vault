@@ -54,6 +54,7 @@ function commandResult(binary, args, { cwd, input } = {}) {
   return {
     status: result.status,
     stdout: result.stdout?.trim() ?? "",
+    stderr: result.stderr?.trim() ?? "",
     error_code: result.error?.code ?? null,
   };
 }
@@ -297,9 +298,33 @@ function verifyBundle(repoRoot, bundlePath) {
   return { passed: result.status === 0, exit_code: result.status, error_code: result.error_code };
 }
 
+function bundleHeads(repoRoot, bundlePath) {
+  const result = commandResult("git", ["bundle", "list-heads", bundlePath], { cwd: repoRoot });
+  if (result.status !== 0) throw new Error("Unable to list base recovery bundle heads.");
+  return result.stdout.split(/\r?\n/).filter(Boolean).map((line) => {
+    const [sha, ref] = line.split(/\s+/);
+    return { sha, ref };
+  });
+}
+
+function reachableFromAny(repoRoot, sha, baseHeadShas) {
+  return baseHeadShas.some((baseSha) =>
+    commandResult("git", ["merge-base", "--is-ancestor", sha, baseSha], { cwd: repoRoot }).status === 0,
+  );
+}
+
 function renderReport({ metadata, recoveryManifest, remoteReadback, excluded }) {
   const exclusions = summarize(excluded.flatMap((row) => row.revalidation_exclusion_reasons));
   const exclusionRows = Object.entries(exclusions).map(([reason, count]) => `| \`${reason}\` | ${count} |`);
+  const recoverySequence = recoveryManifest.base_recovery
+    ? `1. Download and verify \`${recoveryManifest.base_recovery.bundle_file}\` from \`${recoveryManifest.base_recovery.release_tag}\`.
+2. Import that base bundle into a recovery clone.
+${recoveryManifest.supplement_required
+    ? `3. Download, verify, and fetch \`${recoveryManifest.bundle_file}\` from \`${recoveryManifest.release_tag}\` into the same clone.\n4.`
+    : "3."} Recreate the exact refs from the immutable \`recovery_refs\` map in \`recovery_bundle_manifest.json\`.`
+    : `1. Download and verify \`${recoveryManifest.bundle_file}\` from \`${recoveryManifest.release_tag}\`.
+2. Import the bundle into a recovery clone.
+3. Recreate the exact refs from the immutable \`recovery_refs\` map in \`recovery_bundle_manifest.json\`.`;
   return `# Repository Pre-Archive Recovery And Execution Plan V1
 
 ## Boundary
@@ -320,20 +345,27 @@ file, or write to the database or Storage.
 - Input candidate groups: \`${metadata.counts.input_candidates}\`
 - Selected for recovery: \`${metadata.counts.selected_for_recovery}\`
 - Excluded after revalidation: \`${metadata.counts.excluded_after_revalidation}\`
-- Frozen refs in bundle: \`${recoveryManifest.bundle_ref_count}\`
+- Frozen recovery refs: \`${recoveryManifest.recovery_ref_count}\`
+- New refs requiring supplement objects: \`${recoveryManifest.bundle_ref_count}\`
 
 ## Recovery Proof
 
 - Private recovery repository: \`${recoveryManifest.recovery_repository}\`
 - Release: \`${recoveryManifest.release_tag}\`
 - Release URL: ${remoteReadback.release_url}
-- Bundle file: \`${recoveryManifest.bundle_file}\`
+- Bundle file: \`${recoveryManifest.bundle_file ?? "none; base bundle already contains all objects"}\`
 - Bundle bytes: \`${recoveryManifest.bundle_bytes}\`
 - Bundle SHA-256: \`${recoveryManifest.bundle_sha256}\`
+- Recovery mode: \`${recoveryManifest.recovery_mode}\`
+- Base bundle SHA-256: \`${recoveryManifest.base_recovery?.bundle_sha256 ?? "not_applicable"}\`
 - Supersedes recovery release: \`${recoveryManifest.supersedes_release_tag ?? "none"}\`
 - Local bundle verification: \`${recoveryManifest.local_bundle_verification.passed}\`
 - Remote asset readback hash match: \`${remoteReadback.bundle_hash_matches}\`
 - Downloaded bundle verification: \`${remoteReadback.downloaded_bundle_verification.passed}\`
+
+## Recovery Sequence
+
+${recoverySequence}
 
 ## Revalidation Policy
 
@@ -368,7 +400,7 @@ function assertPrivateRecoveryRepository(repoRoot, repository) {
   return record;
 }
 
-function publishAndReadBack({ repoRoot, repository, releaseTag, bundlePath, bundleManifestPath, readbackDir }) {
+function publishAndReadBack({ repoRoot, repository, releaseTag, assetPaths, readbackDir }) {
   const releaseList = commandResult(
     "gh",
     ["release", "list", "--repo", repository, "--limit", "1000", "--json", "tagName"],
@@ -381,7 +413,7 @@ function publishAndReadBack({ repoRoot, repository, releaseTag, bundlePath, bund
   if (existing) throw new Error(`Recovery release ${releaseTag} already exists.`);
   mkdirSync(readbackDir, { recursive: true });
   command("gh", [
-    "release", "create", releaseTag, bundlePath, bundleManifestPath,
+    "release", "create", releaseTag, ...assetPaths,
     "--repo", repository,
     "--title", `Repository pre-archive recovery ${releaseTag}`,
     "--notes", "Private recovery assets for a non-destructive archive execution plan. No deletion is authorized.",
@@ -389,6 +421,14 @@ function publishAndReadBack({ repoRoot, repository, releaseTag, bundlePath, bund
   const release = JSON.parse(command("gh", ["release", "view", releaseTag, "--repo", repository, "--json", "url,assets,tagName"], { cwd: repoRoot }));
   command("gh", ["release", "download", releaseTag, "--repo", repository, "--dir", readbackDir], { cwd: repoRoot });
   return release;
+}
+
+function recoveryRelease(repoRoot, repository, releaseTag) {
+  return JSON.parse(command(
+    "gh",
+    ["release", "view", releaseTag, "--repo", repository, "--json", "url,assets,tagName"],
+    { cwd: repoRoot },
+  ));
 }
 
 export function main() {
@@ -401,6 +441,7 @@ export function main() {
   const recoveryRepository = argument("recovery-repo", DEFAULT_RECOVERY_REPOSITORY);
   const releaseTag = argument("release-tag");
   const supersedesReleaseTag = argument("supersedes-release-tag");
+  const baseRecoveryManifestPath = argument("base-recovery-manifest");
   const publishRecovery = hasFlag("publish-recovery");
   if (publishRecovery && !releaseTag) throw new Error("--release-tag is required with --publish-recovery.");
 
@@ -454,14 +495,73 @@ export function main() {
     worktrees: row.revalidation.worktrees.map((worktree) => ({ path: worktree.path, sha: worktree.current_sha, branch: worktree.current_branch })),
   }));
   const selectionFingerprint = sha256(`${JSON.stringify(selectionCore)}\n`);
-  const bundleRefs = unique([`refs/remotes/${authorityRef}`, ...selected.flatMap((row) => row.revalidation.refs.map((ref) => ref.full_ref))]);
+  const recoveryRefMap = new Map([[`refs/remotes/${authorityRef}`, authoritySha]]);
+  for (const row of selected) {
+    for (const ref of row.revalidation.refs) recoveryRefMap.set(ref.full_ref, ref.current_sha);
+  }
+  const recoveryRefs = [...recoveryRefMap.entries()]
+    .map(([ref, sha]) => ({ ref, sha }))
+    .sort((a, b) => a.ref.localeCompare(b.ref));
+  let baseRecovery = null;
+  let bundleRefs = recoveryRefs.map((record) => record.ref);
+  let bundlePrerequisiteShas = [];
+  if (baseRecoveryManifestPath) {
+    const baseManifest = JSON.parse(
+      loadGitBackedFile(repoRoot, baseRecoveryManifestPath, "HEAD"),
+    );
+    const baseBundlePath = path.join(
+      recoveryRoot,
+      baseManifest.release_tag,
+      baseManifest.bundle_file,
+    );
+    if (!existsSync(baseBundlePath)) throw new Error("Base recovery bundle is unavailable locally.");
+    const baseHash = sha256(readFileSync(baseBundlePath));
+    const baseVerification = verifyBundle(repoRoot, baseBundlePath);
+    if (baseHash !== baseManifest.bundle_sha256 || !baseVerification.passed) {
+      throw new Error("Base recovery bundle failed local readback.");
+    }
+    const heads = bundleHeads(repoRoot, baseBundlePath);
+    const headShas = unique(heads.map((head) => head.sha));
+    const supplementRefs = recoveryRefs.filter(
+      (record) => !reachableFromAny(repoRoot, record.sha, headShas),
+    );
+    bundleRefs = supplementRefs.map((record) => record.ref);
+    bundlePrerequisiteShas = supplementRefs.length > 0 ? headShas : [];
+    baseRecovery = {
+      release_tag: baseManifest.release_tag,
+      bundle_file: baseManifest.bundle_file,
+      bundle_sha256: baseManifest.bundle_sha256,
+      bundle_bytes: baseManifest.bundle_bytes,
+      bundle_head_count: heads.length,
+      local_hash_matches: true,
+      local_bundle_verification: baseVerification,
+      recovery_repository: baseManifest.recovery_repository,
+      remote_release_url: null,
+      remote_bundle_digest_matches: false,
+    };
+  }
   const recoveryDir = path.join(recoveryRoot, releaseTag ?? `plan-${selectionFingerprint.slice(0, 12)}`);
   mkdirSync(recoveryDir, { recursive: true });
-  const bundleFile = `grookai-prearchive-${selectionFingerprint.slice(0, 16)}.bundle`;
-  const bundlePath = path.join(recoveryDir, bundleFile);
-  const bundleCreate = commandResult("git", ["bundle", "create", bundlePath, "--stdin"], { cwd: repoRoot, input: `${bundleRefs.join("\n")}\n` });
-  if (bundleCreate.status !== 0) throw new Error(`Git bundle creation failed with exit ${bundleCreate.status}.`);
-  const localBundleVerification = verifyBundle(repoRoot, bundlePath);
+  const supplementRequired = bundleRefs.length > 0;
+  const bundleFile = supplementRequired
+    ? `grookai-prearchive-${baseRecovery ? "supplement-" : ""}${selectionFingerprint.slice(0, 16)}.bundle`
+    : null;
+  const bundlePath = bundleFile ? path.join(recoveryDir, bundleFile) : null;
+  const bundleRevisions = [
+    ...bundleRefs,
+    ...bundlePrerequisiteShas.map((sha) => `^${sha}`),
+  ];
+  if (supplementRequired) {
+    const bundleCreate = commandResult("git", ["bundle", "create", bundlePath, "--stdin"], { cwd: repoRoot, input: `${bundleRevisions.join("\n")}\n` });
+    if (bundleCreate.status !== 0) {
+      throw new Error(
+        `Git bundle creation failed with exit ${bundleCreate.status}: ${bundleCreate.stderr || "no diagnostic"}`,
+      );
+    }
+  }
+  const localBundleVerification = supplementRequired
+    ? verifyBundle(repoRoot, bundlePath)
+    : baseRecovery.local_bundle_verification;
   if (!localBundleVerification.passed) throw new Error("Local Git bundle verification failed.");
 
   const recoveryManifest = {
@@ -470,15 +570,28 @@ export function main() {
     authority_ref: authorityRef, authority_sha: authoritySha,
     selection_fingerprint: selectionFingerprint, candidate_packet_sha256: sha256(candidateText),
     selected_group_count: selected.length, excluded_group_count: excluded.length,
+    recovery_mode: !baseRecovery
+      ? "standalone_bundle"
+      : supplementRequired
+        ? "base_plus_incremental_supplement"
+        : "base_only_manifest",
+    recovery_ref_count: recoveryRefs.length,
+    recovery_refs: recoveryRefs,
+    base_recovery: baseRecovery,
     bundle_ref_count: bundleRefs.length, bundle_refs: bundleRefs,
-    bundle_file: bundleFile, bundle_bytes: statSync(bundlePath).size,
-    bundle_sha256: sha256(readFileSync(bundlePath)),
+    bundle_prerequisite_count: bundlePrerequisiteShas.length,
+    supplement_required: supplementRequired,
+    bundle_file: bundleFile,
+    bundle_bytes: supplementRequired ? statSync(bundlePath).size : 0,
+    bundle_sha256: supplementRequired ? sha256(readFileSync(bundlePath)) : null,
     local_bundle_verification: localBundleVerification,
     recovery_repository: recoveryRepository, release_tag: releaseTag ?? null,
     supersedes_release_tag: supersedesReleaseTag ?? null,
     delete_authorized: false,
   };
-  const bundleManifestFile = `${bundleFile}.manifest.json`;
+  const bundleManifestFile = bundleFile
+    ? `${bundleFile}.manifest.json`
+    : `grookai-prearchive-manifest-${selectionFingerprint.slice(0, 16)}.json`;
   const bundleManifestPath = path.join(recoveryDir, bundleManifestFile);
   writeFileSync(bundleManifestPath, `${JSON.stringify(recoveryManifest, null, 2)}\n`);
 
@@ -489,20 +602,54 @@ export function main() {
   };
   if (publishRecovery) {
     const recoveryRepo = assertPrivateRecoveryRepository(repoRoot, recoveryRepository);
+    if (baseRecovery) {
+      if (baseRecovery.recovery_repository !== recoveryRepository) {
+        throw new Error("Base recovery repository does not match the active private recovery repository.");
+      }
+      const baseRelease = recoveryRelease(
+        repoRoot,
+        recoveryRepository,
+        baseRecovery.release_tag,
+      );
+      const baseBundleAsset = baseRelease.assets.find(
+        (asset) => asset.name === baseRecovery.bundle_file,
+      );
+      baseRecovery.remote_release_url = baseRelease.url;
+      baseRecovery.remote_bundle_digest_matches =
+        baseBundleAsset?.digest === `sha256:${baseRecovery.bundle_sha256}` &&
+        baseBundleAsset?.size === baseRecovery.bundle_bytes;
+      if (!baseRecovery.remote_bundle_digest_matches) {
+        throw new Error("Base recovery release bundle digest or size does not reconcile.");
+      }
+      writeFileSync(bundleManifestPath, `${JSON.stringify(recoveryManifest, null, 2)}\n`);
+    }
     const readbackDir = path.join(recoveryDir, "remote_readback");
-    const release = publishAndReadBack({ repoRoot, repository: recoveryRepository, releaseTag, bundlePath, bundleManifestPath, readbackDir });
-    const downloadedBundle = path.join(readbackDir, bundleFile);
+    const assetPaths = supplementRequired
+      ? [bundlePath, bundleManifestPath]
+      : [bundleManifestPath];
+    const release = publishAndReadBack({ repoRoot, repository: recoveryRepository, releaseTag, assetPaths, readbackDir });
+    const downloadedBundle = bundleFile ? path.join(readbackDir, bundleFile) : null;
     const downloadedManifest = path.join(readbackDir, bundleManifestFile);
     remoteReadback = {
       status: "verified", repository_visibility: recoveryRepo.visibility,
+      recovery_mode: recoveryManifest.recovery_mode,
       release_url: release.url, release_tag: release.tagName,
       asset_names: release.assets.map((asset) => asset.name).sort(),
       readback_directory: normalizePath(readbackDir),
-      bundle_sha256: sha256(readFileSync(downloadedBundle)),
-      bundle_hash_matches: sha256(readFileSync(downloadedBundle)) === recoveryManifest.bundle_sha256,
+      bundle_sha256: supplementRequired
+        ? sha256(readFileSync(downloadedBundle))
+        : baseRecovery.bundle_sha256,
+      bundle_hash_matches: supplementRequired
+        ? sha256(readFileSync(downloadedBundle)) === recoveryManifest.bundle_sha256
+        : baseRecovery.remote_bundle_digest_matches,
       manifest_sha256: sha256(readFileSync(downloadedManifest)),
       manifest_hash_matches: sha256(readFileSync(downloadedManifest)) === sha256(readFileSync(bundleManifestPath)),
-      downloaded_bundle_verification: verifyBundle(repoRoot, downloadedBundle),
+      downloaded_bundle_verification: supplementRequired
+        ? verifyBundle(repoRoot, downloadedBundle)
+        : {
+            ...baseRecovery.local_bundle_verification,
+            evidence_source: "verified_base_bundle_and_remote_asset_digest",
+          },
     };
     if (!remoteReadback.bundle_hash_matches || !remoteReadback.manifest_hash_matches || !remoteReadback.downloaded_bundle_verification.passed) {
       throw new Error("Remote recovery readback did not reconcile.");
@@ -525,7 +672,9 @@ export function main() {
     },
     counts: {
       input_candidates: candidates.length, selected_for_recovery: selected.length,
-      excluded_after_revalidation: excluded.length, bundled_refs: bundleRefs.length,
+      excluded_after_revalidation: excluded.length,
+      recovery_refs: recoveryRefs.length,
+      supplement_refs: bundleRefs.length,
       exclusion_reasons: summarize(excluded.flatMap((row) => row.revalidation_exclusion_reasons)),
     },
     boundaries: {

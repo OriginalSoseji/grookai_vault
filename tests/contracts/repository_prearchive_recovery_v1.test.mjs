@@ -94,6 +94,28 @@ test("generated recovery artifacts reconcile and authorize no deletion", () => {
   assert.equal(metadata.boundaries.delete_authorized_records, 0);
   assert.equal(recovery.delete_authorized, false);
   assert.equal(recovery.local_bundle_verification.passed, true);
+  const recoveryMode = recovery.recovery_mode ?? "standalone_bundle";
+  assert.ok([
+    "standalone_bundle",
+    "base_plus_incremental_supplement",
+    "base_only_manifest",
+  ].includes(recoveryMode));
+  if (Array.isArray(recovery.recovery_refs)) {
+    assert.equal(recovery.recovery_refs.length, recovery.recovery_ref_count);
+    assert.equal(new Set(recovery.recovery_refs.map((row) => row.ref)).size, recovery.recovery_ref_count);
+    assert.equal(recovery.recovery_refs.every((row) => /^[0-9a-f]{40}$/.test(row.sha)), true);
+    assert.equal(metadata.counts.recovery_refs, recovery.recovery_ref_count);
+  }
+  if (recoveryMode === "base_only_manifest") {
+    assert.equal(recovery.supplement_required, false);
+    assert.equal(recovery.bundle_ref_count, 0);
+    assert.equal(recovery.bundle_file, null);
+    assert.equal(recovery.bundle_bytes, 0);
+    assert.equal(recovery.bundle_sha256, null);
+    assert.equal(recovery.bundle_prerequisite_count, 0);
+    assert.equal(recovery.base_recovery.local_hash_matches, true);
+    assert.equal(recovery.base_recovery.remote_bundle_digest_matches, true);
+  }
   assert.equal(readback.status, "verified");
   assert.equal(readback.repository_visibility, "PRIVATE");
   assert.equal(readback.bundle_hash_matches, true);
