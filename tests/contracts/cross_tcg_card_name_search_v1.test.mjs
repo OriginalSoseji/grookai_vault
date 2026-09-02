@@ -146,8 +146,9 @@ test("global search preserves the selected TCG", () => {
 
   assert.match(form, /normalizePublicGameScope/);
   assert.match(form, /const currentGameScope = normalizePublicGameScope\(searchParams\.get\("game"\)\)/);
-  assert.match(form, /nextParams\.set\("game", currentGameScope\)/);
-  assert.match(form, /name="game" value=\{currentGameScope\}/);
+  assert.match(form, /const \[gameScope, setGameScope\] = useState<PublicGameScope>\(currentGameScope\)/);
+  assert.match(form, /if \(gameScope !== "pokemon"\) nextParams\.set\("game", gameScope\)/);
+  assert.match(form, /value=\{gameScope\}/);
 });
 
 test("mobile search falls back instead of accepting a timeout as no-match", () => {

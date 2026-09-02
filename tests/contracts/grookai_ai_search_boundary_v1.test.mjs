@@ -198,7 +198,10 @@ test('collector sentence suggestions are scoped to Pokemon, Magic, and One Piece
     new URL('../../apps/web/src/components/explore/ExplorePageClient.tsx', import.meta.url),
     'utf8',
   );
-  assert.match(explore, /buildScopedExploreHref\(`q=\$\{encodeURIComponent\(preset\.query\)\}`\)/);
+  assert.match(
+    explore,
+    /getCollectorSearchSuggestions\(gameScope\)[\s\S]*?`q=\$\{encodeURIComponent\(suggestion\.query\)\}&game=\$\{gameScope\}`/,
+  );
 });
 
 test('inline set language resolves per TCG without corrupting canonical card names', () => {
