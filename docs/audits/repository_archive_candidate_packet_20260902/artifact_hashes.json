@@ -1,0 +1,11 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_ARCHIVE_CANDIDATE_ARTIFACT_HASHES_V1",
+  "generated_at": "2026-09-02T14:11:57.360Z",
+  "authority_sha": "e4efb0cb9aeea031bc9b14117dd12bd1d2964690",
+  "files": {
+    "REPOSITORY_ARCHIVE_CANDIDATE_PACKET_V1.md": "c0ba8977e33efa1e91b54d7ac8f50b85274ff0e58a6144fcf19caa3656b595be",
+    "archive_candidates.jsonl": "8705c7d18723d139a6dbb86a42f8600d452397cf5d7268ba3d312a91d5313744",
+    "archive_exclusions.jsonl": "69092f26da67a009e5974461dcfa41639972f142dff70a73f3477b101995bb6c",
+    "automation_reference_findings.json": "9dd792eb37b000e479f93ae04bdcde70496554710a0d5e5b3c1e99890df01be1"
+  }
+}

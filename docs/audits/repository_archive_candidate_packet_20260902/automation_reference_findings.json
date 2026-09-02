@@ -1,0 +1,761 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_AUTOMATION_REFERENCE_INVENTORY_V1",
+  "generated_at": "2026-09-02T14:11:57.360Z",
+  "authority_sha": "e4efb0cb9aeea031bc9b14117dd12bd1d2964690",
+  "repository": {
+    "status": "available",
+    "scanned_ref": "HEAD",
+    "scanned_file_count": 1404,
+    "findings": [
+      {
+        "group_id": "branch:agent/mtg-pointer-release-v1",
+        "matched_token": "agent/mtg-pointer-release-v1",
+        "reference_kind": "repository_active_code",
+        "file": ".github/workflows/mtg-catalog-supervisor.yml",
+        "line": 74
+      },
+      {
+        "group_id": "branch:agent/mtg-pricing-readiness-v1",
+        "matched_token": "agent/mtg-pricing-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": ".github/workflows/mtg-hidden-catalog-runner.yml",
+        "line": 64
+      },
+      {
+        "group_id": "branch:agent/mtg-pricing-readiness-v1",
+        "matched_token": "agent/mtg-pricing-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": ".github/workflows/mtg-hidden-catalog-runner.yml",
+        "line": 65
+      },
+      {
+        "group_id": "branch:agent/sealed-catalog-readiness-v1",
+        "matched_token": "agent/sealed-catalog-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/cross_tcg_sealed_product_domain_migration_plan_v1.mjs",
+        "line": 99
+      },
+      {
+        "group_id": "branch:agent/sealed-catalog-readiness-v1",
+        "matched_token": "agent/sealed-catalog-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/cross_tcg_sealed_product_no_publication_canary_plan_v1.mjs",
+        "line": 136
+      },
+      {
+        "group_id": "branch:agent/sealed-catalog-readiness-v1",
+        "matched_token": "agent/sealed-catalog-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/cross_tcg_sealed_product_schema_apply_v1.mjs",
+        "line": 432
+      },
+      {
+        "group_id": "branch:agent/sealed-catalog-readiness-v1",
+        "matched_token": "agent/sealed-catalog-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/cross_tcg_sealed_product_schema_preflight_v1.mjs",
+        "line": 122
+      },
+      {
+        "group_id": "branch:pricing/full-tcgcsv-warehouse",
+        "matched_token": "pricing/full-tcgcsv-warehouse",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/mee_pricing_product_v1_baseline_audit.mjs",
+        "line": 426
+      },
+      {
+        "group_id": "branch:agent/mtg-pricing-readiness-v1",
+        "matched_token": "agent/mtg-pricing-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/mtg_canonical_catalog_ingestion_orchestrator_v1.mjs",
+        "line": 49
+      },
+      {
+        "group_id": "branch:agent/mtg-pricing-readiness-v1",
+        "matched_token": "agent/mtg-pricing-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/mtg_canonical_catalog_set_promotion_rollback_proof_v1.mjs",
+        "line": 376
+      },
+      {
+        "group_id": "branch:agent/mtg-pricing-readiness-v1",
+        "matched_token": "agent/mtg-pricing-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/mtg_canonical_catalog_set_promotion_writer_v1.mjs",
+        "line": 35
+      },
+      {
+        "group_id": "branch:agent/mtg-pointer-release-v1",
+        "matched_token": "agent/mtg-pointer-release-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/mtg_catalog_supervisor_v1.mjs",
+        "line": 34
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_catalog_foundation_apply_v1.mjs",
+        "line": 34
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_catalog_foundation_post_apply_v1.mjs",
+        "line": 21
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_catalog_foundation_post_rollback_v1.mjs",
+        "line": 18
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_catalog_foundation_preflight_v1.mjs",
+        "line": 23
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_catalog_foundation_rollback_v1.mjs",
+        "line": 28
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_payload_apply_v1.mjs",
+        "line": 267
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_payload_plan_v1.mjs",
+        "line": 66
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_payload_post_apply_readback_v1.mjs",
+        "line": 75
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_payload_preflight_v1.mjs",
+        "line": 125
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_staging_plan_v1.mjs",
+        "line": 16
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_staging_preflight_v1.mjs",
+        "line": 66
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_durable_staging_schema_apply_v1.mjs",
+        "line": 383
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_rollback_canary_v1.mjs",
+        "line": 228
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_canonical_import_staged_identity_review_v1.mjs",
+        "line": 94
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_card_image_pointer_v1.mjs",
+        "line": 25
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_card_image_storage_v1.mjs",
+        "line": 89
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_canonical_reconciliation_v1.mjs",
+        "line": 77
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_don_canonical_gate_v1.mjs",
+        "line": 91
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_don_canonical_plan_v1.mjs",
+        "line": 51
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_numbered_canonical_apply_plan_v1.mjs",
+        "line": 70
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_numbered_canonical_apply_v1.mjs",
+        "line": 354
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_numbered_canonical_post_apply_v1.mjs",
+        "line": 146
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_numbered_canonical_preflight_v1.mjs",
+        "line": 256
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_numbered_canonical_promotion_plan_v1.mjs",
+        "line": 79
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_numbered_canonical_rollback_canary_v1.mjs",
+        "line": 272
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_official_catalog_authority_v1.mjs",
+        "line": 176
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_sealed_candidate_gate_v1.mjs",
+        "line": 85
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_sealed_candidate_plan_v1.mjs",
+        "line": 44
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_staging_release_apply_v1.mjs",
+        "line": 133
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_staging_release_plan_v1.mjs",
+        "line": 72
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_staging_release_post_apply_v1.mjs",
+        "line": 78
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_staging_release_preflight_v1.mjs",
+        "line": 104
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_complete_staging_release_rollback_canary_v1.mjs",
+        "line": 101
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_canonical_apply_plan_v1.mjs",
+        "line": 51
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_canonical_apply_v1.mjs",
+        "line": 106
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_canonical_preflight_v1.mjs",
+        "line": 71
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_canonical_rollback_canary_v1.mjs",
+        "line": 61
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_identity_review_plan_v1.mjs",
+        "line": 81
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_image_review_packet_v1.mjs",
+        "line": 104
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_official_authority_v1.mjs",
+        "line": 208
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_online_evidence_resolution_v1.mjs",
+        "line": 210
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_pricing_lineage_v1.mjs",
+        "line": 50
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_pricing_qualification_apply_plan_v1.mjs",
+        "line": 51
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_pricing_qualification_apply_v1.mjs",
+        "line": 127
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_pricing_qualification_plan_v1.mjs",
+        "line": 44
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_pricing_qualification_rollback_canary_v1.mjs",
+        "line": 67
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_pricing_release_v1.mjs",
+        "line": 76
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_sealed_review_image_availability_v1.mjs",
+        "line": 247
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_signed_in_catalog_readiness_v1.mjs",
+        "line": 23
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_canonical_promotion_apply_plan_v1.mjs",
+        "line": 57
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_canonical_promotion_apply_v1.mjs",
+        "line": 257
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_canonical_promotion_plan_v1.mjs",
+        "line": 61
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_canonical_promotion_post_apply_v1.mjs",
+        "line": 74
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_canonical_promotion_preflight_v1.mjs",
+        "line": 156
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_canonical_promotion_rollback_canary_v1.mjs",
+        "line": 213
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_language_and_image_readiness_v1.mjs",
+        "line": 39
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_apply_plan_v1.mjs",
+        "line": 66
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_apply_v1.mjs",
+        "line": 38
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_mutation_plan_v1.mjs",
+        "line": 92
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_post_apply_v1.mjs",
+        "line": 29
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_post_rollback_v1.mjs",
+        "line": 23
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_readiness_v1.mjs",
+        "line": 286
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_printing_image_rollback_canary_v1.mjs",
+        "line": 25
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_storage_collision_preflight_v1.mjs",
+        "line": 28
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_storage_permanent_plan_v1.mjs",
+        "line": 30
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/one_piece_st01_storage_permanent_readback_v1.mjs",
+        "line": 32
+      },
+      {
+        "group_id": "branch:agent/one-piece-ingestion-readiness-v1",
+        "matched_token": "agent/one-piece-ingestion-readiness-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/audits/sealed_product_release_qualification_binding_v1.mjs",
+        "line": 65
+      },
+      {
+        "group_id": "branch:integration/reconciled-main-v1",
+        "matched_token": "integration/reconciled-main-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/repository/build_postmerge_disposition_ledger.mjs",
+        "line": 158
+      }
+    ]
+  },
+  "scheduled_tasks": {
+    "status": "available",
+    "findings": [
+      {
+        "group_id": "branch:main",
+        "matched_token": "c:/grookai_vault_mtg_catalog_lockfix",
+        "reference_kind": "windows_scheduled_task",
+        "task_path": "\\",
+        "task_name": "Grookai MTG Catalog Completion",
+        "matched_field": "arguments"
+      },
+      {
+        "group_id": "branch:fix/lot-sharing-pricing-main-v1",
+        "matched_token": "c:/grookai_vault",
+        "reference_kind": "windows_scheduled_task",
+        "task_path": "\\",
+        "task_name": "GrookaiVault_PricingNightlyBackfill",
+        "matched_field": "arguments"
+      },
+      {
+        "group_id": "branch:fix/lot-sharing-pricing-main-v1",
+        "matched_token": "c:/grookai_vault",
+        "reference_kind": "windows_scheduled_task",
+        "task_path": "\\",
+        "task_name": "Grookai_Fallback_Images",
+        "matched_field": "arguments"
+      }
+    ]
+  },
+  "running_processes": {
+    "status": "available",
+    "findings": [
+      {
+        "group_id": "branch:feature/unified-search-ux-v1",
+        "matched_token": "c:/grookai_vault_unified_search_ux",
+        "reference_kind": "running_process",
+        "process_id": 63872,
+        "process_name": "node.exe"
+      },
+      {
+        "group_id": "branch:feature/unified-search-ux-v1",
+        "matched_token": "c:/grookai_vault_unified_search_ux",
+        "reference_kind": "running_process",
+        "process_id": 67512,
+        "process_name": "node.exe"
+      },
+      {
+        "group_id": "branch:feature/unified-search-ux-v1",
+        "matched_token": "c:/grookai_vault_unified_search_ux",
+        "reference_kind": "running_process",
+        "process_id": 58708,
+        "process_name": "node.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 138028,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 134260,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 130672,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 120460,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/app-candidate-309",
+        "matched_token": "c:/grookai_vault_launch_convergence_v2",
+        "reference_kind": "running_process",
+        "process_id": 93028,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/app-candidate-309",
+        "matched_token": "c:/grookai_vault_launch_convergence_v2",
+        "reference_kind": "running_process",
+        "process_id": 175676,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/app-candidate-309",
+        "matched_token": "c:/grookai_vault_launch_convergence_v2",
+        "reference_kind": "running_process",
+        "process_id": 201936,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/app-candidate-309",
+        "matched_token": "c:/grookai_vault_launch_convergence_v2",
+        "reference_kind": "running_process",
+        "process_id": 190780,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:fix/cross-tcg-set-taxonomy-v1",
+        "matched_token": "c:/grookai_vault_sets_performance_fix",
+        "reference_kind": "running_process",
+        "process_id": 199956,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:fix/cross-tcg-set-taxonomy-v1",
+        "matched_token": "c:/grookai_vault_sets_performance_fix",
+        "reference_kind": "running_process",
+        "process_id": 241048,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:fix/cross-tcg-set-taxonomy-v1",
+        "matched_token": "c:/grookai_vault_sets_performance_fix",
+        "reference_kind": "running_process",
+        "process_id": 252500,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:fix/cross-tcg-set-taxonomy-v1",
+        "matched_token": "c:/grookai_vault_sets_performance_fix",
+        "reference_kind": "running_process",
+        "process_id": 254212,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 313276,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 311880,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 318280,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:release/production-backend-launch-v1",
+        "matched_token": "c:/grookai_vault_production_backend_launch",
+        "reference_kind": "running_process",
+        "process_id": 329924,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:audit/founder-operations-mobile-decision-gate",
+        "matched_token": "c:/grookai_vault_founder_operations",
+        "reference_kind": "running_process",
+        "process_id": 60064,
+        "process_name": "flutter_tester.exe"
+      },
+      {
+        "group_id": "branch:fix/scanner-state-notice-v1",
+        "matched_token": "c:/grookai_vault_search_multitcg_repair",
+        "reference_kind": "running_process",
+        "process_id": 371008,
+        "process_name": "node.exe"
+      },
+      {
+        "group_id": "branch:fix/lot-sharing-pricing-main-v1",
+        "matched_token": "c:/grookai_vault",
+        "reference_kind": "running_process",
+        "process_id": 404752,
+        "process_name": "node.exe"
+      }
+    ]
+  },
+  "persisted_data_boundary": "No task arguments or process command lines are persisted in this artifact."
+}
