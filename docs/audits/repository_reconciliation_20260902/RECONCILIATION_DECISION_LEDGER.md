@@ -89,3 +89,19 @@ preservation package. Only the chat-safety domain paths were migrated in this wa
 
 The source worktree remains unchanged. The candidate contains a capability-level
 reconciliation rather than the stale source branch history.
+
+## Wave 6: Vault Bulk Selection And Archive
+
+| Field | Value |
+| --- | --- |
+| Source | Dirty worktree `C:\grookai_vault_launch_closeout` |
+| Source base SHA | `5b4a95e637ffcfb214aeeeb7b2279751124ab9f4` |
+| Disposition | `superseded_by_main` |
+| Capability | Explicit Vault selection mode, priced/unpriced filtering, select-all, lot pricing, and authenticated atomic archive. |
+| Main evidence | The service and migration are byte-identical to the source. Current main contains the complete UI capability plus a newer empty-filter recovery path and contract. |
+| Application changes migrated | None; replaying the source UI/test would remove the newer empty-state behavior. |
+| Production boundary | No Vault rows, database objects, user collections, deployments, or production configuration changed. |
+| Verification | 4 Node contracts passed; Flutter Vault multi-select contract passed; targeted Flutter analysis passed. |
+
+The source dirty state remains preserved and unchanged. The migration already on
+main was not applied or otherwise executed during reconciliation.
