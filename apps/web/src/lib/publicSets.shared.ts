@@ -134,6 +134,7 @@ export const GAME_SCOPED_SET_ALIAS_MAP: Record<
   Record<string, string[]>
 > = {
   pokemon: {
+    ...SET_INTENT_ALIAS_MAP,
     "m-p": ["jpn-MP"],
     "mega promotion cards": ["jpn-MP"],
     "pokemon world championships 2026": ["jpn-MP"],
@@ -145,6 +146,18 @@ export const GAME_SCOPED_SET_ALIAS_MAP: Record<
     "ストームエメラルダ": ["jpn-product-93e429bd4ffd351d"],
   },
   one_piece: {
+    ...Object.fromEntries(
+      Array.from({ length: 99 }, (_, index) => {
+        const code = `op${String(index + 1).padStart(2, "0")}`;
+        return [code, [code]];
+      }),
+    ),
+    ...Object.fromEntries(
+      Array.from({ length: 99 }, (_, index) => {
+        const number = String(index + 1).padStart(2, "0");
+        return [`op-${number}`, [`op${number}`]];
+      }),
+    ),
     op17: ["op17"],
     "op-17": ["op17"],
     "the world's strongest warriors": ["op17"],
@@ -153,6 +166,8 @@ export const GAME_SCOPED_SET_ALIAS_MAP: Record<
     "worlds strongest warriors": ["op17"],
   },
   mtg: {
+    alpha: ["lea"],
+    "limited edition alpha": ["lea"],
     hobbit: ["hob", "hoc", "thob"],
     "the hobbit": ["hob", "hoc", "thob"],
     "the hobbit eternal": ["hoc"],

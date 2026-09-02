@@ -49,6 +49,7 @@ const SET_FETCH_PAGE_SIZE = 500;
 const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 160;
+const MAX_STRUCTURED_PARENT_CANDIDATES = 2048;
 const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
 const VALUE_SORT_CANDIDATE_LIMIT = SEARCH_LIMIT;
 const SPECIES_FAMILY_SEARCH_LIMIT = 360;
@@ -507,6 +508,32 @@ function trimNonAsciiAlphaNumericBoundaries(value: string) {
   }
 
   return value.slice(start, end);
+}
+
+function filterRowsByReleaseYear(
+  rows: CardPrintLookupRow[],
+  setMetadataByCode: Map<string, PublicSetMetadata>,
+  releaseYearMin?: number,
+  releaseYearMax?: number,
+) {
+  if (
+    typeof releaseYearMin !== "number" &&
+    typeof releaseYearMax !== "number"
+  ) {
+    return rows;
+  }
+
+  return rows.filter((row) => {
+    const releaseYear = setMetadataByCode.get(row.set_code ?? "")?.release_year;
+    if (typeof releaseYear !== "number") return false;
+    if (typeof releaseYearMin === "number" && releaseYear < releaseYearMin) {
+      return false;
+    }
+    if (typeof releaseYearMax === "number" && releaseYear > releaseYearMax) {
+      return false;
+    }
+    return true;
+  });
 }
 
 function uniqueValues(values: string[]) {
@@ -3939,7 +3966,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     const setIntent = resolveGameScopedSetSearchIntent(searchText, gameScope);
     if (setIntent.setCodes.length > 0) {
       inferredSetCodes = setIntent.setCodes;
-      searchText = setIntent.remainingQuery;
+      searchText = setIntent.remainingQuery.replace(/\bfrom\b\s*$/i, "").trim();
     }
   }
   if (inferredSetCodes.length === 0 && searchText) {
@@ -3996,22 +4023,43 @@ export async function getExploreRowsForGameScopedTextSearch(
     (options.stampLabels?.length ?? 0) === 0;
 
   if (canUseBoundedGameRpc) {
-    const runBoundedSearch = (
+    const expandCandidateWindow =
+      Boolean(nameText || collectorToken) &&
+      (shouldRequireChildScope ||
+        typeof releaseYearMin === "number" ||
+        typeof releaseYearMax === "number");
+    const maxCandidates = expandCandidateWindow
+      ? MAX_STRUCTURED_PARENT_CANDIDATES
+      : SEARCH_LIMIT;
+    const runBoundedSearch = async (
       queryText: string | null,
       numberText: string | null,
       setCode: string | null,
-    ) =>
-      supabase.rpc("search_game_card_prints_v4", {
-        game_code_in: gameScope,
-        q: queryText,
-        set_code_in: setCode,
-        number_in: numberText,
-        illustrator_in: exactIllustrator || null,
-        language_scope_in:
-          gameScope === "pokemon" ? options.languageScope ?? "all" : "all",
-        limit_in: SEARCH_LIMIT,
-        offset_in: 0,
-      });
+    ) => {
+      const boundedRows: CardPrintLookupRow[] = [];
+      for (
+        let offset = 0;
+        offset < maxCandidates;
+        offset += SEARCH_LIMIT
+      ) {
+        const { data, error } = await supabase.rpc("search_game_card_prints_v4", {
+          game_code_in: gameScope,
+          q: queryText,
+          set_code_in: setCode,
+          number_in: numberText,
+          illustrator_in: exactIllustrator || null,
+          language_scope_in:
+            gameScope === "pokemon" ? options.languageScope ?? "all" : "all",
+          limit_in: SEARCH_LIMIT,
+          offset_in: offset,
+        });
+        if (error) return { data: [] as CardPrintLookupRow[], error };
+        const pageRows = (data ?? []) as CardPrintLookupRow[];
+        boundedRows.push(...pageRows);
+        if (pageRows.length < SEARCH_LIMIT) break;
+      }
+      return { data: boundedRows, error: null };
+    };
     const boundedSetCodes = inferredSetCodes.length > 0 ? inferredSetCodes : [null];
     const initialSearches = await Promise.all(boundedSetCodes.map((setCode) =>
       runBoundedSearch(nameText || null, collectorToken || null, setCode)));
@@ -4054,12 +4102,23 @@ export async function getExploreRowsForGameScopedTextSearch(
     const parentRows = [...new Map(
       ((data ?? []) as CardPrintLookupRow[]).map((row) => [row.id, row]),
     ).values()];
-    const lookupRows = shouldRequireChildScope
-      ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
-      : parentRows;
+    if (parentRows.length === 0) return [];
     const setMetadataByCode = await fetchPublicSetMetadata(
-      uniqueValues(lookupRows.map((row) => row.set_code ?? "").filter(Boolean)),
+      uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
+    const releaseScopedParentRows = filterRowsByReleaseYear(
+      parentRows,
+      setMetadataByCode,
+      releaseYearMin,
+      releaseYearMax,
+    );
+    if (releaseScopedParentRows.length === 0) return [];
+    const lookupRows = shouldRequireChildScope
+      ? await fetchSmartDiscoveryChildRows(
+          { ...options, sortMode },
+          releaseScopedParentRows,
+        )
+      : releaseScopedParentRows;
     const pricingByCardId = options.includePricing
       ? await getPublicPricingByCardIds(supabase, lookupRows.map((row) => row.id), {
           requireComplete: false,
@@ -4083,22 +4142,7 @@ export async function getExploreRowsForGameScopedTextSearch(
       },
     );
     const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
-    const releaseFilteredRows = rows.filter((row) => {
-      if (
-        typeof releaseYearMin === "number" &&
-        (typeof row.release_year !== "number" || row.release_year < releaseYearMin)
-      ) {
-        return false;
-      }
-      if (
-        typeof releaseYearMax === "number" &&
-        (typeof row.release_year !== "number" || row.release_year > releaseYearMax)
-      ) {
-        return false;
-      }
-      return true;
-    });
-    return sortRows(releaseFilteredRows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
+    return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
   }
 
   const { data: gameRow, error: gameError } = await supabase

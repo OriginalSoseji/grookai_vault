@@ -23,7 +23,6 @@ const FILLER_PHRASES = [
   /\bcards?\b/gi,
   /\bprintings?\b/gi,
   /\bversions?\b/gi,
-  /\bfrom\b/gi,
   /\benglish\b/gi,
   /\bphysical\b/gi,
 ];
@@ -100,6 +99,20 @@ function normalizeWhitespace(value: string) {
 
 function unique(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+function isStandaloneParallelCardName(query: string, finishKey: string) {
+  if (finishKey !== "pokeball" && finishKey !== "masterball") {
+    return false;
+  }
+
+  const identityText = normalizeWhitespace(query)
+    .replace(/\b(?:cards?|printings?|versions?|english|physical)\b/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return finishKey === "pokeball"
+    ? /^pok[eé]?\s*ball$/i.test(identityText)
+    : /^master\s*ball$/i.test(identityText);
 }
 
 function parseYearRange(query: string) {
@@ -207,6 +220,9 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   for (const finish of FINISH_PATTERNS) {
     finish.pattern.lastIndex = 0;
     if (finish.pattern.test(residual)) {
+      if (isStandaloneParallelCardName(residual, finish.key)) {
+        continue;
+      }
       finish.pattern.lastIndex = 0;
       finishKeys.push(finish.key);
       interpretedLabels.push(finish.label);
