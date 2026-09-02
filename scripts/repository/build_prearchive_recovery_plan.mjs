@@ -364,7 +364,7 @@ file, or write to the database or Storage.
 - Bundle SHA-256: \`${recoveryManifest.bundle_sha256}\`
 - Recovery mode: \`${recoveryManifest.recovery_mode}\`
 - Base bundle SHA-256: \`${recoveryManifest.base_recovery?.bundle_sha256 ?? "not_applicable"}\`
-- Supersedes recovery release: \`${recoveryManifest.supersedes_release_tag ?? "none"}\`
+- Supersedes recovery releases: \`${recoveryManifest.supersedes_release_tags?.join(", ") || "none"}\`
 - Local bundle verification: \`${recoveryManifest.local_bundle_verification.passed}\`
 - Remote asset readback hash match: \`${remoteReadback.bundle_hash_matches}\`
 - Downloaded bundle verification: \`${remoteReadback.downloaded_bundle_verification.passed}\`
@@ -447,7 +447,14 @@ export function main() {
   const recoveryRepository = argument("recovery-repo", DEFAULT_RECOVERY_REPOSITORY);
   const releaseTag = argument("release-tag");
   const supersedesReleaseTag = argument("supersedes-release-tag");
+  const supersedesReleaseTags = unique(
+    String(argument("supersedes-release-tags", supersedesReleaseTag ?? ""))
+      .split(",")
+      .map((value) => value.trim())
+      .filter(Boolean),
+  );
   const baseRecoveryManifestPath = argument("base-recovery-manifest");
+  const baseRecoveryManifestRef = argument("base-recovery-manifest-ref");
   const publishRecovery = hasFlag("publish-recovery");
   if (publishRecovery && !releaseTag) throw new Error("--release-tag is required with --publish-recovery.");
 
@@ -512,9 +519,15 @@ export function main() {
   let bundleRefs = recoveryRefs.map((record) => record.ref);
   let bundlePrerequisiteShas = [];
   if (baseRecoveryManifestPath) {
-    const baseManifest = JSON.parse(
-      loadGitBackedFile(repoRoot, baseRecoveryManifestPath, "HEAD"),
-    );
+    const baseManifestText = baseRecoveryManifestRef
+      ? git(["show", `${baseRecoveryManifestRef}:${baseRecoveryManifestPath}`], { cwd: repoRoot })
+      : loadGitBackedFile(repoRoot, baseRecoveryManifestPath, "HEAD");
+    const baseManifest = JSON.parse(baseManifestText);
+    if (baseManifest.base_recovery || (
+      baseManifest.recovery_mode && baseManifest.recovery_mode !== "standalone_bundle"
+    )) {
+      throw new Error("Incremental recovery must reference a standalone base bundle, not another supplement.");
+    }
     const baseBundlePath = path.join(
       recoveryRoot,
       baseManifest.release_tag,
@@ -545,6 +558,7 @@ export function main() {
       recovery_repository: baseManifest.recovery_repository,
       remote_release_url: null,
       remote_bundle_digest_matches: false,
+      manifest_source_ref: baseRecoveryManifestRef ?? "working_tree_or_HEAD_fallback",
     };
   }
   const recoveryDir = path.join(recoveryRoot, releaseTag ?? `plan-${selectionFingerprint.slice(0, 12)}`);
@@ -594,6 +608,7 @@ export function main() {
     local_bundle_verification: localBundleVerification,
     recovery_repository: recoveryRepository, release_tag: releaseTag ?? null,
     supersedes_release_tag: supersedesReleaseTag ?? null,
+    supersedes_release_tags: supersedesReleaseTags,
     delete_authorized: false,
   };
   const bundleManifestFile = bundleFile
