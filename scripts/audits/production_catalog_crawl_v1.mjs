@@ -167,7 +167,7 @@ async function establishServerAuthCookies(context, account, origin) {
     email: account.email,
     password: account.password,
   });
-  if (error) throw new Error(`temporary account sign-in failed: ${error.message}`);
+  if (error) throw new Error("temporary account sign-in failed");
   const hostname = new URL(origin).hostname;
   await context.addCookies(
     cookieJar.map((cookie) => ({
