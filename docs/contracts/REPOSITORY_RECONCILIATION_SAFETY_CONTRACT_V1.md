@@ -153,12 +153,19 @@ Before source reconciliation begins, create all of the following:
 
 ### 1. Git history bundle
 
+- An authoritative `git ls-remote --heads origin` inventory captured immediately
+  before preservation, including every remote branch name and exact SHA.
+- Every inventoried remote head fetched without pruning and pinned under a
+  dedicated project snapshot ref namespace before bundle creation.
+- A fail-closed comparison proving every pinned ref equals the inventoried remote
+  SHA. A moved, missing, or unfetchable head stops the preservation gate until the
+  discrepancy is recorded and resolved.
 - A `git bundle --all` snapshot stored outside the repository worktrees.
 - SHA-256 hash of the bundle.
 - `git bundle verify` output.
-- A temporary restore clone proving the bundle can resolve and check out selected
-  known SHAs, including project-start `origin/main` and representative unmerged
-  branch heads.
+- A temporary restore clone proving the bundle resolves every inventoried remote
+  SHA, every local branch SHA, and every detached worktree SHA, including the
+  project-start `origin/main` authority.
 
 ### 2. Repository inventory
 
@@ -185,10 +192,12 @@ For each dirty worktree:
 The preservation gate passes only when a temporary location can restore:
 
 - the Git bundle;
-- known branch heads;
-- at least one tracked dirty patch;
-- at least one staged patch when staged state exists;
-- at least one untracked archive when untracked state exists.
+- every inventoried remote, local, and detached head;
+- every tracked dirty patch against its recorded base;
+- every staged patch where staged state exists;
+- every untracked archive where untracked state exists;
+- the combined recorded state of each dirty worktree without modifying its source
+  worktree.
 
 Creating files without proving restoration is not sufficient.
 

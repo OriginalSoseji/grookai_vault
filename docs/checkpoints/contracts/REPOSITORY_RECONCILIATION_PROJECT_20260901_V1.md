@@ -242,12 +242,16 @@ existing worktree state was changed by this checkpoint.
 The next gate is preservation proof, not feature integration:
 
 1. write an immutable inventory artifact for all refs and worktrees;
-2. create and SHA-256 hash a full Git bundle outside repo worktrees;
-3. verify the bundle and restore selected SHAs in a temporary clone;
-4. snapshot every dirty worktree's tracked, staged, and untracked state;
-5. verify representative dirty-state restoration;
-6. create the initial reconciliation ledger;
-7. only then create `integration/reconciled-main-v1` from a freshly fetched
+2. query, fetch, and pin every remote branch head to its exact inventoried SHA
+   without pruning;
+3. create and SHA-256 hash a full Git bundle outside repo worktrees;
+4. verify the bundle and resolve every remote, local, and detached source SHA in a
+   temporary clone;
+5. snapshot every dirty worktree's tracked, staged, and untracked state;
+6. restore every applicable tracked, staged, and untracked state for every dirty
+   worktree in isolated temporary locations;
+7. create the initial reconciliation ledger;
+8. only then create `integration/reconciled-main-v1` from a freshly fetched
    `origin/main` and begin the lot-sharing/pricing wave.
 
 Stop before deleting or modifying any existing source branch or worktree. Stop
