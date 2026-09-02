@@ -79,10 +79,15 @@ const nextConfig = {
     const shortPublicCache = "public, s-maxage=60, stale-while-revalidate=300";
     const mediumPublicCache = "public, s-maxage=120, stale-while-revalidate=600";
     const setPublicCache = "public, s-maxage=300, stale-while-revalidate=900";
+    const immutablePublicCache = "public, max-age=31536000, immutable";
 
     // LOCK: Public routes must not depend on global auth/session reads in the root chrome.
     // LOCK: Public read helpers should be cacheable by default.
     return [
+      {
+        source: "/dex/sprites/v1/:sprite.png",
+        headers: [{ key: "Cache-Control", value: immutablePublicCache }],
+      },
       {
         source: "/.well-known/apple-app-site-association",
         headers: [
