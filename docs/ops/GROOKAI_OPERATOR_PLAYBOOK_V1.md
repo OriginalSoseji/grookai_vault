@@ -309,6 +309,24 @@ is presented as an owner-review candidate. The output remains planning evidence
 only; cleanup still requires a separate exact approval after a fresh verified
 recovery bundle.
 
+Prepare that exact recovery evidence with:
+
+```powershell
+node scripts/repository/build_prearchive_recovery_plan.mjs `
+  --release-tag=<unique-private-recovery-tag> `
+  --publish-recovery
+node --test tests/contracts/repository_prearchive_recovery_v1.test.mjs
+```
+
+The planner revalidates every candidate against current refs, worktree state,
+open PRs, repository automation, scheduled tasks, running processes, and
+`origin/main`. It creates a Git bundle only for candidates that still pass,
+uploads the bundle and manifest to the existing private reconciliation recovery
+repository, downloads both into a separate readback directory, and verifies the
+hashes and downloaded Git bundle. The resulting execution plan still authorizes
+no cleanup. Branch or worktree removal remains a separately approved gate tied
+to the exact selection fingerprint and bundle SHA-256.
+
 ## 8. External-Action Boundaries
 
 The following actions require explicit authorization even when repository and
