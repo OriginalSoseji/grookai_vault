@@ -1,22 +1,30 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1",
-  "generated_at": "2026-09-01T17:13:30.231Z",
+  "generated_at": "2026-09-02T08:06:16.762Z",
   "audit_only": true,
   "db_writes": false,
   "rule": "Evidence set aliases are canonicalized before suppression and classification only when an alias resolves to exactly one configured English set.",
   "summary": {
-    "evidence_rows_examined": 327624,
-    "evidence_rows_after_dedupe": 240003,
+    "evidence_rows_examined": 327426,
+    "evidence_rows_after_dedupe": 239813,
     "evidence_rows_remapped": 2236,
-    "duplicate_rows_collapsed": 87621,
+    "duplicate_rows_collapsed": 87613,
     "unresolved_evidence_rows": 0,
     "ambiguous_aliases": 2,
     "source_availability_rows_remapped": 0,
     "historical_remaps_preserved": 12,
     "effective_remaps": 46,
-    "folded_subset_owners": 2
+    "folded_subset_owners": 3
   },
   "folded_subset_owners": [
+    {
+      "source_set_key": "miscp",
+      "source_set_name": "Miscellaneous Promos",
+      "canonical_set_key": "misc",
+      "canonical_set_name": "Miscellaneous Cards & Products",
+      "authority": "english_master_index_source_alias_owner_v1",
+      "note": "TCGdex exposes Ancient Mew under miscp, while the governed English catalog already owns the same one-card promotional lane under misc."
+    },
     {
       "source_set_key": "rc",
       "source_set_name": "Radiant Collection",
