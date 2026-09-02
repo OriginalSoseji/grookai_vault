@@ -129,7 +129,7 @@ export function classifyDisposition({
   activeReportBranch = false,
 }) {
   const branchName = branch || sourceName;
-  if (branchName === "main" || sourceName === "origin/main") {
+  if (sourceKind === "remote_branch" && sourceName === "origin/main") {
     return {
       disposition: "protected_authority",
       recovery_value: "critical",
@@ -472,7 +472,17 @@ async function main() {
   });
 
   const rows = [...branchRows, ...worktreeRows];
-  const openPullRequests = pullRequests.filter((row) => row.state === "OPEN");
+  const localMainRows = rows.filter(
+    (row) =>
+      (row.source_kind === "local_branch" && row.source_name === "main") ||
+      (row.source_kind === "worktree" && row.branch === "main"),
+  );
+  const activeReportPullRequests = pullRequests.filter(
+    (row) => row.state === "OPEN" && row.headRefName === currentBranch,
+  );
+  const openPullRequests = pullRequests.filter(
+    (row) => row.state === "OPEN" && row.headRefName !== currentBranch,
+  );
   const dirtyWorktrees = worktreeRows.filter(
     (row) => row.dirty !== false && row.disposition !== "active_disposition_report",
   );
@@ -514,6 +524,7 @@ async function main() {
       total_rows: rows.length,
       unique_source_shas: analysisBySha.size,
       open_pull_requests: openPullRequests.length,
+      active_report_pull_requests: activeReportPullRequests.length,
       dirty_or_unreadable_worktrees: dirtyWorktrees.length,
       prior_preserved_dirty_worktrees: priorDirtyPaths.size,
       new_dirty_worktrees_since_preservation: newDirtyWorktrees.length,
@@ -523,6 +534,15 @@ async function main() {
       source_kind: countBy(rows, "source_kind"),
     },
     open_pull_requests: openPullRequests,
+    active_report_pull_requests: activeReportPullRequests,
+    local_main_sources: localMainRows.map((row) => ({
+      source_kind: row.source_kind,
+      source_name: row.source_name,
+      sha: row.sha,
+      relationship: row.relationship,
+      disposition: row.disposition,
+      changed_domains: row.changed_domains,
+    })),
     dirty_worktree_comparison: {
       prior_preserved_paths: [...priorDirtyPaths].sort(),
       current_paths: [...currentDirtyPaths].sort(),
@@ -591,6 +611,14 @@ artifact, pull request, or recovery object.
 
 ${openPullRequests.map((row) => `- #${row.number} \`${row.headRefName}\`: ${row.title} (${row.isDraft ? "draft" : "open"})`).join("\n") || "- None"}
 
+## Local Main Is Not Authority
+
+The production authority is the recorded \`origin/main\` ref and SHA. A local
+branch or worktree named \`main\` is classified from its actual ancestry, dirty
+state, and changed domains; its name cannot override production authority.
+
+${localMainRows.map((row) => `- \`${row.source_kind}:${row.source_name}\` at \`${row.sha}\` - ${row.relationship} - \`${row.disposition}\``).join("\n") || "- No local main source is registered."}
+
 ## Dirty Or Unreadable Worktrees
 
 ${dirtyWorktrees.map((row) => `- \`${row.source_name}\` - branch \`${row.branch ?? "detached"}\` - ${row.dirty === true ? `${row.change_count} status records` : "status unavailable"}`).join("\n") || "- None"}
@@ -600,7 +628,7 @@ off-machine recovery bundle remain the restoration authority.
 
 ## Decisions
 
-1. Keep \`main\`, both reconciliation tags, the private recovery release, and
+1. Keep \`origin/main\`, both reconciliation tags, the private recovery release, and
    \`integration/reconciled-main-v1\` as named restore points.
 2. Keep dirty, unreadable, detached-unmerged, migration-bearing, and open-PR
    sources unchanged.

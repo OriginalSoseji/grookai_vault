@@ -267,6 +267,33 @@ source commit
 -> device or browser readback
 ```
 
+### Repository reconciliation disposition
+
+After a repository reconciliation merge, rebuild the non-destructive branch and
+worktree disposition ledger from a clean topic branch based on current
+`origin/main`:
+
+```powershell
+node scripts/repository/build_postmerge_disposition_ledger.mjs --authority=origin/main --out-dir=docs/audits/repository_postmerge_disposition_20260902
+node --test tests/contracts/repository_postmerge_disposition_v1.test.mjs
+```
+
+The durable outputs are:
+
+- `docs/audits/repository_postmerge_disposition_20260902/postmerge_disposition_ledger.jsonl`
+- `docs/audits/repository_postmerge_disposition_20260902/REPOSITORY_POSTMERGE_DISPOSITION_REPORT_V1.md`
+- `docs/audits/repository_postmerge_disposition_20260902/artifact_hashes.json`
+
+`origin/main` and its recorded SHA are authority. A local branch or worktree
+named `main` does not become authority through its name and must be classified
+from actual Git ancestry and dirty state.
+
+This process is read-only except for its generated repository artifacts. Every
+ledger row must retain `delete_authorized: false`. Its next gate may create an
+owner-readable archival candidate packet from clean, main-contained sources,
+but it may not delete branches, tags, worktrees, directories, PRs, artifacts,
+or recovery objects.
+
 ## 8. External-Action Boundaries
 
 The following actions require explicit authorization even when repository and

@@ -1,8 +1,8 @@
 {
   "schema_version": "GROOKAI_REPOSITORY_POSTMERGE_DISPOSITION_ARTIFACT_HASHES_V1",
-  "generated_at": "2026-09-02T12:09:43.406Z",
+  "generated_at": "2026-09-02T12:21:12.395Z",
   "files": {
-    "postmerge_disposition_ledger.jsonl": "e38059203f118da58046a93cc3819967836ecc804d17c5fcfc20850f9baa4a8a",
-    "REPOSITORY_POSTMERGE_DISPOSITION_REPORT_V1.md": "0843be06741c9aba12b7ad57e9902aaa4f3695730c2151fdff375360baf86317"
+    "postmerge_disposition_ledger.jsonl": "97632b2d608309778c2388867024f7ec80be3e6e07d26b03f910ee284a372d45",
+    "REPOSITORY_POSTMERGE_DISPOSITION_REPORT_V1.md": "82fd39c23c4e83f60b8e3f275e5ae4be2b087cae6bbb5d7249fb6f0718249ac9"
   }
 }

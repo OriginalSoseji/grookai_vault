@@ -17,10 +17,10 @@ Date: 2026-09-02 (America/Denver)
 | Source kind | Count |
 | --- | ---: |
 | local_branch | 409 |
-| remote_branch | 296 |
+| remote_branch | 297 |
 | worktree | 143 |
 
-- Unique source SHAs: `464`
+- Unique source SHAs: `465`
 - Open pull requests: `2`
 - Dirty or unreadable worktrees: `10`
 - Preserved dirty-worktree path set unchanged: `true`
@@ -30,16 +30,16 @@ Date: 2026-09-02 (America/Denver)
 | Disposition | Count |
 | --- | ---: |
 | accepted_reconciliation_restore_point | 2 |
-| active_disposition_report | 2 |
+| active_disposition_report | 3 |
 | contained_historical_evidence | 8 |
 | contained_in_main | 173 |
 | open_pr_human_calibration_gate | 3 |
 | open_pr_migration_gate | 3 |
-| patch_equivalent_to_main | 245 |
+| patch_equivalent_to_main | 247 |
 | preserved_deferred_project | 220 |
 | preserved_dirty_or_unreadable | 24 |
 | preserved_migration_review | 160 |
-| protected_authority | 3 |
+| protected_authority | 1 |
 | reconciled_source_evidence | 5 |
 
 Every row has `delete_authorized: false`. Archive recommendations are planning
@@ -50,6 +50,15 @@ artifact, pull request, or recovery object.
 
 - #219 `agent/mtg-sealed-world-v1`: Build governed MTG sealed world (open)
 - #118 `agent/visual-search-lab-runtime-fix`: Build governed Unified Collector Search V2 (draft)
+
+## Local Main Is Not Authority
+
+The production authority is the recorded `origin/main` ref and SHA. A local
+branch or worktree named `main` is classified from its actual ancestry, dirty
+state, and changed domains; its name cannot override production authority.
+
+- `local_branch:main` at `2f128ea80d028daff32f5cfc7ce9124d3f0d13eb` - diverged - `patch_equivalent_to_main`
+- `worktree:C:/grookai_vault_mtg_catalog_lockfix` at `2f128ea80d028daff32f5cfc7ce9124d3f0d13eb` - diverged - `patch_equivalent_to_main`
 
 ## Dirty Or Unreadable Worktrees
 
@@ -69,7 +78,7 @@ off-machine recovery bundle remain the restoration authority.
 
 ## Decisions
 
-1. Keep `main`, both reconciliation tags, the private recovery release, and
+1. Keep `origin/main`, both reconciliation tags, the private recovery release, and
    `integration/reconciled-main-v1` as named restore points.
 2. Keep dirty, unreadable, detached-unmerged, migration-bearing, and open-PR
    sources unchanged.
