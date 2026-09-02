@@ -15,6 +15,8 @@ function context(overrides = {}) {
   return {
     openPullRequests: [],
     referencesByGroup: noReferences,
+    repositoryStatus: "available",
+    openPullRequestStatus: "available",
     scheduledTaskStatus: "available",
     runningProcessStatus: "available",
     ...overrides,
@@ -119,13 +121,20 @@ test("migration, dirty, detached, open-PR, and automation sources are excluded",
   );
 });
 
-test("unavailable host inventories fail closed", () => {
+test("unavailable repository, PR, or host inventories fail closed", () => {
   const [group] = buildBranchGroups([row()]);
   const result = evaluateArchiveGroup(
     group,
-    context({ scheduledTaskStatus: "unavailable", runningProcessStatus: "unavailable" }),
+    context({
+      repositoryStatus: "unavailable",
+      openPullRequestStatus: "unavailable",
+      scheduledTaskStatus: "unavailable",
+      runningProcessStatus: "unavailable",
+    }),
   );
   assert.equal(result.classification, "excluded");
+  assert.ok(result.exclusion_reasons.includes("repository_reference_inventory_unavailable"));
+  assert.ok(result.exclusion_reasons.includes("open_pull_request_inventory_unavailable"));
   assert.ok(result.exclusion_reasons.includes("scheduled_task_inventory_unavailable"));
   assert.ok(result.exclusion_reasons.includes("running_process_inventory_unavailable"));
 });
