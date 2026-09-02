@@ -261,7 +261,7 @@ test('Grookai Search keeps canonical variants discoverable when printing coverag
   );
 });
 
-test('a unique fully applied structured variant result is not labeled approximate', () => {
+test('fully applied structured catalog results are not labeled approximate', () => {
   const { classifySmartVariantResolverState } = loadTsModule(
     '../../apps/web/src/lib/search/smartVariantSearchPolicy.ts',
   );
@@ -291,6 +291,38 @@ test('a unique fully applied structured variant result is not labeled approximat
       'structured_text',
     ),
     'WEAK_MATCH',
+  );
+  assert.equal(
+    classifySmartVariantResolverState(
+      16,
+      {
+        residualQuery: 'Monkey D. Luffy from OP05',
+        finishKeys: [],
+        stampLabels: [],
+        unappliedLabels: [],
+      },
+      'structured_text',
+      { expectedSetCodes: ['OP05'] },
+    ),
+    'WEAK_MATCH',
+  );
+
+  const route = readFileSync(
+    new URL('../../apps/web/src/app/api/resolver/search/route.ts', import.meta.url),
+    'utf8',
+  );
+  const mobile = readFileSync(new URL('../../lib/main.dart', import.meta.url), 'utf8');
+  assert.match(
+    route,
+    /intentSummary:\s*\{[\s\S]*expectedSetCodes,[\s\S]*structuredEvidenceFlags:\s*\{[\s\S]*expectedSet:\s*expectedSetCodes\.length > 0/,
+  );
+  assert.match(
+    mobile,
+    /hasAppliedStructuredEvidence[\s\S]*evidence\?\.expectedSet == true[\s\S]*title = 'Refined results'/,
+  );
+  assert.match(
+    mobile,
+    /Your set, number, promo, or variant filters were applied\. Multiple cards still match\./,
   );
 });
 

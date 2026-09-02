@@ -854,9 +854,22 @@ class _ResolverStatusBanner extends StatelessWidget {
       case ResolverSearchState.weakMatch:
         background = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
         border = colorScheme.outline.withValues(alpha: 0.35);
-        title = 'Approximate matches';
-        body =
-            'Add a set code, collector number, or promo code to narrow the match.';
+        final evidence = meta!.structuredEvidenceFlags;
+        final hasAppliedStructuredEvidence =
+            evidence?.expectedSet == true ||
+            evidence?.number == true ||
+            evidence?.fraction == true ||
+            evidence?.promo == true ||
+            (evidence?.variants.isNotEmpty ?? false);
+        if (hasAppliedStructuredEvidence) {
+          title = 'Refined results';
+          body =
+              'Your set, number, promo, or variant filters were applied. Multiple cards still match.';
+        } else {
+          title = 'Approximate matches';
+          body =
+              'Add a set code, collector number, or promo code to narrow the match.';
+        }
         break;
       case ResolverSearchState.noMatch:
         background = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);

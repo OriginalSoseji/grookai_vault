@@ -214,18 +214,20 @@ function buildSmartFilterDiscoveryMeta(
   rows: ExploreResultCard[],
   smartSearchIntent: SmartSearchIntent,
   mode: "generic" | "structured_text" = "generic",
+  expectedSetCodes: string[] = [],
 ): ResolverMeta {
   return {
     resolverState: classifySmartVariantResolverState(
       rows.length,
       smartSearchIntent,
       mode,
+      { expectedSetCodes },
     ),
     topScore: null,
     candidateCount: rows.length,
     autoResolved: false,
     intentSummary: {
-      expectedSetCodes: [],
+      expectedSetCodes,
       nameTokens: smartSearchIntent.residualQuery
         ? smartSearchIntent.residualQuery.split(/\s+/).filter(Boolean)
         : [],
@@ -233,7 +235,7 @@ function buildSmartFilterDiscoveryMeta(
     structuredEvidenceFlags: {
       text: Boolean(smartSearchIntent.residualQuery),
       textRequired: false,
-      expectedSet: false,
+      expectedSet: expectedSetCodes.length > 0,
       number: false,
       fraction: false,
       promo: false,
@@ -514,7 +516,12 @@ export async function GET(request: NextRequest) {
           includePricing: includePricingDuringResolution,
         }).then((rows) => ({
           rows,
-          meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+          meta: buildSmartFilterDiscoveryMeta(
+            rows,
+            effectiveSmartSearchIntent,
+            shouldUseStructuredTextExpansion ? "structured_text" : "generic",
+            effectiveExactSetCode ? [effectiveExactSetCode] : [],
+          ),
           smartSearchIntent: effectiveSmartSearchIntent,
           degraded: false,
         }))
@@ -591,6 +598,7 @@ export async function GET(request: NextRequest) {
                 rows,
                 effectiveSmartSearchIntent,
                 "structured_text",
+                effectiveExactSetCode ? [effectiveExactSetCode] : [],
               ),
               smartSearchIntent: effectiveSmartSearchIntent,
               degraded: false,
