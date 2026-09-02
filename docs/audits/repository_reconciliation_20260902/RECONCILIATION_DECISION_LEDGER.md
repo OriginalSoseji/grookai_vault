@@ -166,3 +166,20 @@ publication authority.
 
 All source refs remain in the local/off-machine preservation package. The imported
 pause checkpoint defines the exact safe restart order; it is not apply authority.
+
+## Wave 11: Card Visual Search And Review Portal
+
+| Field | Value |
+| --- | --- |
+| Sources | Draft PR #118 `agent/visual-search-lab-runtime-fix`; `feature/visual-search-v1-productization`; `feature/card-visual-search-review-portal`; `deploy/card-visual-search-review-portal` |
+| Source head | `76cd800871f1fbf080153e527c2eb2a5a8394af2` for PR #118 |
+| Disposition | `preserved_deferred_human_gate` |
+| Reason | The branch is 227 commits behind main and changes 152 paths. Human calibration is incomplete, the 50-query holdout is sealed, the persistence migration is unapplied, and no visual-search release is loaded or active. |
+| Preserved capability | Zero-AI reuse of 11,000 source card-print IDs, role-isolated visual evidence, a read-only review portal, collector query contracts, and an immutable candidate release remain on the source refs. |
+| Migrated artifact | `VISUAL_SEARCH_V2_PRE_POKEJAVI_HANDOFF_20260730.md` and a bounded checkpoint index only. |
+| Excluded behavior | No broad branch merge, portal deployment, human-judgment inference, holdout execution, migration apply, database write, release load, embedding generation, feature activation, or canonical mutation. |
+| Resume gate | Export and archive the outstanding reviewer work, complete/adjudicate calibration, freeze thresholds, then execute the sealed holdout before opening any persistence or activation gate. |
+
+The separate draft PR remains open and preserved. It must not be merged wholesale
+into current main; a future resume must rebase/reconcile its capabilities against
+the then-current product contracts.
