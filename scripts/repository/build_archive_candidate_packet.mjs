@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -42,6 +42,21 @@ function command(binary, args, { cwd, allowFailure = false, input } = {}) {
 
 function git(args, options = {}) {
   return command("git", args, options);
+}
+
+function commandResult(binary, args, { cwd, input } = {}) {
+  const result = spawnSync(binary, args, {
+    cwd,
+    encoding: "utf8",
+    windowsHide: true,
+    maxBuffer: 256 * 1024 * 1024,
+    input,
+  });
+  return {
+    status: result.status,
+    stdout: result.stdout?.trim() ?? "",
+    error_code: result.error?.code ?? null,
+  };
 }
 
 function sha256(value) {
@@ -197,7 +212,7 @@ export function scanRepositoryReferences(repoRoot, groups, authorityRef = "HEAD"
   ).split(/\r?\n/).filter(Boolean);
   const findings = [];
 
-  const raw = command(
+  const grepResult = commandResult(
     "git",
     [
       "grep",
@@ -215,11 +230,19 @@ export function scanRepositoryReferences(repoRoot, groups, authorityRef = "HEAD"
     ],
     {
       cwd: repoRoot,
-      allowFailure: true,
       input: `${[...tokenMap.keys()].join("\n")}\n`,
     },
   );
-  for (const resultLine of raw?.split(/\r?\n/).filter(Boolean) ?? []) {
+  if (![0, 1].includes(grepResult.status)) {
+    return {
+      status: "unavailable",
+      scanned_ref: authorityRef,
+      scanned_file_count: files.length,
+      error_code: grepResult.error_code ?? `git_grep_exit_${grepResult.status ?? "unknown"}`,
+      findings: [],
+    };
+  }
+  for (const resultLine of grepResult.stdout.split(/\r?\n/).filter(Boolean)) {
     const lineWithoutRef = resultLine.startsWith(`${authorityRef}:`)
       ? resultLine.slice(authorityRef.length + 1)
       : resultLine;
@@ -362,6 +385,12 @@ export function evaluateArchiveGroup(group, context) {
   if (referenceKinds.has("repository_active_code")) reasons.push("repository_automation_reference");
   if (referenceKinds.has("windows_scheduled_task")) reasons.push("scheduled_task_reference");
   if (referenceKinds.has("running_process")) reasons.push("running_process_reference");
+  if (context.repositoryStatus !== "available") {
+    reasons.push("repository_reference_inventory_unavailable");
+  }
+  if (context.openPullRequestStatus !== "available") {
+    reasons.push("open_pull_request_inventory_unavailable");
+  }
   if (context.scheduledTaskStatus !== "available") {
     reasons.push("scheduled_task_inventory_unavailable");
   }
@@ -406,8 +435,9 @@ function readCurrentOpenPullRequests(repoRoot, sourceMetadata) {
   );
   if (raw === null) {
     return {
-      status: "fallback_to_source_ledger",
-      rows: sourceMetadata.open_pull_requests ?? [],
+      status: "unavailable",
+      rows: [],
+      source_ledger_snapshot_count: sourceMetadata.open_pull_requests?.length ?? 0,
     };
   }
   return { status: "available", rows: parseJsonArray(raw) };
@@ -558,6 +588,8 @@ export function main() {
     evaluateArchiveGroup(group, {
       openPullRequests: openPullRequests.rows,
       referencesByGroup,
+      repositoryStatus: repository.status,
+      openPullRequestStatus: openPullRequests.status,
       scheduledTaskStatus: scheduledTasks.status,
       runningProcessStatus: runningProcesses.status,
     }),
