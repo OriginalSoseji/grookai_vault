@@ -44,6 +44,8 @@ test("production catalog crawl uses a disposable account, read-only catalog SQL,
   assert.match(source, /createServerClient/);
   assert.match(source, /temporary_account_deleted_and_verified_absent/);
   assert.match(source, /fatal_error_sha256/);
+  assert.match(source, /throw new Error\("temporary account sign-in failed"\)/);
+  assert.doesNotMatch(source, /temporary account sign-in failed: \$\{error\.message\}/);
   assert.doesNotMatch(source, /insert\s+into\s+public\./i);
   assert.doesNotMatch(source, /update\s+public\./i);
   assert.doesNotMatch(source, /delete\s+from\s+public\./i);
