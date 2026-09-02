@@ -1,0 +1,41 @@
+{
+  "schema_version": "APP_LAUNCH_CLOSEOUT_INTEGRATION_V1",
+  "recorded_on": "2026-08-20",
+  "baseline_sha": "d6840bf89bfc056cd318f1f3a22de5e344a769bd",
+  "branch": "agent/app-launch-closeout-v1",
+  "production_writes": 0,
+  "mtg_runtime_paths_changed": 0,
+  "integrated_sources": {
+    "chat_safety": "3d639a6c120a1277867913002c5cef79bf01369c",
+    "vault_bulk_select": "6f2db5dae",
+    "unified_search_ux": "893119c8c"
+  },
+  "verification": {
+    "targeted_node_contracts": { "passed": 26, "failed": 0 },
+    "full_node_contracts": { "passed": 2261, "failed": 0 },
+    "targeted_flutter_tests": { "passed": 5, "failed": 0 },
+    "full_flutter_tests": { "passed": 631, "failed": 0 },
+    "flutter_analyze": "passed",
+    "web_typecheck": "passed",
+    "web_lint": "passed",
+    "web_production_build": "passed",
+    "diff_check": "passed"
+  },
+  "production_vault_bulk_readback": {
+    "migration_rows": 1,
+    "migration_name": "vault_bulk_archive_selected_cards_v1",
+    "function_present": true,
+    "security_definer": true,
+    "authenticated_boundary": true,
+    "anonymous_execute": false,
+    "authenticated_execute": true,
+    "service_role_execute": true
+  },
+  "store_readiness": {
+    "build_number": "300",
+    "repository_contract_valid": true,
+    "submission_ready": false,
+    "missing_generated_assets": 6,
+    "external_console_verification_required": true
+  }
+}
