@@ -1,16 +1,17 @@
 {
   "status": "verified",
   "repository_visibility": "PRIVATE",
-  "release_url": "https://github.com/OriginalSoseji/grookai-vault-reconciliation-recovery-20260902/releases/tag/prearchive-recovery-20260902T150140Z",
-  "release_tag": "prearchive-recovery-20260902T150140Z",
+  "recovery_mode": "base_plus_incremental_supplement",
+  "release_url": "https://github.com/OriginalSoseji/grookai-vault-reconciliation-recovery-20260902/releases/tag/prearchive-recovery-20260902T160933Z",
+  "release_tag": "prearchive-recovery-20260902T160933Z",
   "asset_names": [
-    "grookai-prearchive-a2c84bd6869a5aaf.bundle",
-    "grookai-prearchive-a2c84bd6869a5aaf.bundle.manifest.json"
+    "grookai-prearchive-supplement-7cb57ac86be73268.bundle",
+    "grookai-prearchive-supplement-7cb57ac86be73268.bundle.manifest.json"
   ],
-  "readback_directory": "c:/grookai_recovery_bundles/prearchive-recovery-20260902t150140z/remote_readback",
-  "bundle_sha256": "3436b1e8f506a153865285af5e69b682256275492c0664d2cff2a1294b9a2b09",
+  "readback_directory": "c:/grookai_recovery_bundles/prearchive-recovery-20260902t160933z/remote_readback",
+  "bundle_sha256": "ebafc7ec45db5c5559767c375c252fd85fab6c4d8c122dc3d22078975d82992e",
   "bundle_hash_matches": true,
-  "manifest_sha256": "f282fabcce86d3fd18cc2d0dbec98a1670b5bdf578d77e48622a00f8e8680574",
+  "manifest_sha256": "e35a1ef11c0e3b2ca09dee797e946f2b5f3803babdddbe33cab8c2b32c40d421",
   "manifest_hash_matches": true,
   "downloaded_bundle_verification": {
     "passed": true,

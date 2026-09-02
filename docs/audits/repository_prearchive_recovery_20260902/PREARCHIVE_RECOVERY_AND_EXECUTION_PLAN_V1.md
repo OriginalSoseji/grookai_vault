@@ -10,27 +10,38 @@ file, or write to the database or Storage.
 
 ## Frozen Inputs
 
-- Producer commit: `20a5fc70f12b992e0b222f0080b303c9c35d98e6`
+- Producer commit: `ee10374e2a2d63673e4c880565054905eec3ac3e`
 - Authority ref: `origin/main`
 - Authority SHA: `e2f97b75c48b2a21febea2818f4466dce3a2f3b8`
 - Candidate packet SHA-256: `6e58202451296e74ec2de841573f7a49a6e768b8855060030ae87cf637acb8dc`
-- Revalidation fingerprint: `a2c84bd6869a5aaf6a711b7ee09ff21b0a5b6314e410f9e8fdd1043536366b6a`
+- Revalidation fingerprint: `7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221`
 - Input candidate groups: `227`
-- Selected for recovery: `92`
-- Excluded after revalidation: `135`
-- Frozen refs in bundle: `93`
+- Selected for recovery: `227`
+- Excluded after revalidation: `0`
+- Frozen recovery refs: `339`
+- New refs requiring supplement objects: `141`
 
 ## Recovery Proof
 
 - Private recovery repository: `OriginalSoseji/grookai-vault-reconciliation-recovery-20260902`
-- Release: `prearchive-recovery-20260902T150140Z`
-- Release URL: https://github.com/OriginalSoseji/grookai-vault-reconciliation-recovery-20260902/releases/tag/prearchive-recovery-20260902T150140Z
-- Bundle file: `grookai-prearchive-a2c84bd6869a5aaf.bundle`
-- Bundle bytes: `817732010`
-- Bundle SHA-256: `3436b1e8f506a153865285af5e69b682256275492c0664d2cff2a1294b9a2b09`
+- Release: `prearchive-recovery-20260902T160933Z`
+- Release URL: https://github.com/OriginalSoseji/grookai-vault-reconciliation-recovery-20260902/releases/tag/prearchive-recovery-20260902T160933Z
+- Bundle file: `grookai-prearchive-supplement-7cb57ac86be73268.bundle`
+- Bundle bytes: `132954`
+- Bundle SHA-256: `ebafc7ec45db5c5559767c375c252fd85fab6c4d8c122dc3d22078975d82992e`
+- Recovery mode: `base_plus_incremental_supplement`
+- Base bundle SHA-256: `3436b1e8f506a153865285af5e69b682256275492c0664d2cff2a1294b9a2b09`
+- Supersedes recovery releases: `prearchive-recovery-20260902T153330Z, prearchive-recovery-20260902T160411Z`
 - Local bundle verification: `true`
 - Remote asset readback hash match: `true`
 - Downloaded bundle verification: `true`
+
+## Recovery Sequence
+
+1. Download and verify `grookai-prearchive-a2c84bd6869a5aaf.bundle` from `prearchive-recovery-20260902T150140Z`.
+2. Import that base bundle into a recovery clone.
+3. Download, verify, and fetch `grookai-prearchive-supplement-7cb57ac86be73268.bundle` from `prearchive-recovery-20260902T160933Z` into the same clone.
+4. Recreate the exact refs from the immutable `recovery_refs` map in `recovery_bundle_manifest.json`.
 
 ## Revalidation Policy
 
@@ -42,8 +53,7 @@ current open PR, no automation reference, and no migration-domain change.
 
 | Reason | Groups |
 |---|---:|
-| `named_ref_missing` | 135 |
-| `named_ref_moved_since_packet` | 135 |
+| None | 0 |
 
 Complete records are preserved in `prearchive_selection.jsonl` and
 `prearchive_exclusions.jsonl`.
