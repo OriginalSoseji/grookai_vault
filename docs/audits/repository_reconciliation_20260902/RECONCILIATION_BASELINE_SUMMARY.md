@@ -131,4 +131,3 @@ empty Git tree and are marked explicitly.
 No existing branch, worktree, ref, PR, database row, Storage object, deployment,
 or production client was removed or mutated during preservation. The integration
 candidate remains non-production.
-

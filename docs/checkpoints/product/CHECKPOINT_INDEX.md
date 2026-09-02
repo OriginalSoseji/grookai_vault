@@ -2,6 +2,10 @@
 
 ## Checkpoints
 
+- `APP_LAUNCH_CLOSEOUT_INTEGRATION_20260820_V1.md` - `2026-08-20` - SAFE NON-MTG INTEGRATION COMPLETE / PUBLICATION AND EXTERNAL STORE GATES OPEN - Reconciles chat safety, Vault bulk selection, and unified catalog search; records current store-media and authenticated-console gates.
+- `CHAT_SAFETY_AND_PLAY_CONTENT_RATING_20260817_V1.md` - `2026-08-17` - PRODUCT ENFORCEMENT IMPLEMENTED / DATABASE FOLLOW-UP GATED - Records Google Play content-rating work, deterministic message screening, reporting, founder review, preserved user data, and the database-enforcement follow-up.
+- `STORE_MEDIA_PREPARATION_20260817_V1.md` - `2026-08-17` - SIX ASSETS PREPARED / EXTERNAL CONSOLES OPEN - Records the dated store-media preparation evidence and external-console gates.
+- `LAUNCH_READINESS_STORE_QA_AND_SOCIAL_VIDEO_20260817_V1.md` - `2026-08-17` - REPOSITORY QA COMPLETE / STORE EXTERNAL GATES OPEN - Records cross-store metadata, Android QA, pricing provenance samples, and the no-publish emulator-video canary.
 - `APP_CANDIDATE_309_SYNC_AND_RELEASE_GATES_20260830_V1.md` - `2026-08-30` - SYNCHRONIZED CANDIDATE / AUTOMATED GATES PASSED / EXTERNAL GATES OPEN - Records frozen SHA `39f9911`, production web `24/24`, deterministic state matrix `76/76`, signed Android and TestFlight build 309 provenance, iOS simulator proof, and the exact physical-iPhone, clean-account, fresh-user, Play Console, and 72-hour soak gates that remain.
 - `PRODUCTION_RELEASE_AND_AUTOMATION_STATUS_20260829_V1.md` - `2026-08-29` - CONTROLLED BETA READY / FULL PUBLIC RELEASE NOT YET PROVEN - Reconciles current CI, web/search, MEE, catalog automation, Supabase capacity, eight-week release gates, and the exact ordered path to a final synchronized candidate and 72-hour soak.
 - `GVVI_VENDOR_QR_V1_20260817.md` - `2026-08-17` - ISOLATED IMPLEMENTATION / PRODUCTION CANARY GATE - Locks persistent GVVI QR identity, Wall/QR landing convergence, database-backed vendor eligibility, asking-price presentation, encrypted referral attribution, owner export/print controls, and the migration-free production boundary.

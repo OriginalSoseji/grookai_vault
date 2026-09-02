@@ -63,4 +63,3 @@ Proceed one domain wave at a time on `integration/reconciled-main-v1`, beginning
 with the two-commit lot-sharing/pricing repair. Record source commits, conflicts,
 tests, destination commits, and rollback instructions before proceeding to MTG
 supervisor and MTG sealed.
-
