@@ -400,7 +400,7 @@ export function ContactOwnerButton({
                   </label>
 
                   <p id={messageHintId} className="text-xs text-slate-500">
-                    Keep it about this card. Maximum 2000 characters.
+                    Keep it about this card. Do not share contact details, external links, or off-platform payment requests.
                   </p>
 
                   {statusMessage?.tone === "error" ? (

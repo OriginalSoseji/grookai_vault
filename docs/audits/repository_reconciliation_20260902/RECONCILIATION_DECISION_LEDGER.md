@@ -60,3 +60,17 @@ in its original worktree.
 PR #219 and its branch remain preserved. The old PR must not be merged after the
 reconciled replacement is accepted because that would duplicate an already-migrated
 capability.
+
+## Wave 4: Chat Safety And Founder Review
+
+| Field | Value |
+| --- | --- |
+| Source | Dirty worktree `C:\grookai_vault_launch_closeout` |
+| Source base SHA | `5b4a95e637ffcfb214aeeeb7b2279751124ab9f4` |
+| Disposition | `migrated_by_domain` |
+| Capability | Versioned web and Flutter message screening, collector report reasons, founder-only report review, user guidance, privacy and store disclosure. |
+| Evidence boundary | Client and web-server enforcement only. No database trigger, migration, report deletion, message rewrite, account action, or production deployment. |
+| Verification | 6 Node tests passed; 3 Flutter tests passed; web TypeScript passed; targeted Flutter analysis passed; targeted ESLint passed. |
+
+The original dirty worktree remains unchanged and its complete state remains in the
+preservation package. Only the chat-safety domain paths were migrated in this wave.

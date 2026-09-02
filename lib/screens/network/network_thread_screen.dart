@@ -223,10 +223,43 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
   }
 
   Future<void> _reportThread() async {
+    final reason = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => SimpleDialog(
+        title: const Text('Report conversation'),
+        children: [
+          SimpleDialogOption(
+            onPressed: () => Navigator.of(dialogContext).pop('spam'),
+            child: const Text('Spam'),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.of(dialogContext).pop('harassment'),
+            child: const Text('Harassment or threat'),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.of(dialogContext).pop('scam'),
+            child: const Text('Scam or unsafe payment request'),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.of(dialogContext).pop('inappropriate'),
+            child: const Text('Inappropriate content'),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.of(dialogContext).pop('other'),
+            child: const Text('Other'),
+          ),
+        ],
+      ),
+    );
+    if (reason == null || !mounted) {
+      return;
+    }
+
     final result = await CardInteractionService.reportThread(
       client: _client,
       counterpartUserId: _thread.counterpartUserId,
       cardPrintId: _thread.cardPrintId,
+      reason: reason,
     );
     if (!mounted) {
       return;
@@ -573,6 +606,12 @@ class _NetworkThreadScreenState extends State<NetworkThreadScreen> {
                         decoration: const InputDecoration(
                           labelText: 'Reply',
                           alignLabelWithHint: true,
+                        ),
+                      ),
+                      Text(
+                        'Do not share contact details, external links, or off-platform payment requests.',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.62),
                         ),
                       ),
                       if (_error != null) ...[
