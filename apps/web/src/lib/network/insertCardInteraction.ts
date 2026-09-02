@@ -1,5 +1,9 @@
 import "server-only";
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
+import {
+  reviewChatMessageSafety,
+  type ChatSafetyDecision,
+} from "@/lib/trustSafety/chatSafetyPolicy";
 
 type CardInteractionInsert = {
   vaultItemInstanceId: string | null;
@@ -23,6 +27,7 @@ type InsertCardInteractionResult = {
   data: InsertedInteractionRow | null;
   error: PostgrestError | null;
   usedCanonicalFallback: boolean;
+  safetyRejection: ChatSafetyDecision | null;
 };
 
 const CONTACTABLE_INTENTS = new Set(["trade", "sell", "showcase"]);
@@ -134,6 +139,16 @@ export async function insertCardInteraction({
   input: CardInteractionInsert;
   authorization: InteractionAuthorization;
 }): Promise<InsertCardInteractionResult> {
+  const safetyDecision = reviewChatMessageSafety(input.message);
+  if (!safetyDecision.allowed) {
+    return {
+      data: null,
+      error: null,
+      usedCanonicalFallback: false,
+      safetyRejection: safetyDecision,
+    };
+  }
+
   const payload = {
     vault_item_instance_id: input.vaultItemInstanceId,
     card_print_id: input.cardPrintId,
@@ -154,11 +169,17 @@ export async function insertCardInteraction({
       data: (primary.data ?? null) as InsertedInteractionRow | null,
       error: null,
       usedCanonicalFallback: false,
+      safetyRejection: null,
     };
   }
 
   if (!isRowLevelSecurityError(primary.error)) {
-    return { data: null, error: primary.error, usedCanonicalFallback: false };
+    return {
+      data: null,
+      error: primary.error,
+      usedCanonicalFallback: false,
+      safetyRejection: null,
+    };
   }
 
   const isAuthorized =
@@ -169,7 +190,12 @@ export async function insertCardInteraction({
     !isAuthorized ||
     (await isBlocked(client, input.senderUserId, input.receiverUserId))
   ) {
-    return { data: null, error: primary.error, usedCanonicalFallback: false };
+    return {
+      data: null,
+      error: primary.error,
+      usedCanonicalFallback: false,
+      safetyRejection: null,
+    };
   }
 
   const fallback = await adminClient
@@ -179,12 +205,18 @@ export async function insertCardInteraction({
     .single();
 
   if (fallback.error) {
-    return { data: null, error: fallback.error, usedCanonicalFallback: true };
+    return {
+      data: null,
+      error: fallback.error,
+      usedCanonicalFallback: true,
+      safetyRejection: null,
+    };
   }
 
   return {
     data: (fallback.data ?? null) as InsertedInteractionRow | null,
     error: null,
     usedCanonicalFallback: true,
+    safetyRejection: null,
   };
 }

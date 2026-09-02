@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../utils/display_image_contract.dart';
 import '../identity/catalog_artwork_resolution.dart';
 import '../identity/display_identity.dart';
+import 'chat_safety_policy.dart';
 import 'intent_presentation.dart' as intent_presentation;
 
 enum CardInteractionInboxView { inbox, unread, sent, closed }
@@ -292,6 +293,15 @@ class CardInteractionService {
         ok: false,
         status: CardInteractionSendStatus.validationError,
         message: 'Message must be 2000 characters or fewer.',
+      );
+    }
+
+    final safetyDecision = reviewChatMessageSafety(normalizedMessage);
+    if (!safetyDecision.allowed) {
+      return CardInteractionSendResult(
+        ok: false,
+        status: CardInteractionSendStatus.validationError,
+        message: safetyDecision.userMessage ?? 'Message was not sent.',
       );
     }
 
@@ -792,6 +802,15 @@ class CardInteractionService {
         ok: false,
         status: CardInteractionSendStatus.validationError,
         message: 'Reply must be 2000 characters or fewer.',
+      );
+    }
+
+    final safetyDecision = reviewChatMessageSafety(normalizedMessage);
+    if (!safetyDecision.allowed) {
+      return CardInteractionSendResult(
+        ok: false,
+        status: CardInteractionSendStatus.validationError,
+        message: safetyDecision.userMessage ?? 'Reply was not sent.',
       );
     }
 
