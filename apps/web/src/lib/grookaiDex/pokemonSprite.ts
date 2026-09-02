@@ -1,9 +1,9 @@
-const POKEAPI_SPRITE_BASE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+const GROOKAI_DEX_SPRITE_BASE_PATH = "/dex/sprites/v1";
 
 export function getPokemonSpriteUrl(nationalDexNumber: number | null | undefined) {
   if (!Number.isInteger(nationalDexNumber) || !nationalDexNumber || nationalDexNumber <= 0) {
     return null;
   }
 
-  return `${POKEAPI_SPRITE_BASE_URL}/${nationalDexNumber}.png`;
+  return `${GROOKAI_DEX_SPRITE_BASE_PATH}/${nationalDexNumber}.png`;
 }
