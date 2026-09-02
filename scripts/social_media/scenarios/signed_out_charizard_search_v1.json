@@ -1,0 +1,62 @@
+{
+  "schema_version": "EMULATOR_SOCIAL_VIDEO_SCENARIO_V1",
+  "scenario_id": "signed_out_charizard_search_v1",
+  "title": "Find Charizard cards in Grookai Vault",
+  "objective": "Show a collector opening the public catalog and finding Charizard cards.",
+  "app_package": "com.grookai.vault",
+  "audience": "trading card collectors",
+  "publishing": {
+    "mode": "disabled",
+    "human_review_required": true
+  },
+  "recording": {
+    "orientation": "vertical",
+    "max_duration_seconds": 50,
+    "bit_rate_bps": 8000000,
+    "audio": "none"
+  },
+  "setup_steps": [
+    { "action": "clear_app" },
+    { "action": "launch" },
+    { "action": "sleep", "milliseconds": 5000 },
+    {
+      "action": "wait_for",
+      "selector": { "field": "content-desc", "value": "Explore cards" },
+      "timeout_ms": 15000
+    }
+  ],
+  "steps": [
+    { "action": "sleep", "milliseconds": 1200 },
+    {
+      "action": "tap",
+      "selector": { "field": "content-desc", "value": "Explore cards" },
+      "timeout_ms": 10000
+    },
+    {
+      "action": "wait_for",
+      "selector": { "field": "content-desc", "value": "Cards" },
+      "timeout_ms": 20000
+    },
+    { "action": "sleep", "milliseconds": 1500 },
+    {
+      "action": "tap",
+      "selector": { "field": "hint", "value": "Search in a sentence" },
+      "timeout_ms": 10000
+    },
+    { "action": "input_text", "value": "Charizard" },
+    {
+      "action": "wait_for",
+      "selector": {
+        "field": "content-desc",
+        "value": "Charizard\n",
+        "match": "contains",
+        "class": "android.widget.ImageView"
+      },
+      "timeout_ms": 25000
+    },
+    { "action": "keyevent", "code": 4 },
+    { "action": "sleep", "milliseconds": 1200 },
+    { "action": "swipe", "x1": 650, "y1": 2450, "x2": 650, "y2": 1050, "duration_ms": 700 },
+    { "action": "sleep", "milliseconds": 2200 }
+  ]
+}
