@@ -105,3 +105,19 @@ reconciliation rather than the stale source branch history.
 
 The source dirty state remains preserved and unchanged. The migration already on
 main was not applied or otherwise executed during reconciliation.
+
+## Wave 7: Operator Playbook And Store Readiness
+
+| Field | Value |
+| --- | --- |
+| Source | Dirty worktree `C:\grookai_vault_launch_closeout` |
+| Source base SHA | `5b4a95e637ffcfb214aeeeb7b2279751124ab9f4` |
+| Disposition | `migrated_as_governance_and_historical_evidence` |
+| Capability | Durable operator entry point, living playbook, cross-store metadata contract, readiness evaluator, media generator, native Android onboarding QA, and dated audit/checkpoint evidence. |
+| Reconciliation | Preserved current build-311 Apple metadata. Imported Google metadata and dated console observations without presenting them as current console truth. |
+| Current gate | Repository contract is valid; submission is blocked by six absent current media assets and unverified Apple/Google console state. |
+| Excluded behavior | No media fabrication, temporary account creation, console submission, store upload, deployment, database write, or external account mutation. |
+| Verification | 3 store contracts passed; 3 scripts passed syntax checks; readiness status reports build 311 with zero contract findings and explicit external/media blockers. |
+
+Historical status artifacts remain dated and immutable. Fresh console readback is
+required before any release-readiness claim.
