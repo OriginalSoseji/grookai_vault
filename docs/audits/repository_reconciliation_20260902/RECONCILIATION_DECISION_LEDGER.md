@@ -121,3 +121,18 @@ main was not applied or otherwise executed during reconciliation.
 
 Historical status artifacts remain dated and immutable. Fresh console readback is
 required before any release-readiness claim.
+
+## Wave 8: Pricing Trust And Production Catalog Crawl
+
+| Field | Value |
+| --- | --- |
+| Source | Dirty worktree `C:\grookai_vault_launch_closeout` |
+| Source base SHA | `5b4a95e637ffcfb214aeeeb7b2279751124ab9f4` |
+| Disposition | `migrated_and_forward_reconciled` |
+| Capability | Evidence-chain pricing spot checks and a disposable-account production catalog crawl with verified cleanup and read-only catalog SQL. |
+| Forward reconciliation | Expanded the preserved two-game crawl to the governed Pokemon, One Piece, and MTG scopes; 13 routes now cover search, sets, card detail, Vault, Binders, Wall, and Pulse. |
+| Excluded behavior | No live crawl, temporary account creation, database connection, price publication, app-data write, deployment, or production mutation. |
+| Verification | 3 pricing-policy contracts and 2 catalog-crawl contracts passed; all 3 modules passed syntax checks; diff check passed. |
+
+The live commands remain explicit operator actions requiring deployment identity and
+runtime credentials. Reconciliation did not execute them.
