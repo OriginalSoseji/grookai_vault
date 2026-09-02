@@ -74,6 +74,19 @@ void main() {
         isTrue,
       );
       expect(shell, contains('Future<void> _startScanFlow() async'));
+      expect(shell, contains('if (_scannerFlowInFlight)'));
+      expect(shell, contains('_scannerFlowInFlight = true'));
+      expect(shell, contains('_scannerFlowInFlight = false'));
+      expect(shell, contains('Future<void> _runScanFlow() async'));
+      expect(shell, contains('if (!await _confirmScannerStateNotice())'));
+      expect(shell, contains("'scanner_state_notice_dismissed_v1'"));
+      expect(shell, contains('SharedPreferences.getInstance()'));
+      expect(shell, contains('preferences.getBool('));
+      expect(shell, contains('preferences.setBool('));
+      expect(
+        shell.indexOf('if (!await _confirmScannerStateNotice())'),
+        lessThan(shell.indexOf('if (kScannerV5Enabled)')),
+      );
       expect(shell, contains('if (kScannerConstructionPlaceholderEnabled)'));
       expect(shell, contains('ScannerBuildPlaceholderScreen'));
       expect(placeholder, contains('Scanner is being built'));

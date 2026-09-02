@@ -95,6 +95,7 @@ If a contract is missing from this index, it is not authoritative.
 | SCANNER_FIXED_SLOT_CAPTURE_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_FIXED_SLOT_CAPTURE_CONTRACT_V1.md | 2026-05-14 | Production scanner architecture pivot: fixed one/two/four card slots become crop authority, detector boxes become advisory, identity may presearch visually in the background, and final suggestion is revealed on capture from slot/still evidence |
 | FIXED_SLOT_CAPTURE_SCANNER_V1 | Active | Scanner & Condition | docs/contracts/FIXED_SLOT_CAPTURE_SCANNER_V1.md | 2026-05-15 | L3 scanner reset contract: fixed guide slot owns crop authority, still capture owns final identity frame, detector output is advisory only, and legacy live-boundary/vote-state authority is deprecated for production |
 | SCANNER_PREWARM_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_PREWARM_CONTRACT_V1.md | 2026-05-14 | Narrow scanner startup contract: app shell may only call scanner-owned prewarm APIs to reduce Feed-tap first-frame latency while preserving identity guards, detector behavior, and scanner reveal semantics |
+| SCANNER_STATE_NOTICE_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_STATE_NOTICE_V1.md | 2026-09-01 | Requires an honest scanner-limitation notice with explicit proceed/back actions and an optional device-local dismissal before every scanner route |
 
 ---
 
