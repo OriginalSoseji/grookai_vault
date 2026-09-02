@@ -155,6 +155,11 @@ test('smart structured variant search uses bounded game-aware candidate discover
     source,
     /gameScope === "one_piece"[\s\S]*punctuationFallback[\s\S]*runBoundedSearch\(punctuationFallback/,
   );
+  assert.match(
+    source,
+    /function trimNonAsciiAlphaNumericBoundaries[\s\S]*while \(start < end[\s\S]*while \(end > start/,
+  );
+  assert.doesNotMatch(source, /\[\^a-z0-9\]\+\|\[\^a-z0-9\]\+/);
 });
 
 test('collector sentence suggestions are scoped to Pokemon, Magic, and One Piece', () => {

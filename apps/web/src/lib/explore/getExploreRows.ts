@@ -491,6 +491,24 @@ function normalizeIllustrator(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
+function trimNonAsciiAlphaNumericBoundaries(value: string) {
+  let start = 0;
+  let end = value.length;
+  const isAsciiAlphaNumeric = (code: number) =>
+    (code >= 48 && code <= 57) ||
+    (code >= 65 && code <= 90) ||
+    (code >= 97 && code <= 122);
+
+  while (start < end && !isAsciiAlphaNumeric(value.charCodeAt(start))) {
+    start += 1;
+  }
+  while (end > start && !isAsciiAlphaNumeric(value.charCodeAt(end - 1))) {
+    end -= 1;
+  }
+
+  return value.slice(start, end);
+}
+
 function uniqueValues(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
 }
@@ -4021,10 +4039,9 @@ export async function getExploreRowsForGameScopedTextSearch(
       gameScope === "one_piece" &&
       nameText.includes(".")
     ) {
-      const punctuationFallback = nameText
-        .split(/\s+/)
-        .at(-1)
-        ?.replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, "") ?? "";
+      const punctuationToken = nameText.split(/\s+/).at(-1) ?? "";
+      const punctuationFallback =
+        trimNonAsciiAlphaNumericBoundaries(punctuationToken);
       if (punctuationFallback.length >= 3) {
         const nameRetries = await Promise.all(boundedSetCodes.map((setCode) =>
           runBoundedSearch(punctuationFallback, null, setCode)));
