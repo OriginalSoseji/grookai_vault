@@ -73,6 +73,8 @@ test("planner constructs remote tracking refs under origin and verifies live aut
   assert.match(source, /liveAuthoritySha !== authoritySha/);
   assert.match(source, /\["rev-list", "--stdin"\]/);
   assert.doesNotMatch(source, /baseHeadShas\.some/);
+  assert.match(source, /Incremental recovery must reference a standalone base bundle/);
+  assert.match(source, /base-recovery-manifest-ref/);
 });
 
 test("generated recovery artifacts reconcile and authorize no deletion", () => {
