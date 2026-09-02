@@ -1,0 +1,83 @@
+{
+  "schema_version": "GROOKAI_STORE_MEDIA_MANIFEST_V1",
+  "generated_at": "2026-08-17T18:16:18.399Z",
+  "generator": "scripts/release/generate_store_media_assets_v1.mjs",
+  "sources": [
+    {
+      "key": "icon",
+      "path": "apps/web/public/grookai-logo-512.png",
+      "sha256": "989b6dd9aad8f7d3a846c06190c09261a161f4bb5df1a79c16a3dbc25ddd01ad"
+    },
+    {
+      "key": "androidSearch",
+      "path": "artifacts/release/signed_out_catalog_native_v1/charizard_results_no_keyboard.png",
+      "sha256": "d6d8ba3331d6d113901004b4cd1b55dc7b460fe7bfa5849c030c102edf1ea046"
+    },
+    {
+      "key": "androidCard",
+      "path": "artifacts/release/signed_out_catalog_native_v1/charizard_card_current.png",
+      "sha256": "2cd71a11754700b5ec0d664f697c62e6c2523a04ebb8e3792c1e364885d885a5"
+    },
+    {
+      "key": "physicalIphone",
+      "path": "docs/audits/release_completion_v1/device_ios/final_candidate_xcode_physical_journeys_v1/2026-08-08T02-15-47Z/iphone_testflight_286_search.png",
+      "sha256": "99aace3e7a7cc64bd8dbf4d12f2a7fda4c959f47853b8b6f64b6ad688e5ff9be"
+    },
+    {
+      "key": "ipadSignin",
+      "path": "artifacts/app_store/screenshots/sources/ipad_pro_129_signin_current.png",
+      "sha256": "1fa4d3a9dcd337a9fd01f9cacc096eee41b677d971983966160f44fa5b260935"
+    }
+  ],
+  "assets": [
+    {
+      "path": "artifacts/store/google_play/app_icon_512.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 28786,
+      "sha256": "1e1b648bc2210fe8b46c56cad5b79a24941957ad7533cb9dfea7a7aa67893651",
+      "provenance": "existing Grookai production icon"
+    },
+    {
+      "path": "artifacts/store/google_play/feature_graphic_1024x500.png",
+      "width": 1024,
+      "height": 500,
+      "bytes": 241633,
+      "sha256": "99b6aa9ef01582746a17d1c13cefb8934920efb863a651d95655e5b6cb88db1e",
+      "provenance": "deterministic composition using Grookai icon and current Android build 297 search evidence"
+    },
+    {
+      "path": "artifacts/store/google_play/phone_01_search.png",
+      "width": 1080,
+      "height": 2160,
+      "bytes": 3311001,
+      "sha256": "78b87ee5f28cdcdcbb8f9e4a0ebc9d57eb8d12f2296fa2e7fdef482054a97b2d",
+      "provenance": "current Android build 297 emulator search evidence"
+    },
+    {
+      "path": "artifacts/store/google_play/phone_02_card.png",
+      "width": 1080,
+      "height": 2160,
+      "bytes": 1810916,
+      "sha256": "9254db16fe8414b82b53ff4e9caa2e3bd2bbef77016d1f9d1630f452e6e4cfad",
+      "provenance": "current Android build 297 emulator card-detail evidence"
+    },
+    {
+      "path": "artifacts/app_store/screenshots/prepared/iphone_65_01_search.png",
+      "width": 1242,
+      "height": 2688,
+      "bytes": 797901,
+      "sha256": "7d43d8d5ac456d7303ac85681230d53d018dff98ae3ccb031871f086595c68de",
+      "provenance": "physical iPhone TestFlight build 286 search evidence; no material Search redesign through build 297"
+    },
+    {
+      "path": "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_signin.png",
+      "width": 2048,
+      "height": 2732,
+      "bytes": 604895,
+      "sha256": "ad26834b2133aec01bd4284bc027879f128283799f0c54eeabf05755f6966d5e",
+      "provenance": "current native iPadOS simulator render from Grookai commit a69a3c55c02a7737b399e52fe50b5743be7e5f8a"
+    }
+  ],
+  "intentionally_missing": []
+}

@@ -1,0 +1,59 @@
+{
+  "audit_version": "LAUNCH_READINESS_CLOSURE_V1",
+  "observed_at": "2026-08-17T16:30:00Z",
+  "branch": "agent/launch-readiness-store-qa-v1",
+  "base_commit": "f326d5735e80d7843f56c013e7a1c7dbedd9fed0",
+  "tracks": {
+    "store_readiness": {
+      "repository_contract_valid": true,
+      "submission_ready": false,
+      "build_number": 297,
+      "blockers": [
+        "store_assets_missing",
+        "apple_console_not_verified",
+        "apple_review_credentials_not_verified",
+        "google_play_developer_account_unavailable",
+        "google_play_listing_not_verified"
+      ]
+    },
+    "production_app_qa": {
+      "web_cases_passed": 20,
+      "web_cases_total": 20,
+      "android_signed_out_browse_cards": 32,
+      "android_charizard_search_cards": 31,
+      "android_images_rendered": true,
+      "app_data_writes": 0
+    },
+    "collector_onboarding": {
+      "android_first_step_verified": true,
+      "temporary_account_deleted": true,
+      "persistent_app_data_writes": 0
+    },
+    "pricing_trust": {
+      "sample_count": 20,
+      "passed_samples": 20,
+      "current_exact_price_count": 98,
+      "findings": 0,
+      "database_writes": 0
+    },
+    "social_media_emulator_agents": {
+      "scenario": "signed_out_charizard_search_v1",
+      "status": "passed",
+      "executed_steps": 15,
+      "video_bytes": 3504826,
+      "video_sha256": "d6783a9e95a2847a2ad0756c9e6dd1ce1cd88a76536d6cbd33ff89ea9e71149e",
+      "final_frame_sha256": "253d5227350e1a1e43a689010eca733eedcfac6c6d3c5eb4d522ac862777720d",
+      "publishing_attempts": 0,
+      "database_writes": 0
+    }
+  },
+  "tests": {
+    "node_contracts": "11/11 passed",
+    "flutter_focused": "16/16 passed",
+    "flutter_analysis": "passed",
+    "web_typecheck": "passed",
+    "web_lint": "passed",
+    "web_production_build": "passed"
+  }
+}
+
