@@ -307,10 +307,16 @@ function bundleHeads(repoRoot, bundlePath) {
   });
 }
 
-function reachableFromAny(repoRoot, sha, baseHeadShas) {
-  return baseHeadShas.some((baseSha) =>
-    commandResult("git", ["merge-base", "--is-ancestor", sha, baseSha], { cwd: repoRoot }).status === 0,
+function commitsReachableFromHeads(repoRoot, baseHeadShas) {
+  const result = commandResult(
+    "git",
+    ["rev-list", "--stdin"],
+    { cwd: repoRoot, input: `${baseHeadShas.join("\n")}\n` },
   );
+  if (result.status !== 0) {
+    throw new Error("Unable to inventory commits reachable from the base recovery bundle heads.");
+  }
+  return new Set(result.stdout.split(/\r?\n/).filter(Boolean));
 }
 
 function renderReport({ metadata, recoveryManifest, remoteReadback, excluded }) {
@@ -522,8 +528,9 @@ export function main() {
     }
     const heads = bundleHeads(repoRoot, baseBundlePath);
     const headShas = unique(heads.map((head) => head.sha));
+    const reachableCommitShas = commitsReachableFromHeads(repoRoot, headShas);
     const supplementRefs = recoveryRefs.filter(
-      (record) => !reachableFromAny(repoRoot, record.sha, headShas),
+      (record) => !reachableCommitShas.has(record.sha),
     );
     bundleRefs = supplementRefs.map((record) => record.ref);
     bundlePrerequisiteShas = supplementRefs.length > 0 ? headShas : [];
