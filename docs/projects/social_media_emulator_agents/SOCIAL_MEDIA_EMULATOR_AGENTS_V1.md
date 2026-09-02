@@ -86,4 +86,3 @@ scenarios require dedicated seeded demo accounts and field-level redaction.
 Add a repository-approved editor such as FFmpeg or Remotion before automated
 cropping, overlays, captions, or branded end cards. Publication remains a
 separate human gate.
-

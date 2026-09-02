@@ -76,4 +76,3 @@ export function evaluatePricingTrustSampleV1(sample) {
 
   return [...new Set(findings)].sort();
 }
-

@@ -243,4 +243,3 @@ main().catch((error) => {
   console.error(`[pricing-trust-spot-check] ${error.stack || error.message}`);
   process.exitCode = 1;
 });
-

@@ -43,4 +43,3 @@ test("recordings longer than the canary envelope are rejected", async () => {
   assert.equal(result.valid, false);
   assert.ok(result.findings.includes("recording_duration_out_of_bounds"));
 });
-

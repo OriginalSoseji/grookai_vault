@@ -89,4 +89,3 @@ The missing media must be recaptured from the current candidate. Stale captures 
 - Do not rerun the already-applied Vault bulk migration.
 - Do not weaken anonymous catalog, pricing, trust-safety, or founder authorization boundaries.
 - Do not claim store submission readiness from repository metadata alone.
-

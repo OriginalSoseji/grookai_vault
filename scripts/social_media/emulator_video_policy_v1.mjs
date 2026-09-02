@@ -54,4 +54,3 @@ export function assertEmulatorVideoScenarioV1(scenario) {
   if (!result.valid) throw new Error(`invalid emulator video scenario: ${result.findings.join(", ")}`);
   return result;
 }
-

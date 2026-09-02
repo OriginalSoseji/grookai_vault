@@ -131,4 +131,3 @@ Work was isolated in `agent/launch-readiness-store-qa-v1` from base commit
 Complete store media assets and authenticated console verification. The code,
 metadata, production QA, onboarding proof, pricing provenance, and raw social
 video capture pipeline are ready; store submission itself is not yet ready.
-

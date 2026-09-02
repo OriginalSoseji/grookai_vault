@@ -125,6 +125,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| CHAT_SAFETY_CONTRACT_V1 | Active | docs/contracts/CHAT_SAFETY_CONTRACT_V1.md - Versioned evidence-based screening for supported collector-message write paths, reasoned user reports, founder-only review, and an explicit database-enforcement follow-up gate |
 | LOCAL_COMMUNITY_FEED_V1 | Planned | docs/contracts/LOCAL_COMMUNITY_FEED_V1.md — Governs future nearby collector discovery: separate local opt-in, coarse location only, authenticated local feed access, block/mute safety, and reuse of existing public wall/network primitives without exposing precise location |
 
 ---
