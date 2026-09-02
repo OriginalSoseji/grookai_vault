@@ -151,3 +151,18 @@ runtime credentials. Reconciliation did not execute them.
 
 Every recording remains a human-reviewed draft artifact. This wave does not grant
 publication authority.
+
+## Wave 10: Japanese Master Index Lineage
+
+| Field | Value |
+| --- | --- |
+| Sources | `catalog/jpn-master-index-v4`; `catalog/jpn-master-index-v4-closeout`; `catalog/jpn-v4-production-integration-v2`; `catalog/jpn-master-index-v5-official-global-catalog`; `docs/jpn-v4-deferred-completion-checkpoint` |
+| Disposition | V4 foundation `merged`; V4 closeout `superseded_by_newer_main`; production-integration evidence `preserved_historical`; V5 official corpus `preserved_deferred`; pause checkpoint `migrated`. |
+| Main authority | Main contains the completed 5,336-parent V4 identity foundation, 53-image production slice, later payload/preflight implementations, and the tracked evidence corpus. |
+| Branch evidence | Of the V4 closeout's 45 changed paths, core scripts/tests and most artifacts are byte-identical on main; differing preflight/writer artifacts and code have newer main authority. |
+| Deferred lane | The V5 official-global-catalog branch contains a large non-launch corpus and remains an isolated continuation lane. It was not copied into the production reconciliation candidate. |
+| Mutation boundary | No Japanese payload, migration, image, Storage object, pointer, family promotion, scanner row, pricing row, or database state changed. |
+| Verification | Current-main Japanese V4 contract family passed `208/208` after materializing its existing tracked audit corpus. |
+
+All source refs remain in the local/off-machine preservation package. The imported
+pause checkpoint defines the exact safe restart order; it is not apply authority.
