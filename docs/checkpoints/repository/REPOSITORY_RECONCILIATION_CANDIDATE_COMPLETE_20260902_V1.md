@@ -73,6 +73,8 @@ Full evidence is recorded in:
 
 - The preservation and restoration gate is complete.
 - The candidate is clean and based on current `origin/main` authority.
+- The post-validation English Master Index refresh at `679ade906` was merged
+  without conflict or candidate-path overlap before the final CI gate.
 - No source branch or worktree was deleted.
 - No production system was changed.
 - MTG sealed migration remains unapplied.
