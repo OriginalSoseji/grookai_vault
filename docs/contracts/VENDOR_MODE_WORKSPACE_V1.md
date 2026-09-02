@@ -37,6 +37,13 @@ Routine edits occur from this workspace. Card detail and Wall preview are not
 required to assign the exact printing, change condition, asking price, Wall
 visibility, or section membership.
 
+## Navigation
+
+Vendor Mode is an authenticated collector tool in the right-side application
+drawer, immediately below `Grookai Objects`. It is not presented as content on
+the owner Wall or any public collector surface. Returning from Vendor Mode
+refreshes the signed-in owner's Wall and Vault read models.
+
 ## Remove From Vault
 
 Each row supports the familiar end-to-start swipe gesture. The revealed action

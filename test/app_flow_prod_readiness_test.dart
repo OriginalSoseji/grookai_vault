@@ -171,6 +171,12 @@ void main() {
     expect(drawerBlock, contains("label: 'Grookai Dex'"));
     expect(drawerBlock, contains("label: 'Sets'"));
     expect(drawerBlock, contains("label: 'Compare'"));
+    expect(drawerBlock, contains("label: 'Grookai Objects'"));
+    expect(drawerBlock, contains("label: 'Vendor Mode'"));
+    expect(
+      drawerBlock.indexOf("label: 'Vendor Mode'"),
+      greaterThan(drawerBlock.indexOf("label: 'Grookai Objects'")),
+    );
     expect(drawerBlock, contains('if (signedIn)'));
     expect(drawerBlock, contains("label: 'Followers'"));
     expect(drawerBlock, contains("label: 'Following'"));

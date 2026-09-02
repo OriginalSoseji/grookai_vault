@@ -22,7 +22,6 @@ import '../../widgets/gv_chip.dart';
 import '../../widgets/gv_surface.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
-import '../gvvi/vendor_pricing_workspace_screen.dart';
 import '../network/network_inbox_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
 import 'public_collector_relationship_screen.dart';
@@ -877,17 +876,6 @@ class _PublicCollectorSegmentedContentState
         _ownershipAdapter.peek(normalizedCardPrintId);
   }
 
-  Future<void> _openVendorPricing() async {
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => const VendorPricingWorkspaceScreen(),
-      ),
-    );
-    if (mounted) {
-      await widget.onWallChanged();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final selectedSectionId = widget.selectedSectionId.trim().isEmpty
@@ -907,10 +895,6 @@ class _PublicCollectorSegmentedContentState
           onFollowPressed: widget.onFollowPressed,
         ),
         const SizedBox(height: 8),
-        if (widget.isOwner) ...[
-          _VendorPricingShortcut(onPressed: _openVendorPricing),
-          const SizedBox(height: 8),
-        ],
         _CollectorWallSectionRail(
           wallCount: widget.wallView.wallCards.length,
           sections: widget.wallView.sections,
@@ -936,52 +920,6 @@ class _PublicCollectorSegmentedContentState
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
       ],
-    );
-  }
-}
-
-class _VendorPricingShortcut extends StatelessWidget {
-  const _VendorPricingShortcut({required this.onPressed});
-
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Material(
-      color: colorScheme.primaryContainer.withValues(alpha: 0.34),
-      borderRadius: BorderRadius.circular(8),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(8),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
-          child: Row(
-            children: [
-              Icon(Icons.sell_outlined, color: colorScheme.primary),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Vendor Mode',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    Text(
-                      'Price, organize, publish, and share exact copies',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-              ),
-              const Icon(Icons.chevron_right_rounded),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
