@@ -18,11 +18,13 @@ candidate into `main`.
 ## Authority And Candidate
 
 - Authority branch: `origin/main`
-- Authority SHA: `b54ef91328c5a0093531338ca4d42f00bf601b9b`
+- Reconciliation baseline SHA: `b54ef91328c5a0093531338ca4d42f00bf601b9b`
+- Latest authority SHA incorporated after the first CI pass:
+  `679ade906` (English Master Index refresh, PR #384)
 - Candidate branch: `integration/reconciled-main-v1`
 - Candidate SHA before this final report: `443d9478da4243dc2f023dc6232fdad5e6c02cb3`
-- Main divergence at final validation: `0` authority-only commits and `18`
-  candidate-only commits
+- Main divergence after the authority refresh: `0` authority-only commits and
+  `22` candidate-only commits
 - Existing source branches and worktrees modified or deleted: `0`
 
 ## Preservation And Restoration Proof
@@ -108,6 +110,20 @@ Passed:
 - Flutter analyzer: zero issues
 - `git diff --check`
 - Final source-ledger contracts: `3/3`
+
+The initial full-checkout PR run found three candidate integration defects: two
+search contracts asserted the pre-reconciliation implementation shape, the
+catalog crawl eagerly resolved a web-only dependency during contract import, and
+the legacy-key scan found a deprecated environment-variable alias. Those defects
+were repaired at `7068ac358`. CodeQL then found an authentication-error dataflow
+into a diagnostic SHA-256 fingerprint; the error path was redacted at
+`5c2936a88`. The subsequent full-checkout run passed CodeQL, runtime protection,
+the security scan, Windows tests and goldens, Samsung visual/accessibility, drift,
+binder, and Vercel preview gates.
+
+While that run completed, `main` advanced through PR #384. Its 14 generated
+English Master Index audit files had no path overlap with candidate work and were
+merged without conflict at `acdfa8202` before the final CI gate.
 
 Known baseline debt:
 
