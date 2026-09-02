@@ -1,11 +1,11 @@
 {
   "schema_version": "GROOKAI_REPOSITORY_AUTOMATION_REFERENCE_INVENTORY_V1",
-  "generated_at": "2026-09-02T14:11:57.360Z",
-  "authority_sha": "e4efb0cb9aeea031bc9b14117dd12bd1d2964690",
+  "generated_at": "2026-09-02T14:22:40.785Z",
+  "authority_sha": "d2522f77ecd1fb9b8553958dbb094027f467cf18",
   "repository": {
     "status": "available",
     "scanned_ref": "HEAD",
-    "scanned_file_count": 1404,
+    "scanned_file_count": 1405,
     "findings": [
       {
         "group_id": "branch:agent/mtg-pointer-release-v1",
@@ -559,6 +559,20 @@
         "reference_kind": "repository_active_code",
         "file": "scripts/audits/sealed_product_release_qualification_binding_v1.mjs",
         "line": 65
+      },
+      {
+        "group_id": "branch:integration/reconciled-main-v1",
+        "matched_token": "integration/reconciled-main-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/repository/build_archive_candidate_packet.mjs",
+        "line": 17
+      },
+      {
+        "group_id": "branch:docs/repository-postmerge-disposition-v1",
+        "matched_token": "docs/repository-postmerge-disposition-v1",
+        "reference_kind": "repository_active_code",
+        "file": "scripts/repository/build_archive_candidate_packet.mjs",
+        "line": 18
       },
       {
         "group_id": "branch:integration/reconciled-main-v1",
