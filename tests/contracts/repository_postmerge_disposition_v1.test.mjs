@@ -14,8 +14,8 @@ const cleanAnalysis = {
 
 test("post-merge disposition protects authority and dirty worktrees", () => {
   const authority = classifyDisposition({
-    sourceKind: "local_branch",
-    sourceName: "main",
+    sourceKind: "remote_branch",
+    sourceName: "origin/main",
     branch: "main",
     dirty: false,
     detached: false,
@@ -23,6 +23,21 @@ test("post-merge disposition protects authority and dirty worktrees", () => {
     openPullRequests: [],
   });
   assert.equal(authority.disposition, "protected_authority");
+
+  const staleLocalMain = classifyDisposition({
+    sourceKind: "local_branch",
+    sourceName: "main",
+    branch: "main",
+    dirty: false,
+    detached: false,
+    analysis: {
+      ...cleanAnalysis,
+      relationship: "diverged",
+      changed_domains: ["migration"],
+    },
+    openPullRequests: [],
+  });
+  assert.equal(staleLocalMain.disposition, "preserved_migration_review");
 
   const dirty = classifyDisposition({
     sourceKind: "worktree",
