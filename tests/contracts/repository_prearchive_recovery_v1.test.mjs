@@ -71,6 +71,8 @@ test("planner constructs remote tracking refs under origin and verifies live aut
   );
   assert.match(source, /refs\/remotes\/origin\/\$\{remoteBranchName\}/);
   assert.match(source, /liveAuthoritySha !== authoritySha/);
+  assert.match(source, /\["rev-list", "--stdin"\]/);
+  assert.doesNotMatch(source, /baseHeadShas\.some/);
 });
 
 test("generated recovery artifacts reconcile and authorize no deletion", () => {
