@@ -229,7 +229,7 @@ test("workflow is GitHub-native, serialized, shadow-only, and frozen", () => {
   assert.match(WORKFLOW, /--shadow-only/);
   assert.doesNotMatch(WORKFLOW, /--dispatch/);
   assert.match(WORKFLOW, new RegExp(TARGET_SHA));
-  assert.match(WORKFLOW, /--max-sets=35/);
+  assert.match(WORKFLOW, /--max-sets=25/);
   assert.match(WORKFLOW, /--max-consecutive-failures=3/);
   assert.match(WORKFLOW, /SUPERVISOR_OUT_DIR=\"\$RUNNER_TEMP\//);
   assert.doesNotMatch(WORKFLOW, /SUPERVISOR_OUT_DIR:.*runner\.temp/);
