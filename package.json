@@ -39,6 +39,8 @@
     "release:store:require": "node scripts/audits/store_release_readiness_v1.mjs --require-ready",
     "release:store:media": "node scripts/release/generate_store_media_assets_v1.mjs",
     "release:native:onboarding": "node scripts/audits/native_android_onboarding_qa_v1.mjs",
+    "release:catalog:crawl": "node scripts/audits/production_catalog_crawl_v1.mjs",
+    "release:pricing:trust": "node scripts/audits/pricing_trust_spot_check_v1.mjs",
     "release:completion:status": "node scripts/audits/release_completion_gate_v1.mjs",
     "release:completion:require": "node scripts/audits/release_completion_gate_v1.mjs --require-complete",
     "release:soak:status": "node scripts/audits/release_candidate_soak_v1.mjs",
