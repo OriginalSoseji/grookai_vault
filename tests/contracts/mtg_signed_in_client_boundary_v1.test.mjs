@@ -13,12 +13,14 @@ function source(relativePath) {
 test("web exposes MTG as an explicit collector catalog scope", () => {
   const gameScope = source("apps/web/src/lib/publicGameScope.ts");
   const explore = source("apps/web/src/components/explore/ExplorePageClient.tsx");
+  const searchForm = source("apps/web/src/components/PublicSearchForm.tsx");
 
   assert.match(gameScope, /"pokemon" \| "one_piece" \| "mtg"/);
   assert.match(gameScope, /value: "mtg", label: "Magic: The Gathering"/);
-  assert.match(explore, /PUBLIC_GAME_SCOPE_OPTIONS/);
-  assert.match(explore, /aria-label="Game scope"/);
-  assert.match(explore, /params\.set\("game", gameScope\)/);
+  assert.match(searchForm, /PUBLIC_GAME_SCOPE_OPTIONS/);
+  assert.match(searchForm, /aria-label="Trading card game"/);
+  assert.match(searchForm, /params\.set\("game", nextGameScope\)/);
+  assert.doesNotMatch(explore, /aria-label="Game scope"/);
 });
 
 test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", () => {

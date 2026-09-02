@@ -74,3 +74,18 @@ capability.
 
 The original dirty worktree remains unchanged and its complete state remains in the
 preservation package. Only the chat-safety domain paths were migrated in this wave.
+
+## Wave 5: Unified Collector Search UX
+
+| Field | Value |
+| --- | --- |
+| Source | Dirty worktree `C:\grookai_vault_launch_closeout` plus preserved source commit `893119c8c` |
+| Source base SHA | `5b4a95e637ffcfb214aeeeb7b2279751124ab9f4` |
+| Disposition | `migrated_by_domain` |
+| Capability | One governed TCG scope selector, exact-card web suggestions, Pokemon/One Piece/MTG search scopes, and signed-out Pokemon catalog fallback. |
+| Reconciliation | Preserved current-main smart-search and exact-printing behavior; removed duplicate game and preset controls; repaired the mobile resolver call for the current client contract. |
+| Excluded behavior | No search-index write, database mutation, catalog release change, feature-flag activation, deployment, or production traffic change. |
+| Verification | 8 Node search contracts passed; compact Explore subtest passed; 7 Flutter search/fallback tests passed; web TypeScript and targeted ESLint passed; targeted Flutter analysis passed. |
+
+The source worktree remains unchanged. The candidate contains a capability-level
+reconciliation rather than the stale source branch history.

@@ -172,6 +172,14 @@ String _normalizeSearchLanguageScope(String value) {
   return normalized == 'en' || normalized == 'ja' ? normalized : 'all';
 }
 
+String _normalizeSearchGameScope(String value) {
+  return switch (value.trim().toLowerCase()) {
+    'one_piece' => 'one_piece',
+    'mtg' => 'mtg',
+    _ => 'pokemon',
+  };
+}
+
 String _normalizePublicCollectorSlugInput(String value) {
   var normalized = value.trim().toLowerCase();
   if (normalized.isEmpty) {
@@ -3925,26 +3933,31 @@ class HomePageState extends State<HomePage> {
                       ),
                     ),
                     const SizedBox(height: 18),
-                    SegmentedButton<String>(
-                      segments: const <ButtonSegment<String>>[
-                        ButtonSegment<String>(
+                    DropdownButtonFormField<String>(
+                      initialValue: _gameScope,
+                      decoration: const InputDecoration(
+                        labelText: 'Trading card game',
+                        prefixIcon: Icon(Icons.style_rounded),
+                        isDense: true,
+                      ),
+                      items: const <DropdownMenuItem<String>>[
+                        DropdownMenuItem<String>(
                           value: 'pokemon',
-                          label: Text('Pokemon'),
+                          child: Text('Pokemon'),
                         ),
-                        ButtonSegment<String>(
+                        DropdownMenuItem<String>(
                           value: 'one_piece',
-                          label: Text('One Piece'),
+                          child: Text('One Piece'),
                         ),
-                        ButtonSegment<String>(
+                        DropdownMenuItem<String>(
                           value: 'mtg',
-                          label: Text('Magic'),
+                          child: Text('Magic: The Gathering'),
                         ),
                       ],
-                      selected: <String>{_gameScope},
-                      showSelectedIcon: false,
-                      onSelectionChanged: (selection) => refreshSheet(
-                        () => _handleGameScopeChanged(selection.first),
-                      ),
+                      onChanged: (value) {
+                        if (value == null) return;
+                        refreshSheet(() => _handleGameScopeChanged(value));
+                      },
                     ),
                     const SizedBox(height: 18),
                     _SearchLanguageScopeSelector(
@@ -4117,6 +4130,7 @@ class HomePageState extends State<HomePage> {
           languageScope: _languageScope,
           gameScope: _gameScope,
         ),
+        publicPokemonBrowse: widget.signedOutBrowse,
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
@@ -4215,6 +4229,11 @@ class HomePageState extends State<HomePage> {
     });
   }
 
+  void _submitSearch(String value) {
+    _debounce?.cancel();
+    unawaited(_runSearch(value.trim()));
+  }
+
   void _handleRarityFilterChanged(_RarityFilter filter) {
     if (_rarityFilter == filter) {
       return;
@@ -4301,11 +4320,7 @@ class HomePageState extends State<HomePage> {
   }
 
   void _handleGameScopeChanged(String scope) {
-    final normalized = switch (scope) {
-      'one_piece' => 'one_piece',
-      'mtg' => 'mtg',
-      _ => 'pokemon',
-    };
+    final normalized = _normalizeSearchGameScope(scope);
     if (_gameScope == normalized) {
       return;
     }
@@ -5458,7 +5473,7 @@ class HomePageState extends State<HomePage> {
               _CatalogSearchField(
                 controller: _searchCtrl,
                 onChanged: _onQueryChanged,
-                onSubmitted: _runSearch,
+                onSubmitted: _submitSearch,
               ),
               if (_searchError != null) ...[
                 const SizedBox(height: 6),

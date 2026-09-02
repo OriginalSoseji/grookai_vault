@@ -43,15 +43,10 @@ import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import {
   getPublicGameScopeLabel,
   normalizePublicGameScope,
-  PUBLIC_GAME_SCOPE_OPTIONS,
-  type PublicGameScope,
 } from "@/lib/publicGameScope";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
-import {
-  getCollectorSearchPresets,
-  getCollectorSearchSuggestions,
-} from "@/lib/search/collectorSearchSuggestions";
+import { getCollectorSearchSuggestions } from "@/lib/search/collectorSearchSuggestions";
 import {
   VARIANT_FAMILY_DISCOVERY_COPY,
   type VariantOriginFamilyCopy,
@@ -813,19 +808,6 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
-  const commitGameScope = (nextScope: PublicGameScope) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (nextScope === "pokemon") {
-      params.delete("game");
-    } else {
-      params.set("game", nextScope);
-    }
-    const nextUrl = params.toString()
-      ? `${pathname}?${params.toString()}`
-      : pathname;
-    router.replace(nextUrl, { scroll: false });
-  };
-
   const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
     const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
     const params = new URLSearchParams();
@@ -1314,8 +1296,6 @@ export default function ExplorePageClient({
     }
     return buildPathWithCompareCards("/explore", params.toString(), compareCards);
   };
-  const collectorSearchSuggestions = getCollectorSearchSuggestions(gameScope);
-  const collectorSearchPresets = getCollectorSearchPresets(gameScope);
   const languageScopeControl = (
     <div className="flex flex-wrap items-center gap-3">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
@@ -1347,67 +1327,6 @@ export default function ExplorePageClient({
         })}
       </div>
     </div>
-  );
-  const gameScopeControl = (
-    <div className="flex flex-wrap items-center gap-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-        Game
-      </p>
-      <div
-        className="inline-flex rounded-full border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
-        role="radiogroup"
-        aria-label="Game scope"
-      >
-        {PUBLIC_GAME_SCOPE_OPTIONS.map((option) => {
-          const active = gameScope === option.value;
-          return (
-            <button
-              key={option.value}
-              type="button"
-              role="radio"
-              aria-checked={active}
-              onClick={() => commitGameScope(option.value)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                active
-                  ? "bg-slate-950 text-white shadow-sm dark:bg-slate-100 dark:text-slate-950"
-                  : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
-              }`}
-            >
-              {option.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-  const compactPresetStrip = (
-    <section className="gv-command-surface px-4 py-3 sm:px-5">
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex shrink-0 items-center gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-            Presets
-          </p>
-          <Link
-            href={buildScopedExploreHref(`q=${encodeURIComponent(collectorSearchSuggestions[0].query)}`)}
-            className="hidden rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50 sm:inline-flex"
-          >
-            Sentence search
-          </Link>
-        </div>
-        <div className="flex gap-2 overflow-x-auto pb-1 lg:justify-end lg:pb-0">
-          {collectorSearchPresets.map((preset) => (
-            <Link
-              key={preset.key}
-              href={buildScopedExploreHref(`q=${encodeURIComponent(preset.query)}`)}
-              className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
-              title={preset.description}
-            >
-              {preset.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
   );
   const resultControls = (
     <div className="flex flex-wrap items-center gap-2">
@@ -1512,29 +1431,6 @@ export default function ExplorePageClient({
       ) : null}
     </div>
   ) : null;
-  const presetPillStrip = (
-    <div className="flex gap-2 overflow-x-auto border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
-      <span className="inline-flex shrink-0 items-center text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-        Presets
-      </span>
-      <Link
-        href={buildScopedExploreHref(`q=${encodeURIComponent(collectorSearchSuggestions[0].query)}`)}
-        className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
-      >
-        Sentence search
-      </Link>
-      {collectorSearchPresets.map((preset) => (
-        <Link
-          key={preset.key}
-          href={buildScopedExploreHref(`q=${encodeURIComponent(preset.query)}`)}
-          className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
-          title={preset.description}
-        >
-          {preset.label}
-        </Link>
-      ))}
-    </div>
-  );
   const identityFilterStrip = visibleIdentityFilters.length > 1 ? (
     <div className="flex flex-wrap gap-2 border-t border-slate-200/70 pt-3 dark:border-slate-800/70">
       {visibleIdentityFilters.map((option) => {
@@ -1571,59 +1467,15 @@ export default function ExplorePageClient({
       className={`space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
       {isDiscoveryMode ? (
-        <div className="gv-command-surface px-4 py-4 sm:px-5">
-          <div className="space-y-1 md:hidden">
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
-              Discover
-            </p>
-            <h1 className="text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
-              Search cards
-            </h1>
-            <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
-              Search by card, finish, stamp, year, artist, ownership, and image availability.
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              <Link
-                href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
-                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
-              >
-                Browse Sets
-              </Link>
-              <Link
-                href={buildScopedExploreHref("q=Pikachu")}
-                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
-              >
-                Browse Pokémon
-              </Link>
-            </div>
-          </div>
-
-          <div className="hidden items-center justify-between gap-5 md:flex">
-            <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                Grookai Search
-              </p>
-              <h1 className="mt-1 text-3xl font-semibold leading-tight tracking-normal text-slate-950 dark:text-slate-50">
-                Search cards
-              </h1>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-                Search by card, finish, stamp, year, artist, ownership, or visible artwork details.
-              </p>
-            </div>
-            <div className="shrink-0">
-              <div className="flex flex-col items-end gap-2">
-                {gameScopeControl}
-                {languageScopeControl}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4 border-t border-slate-200/70 pt-3 dark:border-slate-800/70 md:hidden">
-            <div className="space-y-3">
-              {gameScopeControl}
-              {languageScopeControl}
-            </div>
-          </div>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 pb-3 dark:border-slate-800/70">
+          <h1 className="sr-only">Search cards</h1>
+          <Link
+            href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
+            className="inline-flex min-h-9 items-center rounded-[6px] border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+          >
+            Browse sets
+          </Link>
+          {languageScopeControl}
         </div>
       ) : (
         <section className="gv-command-surface px-4 py-3 sm:px-5">
@@ -1656,15 +1508,9 @@ export default function ExplorePageClient({
                 {resultControls}
               </div>
             </div>
-            <div className="shrink-0">
-              <div className="flex flex-col items-end gap-2">
-                {gameScopeControl}
-                {languageScopeControl}
-              </div>
-            </div>
+            <div className="shrink-0">{languageScopeControl}</div>
           </div>
           {activeFilterStrip}
-          {presetPillStrip}
           {identityFilterStrip}
         </section>
       )}
@@ -1685,7 +1531,6 @@ export default function ExplorePageClient({
 
       {isDiscoveryMode ? (
         <>
-          {compactPresetStrip}
           {discoveryContent}
           <CompareTray
             cards={compareCards}
