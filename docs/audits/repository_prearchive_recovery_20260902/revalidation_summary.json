@@ -1,12 +1,12 @@
 {
   "schema_version": "GROOKAI_REPOSITORY_PREARCHIVE_SELECTION_V1",
-  "generated_at": "2026-09-02T15:04:19.247Z",
-  "producer_sha": "20a5fc70f12b992e0b222f0080b303c9c35d98e6",
+  "generated_at": "2026-09-02T16:11:40.385Z",
+  "producer_sha": "ee10374e2a2d63673e4c880565054905eec3ac3e",
   "authority_ref": "origin/main",
   "authority_sha": "e2f97b75c48b2a21febea2818f4466dce3a2f3b8",
   "candidate_packet_path": "docs/audits/repository_archive_candidate_packet_20260902/archive_candidates.jsonl",
   "candidate_packet_sha256": "6e58202451296e74ec2de841573f7a49a6e768b8855060030ae87cf637acb8dc",
-  "selection_fingerprint": "a2c84bd6869a5aaf6a711b7ee09ff21b0a5b6314e410f9e8fdd1043536366b6a",
+  "selection_fingerprint": "7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221",
   "inventory_status": {
     "open_pull_requests": "available",
     "repository_references": "available",
@@ -16,13 +16,11 @@
   },
   "counts": {
     "input_candidates": 227,
-    "selected_for_recovery": 92,
-    "excluded_after_revalidation": 135,
-    "bundled_refs": 93,
-    "exclusion_reasons": {
-      "named_ref_missing": 135,
-      "named_ref_moved_since_packet": 135
-    }
+    "selected_for_recovery": 227,
+    "excluded_after_revalidation": 0,
+    "recovery_refs": 339,
+    "supplement_refs": 141,
+    "exclusion_reasons": {}
   },
   "boundaries": {
     "worktree_removals": 0,
