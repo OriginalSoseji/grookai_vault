@@ -11,7 +11,6 @@ import {
   getExploreRowsForLanguageScopedTextSearch,
   getExploreRowsForGameScopedTextSearch,
   getExploreRowsForSmartFilterDiscovery,
-  getExploreRowsForSmartStructuredTextSearch,
 } from "@/lib/explore/getExploreRows";
 import {
   matchesPublicLanguageScope,
@@ -557,8 +556,7 @@ export async function GET(request: NextRequest) {
             degraded: false,
           }))
         : shouldUseStructuredTextExpansion
-          ? getExploreRowsForSmartStructuredTextSearch(query, {
-              sortMode,
+          ? getExploreRowsForGameScopedTextSearch(query, gameScope, sortMode, {
               exactSetCode,
               exactReleaseYear,
               exactIllustrator,

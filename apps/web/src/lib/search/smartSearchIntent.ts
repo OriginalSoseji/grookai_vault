@@ -23,19 +23,20 @@ const FILLER_PHRASES = [
   /\bcards?\b/gi,
   /\bprintings?\b/gi,
   /\bversions?\b/gi,
+  /\bfrom\b/gi,
   /\benglish\b/gi,
   /\bphysical\b/gi,
 ];
 
 const FINISH_PATTERNS: Array<{ pattern: RegExp; key: string; label: string; residual: string }> = [
-  { pattern: /\betched(?:\s+foils?)?\b/gi, key: "etched", label: "Etched Foil", residual: "etched foil" },
-  { pattern: /\bfoils?\b/gi, key: "foil", label: "Foil", residual: "foil" },
+  { pattern: /\bmaster\s*ball(?:\s+reverse(?:\s+holos?)?)?\b/gi, key: "masterball", label: "Master Ball Reverse", residual: "master ball reverse" },
+  { pattern: /\bpok[eé]?\s*ball(?:\s+reverse(?:\s+holos?)?)?\b/gi, key: "pokeball", label: "Poke Ball Reverse", residual: "poke ball reverse" },
   { pattern: /\brocket\s+reverse\s+holos?\b/gi, key: "rocket_reverse", label: "Rocket Reverse", residual: "rocket reverse" },
-  { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
   { pattern: /\bcosmos\s+holos?\b/gi, key: "cosmos", label: "Cosmos Holo", residual: "cosmos holo" },
   { pattern: /\bcracked\s+ice(?:\s+holos?)?\b/gi, key: "cracked_ice", label: "Cracked Ice", residual: "cracked ice" },
-  { pattern: /\bpok[eé]?\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "pokeball", label: "Poke Ball Reverse", residual: "poke ball reverse" },
-  { pattern: /\bmaster\s*ball\s+reverse(?:\s+holos?)?\b/gi, key: "masterball", label: "Master Ball Reverse", residual: "master ball reverse" },
+  { pattern: /\betched(?:\s+foils?)?\b/gi, key: "etched", label: "Etched Foil", residual: "etched foil" },
+  { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
+  { pattern: /\bfoils?\b/gi, key: "foil", label: "Foil", residual: "foil" },
   { pattern: /\bholos?\b/gi, key: "holo", label: "Holo", residual: "holo" },
   { pattern: /\bnormal\b|\bnon[-\s]?holos?\b|\bstandard\b/gi, key: "normal", label: "Normal", residual: "normal" },
 ];

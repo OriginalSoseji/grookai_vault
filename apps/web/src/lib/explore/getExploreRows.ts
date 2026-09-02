@@ -3972,12 +3972,9 @@ export async function getExploreRowsForGameScopedTextSearch(
     sortMode === "value_high" || sortMode === "value_low";
   const directGvIdSearch = searchText.toUpperCase().startsWith("GV-");
   const canUseBoundedGameRpc =
-    typeof releaseYearMin !== "number" &&
-    typeof releaseYearMax !== "number" &&
     !valueSortRequested &&
     !variantKey &&
     identityFilter !== "classic_collection" &&
-    !shouldRequireChildScope &&
     (options.stampLabels?.length ?? 0) === 0;
 
   if (canUseBoundedGameRpc) {
@@ -4015,26 +4012,51 @@ export async function getExploreRowsForGameScopedTextSearch(
       data = nameRetries.flatMap((result) => result.data ?? []);
     }
 
+    // One Piece canonical names can preserve franchise punctuation such as
+    // `Monkey.D.Luffy`, while collectors naturally type `Monkey D. Luffy`.
+    // Retry the bounded, set-scoped lookup with the final identity token; the
+    // RPC still enforces game and release visibility.
+    if (
+      (data ?? []).length === 0 &&
+      gameScope === "one_piece" &&
+      nameText.includes(".")
+    ) {
+      const punctuationFallback = nameText
+        .split(/\s+/)
+        .at(-1)
+        ?.replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, "") ?? "";
+      if (punctuationFallback.length >= 3) {
+        const nameRetries = await Promise.all(boundedSetCodes.map((setCode) =>
+          runBoundedSearch(punctuationFallback, null, setCode)));
+        const retryError = nameRetries.find((result) => result.error)?.error;
+        if (retryError) throw new Error(retryError.message);
+        data = nameRetries.flatMap((result) => result.data ?? []);
+      }
+    }
+
     const parentRows = [...new Map(
       ((data ?? []) as CardPrintLookupRow[]).map((row) => [row.id, row]),
     ).values()];
+    const lookupRows = shouldRequireChildScope
+      ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
+      : parentRows;
     const setMetadataByCode = await fetchPublicSetMetadata(
-      uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
+      uniqueValues(lookupRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
     const pricingByCardId = options.includePricing
-      ? await getPublicPricingByCardIds(supabase, parentRows.map((row) => row.id), {
+      ? await getPublicPricingByCardIds(supabase, lookupRows.map((row) => row.id), {
           requireComplete: false,
         })
       : new Map<string, PublicPricingRecord>();
     const rows = await buildExploreRows(
-      parentRows,
+      lookupRows,
       new Map<string, string>(),
       setMetadataByCode,
       pricingByCardId,
       {
         skipChildDisplayImageFallbacks:
-          parentRows.length > 24 ||
-          parentRows.every((row) =>
+          lookupRows.length > 24 ||
+          lookupRows.every((row) =>
             Boolean(
               row.image_path ||
                 row.image_url ||
@@ -4044,7 +4066,22 @@ export async function getExploreRowsForGameScopedTextSearch(
       },
     );
     const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
-    return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
+    const releaseFilteredRows = rows.filter((row) => {
+      if (
+        typeof releaseYearMin === "number" &&
+        (typeof row.release_year !== "number" || row.release_year < releaseYearMin)
+      ) {
+        return false;
+      }
+      if (
+        typeof releaseYearMax === "number" &&
+        (typeof row.release_year !== "number" || row.release_year > releaseYearMax)
+      ) {
+        return false;
+      }
+      return true;
+    });
+    return sortRows(releaseFilteredRows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
   }
 
   const { data: gameRow, error: gameError } = await supabase

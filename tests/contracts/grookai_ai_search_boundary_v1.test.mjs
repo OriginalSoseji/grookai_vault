@@ -52,6 +52,32 @@ test('Grookai Search maps collector parallel language to live finish keys', () =
   assert.equal(pokeBall.residualQuery, 'Pikachu');
   assert.deepEqual(Array.from(masterBall.finishKeys), ['masterball']);
   assert.equal(masterBall.residualQuery, 'Pikachu');
+
+  const plainPokeBall = buildSmartSearchIntent('Exeggutor Poké Ball');
+  const plainMasterBall = buildSmartSearchIntent('Pikachu Master Ball');
+  assert.deepEqual(Array.from(plainPokeBall.finishKeys), ['pokeball']);
+  assert.equal(plainPokeBall.residualQuery, 'Exeggutor');
+  assert.deepEqual(Array.from(plainMasterBall.finishKeys), ['masterball']);
+  assert.equal(plainMasterBall.residualQuery, 'Pikachu');
+});
+
+test('Grookai Search preserves name, year, and finish intent across TCGs', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+
+  const pokemon = buildSmartSearchIntent('Gengar 2000-2024 reverse holo');
+  assert.equal(pokemon.residualQuery, 'Gengar');
+  assert.equal(pokemon.releaseYearMin, 2000);
+  assert.equal(pokemon.releaseYearMax, 2024);
+  assert.deepEqual(Array.from(pokemon.finishKeys), ['reverse']);
+
+  const magic = buildSmartSearchIntent('Lightning Bolt 1993-2024 foil');
+  assert.equal(magic.residualQuery, 'Lightning Bolt');
+  assert.equal(magic.releaseYearMin, 1993);
+  assert.equal(magic.releaseYearMax, 2024);
+  assert.deepEqual(Array.from(magic.finishKeys), ['foil']);
+
+  const setLanguage = buildSmartSearchIntent('Charizard from 151');
+  assert.equal(setLanguage.residualQuery, 'Charizard 151');
 });
 
 test('Grookai Search parses plain artist and illustrator year-range language', () => {
@@ -107,20 +133,45 @@ test('Grookai Search normalization preserves accented collector labels', () => {
   assert.equal(normalizeSearchText('Pokémon_Together-Stamp'), 'pokemon together stamp');
 });
 
-test('smart structured variant search uses number and set aware candidate discovery', () => {
+test('smart structured variant search uses bounded game-aware candidate discovery', () => {
+  const route = readFileSync(
+    new URL('../../apps/web/src/app/api/resolver/search/route.ts', import.meta.url),
+    'utf8',
+  );
   const source = readFileSync(
     new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
     'utf8',
   );
 
   assert.match(
-    source,
-    /getExploreRowsForSmartStructuredTextSearch[\s\S]*fetchLanguageScopedTextRows\(\s*query,\s*options\.languageScope \?\? "all",\s*\)/,
+    route,
+    /shouldUseStructuredTextExpansion[\s\S]*getExploreRowsForGameScopedTextSearch\(query, gameScope, sortMode/,
   );
   assert.match(
     source,
-    /getExploreRowsForSmartStructuredTextSearch[\s\S]*textFilteredRows = releaseFilteredRows\.filter\(\(row\) =>[\s\S]*rowMatchesSmartDiscoveryText\(row, rawQuery\)/,
+    /canUseBoundedGameRpc[\s\S]*search_game_card_prints_v4[\s\S]*fetchSmartDiscoveryChildRows[\s\S]*releaseFilteredRows/,
   );
+  assert.match(
+    source,
+    /gameScope === "one_piece"[\s\S]*punctuationFallback[\s\S]*runBoundedSearch\(punctuationFallback/,
+  );
+});
+
+test('collector sentence suggestions are scoped to Pokemon, Magic, and One Piece', () => {
+  const { getCollectorSearchPresets, getCollectorSearchSuggestions } = loadTsModule(
+    '../../apps/web/src/lib/search/collectorSearchSuggestions.ts',
+  );
+
+  assert.equal(getCollectorSearchSuggestions('pokemon')[0].query, 'Gengar 2000-2024 reverse holo');
+  assert.equal(getCollectorSearchSuggestions('mtg')[0].query, 'Lightning Bolt 1993-2024 foil');
+  assert.equal(getCollectorSearchSuggestions('one_piece')[0].query, 'Monkey D. Luffy from OP05');
+  assert.equal(getCollectorSearchPresets('mtg')[0].label, 'Lightning Bolt 1993-2024 foil');
+
+  const explore = readFileSync(
+    new URL('../../apps/web/src/components/explore/ExplorePageClient.tsx', import.meta.url),
+    'utf8',
+  );
+  assert.match(explore, /buildScopedExploreHref\(`q=\$\{encodeURIComponent\(preset\.query\)\}`\)/);
 });
 
 test('Grookai Search keeps canonical variants discoverable when printing coverage is incomplete', () => {

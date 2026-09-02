@@ -49,6 +49,10 @@ import {
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import {
+  getCollectorSearchPresets,
+  getCollectorSearchSuggestions,
+} from "@/lib/search/collectorSearchSuggestions";
+import {
   VARIANT_FAMILY_DISCOVERY_COPY,
   type VariantOriginFamilyCopy,
 } from "@/lib/cards/variantFamilyDiscoveryCopy";
@@ -140,39 +144,6 @@ const SEARCH_RESULT_INTENT_COPY: Record<
     description: "Additional ranked results that may still match the query.",
   },
 };
-
-const COLLECTOR_SEARCH_PRESETS = [
-  {
-    key: "reverse-pikachu-modern",
-    title: "Modern Pikachu reverse holos",
-    description: "Pikachu reverse holos from 2014 through today.",
-    query: "q=Pikachu&year_min=2014&year_max=2026&finish=reverse",
-  },
-  {
-    key: "stamped-specials",
-    title: "Stamped special cards",
-    description: "Special stamped lanes for collector review.",
-    query: "identity=stamped",
-  },
-  {
-    key: "owned-reverse",
-    title: "My reverse holos",
-    description: "Reverse holo cards currently in your vault.",
-    query: "finish=reverse&owned=owned",
-  },
-  {
-    key: "vault-gaps-reverse",
-    title: "Reverse holo vault gaps",
-    description: "Reverse holo cards missing from your vault.",
-    query: "finish=reverse&owned=missing",
-  },
-  {
-    key: "exact-images",
-    title: "Cards with verified images",
-    description: "Browse cards with an image of the exact version.",
-    query: "image_state=exact",
-  },
-];
 
 const FAMILY_QUERY_PATTERNS: Array<{
   key: string;
@@ -1250,17 +1221,17 @@ export default function ExplorePageClient({
       ) : undefined}
       secondaryAction={(
         <div className="flex flex-wrap gap-2">
-          {["Pikachu Master Ball", "Exeggutor Poké Ball", "GV-PK-ME03-033-RH", "Charizard cameo"].map((suggestion) => (
+          {getCollectorSearchSuggestions(gameScope).map((suggestion) => (
             <Link
-              key={suggestion}
+              key={suggestion.query}
               href={buildPathWithCompareCards(
                 "/explore",
-                `q=${encodeURIComponent(suggestion)}`,
+                `q=${encodeURIComponent(suggestion.query)}&game=${gameScope}`,
                 compareCards,
               )}
               className="gv-secondary-button min-h-9 px-3 py-1.5 text-xs"
             >
-              {suggestion}
+              {suggestion.label}
             </Link>
           ))}
         </div>
@@ -1343,6 +1314,8 @@ export default function ExplorePageClient({
     }
     return buildPathWithCompareCards("/explore", params.toString(), compareCards);
   };
+  const collectorSearchSuggestions = getCollectorSearchSuggestions(gameScope);
+  const collectorSearchPresets = getCollectorSearchPresets(gameScope);
   const languageScopeControl = (
     <div className="flex flex-wrap items-center gap-3">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
@@ -1415,21 +1388,21 @@ export default function ExplorePageClient({
             Presets
           </p>
           <Link
-            href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
+            href={buildScopedExploreHref(`q=${encodeURIComponent(collectorSearchSuggestions[0].query)}`)}
             className="hidden rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50 sm:inline-flex"
           >
             Sentence search
           </Link>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1 lg:justify-end lg:pb-0">
-          {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+          {collectorSearchPresets.map((preset) => (
             <Link
               key={preset.key}
-              href={buildScopedExploreHref(preset.query)}
+              href={buildScopedExploreHref(`q=${encodeURIComponent(preset.query)}`)}
               className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
               title={preset.description}
             >
-              {preset.title}
+              {preset.label}
             </Link>
           ))}
         </div>
@@ -1545,19 +1518,19 @@ export default function ExplorePageClient({
         Presets
       </span>
       <Link
-        href={buildScopedExploreHref("q=Build-A-Bear stamped cards")}
+        href={buildScopedExploreHref(`q=${encodeURIComponent(collectorSearchSuggestions[0].query)}`)}
         className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-600 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
       >
         Sentence search
       </Link>
-      {COLLECTOR_SEARCH_PRESETS.map((preset) => (
+      {collectorSearchPresets.map((preset) => (
         <Link
           key={preset.key}
-          href={buildScopedExploreHref(preset.query)}
+          href={buildScopedExploreHref(`q=${encodeURIComponent(preset.query)}`)}
           className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:text-slate-50"
           title={preset.description}
         >
-          {preset.title}
+          {preset.label}
         </Link>
       ))}
     </div>
