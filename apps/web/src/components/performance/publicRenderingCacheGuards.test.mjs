@@ -171,7 +171,8 @@ test("explore search keeps results compact and cards above supporting tools", ()
   assert.match(exploreRows, /includePricing = false/);
   assert.match(exploreRows, /options\.includePricing/);
   assert.match(exploreClient, /const resultControls = \(/);
-  assert.match(exploreClient, /const presetPillStrip = \(/);
+  assert.doesNotMatch(exploreClient, /const presetPillStrip = \(/);
+  assert.match(exploreClient, /Browse sets/);
   assert.match(exploreClient, /resolverSummary && displayRows\.length === 0/);
   assert.match(exploreClient, /\{hasExplicitSmartFilters \? \(/);
 

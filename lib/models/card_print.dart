@@ -427,6 +427,8 @@ class CardPrintSearchResult {
 
 const _cardPrintSelect =
     'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model)';
+const _publicCardPrintSelect =
+    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids';
 
 class CardPrintRepository {
   static Future<List<CardPrint>> _searchGameCardPrintsV4({
@@ -490,10 +492,51 @@ class CardPrintRepository {
     required CardSearchOptions options,
     int defaultLimit = 200,
     int searchLimit = 500,
+    bool publicPokemonBrowse = false,
   }) async {
     final trimmed = options.query.trim();
     final identityFilter = _normalizeIdentityFilter(options.identityFilter);
     final gameScope = _normalizeCatalogGameScope(options.gameScope);
+
+    if (publicPokemonBrowse && gameScope == 'pokemon') {
+      CardPrintSearchResult? directResult;
+      try {
+        directResult = await _searchPublicPokemonFallback(
+          client: client,
+          options: options,
+          defaultLimit: defaultLimit,
+          searchLimit: searchLimit,
+        );
+        if (trimmed.isEmpty || directResult.rows.isNotEmpty) {
+          return directResult;
+        }
+      } catch (_) {
+        // Complex queries can still use the governed resolver below.
+      }
+      if (trimmed.isNotEmpty) {
+        try {
+          final resolved = await _searchCardPrintsViaWebResolver(
+            client: client,
+            options: options,
+            trimmed: trimmed,
+            identityFilter: identityFilter,
+            searchLimit: searchLimit,
+          );
+          if (resolved.rows.isNotEmpty) {
+            return resolved;
+          }
+        } catch (_) {
+          // Return the safe direct result when the governed resolver degrades.
+        }
+      }
+      return directResult ??
+          const CardPrintSearchResult(
+            rows: <CardPrint>[],
+            provisionalRows: <PublicProvisionalCard>[],
+            meta: null,
+            source: 'public_pokemon_direct_fallback_unavailable',
+          );
+    }
 
     if (trimmed.isEmpty && identityFilter == null) {
       final rows = await searchCardPrints(
@@ -531,6 +574,52 @@ class CardPrintRepository {
         searchLimit: searchLimit,
       );
     }
+  }
+
+  static Future<CardPrintSearchResult> _searchPublicPokemonFallback({
+    required SupabaseClient client,
+    required CardSearchOptions options,
+    required int defaultLimit,
+    required int searchLimit,
+  }) async {
+    final trimmed = options.query.trim();
+    var request = client.from('card_prints').select(_publicCardPrintSelect);
+    if (trimmed.toUpperCase().startsWith('GV-PK-')) {
+      request = request.ilike('gv_id', trimmed);
+    } else if (trimmed.isNotEmpty) {
+      request = request.eq('name', trimmed);
+    } else {
+      request = request.like('gv_id', 'GV-PK-%');
+    }
+    final limit = options.limit.clamp(
+      1,
+      trimmed.isEmpty ? defaultLimit : searchLimit,
+    );
+    final data = trimmed.isEmpty
+        ? await request.order(options.sort, ascending: true).limit(limit)
+        : await request.limit(limit);
+    final pokemonRows = data
+        .where(
+          (row) => (row['gv_id'] ?? '').toString().toUpperCase().startsWith(
+            'GV-PK-',
+          ),
+        )
+        .toList(growable: true);
+    pokemonRows.sort((left, right) {
+      final leftValue = (left[options.sort] ?? '').toString().toLowerCase();
+      final rightValue = (right[options.sort] ?? '').toString().toLowerCase();
+      return leftValue.compareTo(rightValue);
+    });
+    final rows = _filterByRarity(
+      await _fromRowsWithCanonImages(pokemonRows),
+      options.rarity,
+    );
+    return CardPrintSearchResult(
+      rows: rows,
+      provisionalRows: const <PublicProvisionalCard>[],
+      meta: null,
+      source: 'public_pokemon_direct_fallback',
+    );
   }
 
   static Future<CardPrintSearchResult> _searchCardPrintsViaWebResolver({
