@@ -42,3 +42,21 @@ authorize deleting the source branch or worktree.
 
 The source dirty state remains byte-preserved in the recovery package and unchanged
 in its original worktree.
+
+## Wave 3: Governed MTG Sealed World
+
+| Field | Value |
+| --- | --- |
+| Source | PR #219, `agent/mtg-sealed-world-v1` |
+| Source SHA | `a0d1f1123eca9335d379c49d00f055c46adb87c6` |
+| Original commits | `69f09f8eb`, `a0d1f1123` |
+| Disposition | `migrated_unapplied` |
+| Destination commits | `87a426fad`, `b5816eb6e` |
+| Capability | Per-game sealed release pointer, exact English MTG sealed-world planner/operator, frozen workflow, contract and tests. |
+| Migration | `20260816170000_sealed_product_per_game_release_v2.sql` is present but not applied. Its timestamp is unique, and no later migration on current main modifies the sealed release tables. |
+| Production boundary | No database query, migration apply, release activation, workflow dispatch, deployment, or product visibility change occurred. |
+| Verification | Node syntax checks passed; 13 focused contracts passed; diff check passed. |
+
+PR #219 and its branch remain preserved. The old PR must not be merged after the
+reconciled replacement is accepted because that would duplicate an already-migrated
+capability.
