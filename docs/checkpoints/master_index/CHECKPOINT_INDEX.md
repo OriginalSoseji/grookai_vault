@@ -4,6 +4,7 @@ Checkpoint registry for English and Japanese Master Index work.
 
 | Date | Checkpoint | Purpose |
 | --- | --- | --- |
+| 2026-08-05 | [Japanese Master Index V4 Pause And Completion Backlog V1](20260805_japanese_master_index_v4_pause_and_completion_backlog_v1.md) | Freezes the completed 5,336-parent identity foundation and 53-image production slice, classifies remaining Japanese productization as non-launch-critical, and defines the safe restart order. |
 | 2026-08-05 | [Japanese Master Index V4 Image Pointer Product Smoke Completion V1](20260805_japanese_master_index_v4_image_pointer_product_smoke_completion_v1.md) | Proves all 53 linked parents across complete-row readback, exact search, image bytes, card detail, set grids, and 27 set pages; repairs mixed-case Japanese set-code reads with zero database or Storage writes. |
 | 2026-08-05 | [Japanese Master Index V4 Image Pointer Apply Completion V1](20260805_japanese_master_index_v4_image_pointer_apply_completion_v1.md) | Records the exact approved 53-row durable pointer apply: complete-row preflight, three-column writes, committed expected-after readback, independent HTTPS verification, and preserved external fallbacks. |
 | 2026-08-05 | [Japanese Master Index V4 Image Pointer Apply Readiness V1](20260805_japanese_master_index_v4_image_pointer_apply_readiness_v1.md) | Records founder approval and freezes the one-shot 53-row durable image-pointer apply, including exact package/proof/script hashes, three-column scope, full-row CAS, all-row locking, and post-commit readback. |
