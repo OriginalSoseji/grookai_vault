@@ -132,7 +132,8 @@ function currentRemoteHeads(repoRoot) {
 }
 
 function refSha(repoRoot, ref) {
-  return git(["rev-parse", "--verify", ref], { cwd: repoRoot, allowFailure: true });
+  const result = commandResult("git", ["rev-parse", "--verify", ref], { cwd: repoRoot });
+  return result.status === 0 ? result.stdout : null;
 }
 
 function relationshipToAuthority(repoRoot, sha, authorityRef) {
@@ -367,8 +368,16 @@ function assertPrivateRecoveryRepository(repoRoot, repository) {
 }
 
 function publishAndReadBack({ repoRoot, repository, releaseTag, bundlePath, bundleManifestPath, readbackDir }) {
-  const existing = command("gh", ["release", "view", releaseTag, "--repo", repository, "--json", "url"], { cwd: repoRoot, allowFailure: true });
-  if (existing !== null) throw new Error(`Recovery release ${releaseTag} already exists.`);
+  const releaseList = commandResult(
+    "gh",
+    ["release", "list", "--repo", repository, "--limit", "1000", "--json", "tagName"],
+    { cwd: repoRoot },
+  );
+  if (releaseList.status !== 0) throw new Error("Recovery release inventory is unavailable.");
+  const existing = JSON.parse(releaseList.stdout || "[]").some(
+    (release) => release.tagName === releaseTag,
+  );
+  if (existing) throw new Error(`Recovery release ${releaseTag} already exists.`);
   mkdirSync(readbackDir, { recursive: true });
   command("gh", [
     "release", "create", releaseTag, bundlePath, bundleManifestPath,

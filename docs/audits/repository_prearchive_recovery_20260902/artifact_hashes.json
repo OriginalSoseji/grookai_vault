@@ -1,0 +1,13 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_PREARCHIVE_ARTIFACT_HASHES_V1",
+  "generated_at": "2026-09-02T15:04:19.247Z",
+  "producer_sha": "20a5fc70f12b992e0b222f0080b303c9c35d98e6",
+  "files": {
+    "PREARCHIVE_RECOVERY_AND_EXECUTION_PLAN_V1.md": "5aec242fc4a844d70c7b5a7e16d6290f17145bf5dfa601846c0fc32f3bd2892a",
+    "prearchive_selection.jsonl": "4515fffc38c194effcc7413193c6b1c3e82cb5d0bdd40fd5654f37b18e4cb5b0",
+    "prearchive_exclusions.jsonl": "789397d29e39a90577f2eadd30b8f3a776f85ecce0491b83f5c397daf607825a",
+    "revalidation_summary.json": "5e4e87d5dfc424870e138bec8b6b5ba771f310c930990d6b7eb53ca3d1526cb6",
+    "recovery_bundle_manifest.json": "f282fabcce86d3fd18cc2d0dbec98a1670b5bdf578d77e48622a00f8e8680574",
+    "recovery_remote_readback.json": "4173ddc4a17fa908233cd7153180eef0597205e3bb62a0af3ad04d0e9448e323"
+  }
+}
