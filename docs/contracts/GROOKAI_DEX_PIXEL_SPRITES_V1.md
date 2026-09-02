@@ -16,6 +16,8 @@ https://grookaivault.com/dex/sprites/v1/{national_dex_number}.png
 - Missing or invalid sprites fail the corpus contract test instead of silently shipping.
 - The source repository commit and every file hash are recorded in `manifest.json`.
 - The sync tool is rerun whenever the canonical species seed expands.
+- The `v1` asset URLs are immutable. The sync tool refuses to replace them from a different source commit.
+- A source-artwork change requires a new versioned directory, matching client URL updates, and a new manifest.
 
 ## Source Provenance
 

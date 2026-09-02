@@ -30,6 +30,7 @@ const concurrency = Math.max(
   Math.min(32, Number.parseInt(process.env.POKEMON_SPRITE_SYNC_CONCURRENCY ?? '16', 10) || 16),
 );
 const sourcePathTemplate = `https://raw.githubusercontent.com/PokeAPI/sprites/${sourceCommit}/sprites/pokemon/{national_dex_number}.png`;
+const manifestPath = path.join(outputDirectory, 'manifest.json');
 
 function spriteSourceUrl(nationalDexNumber) {
   return sourcePathTemplate.replace('{national_dex_number}', String(nationalDexNumber));
@@ -51,6 +52,24 @@ function isPng(buffer) {
     buffer[6] === 0x1a &&
     buffer[7] === 0x0a
   );
+}
+
+async function assertImmutableCorpusSource() {
+  let existingManifest;
+  try {
+    existingManifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+  } catch (error) {
+    if (error?.code === 'ENOENT') return;
+    throw new Error(`Unable to read the existing sprite manifest: ${error.message}`);
+  }
+
+  const existingCommit = existingManifest?.source?.commit;
+  if (existingCommit !== sourceCommit) {
+    throw new Error(
+      `Refusing to replace immutable /dex/sprites/v1 assets from ${existingCommit ?? 'an unknown source'} ` +
+      `with ${sourceCommit}. Publish the new corpus under a new versioned path and update clients first.`,
+    );
+  }
 }
 
 async function downloadSprite(nationalDexNumber) {
@@ -107,6 +126,7 @@ if (dexNumbers.length !== seed.metadata?.expectedSpeciesCount) {
   );
 }
 
+await assertImmutableCorpusSource();
 await fs.mkdir(outputDirectory, { recursive: true });
 const files = await runPool(dexNumbers, downloadSprite);
 const manifest = {
@@ -127,7 +147,7 @@ const manifest = {
 };
 
 await fs.writeFile(
-  path.join(outputDirectory, 'manifest.json'),
+  manifestPath,
   `${JSON.stringify(manifest, null, 2)}\n`,
   'utf8',
 );
