@@ -294,6 +294,21 @@ owner-readable archival candidate packet from clean, main-contained sources,
 but it may not delete branches, tags, worktrees, directories, PRs, artifacts,
 or recovery objects.
 
+Build that owner-review packet with:
+
+```powershell
+node scripts/repository/build_archive_candidate_packet.mjs
+node --test tests/contracts/repository_archive_candidate_packet_v1.test.mjs
+```
+
+The packet deduplicates local branches, remote branches, and linked worktrees.
+It excludes dirty, unreadable, detached, migration-bearing, open-PR, protected,
+and automation-referenced sources. Windows scheduled-task and running-process
+inventories fail closed: if either cannot be read, no otherwise eligible source
+is presented as an owner-review candidate. The output remains planning evidence
+only; cleanup still requires a separate exact approval after a fresh verified
+recovery bundle.
+
 ## 8. External-Action Boundaries
 
 The following actions require explicit authorization even when repository and
