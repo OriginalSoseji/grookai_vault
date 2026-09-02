@@ -66,6 +66,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Keep each dispatch inside the six-hour GitHub runner window.
           node scripts/audits/mtg_catalog_supervisor_v1.mjs \
             --shadow-only \
             --repository="$GITHUB_REPOSITORY" \
@@ -73,7 +74,7 @@ jobs:
             --runner-ref=agent/mtg-pointer-release-v1 \
             --runner-commit=7e9f2bb92f56335a6a352f655e12000b344a63a4 \
             --as-of="$(date -u +%F)" \
-            --max-sets=35 \
+            --max-sets=25 \
             --max-consecutive-failures=3 \
             --out-dir="$SUPERVISOR_OUT_DIR"
 
