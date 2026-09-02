@@ -10,8 +10,8 @@ or Storage write.
 
 ## Provenance
 
-- Generated: `2026-09-02T14:11:57.360Z`
-- Frozen repository SHA: `e4efb0cb9aeea031bc9b14117dd12bd1d2964690`
+- Generated: `2026-09-02T14:22:40.785Z`
+- Frozen repository SHA: `d2522f77ecd1fb9b8553958dbb094027f467cf18`
 - Frozen branch: `docs/repository-archive-candidate-packet-v1`
 - Source ledger: `docs/audits/repository_postmerge_disposition_20260902/postmerge_disposition_ledger.jsonl`
 - Source ledger SHA-256: `97632b2d608309778c2388867024f7ec80be3e6e07d26b03f910ee284a372d45`
@@ -23,7 +23,7 @@ or Storage write.
 
 | Inventory | Status | Findings |
 |---|---:|---:|
-| Repository active code | available | 80 |
+| Repository active code | available | 82 |
 | Windows scheduled tasks | available | 3 |
 | Running processes | available | 22 |
 
@@ -281,7 +281,7 @@ action, is in `archive_candidates.jsonl`.
 | `open_pull_request` | 2 |
 | `protected_branch_or_restore_point` | 3 |
 | `protected_provenance_or_historical_evidence` | 13 |
-| `repository_automation_reference` | 6 |
+| `repository_automation_reference` | 7 |
 | `running_process_reference` | 7 |
 | `scheduled_task_reference` | 2 |
 
