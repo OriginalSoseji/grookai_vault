@@ -1019,6 +1019,15 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const GrookaiObjectsHubScreen());
   }
 
+  Future<void> _openVendorMode() async {
+    await _pushPage<void>(const VendorPricingWorkspaceScreen());
+    if (!mounted) {
+      return;
+    }
+    unawaited(_wallKey.currentState?.reload());
+    unawaited(_vaultKey.currentState?.reload());
+  }
+
   Future<void> _openBinderLibrary() async {
     await _pushPage<void>(
       const BinderLibraryScreen(featureFlags: BinderFeatureFlags.production),
@@ -1514,6 +1523,7 @@ class _AppShellState extends State<AppShell> {
         onOpenSets: _openSets,
         onOpenCompare: _openCompare,
         onOpenGrookaiObjects: _openGrookaiObjectsHub,
+        onOpenVendorMode: _openVendorMode,
         onOpenBinders: _openBinderLibrary,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
@@ -2062,6 +2072,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenSets,
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
+    required this.onOpenVendorMode,
     required this.onOpenBinders,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
@@ -2079,6 +2090,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenSets;
   final Future<void> Function() onOpenCompare;
   final Future<void> Function() onOpenGrookaiObjects;
+  final Future<void> Function() onOpenVendorMode;
   final Future<void> Function() onOpenBinders;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
@@ -2153,6 +2165,12 @@ class _GrookaiAppDrawer extends StatelessWidget {
           label: 'Grookai Objects',
           onTap: () => _closeThenAsync(context, onOpenGrookaiObjects),
         ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.sell_outlined,
+            label: 'Vendor Mode',
+            onTap: () => _closeThenAsync(context, onOpenVendorMode),
+          ),
         if (signedIn && BinderFeatureFlags.production.personalAvailable)
           _GrookaiDrawerTile(
             icon: Icons.bookmarks_rounded,

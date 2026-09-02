@@ -34,6 +34,7 @@ import 'screens/network/network_screen.dart';
 import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
+import 'screens/gvvi/vendor_pricing_workspace_screen.dart';
 import 'screens/grookai_objects/collector_memories_screen.dart';
 import 'screens/grookai_objects/collector_memory_route_screen.dart';
 import 'screens/grookai_objects/grookai_objects_hub_screen.dart';
@@ -149,6 +150,7 @@ List<String> _sentenceSearchExamplesForGame(String gameScope) {
     ],
   };
 }
+
 const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
     <MapEntry<String, String>>[
       MapEntry<String, String>('all', 'All'),

@@ -145,13 +145,19 @@ void main() {
     expect(collectorScreen, contains('The card is still in your Vault.'));
   });
 
-  test('owner Wall exposes one-screen exact-copy Vendor Mode workspace', () {
-    expect(collectorScreen, contains('VendorPricingWorkspaceScreen'));
-    expect(collectorScreen, contains("'Vendor Mode'"));
-    expect(
-      collectorScreen,
-      contains("'Price, organize, publish, and share exact copies'"),
-    );
+  test('drawer exposes one-screen exact-copy Vendor Mode workspace', () {
+    final drawerBlock = RegExp(
+      r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
+    ).firstMatch(mainShell)!.group(0)!;
+    final objectsIndex = drawerBlock.indexOf("label: 'Grookai Objects'");
+    final vendorIndex = drawerBlock.indexOf("label: 'Vendor Mode'");
+
+    expect(mainShell, contains('VendorPricingWorkspaceScreen'));
+    expect(mainShell, contains('onOpenVendorMode: _openVendorMode'));
+    expect(objectsIndex, greaterThanOrEqualTo(0));
+    expect(vendorIndex, greaterThan(objectsIndex));
+    expect(collectorScreen, isNot(contains('VendorPricingWorkspaceScreen')));
+    expect(collectorScreen, isNot(contains('class _VendorPricingShortcut')));
     expect(vendorPricingScreen, contains("label: 'Market'"));
     expect(vendorPricingScreen, contains("label: 'My price'"));
     expect(vendorPricingScreen, contains("Text('Wall'"));

@@ -15,6 +15,11 @@ const screen = fs.readFileSync(
   'lib/screens/gvvi/vendor_pricing_workspace_screen.dart',
   'utf8',
 );
+const mainShell = fs.readFileSync('lib/main_shell.dart', 'utf8');
+const collectorWall = fs.readFileSync(
+  'lib/screens/public_collector/public_collector_screen.dart',
+  'utf8',
+);
 const migration = fs.readFileSync(
   'supabase/migrations/20260817190000_vendor_mode_private_section_visibility_v1.sql',
   'utf8',
@@ -38,6 +43,20 @@ test('Vendor Mode V1 is active and preserves exact-copy authority', () => {
   assert.match(service, /\.eq\('id', instanceId\)/);
   assert.match(service, /\.eq\('user_id', userId\)/);
   assert.match(service, /filter\('archived_at', 'is', null\)/);
+});
+
+test('Vendor Mode is signed-in drawer navigation below Grookai Objects', () => {
+  const drawer = mainShell.match(
+    /class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile/,
+  )?.[0] ?? '';
+  const objectsIndex = drawer.indexOf("label: 'Grookai Objects'");
+  const vendorIndex = drawer.indexOf("label: 'Vendor Mode'");
+
+  assert.ok(objectsIndex >= 0);
+  assert.ok(vendorIndex > objectsIndex);
+  assert.match(drawer, /if \(signedIn\)[\s\S]*?label: 'Vendor Mode'/);
+  assert.match(mainShell, /VendorPricingWorkspaceScreen/);
+  assert.doesNotMatch(collectorWall, /VendorPricingWorkspaceScreen|_VendorPricingShortcut/);
 });
 
 test('market comparisons use only governed exact-printing evidence', () => {
