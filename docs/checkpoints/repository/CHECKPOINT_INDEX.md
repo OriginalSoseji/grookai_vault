@@ -19,3 +19,13 @@ Date: 2026-09-02
 Scope: Preserve every source and produce a tested fresh-main reconciliation candidate without production mutation or source deletion
 
 File: `docs/checkpoints/repository/REPOSITORY_RECONCILIATION_CANDIDATE_COMPLETE_20260902_V1.md`
+
+## REPOSITORY_ARCHIVE_CLEANUP_READY_20260902_V1
+
+Status: READY FOR EXACT OWNER AUTHORIZATION - NOT EXECUTED
+
+Date: 2026-09-02
+
+Scope: Exact dry-run cleanup manifest for 227 recovered repository source groups
+
+File: `docs/checkpoints/repository/REPOSITORY_ARCHIVE_CLEANUP_READY_20260902_V1.md`
