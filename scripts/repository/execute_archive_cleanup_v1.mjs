@@ -77,6 +77,13 @@ function readJsonl(file) {
     .map((line) => JSON.parse(line));
 }
 
+function loadGitBackedText(repoRoot, file, ref) {
+  const absolute = path.isAbsolute(file) ? file : path.resolve(repoRoot, file);
+  if (existsSync(absolute)) return readFileSync(absolute, "utf8");
+  if (path.isAbsolute(file)) throw new Error(`Required local file is unavailable: ${file}`);
+  return git(repoRoot, ["show", `${ref}:${file.replaceAll("\\", "/")}`]);
+}
+
 function normalizePath(value) {
   return String(value).replaceAll("\\", "/").replace(/\/$/, "").toLowerCase();
 }
@@ -414,31 +421,31 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
 export function main() {
   const repoRoot = path.resolve(argument("repo-root", process.cwd()));
   const authorityRef = argument("authority", "origin/main");
-  const selectionPath = path.resolve(repoRoot, argument("selection", DEFAULT_SELECTION));
-  const recoveryManifestPath = path.resolve(
-    repoRoot,
-    argument("recovery-manifest", DEFAULT_RECOVERY_MANIFEST),
-  );
-  const recoveryReadbackPath = path.resolve(
-    repoRoot,
-    argument("recovery-readback", DEFAULT_RECOVERY_READBACK),
-  );
-  const recoveryHashesPath = path.resolve(
-    repoRoot,
-    argument("recovery-hashes", DEFAULT_RECOVERY_HASHES),
-  );
+  const selectionFile = argument("selection", DEFAULT_SELECTION);
+  const recoveryManifestFile = argument("recovery-manifest", DEFAULT_RECOVERY_MANIFEST);
+  const recoveryReadbackFile = argument("recovery-readback", DEFAULT_RECOVERY_READBACK);
+  const recoveryHashesFile = argument("recovery-hashes", DEFAULT_RECOVERY_HASHES);
   const recoveryRoot = path.resolve(argument("recovery-root", DEFAULT_RECOVERY_ROOT));
   const outDir = path.resolve(repoRoot, argument("out-dir", DEFAULT_OUT_DIR));
   const execute = hasFlag("execute");
   const authorizationPath = argument("authorization");
 
   const producerSha = git(repoRoot, ["rev-parse", "HEAD"]);
-  const selectionRecords = readJsonl(selectionPath);
+  const selectionRecords = loadGitBackedText(repoRoot, selectionFile, authorityRef)
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
   const selectionMetadata = selectionRecords[0]?.plan;
   const candidates = selectionRecords.slice(1).map(({ record_type, ...candidate }) => candidate);
-  const recoveryManifest = readJson(recoveryManifestPath);
-  const recoveryReadback = readJson(recoveryReadbackPath);
-  const recoveryHashes = readJson(recoveryHashesPath);
+  const recoveryManifest = JSON.parse(
+    loadGitBackedText(repoRoot, recoveryManifestFile, authorityRef),
+  );
+  const recoveryReadback = JSON.parse(
+    loadGitBackedText(repoRoot, recoveryReadbackFile, authorityRef),
+  );
+  const recoveryHashes = JSON.parse(
+    loadGitBackedText(repoRoot, recoveryHashesFile, authorityRef),
+  );
 
   if (!selectionMetadata || candidates.length !== selectionMetadata.counts.selected_for_recovery) {
     throw new Error("Frozen selection count does not reconcile.");
@@ -460,10 +467,11 @@ export function main() {
   ) {
     throw new Error("Recovery manifest and frozen selection do not reconcile.");
   }
+  const recoveryAuditDir = path.posix.dirname(recoveryManifestFile.replaceAll("\\", "/"));
   for (const [file, expected] of Object.entries(recoveryHashes.files)) {
     assertHash(
       file,
-      sha256(readFileSync(path.join(path.dirname(recoveryManifestPath), file))),
+      sha256(loadGitBackedText(repoRoot, `${recoveryAuditDir}/${file}`, authorityRef)),
       expected,
     );
   }

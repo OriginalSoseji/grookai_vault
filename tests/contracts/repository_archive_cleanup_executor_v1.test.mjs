@@ -103,6 +103,7 @@ test("executor is dry-run by default and destructive commands remain guarded", (
   assert.match(source, /const execute = hasFlag\("execute"\)/);
   assert.match(source, /if \(execute && !authorization\.passed\)/);
   assert.match(source, /if \(execute\) \{\s+const secondPass/);
+  assert.match(source, /git\(repoRoot, \["show", `\$\{ref\}:\$\{file/);
   assert.match(source, /"push", "--atomic", "origin", "--delete"/);
   assert.match(source, /"update-ref", "--stdin"/);
   assert.match(source, /Cleanup failed and rollback was attempted/);
