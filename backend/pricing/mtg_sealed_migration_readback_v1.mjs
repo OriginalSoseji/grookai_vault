@@ -89,7 +89,7 @@ const EXPECTED_FUNCTIONS = Object.freeze({
     definition_patterns: [
       /sealed_product_game_release_controls control/i,
       /control\.release_status = 'signed_in'/i,
-      /coalesce\(auth\.role\(\), ''::text\)/i,
+      /coalesce\(auth\.role\(\), ''(?:::text)?\)/i,
     ],
   },
 });
@@ -150,15 +150,38 @@ export function validateMtgSealedMigrationReadbackV1(proof) {
     row.index_name === 'sealed_product_releases_game_state_idx' &&
     row.valid === true && row.ready === true &&
     /\(game_key, release_state, created_at desc\)/i.test(row.definition));
-  checks.functions = Object.entries(EXPECTED_FUNCTIONS).every(([name, expected]) => {
-    const row = functions.get(name);
-    return row?.security_definer === true && row?.volatility === expected.volatility &&
-      row?.search_path?.includes('search_path=pg_catalog, public') &&
-      row?.public_execute === false && row?.anon_execute === false &&
-      row?.authenticated_execute === expected.authenticated &&
-      row?.service_role_execute === expected.service_role &&
-      expected.definition_patterns.every((pattern) => pattern.test(row.definition));
-  });
+  const functionChecks = Object.fromEntries(
+    Object.entries(EXPECTED_FUNCTIONS).map(([name, expected]) => {
+      const row = functions.get(name);
+      const patternChecks = expected.definition_patterns.map((pattern) => ({
+        pattern: pattern.source,
+        matched: pattern.test(row?.definition ?? ''),
+      }));
+      const matched = row?.security_definer === true &&
+        row?.volatility === expected.volatility &&
+        row?.search_path?.includes('search_path=pg_catalog, public') &&
+        row?.public_execute === false && row?.anon_execute === false &&
+        row?.authenticated_execute === expected.authenticated &&
+        row?.service_role_execute === expected.service_role &&
+        patternChecks.every((check) => check.matched);
+      return [name, {
+        matched,
+        security_definer: row?.security_definer ?? null,
+        expected_volatility: expected.volatility,
+        actual_volatility: row?.volatility ?? null,
+        search_path_locked: row?.search_path?.includes(
+          'search_path=pg_catalog, public') ?? false,
+        public_execute: row?.public_execute ?? null,
+        anon_execute: row?.anon_execute ?? null,
+        expected_authenticated_execute: expected.authenticated,
+        actual_authenticated_execute: row?.authenticated_execute ?? null,
+        expected_service_role_execute: expected.service_role,
+        actual_service_role_execute: row?.service_role_execute ?? null,
+        pattern_checks: patternChecks,
+      }];
+    }),
+  );
+  checks.functions = Object.values(functionChecks).every((row) => row.matched);
   checks.rls = ['sealed_product_releases', 'sealed_product_release_pointer',
     'sealed_product_game_release_controls']
     .every((name) => relations.get(name)?.rls_enabled === true &&
@@ -211,6 +234,9 @@ export function validateMtgSealedMigrationReadbackV1(proof) {
   return {
     valid: Object.values(checks).every(Boolean),
     checks,
-    details: { constraint_checks: constraintChecks },
+    details: {
+      constraint_checks: constraintChecks,
+      function_checks: functionChecks,
+    },
   };
 }
