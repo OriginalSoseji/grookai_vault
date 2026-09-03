@@ -1,0 +1,39 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_ARCHIVE_CLEANUP_MANUAL_RESTORATION_READBACK_V1",
+  "recorded_at": "2026-09-03T04:27:51.7626987Z",
+  "failed_execution_fingerprint": "45d1c55870ea2dde39fcc6ca189996339f0f4cced29ee5e8146c923e8a505445",
+  "failure_stage": "worktree_remove",
+  "failed_worktree": {
+    "path": "C:/grookai_vault_active_runtime_codeql",
+    "expected_branch": "security/active-runtime-codeql-v2",
+    "expected_sha": "0d7856775f35d39d6bf6df55364a67ac1eaf1130",
+    "observed_branch": "security/active-runtime-codeql-v2",
+    "observed_sha": "0d7856775f35d39d6bf6df55364a67ac1eaf1130",
+    "registered": true,
+    "tracked_and_untracked_normal_status_clean": true
+  },
+  "preserved_partial_directory": {
+    "path": "C:/grookai_vault_active_runtime_codeql_failed_cleanup_preserved_20260902T2208MDT",
+    "exists": true,
+    "git_file_exists": false,
+    "file_count": 17277,
+    "logical_bytes": 2255776875
+  },
+  "target_restoration": {
+    "local_branches_present": 203,
+    "remote_branches_present": 135,
+    "registered_worktrees_present": 39,
+    "expected_local_branches": 203,
+    "expected_remote_branches": 135,
+    "expected_registered_worktrees": 39,
+    "passed": true
+  },
+  "boundaries": {
+    "partial_directory_deleted": false,
+    "cleanup_retried": false,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "deployment_mutations": 0
+  },
+  "result": "manual_exact_worktree_restoration_verified"
+}

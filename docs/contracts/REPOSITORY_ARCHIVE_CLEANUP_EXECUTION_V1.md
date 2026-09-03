@@ -1,6 +1,6 @@
 # REPOSITORY_ARCHIVE_CLEANUP_EXECUTION_V1
 
-Status: ACTIVE - EXECUTION NOT AUTHORIZED
+Status: ACTIVE - REPARSE-SAFE EXECUTION REQUIRED; EXECUTION NOT AUTHORIZED
 
 Effective date: 2026-09-02
 
@@ -78,14 +78,24 @@ contract, or approval of repository reconciliation do not authorize cleanup.
    recovery verification, atomic push construction, and per-ref leases pass.
 8. Worktrees are removed only after remote deletion succeeds and while their
    local branches still exist.
-9. Local branch deletion is one `git update-ref --stdin` transaction with old
+9. Every worktree reparse point must be inventoried before authorization and
+   included in the action manifest with its exact source, link target, and
+   collision-checked preservation path outside all cleanup targets.
+10. Manifest-bound reparse points are relocated, not deleted, before Git removes
+   a worktree. The executor must track the worktree before the first relocation.
+11. If Git unregisters a worktree but leaves a partial directory, rollback must
+   preserve that directory at its manifest-bound residual path, reconstruct the
+   exact branch and SHA at the original path, and restore relocated links.
+12. Local branch deletion is one `git update-ref --stdin` transaction with old
    SHA leases.
-10. A failure triggers restoration of exact local and remote refs and recreation
-   of only worktrees removed by that execution.
-11. Post-execution readback must prove all targets absent and all boundaries
-    unchanged before cleanup can be called complete.
-12. Failed execution, rollback results, and direct restoration readback must be
-    persisted before the executor returns a failing exit status.
+13. A failure triggers restoration of exact local and remote refs and recreation
+   of only worktrees attempted by that execution.
+14. Post-execution readback must prove all target refs, registrations, and paths
+    absent; every relocated reparse point preserved; and all boundaries unchanged
+    before cleanup can be called complete.
+15. Failed execution, rollback results, residual preservation, and direct
+   restoration readback must be persisted before the executor returns a failing
+   exit status.
 
 ## Never In Scope
 
@@ -106,6 +116,7 @@ guard or substitute a different target to make the run proceed.
 
 ## Current Gate
 
-Generate and review the no-write execution packet. Destructive execution remains
-locked until the owner explicitly approves the exact generated fingerprints,
-bundle hashes, and action counts.
+Merge and verify the reparse-safe executor, then generate and review a fresh
+no-write execution packet. Destructive execution remains locked until the owner
+explicitly approves the new exact fingerprints, bundle hashes, action counts,
+and manifest-bound filesystem preservation actions.

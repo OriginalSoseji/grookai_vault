@@ -348,6 +348,16 @@ verification, and a second complete live revalidation. Remote deletion remains
 atomic and protected by one exact SHA lease per ref. See
 `docs/contracts/REPOSITORY_ARCHIVE_CLEANUP_EXECUTION_V1.md`.
 
+On Windows, a clean Git status does not prove that Git can delete a worktree.
+Ignored Flutter and Node directories can contain junctions or symbolic links
+that make `git worktree remove` unregister the worktree before filesystem
+deletion fails. The governed executor must inventory every reparse point, bind
+its source and preservation destination into the authorization fingerprint,
+relocate it outside the target, and track the worktree before removal starts.
+If a partial directory remains, preserve it and reconstruct the exact worktree.
+Never use broad `git worktree prune`, `git clean`, or recursive deletion as a
+repair shortcut.
+
 ## 8. External-Action Boundaries
 
 The following actions require explicit authorization even when repository and
