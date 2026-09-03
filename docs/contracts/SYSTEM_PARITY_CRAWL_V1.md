@@ -76,6 +76,10 @@ The production database is inspected inside a read-only transaction. Capture:
 - table statistics and storage footprint;
 - canonical game, set, card, image, and identity-domain aggregates.
 
+The database connection string itself must identify the expected Supabase
+project. A matching HTTP API URL cannot substitute for an unidentifiable or
+mismatched direct/pooler database connection.
+
 The crawl grants no migration, canonical, Storage, pricing, Vault, auth, or
 publication write authority.
 
@@ -110,6 +114,10 @@ Intentional removals or workflow changes require a versioned change ledger.
 Migration deletion or mutation always fails; a ledger cannot waive immutable
 migration history.
 
+RLS disablement, forced-RLS removal, policy mutation, newly granted table
+privileges, and newly grantable privileges fail closed unless the exact security
+object is named in `allowed_changed_database_security_objects`.
+
 ## No-Loss Invariants
 
 A candidate is blocked when any of the following is unexplained:
@@ -123,6 +131,11 @@ A candidate is blocked when any of the following is unexplained:
 - visible image failures increase;
 - the same capture case is missing;
 - artifact hashes or authority SHAs do not reconcile.
+
+A crawl is incomplete and exits unsuccessfully when any required database query,
+runtime capture, or product case fails. HTTP 200 pages containing recognized
+application/internal/not-found error copy are failed product cases, not valid
+captures.
 
 Performance regressions are warnings at 1.5 times the baseline duration or more
 than two additional seconds, whichever allows more variance. A domain release

@@ -223,10 +223,30 @@ function databaseConnectionString() {
   return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || "";
 }
 
-function projectRefFromUrl(value) {
+export function projectRefFromSupabaseUrl(value) {
   if (!value) return null;
-  const match = String(value).match(/(?:https?:\/\/|db\.)([a-z0-9]{20})\.supabase\.co/i);
-  return match?.[1] ?? null;
+  try {
+    const host = new URL(String(value)).hostname;
+    return host.match(/^([a-z0-9]{20})\.supabase\.co$/i)?.[1]
+      ?? host.match(/^db\.([a-z0-9]{20})\.supabase\.co$/i)?.[1]
+      ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export function projectRefFromDatabaseConnectionString(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(String(value));
+    const directHostRef = url.hostname.match(/^db\.([a-z0-9]{20})\.supabase\.co$/i)?.[1] ?? null;
+    const poolerUserRef = decodeURIComponent(url.username)
+      .match(/^postgres\.([a-z0-9]{20})$/i)?.[1] ?? null;
+    if (directHostRef && poolerUserRef && directHostRef !== poolerUserRef) return null;
+    return directHostRef ?? poolerUserRef;
+  } catch {
+    return null;
+  }
 }
 
 async function safeQuery(client, id, sql, params = []) {
@@ -256,11 +276,9 @@ export async function buildDatabaseSnapshot(expectedProjectRef = EXPECTED_PROJEC
   loadLocalEnvironment();
   const connectionString = databaseConnectionString();
   if (!connectionString) throw new Error("SUPABASE_DB_URL or DATABASE_URL is required");
-  const configuredRefs = [
-    projectRefFromUrl(connectionString),
-    projectRefFromUrl(process.env.SUPABASE_URL),
-  ].filter(Boolean);
-  if (configuredRefs.length === 0 || configuredRefs.some((value) => value !== expectedProjectRef)) {
+  const databaseRef = projectRefFromDatabaseConnectionString(connectionString);
+  const apiRef = projectRefFromSupabaseUrl(process.env.SUPABASE_URL);
+  if (databaseRef !== expectedProjectRef || (apiRef && apiRef !== expectedProjectRef)) {
     throw new Error(`Database project-ref sanity failed; expected ${expectedProjectRef}`);
   }
   const client = new pg.Client({
@@ -529,6 +547,12 @@ async function inspectImages(page) {
   );
 }
 
+export function productCaseStatus({ httpStatus, pageErrorCount = 0, hardErrorCopy = false }) {
+  return httpStatus != null && httpStatus < 400 && pageErrorCount === 0 && !hardErrorCopy
+    ? "captured"
+    : "failed";
+}
+
 export async function buildProductSnapshot(outDir, origin = DEFAULT_ORIGIN) {
   const { chromium } = await import("@playwright/test");
   const browser = await chromium.launch({ headless: true });
@@ -568,6 +592,7 @@ export async function buildProductSnapshot(outDir, origin = DEFAULT_ORIGIN) {
           const title = await page.title();
           const h1 = await page.locator("h1").allTextContents();
           const body = await page.locator("body").innerText();
+          const hardErrorCopy = /application error|internal server error|this page could not be found/i.test(body);
           const images = await inspectImages(page);
           const screenshotName = `${viewport.id}_${route.id}.png`;
           await page.screenshot({
@@ -586,7 +611,7 @@ export async function buildProductSnapshot(outDir, origin = DEFAULT_ORIGIN) {
             title,
             h1,
             body_text_sha256: sha256(body),
-            hard_error_copy: /application error|internal server error|this page could not be found/i.test(body),
+            hard_error_copy: hardErrorCopy,
             visible_image_count: visibleImages.length,
             failed_visible_image_count: visibleImages.filter((image) => !image.loaded).length,
             visible_image_hosts: [...new Set(visibleImages.map((image) => {
@@ -595,9 +620,11 @@ export async function buildProductSnapshot(outDir, origin = DEFAULT_ORIGIN) {
             page_errors: pageErrors,
             request_failures: requestFailures,
             screenshot: screenshotName,
-            status: response && response.status() < 400 && pageErrors.length === 0
-              ? "captured"
-              : "failed",
+            status: productCaseStatus({
+              httpStatus: response?.status() ?? null,
+              pageErrorCount: pageErrors.length,
+              hardErrorCopy,
+            }),
           });
         } catch (error) {
           cases.push({
@@ -691,13 +718,47 @@ export function compareDatabaseSnapshots(baseline, candidate, ledger = {}) {
   const relationKey = (row) => `${row.schema_name}.${row.relation_name}:${row.relkind}`;
   const functionKey = (row) => `${row.schema_name}.${row.function_name}(${row.identity_arguments})`;
   const policyKey = (row) => `${row.schema_name}.${row.relation_name}:${row.policyname}`;
+  const grantKey = (row) => `${row.table_schema}.${row.table_name}:${row.grantee}:${row.privilege_type}`;
   const relations = compareCollections(queryRows(baseline, "relations"), queryRows(candidate, "relations"), relationKey);
   const functions = compareCollections(queryRows(baseline, "functions"), queryRows(candidate, "functions"), functionKey);
   const policies = compareCollections(queryRows(baseline, "policies"), queryRows(candidate, "policies"), policyKey);
+  const grants = compareCollections(queryRows(baseline, "grants"), queryRows(candidate, "grants"), grantKey);
   const allowedRemovedObjects = allowedSet(ledger, "allowed_removed_database_objects");
+  const allowedSecurityChanges = allowedSet(ledger, "allowed_changed_database_security_objects");
   for (const [code, comparison] of [["relation", relations], ["function", functions], ["policy", policies]]) {
     for (const item of comparison.removed) {
       if (!allowedRemovedObjects.has(item)) findings.push({ severity: "regression", code: `${code}_removed`, item });
+    }
+  }
+  const baselineRelations = keyed(queryRows(baseline, "relations"), relationKey);
+  const candidateRelations = keyed(queryRows(candidate, "relations"), relationKey);
+  for (const item of relations.changed) {
+    const before = baselineRelations.get(item);
+    const after = candidateRelations.get(item);
+    const rlsWeakened = (before?.rls_enabled === true && after?.rls_enabled !== true)
+      || (before?.rls_forced === true && after?.rls_forced !== true);
+    if (rlsWeakened && !allowedSecurityChanges.has(`relation:${item}`)) {
+      findings.push({ severity: "regression", code: "relation_rls_weakened", item });
+    }
+  }
+  for (const item of policies.changed) {
+    if (!allowedSecurityChanges.has(`policy:${item}`)) {
+      findings.push({ severity: "regression", code: "policy_changed_without_ledger", item });
+    }
+  }
+  for (const item of grants.added) {
+    if (!allowedSecurityChanges.has(`grant:${item}`)) {
+      findings.push({ severity: "regression", code: "grant_added_without_ledger", item });
+    }
+  }
+  const baselineGrants = keyed(queryRows(baseline, "grants"), grantKey);
+  const candidateGrants = keyed(queryRows(candidate, "grants"), grantKey);
+  for (const item of grants.changed) {
+    const before = baselineGrants.get(item);
+    const after = candidateGrants.get(item);
+    if (before?.is_grantable !== "YES" && after?.is_grantable === "YES"
+        && !allowedSecurityChanges.has(`grant:${item}`)) {
+      findings.push({ severity: "regression", code: "grant_became_grantable", item });
     }
   }
   const baselineCounts = keyed(queryRows(baseline, "card_prints_by_game"), (row) => `${row.game_code}:${row.identity_domain}`);
@@ -708,7 +769,7 @@ export function compareDatabaseSnapshots(baseline, candidate, ledger = {}) {
       findings.push({ severity: "regression", code: "canonical_card_count_decreased", item: key });
     }
   }
-  return { relations, functions, policies, findings };
+  return { relations, functions, policies, grants, findings };
 }
 
 export function compareProductSnapshots(baseline, candidate) {
@@ -725,6 +786,9 @@ export function compareProductSnapshots(baseline, candidate) {
     if (baselineCase.status === "captured" && candidateCase.status !== "captured") {
       findings.push({ severity: "regression", code: "product_case_failed", item: key });
     }
+    if (candidateCase.hard_error_copy === true) {
+      findings.push({ severity: "regression", code: "product_hard_error_copy", item: key });
+    }
     if ((candidateCase.failed_visible_image_count ?? 0) > (baselineCase.failed_visible_image_count ?? 0)) {
       findings.push({ severity: "regression", code: "visible_image_failures_increased", item: key });
     }
@@ -736,17 +800,65 @@ export function compareProductSnapshots(baseline, candidate) {
   return { findings };
 }
 
+export function compareRuntimeSnapshots(_baseline, candidate) {
+  const errors = candidate?.errors ?? [];
+  return {
+    findings: errors.map((error) => ({
+      severity: "regression",
+      code: "runtime_capture_incomplete",
+      item: error.component ?? "unknown",
+    })),
+  };
+}
+
+export function captureCompletenessFindings(database, runtime, product) {
+  const findings = [];
+  for (const queryName of database?.required_query_failures ?? []) {
+    findings.push({ domain: "database", code: "required_query_incomplete", item: queryName });
+  }
+  for (const error of runtime?.errors ?? []) {
+    findings.push({ domain: "runtime", code: "runtime_capture_incomplete", item: error.component ?? "unknown" });
+  }
+  const productCases = product?.cases ?? [];
+  if (product?.status === "skipped" || product?.error || Number(product?.case_count ?? 0) === 0) {
+    findings.push({
+      domain: "product",
+      code: "product_capture_incomplete",
+      item: product?.status ?? "unavailable",
+    });
+  }
+  if (Number(product?.case_count ?? 0) !== productCases.length) {
+    findings.push({
+      domain: "product",
+      code: "product_case_count_mismatch",
+      item: `${productCases.length}/${product?.case_count ?? 0}`,
+    });
+  }
+  for (const item of productCases) {
+    if (item.status !== "captured") {
+      findings.push({
+        domain: "product",
+        code: "product_case_incomplete",
+        item: `${item.viewport}:${item.route_id}`,
+      });
+    }
+  }
+  return findings;
+}
+
 export function compareParitySnapshots(baseline, candidate, ledger = {}) {
   const repository = compareRepositorySnapshots(baseline.repository, candidate.repository, ledger);
   const database = compareDatabaseSnapshots(baseline.database, candidate.database, ledger);
+  const runtime = compareRuntimeSnapshots(baseline.runtime, candidate.runtime);
   const product = compareProductSnapshots(baseline.product, candidate.product);
-  const findings = [...repository.findings, ...database.findings, ...product.findings];
+  const findings = [...repository.findings, ...database.findings, ...runtime.findings, ...product.findings];
   return {
     schema_version: `${VERSION}_COMPARISON`,
     baseline_authority_sha: baseline.manifest?.authority?.sha ?? null,
     candidate_authority_sha: candidate.manifest?.authority?.sha ?? null,
     repository,
     database,
+    runtime,
     product,
     findings,
     regression_count: findings.filter((finding) => finding.severity === "regression").length,
@@ -922,9 +1034,12 @@ async function capture() {
     await writeJson(path.join(outRoot, "parity_comparison.json"), comparison);
   }
 
+  const captureFindings = captureCompletenessFindings(database, runtime, product);
   const summary = {
     schema_version: `${VERSION}_SUMMARY`,
-    status: comparison?.parity_status ?? "BASELINE_CAPTURED",
+    status: captureFindings.length > 0
+      ? "CAPTURE_INCOMPLETE"
+      : (comparison?.parity_status ?? "BASELINE_CAPTURED"),
     authority_sha: authoritySha,
     producer_sha: producerSha,
     repository: {
@@ -937,6 +1052,11 @@ async function capture() {
     database: { required_query_failures: database.required_query_failures?.length ?? 0 },
     runtime: { error_count: runtime.errors?.length ?? 0 },
     product: { case_count: product.case_count ?? 0, failed_case_count: product.failed_case_count ?? 0 },
+    capture: {
+      complete: captureFindings.length === 0,
+      failure_count: captureFindings.length,
+      failures: captureFindings,
+    },
     parity: comparison
       ? { status: comparison.parity_status, regressions: comparison.regression_count, warnings: comparison.warning_count }
       : null,
@@ -945,7 +1065,7 @@ async function capture() {
   await fs.writeFile(path.join(outRoot, "REPORT.md"), reportMarkdown(manifest, summary, comparison));
   await writeJson(path.join(outRoot, "artifact_hashes.json"), await hashArtifacts(outRoot));
   process.stdout.write(`${JSON.stringify({ ...summary, artifact_root: posix(path.relative(ROOT, outRoot)) }, null, 2)}\n`);
-  if ((database.required_query_failures?.length ?? 0) > 0) process.exitCode = 1;
+  if (captureFindings.length > 0) process.exitCode = 1;
   if (comparison?.parity_status === "BLOCKED") process.exitCode = 1;
 }
 
