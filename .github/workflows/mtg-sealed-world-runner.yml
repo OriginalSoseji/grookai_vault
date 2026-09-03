@@ -20,6 +20,18 @@ on:
         description: Exact merged commit SHA that must produce the evidence
         required: true
         type: string
+      expected_plan_fingerprint:
+        description: Separately approved plan fingerprint; required only for apply
+        required: false
+        type: string
+      expected_source_fingerprint:
+        description: Separately approved source fingerprint; required only for apply
+        required: false
+        type: string
+      expected_counts_json:
+        description: Separately approved exact payload counts JSON; required only for apply
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -36,6 +48,9 @@ jobs:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       OPERATION: ${{ inputs.operation }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
+      EXPECTED_PLAN_FINGERPRINT: ${{ inputs.expected_plan_fingerprint }}
+      EXPECTED_SOURCE_FINGERPRINT: ${{ inputs.expected_source_fingerprint }}
+      EXPECTED_COUNTS_JSON: ${{ inputs.expected_counts_json }}
       TARGET_MIGRATION: 20260903130000_sealed_product_per_game_release_v2.sql
 
     steps:
@@ -62,6 +77,7 @@ jobs:
           node --check backend/pricing/mtg_sealed_world_v1.mjs
           node --check scripts/audits/mtg_sealed_world_v1.mjs
           node --test \
+            tests/contracts/mtg_sealed_world_operator_v1.test.mjs \
             tests/contracts/mtg_sealed_world_v1.test.mjs \
             tests/contracts/sealed_product_per_game_release_v2.test.mjs \
             tests/contracts/cross_tcg_sealed_product_identity_v1.test.mjs \
@@ -121,6 +137,31 @@ jobs:
           [[ "$fingerprint" =~ ^[0-9a-f]{64}$ ]]
           echo "PLAN_FINGERPRINT=$fingerprint" >> "$GITHUB_ENV"
 
+      - name: Bind durable apply to exact approved payload
+        if: ${{ inputs.operation == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_PLAN_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
+          [[ "$EXPECTED_SOURCE_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
+          test -n "$EXPECTED_COUNTS_JSON"
+          node - "$RUNNER_TEMP/mtg-sealed-plan/summary.json" \
+            "$EXPECTED_PLAN_FINGERPRINT" "$EXPECTED_SOURCE_FINGERPRINT" \
+            "$EXPECTED_COUNTS_JSON" <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const [summaryPath, expectedPlan, expectedSource, expectedCountsJson] =
+            process.argv.slice(2);
+          const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+          const expectedCounts = JSON.parse(expectedCountsJson);
+          assert.equal(summary.plan_fingerprint_sha256, expectedPlan,
+            'approved plan fingerprint does not match live plan');
+          assert.equal(summary.source_fingerprint_sha256, expectedSource,
+            'approved source fingerprint does not match live source');
+          assert.deepEqual(summary.counts, expectedCounts,
+            'approved payload counts do not match live plan');
+          NODE
+
       - name: Run live read-only preflight
         if: ${{ inputs.operation == 'preflight' || inputs.operation == 'rollback_canary' || inputs.operation == 'apply' }}
         shell: bash
@@ -152,7 +193,9 @@ jobs:
             --mode=apply \
             --execute-durable-apply \
             --expected-head-sha="$EXPECTED_SHA" \
-            --expected-plan-fingerprint="$PLAN_FINGERPRINT" \
+            --expected-plan-fingerprint="$EXPECTED_PLAN_FINGERPRINT" \
+            --expected-source-fingerprint="$EXPECTED_SOURCE_FINGERPRINT" \
+            --expected-counts-json="$EXPECTED_COUNTS_JSON" \
             --out-dir="$RUNNER_TEMP/mtg-sealed-apply"
 
       - name: Run independent readback

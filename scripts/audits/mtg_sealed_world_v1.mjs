@@ -26,13 +26,20 @@ const DEFAULT_OUT = path.join(ROOT, 'docs', 'audits', 'pricing',
 
 function parseArgs(argv) {
   const args = { mode: '', expectedHeadSha: '', expectedPlanFingerprint: '',
-    execute: false, envFile: 'C:\\grookai_vault\\.env.local', outDir: DEFAULT_OUT };
+    expectedSourceFingerprint: '', expectedCounts: null, execute: false,
+    envFile: 'C:\\grookai_vault\\.env.local', outDir: DEFAULT_OUT };
   for (const argument of argv) {
     if (argument.startsWith('--mode=')) args.mode = argument.slice(7);
     else if (argument.startsWith('--expected-head-sha=')) {
       args.expectedHeadSha = argument.slice(20).trim().toLowerCase();
     } else if (argument.startsWith('--expected-plan-fingerprint=')) {
       args.expectedPlanFingerprint = argument.slice(28).trim().toLowerCase();
+    } else if (argument.startsWith('--expected-source-fingerprint=')) {
+      args.expectedSourceFingerprint = argument
+        .slice('--expected-source-fingerprint='.length).trim().toLowerCase();
+    } else if (argument.startsWith('--expected-counts-json=')) {
+      args.expectedCounts = JSON.parse(
+        argument.slice('--expected-counts-json='.length));
     } else if (argument === '--execute-durable-apply') args.execute = true;
     else if (argument.startsWith('--env-file=')) {
       args.envFile = path.resolve(argument.slice(11));
@@ -52,6 +59,15 @@ function parseArgs(argv) {
   }
   if (args.mode === 'apply' && !args.execute) {
     throw new Error('Apply requires --execute-durable-apply');
+  }
+  if (args.mode === 'apply' &&
+      !/^[0-9a-f]{64}$/.test(args.expectedSourceFingerprint)) {
+    throw new Error('Apply requires exact --expected-source-fingerprint');
+  }
+  if (args.mode === 'apply' &&
+      (!args.expectedCounts || Array.isArray(args.expectedCounts) ||
+       typeof args.expectedCounts !== 'object')) {
+    throw new Error('Apply requires exact --expected-counts-json');
   }
   return args;
 }
@@ -531,6 +547,14 @@ async function main() {
       if (plan.plan_fingerprint_sha256 !== args.expectedPlanFingerprint) {
         throw new Error('Live sealed-world plan fingerprint changed');
       }
+      if (args.mode === 'apply' &&
+          plan.source_fingerprint_sha256 !== args.expectedSourceFingerprint) {
+        throw new Error('Live sealed-world source fingerprint changed');
+      }
+      if (args.mode === 'apply' &&
+          hashMtgSealedV1(plan.counts) !== hashMtgSealedV1(args.expectedCounts)) {
+        throw new Error('Live sealed-world payload counts changed');
+      }
       const proof = await preflight(client, live, args.expectedPlanFingerprint);
       if (!proof.valid) throw new Error('MTG sealed transactional preflight failed');
       await insertPlan(client, plan);
@@ -589,6 +613,8 @@ async function main() {
     'run_plan.json': { version: MTG_SEALED_WORLD_V1, mode: args.mode,
       repository: repo, expected_plan_fingerprint:
         args.expectedPlanFingerprint || null,
+      expected_source_fingerprint: args.expectedSourceFingerprint || null,
+      expected_counts: args.expectedCounts,
       boundaries: { cards: 'no writes', storage: 'no writes',
         vault: 'no writes', catalog_release: 'no writes',
         one_piece: 'must remain unchanged' } },

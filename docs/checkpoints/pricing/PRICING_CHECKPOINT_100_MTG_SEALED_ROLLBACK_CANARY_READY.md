@@ -2,7 +2,7 @@
 
 ## Status
 
-`PAYLOAD PLAN FROZEN - PREFLIGHT AND ROLLBACK PROVEN - APPLY NOT AUTHORIZED`
+`ROLLBACK PROVEN - APPLY AUTHORITY BINDING REPAIR REQUIRED - APPLY BLOCKED`
 
 ## Context
 
@@ -170,13 +170,18 @@ The canary summary SHA-256 is
   committed residue.
 - One Piece sealed data and pointer remain unchanged.
 - Durable MTG sealed payload apply has not been authorized or executed.
+- The proof runs exposed that the workflow recomputed its own apply fingerprint
+  without comparing it to separately approved plan, source, and count values.
+  The current PR repairs that boundary; the recorded plan is now evidence only
+  and must be regenerated from the merged repair SHA.
 - Storage, image pointers, pricing publication, Vault writes, and visibility
   activation remain outside this gate.
 
 ## Invariants
 
-- Durable apply must use the exact frozen producer, plan fingerprint, source
-  fingerprint, and counts recorded here.
+- Durable apply must accept and compare separately approved producer, plan
+  fingerprint, source fingerprint, and exact counts; live recomputation cannot
+  authorize itself.
 - Any source or plan fingerprint drift invalidates this apply candidate.
 - MTG sealed remains hidden after payload apply until a separate release gate.
 - One Piece must reconcile to its pre-apply hashes.
@@ -207,7 +212,13 @@ The canary summary SHA-256 is
 
 ## Explicit Next Gate
 
-Obtain separate exact production authority for the MTG sealed payload using:
+Merge the apply-authority binding repair and rerun `plan`, `preflight`, and
+`rollback_canary` from that exact merged SHA. The workflow must prove that an
+`apply` operation cannot begin unless separately supplied plan, source, and
+exact-count values match the live plan.
+
+The following values remain immutable evidence for the pre-repair proof but are
+not apply authority:
 
 - producer SHA:
   `51db4e1e5eb26ed31f006df38fa5d28eda2ef69d`;
@@ -217,10 +228,11 @@ Obtain separate exact production authority for the MTG sealed payload using:
   `4930912401798650fee813993ca9e588b198cc1fc8d259e0aeb71e72d9f805af`;
 - exact payload counts recorded above.
 
-That authority may permit only the planned MTG sealed family, variant,
+After the repaired workflow produces stable replacement fingerprints and counts,
+record them in a new checkpoint and obtain separate exact production authority.
+That later authority may permit only the planned MTG sealed family, variant,
 candidate, review, mapping, evidence, qualification, release, member, and MTG
 pointer rows. It must explicitly exclude Storage, image pointers, card catalog,
 pricing publication, Vault writes, One Piece mutation, visibility activation,
-updates, deletes, cleanup, and rows outside the frozen payload.
-
-After apply, run an independent readback and stop with MTG sealed still hidden.
+updates, deletes, cleanup, and rows outside the frozen payload. After apply, run
+an independent readback and stop with MTG sealed still hidden.

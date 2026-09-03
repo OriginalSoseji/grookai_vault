@@ -45,10 +45,14 @@ edition, wave, language, content count, material, or price.
 2. Freeze one exact live plan and its SHA-256 fingerprint.
 3. Pass live read-only preflight.
 4. Insert the full plan inside a rollback canary and prove zero residue.
-5. Rebuild and compare the exact plan inside the durable transaction.
-6. Insert, freeze, and activate the MTG sealed release.
-7. Commit only after exact row readback and unchanged One Piece proof.
-8. Run an independent readback from the same producer SHA and fingerprint.
+5. Obtain separate production authority for the exact producer SHA, plan
+   fingerprint, source fingerprint, and payload counts.
+6. Rebuild and compare every separately approved value before and inside the
+   durable transaction. Live recomputation cannot authorize itself.
+7. Insert, freeze, and activate the MTG sealed release pointer while sealed
+   visibility remains hidden.
+8. Commit only after exact row readback and unchanged One Piece proof.
+9. Run an independent readback from the same producer SHA and fingerprint.
 
 ## Release Boundary
 

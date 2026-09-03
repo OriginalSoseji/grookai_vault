@@ -10,7 +10,12 @@ const workflow = fs.readFileSync(
 test('durable operator is exact-SHA and explicit-apply gated', () => {
   assert.match(operator, /Exact --expected-head-sha is required/);
   assert.match(operator, /Apply requires --execute-durable-apply/);
+  assert.match(operator,
+    /Apply requires exact --expected-source-fingerprint/);
+  assert.match(operator, /Apply requires exact --expected-counts-json/);
   assert.match(operator, /Live sealed-world plan fingerprint changed/);
+  assert.match(operator, /Live sealed-world source fingerprint changed/);
+  assert.match(operator, /Live sealed-world payload counts changed/);
   assert.match(workflow, /test "\$GITHUB_SHA" = "\$EXPECTED_SHA"/);
 });
 
@@ -35,6 +40,23 @@ test('workflow chains preflight, canary, apply, and readback from one fingerprin
   assert.match(workflow, /--mode=apply/);
   assert.match(workflow, /--mode=readback/);
   assert.match(workflow, /TARGET_MIGRATION: 20260903130000_/);
+});
+
+test('durable workflow compares separately approved plan, source, and counts', () => {
+  assert.match(workflow, /expected_plan_fingerprint:/);
+  assert.match(workflow, /expected_source_fingerprint:/);
+  assert.match(workflow, /expected_counts_json:/);
+  assert.match(workflow, /Bind durable apply to exact approved payload/);
+  assert.match(workflow,
+    /approved plan fingerprint does not match live plan/);
+  assert.match(workflow,
+    /approved source fingerprint does not match live source/);
+  assert.match(workflow, /approved payload counts do not match live plan/);
+  assert.match(workflow,
+    /--expected-plan-fingerprint="\$EXPECTED_PLAN_FINGERPRINT"/);
+  assert.match(workflow,
+    /--expected-source-fingerprint="\$EXPECTED_SOURCE_FINGERPRINT"/);
+  assert.match(workflow, /--expected-counts-json="\$EXPECTED_COUNTS_JSON"/);
 });
 
 test('workflow installs dependencies before importing contract modules', () => {
