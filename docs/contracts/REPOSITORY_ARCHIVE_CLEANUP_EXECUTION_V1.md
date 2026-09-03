@@ -71,15 +71,20 @@ contract, or approval of repository reconciliation do not authorize cleanup.
    first mutation.
 6. Remote branch deletion is one atomic push with an exact SHA lease for every
    target, closing the revalidation-to-push race.
-7. Worktrees are removed only after remote deletion succeeds and while their
+7. Governed remote deletion and restoration pushes use `--no-verify` because
+   this operator worktree is intentionally sparse while the repository's
+   pre-push hook requires a full checkout. The bypass applies only after
+   targeted contract checks, exact authorization, second live revalidation,
+   recovery verification, atomic push construction, and per-ref leases pass.
+8. Worktrees are removed only after remote deletion succeeds and while their
    local branches still exist.
-8. Local branch deletion is one `git update-ref --stdin` transaction with old
+9. Local branch deletion is one `git update-ref --stdin` transaction with old
    SHA leases.
-9. A failure triggers restoration of exact local and remote refs and recreation
+10. A failure triggers restoration of exact local and remote refs and recreation
    of only worktrees removed by that execution.
-10. Post-execution readback must prove all targets absent and all boundaries
+11. Post-execution readback must prove all targets absent and all boundaries
     unchanged before cleanup can be called complete.
-11. Failed execution, rollback results, and direct restoration readback must be
+12. Failed execution, rollback results, and direct restoration readback must be
     persisted before the executor returns a failing exit status.
 
 ## Never In Scope
