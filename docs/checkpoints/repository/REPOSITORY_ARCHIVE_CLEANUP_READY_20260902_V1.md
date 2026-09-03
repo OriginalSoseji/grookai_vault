@@ -41,13 +41,13 @@ and safe relative to current production authority.
 
 ## Dry-Run Proof
 
-- Producer SHA: `4dc730a56bb19739d78b2217b58faa05ccd7ebdf`
+- Producer SHA: `5de6414da0b3181562f8f33b905e39bbe55450dd`
 - Authority: `origin/main` at
   `8084fe4e441c53b4d9efd9d0fcf16a5b6771bb9a`
 - Selection fingerprint:
   `7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221`
 - Execution fingerprint:
-  `d1e4c6a9b4098e1e59169c898a792e29b3071ded21a01bd8cbe8fdfa034e1675`
+  `8a38bd56c6da000141c5cdc0c12cf78f1201654f301a716150b5a24ccf49d6eb`
 - Action-manifest SHA-256:
   `7bb06fc150d92a5a8f2791f6691f5176ef5f95274602ab3128c8c8e9ee1f2824`
 - Candidate groups: `227`
