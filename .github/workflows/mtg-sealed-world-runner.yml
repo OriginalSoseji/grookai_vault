@@ -35,7 +35,7 @@ jobs:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       OPERATION: ${{ inputs.operation }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
-      TARGET_MIGRATION: 20260816170000_sealed_product_per_game_release_v2.sql
+      TARGET_MIGRATION: 20260903130000_sealed_product_per_game_release_v2.sql
 
     steps:
       - uses: actions/checkout@v4
@@ -72,6 +72,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          npx --yes supabase@2.54.11 migration list \
+            --db-url "$SUPABASE_DB_URL" 2>&1 | tee migration_list.txt
+          if grep -Eq '^\s*\|\s*[0-9]{8,14}\s*\|' migration_list.txt; then
+            echo "Remote-only migration detected." >&2
+            exit 1
+          fi
           npx --yes supabase@2.54.11 db push \
             --db-url "$SUPABASE_DB_URL" \
             --dry-run 2>&1 | tee migration_dry_run.txt
@@ -88,7 +94,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes supabase@2.54.11 db push --db-url "$SUPABASE_DB_URL"
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL"
 
       - name: Freeze exact live plan
         if: ${{ !startsWith(inputs.operation, 'migration_') }}
@@ -156,6 +163,7 @@ jobs:
           name: mtg-sealed-${{ inputs.operation }}-${{ github.run_id }}
           path: |
             migration_dry_run.txt
+            migration_list.txt
             ${{ runner.temp }}/mtg-sealed-*
           if-no-files-found: warn
           retention-days: 90

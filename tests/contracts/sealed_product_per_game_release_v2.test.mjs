@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import test from 'node:test';
 
 const sql = fs.readFileSync(
-  'supabase/migrations/20260816170000_sealed_product_per_game_release_v2.sql',
+  'supabase/migrations/20260903130000_sealed_product_per_game_release_v2.sql',
   'utf8',
 );
 

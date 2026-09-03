@@ -1,4 +1,7 @@
 -- SEALED_PRODUCT_PER_GAME_RELEASE_V2
+-- Retimestamped from 20260816170000 while still unapplied so production can
+-- consume it in forward-only ledger order. Original SQL SHA-256:
+-- 5f47fe42a3c4b6459d6bcaef1c91249a445aa6a64061cad8d3fa94afee4a0c7e
 -- Evolves the sealed release pointer from one global row to one row per game.
 -- Existing release/member/qualification data is preserved and backfilled.
 
