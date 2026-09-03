@@ -1,0 +1,10 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_ARCHIVE_CLEANUP_ARTIFACT_HASHES_V1",
+  "generated_at": "2026-09-03T02:01:17.895Z",
+  "producer_sha": "4dc730a56bb19739d78b2217b58faa05ccd7ebdf",
+  "files": {
+    "cleanup_execution_plan.json": "9130bf18cdff7aff69420909802ac239012a963037f87701823b1d0ec7fe5782",
+    "cleanup_live_revalidation.jsonl": "5d763d81fccfd8d622a913a09ce13b765d98caed2547c166c1dcb24c2b5ba2b5",
+    "CLEANUP_EXECUTION_CHECKPOINT_V1.md": "6234d189b06157344c1fa29cc9819fac89e4aae70485cb7029587497dfc18186"
+  }
+}
