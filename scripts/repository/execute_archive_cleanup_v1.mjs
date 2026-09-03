@@ -81,7 +81,16 @@ function loadGitBackedText(repoRoot, file, ref) {
   const absolute = path.isAbsolute(file) ? file : path.resolve(repoRoot, file);
   if (existsSync(absolute)) return readFileSync(absolute, "utf8");
   if (path.isAbsolute(file)) throw new Error(`Required local file is unavailable: ${file}`);
-  return git(repoRoot, ["show", `${ref}:${file.replaceAll("\\", "/")}`]);
+  return execFileSync(
+    "git",
+    ["show", `${ref}:${file.replaceAll("\\", "/")}`],
+    {
+      cwd: repoRoot,
+      encoding: "utf8",
+      windowsHide: true,
+      maxBuffer: 512 * 1024 * 1024,
+    },
+  );
 }
 
 function normalizePath(value) {
