@@ -1,0 +1,24 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_SUMMARY",
+  "status": "BASELINE_CAPTURED",
+  "authority_sha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+  "producer_sha": "311dc50481714aee580f13daae75d3c70c2d1253",
+  "repository": {
+    "tracked_files": 21414,
+    "migrations": 382,
+    "workflows": 58,
+    "web_routes": 95,
+    "entrypoints": 160
+  },
+  "database": {
+    "required_query_failures": 0
+  },
+  "runtime": {
+    "error_count": 0
+  },
+  "product": {
+    "case_count": 14,
+    "failed_case_count": 0
+  },
+  "parity": null
+}

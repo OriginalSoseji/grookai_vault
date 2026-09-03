@@ -1,0 +1,4956 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_REPOSITORY_SNAPSHOT",
+  "authority": "origin/main",
+  "authority_sha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+  "tracked_file_count": 21414,
+  "tracked_tree_sha256": "66b810e9ee708c3182e3020c01815fad510fc31bac8a5d02d2cd36dd0b6f5153",
+  "migrations": [
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7e460ab29e4dd5dc57a9930f346ddd7132d7b724",
+      "path": "supabase/migrations/_quarantine/20260323221422_remote_schema.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "20206c66e900f4aef8f5d0847cf370206b74de16",
+      "path": "supabase/migrations/20251127041609_legacy_remote_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251130090000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251130100000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251201000000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251201181124_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251201184245_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251202000000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251205090000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251206090000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251206110000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251206113000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251206120000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251206140000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251207150000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251207235901_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208000000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208121500_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208123000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208124500_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208133000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208143000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208150000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251208151000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251209120000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b8053b2ed6bde54488a43c7653d2baa048b38c15",
+      "path": "supabase/migrations/20251213153624_baseline_extensions.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "32a3f3a9fed03340b162dcb2c0dc2c0ddb782f28",
+      "path": "supabase/migrations/20251213153625_baseline_init.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2f6d288fc62ef93a6e749d23712c4ef9840684cb",
+      "path": "supabase/migrations/20251213153626_baseline_functions.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9230018ce13ed7a68d24b52a90b12b32019a381e",
+      "path": "supabase/migrations/20251213153627_baseline_views.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "bb00c0e91982c866f42a2748e4d32cb2a4e84af2",
+      "path": "supabase/migrations/20251213153628_baseline_view_comments.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3d642915121fdaf7f6557c770d007703b9b3ae36",
+      "path": "supabase/migrations/20251213153629_baseline_materialized_views.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ffa07caae029bcb79b529a6ca0bf7e1ab5b96eae",
+      "path": "supabase/migrations/20251213153630_baseline_constraints.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "30006e10d500d560d0c39dc622efe4c2bfa5e54a",
+      "path": "supabase/migrations/20251213153631_baseline_indexes.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "04bbfa89da9ccabb9b05391553891ed425753ebe",
+      "path": "supabase/migrations/20251213153632_baseline_triggers.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "85e7d9ff75cb2a4c2d8abb707e0499238936496e",
+      "path": "supabase/migrations/20251213153633_baseline_policies.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2eca5e63bef2b4ef02031efead69e3abc6762f61",
+      "path": "supabase/migrations/20251213153634_baseline_rls_enable.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "path": "supabase/migrations/20251213153635_baseline_functions_post_views.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "480b364b94dc44a889e8adb73b2f243380532eba",
+      "path": "supabase/migrations/20251213153636_baseline_views_late.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f1b5c2585ef72630fa6e2e98fde04df23ef3fee2",
+      "path": "supabase/migrations/20251213153637_baseline_view_comments_late.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4f3ac5a7922aa84a8fcab64ab5a040af4f3b7948",
+      "path": "supabase/migrations/20251213153648_baseline_seed.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251213223000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251213230000_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251213231500_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251215125604_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251215131343_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251215224741_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "eea2007c14b630df364b7db2b2817cd72d48e5b5",
+      "path": "supabase/migrations/20251223_legacy_remote_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f505baf6abb0f6fcb112993dc5e6e0b21c317310",
+      "path": "supabase/migrations/20251227113728_legacy_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "118a9c5036688c1f7112ce9d5168045f9a173e67",
+      "path": "supabase/migrations/20251229214410_condition_snapshots_phase0_init.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d5654081e34870f50dde849d6b868dc404524c2d",
+      "path": "supabase/migrations/20251229215511_condition_scans_bucket_and_policies.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "bc717920b51e4ed176ac7f8966d1bb1d6decc611",
+      "path": "supabase/migrations/20251229221101_condition_scans_bucket_and_policies.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1bf1a568c5aa8951e1e20e6349b5e014753d0189",
+      "path": "supabase/migrations/20251230045041_condition_snapshots_insert_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "39c601b59b7f299305252becbe0131b3b9f55ba8",
+      "path": "supabase/migrations/20251230060000_condition_snapshots_immutability_lock.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2bff25a2ebdd00662e0a08ec7b01031262f8e7ea",
+      "path": "supabase/migrations/20251230070000_condition_snapshot_analyses_tables_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9f437a5df1c508abab0c2b6402b288291c617206",
+      "path": "supabase/migrations/20251230070001_condition_snapshot_analyses_rls_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "597deaab600a6cd1c993a677a6bdd5e12582b530",
+      "path": "supabase/migrations/20251230080000_condition_assist_worker_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f1d48bdb13e72d0d9cbdb018b3f31da3688235b9",
+      "path": "supabase/migrations/20251230080001_condition_assist_worker_rpc_grants_lockdown_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d9e9766186bb9dcc4df8c1ce0ac8383087be1866",
+      "path": "supabase/migrations/20251231000000_condition_analysis_failures_attempted_snapshot_id_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0cec3c7f25feba58580220f092e893354db7b3a3",
+      "path": "supabase/migrations/20260113233000_fingerprinting_v1_1_bindings_and_provenance.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ed190c120bd71bc2cea449469bce0c55450dff93",
+      "path": "supabase/migrations/20260113234500_repair_condition_assist_insert_failure_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1e22f0fdc64ac2bbfce0fbd502e305d71786b61b",
+      "path": "supabase/migrations/20260114001500_fingerprinting_v1_1_admin_rpcs_bindings_events.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5e5cc200e63a63cc62e6eb49fe6f89935dca009d",
+      "path": "supabase/migrations/20260117120000_remote_applied_stub.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5c81a3455afa2f7853aa0e5479816301a7bd40d8",
+      "path": "supabase/migrations/20260117123000_disable_fingerprint_enqueue.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c061bed7a2fc6c79d556dc47c5a721a439795075",
+      "path": "supabase/migrations/20260121153000_search_contract_v1_rpc.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6294a6ad1234eaf5dce2397804a8135eaf328cc3",
+      "path": "supabase/migrations/20260121170000_add_search_contract_v1_rpc.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b9b21073f9513b9340cb44a1613f31e56f5f754f",
+      "path": "supabase/migrations/20260121194000_identity_scanner_v1_phase0_schema.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a1b8425425df27356a28b4256c0b86698b1dafb",
+      "path": "supabase/migrations/20260121212000_identity_scanner_v1_phase1b_results_table.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ac2031f28043ecf06c5a39fbda62130a0ca55527",
+      "path": "supabase/migrations/20260205222100_match_card_surface_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0399e5847d400d4e694fe202ea418e0ebd22200f",
+      "path": "supabase/migrations/20260205232559_condition_snapshots_insert_identity_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "660d398ce3e9106d44dc8a48ca2bbd59c742090b",
+      "path": "supabase/migrations/20260206110803_identity_snapshots_table.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f4e90b54218c201c56fcb8c8b5133848d47a75d9",
+      "path": "supabase/migrations/20260206143219_identity_scan_events_source_table.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "387988ca00f00631f2e0d79f03b3c82b3a650873",
+      "path": "supabase/migrations/20260206144232_identity_scan_events_dual_fk.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8f29388010430ea3d079efdcfda2c3972dfb3d10",
+      "path": "supabase/migrations/20260206155742_identity_scan_events_snapshot_nullable.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cdc6daea1955d0baf43cf8c3686c3179825e8584",
+      "path": "supabase/migrations/20260210043204_storage_identity_scans_bucket_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0f4264e5152651733f05f9f68e493d75b1480d0c",
+      "path": "supabase/migrations/20260214____vault_add_or_increment_auth_guard.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "611f9ac35e02030cc444df047835a7ca01615f38",
+      "path": "supabase/migrations/20260217235900____catalog_submissions_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2eff60bd94cd10ff56707ce3f2f4a01425479006",
+      "path": "supabase/migrations/20260218093000_create_v_grookai_value_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fdaa1d04587ac129caac266dad65d60aa2d4e516",
+      "path": "supabase/migrations/20260218100000_unify_pricing_surfaces_raw_only_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5a3a03de78305718a6d04f865fd6dcbc321b3d01",
+      "path": "supabase/migrations/20260218194847_repair_v_best_prices_all_gv_v1_unpriced_nulls.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "53ff7605d2c935886e7845e984d1852935579072",
+      "path": "supabase/migrations/20260218195500_create_v_grookai_value_v1_1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "85af1c9bc75c830507de32c7e8c4a8ff3efc6953",
+      "path": "supabase/migrations/20260304070000_printing_layer_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d3bb00fd4263d07423e25e1881a156f372d2bf08",
+      "path": "supabase/migrations/20260304100000_rls_bucket_a1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0b24616354f894086199e8c7bd3a3743beea16be",
+      "path": "supabase/migrations/20260304113000_ingestion_jobs_requester_user_id.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "62dcbec8c5cf96fed9c35816e8af451c3bb2e01f",
+      "path": "supabase/migrations/20260304120000_pricing_jobs_requester_user_id.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7c38291622338d34b390130d5ce83bf0f9c377dd",
+      "path": "supabase/migrations/20260304143000_rls_bucket_b1_jobs_lockdown.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0a228acc5ef7264de348660699d3d9546db9b37e",
+      "path": "supabase/migrations/20260304150000_remove_card_prints_anon_update_dev_policy.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ac481ba385d868c0da1b6b71c0251f433aab6902",
+      "path": "supabase/migrations/20260304162000_lockdown_card_prices_writes.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a9ac7b375befa0af142c3e6f3972d4f00a04afa8",
+      "path": "supabase/migrations/20260304170000_views_security_invoker.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "924345b1062b10225e9b7adfd51c2290ac581f98",
+      "path": "supabase/migrations/20260304173000_enable_rls_remaining_tables.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "de2900f31eb75a95f3ae8fa13447958523a5b0c8",
+      "path": "supabase/migrations/20260304174000_rls_no_policy_explicit_policies.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e8f494cf3b88c22b8cedf74f60ee8eac3ebc6ffc",
+      "path": "supabase/migrations/20260305090000_capture_admin_change_checkpoints.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0131c360f42dd7ceeef86dd304ab1c1b2e0df283",
+      "path": "supabase/migrations/20260305093000_force_security_invoker_8_views.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "adbf2653eb147dcded75d936c1a5d19b1722cc1c",
+      "path": "supabase/migrations/20260306172935_add_gv_id_to_card_prints.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d1f112af954c6ceb87769c9d53260080940cdcb5",
+      "path": "supabase/migrations/20260307053045_repair_sets_printed_set_abbrev_from_pokemonapi.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "38cae25fd2e29115b39a3aa34eab93f3e0adf003",
+      "path": "supabase/migrations/20260312052346_vault_items_add_gv_id_compat.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fb1d865d286b3f25c5a9b0fdaaab4d8cffd7252d",
+      "path": "supabase/migrations/20260312054313_rewrite_v_vault_items_for_gv_id_phase2a.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "99709a39a8bc28e1e39feb5c5cb027b25196113b",
+      "path": "supabase/migrations/20260312181339_make_vault_items_pricing_watch_trigger_security_definer.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5d3b1393c8db99b72e3fa323df7b542874447e8d",
+      "path": "supabase/migrations/20260312194208_harden_vault_inc_qty_delete_at_zero_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4c8002a3ee26bc5faf79ed2b1227a7c3629cca87",
+      "path": "supabase/migrations/20260313000100_fix_v_vault_items_web_set_name.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "dda8d861fba91bc9dc9499a5831bb7e98f22cca9",
+      "path": "supabase/migrations/20260313021000_public_profiles_shared_cards_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b5b52e499d2fa9579c5147e1e6ff53545a7a6853",
+      "path": "supabase/migrations/20260313153000_vault_items_archival_ownership_episodes_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c061235a38a3550da0be97a859d0e4feba77721e",
+      "path": "supabase/migrations/20260313170000_vault_items_ext_pricing_dedupe_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c061235a38a3550da0be97a859d0e4feba77721e",
+      "path": "supabase/migrations/20260313171000_vault_items_ext_pricing_dedupe_typefix_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fc9407dfaca1065f8bc64f017320ac82f4e39a26",
+      "path": "supabase/migrations/20260314143000_web_events_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e0b5c61ada7e5764e525646c06744fb623dce5a2",
+      "path": "supabase/migrations/20260315223000_create_v_grookai_value_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "81163ca242dfdb1f2fabed3eb9bbec7dbb9f4e50",
+      "path": "supabase/migrations/20260315233000_reconcile_pricing_compatibility_lane_to_v1_1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "93d43199fc2f02e4af019d25f8f3fdc008dfdd7a",
+      "path": "supabase/migrations/20260316090000_create_slab_certs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "55a73b611acbfbaf41ab22f61f259aada3f04f65",
+      "path": "supabase/migrations/20260316093000_create_slab_provenance_events_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ce622dae2e234cdba37b881ad6d438da0c300fb5",
+      "path": "supabase/migrations/20260316094500_create_admin_slab_event_insert_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "75017961d0b15bcd76e11e625e76fc78bce8a22f",
+      "path": "supabase/migrations/20260316101500_create_vault_owners_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "814aacfb9fafacc9f11970867518c68e1b0cdd0f",
+      "path": "supabase/migrations/20260316104500_create_vault_item_instances_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a31106ff8801b56c4376c1fa844f8a021b3b06f",
+      "path": "supabase/migrations/20260316110000_create_admin_vault_instance_create_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3a38df3811b8f61228dcca2035f74a68b4a1c2dc",
+      "path": "supabase/migrations/20260316113000_create_mobile_vault_instance_wrappers_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6b0a382e7b050d6fc6ccf4c3535210226001ec71",
+      "path": "supabase/migrations/20260316114500_create_mobile_vault_instance_read_wrappers_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0b2c06aeff0ae3652e3f34908cb3f08d5fdeaae9",
+      "path": "supabase/migrations/20260316120000_condition_snapshots_add_gv_vi_id_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d275836a2a6a4da6a36838cf33345d3838970b8d",
+      "path": "supabase/migrations/20260316121500_condition_snapshots_assignment_lane_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a7775c538d3f4e6777515350a05d5ecb6059dbfb",
+      "path": "supabase/migrations/20260317101500_create_mobile_vault_collector_rows_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f757b7fdcc08e34aedd697e5e5f4440fbf242fcf",
+      "path": "supabase/migrations/20260317113000_drop_vault_items_active_uniqueness_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8e7ee23ca0b9b743fff4bf79cce4a4ac69fb66d0",
+      "path": "supabase/migrations/20260317193000_shared_cards_wall_category_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ee6696a698828c1ca202d770c87495fae0415b6",
+      "path": "supabase/migrations/20260317203000_public_profile_media_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2d7aff481737687b3fdd5573bbb493ec63319d34",
+      "path": "supabase/migrations/20260319090000_create_ebay_browse_daily_budget_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "465d88f0c2c3638f1733cc0a5720e63a227c5eff",
+      "path": "supabase/migrations/20260319120000_fix_ebay_browse_budget_ambiguity.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "219e1cf7f0a82bf8c7ea1b0bbef94d16167d0b9e",
+      "path": "supabase/migrations/20260319123000_repair_ebay_browse_budget_rpc_contract.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a7cc5c432814fa2bd83fa0aeb787fd34488fd9f0",
+      "path": "supabase/migrations/20260319130000_fix_ebay_browse_budget_v1_conflict_ambiguity.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ec57bd0829386bfad328b0b994f8841571c8b577",
+      "path": "supabase/migrations/20260319150000_pricing_observations_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8ca12d8360ea08ed0ca5163012bb11b5ee91660e",
+      "path": "supabase/migrations/20260320153000_pricing_queue_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ca5a5acd647519e4ac2e1a50c4b0b5ebda57c5d6",
+      "path": "supabase/migrations/20260320160000_tcgplayer_stage_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d9249216afaf788c0f895769afa07c3ec8d7fb12",
+      "path": "supabase/migrations/20260321100000_justtcg_domain_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fd91ff1f573b9768749960154eca617377d6b71d",
+      "path": "supabase/migrations/20260321113000_reconcile_justtcg_grookai_value_views_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "90caa05317f112d32c31c4e6cce112254e092999",
+      "path": "supabase/migrations/20260321120000_reconcile_current_prod_justtcg_grookai_value_views_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "90caa05317f112d32c31c4e6cce112254e092999",
+      "path": "supabase/migrations/20260321123000_finalize_justtcg_grookai_views_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3d43b4e8e17a40881514ae33e4c191d3671a9b9c",
+      "path": "supabase/migrations/20260321124500_fix_v_card_pricing_ui_v1_primary_fallback.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4df89dc1342f2b47ccab24270e6f893b92e83bd0",
+      "path": "supabase/migrations/20260322193000_add_justtcg_direct_structure_helpers_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "be2e4cb7b3c546d46f7897d5da8e75d1b0c5c973",
+      "path": "supabase/migrations/20260324032421_add_justtcg_variant_price_snapshots_latest_order_index_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "eb583971c900fc9ba83529be4e31c54c15c46b70",
+      "path": "supabase/migrations/20260324091500_card_interaction_network_phase1_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f5dbcd1047f84f9da88fdee2a81848107002a2e1",
+      "path": "supabase/migrations/20260324094500_fix_card_interactions_insert_policy_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d124bc139dfe41106926977b72bd730002b2cb05",
+      "path": "supabase/migrations/20260324103000_make_card_interactions_append_only_phase1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d1888f0f6170c9c83b42deba439d50e2aa5bade2",
+      "path": "supabase/migrations/20260324114500_allow_card_interaction_group_replies.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "64c3c0f71952af6d6db377897c76e0c7fe1bae4c",
+      "path": "supabase/migrations/20260324143000_add_card_interaction_group_states_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "309a4116d0b3dbfcfaa164e2c24a4c4db751d2c3",
+      "path": "supabase/migrations/20260324160000_p3_card_execution_layer_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "718965f1151f807940c2effb053530dd9ba47936",
+      "path": "supabase/migrations/20260324162500_patch_execute_card_interaction_outcome_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7562c9262455f9d27799cb33cf21e533a0deace7",
+      "path": "supabase/migrations/20260324163500_restore_resolve_active_vault_anchor_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d13df44457b62dfe19cb318eec8235f33207f706",
+      "path": "supabase/migrations/20260324170000_add_vault_item_instance_intent_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e8b91d4e03bb8d96619ac5ced502f29bf2347c01",
+      "path": "supabase/migrations/20260324171000_rebuild_card_stream_from_instance_intent_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ba2473ed9233f8b0e1efcad55a18be23c18285e6",
+      "path": "supabase/migrations/20260324172000_patch_execute_card_interaction_outcome_v1_instance_intent.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "151687cea40ab6eb13fd75a6247629f1eac2b16e",
+      "path": "supabase/migrations/20260324173000_fix_card_stream_slab_identity_resolution_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "45a108ee0706ed37854c2926eab00857b2b38f0b",
+      "path": "supabase/migrations/20260324174000_add_card_contact_targets_view_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7b00e6a3860a682f69aebe01fcf0bfc071879a39",
+      "path": "supabase/migrations/20260324175000_patch_execute_card_interaction_outcome_v1_slab_identity.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6ba8c0cca6e878e49b8db5277db9e3feacdcd13d",
+      "path": "supabase/migrations/20260324183000_restore_card_interaction_reply_insert_policy_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ca9247814174efb6738334774c849e061e978325",
+      "path": "supabase/migrations/20260325083000_add_vault_instance_pricing_mode_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "63db616e6cde01a13568576a6cd57349363e26a9",
+      "path": "supabase/migrations/20260325113000_add_vault_archive_exact_instance_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ca520d10c2727da0b99afc08377fa5d1090f2953",
+      "path": "supabase/migrations/20260325114500_patch_vault_archive_exact_instance_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "69d130d0deac81628489d0dc52375a6e8ba96180",
+      "path": "supabase/migrations/20260325133000_add_vault_instance_image_display_mode_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "300639547bf4cb64e161ed72e3c3dcf1418db189",
+      "path": "supabase/migrations/20260325143000_add_collector_follows_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1c029b1c76d54912f5b515c1ec043ed41220c502",
+      "path": "supabase/migrations/20260326100000_card_printings_v2_metadata_columns.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "023b4871e90d9153753b3a257d2a00b7dc2117a9",
+      "path": "supabase/migrations/20260327090000_repair_tcgdex_card_prints_image_url_shape.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7a28afcade42d584c1fcab6be13de0884e1325ed",
+      "path": "supabase/migrations/20260328034937_condition_snapshot_identity_guard_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fccd67d9695b7854ed1c1bbadd524ed3527cdb4d",
+      "path": "supabase/migrations/20260328110000__warehouse_candidates.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6ab61a8f3dcbb52f990ebcdeea6dcd5edcc54c84",
+      "path": "supabase/migrations/20260328110001__warehouse_evidence.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4abfdac7a74cf6e6aff8e69029921b533d621654",
+      "path": "supabase/migrations/20260328110002__warehouse_events.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "bb814c89380c5585898d6a1e347ec1dbcb8e329d",
+      "path": "supabase/migrations/20260328110003__warehouse_credits.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "88fd15da60c01cbbbe326503f2c8b08280068173",
+      "path": "supabase/migrations/20260328110004__warehouse_staging.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ca0b8e65d64cccde90cc6b5dfe672cbeafa30ddf",
+      "path": "supabase/migrations/20260328110005__warehouse_constraints.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "727fd0c72bf7852a8864cba18edd3ea5f59aa695",
+      "path": "supabase/migrations/20260328110006__warehouse_indexes.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a3ddebb01ecdf0a1dd87717321e7b2338802304e",
+      "path": "supabase/migrations/20260328110007__warehouse_triggers.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "81bb0ae5caecaeda5749692c88498f2fcfbfc3ab",
+      "path": "supabase/migrations/20260328110008__warehouse_rls.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "933b5385a76d8a50b4e4962198530c1f3279e231",
+      "path": "supabase/migrations/20260328120009__warehouse_intake_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4cd7269dec06a2751de0c4243f7d806cf056118a",
+      "path": "supabase/migrations/20260330113000_card_prints_image_path_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4aa7ebc3b4048430908ff1f10b0ca9ed81999119",
+      "path": "supabase/migrations/20260331103000__external_discovery_candidates_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "17fb14959bb54bea0789cd1803153a0131acf773",
+      "path": "supabase/migrations/20260331174500__external_discovery_candidates_tk_review_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a1ca9184ca41edd599d370096f36227a056ec3b3",
+      "path": "supabase/migrations/20260331190000__external_discovery_candidates_resolution_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "df2e560966424417f77783614e13cdb9d62326c1",
+      "path": "supabase/migrations/20260402100000__card_print_identity_table.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "abfdb1cb848212f96b14cf3210bc280940ad43f1",
+      "path": "supabase/migrations/20260402100001__card_print_identity_indexes.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e23605fed3d70201f93f086a3fa93ad4b4a75096",
+      "path": "supabase/migrations/20260402100002__card_print_identity_support_functions.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1e7481fb2d61d588e9a10ef332a50609c927d8df",
+      "path": "supabase/migrations/20260402100003__card_print_identity_rls_and_grants.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8df9e43968a17a3acb18a2b27bb5020a4b0f85b4",
+      "path": "supabase/migrations/20260402100004__card_print_identity_backfill.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9c9f4a4394da3b60cd95f8bee010f5a155485b1e",
+      "path": "supabase/migrations/20260402100005__card_print_identity_post_backfill_constraints.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8c5ec580d10293a7022b4d665cd9951078fd184f",
+      "path": "supabase/migrations/20260402100006__ba_set_registration_if_required.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5f63ab5129a59541ff5e8e43447ecff37d3993c4",
+      "path": "supabase/migrations/20260402100007__card_prints_drop_legacy_identity_constraint.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "aad873b93120b26e1084e98d5ac8cb4ab26bb338",
+      "path": "supabase/migrations/20260402100008__games_seed_pokemon_for_card_print_fk.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cf6ff3346da68214e0e7c19f5af7242ac9b3378a",
+      "path": "supabase/migrations/20260403133000__add_identity_domain_columns.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c991b06059c93889056af0bec449673f921393b",
+      "path": "supabase/migrations/20260408113000_add_shared_cards_price_display_mode_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "bbef18c6184ef163fd3f8d90eee104fd9307ec70",
+      "path": "supabase/migrations/20260408191000__delta_species_printed_identity.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ceb796478c42f61ec9c29f0738df977ad15c5080",
+      "path": "supabase/migrations/20260411165000_public_collector_follow_counts_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f2a2e09ebd9ea0073ded75505c3ffba02ea073ea",
+      "path": "supabase/migrations/20260412011000_public_collector_relationship_rows_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0ee874473d0b6512aba3acd74c89e049bfed2de9",
+      "path": "supabase/migrations/20260413120000_global_print_identity_key_uniqueness_transition_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "13d7500756c20a24c0cae86df791594a93d877e2",
+      "path": "supabase/migrations/20260413143000_set_art_system_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "82516309299e5b91f06cbc93c87852d498fd2ec9",
+      "path": "supabase/migrations/20260414164857_ai_feed_intent_comments_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7f07214d9f215ccd8900bba1bfe097bddb8b9b8d",
+      "path": "supabase/migrations/20260415173000_repair_cel25c_multi_origin_reprint_lane_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "99dc1060c89692a1315010b36222ef8fbb47ed9b",
+      "path": "supabase/migrations/20260415174500_repair_cel25c_print_identity_key_set_code_alignment_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9d1380a84d474243e043c034eeb2eb7894407a53",
+      "path": "supabase/migrations/20260415203000_reprint_anthology_identity_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9a503d8899729d8f24938b13d1b6518ebbc3aa8f",
+      "path": "supabase/migrations/20260416140605_allow_null_variant_key_on_card_prints.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b68fd9931bed97b28adfb22a035f7c3822ed0bda",
+      "path": "supabase/migrations/20260416160247_representative_image_schema_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c79281db509433e5585a6ebe05791a26145e1a5b",
+      "path": "supabase/migrations/20260416201500_vault_system_hardening_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b5c86842a9ed1d7977ad01513a107f4d852f6c50",
+      "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3197cf221438d97e80092dfed7d7cc7b9d0ffe0c",
+      "path": "supabase/migrations/20260422120000_display_image_read_model_unification_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c7999838fcebc6353a9f571cadf3bb877cc734f3",
+      "path": "supabase/migrations/20260422133000_wall_sections_data_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3dffc34545cac9e97567ab61b908c9b4e53cdec0",
+      "path": "supabase/migrations/20260423000000_wall_sections_remove_public_gating_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "48fbdf025106a789f3eea30c02a28b19f32ca310",
+      "path": "supabase/migrations/20260423150000_contract_runtime_layer_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4c77209be2df42931b3dc7d2d0122aa14982a5c8",
+      "path": "supabase/migrations/20260427090000_phase7_fingerprint_index_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d355587145498f5c9ed0b5a44c7a6bf3a8382e0c",
+      "path": "supabase/migrations/20260428234000_phase8_embedding_lookup_foundation_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "88d545e0dcd1cefa90a316533f77a31544ab3522",
+      "path": "supabase/migrations/20260429002000_embedding_lookup_v1_pgvector_rpc.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "24ddee57cca6ad874968f7bd9e3f2cc0caf4889b",
+      "path": "supabase/migrations/20260518120000_grookai_dex_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "eb0f70d6149f858187b2a47e7079301a5883d62a",
+      "path": "supabase/migrations/20260518123000_card_printing_ownership_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ceb12583e678cf9574da8bff880c5b3a16bb7dbe",
+      "path": "supabase/migrations/20260518180000_child_printing_public_identity_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ae90a6d27bcd12ada4272b22c034fe1bc55786aa",
+      "path": "supabase/migrations/20260519151000_warehouse_image_reference_context_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c8be86e17257acdd6b916f7010ce8589f8cf5caf",
+      "path": "supabase/migrations/20260519163000_child_printing_image_storage_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a2b0550ca4afa9aa8a424468116a9dfb41b7db55",
+      "path": "supabase/migrations/20260519190000_print_identity_search_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "84fc770ea30469dfba2e91933fa6d0cea27de019",
+      "path": "supabase/migrations/20260519193000_print_identity_search_v1_public_document_ids.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c7a4d947ea3fd8b09edd3a7997800175cc53ce14",
+      "path": "supabase/migrations/20260520150000_cameo_search_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0d3b343b890ec9d48d5500c790aaf9a9b3bf817a",
+      "path": "supabase/migrations/20260520160000_cameo_search_document_integration_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ea90aa788aee14fc8e43bc928472b9891e331d99",
+      "path": "supabase/migrations/20260520233000_local_community_feed_infra_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e527ce67f6904d1876efff30062bd5f49060b004",
+      "path": "supabase/migrations/20260521120000_local_community_feed_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9d9834f47d36066f24e98d8676ceae4e74cfb500",
+      "path": "supabase/migrations/20260521123000_local_community_feed_rpc_ambiguity_fix_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7e2dbb41604f7fccb4287aaf73d625f3aafacf4f",
+      "path": "supabase/migrations/20260521124500_local_community_feed_rpc_sanitize_images_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d7644055b8b0b19539cc26ec9aa9eed3b2c47bf1",
+      "path": "supabase/migrations/20260521183000_security_linter_remediation_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1d442393a9ef2d7aceb7797feb48dc9f81fbd532",
+      "path": "supabase/migrations/20260521203000_vault_add_rpc_repair_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "965ac22d4df1e191b775ac9af95091fa3a72d2e2",
+      "path": "supabase/migrations/20260521213000_security_warn_remediation_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0e1e9112aa9b9d4c7997fc658cb07a75c4043465",
+      "path": "supabase/migrations/20260521223000_security_warn_remediation_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b936c4f9f01d17c638924fd24ced57d0dedf970f",
+      "path": "supabase/migrations/20260521231500_security_info_rls_no_policy_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "621c0602085278c0c943c86b95f3ab599534acfd",
+      "path": "supabase/migrations/20260522001500_security_definer_service_entrypoints_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b30e234bf6ac70490ba4cd970f758c09c12dd138",
+      "path": "supabase/migrations/20260522160000_ios_beta_resolve_active_vault_anchor_rpc_fix_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d373a56b8f52d5fb7017607383d97d65e088858d",
+      "path": "supabase/migrations/20260522161500_public_vault_instance_detail_definer_restore_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "afc0d9f4076ded288d223ebce720f28ec38bb817",
+      "path": "supabase/migrations/20260522163000_resolve_active_vault_anchor_invoker_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9aa0f9323840c78dc233578e24b6ad2045ded655",
+      "path": "supabase/migrations/20260523170500_restore_print_identity_search_rpc_definer_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a2fcaaf128ce6fe345b93ab0e5f243cc5240ddd5",
+      "path": "supabase/migrations/20260523183000_printing_truth_review_sidecar_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "afd7cdae6074754cd8f57f646c652538f59cfbc8",
+      "path": "supabase/migrations/20260524051500_add_ascended_heroes_finish_keys_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "efd298c829e3ef23d1d36498d17ce3eea7aa8b2b",
+      "path": "supabase/migrations/20260616161500_create_external_mapping_aliases_sidecar_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1d0409a3908fca256e36910f6df1d07d0dcba132",
+      "path": "supabase/migrations/20260618120000_user_entitlements_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c766b646fab56c535bec9cbb305151f1f46c5ae8",
+      "path": "supabase/migrations/20260624120000_local_community_feed_wishlist_match_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "835ef614b405813c347a50a2eef59686f4154e4e",
+      "path": "supabase/migrations/20260625000000_market_reference_warehouse_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b28d73f25e5b9e9dc9c3160354805ac924ab01a8",
+      "path": "supabase/migrations/20260625010000_market_reference_signal_rollups_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b276d3dae843fd9a20a8ec9bfc5c4dfd6c6be1bd",
+      "path": "supabase/migrations/20260625020000_market_reference_active_listing_warehouse_schema_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4c554e4542c56237e069b82e00fcb45cd9944507",
+      "path": "supabase/migrations/20260625030000_market_reference_active_listing_normalized_evidence_schema_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "555f51e95e61fb2387bc517d3a8392c09c2d4e92",
+      "path": "supabase/migrations/20260625040000_retire_justtcg_public_pricing_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "987b2a15e07a75736f4d5999a3df499772918506",
+      "path": "supabase/migrations/20260625050000_market_listing_warehouse_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f0e402f96225c91ccc24479b6c0ff97ef8a90c4d",
+      "path": "supabase/migrations/20260625060000_market_evidence_core_lifecycle_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2892b81a1f9a0c28ff63965668f2f2bd18f54965",
+      "path": "supabase/migrations/20260625070000_market_evidence_internal_read_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "65994fd9b7390393655fd3d18aae6774bd338a0c",
+      "path": "supabase/migrations/20260625080000_market_evidence_review_dispositions_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e3b54c91dfa8bf2d9cba330e633b8c138fb21bbe",
+      "path": "supabase/migrations/20260625090000_market_evidence_review_action_events_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e310dfabc6a3cb7dabc2b8373bb34929c1b5f02e",
+      "path": "supabase/migrations/20260625100000_market_evidence_review_action_function_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d4615456457db316181f03d4f94be999bd18d33a",
+      "path": "supabase/migrations/20260625110000_market_evidence_quality_scoring_read_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d25d24204d4dff07bd7c832bdf56cea954a4699b",
+      "path": "supabase/migrations/20260625120000_market_listing_candidate_cleanup_action_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e33047f77b45134c9868219b6682e80ba004f095",
+      "path": "supabase/migrations/20260625130000_market_reference_tcgdex_pricing_source_constraints_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7a2b6a5d0dc82a19227a779db70a856477664e11",
+      "path": "supabase/migrations/20260625140000_market_reference_tcgdex_raw_snapshot_support_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "aeaf66615f4784ad8b0efe25f408fb3f852a2b8b",
+      "path": "supabase/migrations/20260625150000_market_evidence_publication_gate_fast_path_indexes_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "beead44b843d2bdb05d2c5327c71752452cc3ce3",
+      "path": "supabase/migrations/20260625160000_market_evidence_lifecycle_rollup_summary_materialized_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3036ed9d004f6a9ac1d858645128ddc0b7b28a96",
+      "path": "supabase/migrations/20260625170000_market_evidence_price_review_action_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f06ae428c7d48c5c9c442efd87c654e5d3cbd9df",
+      "path": "supabase/migrations/20260625180000_mee_public_price_bridge_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "785eecf0881a1ad9b72b192fc58e07325f03b709",
+      "path": "supabase/migrations/20260629120000_mee_reference_anchored_pricing_compat_view_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c3e2cddc6204ccdb3e50ae289a14d91086cd0e4b",
+      "path": "supabase/migrations/20260629130000_market_evidence_variant_assignment_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "664e75eb4bf1e3a0c0663d0f1342a00f965492cc",
+      "path": "supabase/migrations/20260629131000_market_evidence_variant_read_models_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5029545b8d82890189db2041636b05e34c7adb9e",
+      "path": "supabase/migrations/20260629190000_market_listing_price_events_observation_idx.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4a4883a18b0cca52d54faa90f4a3f1338b76027c",
+      "path": "supabase/migrations/20260703090000_trade_execution_second_leg_any_trade_copy_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c65b937bc94a36412c1758f5af06a8d1f329848a",
+      "path": "supabase/migrations/20260703170000_vault_instance_media_public_surfaces_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4cc143a802b69728ba8913f561ced4223ed19274",
+      "path": "supabase/migrations/20260703173000_vault_instance_public_media_storage_select_policy_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d0b55bf6ec96a07bb6468571a43b46a744a8148f",
+      "path": "supabase/migrations/20260706100000_product_evolution_e1_interest_graph_schema_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cd1d4c592ff73421773c006aecdd56dfd12f83b7",
+      "path": "supabase/migrations/20260706110000_product_evolution_e1_emission_triggers_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0fbcae953f07ec09a7a98bf531acedc9752bab6a",
+      "path": "supabase/migrations/20260706120000_product_evolution_e2_notification_schema_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "483a236cad21b7aee532c3dcf257a301d7f2ab0f",
+      "path": "supabase/migrations/20260706121000_product_evolution_e2_notification_dispatcher_rpcs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c6da6f5486091627fb62f131ccb25d014dff0124",
+      "path": "supabase/migrations/20260706122000_product_evolution_e2_notification_dispatcher_schedule_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9c23679d52d743415d6f8a0735dfc5a6032c6a1a",
+      "path": "supabase/migrations/20260706123000_product_evolution_e2_notification_app_rpcs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "121cfa569cf3bbbdf6e5cb0d9a01f65883a065cd",
+      "path": "supabase/migrations/20260707173500_card_contact_targets_all_public_vault_items_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3eecd0872b1fcfc5c473aa92f289e66a5ddc47bb",
+      "path": "supabase/migrations/20260707175500_card_contact_targets_security_definer_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b91c4376b6bcd717b545a9b8e45904a9a4d5a8d2",
+      "path": "supabase/migrations/20260707182000_notification_dispatcher_enable_runtime_config_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f8dc78ce15d17b84591fd08c4c7d74032d6dcf8e",
+      "path": "supabase/migrations/20260708100000_product_evolution_e3_want_match_shared_predicate_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7a3ae85fe4145e11514407c8b9099331b478b159",
+      "path": "supabase/migrations/20260708110000_product_evolution_e3_want_match_durable_engine_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ed3e25afd2ecfabc1bdba0a35d074e9676fde565",
+      "path": "supabase/migrations/20260708120000_product_evolution_e3_want_match_delivery_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "afecc9bae2504272d065d69e8411b304d08faa5c",
+      "path": "supabase/migrations/20260708130000_product_evolution_e3_want_match_job_auth_fix_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e8b36d9fc0e1fb08e403fc8bb6074a64c64a70ce",
+      "path": "supabase/migrations/20260708140000_product_evolution_e4_pulse_state_read_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a3d36c306183ff9c553de700da5b2c02c671a95f",
+      "path": "supabase/migrations/20260708150000_product_evolution_e4_pulse_daily_delivery_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f994ecfa33c634d06eef82588ed070c870fe52b5",
+      "path": "supabase/migrations/20260708160000_product_evolution_e4_pulse_contact_payload_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9964eac7df2151c4a438f0c969c9e61dc79d89d9",
+      "path": "supabase/migrations/20260708170000_product_evolution_e5_card_journeys_query_contracts_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d60643c19440d15ea3518dc3d1704190a5fd3465",
+      "path": "supabase/migrations/20260708174000_product_evolution_e5_card_journey_moment_rollups_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5174941fb8feb4f41cdc1dcd9e9d1b768e56a3a7",
+      "path": "supabase/migrations/20260709100000_product_evolution_e6_onboarding_contracts_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "14685305716749873fb7ee46bff38953b013add3",
+      "path": "supabase/migrations/20260709110000_product_evolution_e6_collector_suggestions_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1e0ca49c10ed54141885141a6da2c27f5c5d1852",
+      "path": "supabase/migrations/20260709120000_product_evolution_e8_public_counts_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6da76efb5aecbb65961133a8e2d0d6ecac96ac1f",
+      "path": "supabase/migrations/20260709125000_product_evolution_e7_meaningful_interactions_contract_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d5a6374ac5feddc767907f62455362396bc39588",
+      "path": "supabase/migrations/20260709130000_product_evolution_e7_weekly_rollups_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "225f13c62e26f5728d6a4e0dfa3cec419463a786",
+      "path": "supabase/migrations/20260709131000_product_evolution_e7_weekly_rollup_schedule_enable_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "19acf9acefe3cb49239e4d0853b73498928d9b3c",
+      "path": "supabase/migrations/20260710100000_product_evolution_e9_collector_memories_contracts_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5959b45bf6868c8a415eef69871e5a1df47a3cbd",
+      "path": "supabase/migrations/20260711180000_vault_copy_section_membership_rpc_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "74e52fa3e5eb16b1dec43b6a30afe65637a41b91",
+      "path": "supabase/migrations/20260712090000_pricing_pipeline_phase_runs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "86784043c7504a8a5a60bc9455d885ed3a23e833",
+      "path": "supabase/migrations/20260713190000_trust_safety_block_report_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "890a116984d8ebc7c970021a86d0e5fe54b0ae8b",
+      "path": "supabase/migrations/20260714203000_restore_vault_archive_rpc_definer_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0aa2a1a9b9a5acb611629145a5f968e21a479f84",
+      "path": "supabase/migrations/20260715010000_collector_memories_owner_feed_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cb26ac70cb7e727c69e7af7768c8020be3eecfce",
+      "path": "supabase/migrations/20260715100000_pulse_seen_items_default_hidden_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "616b4946e54f5c0e344d17e076c8d880a3c35cc7",
+      "path": "supabase/migrations/20260715104500_mobile_vault_variant_and_canonical_image_contract_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "84d4c003b028b7b108ccecf610ac02fee0d948c1",
+      "path": "supabase/migrations/20260715110000_tcgcsv_full_source_warehouse_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c474efb0c5409d9b9899129373bb1b620a0cffbb",
+      "path": "supabase/migrations/20260715120000_card_visual_description_agent_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ae432aaedb8ea3cebc6ae4b008647b2e3784ac7d",
+      "path": "supabase/migrations/20260723100000_collaborative_binders_schema_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2863aa8e87f5d0af612e7873493acb7352942bb4",
+      "path": "supabase/migrations/20260723101000_collaborative_binders_core_rpcs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6c3b3d4bba00a11a45807e8d6adccf88c7929a2e",
+      "path": "supabase/migrations/20260723102000_collaborative_binders_collaboration_rpcs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b946ad29032297fd4bb3b3813119b9146bc01e0b",
+      "path": "supabase/migrations/20260723103000_collaborative_binders_read_rpcs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8e10c12a6c159f4abe3fe2e604f5e9ae3ca60677",
+      "path": "supabase/migrations/20260723104000_collaborative_binders_service_rpcs_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "998d42f7037413d40ef6b04c42f1096513d6f8d8",
+      "path": "supabase/migrations/20260728002603_remote_schema.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0abd62bcc96030b09c4a98f4aa78a20219f0b14a",
+      "path": "supabase/migrations/20260728010000_tcgplayer_market_publication_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "86a1e59b3486f4d17536feaf610a75a2207d63c2",
+      "path": "supabase/migrations/20260728020000_tcgplayer_market_candidate_view_performance_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b7614b6213dd93010fe79a19a0c8cfa5d6c3e179",
+      "path": "supabase/migrations/20260728030000_tcgplayer_market_assignment_prepare_idempotency_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2767b650fb4d9291a4288bdd1d2c3ff5c1e39407",
+      "path": "supabase/migrations/20260728040000_tcgplayer_market_assignment_correction_precedence_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6355427e2f59eb08977107852464c3bf9f498fd2",
+      "path": "supabase/migrations/20260728050000_pricing_operations_notification_webhook_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "56b4ef8e80ef0ad84eaa181ef7c805b7e8f60496",
+      "path": "supabase/migrations/20260728060000_tcgplayer_market_read_model_performance_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5383c1f0ca3da1f2b57c7436dd9fd8492d1a3851",
+      "path": "supabase/migrations/20260728130000_tcgplayer_market_read_model_contract_completion_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e5356f2f5e54dccdd89eb467c57530b5637671f3",
+      "path": "supabase/migrations/20260728133000_vault_exact_market_pricing_targets_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4efd3a9abfaac1cd41ae1b84276e95f10e18a9ce",
+      "path": "supabase/migrations/20260729190000_tcgplayer_market_assignment_prepare_runtime_repair_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "42dbe8096e45e9c4dd69b158d1635e6c10424f8e",
+      "path": "supabase/migrations/20260730193000_security_advisor_hardening_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f39b30851080312fa2c0071f7e9cd7fa54bd5b68",
+      "path": "supabase/migrations/20260730194000_vault_post_to_wall_schema_repair_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6536e2d4bd10fc69002d227b1dee4d59ac815e26",
+      "path": "supabase/migrations/20260731170000_retire_legacy_ingest_merge_card_prints_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "890f8571476543233f3029b285abed420866006c",
+      "path": "supabase/migrations/20260731210500_security_advisor_privacy_helper_execute_hardening_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "becf3322a00a15baae98e5d36813315253da2703",
+      "path": "supabase/migrations/20260731211500_security_advisor_viewer_argument_binding_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f27048587c9add16a7d5d0420a2503d87a233c46",
+      "path": "supabase/migrations/20260801153800_card_interactions_instance_authorization_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "97b85edfd6c09ff6fb77a9381ad0714bd6d8a37d",
+      "path": "supabase/migrations/20260801160000_binder_card_variant_context_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6ef200319dcfb65c534d296a8841b6dc85640275",
+      "path": "supabase/migrations/20260803010000_mee_operational_recovery_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6929d61fc202d19d83be84b62c2627fb817d081e",
+      "path": "supabase/migrations/20260803020000_mee_price_event_observation_index_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f395f04cac327d8f5ff88481323a195053a8fc5",
+      "path": "supabase/migrations/20260803021000_mee_price_event_readback_index_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fc4c769e21b5d591e35033470da869a1f612ec98",
+      "path": "supabase/migrations/20260803183000_market_intelligence_read_model_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "39836b3e78789c16a8661b313d11f220cf0c917c",
+      "path": "supabase/migrations/20260803190000_active_ask_currency_precision_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5ad4c41f23891a158caa1c7b17b70cd92849fd2b",
+      "path": "supabase/migrations/20260803203000_card_interactions_contact_target_alignment_v3.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "93cffed81d3320eedccad0593b00231ee10192de",
+      "path": "supabase/migrations/20260803210000_card_print_app_visibility_guard_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ae354d6c45ba908cbb289130083f130fd5853c1b",
+      "path": "supabase/migrations/20260803220000_vault_mobile_printing_identity_status_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fb86c44e6fbf7a95662bb06282aed0d600039663",
+      "path": "supabase/migrations/20260804203000_public_collector_relationship_security_repair_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a21e4cf2de0b7e85ecf168d3131bfcd1c4b02621",
+      "path": "supabase/migrations/20260804210000_public_card_printing_options_truth_boundary_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0e29c6e7048609d273f6bb21aba6881a0be1d1bd",
+      "path": "supabase/migrations/20260804220000_tcgplayer_market_printing_truth_quarantine_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fda2b92d4bb47a5c436aa29b1faaabd5d1fa420e",
+      "path": "supabase/migrations/20260805100000_master_identity_graph_jpn_review_surfaces_schema_repair_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4f3d5b672b859ecb5a15e670aa4ae472ade328ae",
+      "path": "supabase/migrations/20260806143000_vault_mobile_collector_rows_include_slab_only_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "73549ed3c93cde24b036eb674a0cffb78ca5b128",
+      "path": "supabase/migrations/20260806153000_vault_archive_wrappers_include_slab_only_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f15f9ebb3a70cb77327a9885b1aec9560af4b50d",
+      "path": "supabase/migrations/20260806170000_card_print_app_visibility_quarantine_resolution_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "abd707b5f5cb8840e0524003faabf4104cdd1fb5",
+      "path": "supabase/migrations/20260806220000_card_interactions_exact_printing_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ac0656099bd000e9948f96da4f34d75a84a548f0",
+      "path": "supabase/migrations/20260807023000_card_interactions_exact_instance_authorization_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8011e117ff7761240657d38aa3958663646dac80",
+      "path": "supabase/migrations/20260807043000_want_match_current_want_truth_boundary_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "548dfb6461244f1e446ac76ed2bb0c7e7774f1b0",
+      "path": "supabase/migrations/20260807133000_security_advisor_view_authority_hardening_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "03d697f77746f1e670dc743089ed7b9346a78c83",
+      "path": "supabase/migrations/20260811170000_collector_memory_public_pulse_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6fcfca2180e7c0f54c0b3e8b70beb6c2bcd7d748",
+      "path": "supabase/migrations/20260811213000_collector_memory_share_route_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ba0c9661c2faa72fa3e344a13a55a04471e277f3",
+      "path": "supabase/migrations/20260812183000_collector_memory_printing_identity_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "79e7ba7c0576df7da85098b7081c7779031d481a",
+      "path": "supabase/migrations/20260813185000_mtg_canonical_import_staging_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "37a64945156bff8f89066f1ff9c078c141d874ce",
+      "path": "supabase/migrations/20260813190000_mtg_canonical_catalog_foundation_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2504a1012caf745471e094b7e65271c59ed59bd0",
+      "path": "supabase/migrations/20260813200000_mtg_catalog_app_visibility_boundary_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9c3246a3bc64cbddcea0b7a05f526a65f9ec50aa",
+      "path": "supabase/migrations/20260814060000_cross_tcg_sealed_product_domain_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0dc6b3a0e5f9a45926bf852ff83dce716fb19cfd",
+      "path": "supabase/migrations/20260814120000_one_piece_canonical_import_durable_staging_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1e673bae825687a5b7516995fae81436d5e5ad22",
+      "path": "supabase/migrations/20260814150000_one_piece_canonical_catalog_foundation_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6f4710badb3d6772921d87931a7fca6a33217e9e",
+      "path": "supabase/migrations/20260816030000_sealed_product_release_qualification_binding_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1fe1363667d2e690445b96df01eefa84a26ba36d",
+      "path": "supabase/migrations/20260816050000_catalog_release_definer_boundary_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "144597e1463faf6e3d2e4099718730dc3abab5d6",
+      "path": "supabase/migrations/20260816120000_public_set_card_counts_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4fa3a874014af87123c3778f75371a66d2a89681",
+      "path": "supabase/migrations/20260816123000_public_set_card_counts_visibility_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8280f78ea76f8d7c4c1b19916c1080914a1ab9c6",
+      "path": "supabase/migrations/20260816150000_public_set_catalog_facets_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "60bcb013d265b42ebb7229f77a33c52a84bfc0e6",
+      "path": "supabase/migrations/20260816160000_mtg_tcgplayer_market_publication_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "35cef1952ead9efea5f84008a63ebf9c74b556a1",
+      "path": "supabase/migrations/20260816163000_mtg_card_image_faces_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "18303da2011fdfcc2376f1d52ea595b78ba9deed",
+      "path": "supabase/migrations/20260816170000_sealed_product_per_game_release_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b626d0527ca53a139555c616c86a9e2b4221048a",
+      "path": "supabase/migrations/20260817190000_vendor_mode_private_section_visibility_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "19ac138ae34777bf47716c074361a1db791f9199",
+      "path": "supabase/migrations/20260818130000_vendor_mode_exact_copy_dispositions_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "09457ca7817b094d9607746fdd6fad0548856bd8",
+      "path": "supabase/migrations/20260818131500_vendor_mode_disposition_append_only_grants_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9591198ddb5dace3c3d9fabd3a4f07c3fda95c9e",
+      "path": "supabase/migrations/20260818133000_vendor_mode_transaction_details_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cc9b4467eab933e3455eb09efe825039ef16f5d4",
+      "path": "supabase/migrations/20260819014000_tcgplayer_market_request_scoped_current_read_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a8fd5e772b92024c84f6faee48e8cdf82f7bf15a",
+      "path": "supabase/migrations/20260819023000_vault_bulk_archive_selected_cards_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3b72bc4ffff4f6413ef069a03c8ef115351eeda5",
+      "path": "supabase/migrations/20260822203000_game_scoped_card_search_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3d175678497ec39ce4afedcbcb6117d14d5fd52a",
+      "path": "supabase/migrations/20260822210000_game_scoped_card_search_suppression_guard_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ed4e50dbfc54abcce34f7ec8348242a37e42a89a",
+      "path": "supabase/migrations/20260822230000_cross_tcg_card_search_v3.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "54c20b41656dbeec7e7e239a174be4fb8ca70f2e",
+      "path": "supabase/migrations/20260823074000_cross_tcg_direct_gvid_search_v4.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c138370b85905cf05346410541c55459636374a0",
+      "path": "supabase/migrations/20260824021500_tcgcsv_source_artifact_lookup_performance_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e63aa86f3cacc213239532b5eb1745529a6f2350",
+      "path": "supabase/migrations/20260824033000_tcgplayer_market_snapshot_paging_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ec367509a511bf97739932a1025cb3d4231a0847",
+      "path": "supabase/migrations/20260824043000_operations_notification_severity_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "655e65408dc90944c69745c3bb79a16c85703c02",
+      "path": "supabase/migrations/20260824170000_print_identity_search_candidate_first_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3bd7b8508387055e6145b6a15d9509f18d51e22a",
+      "path": "supabase/migrations/20260824173000_catalog_parent_visibility_direct_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f7ab58e8e495f2bdf973d4bcc5a203fd5f1fd46a",
+      "path": "supabase/migrations/20260824174500_print_identity_search_bounded_candidates_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c13de0aa5ca72dd8af511e21db89ba0aa1ee2228",
+      "path": "supabase/migrations/20260826053000_retire_mee_public_pricing_compatibility_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e48a92ae5b7e2261ce659258ecd9664c9fd8ce4d",
+      "path": "supabase/migrations/20260826070000_card_prints_gv_id_trgm_performance_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "98c70bdf9c1529b64b986f5be5a46052731712fa",
+      "path": "supabase/migrations/20260828021500_print_identity_search_visible_bound_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "75ce1640ec100e5b197ede5905dc4a0bb875c98e",
+      "path": "supabase/migrations/20260828024500_collectible_wave1_game_foundations_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "23c0385b91c7ba109ed48c06795f8fd3e85854e9",
+      "path": "supabase/migrations/20260828063000_collectible_wave1_set_foundations_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fd84dffe13a611a0ddde015f14a026739df23fd3",
+      "path": "supabase/migrations/20260828110000_catalog_set_release_controls_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "38b53d9d7c54d4f2ade7a81f4ca47fb9aa8440c2",
+      "path": "supabase/migrations/20260828173000_one_piece_self_hosted_image_sources_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e4fd38e735c2ace417f241db784bb36bb4ec5782",
+      "path": "supabase/migrations/20260828180000_one_piece_verified_external_image_source_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e1aa82469c05e94e82d701846ec1c21eed6365a3",
+      "path": "supabase/migrations/20260829173500_anonymous_search_price_redaction_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a8545860696fcca2d6a0f748b3bbdf2ec39dd524",
+      "path": "supabase/migrations/20260829203000_search_game_card_prints_v4_performance_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7c3970d8b0c7685dd352a83600b18e0fcc897cab",
+      "path": "supabase/migrations/20260830193000_public_catalog_sets_performance_v2.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ba909178cedcc903889c0424353c7c04e9750874",
+      "path": "supabase/migrations/20260830210500_founder_notifications_in_app_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "34fff698630222f786be8f327e7618d0109e457e",
+      "path": "supabase/migrations/20260830233000_founder_operations_command_center_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5b6ee3a0de528134f751522c006869e063f33ef3",
+      "path": "supabase/migrations/20260831054500_founder_operations_command_center_repair_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1d368a8f264729f36d10fbde5db7ab7ada6d6c7a",
+      "path": "supabase/migrations/20260901030000_founder_operations_publish_digest_schema_fix_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8d1795d923af8ac038562acf7f15118fe0ea572f",
+      "path": "supabase/migrations/20260901070000_founder_operations_action_claim_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "dabc028dadaa40a4f222cf1359e4405d7e4cc55b",
+      "path": "supabase/migrations/20260901120000_founder_outcome_workflow_v1.sql"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ff1b21b0eb06a15835911201305d1e85bb16e964",
+      "path": "supabase/migrations/20260901190000_catalog_founder_review_supersession_v1.sql"
+    }
+  ],
+  "migration_count": 382,
+  "migrations_sha256": "b373333fc9d76fdf184c13dda8bf874e54364e14bdba2bb7222d6d73cf974ed7",
+  "workflows": [
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "58dc3a4dd1186ec33b9f2ad7e7b3609ef3abc499",
+      "path": ".github/workflows/auto-align-import-prices-bridge.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d11d0bcfe9c00e1d2dd960e8af990f23358d0348",
+      "path": ".github/workflows/bridge-ops.yml",
+      "schedules": [
+        "0 8 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "855c840975cbbc5750684e8cd90eec5d376a089c",
+      "path": ".github/workflows/catalog-founder-review-supersession.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "008194ee8adce9cecc125637a0abd9bad62e5967",
+      "path": ".github/workflows/catalog-incremental-promotion.yml",
+      "schedules": [
+        "47 */6 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d873ae5c7432e1cea3ecf4146c786143e5caa5e1",
+      "path": ".github/workflows/catalog-set-release-boundary.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c1411d47ccdbae20bf5113e4c518de124b2c9341",
+      "path": ".github/workflows/ci-guard-keys.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2756e1c5cc3130d85f6c827fe5d523374fcb7942",
+      "path": ".github/workflows/collectible-shadow-adapters.yml",
+      "schedules": [
+        "23 7 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e7b0ab4d008e0443167e218dc708c0bab28d1f28",
+      "path": ".github/workflows/collectible-shadow-parser-wave1.yml",
+      "schedules": [
+        "3 8 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "53e9bda7cb083c2389ea6fcfd6e5e870e3df457a",
+      "path": ".github/workflows/collectible-wave1-alt-art-row-addressability.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cd0c130eee0ecb6eda65cee1e225eecd2035a69a",
+      "path": ".github/workflows/collectible-wave1-canonical-reconciliation.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0bb31ec960b2111b7f51c08a14068d6604fae2d9",
+      "path": ".github/workflows/collectible-wave1-card-identity-proposal.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e8246d2ac6f9ab78216cdde691a2710c5f8acf2f",
+      "path": ".github/workflows/collectible-wave1-parent-apply-rollback-v1.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c32b33415238a4d94f99ff7383dc0d856fdf8a7",
+      "path": ".github/workflows/collectible-wave1-set-apply-proposal.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a1d6c2abfe02aacb5839a3b23176469a014820f",
+      "path": ".github/workflows/collectible-wave1-set-foundation-proposal.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "da370acaa432bfd2c5e71cd474cfdeb37174f3db",
+      "path": ".github/workflows/collectible-wave1-set-foundations-apply.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e5759dd856a1b4897fd73a769cc3e1a22074b8b9",
+      "path": ".github/workflows/collectible-wave1-set-foundations-rollback.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "557739062b1eccd7580d5421f7cbc69fd2efbae0",
+      "path": ".github/workflows/collector-memory-share-route-migration.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b550c8aacda1b462789ca61c580ef740c488dd13",
+      "path": ".github/workflows/contracts-drift-gate.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3125baa426b1d1ed3afa20c5c0323b5bf3e4ec9f",
+      "path": ".github/workflows/contracts-runtime-protection.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "67b3a37509a9f749610e1fedaead19d557bf0326",
+      "path": ".github/workflows/cross-tcg-set-cover-gap-repair.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "88e8dedc5d1760fdcc58fbeb0aa22cf14cac45cf",
+      "path": ".github/workflows/flutter-build-apk.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "dda3d25630240067cedffbe5ceb751290283ddb4",
+      "path": ".github/workflows/flutter-ci.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8cb340cd25be01dd2ff4afe2c331664e313b399d",
+      "path": ".github/workflows/founder-notification-dispatcher-deploy.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "94cc744ee7bb8e6f472fbefdee57a2962453bb2f",
+      "path": ".github/workflows/founder-ops-dashboard.yml",
+      "schedules": [
+        "17 13 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6b34c69ae9305eb5ef71c664034d381f880a4616",
+      "path": ".github/workflows/japanese-v4-image-pointer-rollback-proof.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6ac09e75da718849dfd7ee8bfa53ef78f1fe7bb9",
+      "path": ".github/workflows/kick-auto-align-bridge.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "934d7969920320f8d8f44d3ed517468158641c4f",
+      "path": ".github/workflows/mobile-web-parity.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "74798b17062966fdc005013ef385482fe7c31abd",
+      "path": ".github/workflows/mtg-catalog-supervisor.yml",
+      "schedules": [
+        "*/15 * * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1928747f7f517f0e5acfa8bbdf586fd2e37e124b",
+      "path": ".github/workflows/mtg-hidden-catalog-runner.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ff243efb3c7b801802d6254df511d25e26614e5",
+      "path": ".github/workflows/mtg-image-pointer-runner.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "36b436aeb897174a5d3c5ef03419d7837e79896b",
+      "path": ".github/workflows/mtg-image-storage-runner.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8c346bc10785532b5ae6cc7da61fec857e8d66a1",
+      "path": ".github/workflows/mtg-pricing-publication-runner.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8e33ee7a805116845382739eac11730f786ec14d",
+      "path": ".github/workflows/mtg-sealed-world-runner.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2f926155ba5875ca5a2cd6bdedaec1da3c0042fc",
+      "path": ".github/workflows/mtg-signed-in-catalog-release.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0d4669efa61913256fdd569f52a71e4e81e35252",
+      "path": ".github/workflows/one-piece-image-source-constraint.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c065240dd4220edd1bb2fa1e25405069ea309900",
+      "path": ".github/workflows/one-piece-incremental-promotion.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b727a9b89ca5ad9a4a2d6929bf2e8ab09ca785bf",
+      "path": ".github/workflows/one-piece-set-production-closure.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4b4eafb10365f3f271d6987c784d115de876491f",
+      "path": ".github/workflows/one-piece-verified-external-image-source.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a0ed6bf7140a7b7352e2de831f2c45e2a765fede",
+      "path": ".github/workflows/operations-control-plane-maintenance.yml",
+      "schedules": [
+        "*/15 * * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "33bc39a36fbc1f33e28e0cd0e2f2f4c13aa71f24",
+      "path": ".github/workflows/pokemon-master-index-refresh.yml",
+      "schedules": [
+        "37 3 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d517a4978ed69a7a480f110e8be90e8383b9f031",
+      "path": ".github/workflows/prod-edge-probe.yml",
+      "schedules": [
+        "23 * * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4c10f9e412353a474da335c5e13c22cabe4e6038",
+      "path": ".github/workflows/prod-import-prices-validate-edge.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "567aadce7acd702866da57853de9dea8263855b8",
+      "path": ".github/workflows/prod-import-prices-validate-pub.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f61e6fd0ef17f95121699fd9c035e14f638462e3",
+      "path": ".github/workflows/prod-import-prices-validate.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "12d086cd8d9b737e8578d6578332c69b25839876",
+      "path": ".github/workflows/prod-probe.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "17b1b4b286420e0263068a2ef4f5d903dadd7ea2",
+      "path": ".github/workflows/release.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ab4139a411edf73cb9e78e4821952e95f6aa630",
+      "path": ".github/workflows/special-variant-printing-bounded-apply.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c0c8cbc6c3c91c44802b425a553ce2de5e671858",
+      "path": ".github/workflows/special-variant-printing-health.yml",
+      "schedules": [
+        "23 10 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b41d58541158e1f94293a059095182e249c3a996",
+      "path": ".github/workflows/special-variant-printing-pricing-boundary-migration.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c1bbae6f19a4e019b244f9da79338d196d789343",
+      "path": ".github/workflows/staging-probe.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d931d95b5db1046f350c94b5caa8facd18bba1f9",
+      "path": ".github/workflows/supabase-disk-autoscale-apply.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1b77d65cdc5bfe661d765230545bf52fb628a2d2",
+      "path": ".github/workflows/supabase-production-capacity-audit.yml",
+      "schedules": [
+        "17 */6 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "28ed936b2b3c41f8ffb117db230499714665399e",
+      "path": ".github/workflows/tcgplayer-market-canary-observation.yml",
+      "schedules": [
+        "17 */6 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c0cd85d77e9d84e4c074f4cc515b8da937d00fbf",
+      "path": ".github/workflows/tcgplayer-market-full-rollout-observation.yml",
+      "schedules": [
+        "15 11 * * *"
+      ]
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a218e98e92a6f051833666ac72781e5673058305",
+      "path": ".github/workflows/tcgplayer-market-full-scope-shadow.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "631adb6678370858b922c6602af023176537a329",
+      "path": ".github/workflows/tk-sm-r-founder-apply-command.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "79a9301ed49c540125d86071239a8c7925965232",
+      "path": ".github/workflows/tk-sm-r-hidden-set-executor.yml",
+      "schedules": []
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8e089055f0ca6a99624ef9cd4dafcdf339dc0e5e",
+      "path": ".github/workflows/universal-catalog-discovery.yml",
+      "schedules": [
+        "17 */6 * * *"
+      ]
+    }
+  ],
+  "workflow_count": 58,
+  "workflows_sha256": "d5d30c5b3b24999f40c1260d76da38b254c1f4426b918d7aa32dbd7c4a234791",
+  "web_routes": [
+    {
+      "path": "/account/delete",
+      "kind": "page",
+      "source_path": "apps/web/src/app/account/delete/page.tsx"
+    },
+    {
+      "path": "/account",
+      "kind": "page",
+      "source_path": "apps/web/src/app/account/page.tsx"
+    },
+    {
+      "path": "/api/assistant/search-interpretation",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/assistant/search-interpretation/route.ts"
+    },
+    {
+      "path": "/api/assistant/variant-explanation-context",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/assistant/variant-explanation-context/route.ts"
+    },
+    {
+      "path": "/api/canon/cards/[gv_id]/image",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/canon/cards/[gv_id]/image/route.ts"
+    },
+    {
+      "path": "/api/canon/image",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/canon/image/route.ts"
+    },
+    {
+      "path": "/api/canon/images",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/canon/images/route.ts"
+    },
+    {
+      "path": "/api/card-pricing",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/card-pricing/route.ts"
+    },
+    {
+      "path": "/api/follows/state",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/follows/state/route.ts"
+    },
+    {
+      "path": "/api/gvvi/[gvvi_id]/qr",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/gvvi/[gvvi_id]/qr/route.ts"
+    },
+    {
+      "path": "/api/gvvi/[gvvi_id]/vendor-offer",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/gvvi/[gvvi_id]/vendor-offer/route.ts"
+    },
+    {
+      "path": "/api/health/binders-client-state",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/health/binders-client-state/route.ts"
+    },
+    {
+      "path": "/api/navigation/shell",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/navigation/shell/route.ts"
+    },
+    {
+      "path": "/api/network/contact-eligibility",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/network/contact-eligibility/route.ts"
+    },
+    {
+      "path": "/api/public-set-cards",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/public-set-cards/route.ts"
+    },
+    {
+      "path": "/api/public-set-metadata",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/public-set-metadata/route.ts"
+    },
+    {
+      "path": "/api/resolver/search",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/resolver/search/route.ts"
+    },
+    {
+      "path": "/api/review/visual-search/dashboard",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/review/visual-search/dashboard/route.ts"
+    },
+    {
+      "path": "/api/search/suggestions",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/search/suggestions/route.ts"
+    },
+    {
+      "path": "/api/slabs/upgrade",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/slabs/upgrade/route.ts"
+    },
+    {
+      "path": "/api/slabs/verify/psa",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/slabs/verify/psa/route.ts"
+    },
+    {
+      "path": "/api/telemetry",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/telemetry/route.ts"
+    },
+    {
+      "path": "/api/wall/owner-sections",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/api/wall/owner-sections/route.ts"
+    },
+    {
+      "path": "/auth/callback",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/auth/callback/route.ts"
+    },
+    {
+      "path": "/b/[viewToken]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/b/[viewToken]/page.tsx"
+    },
+    {
+      "path": "/binder-invites/[inviteToken]",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/binder-invites/[inviteToken]/route.ts"
+    },
+    {
+      "path": "/binder-invites/respond",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/binder-invites/respond/route.ts"
+    },
+    {
+      "path": "/binder-invites/review",
+      "kind": "page",
+      "source_path": "apps/web/src/app/binder-invites/review/page.tsx"
+    },
+    {
+      "path": "/binder-templates/[templateId]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/binder-templates/[templateId]/page.tsx"
+    },
+    {
+      "path": "/binders/[publicId]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/binders/[publicId]/page.tsx"
+    },
+    {
+      "path": "/binders/card-options",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/binders/card-options/route.ts"
+    },
+    {
+      "path": "/binders/explore",
+      "kind": "page",
+      "source_path": "apps/web/src/app/binders/explore/page.tsx"
+    },
+    {
+      "path": "/binders/new",
+      "kind": "page",
+      "source_path": "apps/web/src/app/binders/new/page.tsx"
+    },
+    {
+      "path": "/binders",
+      "kind": "page",
+      "source_path": "apps/web/src/app/binders/page.tsx"
+    },
+    {
+      "path": "/card/[gv_id]/market",
+      "kind": "page",
+      "source_path": "apps/web/src/app/card/[gv_id]/market/page.tsx"
+    },
+    {
+      "path": "/card/[gv_id]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/card/[gv_id]/page.tsx"
+    },
+    {
+      "path": "/compare",
+      "kind": "page",
+      "source_path": "apps/web/src/app/compare/page.tsx"
+    },
+    {
+      "path": "/dex/[speciesSlug]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/dex/[speciesSlug]/page.tsx"
+    },
+    {
+      "path": "/dex",
+      "kind": "page",
+      "source_path": "apps/web/src/app/dex/page.tsx"
+    },
+    {
+      "path": "/early-access",
+      "kind": "page",
+      "source_path": "apps/web/src/app/early-access/page.tsx"
+    },
+    {
+      "path": "/explore",
+      "kind": "page",
+      "source_path": "apps/web/src/app/explore/page.tsx"
+    },
+    {
+      "path": "/following",
+      "kind": "page",
+      "source_path": "apps/web/src/app/following/page.tsx"
+    },
+    {
+      "path": "/founder/early-access",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/early-access/page.tsx"
+    },
+    {
+      "path": "/founder/entitlements",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/entitlements/page.tsx"
+    },
+    {
+      "path": "/founder/metrics",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/metrics/page.tsx"
+    },
+    {
+      "path": "/founder/notifications",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/notifications/page.tsx"
+    },
+    {
+      "path": "/founder/operations",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/operations/page.tsx"
+    },
+    {
+      "path": "/founder",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/page.tsx"
+    },
+    {
+      "path": "/founder/pricing",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/pricing/page.tsx"
+    },
+    {
+      "path": "/founder/staging",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/staging/page.tsx"
+    },
+    {
+      "path": "/founder/trust-safety",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/trust-safety/page.tsx"
+    },
+    {
+      "path": "/founder/warehouse/[candidateId]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/warehouse/[candidateId]/page.tsx"
+    },
+    {
+      "path": "/founder/warehouse",
+      "kind": "page",
+      "source_path": "apps/web/src/app/founder/warehouse/page.tsx"
+    },
+    {
+      "path": "/gvvi/[gvvi_id]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/gvvi/[gvvi_id]/page.tsx"
+    },
+    {
+      "path": "/ids/cards/[page]",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/ids/cards/[page]/route.ts"
+    },
+    {
+      "path": "/ids",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/ids/route.ts"
+    },
+    {
+      "path": "/legal",
+      "kind": "page",
+      "source_path": "apps/web/src/app/legal/page.tsx"
+    },
+    {
+      "path": "/login",
+      "kind": "page",
+      "source_path": "apps/web/src/app/login/page.tsx"
+    },
+    {
+      "path": "/memory/[memory_id]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/memory/[memory_id]/page.tsx"
+    },
+    {
+      "path": "/network/discover",
+      "kind": "page",
+      "source_path": "apps/web/src/app/network/discover/page.tsx"
+    },
+    {
+      "path": "/network/inbox",
+      "kind": "page",
+      "source_path": "apps/web/src/app/network/inbox/page.tsx"
+    },
+    {
+      "path": "/network/nearby",
+      "kind": "page",
+      "source_path": "apps/web/src/app/network/nearby/page.tsx"
+    },
+    {
+      "path": "/network",
+      "kind": "page",
+      "source_path": "apps/web/src/app/network/page.tsx"
+    },
+    {
+      "path": "/",
+      "kind": "page",
+      "source_path": "apps/web/src/app/page.tsx"
+    },
+    {
+      "path": "/privacy",
+      "kind": "page",
+      "source_path": "apps/web/src/app/privacy/page.tsx"
+    },
+    {
+      "path": "/provisional/[candidate_id]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/provisional/[candidate_id]/page.tsx"
+    },
+    {
+      "path": "/q/[gvvi_id]",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/q/[gvvi_id]/route.ts"
+    },
+    {
+      "path": "/review/visual-search",
+      "kind": "page",
+      "source_path": "apps/web/src/app/review/visual-search/page.tsx"
+    },
+    {
+      "path": "/scan",
+      "kind": "page",
+      "source_path": "apps/web/src/app/scan/page.tsx"
+    },
+    {
+      "path": "/search",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/search/route.ts"
+    },
+    {
+      "path": "/set/[set_code]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/set/[set_code]/page.tsx"
+    },
+    {
+      "path": "/sets/[set_code]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/sets/[set_code]/page.tsx"
+    },
+    {
+      "path": "/sets",
+      "kind": "page",
+      "source_path": "apps/web/src/app/sets/page.tsx"
+    },
+    {
+      "path": "/sitemap.xml",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/sitemap.xml/route.ts"
+    },
+    {
+      "path": "/sitemaps/cards/[page]/sitemap.xml",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/sitemaps/cards/[page]/sitemap.xml/route.ts"
+    },
+    {
+      "path": "/sitemaps/profiles/sitemap.xml",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/sitemaps/profiles/sitemap.xml/route.ts"
+    },
+    {
+      "path": "/sitemaps/sets/sitemap.xml",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/sitemaps/sets/sitemap.xml/route.ts"
+    },
+    {
+      "path": "/sitemaps/static/sitemap.xml",
+      "kind": "route_handler",
+      "source_path": "apps/web/src/app/sitemaps/static/sitemap.xml/route.ts"
+    },
+    {
+      "path": "/submit",
+      "kind": "page",
+      "source_path": "apps/web/src/app/submit/page.tsx"
+    },
+    {
+      "path": "/support",
+      "kind": "page",
+      "source_path": "apps/web/src/app/support/page.tsx"
+    },
+    {
+      "path": "/u/[slug]/collection",
+      "kind": "page",
+      "source_path": "apps/web/src/app/u/[slug]/collection/page.tsx"
+    },
+    {
+      "path": "/u/[slug]/followers",
+      "kind": "page",
+      "source_path": "apps/web/src/app/u/[slug]/followers/page.tsx"
+    },
+    {
+      "path": "/u/[slug]/following",
+      "kind": "page",
+      "source_path": "apps/web/src/app/u/[slug]/following/page.tsx"
+    },
+    {
+      "path": "/u/[slug]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/u/[slug]/page.tsx"
+    },
+    {
+      "path": "/u/[slug]/pokemon/[pokemon]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/u/[slug]/pokemon/[pokemon]/page.tsx"
+    },
+    {
+      "path": "/u/[slug]/section/[section_id]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/u/[slug]/section/[section_id]/page.tsx"
+    },
+    {
+      "path": "/vault/card/[cardId]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/vault/card/[cardId]/page.tsx"
+    },
+    {
+      "path": "/vault/gvvi/[gvvi_id]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx"
+    },
+    {
+      "path": "/vault/gvvi/[gvvi_id]/qr",
+      "kind": "page",
+      "source_path": "apps/web/src/app/vault/gvvi/[gvvi_id]/qr/page.tsx"
+    },
+    {
+      "path": "/vault/import",
+      "kind": "page",
+      "source_path": "apps/web/src/app/vault/import/page.tsx"
+    },
+    {
+      "path": "/vault",
+      "kind": "page",
+      "source_path": "apps/web/src/app/vault/page.tsx"
+    },
+    {
+      "path": "/visual-fixtures/gvvi-vendor-qr",
+      "kind": "page",
+      "source_path": "apps/web/src/app/visual-fixtures/gvvi-vendor-qr/page.tsx"
+    },
+    {
+      "path": "/visual-fixtures/parity/[scenario]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/visual-fixtures/parity/[scenario]/page.tsx"
+    },
+    {
+      "path": "/visual-fixtures/release-convergence/[scenario]",
+      "kind": "page",
+      "source_path": "apps/web/src/app/visual-fixtures/release-convergence/[scenario]/page.tsx"
+    },
+    {
+      "path": "/wall",
+      "kind": "page",
+      "source_path": "apps/web/src/app/wall/page.tsx"
+    }
+  ],
+  "web_route_count": 95,
+  "web_routes_sha256": "290142feba1be792cdc318b9dc0cf76585d32af74a24d144ae6e981c2e4232f7",
+  "executable_entrypoints": [
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "58dc3a4dd1186ec33b9f2ad7e7b3609ef3abc499",
+      "path": ".github/workflows/auto-align-import-prices-bridge.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d11d0bcfe9c00e1d2dd960e8af990f23358d0348",
+      "path": ".github/workflows/bridge-ops.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "855c840975cbbc5750684e8cd90eec5d376a089c",
+      "path": ".github/workflows/catalog-founder-review-supersession.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "008194ee8adce9cecc125637a0abd9bad62e5967",
+      "path": ".github/workflows/catalog-incremental-promotion.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d873ae5c7432e1cea3ecf4146c786143e5caa5e1",
+      "path": ".github/workflows/catalog-set-release-boundary.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c1411d47ccdbae20bf5113e4c518de124b2c9341",
+      "path": ".github/workflows/ci-guard-keys.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2756e1c5cc3130d85f6c827fe5d523374fcb7942",
+      "path": ".github/workflows/collectible-shadow-adapters.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e7b0ab4d008e0443167e218dc708c0bab28d1f28",
+      "path": ".github/workflows/collectible-shadow-parser-wave1.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "53e9bda7cb083c2389ea6fcfd6e5e870e3df457a",
+      "path": ".github/workflows/collectible-wave1-alt-art-row-addressability.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "cd0c130eee0ecb6eda65cee1e225eecd2035a69a",
+      "path": ".github/workflows/collectible-wave1-canonical-reconciliation.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0bb31ec960b2111b7f51c08a14068d6604fae2d9",
+      "path": ".github/workflows/collectible-wave1-card-identity-proposal.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e8246d2ac6f9ab78216cdde691a2710c5f8acf2f",
+      "path": ".github/workflows/collectible-wave1-parent-apply-rollback-v1.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c32b33415238a4d94f99ff7383dc0d856fdf8a7",
+      "path": ".github/workflows/collectible-wave1-set-apply-proposal.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a1d6c2abfe02aacb5839a3b23176469a014820f",
+      "path": ".github/workflows/collectible-wave1-set-foundation-proposal.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "da370acaa432bfd2c5e71cd474cfdeb37174f3db",
+      "path": ".github/workflows/collectible-wave1-set-foundations-apply.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e5759dd856a1b4897fd73a769cc3e1a22074b8b9",
+      "path": ".github/workflows/collectible-wave1-set-foundations-rollback.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "557739062b1eccd7580d5421f7cbc69fd2efbae0",
+      "path": ".github/workflows/collector-memory-share-route-migration.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b550c8aacda1b462789ca61c580ef740c488dd13",
+      "path": ".github/workflows/contracts-drift-gate.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3125baa426b1d1ed3afa20c5c0323b5bf3e4ec9f",
+      "path": ".github/workflows/contracts-runtime-protection.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "67b3a37509a9f749610e1fedaead19d557bf0326",
+      "path": ".github/workflows/cross-tcg-set-cover-gap-repair.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "88e8dedc5d1760fdcc58fbeb0aa22cf14cac45cf",
+      "path": ".github/workflows/flutter-build-apk.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "dda3d25630240067cedffbe5ceb751290283ddb4",
+      "path": ".github/workflows/flutter-ci.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8cb340cd25be01dd2ff4afe2c331664e313b399d",
+      "path": ".github/workflows/founder-notification-dispatcher-deploy.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "94cc744ee7bb8e6f472fbefdee57a2962453bb2f",
+      "path": ".github/workflows/founder-ops-dashboard.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6b34c69ae9305eb5ef71c664034d381f880a4616",
+      "path": ".github/workflows/japanese-v4-image-pointer-rollback-proof.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6ac09e75da718849dfd7ee8bfa53ef78f1fe7bb9",
+      "path": ".github/workflows/kick-auto-align-bridge.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "934d7969920320f8d8f44d3ed517468158641c4f",
+      "path": ".github/workflows/mobile-web-parity.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "74798b17062966fdc005013ef385482fe7c31abd",
+      "path": ".github/workflows/mtg-catalog-supervisor.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1928747f7f517f0e5acfa8bbdf586fd2e37e124b",
+      "path": ".github/workflows/mtg-hidden-catalog-runner.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ff243efb3c7b801802d6254df511d25e26614e5",
+      "path": ".github/workflows/mtg-image-pointer-runner.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "36b436aeb897174a5d3c5ef03419d7837e79896b",
+      "path": ".github/workflows/mtg-image-storage-runner.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8c346bc10785532b5ae6cc7da61fec857e8d66a1",
+      "path": ".github/workflows/mtg-pricing-publication-runner.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8e33ee7a805116845382739eac11730f786ec14d",
+      "path": ".github/workflows/mtg-sealed-world-runner.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2f926155ba5875ca5a2cd6bdedaec1da3c0042fc",
+      "path": ".github/workflows/mtg-signed-in-catalog-release.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0d4669efa61913256fdd569f52a71e4e81e35252",
+      "path": ".github/workflows/one-piece-image-source-constraint.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c065240dd4220edd1bb2fa1e25405069ea309900",
+      "path": ".github/workflows/one-piece-incremental-promotion.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b727a9b89ca5ad9a4a2d6929bf2e8ab09ca785bf",
+      "path": ".github/workflows/one-piece-set-production-closure.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4b4eafb10365f3f271d6987c784d115de876491f",
+      "path": ".github/workflows/one-piece-verified-external-image-source.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a0ed6bf7140a7b7352e2de831f2c45e2a765fede",
+      "path": ".github/workflows/operations-control-plane-maintenance.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "33bc39a36fbc1f33e28e0cd0e2f2f4c13aa71f24",
+      "path": ".github/workflows/pokemon-master-index-refresh.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d517a4978ed69a7a480f110e8be90e8383b9f031",
+      "path": ".github/workflows/prod-edge-probe.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4c10f9e412353a474da335c5e13c22cabe4e6038",
+      "path": ".github/workflows/prod-import-prices-validate-edge.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "567aadce7acd702866da57853de9dea8263855b8",
+      "path": ".github/workflows/prod-import-prices-validate-pub.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f61e6fd0ef17f95121699fd9c035e14f638462e3",
+      "path": ".github/workflows/prod-import-prices-validate.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "12d086cd8d9b737e8578d6578332c69b25839876",
+      "path": ".github/workflows/prod-probe.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "17b1b4b286420e0263068a2ef4f5d903dadd7ea2",
+      "path": ".github/workflows/release.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7ab4139a411edf73cb9e78e4821952e95f6aa630",
+      "path": ".github/workflows/special-variant-printing-bounded-apply.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c0c8cbc6c3c91c44802b425a553ce2de5e671858",
+      "path": ".github/workflows/special-variant-printing-health.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b41d58541158e1f94293a059095182e249c3a996",
+      "path": ".github/workflows/special-variant-printing-pricing-boundary-migration.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c1bbae6f19a4e019b244f9da79338d196d789343",
+      "path": ".github/workflows/staging-probe.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d931d95b5db1046f350c94b5caa8facd18bba1f9",
+      "path": ".github/workflows/supabase-disk-autoscale-apply.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1b77d65cdc5bfe661d765230545bf52fb628a2d2",
+      "path": ".github/workflows/supabase-production-capacity-audit.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "28ed936b2b3c41f8ffb117db230499714665399e",
+      "path": ".github/workflows/tcgplayer-market-canary-observation.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c0cd85d77e9d84e4c074f4cc515b8da937d00fbf",
+      "path": ".github/workflows/tcgplayer-market-full-rollout-observation.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a218e98e92a6f051833666ac72781e5673058305",
+      "path": ".github/workflows/tcgplayer-market-full-scope-shadow.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "631adb6678370858b922c6602af023176537a329",
+      "path": ".github/workflows/tk-sm-r-founder-apply-command.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "79a9301ed49c540125d86071239a8c7925965232",
+      "path": ".github/workflows/tk-sm-r-hidden-set-executor.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8e089055f0ca6a99624ef9cd4dafcdf339dc0e5e",
+      "path": ".github/workflows/universal-catalog-discovery.yml",
+      "entrypoint_kind": "workflow"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e74a18491d48fd2f4575ac27e677b5540fedc4ee",
+      "path": "backend/condition/centering_measurement_worker_v2.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a60a9d091e16efecd39add3643a1e26f4272f90",
+      "path": "backend/condition/condition_assist_analysis_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8d1a837335e3f01d4607a20f861e7b02cc0c9d0f",
+      "path": "backend/condition/edges_corners_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "576795c48fa2d62c29bc15fddab003ebfd0baf32",
+      "path": "backend/condition/fingerprint_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7b023860c4a456add34d7fe4584b73e6c4d06521",
+      "path": "backend/condition/scratches_surface_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "65d1318e0386f9e4108258cc3d547efe9106e656",
+      "path": "backend/ebay/ebay_self_orders_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d150934310435e0e7a884d40b4a838ab679ba966",
+      "path": "backend/ebay/ebay_sellers_sync_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "40ff3746cd2c5fd3b890c6d8eae56a54f7bbad53",
+      "path": "backend/grookai_dex/grookai_dex_mapping_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9e18611cea6d60e978b80599b5be49c720f58958",
+      "path": "backend/grookai_dex/grookai_dex_species_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6442fdc8d087c8d0589702cff307cadc26646dd5",
+      "path": "backend/identity/delta_species_backfill_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "779cd505b1f770d482081c88ce93e950d591ca41",
+      "path": "backend/identity/grookai_vision_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "029f32420457e1e8eb894c521da5261526dc7fe9",
+      "path": "backend/identity/identity_scan_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "56d2a7a4f25384205849730c38776aa29dfa44c2",
+      "path": "backend/images/source_image_enrichment_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0662e071fe8265896be5c4cb2085ff7cbda1483e",
+      "path": "backend/infra/backfill_print_identity_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8a0dbab28e000b858acab2a6b3a3ca429dba5345",
+      "path": "backend/infra/system_health_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e93a8e779739fbc996503e353ed97e8663661eac",
+      "path": "backend/ingestion/controlled_growth_ingestion_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "14562b5b6df7c40ebedeeb41f04d8f694b4edf51",
+      "path": "backend/ingestion/controlled_growth_non_canonical_filter_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d854d5de7c17e02c51047efa168703afab11f00b",
+      "path": "backend/pokemon/pokemon_enrichment_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "faf536ab2461a756bfc0ce6dcefad2f010090dc9",
+      "path": "backend/pokemon/pokemonapi_backfill_mappings_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "22e739f9494caf0892daf834e4cfb73a059fce3c",
+      "path": "backend/pokemon/pokemonapi_import_cards_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b031519a0e81cec6b06dafeef9f80654bee5b6be",
+      "path": "backend/pokemon/pokemonapi_normalize_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7e616371053274b5f10eacc3b50d2a111b0bc6a9",
+      "path": "backend/pokemon/tcgdex_import_cards_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a442ca4f6414735de321b9948752d3940a643db5",
+      "path": "backend/pokemon/tcgdex_normalize_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4f2e524b5936c53cde0163ae7074508bf8c3ceb0",
+      "path": "backend/pricing/ebay_browse_prices_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6eea0d4ff72d447166ecc1c6948f6730fee51014",
+      "path": "backend/pricing/get_live_price_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2ad0adcc1cd6240c1c6d5718d857062dabcfe405",
+      "path": "backend/pricing/import_prices_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "08f4abc014d63f342bd3e8b34bbcbbcdde344261",
+      "path": "backend/pricing/justtcg_domain_dry_run_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f2590f1947988f84ff4e32d8020aa4e3c701020b",
+      "path": "backend/pricing/justtcg_domain_ingest_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d75a5d02bcce87dd586e3195ab87876b30805a94",
+      "path": "backend/pricing/justtcg_import_cards_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "22bb50eb1a90f6952765298cf96c9b09e9ce724f",
+      "path": "backend/pricing/pricing_backfill_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4d6ca90c4e66febadabce38e6cffd5c277aa23b3",
+      "path": "backend/pricing/pricing_queue_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1d72ee6c6bb3d3d8ca99768e64c8c58f2556aaea",
+      "path": "backend/pricing/tk_mapping_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "87dc62ef55ff28c48287e9693488b98d57532afc",
+      "path": "backend/sets/import_sets_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d263eae11e3dba6996af666934a65eece9340b91",
+      "path": "backend/sets/tcgdex_import_sets_worker.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "573380f1266c76a9ae766559d34ff69acefbc4e5",
+      "path": "backend/vault/vault_instance_backfill_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f4a54ff5337e62dc5ad5c4400670aaebcaa4d540",
+      "path": "backend/warehouse/classification_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b82fe966d1bc0f811981155378a365f9d7bda229",
+      "path": "backend/warehouse/gv_id_assignment_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0d6378fccf452bf569d68d67fbbad603eae4ea7c",
+      "path": "backend/warehouse/justtcg_discovery_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "57efdd9735ece532c4756ee225b8381773e38f54",
+      "path": "backend/warehouse/metadata_extraction_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "14de236649c1a6bbf61ca966debbe709dea19aa1",
+      "path": "backend/warehouse/promotion_image_normalization_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c16872f5525d3665a3b54f15c3bfe54dcfa47ef8",
+      "path": "backend/warehouse/promotion_stage_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a38b6c92ca9bb69d22fc7dc3b1f28bf9026bdb1",
+      "path": "scripts/workers/catalog_founder_outcome_packager_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f477a4a3166e933c1b7fbd36a8822830f9522135",
+      "path": "scripts/workers/catalog_founder_work_item_publisher_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1c6adef0d7ff7fcf457e74657bc40e34f8eab912",
+      "path": "scripts/workers/catalog_incremental_promotion_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "31a2e21ccde13359123d945f4ac7acd9a5d3b7c5",
+      "path": "scripts/workers/catalog_incremental_supervisor_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "bb1e6bf18476fd207ab7d8b2ab50f56a4d37f8fa",
+      "path": "scripts/workers/catalog_shadow_reconciliation_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8d86a2a9ccbf6686faf4ce167d92d085f90b8d17",
+      "path": "scripts/workers/collectible_shadow_adapter_probe_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "da554ee0d4a121404bbd6c37ce69d30db575f189",
+      "path": "scripts/workers/collectible_shadow_parser_wave1_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c4ca7be7393f76f6cab299dd134d0c00cd5e7968",
+      "path": "scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "42a361fd9a82e47cf608268883c97f0d65e225c5",
+      "path": "scripts/workers/collectible_wave1_card_identity_proposal_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "641194d92519ab76547f8359bfe545b0ded35c5f",
+      "path": "scripts/workers/collectible_wave1_set_apply_proposal_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "53ac507c4b56df74dc788f9756fe3c83e816cb22",
+      "path": "scripts/workers/collectible_wave1_set_foundation_proposal_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ba7808893e13ee7e3d08620a38b98a9940ab4f7d",
+      "path": "scripts/workers/cross_tcg_set_publication_gate_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d2a1f591fc04b5e7016c7f301adc60bbc278d4c3",
+      "path": "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a894a4a04f017ca229745542389ddb97d1c33b36",
+      "path": "scripts/workers/english_pokemon_master_index_refresh_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d4e07c7623880a7550b605994e7b73fe84f6fe1b",
+      "path": "scripts/workers/founder_command_dispatcher_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7be6797d2e64957f982f0b733352bc67b7296fb4",
+      "path": "scripts/workers/founder_outcome_workflow_executor_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "471ac4e0780d5cc7719dcc357f1776cca4ee3c76",
+      "path": "scripts/workers/japanese_official_incremental_promotion_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "52e8803e7826926814604b7b59d30dd02d6a5ffd",
+      "path": "scripts/workers/japanese_pokemon_master_index_incremental_refresh_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6685d41383db777f55c6969942188fd82eb9812e",
+      "path": "scripts/workers/market_listing_variant_assignment_incremental_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2e843ad11ee4e993a406379450e5359201c2459f",
+      "path": "scripts/workers/mee_nightly_droplet_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2603f19e139aa9f403a49488d9a3207fc02f6e77",
+      "path": "scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "70134885748ecbda457cbf2d706df7fd890d354a",
+      "path": "scripts/workers/mee_reference_source_refresh_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ac2d31a2346770c588dc43ad15f39b8b1c77b129",
+      "path": "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5ac262569400bec0b22d52b4eb84fa3bbef5610e",
+      "path": "scripts/workers/mtg_incremental_promotion_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "45e59664127633a31c5ebac7b301f237ae18aeca",
+      "path": "scripts/workers/one_piece_incremental_promotion_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9e1789aa251b2208e8d7d5f5487b95144d1ac335",
+      "path": "scripts/workers/one_piece_set_release_closure_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "398f934755ccbdf34fc7bde017459a5d427c4ae3",
+      "path": "scripts/workers/operations_maintenance_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "546549c595f960541463b5527155e7de3afdc2d8",
+      "path": "scripts/workers/pokemon_language_master_index_refresh_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ce7c70ddaf9f93f82e65af2f39c0c38bec9cac68",
+      "path": "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7bd0b22c8a68be0beb2203b97d6ef4317b65b126",
+      "path": "scripts/workers/tcgcsv_historical_load_guard_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "3bbc8ee619ac0a85e8159b311443aa9ab25e76f4",
+      "path": "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "33738c5e197adb71237f346b9cc46581e6acc922",
+      "path": "scripts/workers/tcgplayer_market_health_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "95c30150f170630d7d4addfae3649e5422cdccd2",
+      "path": "scripts/workers/tcgplayer_market_pipeline_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "74374d3d856fef1361ac4fa2323caebbe5d92923",
+      "path": "scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7430f1dfb9b5255d30a9b10134bb384c1ba5a1ea",
+      "path": "scripts/workers/tcgplayer_market_rollback_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5cc2d33f0303b07956476d161a0690e7b19976a9",
+      "path": "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "069d8f4cdf4944219ad1d4bbc184b18a2bc010d0",
+      "path": "scripts/workers/tk_sm_r_founder_apply_publisher_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e4faec888c21b0ba89d7204a71554f10ae0ea628",
+      "path": "scripts/workers/tk_sm_r_founder_command_executor_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4cc9aff97013de9b6168f30226fce659cfb41872",
+      "path": "scripts/workers/tk_sm_r_founder_command_resolver_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "862a41e2b36e80840a8467ec7764aa0dfa1e48a7",
+      "path": "scripts/workers/universal_catalog_discovery_v1.mjs",
+      "entrypoint_kind": "worker"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c7b74a36c156d545c579df1d386d76b8e22ffc30",
+      "path": "supabase/functions/diag-echo/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "65ac0312e90f20d56e7a12082e7cbccf50080b5b",
+      "path": "supabase/functions/ebay_oauth_callback/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "73af785d016144bc699e5a55a218fda20fed7db2",
+      "path": "supabase/functions/founder-market-signal-drilldown-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "69e876337cf52b77a24fe0a570a797df0b77b508",
+      "path": "supabase/functions/founder-market-signals-mobile-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "69e876337cf52b77a24fe0a570a797df0b77b508",
+      "path": "supabase/functions/founder-market-signals-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2b4ec56438a79c75f2c7d92e5e177bdf021d76bb",
+      "path": "supabase/functions/founder-metrics-mobile-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "73af785d016144bc699e5a55a218fda20fed7db2",
+      "path": "supabase/functions/founder-signal-drill-mobile-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ea6b7be2908de5dea498b67c5ad62c2a5b008554",
+      "path": "supabase/functions/identity_scan_enqueue_v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ce40c8567c63b189960b71381bdea7f398e59bf0",
+      "path": "supabase/functions/identity_scan_get_v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f502f4fb46085d80ad291d558174ffb6f1fa8e4",
+      "path": "supabase/functions/import-prices-bridge/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f502f4fb46085d80ad291d558174ffb6f1fa8e4",
+      "path": "supabase/functions/import-prices-v3/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c8b8ac2114705733474a070131148fdd014be54c",
+      "path": "supabase/functions/import-prices/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2eeb92d3d089fb2b376b589bdaeacf6c1389d78d",
+      "path": "supabase/functions/ingestion-enqueue-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "279f39947cad1febf34de433709a1009da05c8e5",
+      "path": "supabase/functions/notification-dispatcher/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "31a830cc3a4ae393b3a2ff5a475e454e35844ade",
+      "path": "supabase/functions/operations-webhook-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6e5958b87f7d6b7890ffbb32d22f24e3e634a0f4",
+      "path": "supabase/functions/pricing-live-request/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e29e5ece7e637039105bb577883843aee29fc757",
+      "path": "supabase/functions/scan-read/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "168f9e329a5ae15335392ebc8206bba288a317c7",
+      "path": "supabase/functions/scan-upload-plan/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "894af5605b69b02d05ebdff025acb4a613bf7a7e",
+      "path": "supabase/functions/vault-add-card-instance-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9b58cd6ae4380dad71cd76da71d4615fc9376a20",
+      "path": "supabase/functions/wall_feed/index.ts",
+      "entrypoint_kind": "edge_function"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4b80f18ec65e089dc4f2f61f83d75de2fa1a3b28",
+      "path": "supabase/functions/warehouse-intake-v1/index.ts",
+      "entrypoint_kind": "edge_function"
+    }
+  ],
+  "executable_entrypoint_count": 160,
+  "executable_entrypoints_sha256": "39c27467529a4b1145359a958c80576a952831d8c89b5731a6d1167a114ae2db",
+  "config_files": [
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c1c74a9605ef575ed373c51b2e402c5de0e9a225",
+      "path": ".env.example"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "20fafb4e3da63494e388e049f00acf5faed1577c",
+      "path": "android/app/build.gradle.kts"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "83021a5f9f81d61cc6729b9bf08de1c26ce67d5b",
+      "path": "apps/web/next.config.mjs"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "af3c64bb62d9a67278484650f71dbb0aacbf5ae7",
+      "path": "ios/Runner/Info.plist"
+    },
+    {
+      "mode": "100644",
+      "type": "blob",
+      "object": "375a5aa672bcc1448c2572a4b2687ba2b0d722be",
+      "path": "supabase/config.toml"
+    }
+  ],
+  "referenced_environment_variable_names": [
+    "ADB_PATH",
+    "APP_ENV",
+    "ASCENDED_HEROES_NORMALIZATION_CONFIRM",
+    "BASE_SET_LANE_IMAGE_POINTER_CHUNK_SIZE",
+    "CAMEO_SEARCH_REPORT_LABEL",
+    "CANON_IMAGE_CLEANUP_MIN_AGE_DAYS",
+    "CANON_MAINTENANCE_DRY_RUN",
+    "CANON_MAINTENANCE_ENTRYPOINT",
+    "CANON_MAINTENANCE_MODE",
+    "CATALOG_AUTOMATION_MODE",
+    "CENTERING_BORDER_V2",
+    "CHILD_POINTER_DB_REPOINT_CHUNK_SIZE",
+    "CI",
+    "COMMIT_SHA",
+    "DATABASE_URL",
+    "DEBUG_OVERLAY",
+    "DOTENV_CONFIG_PATH",
+    "E3_LOCAL_DB_URL",
+    "E7_SKIP_CLEANUP",
+    "E7_SMOKE_DB_URL",
+    "EBAY_ACCESS_TOKEN",
+    "EBAY_BROWSE_ACCESS_TOKEN",
+    "EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT",
+    "EBAY_BROWSE_BASE_URL",
+    "EBAY_BROWSE_DAILY_BUDGET",
+    "EBAY_CLIENT_ID",
+    "EBAY_CLIENT_SECRET",
+    "EBAY_ENV",
+    "EBAY_IMAGE_TRUTH_PROBE_LIMIT",
+    "EBAY_MARKETPLACE_ID",
+    "EBAY_OAUTH_BASE_URL",
+    "EBAY_REDIRECT_URI",
+    "EBAY_SELF_ACCESS_TOKEN",
+    "ENABLE_CANON_MAINTENANCE_MODE",
+    "ENABLE_IDENTITY_MAINTENANCE_MODE",
+    "ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL",
+    "ENRICH11_FETCH_CONCURRENCY",
+    "ENRICH11_FETCH_TIMEOUT_MS",
+    "ENRICH11_LIMIT",
+    "ENRICH11_SOURCES",
+    "FOUNDER_OUTCOME_EXPECTED_COMMAND_ID",
+    "FOUNDER_OUTCOME_EXPECTED_SOURCE_COMMIT",
+    "GH_TOKEN",
+    "GITHUB_EVENT_REPOSITORY_DEFAULT_BRANCH",
+    "GITHUB_OUTPUT",
+    "GITHUB_REF_NAME",
+    "GITHUB_REPOSITORY",
+    "GITHUB_RUN_ID",
+    "GITHUB_SERVER_URL",
+    "GITHUB_SHA",
+    "GITHUB_STEP_SUMMARY",
+    "GITHUB_TOKEN",
+    "GIT_COMMIT",
+    "GIT_COMMIT_SHA",
+    "GROOKAI_ACCOUNT_DELETION_ACK",
+    "GROOKAI_AI_MODEL_CALLS_ENABLED",
+    "GROOKAI_ASSISTANT_ENABLED",
+    "GROOKAI_ASSISTANT_FREE_TRIAL_ENABLED",
+    "GROOKAI_BINDERS_COMMUNITY_V1_ENABLED",
+    "GROOKAI_BINDERS_CUSTOM_V1_ENABLED",
+    "GROOKAI_BINDERS_NOTIFICATIONS_V1_ENABLED",
+    "GROOKAI_BINDERS_PERSONAL_V1_ENABLED",
+    "GROOKAI_BINDERS_PUBLIC_V1_ENABLED",
+    "GROOKAI_BINDERS_PULSE_SHARING_V1_ENABLED",
+    "GROOKAI_BINDERS_SCHEMA_RPC_V1_ENABLED",
+    "GROOKAI_BINDERS_SET_V1_ENABLED",
+    "GROOKAI_BINDERS_SHARED_V1_ENABLED",
+    "GROOKAI_BINDERS_TEMPLATES_V1_ENABLED",
+    "GROOKAI_BINDERS_VIEW_LINKS_V1_ENABLED",
+    "GROOKAI_DEX_SMOKE_PORT",
+    "GROOKAI_DEX_SMOKE_USER_ID",
+    "GROOKAI_DEX_V1_DISABLED",
+    "GROOKAI_DEX_V1_ENABLED",
+    "GROOKAI_DISABLE_TELEMETRY",
+    "GROOKAI_IMAGE_SURFACE_SMOKE_BASE_URL",
+    "GROOKAI_OPERATIONS_NOTIFICATION_STATE_DIR",
+    "GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN",
+    "GROOKAI_OPERATIONS_WEBHOOK_URL",
+    "GROOKAI_PLAYWRIGHT_PORT",
+    "GROOKAI_PLAYWRIGHT_REUSE_SERVER",
+    "GROOKAI_PUBLIC_TEST_PROFILE_QUARANTINE_ACK",
+    "GROOKAI_RATE_LIMIT_REDIS_PREFIX",
+    "GROOKAI_VISUAL_SEARCH_REVIEWER_USER_IDS",
+    "GROOKAI_VISUAL_TEST_MODE",
+    "GROOKAI_WEB_BASE_URL",
+    "GVVI_REFERRAL_COOKIE_SECRET",
+    "GV_AI_BORDER_ENABLE",
+    "GV_AI_BORDER_URL",
+    "GV_AI_ENDPOINT_TOKEN",
+    "GV_DEBUG",
+    "GV_USER_ACCESS_TOKEN",
+    "HARNESS_DEBUG",
+    "HF_HOME",
+    "IDENTITY_MAINTENANCE_DRY_RUN",
+    "IDENTITY_MAINTENANCE_ENTRYPOINT",
+    "IDENTITY_MAINTENANCE_MODE",
+    "IMAGE_ASSET_MANIFEST_CONCURRENCY",
+    "IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_CONCURRENCY",
+    "IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_LIMIT",
+    "IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_PORT",
+    "IMAGE_TRUTH_CARD_DETAIL_FALLBACK_SCAN_RETRIES",
+    "IMAGE_TRUTH_DEX_FALLBACK_SCAN_CONCURRENCY",
+    "IMAGE_TRUTH_DEX_FALLBACK_SCAN_LIMIT",
+    "IMAGE_TRUTH_DEX_FALLBACK_SCAN_PORT",
+    "IMAGE_TRUTH_SMOKE_PORT",
+    "IMG_HOST_ENV_FILE",
+    "IMG_HOST_WH10A_FETCH_CONCURRENCY",
+    "IMG_HOST_WH10A_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH10B_FETCH_CONCURRENCY",
+    "IMG_HOST_WH10B_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH11A_FETCH_CONCURRENCY",
+    "IMG_HOST_WH11A_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH12A_FETCH_CONCURRENCY",
+    "IMG_HOST_WH12A_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH13A_FETCH_CONCURRENCY",
+    "IMG_HOST_WH13A_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH16A_FETCH_CONCURRENCY",
+    "IMG_HOST_WH16A_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH22_FETCH_CONCURRENCY",
+    "IMG_HOST_WH22_FETCH_TIMEOUT_MS",
+    "IMG_HOST_WH22_MAX_IMAGE_BYTES",
+    "JPN_PIKACHU_PROMO_FIRST_BATCH_APPROVAL",
+    "JUSTTCG_API_BASE_URL",
+    "JUSTTCG_API_KEY",
+    "JUSTTCG_BASE_URL",
+    "JUSTTCG_BATCH_SIZE",
+    "LOCALAPPDATA",
+    "LOCAL_COMMUNITY_FEED_V1_ENABLED",
+    "LOCAL_COMMUNITY_TEST_AREA_LABEL",
+    "LOCAL_COMMUNITY_TEST_COUNTRY_CODE",
+    "LOCAL_COMMUNITY_TEST_GEOHASH_PREFIX",
+    "LOCAL_COMMUNITY_TEST_OWNER_SLUG",
+    "LOCAL_COMMUNITY_TEST_OWNER_USER_ID",
+    "LOCAL_COMMUNITY_TEST_RADIUS_MILES",
+    "LOCAL_COMMUNITY_TEST_REGION_CODE",
+    "LOCAL_COMMUNITY_TEST_VIEWER_SLUG",
+    "LOCAL_COMMUNITY_TEST_VIEWER_USER_ID",
+    "LOCAL_SUPABASE_DB_URL",
+    "MCDONALDS_DEXTCG_DB_REPOINT_CHUNK_SIZE",
+    "MCDONALDS_RUNTIME_SMOKE_PORT",
+    "MCD_DEXTCG_UPLOAD_CONCURRENCY",
+    "MCD_DEXTCG_UPLOAD_TIMEOUT_MS",
+    "MEE_DB_QUERY_TIMEOUT_MS",
+    "MEE_LIFECYCLE_APPLY_DIR",
+    "MEE_LIFECYCLE_APPLY_PACKAGE_ID",
+    "MEE_LIFECYCLE_APPROVED_FINGERPRINT",
+    "MEE_LIFECYCLE_DRAIN_MAX_BATCHES",
+    "MEE_LIFECYCLE_DRAIN_PREVIOUS_PLAN_DIR",
+    "MEE_LIFECYCLE_DRAIN_START_BATCH",
+    "MEE_LIFECYCLE_EVENT_VERSION",
+    "MEE_LIFECYCLE_FAST_ACTIVE_LISTING_DRAIN",
+    "MEE_LIFECYCLE_LISTING_KEYSET_AFTER_ID",
+    "MEE_LIFECYCLE_LISTING_KEYSET_CREATED_AT",
+    "MEE_LIFECYCLE_LISTING_LIMIT",
+    "MEE_LIFECYCLE_PLAN_DIR",
+    "MEE_LIFECYCLE_PLAN_PACKAGE_ID",
+    "MEE_LIFECYCLE_REFERENCE_LIMIT",
+    "MEE_LIFECYCLE_REFERENCE_SOURCES",
+    "MEE_LIFECYCLE_SKIP_PACKAGE_SQL_READBACK",
+    "MEE_LIFECYCLE_TOTAL_LIMIT",
+    "MEE_LIFECYCLE_USE_KEYSET_CURSOR",
+    "MEE_LIFECYCLE_VERIFY_EXISTING_ONLY",
+    "MEE_NIGHTLY_ALLOW_RUN",
+    "MEE_NIGHTLY_ENABLE_LIFECYCLE_DRAIN",
+    "MEE_NIGHTLY_ENABLE_RUN_ONLY_MAINTENANCE",
+    "MEE_NIGHTLY_MAX_CALL_CEILING",
+    "MEE_NIGHTLY_NORMALIZATION_ONLY",
+    "MEE_NIGHTLY_PROVIDER_CALLS_ENABLED",
+    "MEE_NIGHTLY_REFERENCE_LIMIT",
+    "MEE_NIGHTLY_REQUIRE_DIRECT_DB",
+    "MEE_PREFLIGHT_READBACK_TIMEOUT_MS",
+    "MEE_REFERENCE_REFRESH_ALLOW_INTERNAL_WRITES",
+    "MEE_REFERENCE_REFRESH_ALLOW_PROVIDER_CALLS",
+    "MEE_REFERENCE_REFRESH_ALLOW_RUN",
+    "MEE_REFERENCE_WAREHOUSE_DELTA_ALLOW_RUN",
+    "NEXT_PUBLIC_GROOKAI_DEX_V1_DISABLED",
+    "NEXT_PUBLIC_GROOKAI_DEX_V1_ENABLED",
+    "NEXT_PUBLIC_LOCAL_COMMUNITY_FEED_V1_ENABLED",
+    "NEXT_PUBLIC_SITE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NODE_ENV",
+    "NODE_OPTIONS",
+    "NODE_TLS_REJECT_UNAUTHORIZED",
+    "PATH",
+    "POKEAPI_SPRITES_COMMIT",
+    "POKEMONAPI_API_KEY",
+    "POKEMONAPI_BASE_URL",
+    "POKEMON_SPRITE_SYNC_CONCURRENCY",
+    "POSTGRES_PRISMA_URL",
+    "POSTGRES_URL",
+    "PRICECHARTING_API_TOKEN",
+    "PRICING_ENABLE_BROAD_BACKFILL",
+    "PRICING_JOB_MIN_START_DELAY_MS",
+    "PROD_SUPABASE_URL",
+    "PROJECT_URL",
+    "PROMO_ORIGIN_CONCURRENCY",
+    "PROMO_ORIGIN_DELAY_MS",
+    "PROMO_ORIGIN_MAX_HOURS",
+    "PROMO_ORIGIN_ROW_LIMIT",
+    "PROMO_ORIGIN_TIMEOUT_MS",
+    "PSA_API_BASE_URL",
+    "PSA_API_TOKEN",
+    "RELEASE_JOURNEY_SUBJECT_USER_ID",
+    "RESOLVER_BASE_URL",
+    "SCANNER_ALLOW_INSECURE_REFERENCE_DOWNLOADS",
+    "SCANNER_V3_ANN_ARTIFACT_DIR",
+    "SCANNER_V3_ANN_DOWNLOAD_TIMEOUT_MS",
+    "SCANNER_V3_ANN_FULL",
+    "SCANNER_V3_ANN_HOST",
+    "SCANNER_V3_ANN_LIMIT",
+    "SCANNER_V3_ANN_MAX_CANDIDATE_VECTORS",
+    "SCANNER_V3_ANN_MAX_HAMMING",
+    "SCANNER_V3_ANN_MAX_ROWS",
+    "SCANNER_V3_ANN_OUT_DIR",
+    "SCANNER_V3_ANN_PAGE_SIZE",
+    "SCANNER_V3_ANN_PAL_LIMIT",
+    "SCANNER_V3_ANN_PLANE_COUNT",
+    "SCANNER_V3_ANN_PORT",
+    "SCANNER_V3_ANN_PROGRESS_EVERY",
+    "SCANNER_V3_ANN_REFERENCE_CACHE_DIR",
+    "SCANNER_V3_ANN_SEED",
+    "SCANNER_V3_ANN_SIGNED_URL_TTL_SEC",
+    "SCANNER_V3_ANN_STORAGE_BUCKET",
+    "SCANNER_V3_ANN_TOP_K",
+    "SCANNER_V3_DEBUG_LOG_TOP",
+    "SCANNER_V3_DEBUG_SAVE_CROPS_DIR",
+    "SCANNER_V3_EMBEDDING_ENDPOINT",
+    "SCANNER_V3_FULL_DB_DOWNLOAD_TIMEOUT_MS",
+    "SCANNER_V3_FULL_DB_INDEX_OUT",
+    "SCANNER_V3_FULL_DB_LIMIT",
+    "SCANNER_V3_FULL_DB_OFFSET",
+    "SCANNER_V3_FULL_DB_PAGE_SIZE",
+    "SCANNER_V3_FULL_DB_REFERENCE_CACHE_DIR",
+    "SCANNER_V3_FULL_DB_REPORT",
+    "SCANNER_V3_FULL_DB_SIGNED_URL_TTL_SEC",
+    "SCANNER_V3_FULL_DB_STORAGE_BUCKET",
+    "SCANNER_V3_IDENTITY_BASE_ENDPOINT",
+    "SCANNER_V3_IDENTITY_BASE_INDEX",
+    "SCANNER_V3_IDENTITY_DOWNLOAD_TIMEOUT_MS",
+    "SCANNER_V3_IDENTITY_FALLBACK_INDEX_CACHE",
+    "SCANNER_V3_IDENTITY_HOST",
+    "SCANNER_V3_IDENTITY_INDEX_CACHE",
+    "SCANNER_V3_IDENTITY_INDEX_OUT",
+    "SCANNER_V3_IDENTITY_INDEX_REPORT",
+    "SCANNER_V3_IDENTITY_MODEL",
+    "SCANNER_V3_IDENTITY_PORT",
+    "SCANNER_V3_IDENTITY_REFERENCE_CACHE_DIR",
+    "SCANNER_V3_IDENTITY_TOP_K",
+    "SCANNER_V3_LATENCY_CROP_COUNT",
+    "SCANNER_V3_LATENCY_CROP_TYPE",
+    "SCANNER_V3_LATENCY_IMAGE",
+    "SCANNER_V3_LATENCY_ITERATIONS",
+    "SCANNER_V3_LATENCY_MODE",
+    "SCANNER_V3_LATENCY_REPORT",
+    "SCANNER_V3_LATENCY_TIMEOUT_MS",
+    "SCANNER_V3_LATENCY_TOP_K",
+    "SCANNER_V3_REPLAY_ENDPOINT",
+    "SCANNER_V3_RESOLVE_ENDPOINT",
+    "SCANNER_V3_VECTOR_ENDPOINT",
+    "SCANNER_V3_VISUAL_ALIGNMENT_SIZE",
+    "SCANNER_V3_VISUAL_RERANK",
+    "SCANNER_V3_VISUAL_RERANK_ANN_WEIGHT",
+    "SCANNER_V3_VISUAL_RERANK_COLOR_THRESHOLD",
+    "SCANNER_V3_VISUAL_RERANK_COLOR_WEIGHT",
+    "SCANNER_V3_VISUAL_RERANK_DISTANCE_WEIGHT",
+    "SCANNER_V3_VISUAL_RERANK_GRID",
+    "SCANNER_V3_VISUAL_RERANK_PENALTY_WEIGHT",
+    "SCANNER_V3_VISUAL_RERANK_POOL_K",
+    "SCANNER_V3_VISUAL_RERANK_SIZE",
+    "SCANNER_V3_VISUAL_RERANK_STRUCTURE_WEIGHT",
+    "SCANNER_V3_VISUAL_RERANK_TOP_N",
+    "SCANNER_V3_VISUAL_STRUCTURE_SIZE",
+    "SCANNER_V5_ARTIFACT_DIR",
+    "SCANNER_V5_DEBUG_DIR",
+    "SCANNER_V5_HOST",
+    "SCANNER_V5_IDENTITY_MODEL",
+    "SCANNER_V5_PORT",
+    "SCANNER_V5_SAVE_DEBUG_ARTIFACTS",
+    "SELF_HOSTED_IMAGES_AUDIT_CONCURRENCY",
+    "SELF_HOSTED_IMAGES_AUDIT_LIMIT",
+    "SELF_HOSTED_IMAGES_AUDIT_MAX_HOURS",
+    "SELF_HOSTED_IMAGES_AUDIT_TIMEOUT_MS",
+    "SELF_HOSTED_IMAGES_DB_REPOINT_CHUNK_SIZE",
+    "SELF_HOSTED_IMAGES_STORAGE_BUCKET",
+    "SELF_HOSTED_IMAGES_UPLOAD_CONCURRENCY",
+    "SELF_HOSTED_IMAGES_UPLOAD_LIMIT",
+    "SELF_HOSTED_IMAGES_UPLOAD_TIMEOUT_MS",
+    "SITE_URL",
+    "SPECIAL_VARIANT_PRINTING_APPLY_APPROVAL",
+    "SPECIAL_VARIANT_PRINTING_EXPECTED_MANIFEST_FINGERPRINT",
+    "SPECIAL_VARIANT_PRINTING_EXPECTED_SHA",
+    "SPECIAL_VARIANT_PRINTING_HEALTH_OUTPUT",
+    "SPECIAL_VARIANT_PRINTING_OUTPUT_DIR",
+    "SUPABASE_ACCESS_TOKEN",
+    "SUPABASE_DB_URL",
+    "SUPABASE_ORGANIZATION_SLUG",
+    "SUPABASE_POOLER_URL",
+    "SUPABASE_PROJECT_REF",
+    "SUPABASE_PUBLISHABLE_KEY",
+    "SUPABASE_SECRET_KEY",
+    "SUPABASE_SECRET_KEY_LOCAL",
+    "SUPABASE_SERVICE_ROLE",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_TEST_EMAIL",
+    "SUPABASE_TEST_PASSWORD",
+    "SUPABASE_URL",
+    "SUPABASE_URL_LOCAL",
+    "TCGCSV_FULL_SYNC_REQUEST_CEILING",
+    "TCGCSV_PRICE_BATCH_DELAY_MS",
+    "TCGCSV_REQUEST_DELAY_MS",
+    "TCGDEX_API_KEY",
+    "TCGDEX_BASE_URL",
+    "TCGDEX_LANG",
+    "TCGDEX_REPLACEMENT_AUDIT_CONCURRENCY",
+    "TCGDEX_REPLACEMENT_AUDIT_LIMIT",
+    "TCGDEX_REPLACEMENT_AUDIT_MAX_HOURS",
+    "TCGDEX_REPLACEMENT_AUDIT_TIMEOUT_MS",
+    "TCGDEX_REPLACEMENT_UPLOAD_CONCURRENCY",
+    "TCGDEX_REPLACEMENT_UPLOAD_LIMIT",
+    "TCGDEX_REPLACEMENT_UPLOAD_TIMEOUT_MS",
+    "TCGPLAYER_MARKET_CANARY_ACTIVATION_RUN_ID",
+    "TCGPLAYER_MARKET_CANARY_EXPECTED_COMMIT_SHA",
+    "TCGPLAYER_MARKET_CANARY_WINDOW_START",
+    "TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES",
+    "TCGPLAYER_MARKET_FULL_ACTIVATION_RUN_ID",
+    "TCGPLAYER_MARKET_FULL_COVERAGE_COMMIT_SHA",
+    "TCGPLAYER_MARKET_FULL_COVERAGE_SUMMARY",
+    "TCGPLAYER_MARKET_FULL_EXPECTED_COMMIT_SHA",
+    "TCGPLAYER_MARKET_FULL_PERFORMANCE_COMMIT_SHA",
+    "TCGPLAYER_MARKET_FULL_PERFORMANCE_SUMMARY",
+    "TCGPLAYER_MARKET_FULL_WINDOW_START",
+    "TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES",
+    "TCGPLAYER_MARKET_REPLACEMENT_VERIFIED",
+    "TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN",
+    "TCGPLAYER_MARKET_SCHEDULE_CANARY_DEFINITION",
+    "TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA",
+    "TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS",
+    "TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS",
+    "TCGPLAYER_MARKET_SCHEDULE_MODE",
+    "TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT",
+    "TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT",
+    "TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING",
+    "TCGPLAYER_MARKET_SCHEDULE_RETRY_DELAYS_SECONDS",
+    "TCGPLAYER_MARKET_SCHEDULE_RUN_KEY",
+    "TEMP",
+    "TK_SM_R_EXPECTED_COMMAND_ID",
+    "TK_SM_R_EXPECTED_SOURCE_COMMIT",
+    "TK_VARIANT_TYPE_ALLOWLIST",
+    "TMP",
+    "TRAINER_KIT_DB_REPOINT_CHUNK_SIZE",
+    "TRAINER_KIT_UPLOAD_CONCURRENCY",
+    "TRAINER_KIT_UPLOAD_LIMIT",
+    "TRAINER_KIT_UPLOAD_TIMEOUT_MS",
+    "TRANSFORMERS_CACHE",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "UPSTASH_REDIS_REST_URL",
+    "VERCEL",
+    "VERCEL_DEPLOYMENT_ID",
+    "VERCEL_ENV",
+    "VERCEL_GIT_COMMIT_SHA",
+    "VERCEL_URL",
+    "WCD_DECK_LIMIT",
+    "WCD_DELAY_MS",
+    "WCD_REPRESENTATIVE_POINTER_CHUNK_SIZE",
+    "WCD_RESIDUAL_POINTER_CHUNK_SIZE",
+    "WCD_SMOKE_PORT",
+    "WCD_TIMEOUT_MS",
+    "WEB_AUDIT_BASE_URL",
+    "WEB_AUDIT_CARD_SAMPLE_PER_SET",
+    "WEB_AUDIT_CRAWL_DISCOVERED",
+    "WEB_AUDIT_EXHAUSTIVE_CARDS",
+    "WEB_AUDIT_MAX_PAGES",
+    "WEB_BASE_URL",
+    "WH17A_DELAY_MS",
+    "WH17A_LIMIT",
+    "WH17A_OFFSET",
+    "WH17A_TIMEOUT_SEC",
+    "WH17E_BATCH_LIMIT",
+    "WH17E_DELAY_MS",
+    "WH17E_MAX_BATCHES",
+    "WH17E_START_OFFSET",
+    "WH17E_STOP_AFTER_EMPTY_BATCHES",
+    "WH17E_TIMEOUT_SEC",
+    "WH18A_DELAY_MS",
+    "WH18A_LIMIT",
+    "WH18A_OFFSET",
+    "WH18A_TIMEOUT_SEC"
+  ],
+  "package": {
+    "object": "af2a2464e86716cafe298c364adcb62bc45de2c5",
+    "scripts": {
+      "catalog:set-covers:plan": "node scripts/audits/cross_tcg_set_cover_backfill_v1.mjs",
+      "catalog:set-covers:apply": "node scripts/audits/cross_tcg_set_cover_backfill_v1.mjs --apply",
+      "preflight": "npm run grookai:preflight",
+      "shipcheck": "npm run release:secret-guard && npm run preflight && npm run contracts:test && npm run contracts:runtime-health && npm run contracts:quarantine-report && npm run contracts:deferred-report && npm --prefix apps/web run typecheck && npm --prefix apps/web run lint && npm run web:build:strict && flutter clean && flutter pub get && flutter analyze && flutter test --concurrency=1",
+      "jpn-master-index:baseline": "node scripts/audits/japanese_master_index_v4/baseline_export_v1.mjs",
+      "jpn-master-index:reconcile": "node scripts/audits/japanese_master_index_v4/live_reconciliation_v1.mjs",
+      "jpn-master-index:promotion-package": "node scripts/audits/japanese_master_index_v4/promotion_package_v1.mjs",
+      "jpn-master-index:payload-preflight": "node scripts/audits/japanese_master_index_v4/payload_preflight_v1.mjs",
+      "jpn-master-index:payload-preflight-v2": "node scripts/audits/japanese_master_index_v4/payload_preflight_v2.mjs",
+      "jpn-master-index:payload-writer": "node scripts/audits/japanese_master_index_v4/payload_writer_v1.mjs",
+      "jpn-master-index:payload-writer-v2": "node scripts/audits/japanese_master_index_v4/payload_writer_v2.mjs",
+      "jpn-master-index:schema-history-preflight": "node scripts/audits/japanese_master_index_v4/schema_history_preflight_v1.mjs",
+      "jpn-master-index:schema-history-writer": "node scripts/audits/japanese_master_index_v4/schema_history_writer_v1.mjs",
+      "jpn-master-index:sets": "node scripts/audits/japanese_master_index_v4/set_registry_harvest_v1.mjs",
+      "jpn-master-index:sets:resolve": "node scripts/audits/japanese_master_index_v4/set_registry_build_v1.mjs",
+      "jpn-master-index:cards:plan": "node scripts/audits/japanese_master_index_v4/card_acquisition_plan_v1.mjs",
+      "jpn-master-index:cards:harvest": "node scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs",
+      "jpn-master-index:package-evidence": "node scripts/audits/japanese_master_index_v4/package_preserved_evidence_v1.mjs",
+      "jpn-master-index:normalize-release-paths": "node scripts/audits/japanese_master_index_v4/normalize_release_paths_v1.mjs",
+      "jpn-master-index:union": "node scripts/audits/japanese_master_index_v4/candidate_union_v1.mjs",
+      "jpn-master-index:coverage": "node scripts/audits/japanese_master_index_v4/coverage_gap_report_v1.mjs",
+      "jpn-master-index:admit": "node scripts/audits/japanese_master_index_v4/final_admission_v1.mjs",
+      "jpn-master-index:complete": "node scripts/audits/japanese_master_index_v4/complete_adjudication_v1.mjs",
+      "jpn-master-index:test": "node --test tests/contracts/japanese_master_index_v4_*.test.mjs",
+      "jpn-master-index:integration-inventory": "node scripts/audits/japanese_master_index_v4/product_integration_inventory_v1.mjs",
+      "jpn-master-index:image-readiness": "node scripts/audits/japanese_master_index_v4/image_acquisition_readiness_v1.mjs",
+      "jpn-master-index:image-remediation": "node scripts/audits/japanese_master_index_v4/image_source_remediation_v1.mjs",
+      "jpn-master-index:image-storage-canary-plan": "node scripts/audits/japanese_master_index_v4/image_storage_canary_plan_v1.mjs",
+      "release:secret-guard": "node scripts/ci/guard_release_secret_packaging.mjs",
+      "release:store:status": "node scripts/audits/store_release_readiness_v1.mjs",
+      "release:store:require": "node scripts/audits/store_release_readiness_v1.mjs --require-ready",
+      "release:store:media": "node scripts/release/generate_store_media_assets_v1.mjs",
+      "release:native:onboarding": "node scripts/audits/native_android_onboarding_qa_v1.mjs",
+      "release:catalog:crawl": "node scripts/audits/production_catalog_crawl_v1.mjs",
+      "release:pricing:trust": "node scripts/audits/pricing_trust_spot_check_v1.mjs",
+      "social:video:validate": "node --test tests/contracts/emulator_video_agent_v1.test.mjs",
+      "social:video:canary": "node scripts/social_media/emulator_video_agent_v1.mjs",
+      "release:completion:status": "node scripts/audits/release_completion_gate_v1.mjs",
+      "release:completion:require": "node scripts/audits/release_completion_gate_v1.mjs --require-complete",
+      "release:soak:status": "node scripts/audits/release_candidate_soak_v1.mjs",
+      "release:soak:require": "node scripts/audits/release_candidate_soak_v1.mjs --require-pass",
+      "release:journey:verify": "node scripts/audits/release_clean_account_journey_readback_v1.mjs",
+      "release:journey:want-match:verify": "node scripts/audits/release_want_match_journey_readback_v1.mjs",
+      "release:journey:signed-out-web:verify": "node scripts/audits/release_signed_out_web_journeys_v2.mjs",
+      "release:account-deletion:plan": "node scripts/ops/account_deletion_worker_v1.mjs",
+      "release:account-deletion:exercise": "node scripts/audits/release_account_deletion_disposable_exercise_v1.mjs",
+      "web:build:strict": "node scripts/ci/run_next_build_strict.mjs",
+      "hooks:install": "node scripts/git/install_hooks_v1.mjs",
+      "contracts:drift-audit": "node scripts/contracts/run_drift_audit_v1.mjs",
+      "contracts:runtime-health": "node scripts/contracts/run_runtime_health_v1.mjs",
+      "contracts:quarantine-report": "node scripts/contracts/run_quarantine_report_v1.mjs",
+      "contracts:deferred-report": "node scripts/contracts/run_deferred_report_v1.mjs",
+      "founder:ops:collect": "node scripts/audits/founder_ops_dashboard_collect_v1.mjs",
+      "contracts:test": "node --test --test-concurrency=4 tests/contracts/*.test.mjs apps/web/src/components/vault/ownershipMutationGuards.test.mjs",
+      "e7:meaningful-interactions:smoke": "node scripts/audits/e7_meaningful_interactions_local_fixture_smoke_v1.mjs",
+      "e7:weekly-rollup:smoke": "node scripts/audits/e7_weekly_rollup_local_fixture_smoke_v1.mjs",
+      "e9:collector-memories:smoke": "node scripts/audits/e9_collector_memories_local_fixture_smoke_v1.mjs",
+      "grookai:preflight": "node scripts/contracts/run_runtime_preflight_v1.mjs",
+      "worker:import-prices": "npm run pricing:worker:once --prefix backend",
+      "worker:system-health": "node backend/infra/system_health_worker.mjs",
+      "worker:import-sets": "node backend/sets/import_sets_worker.mjs",
+      "worker:sets-health": "node backend/sets/sets_health_report.mjs",
+      "worker:backfill-identity": "powershell -ExecutionPolicy Bypass -File scripts/run_backfill_print_identity_worker.ps1",
+      "pokemonapi:import:sets": "node backend/sets/import_sets_worker.mjs",
+      "pokemonapi:import:cards": "node backend/pokemon/pokemonapi_import_cards_worker.mjs",
+      "pokemonapi:normalize": "node backend/pokemon/pokemonapi_normalize_worker.mjs",
+      "tcgdex:import-sets": "node backend/sets/tcgdex_import_sets_worker.mjs --mode=full",
+      "tcgdex:import-cards": "node backend/pokemon/tcgdex_import_cards_worker.mjs --mode=full",
+      "tcgdex:normalize": "node backend/pokemon/tcgdex_normalize_worker.mjs --mode=backfill",
+      "pokemon:new-sets:ingest": "node scripts/ingest/new_set_release_ingest_v1.mjs",
+      "public-sets:counts:refresh": "node scripts/generate_public_set_card_counts.mjs",
+      "pokemon:enrich": "node backend/pokemon/pokemon_enrichment_worker.mjs --mode=backfill",
+      "pokemon:backfill-mappings": "node backend/pokemon/pokemonapi_backfill_mappings_worker.mjs",
+      "pokemon:backfill-mappings:dry": "node backend/pokemon/pokemonapi_backfill_mappings_worker.mjs --dry-run --limit=200",
+      "grookai-dex:seed:build": "node scripts/grookai_dex/build_species_seed_from_pokeapi_v1.mjs",
+      "grookai-dex:species:dry-run": "node backend/grookai_dex/grookai_dex_species_worker_v1.mjs",
+      "grookai-dex:species:apply": "node backend/grookai_dex/grookai_dex_species_worker_v1.mjs --apply",
+      "grookai-dex:mapping:dry-run": "node backend/grookai_dex/grookai_dex_mapping_worker_v1.mjs",
+      "grookai-dex:mapping:apply": "node backend/grookai_dex/grookai_dex_mapping_worker_v1.mjs --apply",
+      "grookai-dex:audit": "npm run grookai-dex:species:dry-run && npm run grookai-dex:mapping:dry-run",
+      "grookai-dex:flag:verify": "node scripts/grookai_dex/verify_feature_flag_v1.mjs",
+      "grookai-dex:checkpoint": "node scripts/grookai_dex/checkpoint_v1.mjs",
+      "grookai-dex:smoke:routes": "node scripts/grookai_dex/smoke_routes_v1.mjs",
+      "pricing:bridge-smoke": "node backend/pricing/import_prices_bridge_smoke.mjs",
+      "mee:overnight:worklist": "node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs",
+      "mee:query-plan": "node scripts/audits/market_evidence_engine_query_plan_v1.mjs",
+      "mee:acquisition-batch": "node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs",
+      "mee:pricecharting-csv": "node scripts/audits/market_evidence_engine_pricecharting_csv_acquisition_v1.mjs",
+      "mee:pokemontcg-io": "node scripts/audits/market_evidence_engine_pokemontcg_io_reference_acquisition_v1.mjs",
+      "mee:tcgcsv": "node scripts/audits/market_evidence_engine_tcgcsv_reference_acquisition_v1.mjs",
+      "mee:tcgdex-reference-pricing-audit": "node scripts/audits/market_reference_tcgdex_pricing_audit_v1.mjs",
+      "mee:tcgdex-reference-pricing-backfill-plan": "node scripts/audits/market_reference_tcgdex_pricing_backfill_plan_v1.mjs",
+      "mee:tcgdex-reference-pricing-source-constraints": "node scripts/audits/market_reference_tcgdex_pricing_source_constraints_v1.mjs",
+      "mee:tcgdex-reference-pricing-backfill-apply": "node scripts/audits/market_reference_tcgdex_pricing_backfill_apply_v1.mjs",
+      "mee:tcgdex-reference-signal-rollup-refresh": "node scripts/audits/market_reference_tcgdex_signal_rollup_refresh_v1.mjs",
+      "mee:normalize-reference": "node scripts/audits/market_evidence_engine_normalized_reference_v1.mjs",
+      "mee:review-gate": "node scripts/audits/market_evidence_engine_review_gate_v1.mjs",
+      "mee:gap-analysis": "node scripts/audits/market_evidence_engine_gap_analysis_v1.mjs",
+      "mee:free-reference-gap": "node scripts/audits/market_evidence_engine_free_reference_coverage_gap_v1.mjs",
+      "mee:reference-signal": "node scripts/audits/market_reference_signal_read_model_v1.mjs",
+      "mee:reference-signal-review": "node scripts/audits/market_reference_signal_review_gate_v1.mjs",
+      "mee:reference-rollup-contract": "node scripts/audits/market_reference_signal_rollup_contract_gate_v1.mjs",
+      "mee:reference-rollup-backfill": "node scripts/audits/market_reference_signal_rollup_backfill_v1.mjs",
+      "mee:reference-rollup-readback": "node scripts/audits/market_reference_signal_rollup_readback_v1.mjs",
+      "mee:reference-rollup-refresh-plan": "node scripts/audits/market_reference_signal_rollup_refresh_plan_v1.mjs",
+      "mee:reference-rollup-refresh-apply": "node scripts/audits/market_reference_signal_rollup_refresh_apply_v1.mjs",
+      "mee:reference-acquisition-worklist": "node scripts/audits/market_reference_signal_acquisition_worklist_v1.mjs",
+      "mee:remaining-single-source-exact-plan": "node scripts/audits/market_reference_remaining_single_source_exact_source_plan_v1.mjs",
+      "mee:remaining-single-source-exact-acquisition-plan": "node scripts/audits/market_reference_remaining_single_source_exact_source_acquisition_plan_v1.mjs",
+      "mee:remaining-single-source-exact-fetch": "node scripts/audits/market_reference_remaining_single_source_exact_source_fetch_v1.mjs",
+      "mee:remaining-single-source-exact-backfill-plan": "node scripts/audits/market_reference_remaining_single_source_exact_source_backfill_plan_v1.mjs",
+      "mee:remaining-single-source-exact-backfill-apply": "node scripts/audits/market_reference_remaining_single_source_exact_source_backfill_apply_v1.mjs",
+      "mee:active-listing-warehouse-schema": "node scripts/audits/market_reference_active_listing_warehouse_schema_v1.mjs",
+      "mee:active-listing-review-queue": "node scripts/audits/market_reference_active_listing_review_queue_v1.mjs",
+      "mee:active-listing-normalization-plan": "node scripts/audits/market_reference_active_listing_normalization_plan_v1.mjs",
+      "mee:active-listing-normalized-schema": "node scripts/audits/market_reference_active_listing_normalized_evidence_schema_v1.mjs",
+      "mee:active-listing-normalized-apply": "node scripts/audits/market_reference_active_listing_normalized_evidence_apply_v1.mjs",
+      "mee:pokemontcg-second-source": "node scripts/audits/market_reference_pokemontcg_second_source_acquisition_v1.mjs",
+      "mee:pokemontcg-second-source:consolidate": "node scripts/audits/market_reference_pokemontcg_second_source_consolidate_v1.mjs",
+      "mee:pokemontcg-second-source:backfill-plan": "node scripts/audits/market_reference_pokemontcg_second_source_backfill_plan_v1.mjs",
+      "mee:pokemontcg-second-source:backfill-apply": "node scripts/audits/market_reference_pokemontcg_second_source_backfill_apply_v1.mjs",
+      "mee:normalization:gvid-audit": "node scripts/audits/market_evidence_normalization_gvid_assignment_audit_v1.mjs",
+      "mee:normalization:dry-run": "node scripts/audits/market_evidence_normalization_only_runner_v1.mjs",
+      "mee:normalization:run": "node scripts/audits/market_evidence_normalization_only_runner_v1.mjs --run",
+      "mee:nightly:droplet:dry-run": "node scripts/workers/mee_nightly_droplet_worker_v1.mjs --dry-run",
+      "mee:nightly:droplet:run": "node scripts/workers/mee_nightly_droplet_worker_v1.mjs --run",
+      "mee:nightly:post-ingest:dry-run": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --dry-run",
+      "mee:nightly:post-ingest:readbacks": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --dry-run --execute-readbacks",
+      "mee:nightly:post-ingest:run": "node scripts/workers/mee_nightly_post_ingest_orchestrator_v1.mjs --run",
+      "mee:reference-refresh:dry-run": "node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --dry-run",
+      "mee:reference-refresh:run": "node scripts/workers/mee_reference_source_refresh_worker_v1.mjs --run",
+      "tcgcsv:warehouse:current:dry-run": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=current --dry-run",
+      "tcgcsv:warehouse:current:apply": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=current --apply",
+      "tcgcsv:warehouse:historical:dry-run": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=historical --dry-run",
+      "tcgcsv:warehouse:historical:apply": "node scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs --mode=historical --apply",
+      "sealed:catalog:readiness:v1": "node scripts/audits/cross_tcg_sealed_catalog_readiness_v1.mjs",
+      "sealed:domain:schema-preflight:v1": "node scripts/audits/cross_tcg_sealed_product_schema_preflight_v1.mjs",
+      "jpn-master-index:finalize": "node scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
+      "pricing:market:publish:dry-run": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --dry-run",
+      "pricing:market:publish:apply": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --apply",
+      "pricing:market:health": "node scripts/workers/tcgplayer_market_health_v1.mjs",
+      "pricing:market:canary:observe": "node scripts/audits/tcgplayer_market_canary_observation_v1.mjs",
+      "pricing:market:full-rollout:observe": "node scripts/audits/tcgplayer_market_full_rollout_observation_v1.mjs",
+      "pricing:market:completion": "node scripts/audits/tcgplayer_market_completion_v1.mjs",
+      "pricing:market:completion:require": "node scripts/audits/tcgplayer_market_completion_v1.mjs --require-complete",
+      "pricing:market:coverage": "node scripts/audits/tcgplayer_market_coverage_v1.mjs",
+      "pricing:market:performance": "node scripts/audits/tcgplayer_market_read_performance_v1.mjs",
+      "pricing:market:provenance": "node scripts/audits/tcgplayer_market_provenance_lookup_v1.mjs",
+      "pricing:market:vault:verify": "node scripts/audits/tcgplayer_market_vault_production_readback_v1.mjs",
+      "pricing:market:surfaces:verify": "node scripts/audits/tcgplayer_market_product_surface_proof_v1.mjs",
+      "pricing:market:surfaces:manifest": "node scripts/audits/tcgplayer_market_product_surface_manifest_v1.mjs",
+      "pricing:market:surfaces:web:capture": "node scripts/audits/tcgplayer_market_web_surface_capture_v2.mjs",
+      "pricing:market:active-ask:refresh": "node scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+      "pricing:market:rollback:dry-run": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --dry-run",
+      "pricing:market:rollback:apply": "node scripts/workers/tcgplayer_market_rollback_v1.mjs --apply",
+      "pricing:market:pipeline:dry-run": "node scripts/workers/tcgplayer_market_pipeline_v1.mjs --dry-run --skip-ingest",
+      "pricing:market:pipeline:apply": "node scripts/workers/tcgplayer_market_pipeline_v1.mjs --apply",
+      "pricing:market:schedule:dry-run": "node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --dry-run",
+      "pricing:market:schedule:run": "node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs --run",
+      "ops:webhook:dry-run": "node scripts/ops/grookai_operations_webhook_v1.mjs --dry-run",
+      "mee:reference-warehouse-automated-apply-plan": "node scripts/audits/market_reference_warehouse_automated_apply_plan_v1.mjs",
+      "mee:reference-warehouse-delta-writer:dry-run": "node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --dry-run",
+      "mee:reference-warehouse-delta-writer:run": "node scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs --run",
+      "pricing:ebay:self": "node backend/ebay/ebay_self_orders_worker.mjs",
+      "pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs",
+      "ebay:browse:token": "node scripts/ebay_fetch_browse_token.mjs",
+      "mtg:client-readiness:audit": "node scripts/audits/mtg_client_search_readiness_v1.mjs",
+      "catalog:discovery:read-only": "node scripts/workers/universal_catalog_discovery_v1.mjs",
+      "catalog:shadow:reconcile": "node scripts/workers/catalog_shadow_reconciliation_v1.mjs",
+      "catalog:shadow:probe-collectibles": "node scripts/workers/collectible_shadow_adapter_probe_v1.mjs",
+      "catalog:shadow:parse-wave1": "node scripts/workers/collectible_shadow_parser_wave1_v1.mjs",
+      "catalog:shadow:reconcile-wave1": "node scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs",
+      "catalog:promotion:supervise": "node scripts/workers/catalog_incremental_supervisor_v1.mjs",
+      "catalog:sets:publication-gate": "node scripts/workers/cross_tcg_set_publication_gate_v1.mjs"
+    },
+    "dependencies": {
+      "@supabase/supabase-js": "^2.81.1",
+      "dotenv": "^17.2.3",
+      "pg": "^8.20.0",
+      "uuid": "^14.0.0"
+    },
+    "dev_dependencies": {
+      "@playwright/test": "^1.61.1",
+      "typescript": "^5.9.3"
+    }
+  }
+}

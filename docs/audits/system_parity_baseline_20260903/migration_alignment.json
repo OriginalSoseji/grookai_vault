@@ -1,0 +1,20 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_MIGRATION_ALIGNMENT",
+  "repository_migration_file_count": 382,
+  "production_migration_ledger_count": 380,
+  "remote_versions_missing_from_repository": [],
+  "repository_versions_missing_from_remote": [
+    {
+      "version": "20260323221422",
+      "path": "supabase/migrations/_quarantine/20260323221422_remote_schema.sql",
+      "classification": "quarantined_non_active_history"
+    },
+    {
+      "version": "20260816170000",
+      "path": "supabase/migrations/20260816170000_sealed_product_per_game_release_v2.sql",
+      "classification": "active_pending_migration"
+    }
+  ],
+  "duplicate_repository_versions": [],
+  "status": "ALIGNED_WITH_ONE_ACTIVE_PENDING_MIGRATION"
+}

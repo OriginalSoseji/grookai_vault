@@ -1,0 +1,61 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_BASELINE_FINDINGS",
+  "authority_sha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+  "producer_sha": "311dc50481714aee580f13daae75d3c70c2d1253",
+  "capture_integrity": {
+    "required_database_query_failures": 0,
+    "runtime_capture_errors": 0,
+    "product_capture_failures": 0,
+    "artifact_hash_mismatches": 0,
+    "secret_scan_findings": 0
+  },
+  "known_product_baseline_defects": [
+    {
+      "code": "slow_signed_out_navigation",
+      "cases": [
+        "desktop:home=9169ms",
+        "desktop:search_pikachu=10012ms",
+        "mobile:search_pikachu=8692ms"
+      ]
+    },
+    {
+      "code": "failed_visible_images",
+      "cases": [
+        "desktop:sets=1",
+        "desktop:dex=92",
+        "mobile:search_pikachu=6",
+        "mobile:sets=8",
+        "mobile:dex=95"
+      ]
+    },
+    {
+      "code": "request_failures_present",
+      "cases": [
+        "desktop:home=5",
+        "desktop:sets=15",
+        "desktop:dex=9",
+        "mobile:home=4",
+        "mobile:search_pikachu=3",
+        "mobile:dex=3"
+      ]
+    }
+  ],
+  "known_repository_database_alignment": {
+    "quarantined_non_active_migration_versions": [
+      "20260323221422"
+    ],
+    "active_pending_migration_versions": [
+      "20260816170000"
+    ],
+    "remote_versions_missing_from_repository": []
+  },
+  "current_open_pull_requests": [
+    {
+      "number": 219,
+      "title": "Build governed MTG sealed world",
+      "head": "agent/mtg-sealed-world-v1",
+      "merge_state": "BLOCKED"
+    }
+  ],
+  "interpretation": "This is the protected starting state. Capture success does not classify known product defects as acceptable release quality."
+}

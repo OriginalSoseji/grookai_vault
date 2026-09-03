@@ -1,5 +1,15 @@
 # Repository Checkpoint Index
 
+## SYSTEM_PARITY_BASELINE_20260903_V1
+
+Status: COMPLETE - IMMUTABLE CURRENT-MAIN BASELINE
+
+Date: 2026-09-03
+
+Scope: Full repository, production database, runtime, and signed-out product baseline for serial fresh-main capability integration and final no-loss proof
+
+File: `docs/checkpoints/repository/SYSTEM_PARITY_BASELINE_20260903_V1.md`
+
 ## REPOSITORY_RECONCILIATION_PRESERVATION_COMPLETE_20260902_V1
 
 Status: COMPLETE
