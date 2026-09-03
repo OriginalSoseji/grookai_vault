@@ -310,26 +310,57 @@ function remoteHeadMap(repoRoot) {
 }
 
 function registeredWorktreePaths(repoRoot) {
-  const rows = git(repoRoot, ["worktree", "list", "--porcelain"])
-    .split(/\r?\n/)
-    .filter((line) => line.startsWith("worktree "))
-    .map((line) => normalizePath(line.slice("worktree ".length)));
-  return new Set(rows);
+  const records = new Map();
+  let record = null;
+  for (const line of `${git(repoRoot, ["worktree", "list", "--porcelain"])}\n`.split(/\r?\n/)) {
+    if (!line) {
+      if (record) records.set(normalizePath(record.path), record);
+      record = null;
+    } else if (line.startsWith("worktree ")) {
+      record = { path: line.slice("worktree ".length), branch: null, sha: null };
+    } else if (record && line.startsWith("HEAD ")) {
+      record.sha = line.slice("HEAD ".length);
+    } else if (record && line.startsWith("branch refs/heads/")) {
+      record.branch = line.slice("branch refs/heads/".length);
+    }
+  }
+  return records;
 }
 
 function verifyTargetsAbsent(repoRoot, actions) {
   const remoteHeads = remoteHeadMap(repoRoot);
-  const registeredPaths = registeredWorktreePaths(repoRoot);
+  const registeredWorktrees = registeredWorktreePaths(repoRoot);
   const remaining = {
     local_branches: actions.local_branches.filter((branch) =>
       localRefSha(repoRoot, `refs/heads/${branch}`) !== null),
     remote_branches: actions.remote_branches.filter((branch) => remoteHeads.has(branch)),
     worktrees: actions.worktrees.filter((worktree) =>
-      registeredPaths.has(normalizePath(worktree.path))).map((worktree) => worktree.path),
+      registeredWorktrees.has(normalizePath(worktree.path))).map((worktree) => worktree.path),
   };
   return {
     passed: Object.values(remaining).every((rows) => rows.length === 0),
     remaining,
+  };
+}
+
+function verifyTargetsRestored(repoRoot, actions, recoveryRefMap) {
+  const remoteHeads = remoteHeadMap(repoRoot);
+  const registeredWorktrees = registeredWorktreePaths(repoRoot);
+  const mismatches = {
+    local_branches: actions.local_branches.filter((branch) =>
+      localRefSha(repoRoot, `refs/heads/${branch}`) !==
+        recoveryRefMap.get(`refs/heads/${branch}`)),
+    remote_branches: actions.remote_branches.filter((branch) =>
+      remoteHeads.get(branch) !==
+        recoveryRefMap.get(`refs/remotes/origin/${branch}`)),
+    worktrees: actions.worktrees.filter((worktree) => {
+      const current = registeredWorktrees.get(normalizePath(worktree.path));
+      return !current || current.branch !== worktree.branch || current.sha !== worktree.sha;
+    }).map((worktree) => worktree.path),
+  };
+  return {
+    passed: Object.values(mismatches).every((rows) => rows.length === 0),
+    mismatches,
   };
 }
 
@@ -358,19 +389,20 @@ function restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees) {
     if (result.status !== 0) failures.push("local_ref_restore_failed");
   }
 
-  let remoteHeads;
+  let remoteHeads = null;
   try {
     remoteHeads = remoteHeadMap(repoRoot);
   } catch {
-    remoteHeads = new Map();
     failures.push("remote_restore_inventory_unavailable");
   }
   const remoteSpecs = [];
-  for (const branch of actions.remote_branches) {
-    const expected = recoveryRefMap.get(`refs/remotes/origin/${branch}`);
-    const current = remoteHeads.get(branch) ?? null;
-    if (current === null) remoteSpecs.push(`${expected}:refs/heads/${branch}`);
-    else if (current !== expected) failures.push(`remote_ref_changed:${branch}`);
+  if (remoteHeads) {
+    for (const branch of actions.remote_branches) {
+      const expected = recoveryRefMap.get(`refs/remotes/origin/${branch}`);
+      const current = remoteHeads.get(branch) ?? null;
+      if (current === null) remoteSpecs.push(`${expected}:refs/heads/${branch}`);
+      else if (current !== expected) failures.push(`remote_ref_changed:${branch}`);
+    }
   }
   if (remoteSpecs.length > 0) {
     const result = commandResult("git", ["push", "--atomic", "origin", ...remoteSpecs], {
@@ -393,7 +425,10 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
   const removedWorktrees = [];
   try {
     if (actions.remote_branches.length > 0) {
-      command("git", ["push", "--atomic", "origin", "--delete", ...actions.remote_branches], {
+      const leases = actions.remote_branches.map((branch) =>
+        `--force-with-lease=refs/heads/${branch}:${recoveryRefMap.get(`refs/remotes/origin/${branch}`)}`);
+      const deletions = actions.remote_branches.map((branch) => `:refs/heads/${branch}`);
+      command("git", ["push", "--atomic", ...leases, "origin", ...deletions], {
         cwd: repoRoot,
       });
     }
@@ -421,9 +456,23 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
     };
   } catch (error) {
     const rollback = restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees);
-    throw new Error(
-      `Cleanup failed and rollback was attempted (${rollback.passed ? "passed" : rollback.failures.join(",")}): ${error.message}`,
-    );
+    let restorationReadback;
+    try {
+      restorationReadback = verifyTargetsRestored(repoRoot, actions, recoveryRefMap);
+    } catch (readbackError) {
+      restorationReadback = {
+        passed: false,
+        error: readbackError.message,
+      };
+    }
+    return {
+      status: "failed",
+      error: error.message,
+      rollback_attempted: true,
+      rollback,
+      restoration_readback: restorationReadback,
+      removed_worktrees_before_failure: removedWorktrees.length,
+    };
   }
 }
 
@@ -540,6 +589,7 @@ export function main() {
 
   const actionManifestSha = sha256(`${JSON.stringify(actionManifest(actions))}\n`);
   const executionCore = {
+    producer_sha: producerSha,
     authority_ref: authorityRef,
     authority_sha: live.authoritySha,
     selection_fingerprint: selectionMetadata.selection_fingerprint,
@@ -624,7 +674,8 @@ export function main() {
     );
     const executionResult = executeCleanup(repoRoot, actions, recoveryRefMap);
     plan.execution_status = executionResult.status;
-    plan.execution_readback = executionResult.readback;
+    plan.execution_result = executionResult;
+    plan.execution_readback = executionResult.readback ?? executionResult.restoration_readback;
     plan.completed_at = new Date().toISOString();
     writeFileSync(planPath, `${JSON.stringify(plan, null, 2)}\n`);
     writeFileSync(
@@ -643,6 +694,9 @@ export function main() {
     `${JSON.stringify(artifactHashes(outDir, hashFiles, producerSha), null, 2)}\n`,
   );
   process.stdout.write(`${JSON.stringify({ plan, authorization }, null, 2)}\n`);
+  if (plan.execution_status === "failed") {
+    throw new Error("Cleanup execution failed; persisted execution and rollback evidence must be reviewed.");
+  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename)) main();

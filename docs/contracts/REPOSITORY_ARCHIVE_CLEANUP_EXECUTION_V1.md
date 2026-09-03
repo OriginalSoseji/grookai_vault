@@ -69,7 +69,8 @@ contract, or approval of repository reconciliation do not authorize cleanup.
    scheduled-task reference, or running-process reference.
 5. Any inventory failure or target drift stops the entire execution before the
    first mutation.
-6. Remote branch deletion is one atomic push.
+6. Remote branch deletion is one atomic push with an exact SHA lease for every
+   target, closing the revalidation-to-push race.
 7. Worktrees are removed only after remote deletion succeeds and while their
    local branches still exist.
 8. Local branch deletion is one `git update-ref --stdin` transaction with old
@@ -78,6 +79,8 @@ contract, or approval of repository reconciliation do not authorize cleanup.
    of only worktrees removed by that execution.
 10. Post-execution readback must prove all targets absent and all boundaries
     unchanged before cleanup can be called complete.
+11. Failed execution, rollback results, and direct restoration readback must be
+    persisted before the executor returns a failing exit status.
 
 ## Never In Scope
 
