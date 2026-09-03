@@ -280,6 +280,54 @@ function findingsByGroup(...inventories) {
   return grouped;
 }
 
+export function revalidateCandidateSet({ repoRoot, candidates, authorityRef = "origin/main" }) {
+  const authoritySha = git(["rev-parse", authorityRef], { cwd: repoRoot });
+  const openPullRequests = currentOpenPullRequests(repoRoot);
+  const remoteHeads = currentRemoteHeads(repoRoot);
+  const authorityBranchName = authorityRef.replace(/^origin\//, "");
+  const liveAuthoritySha = remoteHeads.rows.get(authorityBranchName) ?? null;
+  if (remoteHeads.status !== "available" || liveAuthoritySha !== authoritySha) {
+    throw new Error("Local authority does not match the live remote authority head.");
+  }
+  const repositoryReferences = scanRepositoryReferences(repoRoot, candidates, authorityRef);
+  const scheduledTasks = scanScheduledTaskReferences(candidates);
+  const runningProcesses = scanRunningProcessReferences(candidates);
+  const references = findingsByGroup(repositoryReferences, scheduledTasks, runningProcesses);
+  const liveWorktrees = parseWorktrees(
+    git(["worktree", "list", "--porcelain"], { cwd: repoRoot }),
+  );
+  const evaluated = candidates.map((candidate) => {
+    const live = collectLiveEvidence(
+      repoRoot,
+      candidate,
+      authorityRef,
+      liveWorktrees,
+      remoteHeads,
+    );
+    return evaluateRevalidatedCandidate(candidate, {
+      ...live,
+      openPullRequestStatus: openPullRequests.status,
+      openPullRequests: openPullRequests.rows.filter(
+        (pullRequest) => pullRequest.headRefName === candidate.branch_name,
+      ),
+      repositoryStatus: repositoryReferences.status,
+      scheduledTaskStatus: scheduledTasks.status,
+      runningProcessStatus: runningProcesses.status,
+      remoteHeadStatus: remoteHeads.status,
+      automationReferences: references.get(candidate.group_id) ?? [],
+    });
+  });
+  return {
+    authoritySha,
+    evaluated,
+    openPullRequests,
+    remoteHeads,
+    repositoryReferences,
+    scheduledTasks,
+    runningProcesses,
+  };
+}
+
 function summarize(values) {
   const counts = {};
   for (const value of values) counts[value] = (counts[value] ?? 0) + 1;
@@ -459,44 +507,21 @@ export function main() {
   if (publishRecovery && !releaseTag) throw new Error("--release-tag is required with --publish-recovery.");
 
   const producerSha = git(["rev-parse", "HEAD"], { cwd: repoRoot });
-  const authoritySha = git(["rev-parse", authorityRef], { cwd: repoRoot });
   const candidateText = loadGitBackedFile(repoRoot, candidatePath, candidateRef);
   const candidateRecords = parseJsonl(candidateText);
   const packetMetadata = candidateRecords[0]?.packet;
   const candidates = candidateRecords.filter((record) => record.record_type === "branch_group").map(({ record_type, ...record }) => record);
   if (!packetMetadata || candidates.length !== packetMetadata.counts.candidates) throw new Error("Candidate packet count does not reconcile.");
 
-  const openPullRequests = currentOpenPullRequests(repoRoot);
-  const remoteHeads = currentRemoteHeads(repoRoot);
-  const authorityBranchName = authorityRef.replace(/^origin\//, "");
-  const liveAuthoritySha = remoteHeads.rows.get(authorityBranchName) ?? null;
-  if (remoteHeads.status !== "available" || liveAuthoritySha !== authoritySha) {
-    throw new Error("Local authority does not match the live remote authority head.");
-  }
-  const repositoryReferences = scanRepositoryReferences(repoRoot, candidates, authorityRef);
-  const scheduledTasks = scanScheduledTaskReferences(candidates);
-  const runningProcesses = scanRunningProcessReferences(candidates);
-  const references = findingsByGroup(repositoryReferences, scheduledTasks, runningProcesses);
-  const liveWorktrees = parseWorktrees(git(["worktree", "list", "--porcelain"], { cwd: repoRoot }));
-  const evaluated = candidates.map((candidate) => {
-    const live = collectLiveEvidence(
-      repoRoot,
-      candidate,
-      authorityRef,
-      liveWorktrees,
-      remoteHeads,
-    );
-    return evaluateRevalidatedCandidate(candidate, {
-      ...live,
-      openPullRequestStatus: openPullRequests.status,
-      openPullRequests: openPullRequests.rows.filter((pullRequest) => pullRequest.headRefName === candidate.branch_name),
-      repositoryStatus: repositoryReferences.status,
-      scheduledTaskStatus: scheduledTasks.status,
-      runningProcessStatus: runningProcesses.status,
-      remoteHeadStatus: remoteHeads.status,
-      automationReferences: references.get(candidate.group_id) ?? [],
-    });
-  });
+  const {
+    authoritySha,
+    evaluated,
+    openPullRequests,
+    remoteHeads,
+    repositoryReferences,
+    scheduledTasks,
+    runningProcesses,
+  } = revalidateCandidateSet({ repoRoot, candidates, authorityRef });
   const selected = evaluated.filter((row) => row.selection_status === "selected_for_recovery");
   const excluded = evaluated.filter((row) => row.selection_status !== "selected_for_recovery");
   if (selected.length === 0) throw new Error("No candidate survived live revalidation.");

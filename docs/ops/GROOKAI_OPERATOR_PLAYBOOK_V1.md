@@ -327,6 +327,19 @@ hashes and downloaded Git bundle. The resulting execution plan still authorizes
 no cleanup. Branch or worktree removal remains a separately approved gate tied
 to the exact selection fingerprint and bundle SHA-256.
 
+Build the separately governed cleanup packet in dry-run mode with:
+
+```powershell
+node scripts/repository/execute_archive_cleanup_v1.mjs
+node --test tests/contracts/repository_archive_cleanup_executor_v1.test.mjs
+```
+
+Dry-run is the default and performs no cleanup. Never add `--execute` unless an
+owner authorization artifact matches the generated selection fingerprint,
+execution fingerprint, action-manifest hash, base and supplement bundle hashes,
+and exact action counts. Re-run the dry-run after any authority or target drift;
+do not edit the packet to preserve a stale approval.
+
 ## 8. External-Action Boundaries
 
 The following actions require explicit authorization even when repository and
