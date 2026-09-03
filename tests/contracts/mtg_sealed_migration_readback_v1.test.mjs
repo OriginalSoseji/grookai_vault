@@ -84,7 +84,7 @@ function fixture() {
         security_definer: true, search_path: ['search_path=pg_catalog, public'],
         public_execute: false, anon_execute: false, authenticated_execute: true,
         service_role_execute: true,
-        definition: "sealed_product_game_release_controls control control.release_status = 'signed_in' coalesce(auth.role(), ''::text)" },
+        definition: "sealed_product_game_release_controls control control.release_status = 'signed_in' coalesce(auth.role(), '')" },
     ],
     relations: ['sealed_product_release_pointer', 'sealed_product_releases',
       'sealed_product_game_release_controls']
@@ -133,6 +133,30 @@ test('readback fails closed for a grant or cross-game data regression', () => {
   assert.equal(validation.valid, false);
   assert.equal(validation.checks.functions, false);
   assert.equal(validation.checks.data_boundaries, false);
+  assert.equal(validation.details.function_checks.get_active_sealed_product_pricing_v2
+    .actual_authenticated_execute, true);
+});
+
+test('readback accepts equivalent PostgreSQL text-coalesce renderings', () => {
+  const withoutCast = fixture();
+  const withCast = fixture();
+  withCast.functions[3].definition = withCast.functions[3].definition.replace(
+    "coalesce(auth.role(), '')", "coalesce(auth.role(), ''::text)");
+  assert.equal(validateMtgSealedMigrationReadbackV1(withoutCast).valid, true);
+  assert.equal(validateMtgSealedMigrationReadbackV1(withCast).valid, true);
+});
+
+test('function diagnostics identify the exact failed evidence pattern', () => {
+  const proof = fixture();
+  proof.functions[3].definition = proof.functions[3].definition.replace(
+    "control.release_status = 'signed_in'", 'control.release_status is not null');
+  const validation = validateMtgSealedMigrationReadbackV1(proof);
+  const functionCheck = validation.details.function_checks
+    .sealed_product_game_visible_to_request_v1;
+  assert.equal(validation.valid, false);
+  assert.equal(validation.checks.functions, false);
+  assert.equal(functionCheck.matched, false);
+  assert.equal(functionCheck.pattern_checks[1].matched, false);
 });
 
 test('readback rejects a same-name constraint with altered semantics', () => {
