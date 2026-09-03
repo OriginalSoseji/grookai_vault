@@ -1,0 +1,19 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_ARCHIVE_CLEANUP_AUTHORIZATION_V1",
+  "execute_authorized": true,
+  "approved_by": "repository_owner",
+  "approved_at": "2026-09-03T05:20:52.4211633Z",
+  "approval_statement": "I approve destructive repository archive cleanup from authority SHA 38d1c6a24328a5f05ab766cb37bce60c45e5ad72 for exactly 227 recovered candidate groups: delete 203 local branches, delete 135 remote branches, and remove 39 clean linked worktrees while preserving 222 manifest-bound reparse points. Selection fingerprint 7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221, execution fingerprint a7bf32adc68f806c729c1c6aa41dfe31279ef4e5debfe3210ba84d4a5895136a, action manifest SHA-256 d2f93cc8755f8e30694b5b1b5dd325e223890cb3705f0bd8116496605d4bb9e3, base recovery bundle SHA-256 3436b1e8f506a153865285af5e69b682256275492c0664d2cff2a1294b9a2b09, and supplement recovery bundle SHA-256 ebafc7ec45db5c5559767c375c252fd85fab6c4d8c122dc3d22078975d82992e. Preserve all tags, PRs, recovery releases, recovery artifacts, databases, Storage, deployments, nonmanifest refs, and the previously preserved failed-cleanup directory.",
+  "selection_fingerprint": "7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221",
+  "execution_fingerprint": "a7bf32adc68f806c729c1c6aa41dfe31279ef4e5debfe3210ba84d4a5895136a",
+  "base_bundle_sha256": "3436b1e8f506a153865285af5e69b682256275492c0664d2cff2a1294b9a2b09",
+  "supplement_bundle_sha256": "ebafc7ec45db5c5559767c375c252fd85fab6c4d8c122dc3d22078975d82992e",
+  "action_manifest_sha256": "d2f93cc8755f8e30694b5b1b5dd325e223890cb3705f0bd8116496605d4bb9e3",
+  "action_counts": {
+    "candidate_groups": 227,
+    "local_branches": 203,
+    "remote_branches": 135,
+    "worktrees": 39,
+    "reparse_points": 222
+  }
+}

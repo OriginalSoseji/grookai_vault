@@ -1,6 +1,6 @@
 # REPOSITORY_ARCHIVE_CLEANUP_READY_20260902_V1
 
-Status: SECOND ATTEMPT FAILED SAFELY - REPARSE-SAFE EXECUTOR REPAIR REQUIRED
+Status: COMPLETE
 
 Date: 2026-09-02 (America/Denver)
 
@@ -70,7 +70,50 @@ and safe relative to current production authority.
 - Local bundle verification: passed
 - Private remote release digest verification: passed
 
+## Final Execution Proof
+
+- Producer and authority SHA:
+  `38d1c6a24328a5f05ab766cb37bce60c45e5ad72`
+- Selection fingerprint:
+  `7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221`
+- Execution fingerprint:
+  `a7bf32adc68f806c729c1c6aa41dfe31279ef4e5debfe3210ba84d4a5895136a`
+- Action-manifest SHA-256:
+  `d2f93cc8755f8e30694b5b1b5dd325e223890cb3705f0bd8116496605d4bb9e3`
+- Execution status: completed
+- Rollback attempted: false
+- Local branches removed: 203
+- Remote branches removed: 135
+- Clean linked worktrees removed: 39
+- Reparse points preserved: 222
+- Target refs, registrations, and paths remaining: 0
+- Preserved reparse-point mismatches: 0
+
 ## Current Truths
+
+- The reparse-safe executor repair merged to `main` as
+  `38d1c6a24328a5f05ab766cb37bce60c45e5ad72`; all post-merge checks passed.
+- The final dry run and execution used selection fingerprint
+  `7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221`,
+  execution fingerprint
+  `a7bf32adc68f806c729c1c6aa41dfe31279ef4e5debfe3210ba84d4a5895136a`,
+  and action-manifest SHA-256
+  `d2f93cc8755f8e30694b5b1b5dd325e223890cb3705f0bd8116496605d4bb9e3`.
+- Exact owner authorization passed with no mismatch.
+- Execution completed without rollback: 203 local branches, 135 remote
+  branches, and 39 clean linked worktrees were removed.
+- All 222 manifest-bound Windows reparse points were relocated intact to the
+  recovery root before their worktrees were removed.
+- Executor readback and an independent readback both found zero remaining
+  target refs, worktree registrations, or target filesystem paths and zero
+  preserved reparse-point mismatches.
+- Both private recovery releases remain available and verified.
+- The prior failed-attempt directory remains preserved at
+  `C:/grookai_vault_active_runtime_codeql_failed_cleanup_preserved_20260902T2208MDT`.
+- Tags, PRs, recovery releases, recovery artifacts, databases, Storage,
+  deployments, and nonmanifest refs remained outside the mutation boundary.
+
+## Historical Failed Attempts
 
 - One exactly authorized execute attempt ran against authority
   `abcb1f6ac56dc575d0763f61e87dc7af629f9d87` and execution fingerprint
@@ -79,7 +122,8 @@ and safe relative to current production authority.
   pre-push hook before GitHub accepted any ref mutation.
 - Rollback passed, direct restoration readback passed, and zero worktrees had
   been removed before failure.
-- Every selected branch and worktree still exists at its frozen identity.
+- Every selected branch and worktree still existed at its frozen identity after
+  that failed attempt was restored.
 - No target has an open PR or live automation reference.
 - No branch, worktree, tag, file, PR, artifact, database row, or Storage object
   was removed by this gate.
@@ -93,13 +137,14 @@ and safe relative to current production authority.
   and the exact worktree was reconstructed at its original path on
   `security/active-runtime-codeql-v2` at
   `0d7856775f35d39d6bf6df55364a67ac1eaf1130`.
-- Direct readback now proves all 203 local targets, 135 remote targets, and 39
-  registered worktrees are present. The reconstructed worktree is clean.
+- At that recovery checkpoint, direct readback proved all 203 local targets,
+  135 remote targets, and 39 registered worktrees were present. The
+  reconstructed worktree was clean before the final successful execution.
 - The preserved partial directory remains at
   `C:/grookai_vault_active_runtime_codeql_failed_cleanup_preserved_20260902T2208MDT`.
-- The target inventory contains 222 Windows reparse points across 20 worktrees.
-  All 222 are untracked generated links and require manifest-bound preservation
-  before removal.
+- The pre-execution target inventory contained 222 Windows reparse points
+  across 20 worktrees. All 222 were untracked generated links and were later
+  preserved by the final execution.
 - Both prior execution authorizations are consumed and cannot be reused.
 - Any authority or target drift invalidates the execution fingerprint.
 
@@ -128,10 +173,15 @@ and safe relative to current production authority.
 - `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/FAILED_ATTEMPT_REPORT_V2.md`
 - `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/manual_worktree_restoration_readback.json`
 - `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/artifact_hashes_v2.json`
+- `docs/audits/repository_archive_cleanup_reparse_safe_dry_run_20260903/cleanup_execution_plan.json`
+- `docs/audits/repository_archive_cleanup_reparse_safe_dry_run_20260903/cleanup_execution_authorization.json`
+- `docs/audits/repository_archive_cleanup_reparse_safe_dry_run_20260903/cleanup_live_revalidation.jsonl`
+- `docs/audits/repository_archive_cleanup_reparse_safe_dry_run_20260903/independent_post_execution_readback.json`
+- `docs/audits/repository_archive_cleanup_reparse_safe_dry_run_20260903/CLEANUP_EXECUTION_CHECKPOINT_V1.md`
+- `docs/audits/repository_archive_cleanup_reparse_safe_dry_run_20260903/artifact_hashes.json`
 
 ## Explicit Next Gate
 
-Merge the reparse-safe repair, complete all post-merge checks, rerun the full
-no-write execution plan from the new frozen `main`, and obtain a new exact
-authorization bound to its producer SHA, reparse-aware action manifest, and
-execution fingerprint. Neither failed authorization may be reused.
+No further action is required for this archive-cleanup selection. Preserve all
+recovery and audit evidence. Any future cleanup must begin with a new candidate
+selection and a new fail-closed authorization cycle.
