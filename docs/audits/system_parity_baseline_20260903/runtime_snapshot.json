@@ -1,0 +1,4206 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_RUNTIME_SNAPSHOT",
+  "repository": {
+    "defaultBranchRef": {
+      "name": "main"
+    },
+    "nameWithOwner": "OriginalSoseji/grookai_vault",
+    "url": "https://github.com/OriginalSoseji/grookai_vault"
+  },
+  "origin_url": "https://github.com/OriginalSoseji/grookai_vault.git",
+  "remote_heads": [
+    {
+      "object": "bdee3d5a27fc9f4f006e4113dfdeeeffe8a196f6",
+      "ref": "refs/heads/agent/flutter-pricing-device-proof-v1"
+    },
+    {
+      "object": "366ab524e5657555b9bab15c979760f7192a7308",
+      "ref": "refs/heads/agent/ios-release-secret-boundary-v1"
+    },
+    {
+      "object": "3d639a6c120a1277867913002c5cef79bf01369c",
+      "ref": "refs/heads/agent/launch-readiness-store-qa-v1"
+    },
+    {
+      "object": "76eacebe5bc43dad06b482443b7877996aa005e1",
+      "ref": "refs/heads/agent/market-intelligence-main-integration"
+    },
+    {
+      "object": "159f6e548d29e575e0bdd4995b80e1febe8ab5f8",
+      "ref": "refs/heads/agent/market-intelligence-read-model-v1"
+    },
+    {
+      "object": "8ff61b607a6027715feef473d61b37fa3140ed30",
+      "ref": "refs/heads/agent/market-listing-new-set-coverage-v1"
+    },
+    {
+      "object": "a2e05776845104d6fe9703d02fbe237772a78956",
+      "ref": "refs/heads/agent/market-listing-warehouse-v2"
+    },
+    {
+      "object": "4747d540dd1ebbe833585be2f1fc1fb562144086",
+      "ref": "refs/heads/agent/mee-operational-recovery-v1"
+    },
+    {
+      "object": "3af1b7f0b6d43c690b42a2ddc09a86983554e85b",
+      "ref": "refs/heads/agent/mtg-client-readiness-v1"
+    },
+    {
+      "object": "1b1dea79334708192221119de2c938c9ed8cb62a",
+      "ref": "refs/heads/agent/mtg-client-release-v1"
+    },
+    {
+      "object": "5ef29d28dffb4c1672fada85de693c750a009dd0",
+      "ref": "refs/heads/agent/mtg-completion-v1"
+    },
+    {
+      "object": "4731daa1a87f9b73b27bcaffdfe50a154bebf542",
+      "ref": "refs/heads/agent/mtg-image-readback-retry-v1"
+    },
+    {
+      "object": "8e7341c03cdb56ef3e2978487ce82d4de5a10d8a",
+      "ref": "refs/heads/agent/mtg-images-readiness-v1"
+    },
+    {
+      "object": "5f23d3a9bda5c17d1aa2816570770981fcb5ad1c",
+      "ref": "refs/heads/agent/mtg-ingestion-observer-v1"
+    },
+    {
+      "object": "7e9f2bb92f56335a6a352f655e12000b344a63a4",
+      "ref": "refs/heads/agent/mtg-pointer-release-v1"
+    },
+    {
+      "object": "36dada4912009f98966b2b75f4523a2440a0801f",
+      "ref": "refs/heads/agent/mtg-pricing-mapping-v1"
+    },
+    {
+      "object": "06f53b5443530ce88bc90c481292158c9490988f",
+      "ref": "refs/heads/agent/mtg-pricing-publication-v1"
+    },
+    {
+      "object": "25f9dc7dec113bc53d615a9be411f23c44bc040c",
+      "ref": "refs/heads/agent/mtg-pricing-readiness-v1"
+    },
+    {
+      "object": "a0d1f1123eca9335d379c49d00f055c46adb87c6",
+      "ref": "refs/heads/agent/mtg-sealed-world-v1"
+    },
+    {
+      "object": "db7b8cd0943b608575078373048d4650c7543580",
+      "ref": "refs/heads/agent/one-piece-ingestion-readiness-v1"
+    },
+    {
+      "object": "7b5a12cf2c36511175915211f4475b121f1ceaae",
+      "ref": "refs/heads/agent/one-piece-release-activation-v1"
+    },
+    {
+      "object": "f6eeb3e9f1459a53acee66f25da888a5cc42f95f",
+      "ref": "refs/heads/agent/one-piece-signed-in-activation-v1"
+    },
+    {
+      "object": "de019a154f256d1b1b53edd1a341bf63e1b6895d",
+      "ref": "refs/heads/agent/pricing-active-ask-refresh-runtime-repair"
+    },
+    {
+      "object": "b05867b114cf354c5e8dd8b9646cbfe9a819d63e",
+      "ref": "refs/heads/agent/pricing-canary-coverage-result-repair-v1"
+    },
+    {
+      "object": "6bfeff951683a2ab7bf41ec44e5cc364c96b7f5b",
+      "ref": "refs/heads/agent/pricing-canary-incident-checkpoint"
+    },
+    {
+      "object": "77573336ad20a96b89d199da82dd41171528a165",
+      "ref": "refs/heads/agent/pricing-canary-read-path-repair"
+    },
+    {
+      "object": "230eb7eddaf5979c2c9e571e57432a3f4c5f8ec2",
+      "ref": "refs/heads/agent/pricing-canary-repair5-checkpoint-v1"
+    },
+    {
+      "object": "0135b8571dd0252457fa80d6d796763faabb9322",
+      "ref": "refs/heads/agent/pricing-canary-shared-rpc-observer"
+    },
+    {
+      "object": "18be58fb3887c66631f88b802e25a69a87b50f5e",
+      "ref": "refs/heads/agent/pricing-canary-source-gap-repair-v1"
+    },
+    {
+      "object": "8787bdc66a4445227c8e83b473d4563abe00988b",
+      "ref": "refs/heads/agent/pricing-health-run-scope-repair"
+    },
+    {
+      "object": "22f52b8c63414787a28a20d83a114e86ce6a37b3",
+      "ref": "refs/heads/agent/pricing-observer-current-trace-scope"
+    },
+    {
+      "object": "2580f7ef8981ffbefa0bc67656ee008f8c603564",
+      "ref": "refs/heads/agent/pricing-post-canary-readiness"
+    },
+    {
+      "object": "809f543860359fd496267be52a39911d29ed0fe9",
+      "ref": "refs/heads/agent/sealed-catalog-readiness-v1"
+    },
+    {
+      "object": "76cd800871f1fbf080153e527c2eb2a5a8394af2",
+      "ref": "refs/heads/agent/visual-search-lab-runtime-fix"
+    },
+    {
+      "object": "871be16cc82a33e948dd118c42cd8cbf98af6e77",
+      "ref": "refs/heads/audit/founder-operations-activation-gate-v1"
+    },
+    {
+      "object": "6155118a027eadfdb780a68b4688ccb466d78967",
+      "ref": "refs/heads/auth/local-login-connectivity"
+    },
+    {
+      "object": "5e44fdfac27ad456d1f728305d8f4319818942d4",
+      "ref": "refs/heads/automation/pokemon-master-index-refresh-33045672402"
+    },
+    {
+      "object": "f69590b706302684d61a0054f592fc1e69fc54a0",
+      "ref": "refs/heads/automation/pokemon-master-index-refresh-33049588682"
+    },
+    {
+      "object": "177a6651376de35da04b3e2962ee9ba168596765",
+      "ref": "refs/heads/automation/pokemon-master-index-refresh-33051115694"
+    },
+    {
+      "object": "27e5b1d658fb43aaab7fd6477985547650ab849c",
+      "ref": "refs/heads/automation/pokemon-master-index-refresh-33732336798"
+    },
+    {
+      "object": "07c8da9f31b32fa8a825d35dc558769e022221f4",
+      "ref": "refs/heads/catalog/jpn-master-index-v4-closeout"
+    },
+    {
+      "object": "2d01a3ccbdde0ff32cd0fb77466dcade081e4416",
+      "ref": "refs/heads/catalog/jpn-master-index-v4-final-adjudication"
+    },
+    {
+      "object": "e91abd8ae54fb977b7afcf8857978ee80e63eb65",
+      "ref": "refs/heads/catalog/jpn-master-index-v4-payload-preflight"
+    },
+    {
+      "object": "3873a20cceccc6addf3e704a9a2d0193797484ed",
+      "ref": "refs/heads/catalog/jpn-master-index-v4-promotion-package"
+    },
+    {
+      "object": "26e1cbe7417df5b7b5e9c48042f068fa3125b991",
+      "ref": "refs/heads/catalog/jpn-master-index-v4-reconciliation"
+    },
+    {
+      "object": "61a52666da1e3e69a8999c93329dbb375e5d58c2",
+      "ref": "refs/heads/catalog/jpn-master-index-v4-schema-chain-repair"
+    },
+    {
+      "object": "2c84f46f516e167df332ca56794d5034fb43c266",
+      "ref": "refs/heads/catalog/jpn-master-index-v5-coverage-engine"
+    },
+    {
+      "object": "4c0489f161c69660e968eec195e783b9d0701f3b",
+      "ref": "refs/heads/catalog/jpn-master-index-v5-official-global-catalog"
+    },
+    {
+      "object": "9d397903bd8ddf7d6b351ed4283b79e8186e18f0",
+      "ref": "refs/heads/catalog/jpn-v4-production-integration-v2"
+    },
+    {
+      "object": "f966ad3058b7f6307565c8c64e30696a0e5ccf20",
+      "ref": "refs/heads/checkpoint/app-milestone-v1"
+    },
+    {
+      "object": "13c9ad8a9e6fa75dcb5cbe36b665e8922f69179d",
+      "ref": "refs/heads/checkpoint/collectible-wave1-set-apply-proposal-v1"
+    },
+    {
+      "object": "46915f20caf38cea0403942a948a027eccd4f3e9",
+      "ref": "refs/heads/chore/audit-staging-green-2025-11-06"
+    },
+    {
+      "object": "be2fed60c338f5badfbcec43a2e9d114ed158a75",
+      "ref": "refs/heads/chore/feed-to-pulse"
+    },
+    {
+      "object": "19b2045cfab7d0bfc9936fdaa5858fae5f2aae46",
+      "ref": "refs/heads/chore/polish-pass-1"
+    },
+    {
+      "object": "244774ccd1fb57a1c65fa8999f33549fcb2adc2b",
+      "ref": "refs/heads/chore/remove-edge-stubs-and-secure-ai"
+    },
+    {
+      "object": "596208c3c7bd97d5f1e1b53b7d61204c10eab70f",
+      "ref": "refs/heads/codex/binder-install-evidence-rpo-v1"
+    },
+    {
+      "object": "b64641799c30d594e8634b9c934dd7c58298b8b2",
+      "ref": "refs/heads/codex/binder-phase1-empty-vector-fix-20260727"
+    },
+    {
+      "object": "d92992a9ba307c312eeca3dd6fe5f4dc797f9e11",
+      "ref": "refs/heads/codex/binder-unattended-supervisor-v1"
+    },
+    {
+      "object": "5e8f12991a605f0e3b384f7e968ece77eaa4c77a",
+      "ref": "refs/heads/codex/collaborative-binders-release-simplification-v1"
+    },
+    {
+      "object": "f584d500552992d395cce437f04f45908482d589",
+      "ref": "refs/heads/codex/collaborative-binders-rollout-process-correction-v1"
+    },
+    {
+      "object": "f78a16616849c480fa00ad54676ae7e10d400ef8",
+      "ref": "refs/heads/codex/collaborative-binders-v1"
+    },
+    {
+      "object": "cf7294aa01ae971c184bf89d2ded8036c8d3eaaa",
+      "ref": "refs/heads/codex/dex-ux-adoption-v1"
+    },
+    {
+      "object": "f70ecc941e781f723f1dac65e8aa5a8c197e7f59",
+      "ref": "refs/heads/codex/e2-notification-pr1"
+    },
+    {
+      "object": "c223dc932283f613e17c2276faa302646e8eee2e",
+      "ref": "refs/heads/codex/market-evidence-engine-v1"
+    },
+    {
+      "object": "2326313f6b5e9bbd519b7234896f872e3a5883c1",
+      "ref": "refs/heads/codex/mee-price-bridge-prod"
+    },
+    {
+      "object": "8c6fc03368e23bfefa9c779d063e7f9b62df814f",
+      "ref": "refs/heads/codex/product-evolution-v2-with-ios-push-build20"
+    },
+    {
+      "object": "8d60a57f969c1c047c9c5e790d7e2cf69913d675",
+      "ref": "refs/heads/codex/reduce-id-registry-exposure"
+    },
+    {
+      "object": "32f03c7046badaec87cb96e9c9d3139acdb04362",
+      "ref": "refs/heads/codex/reference-anchored-pricing-compat-view"
+    },
+    {
+      "object": "fc9c3976b907d05b1f2127a022e9a833f5e22e40",
+      "ref": "refs/heads/codex/seo-set-id-discovery"
+    },
+    {
+      "object": "9ade5036dca2053c974fc07adace0f06fb637e08",
+      "ref": "refs/heads/codex/trade-second-leg-fix"
+    },
+    {
+      "object": "3c2c83e1e793da9ad8cf011e649fc656d80dcc99",
+      "ref": "refs/heads/docs/collectible-wave1-card-proposal-checkpoint-v1"
+    },
+    {
+      "object": "6e3d75f1e324b5ef11636cde881721cf07f36e07",
+      "ref": "refs/heads/docs/repository-archive-candidate-packet-v1"
+    },
+    {
+      "object": "0d1d54ac3747950b5d004f94715a5f3d658979df",
+      "ref": "refs/heads/docs/repository-postmerge-disposition-v1"
+    },
+    {
+      "object": "c812690a9c2406a5aea2cdc4c3b9cca3178b56b3",
+      "ref": "refs/heads/docs/repository-prearchive-recovery-v1"
+    },
+    {
+      "object": "0ea75acfecaff1b9cb1a2179098193449ad0ec9d",
+      "ref": "refs/heads/docs/repository-reconciliation-safety-v1"
+    },
+    {
+      "object": "c5bbbba5dea998fcd51d0d8602601737356a1494",
+      "ref": "refs/heads/feature/card-visual-search-review-portal"
+    },
+    {
+      "object": "5d34b1297f64af9a41cd9f4a83fefd800cc7a220",
+      "ref": "refs/heads/feature/collectible-parser-wave1-v1"
+    },
+    {
+      "object": "b4dca93de69e91abd1187651263150aaf9d09e3c",
+      "ref": "refs/heads/feature/collectible-wave1-card-identity-proposal-v1"
+    },
+    {
+      "object": "2153d0d9b99fda62fc343696d1c30d930e552082",
+      "ref": "refs/heads/feature/collectible-wave1-set-migration-proof-v1"
+    },
+    {
+      "object": "e75486c3c0e92d8d2769778f370174194f326de2",
+      "ref": "refs/heads/feature/cross-tcg-set-publication-gate-v1"
+    },
+    {
+      "object": "04b84da9b2606944bba6b84b17aa857477b6e636",
+      "ref": "refs/heads/feature/english-pokemon-incremental-v1"
+    },
+    {
+      "object": "cc1e32b43b6507828d8d3d45217a74a21699f0b3",
+      "ref": "refs/heads/feature/founder-command-auto-dispatch-v1"
+    },
+    {
+      "object": "7aec08e90457c330f0cdaa89242088cb4460458d",
+      "ref": "refs/heads/feature/founder-operations-command-center-v1"
+    },
+    {
+      "object": "3d1eb6200ef2fa21cdb4001772a53c3ae6f2549e",
+      "ref": "refs/heads/feature/founder-outcome-workflow-v1"
+    },
+    {
+      "object": "4e51de859452fcae626039936a66eacea2e2c9d3",
+      "ref": "refs/heads/feature/instant-pricing-on-add"
+    },
+    {
+      "object": "717f19a0a8260e9a6b97aef99e11886c443ecc63",
+      "ref": "refs/heads/feature/live-pricing"
+    },
+    {
+      "object": "c7508915ff49267d53005df1627c0a8bb0a9962e",
+      "ref": "refs/heads/feature/one-piece-op16-op17-production-closure"
+    },
+    {
+      "object": "ea665c41d88daf2ae5d33396324fabc577259df0",
+      "ref": "refs/heads/feature/one-piece-set-release-boundary-op17"
+    },
+    {
+      "object": "4886784629daf12d8283a3ecf3d3ce7193bc8a12",
+      "ref": "refs/heads/feature/pokemon-language-master-index-autopilot-v1"
+    },
+    {
+      "object": "244774ccd1fb57a1c65fa8999f33549fcb2adc2b",
+      "ref": "refs/heads/feature/price-importer"
+    },
+    {
+      "object": "53c18d45e37805f2ea95960b5319aa2352daa14e",
+      "ref": "refs/heads/feature/scanner-p0_5"
+    },
+    {
+      "object": "afcf4e9ee8abbb2a8b3d7ef416c6c11b08e3b45d",
+      "ref": "refs/heads/feature/special-variant-self-hosted-review-v1"
+    },
+    {
+      "object": "d1b03879e510451ed0d80f43b6f21e1f92e74236",
+      "ref": "refs/heads/feature/tk-sm-r-founder-executor-v1"
+    },
+    {
+      "object": "893119c8c9fc03c9c8447be6e3648e207bdd4e54",
+      "ref": "refs/heads/feature/unified-search-ux-v1"
+    },
+    {
+      "object": "d1488af13c890c0a671e84b640b2786390bddd77",
+      "ref": "refs/heads/feature/universal-catalog-discovery-v1"
+    },
+    {
+      "object": "6f2db5daee95ecfd6aea9f2e76f409e27f1fdc02",
+      "ref": "refs/heads/feature/vault-bulk-select-v1"
+    },
+    {
+      "object": "2ded44a4f50669675183130cdd16725b11d42846",
+      "ref": "refs/heads/feature/visual-search-v1-productization"
+    },
+    {
+      "object": "ced5916641e6e91f4264e5ca60b0e534399995d0",
+      "ref": "refs/heads/fix/app-sets-shared-loading-v1"
+    },
+    {
+      "object": "74714f9929731482705a327262fb3cd3eb43eeaf",
+      "ref": "refs/heads/fix/catalog-founder-outcome-supersession-v1"
+    },
+    {
+      "object": "9fdcee4c193daff7fdc8826c73922a4c45996171",
+      "ref": "refs/heads/fix/catalog-set-release-boundary-readback"
+    },
+    {
+      "object": "17ac18a9b6779e2a3e7c097cf1f73eaca6f694f9",
+      "ref": "refs/heads/fix/catalog-shadow-only-automation-v1"
+    },
+    {
+      "object": "b0ce8bbf8ae849cd5ae46cee83198aac861ed0be",
+      "ref": "refs/heads/fix/checkup-p0p1-pass"
+    },
+    {
+      "object": "1f42897449f4f05e459fde11514702eeb59f733c",
+      "ref": "refs/heads/fix/cross-tcg-set-browser-v1"
+    },
+    {
+      "object": "66afd877471518d34af8266762014ca54635d2fe",
+      "ref": "refs/heads/fix/cross-tcg-set-taxonomy-v1"
+    },
+    {
+      "object": "a208e8e7185d9478cd5ac30f4460b46b53b5b1c7",
+      "ref": "refs/heads/fix/founder-notifications-pulse-v1"
+    },
+    {
+      "object": "91e4c043f076a71721cd95c27715c3737eba78ed",
+      "ref": "refs/heads/fix/lot-sharing-pricing-main-v1"
+    },
+    {
+      "object": "9c063bbbbb24306069ef0e2c286f0d1f9a728e20",
+      "ref": "refs/heads/fix/main-tcgplayer-external-block-status-v1"
+    },
+    {
+      "object": "0bb17c08af101951fa88dbddd3502cc73887c332",
+      "ref": "refs/heads/fix/mee-reference-artifact-handoff-v1"
+    },
+    {
+      "object": "2b24a0af8948e8de7fdd228f396265bd09f5cf88",
+      "ref": "refs/heads/fix/mee-reference-preflight-artifact-root-v1"
+    },
+    {
+      "object": "0ec9e877ba7660b851fb3f3681a5d55d45fcbcab",
+      "ref": "refs/heads/fix/mee-runtime-recovery-20260810"
+    },
+    {
+      "object": "597abe264d8e7ea5be56c40eb283d0f0d13f2b9a",
+      "ref": "refs/heads/fix/mee-zero-result-resume-artifact-v1"
+    },
+    {
+      "object": "c3e34b82f09981fd6138e5c8671b6c473530171b",
+      "ref": "refs/heads/fix/mobile-runtime-performance-images-v1"
+    },
+    {
+      "object": "87edbe5799879d617603b75e94f75198f8394b09",
+      "ref": "refs/heads/fix/mtg-deck-package-covers-v1"
+    },
+    {
+      "object": "da0f531d46f198c2f4d1f10c39b1223438898e3e",
+      "ref": "refs/heads/fix/one-piece-governed-external-image"
+    },
+    {
+      "object": "3a93a5a2d41e88803a2320039333618665a49ed1",
+      "ref": "refs/heads/fix/one-piece-op17-021-closure"
+    },
+    {
+      "object": "f62541fb307323da4882582c0c15261c62fbf722",
+      "ref": "refs/heads/fix/one-piece-set-image-canary-runtime"
+    },
+    {
+      "object": "c5853ccc227b45faff36eb127cdf3a70d8617a20",
+      "ref": "refs/heads/fix/one-piece-signed-in-set-route-v1"
+    },
+    {
+      "object": "ee78bed697ab0f6ea19ab6343ca12497701db6fd",
+      "ref": "refs/heads/fix/pokemon-language-source-integrity-v1"
+    },
+    {
+      "object": "6bc539fc15fad277724d025e336fa55212d3d876",
+      "ref": "refs/heads/fix/pricing-canary-source-schedule-evidence-v1"
+    },
+    {
+      "object": "10355c92c6a9ad1f8e8eb4c80eb333f6687ff79c",
+      "ref": "refs/heads/fix/prod-edges-2xx"
+    },
+    {
+      "object": "b28dfe273d8fd2a598ed42f1e542445b432b9c03",
+      "ref": "refs/heads/fix/prod-probe-badge-fix"
+    },
+    {
+      "object": "4fdceea9e82505175c159906c3f2ac17c23d8be3",
+      "ref": "refs/heads/fix/production-grade-app-crawl-v1"
+    },
+    {
+      "object": "318a5a8ccde2251651dae7b716cf3d6d0254778e",
+      "ref": "refs/heads/fix/recurring-production-release-v1"
+    },
+    {
+      "object": "df1582db2d4c6340dc47f8b8ff678b84cf0875bb",
+      "ref": "refs/heads/fix/recurring-production-workflows-v1"
+    },
+    {
+      "object": "9aa8f6149efa5e5c5bd23516707a210743bb19d7",
+      "ref": "refs/heads/fix/release-tcgplayer-external-block-alert-v1"
+    },
+    {
+      "object": "5889937c04e2f6c7ebef12fabbc525d06c689637",
+      "ref": "refs/heads/fix/restore-public-set-facets-migration-v1"
+    },
+    {
+      "object": "d150f4fe2cbd663ba1092ce27d02610a3ba1a3b6",
+      "ref": "refs/heads/fix/smart-search-multitcg-v1"
+    },
+    {
+      "object": "6c12ba420751eb4cca36ca53a1801ef140a3b783",
+      "ref": "refs/heads/fix/tcgplayer-canary-observer-replay-20260810"
+    },
+    {
+      "object": "d8035f50e3754027eb1693aac4d28b894fde9749",
+      "ref": "refs/heads/fix/tcgplayer-canary-window-boundary-20260810"
+    },
+    {
+      "object": "f0847ef1e49fa6a0f4d6b56270c8272aa0db8d51",
+      "ref": "refs/heads/fix/tcgplayer-external-block-status-v1"
+    },
+    {
+      "object": "deb015c384a4f993540ed2a7b7826ddd6cfa6155",
+      "ref": "refs/heads/fix/testflight-reported-blockers-v1"
+    },
+    {
+      "object": "d103533158913191517471bff5af8c50624360f3",
+      "ref": "refs/heads/hotfix/cross-tcg-card-search-v1"
+    },
+    {
+      "object": "8c44b420feb54ddc619e3966b9cd2b5c12002b4c",
+      "ref": "refs/heads/hotfix/cross-tcg-direct-gvid-search-v1"
+    },
+    {
+      "object": "1368f2401c51c9bc92a0b0498b3ba0ae8b978f50",
+      "ref": "refs/heads/hotfix/mtg-collector-display-title-v1"
+    },
+    {
+      "object": "4f689ee083a5e6964247c9782f2d06c1cdaf9706",
+      "ref": "refs/heads/hotfix/mtg-production-search-v1"
+    },
+    {
+      "object": "ecab135a6523cee603ac54c2c63b6feb053b3548",
+      "ref": "refs/heads/hotfix/pokemon-direct-gvid-search-v1"
+    },
+    {
+      "object": "5f15c7e9ffc906f763d1ec9c50fade7e9d56e0d2",
+      "ref": "refs/heads/integration/reconciled-main-v1"
+    },
+    {
+      "object": "ab7ff717678e8ad386f91ec0bd432d7aca2224b6",
+      "ref": "refs/heads/ios-new-dex-build-v1"
+    },
+    {
+      "object": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+      "ref": "refs/heads/main"
+    },
+    {
+      "object": "95924eafb237f193289e5937dd2f83c75d0bbc55",
+      "ref": "refs/heads/migration/api-keys"
+    },
+    {
+      "object": "95924eafb237f193289e5937dd2f83c75d0bbc55",
+      "ref": "refs/heads/migration/api-keys-fix"
+    },
+    {
+      "object": "dbfdf396ccca379baecf1ff7376124904ced7ab1",
+      "ref": "refs/heads/migration/api-keys-fresh"
+    },
+    {
+      "object": "1b65f29d5b4e6301a9b23c7fec02e5e9fb2449b6",
+      "ref": "refs/heads/ops/repository-archive-cleanup-executor-v1"
+    },
+    {
+      "object": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "ref": "refs/heads/ops/repository-archive-cleanup-final-revalidation-v2"
+    },
+    {
+      "object": "177ceb6341e427cfd3a9997282154c29afae76ce",
+      "ref": "refs/heads/ops/repository-archive-cleanup-hook-repair-v1"
+    },
+    {
+      "object": "df5039f28a70bacfd02ae228820758ab21106cdc",
+      "ref": "refs/heads/ops/repository-archive-cleanup-reparse-repair-v1"
+    },
+    {
+      "object": "0d6ecfa6a1b8c8afc294ccc44f4cb7368c205135",
+      "ref": "refs/heads/pricing/full-tcgcsv-warehouse"
+    },
+    {
+      "object": "7e3ad9dc9c7fabe231abeb409c3cd3aff39ee98e",
+      "ref": "refs/heads/pricing/mee-productization-v1"
+    },
+    {
+      "object": "37b6f1c6d38d46a5d5de7a549fb6d3b6a6ed4919",
+      "ref": "refs/heads/release/8-week-completion-closeout-v1"
+    },
+    {
+      "object": "f01183f48c6450ce240ce1988aac928c8a61d172",
+      "ref": "refs/heads/release/8-week-convergence-v1"
+    },
+    {
+      "object": "bdc26d035eb5a93b87d319956939a3a1698f76b3",
+      "ref": "refs/heads/release/app-candidate-309"
+    },
+    {
+      "object": "b3d6019c34c3f1410798cd63792737608b68bb0d",
+      "ref": "refs/heads/release/final-candidate-proof-v1"
+    },
+    {
+      "object": "282ec1b57cd07d071870b2ec57b718b592debb7b",
+      "ref": "refs/heads/release/final-journey-proof-v1"
+    },
+    {
+      "object": "d73d625f5cb3501b958948cfb147d8323a1f2213",
+      "ref": "refs/heads/release/mee-canary-observer-current-v1"
+    },
+    {
+      "object": "b224c6c381cf5c31b10b2b467d13f5045d642a75",
+      "ref": "refs/heads/release/mee-pricing-publication-complete-v1"
+    },
+    {
+      "object": "a4bdb04fd4b32a8ef1744efbafb54018e57619fe",
+      "ref": "refs/heads/release/mtg-pricing-migration-apply-v1"
+    },
+    {
+      "object": "5dae07d8e98a4b5e41435b50c9528dfa9c9ac6d1",
+      "ref": "refs/heads/release/mtg-production-client-v1"
+    },
+    {
+      "object": "db32d8caa669263510369a5e0d299e43a493c1c5",
+      "ref": "refs/heads/release/pricing-production-v1-final-activation"
+    },
+    {
+      "object": "02c49fc458d0283d8d1eeabe7039c187b4469c2c",
+      "ref": "refs/heads/release/prod-core-edge-probe-v1"
+    },
+    {
+      "object": "33ebc4cf8129d1d01ce2a2be9c321ee4ea1a83d5",
+      "ref": "refs/heads/release/production-backend-launch-v1"
+    },
+    {
+      "object": "ab893107ad00f2b04f4dcc112ddd794512877fab",
+      "ref": "refs/heads/release/production-readiness-final-countdown"
+    },
+    {
+      "object": "b81c530312f3627308949fd24a2e5460db23b48d",
+      "ref": "refs/heads/release/want-match-prod-apply-v1"
+    },
+    {
+      "object": "e6caade370ad3e789b9cea7d375a45f44d40fadb",
+      "ref": "refs/heads/release/want-match-truth-boundary-v1"
+    },
+    {
+      "object": "92590021e0b167cf62cf2338d1566f3b644842d3",
+      "ref": "refs/heads/scanner-camera-rebuild-blueprint"
+    },
+    {
+      "object": "1653c210c08373bab60b67fd02246626919434f5",
+      "ref": "refs/heads/secure/pokemontcg-key-setup"
+    },
+    {
+      "object": "4021a123f7f3e85e88fc8afc82dd589ebdd4e71c",
+      "ref": "refs/heads/security/codeql-tooling-boundary-v1"
+    },
+    {
+      "object": "32729d43d7ea94737accd521f83029d1b2012490",
+      "ref": "refs/heads/security/supabase-authority-hardening-v3"
+    },
+    {
+      "object": "360aa6a825e3507567b89ca1a20986302cdab59b",
+      "ref": "refs/heads/security/supabase-viewer-binding-v1"
+    },
+    {
+      "object": "6cf59a89336ae0407d25ed226fce40d0f86cd475",
+      "ref": "refs/heads/stabilize/ui-glue-audit"
+    }
+  ],
+  "workflow_runs": [
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T10:14:32Z",
+      "databaseId": 33743235409,
+      "event": "schedule",
+      "headSha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+      "status": "completed",
+      "updatedAt": "2026-09-03T10:15:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33743235409",
+      "workflowName": "MTG Catalog Supervisor"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T09:51:30Z",
+      "databaseId": 33741152613,
+      "event": "schedule",
+      "headSha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+      "status": "completed",
+      "updatedAt": "2026-09-03T09:53:30Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33741152613",
+      "workflowName": "Operations control-plane maintenance"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T08:25:59Z",
+      "databaseId": 33733315151,
+      "event": "workflow_dispatch",
+      "headSha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+      "status": "completed",
+      "updatedAt": "2026-09-03T08:30:26Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33733315151",
+      "workflowName": "Catalog Shadow Reconciliation"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T08:25:58Z",
+      "databaseId": 33733313002,
+      "event": "workflow_dispatch",
+      "headSha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+      "status": "completed",
+      "updatedAt": "2026-09-03T08:30:14Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33733313002",
+      "workflowName": "Universal Catalog Discovery"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T08:25:55Z",
+      "databaseId": 33733309576,
+      "event": "dynamic",
+      "headSha": "9a6f62c077f02528ecb26ee7d660f501476475a6",
+      "status": "completed",
+      "updatedAt": "2026-09-03T08:34:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33733309576",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T08:24:22Z",
+      "databaseId": 33733169955,
+      "event": "pull_request",
+      "headSha": "27e5b1d658fb43aaab7fd6477985547650ab849c",
+      "status": "completed",
+      "updatedAt": "2026-09-03T08:25:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33733169955",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T08:24:20Z",
+      "databaseId": 33733167907,
+      "event": "dynamic",
+      "headSha": "27e5b1d658fb43aaab7fd6477985547650ab849c",
+      "status": "completed",
+      "updatedAt": "2026-09-03T08:29:45Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33733167907",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T08:15:00Z",
+      "databaseId": 33732336798,
+      "event": "schedule",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T08:26:05Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33732336798",
+      "workflowName": "Pokemon Master Index Refresh"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:55:46Z",
+      "databaseId": 33720945532,
+      "event": "schedule",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:56:59Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720945532",
+      "workflowName": "Prod Edge Probe (read-only)"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:51:30Z",
+      "databaseId": 33720637098,
+      "event": "push",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:52:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720637098",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:51:30Z",
+      "databaseId": 33720637097,
+      "event": "push",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:52:36Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720637097",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:51:30Z",
+      "databaseId": 33720637050,
+      "event": "push",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:53:58Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720637050",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:51:30Z",
+      "databaseId": 33720636994,
+      "event": "push",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T06:00:00Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720636994",
+      "workflowName": "Flutter Build Signed APK"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:51:29Z",
+      "databaseId": 33720636560,
+      "event": "dynamic",
+      "headSha": "758166590a18e65b0e01e87062ba3a27d771697d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T06:00:15Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720636560",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:48:04Z",
+      "databaseId": 33720392745,
+      "event": "schedule",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:49:09Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720392745",
+      "workflowName": "MTG Catalog Supervisor"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:44:01Z",
+      "databaseId": 33720103881,
+      "event": "pull_request",
+      "headSha": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:45:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720103881",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:44:01Z",
+      "databaseId": 33720103818,
+      "event": "pull_request",
+      "headSha": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:46:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720103818",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:44:01Z",
+      "databaseId": 33720103776,
+      "event": "pull_request",
+      "headSha": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:45:15Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720103776",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:44:00Z",
+      "databaseId": 33720101554,
+      "event": "push",
+      "headSha": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:45:06Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720101554",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:44:00Z",
+      "databaseId": 33720101481,
+      "event": "push",
+      "headSha": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:46:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720101481",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:43:59Z",
+      "databaseId": 33720101049,
+      "event": "dynamic",
+      "headSha": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:49:39Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33720101049",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:36:48Z",
+      "databaseId": 33719587136,
+      "event": "pull_request",
+      "headSha": "7b03f4612e1d60bccdd74a489617dbadfea575bf",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:38:05Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33719587136",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:36:46Z",
+      "databaseId": 33719585094,
+      "event": "dynamic",
+      "headSha": "7b03f4612e1d60bccdd74a489617dbadfea575bf",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:42:11Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33719585094",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:08:59Z",
+      "databaseId": 33717670386,
+      "event": "schedule",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:10:59Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33717670386",
+      "workflowName": "Operations control-plane maintenance"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T05:06:23Z",
+      "databaseId": 33717502267,
+      "event": "schedule",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:09:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33717502267",
+      "workflowName": "Catalog Shadow Reconciliation"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:52:49Z",
+      "databaseId": 33716656348,
+      "event": "push",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:54:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716656348",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:52:49Z",
+      "databaseId": 33716656237,
+      "event": "push",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:54:03Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716656237",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:52:49Z",
+      "databaseId": 33716656230,
+      "event": "push",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:02:16Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716656230",
+      "workflowName": "Flutter Build Signed APK"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:52:49Z",
+      "databaseId": 33716656211,
+      "event": "push",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:54:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716656211",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:52:48Z",
+      "databaseId": 33716655479,
+      "event": "dynamic",
+      "headSha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+      "status": "completed",
+      "updatedAt": "2026-09-03T05:01:39Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716655479",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:46:27Z",
+      "databaseId": 33716270148,
+      "event": "pull_request",
+      "headSha": "df5039f28a70bacfd02ae228820758ab21106cdc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:50:54Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716270148",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:46:27Z",
+      "databaseId": 33716270142,
+      "event": "pull_request",
+      "headSha": "df5039f28a70bacfd02ae228820758ab21106cdc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:48:05Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716270142",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:46:27Z",
+      "databaseId": 33716270115,
+      "event": "pull_request",
+      "headSha": "df5039f28a70bacfd02ae228820758ab21106cdc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:47:31Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716270115",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:46:24Z",
+      "databaseId": 33716267961,
+      "event": "dynamic",
+      "headSha": "df5039f28a70bacfd02ae228820758ab21106cdc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:51:06Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33716267961",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:38:30Z",
+      "databaseId": 33715787094,
+      "event": "pull_request",
+      "headSha": "4ad0a49266aa70131e58239f26f59c3cd44ba418",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:39:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715787094",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:38:30Z",
+      "databaseId": 33715787082,
+      "event": "pull_request",
+      "headSha": "4ad0a49266aa70131e58239f26f59c3cd44ba418",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:40:36Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715787082",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:38:30Z",
+      "databaseId": 33715787076,
+      "event": "pull_request",
+      "headSha": "4ad0a49266aa70131e58239f26f59c3cd44ba418",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:39:31Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715787076",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:38:28Z",
+      "databaseId": 33715785859,
+      "event": "dynamic",
+      "headSha": "4ad0a49266aa70131e58239f26f59c3cd44ba418",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:44:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715785859",
+      "workflowName": "CodeQL"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:38:26Z",
+      "databaseId": 33715783484,
+      "event": "push",
+      "headSha": "4ad0a49266aa70131e58239f26f59c3cd44ba418",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:40:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715783484",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:38:26Z",
+      "databaseId": 33715783470,
+      "event": "push",
+      "headSha": "4ad0a49266aa70131e58239f26f59c3cd44ba418",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:39:36Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715783470",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:36:50Z",
+      "databaseId": 33715687621,
+      "event": "schedule",
+      "headSha": "bd7675a2a3c1efd21a93dd4fd09d4be13395a18b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:40:06Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715687621",
+      "workflowName": "Universal Catalog Discovery"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:33:21Z",
+      "databaseId": 33715473070,
+      "event": "schedule",
+      "headSha": "bd7675a2a3c1efd21a93dd4fd09d4be13395a18b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:34:17Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715473070",
+      "workflowName": "TCGPlayer Market Canary Observation"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:33:12Z",
+      "databaseId": 33715462813,
+      "event": "schedule",
+      "headSha": "bd7675a2a3c1efd21a93dd4fd09d4be13395a18b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:34:07Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33715462813",
+      "workflowName": "Supabase Production Capacity Audit (read-only)"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:25Z",
+      "databaseId": 33713691868,
+      "event": "push",
+      "headSha": "00093caeb233063fa7fa4ed580cbbcd01c96fc22",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:16:07Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691868",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:25Z",
+      "databaseId": 33713691709,
+      "event": "push",
+      "headSha": "03fc909b23533c45232354efd20e3cfc1b070802",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:11:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691709",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:25Z",
+      "databaseId": 33713691323,
+      "event": "push",
+      "headSha": "595c76d9eef7d5532c49fb57ceb8dda70116ff7f",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:16Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691323",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:25Z",
+      "databaseId": 33713691172,
+      "event": "push",
+      "headSha": "0a82a785294eea98045613224fabe25e385ee95f",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:13Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691172",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:25Z",
+      "databaseId": 33713691153,
+      "event": "push",
+      "headSha": "0a82a785294eea98045613224fabe25e385ee95f",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691153",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713691101,
+      "event": "push",
+      "headSha": "0acceafdf73004bfffeb639504264bd8465f7e6d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:10:56Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691101",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713691054,
+      "event": "push",
+      "headSha": "0a82a785294eea98045613224fabe25e385ee95f",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713691054",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713690965,
+      "event": "push",
+      "headSha": "12459cca67fb57aeecc43e645d4dac1024430930",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:12:41Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690965",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713690677,
+      "event": "push",
+      "headSha": "13aba999fa4652333075da274dc154a36db56ecc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690677",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713690658,
+      "event": "push",
+      "headSha": "0b9a4e3ab7f1c8e03739b50bb48cb0e3c52604a0",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:16:41Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690658",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713690601,
+      "event": "push",
+      "headSha": "0d7856775f35d39d6bf6df55364a67ac1eaf1130",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:09:55Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690601",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713690600,
+      "event": "push",
+      "headSha": "0d7856775f35d39d6bf6df55364a67ac1eaf1130",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690600",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:24Z",
+      "databaseId": 33713690167,
+      "event": "push",
+      "headSha": "13aba999fa4652333075da274dc154a36db56ecc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690167",
+      "workflowName": "Prod Edge Probe (read-only)"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713690110,
+      "event": "push",
+      "headSha": "177da7f0abe8e9705c253c29daef10af44b8dcfa",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:06:09Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690110",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713690109,
+      "event": "push",
+      "headSha": "177da7f0abe8e9705c253c29daef10af44b8dcfa",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690109",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713690069,
+      "event": "push",
+      "headSha": "18179b351b1c239a82cb99df83615a5cd0f05803",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:34Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690069",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713690008,
+      "event": "push",
+      "headSha": "1a8bcfca680bc27dbb39c81094268abbd945f918",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:32Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713690008",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689909,
+      "event": "push",
+      "headSha": "21f8585c860ec494294688362918355d5ebca8c7",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689909",
+      "workflowName": "Prod Edge Probe (read-only)"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689861,
+      "event": "push",
+      "headSha": "19450e313e354c8ee7b1e9fea2c9ed959c84794f",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:07:44Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689861",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689860,
+      "event": "push",
+      "headSha": "19450e313e354c8ee7b1e9fea2c9ed959c84794f",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:01Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689860",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689746,
+      "event": "push",
+      "headSha": "1fbf94bca41e307e4438b2296d283beec624b098",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:12:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689746",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689736,
+      "event": "push",
+      "headSha": "1fbf94bca41e307e4438b2296d283beec624b098",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:10:05Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689736",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689710,
+      "event": "push",
+      "headSha": "217b7950ee29828c204a008e4c6b141b128159dc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:38Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689710",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689605,
+      "event": "push",
+      "headSha": "2133c2f5561e25996ea5ca15bfc723466a93e35d",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:37Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689605",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:23Z",
+      "databaseId": 33713689424,
+      "event": "push",
+      "headSha": "21f8585c860ec494294688362918355d5ebca8c7",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689424",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713689185,
+      "event": "push",
+      "headSha": "2870a252d46135de4ab1b348aed071572e0578d5",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689185",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713689152,
+      "event": "push",
+      "headSha": "2c2a42f7cc2d108cf580c0fb7550d71ede9a942a",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689152",
+      "workflowName": "Prod Edge Probe (read-only)"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713689141,
+      "event": "push",
+      "headSha": "2ca5bc03ea51e766f07be8e3035a49cad1d9a371",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713689141",
+      "workflowName": "Prod Edge Probe (read-only)"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688987,
+      "event": "push",
+      "headSha": "2adb68d90417c32693ec004161bad36088a046c4",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:28Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688987",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688981,
+      "event": "push",
+      "headSha": "2adb68d90417c32693ec004161bad36088a046c4",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:10Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688981",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688838,
+      "event": "push",
+      "headSha": "78c51c8eacde75b39ea9d37f018511eceda19ea0",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688838",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688834,
+      "event": "push",
+      "headSha": "78c51c8eacde75b39ea9d37f018511eceda19ea0",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688834",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688632,
+      "event": "push",
+      "headSha": "2c2a42f7cc2d108cf580c0fb7550d71ede9a942a",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688632",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688631,
+      "event": "push",
+      "headSha": "2ca5bc03ea51e766f07be8e3035a49cad1d9a371",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688631",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688461,
+      "event": "push",
+      "headSha": "40780141518e25d34555e8620055fbc76535767c",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688461",
+      "workflowName": "Guard: No Legacy Keys"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:22Z",
+      "databaseId": 33713688292,
+      "event": "push",
+      "headSha": "340fc023aac45d1524780a1101d8da88b5056fea",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:25Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688292",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713688258,
+      "event": "push",
+      "headSha": "340fc023aac45d1524780a1101d8da88b5056fea",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:09:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688258",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713688251,
+      "event": "push",
+      "headSha": "2ec9e71cbdc4a164dc90d5492651994939e2bc26",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:12:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688251",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713688207,
+      "event": "push",
+      "headSha": "3d6806f69ce8de8f29ec771ebd2b0d5ad6aa3429",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:45Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688207",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713688166,
+      "event": "push",
+      "headSha": "3d6806f69ce8de8f29ec771ebd2b0d5ad6aa3429",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:16:17Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688166",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713688072,
+      "event": "push",
+      "headSha": "425ef6a705787228eebd435600eba5370765c4e3",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713688072",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687819,
+      "event": "push",
+      "headSha": "40780141518e25d34555e8620055fbc76535767c",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:04:21Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687819",
+      "workflowName": "Prod Edge Probe (read-only)"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687755,
+      "event": "push",
+      "headSha": "51361c8ea02e2dc3e390c68583c827132b2e6500",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:07:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687755",
+      "workflowName": "Flutter CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687691,
+      "event": "push",
+      "headSha": "48db2107f43c9b6273de7487a3ebc6c732c9fa2a",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:11:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687691",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687612,
+      "event": "push",
+      "headSha": "56e9d0d0e039fb4bc7424770c56dd409b4b9768b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687612",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687551,
+      "event": "push",
+      "headSha": "56e9d0d0e039fb4bc7424770c56dd409b4b9768b",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:17Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687551",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687517,
+      "event": "push",
+      "headSha": "56866575e95696e22196f00d62d38b4297b9b3cc",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:11:11Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687517",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687394,
+      "event": "push",
+      "headSha": "4f86cd4b6bd102b8d42679c6af0004d95d5a26fb",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:08:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687394",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:21Z",
+      "databaseId": 33713687393,
+      "event": "push",
+      "headSha": "4f86cd4b6bd102b8d42679c6af0004d95d5a26fb",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:14:05Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687393",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713687202,
+      "event": "push",
+      "headSha": "5a88de97d60371cac91f706627f0cb89633d8c34",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:54Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687202",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713687165,
+      "event": "push",
+      "headSha": "5a88de97d60371cac91f706627f0cb89633d8c34",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:32Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713687165",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713686965,
+      "event": "push",
+      "headSha": "5b489aec59af3007e33b174e4965d88384c891b0",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:15:56Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713686965",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713686871,
+      "event": "push",
+      "headSha": "5b489aec59af3007e33b174e4965d88384c891b0",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:13:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713686871",
+      "workflowName": "Contracts Drift Gate"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713686641,
+      "event": "push",
+      "headSha": "610c253734b783666d0a425db06a0e4c8655583e",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:12:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713686641",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713686520,
+      "event": "push",
+      "headSha": "5ce13f0907479ecd27cd0261af203ed3f35305f0",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:11:38Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713686520",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713686312,
+      "event": "push",
+      "headSha": "6394407d85ef5991811c567b184985391d8033cd",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:12:00Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713686312",
+      "workflowName": "Contracts Runtime Protection"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-03T04:04:20Z",
+      "databaseId": 33713686275,
+      "event": "push",
+      "headSha": "6158d74de8f1883883f253dfb55609030f72e216",
+      "status": "completed",
+      "updatedAt": "2026-09-03T04:07:29Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33713686275",
+      "workflowName": "Flutter CI"
+    }
+  ],
+  "pull_requests": [
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33732336798",
+      "headRefOid": "27e5b1d658fb43aaab7fd6477985547650ab849c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 394,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T08:26:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/394"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/repository-archive-cleanup-final-revalidation-v2",
+      "headRefOid": "e75f20d8a2dd4f7144a02310557fce10ac68992b",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 393,
+      "state": "MERGED",
+      "title": "docs: record completed repository archive cleanup",
+      "updatedAt": "2026-09-03T05:51:28Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/393"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/repository-archive-cleanup-reparse-repair-v1",
+      "headRefOid": "df5039f28a70bacfd02ae228820758ab21106cdc",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 392,
+      "state": "MERGED",
+      "title": "fix: preserve Windows reparse points during archive cleanup",
+      "updatedAt": "2026-09-03T04:52:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/392"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/repository-archive-cleanup-hook-repair-v1",
+      "headRefOid": "177ceb6341e427cfd3a9997282154c29afae76ce",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 391,
+      "state": "MERGED",
+      "title": "fix: bypass sparse-incompatible cleanup push hook",
+      "updatedAt": "2026-09-03T03:35:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/391"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/repository-archive-cleanup-executor-v1",
+      "headRefOid": "1b65f29d5b4e6301a9b23c7fec02e5e9fb2449b6",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 390,
+      "state": "MERGED",
+      "title": "Add governed repository archive cleanup executor",
+      "updatedAt": "2026-09-03T02:23:13Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/390"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/repository-prearchive-recovery-v1",
+      "headRefOid": "c812690a9c2406a5aea2cdc4c3b9cca3178b56b3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 389,
+      "state": "MERGED",
+      "title": "docs: record verified prearchive recovery",
+      "updatedAt": "2026-09-02T16:21:13Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/389"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/repository-archive-candidate-packet-v1",
+      "headRefOid": "6e3d75f1e324b5ef11636cde881721cf07f36e07",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 388,
+      "state": "MERGED",
+      "title": "docs: add repository archive candidate packet",
+      "updatedAt": "2026-09-02T14:29:33Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/388"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/repository-postmerge-disposition-v1",
+      "headRefOid": "0d1d54ac3747950b5d004f94715a5f3d658979df",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 387,
+      "state": "MERGED",
+      "title": "docs: record postmerge repository dispositions",
+      "updatedAt": "2026-09-02T12:29:55Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/387"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/production-catalog-crawl-set-headings-20260902",
+      "headRefOid": "ab0c7134879346ed1fe0d9578b0519519af2c24c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 386,
+      "state": "MERGED",
+      "title": "test: align production crawl set headings",
+      "updatedAt": "2026-09-03T05:28:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/386"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "integration/reconciled-main-v1",
+      "headRefOid": "5f15c7e9ffc906f763d1ec9c50fade7e9d56e0d2",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 385,
+      "state": "MERGED",
+      "title": "Reconcile preserved repository work onto fresh main",
+      "updatedAt": "2026-09-02T10:47:45Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/385"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33606877348",
+      "headRefOid": "4c0209d2a5ff9b44e8cba4930a8061a2f2e76912",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 384,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T05:28:44Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/384"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/repository-reconciliation-safety-v1",
+      "headRefOid": "0ea75acfecaff1b9cb1a2179098193449ad0ec9d",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 383,
+      "state": "MERGED",
+      "title": "Contract safe repository reconciliation",
+      "updatedAt": "2026-09-02T05:33:27Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/383"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/scanner-state-notice-v1",
+      "headRefOid": "9e7d756d967418d3cdad6d539030b1b32f5c33de",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 380,
+      "state": "MERGED",
+      "title": "Scanner: disclose current recognition limitations",
+      "updatedAt": "2026-09-02T04:22:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/380"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/vendor-nav-drawer-v1",
+      "headRefOid": "f49676bafd55fedb049295116eed1963988bd261",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 379,
+      "state": "MERGED",
+      "title": "Move Vendor Mode to the app drawer",
+      "updatedAt": "2026-09-02T03:44:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/379"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/grookai-dex-pixel-sprites-v1",
+      "headRefOid": "c6efab4a44d423419178f7820ee1d56cdb84e093",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 378,
+      "state": "MERGED",
+      "title": "Self-host Grookai Dex pixel sprites",
+      "updatedAt": "2026-09-02T03:24:28Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/378"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/structured-search-evidence-meta-v1",
+      "headRefOid": "a3176b7af2087838ac97a8100dd4e9af75494b97",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 377,
+      "state": "MERGED",
+      "title": "Fix structured search evidence metadata",
+      "updatedAt": "2026-09-03T05:28:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/377"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/smart-search-multitcg-v1",
+      "headRefOid": "d150f4fe2cbd663ba1092ce27d02610a3ba1a3b6",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 376,
+      "state": "MERGED",
+      "title": "Fix smart search across Pokemon, MTG, and One Piece",
+      "updatedAt": "2026-09-02T01:56:32Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/376"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/mobile-signed-out-catalog-rpc-v1",
+      "headRefOid": "17a57e10ecbdf9c8944bd52f230a4f3c897f196a",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 375,
+      "state": "MERGED",
+      "title": "Fix anonymous mobile catalog fallback",
+      "updatedAt": "2026-09-01T22:42:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/375"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/pricing-seven-cycle-window-v2",
+      "headRefOid": "bf368a8ed284260a11b061bbd5bbd97d0ae04c94",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 374,
+      "state": "MERGED",
+      "title": "ops(pricing): restart seven-cycle observation window",
+      "updatedAt": "2026-09-03T05:28:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/374"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/pricing-seven-cycle-restart-v1",
+      "headRefOid": "48db2107f43c9b6273de7487a3ebc6c732c9fa2a",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 373,
+      "state": "MERGED",
+      "title": "fix(pricing): automate rollout observer restart",
+      "updatedAt": "2026-09-03T05:28:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/373"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pricing-health-scaled-read-v1",
+      "headRefOid": "425ef6a705787228eebd435600eba5370765c4e3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 372,
+      "state": "MERGED",
+      "title": "Fix scaled post-publication pricing health check",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/372"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/catalog-trainer-kit-completion-checkpoint-v1",
+      "headRefOid": "957b027acbaf81f6a524319b9ce89bbeab907400",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 371,
+      "state": "MERGED",
+      "title": "Checkpoint Trainer Kit catalog completion",
+      "updatedAt": "2026-09-03T05:28:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/371"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-miscp-alias-reconciliation-v1",
+      "headRefOid": "5a88de97d60371cac91f706627f0cb89633d8c34",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 370,
+      "state": "MERGED",
+      "title": "Fix Ancient Mew catalog source alias",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/370"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-founder-outcome-supersession-v1",
+      "headRefOid": "74714f9929731482705a327262fb3cd3eb43eeaf",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 369,
+      "state": "MERGED",
+      "title": "fix(operations): supersede stale catalog reviews",
+      "updatedAt": "2026-09-01T18:18:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/369"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/trainer-kit-gv-namespace-repair-v1",
+      "headRefOid": "5b489aec59af3007e33b174e4965d88384c891b0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 368,
+      "state": "MERGED",
+      "title": "Scope Trainer Kit GV ID namespaces",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/368"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33536419403",
+      "headRefOid": "425131371ccd8e188e7414a009be671e6efe4a43",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 366,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/366"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/pokemon-catalog-source-admission-repair-v1",
+      "headRefOid": "7273b83d906b36fbba266d1f4f3a26ff9614565f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 365,
+      "state": "MERGED",
+      "title": "Repair Pokemon source identity admission",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/365"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/catalog-founder-outcome-checkpoint-v1",
+      "headRefOid": "ae3f2ee2c93b8ed9638c88d0fe83c622073b8c9c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 364,
+      "state": "MERGED",
+      "title": "docs(catalog): checkpoint founder outcome automation",
+      "updatedAt": "2026-09-03T05:28:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/364"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/catalog-founder-outcome-integration-v1",
+      "headRefOid": "2adb68d90417c32693ec004161bad36088a046c4",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 363,
+      "state": "MERGED",
+      "title": "Complete catalog approvals as governed outcomes",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/363"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/founder-outcome-workflow-v1",
+      "headRefOid": "3d1eb6200ef2fa21cdb4001772a53c3ae6f2549e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 362,
+      "state": "MERGED",
+      "title": "Automate founder-approved outcome workflows",
+      "updatedAt": "2026-09-01T14:32:08Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/362"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/tk-sm-r-phone-executor-checkpoint-v1",
+      "headRefOid": "db6086b8d34a1556a381461252504a5b29fc70a2",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 361,
+      "state": "MERGED",
+      "title": "docs(catalog): checkpoint TK-SM-R command automation",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/361"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/founder-command-auto-dispatch-v1",
+      "headRefOid": "cc1e32b43b6507828d8d3d45217a74a21699f0b3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 360,
+      "state": "MERGED",
+      "title": "feat(operations): auto-dispatch approved founder commands",
+      "updatedAt": "2026-09-01T10:49:00Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/360"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/tk-sm-r-founder-executor-v1",
+      "headRefOid": "d1b03879e510451ed0d80f43b6f21e1f92e74236",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 359,
+      "state": "MERGED",
+      "title": "Add phone-gated TK-SM-R apply executor",
+      "updatedAt": "2026-09-01T07:28:08Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/359"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/tk-sm-r-hidden-set-executor",
+      "headRefOid": "4c4d795ea9befa54bfdc041456c6ba6f4a7288f3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 358,
+      "state": "MERGED",
+      "title": "Freeze tk-sm-r hidden-set rollback package",
+      "updatedAt": "2026-09-01T06:06:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/358"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "audit/founder-operations-mobile-decision-gate",
+      "headRefOid": "50baef2a42b9a1b008ac55c57f21d3dbcdd92be1",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 357,
+      "state": "MERGED",
+      "title": "Fix Founder Operations activation gate",
+      "updatedAt": "2026-09-01T04:04:59Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/357"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/founder-operations-publish-digest-schema",
+      "headRefOid": "47ffdd7b7e41586d6a4fc3a1f6f72689284b07e5",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 356,
+      "state": "MERGED",
+      "title": "Fix Founder Operations work item hashing",
+      "updatedAt": "2026-09-01T02:54:29Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/356"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/english-master-index-trainer-kit-authority",
+      "headRefOid": "6a6e6d3fde099602e2db41b286a42a497d2172b5",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 355,
+      "state": "MERGED",
+      "title": "Fix English Trainer Kit authority discovery",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/355"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/production-backend-launch-v1",
+      "headRefOid": "5d09332579a84ad7bd682d7b3fdf66d12f2a1854",
+      "isDraft": false,
+      "mergeStateStatus": "DIRTY",
+      "number": 354,
+      "state": "CLOSED",
+      "title": "Harden TCGCSV access and monitor deferred catalog lanes",
+      "updatedAt": "2026-08-31T20:34:26Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/354"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/control-plane-active-workflow-window-v1",
+      "headRefOid": "4134692794bb491a225e35e9d7f13277c090c363",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 353,
+      "state": "MERGED",
+      "title": "fix(ops): avoid false alerts for bounded active workflows",
+      "updatedAt": "2026-08-31T19:36:31Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/353"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/control-plane-direct-edge-evidence-v1",
+      "headRefOid": "c0007c7d58e2f9f82cd56a63ce512e67305d8ade",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 352,
+      "state": "MERGED",
+      "title": "fix(ops): verify production edge independently of GitHub cron",
+      "updatedAt": "2026-08-31T19:17:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/352"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/release-tcgplayer-external-block-alert-v1",
+      "headRefOid": "9aa8f6149efa5e5c5bd23516707a210743bb19d7",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 351,
+      "state": "MERGED",
+      "title": "fix(pricing): alert on externally blocked market runs",
+      "updatedAt": "2026-08-31T16:14:00Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/351"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/mee-reference-preflight-artifact-root-v1",
+      "headRefOid": "2b24a0af8948e8de7fdd228f396265bd09f5cf88",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 350,
+      "state": "MERGED",
+      "title": "fix(mee): export reference artifact root",
+      "updatedAt": "2026-08-31T16:01:58Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/350"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/main-tcgplayer-external-block-status-v1",
+      "headRefOid": "9c063bbbbb24306069ef0e2c286f0d1f9a728e20",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 349,
+      "state": "MERGED",
+      "title": "fix(pricing): govern external source blocks",
+      "updatedAt": "2026-08-31T16:11:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/349"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/tcgplayer-external-block-status-v1",
+      "headRefOid": "f0847ef1e49fa6a0f4d6b56270c8272aa0db8d51",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 348,
+      "state": "MERGED",
+      "title": "fix(pricing): govern external source blocks",
+      "updatedAt": "2026-08-31T15:52:27Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/348"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/mee-zero-result-resume-artifact-v1",
+      "headRefOid": "597abe264d8e7ea5be56c40eb283d0f0d13f2b9a",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 347,
+      "state": "MERGED",
+      "title": "fix(mee): resume zero-result downstream skips",
+      "updatedAt": "2026-08-31T15:32:13Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/347"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/mee-reference-artifact-handoff-v1",
+      "headRefOid": "0bb17c08af101951fa88dbddd3502cc73887c332",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 346,
+      "state": "MERGED",
+      "title": "Stop MEE V2 after a zero-result receipt",
+      "updatedAt": "2026-08-31T15:14:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/346"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/mee-reference-artifact-handoff-v1",
+      "headRefOid": "c276463a9127f17f19c2b98b7fcd471030c787e2",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 345,
+      "state": "MERGED",
+      "title": "Fix MEE reference artifact handoff",
+      "updatedAt": "2026-08-31T14:48:10Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/345"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/recurring-production-workflows-v1",
+      "headRefOid": "df1582db2d4c6340dc47f8b8ff678b84cf0875bb",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 344,
+      "state": "MERGED",
+      "title": "Fix recurring market and control-plane failures",
+      "updatedAt": "2026-08-31T15:18:26Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/344"
+    },
+    {
+      "baseRefName": "release/production-backend-launch-v1",
+      "headRefName": "fix/recurring-production-release-v1",
+      "headRefOid": "318a5a8ccde2251651dae7b716cf3d6d0254778e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 343,
+      "state": "MERGED",
+      "title": "Repair recurring production workflows",
+      "updatedAt": "2026-08-31T14:33:30Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/343"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "audit/founder-operations-activation-gate-v1",
+      "headRefOid": "871be16cc82a33e948dd118c42cd8cbf98af6e77",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 342,
+      "state": "MERGED",
+      "title": "Audit Founder Operations activation gate",
+      "updatedAt": "2026-08-31T11:01:29Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/342"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/tcgdex-discovery-fallback-v1",
+      "headRefOid": "f99e4e4c442681145ae24aa2b2cb1a8e327b9c4e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 340,
+      "state": "MERGED",
+      "title": "Fix TCGdex discovery availability fallback",
+      "updatedAt": "2026-09-03T05:28:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/340"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/founder-operations-command-center-v1",
+      "headRefOid": "7aec08e90457c330f0cdaa89242088cb4460458d",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 339,
+      "state": "MERGED",
+      "title": "Add Founder Operations Command Center V1",
+      "updatedAt": "2026-08-31T05:54:59Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/339"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/cross-tcg-set-taxonomy-v1",
+      "headRefOid": "66afd877471518d34af8266762014ca54635d2fe",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 338,
+      "state": "MERGED",
+      "title": "Make Sets browsing TCG-aware and prepare build 311",
+      "updatedAt": "2026-08-31T01:37:25Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/338"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/app-candidate-310",
+      "headRefOid": "7241e766574a64ae5ec14eefdb990a9bf5e50b3e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 337,
+      "state": "MERGED",
+      "title": "Release synchronized app candidate 310",
+      "updatedAt": "2026-09-03T05:28:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/337"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/founder-notifications-android-deeplink",
+      "headRefOid": "86bd579e1289cf7c0a6ccc019561aab6eaa54b23",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 336,
+      "state": "MERGED",
+      "title": "Register founder notification Android deep links",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/336"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/founder-notifications-production-activation",
+      "headRefOid": "c21ece188180cc578dd691fda7a175e0c5a52074",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 335,
+      "state": "MERGED",
+      "title": "Deploy founder notification dispatcher safely",
+      "updatedAt": "2026-09-03T05:28:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/335"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/founder-notifications-pulse-v1",
+      "headRefOid": "a208e8e7185d9478cd5ac30f4460b46b53b5b1c7",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 334,
+      "state": "MERGED",
+      "title": "Founder notifications in Pulse and app inbox",
+      "updatedAt": "2026-08-30T22:39:21Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/334"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/app-sets-shared-loading-v1",
+      "headRefOid": "ced5916641e6e91f4264e5ca60b0e534399995d0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 333,
+      "state": "MERGED",
+      "title": "Restore Sets and reduce shared loading latency",
+      "updatedAt": "2026-08-30T20:41:37Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/333"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/app-candidate-309-evidence",
+      "headRefOid": "2b1ab086a523fadc84c94744bfdb6504eab5dbc2",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 332,
+      "state": "MERGED",
+      "title": "docs(release): checkpoint synchronized candidate 309",
+      "updatedAt": "2026-09-03T05:28:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/332"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/app-candidate-309",
+      "headRefOid": "bdc26d035eb5a93b87d319956939a3a1698f76b3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 331,
+      "state": "MERGED",
+      "title": "Prepare synchronized app release candidate 309",
+      "updatedAt": "2026-08-30T18:01:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/331"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/production-readiness-final-countdown",
+      "headRefOid": "ab893107ad00f2b04f4dcc112ddd794512877fab",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 330,
+      "state": "MERGED",
+      "title": "chore: add production capacity and pricing shadow gates",
+      "updatedAt": "2026-08-29T18:08:58Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/330"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/anonymous-search-price-redaction-v1",
+      "headRefOid": "83e6718a8c95a74ecb655a6db3bc8bf14c3a4c1b",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 329,
+      "state": "MERGED",
+      "title": "Fix anonymous search price leakage",
+      "updatedAt": "2026-08-29T17:41:01Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/329"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33265698781",
+      "headRefOid": "0895ce8e6a689d2ee3035088d77cba69af1f9faa",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 328,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/328"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/launch-convergence-v2",
+      "headRefOid": "e60eb876131ae3118fce2284e4b01ea547b32e0c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 327,
+      "state": "MERGED",
+      "title": "Release convergence: Vault bulk actions and resilient Pokemon refresh",
+      "updatedAt": "2026-08-29T17:27:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/327"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/collectible-wave1-parent-rollback-checkpoint-v1",
+      "headRefOid": "2870a252d46135de4ab1b348aed071572e0578d5",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 326,
+      "state": "MERGED",
+      "title": "docs: checkpoint Wave 1 parent rollback proof",
+      "updatedAt": "2026-09-03T05:28:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/326"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-parent-number-repair-v2",
+      "headRefOid": "340fc023aac45d1524780a1101d8da88b5056fea",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 325,
+      "state": "MERGED",
+      "title": "Repair Wave 1 generated number handling",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/325"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-parent-number-repair-v1",
+      "headRefOid": "4f86cd4b6bd102b8d42679c6af0004d95d5a26fb",
+      "isDraft": false,
+      "mergeStateStatus": "DIRTY",
+      "number": 324,
+      "state": "CLOSED",
+      "title": "Repair Wave 1 generated number handling",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/324"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-parent-apply-proposal-v1",
+      "headRefOid": "72111692523d02d8146fef9336810ee3725312c8",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 322,
+      "state": "MERGED",
+      "title": "Add Wave 1 parent apply rollback proof",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/322"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/collectible-wave1-card-proposal-checkpoint-v1",
+      "headRefOid": "3c2c83e1e793da9ad8cf011e649fc656d80dcc99",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 320,
+      "state": "MERGED",
+      "title": "Checkpoint Wave 1 card identity proposal",
+      "updatedAt": "2026-08-29T06:54:37Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/320"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-card-identity-proposal-v1",
+      "headRefOid": "b4dca93de69e91abd1187651263150aaf9d09e3c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 318,
+      "state": "MERGED",
+      "title": "Add Wave 1 card identity shadow proposal",
+      "updatedAt": "2026-08-29T06:41:58Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/318"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "checkpoint/cross-tcg-set-cover-gap-repair-v1",
+      "headRefOid": "53246f468fd845b54071967bd2316f43265b9201",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 317,
+      "state": "MERGED",
+      "title": "docs: checkpoint cross-TCG set cover repair",
+      "updatedAt": "2026-08-29T05:59:19Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/317"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/cross-tcg-set-cover-gaps-v1",
+      "headRefOid": "745e83555161e044b1ad8e3dc9a2f169a8c38f4f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 316,
+      "state": "MERGED",
+      "title": "fix(sets): close governed cover gaps",
+      "updatedAt": "2026-08-29T05:41:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/316"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-discovery-source-degradation-v1",
+      "headRefOid": "56e87fa42b08a7fac5e42d5da6cd4c5381983163",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 314,
+      "state": "MERGED",
+      "title": "Keep catalog discovery running when one source is unavailable",
+      "updatedAt": "2026-08-29T04:41:03Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/314"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/cross-tcg-set-publication-gate-v1",
+      "headRefOid": "e75486c3c0e92d8d2769778f370174194f326de2",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 313,
+      "state": "MERGED",
+      "title": "Add cross-TCG set publication gate",
+      "updatedAt": "2026-08-29T04:16:11Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/313"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/mtg-deck-package-covers-v1",
+      "headRefOid": "87edbe5799879d617603b75e94f75198f8394b09",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 312,
+      "state": "MERGED",
+      "title": "fix(sets): add governed MTG deck package covers",
+      "updatedAt": "2026-08-29T02:49:21Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/312"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/cross-tcg-set-browser-v1",
+      "headRefOid": "1f42897449f4f05e459fde11514702eeb59f733c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 311,
+      "state": "MERGED",
+      "title": "fix(sets): ship cross-TCG set browser",
+      "updatedAt": "2026-08-29T01:49:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/311"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/one-piece-op16-op17-production-closure",
+      "headRefOid": "128c54390d6fa3b85d2bc38baa6d10e922177cf3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 308,
+      "state": "MERGED",
+      "title": "docs(one-piece): checkpoint OP16 and OP17 production closure",
+      "updatedAt": "2026-09-03T05:28:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/308"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-op17-021-closure",
+      "headRefOid": "3a93a5a2d41e88803a2320039333618665a49ed1",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 307,
+      "state": "MERGED",
+      "title": "fix(one-piece): close exact active-set increments",
+      "updatedAt": "2026-08-28T19:20:29Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/307"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-legacy-active-verify",
+      "headRefOid": "dcb346677742ca4d7c201a74d79925135a159377",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 306,
+      "state": "MERGED",
+      "title": "fix(one-piece): verify legacy active set releases",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/306"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-governed-external-image",
+      "headRefOid": "da0f531d46f198c2f4d1f10c39b1223438898e3e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 305,
+      "state": "MERGED",
+      "title": "fix(one-piece): govern exact external promo images",
+      "updatedAt": "2026-08-28T18:26:10Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/305"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-official-numbered-base-name",
+      "headRefOid": "1fbf94bca41e307e4438b2296d283beec624b098",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 304,
+      "state": "MERGED",
+      "title": "Accept exact numbered One Piece base names",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/304"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-set-image-canary-runtime",
+      "headRefOid": "f62541fb307323da4882582c0c15261c62fbf722",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 303,
+      "state": "MERGED",
+      "title": "Harden One Piece image closure runtime",
+      "updatedAt": "2026-08-28T17:27:24Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/303"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-set-closure-image-truth",
+      "headRefOid": "177da7f0abe8e9705c253c29daef10af44b8dcfa",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 302,
+      "state": "MERGED",
+      "title": "Fix One Piece release image truth",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/302"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/one-piece-op16-op17-production-closure",
+      "headRefOid": "c7508915ff49267d53005df1627c0a8bb0a9962e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 301,
+      "state": "MERGED",
+      "title": "Close OP16 and OP17 production release readiness",
+      "updatedAt": "2026-08-28T16:31:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/301"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-set-release-boundary-readback",
+      "headRefOid": "9fdcee4c193daff7fdc8826c73922a4c45996171",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 300,
+      "state": "MERGED",
+      "title": "Fix catalog set release readback assertion",
+      "updatedAt": "2026-08-28T15:57:29Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/300"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33185946661",
+      "headRefOid": "ddf12d6afc21630315c4b0afd6e4958c0efc2dfc",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 299,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/299"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/one-piece-set-release-boundary-op17",
+      "headRefOid": "ea665c41d88daf2ae5d33396324fabc577259df0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 298,
+      "state": "MERGED",
+      "title": "Stage new catalog sets behind release controls",
+      "updatedAt": "2026-08-28T15:43:20Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/298"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "checkpoint/collectible-wave1-set-foundations-apply-v1",
+      "headRefOid": "0b13d30140c2f02892be6c7d53a681fc18896b34",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 297,
+      "state": "MERGED",
+      "title": "docs: checkpoint Wave 1 set foundation apply",
+      "updatedAt": "2026-08-28T14:47:20Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/297"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-set-foundations-apply-v1",
+      "headRefOid": "7a47e9cda9905338809674ce2baeba89c94da34a",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 296,
+      "state": "MERGED",
+      "title": "Guard Wave 1 set foundations durable apply",
+      "updatedAt": "2026-08-28T14:26:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/296"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "checkpoint/collectible-wave1-set-foundations-rollback-v1",
+      "headRefOid": "6394407d85ef5991811c567b184985391d8033cd",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 295,
+      "state": "MERGED",
+      "title": "Checkpoint Wave 1 set rollback proof",
+      "updatedAt": "2026-09-03T05:28:44Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/295"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-set-migration-proof-v1",
+      "headRefOid": "2153d0d9b99fda62fc343696d1c30d930e552082",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 294,
+      "state": "MERGED",
+      "title": "Prove Wave 1 set foundations migration",
+      "updatedAt": "2026-08-28T12:32:08Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/294"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "checkpoint/collectible-wave1-set-apply-proposal-v1",
+      "headRefOid": "13c9ad8a9e6fa75dcb5cbe36b665e8922f69179d",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 292,
+      "state": "MERGED",
+      "title": "Checkpoint Wave 1 set apply proposal",
+      "updatedAt": "2026-08-28T06:20:55Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/292"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-set-apply-proposal-v1",
+      "headRefOid": "b1a47e65c776270360f6c6aa60989aec9e2687b1",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 291,
+      "state": "MERGED",
+      "title": "Build Wave 1 set apply proposal",
+      "updatedAt": "2026-08-28T06:00:37Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/291"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "checkpoint/collectible-wave1-set-foundation-proposal-v1",
+      "headRefOid": "8d2a4ea7205f26f821fd0604246be6ad4f8b5eae",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 290,
+      "state": "MERGED",
+      "title": "Checkpoint Wave 1 set proposal evidence",
+      "updatedAt": "2026-08-28T04:56:06Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/290"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-set-foundation-proposal-v1",
+      "headRefOid": "bb5be0878e3566a24d46ea30aa2c32cb10cdd432",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 288,
+      "state": "MERGED",
+      "title": "Build Wave 1 set foundation proposal",
+      "updatedAt": "2026-08-28T04:45:34Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/288"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "apply/collectible-wave1-game-foundations-v1",
+      "headRefOid": "4aff4ef515d1df726f26a2f7b79123ed9fe747fb",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 287,
+      "state": "MERGED",
+      "title": "Checkpoint applied Wave 1 game foundations",
+      "updatedAt": "2026-08-28T04:15:00Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/287"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-game-foundations-v1",
+      "headRefOid": "33a52b72065aad699a9f2bbb2daf53acd96f5b6f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 286,
+      "state": "MERGED",
+      "title": "Add hidden Wave 1 game foundations",
+      "updatedAt": "2026-08-28T02:52:25Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/286"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "apply/print-identity-search-visible-bound-v1",
+      "headRefOid": "4820f77c745964ac55b4b4f617f8814ca60bf339",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 285,
+      "state": "MERGED",
+      "title": "Checkpoint applied search visibility repair",
+      "updatedAt": "2026-08-28T02:33:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/285"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "repair/print-identity-search-visible-bound-v1",
+      "headRefOid": "60e0a177466c67e82949199391440ab787dd80c9",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 284,
+      "state": "MERGED",
+      "title": "Repair bounded search visibility ordering",
+      "updatedAt": "2026-08-28T02:12:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/284"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "checkpoint/production-migration-history-recovery-20260824-26-v1",
+      "headRefOid": "73553a90b0d72316f5b1d449193cbf3e1b498e52",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 283,
+      "state": "MERGED",
+      "title": "Checkpoint production migration history recovery",
+      "updatedAt": "2026-08-28T02:02:22Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/283"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "repair/production-migration-history-20260824-26-v1",
+      "headRefOid": "b6a5d4a28e59d13db782eb83b17092fcebb1d969",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 281,
+      "state": "MERGED",
+      "title": "Repair production migration history through 20260826",
+      "updatedAt": "2026-08-28T01:56:41Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/281"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/collectible-wave1-alt-art-checkpoint-v1",
+      "headRefOid": "5d9722db4d51bdf7bd8155ff14c41239660889cd",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 280,
+      "state": "MERGED",
+      "title": "Checkpoint Yu-Gi-Oh alt-art row addressability",
+      "updatedAt": "2026-08-28T01:27:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/280"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-alt-art-row-addressability-v1",
+      "headRefOid": "7d3ff68be07e157f788b2a5e6088baecddf7d2b5",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 279,
+      "state": "MERGED",
+      "title": "Add Yu-Gi-Oh alt-art row addressability gate",
+      "updatedAt": "2026-08-28T01:18:15Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/279"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/collectible-wave1-reconciliation-checkpoint",
+      "headRefOid": "43adf1aaa2f4bdce1be44a21f28c5055d8e17f26",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 278,
+      "state": "MERGED",
+      "title": "docs: checkpoint Wave 1 canonical reconciliation",
+      "updatedAt": "2026-08-28T00:37:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/278"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-wave1-canonical-reconciliation-v1",
+      "headRefOid": "0617626ce2c42ae171f2178affa2077958a452c5",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 276,
+      "state": "MERGED",
+      "title": "Add read-only Wave 1 canonical reconciliation",
+      "updatedAt": "2026-08-28T00:29:03Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/276"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/collectible-parser-wave1-checkpoint-v1",
+      "headRefOid": "642d4b44005b35b69f9ce938bfe4e249cff729e4",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 275,
+      "state": "MERGED",
+      "title": "Record collectible parser wave one checkpoint",
+      "updatedAt": "2026-09-03T05:28:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/275"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-parser-wave1-v1",
+      "headRefOid": "5d34b1297f64af9a41cd9f4a83fefd800cc7a220",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 273,
+      "state": "MERGED",
+      "title": "Add collectible shadow parser wave one",
+      "updatedAt": "2026-08-27T21:36:34Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/273"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/collectible-shadow-adapters-v1-checkpoint",
+      "headRefOid": "efd0562ef9fc4886d354527b3dbe993ab535677d",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 272,
+      "state": "MERGED",
+      "title": "docs(catalog): checkpoint collectible shadow adapters",
+      "updatedAt": "2026-08-27T20:06:28Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/272"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/collectible-shadow-adapters-v1",
+      "headRefOid": "dfef7c7a05d3abf45aa97ecf05c05590fa24c207",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 270,
+      "state": "MERGED",
+      "title": "Add collectible shadow adapter registry",
+      "updatedAt": "2026-08-27T19:58:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/270"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-shadow-empty-queue-issue",
+      "headRefOid": "5ce13f0907479ecd27cd0261af203ed3f35305f0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 269,
+      "state": "MERGED",
+      "title": "Close empty catalog shadow queue alerts",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/269"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-shadow-only-automation-v1",
+      "headRefOid": "17ac18a9b6779e2a3e7c097cf1f73eaca6f694f9",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 267,
+      "state": "MERGED",
+      "title": "Make catalog automation shadow-only",
+      "updatedAt": "2026-08-27T18:28:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/267"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/pokemon-language-master-index-automation-v1",
+      "headRefOid": "827b07a1f682fd63cbdbe0d6bd202f01a1851ef1",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 266,
+      "state": "MERGED",
+      "title": "docs(catalog): checkpoint Pokemon language automation",
+      "updatedAt": "2026-08-27T13:52:21Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/266"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33075783669",
+      "headRefOid": "1f34ed0f28fd5342dfb0ea97ae2521418ed26df9",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 265,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/265"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-language-test-isolation-v1",
+      "headRefOid": "d0bfb52c65ebeb957c904767082602cc9730e0db",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 264,
+      "state": "MERGED",
+      "title": "test(catalog): isolate language anomaly replay",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/264"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-language-source-integrity-v1",
+      "headRefOid": "ee78bed697ab0f6ea19ab6343ca12497701db6fd",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 262,
+      "state": "MERGED",
+      "title": "fix(catalog): preserve multilingual source anomalies",
+      "updatedAt": "2026-08-27T12:59:32Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/262"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33071559363",
+      "headRefOid": "5cd5fe59f20ba53201fa39d2836cc64e0f41847a",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 261,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh language Master Indexes",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/261"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/pokemon-language-master-index-autopilot-v1",
+      "headRefOid": "4886784629daf12d8283a3ecf3d3ce7193bc8a12",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 259,
+      "state": "MERGED",
+      "title": "feat(catalog): automate Pokemon language Master Indexes",
+      "updatedAt": "2026-08-27T12:22:13Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/259"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/pokemon-master-index-final-readback",
+      "headRefOid": "8103c494910001ae22162079c69b86498fbcb1eb",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 258,
+      "state": "MERGED",
+      "title": "docs(catalog): record Master Index replay proof",
+      "updatedAt": "2026-09-03T05:28:47Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/258"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33061925584",
+      "headRefOid": "a4b9a71eb099ca326f01878e6a7736701917205b",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 257,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh English Master Index",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/257"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-master-index-reconciliation-v1",
+      "headRefOid": "3d6806f69ce8de8f29ec771ebd2b0d5ad6aa3429",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 256,
+      "state": "MERGED",
+      "title": "fix(catalog): enforce Pokemon Master Index ownership",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/256"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33054172971",
+      "headRefOid": "896ead67287be71f0d24a451b890fd97f4e7ff7e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 254,
+      "state": "MERGED",
+      "title": "data(pokemon): refresh English Master Index",
+      "updatedAt": "2026-08-27T08:39:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/254"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-master-index-stable-refresh-v1",
+      "headRefOid": "6c05a01fb4591e8f1e338e36a4643bf98b0d78df",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 253,
+      "state": "MERGED",
+      "title": "fix(catalog): stabilize Pokemon Master Index refreshes",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/253"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33051115694",
+      "headRefOid": "177a6651376de35da04b3e2962ee9ba168596765",
+      "isDraft": false,
+      "mergeStateStatus": "CLEAN",
+      "number": 251,
+      "state": "CLOSED",
+      "title": "data(pokemon): refresh English Master Index",
+      "updatedAt": "2026-08-27T07:58:18Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/251"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-master-index-artifact-serialization-v1",
+      "headRefOid": "00093caeb233063fa7fa4ed580cbbcd01c96fc22",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 250,
+      "state": "MERGED",
+      "title": "fix(catalog): preserve printing authority reviewability",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/250"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "automation/pokemon-master-index-refresh-33049588682",
+      "headRefOid": "f69590b706302684d61a0054f592fc1e69fc54a0",
+      "isDraft": false,
+      "mergeStateStatus": "CLEAN",
+      "number": 249,
+      "state": "CLOSED",
+      "title": "data(pokemon): refresh English Master Index",
+      "updatedAt": "2026-08-27T07:41:56Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/249"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-master-index-printing-continuity-v1",
+      "headRefOid": "796fcfcf9635bcf4a3982adf958e75d2e542ed17",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 248,
+      "state": "MERGED",
+      "title": "fix(catalog): guard Pokemon printing continuity",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/248"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pokemon-master-index-refresh-runner-v1",
+      "headRefOid": "dae208ac626fcd793fe1e0ccf8490c39a4a430bd",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 246,
+      "state": "MERGED",
+      "title": "fix(catalog): harden Pokemon Master Index refresh",
+      "updatedAt": "2026-08-27T06:22:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/246"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-automation-completion-v1",
+      "headRefOid": "206b749b56fd317ab2a72d5443cbcbd4e865b7e4",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 245,
+      "state": "MERGED",
+      "title": "Complete governed catalog automation lanes",
+      "updatedAt": "2026-08-27T05:26:57Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/245"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/catalog-english-workflow-v1",
+      "headRefOid": "abbb0e0bb1127568f6e1bec03415b4d0e23ec471",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 244,
+      "state": "MERGED",
+      "title": "Verify English incremental catalog lane in CI",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/244"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/english-pokemon-incremental-v1",
+      "headRefOid": "04b84da9b2606944bba6b84b17aa857477b6e636",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 243,
+      "state": "MERGED",
+      "title": "Add governed English Pokemon incremental promotion",
+      "updatedAt": "2026-08-26T23:16:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/243"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/universal-catalog-discovery-v1",
+      "headRefOid": "d1488af13c890c0a671e84b640b2786390bddd77",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 241,
+      "state": "MERGED",
+      "title": "Automate governed cross-TCG catalog updates",
+      "updatedAt": "2026-08-26T21:57:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/241"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/mtg-collector-display-title-v1",
+      "headRefOid": "1368f2401c51c9bc92a0b0498b3ba0ae8b978f50",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 240,
+      "state": "MERGED",
+      "title": "Hide source IDs from card display names",
+      "updatedAt": "2026-08-23T08:50:16Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/240"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/cross-tcg-direct-gvid-search-v1",
+      "headRefOid": "8c44b420feb54ddc619e3966b9cd2b5c12002b4c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 239,
+      "state": "MERGED",
+      "title": "Keep cross-TCG GV-ID search governed",
+      "updatedAt": "2026-08-23T08:00:33Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/239"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/mobile-authenticated-card-search-v1",
+      "headRefOid": "78c51c8eacde75b39ea9d37f018511eceda19ea0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 238,
+      "state": "MERGED",
+      "title": "Fix authenticated mobile card search",
+      "updatedAt": "2026-09-03T05:28:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/238"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/pokemon-set-only-sort-search-v1",
+      "headRefOid": "67a0f90223cfe1e793334f74d661d4b87d6e9186",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 237,
+      "state": "MERGED",
+      "title": "Fix Pokemon set-only sorted searches",
+      "updatedAt": "2026-09-03T05:28:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/237"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/pokemon-nickname-set-search-v1",
+      "headRefOid": "1a8bcfca680bc27dbb39c81094268abbd945f918",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 236,
+      "state": "MERGED",
+      "title": "Fix Pokemon nickname set searches",
+      "updatedAt": "2026-09-03T05:28:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/236"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/pokemon-set-alias-search-v1",
+      "headRefOid": "c47d8a30ed2c0ca46cb60496c11bdd785b5092d3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 235,
+      "state": "MERGED",
+      "title": "Preserve Pokemon set aliases in bounded search",
+      "updatedAt": "2026-08-23T01:49:36Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/235"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/pokemon-direct-gvid-search-v1",
+      "headRefOid": "550423467052be487b8f4173d34ea14d454cfccc",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 234,
+      "state": "MERGED",
+      "title": "Restore direct Pokemon GV-ID search",
+      "updatedAt": "2026-08-23T01:29:39Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/234"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/cross-tcg-card-search-v1",
+      "headRefOid": "d103533158913191517471bff5af8c50624360f3",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 233,
+      "state": "MERGED",
+      "title": "Fix card-name search across catalog scopes",
+      "updatedAt": "2026-08-23T00:57:11Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/233"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/mtg-supervisor-signed-in",
+      "headRefOid": "b5b0348698a586360bc20cff28e0335e365092a4",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 232,
+      "state": "MERGED",
+      "title": "Fix MTG supervisor after signed-in release",
+      "updatedAt": "2026-08-22T22:21:37Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/232"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "hotfix/mtg-production-search-v1",
+      "headRefOid": "4f689ee083a5e6964247c9782f2d06c1cdaf9706",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 231,
+      "state": "MERGED",
+      "title": "Fix signed-in MTG search and release provenance",
+      "updatedAt": "2026-08-22T21:09:36Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/231"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/mtg-production-client-v1",
+      "headRefOid": "5dae07d8e98a4b5e41435b50c9528dfa9c9ac6d1",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 230,
+      "state": "MERGED",
+      "title": "Release MTG production client build 306",
+      "updatedAt": "2026-08-22T19:18:29Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/230"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/mtg-pricing-paged-candidates-v1",
+      "headRefOid": "01035c4d0882b66dcd9c764f86c028fa03cdca39",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 229,
+      "state": "MERGED",
+      "title": "fix(pricing): bound full-catalog MTG publication reads",
+      "updatedAt": "2026-08-22T16:44:56Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/229"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/mtg-image-missing-sentinel-v1",
+      "headRefOid": "361942dbdf4b2bac9966dc64fc52c1fece0b040f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 228,
+      "state": "MERGED",
+      "title": "Fix MTG image missing-sentinel planning",
+      "updatedAt": "2026-08-22T15:32:07Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/228"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/mtg-production-ready-v1",
+      "headRefOid": "7adb4d7e01df7a5d7aec8991ba74e53235412fd8",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 227,
+      "state": "MERGED",
+      "title": "Complete governed MTG production release",
+      "updatedAt": "2026-08-22T14:38:59Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/227"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/mtg-catalog-supervisor-runner-context",
+      "headRefOid": "a135e11128a7561ace05ab0f6043485fc0c04c41",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 226,
+      "state": "MERGED",
+      "title": "Fix MTG supervisor runtime path initialization",
+      "updatedAt": "2026-09-03T05:28:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/226"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-catalog-supervisor-v1",
+      "headRefOid": "e61fb3f0645bbc292bf5012635d34e2253a4a812",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 225,
+      "state": "MERGED",
+      "title": "Supervise hidden MTG catalog ingestion",
+      "updatedAt": "2026-09-03T05:28:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/225"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/pricing-production-v1-activation",
+      "headRefOid": "dd37bf6457bae16544253f170cef1751848a2d67",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 224,
+      "state": "MERGED",
+      "title": "Fix full-publication pricing read performance",
+      "updatedAt": "2026-08-19T01:34:15Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/224"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/pricing-production-v1-full-rollout",
+      "headRefOid": "ee57d94cc3ec2621f8fa7e4e960236d3a28dec33",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 223,
+      "state": "MERGED",
+      "title": "Fix pricing publication scope evidence parity",
+      "updatedAt": "2026-08-19T00:32:23Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/223"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/pricing-production-v1-post-canary",
+      "headRefOid": "9d16794dd7fb6cb2ba3fd0dec3db8706f7506365",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 222,
+      "state": "MERGED",
+      "title": "docs(pricing): checkpoint final canary pass",
+      "updatedAt": "2026-08-18T23:22:54Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/222"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pricing-canary-observer-main-pin-v1",
+      "headRefOid": "03fc909b23533c45232354efd20e3cfc1b070802",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 221,
+      "state": "MERGED",
+      "title": "Pin merged pricing canary observer",
+      "updatedAt": "2026-09-03T05:28:49Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/221"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/pricing-canary-source-schedule-evidence-v1",
+      "headRefOid": "6bc539fc15fad277724d025e336fa55212d3d876",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 220,
+      "state": "MERGED",
+      "title": "Fix pricing canary schedule evidence",
+      "updatedAt": "2026-08-18T22:59:34Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/220"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-sealed-world-v1",
+      "headRefOid": "a0d1f1123eca9335d379c49d00f055c46adb87c6",
+      "isDraft": false,
+      "mergeStateStatus": "BLOCKED",
+      "number": 219,
+      "state": "OPEN",
+      "title": "Build governed MTG sealed world",
+      "updatedAt": "2026-08-16T17:42:38Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/219"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-pointer-release-v1",
+      "headRefOid": "7e9f2bb92f56335a6a352f655e12000b344a63a4",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 218,
+      "state": "CLOSED",
+      "title": "Add governed MTG image pointer apply",
+      "updatedAt": "2026-08-29T17:14:26Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/218"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/restore-public-set-facets-migration-v1",
+      "headRefOid": "5889937c04e2f6c7ebef12fabbc525d06c689637",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 217,
+      "state": "MERGED",
+      "title": "Restore applied public set facets migration",
+      "updatedAt": "2026-08-16T16:42:06Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/217"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-pricing-publication-v1",
+      "headRefOid": "06f53b5443530ce88bc90c481292158c9490988f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 216,
+      "state": "MERGED",
+      "title": "Extend governed pricing publication to MTG",
+      "updatedAt": "2026-08-16T16:20:53Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/216"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-image-readback-retry-v1",
+      "headRefOid": "4731daa1a87f9b73b27bcaffdfe50a154bebf542",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 215,
+      "state": "MERGED",
+      "title": "Retry transient MTG image readbacks",
+      "updatedAt": "2026-08-16T16:18:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/215"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-client-release-v1",
+      "headRefOid": "1b1dea79334708192221119de2c938c9ed8cb62a",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 214,
+      "state": "MERGED",
+      "title": "Add signed-in MTG catalog client support",
+      "updatedAt": "2026-08-16T16:18:39Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/214"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-catalog-pool-safe-lock-v1",
+      "headRefOid": "0b9a4e3ab7f1c8e03739b50bb48cb0e3c52604a0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 213,
+      "state": "MERGED",
+      "title": "Make MTG catalog runner lock pool-safe",
+      "updatedAt": "2026-09-03T05:28:41Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/213"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-completion-v1",
+      "headRefOid": "5ef29d28dffb4c1672fada85de693c750a009dd0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 212,
+      "state": "MERGED",
+      "title": "Complete MTG catalog and image readiness",
+      "updatedAt": "2026-08-16T15:18:00Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/212"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/mtg-pricing-readiness-v1",
+      "headRefOid": "25f9dc7dec113bc53d615a9be411f23c44bc040c",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 211,
+      "state": "MERGED",
+      "title": "Complete governed MTG catalog foundation",
+      "updatedAt": "2026-08-16T14:36:08Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/211"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-signed-in-release-296",
+      "headRefOid": "7f6725c2ada8596daaa0697757688b55e5f552aa",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 210,
+      "state": "MERGED",
+      "title": "Fix complete set catalog pagination",
+      "updatedAt": "2026-09-03T05:28:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/210"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-signed-in-release-295",
+      "headRefOid": "7a6cad79a8a2aa02fbd9e6a93088c6ccdf5bd03e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 209,
+      "state": "MERGED",
+      "title": "Fix indexed public set reads",
+      "updatedAt": "2026-08-16T11:12:04Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/209"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-set-aggregate-v1",
+      "headRefOid": "d1be83405e5b1d137c21ec03aacfd8456d16d050",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 208,
+      "state": "MERGED",
+      "title": "Fix One Piece set detail aggregate",
+      "updatedAt": "2026-08-16T10:06:21Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/208"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/one-piece-signed-in-set-route-v1",
+      "headRefOid": "c5853ccc227b45faff36eb127cdf3a70d8617a20",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 207,
+      "state": "MERGED",
+      "title": "Fix signed-in One Piece set browsing",
+      "updatedAt": "2026-08-16T09:13:48Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/207"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/restore-ios-printing-pod-v1",
+      "headRefOid": "3f644e47949d54d1aaee39e4b7dce0644a708051",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 206,
+      "state": "MERGED",
+      "title": "Restore deterministic iOS printing pod lock",
+      "updatedAt": "2026-09-03T05:28:43Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/206"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/ios-release-secret-boundary-v1",
+      "headRefOid": "366ab524e5657555b9bab15c979760f7192a7308",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 205,
+      "state": "MERGED",
+      "title": "Isolate App Store credentials from iOS builds",
+      "updatedAt": "2026-08-16T08:24:09Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/205"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-ios-pod-lock-v1",
+      "headRefOid": "05072524fc3225de6897c217617e9dda369b250b",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 204,
+      "state": "MERGED",
+      "title": "Fix iOS plugin lock for release builds",
+      "updatedAt": "2026-09-03T05:28:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/204"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-signed-in-release-291-v1",
+      "headRefOid": "8ba4b102ed0d0d30c2f3fab17b1de11df986cbcf",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 203,
+      "state": "MERGED",
+      "title": "Synchronize One Piece release build 293",
+      "updatedAt": "2026-09-03T05:28:42Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/203"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-signed-in-activation-v1",
+      "headRefOid": "f6eeb3e9f1459a53acee66f25da888a5cc42f95f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 202,
+      "state": "MERGED",
+      "title": "Govern One Piece signed-in catalog activation",
+      "updatedAt": "2026-08-16T07:17:10Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/202"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-release-activation-v1",
+      "headRefOid": "7b5a12cf2c36511175915211f4475b121f1ceaae",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 201,
+      "state": "MERGED",
+      "title": "Activate One Piece signed-in client boundaries",
+      "updatedAt": "2026-08-16T06:41:09Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/201"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "dependabot/npm_and_yarn/uuid-14.0.0",
+      "headRefOid": "7867c470a6842128453e54da6d8501527148c832",
+      "isDraft": false,
+      "mergeStateStatus": "UNSTABLE",
+      "number": 200,
+      "state": "CLOSED",
+      "title": "Build(deps): bump uuid from 11.1.0 to 14.0.0",
+      "updatedAt": "2026-08-29T17:29:21Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/200"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/one-piece-ingestion-readiness-v1",
+      "headRefOid": "db7b8cd0943b608575078373048d4650c7543580",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 199,
+      "state": "MERGED",
+      "title": "Finish governed One Piece catalog foundation",
+      "updatedAt": "2026-08-16T05:49:12Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/199"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/mee-canary-observer-pin-v1",
+      "headRefOid": "610c253734b783666d0a425db06a0e4c8655583e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 198,
+      "state": "MERGED",
+      "title": "fix: pin the repaired MEE canary observer",
+      "updatedAt": "2026-09-03T05:28:51Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/198"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/mee-canary-observer-current-v1",
+      "headRefOid": "d73d625f5cb3501b958948cfb147d8323a1f2213",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 197,
+      "state": "MERGED",
+      "title": "Observe the active MEE pricing canary",
+      "updatedAt": "2026-08-13T16:10:08Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/197"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/mee-pricing-publication-complete-v1",
+      "headRefOid": "b224c6c381cf5c31b10b2b467d13f5045d642a75",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 196,
+      "state": "MERGED",
+      "title": "Finish MEE pricing publication surface proof",
+      "updatedAt": "2026-08-13T15:45:16Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/196"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/memory-share-route-v1",
+      "headRefOid": "5afac6b5f07839844876bca5210211454843a3f2",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 195,
+      "state": "MERGED",
+      "title": "Fix shared Memory links and publication route",
+      "updatedAt": "2026-08-12T05:51:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/195"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/production-grade-app-crawl-v1",
+      "headRefOid": "4fdceea9e82505175c159906c3f2ac17c23d8be3",
+      "isDraft": false,
+      "mergeStateStatus": "DIRTY",
+      "number": 194,
+      "state": "CLOSED",
+      "title": "Fix shared Memory links and publication route",
+      "updatedAt": "2026-08-12T05:34:12Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/194"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/final-candidate-proof-v1",
+      "headRefOid": "e343879a5dc247958f77f37562e7f29ad8a50cfd",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 193,
+      "state": "MERGED",
+      "title": "Release candidate convergence and physical iPhone proof",
+      "updatedAt": "2026-08-09T07:20:46Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/193"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/final-candidate-auth-order-v1",
+      "headRefOid": "6c690e0dbed90dd4e9fd4da4aa667137f394fc8f",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 192,
+      "state": "MERGED",
+      "title": "Release: preserve exact printing through mobile auth",
+      "updatedAt": "2026-08-07T17:00:55Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/192"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/final-journey-proof-v1",
+      "headRefOid": "282ec1b57cd07d071870b2ec57b718b592debb7b",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 191,
+      "state": "MERGED",
+      "title": "Release: final journey proof and signed-out continuation",
+      "updatedAt": "2026-08-07T15:39:26Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/191"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/want-match-prod-apply-v1",
+      "headRefOid": "b81c530312f3627308949fd24a2e5460db23b48d",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 190,
+      "state": "MERGED",
+      "title": "Record Want Match production repair proof",
+      "updatedAt": "2026-08-07T06:44:18Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/190"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/want-match-truth-boundary-v1",
+      "headRefOid": "e6caade370ad3e789b9cea7d375a45f44d40fadb",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 189,
+      "state": "MERGED",
+      "title": "Fix current Want Match truth boundary",
+      "updatedAt": "2026-08-07T05:40:12Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/189"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/8-week-completion-closeout-v1",
+      "headRefOid": "37b6f1c6d38d46a5d5de7a549fb6d3b6a6ed4919",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 188,
+      "state": "MERGED",
+      "title": "Preserve exact printing identity in card interactions",
+      "updatedAt": "2026-08-07T02:43:39Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/188"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/8-week-completion-v1-set-count-parity",
+      "headRefOid": "82cacf223f3d1993702d876c9c74a5f5b8b68ac5",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 187,
+      "state": "MERGED",
+      "title": "Fix Vault set-count parity for release",
+      "updatedAt": "2026-08-06T23:04:50Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/187"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/android-golden-runner-fix-v1",
+      "headRefOid": "97fbf032e63cc1a1153482c9e4887d684c9ac211",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 186,
+      "state": "MERGED",
+      "title": "CI: isolate platform-specific Flutter goldens",
+      "updatedAt": "2026-08-06T22:13:31Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/186"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/8-week-completion-v1",
+      "headRefOid": "e3f2928beb4296f60bf7c6631da131131b10cde7",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 185,
+      "state": "MERGED",
+      "title": "Release: prepare governed eight-week completion candidate",
+      "updatedAt": "2026-08-06T21:16:59Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/185"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "feature/flutter-visual-convergence-v1",
+      "headRefOid": "38b1ca610d539fd40c5c9e6bd5b5f71107b46dbe",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 184,
+      "state": "MERGED",
+      "title": "Release Flutter visual convergence and slab-safe Wall management",
+      "updatedAt": "2026-08-06T18:08:15Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/184"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "release/8-week-convergence-v1",
+      "headRefOid": "f01183f48c6450ce240ce1988aac928c8a61d172",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 183,
+      "state": "MERGED",
+      "title": "Release: converge web and Flutter product journeys",
+      "updatedAt": "2026-08-06T12:59:07Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/183"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "catalog/jpn-v4-post-deploy-proof",
+      "headRefOid": "56866575e95696e22196f00d62d38b4297b9b3cc",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 182,
+      "state": "MERGED",
+      "title": "Close Japanese V4 image production proof",
+      "updatedAt": "2026-09-03T05:28:44Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/182"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "catalog/jpn-v4-production-integration-v2",
+      "headRefOid": "9d397903bd8ddf7d6b351ed4283b79e8186e18f0",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 181,
+      "state": "MERGED",
+      "title": "Japanese V4 master identity and image product integration",
+      "updatedAt": "2026-08-05T22:05:10Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/181"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/flutter-pricing-device-proof-v1",
+      "headRefOid": "bdee3d5a27fc9f4f006e4113dfdeeeffe8a196f6",
+      "isDraft": true,
+      "mergeStateStatus": "DIRTY",
+      "number": 180,
+      "state": "CLOSED",
+      "title": "Prepare Flutter pricing device release proof",
+      "updatedAt": "2026-08-29T17:30:38Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/180"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/pricing-canary-commit-pin-recovery-v1",
+      "headRefOid": "27f43a4933102b89166f2da9514134be4a68678e",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 179,
+      "state": "MERGED",
+      "title": "ops(pricing): restart canary observation window",
+      "updatedAt": "2026-08-05T09:00:34Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/179"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "docs/special-variant-printing-closeout-v1",
+      "headRefOid": "87747db28492c5bd8ead42af1c16877616f6b983",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 178,
+      "state": "MERGED",
+      "title": "Document special variant printing closeout",
+      "updatedAt": "2026-08-04T21:57:01Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/178"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "ops/special-variant-printing-closeout-v1",
+      "headRefOid": "3a5820dcfdf8457f1b723d8a728a938323b40445",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 177,
+      "state": "MERGED",
+      "title": "Govern special variant printing closeout",
+      "updatedAt": "2026-08-04T21:43:20Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/177"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "evidence/special-variant-printing-authority-v1",
+      "headRefOid": "4fc21d94bb074eca7d43ea7246b333250e253222",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 176,
+      "state": "MERGED",
+      "title": "Fix variant search and add authoritative printing apply gate",
+      "updatedAt": "2026-08-04T20:54:30Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/176"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/testflight-public-relationship-readback",
+      "headRefOid": "021bb39697d278ae0d8a8c6e911b07d3410377dd",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 175,
+      "state": "MERGED",
+      "title": "fix(release): repair follower truth and exact-printing adds",
+      "updatedAt": "2026-08-04T10:09:55Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/175"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/testflight-reported-blockers-v1",
+      "headRefOid": "deb015c384a4f993540ed2a7b7826ddd6cfa6155",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 174,
+      "state": "MERGED",
+      "title": "fix(mobile): close TestFlight reported blockers",
+      "updatedAt": "2026-08-04T06:37:05Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/174"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "fix/ios-crashlytics-dsym-upload-v1",
+      "headRefOid": "60ae1a43eccbc14bbc883aaa3066499c77f9fdb1",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 173,
+      "state": "MERGED",
+      "title": "fix(ios): upload Crashlytics release symbols",
+      "updatedAt": "2026-08-04T07:43:35Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/173"
+    },
+    {
+      "baseRefName": "main",
+      "headRefName": "agent/market-intelligence-selector-order-v1",
+      "headRefOid": "fee911873757f61124cbf4dc7006eb9807e4e3ef",
+      "isDraft": false,
+      "mergeStateStatus": "UNKNOWN",
+      "number": 172,
+      "state": "MERGED",
+      "title": "fix(pricing): bound incremental assignment selection",
+      "updatedAt": "2026-09-03T05:28:41Z",
+      "url": "https://github.com/OriginalSoseji/grookai_vault/pull/172"
+    }
+  ],
+  "deployment": {
+    "requested_origin": "https://grookaivault.com",
+    "final_origin": "https://grookaivault.com",
+    "status": 200,
+    "latency_ms": 403,
+    "headers": {
+      "server": "Vercel",
+      "x-vercel-id": "sfo1::iad1::vdcjn-1788431818910-58aba7ebd246",
+      "x-vercel-cache": "STALE",
+      "content-type": "text/html; charset=utf-8"
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,613 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_PRODUCT_SNAPSHOT",
+  "origin": "https://grookaivault.com",
+  "authentication": "signed_out",
+  "mutation_boundary": "GET navigation and screenshots only",
+  "route_count": 7,
+  "case_count": 14,
+  "failed_case_count": 0,
+  "cases": [
+    {
+      "route_id": "home",
+      "path": "/",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/",
+      "duration_ms": 9169,
+      "title": "Grookai Vault",
+      "h1": [
+        "Grookai Vault"
+      ],
+      "body_text_sha256": "467a05b678c340bf85563bcf8a56934c2ce532fd73ac5004ea3cca217442ba50",
+      "hard_error_copy": false,
+      "visible_image_count": 5,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "642a4169c803dc94c1a1a96d6611ec1144dd1ab33be657fc473d4b34749a79a5",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "1fa77c43b22a44fbd8935bb338813f53ac45f571e338e60745943e58a121c241",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e0fff655e0bbd7940fa5620874cd37d9cfb333066ef8e49237b27445d07bf08a",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "6208faa423458697f30ae437f807a2e5f90bcafd77b20e7aabe9aef8f4168d92",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "62c5c27ed91629f55429b9a52f457c7bc8962485a341ea0f3e87ea41237f8172",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "desktop_home.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "search_pikachu",
+      "path": "/search?q=Pikachu",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/explore",
+      "duration_ms": 10012,
+      "title": "Grookai Vault",
+      "h1": [
+        "Pikachu"
+      ],
+      "body_text_sha256": "abec7debfe837571038e40b9b0bc01c6e10ed71e2f42e5598b45862e0e3a9ceb",
+      "hard_error_copy": false,
+      "visible_image_count": 25,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [],
+      "screenshot": "desktop_search_pikachu.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "sets",
+      "path": "/sets",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/sets",
+      "duration_ms": 5000,
+      "title": "Grookai Vault",
+      "h1": [
+        "Browse Pokemon TCG Sets"
+      ],
+      "body_text_sha256": "a5acc724184e19b27231f112ceb5e783c0e5cd3f2de492e1cc80eade7da03ae1",
+      "hard_error_copy": false,
+      "visible_image_count": 10,
+      "failed_visible_image_count": 1,
+      "visible_image_hosts": [
+        "assets.tcgdex.net",
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "455152a0a684e6f8d9b2692927e9ecab4179671c9f6e9ad89164de07245929bd",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "1d64ad2e6d4fccc1682eb6378cb976f964454595f87e04efc128ad2c4844a9d1",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "26562add0c106ac600d9bce3eabbf5be0bffa424b7dee8b19cacc777908b0816",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "659d86e40110e371668da03df1656c67024508ea2a35fa4bfc6ffd0609887b70",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "9579a9c3f80cc4fe3be2bb2756d2626e53449fa7c901345fcc250f8271283044",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "a7a04683a0000761c952178a55621ce64724349f378a826dceab8cb37b1d70cd",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "462c1ba7e0d529ad0c4bc762c8bed573cccafe997580e3e95e68b2d4b254279e",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "826cab924a212e271b6adf28e03b03ab920acbf8345c54a6270a396271ff6b19",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "7a7a0ac719217bac7d1aa94387b3b28bea446b80e06432845366d512dc3b0480",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "9326a2a0cafebe22c9f7726a14733f867ed0a395a26b4c1bb32ddfb63264b3db",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "4d776ad8c930e2161c405b17d8fcb1f605e22cf73d45ed32e90e952319d1515a",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "65ed32394b9e36a06e3dc30b40779ef0625bdd1bee2a2d9be4ee615f254a85f3",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "cfb1a3163968e9a5cbd51111a168997ed53a995ec05b09276852752318be71e6",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "cc527f1820b88d43e026fe44cfe1e825596f8d828cd4f09e4c51f6b7eabb676b",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "916c7a68936dab2c36cce8a4bfa53d66bd041a55da5b2f15e43a4f2635845456",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "desktop_sets.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "dex",
+      "path": "/dex",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/dex",
+      "duration_ms": 4151,
+      "title": "Grookai Dex | Grookai Vault",
+      "h1": [
+        "Charactercompletion,not justa checklist.Character completion, not just a checklist."
+      ],
+      "body_text_sha256": "ee7b5d5f0d33d4ac3d5241bbce0ad29c7dfe7e6420805a5c28cd897dc8e09ceb",
+      "hard_error_copy": false,
+      "visible_image_count": 104,
+      "failed_visible_image_count": 92,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "e1b45ff314754128634a945a68f0e4e8b712d12c6f4e505d09f803db8b3ba3b4",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "77b16344dad5c6eed7c3652f5032c709ca0eacd60ae790430add79d004892b45",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "fa747285fca8eba0fe33cc41126ffc9499e377ef3b53836c5ddf535505491b73",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "644bfb042f9cfcf2e9061ffcd2ddb53061b7ad46a379c3005b31c319ce68598c",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "dd9fc387fb08b7bd11718cd3de2d22b9a831375fc9985b4f20cb7ef0ce45c20b",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "0228d2a5ea2fc0ae84d7a219269344a3fa0a140c8bc58fcaf367d993fbaefe0b",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "2543937e2bcce5015036f2d1f63bac67055c631efa6346a9665155709cac4dfd",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "0c9b437e9af4e7fe7cce193fd3861ed6823e3ba096bfde3580981508fb558703",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "5b0c29675f2bd74ebfcb72de030c6d46e63d8e9f6fe5a404837e39a76966a9b7",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "desktop_dex.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "legal",
+      "path": "/legal",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/legal",
+      "duration_ms": 2182,
+      "title": "Terms and Legal | Grookai Vault",
+      "h1": [
+        "Terms and Legal"
+      ],
+      "body_text_sha256": "085ee70c2d5512964d0df2ace6c58c49150ceddd0c57b46e722ac32de198770e",
+      "hard_error_copy": false,
+      "visible_image_count": 1,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [],
+      "screenshot": "desktop_legal.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "privacy",
+      "path": "/privacy",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/privacy",
+      "duration_ms": 2240,
+      "title": "Privacy Policy | Grookai Vault",
+      "h1": [
+        "Privacy Policy"
+      ],
+      "body_text_sha256": "a65e90702833862e52d268262cf9ded23b56ffcd36c69e167a6e5e99da6be541",
+      "hard_error_copy": false,
+      "visible_image_count": 1,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "c9b2b50084429fa9cf10bf218e7615810c3efd8990fae35dd08393b1cc5587e9",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "f315009ae73a3d5e88a4b8094190b6a67d7bbdaee3d97a24d87a8b0519c3aa14",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e6bc6322ad6387cc3c65c03bce77181f2fcfe40fefc97c2bf90c53a45539f37a",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "d03600425ab2f92b21ad6ec8a72452b9076d4dd5296aa028cb754408c23b3a19",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "1ca03ed40b72971502003bed8422365a177549e73b616dd99dede0d0c49e6560",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "desktop_privacy.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "support",
+      "path": "/support",
+      "viewport": "desktop",
+      "http_status": 200,
+      "final_path": "/support",
+      "duration_ms": 3280,
+      "title": "Support | Grookai Vault",
+      "h1": [
+        "Support"
+      ],
+      "body_text_sha256": "055418f220dc907e4f87686c8343722932bd70ff5c907fd22a1edac4a5084d0a",
+      "hard_error_copy": false,
+      "visible_image_count": 1,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [],
+      "screenshot": "desktop_support.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "home",
+      "path": "/",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/",
+      "duration_ms": 2769,
+      "title": "Grookai Vault",
+      "h1": [
+        "Grookai Vault"
+      ],
+      "body_text_sha256": "03ed6c3c9ed97626ad7a20dc1ea6b8eed59cebb256fb711ffccb12c78017be9b",
+      "hard_error_copy": false,
+      "visible_image_count": 5,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "424c3762597fe02997a17353d728f469a2d6c711f282b80caa514ec932546397",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "62c5c27ed91629f55429b9a52f457c7bc8962485a341ea0f3e87ea41237f8172",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e0fff655e0bbd7940fa5620874cd37d9cfb333066ef8e49237b27445d07bf08a",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "6208faa423458697f30ae437f807a2e5f90bcafd77b20e7aabe9aef8f4168d92",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "mobile_home.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "search_pikachu",
+      "path": "/search?q=Pikachu",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/explore",
+      "duration_ms": 8692,
+      "title": "Grookai Vault",
+      "h1": [
+        "Pikachu"
+      ],
+      "body_text_sha256": "370adbfef7c0751c6ddc2066d302089f462495a9122eab8efc06fa509934e1c1",
+      "hard_error_copy": false,
+      "visible_image_count": 25,
+      "failed_visible_image_count": 6,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "e77e3f7c2ca52aeed0466f9575a743bf2afac71108351027cf4be6406adc70ef",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "3e7cd49782a0beb32a720b65a161d2722070c18d96bbae24a845ad919497e22e",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "e0351e564f914384731cd4eb4c6432e5d65c284f7daab4da83c28b74d582d528",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "mobile_search_pikachu.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "sets",
+      "path": "/sets",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/sets",
+      "duration_ms": 2901,
+      "title": "Grookai Vault",
+      "h1": [
+        "Browse Pokemon TCG Sets"
+      ],
+      "body_text_sha256": "a85e98f76bf842890a36f939a7cd23fecde79aac36a5f1ca9101ecdb707fb306",
+      "hard_error_copy": false,
+      "visible_image_count": 10,
+      "failed_visible_image_count": 8,
+      "visible_image_hosts": [
+        "assets.tcgdex.net",
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [],
+      "screenshot": "mobile_sets.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "dex",
+      "path": "/dex",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/dex",
+      "duration_ms": 3031,
+      "title": "Grookai Dex | Grookai Vault",
+      "h1": [
+        "Charactercompletion,not justa checklist.Character completion, not just a checklist."
+      ],
+      "body_text_sha256": "b13acc55b566ef6ec55597086dbfb635a6b27b70836b3471ad21fdfadc8cceda",
+      "hard_error_copy": false,
+      "visible_image_count": 104,
+      "failed_visible_image_count": 95,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "4cb94ba54a7b3ff5aba439be5ce80afe95af2db8cc543319935760194b37ba18",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "dd9fc387fb08b7bd11718cd3de2d22b9a831375fc9985b4f20cb7ef0ce45c20b",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "method": "GET",
+          "url_sha256": "432b0ab6da43becb47e29fe22fd8c6496a015ea1423580aafbe49c04189cbf24",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "mobile_dex.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "legal",
+      "path": "/legal",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/legal",
+      "duration_ms": 1705,
+      "title": "Terms and Legal | Grookai Vault",
+      "h1": [
+        "Terms and Legal"
+      ],
+      "body_text_sha256": "56d4629bd2d8b1e5a1a65b4e9ee9455be0aa8f53b8582414f02bcd76fce30346",
+      "hard_error_copy": false,
+      "visible_image_count": 1,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [],
+      "screenshot": "mobile_legal.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "privacy",
+      "path": "/privacy",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/privacy",
+      "duration_ms": 1719,
+      "title": "Privacy Policy | Grookai Vault",
+      "h1": [
+        "Privacy Policy"
+      ],
+      "body_text_sha256": "d8365de0af9e209f39b03c1afd588cbc5d3b6a3f38803a485fc38bdcc47dac12",
+      "hard_error_copy": false,
+      "visible_image_count": 1,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [
+        {
+          "method": "GET",
+          "url_sha256": "1ca03ed40b72971502003bed8422365a177549e73b616dd99dede0d0c49e6560",
+          "host": "grookaivault.com",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "screenshot": "mobile_privacy.png",
+      "status": "captured"
+    },
+    {
+      "route_id": "support",
+      "path": "/support",
+      "viewport": "mobile",
+      "http_status": 200,
+      "final_path": "/support",
+      "duration_ms": 2305,
+      "title": "Support | Grookai Vault",
+      "h1": [
+        "Support"
+      ],
+      "body_text_sha256": "9e1c0a5be9bc9b65093a6a017b6fe4b96de32c842bde0ba6ea414fe16d40037e",
+      "hard_error_copy": false,
+      "visible_image_count": 1,
+      "failed_visible_image_count": 0,
+      "visible_image_hosts": [
+        "grookaivault.com"
+      ],
+      "page_errors": [],
+      "request_failures": [],
+      "screenshot": "mobile_support.png",
+      "status": "captured"
+    }
+  ]
+}

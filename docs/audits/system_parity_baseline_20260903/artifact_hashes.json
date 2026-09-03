@@ -1,0 +1,31 @@
+{
+  "schema_version": "SYSTEM_PARITY_CRAWL_V1_ARTIFACT_HASHES",
+  "artifact_count": 24,
+  "files": {
+    "REPORT.md": "531db5ff259d0ed45f1338a64f2d28758f6dc889e90ebd8db737661056dfe560",
+    "SYSTEM_PARITY_MANIFEST.json": "18835e0b3604323380f46b5a3be32ff9beb803eed494be3c7b52cad1c507315e",
+    "baseline_findings.json": "4670bce46f6e00d33c6991dff556a8f7ed057434a2e57eccac11466c7fc795d2",
+    "database_snapshot.json": "54ad50c0025f02dd4f2e357aaad5677ffa75980ca01a65af64a3f5b890f975c0",
+    "desktop_dex.png": "9636aa524f72b4307a59075cdb44ce736b93b170400e5cba1e76c1878d824321",
+    "desktop_home.png": "d099722a34f4b7312a1770121a35ff65fe86a1d73b670f46939b17422a442ff6",
+    "desktop_legal.png": "102982b4cd81d6408605e77125577b7aaf0df32aa0b5f97463e8ee70cd587707",
+    "desktop_privacy.png": "2b16dcc867ce968a8314cb72bfd06927b7de5eb0064ef995b774be4f3236c957",
+    "desktop_search_pikachu.png": "e93681b7752607e5ab8efe8fd7a7c18621a03057c26ace43392a5e94f32bcd52",
+    "desktop_sets.png": "a1e8dd2143a529325e9915f2aef162a084eaf4e1ef2ad1f0f68383eee00c8d4d",
+    "desktop_support.png": "18f0d6b3361b5bfcb7750ca2d0a7a4b804fac10165e1f6e5ce5eec9d21c66bd2",
+    "migration_alignment.json": "fcf2a4d544ce7218f9f87ab69a4b1dacb0957258c9d354b2eeef58689b394009",
+    "mobile_dex.png": "fc02e04200e5938981ddc9e39d0042e117873029a0efb74d7949aed5eab36384",
+    "mobile_home.png": "144883679d3ac7640268d9a6d36d97d62ada07c48a556dd90c8dcbf0c04a3abe",
+    "mobile_legal.png": "58c34a0bacb52da1dc4d4cfca8ce0295d11dce3c695b5db703f84f5d9e9b0ca5",
+    "mobile_privacy.png": "50e70b8549501711ece62a181698b3500c6d6d366826ccb402b4901bfaed5029",
+    "mobile_search_pikachu.png": "04ec7db2ddbe2686f58cd356ebc1194dacf608597f152d19df991237fb7a1821",
+    "mobile_sets.png": "a427073c2e8d604565f4126fce3589280c925f323a0457af602c4762dec8038c",
+    "mobile_support.png": "91fa7677ebcac557a2d688c157b1a4612c6213b1ddc42d104a82ad021ffcb7b7",
+    "product_snapshot.json": "177b9950175cc5666e72c2ccce62d438748c3060a4bb4ab32eed70ea22fa75ad",
+    "repository_snapshot.json": "564580a8cceeb6009fa06f6ab04c13679ee8800960006e7ff303575351ca6a0e",
+    "repository_tree.jsonl": "66b810e9ee708c3182e3020c01815fad510fc31bac8a5d02d2cd36dd0b6f5153",
+    "runtime_snapshot.json": "fd204ed12f39c5423bec31bd788140ecd771a57d46b34af6e405ab50bb0f0975",
+    "summary.json": "eac218fcc8c73726a050ec7f5f5344f88e6e2800d5fc80db33c0c64f4f8c849e"
+  },
+  "manifest_sha256": "f189b29b603b7a05f23ea88e401c67dcb175ed9d86678c8920f6c75a81565fe6"
+}

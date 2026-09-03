@@ -23,7 +23,10 @@ $excludedFilePatterns = @(
   # artifacts. Their contract tests preserve the historical execution proof.
   '^scripts/audits/japanese_master_index_v4/image_pointer_common_v1\.mjs$',
   '^scripts/audits/japanese_master_index_v4/image_storage_canary_apply_v1\.mjs$',
-  '^scripts/audits/japanese_master_index_v4/image_storage_permanent_apply_v1\.mjs$'
+  '^scripts/audits/japanese_master_index_v4/image_storage_permanent_apply_v1\.mjs$',
+  # Immutable read-only baseline inventory. It records referenced environment
+  # variable names from the authority tree, never credential values.
+  '^docs/audits/system_parity_baseline_20260903/repository_snapshot\.json$'
 )
 $patterns = [ordered]@{
   'SUPABASE_ANON_KEY' = '(?<![A-Z0-9_])SUPABASE_ANON_KEY(?![A-Z0-9_])'

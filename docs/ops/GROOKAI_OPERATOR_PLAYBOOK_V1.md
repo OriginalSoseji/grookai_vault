@@ -193,10 +193,31 @@ owns the connection.
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
 | Migration maintenance | `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md` | Strict preflight, replay, remote readback, and clean history |
 | GitHub/CI | `.github/workflows/` and the current checkpoint | Required checks green for the exact commit |
+| System parity and serial integration | `docs/contracts/SYSTEM_PARITY_CRAWL_V1.md` | Immutable current-main crawl, artifact hashes, and zero unexplained candidate regressions |
 
 Use `docs/INDEX.md` when the workstream is not listed above. Do not invent a
 new procedure until checking for an existing contract, playbook, runbook,
 checkpoint, or script.
+
+### System parity and convergence prevention
+
+Before integrating multiple deferred domains, capture current `origin/main`
+with:
+
+```powershell
+npm run system:parity:baseline
+npm run system:parity:test
+```
+
+Parallel read-only research and fixture generation are allowed, but production
+integration remains serial: one bounded capability, one fresh-main branch, one
+reviewable PR, then rebaseline. Do not combine MTG sealed, multilingual Pokemon,
+sealed automation, collectible adapters, and Visual Search into one candidate.
+Candidate parity runs must use the same crawler version and the recorded
+baseline directory. A missing migration, route, workflow, entrypoint, database
+object, policy, or previously healthy product case blocks the lane unless the
+active contract permits an explicit versioned disposition; migration mutation
+is never waivable.
 
 ## 5. Release And Store Commands
 

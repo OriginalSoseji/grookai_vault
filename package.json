@@ -40,6 +40,8 @@
     "release:store:media": "node scripts/release/generate_store_media_assets_v1.mjs",
     "release:native:onboarding": "node scripts/audits/native_android_onboarding_qa_v1.mjs",
     "release:catalog:crawl": "node scripts/audits/production_catalog_crawl_v1.mjs",
+    "system:parity:baseline": "node scripts/audits/system_parity_crawl_v1.mjs --mode=baseline --authority=origin/main --out-dir=docs/audits/system_parity_baseline_20260903",
+    "system:parity:test": "node --test tests/contracts/system_parity_crawl_v1.test.mjs",
     "release:pricing:trust": "node scripts/audits/pricing_trust_spot_check_v1.mjs",
     "social:video:validate": "node --test tests/contracts/emulator_video_agent_v1.test.mjs",
     "social:video:canary": "node scripts/social_media/emulator_video_agent_v1.mjs",
