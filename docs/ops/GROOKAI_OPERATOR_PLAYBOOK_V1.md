@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md` | Exact gated workflow below plus schema/catalog readback |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_100_MTG_SEALED_ROLLBACK_CANARY_READY.md` | Exact gated workflow below plus schema/catalog readback |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,12 +223,16 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_100_MTG_SEALED_ROLLBACK_CANARY_READY.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
 
-The operation order is:
+The two sealed schema migrations are already applied. Do not replay steps 1-7;
+they remain below as migration history. The current operation resumes at step
+8 after the apply-authority binding repair is merged.
+
+The complete operation order is:
 
 1. `migration_dry_run` - remote ledger and sole-pending proof, zero writes.
 2. Obtain explicit authority for the exact migration SHA-256.
@@ -256,14 +260,28 @@ The operation order is:
 8. `plan` - freeze a fresh live payload and fingerprint after schema apply.
 9. `preflight` - read-only live boundary proof.
 10. `rollback_canary` - full transaction with zero committed residue.
-11. Obtain separate explicit authority for the exact sealed-world payload.
-12. `apply` - durable MTG sealed catalog/qualification/release operation.
+11. Obtain separate explicit authority for the exact sealed-world payload,
+    including the producer SHA, plan fingerprint, source fingerprint, and exact
+    payload counts JSON.
+12. `apply` - durable MTG sealed catalog/qualification/release operation. Pass
+    all separately approved values; the workflow and writer both fail closed on
+    drift:
+
+    ```powershell
+    gh workflow run mtg-sealed-world-runner.yml --ref <exact-producer-ref> `
+      -f operation=apply -f expected_sha=<exact-producer-sha> `
+      -f expected_plan_fingerprint=<approved-plan-fingerprint> `
+      -f expected_source_fingerprint=<approved-source-fingerprint> `
+      -f 'expected_counts_json=<approved-compact-counts-json>'
+    ```
 13. `readback` - independent payload, release, cross-game, and visibility
     reconciliation.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated
-before durable data work.
+before durable data work. A plan produced before an apply-authority workflow
+repair is evidence only; rerun plan, preflight, and rollback canary from the
+exact merged repair SHA before requesting payload authority.
 
 ## 5. Release And Store Commands
 

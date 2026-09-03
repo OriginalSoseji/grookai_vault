@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_100_MTG_SEALED_ROLLBACK_CANARY_READY.md`
+
+This checkpoint records the clean independent visibility readback, the fresh
+2,904-variant MTG sealed plan, exact read-only preflight, and complete rollback
+canary with zero committed residue and unchanged One Piece hashes.
+
+Decision locked there:
+
+- the MTG sealed payload is transactionally proven but remains unapplied and
+  hidden; durable apply requires separate authority tied to the frozen producer,
+  plan fingerprint, source fingerprint, and exact row counts
+
+Unresolved risk afterward:
+
+- durable payload apply and independent post-apply readback remain pending;
+  Storage, images, pricing publication, Vault, and visibility activation remain
+  separate later gates
+
 ### `PRICING_CHECKPOINT_99_MTG_SEALED_VISIBILITY_BOUNDARY_APPLIED.md`
 
 This checkpoint records the exact authorized production apply of the separate
