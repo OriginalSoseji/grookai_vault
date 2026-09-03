@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY.md`
+
+This checkpoint records the merged apply-authority binding repair and the
+replacement plan, read-only preflight, and full rollback canary from exact
+`main@800d41e65`, with stable fingerprints, exact projections, unchanged One
+Piece hashes, and zero committed residue.
+
+Decision locked there:
+
+- durable MTG sealed apply requires separately approved producer, plan, source,
+  and exact-count values; live recomputation cannot authorize itself
+
+Unresolved risk afterward:
+
+- the frozen MTG sealed payload remains unapplied and hidden; durable apply and
+  independent readback require separate exact production authority
+
 ### `PRICING_CHECKPOINT_100_MTG_SEALED_ROLLBACK_CANARY_READY.md`
 
 This checkpoint records the clean independent visibility readback, the fresh
