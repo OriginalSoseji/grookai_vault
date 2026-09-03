@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_100_MTG_SEALED_ROLLBACK_CANARY_READY.md` | Exact gated workflow below plus schema/catalog readback |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY.md` | Exact gated workflow below plus schema/catalog readback |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,14 +223,16 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_100_MTG_SEALED_ROLLBACK_CANARY_READY.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
 
 The two sealed schema migrations are already applied. Do not replay steps 1-7;
 they remain below as migration history. The current operation resumes at step
-8 after the apply-authority binding repair is merged.
+11. Steps 8-10 are complete for exact producer
+`800d41e65fbaaaf52f1e32b5cde1ae0367e1a976` and must not be replayed unless
+source drift or failed proof explicitly invalidates checkpoint 101.
 
 The complete operation order is:
 
