@@ -10,6 +10,7 @@ on:
         options:
           - migration_dry_run
           - migration_apply
+          - migration_readback
           - plan
           - preflight
           - rollback_canary
@@ -68,7 +69,7 @@ jobs:
           git diff --check
 
       - name: Inspect exact pending migration
-        if: ${{ startsWith(inputs.operation, 'migration_') }}
+        if: ${{ inputs.operation == 'migration_dry_run' || inputs.operation == 'migration_apply' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -96,6 +97,15 @@ jobs:
           set -euo pipefail
           npx --yes supabase@2.54.11 db push \
             --db-url "$SUPABASE_DB_URL"
+
+      - name: Read back migration ledger, schema, security, and boundaries
+        if: ${{ inputs.operation == 'migration_apply' || inputs.operation == 'migration_readback' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_migration_readback_v1.mjs \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-migration-readback"
 
       - name: Freeze exact live plan
         if: ${{ !startsWith(inputs.operation, 'migration_') }}
