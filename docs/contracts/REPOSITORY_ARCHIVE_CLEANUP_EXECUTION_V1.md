@@ -1,6 +1,6 @@
 # REPOSITORY_ARCHIVE_CLEANUP_EXECUTION_V1
 
-Status: ACTIVE - REPARSE-SAFE EXECUTION REQUIRED; EXECUTION NOT AUTHORIZED
+Status: COMPLETE - EXACT SELECTION EXECUTED; AUTHORIZATION CONSUMED
 
 Effective date: 2026-09-02
 
@@ -116,7 +116,10 @@ guard or substitute a different target to make the run proceed.
 
 ## Current Gate
 
-Merge and verify the reparse-safe executor, then generate and review a fresh
-no-write execution packet. Destructive execution remains locked until the owner
-explicitly approves the new exact fingerprints, bundle hashes, action counts,
-and manifest-bound filesystem preservation actions.
+The exact 227-group selection completed from authority SHA
+`38d1c6a24328a5f05ab766cb37bce60c45e5ad72` under execution fingerprint
+`a7bf32adc68f806c729c1c6aa41dfe31279ef4e5debfe3210ba84d4a5895136a`.
+Readback proved all 203 local branches, 135 remote branches, and 39 worktrees
+absent while all 222 manifest-bound reparse points remained preserved. The
+authorization is consumed and cannot authorize any future cleanup. A future
+selection must begin a new recovery, dry-run, and exact-authorization cycle.

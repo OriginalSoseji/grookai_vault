@@ -113,6 +113,8 @@ and safe relative to current production authority.
 - Tags, PRs, recovery releases, recovery artifacts, databases, Storage,
   deployments, and nonmanifest refs remained outside the mutation boundary.
 
+## Historical Failed Attempts
+
 - One exactly authorized execute attempt ran against authority
   `abcb1f6ac56dc575d0763f61e87dc7af629f9d87` and execution fingerprint
   `1ee9ce94e192ccf2155afa4d8ebeaccc9a7d19a87880f5267d154b13bb486223`.
@@ -120,7 +122,8 @@ and safe relative to current production authority.
   pre-push hook before GitHub accepted any ref mutation.
 - Rollback passed, direct restoration readback passed, and zero worktrees had
   been removed before failure.
-- Every selected branch and worktree still exists at its frozen identity.
+- Every selected branch and worktree still existed at its frozen identity after
+  that failed attempt was restored.
 - No target has an open PR or live automation reference.
 - No branch, worktree, tag, file, PR, artifact, database row, or Storage object
   was removed by this gate.
@@ -134,13 +137,14 @@ and safe relative to current production authority.
   and the exact worktree was reconstructed at its original path on
   `security/active-runtime-codeql-v2` at
   `0d7856775f35d39d6bf6df55364a67ac1eaf1130`.
-- Direct readback now proves all 203 local targets, 135 remote targets, and 39
-  registered worktrees are present. The reconstructed worktree is clean.
+- At that recovery checkpoint, direct readback proved all 203 local targets,
+  135 remote targets, and 39 registered worktrees were present. The
+  reconstructed worktree was clean before the final successful execution.
 - The preserved partial directory remains at
   `C:/grookai_vault_active_runtime_codeql_failed_cleanup_preserved_20260902T2208MDT`.
-- The target inventory contains 222 Windows reparse points across 20 worktrees.
-  All 222 are untracked generated links and require manifest-bound preservation
-  before removal.
+- The pre-execution target inventory contained 222 Windows reparse points
+  across 20 worktrees. All 222 were untracked generated links and were later
+  preserved by the final execution.
 - Both prior execution authorizations are consumed and cannot be reused.
 - Any authority or target drift invalidates the execution fingerprint.
 
