@@ -34,7 +34,7 @@ test('workflow chains preflight, canary, apply, and readback from one fingerprin
   assert.match(workflow, /--mode=canary/);
   assert.match(workflow, /--mode=apply/);
   assert.match(workflow, /--mode=readback/);
-  assert.match(workflow, /TARGET_MIGRATION: 20260816170000_/);
+  assert.match(workflow, /TARGET_MIGRATION: 20260903130000_/);
 });
 
 test('workflow installs dependencies before importing contract modules', () => {
@@ -44,4 +44,11 @@ test('workflow installs dependencies before importing contract modules', () => {
   assert.ok(verify >= 0);
   assert.ok(install < verify);
   assert.doesNotMatch(workflow, /Install operator dependencies\n\s+if:/);
+});
+
+test('migration operations enforce forward-only ledger order', () => {
+  assert.doesNotMatch(workflow, /--include-all/);
+  assert.match(workflow, /migration list \\\n\s+--db-url/);
+  assert.match(workflow, /Remote-only migration detected/);
+  assert.match(workflow, /--dry-run/);
 });
