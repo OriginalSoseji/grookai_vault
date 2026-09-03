@@ -232,8 +232,20 @@ The operation order is:
 1. `migration_dry_run` - remote ledger and sole-pending proof, zero writes.
 2. Obtain explicit authority for the exact migration SHA-256.
 3. `migration_apply` - apply only the proven per-game release migration.
-4. Verify migration ledger, schema, functions, RLS/grants, releases, and
-   pointers independently.
+4. `migration_readback` - independently verify the exact migration hash and
+   ledger row, constraint definitions, function definitions and ACLs, table
+   grants, RLS/policies, preserved One Piece release data, empty MTG target,
+   and hidden MTG visibility. Dispatch it from the merged producer SHA:
+
+   ```powershell
+   gh workflow run mtg-sealed-world-runner.yml --ref main `
+     -f operation=migration_readback -f expected_sha=<merged-main-sha>
+   ```
+
+   Preserve the `mtg-sealed-migration_readback-<run-id>` workflow artifact;
+   its `mtg-sealed-migration-readback/` directory contains `run_plan.json`,
+   `migration_readback.json`, `summary.json`, `REPORT.md`, and
+   `artifact_hashes.json`.
 5. `plan` - freeze a fresh live payload and fingerprint after schema apply.
 6. `preflight` - read-only live boundary proof.
 7. `rollback_canary` - full transaction with zero committed residue.
