@@ -1,0 +1,7 @@
+DRY RUN: migrations will *not* be pushed to the database.
+Connecting to remote database...
+Would push these migrations:
+ • 20260903130000_sealed_product_per_game_release_v2.sql
+Finished supabase db push.
+A new version of Supabase CLI is available: v2.116.0 (currently installed v2.54.11)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli

@@ -188,6 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md` | Exact gated workflow below plus schema/catalog readback |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -218,6 +219,32 @@ baseline directory. A missing migration, route, workflow, entrypoint, database
 object, policy, or previously healthy product case blocks the lane unless the
 active contract permits an explicit versioned disposition; migration mutation
 is never waivable.
+
+### MTG sealed world gate
+
+Current authority is
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md`.
+Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
+from an exact merged `main` SHA supplied as `expected_sha`.
+
+The operation order is:
+
+1. `migration_dry_run` - remote ledger and sole-pending proof, zero writes.
+2. Obtain explicit authority for the exact migration SHA-256.
+3. `migration_apply` - apply only the proven per-game release migration.
+4. Verify migration ledger, schema, functions, RLS/grants, releases, and
+   pointers independently.
+5. `plan` - freeze a fresh live payload and fingerprint after schema apply.
+6. `preflight` - read-only live boundary proof.
+7. `rollback_canary` - full transaction with zero committed residue.
+8. Obtain separate explicit authority for the exact sealed-world payload.
+9. `apply` - durable MTG sealed catalog/qualification/release operation.
+10. `readback` - independent payload, release, cross-game, and visibility
+    reconciliation.
+
+Never use `--include-all`. Migration authority does not authorize the MTG
+catalog payload, and a plan created before migration apply must be regenerated
+before durable data work.
 
 ## 5. Release And Store Commands
 

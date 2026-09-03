@@ -1,0 +1,40 @@
+{
+  "status": "mtg_sealed_world_plan_frozen",
+  "version": "MTG_SEALED_WORLD_V1",
+  "repository": {
+    "branch": "main",
+    "commit_sha": "515ce390f4c0c47383a5e59d7b0c65d7e778c05d",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "ed336dd1cbf442f1788a9d889d3b3d2b5a643e5f1c3b9cb39220f129542b8bae",
+  "source_fingerprint_sha256": "4930912401798650fee813993ca9e588b198cc1fc8d259e0aeb71e72d9f805af",
+  "counts": {
+    "candidates": 2904,
+    "families": 237,
+    "variants": 2904,
+    "reviews": 2904,
+    "mappings": 2904,
+    "evidence": 14070,
+    "qualifications": 2779,
+    "qualification_holds": 144,
+    "releases": 1,
+    "members": 2182
+  },
+  "qualification_status_counts": {
+    "blocked_missing_price": 480,
+    "blocked_stale": 117,
+    "qualified_exact": 2182
+  },
+  "source_row_count": 117484,
+  "candidate_price_product_count": 2923,
+  "latest_price_row_count": 2795,
+  "boundaries": {
+    "card_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "catalog_release_control_writes": 0,
+    "one_piece_writes": 0,
+    "anonymous_visibility": false,
+    "authenticated_visibility_before_catalog_release": false
+  }
+}
