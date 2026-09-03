@@ -33,9 +33,10 @@ edition, wave, language, content count, material, or price.
 - One active sealed release pointer per game.
 - Existing One Piece rows and its active release are immutable boundaries.
 - No card, Storage, image-pointer, Vault, or market-publication-table writes.
-- No catalog release-control mutation.
+- No catalog or sealed release-control mutation during the sealed payload apply.
 - Anonymous access remains denied.
-- Authenticated access remains empty while the MTG catalog release is hidden.
+- Authenticated access remains empty while the MTG sealed release is hidden,
+  independently of the MTG card-catalog release status.
 
 ## Apply Sequence
 
@@ -52,6 +53,9 @@ edition, wave, language, content count, material, or price.
 ## Release Boundary
 
 The sealed release pointer does not make MTG visible by itself. Signed-in MTG
-visibility is controlled by `catalog_game_release_controls` and is activated
-only after the singles, images, pricing, sealed, web, and mobile smoke gates
-all pass. Anonymous visibility is a separate future decision.
+card-catalog visibility is controlled by `catalog_game_release_controls`.
+Sealed-product visibility is independently controlled by
+`sealed_product_game_release_controls`; both gates must allow the request.
+MTG sealed remains `hidden` through payload apply and is activated only after
+sealed web and mobile smoke gates pass. Anonymous visibility is a separate
+future decision.

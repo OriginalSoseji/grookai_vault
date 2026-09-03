@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_98_MTG_SEALED_VISIBILITY_BOUNDARY_REQUIRED.md`
+
+This checkpoint records the successful first MTG sealed schema migration, the
+independent production readback, and the catalog-versus-sealed visibility gap
+that correctly blocked the payload.
+
+Decision locked there:
+
+- catalog visibility does not authorize sealed-product visibility; a separate
+  game-scoped sealed release control must fail closed before MTG sealed apply
+
+Unresolved risk afterward:
+
+- the visibility-boundary migration remains local and must pass merged-main
+  dry-run plus separate exact production authority before any fresh MTG plan
+  or sealed payload gate
+
 ### `PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md`
 
 This checkpoint records the forward-only repair of the still-unapplied

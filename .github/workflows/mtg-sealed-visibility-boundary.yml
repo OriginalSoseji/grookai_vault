@@ -1,0 +1,116 @@
+name: MTG Sealed Visibility Boundary
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Governed sealed-visibility operation
+        required: true
+        type: choice
+        options:
+          - migration_dry_run
+          - migration_apply
+          - migration_readback
+      expected_sha:
+        description: Exact merged commit SHA that must produce the evidence
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-sealed-world-v1
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      OPERATION: ${{ inputs.operation }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      TARGET_MIGRATION: 20260903143000_sealed_product_visibility_boundary_v1.sql
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install operator dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify exact producer and contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "supabase/migrations/$TARGET_MIGRATION"
+          node --check backend/pricing/mtg_sealed_migration_readback_v1.mjs
+          node --check scripts/audits/mtg_sealed_migration_readback_v1.mjs
+          node --check scripts/audits/mtg_sealed_world_v1.mjs
+          node --test \
+            tests/contracts/mtg_sealed_migration_readback_v1.test.mjs \
+            tests/contracts/sealed_product_visibility_boundary_v1.test.mjs \
+            tests/contracts/mtg_sealed_world_v1.test.mjs \
+            tests/contracts/sealed_product_per_game_release_v2.test.mjs
+          git diff --check
+
+      - name: Inspect exact pending migration
+        if: ${{ inputs.operation == 'migration_dry_run' || inputs.operation == 'migration_apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 migration list \
+            --db-url "$SUPABASE_DB_URL" 2>&1 | tee migration_list.txt
+          if grep -Eq '^\s*\|\s*[0-9]{8,14}\s*\|' migration_list.txt; then
+            echo "Remote-only migration detected." >&2
+            exit 1
+          fi
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          mapfile -t pending < <(
+            grep -oE '[0-9]{14}_[A-Za-z0-9_]+\.sql' migration_dry_run.txt |
+              sort -u
+          )
+          test "${#pending[@]}" -eq 1
+          test "${pending[0]}" = "$TARGET_MIGRATION"
+
+      - name: Apply exact migration
+        if: ${{ inputs.operation == 'migration_apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL"
+
+      - name: Read back complete sealed visibility boundary
+        if: ${{ inputs.operation == 'migration_apply' || inputs.operation == 'migration_readback' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_migration_readback_v1.mjs \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-migration-readback"
+
+      - name: Upload immutable evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-sealed-visibility-${{ inputs.operation }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            migration_list.txt
+            ${{ runner.temp }}/mtg-sealed-migration-readback
+          if-no-files-found: warn
+          retention-days: 90

@@ -225,14 +225,21 @@ is never waivable.
 Current authority is
 `docs/checkpoints/pricing/PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
-from an exact merged `main` SHA supplied as `expected_sha`.
+and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
+`main` SHA supplied as `expected_sha`.
 
 The operation order is:
 
 1. `migration_dry_run` - remote ledger and sole-pending proof, zero writes.
 2. Obtain explicit authority for the exact migration SHA-256.
 3. `migration_apply` - apply only the proven per-game release migration.
-4. `migration_readback` - independently verify the exact migration hash and
+4. `mtg-sealed-visibility-boundary.yml` `migration_dry_run` - prove the
+   sealed-specific visibility migration is the sole pending migration. This
+   gate is required when MTG card-catalog visibility is already `signed_in`.
+5. Obtain explicit authority for the exact sealed-visibility migration SHA-256.
+6. `mtg-sealed-visibility-boundary.yml` `migration_apply` - apply the isolated
+   visibility boundary and run its complete readback automatically.
+7. `migration_readback` - independently verify both exact migration hashes and
    ledger row, constraint definitions, function definitions and ACLs, table
    grants, RLS/policies, preserved One Piece release data, empty MTG target,
    and hidden MTG visibility. Dispatch it from the merged producer SHA:
@@ -246,12 +253,12 @@ The operation order is:
    its `mtg-sealed-migration-readback/` directory contains `run_plan.json`,
    `migration_readback.json`, `summary.json`, `REPORT.md`, and
    `artifact_hashes.json`.
-5. `plan` - freeze a fresh live payload and fingerprint after schema apply.
-6. `preflight` - read-only live boundary proof.
-7. `rollback_canary` - full transaction with zero committed residue.
-8. Obtain separate explicit authority for the exact sealed-world payload.
-9. `apply` - durable MTG sealed catalog/qualification/release operation.
-10. `readback` - independent payload, release, cross-game, and visibility
+8. `plan` - freeze a fresh live payload and fingerprint after schema apply.
+9. `preflight` - read-only live boundary proof.
+10. `rollback_canary` - full transaction with zero committed residue.
+11. Obtain separate explicit authority for the exact sealed-world payload.
+12. `apply` - durable MTG sealed catalog/qualification/release operation.
+13. `readback` - independent payload, release, cross-game, and visibility
     reconciliation.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
