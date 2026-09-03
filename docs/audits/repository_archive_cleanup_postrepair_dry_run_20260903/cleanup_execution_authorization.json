@@ -1,7 +1,7 @@
 {
   "schema_version": "GROOKAI_REPOSITORY_ARCHIVE_CLEANUP_AUTHORIZATION_V1",
   "execute_authorized": true,
-  "approved_by": "OriginalSoseji",
+  "approved_by": "repository_owner",
   "approved_at": "2026-09-03T03:56:33.6454341Z",
   "approval_statement": "I approve destructive repository archive cleanup for exactly 227 recovered candidate groups: delete 203 local branches, delete 135 remote branches, and remove 39 clean linked worktrees. Selection fingerprint 7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221, execution fingerprint 45d1c55870ea2dde39fcc6ca189996339f0f4cced29ee5e8146c923e8a505445, action manifest SHA-256 7bb06fc150d92a5a8f2791f6691f5176ef5f95274602ab3128c8c8e9ee1f2824, base recovery bundle SHA-256 3436b1e8f506a153865285af5e69b682256275492c0664d2cff2a1294b9a2b09, and supplement recovery bundle SHA-256 ebafc7ec45db5c5559767c375c252fd85fab6c4d8c122dc3d22078975d82992e. Preserve all tags, PRs, recovery releases, recovery artifacts, databases, Storage, deployments, and nonmanifest refs.",
   "selection_fingerprint": "7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221",

@@ -4,7 +4,7 @@
   "producer_sha": "bd7675a2a3c1efd21a93dd4fd09d4be13395a18b",
   "files": {
     "artifact_hashes.json": "5f1b12c57b7b038d034517db751977013e1374272bc4ef24365b66356dc05948",
-    "cleanup_execution_authorization.json": "fa8e01e2725e82c6bf8e1adac814203a2b64438e45665f66e7267c171ebeecf7",
+    "cleanup_execution_authorization.json": "43ddbf54e859105ac36d3a93b9c18d2eaafd32b06c5a62c142373b9b9cf09cd1",
     "CLEANUP_EXECUTION_CHECKPOINT_V1.md": "35509c5a3ec4caf4b7f04b2d90b1d2bbaf66bdd86696c7779e4d9ef734c3378f",
     "cleanup_execution_plan.json": "cd6e751c0930b56d856da547f4537fe7c4146f539ac8e0fff9ce34df5d83e4c1",
     "cleanup_live_revalidation.jsonl": "1b380e8709aa076618ac3b313637ae816e1205d0634d31da43d1c86616a2afc7",
