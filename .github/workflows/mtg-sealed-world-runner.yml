@@ -47,6 +47,9 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Install operator dependencies
+        run: npm ci --ignore-scripts
+
       - name: Verify exact producer and contracts
         shell: bash
         run: |
@@ -63,10 +66,6 @@ jobs:
             tests/contracts/cross_tcg_sealed_product_identity_v1.test.mjs \
             tests/contracts/one_piece_sealed_pricing_lineage_v1.test.mjs
           git diff --check
-
-      - name: Install operator dependencies
-        if: ${{ !startsWith(inputs.operation, 'migration_') }}
-        run: npm ci --ignore-scripts
 
       - name: Inspect exact pending migration
         if: ${{ startsWith(inputs.operation, 'migration_') }}

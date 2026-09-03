@@ -36,3 +36,12 @@ test('workflow chains preflight, canary, apply, and readback from one fingerprin
   assert.match(workflow, /--mode=readback/);
   assert.match(workflow, /TARGET_MIGRATION: 20260816170000_/);
 });
+
+test('workflow installs dependencies before importing contract modules', () => {
+  const install = workflow.indexOf('- name: Install operator dependencies');
+  const verify = workflow.indexOf('- name: Verify exact producer and contracts');
+  assert.ok(install >= 0);
+  assert.ok(verify >= 0);
+  assert.ok(install < verify);
+  assert.doesNotMatch(workflow, /Install operator dependencies\n\s+if:/);
+});
