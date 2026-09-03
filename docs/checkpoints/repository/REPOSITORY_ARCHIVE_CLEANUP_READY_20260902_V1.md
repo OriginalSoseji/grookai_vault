@@ -1,6 +1,6 @@
 # REPOSITORY_ARCHIVE_CLEANUP_READY_20260902_V1
 
-Status: READY FOR EXACT OWNER AUTHORIZATION - NOT EXECUTED
+Status: FAILED SAFELY BEFORE MUTATION - EXECUTOR REPAIR REQUIRED
 
 Date: 2026-09-02 (America/Denver)
 
@@ -72,7 +72,13 @@ and safe relative to current production authority.
 
 ## Current Truths
 
-- The exact cleanup executor exists but has not run in execute mode.
+- One exactly authorized execute attempt ran against authority
+  `abcb1f6ac56dc575d0763f61e87dc7af629f9d87` and execution fingerprint
+  `1ee9ce94e192ccf2155afa4d8ebeaccc9a7d19a87880f5267d154b13bb486223`.
+- The remote-deletion phase was intercepted by the sparse-incompatible local
+  pre-push hook before GitHub accepted any ref mutation.
+- Rollback passed, direct restoration readback passed, and zero worktrees had
+  been removed before failure.
 - Every selected branch and worktree still exists at its frozen identity.
 - No target has an open PR or live automation reference.
 - No branch, worktree, tag, file, PR, artifact, database row, or Storage object
@@ -96,10 +102,13 @@ and safe relative to current production authority.
 - `docs/audits/repository_archive_cleanup_execution_20260902/cleanup_live_revalidation.jsonl`
 - `docs/audits/repository_archive_cleanup_execution_20260902/CLEANUP_EXECUTION_CHECKPOINT_V1.md`
 - `docs/audits/repository_archive_cleanup_execution_20260902/artifact_hashes.json`
+- `docs/audits/repository_archive_cleanup_final_revalidation_20260903/cleanup_execution_plan.json`
+- `docs/audits/repository_archive_cleanup_final_revalidation_20260903/cleanup_execution_authorization.json`
+- `docs/audits/repository_archive_cleanup_final_revalidation_20260903/CLEANUP_EXECUTION_CHECKPOINT_V1.md`
+- `docs/audits/repository_archive_cleanup_final_revalidation_20260903/artifact_hashes.json`
 
 ## Explicit Next Gate
 
-The owner must approve the exact selection fingerprint, execution fingerprint,
-action-manifest SHA-256, both recovery bundle hashes, and action counts. Only
-then may a matching authorization artifact be created and the executor run once
-with `--execute`. Any drift requires a new dry-run and new approval.
+Merge the sparse-hook repair, rerun the complete dry-run from the new frozen
+`main`, and obtain a new exact authorization bound to its producer SHA and
+execution fingerprint. The failed authorization must not be reused.

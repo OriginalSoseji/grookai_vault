@@ -340,6 +340,14 @@ execution fingerprint, action-manifest hash, base and supplement bundle hashes,
 and exact action counts. Re-run the dry-run after any authority or target drift;
 do not edit the packet to preserve a stale approval.
 
+The executor deliberately passes `--no-verify` only for its governed remote
+deletion and restoration pushes because this operator worktree is sparse while
+the repository pre-push hook requires a full checkout. Before that bypass, the
+executor requires a tracked-clean worktree, exact authorization, recovery
+verification, and a second complete live revalidation. Remote deletion remains
+atomic and protected by one exact SHA lease per ref. See
+`docs/contracts/REPOSITORY_ARCHIVE_CLEANUP_EXECUTION_V1.md`.
+
 ## 8. External-Action Boundaries
 
 The following actions require explicit authorization even when repository and

@@ -107,6 +107,10 @@ test("executor is dry-run by default and destructive commands remain guarded", (
   assert.match(source, /--force-with-lease=refs\/heads\/\$\{branch\}:\$\{recoveryRefMap/);
   assert.match(source, /"push", "--no-verify", "--atomic", \.\.\.leases, "origin", \.\.\.deletions/);
   assert.match(source, /"push", "--no-verify", "--atomic", "origin", \.\.\.remoteSpecs/);
+  assert.match(source, /"status", "--porcelain=v1", "--untracked-files=no"/);
+  assert.match(source, /Tracked working tree must match HEAD before cleanup planning or execution/);
+  assert.match(source, /failure_stage: failureStage/);
+  assert.match(source, /## Execution Result/);
   assert.match(source, /"update-ref", "--stdin"/);
   assert.match(source, /plan\.execution_result = executionResult/);
   assert.match(source, /persisted execution and rollback evidence must be reviewed/);
