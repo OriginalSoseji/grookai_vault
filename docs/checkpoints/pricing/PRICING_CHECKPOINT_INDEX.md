@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_99_MTG_SEALED_VISIBILITY_BOUNDARY_APPLIED.md`
+
+This checkpoint records the exact authorized production apply of the separate
+MTG sealed visibility boundary, the successful ledger/schema/security/data
+readback, and the cast-formatting-only verifier failure now repaired in code.
+
+Decision locked there:
+
+- the boundary migration is durably applied and must not be replayed; MTG
+  sealed remains hidden and payload application remains separately governed
+
+Unresolved risk afterward:
+
+- the repaired verifier still requires a clean independent zero-write
+  production readback, followed by a fresh plan, preflight, and rollback canary
+  before any separately authorized MTG sealed payload apply
+
 ### `PRICING_CHECKPOINT_98_MTG_SEALED_VISIBILITY_BOUNDARY_REQUIRED.md`
 
 This checkpoint records the successful first MTG sealed schema migration, the
