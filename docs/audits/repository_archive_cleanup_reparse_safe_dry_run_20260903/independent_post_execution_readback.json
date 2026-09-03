@@ -1,0 +1,42 @@
+{
+  "schema_version": "GROOKAI_REPOSITORY_ARCHIVE_CLEANUP_INDEPENDENT_READBACK_V1",
+  "checked_at": "2026-09-03T05:32:50.6209426Z",
+  "authority_sha": "38d1c6a24328a5f05ab766cb37bce60c45e5ad72",
+  "selection_fingerprint": "7cb57ac86be732687c9fe6ac2292a859de4bca8c89e6e42981102c4d2e2a0221",
+  "execution_fingerprint": "a7bf32adc68f806c729c1c6aa41dfe31279ef4e5debfe3210ba84d4a5895136a",
+  "action_manifest_sha256": "d2f93cc8755f8e30694b5b1b5dd325e223890cb3705f0bd8116496605d4bb9e3",
+  "execution_status": "completed",
+  "rollback_attempted": false,
+  "expected": {
+    "candidate_groups": 227,
+    "local_branches": 203,
+    "remote_branches": 135,
+    "worktrees": 39,
+    "reparse_points": 222
+  },
+  "remaining": {
+    "local_branches": 0,
+    "remote_branches": 0,
+    "registered_worktrees": 0,
+    "worktree_paths": 0
+  },
+  "preservation": {
+    "reparse_points_checked": 222,
+    "reparse_point_mismatches": 0,
+    "failed_attempt_directory_preserved": true,
+    "base_recovery_release_verified": true,
+    "supplement_recovery_release_verified": true
+  },
+  "boundaries": {
+    "tags_mutated": false,
+    "pull_requests_mutated": false,
+    "recovery_releases_mutated": false,
+    "recovery_artifacts_mutated": false,
+    "databases_accessed": false,
+    "storage_accessed": false,
+    "deployments_accessed": false,
+    "nonmanifest_refs_targeted": false
+  },
+  "c_drive_free_bytes_after_cleanup": 107067842560,
+  "passed": true
+}
