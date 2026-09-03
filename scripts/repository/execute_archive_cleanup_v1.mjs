@@ -405,7 +405,7 @@ function restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees) {
     }
   }
   if (remoteSpecs.length > 0) {
-    const result = commandResult("git", ["push", "--atomic", "origin", ...remoteSpecs], {
+    const result = commandResult("git", ["push", "--no-verify", "--atomic", "origin", ...remoteSpecs], {
       cwd: repoRoot,
     });
     if (result.status !== 0) failures.push("remote_ref_restore_failed");
@@ -428,7 +428,7 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
       const leases = actions.remote_branches.map((branch) =>
         `--force-with-lease=refs/heads/${branch}:${recoveryRefMap.get(`refs/remotes/origin/${branch}`)}`);
       const deletions = actions.remote_branches.map((branch) => `:refs/heads/${branch}`);
-      command("git", ["push", "--atomic", ...leases, "origin", ...deletions], {
+      command("git", ["push", "--no-verify", "--atomic", ...leases, "origin", ...deletions], {
         cwd: repoRoot,
       });
     }

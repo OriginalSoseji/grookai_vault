@@ -105,7 +105,8 @@ test("executor is dry-run by default and destructive commands remain guarded", (
   assert.match(source, /if \(execute\) \{\s+const secondPass/);
   assert.match(source, /execFileSync\(\s+"git",\s+\["show", `\$\{ref\}:\$\{file/);
   assert.match(source, /--force-with-lease=refs\/heads\/\$\{branch\}:\$\{recoveryRefMap/);
-  assert.match(source, /"push", "--atomic", \.\.\.leases, "origin", \.\.\.deletions/);
+  assert.match(source, /"push", "--no-verify", "--atomic", \.\.\.leases, "origin", \.\.\.deletions/);
+  assert.match(source, /"push", "--no-verify", "--atomic", "origin", \.\.\.remoteSpecs/);
   assert.match(source, /"update-ref", "--stdin"/);
   assert.match(source, /plan\.execution_result = executionResult/);
   assert.match(source, /persisted execution and rollback evidence must be reviewed/);
