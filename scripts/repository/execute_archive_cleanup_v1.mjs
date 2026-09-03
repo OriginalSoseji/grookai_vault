@@ -226,6 +226,26 @@ function artifactHashes(outDir, files, producerSha) {
 }
 
 function renderCheckpoint(plan, authorization) {
+  const executionResult = plan.execution_result
+    ? `## Execution Result
+
+- Status: \`${plan.execution_result.status}\`
+- Failure stage: \`${plan.execution_result.failure_stage ?? "none"}\`
+- Rollback attempted: \`${plan.execution_result.rollback_attempted}\`
+- Rollback passed: \`${plan.execution_result.rollback?.passed ?? "not_applicable"}\`
+- Restoration readback passed: \`${plan.execution_result.restoration_readback?.passed ?? "not_applicable"}\`
+- Worktrees removed before failure: \`${plan.execution_result.removed_worktrees_before_failure ?? "not_applicable"}\`
+- Full failure and readback evidence: \`cleanup_execution_plan.json\`
+
+`
+    : "";
+  const nextGate = plan.execution_status === "failed"
+    ? `The failed attempt and restoration evidence must be reviewed. Repair the
+failure class, merge the repair, generate a fresh dry-run fingerprint, and
+obtain a new exact owner authorization before another execute attempt.`
+    : `Provide an owner authorization artifact matching every value in
+\`cleanup_execution_plan.json\`. General permission or creation of this packet
+does not authorize destructive execution.`;
   return `# Repository Archive Cleanup Execution Checkpoint V1
 
 Status: ${plan.mode === "execute" ? plan.execution_status : "READY FOR EXACT OWNER AUTHORIZATION"}
@@ -268,7 +288,7 @@ worktree, tag, pull-request, filesystem, database, or Storage mutation.
 - Execute authorized: \`${authorization.passed}\`
 - Reasons: \`${authorization.reasons.join(", ") || "none"}\`
 
-## Execution Order
+${executionResult}## Execution Order
 
 1. Repeat complete live revalidation immediately before mutation.
 2. Delete the exact remote branches in one atomic push.
@@ -289,9 +309,7 @@ worktree, tag, pull-request, filesystem, database, or Storage mutation.
 
 ## Explicit Next Gate
 
-Provide an owner authorization artifact matching every value in
-\`cleanup_execution_plan.json\`. General permission or creation of this packet
-does not authorize destructive execution.
+${nextGate}
 `;
 }
 
@@ -423,6 +441,7 @@ function restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees) {
 
 function executeCleanup(repoRoot, actions, recoveryRefMap) {
   const removedWorktrees = [];
+  let failureStage = "remote_branch_delete";
   try {
     if (actions.remote_branches.length > 0) {
       const leases = actions.remote_branches.map((branch) =>
@@ -432,10 +451,12 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
         cwd: repoRoot,
       });
     }
+    failureStage = "worktree_remove";
     for (const worktree of actions.worktrees) {
       command("git", ["worktree", "remove", worktree.path], { cwd: repoRoot });
       removedWorktrees.push(worktree);
     }
+    failureStage = "local_branch_delete";
     const localInput = ["start"];
     for (const branch of actions.local_branches) {
       const sha = recoveryRefMap.get(`refs/heads/${branch}`);
@@ -446,6 +467,7 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
       cwd: repoRoot,
       input: localInput.join("\n"),
     });
+    failureStage = "target_absence_readback";
     const readback = verifyTargetsAbsent(repoRoot, actions);
     if (!readback.passed) throw new Error("Post-execution target absence readback failed.");
     return {
@@ -467,6 +489,7 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
     }
     return {
       status: "failed",
+      failure_stage: failureStage,
       error: error.message,
       rollback_attempted: true,
       rollback,
@@ -488,6 +511,10 @@ export function main() {
   const execute = hasFlag("execute");
   const authorizationPath = argument("authorization");
 
+  const trackedChanges = git(repoRoot, ["status", "--porcelain=v1", "--untracked-files=no"]);
+  if (trackedChanges) {
+    throw new Error("Tracked working tree must match HEAD before cleanup planning or execution.");
+  }
   const producerSha = git(repoRoot, ["rev-parse", "HEAD"]);
   const selectionRecords = loadGitBackedText(repoRoot, selectionFile, authorityRef)
     .split(/\r?\n/)
