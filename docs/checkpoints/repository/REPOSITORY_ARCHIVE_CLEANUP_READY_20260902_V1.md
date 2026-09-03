@@ -1,6 +1,6 @@
 # REPOSITORY_ARCHIVE_CLEANUP_READY_20260902_V1
 
-Status: FAILED SAFELY BEFORE MUTATION - EXECUTOR REPAIR REQUIRED
+Status: SECOND ATTEMPT FAILED SAFELY - REPARSE-SAFE EXECUTOR REPAIR REQUIRED
 
 Date: 2026-09-02 (America/Denver)
 
@@ -83,6 +83,24 @@ and safe relative to current production authority.
 - No target has an open PR or live automation reference.
 - No branch, worktree, tag, file, PR, artifact, database row, or Storage object
   was removed by this gate.
+- A second exactly authorized attempt ran from
+  `bd7675a2a3c1efd21a93dd4fd09d4be13395a18b` with execution fingerprint
+  `45d1c55870ea2dde39fcc6ca189996339f0f4cced29ee5e8146c923e8a505445`.
+- Its atomic remote deletion succeeded, but the first Windows worktree removal
+  unregistered `C:/grookai_vault_active_runtime_codeql` and then failed on a
+  reparse point with `Invalid argument`.
+- Automatic remote rollback passed. The partial directory was preserved intact,
+  and the exact worktree was reconstructed at its original path on
+  `security/active-runtime-codeql-v2` at
+  `0d7856775f35d39d6bf6df55364a67ac1eaf1130`.
+- Direct readback now proves all 203 local targets, 135 remote targets, and 39
+  registered worktrees are present. The reconstructed worktree is clean.
+- The preserved partial directory remains at
+  `C:/grookai_vault_active_runtime_codeql_failed_cleanup_preserved_20260902T2208MDT`.
+- The target inventory contains 222 Windows reparse points across 20 worktrees.
+  All 222 are untracked generated links and require manifest-bound preservation
+  before removal.
+- Both prior execution authorizations are consumed and cannot be reused.
 - Any authority or target drift invalidates the execution fingerprint.
 
 ## What Must Never Be Broken
@@ -106,9 +124,14 @@ and safe relative to current production authority.
 - `docs/audits/repository_archive_cleanup_final_revalidation_20260903/cleanup_execution_authorization.json`
 - `docs/audits/repository_archive_cleanup_final_revalidation_20260903/CLEANUP_EXECUTION_CHECKPOINT_V1.md`
 - `docs/audits/repository_archive_cleanup_final_revalidation_20260903/artifact_hashes.json`
+- `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/cleanup_execution_plan.json`
+- `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/FAILED_ATTEMPT_REPORT_V2.md`
+- `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/manual_worktree_restoration_readback.json`
+- `docs/audits/repository_archive_cleanup_postrepair_dry_run_20260903/artifact_hashes_v2.json`
 
 ## Explicit Next Gate
 
-Merge the sparse-hook repair, rerun the complete dry-run from the new frozen
-`main`, and obtain a new exact authorization bound to its producer SHA and
-execution fingerprint. The failed authorization must not be reused.
+Merge the reparse-safe repair, complete all post-merge checks, rerun the full
+no-write execution plan from the new frozen `main`, and obtain a new exact
+authorization bound to its producer SHA, reparse-aware action manifest, and
+execution fingerprint. Neither failed authorization may be reused.

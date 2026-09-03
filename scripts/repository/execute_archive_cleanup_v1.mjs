@@ -1,6 +1,16 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  readlinkSync,
+  renameSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -95,6 +105,171 @@ function loadGitBackedText(repoRoot, file, ref) {
 
 function normalizePath(value) {
   return String(value).replaceAll("\\", "/").replace(/\/$/, "").toLowerCase();
+}
+
+function pathEntryExists(value) {
+  try {
+    lstatSync(value);
+    return true;
+  } catch (error) {
+    if (error?.code === "ENOENT") return false;
+    throw error;
+  }
+}
+
+function pathIsInside(parent, candidate) {
+  const relative = path.relative(path.resolve(parent), path.resolve(candidate));
+  return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
+}
+
+function normalizedRelativePath(root, candidate) {
+  const relative = path.relative(path.resolve(root), path.resolve(candidate));
+  if (!relative || relative.startsWith("..") || path.isAbsolute(relative)) {
+    throw new Error(`Unsafe worktree-relative path: ${candidate}`);
+  }
+  return relative.replaceAll("\\", "/");
+}
+
+export function inventoryWorktreeReparsePoints(worktreePath) {
+  const root = path.resolve(worktreePath);
+  if (!pathEntryExists(root) || !lstatSync(root).isDirectory()) {
+    throw new Error(`Worktree path is unavailable: ${worktreePath}`);
+  }
+  const points = [];
+  const visit = (directory) => {
+    let entries;
+    try {
+      entries = readdirSync(directory, { withFileTypes: true });
+    } catch (error) {
+      throw new Error(`Cannot inventory worktree filesystem ${directory}: ${error.message}`);
+    }
+    for (const entry of entries) {
+      const absolute = path.join(directory, entry.name);
+      const stats = lstatSync(absolute);
+      if (stats.isSymbolicLink()) {
+        points.push({
+          relative_path: normalizedRelativePath(root, absolute),
+          link_target: readlinkSync(absolute),
+          entry_type: "symbolic_link_or_junction",
+        });
+      } else if (stats.isDirectory()) {
+        visit(absolute);
+      }
+    }
+  };
+  visit(root);
+  return points.sort((a, b) => a.relative_path.localeCompare(b.relative_path));
+}
+
+function trackedReparsePaths(worktreePath, points) {
+  const tracked = [];
+  for (let offset = 0; offset < points.length; offset += 100) {
+    const chunk = points.slice(offset, offset + 100).map((point) => point.relative_path);
+    const result = commandResult("git", ["ls-files", "--", ...chunk], { cwd: worktreePath });
+    if (result.status !== 0) {
+      throw new Error(`Cannot verify tracked reparse points in ${worktreePath}.`);
+    }
+    tracked.push(...result.stdout.split(/\r?\n/).filter(Boolean));
+  }
+  return unique(tracked.map((value) => value.replaceAll("\\", "/")));
+}
+
+export function attachWorktreeFilesystemPlans({ worktrees, preservationRoot, producerSha }) {
+  const resolvedPreservationRoot = path.resolve(preservationRoot);
+  for (const worktree of worktrees) {
+    if (pathIsInside(worktree.path, resolvedPreservationRoot)) {
+      throw new Error("Worktree preservation root cannot be inside a cleanup target.");
+    }
+    if (
+      path.parse(path.resolve(worktree.path)).root.toLowerCase() !==
+      path.parse(resolvedPreservationRoot).root.toLowerCase()
+    ) {
+      throw new Error("Worktree preservation requires an atomic same-volume rename.");
+    }
+  }
+  return worktrees.map((worktree) => {
+    const worktreeRoot = path.resolve(worktree.path);
+    const worktreeKey = sha256(normalizePath(worktree.path)).slice(0, 16);
+    const archiveRoot = path.join(resolvedPreservationRoot, producerSha, worktreeKey);
+    const inventory = inventoryWorktreeReparsePoints(worktreeRoot);
+    const trackedPoints = trackedReparsePaths(worktreeRoot, inventory);
+    if (trackedPoints.length > 0) {
+      throw new Error(`Tracked reparse points cannot be relocated: ${trackedPoints.join(", ")}`);
+    }
+    const reparsePoints = inventory.map((point) => {
+      const sourcePath = path.resolve(worktreeRoot, point.relative_path);
+      const preservationPath = path.resolve(archiveRoot, "reparse", point.relative_path);
+      if (!pathIsInside(worktreeRoot, sourcePath) || !pathIsInside(archiveRoot, preservationPath)) {
+        throw new Error(`Unsafe reparse preservation path: ${point.relative_path}`);
+      }
+      if (pathEntryExists(preservationPath)) {
+        throw new Error(`Reparse preservation collision: ${preservationPath}`);
+      }
+      return {
+        ...point,
+        source_path: sourcePath.replaceAll("\\", "/"),
+        preservation_path: preservationPath.replaceAll("\\", "/"),
+      };
+    });
+    const failedResidualPath = path.resolve(archiveRoot, "failed_worktree_residual");
+    if (pathEntryExists(failedResidualPath)) {
+      throw new Error(`Failed-worktree preservation collision: ${failedResidualPath}`);
+    }
+    return {
+      ...worktree,
+      filesystem: {
+        reparse_points: reparsePoints,
+        failed_residual_path: failedResidualPath.replaceAll("\\", "/"),
+      },
+    };
+  });
+}
+
+function verifyWorktreeFilesystemPlans(worktrees) {
+  const mismatches = [];
+  for (const worktree of worktrees) {
+    let current;
+    try {
+      current = inventoryWorktreeReparsePoints(worktree.path);
+    } catch (error) {
+      mismatches.push({ worktree: worktree.path, reason: error.message });
+      continue;
+    }
+    const expected = worktree.filesystem.reparse_points.map((point) => ({
+      relative_path: point.relative_path,
+      link_target: point.link_target,
+      entry_type: point.entry_type,
+    }));
+    if (JSON.stringify(current) !== JSON.stringify(expected)) {
+      mismatches.push({ worktree: worktree.path, reason: "reparse_inventory_drift" });
+    }
+    try {
+      const trackedPoints = trackedReparsePaths(worktree.path, current);
+      if (trackedPoints.length > 0) {
+        mismatches.push({
+          worktree: worktree.path,
+          reason: `tracked_reparse_points:${trackedPoints.join(",")}`,
+        });
+      }
+    } catch (error) {
+      mismatches.push({ worktree: worktree.path, reason: error.message });
+    }
+    for (const point of worktree.filesystem.reparse_points) {
+      if (pathEntryExists(point.preservation_path)) {
+        mismatches.push({
+          worktree: worktree.path,
+          reason: `reparse_preservation_collision:${point.preservation_path}`,
+        });
+      }
+    }
+    if (pathEntryExists(worktree.filesystem.failed_residual_path)) {
+      mismatches.push({
+        worktree: worktree.path,
+        reason: `failed_residual_collision:${worktree.filesystem.failed_residual_path}`,
+      });
+    }
+  }
+  return { passed: mismatches.length === 0, mismatches };
 }
 
 function assertHash(label, actual, expected) {
@@ -201,6 +376,7 @@ function actionManifest(actions) {
   return {
     local_branches: actions.local_branches,
     remote_branches: actions.remote_branches,
+    worktree_preservation_root: actions.worktree_preservation_root,
     worktrees: actions.worktrees,
   };
 }
@@ -234,7 +410,9 @@ function renderCheckpoint(plan, authorization) {
 - Rollback attempted: \`${plan.execution_result.rollback_attempted}\`
 - Rollback passed: \`${plan.execution_result.rollback?.passed ?? "not_applicable"}\`
 - Restoration readback passed: \`${plan.execution_result.restoration_readback?.passed ?? "not_applicable"}\`
+- Worktrees attempted before failure: \`${plan.execution_result.attempted_worktrees_before_failure ?? "not_applicable"}\`
 - Worktrees removed before failure: \`${plan.execution_result.removed_worktrees_before_failure ?? "not_applicable"}\`
+- Reparse points relocated before failure: \`${plan.execution_result.relocated_reparse_points_before_failure ?? "not_applicable"}\`
 - Full failure and readback evidence: \`cleanup_execution_plan.json\`
 
 `
@@ -267,6 +445,7 @@ worktree, tag, pull-request, filesystem, database, or Storage mutation.
 - Local branches: \`${plan.actions.counts.local_branches}\`
 - Remote branches: \`${plan.actions.counts.remote_branches}\`
 - Clean linked worktrees: \`${plan.actions.counts.worktrees}\`
+- Preserved worktree reparse points: \`${plan.actions.counts.reparse_points}\`
 
 ## Recovery Chain
 
@@ -292,10 +471,11 @@ ${executionResult}## Execution Order
 
 1. Repeat complete live revalidation immediately before mutation.
 2. Delete the exact remote branches in one atomic push.
-3. Remove only the exact clean registered worktrees.
-4. Delete local refs in one transactional \`git update-ref\` operation.
-5. Verify every target is absent and every non-target boundary remains untouched.
-6. On failure, restore remote and local refs to their frozen SHAs and reconstruct
+3. Relocate only manifest-bound worktree reparse points into the recovery root.
+4. Remove only the exact clean registered worktrees.
+5. Delete local refs in one transactional \`git update-ref\` operation.
+6. Verify every target is absent and every non-target boundary remains untouched.
+7. On failure, restore remote and local refs to their frozen SHAs and reconstruct
    only worktrees removed by this execution.
 
 ## What Must Never Be Broken
@@ -354,10 +534,31 @@ function verifyTargetsAbsent(repoRoot, actions) {
     remote_branches: actions.remote_branches.filter((branch) => remoteHeads.has(branch)),
     worktrees: actions.worktrees.filter((worktree) =>
       registeredWorktrees.has(normalizePath(worktree.path))).map((worktree) => worktree.path),
+    worktree_paths: actions.worktrees.filter((worktree) =>
+      pathEntryExists(worktree.path)).map((worktree) => worktree.path),
   };
+  const preservationMismatches = [];
+  for (const worktree of actions.worktrees) {
+    for (const point of worktree.filesystem.reparse_points) {
+      try {
+        if (
+          !pathEntryExists(point.preservation_path) ||
+          !lstatSync(point.preservation_path).isSymbolicLink() ||
+          readlinkSync(point.preservation_path) !== point.link_target
+        ) {
+          preservationMismatches.push(point.preservation_path);
+        }
+      } catch {
+        preservationMismatches.push(point.preservation_path);
+      }
+    }
+  }
   return {
-    passed: Object.values(remaining).every((rows) => rows.length === 0),
+    passed:
+      Object.values(remaining).every((rows) => rows.length === 0) &&
+      preservationMismatches.length === 0,
     remaining,
+    preserved_reparse_point_mismatches: preservationMismatches,
   };
 }
 
@@ -375,6 +576,21 @@ function verifyTargetsRestored(repoRoot, actions, recoveryRefMap) {
       const current = registeredWorktrees.get(normalizePath(worktree.path));
       return !current || current.branch !== worktree.branch || current.sha !== worktree.sha;
     }).map((worktree) => worktree.path),
+    worktree_paths: actions.worktrees.filter((worktree) =>
+      !pathEntryExists(worktree.path)).map((worktree) => worktree.path),
+    reparse_points: actions.worktrees.flatMap((worktree) =>
+      worktree.filesystem.reparse_points.filter((point) => {
+        try {
+          return (
+            !pathEntryExists(point.source_path) ||
+            !lstatSync(point.source_path).isSymbolicLink() ||
+            readlinkSync(point.source_path) !== point.link_target ||
+            pathEntryExists(point.preservation_path)
+          );
+        } catch {
+          return true;
+        }
+      }).map((point) => point.source_path)),
   };
   return {
     passed: Object.values(mismatches).every((rows) => rows.length === 0),
@@ -382,8 +598,52 @@ function verifyTargetsRestored(repoRoot, actions, recoveryRefMap) {
   };
 }
 
-function restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees) {
+function relocateReparsePoints(worktree, state) {
+  for (const point of worktree.filesystem.reparse_points) {
+    if (
+      !pathEntryExists(point.source_path) ||
+      !lstatSync(point.source_path).isSymbolicLink() ||
+      readlinkSync(point.source_path) !== point.link_target
+    ) {
+      throw new Error(`Reparse source drifted before relocation: ${point.source_path}`);
+    }
+    if (pathEntryExists(point.preservation_path)) {
+      throw new Error(`Reparse preservation path already exists: ${point.preservation_path}`);
+    }
+    mkdirSync(path.dirname(point.preservation_path), { recursive: true });
+    renameSync(point.source_path, point.preservation_path);
+    state.moved_reparse_points.push(point);
+  }
+}
+
+function restoreReparsePoints(state, failures) {
+  for (const point of [...state.moved_reparse_points].reverse()) {
+    try {
+      if (!pathEntryExists(point.preservation_path)) {
+        failures.push(`reparse_preservation_missing:${point.preservation_path}`);
+        continue;
+      }
+      if (pathEntryExists(point.source_path)) {
+        failures.push(`reparse_restore_collision:${point.source_path}`);
+        continue;
+      }
+      mkdirSync(path.dirname(point.source_path), { recursive: true });
+      renameSync(point.preservation_path, point.source_path);
+      if (
+        !lstatSync(point.source_path).isSymbolicLink() ||
+        readlinkSync(point.source_path) !== point.link_target
+      ) {
+        failures.push(`reparse_restore_readback_failed:${point.source_path}`);
+      }
+    } catch (error) {
+      failures.push(`reparse_restore_failed:${point.source_path}:${error.message}`);
+    }
+  }
+}
+
+export function restoreRefs(repoRoot, actions, recoveryRefMap, attemptedWorktrees) {
   const failures = [];
+  const worktreeRestorations = [];
   const missingLocalBranches = [];
   for (const branch of actions.local_branches) {
     const ref = `refs/heads/${branch}`;
@@ -428,19 +688,64 @@ function restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees) {
     });
     if (result.status !== 0) failures.push("remote_ref_restore_failed");
   }
-  for (const worktree of [...removedWorktrees].reverse()) {
-    if (!existsSync(worktree.path)) {
-      const result = commandResult("git", ["worktree", "add", worktree.path, worktree.branch], {
-        cwd: repoRoot,
-      });
-      if (result.status !== 0) failures.push(`worktree_restore_failed:${worktree.path}`);
+  for (const state of [...attemptedWorktrees].reverse()) {
+    const worktree = state.worktree;
+    const restoration = {
+      path: worktree.path,
+      removal_started: state.removal_started,
+      removed: state.removed,
+      moved_reparse_points: state.moved_reparse_points.length,
+      residual_preserved_at: null,
+      reconstructed: false,
+    };
+    try {
+      let registered = registeredWorktreePaths(repoRoot).get(normalizePath(worktree.path));
+      if (!registered) {
+        if (pathEntryExists(worktree.path)) {
+          const residualPath = worktree.filesystem.failed_residual_path;
+          if (pathEntryExists(residualPath)) {
+            failures.push(`failed_residual_collision:${residualPath}`);
+            worktreeRestorations.push(restoration);
+            continue;
+          }
+          mkdirSync(path.dirname(residualPath), { recursive: true });
+          renameSync(worktree.path, residualPath);
+          restoration.residual_preserved_at = residualPath;
+        }
+        const result = commandResult("git", ["worktree", "add", worktree.path, worktree.branch], {
+          cwd: repoRoot,
+        });
+        if (result.status !== 0) {
+          failures.push(`worktree_restore_failed:${worktree.path}:${result.stderr}`);
+          worktreeRestorations.push(restoration);
+          continue;
+        }
+        restoration.reconstructed = true;
+        registered = registeredWorktreePaths(repoRoot).get(normalizePath(worktree.path));
+      }
+      if (
+        !registered ||
+        registered.branch !== worktree.branch ||
+        registered.sha !== worktree.sha ||
+        !pathEntryExists(worktree.path)
+      ) {
+        failures.push(`worktree_restore_identity_mismatch:${worktree.path}`);
+      }
+      restoreReparsePoints(state, failures);
+    } catch (error) {
+      failures.push(`worktree_restore_failed:${worktree.path}:${error.message}`);
     }
+    worktreeRestorations.push(restoration);
   }
-  return { passed: failures.length === 0, failures };
+  return {
+    passed: failures.length === 0,
+    failures,
+    worktree_restorations: worktreeRestorations,
+  };
 }
 
-function executeCleanup(repoRoot, actions, recoveryRefMap) {
-  const removedWorktrees = [];
+export function executeCleanup(repoRoot, actions, recoveryRefMap) {
+  const attemptedWorktrees = [];
   let failureStage = "remote_branch_delete";
   try {
     if (actions.remote_branches.length > 0) {
@@ -453,8 +758,17 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
     }
     failureStage = "worktree_remove";
     for (const worktree of actions.worktrees) {
+      const state = {
+        worktree,
+        moved_reparse_points: [],
+        removal_started: false,
+        removed: false,
+      };
+      attemptedWorktrees.push(state);
+      relocateReparsePoints(worktree, state);
+      state.removal_started = true;
       command("git", ["worktree", "remove", worktree.path], { cwd: repoRoot });
-      removedWorktrees.push(worktree);
+      state.removed = true;
     }
     failureStage = "local_branch_delete";
     const localInput = ["start"];
@@ -473,11 +787,15 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
     return {
       status: "completed",
       rollback_attempted: false,
-      removed_worktrees: removedWorktrees.length,
+      removed_worktrees: attemptedWorktrees.filter((state) => state.removed).length,
+      preserved_reparse_points: attemptedWorktrees.reduce(
+        (total, state) => total + state.moved_reparse_points.length,
+        0,
+      ),
       readback,
     };
   } catch (error) {
-    const rollback = restoreRefs(repoRoot, actions, recoveryRefMap, removedWorktrees);
+    const rollback = restoreRefs(repoRoot, actions, recoveryRefMap, attemptedWorktrees);
     let restorationReadback;
     try {
       restorationReadback = verifyTargetsRestored(repoRoot, actions, recoveryRefMap);
@@ -494,7 +812,12 @@ function executeCleanup(repoRoot, actions, recoveryRefMap) {
       rollback_attempted: true,
       rollback,
       restoration_readback: restorationReadback,
-      removed_worktrees_before_failure: removedWorktrees.length,
+      attempted_worktrees_before_failure: attemptedWorktrees.length,
+      removed_worktrees_before_failure: attemptedWorktrees.filter((state) => state.removed).length,
+      relocated_reparse_points_before_failure: attemptedWorktrees.reduce(
+        (total, state) => total + state.moved_reparse_points.length,
+        0,
+      ),
     };
   }
 }
@@ -507,6 +830,10 @@ export function main() {
   const recoveryReadbackFile = argument("recovery-readback", DEFAULT_RECOVERY_READBACK);
   const recoveryHashesFile = argument("recovery-hashes", DEFAULT_RECOVERY_HASHES);
   const recoveryRoot = path.resolve(argument("recovery-root", DEFAULT_RECOVERY_ROOT));
+  const worktreePreservationRoot = path.resolve(argument(
+    "worktree-preservation-root",
+    path.join(recoveryRoot, "repository_cleanup_worktree_filesystem"),
+  ));
   const outDir = path.resolve(repoRoot, argument("out-dir", DEFAULT_OUT_DIR));
   const execute = hasFlag("execute");
   const authorizationPath = argument("authorization");
@@ -592,6 +919,20 @@ export function main() {
   );
 
   const actions = buildCleanupActions(candidates);
+  actions.worktree_preservation_root = worktreePreservationRoot.replaceAll("\\", "/");
+  actions.worktrees = attachWorktreeFilesystemPlans({
+    worktrees: actions.worktrees,
+    preservationRoot: worktreePreservationRoot,
+    producerSha,
+  });
+  actions.counts.reparse_points = actions.worktrees.reduce(
+    (total, worktree) => total + worktree.filesystem.reparse_points.length,
+    0,
+  );
+  const filesystemPreflight = verifyWorktreeFilesystemPlans(actions.worktrees);
+  if (!filesystemPreflight.passed) {
+    throw new Error("Worktree filesystem preservation preflight failed.");
+  }
   for (const branch of [...actions.local_branches, ...actions.remote_branches]) {
     assertSafeBranch(repoRoot, branch);
   }
@@ -642,6 +983,12 @@ export function main() {
       passed_groups: live.evaluated.length - drifted.length,
       drifted_groups: drifted.length,
       inventory_failures: inventoryFailures,
+    },
+    filesystem_preflight: {
+      passed: filesystemPreflight.passed,
+      reparse_points: actions.counts.reparse_points,
+      preservation_root: actions.worktree_preservation_root,
+      mismatches: filesystemPreflight.mismatches,
     },
     recovery: {
       repository: recoveryRepository,
@@ -695,6 +1042,10 @@ export function main() {
       candidate.selection_status !== "selected_for_recovery");
     if (secondPass.authoritySha !== plan.authority_sha || secondPassDrift.length > 0) {
       throw new Error("Immediate pre-mutation revalidation drifted from the authorized plan.");
+    }
+    const secondFilesystemPass = verifyWorktreeFilesystemPlans(actions.worktrees);
+    if (!secondFilesystemPass.passed) {
+      throw new Error("Immediate pre-mutation worktree filesystem inventory drifted.");
     }
     const recoveryRefMap = new Map(
       recoveryManifest.recovery_refs.map((record) => [record.ref, record.sha]),
