@@ -212,13 +212,20 @@ async function schemaProof(client) {
     exists(select 1 from information_schema.columns where table_schema='public'
       and table_name='sealed_product_release_pointer' and column_name='game_key')
       as pointer_game_key,
+    to_regclass('public.sealed_product_game_release_controls') is not null
+      as sealed_release_control,
+    to_regprocedure('public.sealed_product_game_visible_to_request_v1(text)')
+      is not null as sealed_visibility_function,
     to_regprocedure('public.get_active_sealed_product_pricing_v2(text,text,integer,integer)')
       is not null as read_rpc_v2,
     (select release_status from public.catalog_game_release_controls
-      where game_code='mtg') as mtg_release_status`)).rows[0];
+      where game_code='mtg') as mtg_catalog_release_status,
+    (select release_status from public.sealed_product_game_release_controls
+      where game_key='mtg') as mtg_sealed_release_status`)).rows[0];
   return { ...row, valid: row.release_game_key === true &&
-    row.pointer_game_key === true && row.read_rpc_v2 === true &&
-    row.mtg_release_status === 'hidden' };
+    row.pointer_game_key === true && row.sealed_release_control === true &&
+    row.sealed_visibility_function === true && row.read_rpc_v2 === true &&
+    row.mtg_sealed_release_status === 'hidden' };
 }
 
 function emptyBoundary(boundary) {

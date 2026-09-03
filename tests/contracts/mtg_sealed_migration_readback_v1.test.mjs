@@ -5,18 +5,26 @@ import test from 'node:test';
 import {
   MTG_SEALED_MIGRATION_SHA256_V1,
   MTG_SEALED_MIGRATION_VERSION_V1,
+  MTG_SEALED_VISIBILITY_MIGRATION_SHA256_V1,
+  MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1,
   validateMtgSealedMigrationReadbackV1,
 } from '../../backend/pricing/mtg_sealed_migration_readback_v1.mjs';
 
 function fixture() {
   return {
     migration_file_sha256: MTG_SEALED_MIGRATION_SHA256_V1,
-    ledger: [{ version: MTG_SEALED_MIGRATION_VERSION_V1, statement_count: 1 }],
+    visibility_migration_file_sha256: MTG_SEALED_VISIBILITY_MIGRATION_SHA256_V1,
+    ledger: [
+      { version: MTG_SEALED_MIGRATION_VERSION_V1, statement_count: 1 },
+      { version: MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1, statement_count: 1 },
+    ],
     later_migration_count: 0,
     columns: [
       { table_name: 'sealed_product_release_pointer', column_name: 'game_key',
         data_type: 'text', is_nullable: 'NO' },
       { table_name: 'sealed_product_releases', column_name: 'game_key',
+        data_type: 'text', is_nullable: 'NO' },
+      { table_name: 'sealed_product_game_release_controls', column_name: 'game_key',
         data_type: 'text', is_nullable: 'NO' },
     ],
     constraints: [
@@ -38,6 +46,21 @@ function fixture() {
       { constraint_name: 'sealed_product_release_pointer_previous_release_game_fk',
         table_name: 'sealed_product_release_pointer', constraint_type: 'f',
         definition: 'FOREIGN KEY (previous_release_id, game_key) REFERENCES sealed_product_releases(id, game_key) ON DELETE RESTRICT' },
+      { constraint_name: 'sealed_product_game_release_controls_pkey',
+        table_name: 'sealed_product_game_release_controls', constraint_type: 'p',
+        definition: 'PRIMARY KEY (game_key)' },
+      { constraint_name: 'sealed_product_game_release_controls_game_key_fkey',
+        table_name: 'sealed_product_game_release_controls', constraint_type: 'f',
+        definition: 'FOREIGN KEY (game_key) REFERENCES games(code) ON DELETE RESTRICT' },
+      { constraint_name: 'sealed_product_game_release_controls_release_status_check',
+        table_name: 'sealed_product_game_release_controls', constraint_type: 'c',
+        definition: "CHECK (release_status = ANY (ARRAY['hidden'::text, 'signed_in'::text, 'public'::text]))" },
+      { constraint_name: 'sealed_product_game_release_controls_evidence_check',
+        table_name: 'sealed_product_game_release_controls', constraint_type: 'c',
+        definition: "CHECK (jsonb_typeof(evidence) = 'object'::text)" },
+      { constraint_name: 'sealed_product_game_release_controls_key_check',
+        table_name: 'sealed_product_game_release_controls', constraint_type: 'c',
+        definition: "CHECK (game_key = lower(game_key) AND btrim(game_key) <> ''::text)" },
     ].map((row) => ({ ...row, validated: true })),
     indexes: [{ index_name: 'sealed_product_releases_game_state_idx', valid: true,
       ready: true, definition: '(game_key, release_state, created_at DESC)' }],
@@ -51,16 +74,23 @@ function fixture() {
         security_definer: true, search_path: ['search_path=pg_catalog, public'],
         public_execute: false, anon_execute: false, authenticated_execute: true,
         service_role_execute: true,
-        definition: 'release.game_key = pointer.game_key catalog_game_visible_to_request_v1(family.game_key)' },
+        definition: 'release.game_key = pointer.game_key catalog_game_visible_to_request_v1(family.game_key) sealed_product_game_visible_to_request_v1(family.game_key)' },
       { function_name: 'get_active_sealed_product_pricing_v2', volatility: 's',
         security_definer: true, search_path: ['search_path=pg_catalog, public'],
         public_execute: false, anon_execute: false, authenticated_execute: true,
         service_role_execute: true,
-        definition: 'family.game_key = lower(btrim(p_game_key)) catalog_game_visible_to_request_v1(family.game_key)' },
+        definition: 'family.game_key = lower(btrim(p_game_key)) catalog_game_visible_to_request_v1(family.game_key) sealed_product_game_visible_to_request_v1(family.game_key)' },
+      { function_name: 'sealed_product_game_visible_to_request_v1', volatility: 's',
+        security_definer: true, search_path: ['search_path=pg_catalog, public'],
+        public_execute: false, anon_execute: false, authenticated_execute: true,
+        service_role_execute: true,
+        definition: "sealed_product_game_release_controls control control.release_status = 'signed_in' coalesce(auth.role(), ''::text)" },
     ],
-    relations: ['sealed_product_release_pointer', 'sealed_product_releases']
+    relations: ['sealed_product_release_pointer', 'sealed_product_releases',
+      'sealed_product_game_release_controls']
       .map((relation_name) => ({ relation_name, rls_enabled: true, rls_forced: true })),
-    policies: ['sealed_product_release_pointer', 'sealed_product_releases']
+    policies: ['sealed_product_release_pointer', 'sealed_product_releases',
+      'sealed_product_game_release_controls']
       .map((relation_name) => ({ relation_name, policy_count: 1,
         service_role_all_count: 1, other_role_policy_count: 0 })),
     table_privileges: [
@@ -72,31 +102,27 @@ function fixture() {
         service_insert: false, service_update: false, service_delete: false,
         service_truncate: false, service_references: false, service_trigger: false,
         public_any: false, authenticated_any: false, anon_any: false },
+      { table_name: 'sealed_product_game_release_controls', service_select: true,
+        service_insert: true, service_update: true, service_delete: false,
+        service_truncate: false, service_references: false, service_trigger: false,
+        public_any: false, authenticated_any: false, anon_any: false },
     ],
     data_boundaries: { release_null_game_count: 0, pointer_null_game_count: 0,
       cross_game_member_count: 0, pointer_release_game_mismatch_count: 0,
       pointer_previous_game_mismatch_count: 0, one_piece_pointer_count: 1,
+      sealed_control_count: 2,
       mtg_release_count: 0, mtg_pointer_count: 0, mtg_visible_rpc_row_count: 0,
-      mtg_release_status: 'hidden' },
+      mtg_catalog_release_status: 'signed_in', mtg_sealed_release_status: 'hidden',
+      one_piece_catalog_release_status: 'signed_in',
+      one_piece_sealed_release_status: 'signed_in' },
   };
 }
 
 test('complete readback proves migration schema, security, and data boundaries', () => {
-  assert.deepEqual(validateMtgSealedMigrationReadbackV1(fixture()), {
-    valid: true,
-    checks: {
-      migration_file_hash: true,
-      ledger: true,
-      columns: true,
-      constraints: true,
-      index: true,
-      functions: true,
-      rls: true,
-      policies: true,
-      table_privileges: true,
-      data_boundaries: true,
-    },
-  });
+  const validation = validateMtgSealedMigrationReadbackV1(fixture());
+  assert.equal(validation.valid, true,
+    JSON.stringify(validation.details.constraint_checks, null, 2));
+  assert.ok(Object.values(validation.checks).every(Boolean));
 });
 
 test('readback fails closed for a grant or cross-game data regression', () => {

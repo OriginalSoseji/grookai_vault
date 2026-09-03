@@ -10,6 +10,8 @@ import pg from 'pg';
 import {
   MTG_SEALED_MIGRATION_SHA256_V1,
   MTG_SEALED_MIGRATION_VERSION_V1,
+  MTG_SEALED_VISIBILITY_MIGRATION_SHA256_V1,
+  MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1,
   validateMtgSealedMigrationReadbackV1,
 } from '../../backend/pricing/mtg_sealed_migration_readback_v1.mjs';
 import { pgSslConfig } from './japanese_master_index_v4/read_only_guard_v1.mjs';
@@ -19,6 +21,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const MIGRATION_NAME = 'sealed_product_per_game_release_v2';
 const MIGRATION_PATH = path.join(ROOT, 'supabase', 'migrations',
   `${MTG_SEALED_MIGRATION_VERSION_V1}_${MIGRATION_NAME}.sql`);
+const VISIBILITY_MIGRATION_PATH = path.join(ROOT, 'supabase', 'migrations',
+  `${MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1}_sealed_product_visibility_boundary_v1.sql`);
 
 function parseArgs(argv) {
   const args = { expectedHeadSha: '', envFile: 'C:\\grookai_vault\\.env.local',
@@ -62,19 +66,22 @@ function numericRow(row) {
     [key, typeof value === 'string' && /^\d+$/.test(value) ? Number(value) : value]));
 }
 
-async function collectProof(client, migrationFileSha256) {
+async function collectProof(client, migrationFileSha256,
+  visibilityMigrationFileSha256) {
   const ledger = (await client.query(`select version,name,
       cardinality(statements)::integer as statement_count
-    from supabase_migrations.schema_migrations where version=$1`,
-  [MTG_SEALED_MIGRATION_VERSION_V1])).rows;
+    from supabase_migrations.schema_migrations where version=any($1::text[])
+    order by version`, [[MTG_SEALED_MIGRATION_VERSION_V1,
+    MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1]])).rows;
   const laterMigrationCount = Number((await client.query(`select count(*)::integer count
     from supabase_migrations.schema_migrations where version>$1`,
-  [MTG_SEALED_MIGRATION_VERSION_V1])).rows[0].count);
+  [MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1])).rows[0].count);
   const columns = (await client.query(`select table_name,column_name,data_type,is_nullable
     from information_schema.columns where table_schema='public'
       and column_name='game_key'
       and table_name=any($1::text[]) order by table_name`,
-  [['sealed_product_releases', 'sealed_product_release_pointer']])).rows;
+  [['sealed_product_releases', 'sealed_product_release_pointer',
+    'sealed_product_game_release_controls']])).rows;
   const constraints = (await client.query(`select relation.relname as table_name,
       constraint_row.conname as constraint_name,
       constraint_row.contype as constraint_type,
@@ -91,6 +98,11 @@ async function collectProof(client, migrationFileSha256) {
     'sealed_product_release_pointer_pkey',
     'sealed_product_release_pointer_release_game_fk',
     'sealed_product_release_pointer_previous_release_game_fk',
+    'sealed_product_game_release_controls_pkey',
+    'sealed_product_game_release_controls_game_key_fkey',
+    'sealed_product_game_release_controls_release_status_check',
+    'sealed_product_game_release_controls_evidence_check',
+    'sealed_product_game_release_controls_key_check',
   ]])).rows;
   const indexes = (await client.query(`select index_row.relname as index_name,
       index_state.indisvalid as valid,index_state.indisready as ready,
@@ -122,13 +134,15 @@ async function collectProof(client, migrationFileSha256) {
     'sealed_product_set_active_release_v1',
     'get_active_sealed_product_pricing_v1',
     'get_active_sealed_product_pricing_v2',
+    'sealed_product_game_visible_to_request_v1',
   ]])).rows;
   const relations = (await client.query(`select relation.relname as relation_name,
       relation.relrowsecurity as rls_enabled,relation.relforcerowsecurity as rls_forced
     from pg_class relation join pg_namespace namespace on namespace.oid=relation.relnamespace
     where namespace.nspname='public' and relation.relname=any($1::text[])
     order by relation.relname`,
-  [['sealed_product_releases', 'sealed_product_release_pointer']])).rows;
+  [['sealed_product_releases', 'sealed_product_release_pointer',
+    'sealed_product_game_release_controls']])).rows;
   const policies = (await client.query(`select tablename as relation_name,
       count(*)::integer as policy_count,
       count(*) filter(where roles::text='{service_role}' and cmd='ALL'
@@ -137,7 +151,8 @@ async function collectProof(client, migrationFileSha256) {
         as other_role_policy_count
     from pg_policies where schemaname='public' and tablename=any($1::text[])
     group by tablename order by tablename`,
-  [['sealed_product_releases', 'sealed_product_release_pointer']])).rows.map(numericRow);
+  [['sealed_product_releases', 'sealed_product_release_pointer',
+    'sealed_product_game_release_controls']])).rows.map(numericRow);
   const tablePrivileges = (await client.query(`select table_name,
       has_table_privilege('service_role','public.'||table_name,'select') service_select,
       has_table_privilege('service_role','public.'||table_name,'insert') service_insert,
@@ -170,7 +185,8 @@ async function collectProof(client, migrationFileSha256) {
        has_table_privilege('anon','public.'||table_name,'references') or
        has_table_privilege('anon','public.'||table_name,'trigger')) anon_any
     from unnest($1::text[]) table_name order by table_name`,
-  [['sealed_product_releases', 'sealed_product_release_pointer']])).rows;
+  [['sealed_product_releases', 'sealed_product_release_pointer',
+    'sealed_product_game_release_controls']])).rows;
   const dataBoundaries = numericRow((await client.query(`select
       (select count(*) from public.sealed_product_releases) release_count,
       (select count(*) from public.sealed_product_releases where game_key is null)
@@ -193,6 +209,8 @@ async function collectProof(client, migrationFileSha256) {
         one_piece_release_count,
       (select count(*) from public.sealed_product_release_pointer where game_key='one_piece')
         one_piece_pointer_count,
+      (select count(*) from public.sealed_product_game_release_controls)
+        sealed_control_count,
       (select count(*) from public.sealed_product_releases where game_key='mtg')
         mtg_release_count,
       (select count(*) from public.sealed_product_release_pointer where game_key='mtg')
@@ -200,8 +218,15 @@ async function collectProof(client, migrationFileSha256) {
       (select count(*) from public.get_active_sealed_product_pricing_v2('mtg',null,100,0))
         mtg_visible_rpc_row_count,
       (select release_status from public.catalog_game_release_controls
-        where game_code='mtg') mtg_release_status`)).rows[0]);
-  return { migration_file_sha256: migrationFileSha256, ledger,
+        where game_code='mtg') mtg_catalog_release_status,
+      (select release_status from public.sealed_product_game_release_controls
+        where game_key='mtg') mtg_sealed_release_status,
+      (select release_status from public.catalog_game_release_controls
+        where game_code='one_piece') one_piece_catalog_release_status,
+      (select release_status from public.sealed_product_game_release_controls
+        where game_key='one_piece') one_piece_sealed_release_status`)).rows[0]);
+  return { migration_file_sha256: migrationFileSha256,
+    visibility_migration_file_sha256: visibilityMigrationFileSha256, ledger,
     later_migration_count: laterMigrationCount, columns, constraints, indexes,
     functions, relations, policies, table_privileges: tablePrivileges,
     data_boundaries: dataBoundaries };
@@ -230,6 +255,12 @@ async function main() {
   if (migrationFileSha256 !== MTG_SEALED_MIGRATION_SHA256_V1) {
     throw new Error('Migration file hash does not match the governed authority');
   }
+  const visibilityMigrationBody = await fs.readFile(VISIBILITY_MIGRATION_PATH);
+  const visibilityMigrationFileSha256 = sha256(visibilityMigrationBody);
+  if (visibilityMigrationFileSha256 !==
+      MTG_SEALED_VISIBILITY_MIGRATION_SHA256_V1) {
+    throw new Error('Visibility migration hash does not match the governed source');
+  }
   dotenv.config({ path: args.envFile, quiet: true });
   const connectionString = process.env.SUPABASE_DB_URL;
   if (!connectionString) throw new Error('SUPABASE_DB_URL is required');
@@ -241,7 +272,8 @@ async function main() {
   let proof;
   try {
     await client.query('begin transaction isolation level repeatable read read only');
-    proof = await collectProof(client, migrationFileSha256);
+    proof = await collectProof(client, migrationFileSha256,
+      visibilityMigrationFileSha256);
     await client.query('commit');
   } finally {
     await client.query('rollback').catch(() => {});
@@ -252,7 +284,10 @@ async function main() {
     ? 'mtg_sealed_migration_readback_passed'
     : 'mtg_sealed_migration_readback_failed', repository: repo,
   migration_version: MTG_SEALED_MIGRATION_VERSION_V1,
-  migration_file_sha256: migrationFileSha256, validation, database_writes: 0 };
+  migration_file_sha256: migrationFileSha256,
+  visibility_migration_version: MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1,
+  visibility_migration_file_sha256: visibilityMigrationFileSha256,
+  validation, database_writes: 0 };
   const report = `# MTG Sealed Migration Readback V1\n\n` +
     `- Status: \`${summary.status}\`\n` +
     `- Producer: \`${repo.commit_sha}\`\n` +
@@ -262,6 +297,8 @@ async function main() {
     'run_plan.json': { operation: 'migration_readback', repository: repo,
       migration_version: MTG_SEALED_MIGRATION_VERSION_V1,
       migration_file_sha256: migrationFileSha256,
+      visibility_migration_version: MTG_SEALED_VISIBILITY_MIGRATION_VERSION_V1,
+      visibility_migration_file_sha256: visibilityMigrationFileSha256,
       transaction: 'repeatable read, read only', database_writes: 0 },
     'migration_readback.json': proof,
     'summary.json': summary,
