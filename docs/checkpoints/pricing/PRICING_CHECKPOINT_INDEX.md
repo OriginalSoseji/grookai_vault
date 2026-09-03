@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_97_MTG_SEALED_FORWARD_GATE_READY.md`
+
+This checkpoint records the forward-only repair of the still-unapplied
+per-game sealed release migration, the exact production ledger dry-run, and the
+2,904-variant MTG sealed plan frozen with zero writes.
+
+Decision locked there:
+
+- schema migration authority and MTG sealed catalog apply authority remain
+  separate; production never uses `--include-all`
+
+Unresolved risk afterward:
+
+- the per-game migration remains unapplied, and preflight, rollback canary,
+  durable MTG apply, and independent readback remain gated behind it
+
 ### `PRICING_CHECKPOINT_96_HEALTH_TIMEOUT_REPAIRED_SEVEN_CYCLE_RESTARTED.md`
 
 This checkpoint records the production post-publication health timeout, the
