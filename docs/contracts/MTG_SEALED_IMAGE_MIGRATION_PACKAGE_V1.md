@@ -17,7 +17,7 @@ all data, Storage, pricing, visibility, and client behavior unchanged.
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `ceafd70f206e5223bc87b3fa24f4cd3c105c54e3149f5bbbeb88daac140ba184`
+  `db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e`
 - Preserved image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Preserved signing-authorization candidate SHA-256:
@@ -37,7 +37,8 @@ If separately authorized and applied, this migration may create:
 - six service-role-only table policies;
 - six service-owned integrity, freeze, and pointer functions;
 - one authenticated signing-authorization predicate;
-- one unique binding constraint on existing sealed release members; and
+- two unique binding constraints on existing sealed mapping/release-member
+  tables; and
 - one migration-ledger row written by the migration runner.
 
 It contains one `BEGIN` and one `COMMIT`. The signing predicate grants only
@@ -83,7 +84,7 @@ Before any apply:
 ## Exact Next Gate
 
 The read-only production preflight passed from producer commit
-`55bd392b94a782dff1f180dd2831735e2c0b0bd5`; its permanent evidence is linked
+`aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c`; its permanent evidence is linked
 from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
 unless a later authority names the exact migration SHA-256 and producer commit.
 The next serial gate is a separately authorized schema-only apply and exact

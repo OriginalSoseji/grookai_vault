@@ -331,8 +331,9 @@ The command accepts a topic branch, merged `main`, or detached CI checkout; the
 exact SHA and tracked-clean state are authoritative. It must prove repository,
 API, and database project ref `ycdxbpibncqcchqiihfz`, canonical minimum counts,
 zero trait orphans, complete repository/production migration-version parity
-with this migration as the sole pending version, zero object collisions, unchanged
-sealed and cross-game state, and a read-only transaction. Preserve all six
+with this migration as the sole pending version, zero object collisions
+including both prerequisite unique constraints, unchanged sealed and cross-game
+state, and a read-only transaction. Preserve all six
 generated artifacts and their hash manifest. A `PASS` authorizes no write.
 
 The next production gate is the separately authorized schema-only migration

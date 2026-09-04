@@ -62,6 +62,16 @@ repository/remote version parity with this migration as the sole pending
 version. Member insertion now holds a `FOR SHARE` lock on the parent release,
 which conflicts with the freeze function's `FOR UPDATE` lock.
 
+The final review found three additional lineage gaps. Image evidence could carry
+source identifiers that did not match its selected mapping, image-release
+members could retain eligible evidence from a different coverage audit, and an
+older image release could be activated after the active price release advanced.
+The migration now binds all TCGPlayer source identifiers through a composite
+foreign key, requires member evidence to match both declared audit
+fingerprints, and serializes image activation against the exact active price
+release. The preflight collision scan now covers both prerequisite unique
+constraints. Earlier successful proofs remain preserved but are superseded.
+
 ## Alternatives Rejected
 
 - Apply the two candidate SQL files separately: rejected because production
@@ -78,12 +88,12 @@ which conflicts with the freeze function's `FOR UPDATE` lock.
 - Branch: `agent/mtg-sealed-image-migration-promotion-v1`
 - Package commit: `0a1c52a842bf9c78934ef00254324a2682b16dfa`
 - Final preflight producer commit:
-  `55bd392b94a782dff1f180dd2831735e2c0b0bd5`
+  `aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c`
 - Migration version: `20260904130000`
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `ceafd70f206e5223bc87b3fa24f4cd3c105c54e3149f5bbbeb88daac140ba184`
+  `db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e`
 - Image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Signing-authorization candidate SHA-256:
@@ -130,11 +140,10 @@ two release controls.
 ## Verification
 
 - Focused sealed-image and forward-gate contract tests after the final review
-  repair: `47/47` passed.
-- The repository-wide shipcheck passed backend contracts, web typecheck/lint,
-  strict web build, and Flutter analysis. Its Flutter run had two test-file
-  load transport failures (`HttpException` on localhost), not assertion
-  failures; both affected files then passed directly at `16/16`.
+  repair: `50/50` passed.
+- The repository-wide shipcheck passed `2,875/2,875` backend contracts, web
+  typecheck/lint, strict web build, Flutter analysis, and `657/657` Flutter
+  tests.
 - Production preflight status: `PASS` with `18/18` checks true.
 - Database writes: `0`.
 - Storage reads/writes: `0/0`.
@@ -149,20 +158,20 @@ two release controls.
 
 Directory:
 
-`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T14-46-04-690Z_canonical_preflight/`
+`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T15-10-25-562Z_canonical_preflight/`
 
 Key artifact hashes:
 
 - `preflight.json`:
-  `7e18cfa019a10350b8ab165d53b78184b9507c9515d2a00bfa0187205de464eb`
+  `8325c19f1967cc38060cdf01be547192d9792ba36df6169aa3d0d38a6777acc9`
 - `summary.json`:
-  `c19321155df4c83fc3d0ad688b36b52a57db8d855dd2827af30d31d35e18facc`
+  `98864a81d3f50dcc5d680d0caa8a96f1bd7b528b458b9d8acf40433798cd7ac8`
 - `migration_apply_plan.json`:
-  `8c9b3b61035d61d4cf0c33f0181c0665ebd009133a3d0ec0df10bf3990b35c0e`
+  `e84cbbc962b7bac942d469c2f6fcf583c085694a7159cfcc9a51076d9bf85578`
 - `signer_deployment_plan.json`:
-  `c4ac8f90cdb6daa37c0524eee07946eb21d865300067dbb836ee66287b61aa49`
+  `4649403cca941e98e78342f32f2fd82540e97adea5f0e4093bda99a9b5ed2bbd`
 - `MTG_SEALED_IMAGE_MIGRATION_PROMOTION_PREFLIGHT_V1.md`:
-  `1a09f0ed78cb38c7f70c081e85512526851dff0470e2066fe3ea20ae0a52fe3a`
+  `3eb5b7fe5cd29d2b89756b2fec85065e83bd7e8ce18a45a3c765a7113efcae7e`
 
 `artifact_hashes.json` is the permanent manifest for those five artifacts.
 
@@ -195,6 +204,9 @@ Key artifact hashes:
 - Hidden MTG sealed visibility and unchanged One Piece state.
 - Zero collisions and zero migration-ledger reuse before execution.
 - One atomic migration with the frozen SHA-256 above.
+- Every release member must be bound to the release's declared source-plan and
+  coverage fingerprints.
+- Image activation must target the currently active price release.
 - No client activation before image, price, RPC, signer, and signed-in canaries.
 - No provider URL may become production image authority.
 
@@ -202,12 +214,12 @@ Key artifact hashes:
 
 Obtain a separately scoped production authority for the schema-only apply of
 the exact migration SHA-256
-`ceafd70f206e5223bc87b3fa24f4cd3c105c54e3149f5bbbeb88daac140ba184`
+`db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e`
 from producer commit
-`55bd392b94a782dff1f180dd2831735e2c0b0bd5`.
+`aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c`.
 
 That gate must rerun fresh preflight, apply only the migration and migration
-ledger row, then read back the exact tables, constraint, indexes, triggers,
+ledger row, then read back the exact tables, constraints, indexes, triggers,
 functions, grants, forced RLS, policies, signing authorization, anonymous
 denial, migration ledger, unchanged sealed counts, unchanged visibility, and
 unchanged cross-game state. It does not authorize signer deployment, Storage,
