@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_115_MTG_SEALED_DURABLE_IMAGE_EXECUTOR_READY.md`
+
+This checkpoint records the separately fingerprinted resumable durable Storage
+executor, its 14/14 offline contract proof, and the credential-free execution
+plan for 2,141 exact objects supporting 2,149 variants.
+
+Decision locked there:
+
+- durable image execution uses exact collision readback, per-object verified
+  commits, cumulative retry ceilings, journal-bound resume, and narrowly owned
+  cleanup
+
+Unresolved risk afterward:
+
+- live durable Storage execution still requires exact separate authority; the
+  database image release, pointer, pricing refresh, RPC V3, signer, clients,
+  visibility, and scheduler remain serial later gates
+
 ### `PRICING_CHECKPOINT_114_MTG_SEALED_DURABLE_IMAGE_PLAN_FROZEN.md`
 
 This checkpoint records the complete zero-write durable Storage plan, the

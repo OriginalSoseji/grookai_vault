@@ -1,0 +1,19 @@
+{
+  "status": "ready_not_authorized_or_executed",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "406e78816c19ae9974b62ad2df596edc65ec3669",
+    "tracked_worktree_clean": true
+  },
+  "execution_fingerprint_sha256": "ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e",
+  "source_durable_plan_fingerprint_sha256": "92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc",
+  "selected_object_count": 2141,
+  "selected_variant_count": 2149,
+  "exclusion_count": 33,
+  "expected_durable_bytes": 157335339,
+  "source_http_requests": 0,
+  "storage_reads": 0,
+  "storage_writes": 0,
+  "storage_deletes": 0,
+  "database_connections": 0
+}
