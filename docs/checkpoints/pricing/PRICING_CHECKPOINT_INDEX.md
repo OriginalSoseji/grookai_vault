@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_114_MTG_SEALED_DURABLE_IMAGE_PLAN_FROZEN.md`
+
+This checkpoint records the complete zero-write durable Storage plan, the
+2,141 exact object / 2,149 variant / 33 exclusion reconciliation, and the
+correction that removes three excluded placeholder hashes from the earlier
+2,144 valid-image count.
+
+Decision locked there:
+
+- durable image ingestion uses per-object exact-readback commits, bounded
+  resumability, and collision hard stops without overwriting existing bytes
+
+Unresolved risk afterward:
+
+- the separately fingerprinted durable executor, live Storage authority,
+  database image release, pricing refresh, RPC V3, signer, clients, visibility,
+  and scheduler remain serial later gates
+
 ### `PRICING_CHECKPOINT_113_MTG_SEALED_STORAGE_CANARY_PASSED.md`
 
 This checkpoint records the complete 17-object source retrieval, collision,
@@ -45,7 +63,7 @@ Decision locked there:
 
 Unresolved risk afterward:
 
-- the 2,144-object durable Storage plan and execution, database image release,
+- the corrected 2,141-object durable Storage execution, database image release,
   pricing refresh, RPC V3, signer, clients, visibility, and scheduler remain
   serial later gates
 
