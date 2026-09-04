@@ -39,6 +39,14 @@ was repaired to use `sealed_product_candidates` and
 `sealed_product_variant_evidence`, a regression test was added, and the full
 repository shipcheck passed before the successful production preflight.
 
+Automated review then identified that the first successful proof did not bind
+the connection to the canonical Supabase project, did not include the rulebook
+canonical-count invariants, required the historical topic-branch name, and did
+not expose the new command in the operator playbook. Those findings were
+repaired before final readiness. The earlier successful artifact remains
+preserved as historical evidence but is superseded by the canonical preflight
+below and is not apply authority.
+
 ## Alternatives Rejected
 
 - Apply the two candidate SQL files separately: rejected because production
@@ -54,8 +62,8 @@ repository shipcheck passed before the successful production preflight.
 
 - Branch: `agent/mtg-sealed-image-migration-promotion-v1`
 - Package commit: `0a1c52a842bf9c78934ef00254324a2682b16dfa`
-- Preflight producer commit:
-  `3ba1ba69e39cf481b6b8076df292cce9e35b4124`
+- Final preflight producer commit:
+  `1108b13771a54845a457949bd472c4870c82ec6f`
 - Migration version: `20260904130000`
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
@@ -76,6 +84,11 @@ The successful preflight ran in a transaction with both
 `transaction_read_only` and `default_transaction_read_only` equal to `on`.
 Every validation check passed:
 
+- repository, API, and database project refs all matched canonical production
+  project `ycdxbpibncqcchqiihfz`;
+- canonical counts were `170,404` card prints, `3,397` sets, and `32,903`
+  card-print trait rows, all above the rulebook minimums;
+- card-print trait orphans were `0`;
 - repository and package identities matched;
 - migration ledger count for this version was `0`;
 - duplicate repository migration versions were `0`;
@@ -89,7 +102,7 @@ Every validation check passed:
 - all six proposed image resources had zero production rows because the schema
   remains absent;
 - before and after fingerprints matched at
-  `c9401f2bd3b991a88c3787744e6a16a8519069029c370ddf224393a4b1e28fe2`.
+  `988f55952a35acb83d1692296f8e7b676bb607841eb56fddbfba54adc5ca24a5`.
 
 Observed sealed-world counts were `479` families, `3,294` variants, `3,307`
 candidates, `3,294` reviews, `3,294` mappings, `15,801` evidence rows, `3,153`
@@ -98,10 +111,11 @@ two release controls.
 
 ## Verification
 
-- Focused migration/candidate contract tests after repair: `19/19` passed.
+- Focused migration/candidate and operator contract tests after final review
+  repair: `26/26` passed.
 - Full pre-commit shipcheck: passed.
 - Flutter tests in the full shipcheck: `657/657` passed.
-- Production preflight status: `PASS` with `16/16` checks true.
+- Production preflight status: `PASS` with `18/18` checks true.
 - Database writes: `0`.
 - Storage reads/writes: `0/0`.
 - Provider calls: `0`.
@@ -115,20 +129,20 @@ two release controls.
 
 Directory:
 
-`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T12-53-47-562Z_preflight/`
+`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T13-28-20-811Z_canonical_preflight/`
 
 Key artifact hashes:
 
 - `preflight.json`:
-  `fb16878b11fcf10c1a374791dd3482466fad850c1406b2d78a049a73fb688e77`
+  `c6e89964ed409560012939adca677133722d8f3236194535e642977504c027e2`
 - `summary.json`:
-  `ecd8db977a3586d2ddae4a6c92078558bdd7a5acffbd7970d3316efb87b32cfd`
+  `84d5e57610ee2971baa7a2f8eea0973886b6b3e5adcd57a9d34df46c2e4820a5`
 - `migration_apply_plan.json`:
-  `3eb4356b6a8fca0424cc6cd3697c739551f057482e9cde237fc487e16560d862`
+  `26e3749c4dd09fd4f48b5a9026feedc63f580a9a9ea32dd5d38e6e426bb093b6`
 - `signer_deployment_plan.json`:
-  `ffa5f432967c0a90be22f814dcde1f1e79f502765a9fcf7647491be07f8e9854`
+  `5ff0859e1d4046b32497278813958eb5790b62e330e19f439df3804be5064024`
 - `MTG_SEALED_IMAGE_MIGRATION_PROMOTION_PREFLIGHT_V1.md`:
-  `f04a2bf8b5d6097b20cbd116ca5fd0a36ed86bcfbfe803807284d4d19162b09b`
+  `a4224d12c1450a51fe6e52c35e032177e80d703b1ba38fe3b7d053767fbb3c6e`
 
 `artifact_hashes.json` is the permanent manifest for those five artifacts.
 
@@ -170,7 +184,7 @@ Obtain a separately scoped production authority for the schema-only apply of
 the exact migration SHA-256
 `0efd90e3291731f153afd901f23b51c264f4a0b0d27236c10bb34f82938c8406`
 from producer commit
-`3ba1ba69e39cf481b6b8076df292cce9e35b4124`.
+`1108b13771a54845a457949bd472c4870c82ec6f`.
 
 That gate must rerun fresh preflight, apply only the migration and migration
 ledger row, then read back the exact tables, constraint, indexes, triggers,

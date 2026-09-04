@@ -83,7 +83,7 @@ Before any apply:
 ## Exact Next Gate
 
 The read-only production preflight passed from producer commit
-`3ba1ba69e39cf481b6b8076df292cce9e35b4124`; its permanent evidence is linked
+`1108b13771a54845a457949bd472c4870c82ec6f`; its permanent evidence is linked
 from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
 unless a later authority names the exact migration SHA-256 and producer commit.
 The next serial gate is a separately authorized schema-only apply and exact
