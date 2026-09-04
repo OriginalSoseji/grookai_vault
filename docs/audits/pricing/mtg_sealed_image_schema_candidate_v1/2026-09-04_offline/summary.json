@@ -1,9 +1,9 @@
 {
   "status": "mtg_sealed_transient_image_canary_planned_zero_calls",
   "repository": {
-    "commit_sha": "f6688c0b840dd88e56effe2b06e03fe0485f9634",
+    "commit_sha": "b7bced9c2d792736e9aeabe7b71435ba21699f1c",
     "branch": "agent/mtg-sealed-image-schema-candidate",
-    "tracked_worktree_clean": false
+    "tracked_worktree_clean": true
   },
   "source_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
   "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
@@ -24,6 +24,10 @@
     "tin": 1
   },
   "plan_fingerprint_sha256": "37054e8a5e66e7f7aeb5d04e3b4d476deb0809a6019297c19e1cb9cc7c9e8a7d",
+  "source_artifact_validation": {
+    "valid": true,
+    "findings": []
+  },
   "validation": {
     "valid": true,
     "findings": []
