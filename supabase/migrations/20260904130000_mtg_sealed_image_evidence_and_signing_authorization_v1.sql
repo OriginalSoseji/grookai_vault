@@ -380,6 +380,17 @@ security invoker
 set search_path = pg_catalog, public
 as $$
 begin
+  perform image_release.id
+  from public.sealed_product_image_releases image_release
+  where image_release.id = new.image_release_id
+    and image_release.game_key = new.game_key
+  for share;
+
+  if not found then
+    raise exception 'image release does not exist for member insertion'
+      using errcode = '23503';
+  end if;
+
   if not exists (
     select 1
     from public.sealed_product_image_releases image_release

@@ -23,6 +23,7 @@ import {
   MTG_SEALED_SIGNER_INDEX_SHA256_V1,
   MTG_SEALED_IMAGE_TABLES_V1,
   MTG_SEALED_IMAGE_TRIGGERS_V1,
+  reconcileMigrationLedgerVersionsV1,
   supabaseProjectRefFromUrlV1,
   validateMtgSealedImageMigrationPreflightV1,
 } from '../../backend/pricing/mtg_sealed_image_migration_preflight_v1.mjs';
@@ -106,8 +107,8 @@ function databaseUrl() {
 
 async function localProof(args) {
   const migrationFiles = (await fs.readdir(path.join(ROOT, 'supabase', 'migrations')))
-    .filter((name) => /^\d{14}_.+\.sql$/.test(name)).sort();
-  const versions = migrationFiles.map((name) => name.slice(0, 14));
+    .filter((name) => /^\d{8}(?:\d{6})?_.+\.sql$/.test(name)).sort();
+  const versions = migrationFiles.map((name) => name.split('_', 1)[0]);
   const duplicateVersions = [...new Set(versions.filter((version, index) =>
     versions.indexOf(version) !== index))];
   const [
@@ -144,6 +145,8 @@ async function localProof(args) {
     signer_index_sha256: sha256(signerIndexBytes),
     signer_config_sha256: sha256(signerConfigBytes),
     duplicate_repo_migration_versions: duplicateVersions.length,
+    repository_migration_count: versions.length,
+    repository_migration_versions: versions,
     latest_repo_migration_version: versions.at(-1) ?? null,
     expected_hashes: {
       migration: MTG_SEALED_IMAGE_MIGRATION_SHA256_V1,
@@ -242,16 +245,32 @@ async function captureCollisions(client) {
   return { relations, functions, indexes, triggers, policies, constraints };
 }
 
-async function captureMigrationLedger(client) {
+async function captureMigrationLedger(client, repositoryVersions) {
   const presence = (await queryRows(client,
     `select to_regclass('supabase_migrations.schema_migrations')
       is not null as present`))[0];
-  if (!presence.present) return { present: false, rows: [], count: 0 };
+  if (!presence.present) {
+    return {
+      present: false,
+      rows: [],
+      count: 0,
+      reconciliation: reconcileMigrationLedgerVersionsV1(
+        repositoryVersions,
+        [],
+      ),
+    };
+  }
   const rows = await queryRows(client,
     `select version, name
        from supabase_migrations.schema_migrations
-      where version = $1 order by version`, [MTG_SEALED_IMAGE_MIGRATION_VERSION_V1]);
-  return { present: true, rows, count: rows.length };
+      order by version`);
+  return {
+    present: true,
+    rows,
+    count: rows.filter((row) =>
+      String(row.version) === MTG_SEALED_IMAGE_MIGRATION_VERSION_V1).length,
+    reconciliation: reconcileMigrationLedgerVersionsV1(repositoryVersions, rows),
+  };
 }
 
 async function captureDataBoundary(client) {
@@ -324,6 +343,7 @@ function applyPlan(local, production) {
       api_project_ref: production.api_project_ref,
       database_project_ref: production.database_project_ref,
       migration_ledger_count: production.migration_ledger_count,
+      migration_ledger_reconciliation: production.migration_ledger_reconciliation,
       missing_prerequisite_relations: production.missing_prerequisite_relations,
       missing_prerequisite_functions: production.missing_prerequisite_functions,
       collisions: production.collisions,
@@ -377,7 +397,7 @@ function report(summary) {
 - Read-only session and transaction: ${c.read_only ? 'PASS' : 'FAIL'}
 - Canonical project identity: ${c.environment_identity ? 'PASS' : 'FAIL'}
 - Canonical database minimums: ${c.canonical_environment ? 'PASS' : 'FAIL'}
-- Migration-ledger absence: ${c.migration_history ? 'PASS' : 'FAIL'}
+- Complete migration-ledger parity and exact pending set: ${c.migration_history ? 'PASS' : 'FAIL'}
 - Prerequisites: ${c.prerequisites ? 'PASS' : 'FAIL'}
 - Object collisions: ${c.collisions ? 'PASS' : 'FAIL'}
 - MTG price authority: ${c.mtg_price_authority ? 'PASS' : 'FAIL'}
@@ -453,7 +473,10 @@ async function main() {
     const roles = await captureRoles(client);
     const prerequisites = await capturePrerequisites(client);
     const collisions = await captureCollisions(client);
-    const ledger = await captureMigrationLedger(client);
+    const ledger = await captureMigrationLedger(
+      client,
+      local.repository_migration_versions,
+    );
     const after = await captureDataBoundary(client);
     const beforeFingerprint = sha256(stableJson(before));
     const afterFingerprint = sha256(stableJson(after));
@@ -470,6 +493,7 @@ async function main() {
       migration_ledger_present: ledger.present,
       migration_ledger_rows: ledger.rows,
       migration_ledger_count: ledger.count,
+      migration_ledger_reconciliation: ledger.reconciliation,
       duplicate_repo_migration_versions: local.duplicate_repo_migration_versions,
       data_boundaries: { ...before, ...imageCounts },
       before_fingerprint: beforeFingerprint,

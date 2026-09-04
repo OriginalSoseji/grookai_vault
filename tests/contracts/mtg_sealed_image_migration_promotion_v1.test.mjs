@@ -14,6 +14,7 @@ import {
   MTG_SEALED_IMAGE_POLICIES_V1,
   MTG_SEALED_IMAGE_TABLES_V1,
   MTG_SEALED_IMAGE_TRIGGERS_V1,
+  reconcileMigrationLedgerVersionsV1,
   supabaseProjectRefFromUrlV1,
   validateMtgSealedImageMigrationPreflightV1,
 } from '../../backend/pricing/mtg_sealed_image_migration_preflight_v1.mjs';
@@ -50,6 +51,18 @@ function validProof() {
     },
     production: {
       migration_ledger_count: 0,
+      migration_ledger_present: true,
+      migration_ledger_reconciliation: {
+        repository_version_count: 3,
+        expected_remote_version_count: 2,
+        remote_version_count: 2,
+        missing_repository_versions_on_remote: [],
+        unexpected_remote_versions: [],
+        pending_repository_versions: [MTG_SEALED_IMAGE_MIGRATION_VERSION_V1],
+        duplicate_remote_versions: [],
+        expected_remote_versions: ['20251223', '20260214'],
+        remote_versions: ['20251223', '20260214'],
+      },
       duplicate_repo_migration_versions: 0,
       api_project_ref: MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
       database_project_ref: MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
@@ -138,6 +151,29 @@ test('image object path is canonically bound to game, hash, and MIME', () => {
     /and object_path = 'sealed\/' \|\| game_key \|\| '\/sha256\/'[\s\S]*left\(content_sha256, 2\)[\s\S]*content_sha256[\s\S]*case image_mime[\s\S]*when 'image\/jpeg' then '\.jpg'[\s\S]*when 'image\/png' then '\.png'[\s\S]*when 'image\/gif' then '\.gif'[\s\S]*when 'image\/webp' then '\.webp'/i);
 });
 
+test('member insertion locks the parent release against concurrent freeze', () => {
+  assert.match(migration,
+    /sealed_product_guard_image_release_member_insert_v1[\s\S]*from public\.sealed_product_image_releases image_release[\s\S]*for share[\s\S]*image release does not exist for member insertion/i);
+});
+
+test('migration ledger reconciliation requires one exact pending target', () => {
+  const target = MTG_SEALED_IMAGE_MIGRATION_VERSION_V1;
+  const clean = reconcileMigrationLedgerVersionsV1(
+    ['20251223', '20260214', target],
+    [{ version: '20251223' }, { version: '20260214' }],
+  );
+  assert.deepEqual(clean.pending_repository_versions, [target]);
+  assert.deepEqual(clean.missing_repository_versions_on_remote, []);
+  assert.deepEqual(clean.unexpected_remote_versions, []);
+
+  const drift = reconcileMigrationLedgerVersionsV1(
+    ['20251223', '20260214', target],
+    [{ version: '20251223' }, { version: '20250101' }],
+  );
+  assert.deepEqual(drift.missing_repository_versions_on_remote, ['20260214']);
+  assert.deepEqual(drift.unexpected_remote_versions, ['20250101']);
+});
+
 test('valid read-only preflight passes', () => {
   assert.deepEqual(validateMtgSealedImageMigrationPreflightV1(validProof()), {
     valid: true,
@@ -180,6 +216,21 @@ test('preflight fails closed on collisions, ledger reuse, or boundary drift', ()
   ledger.production.migration_ledger_count = 1;
   assert.equal(validateMtgSealedImageMigrationPreflightV1(ledger).valid, false);
 
+  const missingLedger = validProof();
+  missingLedger.production.migration_ledger_present = false;
+  assert.equal(
+    validateMtgSealedImageMigrationPreflightV1(missingLedger).valid,
+    false,
+  );
+
+  const ledgerVersionDrift = validProof();
+  ledgerVersionDrift.production.migration_ledger_reconciliation
+    .unexpected_remote_versions.push('20250101');
+  assert.equal(
+    validateMtgSealedImageMigrationPreflightV1(ledgerVersionDrift).valid,
+    false,
+  );
+
   const drift = validProof();
   drift.production.after_fingerprint = 'c'.repeat(64);
   assert.equal(validateMtgSealedImageMigrationPreflightV1(drift).valid, false);
@@ -216,4 +267,6 @@ test('production boundary snapshot uses the deployed sealed table names', () => 
   assert.doesNotMatch(preflightScript, /sealed_product_source_evidence/);
   assert.match(preflightScript, /SUPABASE_CONFIG_PATH/);
   assert.match(preflightScript, /'supabase', 'config\.toml'/);
+  assert.match(preflightScript, /\\d\{8\}/);
+  assert.match(preflightScript, /repository_migration_versions/);
 });

@@ -5,7 +5,7 @@ export const MTG_SEALED_IMAGE_MIGRATION_VERSION_V1 = '20260904130000';
 export const MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1 =
   '20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql';
 export const MTG_SEALED_IMAGE_MIGRATION_SHA256_V1 =
-  '400948bbc661b76b9713d101514e7fe6c61df2c7eb16cbf4c38806f9386976e7';
+  'ceafd70f206e5223bc87b3fa24f4cd3c105c54e3149f5bbbeb88daac140ba184';
 export const MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_SHA256_V1 =
   '6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735';
 export const MTG_SEALED_IMAGE_AUTH_CANDIDATE_SHA256_V1 =
@@ -119,10 +119,39 @@ export function supabaseProjectRefFromUrlV1(rawUrl) {
   return refs[0];
 }
 
+export function reconcileMigrationLedgerVersionsV1(
+  repositoryVersions,
+  remoteRows,
+  targetVersion = MTG_SEALED_IMAGE_MIGRATION_VERSION_V1,
+) {
+  const repository = repositoryVersions.map(String).sort();
+  const remote = remoteRows.map((row) => String(row.version)).sort();
+  const duplicateRemoteVersions = [...new Set(remote.filter((version, index) =>
+    remote.indexOf(version) !== index))];
+  const repositorySet = new Set(repository);
+  const remoteSet = new Set(remote);
+  const expectedRemote = repository.filter((version) => version !== targetVersion);
+  return {
+    repository_version_count: repository.length,
+    expected_remote_version_count: expectedRemote.length,
+    remote_version_count: remote.length,
+    missing_repository_versions_on_remote:
+      expectedRemote.filter((version) => !remoteSet.has(version)),
+    unexpected_remote_versions:
+      remote.filter((version) => !repositorySet.has(version)),
+    pending_repository_versions:
+      repository.filter((version) => !remoteSet.has(version)),
+    duplicate_remote_versions: duplicateRemoteVersions,
+    expected_remote_versions: expectedRemote,
+    remote_versions: remote,
+  };
+}
+
 export function validateMtgSealedImageMigrationPreflightV1(proof) {
   const local = proof?.local ?? {};
   const production = proof?.production ?? {};
   const boundary = production.data_boundaries ?? {};
+  const ledger = production.migration_ledger_reconciliation ?? {};
   const checks = {
     preflight_version:
       proof?.preflight_version === MTG_SEALED_IMAGE_MIGRATION_PREFLIGHT_VERSION_V1,
@@ -146,8 +175,21 @@ export function validateMtgSealedImageMigrationPreflightV1(proof) {
       local.signer_index_sha256 === MTG_SEALED_SIGNER_INDEX_SHA256_V1 &&
       local.signer_config_sha256 === MTG_SEALED_SIGNER_CONFIG_SHA256_V1,
     migration_history:
+      production.migration_ledger_present === true &&
       production.migration_ledger_count === 0 &&
-      production.duplicate_repo_migration_versions === 0,
+      production.duplicate_repo_migration_versions === 0 &&
+      Number(ledger.expected_remote_version_count) ===
+        Number(ledger.remote_version_count) &&
+      Array.isArray(ledger.missing_repository_versions_on_remote) &&
+      ledger.missing_repository_versions_on_remote.length === 0 &&
+      Array.isArray(ledger.unexpected_remote_versions) &&
+      ledger.unexpected_remote_versions.length === 0 &&
+      Array.isArray(ledger.duplicate_remote_versions) &&
+      ledger.duplicate_remote_versions.length === 0 &&
+      Array.isArray(ledger.pending_repository_versions) &&
+      ledger.pending_repository_versions.length === 1 &&
+      ledger.pending_repository_versions[0] ===
+        MTG_SEALED_IMAGE_MIGRATION_VERSION_V1,
     read_only:
       production.guard?.transaction_read_only === 'on' &&
       production.guard?.default_transaction_read_only === 'on',
