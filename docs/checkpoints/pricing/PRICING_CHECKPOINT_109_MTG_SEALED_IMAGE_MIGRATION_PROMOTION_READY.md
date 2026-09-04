@@ -44,8 +44,15 @@ the connection to the canonical Supabase project, did not include the rulebook
 canonical-count invariants, required the historical topic-branch name, and did
 not expose the new command in the operator playbook. Those findings were
 repaired before final readiness. The earlier successful artifact remains
-preserved as historical evidence but is superseded by the canonical preflight
-below and is not apply authority.
+preserved as historical evidence but is not apply authority.
+
+Final-head review then identified two SQL integrity gaps: PostgreSQL could
+accept incomplete eligible evidence when a required comparison evaluated to
+`NULL`, and image object paths were shape-checked without being bound to the
+row's game, content hash, and MIME extension. Both constraints were repaired,
+their contract coverage was added, and the production preflight was regenerated
+from the new clean producer commit. All earlier preflight artifacts remain
+preserved but are superseded by the canonical preflight below.
 
 ## Alternatives Rejected
 
@@ -63,12 +70,12 @@ below and is not apply authority.
 - Branch: `agent/mtg-sealed-image-migration-promotion-v1`
 - Package commit: `0a1c52a842bf9c78934ef00254324a2682b16dfa`
 - Final preflight producer commit:
-  `1108b13771a54845a457949bd472c4870c82ec6f`
+  `f8a203b2c21f5c33b204b37581128a38346c972c`
 - Migration version: `20260904130000`
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `0efd90e3291731f153afd901f23b51c264f4a0b0d27236c10bb34f82938c8406`
+  `400948bbc661b76b9713d101514e7fe6c61df2c7eb16cbf4c38806f9386976e7`
 - Image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Signing-authorization candidate SHA-256:
@@ -111,8 +118,8 @@ two release controls.
 
 ## Verification
 
-- Focused migration/candidate and operator contract tests after final review
-  repair: `26/26` passed.
+- Focused sealed-image and forward-gate contract tests after the final SQL
+  review repair: `45/45` passed.
 - Full pre-commit shipcheck: passed.
 - Flutter tests in the full shipcheck: `657/657` passed.
 - Production preflight status: `PASS` with `18/18` checks true.
@@ -129,20 +136,20 @@ two release controls.
 
 Directory:
 
-`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T13-28-20-811Z_canonical_preflight/`
+`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T14-12-43-125Z_canonical_preflight/`
 
 Key artifact hashes:
 
 - `preflight.json`:
-  `c6e89964ed409560012939adca677133722d8f3236194535e642977504c027e2`
+  `cac2793ae135659a7a2ceadebb6ff382960493e13ad991743994dc3ef8cbc482`
 - `summary.json`:
-  `84d5e57610ee2971baa7a2f8eea0973886b6b3e5adcd57a9d34df46c2e4820a5`
+  `722998a1d1e3149787afed248fce0e2367e404b6e4905d2dcdcd79ecdcec4c19`
 - `migration_apply_plan.json`:
-  `26e3749c4dd09fd4f48b5a9026feedc63f580a9a9ea32dd5d38e6e426bb093b6`
+  `dda7cd54197da35a3e7a85ca2dff1948b95764eba587782de9b0515fd38e84eb`
 - `signer_deployment_plan.json`:
-  `5ff0859e1d4046b32497278813958eb5790b62e330e19f439df3804be5064024`
+  `d94162ff19e526cf89ca9ffa06dba0ca714d3da92023427432512369debf17e7`
 - `MTG_SEALED_IMAGE_MIGRATION_PROMOTION_PREFLIGHT_V1.md`:
-  `a4224d12c1450a51fe6e52c35e032177e80d703b1ba38fe3b7d053767fbb3c6e`
+  `aadeeb49510c3762e6e1424726501cf43d8af169e39a544f8bdcf2ba9609196d`
 
 `artifact_hashes.json` is the permanent manifest for those five artifacts.
 
@@ -182,9 +189,9 @@ Key artifact hashes:
 
 Obtain a separately scoped production authority for the schema-only apply of
 the exact migration SHA-256
-`0efd90e3291731f153afd901f23b51c264f4a0b0d27236c10bb34f82938c8406`
+`400948bbc661b76b9713d101514e7fe6c61df2c7eb16cbf4c38806f9386976e7`
 from producer commit
-`1108b13771a54845a457949bd472c4870c82ec6f`.
+`f8a203b2c21f5c33b204b37581128a38346c972c`.
 
 That gate must rerun fresh preflight, apply only the migration and migration
 ledger row, then read back the exact tables, constraint, indexes, triggers,
