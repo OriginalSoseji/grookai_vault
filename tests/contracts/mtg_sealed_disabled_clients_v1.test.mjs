@@ -7,9 +7,12 @@ const webClientPath = 'apps/web/src/lib/sealed/mtgSealedClientV1.ts';
 const webTransportPath =
   'apps/web/src/lib/sealed/mtgSealedSupabaseTransportV1.ts';
 const dartClientPath = 'lib/services/sealed/mtg_sealed_client_v1.dart';
+const signingFunctionPath =
+  'supabase/functions/mtg-sealed-sign-image-v1/index.ts';
 const webClient = fs.readFileSync(webClientPath, 'utf8');
 const webTransport = fs.readFileSync(webTransportPath, 'utf8');
 const dartClient = fs.readFileSync(dartClientPath, 'utf8');
+const signingFunction = fs.readFileSync(signingFunctionPath, 'utf8');
 
 function filesUnder(root, extensions, exclusions = []) {
   const files = [];
@@ -36,13 +39,30 @@ test('web and Flutter clients are hard-disabled without runtime overrides', () =
   assert.doesNotMatch(dartClient, /fromEnvironment|remote.?config/i);
 });
 
-test('both clients use only RPC V3 and private signed image URLs', () => {
+test('clients use RPC V3 and route image signing through the trusted function', () => {
   assert.match(webClient, /get_active_sealed_product_pricing_v3/);
-  assert.match(webTransport, /createSignedUrl/);
+  assert.match(webTransport, /mtg-sealed-sign-image-v1/);
+  assert.match(webTransport, /functions\.invoke/);
   assert.match(dartClient, /get_active_sealed_product_pricing_v3/);
-  assert.match(dartClient, /createSignedUrl/);
+  assert.match(dartClient, /mtg-sealed-sign-image-v1/);
+  assert.match(dartClient, /functions\.invoke/);
   assert.doesNotMatch(`${webClient}\n${webTransport}\n${dartClient}`,
-    /getPublicUrl|storage\/v1\/object\/public/i);
+    /createSignedUrl|getPublicUrl|storage\/v1\/object\/public/i);
+  assert.match(signingFunction, /createSignedUrl/);
+  assert.match(signingFunction,
+    /mtg_sealed_image_object_signing_authorized_v1/);
+});
+
+test('trusted signer authenticates callers and exposes no listing operation', () => {
+  assert.match(signingFunction, /requireAuthUser\(req\)/);
+  assert.match(signingFunction, /createServiceRoleClient\(\)/);
+  assert.match(signingFunction, /EXPIRES_IN_SECONDS = 60 \* 60/);
+  assert.doesNotMatch(signingFunction, /\.list\(|\.download\(/);
+  assert.doesNotMatch(signingFunction, /source_image_url|selected_source_url/);
+  const config = fs.readFileSync(
+    'supabase/functions/mtg-sealed-sign-image-v1/config.toml', 'utf8');
+  assert.match(config, /verify_jwt = false/);
+  assert.match(signingFunction, /missing_bearer_token|invalid_jwt/);
 });
 
 test('client models expose every fail-closed operational state', () => {
@@ -97,4 +117,5 @@ test('dedicated client tests are registered and present', () => {
   assert.equal(fs.existsSync(
     'apps/web/src/lib/sealed/mtgSealedClientV1.test.ts'), true);
   assert.equal(fs.existsSync('test/mtg_sealed_client_v1_test.dart'), true);
+  assert.equal(fs.existsSync(signingFunctionPath), true);
 });

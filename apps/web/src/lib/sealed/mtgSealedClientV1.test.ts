@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 import {
   classifyMtgSealedRowsV1,
   loadMtgSealedCatalogV1,
   type MtgSealedClientTransportV1,
 } from "./mtgSealedClientV1.ts";
+import { createMtgSealedSupabaseTransportV1 } from "./mtgSealedSupabaseTransportV1.ts";
 
 const hash = "a".repeat(64);
 const now = new Date("2026-09-04T12:00:00.000Z");
@@ -92,4 +94,43 @@ test("hard-disabled loader makes no auth, RPC, or Storage call", async () => {
     status: "disabled",
   });
   assert.equal(calls, 0);
+});
+
+test("Supabase transport signs through the trusted function without Storage access", async () => {
+  let functionCalls = 0;
+  let storageCalls = 0;
+  const client = {
+    functions: {
+      async invoke(name: string, options: { body: unknown }) {
+        functionCalls += 1;
+        assert.equal(name, "mtg-sealed-sign-image-v1");
+        assert.deepEqual(options.body, {
+          storage_bucket: "user-card-images",
+          object_path: `sealed/mtg/sha256/aa/${hash}.jpg`,
+        });
+        return {
+          data: {
+            signed_url: "https://example.invalid/signed",
+            expires_in: 3600,
+          },
+          error: null,
+        };
+      },
+    },
+    storage: {
+      from() {
+        storageCalls += 1;
+        throw new Error("client Storage access is prohibited");
+      },
+    },
+  } as unknown as SupabaseClient;
+  const transport = createMtgSealedSupabaseTransportV1(client);
+  const signedUrl = await transport.createSignedImageUrl({
+    bucket: "user-card-images",
+    objectPath: `sealed/mtg/sha256/aa/${hash}.jpg`,
+    expiresInSeconds: 3600,
+  });
+  assert.equal(signedUrl, "https://example.invalid/signed");
+  assert.equal(functionCalls, 1);
+  assert.equal(storageCalls, 0);
 });

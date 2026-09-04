@@ -14,17 +14,15 @@ test('authenticated image-read SQL remains an unapplied candidate', () => {
   assert.match(sql, /Review artifact only/i);
 });
 
-test('policy grants only authenticated SELECT through a definer predicate', () => {
+test('candidate exposes only an authenticated signing-authorization predicate', () => {
   assert.match(sql,
-    /create or replace function public\.mtg_sealed_image_object_visible_to_request_v1/i);
+    /create or replace function public\.mtg_sealed_image_object_signing_authorized_v1/i);
   assert.match(sql, /security definer/i);
   assert.match(sql, /set search_path = pg_catalog, public/i);
   assert.match(sql,
-    /create policy mtg_sealed_active_release_image_select_v1[\s\S]*for select[\s\S]*to authenticated/i);
-  assert.match(sql,
-    /mtg_sealed_image_object_visible_to_request_v1\(bucket_id, name\)/i);
-  assert.doesNotMatch(sql, /create policy[\s\S]*to anon/i);
-  assert.doesNotMatch(sql, /for (?:insert|update|delete|all)/i);
+    /grant execute on function public\.mtg_sealed_image_object_signing_authorized_v1[\s\S]*to authenticated, service_role/i);
+  assert.doesNotMatch(sql, /create policy[\s\S]*storage\.objects/i);
+  assert.doesNotMatch(sql, /grant [^;]+ on storage\.objects/i);
 });
 
 test('predicate requires exact active image and price release lineage', () => {

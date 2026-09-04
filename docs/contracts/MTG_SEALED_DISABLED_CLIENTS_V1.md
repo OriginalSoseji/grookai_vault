@@ -23,7 +23,9 @@ later reviewed code change is required.
 
 ## Typed Read Boundary
 
-Both clients call only `get_active_sealed_product_pricing_v3` and require:
+Both clients read the catalog only through
+`get_active_sealed_product_pricing_v3`, request image URLs only through
+`mtg-sealed-sign-image-v1`, and require:
 
 - authenticated user context;
 - `game_key=mtg`;
@@ -61,15 +63,19 @@ than trusting it.
 ## Image Handling
 
 The private self-hosted object path is exchanged for a one-hour signed Storage
-URL only after a row passes validation. The clients never construct a public
-`user-card-images` URL and never consume the original provider URL.
+URL only after a row passes validation. Clients call the trusted
+`mtg-sealed-sign-image-v1` Edge Function and never receive direct
+`storage.objects` SELECT or list authority. The function validates the caller
+and exact object through an authenticated RPC before the service role signs one
+path. Clients never construct a public `user-card-images` URL and never consume
+the original provider URL.
 
 The existing Storage policies do not authorize collector JWTs to read
 `sealed/mtg/sha256/...`. The separate, unapplied
 `MTG_SEALED_AUTHENTICATED_IMAGE_READ_V1_CANDIDATE` must be promoted, applied,
-and read back before either client can leave its hard-disabled state. That
-candidate permits only authenticated SELECT for objects proven by the active
-image and price releases and both visibility controls.
+and read back, and the trusted signer must be deployed and smoke-tested, before
+either client can leave its hard-disabled state. The candidate provides an
+authenticated authorization predicate without granting client Storage access.
 
 ## Boundaries
 
@@ -81,7 +87,8 @@ write, or scheduler.
 ## Exact Next Gate
 
 Do not enable these clients until the image schema and authenticated image-read
-boundary are applied and read back,
+boundary are applied and read back, the trusted signer is deployed and
+smoke-tested,
 the transient and durable self-hosted image gates pass, the refreshed price
 release is written and reconciled, RPC V3 is applied and smoke-tested, and a
 signed-in visibility canary is separately authorized. Client activation is a

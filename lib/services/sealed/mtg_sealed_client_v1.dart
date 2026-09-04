@@ -168,10 +168,31 @@ class SupabaseMtgSealedClientTransportV1 implements MtgSealedClientTransportV1 {
     required String bucket,
     required String objectPath,
     required int expiresInSeconds,
-  }) {
-    return _client.storage
-        .from(bucket)
-        .createSignedUrl(objectPath, expiresInSeconds);
+  }) async {
+    if (expiresInSeconds != kMtgSealedImageSignedUrlTtlSecondsV1) {
+      throw StateError('Invalid signed sealed image TTL.');
+    }
+    final response = await _client.functions.invoke(
+      'mtg-sealed-sign-image-v1',
+      body: <String, dynamic>{
+        'storage_bucket': bucket,
+        'object_path': objectPath,
+      },
+    );
+    final data = response.data;
+    final signedUrlValue = data is Map ? data['signed_url'] : null;
+    final signedUrl =
+        signedUrlValue is String && signedUrlValue.trim().isNotEmpty
+        ? signedUrlValue.trim()
+        : null;
+    final returnedTtl = data is Map ? data['expires_in'] : null;
+    if (response.status < 200 ||
+        response.status >= 300 ||
+        signedUrl == null ||
+        returnedTtl != kMtgSealedImageSignedUrlTtlSecondsV1) {
+      throw StateError('Missing signed sealed image URL.');
+    }
+    return signedUrl;
   }
 }
 

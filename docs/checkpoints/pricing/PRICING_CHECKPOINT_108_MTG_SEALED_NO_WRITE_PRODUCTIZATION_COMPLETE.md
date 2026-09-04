@@ -46,12 +46,16 @@ product surface imports the adapter before this gate is deliberately revised.
 
 Automated review identified that existing `user-card-images` SELECT policies
 do not permit a collector JWT to sign `sealed/mtg/sha256/...` objects. A
-separate unapplied authenticated image-read candidate now closes that design
-gap without changing the previously hashed image-schema candidate. It requires
-the exact object to belong to the active frozen image release and matching
-active frozen, fresh exact price release, with both visibility controls true.
+separate unapplied authenticated image-signing authorization candidate and an
+undeployed trusted signer now close that design gap without changing the
+previously hashed image-schema candidate. The signer validates the collector
+JWT and asks the authenticated RPC to authorize one exact object before its
+service client signs that path. Collector clients receive no direct Storage
+SELECT or list authority. The authorization requires the exact object to belong
+to the active frozen image release and matching active frozen, fresh exact price
+release, with both visibility controls true.
 Its SQL SHA-256 is
-`ca58dc3e99c4b1925a730cc811e823f27a06b0ce29ae30b9a9c3891fbd4e5186`.
+`46e0c6d15cebd06d7a4e1299563d483fded19c23a23cb0936ce9a23e7ed4e6b0`.
 
 ## Alternatives Rejected
 
@@ -67,8 +71,10 @@ Its SQL SHA-256 is
 
 ## Verification
 
-- Web adapter runtime tests: `5/5` passed.
+- Web adapter runtime tests: `6/6` passed.
 - Flutter adapter tests: `4/4` passed.
+- Trusted signer Deno check: passed.
+- Combined focused MTG sealed contracts: `30/30` passed.
 - Web TypeScript check: passed.
 - Web lint: passed.
 - Targeted Flutter analysis: passed.
@@ -87,8 +93,9 @@ Its SQL SHA-256 is
 - No image evidence, assertion, release, or pointer has been written.
 - No refreshed price qualification, release, or pointer has been written.
 - RPC V3 is an unapplied SQL candidate; production still has RPC V2.
-- The authenticated sealed-image SELECT policy is an unapplied SQL candidate;
-  existing production policies still deny these client paths.
+- The authenticated sealed-image signing predicate is an unapplied SQL
+  candidate and its trusted Edge Function is undeployed; existing production
+  policies still deny these client paths.
 - Web and Flutter adapters exist but are unreachable and make zero calls.
 - No client has been deployed or activated by this gate.
 
@@ -117,8 +124,8 @@ Its SQL SHA-256 is
 1. Promote the reviewed image schema candidate and authenticated image-read
    addendum into one versioned migration package.
 2. Apply it under a separately frozen migration hash and read back schema,
-   constraints, functions, grants, RLS, authenticated-only Storage SELECT
-   policy, anonymous denial, ledger, and cross-game state.
+   constraints, functions, grants, RLS, signing-authorization RPC, anonymous
+   denial, ledger, and cross-game state.
 3. Execute the 17-object transient Storage canary with collision preflight,
    exact readback, removal, and verified absence.
 4. Upload the 2,144 unique durable self-hosted objects for 2,149 variants with
@@ -130,8 +137,9 @@ Its SQL SHA-256 is
    price release; preserve every hold and prove idempotency.
 7. Promote and apply RPC V3, then read back definition, ACLs, and anonymous
    denial.
-8. Smoke-test signed-in ready, empty, missing-image, stale, offline, and error
-   behavior while clients remain hard-disabled.
+8. Deploy and smoke-test the trusted one-object signer, then smoke-test signed-in
+   ready, empty, missing-image, stale, offline, and error behavior while clients
+   remain hard-disabled. Prove no direct client Storage listing or download.
 9. Deploy the disabled clients, verify zero reachability, then use a separate
    reviewed code change and release decision for a bounded signed-in canary.
 10. After canary rollback proof, activate the scheduler and complete an

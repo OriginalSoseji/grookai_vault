@@ -5,7 +5,7 @@
 
 begin;
 
-create or replace function public.mtg_sealed_image_object_visible_to_request_v1(
+create or replace function public.mtg_sealed_image_object_signing_authorized_v1(
   p_bucket_id text,
   p_object_name text
 )
@@ -106,28 +106,17 @@ as $$
     );
 $$;
 
-revoke all on function public.mtg_sealed_image_object_visible_to_request_v1(
+revoke all on function public.mtg_sealed_image_object_signing_authorized_v1(
   text, text
 ) from public, anon, authenticated, service_role;
 
-grant execute on function public.mtg_sealed_image_object_visible_to_request_v1(
+grant execute on function public.mtg_sealed_image_object_signing_authorized_v1(
   text, text
 ) to authenticated, service_role;
 
-drop policy if exists mtg_sealed_active_release_image_select_v1
-on storage.objects;
-
-create policy mtg_sealed_active_release_image_select_v1
-on storage.objects
-for select
-to authenticated
-using (
-  public.mtg_sealed_image_object_visible_to_request_v1(bucket_id, name)
-);
-
-comment on function public.mtg_sealed_image_object_visible_to_request_v1(
+comment on function public.mtg_sealed_image_object_signing_authorized_v1(
   text, text
 ) is
-  'Allows authenticated access only to byte-verified MTG sealed images in the active frozen image release bound to the active frozen fresh exact TCGPlayer price release and both visibility controls.';
+  'Authorizes trusted one-object signing only for byte-verified MTG sealed images in the active frozen image release bound to the active frozen fresh exact TCGPlayer price release and both visibility controls; grants no storage.objects access.';
 
 commit;
