@@ -1,0 +1,10 @@
+{
+  "canonical_rows_equal_plan_rows": true,
+  "unique_plan_variant_ids": true,
+  "qualification_counts_reconcile": true,
+  "delta_counts_reconcile": true,
+  "current_release_id_unique": true,
+  "source_artifacts_valid": true,
+  "transaction_read_only": true,
+  "zero_write_boundaries": true
+}

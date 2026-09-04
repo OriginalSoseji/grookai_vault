@@ -1,0 +1,73 @@
+{
+  "status": "mtg_sealed_pricing_refresh_ready_zero_writes",
+  "repository": {
+    "branch": "main",
+    "commit_sha": "d5741ac71f555ee3f104d9a2230d85a26534f021",
+    "tracked_worktree_clean": true
+  },
+  "canonical_environment": {
+    "config_project_ref": "ycdxbpibncqcchqiihfz",
+    "database_project_ref": "ycdxbpibncqcchqiihfz",
+    "supabase_url_project_ref": null,
+    "card_prints": 170404,
+    "sets": 3397,
+    "card_print_traits": 32903,
+    "valid": true,
+    "findings": []
+  },
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "plan_fingerprint_sha256": "674dfcbbd9c690b68672c4373b326c5cec4145ae1233a96be36f633aa6d3d7a6",
+  "counts": {
+    "canonical_mappings": 2904,
+    "latest_price_rows": 2779,
+    "image_eligible_variants": 2149,
+    "qualified_variants": 2149,
+    "orphan_current_members": 0,
+    "qualification_statuses": {
+      "blocked_missing_observation": 125,
+      "blocked_missing_price": 480,
+      "blocked_stale": 117,
+      "image_coverage_missing": 33,
+      "qualified_exact": 2149
+    },
+    "deltas": {
+      "held": 722,
+      "removed": 33,
+      "unchanged": 2149
+    },
+    "removed_member_ratio": 0.015124,
+    "price_change_ratio": 0
+  },
+  "findings": [],
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "reconciliation": {
+    "canonical_rows_equal_plan_rows": true,
+    "unique_plan_variant_ids": true,
+    "qualification_counts_reconcile": true,
+    "delta_counts_reconcile": true,
+    "current_release_id_unique": true,
+    "source_artifacts_valid": true,
+    "transaction_read_only": true,
+    "zero_write_boundaries": true
+  },
+  "reconciliation_valid": true,
+  "read_only_proof": {
+    "transaction_mode": "repeatable_read_read_only",
+    "transaction_read_only": "on",
+    "transaction_closed": true,
+    "write_attribution": []
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0
+  }
+}

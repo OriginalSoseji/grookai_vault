@@ -1,0 +1,21 @@
+{
+  "version": "MTG_SEALED_PRICING_REFRESH_READ_ONLY_RUN_V1",
+  "repository": {
+    "branch": "main",
+    "commit_sha": "d5741ac71f555ee3f104d9a2230d85a26534f021",
+    "tracked_worktree_clean": true
+  },
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "image_eligible_variant_count": 2149,
+  "mode": "read_only_plan",
+  "boundaries": {
+    "provider_calls": 0,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0
+  }
+}

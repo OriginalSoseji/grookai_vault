@@ -1,0 +1,29 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "run_plan.json": {
+      "bytes": 612,
+      "sha256": "e7f5abdebc6423b5da985680f6b529ebb08f1f04a1b5e9d50d9c7477bcc031ea"
+    },
+    "refresh_plan.json.gz": {
+      "bytes": 486357,
+      "sha256": "1d4d35aa8e46c06185ff28d68fe840a1a677e480c8a8e7d4ba1cacd729263c02"
+    },
+    "refresh_rows.jsonl.gz": {
+      "bytes": 470583,
+      "sha256": "f90e77e759f5c2788084148545b09528239421a04d2ab93c19dfe2f428d6cf98"
+    },
+    "summary.json": {
+      "bytes": 2097,
+      "sha256": "95c382142c46119ee88d3a0bde25a4e64cadbdd54f3b5657569a82d5c323d425"
+    },
+    "reconciliation.json": {
+      "bytes": 293,
+      "sha256": "36056bcc0219d7d3432fb60cca6ac7caa5341e3955a0ad6caf3ac1cdb74ad069"
+    },
+    "REPORT.md": {
+      "bytes": 558,
+      "sha256": "d9ffda63fb89b1abaa8111648d134a95d3adc03bf580d79482e17b61dce09551"
+    }
+  }
+}

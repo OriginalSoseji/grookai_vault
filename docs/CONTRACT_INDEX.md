@@ -142,6 +142,7 @@ If a contract is missing from this index, it is not authoritative.
 | MTG_SEALED_PRODUCTIZATION_GATES_V1 | Frozen | docs/contracts/MTG_SEALED_PRODUCTIZATION_GATES_V1.md — Freezes self-hosted images, governed pricing refresh, and signed-in visibility as three serial MTG sealed gates; authorizes no activation or production mutation |
 | MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_V1 | Offline candidate | docs/contracts/MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_V1.md — Defines unapplied append-only sealed image evidence/object/assertion/releases plus a deterministic 17-object transient canary plan; authorizes no calls or writes |
 | MTG_SEALED_PRICING_REFRESH_V1 | Read-only candidate | docs/contracts/MTG_SEALED_PRICING_REFRESH_V1.md — Plans exact image-backed MTG sealed market-price deltas from current warehouse evidence with freshness and anomaly stops; authorizes no writes or publication |
+| MTG_SEALED_IMAGE_BACKED_PRICING_RPC_V3_CANDIDATE | Offline candidate | docs/contracts/MTG_SEALED_IMAGE_BACKED_PRICING_RPC_V3_CANDIDATE.md — Defines an unapplied signed-in read model that requires fresh exact pricing and exact self-hosted image evidence bound to the same frozen release authority |
 | MARKETPLACE_GUARDRAILS_V1 | Planned | Trust, fraud, and listing safety rules |
 
 ---
