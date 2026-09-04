@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`
+
+This checkpoint records the atomic migration promotion and successful
+production read-only preflight for MTG sealed image evidence, image releases,
+and authenticated one-object signing authorization.
+
+Decision locked there:
+
+- the exact migration SHA and producer commit are ready for a separately
+  authorized schema-only apply, while preflight itself grants no write or
+  deployment authority
+
+Unresolved risk afterward:
+
+- migration apply/readback, transient and durable Storage gates, image and
+  price releases, RPC V3, signer deployment, client canary, and scheduler
+  activation remain serial later gates
+
 ### `PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md`
 
 This checkpoint records completion of every approved no-write MTG sealed
