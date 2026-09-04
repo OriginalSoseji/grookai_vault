@@ -1,0 +1,12 @@
+{
+  "workflow_run_id": 33847669050,
+  "workflow_run_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33847669050",
+  "workflow_head_sha": "d5741ac71f555ee3f104d9a2230d85a26534f021",
+  "workflow_branch": "main",
+  "workflow_conclusion": "success",
+  "artifact_id": 9927299487,
+  "artifact_name": "mtg-sealed-pricing-refresh-33847669050",
+  "artifact_archive_digest": "sha256:8b1d8851746a39ed70ae5c555c3552a242d1a9968e3fa7d83850de6d2648c61d",
+  "artifact_expires_at": "2026-12-03T07:12:26Z",
+  "permanent_copy_verified_against_artifact_hashes": true
+}

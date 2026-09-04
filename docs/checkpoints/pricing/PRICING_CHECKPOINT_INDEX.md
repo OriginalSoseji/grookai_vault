@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_107_MTG_SEALED_PRICING_REFRESH_AND_RPC_V3_CANDIDATE_READY.md`
+
+This checkpoint preserves the successful merged-main production read-only MTG
+sealed price refresh and the unapplied exact-image-backed signed-in RPC V3.
+
+Decision locked there:
+
+- only fresh exact USD TCGPlayer pricing with exact self-hosted image evidence
+  bound to the same frozen release authority may cross the future client read
+  boundary
+
+Unresolved risk afterward:
+
+- image schema apply, Storage execution, image and refreshed price release
+  writes, RPC promotion/apply, disabled client deployment, signed-in canary,
+  and scheduler activation remain serial later gates
+
 ### `PRICING_CHECKPOINT_106_MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_COMPLETED.md`
 
 This checkpoint records the reviewed but unapplied MTG sealed image schema and
