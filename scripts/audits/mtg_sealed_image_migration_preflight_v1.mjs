@@ -249,10 +249,10 @@ async function captureDataBoundary(client) {
   const row = (await queryRows(client, `select
     (select count(*)::bigint from public.sealed_product_families) as families,
     (select count(*)::bigint from public.sealed_product_variants) as variants,
-    (select count(*)::bigint from public.sealed_product_source_candidates) as candidates,
+    (select count(*)::bigint from public.sealed_product_candidates) as candidates,
     (select count(*)::bigint from public.sealed_product_candidate_reviews) as reviews,
     (select count(*)::bigint from public.sealed_product_source_mappings) as mappings,
-    (select count(*)::bigint from public.sealed_product_source_evidence) as evidence,
+    (select count(*)::bigint from public.sealed_product_variant_evidence) as evidence,
     (select count(*)::bigint from public.sealed_product_pricing_lane_qualifications)
       as qualifications,
     (select count(*)::bigint from public.sealed_product_releases) as releases,

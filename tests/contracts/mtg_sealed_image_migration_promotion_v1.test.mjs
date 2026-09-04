@@ -18,6 +18,10 @@ import {
 
 const migrationPath = `supabase/migrations/${MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1}`;
 const migration = fs.readFileSync(migrationPath, 'utf8');
+const preflightScript = fs.readFileSync(
+  'scripts/audits/mtg_sealed_image_migration_preflight_v1.mjs',
+  'utf8',
+);
 
 function validProof() {
   const imageCounts = Object.fromEntries(MTG_SEALED_IMAGE_TABLES_V1.map(
@@ -146,4 +150,11 @@ test('preflight fails closed on visibility or prohibited operation changes', () 
   const write = validProof();
   write.boundaries.database_writes = 1;
   assert.equal(validateMtgSealedImageMigrationPreflightV1(write).valid, false);
+});
+
+test('production boundary snapshot uses the deployed sealed table names', () => {
+  assert.match(preflightScript, /public\.sealed_product_candidates/);
+  assert.match(preflightScript, /public\.sealed_product_variant_evidence/);
+  assert.doesNotMatch(preflightScript, /sealed_product_source_candidates/);
+  assert.doesNotMatch(preflightScript, /sealed_product_source_evidence/);
 });
