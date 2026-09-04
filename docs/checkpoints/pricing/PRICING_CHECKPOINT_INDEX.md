@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_105_MTG_SEALED_IMAGE_COVERAGE_COMPLETED.md`
+
+This checkpoint records the complete zero-write image-source audit for every
+member of the active 2,182-row MTG sealed release and permanently preserves the
+member-level evidence.
+
+Decision locked there:
+
+- exactly 2,149 members are eligible for a future exact self-hosted image gate
+  and 33 remain explicit coverage gaps; the audit authorizes no upload or write
+
+Unresolved risk afterward:
+
+- sealed image schema, transient upload canary, durable image release, pricing
+  refresh, client deployment, and signed-in visibility remain unapplied and
+  separately gated
+
 ### `PRICING_CHECKPOINT_104_MTG_SEALED_PRODUCTIZATION_GATES_FROZEN.md`
 
 This checkpoint records the successful zero-write verification from merged

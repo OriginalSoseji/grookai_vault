@@ -1,0 +1,72 @@
+{
+  "artifact_type": "mtg_sealed_image_coverage_v1_permanent_evidence",
+  "recorded_at": "2026-09-04",
+  "workflow": {
+    "run_id": "33841181449",
+    "url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33841181449",
+    "producer_sha": "e616615883cb808ad8c870380d9d52da4a4d80bf"
+  },
+  "release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "counts": {
+    "selected_members": 2182,
+    "image_eligible_members": 2149,
+    "excluded_members": 33,
+    "unique_valid_image_bytes": 2144,
+    "exact_image_ready": 2133,
+    "shared_bytes_exact_variant": 16,
+    "invalid_image": 30,
+    "placeholder": 3,
+    "identity_conflict": 0
+  },
+  "fingerprints": {
+    "source_plan_sha256": "fbe124ed63838a690b700ad2e2659dd22b5060645d8964387476225774d913a0",
+    "coverage_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d"
+  },
+  "preserved_artifacts": {
+    "run_plan.json": {
+      "sha256": "0ecf764d92f124328a7e95b9184435978a16028949ba452a777222d9d6aa0469",
+      "bytes": 97214
+    },
+    "source_plan.jsonl.gz": {
+      "sha256": "850adf2151753eba4554f7ed8100e8046a4178e39eadad879dac57f6d023af1f",
+      "bytes": 514546,
+      "uncompressed_name": "source_plan.jsonl",
+      "uncompressed_sha256": "bbf1cc631a09e0418d6b0c134e1ed4063d703d5fe8bb55b4deb6f003d4e7157e",
+      "uncompressed_bytes": 3200520
+    },
+    "coverage.jsonl.gz": {
+      "sha256": "869f0e36bf673bdd3b825353d57beea797cae2cc5bf5b2df72c86c596cd04d04",
+      "bytes": 698353,
+      "uncompressed_name": "coverage.jsonl",
+      "uncompressed_sha256": "0c1e234ae8c2806d3002e354d184467f99a87831e145ab0c18225a87188a4843",
+      "uncompressed_bytes": 5292957
+    },
+    "exceptions.jsonl": {
+      "sha256": "33b2ad1936f5773ba69c8139424df3429314c9e0c73329c8d1fecec92dbf3361",
+      "bytes": 75113
+    },
+    "summary.json": {
+      "sha256": "cd26c3d2c13920e80cab85433ecb28e12801573098bd6080ac5eadd2d359b245",
+      "bytes": 1183
+    },
+    "REPORT.md": {
+      "sha256": "621864f2cb73bd465112c19f97ed1c86b402f9f4fb29796962154a528aa3555c",
+      "bytes": 971
+    },
+    "source_artifact_hashes.json": {
+      "sha256": "d6f809bec8b7c118f19932add622c8b578f78eaf35fd2f193201ca5ae4fa9737",
+      "bytes": 591
+    }
+  },
+  "reconciliation": {
+    "all_selected_members_appear_once": true,
+    "zero_reconciliation_mismatches": true,
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0
+  }
+}

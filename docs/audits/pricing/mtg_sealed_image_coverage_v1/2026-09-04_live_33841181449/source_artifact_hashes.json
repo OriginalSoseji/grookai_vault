@@ -1,0 +1,11 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "run_plan.json": "0ecf764d92f124328a7e95b9184435978a16028949ba452a777222d9d6aa0469",
+    "source_plan.jsonl": "bbf1cc631a09e0418d6b0c134e1ed4063d703d5fe8bb55b4deb6f003d4e7157e",
+    "coverage.jsonl": "0c1e234ae8c2806d3002e354d184467f99a87831e145ab0c18225a87188a4843",
+    "exceptions.jsonl": "33b2ad1936f5773ba69c8139424df3429314c9e0c73329c8d1fecec92dbf3361",
+    "summary.json": "cd26c3d2c13920e80cab85433ecb28e12801573098bd6080ac5eadd2d359b245",
+    "REPORT.md": "621864f2cb73bd465112c19f97ed1c86b402f9f4fb29796962154a528aa3555c"
+  }
+}
