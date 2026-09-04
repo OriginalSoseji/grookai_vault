@@ -5,6 +5,7 @@ export const MTG_SEALED_IMAGE_COVERAGE_V1 =
 export const MTG_SEALED_IMAGE_EVIDENCE_V1 =
   'MTG_SEALED_IMAGE_EVIDENCE_V1';
 export const MTG_SEALED_IMAGE_STORAGE_PREFIX_V1 = 'sealed/mtg/sha256';
+export const GROOKAI_PRODUCTION_PROJECT_REF = 'ycdxbpibncqcchqiihfz';
 
 const ALLOWED_IMAGE_HOSTS = new Set([
   'product-images.tcgplayer.com',
@@ -34,6 +35,49 @@ export function hashMtgSealedImageV1(value) {
     ? value
     : Buffer.from(JSON.stringify(stableValue(value)));
   return crypto.createHash('sha256').update(input).digest('hex');
+}
+
+export function projectRefFromConnectionStringV1(value) {
+  try {
+    const parsed = new URL(String(value ?? ''));
+    const direct = parsed.hostname.toLowerCase().match(
+      /^db\.([a-z0-9]+)\.supabase\.co$/);
+    if (direct) return direct[1];
+    const user = decodeURIComponent(parsed.username).toLowerCase().match(
+      /^postgres\.([a-z0-9]+)$/);
+    return user?.[1] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export function projectRefFromSupabaseUrlV1(value) {
+  try {
+    return new URL(String(value ?? '')).hostname.toLowerCase()
+      .match(/^([a-z0-9]+)\.supabase\.co$/)?.[1] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export function validateMtgSealedCanonicalEnvironmentV1(input) {
+  const findings = [];
+  if (input.config_project_ref !== GROOKAI_PRODUCTION_PROJECT_REF) {
+    findings.push('config_project_ref_mismatch');
+  }
+  if (input.database_project_ref !== GROOKAI_PRODUCTION_PROJECT_REF) {
+    findings.push('database_project_ref_mismatch');
+  }
+  if (input.supabase_url_project_ref &&
+      input.supabase_url_project_ref !== GROOKAI_PRODUCTION_PROJECT_REF) {
+    findings.push('supabase_url_project_ref_mismatch');
+  }
+  if (Number(input.card_prints) < 40_000) findings.push('card_prints_below_minimum');
+  if (Number(input.sets) < 150) findings.push('sets_below_minimum');
+  if (Number(input.card_print_traits) < 5_000) {
+    findings.push('card_print_traits_below_minimum');
+  }
+  return { valid: findings.length === 0, findings };
 }
 
 function jpegDimensions(buffer) {
@@ -203,7 +247,8 @@ export function buildMtgSealedImageSourcePlanV1(rows, options = {}) {
       sourceProductId !== currentProductId ||
       Number(row.source_group_id) !== Number(row.current_source_group_id) ||
       normalizedName(row.source_product_name) !==
-        normalizedName(row.current_source_product_name);
+        normalizedName(row.current_source_product_name) ||
+      row.source_active !== true || row.catalog_metadata_status !== 'current';
     const candidateResult = exactTcgplayerCandidates(row);
     return {
       selected_index: selectedIndex,

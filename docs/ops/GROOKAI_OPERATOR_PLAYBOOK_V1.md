@@ -289,6 +289,25 @@ Merged-main readback run `33834897002` passed with zero writes. Checkpoint 104
 and `MTG_SEALED_PRODUCTIZATION_GATES_V1` keep self-hosted images, governed
 pricing refresh, and signed-in visibility as separate future gates.
 
+Gate A image coverage is operated only through
+`.github/workflows/mtg-sealed-image-coverage-v1.yml` from an exact merged
+`main` SHA. The workflow requires `SUPABASE_DB_URL`, verifies the production
+project ref and canonical minimum counts, queries the active frozen MTG release
+inside a read-only transaction, and performs bounded GET requests against exact
+allowlisted TCGPlayer image routes. It writes GitHub artifacts only.
+
+```powershell
+gh workflow run mtg-sealed-image-coverage-v1.yml --ref main `
+  -f expected_sha=<exact-merged-main-sha>
+```
+
+Preserve the `mtg-sealed-image-coverage-v1-<run-id>` artifact. Confirm
+`summary.json` reports exactly 2,182 selected members, zero reconciliation
+mismatches, and zero writes in every boundary. Review `exceptions.jsonl` before
+freezing an eligible/excluded member set. Do not upload Storage objects, apply a
+migration, write image pointers, refresh pricing, deploy clients, or activate
+visibility from this workflow.
+
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated
 before durable data work. A plan produced before an apply-authority workflow

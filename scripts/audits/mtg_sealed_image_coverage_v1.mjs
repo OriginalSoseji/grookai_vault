@@ -12,6 +12,9 @@ import {
   finalizeMtgSealedImageCoverageV1,
   hashMtgSealedImageV1,
   inspectMtgSealedImageBytesV1,
+  projectRefFromConnectionStringV1,
+  projectRefFromSupabaseUrlV1,
+  validateMtgSealedCanonicalEnvironmentV1,
   validateMtgSealedImageCoverageV1,
 } from '../../backend/pricing/mtg_sealed_image_coverage_v1.mjs';
 import { pgSslConfig } from './japanese_master_index_v4/read_only_guard_v1.mjs';
@@ -157,14 +160,49 @@ async function loadActiveReleaseMembers(client) {
   }));
 }
 
+async function canonicalEnvironment(client, url) {
+  const config = await fs.readFile(path.join(ROOT, 'supabase', 'config.toml'), 'utf8');
+  const configProjectRef = config.match(/^project_id\s*=\s*"([a-z0-9]+)"/m)?.[1] ?? null;
+  const counts = (await client.query(`select
+      (select count(*)::bigint from public.card_prints) as card_prints,
+      (select count(*)::bigint from public.sets) as sets,
+      (select count(*)::bigint from public.card_print_traits) as card_print_traits`)).rows[0];
+  const proof = {
+    config_project_ref: configProjectRef,
+    database_project_ref: projectRefFromConnectionStringV1(url),
+    supabase_url_project_ref: projectRefFromSupabaseUrlV1(process.env.SUPABASE_URL),
+    card_prints: Number(counts.card_prints),
+    sets: Number(counts.sets),
+    card_print_traits: Number(counts.card_print_traits),
+  };
+  const validation = validateMtgSealedCanonicalEnvironmentV1(proof);
+  return { ...proof, ...validation };
+}
+
 async function readBoundedBuffer(response, maxBytes) {
   const declared = Number(response.headers.get('content-length'));
   if (Number.isFinite(declared) && declared > maxBytes) {
     throw new Error('image_exceeds_max_bytes');
   }
-  const buffer = Buffer.from(await response.arrayBuffer());
-  if (buffer.length > maxBytes) throw new Error('image_exceeds_max_bytes');
-  return buffer;
+  if (!response.body) throw new Error('missing_response_body');
+  const reader = response.body.getReader();
+  const chunks = [];
+  let total = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > maxBytes) {
+        await reader.cancel('image_exceeds_max_bytes');
+        throw new Error('image_exceeds_max_bytes');
+      }
+      chunks.push(Buffer.from(value));
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return Buffer.concat(chunks, total);
 }
 
 function safeErrorCode(error) {
@@ -180,6 +218,7 @@ function safeErrorCode(error) {
 async function probeOne(row, args) {
   const attempted = [];
   const errors = [];
+  let lastInvalid = null;
   if (row.identity_conflict || row.invalid_source_url) {
     return { status: 'identity_conflict', attempted_urls: [],
       error_codes: ['source_identity_conflict'] };
@@ -203,7 +242,19 @@ async function probeOne(row, args) {
         const buffer = await readBoundedBuffer(response, args.maxBytes);
         const image = inspectMtgSealedImageBytesV1(buffer,
           response.headers.get('content-type'));
-        if (!image.valid_image) throw new Error('invalid_image');
+        if (!image.valid_image) {
+          attemptRecord.result = 'invalid_image';
+          errors.push('invalid_image');
+          lastInvalid = {
+            retrieved_at: new Date().toISOString(),
+            selected_role: candidate.role,
+            selected_source_url: candidate.url,
+            final_url: response.url,
+            http_status: response.status,
+            image,
+          };
+          break;
+        }
         attemptRecord.result = image.placeholder_suspected ? 'placeholder' : 'valid_image';
         return {
           status: 'image_retrieved',
@@ -233,6 +284,7 @@ async function probeOne(row, args) {
     retrieved_at: new Date().toISOString(),
     attempted_urls: attempted,
     error_codes: [...new Set(errors.length ? errors : ['no_image_candidate'])],
+    ...lastInvalid,
   };
 }
 
@@ -304,8 +356,13 @@ async function main() {
     application_name: 'mtg-sealed-image-coverage-v1-read-only' });
   await client.connect();
   let sourceRows;
+  let environment;
   try {
     await client.query('begin read only');
+    environment = await canonicalEnvironment(client, url);
+    if (!environment.valid) {
+      throw new Error(`Environment mismatch - fix before proceeding: ${environment.findings.join(',')}`);
+    }
     sourceRows = await loadActiveReleaseMembers(client);
     await client.query('commit');
   } catch (error) {
@@ -321,6 +378,7 @@ async function main() {
     version: MTG_SEALED_IMAGE_COVERAGE_V1,
     created_at: new Date().toISOString(),
     repository: repo,
+    canonical_environment: environment,
     release_id: plan.release_id,
     expected_member_count: args.expectedMemberCount,
     selected_member_count: plan.selected_member_count,

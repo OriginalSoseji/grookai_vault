@@ -7,7 +7,10 @@ import {
   buildMtgSealedImageSourcePlanV1,
   finalizeMtgSealedImageCoverageV1,
   inspectMtgSealedImageBytesV1,
+  projectRefFromConnectionStringV1,
+  projectRefFromSupabaseUrlV1,
   proposedMtgSealedStoragePathV1,
+  validateMtgSealedCanonicalEnvironmentV1,
   validateMtgSealedImageCoverageV1,
 } from '../../backend/pricing/mtg_sealed_image_coverage_v1.mjs';
 
@@ -72,6 +75,27 @@ test('non-image and placeholder bytes cannot qualify as exact', () => {
   const placeholder = inspectMtgSealedImageBytesV1(png(40, 40), 'image/png');
   assert.equal(placeholder.valid_image, true);
   assert.equal(placeholder.placeholder_suspected, true);
+});
+
+test('canonical environment proof binds database, config, URL, and minimum counts', () => {
+  assert.equal(projectRefFromConnectionStringV1(
+    'postgresql://postgres:secret@db.ycdxbpibncqcchqiihfz.supabase.co:5432/postgres'),
+  'ycdxbpibncqcchqiihfz');
+  assert.equal(projectRefFromConnectionStringV1(
+    'postgresql://postgres.ycdxbpibncqcchqiihfz:secret@pooler.supabase.com:5432/postgres'),
+  'ycdxbpibncqcchqiihfz');
+  assert.equal(projectRefFromSupabaseUrlV1(
+    'https://ycdxbpibncqcchqiihfz.supabase.co'), 'ycdxbpibncqcchqiihfz');
+  assert.deepEqual(validateMtgSealedCanonicalEnvironmentV1({
+    config_project_ref: 'ycdxbpibncqcchqiihfz',
+    database_project_ref: 'ycdxbpibncqcchqiihfz',
+    supabase_url_project_ref: 'ycdxbpibncqcchqiihfz',
+    card_prints: 40_000, sets: 150, card_print_traits: 5_000,
+  }), { valid: true, findings: [] });
+  assert.equal(validateMtgSealedCanonicalEnvironmentV1({
+    config_project_ref: 'wrong', database_project_ref: 'wrong',
+    card_prints: 1, sets: 1, card_print_traits: 1,
+  }).valid, false);
 });
 
 test('source plan binds every unique release member to exact private source identity', () => {
@@ -143,12 +167,29 @@ test('coverage preserves explicit exclusions and exact member reconciliation', (
   assert.equal(validateMtgSealedImageCoverageV1(coverage).valid, true);
 });
 
+test('invalid image exclusions retain byte-level inspection diagnostics', () => {
+  const plan = buildMtgSealedImageSourcePlanV1([sourceRow(1)], {
+    expectedMemberCount: 1,
+  });
+  const inspected = inspectMtgSealedImageBytesV1(Buffer.from('<html>bad</html>'),
+    'text/html');
+  const coverage = finalizeMtgSealedImageCoverageV1(plan, [{
+    status: 'invalid_image', image: inspected, http_status: 200,
+    error_codes: ['invalid_image'],
+  }]);
+  assert.equal(coverage.rows[0].classification, 'invalid_image');
+  assert.equal(coverage.rows[0].image.sha256?.length, 64);
+  assert.ok(coverage.rows[0].image.diagnostics.includes('unsupported_image_signature'));
+});
+
 test('operator and workflow are read-only and preserve artifacts', () => {
   const operator = fs.readFileSync(
     'scripts/audits/mtg_sealed_image_coverage_v1.mjs', 'utf8');
   const workflow = fs.readFileSync(
     '.github/workflows/mtg-sealed-image-coverage-v1.yml', 'utf8');
   assert.match(operator, /begin read only/i);
+  assert.match(operator, /Environment mismatch - fix before proceeding/);
+  assert.match(operator, /response\.body\.getReader\(\)/);
   assert.doesNotMatch(operator, /insert\s+into|update\s+public\.|delete\s+from/i);
   assert.match(workflow, /permissions:\s*\n\s*contents: read/);
   assert.match(workflow, /retention-days: 90/);
