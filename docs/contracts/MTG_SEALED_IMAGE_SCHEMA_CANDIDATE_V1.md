@@ -1,6 +1,6 @@
 # MTG Sealed Image Schema Candidate V1
 
-**Status:** Candidate preserved; promoted migration unapplied
+**Status:** Candidate preserved; promoted migration applied, data empty
 
 **Date:** 2026-09-04
 
@@ -81,11 +81,12 @@ anonymous access, cleanup, or destructive operation.
 
 The candidate was promoted without modifying its preserved bytes into
 `20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`.
-That migration also includes the separately reviewed authenticated signing
-predicate. The promoted migration remains unapplied.
+That migration and its separately reviewed authenticated signing predicate are
+durably applied as recorded in Pricing Checkpoint 110. All six image tables
+remain empty and the signer remains undeployed.
 
 ## Exact Next Gate
 
-Review the promoted package, its frozen hash, and its fresh read-only production
-preflight. Migration apply and transient Storage execution remain separate
-authorities.
+Freeze the guarded 17-object transient Storage execution plan from an exact
+clean commit. Storage execution remains a separate fingerprint-bound authority
+and must end with all transient paths verified absent.

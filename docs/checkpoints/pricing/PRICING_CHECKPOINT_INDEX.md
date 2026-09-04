@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md`
+
+This checkpoint records the exact schema-only MTG sealed image migration apply
+and independent production readback.
+
+Decision locked there:
+
+- the complete forced-RLS image evidence/release schema and authenticated
+  signing predicate are durably present, while all six image tables remain
+  empty and the trusted signer remains undeployed
+
+Unresolved risk afterward:
+
+- the transient and durable Storage gates, image release, pricing refresh, RPC
+  V3, signer deployment, client canary, visibility, and scheduler activation
+  remain serial later gates
+
 ### `PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`
 
 This checkpoint records the atomic migration promotion and successful

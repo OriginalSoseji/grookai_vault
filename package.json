@@ -147,6 +147,7 @@
     "sealed:domain:schema-preflight:v1": "node scripts/audits/cross_tcg_sealed_product_schema_preflight_v1.mjs",
     "mtg:sealed:image-coverage:v1": "node scripts/audits/mtg_sealed_image_coverage_v1.mjs",
     "mtg:sealed:image-canary-plan:v1": "node scripts/audits/mtg_sealed_image_canary_plan_v1.mjs",
+    "mtg:sealed:image-storage-canary:v1": "node scripts/audits/mtg_sealed_image_storage_canary_v1.mjs",
     "mtg:sealed:image-migration-preflight:v1": "node scripts/audits/mtg_sealed_image_migration_preflight_v1.mjs",
     "mtg:sealed:image-schema-apply:v1": "node scripts/audits/mtg_sealed_image_schema_apply_v1.mjs",
     "mtg:sealed:pricing-refresh:v1": "node scripts/audits/mtg_sealed_pricing_refresh_v1.mjs",

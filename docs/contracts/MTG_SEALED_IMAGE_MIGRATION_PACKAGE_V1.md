@@ -1,6 +1,6 @@
 # MTG Sealed Image Migration Package V1
 
-**Status:** Promoted and production-preflighted; unapplied and undeployed
+**Status:** Schema applied and verified; signer undeployed and image tables empty
 
 **Date:** 2026-09-04
 
@@ -85,9 +85,9 @@ asks the authenticated predicate about one exact content-addressed path, and
 uses service authority to sign only that path for one hour. Web and Flutter
 clients remain literal-false disabled and have no product-surface wiring.
 
-## Required Preflight
+## Applied Preflight And Readback
 
-Before any apply:
+The production apply required:
 
 1. the exact producer commit and clean branch must be recorded;
 2. all package hashes must match;
@@ -101,16 +101,21 @@ Before any apply:
 8. One Piece state and all existing sealed counts must reconcile; and
 9. the preflight must prove a read-only session and zero prohibited operations.
 
+## Applied Result
+
+The schema-only production migration was applied from execution commit
+`3eccc923011be7f399ba1b54d12878361526e7b5` and passed complete in-transaction
+and independent read-only schema, security, ledger, data, and protected-boundary
+readback. Pricing Checkpoint 110 preserves the authority and evidence. All six
+image tables remain empty and the signer remains undeployed.
+
 ## Exact Next Gate
 
-The read-only production preflight passed from producer commit
-`15384f5aefa5240dc8bf68ab4e974d0e20b44f11`; its permanent evidence is linked
-from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
-unless a later authority names the exact migration SHA-256 and producer commit.
-The next serial gate is a separately authorized schema-only apply and exact
-readback. It does not include signer deployment or any Storage/data operation.
+Complete the separately fingerprinted 17-object transient Storage canary. It
+must leave every transient path absent and cannot deploy the signer or create
+durable image, pricing, visibility, Vault, client, or cross-game state.
 
-The operator entrypoint is
+The historical schema operator entrypoint is
 `npm run mtg:sealed:image-schema-apply:v1`. Its default `--plan` mode reruns
 the complete read-only production preflight and emits a commit-bound apply-plan
 fingerprint plus the exact required authority text. Its `--apply` mode is
