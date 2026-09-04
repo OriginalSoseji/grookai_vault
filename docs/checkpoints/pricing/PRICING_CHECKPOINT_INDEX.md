@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_113_MTG_SEALED_STORAGE_CANARY_PASSED.md`
+
+This checkpoint records the complete 17-object source retrieval, collision,
+upload, readback, byte verification, removal, and final-absence proof.
+
+Decision locked there:
+
+- the secure transient Storage path is proven with zero durable objects and
+  zero forbidden-boundary operations
+
+Unresolved risk afterward:
+
+- the 2,144-object durable Storage plan and execution, database image release,
+  pricing refresh, RPC V3, signer, clients, visibility, and scheduler remain
+  serial later gates
+
 ### `PRICING_CHECKPOINT_112_MTG_SEALED_STORAGE_CANARY_TLS_TRUST_REQUIRED.md`
 
 This checkpoint records the bounded retry canary identifying

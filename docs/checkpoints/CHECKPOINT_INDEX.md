@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `PRICING_CHECKPOINT_113_MTG_SEALED_STORAGE_CANARY_PASSED` - `2026-09-04` - Exact 17-object MTG sealed source/upload/readback/removal proof passed with 17 unique hashes, 1,185,749 verified bytes, secure system CA trust, zero errors, zero durable objects, and zero forbidden-boundary operations
 - `PRICING_CHECKPOINT_112_MTG_SEALED_STORAGE_CANARY_TLS_TRUST_REQUIRED` - `2026-09-04` - Bounded retry canary isolated `unable_to_verify_leaf_signature` before upload, preserved 17/17 final absence, and requires verified Node bundled-plus-Windows-system CA trust under a new execution fingerprint
 - `PRICING_CHECKPOINT_111_MTG_SEALED_STORAGE_CANARY_FAILED_SAFE` - `2026-09-04` - First exact 17-object MTG sealed Storage canary stopped at source transport before upload; all 17 paths verified absent, authority consumed, and bounded retry/error telemetry repair required under a new fingerprint
 

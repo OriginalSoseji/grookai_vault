@@ -1,6 +1,6 @@
 # MTG Sealed Transient Storage Canary V1
 
-**Status:** Secure system-CA repair implemented; two attempts failed safely with zero uploads
+**Status:** Passed; all 17 transient objects removed and verified absent
 
 **Date:** 2026-09-04
 
@@ -83,6 +83,14 @@ requires both the Node bundled and Windows system CA stores while continuing to
 require certificate verification. Disabled verification and unfrozen custom CA
 inputs fail closed. The trust policy is part of the execution fingerprint.
 
+## Successful Execution
+
+The execution from commit `5f8ba57a8c502d1bd73b52fd6af2a254eb024aba`
+passed with 17 source requests, 17 exact source images, 17 uploads, 17 downloads,
+17 verified readbacks, 17 removals, and 17 final absence checks. It used the
+required bundled-plus-Windows-system CA policy and recorded zero errors or
+reconciliation mismatches. No transient object remains.
+
 ## Interruption Recovery
 
 The operator provides a recovery-only mode for hard process or machine
@@ -146,7 +154,6 @@ Secrets must never appear in artifacts.
 
 ## Exact Next Gate
 
-Generate the execution plan from an exact clean commit, record its fingerprint,
-and obtain the exact separately bound Storage authority. Then execute once and
-stop after cleanup/readback evidence. Durable image upload remains a later,
-separately planned and authorized gate.
+Prepare the zero-write durable Storage plan for 2,144 unique eligible image
+objects. Durable upload, database image evidence, signer deployment, pricing,
+visibility, and clients remain separately planned and authorized serial gates.
