@@ -7,6 +7,7 @@ import { gunzipSync } from 'node:zlib';
 import {
   buildMtgSealedTransientImageCanaryPlanV1,
   hashMtgSealedImageCanaryV1,
+  validateMtgSealedCoverageArtifactBundleV1,
   validateMtgSealedTransientImageCanaryPlanV1,
 } from '../../backend/pricing/mtg_sealed_image_canary_plan_v1.mjs';
 
@@ -29,15 +30,6 @@ function parseArgs(argv) {
     }
   }
   return result;
-}
-
-async function readJson(filePath) {
-  return JSON.parse(await fs.readFile(filePath, 'utf8'));
-}
-
-async function readJsonlGzip(filePath) {
-  const body = gunzipSync(await fs.readFile(filePath)).toString('utf8');
-  return body.split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line));
 }
 
 function repository() {
@@ -69,8 +61,27 @@ async function writeArtifacts(outDir, files) {
 }
 
 const args = parseArgs(process.argv.slice(2));
-const summary = await readJson(path.join(args.sourceDir, 'summary.json'));
-const rows = await readJsonlGzip(path.join(args.sourceDir, 'coverage.jsonl.gz'));
+const summaryBytes = await fs.readFile(path.join(args.sourceDir, 'summary.json'));
+const summary = JSON.parse(summaryBytes.toString('utf8'));
+const manifest = JSON.parse(await fs.readFile(
+  path.join(args.sourceDir, 'permanent_manifest.json'), 'utf8'));
+const coverageCompressedBytes = await fs.readFile(
+  path.join(args.sourceDir, 'coverage.jsonl.gz'));
+const coverageUncompressedBytes = gunzipSync(coverageCompressedBytes);
+const rows = coverageUncompressedBytes.toString('utf8')
+  .split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line));
+const sourceValidation = validateMtgSealedCoverageArtifactBundleV1({
+  rows,
+  summary,
+  manifest,
+  coverageCompressedBytes,
+  coverageUncompressedBytes,
+  summaryBytes,
+});
+if (!sourceValidation.valid) {
+  throw new Error(`Invalid preserved source artifacts: ${
+    sourceValidation.findings.join(', ')}`);
+}
 const plan = buildMtgSealedTransientImageCanaryPlanV1(rows, {
   count: args.count,
   coverageFingerprint: summary.coverage_fingerprint_sha256,
@@ -93,6 +104,7 @@ const result = {
     row.expected_image.content_sha256)).size,
   package_form_counts: packageForms,
   plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
+  source_artifact_validation: sourceValidation,
   validation,
   boundaries: plan.boundaries,
 };
@@ -101,6 +113,7 @@ const report = `# MTG Sealed Transient Image Canary Plan V1\n\n` +
   `- Source release: \`${result.source_release_id}\`\n` +
   `- Selected exact variants/objects: \`${plan.rows.length}/${result.selected_unique_object_count}\`\n` +
   `- Plan fingerprint: \`${plan.plan_fingerprint_sha256}\`\n` +
+  `- Preserved source validation: \`${sourceValidation.valid}\`\n` +
   `- Validation: \`${validation.valid}\`\n\n` +
   `This operation read committed audit files only. It made zero provider, ` +
   `database, Storage, pricing, visibility, or Vault calls or writes. A future ` +

@@ -2,9 +2,11 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import test from 'node:test';
+import { gunzipSync } from 'node:zlib';
 
 import {
   buildMtgSealedTransientImageCanaryPlanV1,
+  validateMtgSealedCoverageArtifactBundleV1,
   validateMtgSealedTransientImageCanaryPlanV1,
 } from '../../backend/pricing/mtg_sealed_image_canary_plan_v1.mjs';
 
@@ -13,6 +15,8 @@ const candidatePath =
 const sql = fs.readFileSync(candidatePath, 'utf8');
 const auditRoot =
   'docs/audits/pricing/mtg_sealed_image_schema_candidate_v1/2026-09-04_offline';
+const coverageRoot =
+  'docs/audits/pricing/mtg_sealed_image_coverage_v1/2026-09-04_live_33841181449';
 
 function row(index, overrides = {}) {
   const hash = index.toString(16).padStart(64, '0');
@@ -82,6 +86,13 @@ test('candidate defines exact evidence, objects, assertions, releases, and point
   assert.match(sql, /content_sha256/);
   assert.match(sql, /storage_readback_sha256 = content_sha256/);
   assert.match(sql, /source_release_member_id, variant_id, source_mapping_id/);
+  assert.match(sql, /object\.content_sha256 = evidence\.content_sha256/);
+  assert.match(sql, /object\.image_mime = evidence\.image_mime/);
+  assert.match(sql, /object\.image_width = evidence\.image_width/);
+  assert.match(sql, /object\.image_height = evidence\.image_height/);
+  assert.match(sql, /object\.image_bytes = evidence\.image_bytes/);
+  assert.match(sql, /image release source price release must be frozen/);
+  assert.match(sql, /price_release\.release_state = 'frozen'/);
 });
 
 test('candidate is append-only, service-owned, and has compare-and-swap activation', () => {
@@ -123,4 +134,33 @@ test('canary validation rejects unsafe upload and rollback semantics', () => {
     Array.from({ length: 20 }, (_, index) => row(index + 1)), { count: 17 });
   plan.rows[0].upload_upsert = true;
   assert.equal(validateMtgSealedTransientImageCanaryPlanV1(plan).valid, false);
+});
+
+test('canary source bundle validates preserved bytes and coverage fingerprint', () => {
+  const coverageCompressedBytes = fs.readFileSync(
+    `${coverageRoot}/coverage.jsonl.gz`);
+  const coverageUncompressedBytes = gunzipSync(coverageCompressedBytes);
+  const summaryBytes = fs.readFileSync(`${coverageRoot}/summary.json`);
+  const bundle = {
+    rows: coverageUncompressedBytes.toString('utf8').split(/\r?\n/)
+      .filter(Boolean).map((line) => JSON.parse(line)),
+    summary: JSON.parse(summaryBytes.toString('utf8')),
+    manifest: JSON.parse(fs.readFileSync(
+      `${coverageRoot}/permanent_manifest.json`, 'utf8')),
+    coverageCompressedBytes,
+    coverageUncompressedBytes,
+    summaryBytes,
+  };
+  assert.deepEqual(validateMtgSealedCoverageArtifactBundleV1(bundle), {
+    valid: true,
+    findings: [],
+  });
+  const tampered = structuredClone(bundle.rows);
+  tampered[0].canonical_name = 'Tampered';
+  const result = validateMtgSealedCoverageArtifactBundleV1({
+    ...bundle,
+    rows: tampered,
+  });
+  assert.equal(result.valid, false);
+  assert.ok(result.findings.includes('coverage_rows_fingerprint_mismatch'));
 });

@@ -269,6 +269,61 @@ create table public.sealed_product_image_release_pointer (
     on delete restrict
 );
 
+create function public.sealed_product_guard_variant_image_assertion_insert_v1()
+returns trigger
+language plpgsql
+security invoker
+set search_path = pg_catalog, public
+as $$
+begin
+  if not exists (
+    select 1
+    from public.sealed_product_image_evidence evidence
+    join public.sealed_product_image_objects object
+      on object.id = new.image_object_id
+     and object.game_key = new.game_key
+     and object.content_sha256 = evidence.content_sha256
+     and object.image_mime = evidence.image_mime
+     and object.image_width = evidence.image_width
+     and object.image_height = evidence.image_height
+     and object.image_bytes = evidence.image_bytes
+     and object.storage_readback_sha256 = evidence.content_sha256
+    where evidence.id = new.image_evidence_id
+      and evidence.game_key = new.game_key
+      and evidence.variant_id = new.variant_id
+      and evidence.source_mapping_id = new.source_mapping_id
+      and evidence.classification in (
+        'exact_image_ready', 'shared_bytes_exact_variant'
+      )
+  ) then
+    raise exception 'image assertion evidence and object bytes do not match exactly'
+      using errcode = '23514';
+  end if;
+  return new;
+end;
+$$;
+
+create function public.sealed_product_guard_image_release_insert_v1()
+returns trigger
+language plpgsql
+security invoker
+set search_path = pg_catalog, public
+as $$
+begin
+  if not exists (
+    select 1
+    from public.sealed_product_releases price_release
+    where price_release.id = new.source_price_release_id
+      and price_release.game_key = new.game_key
+      and price_release.release_state = 'frozen'
+  ) then
+    raise exception 'image release source price release must be frozen'
+      using errcode = '23514';
+  end if;
+  return new;
+end;
+$$;
+
 create function public.sealed_product_guard_image_release_mutation_v1()
 returns trigger
 language plpgsql
@@ -287,6 +342,16 @@ begin
      and new.frozen_at is not null
      and (to_jsonb(new) - 'release_state' - 'frozen_by' - 'frozen_at')
        = (to_jsonb(old) - 'release_state' - 'frozen_by' - 'frozen_at') then
+    if not exists (
+      select 1
+      from public.sealed_product_releases price_release
+      where price_release.id = new.source_price_release_id
+        and price_release.game_key = new.game_key
+        and price_release.release_state = 'frozen'
+    ) then
+      raise exception 'image release source price release must remain frozen'
+        using errcode = '23514';
+    end if;
     return new;
   end if;
 
@@ -305,6 +370,10 @@ begin
   if not exists (
     select 1
     from public.sealed_product_image_releases image_release
+    join public.sealed_product_releases price_release
+      on price_release.id = image_release.source_price_release_id
+     and price_release.game_key = image_release.game_key
+     and price_release.release_state = 'frozen'
     join public.sealed_product_variant_image_assertions assertion
       on assertion.id = new.image_assertion_id
      and assertion.game_key = new.game_key
@@ -463,6 +532,12 @@ for each row execute function public.sealed_product_reject_row_mutation_v1();
 create trigger sealed_product_variant_image_assertions_append_only
 before update or delete on public.sealed_product_variant_image_assertions
 for each row execute function public.sealed_product_reject_row_mutation_v1();
+create trigger sealed_product_variant_image_assertions_guard_insert
+before insert on public.sealed_product_variant_image_assertions
+for each row execute function public.sealed_product_guard_variant_image_assertion_insert_v1();
+create trigger sealed_product_image_releases_guard_insert
+before insert on public.sealed_product_image_releases
+for each row execute function public.sealed_product_guard_image_release_insert_v1();
 create trigger sealed_product_image_releases_guard_mutation
 before update or delete on public.sealed_product_image_releases
 for each row execute function public.sealed_product_guard_image_release_mutation_v1();
@@ -512,6 +587,10 @@ from public, anon, authenticated, service_role;
 revoke all on public.sealed_product_image_release_pointer
 from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_guard_image_release_mutation_v1()
+from public, anon, authenticated, service_role;
+revoke all on function public.sealed_product_guard_variant_image_assertion_insert_v1()
+from public, anon, authenticated, service_role;
+revoke all on function public.sealed_product_guard_image_release_insert_v1()
 from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_guard_image_release_member_insert_v1()
 from public, anon, authenticated, service_role;

@@ -1,5 +1,7 @@
 import { createHash } from 'node:crypto';
 
+import { hashMtgSealedImageV1 } from './mtg_sealed_image_coverage_v1.mjs';
+
 export const MTG_SEALED_IMAGE_CANARY_PLAN_V1 =
   'MTG_SEALED_IMAGE_CANARY_PLAN_V1';
 export const MTG_SEALED_IMAGE_STORAGE_BUCKET_V1 = 'user-card-images';
@@ -22,6 +24,49 @@ export function hashMtgSealedImageCanaryV1(value) {
       ? value
       : JSON.stringify(stable(value)),
   ).digest('hex');
+}
+
+export function validateMtgSealedCoverageArtifactBundleV1(bundle) {
+  const findings = [];
+  const add = (condition, finding) => {
+    if (condition) findings.push(finding);
+  };
+  const rows = bundle?.rows ?? [];
+  const summary = bundle?.summary ?? {};
+  const manifest = bundle?.manifest ?? {};
+  const coverageEntry = manifest?.preserved_artifacts?.['coverage.jsonl.gz'] ?? {};
+  const summaryEntry = manifest?.preserved_artifacts?.['summary.json'] ?? {};
+  const compressed = bundle?.coverageCompressedBytes;
+  const uncompressed = bundle?.coverageUncompressedBytes;
+  const summaryBytes = bundle?.summaryBytes;
+
+  add(!Array.isArray(rows), 'coverage_rows_missing');
+  add(hashMtgSealedImageV1(rows) !== summary.coverage_fingerprint_sha256,
+    'coverage_rows_fingerprint_mismatch');
+  add(summary.coverage_fingerprint_sha256 !==
+    manifest?.fingerprints?.coverage_sha256,
+  'summary_manifest_coverage_fingerprint_mismatch');
+  add(summary.release_id !== manifest?.release_id,
+    'summary_manifest_release_mismatch');
+  add(summary.selected_member_count !== manifest?.counts?.selected_members,
+    'summary_manifest_member_count_mismatch');
+  add(!Buffer.isBuffer(compressed) ||
+    hashMtgSealedImageCanaryV1(compressed) !== coverageEntry.sha256,
+  'coverage_compressed_file_hash_mismatch');
+  add(!Buffer.isBuffer(uncompressed) ||
+    hashMtgSealedImageCanaryV1(uncompressed) !== coverageEntry.uncompressed_sha256,
+  'coverage_uncompressed_file_hash_mismatch');
+  add(Buffer.isBuffer(compressed) && compressed.length !== coverageEntry.bytes,
+    'coverage_compressed_file_size_mismatch');
+  add(Buffer.isBuffer(uncompressed) &&
+    uncompressed.length !== coverageEntry.uncompressed_bytes,
+  'coverage_uncompressed_file_size_mismatch');
+  add(!Buffer.isBuffer(summaryBytes) ||
+    hashMtgSealedImageCanaryV1(summaryBytes) !== summaryEntry.sha256,
+  'summary_file_hash_mismatch');
+  add(Buffer.isBuffer(summaryBytes) && summaryBytes.length !== summaryEntry.bytes,
+    'summary_file_size_mismatch');
+  return { valid: findings.length === 0, findings };
 }
 
 function clean(value) {

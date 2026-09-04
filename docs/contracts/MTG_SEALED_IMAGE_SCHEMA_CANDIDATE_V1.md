@@ -37,6 +37,12 @@ own evidence and assertion. A release-member insert is accepted only when the
 assertion is exact and its source evidence points back to the same variant and
 mapping in the bound frozen price release.
 
+An assertion insert also requires exact parity between retrieval evidence and
+the selected self-hosted object for content SHA-256, MIME type, width, height,
+and byte count. Matching game identity alone is insufficient. Image releases
+can be created, populated, and frozen only while their exact source price
+release is already frozen.
+
 ## Security
 
 - Every proposed table enables and forces RLS.
@@ -59,7 +65,10 @@ exact bytes, remove only objects created by that execution, and verify all are
 absent afterward.
 
 The planner itself reads only the permanently preserved compressed coverage
-artifact. It performs zero provider, database, or Storage calls.
+artifact. Before selecting rows, it verifies compressed and uncompressed file
+hashes and sizes against the permanent manifest, verifies the preserved
+summary, and recomputes the logical coverage fingerprint from all 2,182 rows.
+It performs zero provider, database, or Storage calls.
 
 ## Boundaries
 
