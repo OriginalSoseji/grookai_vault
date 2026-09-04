@@ -1,6 +1,6 @@
 # MTG Sealed Authenticated Image Read V1 Candidate
 
-**Status:** Unapplied candidate
+**Status:** Candidate preserved; promoted migration unapplied
 
 **Date:** 2026-09-04
 
@@ -47,10 +47,15 @@ serially, and read back before the disabled clients can be activated.
 Candidate SQL SHA-256:
 `46e0c6d15cebd06d7a4e1299563d483fded19c23a23cb0936ce9a23e7ed4e6b0`.
 
+## Promotion
+
+The candidate was promoted without modifying its preserved bytes into
+`20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`.
+The trusted signer remains separately pinned and undeployed.
+
 ## Exact Next Gate
 
-Promote the base image schema and this authenticated-read addendum into a
-versioned migration package and prepare a separately pinned signer deployment.
-Apply or deploy nothing until both have frozen hashes, clean production
-preflight, explicit authority, and exact schema, function, grant, RLS,
-authentication, no-listing, and cross-game readback requirements.
+Review the promoted package, frozen hashes, and fresh read-only production
+preflight. Apply or deploy nothing without separate exact authority and exact
+schema, function, grant, RLS, authentication, no-listing, and cross-game
+readback requirements.
