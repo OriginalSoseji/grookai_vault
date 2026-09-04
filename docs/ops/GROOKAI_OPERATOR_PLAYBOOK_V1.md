@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_104_MTG_SEALED_PRODUCTIZATION_GATES_FROZEN.md` | Merged-main readback passed; images, pricing refresh, and signed-in visibility are separate unactivated gates |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_105_MTG_SEALED_IMAGE_COVERAGE_COMPLETED.md` | Gate A reconciled all 2,182 members; 2,149 are image-eligible, 33 are explicit gaps, and no upload or activation occurred |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,7 +223,7 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_104_MTG_SEALED_PRODUCTIZATION_GATES_FROZEN.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_105_MTG_SEALED_IMAGE_COVERAGE_COMPLETED.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
@@ -285,9 +285,10 @@ The separate readback regenerated the exact payload, reconciled every durable
 projection and the MTG pointer, and wrote zero rows. Do not dispatch `apply`
 again with the checkpoint 101 values. The aggregate write-count telemetry
 repair described in checkpoint 103 is complete and did not mutate production.
-Merged-main readback run `33834897002` passed with zero writes. Checkpoint 104
-and `MTG_SEALED_PRODUCTIZATION_GATES_V1` keep self-hosted images, governed
-pricing refresh, and signed-in visibility as separate future gates.
+Merged-main readback run `33834897002` passed with zero writes. Checkpoint 105
+records the subsequent complete Gate A audit while
+`MTG_SEALED_PRODUCTIZATION_GATES_V1` keeps self-hosted image mutation,
+governed pricing refresh, and signed-in visibility as separate future gates.
 
 Gate A image coverage is operated only through
 `.github/workflows/mtg-sealed-image-coverage-v1.yml` from an exact merged
@@ -307,6 +308,13 @@ mismatches, and zero writes in every boundary. Review `exceptions.jsonl` before
 freezing an eligible/excluded member set. Do not upload Storage objects, apply a
 migration, write image pointers, refresh pricing, deploy clients, or activate
 visibility from this workflow.
+
+Run `33841181449` completed this operation from
+`e616615883cb808ad8c870380d9d52da4a4d80bf`. It froze 2,149 eligible members
+and 33 explicit exceptions with zero reconciliation mismatches and zero writes.
+Permanent compressed member-level evidence is linked from checkpoint 105. Do
+not rerun Gate A merely to recreate that evidence; a new audit is justified
+only by a separately versioned source or release change.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated

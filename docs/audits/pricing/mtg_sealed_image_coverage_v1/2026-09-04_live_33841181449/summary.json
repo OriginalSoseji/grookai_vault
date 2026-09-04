@@ -1,0 +1,38 @@
+{
+  "status": "mtg_sealed_image_coverage_completed_zero_writes",
+  "repository": {
+    "branch": "main",
+    "commit_sha": "e616615883cb808ad8c870380d9d52da4a4d80bf",
+    "tracked_worktree_clean": true
+  },
+  "release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "expected_member_count": 2182,
+  "selected_member_count": 2182,
+  "image_eligible_member_count": 2149,
+  "excluded_member_count": 33,
+  "unique_image_count": 2144,
+  "classification_counts": {
+    "exact_image_ready": 2133,
+    "shared_bytes_exact_variant": 16,
+    "missing_source_image": 0,
+    "invalid_image": 30,
+    "placeholder": 3,
+    "identity_conflict": 0
+  },
+  "request_count": 2244,
+  "retry_count": 0,
+  "elapsed_ms": 6602,
+  "source_plan_fingerprint_sha256": "fbe124ed63838a690b700ad2e2659dd22b5060645d8964387476225774d913a0",
+  "coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "findings": [],
+  "zero_reconciliation_mismatches": true,
+  "boundaries": {
+    "database_writes": 0,
+    "storage_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0
+  }
+}

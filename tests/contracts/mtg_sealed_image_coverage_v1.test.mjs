@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import test from 'node:test';
 
@@ -194,4 +195,28 @@ test('operator and workflow are read-only and preserve artifacts', () => {
   assert.match(workflow, /permissions:\s*\n\s*contents: read/);
   assert.match(workflow, /retention-days: 90/);
   assert.match(workflow, /expected-member-count=2182/);
+});
+
+test('permanent live evidence reconciles and matches every recorded hash', () => {
+  const root =
+    'docs/audits/pricing/mtg_sealed_image_coverage_v1/2026-09-04_live_33841181449';
+  const manifest = JSON.parse(fs.readFileSync(
+    `${root}/permanent_manifest.json`, 'utf8'));
+  const summary = JSON.parse(fs.readFileSync(`${root}/summary.json`, 'utf8'));
+
+  assert.equal(manifest.workflow.producer_sha,
+    'e616615883cb808ad8c870380d9d52da4a4d80bf');
+  assert.equal(summary.selected_member_count, 2182);
+  assert.equal(summary.image_eligible_member_count, 2149);
+  assert.equal(summary.excluded_member_count, 33);
+  assert.equal(summary.zero_reconciliation_mismatches, true);
+  assert.ok(Object.values(summary.boundaries).every((value) => value === 0));
+
+  for (const [name, evidence] of
+    Object.entries(manifest.preserved_artifacts)) {
+    const bytes = fs.readFileSync(`${root}/${name}`);
+    const sha256 = crypto.createHash('sha256').update(bytes).digest('hex');
+    assert.equal(bytes.length, evidence.bytes, `${name} byte count`);
+    assert.equal(sha256, evidence.sha256, `${name} SHA-256`);
+  }
 });
