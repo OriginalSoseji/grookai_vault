@@ -53,6 +53,10 @@ test('productization keeps images, pricing, and visibility as separate gates', (
   assert.match(contract, /No gate inherits mutation authority from another/);
   assert.match(contract, /Anonymous access stays denied throughout V1/);
   assert.match(contract, /authorizes no Storage\s+write, database write, price publication, visibility change/);
+  assert.match(contract, /`v2` is not accepted as the final client interface/);
+  assert.match(contract, /joins exact\s+sealed-image evidence\/pointers/);
+  assert.match(contract, /seven-day serving-time expiry/);
+  assert.match(contract, /fail closed to zero\s+price rows/);
 });
 
 test('the next gate is image planning only and cannot activate the product', () => {

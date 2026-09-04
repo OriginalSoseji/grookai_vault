@@ -141,7 +141,12 @@ average may enter this release.
 6. Read back every member to its exact mapping, qualification, price row, source
    observation, and image eligibility.
 7. Prove pointer restoration before scheduled operation is enabled.
-8. Run at least seven consecutive unattended scheduled cycles with zero
+8. Add a serving-time freshness boundary to the future versioned client RPC.
+   A member whose source observation is more than seven days old must not be
+   returned even when an older frozen release remains active. If refresh
+   failures leave no fresh eligible members, the RPC must fail closed to zero
+   price rows and monitoring must alert; stale values cannot remain visible.
+9. Run at least seven consecutive unattended scheduled cycles with zero
    reconciliation mismatch and alert on failure, staleness, coverage loss, or
    abnormal price movement.
 
@@ -152,7 +157,9 @@ average may enter this release.
 - Release counts, member hashes, token-free source processing, pointer state,
   and database writes reconcile exactly.
 - Source freshness and qualification coverage are observable per cycle.
-- A failed cycle leaves the prior release active and sends an operator alert.
+- A failed cycle leaves the prior release pointer intact only while serving-time
+  freshness still permits its members. Expired members disappear rather than
+  remaining visible, and the failure sends an operator alert.
 - Gate A image eligibility is enforced for client-intended members.
 - Cards, One Piece, Vault, and visibility control remain unchanged.
 
@@ -173,13 +180,17 @@ governed read interface and verified web/mobile surfaces.
 
 - Gate A is complete for every client-intended member.
 - Gate B has a fresh active release and has passed its operational soak.
-- `get_active_sealed_product_pricing_v2` and its grants/RLS are read back from
-  production.
+- `get_active_sealed_product_pricing_v2` and its grants/RLS are read back for
+  lineage verification, but `v2` is not accepted as the final client interface:
+  it has no sealed-image fields and no serving-time freshness filter.
+- A new versioned successor RPC is defined after Gate A, joins exact
+  sealed-image evidence/pointers, enforces the seven-day serving-time expiry,
+  and receives independent schema, grant, RLS, and anonymous-denial readback.
 - The MTG card-catalog control and independent MTG sealed-product control are
   verified separately.
-- Web and Flutter consume the same response contract and render package name,
-  package form, exact image, market price, currency, source, and observation
-  time without falling back to card identity.
+- Web and Flutter consume that same successor response contract and render
+  package name, package form, exact image, market price, currency, source, and
+  observation time without falling back to card identity.
 - Loading, empty, missing-image, stale-price, offline, and error states pass
   deterministic tests.
 

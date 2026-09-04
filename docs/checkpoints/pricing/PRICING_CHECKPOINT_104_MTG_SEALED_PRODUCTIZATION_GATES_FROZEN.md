@@ -48,6 +48,9 @@ designed to prevent.
 - External source URLs could be mistaken for permanent client images.
 - Package images could be forced into card-image identity.
 - A one-time price release could be mistaken for a sustainable pricing system.
+- An old frozen release could continue serving stale values because the current
+  `v2` RPC does not enforce freshness at request time.
+- The current `v2` RPC has no sealed-image evidence or pointer in its response.
 - The release pointer could be mistaken for visibility authority.
 - Signed-in activation could expose rows before images, pricing freshness, or
   clients are ready.
@@ -96,6 +99,8 @@ are planning evidence only.
 - Anonymous visibility remains denied.
 - One Piece, cards, Vault, and existing release data remain protected.
 - Images, pricing, and visibility remain separate authority domains.
+- Signed-in activation requires a versioned successor to the current `v2` RPC
+  that joins exact self-hosted images and fails closed on expired prices.
 - The database control's `signed_in` state applies to all authenticated users;
   a narrower security cohort requires a separately designed boundary.
 
