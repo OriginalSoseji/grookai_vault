@@ -126,6 +126,18 @@ test('combined migration grants no client Storage authority', () => {
   assert.doesNotMatch(migration, /grant [^;]+ on storage\.objects/i);
 });
 
+test('eligible image evidence fails closed when required fields are null', () => {
+  assert.match(migration,
+    /sealed_product_image_evidence_eligible_fields_check[\s\S]*or coalesce\(\([\s\S]*selected_source_role is not null[\s\S]*http_status between 200 and 299[\s\S]*\), false\)/i);
+});
+
+test('image object path is canonically bound to game, hash, and MIME', () => {
+  assert.match(migration,
+    /object_path ~ '\^sealed\/\[a-z0-9_\]\+\/sha256\//i);
+  assert.match(migration,
+    /and object_path = 'sealed\/' \|\| game_key \|\| '\/sha256\/'[\s\S]*left\(content_sha256, 2\)[\s\S]*content_sha256[\s\S]*case image_mime[\s\S]*when 'image\/jpeg' then '\.jpg'[\s\S]*when 'image\/png' then '\.png'[\s\S]*when 'image\/gif' then '\.gif'[\s\S]*when 'image\/webp' then '\.webp'/i);
+});
+
 test('valid read-only preflight passes', () => {
   assert.deepEqual(validateMtgSealedImageMigrationPreflightV1(validProof()), {
     valid: true,

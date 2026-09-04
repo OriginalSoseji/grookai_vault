@@ -64,7 +64,7 @@ create table public.sealed_product_image_evidence (
   constraint sealed_product_image_evidence_eligible_fields_check
     check (
       classification not in ('exact_image_ready', 'shared_bytes_exact_variant')
-      or (
+      or coalesce((
         selected_source_role is not null
         and http_status between 200 and 299
         and image_mime is not null
@@ -72,7 +72,7 @@ create table public.sealed_product_image_evidence (
         and image_height > 0
         and image_bytes > 0
         and content_sha256 is not null
-      )
+      ), false)
     ),
   constraint sealed_product_image_evidence_source_plan_check
     check (source_plan_fingerprint ~ '^[0-9a-f]{64}$'),
@@ -119,7 +119,17 @@ create table public.sealed_product_image_objects (
   constraint sealed_product_image_objects_bucket_check
     check (storage_bucket = 'user-card-images'),
   constraint sealed_product_image_objects_path_check
-    check (object_path ~ '^sealed/[a-z0-9_]+/sha256/[0-9a-f]{2}/[0-9a-f]{64}\.(jpg|png|gif|webp)$'),
+    check (
+      object_path ~ '^sealed/[a-z0-9_]+/sha256/[0-9a-f]{2}/[0-9a-f]{64}\.(jpg|png|gif|webp)$'
+      and object_path = 'sealed/' || game_key || '/sha256/'
+        || left(content_sha256, 2) || '/' || content_sha256
+        || case image_mime
+          when 'image/jpeg' then '.jpg'
+          when 'image/png' then '.png'
+          when 'image/gif' then '.gif'
+          when 'image/webp' then '.webp'
+        end
+    ),
   constraint sealed_product_image_objects_hash_check
     check (content_sha256 ~ '^[0-9a-f]{64}$'),
   constraint sealed_product_image_objects_readback_hash_check

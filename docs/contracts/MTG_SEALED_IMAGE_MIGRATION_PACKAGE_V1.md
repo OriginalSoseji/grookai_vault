@@ -17,7 +17,7 @@ all data, Storage, pricing, visibility, and client behavior unchanged.
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `0efd90e3291731f153afd901f23b51c264f4a0b0d27236c10bb34f82938c8406`
+  `400948bbc661b76b9713d101514e7fe6c61df2c7eb16cbf4c38806f9386976e7`
 - Preserved image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Preserved signing-authorization candidate SHA-256:
