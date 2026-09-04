@@ -1,14 +1,14 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1",
-  "generated_at": "2026-09-03T08:15:46.800Z",
+  "generated_at": "2026-09-04T08:18:53.117Z",
   "audit_only": true,
   "db_writes": false,
   "rule": "Evidence set aliases are canonicalized before suppression and classification only when an alias resolves to exactly one configured English set.",
   "summary": {
-    "evidence_rows_examined": 327560,
-    "evidence_rows_after_dedupe": 239939,
+    "evidence_rows_examined": 327069,
+    "evidence_rows_after_dedupe": 239624,
     "evidence_rows_remapped": 2236,
-    "duplicate_rows_collapsed": 87621,
+    "duplicate_rows_collapsed": 87445,
     "unresolved_evidence_rows": 0,
     "ambiguous_aliases": 2,
     "source_availability_rows_remapped": 0,
@@ -368,7 +368,7 @@
   ],
   "remap_samples": [
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -383,7 +383,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -394,11 +394,11 @@
       "card_number": "SV1",
       "original_card_number": "SV1",
       "card_name": "Scyther",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -413,7 +413,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -424,11 +424,11 @@
       "card_number": "SV2",
       "original_card_number": "SV2",
       "card_name": "Rowlet",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -443,7 +443,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -454,11 +454,11 @@
       "card_number": "SV3",
       "original_card_number": "SV3",
       "card_name": "Dartrix",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -473,7 +473,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -484,11 +484,11 @@
       "card_number": "SV4",
       "original_card_number": "SV4",
       "card_name": "Wimpod",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -503,7 +503,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -514,11 +514,11 @@
       "card_number": "SV5",
       "original_card_number": "SV5",
       "card_name": "Pheromosa",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -533,7 +533,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -544,11 +544,11 @@
       "card_number": "SV6",
       "original_card_number": "SV6",
       "card_name": "Charmander",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -563,7 +563,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -574,11 +574,11 @@
       "card_number": "SV7",
       "original_card_number": "SV7",
       "card_name": "Charmeleon",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -593,7 +593,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -604,11 +604,11 @@
       "card_number": "SV8",
       "original_card_number": "SV8",
       "card_name": "Alolan Vulpix",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -623,7 +623,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -634,11 +634,11 @@
       "card_number": "SV9",
       "original_card_number": "SV9",
       "card_name": "Wooper",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -653,7 +653,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -664,11 +664,11 @@
       "card_number": "SV10",
       "original_card_number": "SV10",
       "card_name": "Quagsire",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -683,7 +683,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -694,11 +694,11 @@
       "card_number": "SV11",
       "original_card_number": "SV11",
       "card_name": "Froakie",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -713,7 +713,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -724,11 +724,11 @@
       "card_number": "SV12",
       "original_card_number": "SV12",
       "card_name": "Frogadier",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -743,7 +743,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -754,11 +754,11 @@
       "card_number": "SV13",
       "original_card_number": "SV13",
       "card_name": "Voltorb",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -773,7 +773,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -784,11 +784,11 @@
       "card_number": "SV14",
       "original_card_number": "SV14",
       "card_name": "Xurkitree",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -803,7 +803,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -814,11 +814,11 @@
       "card_number": "SV15",
       "original_card_number": "SV15",
       "card_name": "Seviper",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -833,7 +833,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -844,11 +844,11 @@
       "card_number": "SV16",
       "original_card_number": "SV16",
       "card_name": "Shuppet",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -863,7 +863,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -874,11 +874,11 @@
       "card_number": "SV17",
       "original_card_number": "SV17",
       "card_name": "Inkay",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -893,7 +893,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -904,11 +904,11 @@
       "card_number": "SV18",
       "original_card_number": "SV18",
       "card_name": "Malamar",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -923,7 +923,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -934,11 +934,11 @@
       "card_number": "SV19",
       "original_card_number": "SV19",
       "card_name": "Poipole",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -953,7 +953,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -964,11 +964,11 @@
       "card_number": "SV20",
       "original_card_number": "SV20",
       "card_name": "Sudowoodo",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -983,7 +983,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -994,11 +994,11 @@
       "card_number": "SV21",
       "original_card_number": "SV21",
       "card_name": "Riolu",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1013,7 +1013,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1024,11 +1024,11 @@
       "card_number": "SV22",
       "original_card_number": "SV22",
       "card_name": "Lucario",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1043,7 +1043,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1054,11 +1054,11 @@
       "card_number": "SV23",
       "original_card_number": "SV23",
       "card_name": "Rockruff",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1073,7 +1073,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1084,11 +1084,11 @@
       "card_number": "SV24",
       "original_card_number": "SV24",
       "card_name": "Buzzwole",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1103,7 +1103,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1114,11 +1114,11 @@
       "card_number": "SV25",
       "original_card_number": "SV25",
       "card_name": "Zorua",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1133,7 +1133,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1144,11 +1144,11 @@
       "card_number": "SV26",
       "original_card_number": "SV26",
       "card_name": "Guzzlord",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1163,7 +1163,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1174,11 +1174,11 @@
       "card_number": "SV27",
       "original_card_number": "SV27",
       "card_name": "Magnemite",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1193,7 +1193,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1204,11 +1204,11 @@
       "card_number": "SV28",
       "original_card_number": "SV28",
       "card_name": "Magneton",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1223,7 +1223,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1234,11 +1234,11 @@
       "card_number": "SV29",
       "original_card_number": "SV29",
       "card_name": "Magnezone",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1253,7 +1253,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1264,11 +1264,11 @@
       "card_number": "SV30",
       "original_card_number": "SV30",
       "card_name": "Beldum",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1283,7 +1283,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1294,11 +1294,11 @@
       "card_number": "SV31",
       "original_card_number": "SV31",
       "card_name": "Metang",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1313,7 +1313,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1324,11 +1324,11 @@
       "card_number": "SV32",
       "original_card_number": "SV32",
       "card_name": "Celesteela",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1343,7 +1343,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1354,11 +1354,11 @@
       "card_number": "SV33",
       "original_card_number": "SV33",
       "card_name": "Kartana",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1373,7 +1373,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1384,11 +1384,11 @@
       "card_number": "SV34",
       "original_card_number": "SV34",
       "card_name": "Ralts",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1403,7 +1403,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1414,11 +1414,11 @@
       "card_number": "SV35",
       "original_card_number": "SV35",
       "card_name": "Kirlia",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1433,7 +1433,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1444,11 +1444,11 @@
       "card_number": "SV36",
       "original_card_number": "SV36",
       "card_name": "Diancie",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1463,7 +1463,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1474,11 +1474,11 @@
       "card_number": "SV37",
       "original_card_number": "SV37",
       "card_name": "Altaria",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1493,7 +1493,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1504,11 +1504,11 @@
       "card_number": "SV38",
       "original_card_number": "SV38",
       "card_name": "Gible",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1523,7 +1523,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1534,11 +1534,11 @@
       "card_number": "SV39",
       "original_card_number": "SV39",
       "card_name": "Gabite",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1553,7 +1553,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1564,11 +1564,11 @@
       "card_number": "SV40",
       "original_card_number": "SV40",
       "card_name": "Garchomp",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1583,7 +1583,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1594,11 +1594,11 @@
       "card_number": "SV41",
       "original_card_number": "SV41",
       "card_name": "Eevee",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1613,7 +1613,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1624,11 +1624,11 @@
       "card_number": "SV42",
       "original_card_number": "SV42",
       "card_name": "Swablu",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1643,7 +1643,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1654,11 +1654,11 @@
       "card_number": "SV43",
       "original_card_number": "SV43",
       "card_name": "Noibat",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1673,7 +1673,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1684,11 +1684,11 @@
       "card_number": "SV44",
       "original_card_number": "SV44",
       "card_name": "Oranguru",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1703,7 +1703,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1714,11 +1714,11 @@
       "card_number": "SV45",
       "original_card_number": "SV45",
       "card_name": "Type: Null",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1733,7 +1733,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1744,11 +1744,11 @@
       "card_number": "SV46",
       "original_card_number": "SV46",
       "card_name": "Leafeon-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1763,7 +1763,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1774,11 +1774,11 @@
       "card_number": "SV47",
       "original_card_number": "SV47",
       "card_name": "Decidueye-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1793,7 +1793,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1804,11 +1804,11 @@
       "card_number": "SV48",
       "original_card_number": "SV48",
       "card_name": "Golisopod-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1823,7 +1823,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1834,11 +1834,11 @@
       "card_number": "SV49",
       "original_card_number": "SV49",
       "card_name": "Charizard-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1853,7 +1853,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1864,11 +1864,11 @@
       "card_number": "SV50",
       "original_card_number": "SV50",
       "card_name": "Ho-Oh-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1883,7 +1883,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1894,11 +1894,11 @@
       "card_number": "SV51",
       "original_card_number": "SV51",
       "card_name": "Reshiram-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1913,7 +1913,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1924,11 +1924,11 @@
       "card_number": "SV52",
       "original_card_number": "SV52",
       "card_name": "Turtonator-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1943,7 +1943,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1954,11 +1954,11 @@
       "card_number": "SV53",
       "original_card_number": "SV53",
       "card_name": "Alolan Ninetales-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1973,7 +1973,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -1984,11 +1984,11 @@
       "card_number": "SV54",
       "original_card_number": "SV54",
       "card_name": "Articuno-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2003,7 +2003,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2014,11 +2014,11 @@
       "card_number": "SV55",
       "original_card_number": "SV55",
       "card_name": "Glaceon-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2033,7 +2033,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2044,11 +2044,11 @@
       "card_number": "SV56",
       "original_card_number": "SV56",
       "card_name": "Greninja-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2063,7 +2063,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2074,11 +2074,11 @@
       "card_number": "SV57",
       "original_card_number": "SV57",
       "card_name": "Electrode-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2093,7 +2093,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2104,11 +2104,11 @@
       "card_number": "SV58",
       "original_card_number": "SV58",
       "card_name": "Xurkitree-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2123,7 +2123,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2134,11 +2134,11 @@
       "card_number": "SV59",
       "original_card_number": "SV59",
       "card_name": "Mewtwo-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2153,7 +2153,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2164,11 +2164,11 @@
       "card_number": "SV60",
       "original_card_number": "SV60",
       "card_name": "Espeon-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2183,7 +2183,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2194,11 +2194,11 @@
       "card_number": "SV61",
       "original_card_number": "SV61",
       "card_name": "Banette-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2213,7 +2213,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2224,11 +2224,11 @@
       "card_number": "SV62",
       "original_card_number": "SV62",
       "card_name": "Nihilego-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2243,7 +2243,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2254,11 +2254,11 @@
       "card_number": "SV63",
       "original_card_number": "SV63",
       "card_name": "Naganadel-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2273,7 +2273,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2284,11 +2284,11 @@
       "card_number": "SV64",
       "original_card_number": "SV64",
       "card_name": "Lucario-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2303,7 +2303,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2314,11 +2314,11 @@
       "card_number": "SV65",
       "original_card_number": "SV65",
       "card_name": "Zygarde-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2333,7 +2333,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2344,11 +2344,11 @@
       "card_number": "SV66",
       "original_card_number": "SV66",
       "card_name": "Lycanroc-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2363,7 +2363,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2374,11 +2374,11 @@
       "card_number": "SV67",
       "original_card_number": "SV67",
       "card_name": "Lycanroc-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2393,7 +2393,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2404,11 +2404,11 @@
       "card_number": "SV68",
       "original_card_number": "SV68",
       "card_name": "Buzzwole-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2423,7 +2423,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2434,11 +2434,11 @@
       "card_number": "SV69",
       "original_card_number": "SV69",
       "card_name": "Umbreon-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2453,7 +2453,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2464,11 +2464,11 @@
       "card_number": "SV70",
       "original_card_number": "SV70",
       "card_name": "Darkrai-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2483,7 +2483,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2494,11 +2494,11 @@
       "card_number": "SV71",
       "original_card_number": "SV71",
       "card_name": "Guzzlord-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2513,7 +2513,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2524,11 +2524,11 @@
       "card_number": "SV72",
       "original_card_number": "SV72",
       "card_name": "Scizor-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2543,7 +2543,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2554,11 +2554,11 @@
       "card_number": "SV73",
       "original_card_number": "SV73",
       "card_name": "Kartana-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2573,7 +2573,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2584,11 +2584,11 @@
       "card_number": "SV74",
       "original_card_number": "SV74",
       "card_name": "Stakataka-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2603,7 +2603,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2614,11 +2614,11 @@
       "card_number": "SV75",
       "original_card_number": "SV75",
       "card_name": "Gardevoir-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2633,7 +2633,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2644,11 +2644,11 @@
       "card_number": "SV76",
       "original_card_number": "SV76",
       "card_name": "Sylveon-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2663,7 +2663,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2674,11 +2674,11 @@
       "card_number": "SV77",
       "original_card_number": "SV77",
       "card_name": "Altaria-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2693,7 +2693,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2704,11 +2704,11 @@
       "card_number": "SV78",
       "original_card_number": "SV78",
       "card_name": "Noivern-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2723,7 +2723,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2734,11 +2734,11 @@
       "card_number": "SV79",
       "original_card_number": "SV79",
       "card_name": "Silvally-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2753,7 +2753,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2764,11 +2764,11 @@
       "card_number": "SV80",
       "original_card_number": "SV80",
       "card_name": "Drampa-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2783,7 +2783,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2794,11 +2794,11 @@
       "card_number": "SV81",
       "original_card_number": "SV81",
       "card_name": "Aether Foundation Employee",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2813,7 +2813,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2824,11 +2824,11 @@
       "card_number": "SV82",
       "original_card_number": "SV82",
       "card_name": "Cynthia",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2843,7 +2843,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2854,11 +2854,11 @@
       "card_number": "SV83",
       "original_card_number": "SV83",
       "card_name": "Fisherman",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2873,7 +2873,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2884,11 +2884,11 @@
       "card_number": "SV84",
       "original_card_number": "SV84",
       "card_name": "Guzma",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2903,7 +2903,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2914,11 +2914,11 @@
       "card_number": "SV85",
       "original_card_number": "SV85",
       "card_name": "Hiker",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2933,7 +2933,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2944,11 +2944,11 @@
       "card_number": "SV86",
       "original_card_number": "SV86",
       "card_name": "Lady",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2963,7 +2963,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2974,11 +2974,11 @@
       "card_number": "SV87",
       "original_card_number": "SV87",
       "card_name": "Aether Paradise Conservation Area",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -2993,7 +2993,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3004,11 +3004,11 @@
       "card_number": "SV88",
       "original_card_number": "SV88",
       "card_name": "Brooklet Hill",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3023,7 +3023,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3034,11 +3034,11 @@
       "card_number": "SV89",
       "original_card_number": "SV89",
       "card_name": "Mt. Coronet",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3053,7 +3053,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3064,11 +3064,11 @@
       "card_number": "SV90",
       "original_card_number": "SV90",
       "card_name": "Shrine of Punishment",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3083,7 +3083,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3094,11 +3094,11 @@
       "card_number": "SV91",
       "original_card_number": "SV91",
       "card_name": "Tapu Bulu-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3113,7 +3113,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3124,11 +3124,11 @@
       "card_number": "SV92",
       "original_card_number": "SV92",
       "card_name": "Tapu Fini-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3143,7 +3143,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3154,11 +3154,11 @@
       "card_number": "SV93",
       "original_card_number": "SV93",
       "card_name": "Tapu Koko-GX",
-      "finish_key": "holo",
+      "finish_key": "normal",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3173,7 +3173,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "pokemontcg_api",
+      "source_key": "tcgdex",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3184,41 +3184,41 @@
       "card_number": "SV94",
       "original_card_number": "SV94",
       "card_name": "Tapu Lele-GX",
+      "finish_key": "normal",
+      "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "evidence_type": "card_identity",
+      "original_set_key": "sma",
+      "original_set_name": "Hidden Fates Shiny Vault",
+      "canonical_set_key": "sm115",
+      "canonical_set_name": "Hidden Fates",
+      "matched_field": "set_key",
+      "matched_value": "sm115",
+      "card_number": "SV1",
+      "original_card_number": "SV1",
+      "card_name": "Scyther",
+      "finish_key": null,
+      "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
+    },
+    {
+      "source_key": "thepricedex_price_list",
+      "evidence_type": "finish_presence",
+      "original_set_key": "sma",
+      "original_set_name": "Hidden Fates Shiny Vault",
+      "canonical_set_key": "sm115",
+      "canonical_set_name": "Hidden Fates",
+      "matched_field": "set_key",
+      "matched_value": "sm115",
+      "card_number": "SV1",
+      "original_card_number": "SV1",
+      "card_name": "Scyther",
       "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
-      "evidence_type": "card_identity",
-      "original_set_key": "sma",
-      "original_set_name": "Hidden Fates Shiny Vault",
-      "canonical_set_key": "sm115",
-      "canonical_set_name": "Hidden Fates",
-      "matched_field": "set_key",
-      "matched_value": "sm115",
-      "card_number": "SV1",
-      "original_card_number": "SV1",
-      "card_name": "Scyther",
-      "finish_key": null,
-      "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
-    },
-    {
-      "source_key": "tcgdex",
-      "evidence_type": "finish_presence",
-      "original_set_key": "sma",
-      "original_set_name": "Hidden Fates Shiny Vault",
-      "canonical_set_key": "sm115",
-      "canonical_set_name": "Hidden Fates",
-      "matched_field": "set_key",
-      "matched_value": "sm115",
-      "card_number": "SV1",
-      "original_card_number": "SV1",
-      "card_name": "Scyther",
-      "finish_key": "normal",
-      "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
-    },
-    {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3233,7 +3233,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3244,11 +3244,11 @@
       "card_number": "SV2",
       "original_card_number": "SV2",
       "card_name": "Rowlet",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3263,7 +3263,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3274,11 +3274,11 @@
       "card_number": "SV3",
       "original_card_number": "SV3",
       "card_name": "Dartrix",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3293,7 +3293,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3304,11 +3304,11 @@
       "card_number": "SV4",
       "original_card_number": "SV4",
       "card_name": "Wimpod",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3323,7 +3323,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3334,11 +3334,11 @@
       "card_number": "SV5",
       "original_card_number": "SV5",
       "card_name": "Pheromosa",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3353,7 +3353,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3364,11 +3364,11 @@
       "card_number": "SV6",
       "original_card_number": "SV6",
       "card_name": "Charmander",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3383,7 +3383,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3394,11 +3394,11 @@
       "card_number": "SV7",
       "original_card_number": "SV7",
       "card_name": "Charmeleon",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3413,7 +3413,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3424,11 +3424,11 @@
       "card_number": "SV8",
       "original_card_number": "SV8",
       "card_name": "Alolan Vulpix",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3443,7 +3443,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3454,11 +3454,11 @@
       "card_number": "SV9",
       "original_card_number": "SV9",
       "card_name": "Wooper",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3473,7 +3473,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3484,11 +3484,11 @@
       "card_number": "SV10",
       "original_card_number": "SV10",
       "card_name": "Quagsire",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3503,7 +3503,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3514,11 +3514,11 @@
       "card_number": "SV11",
       "original_card_number": "SV11",
       "card_name": "Froakie",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3533,7 +3533,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3544,11 +3544,11 @@
       "card_number": "SV12",
       "original_card_number": "SV12",
       "card_name": "Frogadier",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3563,7 +3563,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3574,11 +3574,11 @@
       "card_number": "SV13",
       "original_card_number": "SV13",
       "card_name": "Voltorb",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3593,7 +3593,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3604,11 +3604,11 @@
       "card_number": "SV14",
       "original_card_number": "SV14",
       "card_name": "Xurkitree",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3623,7 +3623,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3634,11 +3634,11 @@
       "card_number": "SV15",
       "original_card_number": "SV15",
       "card_name": "Seviper",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3653,7 +3653,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3664,11 +3664,11 @@
       "card_number": "SV16",
       "original_card_number": "SV16",
       "card_name": "Shuppet",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3683,7 +3683,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3694,11 +3694,11 @@
       "card_number": "SV17",
       "original_card_number": "SV17",
       "card_name": "Inkay",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3713,7 +3713,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3724,11 +3724,11 @@
       "card_number": "SV18",
       "original_card_number": "SV18",
       "card_name": "Malamar",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3743,7 +3743,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3754,11 +3754,11 @@
       "card_number": "SV19",
       "original_card_number": "SV19",
       "card_name": "Poipole",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3773,7 +3773,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3784,11 +3784,11 @@
       "card_number": "SV20",
       "original_card_number": "SV20",
       "card_name": "Sudowoodo",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3803,7 +3803,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3814,11 +3814,11 @@
       "card_number": "SV21",
       "original_card_number": "SV21",
       "card_name": "Riolu",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3833,7 +3833,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3844,11 +3844,11 @@
       "card_number": "SV22",
       "original_card_number": "SV22",
       "card_name": "Lucario",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3863,7 +3863,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3874,11 +3874,11 @@
       "card_number": "SV23",
       "original_card_number": "SV23",
       "card_name": "Rockruff",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3893,7 +3893,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3904,11 +3904,11 @@
       "card_number": "SV24",
       "original_card_number": "SV24",
       "card_name": "Buzzwole",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3923,7 +3923,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3934,11 +3934,11 @@
       "card_number": "SV25",
       "original_card_number": "SV25",
       "card_name": "Zorua",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3953,7 +3953,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3964,11 +3964,11 @@
       "card_number": "SV26",
       "original_card_number": "SV26",
       "card_name": "Guzzlord",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3983,7 +3983,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -3994,11 +3994,11 @@
       "card_number": "SV27",
       "original_card_number": "SV27",
       "card_name": "Magnemite",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4013,7 +4013,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4024,11 +4024,11 @@
       "card_number": "SV28",
       "original_card_number": "SV28",
       "card_name": "Magneton",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4043,7 +4043,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4054,11 +4054,11 @@
       "card_number": "SV29",
       "original_card_number": "SV29",
       "card_name": "Magnezone",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4073,7 +4073,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4084,11 +4084,11 @@
       "card_number": "SV30",
       "original_card_number": "SV30",
       "card_name": "Beldum",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "card_identity",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4103,7 +4103,7 @@
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     },
     {
-      "source_key": "tcgdex",
+      "source_key": "thepricedex_price_list",
       "evidence_type": "finish_presence",
       "original_set_key": "sma",
       "original_set_name": "Hidden Fates Shiny Vault",
@@ -4114,7 +4114,7 @@
       "card_number": "SV31",
       "original_card_number": "SV31",
       "card_name": "Metang",
-      "finish_key": "normal",
+      "finish_key": "holo",
       "known_source_alias_rule": "sma_shiny_vault_subset_to_sm115"
     }
   ],
