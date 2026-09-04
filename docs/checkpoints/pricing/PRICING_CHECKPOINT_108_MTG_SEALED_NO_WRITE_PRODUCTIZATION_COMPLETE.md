@@ -44,6 +44,15 @@ wiring. Both adapters:
 Repository contract coverage also fails if a web route/component or Flutter
 product surface imports the adapter before this gate is deliberately revised.
 
+Automated review identified that existing `user-card-images` SELECT policies
+do not permit a collector JWT to sign `sealed/mtg/sha256/...` objects. A
+separate unapplied authenticated image-read candidate now closes that design
+gap without changing the previously hashed image-schema candidate. It requires
+the exact object to belong to the active frozen image release and matching
+active frozen, fresh exact price release, with both visibility controls true.
+Its SQL SHA-256 is
+`ca58dc3e99c4b1925a730cc811e823f27a06b0ce29ae30b9a9c3891fbd4e5186`.
+
 ## Alternatives Rejected
 
 - Environment-controlled early access: rejected because deployment config
@@ -64,6 +73,7 @@ product surface imports the adapter before this gate is deliberately revised.
 - Web lint: passed.
 - Targeted Flutter analysis: passed.
 - Hard-disable and no-surface-wiring contract: passed.
+- Authenticated image-read candidate contract: passed.
 - Database writes: `0`.
 - Storage reads/writes: `0/0`.
 - Pricing, release pointer, visibility, Vault, and provider writes: `0`.
@@ -77,6 +87,8 @@ product surface imports the adapter before this gate is deliberately revised.
 - No image evidence, assertion, release, or pointer has been written.
 - No refreshed price qualification, release, or pointer has been written.
 - RPC V3 is an unapplied SQL candidate; production still has RPC V2.
+- The authenticated sealed-image SELECT policy is an unapplied SQL candidate;
+  existing production policies still deny these client paths.
 - Web and Flutter adapters exist but are unreachable and make zero calls.
 - No client has been deployed or activated by this gate.
 
@@ -102,9 +114,11 @@ product surface imports the adapter before this gate is deliberately revised.
 
 ## Exact Remaining Production Gates
 
-1. Promote the reviewed image schema candidate into one versioned migration.
+1. Promote the reviewed image schema candidate and authenticated image-read
+   addendum into one versioned migration package.
 2. Apply it under a separately frozen migration hash and read back schema,
-   constraints, functions, grants, RLS, policies, ledger, and cross-game state.
+   constraints, functions, grants, RLS, authenticated-only Storage SELECT
+   policy, anonymous denial, ledger, and cross-game state.
 3. Execute the 17-object transient Storage canary with collision preflight,
    exact readback, removal, and verified absence.
 4. Upload the 2,144 unique durable self-hosted objects for 2,149 variants with

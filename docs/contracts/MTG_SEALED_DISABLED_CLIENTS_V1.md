@@ -64,6 +64,13 @@ The private self-hosted object path is exchanged for a one-hour signed Storage
 URL only after a row passes validation. The clients never construct a public
 `user-card-images` URL and never consume the original provider URL.
 
+The existing Storage policies do not authorize collector JWTs to read
+`sealed/mtg/sha256/...`. The separate, unapplied
+`MTG_SEALED_AUTHENTICATED_IMAGE_READ_V1_CANDIDATE` must be promoted, applied,
+and read back before either client can leave its hard-disabled state. That
+candidate permits only authenticated SELECT for objects proven by the active
+image and price releases and both visibility controls.
+
 ## Boundaries
 
 This contract authorizes no route or UI, environment flag, deployment,
@@ -73,7 +80,8 @@ write, or scheduler.
 
 ## Exact Next Gate
 
-Do not enable these clients until the image schema is applied and read back,
+Do not enable these clients until the image schema and authenticated image-read
+boundary are applied and read back,
 the transient and durable self-hosted image gates pass, the refreshed price
 release is written and reconciled, RPC V3 is applied and smoke-tested, and a
 signed-in visibility canary is separately authorized. Client activation is a
