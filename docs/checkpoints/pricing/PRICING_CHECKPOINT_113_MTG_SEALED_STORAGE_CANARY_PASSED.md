@@ -66,8 +66,10 @@ Vault writes, signer deployments, client activations, or cross-game writes.
 
 ## Exact Next Gate
 
-Prepare a zero-write durable Storage plan for all 2,144 unique eligible image
-objects covering 2,149 eligible variants and preserving 33 explicit exclusions.
+Prepare a zero-write durable Storage plan for all exact eligible image objects
+covering 2,149 eligible variants and preserving 33 explicit exclusions. The
+durable reconciliation must separate valid-but-excluded placeholder bytes from
+eligible objects; its corrected count supersedes the earlier 2,144 estimate.
 The plan must define exact collision behavior, source-request ceilings,
 content-addressed paths, resumability, interruption recovery, rollback scope,
 readback reconciliation, and a separate execution authority. Do not upload

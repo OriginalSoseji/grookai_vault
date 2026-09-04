@@ -154,6 +154,9 @@ Secrets must never appear in artifacts.
 
 ## Exact Next Gate
 
-Prepare the zero-write durable Storage plan for 2,144 unique eligible image
-objects. Durable upload, database image evidence, signer deployment, pricing,
-visibility, and clients remain separately planned and authorized serial gates.
+Prepare the zero-write durable Storage plan for all exact eligible image
+objects. The durable reconciliation supersedes the earlier 2,144 estimate:
+three valid image signatures belong to excluded placeholders, leaving 2,141
+uploadable exact objects for 2,149 variants. Durable upload, database image
+evidence, signer deployment, pricing, visibility, and clients remain
+separately planned and authorized serial gates.

@@ -128,8 +128,10 @@ Its SQL SHA-256 is
    denial, ledger, and cross-game state.
 3. Execute the 17-object transient Storage canary with collision preflight,
    exact readback, removal, and verified absence.
-4. Upload the 2,144 unique durable self-hosted objects for 2,149 variants with
-   per-object collision prevention and exact readback.
+4. Upload the exact durable self-hosted objects for 2,149 variants with
+   per-object collision prevention and exact readback. Later durable-plan
+   reconciliation corrected this scope to 2,141 eligible objects because the
+   earlier 2,144 count included three excluded placeholder hashes.
 5. Write exact image evidence, objects, assertions, one frozen image release,
    and its members; activate its pointer by compare-and-swap and reconcile all
    2,149 eligible plus 33 excluded variants.
