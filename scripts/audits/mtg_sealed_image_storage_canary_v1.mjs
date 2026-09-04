@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import * as tls from 'node:tls';
 import { fileURLToPath } from 'node:url';
 
 import { createClient } from '@supabase/supabase-js';
@@ -251,6 +252,30 @@ function createProductionStorageClient() {
   });
 }
 
+function assertSecureSourceTlsRuntime() {
+  if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === '0') {
+    throw new Error('TLS certificate verification cannot be disabled');
+  }
+  if (process.env.NODE_EXTRA_CA_CERTS || process.env.SSL_CERT_FILE ||
+      process.env.SSL_CERT_DIR) {
+    throw new Error('Unfrozen custom TLS certificate inputs are not allowed');
+  }
+  if (!process.execArgv.includes('--use-system-ca')) {
+    throw new Error('Source retrieval requires Node --use-system-ca');
+  }
+  const systemCertificateCount = tls.getCACertificates('system').length;
+  const bundledCertificateCount = tls.getCACertificates('bundled').length;
+  if (systemCertificateCount < 1 || bundledCertificateCount < 1) {
+    throw new Error('Bundled and Windows system CA stores must both be available');
+  }
+  return {
+    policy: 'node_bundled_plus_windows_system_ca',
+    certificate_verification_required: true,
+    system_certificate_count: systemCertificateCount,
+    bundled_certificate_count: bundledCertificateCount,
+  };
+}
+
 async function assertFreshApplyDirectory(outDir) {
   const forbidden = [
     'execution_journal.jsonl',
@@ -318,6 +343,7 @@ async function loadVerifiedRecoveryJournal(args, plan, local) {
 
 async function execute(args, plan, local) {
   assertExactAuthority(args, plan);
+  const tlsRuntime = assertSecureSourceTlsRuntime();
   await fs.mkdir(args.outDir, { recursive: true });
   await assertFreshApplyDirectory(args.outDir);
   await writeJson(path.join(args.outDir, 'run_plan.json'), {
@@ -346,6 +372,7 @@ async function execute(args, plan, local) {
     ...result,
     completed_at: new Date().toISOString(),
     repository: local,
+    tls_runtime: tlsRuntime,
     database_connections: 0,
     signer_deployments: 0,
   };

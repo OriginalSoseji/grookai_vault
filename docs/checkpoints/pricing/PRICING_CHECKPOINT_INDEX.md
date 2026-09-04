@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_112_MTG_SEALED_STORAGE_CANARY_TLS_TRUST_REQUIRED.md`
+
+This checkpoint records the bounded retry canary identifying
+`unable_to_verify_leaf_signature` on all three first-image attempts while all
+17 Storage paths remained absent.
+
+Decision locked there:
+
+- certificate verification stays enabled; the next operator must use Node's
+  bundled and Windows system CA stores and reject unfrozen custom CA inputs
+
+Unresolved risk afterward:
+
+- secure source retrieval and the complete transient upload/readback/removal
+  path still require one newly fingerprinted live proof
+
 ### `PRICING_CHECKPOINT_111_MTG_SEALED_STORAGE_CANARY_FAILED_SAFE.md`
 
 This checkpoint records the first transient Storage canary stopping on its

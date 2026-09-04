@@ -1,6 +1,6 @@
 # MTG Sealed Transient Storage Canary V1
 
-**Status:** Transport repair implemented; first attempt failed safely with zero uploads
+**Status:** Secure system-CA repair implemented; two attempts failed safely with zero uploads
 
 **Date:** 2026-09-04
 
@@ -66,6 +66,22 @@ are preserved under
 The repair adds bounded transport retries and records a stable error code,
 attempt number, object path, and retryability decision for every failed source
 request. It does not widen any Storage or data boundary.
+
+## Second Execution Result
+
+The bounded-retry execution from commit
+`a184eabe02b1924ebd759407113a5dda427dc2a0` made all three permitted attempts
+for the first frozen source image. Each failed with
+`unable_to_verify_leaf_signature`. It completed `0` source images, uploaded `0`
+objects, activated no ownership scope, and again verified all `17` paths absent.
+
+Its authority is also consumed. The exact evidence is preserved under
+`docs/audits/pricing/mtg_sealed_image_storage_canary_v1/2026-09-04T21-17-23Z_failed_tls_trust/`.
+
+Node `v22.19.0` supports the secure `--use-system-ca` option. The next repair
+requires both the Node bundled and Windows system CA stores while continuing to
+require certificate verification. Disabled verification and unfrozen custom CA
+inputs fail closed. The trust policy is part of the execution fingerprint.
 
 ## Interruption Recovery
 

@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `PRICING_CHECKPOINT_112_MTG_SEALED_STORAGE_CANARY_TLS_TRUST_REQUIRED` - `2026-09-04` - Bounded retry canary isolated `unable_to_verify_leaf_signature` before upload, preserved 17/17 final absence, and requires verified Node bundled-plus-Windows-system CA trust under a new execution fingerprint
 - `PRICING_CHECKPOINT_111_MTG_SEALED_STORAGE_CANARY_FAILED_SAFE` - `2026-09-04` - First exact 17-object MTG sealed Storage canary stopped at source transport before upload; all 17 paths verified absent, authority consumed, and bounded retry/error telemetry repair required under a new fingerprint
 
 - `PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED` - `2026-09-04` - Exact schema-only MTG sealed image migration applied from execution SHA `3eccc923`; 383/383 migration-ledger parity, six empty forced-RLS tables, complete 72-constraint/29-index/10-function/9-trigger/6-policy readback, anonymous signing denied, and zero image, Storage, pricing, visibility, Vault, deployment, client, or cross-game writes

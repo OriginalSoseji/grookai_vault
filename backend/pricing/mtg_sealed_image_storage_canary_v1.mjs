@@ -83,6 +83,8 @@ export function buildMtgSealedImageStorageCanaryExecutionPlanV1({
     operation_contract: {
       source_fetch_retries: 2,
       maximum_source_request_attempts: canaryPlan.rows.length * 3,
+      tls_trust_policy: 'node_bundled_plus_windows_system_ca',
+      tls_certificate_verification_required: true,
       source_redirects_allowed: false,
       maximum_source_bytes_per_object: 20_000_000,
       collision_sweeps_before_upload: 2,
@@ -115,10 +117,11 @@ export function buildMtgSealedImageStorageCanaryExecutionPlanV1({
     `I approve the transient 17-object MTG sealed Storage canary from ` +
     `execution commit ${producerCommitSha}, using source coverage fingerprint ` +
     `${core.source_coverage_fingerprint_sha256}, source canary-plan ` +
-     `fingerprint ${core.source_canary_plan_fingerprint_sha256}, and execution ` +
-     `fingerprint ${executionFingerprint}. This authorizes collision preflight, ` +
-     `retrieval of exactly 17 frozen TCGPlayer image URLs with at most 2 ` +
-     `transport retries per URL and 51 total source request attempts, exactly 17 ` +
+    `fingerprint ${core.source_canary_plan_fingerprint_sha256}, and execution ` +
+    `fingerprint ${executionFingerprint}. This authorizes collision preflight, ` +
+    `retrieval of exactly 17 frozen TCGPlayer image URLs with at most 2 ` +
+    `transport retries per URL and 51 total source request attempts using ` +
+    `verified Node bundled-plus-Windows-system CA trust, exactly 17 ` +
     `upsert=false transient uploads to bucket ` +
     `${MTG_SEALED_IMAGE_STORAGE_BUCKET_V1}, exact byte readback, removal of ` +
     `only paths proven absent before this execution, and final verified ` +
@@ -173,6 +176,9 @@ export function validateMtgSealedImageStorageCanaryExecutionPlanV1(plan) {
   'expected_image_contract_invalid');
   add(plan?.operation_contract?.source_fetch_retries !== 2 ||
     plan?.operation_contract?.maximum_source_request_attempts !== 51 ||
+    plan?.operation_contract?.tls_trust_policy !==
+      'node_bundled_plus_windows_system_ca' ||
+    plan?.operation_contract?.tls_certificate_verification_required !== true ||
     plan?.operation_contract?.source_redirects_allowed !== false ||
     plan?.operation_contract?.collision_sweeps_before_upload !== 2 ||
     plan?.operation_contract?.upload_upsert !== false ||

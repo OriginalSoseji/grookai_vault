@@ -80,6 +80,10 @@ test('execution plan is exact, deterministic, and separately authorized', () => 
   assert.equal(left.selected_object_count, 17);
   assert.equal(left.operation_contract.source_fetch_retries, 2);
   assert.equal(left.operation_contract.maximum_source_request_attempts, 51);
+  assert.equal(left.operation_contract.tls_trust_policy,
+    'node_bundled_plus_windows_system_ca');
+  assert.equal(left.operation_contract.tls_certificate_verification_required,
+    true);
   assert.equal(left.boundaries.database_connections, 0);
   assert.equal(left.boundaries.durable_storage_objects, 0);
   assert.match(left.required_approval_message,
@@ -292,5 +296,20 @@ test('operator has exact authority and no database or signer path', () => {
   assert.match(source, /\.remove\(/);
   assert.match(source, /--recover/);
   assert.match(source, /ownership_scope_activated/);
+  assert.match(source, /NODE_TLS_REJECT_UNAUTHORIZED/);
+  assert.match(source, /--use-system-ca/);
   assert.doesNotMatch(source, /new Client\(|\.rpc\(|functions\.deploy/);
+});
+
+test('operator runs with bundled and Windows system CA trust', () => {
+  const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+  assert.equal(
+    packageJson.scripts['mtg:sealed:image-storage-canary:v1'],
+    'node --use-system-ca scripts/audits/mtg_sealed_image_storage_canary_v1.mjs',
+  );
+  const source = fs.readFileSync(
+    'scripts/audits/mtg_sealed_image_storage_canary_v1.mjs', 'utf8');
+  assert.match(source, /getCACertificates\('system'\)/);
+  assert.match(source, /getCACertificates\('bundled'\)/);
+  assert.match(source, /Unfrozen custom TLS certificate inputs are not allowed/);
 });
