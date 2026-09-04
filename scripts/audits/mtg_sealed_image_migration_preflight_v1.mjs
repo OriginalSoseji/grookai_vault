@@ -16,6 +16,7 @@ import {
   MTG_SEALED_IMAGE_MIGRATION_SHA256_V1,
   MTG_SEALED_IMAGE_MIGRATION_VERSION_V1,
   MTG_SEALED_IMAGE_POLICIES_V1,
+  MTG_SEALED_IMAGE_PREREQUISITE_CONSTRAINTS_V1,
   MTG_SEALED_IMAGE_PREREQUISITE_FUNCTIONS_V1,
   MTG_SEALED_IMAGE_PREREQUISITE_RELATIONS_V1,
   MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_SHA256_V1,
@@ -240,8 +241,8 @@ async function captureCollisions(client) {
   const constraints = await queryRows(client,
     `select conname as name, conrelid::regclass::text as relation
        from pg_constraint
-      where conname = 'sealed_product_release_members_image_binding_unique'`,
-  );
+      where conname = any($1::text[]) order by conname`,
+    [MTG_SEALED_IMAGE_PREREQUISITE_CONSTRAINTS_V1]);
   return { relations, functions, indexes, triggers, policies, constraints };
 }
 

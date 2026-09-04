@@ -156,6 +156,27 @@ test('member insertion locks the parent release against concurrent freeze', () =
     /sealed_product_guard_image_release_member_insert_v1[\s\S]*from public\.sealed_product_image_releases image_release[\s\S]*for share[\s\S]*image release does not exist for member insertion/i);
 });
 
+test('image evidence source identity is bound to its selected mapping', () => {
+  assert.match(migration,
+    /sealed_product_source_mappings_image_evidence_binding_unique[\s\S]*id, variant_id, source_provider, source_category_id, source_group_id,[\s\S]*source_product_id/i);
+  assert.match(migration,
+    /sealed_product_image_evidence_mapping_fk foreign key \([\s\S]*source_mapping_id, variant_id, source_provider, source_category_id,[\s\S]*source_group_id, source_product_id[\s\S]*references public\.sealed_product_source_mappings \([\s\S]*id, variant_id, source_provider, source_category_id, source_group_id,[\s\S]*source_product_id/i);
+});
+
+test('image release members use evidence from the declared coverage audit', () => {
+  assert.match(migration,
+    /evidence\.source_plan_fingerprint = image_release\.source_plan_fingerprint/i);
+  assert.match(migration,
+    /evidence\.coverage_fingerprint = image_release\.coverage_fingerprint/i);
+});
+
+test('image release activation is bound to the active price release', () => {
+  assert.match(migration,
+    /lock table public\.sealed_product_release_pointer in share mode[\s\S]*select price_pointer\.release_id into v_current_price_release_id[\s\S]*for share/i);
+  assert.match(migration,
+    /v_current_price_release_id is distinct from v_release\.source_price_release_id[\s\S]*target image release is not bound to the active price release/i);
+});
+
 test('migration ledger reconciliation requires one exact pending target', () => {
   const target = MTG_SEALED_IMAGE_MIGRATION_VERSION_V1;
   const clean = reconcileMigrationLedgerVersionsV1(

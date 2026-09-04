@@ -11,6 +11,13 @@ alter table public.sealed_product_release_members
   add constraint sealed_product_release_members_image_binding_unique
   unique (id, variant_id, source_mapping_id);
 
+alter table public.sealed_product_source_mappings
+  add constraint sealed_product_source_mappings_image_evidence_binding_unique
+  unique (
+    id, variant_id, source_provider, source_category_id, source_group_id,
+    source_product_id
+  );
+
 create table public.sealed_product_image_evidence (
   id uuid primary key default gen_random_uuid(),
   game_key text not null,
@@ -81,9 +88,12 @@ create table public.sealed_product_image_evidence (
   constraint sealed_product_image_evidence_fingerprint_check
     check (evidence_fingerprint ~ '^[0-9a-f]{64}$'),
   constraint sealed_product_image_evidence_mapping_fk foreign key (
-    source_mapping_id, variant_id
-  ) references public.sealed_product_source_mappings (id, variant_id)
-    on delete restrict,
+    source_mapping_id, variant_id, source_provider, source_category_id,
+    source_group_id, source_product_id
+  ) references public.sealed_product_source_mappings (
+    id, variant_id, source_provider, source_category_id, source_group_id,
+    source_product_id
+  ) on delete restrict,
   constraint sealed_product_image_evidence_release_member_fk foreign key (
     source_release_member_id, variant_id, source_mapping_id
   ) references public.sealed_product_release_members (
@@ -408,6 +418,8 @@ begin
      and evidence.classification in (
        'exact_image_ready', 'shared_bytes_exact_variant'
      )
+     and evidence.source_plan_fingerprint = image_release.source_plan_fingerprint
+     and evidence.coverage_fingerprint = image_release.coverage_fingerprint
     join public.sealed_product_release_members price_member
       on price_member.id = evidence.source_release_member_id
      and price_member.release_id = image_release.source_price_release_id
@@ -490,6 +502,7 @@ as $$
 declare
   v_release public.sealed_product_image_releases%rowtype;
   v_current_release_id uuid;
+  v_current_price_release_id uuid;
   v_member_count integer;
 begin
   if p_changed_by is null then
@@ -511,6 +524,18 @@ begin
   if v_member_count <> v_release.expected_member_count then
     raise exception 'image release member count mismatch: expected %, found %',
       v_release.expected_member_count, v_member_count using errcode = '23514';
+  end if;
+
+  lock table public.sealed_product_release_pointer in share mode;
+
+  select price_pointer.release_id into v_current_price_release_id
+  from public.sealed_product_release_pointer price_pointer
+  where price_pointer.game_key = v_release.game_key
+  for share;
+
+  if v_current_price_release_id is distinct from v_release.source_price_release_id then
+    raise exception 'target image release is not bound to the active price release'
+      using errcode = '23514';
   end if;
 
   lock table public.sealed_product_image_release_pointer in exclusive mode;

@@ -5,7 +5,7 @@ export const MTG_SEALED_IMAGE_MIGRATION_VERSION_V1 = '20260904130000';
 export const MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1 =
   '20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql';
 export const MTG_SEALED_IMAGE_MIGRATION_SHA256_V1 =
-  'ceafd70f206e5223bc87b3fa24f4cd3c105c54e3149f5bbbeb88daac140ba184';
+  'db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e';
 export const MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_SHA256_V1 =
   '6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735';
 export const MTG_SEALED_IMAGE_AUTH_CANDIDATE_SHA256_V1 =
@@ -87,6 +87,11 @@ export const MTG_SEALED_IMAGE_PREREQUISITE_FUNCTIONS_V1 = Object.freeze([
   'sealed_product_reject_row_mutation_v1()',
   'catalog_game_visible_to_request_v1(text)',
   'sealed_product_game_visible_to_request_v1(text)',
+]);
+
+export const MTG_SEALED_IMAGE_PREREQUISITE_CONSTRAINTS_V1 = Object.freeze([
+  'sealed_product_release_members_image_binding_unique',
+  'sealed_product_source_mappings_image_evidence_binding_unique',
 ]);
 
 function zeroCollisionCounts(collisions = {}) {
