@@ -17,7 +17,7 @@ all data, Storage, pricing, visibility, and client behavior unchanged.
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `ce183c4276790327fc499bcad20f71d6b0e45c4eb1f6802bf75b4b7322f3b2aa`
+  `6de51515e500ae3e02039a21fc05b88b59019003f57f6b5319537794550072a9`
 - Preserved image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Preserved signing-authorization candidate SHA-256:
@@ -33,9 +33,10 @@ If separately authorized and applied, this migration may create:
 
 - six service-owned, forced-RLS image evidence/release resources;
 - five indexes;
-- eight integrity and append-only triggers;
+- nine integrity and append-only triggers;
 - six service-role-only table policies;
-- six service-owned integrity, freeze, and pointer functions;
+- nine service-owned integrity, completeness, manifest, freeze, and pointer
+  functions;
 - one authenticated signing-authorization predicate;
 - two unique binding constraints on existing sealed mapping/release-member
   tables; and
@@ -44,6 +45,25 @@ If separately authorized and applied, this migration may create:
 It contains one `BEGIN` and one `COMMIT`. The signing predicate grants only
 `EXECUTE` to `authenticated` and `service_role`. It grants no
 `storage.objects` privilege or policy.
+
+## Release Completeness Boundary
+
+The later image-data gate cannot freeze or activate a caller-selected subset.
+For the bound source-plan and coverage fingerprints, the database requires:
+
+- one evidence row for every member of the frozen source price release;
+- exact identity parity between those evidence rows and source members;
+- image-release members equal to every eligible evidence row and no excluded
+  row;
+- the declared eligible count equal to the database-derived eligible count;
+- each member fingerprint derived from its release, variant, assertion,
+  evidence, and verified image-object identities; and
+- the ordered release manifest recomputed and matched at both freeze and
+  activation.
+
+For the current MTG audit, this means 2,149 eligible members and 33 explicit
+exclusions must reconcile to all 2,182 source-price members. Once frozen, no
+evidence may be appended under the release's audit fingerprints.
 
 ## Explicit Exclusions
 
@@ -84,7 +104,7 @@ Before any apply:
 ## Exact Next Gate
 
 The read-only production preflight passed from producer commit
-`af3d7a2fd937d24f01b2034fe1c98738569fc853`; its permanent evidence is linked
+`15384f5aefa5240dc8bf68ab4e974d0e20b44f11`; its permanent evidence is linked
 from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
 unless a later authority names the exact migration SHA-256 and producer commit.
 The next serial gate is a separately authorized schema-only apply and exact
