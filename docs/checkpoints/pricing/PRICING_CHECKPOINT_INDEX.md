@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_111_MTG_SEALED_STORAGE_CANARY_FAILED_SAFE.md`
+
+This checkpoint records the first transient Storage canary stopping on its
+first source request before any upload, followed by exact 17-path absence proof.
+
+Decision locked there:
+
+- the failed execution authority is consumed, production remains unchanged,
+  and only bounded retry/error telemetry may be repaired before a newly
+  fingerprinted authority
+
+Unresolved risk afterward:
+
+- the repaired transient canary still requires live execution proof before any
+  durable image, signer, pricing, visibility, or client gate
+
 ### `PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md`
 
 This checkpoint records the exact schema-only MTG sealed image migration apply

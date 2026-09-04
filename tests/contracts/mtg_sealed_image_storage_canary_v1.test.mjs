@@ -6,6 +6,7 @@ import {
   buildMtgSealedImageStorageCanaryExecutionPlanV1,
   hashMtgSealedStorageCanaryV1,
   recoverMtgSealedImageStorageCanaryV1,
+  retrieveMtgSealedCanarySourceBytesV1,
   runMtgSealedImageStorageCanaryV1,
   validateMtgSealedImageStorageCanaryExecutionPlanV1,
 } from '../../backend/pricing/mtg_sealed_image_storage_canary_v1.mjs';
@@ -77,6 +78,8 @@ test('execution plan is exact, deterministic, and separately authorized', () => 
   assert.equal(left.execution_fingerprint_sha256,
     right.execution_fingerprint_sha256);
   assert.equal(left.selected_object_count, 17);
+  assert.equal(left.operation_contract.source_fetch_retries, 2);
+  assert.equal(left.operation_contract.maximum_source_request_attempts, 51);
   assert.equal(left.boundaries.database_connections, 0);
   assert.equal(left.boundaries.durable_storage_objects, 0);
   assert.match(left.required_approval_message,
@@ -85,6 +88,62 @@ test('execution plan is exact, deterministic, and separately authorized', () => 
     valid: true,
     findings: [],
   });
+});
+
+test('source retrieval retries only within the frozen transport ceiling', async () => {
+  const { plan, buffers } = executionFixture();
+  const row = plan.rows[0];
+  const journal = [];
+  const delays = [];
+  let calls = 0;
+  const result = await retrieveMtgSealedCanarySourceBytesV1({
+    row,
+    maximumBytes: 20_000_000,
+    retryCount: 2,
+    requestSourceBytes: async () => {
+      calls += 1;
+      if (calls < 3) {
+        const error = new Error('fetch failed');
+        error.cause = { code: 'ECONNRESET' };
+        error.retryable = true;
+        throw error;
+      }
+      return {
+        buffer: buffers.get(row.expected_image.content_sha256),
+        contentType: row.expected_image.content_type,
+      };
+    },
+    sleep: async (milliseconds) => { delays.push(milliseconds); },
+    journal: async (event) => { journal.push(event); },
+  });
+  assert.equal(result.requestAttempts, 3);
+  assert.equal(calls, 3);
+  assert.deepEqual(delays, [1_000, 2_000]);
+  assert.equal(journal.filter((event) =>
+    event.event === 'source_request_failed').length, 2);
+  assert.ok(journal.filter((event) =>
+    event.event === 'source_request_failed')
+    .every((event) => event.error_code === 'econnreset'));
+});
+
+test('non-retryable source failures stop after one recorded attempt', async () => {
+  const { plan } = executionFixture();
+  const row = plan.rows[0];
+  let calls = 0;
+  await assert.rejects(async () => retrieveMtgSealedCanarySourceBytesV1({
+    row,
+    maximumBytes: 20_000_000,
+    retryCount: 2,
+    requestSourceBytes: async () => {
+      calls += 1;
+      const error = new Error('source too large');
+      error.code = 'source_too_large';
+      error.retryable = false;
+      throw error;
+    },
+    sleep: async () => { throw new Error('must_not_sleep'); },
+  }), /source_transport_source_too_large_after_1_attempts/);
+  assert.equal(calls, 1);
 });
 
 test('execution plan rejects host, path, scope, and operation drift', () => {

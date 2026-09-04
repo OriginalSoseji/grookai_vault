@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `PRICING_CHECKPOINT_111_MTG_SEALED_STORAGE_CANARY_FAILED_SAFE` - `2026-09-04` - First exact 17-object MTG sealed Storage canary stopped at source transport before upload; all 17 paths verified absent, authority consumed, and bounded retry/error telemetry repair required under a new fingerprint
+
 - `PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED` - `2026-09-04` - Exact schema-only MTG sealed image migration applied from execution SHA `3eccc923`; 383/383 migration-ledger parity, six empty forced-RLS tables, complete 72-constraint/29-index/10-function/9-trigger/6-policy readback, anonymous signing denied, and zero image, Storage, pricing, visibility, Vault, deployment, client, or cross-game writes
 - `SYSTEM_PARITY_BASELINE_20260903_V1` - `2026-09-03` - Immutable current-main repository/database/runtime/product baseline at `9a6f62c`, with 21,414 tracked files, 382 migration files, 418 production relations, all 14 signed-out crawl cases captured, known image/latency defects preserved, and serial fresh-main integration required for MTG sealed, multilingual Pokemon, sealed automation, adapters, and Visual Search
 - `REPOSITORY_RECONCILIATION_CANDIDATE_COMPLETE_20260902_V1` - `2026-09-02` - Complete non-production fresh-main candidate with off-machine preservation proof, 841-source final ledger, zero deletion authority, domain-level reconciliation and tests, unapplied MTG sealed migration, preserved Visual Search/Japanese deferred lanes, and an explicit draft-PR/CI gate before any merge or production mutation

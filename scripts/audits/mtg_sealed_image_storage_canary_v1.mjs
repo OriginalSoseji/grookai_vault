@@ -11,6 +11,7 @@ import {
   hashMtgSealedStorageCanaryV1,
   MTG_SEALED_IMAGE_STORAGE_CANARY_APPROVAL_ENV_V1,
   recoverMtgSealedImageStorageCanaryV1,
+  retrieveMtgSealedCanarySourceBytesV1,
   runMtgSealedImageStorageCanaryV1,
   validateMtgSealedImageStorageCanaryExecutionPlanV1,
 } from '../../backend/pricing/mtg_sealed_image_storage_canary_v1.mjs';
@@ -161,23 +162,43 @@ function storageAdapter(client, bucket) {
   };
 }
 
-async function fetchSourceBytes(row, maximumBytes) {
-  const response = await fetch(row.source_image_url, {
-    method: 'GET',
-    redirect: 'error',
-    signal: AbortSignal.timeout(30_000),
-    headers: { 'user-agent': 'Grookai MTG Sealed Storage Canary/1.0' },
-  });
+async function fetchSourceBytesOnce(row, maximumBytes) {
+  let response;
+  try {
+    response = await fetch(row.source_image_url, {
+      method: 'GET',
+      redirect: 'error',
+      signal: AbortSignal.timeout(30_000),
+      headers: {
+        'user-agent': 'Grookai MTG Sealed Storage Canary/1.0',
+        accept: 'image/*',
+      },
+    });
+  } catch (error) {
+    error.retryable = true;
+    throw error;
+  }
   if (!response.ok) {
-    throw new Error(`${row.source_product_id}:source_http_${response.status}`);
+    const error = new Error(
+      `${row.source_product_id}:source_http_${response.status}`,
+    );
+    error.code = `http_${response.status}`;
+    error.retryable = response.status === 429 || response.status >= 500;
+    throw error;
   }
   const declaredBytes = Number(response.headers.get('content-length'));
   if (Number.isFinite(declaredBytes) && declaredBytes > maximumBytes) {
-    throw new Error(`${row.source_product_id}:source_too_large`);
+    const error = new Error(`${row.source_product_id}:source_too_large`);
+    error.code = 'source_too_large';
+    error.retryable = false;
+    throw error;
   }
   const buffer = Buffer.from(await response.arrayBuffer());
   if (buffer.length > maximumBytes) {
-    throw new Error(`${row.source_product_id}:source_too_large`);
+    const error = new Error(`${row.source_product_id}:source_too_large`);
+    error.code = 'source_too_large';
+    error.retryable = false;
+    throw error;
   }
   return { buffer, contentType: response.headers.get('content-type') };
 }
@@ -312,8 +333,13 @@ async function execute(args, plan, local) {
   const result = await runMtgSealedImageStorageCanaryV1({
     plan,
     storage: storageAdapter(client, plan.target_storage_bucket),
-    fetchSourceBytes: (row) => fetchSourceBytes(row,
-      plan.operation_contract.maximum_source_bytes_per_object),
+    fetchSourceBytes: (row) => retrieveMtgSealedCanarySourceBytesV1({
+      row,
+      maximumBytes: plan.operation_contract.maximum_source_bytes_per_object,
+      retryCount: plan.operation_contract.source_fetch_retries,
+      requestSourceBytes: fetchSourceBytesOnce,
+      journal,
+    }),
     journal,
   });
   const summary = {

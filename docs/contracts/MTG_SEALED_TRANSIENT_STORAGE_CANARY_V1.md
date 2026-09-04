@@ -1,6 +1,6 @@
 # MTG Sealed Transient Storage Canary V1
 
-**Status:** Implemented and tested; not authorized or executed
+**Status:** Transport repair implemented; first attempt failed safely with zero uploads
 
 **Date:** 2026-09-04
 
@@ -38,7 +38,8 @@ The operator must:
 2. rebuild and validate the same 17-row execution plan;
 3. match the exact execution fingerprint and approval text;
 4. verify all 17 transient paths are absent;
-5. retrieve and byte-verify all 17 source images without redirects or retries;
+5. retrieve and byte-verify all 17 source images without redirects, allowing no
+   more than two transport retries per URL and 51 total request attempts;
 6. repeat the complete collision check immediately before upload;
 7. write the ownership activation event before the first upload;
 8. upload with `upsert=false`;
@@ -49,6 +50,22 @@ The operator must:
 The run fails closed on source drift, byte drift, path collision, upload or
 readback error, cleanup error, project mismatch, repository drift, or authority
 mismatch.
+
+## First Execution Result
+
+The first authorized execution from commit `c7c12e457fdc4a4791112c392c93026a53e7bcf9`
+stopped on the first source request with a generic transport failure. It
+performed `17` initial collision checks, fetched `0` complete images, uploaded
+`0` objects, activated no ownership scope, and performed `17` final absence
+checks. All paths were absent and no recovery was required.
+
+That execution authority is consumed and must not be reused. Its exact artifacts
+are preserved under
+`docs/audits/pricing/mtg_sealed_image_storage_canary_v1/2026-09-04T21-06-46Z_failed_source_transport/`.
+
+The repair adds bounded transport retries and records a stable error code,
+attempt number, object path, and retryability decision for every failed source
+request. It does not widen any Storage or data boundary.
 
 ## Interruption Recovery
 
@@ -102,6 +119,7 @@ Secrets must never appear in artifacts.
 ## Acceptance Criteria
 
 - exactly `17` source images fetched and byte-verified;
+- no more than `51` source request attempts;
 - exactly `17` transient objects uploaded with `upsert=false`;
 - exactly `17` objects downloaded and matched to expected bytes;
 - exactly `17` execution-owned paths removed;

@@ -81,7 +81,8 @@ export function buildMtgSealedImageStorageCanaryExecutionPlanV1({
       row.expected_image.content_sha256)).size,
     rows: canaryPlan.rows,
     operation_contract: {
-      source_fetch_retries: 0,
+      source_fetch_retries: 2,
+      maximum_source_request_attempts: canaryPlan.rows.length * 3,
       source_redirects_allowed: false,
       maximum_source_bytes_per_object: 20_000_000,
       collision_sweeps_before_upload: 2,
@@ -114,9 +115,10 @@ export function buildMtgSealedImageStorageCanaryExecutionPlanV1({
     `I approve the transient 17-object MTG sealed Storage canary from ` +
     `execution commit ${producerCommitSha}, using source coverage fingerprint ` +
     `${core.source_coverage_fingerprint_sha256}, source canary-plan ` +
-    `fingerprint ${core.source_canary_plan_fingerprint_sha256}, and execution ` +
-    `fingerprint ${executionFingerprint}. This authorizes collision preflight, ` +
-    `retrieval of exactly 17 frozen TCGPlayer image URLs, exactly 17 ` +
+     `fingerprint ${core.source_canary_plan_fingerprint_sha256}, and execution ` +
+     `fingerprint ${executionFingerprint}. This authorizes collision preflight, ` +
+     `retrieval of exactly 17 frozen TCGPlayer image URLs with at most 2 ` +
+     `transport retries per URL and 51 total source request attempts, exactly 17 ` +
     `upsert=false transient uploads to bucket ` +
     `${MTG_SEALED_IMAGE_STORAGE_BUCKET_V1}, exact byte readback, removal of ` +
     `only paths proven absent before this execution, and final verified ` +
@@ -169,7 +171,8 @@ export function validateMtgSealedImageStorageCanaryExecutionPlanV1(plan) {
     !Number.isSafeInteger(row.expected_image?.width) ||
     !Number.isSafeInteger(row.expected_image?.height)),
   'expected_image_contract_invalid');
-  add(plan?.operation_contract?.source_fetch_retries !== 0 ||
+  add(plan?.operation_contract?.source_fetch_retries !== 2 ||
+    plan?.operation_contract?.maximum_source_request_attempts !== 51 ||
     plan?.operation_contract?.source_redirects_allowed !== false ||
     plan?.operation_contract?.collision_sweeps_before_upload !== 2 ||
     plan?.operation_contract?.upload_upsert !== false ||
@@ -213,6 +216,65 @@ export function verifyMtgSealedCanaryImageBytesV1(row, buffer, contentType) {
   return { valid: mismatches.length === 0, mismatches, observed };
 }
 
+function sourceTransportCode(error) {
+  const value = error?.cause?.code ?? error?.code ?? error?.name ??
+    'request_failed';
+  return String(value).toLowerCase().replace(/[^a-z0-9_]+/g, '_')
+    .replace(/^_+|_+$/g, '') || 'request_failed';
+}
+
+export async function retrieveMtgSealedCanarySourceBytesV1({
+  row,
+  maximumBytes,
+  retryCount,
+  requestSourceBytes,
+  journal = async () => {},
+  sleep = (milliseconds) => new Promise((resolve) =>
+    setTimeout(resolve, milliseconds)),
+}) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= retryCount + 1; attempt += 1) {
+    await journal({
+      event: 'source_request_started',
+      source_product_id: row.source_product_id,
+      object_path: row.transient_object_path,
+      attempt,
+    });
+    try {
+      const source = await requestSourceBytes(row, maximumBytes);
+      await journal({
+        event: 'source_request_completed',
+        source_product_id: row.source_product_id,
+        object_path: row.transient_object_path,
+        attempt,
+      });
+      return { ...source, requestAttempts: attempt };
+    } catch (error) {
+      lastError = error;
+      const code = sourceTransportCode(error);
+      const retryable = error?.retryable !== false;
+      await journal({
+        event: 'source_request_failed',
+        source_product_id: row.source_product_id,
+        object_path: row.transient_object_path,
+        attempt,
+        error_code: code,
+        retryable,
+      });
+      if (!retryable || attempt > retryCount) {
+        const failure = new Error(
+          `${row.source_product_id}:source_transport_${code}_after_${attempt}_attempts`,
+        );
+        failure.requestAttempts = attempt;
+        failure.cause = error;
+        throw failure;
+      }
+      await sleep(1_000 * (2 ** (attempt - 1)));
+    }
+  }
+  throw lastError;
+}
+
 async function safeExists(storage, row, phase, journal) {
   const exists = await storage.objectExists(row);
   await journal({ event: 'object_presence_checked', phase,
@@ -233,6 +295,7 @@ export async function runMtgSealedImageStorageCanaryV1({
   const counters = {
     collision_checks: 0,
     source_fetches: 0,
+    source_request_attempts: 0,
     uploads: 0,
     downloads: 0,
     removals: 0,
@@ -249,7 +312,14 @@ export async function runMtgSealedImageStorageCanaryV1({
     for (const phase of ['initial', 'immediate_pre_upload']) {
       if (phase === 'immediate_pre_upload') {
         for (const row of plan.rows) {
-          const source = await fetchSourceBytes(row);
+          let source;
+          try {
+            source = await fetchSourceBytes(row);
+            counters.source_request_attempts += source.requestAttempts ?? 1;
+          } catch (error) {
+            counters.source_request_attempts += error?.requestAttempts ?? 1;
+            throw error;
+          }
           counters.source_fetches += 1;
           const verified = verifyMtgSealedCanaryImageBytesV1(
             row, source.buffer, source.contentType,
