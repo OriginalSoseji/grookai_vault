@@ -235,11 +235,11 @@ sealed-world durable apply.
 
 Do not activate MTG sealed visibility or pricing automatically.
 
-First, repair the aggregate write-count telemetry on a separate code branch and
-add a regression proving that derived qualification diagnostics are not counted
-as inserted rows and the pointer is reported separately. That repair requires
-no production data mutation.
+The aggregate write-count telemetry repair and regression are complete in
+`PRICING_CHECKPOINT_103_MTG_SEALED_WRITE_TELEMETRY_REPAIRED.md`. That repair
+required no production data mutation and does not authorize a new apply.
 
-Any later Storage/image work, pricing publication, or signed-in visibility
-activation requires its own bounded plan, production preflight, rollback proof,
-and explicit authority tied to new fingerprints.
+The current next gate is a merged-main read-only verification followed by
+separate bounded plans for Storage/images, pricing publication, and signed-in
+visibility. Each activation still requires production preflight, rollback
+proof, and explicit authority tied to new fingerprints.

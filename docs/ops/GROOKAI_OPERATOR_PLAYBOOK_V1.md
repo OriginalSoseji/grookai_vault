@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_102_MTG_SEALED_DURABLE_APPLIED.md` | Exact durable apply and zero-write readback are complete; visibility remains hidden |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_103_MTG_SEALED_WRITE_TELEMETRY_REPAIRED.md` | Exact durable apply and zero-write readback are complete; telemetry is repaired; visibility remains hidden |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,7 +223,7 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_102_MTG_SEALED_DURABLE_APPLIED.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_103_MTG_SEALED_WRITE_TELEMETRY_REPAIRED.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
@@ -283,10 +283,10 @@ The complete operation order is:
 Steps 12 and 13 completed in workflow runs `33828154527` and `33829699266`.
 The separate readback regenerated the exact payload, reconciled every durable
 projection and the MTG pointer, and wrote zero rows. Do not dispatch `apply`
-again with the checkpoint 101 values. Before another sealed-world writer is
-used, repair the aggregate write-count telemetry described in checkpoint 102;
-that repair does not authorize a production mutation. Storage, images, pricing
-publication, and visibility remain separate future gates.
+again with the checkpoint 101 values. The aggregate write-count telemetry
+repair described in checkpoint 103 is complete and did not mutate production.
+Storage, images, pricing publication, and visibility remain separate future
+gates.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated

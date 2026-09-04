@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import {
   MTG_SEALED_GAME_KEY,
+  buildMtgSealedWriteTelemetryV1,
   buildMtgSealedWorldPlanV1,
   validateMtgSealedWorldPlanV1,
 } from '../../backend/pricing/mtg_sealed_world_v1.mjs';
@@ -115,4 +116,36 @@ test('plan is deterministic and validator rejects release contamination', () => 
   const changed = plan();
   changed.payload.members[0].qualification_status = 'blocked_stale';
   assert.equal(validateMtgSealedWorldPlanV1(changed).valid, false);
+});
+
+test('write telemetry counts inserted rows and pointer, not diagnostics', () => {
+  const value = plan();
+  const telemetry = buildMtgSealedWriteTelemetryV1(value);
+  const insertedResources = [
+    'candidates', 'families', 'variants', 'reviews', 'mappings', 'evidence',
+    'qualifications', 'releases', 'members',
+  ];
+  const expectedTableRows = insertedResources.reduce(
+    (sum, key) => sum + value.payload[key].length,
+    0,
+  );
+
+  assert.equal(telemetry.table_rows_written, expectedTableRows);
+  assert.equal(telemetry.pointer_rows_written, 1);
+  assert.equal(telemetry.database_rows_written, expectedTableRows + 1);
+  assert.equal(telemetry.diagnostic_counts.qualification_holds,
+    value.payload.qualification_holds.length);
+  assert.equal('qualification_holds' in telemetry.table_rows_by_resource, false);
+
+  value.payload.qualification_holds.push({ reason: 'diagnostic_only_fixture' });
+  value.counts.qualification_holds = value.payload.qualification_holds.length;
+  const telemetryWithExtraDiagnostic = buildMtgSealedWriteTelemetryV1(value);
+  const oldIncorrectTotal = Object.values(value.counts)
+    .reduce((sum, count) => sum + Number(count), 0);
+  assert.equal(telemetryWithExtraDiagnostic.database_rows_written,
+    telemetry.database_rows_written);
+  assert.equal(telemetryWithExtraDiagnostic.diagnostic_counts.qualification_holds,
+    telemetry.diagnostic_counts.qualification_holds + 1);
+  assert.notEqual(telemetryWithExtraDiagnostic.database_rows_written,
+    oldIncorrectTotal);
 });
