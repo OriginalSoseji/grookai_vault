@@ -1,0 +1,35 @@
+{
+  "candidate": "MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_V1",
+  "base_main_sha": "f6688c0b840dd88e56effe2b06e03fe0485f9634",
+  "migration_candidate": {
+    "path": "docs/sql/mtg_sealed_image_evidence_and_release_v1_migration_candidate.sql",
+    "sha256": "9f4189c5464cf31820a0aa69af3a373dadf6254521e9fbf8d488df26b69662a6",
+    "active_migration": false,
+    "applied": false
+  },
+  "source": {
+    "release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+    "eligible_members": 2149,
+    "excluded_members": 33
+  },
+  "transient_canary": {
+    "selected_variants": 17,
+    "unique_objects": 17,
+    "plan_fingerprint_sha256": "37054e8a5e66e7f7aeb5d04e3b4d476deb0809a6019297c19e1cb9cc7c9e8a7d",
+    "plan_file_sha256": "6972314777f7c376e191a03e3ddb76d1ec9c8073cbffa125426a1a09a5f1f6cd",
+    "executed": false
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "storage_deletes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0
+  }
+}
