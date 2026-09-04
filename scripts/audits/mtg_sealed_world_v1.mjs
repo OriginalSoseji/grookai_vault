@@ -13,6 +13,7 @@ import {
   MTG_SEALED_GAME_KEY,
   MTG_SEALED_REVIEWER_ID,
   MTG_SEALED_WORLD_V1,
+  buildMtgSealedWriteTelemetryV1,
   buildMtgSealedWorldPlanV1,
   hashMtgSealedV1,
   validateMtgSealedWorldPlanV1,
@@ -588,14 +589,15 @@ async function main() {
         await client.query('commit');
         const result = await independentReadback(connectionString, args, plan,
           proof.one_piece);
+        const writeTelemetry = buildMtgSealedWriteTelemetryV1(plan);
         summary = { status: result.valid
           ? 'mtg_sealed_world_applied_and_verified'
           : 'mtg_sealed_world_apply_verification_failed',
         version: MTG_SEALED_WORLD_V1, repository: repo,
         plan_fingerprint_sha256: plan.plan_fingerprint_sha256,
         counts: plan.counts, readback: result,
-        database_rows_written: Object.values(plan.counts)
-          .reduce((sum, count) => sum + Number(count), 0),
+        write_telemetry: writeTelemetry,
+        database_rows_written: writeTelemetry.database_rows_written,
         card_writes: 0, storage_writes: 0, vault_writes: 0,
         catalog_release_control_writes: 0, one_piece_writes: 0 };
         if (!result.valid) throw new Error('Post-commit verification failed');

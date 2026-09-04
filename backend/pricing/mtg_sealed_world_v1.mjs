@@ -11,6 +11,45 @@ export const MTG_SEALED_REVIEWER_ID = deterministicUuidV5(
   'grookai:system-actor:mtg-sealed-world-v1',
 );
 
+const MTG_SEALED_DURABLE_TABLE_KEYS = Object.freeze([
+  'candidates',
+  'families',
+  'variants',
+  'reviews',
+  'mappings',
+  'evidence',
+  'qualifications',
+  'releases',
+  'members',
+]);
+
+export function buildMtgSealedWriteTelemetryV1(plan, pointerRowsWritten = 1) {
+  const tableRowsByResource = Object.fromEntries(
+    MTG_SEALED_DURABLE_TABLE_KEYS.map((key) => {
+      const rows = plan?.payload?.[key];
+      if (!Array.isArray(rows)) {
+        throw new Error(`MTG sealed write telemetry requires payload.${key}`);
+      }
+      return [key, rows.length];
+    }),
+  );
+  const tableRowsWritten = Object.values(tableRowsByResource)
+    .reduce((sum, count) => sum + count, 0);
+  const pointerRows = Number(pointerRowsWritten);
+  if (!Number.isSafeInteger(pointerRows) || pointerRows < 0) {
+    throw new Error('MTG sealed pointer write count must be a nonnegative integer');
+  }
+  return {
+    table_rows_by_resource: tableRowsByResource,
+    table_rows_written: tableRowsWritten,
+    pointer_rows_written: pointerRows,
+    database_rows_written: tableRowsWritten + pointerRows,
+    diagnostic_counts: {
+      qualification_holds: plan?.payload?.qualification_holds?.length ?? 0,
+    },
+  };
+}
+
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
   if (value && typeof value === 'object') {
