@@ -48,7 +48,14 @@ create table public.sealed_product_image_evidence (
   constraint sealed_product_image_evidence_provider_check
     check (source_provider = 'tcgplayer'),
   constraint sealed_product_image_evidence_url_check
-    check (source_image_url ~ '^https://'),
+    check (source_image_url in (
+      'https://tcgplayer-cdn.tcgplayer.com/product/'
+        || source_product_id::text || '_200w.jpg',
+      'https://tcgplayer-cdn.tcgplayer.com/product/'
+        || source_product_id::text || '_in_1000x1000.jpg',
+      'https://product-images.tcgplayer.com/fit-in/1000x1000/'
+        || source_product_id::text || '.jpg'
+    )),
   constraint sealed_product_image_evidence_http_check
     check (http_status is null or http_status between 100 and 599),
   constraint sealed_product_image_evidence_mime_check
@@ -333,6 +340,13 @@ security invoker
 set search_path = pg_catalog, public
 as $$
 begin
+  if new.release_state <> 'draft'
+     or new.frozen_by is not null
+     or new.frozen_at is not null then
+    raise exception 'image release must be inserted in draft state'
+      using errcode = '23514';
+  end if;
+
   if not exists (
     select 1
     from public.sealed_product_releases price_release

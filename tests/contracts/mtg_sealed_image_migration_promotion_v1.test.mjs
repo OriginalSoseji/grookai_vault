@@ -144,6 +144,13 @@ test('eligible image evidence fails closed when required fields are null', () =>
     /sealed_product_image_evidence_eligible_fields_check[\s\S]*or coalesce\(\([\s\S]*selected_source_role is not null[\s\S]*http_status between 200 and 299[\s\S]*\), false\)/i);
 });
 
+test('image evidence URL is derived from the mapped TCGPlayer product', () => {
+  assert.match(migration,
+    /sealed_product_image_evidence_url_check[\s\S]*tcgplayer-cdn\.tcgplayer\.com\/product\/[\s\S]*source_product_id::text[\s\S]*_200w\.jpg[\s\S]*_in_1000x1000\.jpg[\s\S]*product-images\.tcgplayer\.com\/fit-in\/1000x1000\/[\s\S]*source_product_id::text/i);
+  assert.doesNotMatch(migration,
+    /sealed_product_image_evidence_url_check\s+check \(source_image_url ~ '\^https:\/\/'\)/i);
+});
+
 test('image object path is canonically bound to game, hash, and MIME', () => {
   assert.match(migration,
     /object_path ~ '\^sealed\/\[a-z0-9_\]\+\/sha256\//i);
@@ -154,6 +161,11 @@ test('image object path is canonically bound to game, hash, and MIME', () => {
 test('member insertion locks the parent release against concurrent freeze', () => {
   assert.match(migration,
     /sealed_product_guard_image_release_member_insert_v1[\s\S]*from public\.sealed_product_image_releases image_release[\s\S]*for share[\s\S]*image release does not exist for member insertion/i);
+});
+
+test('image releases can only be inserted as drafts', () => {
+  assert.match(migration,
+    /sealed_product_guard_image_release_insert_v1[\s\S]*new\.release_state <> 'draft'[\s\S]*new\.frozen_by is not null[\s\S]*new\.frozen_at is not null[\s\S]*image release must be inserted in draft state/i);
 });
 
 test('image evidence source identity is bound to its selected mapping', () => {
