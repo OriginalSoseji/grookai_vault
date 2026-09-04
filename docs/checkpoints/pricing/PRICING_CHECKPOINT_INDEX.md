@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_104_MTG_SEALED_PRODUCTIZATION_GATES_FROZEN.md`
+
+This checkpoint records the successful zero-write verification from merged
+`main` and freezes images, ongoing pricing, and signed-in visibility as three
+serial, independently authorized productization gates.
+
+Decision locked there:
+
+- a correct hidden sealed release is not customer-ready until self-hosted
+  images, sustainable pricing refresh, and client visibility each pass their
+  own rollback and readback gates
+
+Unresolved risk afterward:
+
+- produce a zero-write image-source coverage plan and sealed image-pointer
+  contract before any Storage, schema, pricing, deployment, or visibility work
+
 ### `PRICING_CHECKPOINT_103_MTG_SEALED_WRITE_TELEMETRY_REPAIRED.md`
 
 This checkpoint records the code-only correction that counts the nine actual
@@ -44,10 +61,10 @@ Decision locked there:
 - aggregate writer telemetry must be derived from actual payload resources;
   diagnostic counts cannot be presented as inserted rows
 
-Unresolved risk afterward:
+Follow-up state:
 
-- run one merged-main read-only verification, then keep images, pricing
-  publication, and signed-in visibility as separate productization gates
+- checkpoint 104 records the successful merged-main readback and freezes the
+  three separate productization gates
 
 ### `PRICING_CHECKPOINT_102_MTG_SEALED_DURABLE_APPLIED.md`
 

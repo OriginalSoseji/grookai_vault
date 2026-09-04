@@ -1,0 +1,23 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "a9a384cb4085a5369e73ebd7039ab6ddcffb2a47",
+  "workflow_run_id": 33834897002,
+  "source_artifacts": {
+    "run_plan.json": {
+      "bytes": 548,
+      "sha256": "be77bd9ce907758d310bfbdfb1eeb4ff305173b5a4abde0c22717620a38b2c3e"
+    },
+    "sealed_world_plan.json.gz": {
+      "bytes": 4596383,
+      "sha256": "255905b9892dd5f72ea79e52d2c0a7ca75d6ed8e9a7fde75d7c983cb17aebb85"
+    },
+    "summary.json": {
+      "bytes": 4563,
+      "sha256": "a9d74a32bc5f5f3ede8d4bd8ea75eb2a9a4dcd6bb030cc934ce8267faac96867"
+    },
+    "REPORT.md": {
+      "bytes": 182,
+      "sha256": "23a70622fc01781d10fa43f541331e398174aac6036af96132faabc851478ee6"
+    }
+  }
+}
