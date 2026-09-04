@@ -109,3 +109,13 @@ from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
 unless a later authority names the exact migration SHA-256 and producer commit.
 The next serial gate is a separately authorized schema-only apply and exact
 readback. It does not include signer deployment or any Storage/data operation.
+
+The operator entrypoint is
+`npm run mtg:sealed:image-schema-apply:v1`. Its default `--plan` mode reruns
+the complete read-only production preflight and emits a commit-bound apply-plan
+fingerprint plus the exact required authority text. Its `--apply` mode is
+fail-closed unless the clean execution commit, fresh preflight, migration hash,
+apply-plan fingerprint, and `MTG_SEALED_IMAGE_SCHEMA_APPLY_APPROVAL` value all
+match. Apply mode performs an inside-transaction schema/security/ledger
+readback before commit and an independent read-only connection readback after
+commit. There is intentionally no production rollback-execution mode.

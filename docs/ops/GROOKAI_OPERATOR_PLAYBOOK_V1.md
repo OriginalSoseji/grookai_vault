@@ -342,6 +342,24 @@ apply/readback named in checkpoint 109. Do not deploy
 refresh pricing, change release pointers or visibility, or activate clients in
 that gate.
 
+Prepare that gate with the schema apply operator in its default no-write mode:
+
+```powershell
+npm run mtg:sealed:image-schema-apply:v1 -- `
+  --plan `
+  --expected-head-sha=<exact-clean-execution-sha> `
+  --out-dir=.tmp/mtg-sealed-image-schema-apply-plan-v1
+```
+
+This command performs a fresh read-only production preflight, writes the exact
+apply-plan fingerprint and authority text, and makes no database mutation. Do
+not use `--apply` without that exact later authority. Apply mode accepts the
+same `--expected-head-sha`, additionally requires
+`--expected-plan-fingerprint`, and requires the full authority text in
+`MTG_SEALED_IMAGE_SCHEMA_APPLY_APPROVAL`. It applies only the frozen migration
+and its one ledger row, validates the complete object/security contract before
+commit, then opens a separate read-only connection for durable readback.
+
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated
 before durable data work. A plan produced before an apply-authority workflow
