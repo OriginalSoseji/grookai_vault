@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_106_MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_COMPLETED.md`
+
+This checkpoint records the reviewed but unapplied MTG sealed image schema and
+the revalidated deterministic 17-object transient canary plan.
+
+Decision locked there:
+
+- exact image assertions must bind evidence to identical self-hosted bytes, the
+  source price release must be frozen, and preserved source artifacts must pass
+  hash plus logical-fingerprint verification before selection
+
+Unresolved risk afterward:
+
+- migration promotion/apply, transient and durable Storage execution, image
+  release writes, governed pricing refresh, API replacement, client deployment,
+  and signed-in visibility remain separately gated
+
 ### `PRICING_CHECKPOINT_105_MTG_SEALED_IMAGE_COVERAGE_COMPLETED.md`
 
 This checkpoint records the complete zero-write image-source audit for every

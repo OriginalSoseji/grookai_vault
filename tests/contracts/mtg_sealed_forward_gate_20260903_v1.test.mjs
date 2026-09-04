@@ -61,7 +61,7 @@ test('only the forward-ordered migration remains active', () => {
 
 test('operator playbook exposes the exact gated MTG sealed workflow', () => {
   assert.match(playbook,
-    /PRICING_CHECKPOINT_105_MTG_SEALED_IMAGE_COVERAGE_COMPLETED\.md/);
+    /PRICING_CHECKPOINT_106_MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_COMPLETED\.md/);
   assert.doesNotMatch(playbook,
     /PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY\.md/);
   assert.match(playbook, /Steps 1-13 are complete/);

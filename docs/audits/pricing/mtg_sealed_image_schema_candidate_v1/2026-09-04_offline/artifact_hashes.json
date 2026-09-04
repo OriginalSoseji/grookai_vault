@@ -1,0 +1,17 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "canary_plan.json": {
+      "bytes": 25017,
+      "sha256": "6972314777f7c376e191a03e3ddb76d1ec9c8073cbffa125426a1a09a5f1f6cd"
+    },
+    "summary.json": {
+      "bytes": 1253,
+      "sha256": "e61bb6028f7a860d22513c878ae1dfb8636e006d1c3e9afb36243809dead60d5"
+    },
+    "REPORT.md": {
+      "bytes": 614,
+      "sha256": "0ab5c5e3b502cdb6ea3ca1b99c671e7fe83313ea1f8ced03735d8d51881fd094"
+    }
+  }
+}
