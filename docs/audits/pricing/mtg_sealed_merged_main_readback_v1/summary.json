@@ -1,0 +1,52 @@
+{
+  "status": "mtg_sealed_readback_passed",
+  "version": "MTG_SEALED_WORLD_V1",
+  "workflow_run_id": 33834897002,
+  "repository": {
+    "branch": "main",
+    "commit_sha": "a9a384cb4085a5369e73ebd7039ab6ddcffb2a47",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "0411d7debc8d4348040f678a90c5e2c3f7fd3c11c7fd8d8dc4630de037d45357",
+  "source_fingerprint_sha256": "4930912401798650fee813993ca9e588b198cc1fc8d259e0aeb71e72d9f805af",
+  "counts": {
+    "families": 237,
+    "variants": 2904,
+    "candidates": 2904,
+    "reviews": 2904,
+    "mappings": 2904,
+    "evidence": 14070,
+    "qualifications": 2779,
+    "releases": 1,
+    "members": 2182,
+    "pointer": 1
+  },
+  "qualification_status_counts": {
+    "qualified_exact": 2182,
+    "blocked_missing_price": 480,
+    "blocked_stale": 117
+  },
+  "release": {
+    "id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "state": "frozen",
+    "manifest_fingerprint": "2455c752047c27993d8afb826223cb72474f7d9214fdfa86855321410b46f9e3",
+    "expected_member_count": 2182
+  },
+  "projection_exact": {
+    "families": true,
+    "variants": true,
+    "candidates": true,
+    "reviews": true,
+    "mappings": true,
+    "evidence": true,
+    "qualifications": true,
+    "releases": true,
+    "members": true
+  },
+  "one_piece_boundary_sha256_before": "83e84e94755dce0dbecf5f02be2c25fa4c9ef2517c98dbe8f95225de5000be03",
+  "one_piece_boundary_sha256_after": "83e84e94755dce0dbecf5f02be2c25fa4c9ef2517c98dbe8f95225de5000be03",
+  "one_piece_unchanged": true,
+  "hidden_rpc_rows_returned": 0,
+  "database_writes": 0,
+  "valid": true
+}

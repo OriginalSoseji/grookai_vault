@@ -1,0 +1,20 @@
+{
+  "version": "MTG_SEALED_WORLD_V1",
+  "mode": "readback",
+  "workflow_run_id": 33834897002,
+  "workflow_url": "https://github.com/OriginalSoseji/grookai_vault/actions/runs/33834897002",
+  "repository": {
+    "branch": "main",
+    "commit_sha": "a9a384cb4085a5369e73ebd7039ab6ddcffb2a47",
+    "tracked_worktree_clean": true
+  },
+  "expected_plan_fingerprint": "0411d7debc8d4348040f678a90c5e2c3f7fd3c11c7fd8d8dc4630de037d45357",
+  "expected_source_fingerprint": "4930912401798650fee813993ca9e588b198cc1fc8d259e0aeb71e72d9f805af",
+  "boundaries": {
+    "cards": "no writes",
+    "storage": "no writes",
+    "vault": "no writes",
+    "catalog_release": "no writes",
+    "one_piece": "must remain unchanged"
+  }
+}
