@@ -33,6 +33,27 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_102_MTG_SEALED_DURABLE_APPLIED.md`
+
+This checkpoint records the single authorized durable MTG sealed apply, exact
+transaction and independent readback, and a separate zero-write readback rerun
+from preserved producer `800d41e65`. It proves exact table projections, one
+frozen 2,182-member release, one MTG pointer, unchanged One Piece state, and
+continued hidden client visibility.
+
+Decision locked there:
+
+- the approved MTG sealed payload is durably applied but remains hidden; its
+  single-use apply authority is consumed and cannot authorize publication or
+  any later mutation
+
+Unresolved risk afterward:
+
+- aggregate write telemetry incorrectly counts the derived 144 qualification
+  holds and omits the pointer; repair that reporting defect before reusing this
+  writer pattern, while keeping visibility, pricing, Storage, and images as
+  separate future gates
+
 ### `PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY.md`
 
 This checkpoint records the merged apply-authority binding repair and the
