@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 
 import {
+  MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
   MTG_SEALED_IMAGE_AUTH_CANDIDATE_SHA256_V1,
   MTG_SEALED_IMAGE_FUNCTIONS_V1,
   MTG_SEALED_IMAGE_INDEXES_V1,
@@ -22,6 +23,7 @@ import {
   MTG_SEALED_SIGNER_INDEX_SHA256_V1,
   MTG_SEALED_IMAGE_TABLES_V1,
   MTG_SEALED_IMAGE_TRIGGERS_V1,
+  supabaseProjectRefFromUrlV1,
   validateMtgSealedImageMigrationPreflightV1,
 } from '../../backend/pricing/mtg_sealed_image_migration_preflight_v1.mjs';
 import {
@@ -31,6 +33,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const DEFAULT_ENV_FILE = 'C:\\grookai_vault\\.env.local';
+const SUPABASE_CONFIG_PATH = path.join(ROOT, 'supabase', 'config.toml');
 const MIGRATION_PATH = path.join(ROOT, 'supabase', 'migrations',
   MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1);
 const IMAGE_SCHEMA_CANDIDATE_PATH = path.join(ROOT, 'docs', 'sql',
@@ -113,19 +116,25 @@ async function localProof(args) {
     imageAuthCandidateBytes,
     signerIndexBytes,
     signerConfigBytes,
+    supabaseConfig,
   ] = await Promise.all([
     fs.readFile(MIGRATION_PATH),
     fs.readFile(IMAGE_SCHEMA_CANDIDATE_PATH),
     fs.readFile(IMAGE_AUTH_CANDIDATE_PATH),
     fs.readFile(SIGNER_INDEX_PATH),
     fs.readFile(SIGNER_CONFIG_PATH),
+    fs.readFile(SUPABASE_CONFIG_PATH, 'utf8'),
   ]);
+  const repositoryProjectRef = supabaseConfig.match(
+    /^project_id\s*=\s*"([a-z0-9]{20})"\s*$/m,
+  )?.[1] ?? null;
   const proof = {
     branch: git('branch', '--show-current'),
     head_sha: git('rev-parse', 'HEAD'),
     expected_head_sha: args.expectedHeadSha,
     tracked_worktree_clean:
       git('status', '--porcelain', '--untracked-files=no') === '',
+    repository_project_ref: repositoryProjectRef,
     migration_version: MTG_SEALED_IMAGE_MIGRATION_VERSION_V1,
     migration_filename: MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1,
     migration_path: relative(MIGRATION_PATH),
@@ -145,9 +154,9 @@ async function localProof(args) {
     },
   };
   if (
-    proof.branch !== 'agent/mtg-sealed-image-migration-promotion-v1' ||
     proof.head_sha !== proof.expected_head_sha ||
     !proof.tracked_worktree_clean ||
+    proof.repository_project_ref !== MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1 ||
     proof.duplicate_repo_migration_versions !== 0 ||
     proof.migration_sha256 !== MTG_SEALED_IMAGE_MIGRATION_SHA256_V1 ||
     proof.image_schema_candidate_sha256 !==
@@ -247,6 +256,15 @@ async function captureMigrationLedger(client) {
 
 async function captureDataBoundary(client) {
   const row = (await queryRows(client, `select
+    (select count(*)::bigint from public.card_prints)
+      as canonical_card_prints_count,
+    (select count(*)::bigint from public.sets) as canonical_sets_count,
+    (select count(*)::bigint from public.card_print_traits)
+      as canonical_card_print_traits_count,
+    (select count(*)::bigint
+       from public.card_print_traits trait
+       left join public.card_prints card on card.id = trait.card_print_id
+      where card.id is null) as card_print_traits_orphan_count,
     (select count(*)::bigint from public.sealed_product_families) as families,
     (select count(*)::bigint from public.sealed_product_variants) as variants,
     (select count(*)::bigint from public.sealed_product_candidates) as candidates,
@@ -302,6 +320,9 @@ function applyPlan(local, production) {
       sha256: local.migration_sha256,
     },
     preconditions: {
+      repository_project_ref: local.repository_project_ref,
+      api_project_ref: production.api_project_ref,
+      database_project_ref: production.database_project_ref,
       migration_ledger_count: production.migration_ledger_count,
       missing_prerequisite_relations: production.missing_prerequisite_relations,
       missing_prerequisite_functions: production.missing_prerequisite_functions,
@@ -348,11 +369,14 @@ function report(summary) {
 - Producer commit: \`${summary.repository.head_sha}\`
 - Migration: \`${summary.repository.migration_filename}\`
 - Migration SHA-256: \`${summary.repository.migration_sha256}\`
+- Canonical project ref: \`${summary.production.database_project_ref}\`
 - Environment key: \`${summary.production.guard.environment_key_sha256}\`
 
 ## Proof
 
 - Read-only session and transaction: ${c.read_only ? 'PASS' : 'FAIL'}
+- Canonical project identity: ${c.environment_identity ? 'PASS' : 'FAIL'}
+- Canonical database minimums: ${c.canonical_environment ? 'PASS' : 'FAIL'}
 - Migration-ledger absence: ${c.migration_history ? 'PASS' : 'FAIL'}
 - Prerequisites: ${c.prerequisites ? 'PASS' : 'FAIL'}
 - Object collisions: ${c.collisions ? 'PASS' : 'FAIL'}
@@ -409,23 +433,27 @@ async function main() {
   const local = await localProof(args);
   const url = databaseUrl();
   if (!url) throw new Error('Missing SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL');
+  const apiUrl = process.env.SUPABASE_URL ??
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+  const apiProjectRef = supabaseProjectRefFromUrlV1(apiUrl);
+  const databaseProjectRef = supabaseProjectRefFromUrlV1(url);
+  if (
+    apiProjectRef !== local.repository_project_ref ||
+    databaseProjectRef !== local.repository_project_ref
+  ) {
+    throw new Error('Supabase API/database target does not match repository project');
+  }
 
   const databaseProof = await withReadOnlyClient({
     connectionString: url,
-    environmentLabel: 'production-mtg-sealed-image-migration-preflight-v1',
+    environmentLabel:
+      `production-${databaseProjectRef}-mtg-sealed-image-migration-preflight-v1`,
   }, async (client, guard) => {
     const before = await captureDataBoundary(client);
-    const [
-      roles,
-      prerequisites,
-      collisions,
-      ledger,
-    ] = await Promise.all([
-      captureRoles(client),
-      capturePrerequisites(client),
-      captureCollisions(client),
-      captureMigrationLedger(client),
-    ]);
+    const roles = await captureRoles(client);
+    const prerequisites = await capturePrerequisites(client);
+    const collisions = await captureCollisions(client);
+    const ledger = await captureMigrationLedger(client);
     const after = await captureDataBoundary(client);
     const beforeFingerprint = sha256(stableJson(before));
     const afterFingerprint = sha256(stableJson(after));
@@ -434,6 +462,8 @@ async function main() {
         collisions.relations.some((row) => row.name === table) ? -1 : 0]));
     return {
       guard,
+      api_project_ref: apiProjectRef,
+      database_project_ref: databaseProjectRef,
       roles,
       ...prerequisites,
       collisions,

@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import test from 'node:test';
 
 import {
+  MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
   MTG_SEALED_IMAGE_FUNCTIONS_V1,
   MTG_SEALED_IMAGE_INDEXES_V1,
   MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1,
@@ -13,6 +14,7 @@ import {
   MTG_SEALED_IMAGE_POLICIES_V1,
   MTG_SEALED_IMAGE_TABLES_V1,
   MTG_SEALED_IMAGE_TRIGGERS_V1,
+  supabaseProjectRefFromUrlV1,
   validateMtgSealedImageMigrationPreflightV1,
 } from '../../backend/pricing/mtg_sealed_image_migration_preflight_v1.mjs';
 
@@ -33,6 +35,7 @@ function validProof() {
       head_sha: 'a'.repeat(40),
       expected_head_sha: 'a'.repeat(40),
       tracked_worktree_clean: true,
+      repository_project_ref: MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
       migration_version: MTG_SEALED_IMAGE_MIGRATION_VERSION_V1,
       migration_filename: MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1,
       migration_sha256: MTG_SEALED_IMAGE_MIGRATION_SHA256_V1,
@@ -48,6 +51,8 @@ function validProof() {
     production: {
       migration_ledger_count: 0,
       duplicate_repo_migration_versions: 0,
+      api_project_ref: MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
+      database_project_ref: MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
       guard: {
         transaction_read_only: 'on',
         default_transaction_read_only: 'on',
@@ -60,6 +65,10 @@ function validProof() {
       },
       roles: ['anon', 'authenticated', 'service_role'],
       data_boundaries: {
+        canonical_card_prints_count: 40000,
+        canonical_sets_count: 150,
+        canonical_card_print_traits_count: 5000,
+        card_print_traits_orphan_count: 0,
         mtg_price_pointer_count: 1,
         mtg_active_price_release_count: 1,
         mtg_active_price_member_count: 2182,
@@ -126,6 +135,28 @@ test('valid read-only preflight passes', () => {
   });
 });
 
+test('project identity resolves direct API, direct DB, and pooler URLs', () => {
+  const ref = MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1;
+  assert.equal(supabaseProjectRefFromUrlV1(`https://${ref}.supabase.co`), ref);
+  assert.equal(supabaseProjectRefFromUrlV1(
+    `postgresql://postgres:secret@db.${ref}.supabase.co:5432/postgres`,
+  ), ref);
+  assert.equal(supabaseProjectRefFromUrlV1(
+    `postgresql://postgres.${ref}:secret@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
+  ), ref);
+  assert.equal(supabaseProjectRefFromUrlV1('postgresql://localhost/postgres'), null);
+});
+
+test('preflight is commit-bound but can run from main or detached HEAD', () => {
+  const main = validProof();
+  main.local.branch = 'main';
+  assert.equal(validateMtgSealedImageMigrationPreflightV1(main).valid, true);
+
+  const detached = validProof();
+  detached.local.branch = '';
+  assert.equal(validateMtgSealedImageMigrationPreflightV1(detached).valid, true);
+});
+
 test('preflight fails closed on collisions, ledger reuse, or boundary drift', () => {
   const collision = validProof();
   collision.production.collisions.functions.push({
@@ -152,9 +183,25 @@ test('preflight fails closed on visibility or prohibited operation changes', () 
   assert.equal(validateMtgSealedImageMigrationPreflightV1(write).valid, false);
 });
 
+test('preflight fails closed on environment identity or canonical-count drift', () => {
+  const wrongProject = validProof();
+  wrongProject.production.database_project_ref = 'z'.repeat(20);
+  assert.equal(validateMtgSealedImageMigrationPreflightV1(wrongProject).valid, false);
+
+  const immatureCanon = validProof();
+  immatureCanon.production.data_boundaries.canonical_card_prints_count = 39999;
+  assert.equal(validateMtgSealedImageMigrationPreflightV1(immatureCanon).valid, false);
+
+  const orphanedTraits = validProof();
+  orphanedTraits.production.data_boundaries.card_print_traits_orphan_count = 1;
+  assert.equal(validateMtgSealedImageMigrationPreflightV1(orphanedTraits).valid, false);
+});
+
 test('production boundary snapshot uses the deployed sealed table names', () => {
   assert.match(preflightScript, /public\.sealed_product_candidates/);
   assert.match(preflightScript, /public\.sealed_product_variant_evidence/);
   assert.doesNotMatch(preflightScript, /sealed_product_source_candidates/);
   assert.doesNotMatch(preflightScript, /sealed_product_source_evidence/);
+  assert.match(preflightScript, /SUPABASE_CONFIG_PATH/);
+  assert.match(preflightScript, /'supabase', 'config\.toml'/);
 });

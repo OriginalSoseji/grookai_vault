@@ -15,6 +15,14 @@ export const MTG_SEALED_SIGNER_INDEX_SHA256_V1 =
 export const MTG_SEALED_SIGNER_CONFIG_SHA256_V1 =
   '7551533d8029d2f2ff237c1ff0915b2758a25711aec701d6a5378cc7f7d94e3f';
 
+export const MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1 =
+  'ycdxbpibncqcchqiihfz';
+export const MTG_SEALED_IMAGE_CANONICAL_MINIMUMS_V1 = Object.freeze({
+  card_prints: 40000,
+  sets: 150,
+  card_print_traits: 5000,
+});
+
 export const MTG_SEALED_IMAGE_TABLES_V1 = Object.freeze([
   'sealed_product_image_evidence',
   'sealed_product_image_objects',
@@ -93,6 +101,24 @@ function zeroCollisionCounts(collisions = {}) {
     collisions[key].length === 0);
 }
 
+export function supabaseProjectRefFromUrlV1(rawUrl) {
+  let parsed;
+  try {
+    parsed = new URL(rawUrl);
+  } catch {
+    return null;
+  }
+  const hostname = parsed.hostname.toLowerCase();
+  const username = decodeURIComponent(parsed.username || '').toLowerCase();
+  const hostMatch = hostname.match(
+    /^(?:db\.)?([a-z0-9]{20})\.supabase\.co$/,
+  );
+  const usernameMatch = username.match(/^postgres\.([a-z0-9]{20})$/);
+  const refs = [hostMatch?.[1], usernameMatch?.[1]].filter(Boolean);
+  if (refs.length === 0 || new Set(refs).size !== 1) return null;
+  return refs[0];
+}
+
 export function validateMtgSealedImageMigrationPreflightV1(proof) {
   const local = proof?.local ?? {};
   const production = proof?.production ?? {};
@@ -101,9 +127,12 @@ export function validateMtgSealedImageMigrationPreflightV1(proof) {
     preflight_version:
       proof?.preflight_version === MTG_SEALED_IMAGE_MIGRATION_PREFLIGHT_VERSION_V1,
     repository:
-      local.branch === 'agent/mtg-sealed-image-migration-promotion-v1' &&
       local.head_sha === local.expected_head_sha &&
       local.tracked_worktree_clean === true,
+    environment_identity:
+      local.repository_project_ref === MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1 &&
+      production.api_project_ref === local.repository_project_ref &&
+      production.database_project_ref === local.repository_project_ref,
     migration_identity:
       local.migration_version === MTG_SEALED_IMAGE_MIGRATION_VERSION_V1 &&
       local.migration_filename === MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1 &&
@@ -131,6 +160,14 @@ export function validateMtgSealedImageMigrationPreflightV1(proof) {
     roles:
       ['anon', 'authenticated', 'service_role'].every((role) =>
         production.roles?.includes(role)),
+    canonical_environment:
+      Number(boundary.canonical_card_prints_count) >=
+        MTG_SEALED_IMAGE_CANONICAL_MINIMUMS_V1.card_prints &&
+      Number(boundary.canonical_sets_count) >=
+        MTG_SEALED_IMAGE_CANONICAL_MINIMUMS_V1.sets &&
+      Number(boundary.canonical_card_print_traits_count) >=
+        MTG_SEALED_IMAGE_CANONICAL_MINIMUMS_V1.card_print_traits &&
+      Number(boundary.card_print_traits_orphan_count) === 0,
     mtg_price_authority:
       Number(boundary.mtg_price_pointer_count) === 1 &&
       Number(boundary.mtg_active_price_release_count) === 1 &&

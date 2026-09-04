@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md` | All no-write preparation is complete; exact image/price/RPC production gates and hard-disabled client activation remain serial |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md` | Exact image schema/signing migration is preflighted but unapplied; later image/price/RPC production gates and hard-disabled client activation remain serial |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,7 +223,7 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
@@ -315,6 +315,30 @@ and 33 explicit exceptions with zero reconciliation mismatches and zero writes.
 Permanent compressed member-level evidence is linked from checkpoint 105. Do
 not rerun Gate A merely to recreate that evidence; a new audit is justified
 only by a separately versioned source or release change.
+
+The reviewed image schema and authenticated one-object signing authorization
+are promoted into migration `20260904130000` but remain unapplied. Before any
+schema-only apply, rerun the production preflight from the exact clean commit
+that contains the frozen migration:
+
+```powershell
+npm run mtg:sealed:image-migration-preflight:v1 -- `
+  --expected-head-sha=<exact-current-sha> `
+  --out-dir=docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/<timestamp>_preflight
+```
+
+The command accepts a topic branch, merged `main`, or detached CI checkout; the
+exact SHA and tracked-clean state are authoritative. It must prove repository,
+API, and database project ref `ycdxbpibncqcchqiihfz`, canonical minimum counts,
+zero trait orphans, migration-ledger absence, zero object collisions, unchanged
+sealed and cross-game state, and a read-only transaction. Preserve all six
+generated artifacts and their hash manifest. A `PASS` authorizes no write.
+
+The next production gate is the separately authorized schema-only migration
+apply/readback named in checkpoint 109. Do not deploy
+`mtg-sealed-sign-image-v1`, upload or sign Storage objects, write image records,
+refresh pricing, change release pointers or visibility, or activate clients in
+that gate.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated
