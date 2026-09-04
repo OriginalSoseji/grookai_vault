@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_103_MTG_SEALED_WRITE_TELEMETRY_REPAIRED.md`
+
+This checkpoint records the code-only correction that counts the nine actual
+MTG sealed insert resources, reports the release pointer separately, and keeps
+qualification holds as diagnostics without changing production state.
+
+Decision locked there:
+
+- aggregate writer telemetry must be derived from actual payload resources;
+  diagnostic counts cannot be presented as inserted rows
+
+Unresolved risk afterward:
+
+- run one merged-main read-only verification, then keep images, pricing
+  publication, and signed-in visibility as separate productization gates
+
 ### `PRICING_CHECKPOINT_102_MTG_SEALED_DURABLE_APPLIED.md`
 
 This checkpoint records the single authorized durable MTG sealed apply, exact
@@ -47,12 +63,11 @@ Decision locked there:
   single-use apply authority is consumed and cannot authorize publication or
   any later mutation
 
-Unresolved risk afterward:
+Follow-up state:
 
 - aggregate write telemetry incorrectly counts the derived 144 qualification
-  holds and omits the pointer; repair that reporting defect before reusing this
-  writer pattern, while keeping visibility, pricing, Storage, and images as
-  separate future gates
+  holds and omits the pointer in the historical apply artifact; checkpoint 103
+  repairs the operator telemetry without changing the applied payload
 
 ### `PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY.md`
 
