@@ -61,8 +61,12 @@ test('only the forward-ordered migration remains active', () => {
 
 test('operator playbook exposes the exact gated MTG sealed workflow', () => {
   assert.match(playbook,
+    /PRICING_CHECKPOINT_102_MTG_SEALED_DURABLE_APPLIED\.md/);
+  assert.doesNotMatch(playbook,
     /PRICING_CHECKPOINT_101_MTG_SEALED_DURABLE_APPLY_READY\.md/);
-  assert.match(playbook, /current operation resumes at step\s+11\b/);
+  assert.match(playbook, /Steps 1-13 are complete/);
+  assert.match(playbook, /single-use `apply` authority[^.]+is consumed/);
+  assert.match(playbook, /Do not dispatch `apply`\s+again/);
   assert.match(playbook, /mtg-sealed-world-runner\.yml/);
   for (const operation of [
     'migration_dry_run', 'migration_apply', 'plan', 'preflight',
