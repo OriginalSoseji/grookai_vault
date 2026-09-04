@@ -70,8 +70,8 @@ Before any apply:
 
 1. the exact producer commit and clean branch must be recorded;
 2. all package hashes must match;
-3. the production migration ledger must not contain version
-   `20260904130000`;
+3. the production migration ledger must exist, match every repository migration
+   version, and have only `20260904130000` pending;
 4. all prerequisite relations, functions, and roles must exist;
 5. every proposed relation, function, index, trigger, policy, and constraint
    must have zero collisions;
@@ -83,7 +83,7 @@ Before any apply:
 ## Exact Next Gate
 
 The read-only production preflight passed from producer commit
-`f8a203b2c21f5c33b204b37581128a38346c972c`; its permanent evidence is linked
+`55bd392b94a782dff1f180dd2831735e2c0b0bd5`; its permanent evidence is linked
 from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
 unless a later authority names the exact migration SHA-256 and producer commit.
 The next serial gate is a separately authorized schema-only apply and exact

@@ -330,7 +330,8 @@ npm run mtg:sealed:image-migration-preflight:v1 -- `
 The command accepts a topic branch, merged `main`, or detached CI checkout; the
 exact SHA and tracked-clean state are authoritative. It must prove repository,
 API, and database project ref `ycdxbpibncqcchqiihfz`, canonical minimum counts,
-zero trait orphans, migration-ledger absence, zero object collisions, unchanged
+zero trait orphans, complete repository/production migration-version parity
+with this migration as the sole pending version, zero object collisions, unchanged
 sealed and cross-game state, and a read-only transaction. Preserve all six
 generated artifacts and their hash manifest. A `PASS` authorizes no write.
 
