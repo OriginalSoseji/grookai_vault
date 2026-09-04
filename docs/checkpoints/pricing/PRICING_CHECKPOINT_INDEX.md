@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md`
+
+This checkpoint records completion of every approved no-write MTG sealed
+productization task, including typed web and Flutter clients that remain
+literal-false and unreachable.
+
+Decision locked there:
+
+- backend evidence gates can be prepared ahead of cutover, but clients remain
+  hard-disabled until exact images, fresh price release, RPC V3, and signed-in
+  canary each pass serial production proof
+
+Unresolved risk afterward:
+
+- all image, Storage, pricing, RPC, deployment, visibility, and scheduler
+  mutations remain in the explicit ten-step production sequence
+
 ### `PRICING_CHECKPOINT_107_MTG_SEALED_PRICING_REFRESH_AND_RPC_V3_CANDIDATE_READY.md`
 
 This checkpoint preserves the successful merged-main production read-only MTG

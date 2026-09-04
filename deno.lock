@@ -13,7 +13,8 @@
         "npm:@supabase/supabase-js@^2.81.1",
         "npm:dotenv@^17.2.3",
         "npm:pg@^8.20.0",
-        "npm:typescript@^5.9.3"
+        "npm:typescript@^5.9.3",
+        "npm:uuid@14"
       ]
     }
   }

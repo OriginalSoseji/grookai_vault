@@ -15,7 +15,8 @@
     "test:parity:a11y": "playwright test tests/parity/mobile.a11y.spec.ts",
     "test:parity:update": "playwright test tests/parity/mobile.visual.spec.ts --update-snapshots",
     "test:parity:report": "playwright show-report",
-    "test:gvvi-qr": "node --experimental-strip-types --test src/lib/gvvi/vendorQrCore.test.ts"
+    "test:gvvi-qr": "node --experimental-strip-types --test src/lib/gvvi/vendorQrCore.test.ts",
+    "test:mtg-sealed-client": "node --experimental-strip-types --test src/lib/sealed/mtgSealedClientV1.test.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.9.0",

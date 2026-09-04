@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_107_MTG_SEALED_PRICING_REFRESH_AND_RPC_V3_CANDIDATE_READY.md` | Merged-main read-only pricing reconciles 2,149 exact image-eligible rows; image schema, RPC V3, and all writes remain unapplied |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md` | All no-write preparation is complete; exact image/price/RPC production gates and hard-disabled client activation remain serial |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,7 +223,7 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_107_MTG_SEALED_PRICING_REFRESH_AND_RPC_V3_CANDIDATE_READY.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
