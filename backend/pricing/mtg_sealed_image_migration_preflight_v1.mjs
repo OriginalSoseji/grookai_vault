@@ -5,7 +5,7 @@ export const MTG_SEALED_IMAGE_MIGRATION_VERSION_V1 = '20260904130000';
 export const MTG_SEALED_IMAGE_MIGRATION_FILENAME_V1 =
   '20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql';
 export const MTG_SEALED_IMAGE_MIGRATION_SHA256_V1 =
-  'ce183c4276790327fc499bcad20f71d6b0e45c4eb1f6802bf75b4b7322f3b2aa';
+  '6de51515e500ae3e02039a21fc05b88b59019003f57f6b5319537794550072a9';
 export const MTG_SEALED_IMAGE_SCHEMA_CANDIDATE_SHA256_V1 =
   '6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735';
 export const MTG_SEALED_IMAGE_AUTH_CANDIDATE_SHA256_V1 =
@@ -33,6 +33,9 @@ export const MTG_SEALED_IMAGE_TABLES_V1 = Object.freeze([
 ]);
 
 export const MTG_SEALED_IMAGE_FUNCTIONS_V1 = Object.freeze([
+  'sealed_product_image_release_manifest_fingerprint_v1(uuid)',
+  'sealed_product_assert_image_release_complete_v1(uuid)',
+  'sealed_product_guard_image_evidence_insert_v1()',
   'sealed_product_guard_variant_image_assertion_insert_v1()',
   'sealed_product_guard_image_release_insert_v1()',
   'sealed_product_guard_image_release_mutation_v1()',
@@ -52,6 +55,7 @@ export const MTG_SEALED_IMAGE_INDEXES_V1 = Object.freeze([
 
 export const MTG_SEALED_IMAGE_TRIGGERS_V1 = Object.freeze([
   'sealed_product_image_evidence_append_only',
+  'sealed_product_image_evidence_guard_insert',
   'sealed_product_image_objects_append_only',
   'sealed_product_variant_image_assertions_append_only',
   'sealed_product_variant_image_assertions_guard_insert',

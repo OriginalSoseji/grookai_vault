@@ -299,6 +299,91 @@ create table public.sealed_product_image_release_pointer (
     on delete restrict
 );
 
+create function public.sealed_product_image_release_manifest_fingerprint_v1(
+  p_image_release_id uuid
+)
+returns text
+language sql
+stable
+security invoker
+set search_path = pg_catalog, public
+as $$
+  with manifest as (
+    select
+      image_release.id,
+      image_release.game_key,
+      image_release.source_price_release_id,
+      image_release.source_audit_producer_sha,
+      image_release.source_plan_fingerprint,
+      image_release.coverage_fingerprint,
+      image_release.release_contract_version,
+      image_release.expected_member_count,
+      count(member.id)::integer as actual_member_count,
+      coalesce(
+        jsonb_agg(
+          jsonb_build_array(
+            member.variant_id::text,
+            member.image_assertion_id::text,
+            member.member_fingerprint
+          )
+          order by member.variant_id, member.image_assertion_id
+        ) filter (where member.id is not null),
+        '[]'::jsonb
+      ) as members
+    from public.sealed_product_image_releases image_release
+    left join public.sealed_product_image_release_members member
+      on member.image_release_id = image_release.id
+     and member.game_key = image_release.game_key
+    where image_release.id = p_image_release_id
+    group by image_release.id
+  )
+  select encode(
+    extensions.digest(
+      convert_to(
+        jsonb_build_array(
+          'SEALED_PRODUCT_IMAGE_RELEASE_MANIFEST_V1',
+          manifest.id::text,
+          manifest.game_key,
+          manifest.source_price_release_id::text,
+          manifest.source_audit_producer_sha,
+          manifest.source_plan_fingerprint,
+          manifest.coverage_fingerprint,
+          manifest.release_contract_version,
+          manifest.expected_member_count,
+          manifest.actual_member_count,
+          manifest.members
+        )::text,
+        'UTF8'
+      ),
+      'sha256'
+    ),
+    'hex'
+  )
+  from manifest;
+$$;
+
+create function public.sealed_product_guard_image_evidence_insert_v1()
+returns trigger
+language plpgsql
+security invoker
+set search_path = pg_catalog, public
+as $$
+begin
+  if exists (
+    select 1
+    from public.sealed_product_image_releases image_release
+    where image_release.game_key = new.game_key
+      and image_release.source_plan_fingerprint = new.source_plan_fingerprint
+      and image_release.coverage_fingerprint = new.coverage_fingerprint
+      and image_release.release_state = 'frozen'
+  ) then
+    raise exception 'cannot append evidence to a frozen image release audit set'
+      using errcode = '55000';
+  end if;
+  return new;
+end;
+$$;
+
 create function public.sealed_product_guard_variant_image_assertion_insert_v1()
 returns trigger
 language plpgsql
@@ -403,6 +488,8 @@ language plpgsql
 security invoker
 set search_path = pg_catalog, public
 as $$
+declare
+  v_expected_member_fingerprint text;
 begin
   perform image_release.id
   from public.sealed_product_image_releases image_release
@@ -415,8 +502,25 @@ begin
       using errcode = '23503';
   end if;
 
-  if not exists (
-    select 1
+  select encode(
+    extensions.digest(
+      convert_to(
+        jsonb_build_array(
+          'SEALED_PRODUCT_IMAGE_RELEASE_MEMBER_V1',
+          new.image_release_id::text,
+          new.game_key,
+          new.variant_id::text,
+          new.image_assertion_id::text,
+          assertion.assertion_fingerprint,
+          evidence.evidence_fingerprint,
+          image_object.object_fingerprint
+        )::text,
+        'UTF8'
+      ),
+      'sha256'
+    ),
+    'hex'
+  ) into v_expected_member_fingerprint
     from public.sealed_product_image_releases image_release
     join public.sealed_product_releases price_release
       on price_release.id = image_release.source_price_release_id
@@ -434,6 +538,9 @@ begin
      )
      and evidence.source_plan_fingerprint = image_release.source_plan_fingerprint
      and evidence.coverage_fingerprint = image_release.coverage_fingerprint
+    join public.sealed_product_image_objects image_object
+      on image_object.id = assertion.image_object_id
+     and image_object.game_key = new.game_key
     join public.sealed_product_release_members price_member
       on price_member.id = evidence.source_release_member_id
      and price_member.release_id = image_release.source_price_release_id
@@ -441,12 +548,154 @@ begin
      and price_member.source_mapping_id = assertion.source_mapping_id
     where image_release.id = new.image_release_id
       and image_release.game_key = new.game_key
-      and image_release.release_state = 'draft'
-  ) then
+      and image_release.release_state = 'draft';
+
+  if v_expected_member_fingerprint is null then
     raise exception 'image release member lacks exact assertion or source price membership'
       using errcode = '55000';
   end if;
+  if new.member_fingerprint <> v_expected_member_fingerprint then
+    raise exception 'image release member fingerprint does not match canonical binding'
+      using errcode = '23514';
+  end if;
   return new;
+end;
+$$;
+
+create function public.sealed_product_assert_image_release_complete_v1(
+  p_image_release_id uuid
+)
+returns text
+language plpgsql
+stable
+security invoker
+set search_path = pg_catalog, public
+as $$
+declare
+  v_release public.sealed_product_image_releases%rowtype;
+  v_source_member_count integer;
+  v_coverage_evidence_count integer;
+  v_eligible_evidence_count integer;
+  v_release_member_count integer;
+  v_computed_manifest_fingerprint text;
+begin
+  select * into v_release
+  from public.sealed_product_image_releases
+  where id = p_image_release_id;
+
+  if not found then
+    raise exception 'image release does not exist' using errcode = '23503';
+  end if;
+
+  select count(*)::integer into v_source_member_count
+  from public.sealed_product_release_members price_member
+  where price_member.release_id = v_release.source_price_release_id;
+
+  if v_source_member_count <= 0 then
+    raise exception 'source price release has no members' using errcode = '23514';
+  end if;
+
+  select
+    count(*)::integer,
+    count(*) filter (where evidence.classification in (
+      'exact_image_ready', 'shared_bytes_exact_variant'
+    ))::integer
+  into v_coverage_evidence_count, v_eligible_evidence_count
+  from public.sealed_product_image_evidence evidence
+  where evidence.game_key = v_release.game_key
+    and evidence.source_plan_fingerprint = v_release.source_plan_fingerprint
+    and evidence.coverage_fingerprint = v_release.coverage_fingerprint;
+
+  if v_coverage_evidence_count <> v_source_member_count then
+    raise exception 'coverage evidence count mismatch: expected %, found %',
+      v_source_member_count, v_coverage_evidence_count using errcode = '23514';
+  end if;
+
+  if exists (
+    select 1
+    from public.sealed_product_release_members price_member
+    where price_member.release_id = v_release.source_price_release_id
+      and not exists (
+        select 1
+        from public.sealed_product_image_evidence evidence
+        where evidence.source_release_member_id = price_member.id
+          and evidence.game_key = v_release.game_key
+          and evidence.variant_id = price_member.variant_id
+          and evidence.source_mapping_id = price_member.source_mapping_id
+          and evidence.source_plan_fingerprint = v_release.source_plan_fingerprint
+          and evidence.coverage_fingerprint = v_release.coverage_fingerprint
+      )
+  ) or exists (
+    select 1
+    from public.sealed_product_image_evidence evidence
+    where evidence.game_key = v_release.game_key
+      and evidence.source_plan_fingerprint = v_release.source_plan_fingerprint
+      and evidence.coverage_fingerprint = v_release.coverage_fingerprint
+      and not exists (
+        select 1
+        from public.sealed_product_release_members price_member
+        where price_member.id = evidence.source_release_member_id
+          and price_member.release_id = v_release.source_price_release_id
+          and price_member.variant_id = evidence.variant_id
+          and price_member.source_mapping_id = evidence.source_mapping_id
+      )
+  ) then
+    raise exception 'coverage evidence does not exactly match source price members'
+      using errcode = '23514';
+  end if;
+
+  if v_eligible_evidence_count <= 0
+     or v_release.expected_member_count <> v_eligible_evidence_count then
+    raise exception 'eligible image evidence count mismatch: expected %, found %',
+      v_release.expected_member_count, v_eligible_evidence_count
+      using errcode = '23514';
+  end if;
+
+  select count(*)::integer into v_release_member_count
+  from public.sealed_product_image_release_members member
+  where member.image_release_id = p_image_release_id;
+
+  if v_release_member_count <> v_eligible_evidence_count then
+    raise exception 'image release member count mismatch: expected %, found %',
+      v_eligible_evidence_count, v_release_member_count using errcode = '23514';
+  end if;
+
+  if exists (
+    select 1
+    from public.sealed_product_image_evidence evidence
+    where evidence.game_key = v_release.game_key
+      and evidence.source_plan_fingerprint = v_release.source_plan_fingerprint
+      and evidence.coverage_fingerprint = v_release.coverage_fingerprint
+      and evidence.classification in (
+        'exact_image_ready', 'shared_bytes_exact_variant'
+      )
+      and not exists (
+        select 1
+        from public.sealed_product_image_release_members member
+        join public.sealed_product_variant_image_assertions assertion
+          on assertion.id = member.image_assertion_id
+         and assertion.game_key = member.game_key
+         and assertion.variant_id = member.variant_id
+        where member.image_release_id = p_image_release_id
+          and member.variant_id = evidence.variant_id
+          and assertion.image_evidence_id = evidence.id
+      )
+  ) then
+    raise exception 'image release omits eligible audited evidence'
+      using errcode = '23514';
+  end if;
+
+  v_computed_manifest_fingerprint :=
+    public.sealed_product_image_release_manifest_fingerprint_v1(
+      p_image_release_id
+    );
+  if v_computed_manifest_fingerprint is null
+     or v_computed_manifest_fingerprint <> v_release.manifest_fingerprint then
+    raise exception 'image release manifest does not match canonical member set'
+      using errcode = '23514';
+  end if;
+
+  return v_computed_manifest_fingerprint;
 end;
 $$;
 
@@ -462,7 +711,7 @@ set search_path = pg_catalog, public
 as $$
 declare
   v_release public.sealed_product_image_releases%rowtype;
-  v_member_count integer;
+  v_computed_manifest_fingerprint text;
 begin
   if p_frozen_by is null then
     raise exception 'frozen_by is required' using errcode = '22004';
@@ -481,12 +730,15 @@ begin
       using errcode = '23514';
   end if;
 
-  select count(*)::integer into v_member_count
-  from public.sealed_product_image_release_members
-  where image_release_id = p_image_release_id;
-  if v_member_count <> v_release.expected_member_count then
-    raise exception 'image release member count mismatch: expected %, found %',
-      v_release.expected_member_count, v_member_count using errcode = '23514';
+  lock table public.sealed_product_release_members in share mode;
+  lock table public.sealed_product_image_evidence in share mode;
+  lock table public.sealed_product_variant_image_assertions in share mode;
+
+  v_computed_manifest_fingerprint :=
+    public.sealed_product_assert_image_release_complete_v1(p_image_release_id);
+  if v_computed_manifest_fingerprint <> p_expected_manifest_fingerprint then
+    raise exception 'computed image release manifest fingerprint mismatch'
+      using errcode = '23514';
   end if;
 
   update public.sealed_product_image_releases
@@ -517,7 +769,7 @@ declare
   v_release public.sealed_product_image_releases%rowtype;
   v_current_release_id uuid;
   v_current_price_release_id uuid;
-  v_member_count integer;
+  v_computed_manifest_fingerprint text;
 begin
   if p_changed_by is null then
     raise exception 'changed_by is required' using errcode = '22004';
@@ -532,12 +784,17 @@ begin
       using errcode = '23514';
   end if;
 
-  select count(*)::integer into v_member_count
-  from public.sealed_product_image_release_members
-  where image_release_id = p_target_image_release_id;
-  if v_member_count <> v_release.expected_member_count then
-    raise exception 'image release member count mismatch: expected %, found %',
-      v_release.expected_member_count, v_member_count using errcode = '23514';
+  lock table public.sealed_product_release_members in share mode;
+  lock table public.sealed_product_image_evidence in share mode;
+  lock table public.sealed_product_variant_image_assertions in share mode;
+
+  v_computed_manifest_fingerprint :=
+    public.sealed_product_assert_image_release_complete_v1(
+      p_target_image_release_id
+    );
+  if v_computed_manifest_fingerprint <> v_release.manifest_fingerprint then
+    raise exception 'computed image release manifest fingerprint mismatch'
+      using errcode = '23514';
   end if;
 
   lock table public.sealed_product_release_pointer in share mode;
@@ -589,6 +846,9 @@ $$;
 create trigger sealed_product_image_evidence_append_only
 before update or delete on public.sealed_product_image_evidence
 for each row execute function public.sealed_product_reject_row_mutation_v1();
+create trigger sealed_product_image_evidence_guard_insert
+before insert on public.sealed_product_image_evidence
+for each row execute function public.sealed_product_guard_image_evidence_insert_v1();
 create trigger sealed_product_image_objects_append_only
 before update or delete on public.sealed_product_image_objects
 for each row execute function public.sealed_product_reject_row_mutation_v1();
@@ -651,11 +911,17 @@ revoke all on public.sealed_product_image_release_pointer
 from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_guard_image_release_mutation_v1()
 from public, anon, authenticated, service_role;
+revoke all on function public.sealed_product_guard_image_evidence_insert_v1()
+from public, anon, authenticated, service_role;
+revoke all on function public.sealed_product_image_release_manifest_fingerprint_v1(uuid)
+from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_guard_variant_image_assertion_insert_v1()
 from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_guard_image_release_insert_v1()
 from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_guard_image_release_member_insert_v1()
+from public, anon, authenticated, service_role;
+revoke all on function public.sealed_product_assert_image_release_complete_v1(uuid)
 from public, anon, authenticated, service_role;
 revoke all on function public.sealed_product_freeze_image_release_v1(uuid, text, uuid)
 from public, anon, authenticated, service_role;

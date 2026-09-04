@@ -182,6 +182,39 @@ test('image release members use evidence from the declared coverage audit', () =
     /evidence\.coverage_fingerprint = image_release\.coverage_fingerprint/i);
 });
 
+test('image release members use database-canonical fingerprints', () => {
+  assert.match(migration,
+    /SEALED_PRODUCT_IMAGE_RELEASE_MEMBER_V1[\s\S]*assertion\.assertion_fingerprint[\s\S]*evidence\.evidence_fingerprint[\s\S]*image_object\.object_fingerprint/i);
+  assert.match(migration,
+    /new\.member_fingerprint <> v_expected_member_fingerprint[\s\S]*member fingerprint does not match canonical binding/i);
+});
+
+test('freeze and activation require the complete audited evidence set', () => {
+  assert.match(migration,
+    /sealed_product_assert_image_release_complete_v1[\s\S]*v_coverage_evidence_count <> v_source_member_count[\s\S]*coverage evidence does not exactly match source price members/i);
+  assert.match(migration,
+    /v_release\.expected_member_count <> v_eligible_evidence_count[\s\S]*image release omits eligible audited evidence/i);
+  assert.equal((migration.match(
+    /sealed_product_assert_image_release_complete_v1\([\s\S]{0,80}p_(?:image_release_id|target_image_release_id)[\s\S]{0,80}\)/g,
+  ) ?? []).length >= 2, true);
+});
+
+test('a frozen release prevents later drift in its audited evidence set', () => {
+  assert.match(migration,
+    /sealed_product_guard_image_evidence_insert_v1[\s\S]*source_plan_fingerprint = new\.source_plan_fingerprint[\s\S]*coverage_fingerprint = new\.coverage_fingerprint[\s\S]*release_state = 'frozen'/i);
+  assert.match(migration,
+    /sealed_product_image_evidence_guard_insert[\s\S]*before insert on public\.sealed_product_image_evidence/i);
+});
+
+test('freeze and activation recompute the canonical release manifest', () => {
+  assert.match(migration,
+    /sealed_product_image_release_manifest_fingerprint_v1[\s\S]*jsonb_agg[\s\S]*order by member\.variant_id, member\.image_assertion_id[\s\S]*SEALED_PRODUCT_IMAGE_RELEASE_MANIFEST_V1/i);
+  assert.match(migration,
+    /v_computed_manifest_fingerprint <> v_release\.manifest_fingerprint[\s\S]*manifest does not match canonical member set/i);
+  assert.match(migration,
+    /computed image release manifest fingerprint mismatch/i);
+});
+
 test('image release activation is bound to the active price release', () => {
   assert.match(migration,
     /lock table public\.sealed_product_release_pointer in share mode[\s\S]*select price_pointer\.release_id into v_current_price_release_id[\s\S]*for share/i);
