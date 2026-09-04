@@ -319,9 +319,10 @@ not rerun Gate A merely to recreate that evidence; a new audit is justified
 only by a separately versioned source or release change.
 
 The reviewed image schema and authenticated one-object signing authorization
-are promoted into migration `20260904130000` but remain unapplied. Before any
-schema-only apply, rerun the production preflight from the exact clean commit
-that contains the frozen migration:
+were promoted into migration `20260904130000` and durably applied under the
+single-use authority recorded in checkpoint 110. The following command is
+historical preparation evidence only; do not use it to request or replay the
+consumed schema apply:
 
 ```powershell
 npm run mtg:sealed:image-migration-preflight:v1 -- `
@@ -329,14 +330,10 @@ npm run mtg:sealed:image-migration-preflight:v1 -- `
   --out-dir=docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/<timestamp>_preflight
 ```
 
-The command accepts a topic branch, merged `main`, or detached CI checkout; the
-exact SHA and tracked-clean state are authoritative. It must prove repository,
-API, and database project ref `ycdxbpibncqcchqiihfz`, canonical minimum counts,
-zero trait orphans, complete repository/production migration-version parity
-with this migration as the sole pending version, zero object collisions
-including both prerequisite unique constraints, unchanged sealed and cross-game
-state, and a read-only transaction. Preserve all six
-generated artifacts and their hash manifest. A `PASS` authorizes no write.
+The historical command accepted a topic branch, merged `main`, or detached CI
+checkout and proved the exact SHA, tracked-clean state, canonical project,
+prerequisites, collisions, migration history, and protected data boundaries.
+The durable apply/readback now supersedes that pending-state proof.
 
 The schema-only migration apply/readback named in checkpoint 109 is complete.
 Do not replay it. Checkpoint 110 is the durable authority. The next gate is a
