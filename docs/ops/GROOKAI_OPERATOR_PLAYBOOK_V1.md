@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md` | Exact image schema/signing migration is preflighted but unapplied; later image/price/RPC production gates and hard-disabled client activation remain serial |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md` | Exact image schema/signing authorization is applied and empty; signer deployment, transient image canary, durable image release, price refresh/RPC, and client activation remain serial |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,6 +223,8 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md`.
+Its immutable predecessor is
 `docs/checkpoints/pricing/PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
@@ -336,13 +338,13 @@ including both prerequisite unique constraints, unchanged sealed and cross-game
 state, and a read-only transaction. Preserve all six
 generated artifacts and their hash manifest. A `PASS` authorizes no write.
 
-The next production gate is the separately authorized schema-only migration
-apply/readback named in checkpoint 109. Do not deploy
-`mtg-sealed-sign-image-v1`, upload or sign Storage objects, write image records,
-refresh pricing, change release pointers or visibility, or activate clients in
-that gate.
+The schema-only migration apply/readback named in checkpoint 109 is complete.
+Do not replay it. Checkpoint 110 is the durable authority. The next gate is a
+separately fingerprinted transient Storage canary; it does not authorize durable
+image rows, image releases, pricing, visibility, Vault, or client activation.
 
-Prepare that gate with the schema apply operator in its default no-write mode:
+Historical preparation used the schema apply operator in its default no-write
+mode:
 
 ```powershell
 npm run mtg:sealed:image-schema-apply:v1 -- `
@@ -352,13 +354,10 @@ npm run mtg:sealed:image-schema-apply:v1 -- `
 ```
 
 This command performs a fresh read-only production preflight, writes the exact
-apply-plan fingerprint and authority text, and makes no database mutation. Do
-not use `--apply` without that exact later authority. Apply mode accepts the
-same `--expected-head-sha`, additionally requires
-`--expected-plan-fingerprint`, and requires the full authority text in
-`MTG_SEALED_IMAGE_SCHEMA_APPLY_APPROVAL`. It applies only the frozen migration
-and its one ledger row, validates the complete object/security contract before
-commit, then opens a separate read-only connection for durable readback.
+apply-plan fingerprint and authority text, and makes no database mutation. The
+single schema apply was completed from execution commit
+`3eccc923011be7f399ba1b54d12878361526e7b5`; its authority is consumed. Never
+reuse the prior `--apply` invocation or approval token.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated
