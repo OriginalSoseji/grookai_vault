@@ -1,0 +1,72 @@
+name: MTG Sealed Image Coverage V1
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Exact clean commit SHA that must produce the evidence
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-sealed-image-coverage-v1
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install read-only audit dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify exact producer and contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/pricing/mtg_sealed_image_coverage_v1.mjs
+          node --check scripts/audits/mtg_sealed_image_coverage_v1.mjs
+          node --test \
+            tests/contracts/mtg_sealed_image_coverage_v1.test.mjs \
+            tests/contracts/mtg_sealed_productization_gates_v1.test.mjs
+          git diff --check
+
+      - name: Run exact zero-write release-member coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_image_coverage_v1.mjs \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --expected-member-count=2182 \
+            --concurrency=12 \
+            --retries=2 \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-image-coverage-v1"
+
+      - name: Upload immutable coverage evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-sealed-image-coverage-v1-${{ github.run_id }}
+          path: ${{ runner.temp }}/mtg-sealed-image-coverage-v1
+          if-no-files-found: error
+          retention-days: 90
