@@ -72,6 +72,13 @@ fingerprints, and serializes image activation against the exact active price
 release. The preflight collision scan now covers both prerequisite unique
 constraints. Earlier successful proofs remain preserved but are superseded.
 
+The review of that repair found two final guard omissions. A caller could insert
+an image release directly in the frozen state, and an evidence row's HTTPS URL
+was not required to identify the mapped TCGPlayer product. Image releases must
+now be inserted as drafts, and evidence URLs must exactly match one of the three
+approved TCGPlayer product-image paths derived from `source_product_id`. These
+repairs have dedicated contract coverage and another clean-SHA preflight.
+
 ## Alternatives Rejected
 
 - Apply the two candidate SQL files separately: rejected because production
@@ -88,12 +95,12 @@ constraints. Earlier successful proofs remain preserved but are superseded.
 - Branch: `agent/mtg-sealed-image-migration-promotion-v1`
 - Package commit: `0a1c52a842bf9c78934ef00254324a2682b16dfa`
 - Final preflight producer commit:
-  `aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c`
+  `af3d7a2fd937d24f01b2034fe1c98738569fc853`
 - Migration version: `20260904130000`
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e`
+  `ce183c4276790327fc499bcad20f71d6b0e45c4eb1f6802bf75b4b7322f3b2aa`
 - Image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Signing-authorization candidate SHA-256:
@@ -140,8 +147,8 @@ two release controls.
 ## Verification
 
 - Focused sealed-image and forward-gate contract tests after the final review
-  repair: `50/50` passed.
-- The repository-wide shipcheck passed `2,875/2,875` backend contracts, web
+  repair: `52/52` passed.
+- The repository-wide shipcheck passed `2,877/2,877` backend contracts, web
   typecheck/lint, strict web build, Flutter analysis, and `657/657` Flutter
   tests.
 - Production preflight status: `PASS` with `18/18` checks true.
@@ -158,20 +165,20 @@ two release controls.
 
 Directory:
 
-`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T15-10-25-562Z_canonical_preflight/`
+`docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/2026-09-04T15-51-51-956Z_canonical_preflight/`
 
 Key artifact hashes:
 
 - `preflight.json`:
-  `8325c19f1967cc38060cdf01be547192d9792ba36df6169aa3d0d38a6777acc9`
+  `82a29b0236b9cfb23553abbea1777844913aa960908fd5a5ebc5eb54914e165f`
 - `summary.json`:
-  `98864a81d3f50dcc5d680d0caa8a96f1bd7b528b458b9d8acf40433798cd7ac8`
+  `62bd53493358ff48d181d039f26f85b38ccb757a8dae61cdf6c4cd7eaa5ba294`
 - `migration_apply_plan.json`:
-  `e84cbbc962b7bac942d469c2f6fcf583c085694a7159cfcc9a51076d9bf85578`
+  `30c9df07ae597f98e0aabbb14804577e89ccf4189b5c61ef9021dacb5650618d`
 - `signer_deployment_plan.json`:
-  `4649403cca941e98e78342f32f2fd82540e97adea5f0e4093bda99a9b5ed2bbd`
+  `fec579a490dd203fdb5ff33ae679e9787a360ab695551579d07d4f4a7599f3a7`
 - `MTG_SEALED_IMAGE_MIGRATION_PROMOTION_PREFLIGHT_V1.md`:
-  `3eb5b7fe5cd29d2b89756b2fec85065e83bd7e8ce18a45a3c765a7113efcae7e`
+  `790b6fa2b47e191090d6036ea93b335c04b5bfdd4d288df26733bd664cb8ed38`
 
 `artifact_hashes.json` is the permanent manifest for those five artifacts.
 
@@ -207,6 +214,9 @@ Key artifact hashes:
 - Every release member must be bound to the release's declared source-plan and
   coverage fingerprints.
 - Image activation must target the currently active price release.
+- Image releases must begin in draft and reach frozen only through the guarded
+  freeze transition.
+- Image evidence URLs must identify the exact mapped TCGPlayer product.
 - No client activation before image, price, RPC, signer, and signed-in canaries.
 - No provider URL may become production image authority.
 
@@ -214,9 +224,9 @@ Key artifact hashes:
 
 Obtain a separately scoped production authority for the schema-only apply of
 the exact migration SHA-256
-`db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e`
+`ce183c4276790327fc499bcad20f71d6b0e45c4eb1f6802bf75b4b7322f3b2aa`
 from producer commit
-`aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c`.
+`af3d7a2fd937d24f01b2034fe1c98738569fc853`.
 
 That gate must rerun fresh preflight, apply only the migration and migration
 ledger row, then read back the exact tables, constraints, indexes, triggers,

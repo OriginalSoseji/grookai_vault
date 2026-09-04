@@ -17,7 +17,7 @@ all data, Storage, pricing, visibility, and client behavior unchanged.
 - Migration file:
   `supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`
 - Migration SHA-256:
-  `db1f98262f45d8ac9ae6398cf669312fecfde1cfd76c8c145c6f4cc660b40b7e`
+  `ce183c4276790327fc499bcad20f71d6b0e45c4eb1f6802bf75b4b7322f3b2aa`
 - Preserved image-schema candidate SHA-256:
   `6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735`
 - Preserved signing-authorization candidate SHA-256:
@@ -84,7 +84,7 @@ Before any apply:
 ## Exact Next Gate
 
 The read-only production preflight passed from producer commit
-`aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c`; its permanent evidence is linked
+`af3d7a2fd937d24f01b2034fe1c98738569fc853`; its permanent evidence is linked
 from Pricing Checkpoint 109. Do not apply the migration or deploy the signer
 unless a later authority names the exact migration SHA-256 and producer commit.
 The next serial gate is a separately authorized schema-only apply and exact
