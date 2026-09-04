@@ -1,0 +1,69 @@
+name: MTG Sealed Pricing Refresh Read-Only
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Exact merged commit SHA that must produce the audit
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-sealed-pricing-refresh-v1
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install operator dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify exact producer and read-only contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/pricing/mtg_sealed_pricing_refresh_v1.mjs
+          node --check scripts/audits/mtg_sealed_pricing_refresh_v1.mjs
+          node --test \
+            tests/contracts/mtg_sealed_pricing_refresh_v1.test.mjs \
+            tests/contracts/mtg_sealed_image_schema_candidate_v1.test.mjs \
+            tests/contracts/one_piece_sealed_pricing_lineage_v1.test.mjs
+          git diff --check
+
+      - name: Build exact read-only refresh plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_pricing_refresh_v1.mjs \
+            --expected-head-sha="$EXPECTED_SHA" \
+            --out-dir="$RUNNER_TEMP/mtg-sealed-pricing-refresh-v1"
+
+      - name: Upload immutable audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-sealed-pricing-refresh-${{ github.run_id }}
+          path: ${{ runner.temp }}/mtg-sealed-pricing-refresh-v1
+          if-no-files-found: error
+          retention-days: 90
