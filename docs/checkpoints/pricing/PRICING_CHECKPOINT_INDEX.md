@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_118_MTG_SEALED_IMAGE_RELEASE_ROLLBACK_PROVEN.md`
+
+This checkpoint records the complete 8,622-row production transaction,
+database-canonical manifest and release-freeze proof, exact write attribution,
+unconditional rollback, and independent zero-residue/security/boundary readback.
+
+Decision locked there:
+
+- the frozen append-only image evidence payload is safe for one separately
+  authorized durable apply without image-pointer activation
+
+Unresolved risk afterward:
+
+- durable evidence apply, independent post-apply/idempotency proof, pointer
+  canary and activation, pricing refresh, RPC V3, signer, clients, visibility,
+  and scheduler remain serial later gates
+
 ### `PRICING_CHECKPOINT_117_MTG_SEALED_IMAGE_RELEASE_PLAN_FROZEN.md`
 
 This checkpoint records the exact zero-write database image-evidence payload,
