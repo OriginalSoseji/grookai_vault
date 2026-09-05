@@ -1,0 +1,12 @@
+{
+  "status": "failed_safe_no_residue",
+  "producer_commit_sha": "5629990277cc4f389790cd2804eb30e1253de047",
+  "failed_operation": "sealed_product_set_active_image_release_v1",
+  "database_error": "column reference \"game_key\" is ambiguous",
+  "failure_class": "deployed_function_output_variable_conflict_ambiguity",
+  "transaction_committed": false,
+  "automatic_rollback_completed": true,
+  "durable_pointer_rows_written": 0,
+  "repair": "replace ON CONFLICT (game_key) with ON CONFLICT ON CONSTRAINT sealed_product_image_release_pointer_pkey",
+  "rerun_performed": false
+}
