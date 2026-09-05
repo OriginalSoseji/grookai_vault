@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_116_MTG_SEALED_DURABLE_IMAGE_STORAGE_PASSED.md`
+
+This checkpoint records the resumable durable Storage execution, including the
+safe transient stop, exact resume, 2,141/2,149 complete reconciliation, and
+zero forbidden-boundary activity.
+
+Decision locked there:
+
+- all eligible MTG sealed image bytes are now durably self-hosted and exact
+  readback verified; Storage success remains separate from database image
+  authority and publication
+
+Unresolved risk afterward:
+
+- database image evidence, immutable release membership, pointer transition,
+  pricing refresh, RPC V3, signer, clients, visibility, and scheduler remain
+  serial later gates
+
 ### `PRICING_CHECKPOINT_115_MTG_SEALED_DURABLE_IMAGE_EXECUTOR_READY.md`
 
 This checkpoint records the separately fingerprinted resumable durable Storage
