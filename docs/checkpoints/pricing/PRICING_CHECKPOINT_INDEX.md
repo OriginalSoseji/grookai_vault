@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_119_MTG_SEALED_IMAGE_RELEASE_APPLIED.md`
+
+This checkpoint records the exact 8,622-row durable MTG sealed image-evidence
+apply, frozen release and database manifest, independent read-only field-level
+readback, 33 preserved exclusions, and zero-row idempotency proof.
+
+Decision locked there:
+
+- MTG sealed image evidence is now durable and immutable, but remains inactive
+  until a separately proven and authorized image-pointer transition
+
+Unresolved risk afterward:
+
+- pointer rollback canary and activation, pricing refresh, RPC V3, signer,
+  clients, visibility, and scheduler remain serial later gates
+
 ### `PRICING_CHECKPOINT_118_MTG_SEALED_IMAGE_RELEASE_ROLLBACK_PROVEN.md`
 
 This checkpoint records the complete 8,622-row production transaction,
