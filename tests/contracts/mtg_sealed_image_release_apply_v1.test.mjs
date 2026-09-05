@@ -4,6 +4,8 @@ import test from 'node:test';
 
 import {
   buildMtgSealedImageReleaseExecutionPlanV1,
+  evaluateMtgSealedImageReleaseDurableReadbackV1,
+  evaluateMtgSealedImageReleasePrecommitV1,
   evaluateMtgSealedImageReleaseRollbackV1,
   MTG_SEALED_IMAGE_RELEASE_APPLY_EXPECTED_COUNTS_V1,
   validateMtgSealedImageReleaseExecutionPlanV1,
@@ -11,6 +13,8 @@ import {
 
 const script = fs.readFileSync(
   'scripts/audits/mtg_sealed_image_release_rollback_canary_v1.mjs', 'utf8');
+const applyScript = fs.readFileSync(
+  'scripts/audits/mtg_sealed_image_release_apply_v1.mjs', 'utf8');
 
 function sourcePlan() {
   return {
@@ -49,6 +53,7 @@ function validRollbackProof() {
     actual_count: count, table_count: count, mismatch_count: 0 });
   return {
     preflight: { valid: true },
+    transaction_local_preflight: { valid: true },
     transaction: { started: true, committed: false, rolled_back: true },
     transaction_readback: {
       evidence: exact(2182), objects: exact(2141), assertions: exact(2149),
@@ -70,6 +75,27 @@ function validRollbackProof() {
     post_rollback: { transaction_read_only: true, zero_target_rows: true,
       image_pointer_unchanged: true, protected_boundaries_unchanged: true,
       security_boundary_unchanged: true },
+  };
+}
+
+function validPostApplyProof() {
+  const transaction = validRollbackProof();
+  return {
+    committed: true,
+    precommit_validation: evaluateMtgSealedImageReleasePrecommitV1({
+      ...transaction,
+      transaction: { started: true, committed: false, rolled_back: false },
+    }),
+    transaction_read_only: true,
+    readback: transaction.transaction_readback,
+    release_state: 'frozen',
+    database_manifest_fingerprint: 'a'.repeat(64),
+    planned_manifest_fingerprint: 'a'.repeat(64),
+    image_pointer_write_count: 0,
+    excluded_evidence_without_assertion_count: 33,
+    protected_boundaries_unchanged: true,
+    security_boundary_unchanged: true,
+    zero_row_idempotency_ready: true,
   };
 }
 
@@ -112,6 +138,29 @@ test('exact rollback proof with expected write attribution passes', () => {
     validRollbackProof()), { valid: true, findings: [] });
 });
 
+test('durable apply is commit-gated by exact precommit and post-apply proofs', () => {
+  const transaction = validRollbackProof();
+  const precommit = evaluateMtgSealedImageReleasePrecommitV1({
+    ...transaction,
+    transaction: { started: true, committed: false, rolled_back: false },
+  });
+  assert.deepEqual(precommit, { valid: true, findings: [] });
+  assert.deepEqual(evaluateMtgSealedImageReleaseDurableReadbackV1(
+    validPostApplyProof()), { valid: true, findings: [] });
+});
+
+test('durable readback fails on pointer, boundary, or idempotency drift', () => {
+  const proof = validPostApplyProof();
+  proof.image_pointer_write_count = 1;
+  proof.protected_boundaries_unchanged = false;
+  proof.zero_row_idempotency_ready = false;
+  const result = evaluateMtgSealedImageReleaseDurableReadbackV1(proof);
+  assert.equal(result.valid, false);
+  assert.ok(result.findings.includes('durable_pointer_boundary_breached'));
+  assert.ok(result.findings.includes('durable_protected_boundary_drift'));
+  assert.ok(result.findings.includes('durable_idempotency_not_proven'));
+});
+
 test('rollback proof fails on residue, mismatch, pointer, or extra write table', () => {
   const proof = validRollbackProof();
   proof.transaction_readback.objects.exact = false;
@@ -139,4 +188,19 @@ test('operator requires exact clean producer and never calls pointer activation'
   assert.match(script, /await client\.query\('rollback'\)/);
   assert.doesNotMatch(script, /sealed_product_set_active_image_release_v1\(/);
   assert.doesNotMatch(script, /storage\.from|fetch\(/);
+});
+
+test('durable operator requires exact authority before its sole commit path', () => {
+  assert.match(applyScript, /argument === '--apply'/);
+  assert.match(applyScript, /argument === '--plan-only'/);
+  assert.match(applyScript, /expectedExecutionFingerprint/);
+  assert.match(applyScript,
+    /MTG_SEALED_IMAGE_RELEASE_APPLY_APPROVAL_ENV_V1/);
+  assert.match(applyScript, /evaluateMtgSealedImageReleasePrecommitV1/);
+  assert.match(applyScript, /await client\.query\('commit'\)/);
+  assert.match(applyScript, /independentPostApplyReadback/);
+  assert.match(applyScript, /zero_row_idempotency_ready/);
+  assert.doesNotMatch(applyScript,
+    /sealed_product_set_active_image_release_v1\(/);
+  assert.doesNotMatch(applyScript, /storage\.from|fetch\(/);
 });

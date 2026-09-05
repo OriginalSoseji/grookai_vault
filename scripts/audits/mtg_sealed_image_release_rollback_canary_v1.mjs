@@ -634,4 +634,5 @@ if (invoked === fileURLToPath(import.meta.url)) {
 }
 
 export { captureState, evaluatePreflight, exactReadback, insertDataset,
-  loadBundle, parseArgs, postRollbackReadback, readOnlyPreflight, runRollback };
+  loadBundle, parseArgs, postRollbackReadback, readOnlyPreflight, runRollback,
+  writeAttribution };

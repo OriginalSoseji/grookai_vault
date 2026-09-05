@@ -162,13 +162,21 @@ function allExactReadbacks(readbacks) {
       Number(readbacks[key].mismatch_count) === 0);
 }
 
-export function evaluateMtgSealedImageReleaseRollbackV1(proof) {
-  const findings = [];
+const EXPECTED_WRITE_ATTRIBUTION = Object.freeze({
+  sealed_product_image_evidence: { inserted: 2182, updated: 0, deleted: 0 },
+  sealed_product_image_objects: { inserted: 2141, updated: 0, deleted: 0 },
+  sealed_product_variant_image_assertions:
+    { inserted: 2149, updated: 0, deleted: 0 },
+  sealed_product_image_releases: { inserted: 1, updated: 1, deleted: 0 },
+  sealed_product_image_release_members:
+    { inserted: 2149, updated: 0, deleted: 0 },
+});
+
+function evaluateTransactionPayload(proof, findings) {
   const add = (condition, code) => { if (condition) findings.push(code); };
   add(proof?.preflight?.valid !== true, 'fresh_preflight_failed');
-  add(proof?.transaction?.started !== true ||
-    proof?.transaction?.committed !== false ||
-    proof?.transaction?.rolled_back !== true, 'transaction_state_invalid');
+  add(proof?.transaction_local_preflight?.valid !== true,
+    'transaction_local_preflight_failed');
   add(!allExactReadbacks(proof?.transaction_readback),
     'inside_transaction_exact_readback_failed');
   add(proof?.database_manifest_fingerprint !==
@@ -178,26 +186,38 @@ export function evaluateMtgSealedImageReleaseRollbackV1(proof) {
     'exclusion_boundary_mismatch');
   add(Number(proof?.transaction_image_pointer_count) !== 0,
     'image_pointer_changed_in_transaction');
-  const expectedWrites = {
-    sealed_product_image_evidence: { inserted: 2182, updated: 0, deleted: 0 },
-    sealed_product_image_objects: { inserted: 2141, updated: 0, deleted: 0 },
-    sealed_product_variant_image_assertions:
-      { inserted: 2149, updated: 0, deleted: 0 },
-    sealed_product_image_releases: { inserted: 1, updated: 1, deleted: 0 },
-    sealed_product_image_release_members:
-      { inserted: 2149, updated: 0, deleted: 0 },
-  };
   const writes = new Map((proof?.write_attribution ?? [])
     .map((row) => [row.table_name, row]));
-  add(writes.size !== Object.keys(expectedWrites).length,
+  add(writes.size !== Object.keys(EXPECTED_WRITE_ATTRIBUTION).length,
     'write_attribution_table_count_mismatch');
-  for (const [table, expected] of Object.entries(expectedWrites)) {
+  for (const [table, expected] of Object.entries(EXPECTED_WRITE_ATTRIBUTION)) {
     const actual = writes.get(table);
     add(!actual || Number(actual.inserted) !== expected.inserted ||
       Number(actual.updated) !== expected.updated ||
-      Number(actual.deleted) !== expected.deleted,
+      Number(actual.deleted) !== expected.deleted ||
+      Number(actual.hot_updated) !== 0,
     `write_attribution_mismatch:${table}`);
   }
+}
+
+export function evaluateMtgSealedImageReleasePrecommitV1(proof) {
+  const findings = [];
+  evaluateTransactionPayload(proof, findings);
+  if (proof?.transaction?.started !== true ||
+      proof?.transaction?.committed !== false ||
+      proof?.transaction?.rolled_back !== false) {
+    findings.push('precommit_transaction_state_invalid');
+  }
+  return { valid: findings.length === 0, findings: [...new Set(findings)] };
+}
+
+export function evaluateMtgSealedImageReleaseRollbackV1(proof) {
+  const findings = [];
+  const add = (condition, code) => { if (condition) findings.push(code); };
+  evaluateTransactionPayload(proof, findings);
+  add(proof?.transaction?.started !== true ||
+    proof?.transaction?.committed !== false ||
+    proof?.transaction?.rolled_back !== true, 'transaction_state_invalid');
   add(proof?.post_rollback?.transaction_read_only !== true,
     'post_rollback_not_read_only');
   add(proof?.post_rollback?.zero_target_rows !== true,
@@ -215,11 +235,23 @@ export function evaluateMtgSealedImageReleaseDurableReadbackV1(proof) {
   const findings = [];
   const add = (condition, code) => { if (condition) findings.push(code); };
   add(proof?.committed !== true, 'durable_apply_not_committed');
+  add(proof?.precommit_validation?.valid !== true,
+    'durable_precommit_validation_failed');
+  add(proof?.transaction_read_only !== true,
+    'durable_verification_not_read_only');
   add(!allExactReadbacks(proof?.readback), 'durable_exact_readback_failed');
   add(proof?.release_state !== 'frozen', 'durable_release_not_frozen');
   add(proof?.database_manifest_fingerprint !==
     proof?.planned_manifest_fingerprint, 'durable_manifest_mismatch');
   add(Number(proof?.image_pointer_write_count) !== 0,
     'durable_pointer_boundary_breached');
+  add(Number(proof?.excluded_evidence_without_assertion_count) !== 33,
+    'durable_exclusion_boundary_mismatch');
+  add(proof?.protected_boundaries_unchanged !== true,
+    'durable_protected_boundary_drift');
+  add(proof?.security_boundary_unchanged !== true,
+    'durable_security_boundary_drift');
+  add(proof?.zero_row_idempotency_ready !== true,
+    'durable_idempotency_not_proven');
   return { valid: findings.length === 0, findings: [...new Set(findings)] };
 }

@@ -73,3 +73,11 @@ transition performed by `sealed_product_freeze_image_release_v1`.
 Durable promotion is prohibited until the rollback canary passes and emits an
 exact authority string. That later authority permits only the same 8,622 inserts
 and governed release freeze. Pointer activation remains a separate gate.
+
+The durable operator supports a read-only `--plan-only` mode and a single
+`--apply` mode. Apply requires the exact clean producer commit, source plan
+fingerprint, execution fingerprint, and full authority string through
+`MTG_SEALED_IMAGE_RELEASE_APPLY_APPROVAL`. After commit it opens an independent
+read-only connection, repeats exact payload and manifest readback, verifies all
+protected boundaries, and classifies the complete identical release as a
+zero-additional-row idempotent result.
