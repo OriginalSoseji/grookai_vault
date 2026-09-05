@@ -273,22 +273,20 @@ function clientBoundaries() {
 async function capturePreflight(connectionString, ref) {
   const base = await readOnly(connectionString,
     'mtg-sealed-visibility-canary-preflight-v1', async (client) => {
-      const [releaseControl, protectedState, authority, candidate, catalog,
-        privileges] = await Promise.all([
-        captureReleaseControl(client),
-        captureProtectedState(client),
-        captureAuthority(client),
-        captureCandidate(client),
-        one(client, `select release_status as catalog_visibility
-          from public.catalog_game_release_controls where game_code='mtg'`),
-        one(client, `select
-          has_function_privilege('anon',
-            'public.get_active_sealed_product_pricing_v3(text,text,integer,integer)',
-            'EXECUTE') as anonymous_rpc_execute,
-          has_function_privilege('authenticated',
-            'public.get_active_sealed_product_pricing_v3(text,text,integer,integer)',
-            'EXECUTE') as authenticated_rpc_execute`),
-      ]);
+      const releaseControl = await captureReleaseControl(client);
+      const protectedState = await captureProtectedState(client);
+      const authority = await captureAuthority(client);
+      const candidate = await captureCandidate(client);
+      const catalog = await one(client, `select release_status
+        as catalog_visibility from public.catalog_game_release_controls
+        where game_code='mtg'`);
+      const privileges = await one(client, `select
+        has_function_privilege('anon',
+          'public.get_active_sealed_product_pricing_v3(text,text,integer,integer)',
+          'EXECUTE') as anonymous_rpc_execute,
+        has_function_privilege('authenticated',
+          'public.get_active_sealed_product_pricing_v3(text,text,integer,integer)',
+          'EXECUTE') as authenticated_rpc_execute`);
       return { release_control: releaseControl,
         protected_state: protectedState, authority, candidate,
         catalog_visibility: catalog?.catalog_visibility ?? null, privileges };

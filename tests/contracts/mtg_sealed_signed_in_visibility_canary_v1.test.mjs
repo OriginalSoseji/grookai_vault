@@ -136,6 +136,7 @@ test('operator freezes, restores, and sanitizes the disposable-auth canary', () 
   assert.match(operator, /raw_user_id_persisted: false/);
   assert.match(operator, /signed_url_persisted: false/);
   assert.match(operator, /begin transaction read only/);
+  assert.doesNotMatch(operator, /Promise\.all/);
 });
 
 test('the canary cannot expose disabled web or Flutter clients', () => {
