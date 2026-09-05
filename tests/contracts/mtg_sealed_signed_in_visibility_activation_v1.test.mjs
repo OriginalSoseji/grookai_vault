@@ -187,6 +187,8 @@ test('operator enforces exact CAS, rollback, real-auth readback, and bounded wri
   assert.match(operator, /evidence=\$6::jsonb/);
   assert.match(operator, /activated_at is not distinct from \$7::timestamptz/);
   assert.match(operator, /stale_cas_updated_rows/);
+  assert.match(operator, /n_tup_ins\+n_tup_upd\+n_tup_del/);
+  assert.doesNotMatch(operator, /n_tup_upd\+n_tup_hot_upd/);
   assert.match(operator, /rollback_transaction_proof\.json/);
   assert.match(operator, /createAuthFixture/);
   assert.match(operator, /deleteAuthFixture/);

@@ -220,10 +220,10 @@ async function runRollbackTransaction(connectionString, candidatePlan) {
         const stale = await casActivate(client,
           candidatePlan.baseline_release_control, evidence);
         const attribution = (await client.query(`select relname,
-          (n_tup_ins+n_tup_upd+n_tup_hot_upd+n_tup_del)::integer as writes
+          (n_tup_ins+n_tup_upd+n_tup_del)::integer as writes
           from pg_stat_xact_user_tables
           where schemaname='public' and
-            (n_tup_ins+n_tup_upd+n_tup_hot_upd+n_tup_del)>0
+            (n_tup_ins+n_tup_upd+n_tup_del)>0
           order by relname`)).rows;
         await client.query('rollback');
         rolledBack = true;
