@@ -1,5 +1,8 @@
-export const MTG_SEALED_CLIENT_V1_ENABLED = false as const;
 export const MTG_SEALED_IMAGE_SIGNED_URL_TTL_SECONDS_V1 = 60 * 60;
+
+export function isMtgSealedClientV1Enabled() {
+  return process.env.NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED === "true";
+}
 
 const MTG_SEALED_RPC_V3 = "get_active_sealed_product_pricing_v3";
 const PRIVATE_IMAGE_BUCKET = "user-card-images";
@@ -245,8 +248,11 @@ function isNetworkFailure(error: unknown) {
 export async function loadMtgSealedCatalogV1(
   transport: MtgSealedClientTransportV1,
   input: { query?: string | null; limit?: number; offset?: number } = {},
+  options: { enabled?: boolean } = {},
 ): Promise<MtgSealedCatalogStateV1> {
-  if (!MTG_SEALED_CLIENT_V1_ENABLED) return { status: "disabled" };
+  if (!(options.enabled ?? isMtgSealedClientV1Enabled())) {
+    return { status: "disabled" };
+  }
 
   try {
     if (!(await transport.isAuthenticated())) return { status: "signed_out" };

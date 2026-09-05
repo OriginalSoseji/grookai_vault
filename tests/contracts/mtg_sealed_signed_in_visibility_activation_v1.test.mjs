@@ -199,8 +199,11 @@ test('operator enforces exact CAS, rollback, real-auth readback, and bounded wri
   assert.doesNotMatch(operator, /storage\.objects\s+set/i);
 });
 
-test('web and Flutter remain hard-disabled throughout backend activation', () => {
-  assert.match(webClient, /MTG_SEALED_CLIENT_V1_ENABLED = false as const/);
-  assert.match(flutterClient, /kMtgSealedClientV1Enabled = false;/);
+test('backend activation remains independent from disabled-by-default clients', () => {
+  assert.match(webClient,
+    /process\.env\.NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED === "true"/);
+  assert.match(flutterClient,
+    /bool\.fromEnvironment\(\s*'MTG_SEALED_CLIENT_V1_ENABLED'/);
+  assert.match(flutterClient, /defaultValue: false/);
   assert.match(operator, /result\.clients = post\.clients/);
 });

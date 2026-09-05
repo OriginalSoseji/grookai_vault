@@ -83,17 +83,48 @@ test("external image authority and unsupported identity fail closed", () => {
   ], now).status, "error");
 });
 
-test("hard-disabled loader makes no auth, RPC, or Storage call", async () => {
+test("disabled loader makes no auth, RPC, or Storage call", async () => {
   let calls = 0;
   const transport: MtgSealedClientTransportV1 = {
     async isAuthenticated() { calls += 1; return true; },
     async fetchRows() { calls += 1; return { data: [row()], error: null }; },
     async createSignedImageUrl() { calls += 1; return "https://example.invalid"; },
   };
-  assert.deepEqual(await loadMtgSealedCatalogV1(transport), {
+  assert.deepEqual(await loadMtgSealedCatalogV1(transport, {}, { enabled: false }), {
     status: "disabled",
   });
   assert.equal(calls, 0);
+});
+
+test("enabled loader requires auth and signs only validated private images", async () => {
+  let calls = 0;
+  const transport: MtgSealedClientTransportV1 = {
+    async isAuthenticated() { calls += 1; return true; },
+    async fetchRows(input) {
+      calls += 1;
+      assert.deepEqual(input, { gameKey: "mtg", query: "bundle", limit: 24, offset: 0 });
+      return { data: [row()], error: null };
+    },
+    async createSignedImageUrl(input) {
+      calls += 1;
+      assert.deepEqual(input, {
+        bucket: "user-card-images",
+        objectPath: `sealed/mtg/sha256/aa/${hash}.jpg`,
+        expiresInSeconds: 3600,
+      });
+      return "https://example.invalid/signed";
+    },
+  };
+  const result = await loadMtgSealedCatalogV1(
+    transport,
+    { query: "bundle", limit: 24 },
+    { enabled: true },
+  );
+  assert.equal(result.status, "ready");
+  assert.equal(calls, 3);
+  if (result.status === "ready") {
+    assert.equal(result.rows[0].imageUrl, "https://example.invalid/signed");
+  }
 });
 
 test("Supabase transport signs through the trusted function without Storage access", async () => {

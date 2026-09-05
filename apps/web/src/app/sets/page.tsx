@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import PublicSetsToolbar from "@/components/sets/PublicSetsToolbar";
 import PublicSetsResults from "@/components/sets/PublicSetsResults";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
@@ -11,6 +13,7 @@ import {
   normalizePublicLanguageScope,
 } from "@/lib/publicLanguageScope";
 import { normalizePublicGameScope } from "@/lib/publicGameScope";
+import { isMtgSealedClientV1Enabled } from "@/lib/sealed/mtgSealedClientV1";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -27,6 +30,7 @@ export default async function SetsPage(props: SetsPageProps) {
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
   const gameScope = normalizePublicGameScope(searchParams?.game);
   const browseConfig = getPublicSetBrowseConfig(gameScope);
+  const showMtgSealed = gameScope === "mtg" && isMtgSealedClientV1Enabled();
   const gameSets = await getPublicSets(gameScope);
   const sets = gameSets.filter(
     (setInfo) => matchesPublicSetLanguageScope(setInfo, languageScope),
@@ -76,6 +80,20 @@ export default async function SetsPage(props: SetsPageProps) {
         </header>
 
         <section className="space-y-6">
+          {showMtgSealed ? (
+            <div className="flex flex-col gap-3 border-y border-slate-200 py-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">MTG sealed products</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Booster boxes, bundles, decks, and other sealed releases.</p>
+              </div>
+              <Link
+                href="/sealed/mtg"
+                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-emerald-700 px-4 text-sm font-semibold text-white transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:bg-emerald-500 dark:text-slate-950 dark:hover:bg-emerald-400"
+              >
+                Browse sealed
+              </Link>
+            </div>
+          ) : null}
           <PublicSetsToolbar />
           <PublicSetsResults sets={sets} logoEntries={[...setLogoPathByCode.entries()]} />
         </section>

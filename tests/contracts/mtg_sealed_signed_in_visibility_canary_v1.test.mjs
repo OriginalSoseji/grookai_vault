@@ -139,9 +139,12 @@ test('operator freezes, restores, and sanitizes the disposable-auth canary', () 
   assert.doesNotMatch(operator, /Promise\.all/);
 });
 
-test('the canary cannot expose disabled web or Flutter clients', () => {
-  assert.match(webClient, /MTG_SEALED_CLIENT_V1_ENABLED = false as const/);
-  assert.match(flutterClient, /kMtgSealedClientV1Enabled = false;/);
+test('the backend canary cannot activate disabled-by-default clients', () => {
+  assert.match(webClient,
+    /process\.env\.NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED === "true"/);
+  assert.match(flutterClient,
+    /bool\.fromEnvironment\(\s*'MTG_SEALED_CLIENT_V1_ENABLED'/);
+  assert.match(flutterClient, /defaultValue: false/);
   assert.match(operator, /clients: clientBoundaries\(\)/);
   assert.match(policy, /client_activations: 0/);
 });

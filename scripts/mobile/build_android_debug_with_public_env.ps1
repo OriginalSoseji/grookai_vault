@@ -1,6 +1,11 @@
 param(
     [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")),
-    [string]$EnvFile = ".env.local"
+    [string]$EnvFile = ".env.local",
+    [switch]$EnableMtgSealed,
+    [ValidateSet("debug", "profile", "release")]
+    [string]$BuildMode = "debug",
+    [ValidateSet("", "android-arm", "android-arm64", "android-x64")]
+    [string]$TargetPlatform = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,6 +47,7 @@ $publicDefines = [ordered]@{
     SUPABASE_URL = Read-DotEnvValue -Path $resolvedEnvFile -Name "SUPABASE_URL"
     SUPABASE_PUBLISHABLE_KEY = Read-DotEnvValue -Path $resolvedEnvFile -Name "SUPABASE_PUBLISHABLE_KEY"
     COLLECTOR_MEMORIES_ENABLED = "true"
+    MTG_SEALED_CLIENT_V1_ENABLED = if ($EnableMtgSealed) { "true" } else { "false" }
 }
 
 $defineFile = Join-Path ([System.IO.Path]::GetTempPath()) (
@@ -52,9 +58,13 @@ try {
     $publicDefines | ConvertTo-Json | Set-Content -LiteralPath $defineFile -Encoding utf8
     Push-Location $resolvedRepoRoot
     try {
-        & flutter build apk --debug "--dart-define-from-file=$defineFile"
+        $buildArguments = @("build", "apk", "--$BuildMode", "--dart-define-from-file=$defineFile")
+        if (-not [string]::IsNullOrWhiteSpace($TargetPlatform)) {
+            $buildArguments += @("--target-platform", $TargetPlatform)
+        }
+        & flutter @buildArguments
         if ($LASTEXITCODE -ne 0) {
-            throw "Flutter Android debug build failed with exit code $LASTEXITCODE."
+            throw "Flutter Android $BuildMode build failed with exit code $LASTEXITCODE."
         }
     } finally {
         Pop-Location
@@ -63,4 +73,4 @@ try {
     Remove-Item -LiteralPath $defineFile -Force -ErrorAction SilentlyContinue
 }
 
-Write-Host "Android debug APK built with public mobile configuration only."
+Write-Host "Android $BuildMode APK built with public mobile configuration only."
