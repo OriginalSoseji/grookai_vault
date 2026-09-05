@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_125_MTG_SEALED_VISIBILITY_ACTIVATION_PLAN_FROZEN.md`
+
+This checkpoint records the exact durable MTG sealed signed-in visibility
+plan, complete-row compare-and-swap contract, full `2,144`-row corpus
+fingerprint, rollback-only production proof, stale-authority rejection, and
+exact hidden-state restoration.
+
+Decision locked there:
+
+- durable backend activation is ready under one exact activation fingerprint
+  and one exact automatic rollback fingerprint, while clients remain disabled
+
+Unresolved risk afterward:
+
+- durable apply/readback, bounded signed-in client rollout, refresh scheduling,
+  and any anonymous policy remain separate gates
+
 ### `PRICING_CHECKPOINT_124_MTG_SEALED_SIGNED_IN_CANARY_PASSED.md`
 
 This checkpoint records the real-user, zero-residue MTG sealed visibility

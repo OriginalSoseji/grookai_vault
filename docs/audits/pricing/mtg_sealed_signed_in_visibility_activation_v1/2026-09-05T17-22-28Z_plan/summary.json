@@ -1,0 +1,26 @@
+{
+  "status": "durable_visibility_activation_ready_no_writes",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "32539d1f7b9198092543f597871e0fbf71687ccf",
+    "tracked_worktree_clean": true
+  },
+  "activation_plan_fingerprint_sha256": "29ad09b5d117bcfa22698c429d280444f1fb7f9fe0b43419a1f3882b4fb95599",
+  "rollback_plan_fingerprint_sha256": "c2c7ef6d4db92db44b2341e82a110fb226ecf503627a01dceb6ec810c864ff05",
+  "rollback_proof_rpc_rows": 2144,
+  "rollback_proof_rpc_fingerprint": "34a91368a22a296beff607934d070ff888a8f858de9e497ffbb88a4a8634ded7",
+  "boundaries": {
+    "release_control_updates": 1,
+    "catalog_writes": 0,
+    "price_release_or_pointer_writes": 0,
+    "image_release_or_pointer_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "anonymous_visibility": false
+  },
+  "durable_database_writes": 0,
+  "required_approval_message": "I approve the durable MTG sealed signed-in backend visibility activation only from execution commit 32539d1f7b9198092543f597871e0fbf71687ccf, using activation plan fingerprint 29ad09b5d117bcfa22698c429d280444f1fb7f9fe0b43419a1f3882b4fb95599 and rollback plan fingerprint c2c7ef6d4db92db44b2341e82a110fb226ecf503627a01dceb6ec810c864ff05. This authorizes one exact compare-and-swap update of the MTG sealed release-control row, immediate authenticated and anonymous readback, disposable Auth fixture creation and verified removal, and automatic exact rollback on failed readback. It authorizes no web or Flutter client activation, anonymous visibility, catalog, pricing, pointer, image evidence, Storage, Vault, cross-game, delete, or cleanup operation.",
+  "exact_next_gate": "execute the exact durable backend activation; keep clients disabled"
+}
