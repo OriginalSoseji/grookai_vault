@@ -133,6 +133,9 @@ test('operator requires exact clean producer and never calls pointer activation'
   assert.match(script, /expectedPlanFingerprint/);
   assert.match(script, /begin transaction isolation level repeatable read/);
   assert.match(script, /sealed_product_freeze_image_release_v1/);
+  assert.match(script, /select \* from\s+public\.sealed_product_freeze_image_release_v1/);
+  assert.doesNotMatch(script,
+    /\(public\.sealed_product_freeze_image_release_v1\([\s\S]*?\)\)\.\*/);
   assert.match(script, /await client\.query\('rollback'\)/);
   assert.doesNotMatch(script, /sealed_product_set_active_image_release_v1\(/);
   assert.doesNotMatch(script, /storage\.from|fetch\(/);

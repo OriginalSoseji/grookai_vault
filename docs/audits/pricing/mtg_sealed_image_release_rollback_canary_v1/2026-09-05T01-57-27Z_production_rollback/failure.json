@@ -1,0 +1,12 @@
+{
+  "status": "rolled_back_executor_failure",
+  "producer_commit_sha": "d38d4b443d4daf118c3abe0a111b56734f7871c1",
+  "failed_operation": "freeze_release_readback",
+  "database_error": "image release must exist and be draft",
+  "root_cause": "Composite-returning freeze function was expanded in the select list and could be evaluated more than once by PostgreSQL.",
+  "durable_database_writes": 0,
+  "post_failure_read_only_preflight_valid": true,
+  "post_failure_target_table_rows": 0,
+  "post_failure_image_pointer": null,
+  "repair": "Invoke the freeze function once through the FROM clause and rerun from a new immutable producer commit."
+}

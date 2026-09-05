@@ -1,0 +1,18 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "d38d4b443d4daf118c3abe0a111b56734f7871c1",
+  "artifacts": {
+    "run_plan.json": {
+      "bytes": 4756,
+      "sha256": "d1ceb64535e6b7171918c5c91f5b252b9ee4cbf9dfb26fca4ed7431bafa7f9a5"
+    },
+    "durable_apply_plan.json": {
+      "bytes": 4757,
+      "sha256": "87e5d737f770f4fb0defee86275225eaef306fcfb81f3e7023300e8f4be15cd5"
+    },
+    "failure.json": {
+      "bytes": 644,
+      "sha256": "534dc8bcaa5a3d8fc96ee44acbd8daa50895e682c2aec691d7714794f6643b13"
+    }
+  }
+}

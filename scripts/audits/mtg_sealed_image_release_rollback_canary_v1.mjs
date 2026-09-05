@@ -411,9 +411,9 @@ async function runRollback(connectionString, bundle, preflight) {
     await insertDataset(client, 'releases', bundle.payload.releases);
     await insertDataset(client, 'release_members', bundle.payload.release_members);
     const release = bundle.payload.releases[0];
-    const freeze = (await rows(client, `select
-      (public.sealed_product_freeze_image_release_v1(
-        $1::uuid,$2::text,$3::uuid)).*`, [release.id,
+    const freeze = (await rows(client, `select * from
+      public.sealed_product_freeze_image_release_v1(
+        $1::uuid,$2::text,$3::uuid)`, [release.id,
     release.manifest_fingerprint, release.created_by]))[0];
     const transactionReadback = {};
     transactionReadback.evidence = await exactReadback(client, 'evidence',
