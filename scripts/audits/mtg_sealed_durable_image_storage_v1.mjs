@@ -276,8 +276,7 @@ function assertSecureTlsRuntime() {
 
 function createStorageClient() {
   const url = process.env.SUPABASE_URL ?? '';
-  const key = process.env.SUPABASE_SECRET_KEY ??
-    process.env.SUPABASE_SERVICE_ROLE_KEY ?? '';
+  const key = process.env.SUPABASE_SECRET_KEY ?? '';
   if (projectRef(url) !== GROOKAI_PRODUCTION_PROJECT_REF || !key) {
     throw new Error('Canonical production Storage credentials are unavailable');
   }
