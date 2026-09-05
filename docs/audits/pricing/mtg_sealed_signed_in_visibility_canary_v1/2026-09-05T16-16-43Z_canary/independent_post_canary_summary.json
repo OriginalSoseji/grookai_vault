@@ -1,0 +1,163 @@
+{
+  "status": "ready_for_zero_residue_canary",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+    "tracked_worktree_clean": true
+  },
+  "preflight": {
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "release_control": {
+      "game_key": "mtg",
+      "release_status": "hidden",
+      "release_version": "SEALED_PRODUCT_VISIBILITY_BOUNDARY_V1_MTG_HIDDEN",
+      "evidence": {
+        "default": "fail_closed",
+        "sealed_payload_apply_authorizes_visibility": false,
+        "catalog_release_authorizes_sealed_visibility": false
+      },
+      "activated_at": null,
+      "activated_by": null,
+      "updated_at": "2026-09-03 19:24:29.599049+00"
+    },
+    "protected_state": {
+      "vault_item_count": 450,
+      "mtg_image_pointer": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "mtg_price_pointer": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_member_count": 2149,
+      "image_object_count": 2141,
+      "mtg_sealed_control": {
+        "evidence": {
+          "default": "fail_closed",
+          "sealed_payload_apply_authorizes_visibility": false,
+          "catalog_release_authorizes_sealed_visibility": false
+        },
+        "game_key": "mtg",
+        "updated_at": "2026-09-03T19:24:29.599049+00:00",
+        "activated_at": null,
+        "activated_by": null,
+        "release_status": "hidden",
+        "release_version": "SEALED_PRODUCT_VISIBILITY_BOUNDARY_V1_MTG_HIDDEN"
+      },
+      "price_member_count": 2514,
+      "image_release_count": 1,
+      "price_release_count": 2,
+      "sealed_family_count": 479,
+      "image_evidence_count": 2182,
+      "sealed_mapping_count": 3294,
+      "sealed_variant_count": 3294,
+      "vault_instance_count": 3399,
+      "image_assertion_count": 2149,
+      "mtg_catalog_visibility": "signed_in",
+      "mtg_storage_object_bytes": 157335339,
+      "mtg_storage_object_count": 2141
+    },
+    "authority": {
+      "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "image_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+      "active_price_members": "2182",
+      "active_image_members": "2149"
+    },
+    "candidate": {
+      "storage_bucket": "user-card-images",
+      "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+      "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "image_mime": "image/jpeg",
+      "image_width": 559,
+      "image_height": 1000,
+      "image_bytes": "81917",
+      "canonical_name": "Kamigawa: Neon Dynasty - Theme Booster [Green]",
+      "structurally_authorized": true
+    },
+    "catalog_visibility": "signed_in",
+    "privileges": {
+      "anonymous_rpc_execute": false,
+      "authenticated_rpc_execute": true
+    },
+    "hidden_rpc_rows": 0,
+    "hidden_signing_authorized": false,
+    "clients": {
+      "web_enabled": false,
+      "flutter_enabled": false
+    }
+  },
+  "plan": {
+    "canary_version": "MTG_SEALED_SIGNED_IN_VISIBILITY_CANARY_V1",
+    "repository": {
+      "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+      "head_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+      "tracked_worktree_clean": true
+    },
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "baseline_release_control": {
+      "game_key": "mtg",
+      "release_status": "hidden",
+      "release_version": "SEALED_PRODUCT_VISIBILITY_BOUNDARY_V1_MTG_HIDDEN",
+      "evidence": {
+        "default": "fail_closed",
+        "sealed_payload_apply_authorizes_visibility": false,
+        "catalog_release_authorizes_sealed_visibility": false
+      },
+      "activated_at": null,
+      "activated_by": null,
+      "updated_at": "2026-09-03 19:24:29.599049+00"
+    },
+    "baseline_release_control_sha256": "440ce7bbd9a449d8129696f5d84418669a69fb5ce6e9c539f8293226359bd070",
+    "protected_state_sha256": "234427b04ad6b3516612019be1ff18f914d0a28cda3980a4ec5b53297f6eb5af",
+    "authority": {
+      "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "image_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+      "active_price_members": "2182",
+      "active_image_members": "2149"
+    },
+    "selected_candidate": {
+      "storage_bucket": "user-card-images",
+      "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+      "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "image_mime": "image/jpeg",
+      "image_width": 559,
+      "image_height": 1000,
+      "image_bytes": "81917",
+      "canonical_name": "Kamigawa: Neon Dynasty - Theme Booster [Green]",
+      "structurally_authorized": true
+    },
+    "transition": {
+      "from": "hidden",
+      "temporary": "signed_in",
+      "restore": "exact_baseline_row",
+      "maximum_open_seconds": 300
+    },
+    "authentication_fixture": {
+      "type": "disposable_confirmed_supabase_auth_user",
+      "email_persisted_in_artifacts": false,
+      "password_persisted_in_artifacts": false,
+      "raw_user_id_persisted_in_artifacts": false,
+      "delete_and_verify_absent": true
+    },
+    "required_proofs": {
+      "authenticated_rpc_v3_rows": ">=1",
+      "selected_candidate_in_rpc_v3": true,
+      "authenticated_signer_status": 200,
+      "signed_image_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "anonymous_rpc_rows": 0,
+      "anonymous_signer_status": 401,
+      "post_restore_authenticated_rpc_rows": 0
+    },
+    "boundaries": {
+      "temporary_visibility_updates": 2,
+      "durable_visibility_change": false,
+      "auth_fixture_create_delete_only": true,
+      "pricing_writes": 0,
+      "pointer_writes": 0,
+      "storage_writes": 0,
+      "vault_writes": 0,
+      "client_activations": 0,
+      "cross_game_writes": 0,
+      "anonymous_visibility": false
+    },
+    "plan_fingerprint_sha256": "a3facd708a9c0fb6f29d856e12f21b6ba1195ee51743064b0bd7c5e34a50978f"
+  },
+  "preflight_findings": []
+}

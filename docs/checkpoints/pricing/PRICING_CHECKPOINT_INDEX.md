@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_124_MTG_SEALED_SIGNED_IN_CANARY_PASSED.md`
+
+This checkpoint records the real-user, zero-residue MTG sealed visibility
+canary across Auth, RPC V3, the trusted signer, and exact signed-image byte
+readback, followed by exact release-control restoration and Auth-fixture
+deletion.
+
+Decision locked there:
+
+- the complete signed-in backend path is production-proven, while MTG sealed
+  visibility is restored to hidden and both clients remain disabled
+
+Unresolved risk afterward:
+
+- durable signed-in activation, client rollout, refresh scheduling, and any
+  anonymous policy remain separate gates
+
 ### `PRICING_CHECKPOINT_123_MTG_SEALED_SIGNER_DEPLOYED.md`
 
 This checkpoint records the exact commit-bound deployment of the trusted MTG
