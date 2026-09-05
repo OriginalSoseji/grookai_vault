@@ -158,6 +158,7 @@
     "mtg:sealed:image-pointer-apply:v1": "node scripts/audits/mtg_sealed_image_pointer_apply_v1.mjs",
     "mtg:sealed:image-migration-preflight:v1": "node scripts/audits/mtg_sealed_image_migration_preflight_v1.mjs",
     "mtg:sealed:image-schema-apply:v1": "node scripts/audits/mtg_sealed_image_schema_apply_v1.mjs",
+    "mtg:sealed:rpc-v3-gate:v1": "node scripts/audits/mtg_sealed_rpc_v3_gate_v1.mjs",
     "mtg:sealed:pricing-refresh:v1": "node scripts/audits/mtg_sealed_pricing_refresh_v1.mjs",
     "jpn-master-index:finalize": "node scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
     "pricing:market:publish:dry-run": "node scripts/workers/tcgplayer_market_publication_worker_v1.mjs --dry-run",
