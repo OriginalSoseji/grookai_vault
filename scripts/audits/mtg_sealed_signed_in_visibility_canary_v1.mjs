@@ -793,4 +793,15 @@ if (process.argv[1] &&
   });
 }
 
-export { capturePreflight, parseArgs, restoreControl };
+export {
+  capturePreflight,
+  createAuthFixture,
+  deleteAuthFixture,
+  downloadSignedImage,
+  parseArgs,
+  rpcProbe,
+  serviceClient,
+  signerProbe,
+  restoreControl,
+  verifyAuthResidue,
+};
