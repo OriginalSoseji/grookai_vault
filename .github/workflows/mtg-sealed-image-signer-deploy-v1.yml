@@ -1,0 +1,106 @@
+name: MTG Sealed Image Signer Deploy V1
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_source_commit:
+        description: Frozen signer producer commit
+        required: true
+      expected_bundle_sha256:
+        description: Frozen signer bundle SHA-256
+        required: true
+      expected_plan_fingerprint:
+        description: Frozen deployment plan fingerprint
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtg-sealed-image-signer-production-v1
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_PROJECT_REF: ycdxbpibncqcchqiihfz
+      EXPECTED_SOURCE_COMMIT: ${{ inputs.expected_source_commit }}
+      EXPECTED_BUNDLE_SHA256: ${{ inputs.expected_bundle_sha256 }}
+      EXPECTED_PLAN_FINGERPRINT: ${{ inputs.expected_plan_fingerprint }}
+
+    steps:
+      - name: Checkout frozen signer producer
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.expected_source_commit }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify source and capture protected baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_DB_URL"
+          test "$SUPABASE_URL" = "https://${SUPABASE_PROJECT_REF}.supabase.co"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SOURCE_COMMIT"
+          mkdir -p deploy-artifacts/preflight deploy-artifacts/deployment deploy-artifacts/readback
+          node --test tests/contracts/mtg_sealed_signer_deployment_gate_v1.test.mjs \
+            tests/contracts/mtg_sealed_disabled_clients_v1.test.mjs \
+            | tee deploy-artifacts/deployment/focused-tests.txt
+          node scripts/audits/mtg_sealed_signer_deployment_gate_v1.mjs \
+            --preflight \
+            --expected-head-sha="$EXPECTED_SOURCE_COMMIT" \
+            --expected-bundle-sha256="$EXPECTED_BUNDLE_SHA256" \
+            --expected-plan-fingerprint="$EXPECTED_PLAN_FINGERPRINT" \
+            --out-dir=deploy-artifacts/preflight
+
+      - name: Install pinned Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.90.0
+
+      - name: Deploy only the frozen MTG sealed signer
+        shell: bash
+        run: |
+          set -euo pipefail
+          supabase functions deploy mtg-sealed-sign-image-v1 \
+            --project-ref "$SUPABASE_PROJECT_REF" \
+            --no-verify-jwt \
+            | tee deploy-artifacts/deployment/deploy-output.txt
+          supabase functions list \
+            --project-ref "$SUPABASE_PROJECT_REF" \
+            > deploy-artifacts/deployment/functions-list.txt
+          grep -q "mtg-sealed-sign-image-v1" deploy-artifacts/deployment/functions-list.txt
+
+      - name: Prove endpoint and unchanged protected state
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/mtg_sealed_signer_deployment_gate_v1.mjs \
+            --readback \
+            --expected-head-sha="$EXPECTED_SOURCE_COMMIT" \
+            --expected-bundle-sha256="$EXPECTED_BUNDLE_SHA256" \
+            --expected-plan-fingerprint="$EXPECTED_PLAN_FINGERPRINT" \
+            --baseline=deploy-artifacts/preflight/protected_state.json \
+            --out-dir=deploy-artifacts/readback
+
+      - name: Upload deployment evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-sealed-image-signer-deployment-v1
+          path: deploy-artifacts
+          if-no-files-found: error
