@@ -2,11 +2,11 @@
   "canonical_authority": false,
   "languages": [
     {
-      "card_count": 20308,
-      "cards_fingerprint_sha256": "aef333904f71f42a4cb19351e3ec891339123612fb38cce28611b562f178b333",
+      "card_count": 20310,
+      "cards_fingerprint_sha256": "7433e0239e58405c59fa25104f9ea438dc1bcedff945e2591686304f81aee2de",
       "language": "de",
       "set_count": 169,
-      "sets_fingerprint_sha256": "285494dcf76e3a76cc2719001da2ac7a97a2a487d889787213c05b637b6a2b33",
+      "sets_fingerprint_sha256": "e5e725db54b71e512a07421776b1eae84ab8090721ce238fe0c8070d807b2eb1",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "2a9cf96f9bc36f3bddc9cdd019c8968bc9011a611d982f1ae6e1a49f29af2e3a",
       "source_anomaly_count": 250,
@@ -14,11 +14,11 @@
       "status": "candidate_index_ready"
     },
     {
-      "card_count": 23546,
-      "cards_fingerprint_sha256": "05e58dc6cbf764368a230b1175659ebe9ec9f0a4c97c98b0f86dddbbc3d89876",
+      "card_count": 23548,
+      "cards_fingerprint_sha256": "a3073973c9b281c98a89d3ae3461cdf0ff5c63f23e42b352e09865f5adba8aff",
       "language": "en",
       "set_count": 218,
-      "sets_fingerprint_sha256": "7f5fcb35c325c0ed63c1e58c9032d591f9beb34201a092022da7ece0a3df2800",
+      "sets_fingerprint_sha256": "ccb6caaf422093009a72bb9ce47411072fe43299329b1bd17eab2f83ab37c115",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "source_anomaly_count": 0,
@@ -26,11 +26,11 @@
       "status": "candidate_index_ready"
     },
     {
-      "card_count": 15320,
-      "cards_fingerprint_sha256": "4582befa1073109f1017d001614f0d34b28c77753d3b12d1c2657cba4c6af798",
+      "card_count": 15322,
+      "cards_fingerprint_sha256": "301ee39bfad08f3f25111d94184387cb397dc95b11c4c6d272e26b0092bcf65c",
       "language": "es",
       "set_count": 154,
-      "sets_fingerprint_sha256": "6307a9b4e0313e3b0116076cd4818c6e612d73d3ef96cdcb071f5eacaf2bffc7",
+      "sets_fingerprint_sha256": "7fba12fecb22e1eca1e4b9362bf1c559ee7be7200c180c7c5b3df5198a00a910",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "source_anomaly_count": 0,
@@ -50,11 +50,11 @@
       "status": "candidate_index_ready"
     },
     {
-      "card_count": 21971,
-      "cards_fingerprint_sha256": "59ea5004c7604eb9c6b106f9aeee32fc2710a01b646fdfdd1e97b39bd9622710",
+      "card_count": 21973,
+      "cards_fingerprint_sha256": "a27d34078b8460513fb6c66600169b5a7911fd58094baa7e69277e9cab1c107f",
       "language": "fr",
       "set_count": 200,
-      "sets_fingerprint_sha256": "49fa72888e83d2d1263d1e85bd44d24d82e1863e21609959afebd2559d3d8654",
+      "sets_fingerprint_sha256": "1774c1bd4d3c5d2df190f433e147f2dd86f63a3ee56ef1108f66631e20fd8ff0",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "source_anomaly_count": 0,
@@ -74,11 +74,11 @@
       "status": "candidate_index_ready"
     },
     {
-      "card_count": 15551,
-      "cards_fingerprint_sha256": "50de12d897d160aacf06ba562d9ebf326c3a9046dfea760cbf5c31525c36721d",
+      "card_count": 15553,
+      "cards_fingerprint_sha256": "4116140333b45ef79bed2f48c33ee3cbabdf3c70b21df187ddf1b514810badfd",
       "language": "it",
       "set_count": 191,
-      "sets_fingerprint_sha256": "d82acd4595e91834f10be70580d0d16a691af6528a8e2120def86e2a05e99eb8",
+      "sets_fingerprint_sha256": "c7aac1b51bde1598fa133733d3d72ad4ad751589e9e17eec6bf034280bd70ab7",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "source_anomaly_count": 0,
@@ -134,11 +134,11 @@
       "status": "provider_no_cards"
     },
     {
-      "card_count": 13873,
-      "cards_fingerprint_sha256": "5e38923e9d84b063c13abff2711ead14dc3facbb4543e1349f12cf87406e6a09",
+      "card_count": 13875,
+      "cards_fingerprint_sha256": "45c33bc9eb1e22a93cb419b641a8d72b8e8734aebd6e4f4dfa11493490cd425d",
       "language": "pt",
       "set_count": 123,
-      "sets_fingerprint_sha256": "a6012dd1ffb2c0b52d8bd912ec61909622acd2af877d5ecdd2341f881f2890ba",
+      "sets_fingerprint_sha256": "c0dc5610748c1bd5be14abd0d11bb6c5b6b5fcf51b5dea4306fbe6b0b476fb63",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "source_anomaly_count": 0,
