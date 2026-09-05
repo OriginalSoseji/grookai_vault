@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_120_MTG_SEALED_IMAGE_POINTER_ROLLBACK_PROVEN.md`
+
+This checkpoint records the forward-only repair of the image-pointer
+compare-and-swap function, exact migration-ledger and protected-state readback,
+and the successful production pointer canary that returned to a null pointer.
+
+Decision locked there:
+
+- the MTG sealed image pointer path is proven safe for a separately planned,
+  fingerprinted, and authorized durable activation
+
+Unresolved risk afterward:
+
+- durable pointer activation, RPC V3 migration, signer deployment, client
+  integration, visibility, and scheduling remain separate serial gates
+
 ### `PRICING_CHECKPOINT_119_MTG_SEALED_IMAGE_RELEASE_APPLIED.md`
 
 This checkpoint records the exact 8,622-row durable MTG sealed image-evidence
