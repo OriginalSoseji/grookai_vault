@@ -1,0 +1,23 @@
+{
+  "anonymous_post": {
+    "method": "POST",
+    "status": 401,
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "invalid_bearer_post": {
+    "method": "POST",
+    "status": 401,
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "get": {
+    "method": "GET",
+    "status": 405,
+    "body": {
+      "error": "method_not_allowed"
+    }
+  }
+}

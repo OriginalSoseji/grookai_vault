@@ -1,0 +1,55 @@
+
+  
+   ID                                   | NAME                               | SLUG                               | STATUS | VERSION | UPDATED_AT (UTC)    
+  --------------------------------------|------------------------------------|------------------------------------|--------|---------|---------------------
+   a35aca15-cd8c-41e5-891a-6229ba4fe874 | grade-scan                         | grade-scan                         | ACTIVE | 98      | 2025-09-02 22:36:00 
+   e6da19e2-c07f-4dcd-b2aa-8d6c25e43a05 | intake-scan                        | intake-scan                        | ACTIVE | 100     | 2025-09-03 17:25:49 
+   911b5c8d-1938-4bbf-ad0f-a3e5292a2b78 | price-cron                         | price-cron                         | ACTIVE | 101     | 2025-09-03 18:11:33 
+   68f6b37f-aa45-4112-a6f8-880a5e8123cb | import-cards                       | import-cards                       | ACTIVE | 123     | 2025-11-02 05:34:06 
+   8e84a327-1c75-4bcc-9532-3e7d7fe4d314 | import-prices                      | import-prices                      | ACTIVE | 156     | 2026-07-22 17:45:03 
+   4243f5dc-7797-4280-90b9-08a16e07d257 | import-set                         | import-set                         | ACTIVE | 80      | 2025-09-06 04:16:20 
+   83182dce-4f98-45d0-8d1f-887253f51acc | import-prices-sep6                 | import-prices-sep6                 | ACTIVE | 77      | 2025-09-09 12:24:14 
+   dbd36f30-83e5-4a12-b0f8-e86ed00d9e94 | ai-assist                          | ai-assist                          | ACTIVE | 77      | 2025-09-16 16:55:02 
+   b2c52a5f-f1cc-4a48-9195-bf1423bec764 | dev                                | dev                                | ACTIVE | 76      | 2025-09-16 16:55:03 
+   9e8d20a0-e08c-4ecd-a628-ab0e3519cfa9 | import-all-prices                  | import-all-prices                  | ACTIVE | 64      | 2025-09-28 00:10:13 
+   acf7a399-eae3-4d00-a8ca-db5b3117ddd0 | check-sets                         | check-sets                         | ACTIVE | 77      | 2025-11-02 05:34:06 
+   c54c9846-06b7-4126-96bc-f5fbb0de5137 | search_cards                       | search_cards                       | ACTIVE | 66      | 2025-11-02 05:34:06 
+   3153354f-7c10-44f3-87fb-3d8e5a5d801d | hydrate_card                       | hydrate_card                       | ACTIVE | 65      | 2025-10-20 22:11:41 
+   985e900c-c0df-4188-a5d5-a049cec216f7 | keep_alive                         | keep_alive                         | ACTIVE | 60      | 2025-10-25 04:18:35 
+   11d2f8ec-ab7b-4169-b19c-690367adc8fd | enqueue_import                     | enqueue_import                     | ACTIVE | 60      | 2025-10-22 00:55:25 
+   77218a14-8a03-4527-9567-caac12dcc8f4 | import_drain                       | import_drain                       | ACTIVE | 61      | 2025-10-22 00:55:14 
+   8662615c-2026-4ac7-a39e-d6eb005c14a6 | update_prices                      | update_prices                      | ACTIVE | 62      | 2025-10-22 02:14:51 
+   ed299977-55b3-4867-9f85-ab18fe13127e | prices_retention                   | prices_retention                   | ACTIVE | 60      | 2025-10-22 00:55:19 
+   532dd2fd-eae6-4902-b035-915153190b2c | prices_status                      | prices_status                      | ACTIVE | 60      | 2025-10-22 00:55:21 
+   1bf61ed6-22a8-4f91-a850-f2907b3b1f9c | price_aggregate                    | price_aggregate                    | ACTIVE | 64      | 2025-10-22 04:41:53 
+   e2ee3ec1-8501-4f48-b2b5-2f8d1ceaf2e1 | justtcg_probe                      | justtcg_probe                      | ACTIVE | 58      | 2025-10-22 03:51:45 
+   56b6268b-204d-46ad-b994-ce00aa4724f9 | ebay-account-notify                | ebay-account-notify                | ACTIVE | 69      | 2025-10-24 05:38:18 
+   dbbe90f3-a867-43bb-8ae5-0464db6fccf8 | ebay_sold_engine                   | ebay_sold_engine                   | ACTIVE | 57      | 2025-11-02 05:34:06 
+   c8a703ea-cccb-40e5-8e58-5c96408857f3 | floor_engine                       | floor_engine                       | ACTIVE | 57      | 2025-11-02 05:34:06 
+   785f9ffb-ee2f-44fc-af77-d6b7bda9eee5 | import-prices-v2                   | import-prices-v2                   | ACTIVE | 56      | 2025-10-24 18:40:39 
+   5c693933-821d-429f-81e8-89644e4bf357 | check-prices                       | check-prices                       | ACTIVE | 56      | 2025-10-25 04:18:33 
+   4d6e6dbf-b71d-424a-a9a9-40da58a37015 | job_enqueue                        | job_enqueue                        | ACTIVE | 54      | 2025-11-02 05:33:54 
+   baea1101-41d1-46ac-aa64-3d7432e4ae21 | job_worker                         | job_worker                         | ACTIVE | 54      | 2025-11-02 05:33:54 
+   a8797417-33fe-4fd0-9ea5-7d4a670ba574 | ext_gateway                        | ext_gateway                        | ACTIVE | 54      | 2025-11-02 05:33:54 
+   e23e64b1-3a39-4b6b-96db-c300341280b4 | system_health                      | system_health                      | ACTIVE | 54      | 2025-11-02 05:33:54 
+   a6ffd983-171b-4a43-bb7a-32ad93dc39a6 | pricing_refresh                    | pricing_refresh                    | ACTIVE | 52      | 2025-11-03 12:52:30 
+   1a868cf6-a540-40ab-8efa-070f8dc9684a | wall_feed                          | wall_feed                          | ACTIVE | 56      | 2026-07-31 14:13:59 
+   3c9fbd27-e72f-4509-a439-8fb6c0df7d97 | diag-echo                          | diag-echo                          | ACTIVE | 39      | 2025-11-13 23:54:28 
+   66360472-2592-4ff5-81a5-523d5e01f7fa | import-prices-v3                   | import-prices-v3                   | ACTIVE | 29      | 2026-07-22 17:45:05 
+   dc2cf2fa-cc7d-4554-955f-3490e53a0303 | import-prices-bridge               | import-prices-bridge               | ACTIVE | 12      | 2026-07-22 17:45:07 
+   741c847c-b776-4b54-9447-366126586588 | pricing-live-request               | pricing-live-request               | ACTIVE | 10      | 2025-11-26 21:02:36 
+   91be3780-835d-4969-bfd6-491ab72a0645 | scan-upload-plan                   | scan-upload-plan                   | ACTIVE | 18      | 2026-07-31 22:14:26 
+   de90baf3-5fc2-4978-911e-6ccb6bcf0062 | scan-read                          | scan-read                          | ACTIVE | 11      | 2026-07-31 22:14:29 
+   4d605734-50ae-41d5-a932-a5c15a23b0ba | identity_scan_enqueue_v1           | identity_scan_enqueue_v1           | ACTIVE | 23      | 2026-07-31 22:14:32 
+   4aeaa288-88cc-4639-a7b6-e76268804ef6 | identity_scan_get_v1               | identity_scan_get_v1               | ACTIVE | 23      | 2026-07-31 22:14:35 
+   e350d18f-afcb-4e8d-aa2a-c8a8ecd0cc5d | warehouse-intake-v1                | warehouse-intake-v1                | ACTIVE | 16      | 2026-07-31 22:14:41 
+   636642e5-90ed-4d61-a94c-d59a7a66f06b | founder-market-signals-v1          | founder-market-signals-v1          | ACTIVE | 11      | 2026-04-16 01:21:47 
+   f5b8932e-1db1-4aca-8585-266bffc70ff4 | founder-market-signal-drilldown-v1 | founder-market-signal-drilldown-v1 | ACTIVE | 14      | 2026-04-16 01:40:06 
+   11c5b5e6-f7e6-4023-81b2-179e85f99d40 | founder-market-signals-mobile-v1   | founder-market-signals-mobile-v1   | ACTIVE | 8       | 2026-04-16 01:41:05 
+   68c3ef35-5808-427f-b327-e50da02fb5c9 | founder-signal-drill-mobile-v1     | founder-signal-drill-mobile-v1     | ACTIVE | 8       | 2026-04-16 01:45:04 
+   f37fe73e-f562-46a5-a219-a4ad9c6b33e3 | fingerprint_lookup_v1              | fingerprint_lookup_v1              | ACTIVE | 8       | 2026-04-27 03:34:14 
+   7cac4b8c-ed49-49e6-809b-1b9abadcd2c3 | vault-add-card-instance-v1         | vault-add-card-instance-v1         | ACTIVE | 8       | 2026-07-31 22:14:44 
+   56c463ad-8b4f-45b7-9efc-0ce8ca2991af | notification-dispatcher            | notification-dispatcher            | ACTIVE | 16      | 2026-08-31 04:45:29 
+   f3ff807c-aef2-4c45-8a2e-a64c53e6643a | operations-webhook-v1              | operations-webhook-v1              | ACTIVE | 4       | 2026-08-31 04:45:49 
+   b92e46ea-11ac-460e-97d7-951a68a08a64 | mtg-sealed-sign-image-v1           | mtg-sealed-sign-image-v1           | ACTIVE | 1       | 2026-09-05 14:14:46 
+

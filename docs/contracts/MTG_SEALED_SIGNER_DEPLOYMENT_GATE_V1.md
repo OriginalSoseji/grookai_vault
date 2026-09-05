@@ -1,6 +1,6 @@
 # MTG Sealed Signer Deployment Gate V1
 
-**Status:** Execution-ready
+**Status:** Deployed and verified
 
 **Date:** 2026-09-05
 
@@ -65,6 +65,15 @@ After deploying only the signer, it requires:
 
 The authenticated-role proof uses an existing user identity inside a read-only
 transaction, records no user identifier, and rolls the transaction back.
+
+Production proof completed through GitHub Actions run `33971178286` from
+producer commit `f8af247aa1dc075d74a7839705a4ce7a561c2cc8`. The frozen
+bundle SHA-256 was
+`a721f2e784bc5273adc2c1e2641f761d3175a2e7128f9600881f4aefd76f335c`
+and the deployment plan fingerprint was
+`f9ecc69a99c9a9efb6727d4bd7f2f9e6c39992d6c751dd85289ea80dbbe3282d`.
+Production readback passed every requirement above with zero protected-state
+drift.
 
 ## Prohibited Work
 

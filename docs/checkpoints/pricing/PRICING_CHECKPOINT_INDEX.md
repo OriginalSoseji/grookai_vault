@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_123_MTG_SEALED_SIGNER_DEPLOYED.md`
+
+This checkpoint records the exact commit-bound deployment of the trusted MTG
+sealed image signer, production authentication probes, authenticated-role
+hidden-state denial, complete protected-state equality, and unchanged client
+and visibility boundaries.
+
+Decision locked there:
+
+- the exact-object signer is active, but signing remains denied while MTG sealed
+  visibility is hidden
+
+Unresolved risk afterward:
+
+- real-user signed-in visibility canary, client activation, durable signed-in
+  release, price scheduling, and anonymous policy remain separate gates
+
 ### `PRICING_CHECKPOINT_122_MTG_SEALED_RPC_V3_APPLIED.md`
 
 This checkpoint records forward-only promotion and durable application of the
