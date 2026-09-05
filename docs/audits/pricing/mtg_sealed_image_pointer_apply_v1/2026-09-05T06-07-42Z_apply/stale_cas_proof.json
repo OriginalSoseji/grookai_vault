@@ -1,0 +1,13 @@
+{
+  "rejected": true,
+  "sqlstate": "40001",
+  "pointer_unchanged": true,
+  "pointer": {
+    "game_key": "mtg",
+    "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "previous_image_release_id": null,
+    "pointer_contract_version": "SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1",
+    "changed_by": "ff463879-026a-5ee2-8326-59e2d8b9b665",
+    "changed_at": "2026-09-05 06:07:53.082822+00"
+  }
+}

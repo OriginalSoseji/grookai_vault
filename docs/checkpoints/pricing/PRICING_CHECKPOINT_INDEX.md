@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_121_MTG_SEALED_IMAGE_POINTER_ACTIVATED.md`
+
+This checkpoint records the exact durable compare-and-swap activation of the
+frozen MTG sealed image release, independent committed readback, one-row write
+attribution, stale-authority rejection, and unchanged visibility and signing
+boundaries.
+
+Decision locked there:
+
+- the MTG sealed image release is active as internal image authority, while
+  sealed visibility remains hidden and signing remains denied
+
+Unresolved risk afterward:
+
+- RPC V3 migration, signer deployment, client integration, signed-in
+  visibility, and scheduling remain separate serial gates
+
 ### `PRICING_CHECKPOINT_120_MTG_SEALED_IMAGE_POINTER_ROLLBACK_PROVEN.md`
 
 This checkpoint records the forward-only repair of the image-pointer
