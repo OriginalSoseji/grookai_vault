@@ -1,0 +1,30 @@
+{
+  "status": "durable_image_evidence_release_applied_and_verified",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "107735b2cf61145b883a550f37b9c5de91b9ee06",
+    "expected_head_sha": "107735b2cf61145b883a550f37b9c5de91b9ee06",
+    "tracked_worktree_clean": true
+  },
+  "execution_fingerprint_sha256": "0e477804e8f7fb653b118e4567d9dca6d7b2663d8dd532073d1986c8e9aeb440",
+  "source_image_release_plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+  "expected_counts": {
+    "evidence": 2182,
+    "objects": 2141,
+    "assertions": 2149,
+    "releases": 1,
+    "release_members": 2149,
+    "exclusions": 33,
+    "total_insert_rows": 8622
+  },
+  "committed": true,
+  "exact_post_apply_readback": true,
+  "database_manifest_matches_plan": true,
+  "zero_row_idempotency_ready": true,
+  "image_pointer_write_count": 0,
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "exact_next_gate": "run a rollback-only image pointer compare-and-swap canary"
+}

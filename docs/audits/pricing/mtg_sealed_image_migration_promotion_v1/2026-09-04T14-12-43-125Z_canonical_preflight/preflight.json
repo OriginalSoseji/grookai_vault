@@ -1,0 +1,157 @@
+{
+  "boundaries": {
+    "client_activations": 0,
+    "database_writes": 0,
+    "edge_function_deployments": 0,
+    "pricing_writes": 0,
+    "provider_calls": 0,
+    "release_pointer_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "visibility_changes": 0
+  },
+  "local": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "duplicate_repo_migration_versions": 0,
+    "expected_hashes": {
+      "image_auth_candidate": "46e0c6d15cebd06d7a4e1299563d483fded19c23a23cb0936ce9a23e7ed4e6b0",
+      "image_schema_candidate": "6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735",
+      "migration": "400948bbc661b76b9713d101514e7fe6c61df2c7eb16cbf4c38806f9386976e7",
+      "signer_config": "7551533d8029d2f2ff237c1ff0915b2758a25711aec701d6a5378cc7f7d94e3f",
+      "signer_index": "2dc6c3a6a275214dec9d39b29bd65e7ffc08f344c0ed327a1b5e76852478b30b"
+    },
+    "expected_head_sha": "f8a203b2c21f5c33b204b37581128a38346c972c",
+    "head_sha": "f8a203b2c21f5c33b204b37581128a38346c972c",
+    "image_auth_candidate_sha256": "46e0c6d15cebd06d7a4e1299563d483fded19c23a23cb0936ce9a23e7ed4e6b0",
+    "image_schema_candidate_sha256": "6a8143719633193c6d6f0d1ee3da2e95cb933f37194203cb95c7fc5314c5a735",
+    "latest_repo_migration_version": "20260904130000",
+    "migration_filename": "20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql",
+    "migration_path": "supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql",
+    "migration_sha256": "400948bbc661b76b9713d101514e7fe6c61df2c7eb16cbf4c38806f9386976e7",
+    "migration_version": "20260904130000",
+    "repository_project_ref": "ycdxbpibncqcchqiihfz",
+    "signer_config_sha256": "7551533d8029d2f2ff237c1ff0915b2758a25711aec701d6a5378cc7f7d94e3f",
+    "signer_index_sha256": "2dc6c3a6a275214dec9d39b29bd65e7ffc08f344c0ed327a1b5e76852478b30b",
+    "tracked_worktree_clean": true
+  },
+  "preflight_version": "MTG_SEALED_IMAGE_MIGRATION_PREFLIGHT_V1",
+  "production": {
+    "after_fingerprint": "988f55952a35acb83d1692296f8e7b676bb607841eb56fddbfba54adc5ca24a5",
+    "api_project_ref": "ycdxbpibncqcchqiihfz",
+    "before_fingerprint": "988f55952a35acb83d1692296f8e7b676bb607841eb56fddbfba54adc5ca24a5",
+    "collisions": {
+      "constraints": [],
+      "functions": [],
+      "indexes": [],
+      "policies": [],
+      "relations": [],
+      "triggers": []
+    },
+    "data_boundaries": {
+      "candidates": 3307,
+      "canonical_card_print_traits_count": 32903,
+      "canonical_card_prints_count": 170404,
+      "canonical_sets_count": 3397,
+      "card_print_traits_orphan_count": 0,
+      "evidence": 15801,
+      "families": 479,
+      "mappings": 3294,
+      "mtg_active_price_member_count": 2182,
+      "mtg_active_price_release_count": 1,
+      "mtg_catalog_release_status": "signed_in",
+      "mtg_price_pointer_count": 1,
+      "mtg_sealed_release_status": "hidden",
+      "one_piece_active_price_release_count": 1,
+      "one_piece_price_pointer_count": 1,
+      "qualifications": 3153,
+      "release_controls": 2,
+      "release_members": 2514,
+      "release_pointers": 2,
+      "releases": 2,
+      "reviews": 3294,
+      "sealed_product_image_evidence_count": 0,
+      "sealed_product_image_objects_count": 0,
+      "sealed_product_image_release_members_count": 0,
+      "sealed_product_image_release_pointer_count": 0,
+      "sealed_product_image_releases_count": 0,
+      "sealed_product_variant_image_assertions_count": 0,
+      "variants": 3294
+    },
+    "database_project_ref": "ycdxbpibncqcchqiihfz",
+    "duplicate_repo_migration_versions": 0,
+    "functions": [
+      {
+        "present": true,
+        "signature": "catalog_game_visible_to_request_v1(text)"
+      },
+      {
+        "present": true,
+        "signature": "sealed_product_game_visible_to_request_v1(text)"
+      },
+      {
+        "present": true,
+        "signature": "sealed_product_reject_row_mutation_v1()"
+      }
+    ],
+    "guard": {
+      "default_transaction_read_only": "on",
+      "environment_key_sha256": "c118545a4463892ccf0df0a1fb3a0448e1d02d485b09708e8dc9588e6a3dda46",
+      "environment_label": "production-ycdxbpibncqcchqiihfz-mtg-sealed-image-migration-preflight-v1",
+      "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+      "transaction_read_only": "on"
+    },
+    "migration_ledger_count": 0,
+    "migration_ledger_present": true,
+    "migration_ledger_rows": [],
+    "missing_prerequisite_functions": [],
+    "missing_prerequisite_relations": [],
+    "relations": [
+      {
+        "name": "catalog_game_release_controls",
+        "present": true
+      },
+      {
+        "name": "games",
+        "present": true
+      },
+      {
+        "name": "sealed_product_families",
+        "present": true
+      },
+      {
+        "name": "sealed_product_game_release_controls",
+        "present": true
+      },
+      {
+        "name": "sealed_product_pricing_lane_qualifications",
+        "present": true
+      },
+      {
+        "name": "sealed_product_release_members",
+        "present": true
+      },
+      {
+        "name": "sealed_product_release_pointer",
+        "present": true
+      },
+      {
+        "name": "sealed_product_releases",
+        "present": true
+      },
+      {
+        "name": "sealed_product_source_mappings",
+        "present": true
+      },
+      {
+        "name": "sealed_product_variants",
+        "present": true
+      }
+    ],
+    "roles": [
+      "anon",
+      "authenticated",
+      "service_role"
+    ]
+  }
+}

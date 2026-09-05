@@ -1,6 +1,6 @@
 # MTG Sealed Authenticated Image Read V1 Candidate
 
-**Status:** Unapplied candidate
+**Status:** Authorization predicate applied; trusted signer undeployed
 
 **Date:** 2026-09-04
 
@@ -40,17 +40,22 @@ Existing owner and public-Vault policies remain unchanged.
 
 ## Deployment Boundary
 
-The SQL remains under `docs/sql/` and is not an active migration. The Edge
-Function source is prepared but not deployed. Both must be promoted, deployed
-serially, and read back before the disabled clients can be activated.
+The preserved SQL remains under `docs/sql/`, and its exact bytes were promoted
+into migration `20260904130000`. That migration is durably applied. The Edge
+Function source is prepared but not deployed; signer deployment and readback
+remain later serial gates before disabled clients can be activated.
 
 Candidate SQL SHA-256:
 `46e0c6d15cebd06d7a4e1299563d483fded19c23a23cb0936ce9a23e7ed4e6b0`.
 
+## Promotion
+
+The candidate was promoted without modifying its preserved bytes into
+`20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`.
+The trusted signer remains separately pinned and undeployed.
+
 ## Exact Next Gate
 
-Promote the base image schema and this authenticated-read addendum into a
-versioned migration package and prepare a separately pinned signer deployment.
-Apply or deploy nothing until both have frozen hashes, clean production
-preflight, explicit authority, and exact schema, function, grant, RLS,
-authentication, no-listing, and cross-game readback requirements.
+Complete the transient 17-object Storage canary under separate exact authority.
+The canary does not deploy the signer or write durable image evidence. Signer
+deployment remains a later independently reviewed gate.

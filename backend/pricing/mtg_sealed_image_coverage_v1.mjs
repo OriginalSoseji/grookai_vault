@@ -376,7 +376,9 @@ export function finalizeMtgSealedImageCoverageV1(plan, probeResults,
   ].map((status) => [status,
     rows.filter((row) => row.classification === status).length]));
   const eligible = counts.exact_image_ready + counts.shared_bytes_exact_variant;
-  const uniqueHashes = new Set(rows.filter((row) => row.image?.valid_image)
+  const uniqueHashes = new Set(rows.filter((row) =>
+    ['exact_image_ready', 'shared_bytes_exact_variant'].includes(
+      row.classification) && row.image?.valid_image)
     .map((row) => row.image.sha256));
   const findings = [];
   if (rows.length !== plan.expected_member_count) findings.push('final_member_count_mismatch');

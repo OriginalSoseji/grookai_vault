@@ -1,0 +1,71 @@
+{
+  "version": "MTG_SEALED_DURABLE_IMAGE_STORAGE_RECONCILIATION_V1",
+  "reconciled_at": "2026-09-05T00:35:30.000Z",
+  "status": "passed_zero_mismatches",
+  "execution_commit_sha": "406e78816c19ae9974b62ad2df596edc65ec3669",
+  "execution_fingerprint_sha256": "ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "durable_plan_fingerprint_sha256": "92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc",
+  "execution_window": {
+    "started_at": "2026-09-05T00:29:01.194Z",
+    "completed_at": "2026-09-05T00:34:15.846Z",
+    "resume_count": 1,
+    "initial_stop_class": "transient_storage_presence_fetch_failure",
+    "verified_progress_retained": true
+  },
+  "final_counts": {
+    "planned_objects": 2141,
+    "attempted_objects": 2141,
+    "exact_verified_objects": 2141,
+    "exact_verified_variants": 2149,
+    "unique_object_paths": 2141,
+    "duplicate_object_paths": 0,
+    "newly_uploaded_objects": 2098,
+    "reused_exact_objects": 43,
+    "failed_objects": 0,
+    "unattempted_objects": 0,
+    "preserved_exclusions": 33,
+    "exact_readback_bytes": 157335339
+  },
+  "cumulative_operation_counts": {
+    "source_http_requests": 2141,
+    "storage_presence_reads": 4325,
+    "storage_downloads": 2184,
+    "storage_uploads": 2141,
+    "storage_deletes": 0
+  },
+  "authorized_operation_ceilings": {
+    "source_http_requests": 6423,
+    "storage_presence_reads": 6423,
+    "storage_downloads": 4282,
+    "storage_uploads": 2141,
+    "storage_deletes": 2141
+  },
+  "final_result_statuses": {
+    "uploaded_and_exact_readback_verified": 2098,
+    "reused_preexisting_exact_object": 43
+  },
+  "tls_runtime": {
+    "policy": "node_bundled_plus_windows_system_ca",
+    "certificate_verification_required": true,
+    "system_certificate_count": 182,
+    "bundled_certificate_count": 150
+  },
+  "boundaries": {
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "image_evidence_rows": 0,
+    "image_release_rows": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "artifact_hashes_independently_verified": true,
+  "zero_reconciliation_mismatches": true
+}

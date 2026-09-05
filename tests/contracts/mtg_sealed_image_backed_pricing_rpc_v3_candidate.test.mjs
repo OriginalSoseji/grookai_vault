@@ -4,14 +4,17 @@ import test from 'node:test';
 
 const candidatePath =
   'docs/sql/mtg_sealed_image_backed_pricing_rpc_v3_migration_candidate.sql';
+const migrationPath =
+  'supabase/migrations/20260905070000_mtg_sealed_image_backed_pricing_rpc_v3.sql';
 const sql = fs.readFileSync(candidatePath, 'utf8');
+const migrationSql = fs.readFileSync(migrationPath, 'utf8');
 
-test('RPC V3 candidate remains outside active migrations', () => {
+test('RPC V3 reviewed candidate is promoted under a forward-only migration', () => {
   assert.equal(fs.existsSync(candidatePath), true);
-  assert.equal(fs.existsSync(
-    'supabase/migrations/20260904010000_mtg_sealed_image_backed_pricing_rpc_v3.sql',
-  ), false);
+  assert.equal(fs.existsSync(migrationPath), true);
   assert.match(sql, /Review artifact only/);
+  assert.match(migrationSql, /MTG_SEALED_IMAGE_BACKED_PRICING_RPC_V3/);
+  assert.doesNotMatch(migrationSql, /Review artifact only/);
 });
 
 test('RPC V3 binds frozen image and price releases to the same authority', () => {
@@ -75,4 +78,17 @@ test('RPC V3 clamps query bounds', () => {
   assert.match(sql,
     /limit least\(greatest\(coalesce\(p_limit, 50\), 1\), 100\)/i);
   assert.match(sql, /offset greatest\(coalesce\(p_offset, 0\), 0\)/i);
+});
+
+test('promoted migration preserves the reviewed RPC behavior', () => {
+  for (const pattern of [
+    /create or replace function public\.get_active_sealed_product_pricing_v3/i,
+    /image_release\.source_price_release_id = price_pointer\.release_id/i,
+    /image_evidence\.source_release_member_id = price_member\.id/i,
+    /qualification\.observed_on >= current_date - 7/i,
+    /image_object\.storage_readback_sha256 = image_evidence\.content_sha256/i,
+    /catalog_game_visible_to_request_v1\(family\.game_key\)/i,
+    /sealed_product_game_visible_to_request_v1\(family\.game_key\)/i,
+    /grant execute on function public\.get_active_sealed_product_pricing_v3[\s\S]*to authenticated, service_role/i,
+  ]) assert.match(migrationSql, pattern);
 });

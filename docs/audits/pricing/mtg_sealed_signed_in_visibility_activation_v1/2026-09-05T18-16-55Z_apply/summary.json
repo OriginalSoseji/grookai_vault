@@ -1,0 +1,103 @@
+{
+  "status": "mtg_sealed_signed_in_visibility_durably_active",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "32539d1f7b9198092543f597871e0fbf71687ccf",
+    "tracked_worktree_clean": true
+  },
+  "activation_plan_fingerprint_sha256": "29ad09b5d117bcfa22698c429d280444f1fb7f9fe0b43419a1f3882b4fb95599",
+  "rollback_plan_fingerprint_sha256": "c2c7ef6d4db92db44b2341e82a110fb226ecf503627a01dceb6ec810c864ff05",
+  "rollback_proof_rpc_rows": 2144,
+  "rollback_proof_rpc_fingerprint": "34a91368a22a296beff607934d070ff888a8f858de9e497ffbb88a4a8634ded7",
+  "boundaries": {
+    "release_control_updates": 1,
+    "catalog_writes": 0,
+    "price_release_or_pointer_writes": 0,
+    "image_release_or_pointer_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "anonymous_visibility": false
+  },
+  "durable_database_writes": 1,
+  "transaction": {
+    "committed": true,
+    "updated_rows": 1,
+    "control": {
+      "game_key": "mtg",
+      "release_status": "signed_in",
+      "release_version": "MTG_SEALED_SIGNED_IN_VISIBILITY_RELEASE_V1",
+      "evidence": {
+        "visibility": "signed_in",
+        "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+        "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "web_client_enabled": false,
+        "anonymous_visibility": false,
+        "flutter_client_enabled": false,
+        "source_canary_producer_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+        "baseline_release_control_sha256": "440ce7bbd9a449d8129696f5d84418669a69fb5ce6e9c539f8293226359bd070",
+        "image_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+        "activation_plan_fingerprint_sha256": "29ad09b5d117bcfa22698c429d280444f1fb7f9fe0b43419a1f3882b4fb95599",
+        "source_canary_plan_fingerprint_sha256": "a3facd708a9c0fb6f29d856e12f21b6ba1195ee51743064b0bd7c5e34a50978f"
+      },
+      "activated_at": "2026-09-05 18:17:43.259828+00",
+      "activated_by": "MTG_SEALED_SIGNED_IN_VISIBILITY_ACTIVATION_V1",
+      "updated_at": "2026-09-05 18:17:43.259828+00"
+    },
+    "visible_corpus": {
+      "rows": 2144,
+      "fingerprint_sha256": "34a91368a22a296beff607934d070ff888a8f858de9e497ffbb88a4a8634ded7"
+    }
+  },
+  "readback": {
+    "release_control": {
+      "game_key": "mtg",
+      "release_status": "signed_in",
+      "release_version": "MTG_SEALED_SIGNED_IN_VISIBILITY_RELEASE_V1",
+      "evidence": {
+        "visibility": "signed_in",
+        "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+        "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "web_client_enabled": false,
+        "anonymous_visibility": false,
+        "flutter_client_enabled": false,
+        "source_canary_producer_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+        "baseline_release_control_sha256": "440ce7bbd9a449d8129696f5d84418669a69fb5ce6e9c539f8293226359bd070",
+        "image_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+        "activation_plan_fingerprint_sha256": "29ad09b5d117bcfa22698c429d280444f1fb7f9fe0b43419a1f3882b4fb95599",
+        "source_canary_plan_fingerprint_sha256": "a3facd708a9c0fb6f29d856e12f21b6ba1195ee51743064b0bd7c5e34a50978f"
+      },
+      "activated_at": "2026-09-05 18:17:43.259828+00",
+      "activated_by": "MTG_SEALED_SIGNED_IN_VISIBILITY_ACTIVATION_V1",
+      "updated_at": "2026-09-05 18:17:43.259828+00"
+    },
+    "authenticated": {
+      "rpc_status": 200,
+      "rpc_rows": 1,
+      "selected_candidate_returned": true,
+      "signer_status": 200,
+      "signed_image_status": 200,
+      "signed_image_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd"
+    },
+    "anonymous": {
+      "rpc_status": 401,
+      "rpc_rows": 0,
+      "signer_status": 401
+    },
+    "clients": {
+      "web_enabled": false,
+      "flutter_enabled": false
+    },
+    "auth_user_absent": true,
+    "auth_reference_rows": 0,
+    "protected_state_exact_except_control": true,
+    "execution_error": null
+  },
+  "validation": {
+    "valid": true,
+    "status": "mtg_sealed_signed_in_visibility_durably_active",
+    "findings": []
+  },
+  "exact_next_gate": "bounded signed-in web and Flutter client rollout"
+}

@@ -1,0 +1,37 @@
+{
+  "status": "repair_migration_canary_passed_zero_residue",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "afc812779e495e24cc1ec1c0521a450ada4d232d",
+    "tracked_worktree_clean": true
+  },
+  "migration": {
+    "version": "20260905040000",
+    "filename": "20260905040000_sealed_product_image_pointer_conflict_repair_v1.sql",
+    "name": "sealed_product_image_pointer_conflict_repair_v1",
+    "sha256": "195e104b60d7a356a49b131800074455636a4cde946c04dc94aabf036ff8f818",
+    "statement_count": 6
+  },
+  "apply_plan_fingerprint_sha256": "273cc2511fd0f84c3026d13f7c18792c30f1791a7d47105c1f35a876c27297c3",
+  "transaction_committed": false,
+  "transaction_rolled_back": true,
+  "repaired_function_readback_inside_transaction": true,
+  "function_restored_after_rollback": true,
+  "protected_state_restored_after_rollback": true,
+  "pointer_count_after_rollback": 0,
+  "boundaries": {
+    "migration_ledger_rows": 1,
+    "function_replacements": 1,
+    "durable_data_rows": 0,
+    "pointer_writes": 0,
+    "storage_operations": 0,
+    "image_evidence_writes": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "client_changes": 0,
+    "cross_game_writes": 0,
+    "deletes": 0
+  },
+  "required_approval_message": "I approve applying only production migration 20260905040000_sealed_product_image_pointer_conflict_repair_v1.sql with SHA-256 195e104b60d7a356a49b131800074455636a4cde946c04dc94aabf036ff8f818 from execution commit afc812779e495e24cc1ec1c0521a450ada4d232d using apply-plan fingerprint 273cc2511fd0f84c3026d13f7c18792c30f1791a7d47105c1f35a876c27297c3. This authorizes one migration-ledger row and one function replacement repairing only the image-pointer conflict target. It authorizes no pointer, image evidence, Storage, pricing, visibility, Vault, client, cross-game, update, delete, or cleanup operation."
+}

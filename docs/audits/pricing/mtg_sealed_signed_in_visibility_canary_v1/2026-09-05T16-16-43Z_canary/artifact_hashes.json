@@ -1,0 +1,46 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+  "artifacts": [
+    {
+      "file": "REPORT.md",
+      "bytes": 699,
+      "sha256": "6b63555cca59cda279285ed065f56d17c099906141870c5b9a7be14f49407ee1"
+    },
+    {
+      "file": "canary_proof.json",
+      "bytes": 13397,
+      "sha256": "e7077e7002d9ce05525751a34e3cbdd1128548155a7ee4ad9eca85a1fee94003"
+    },
+    {
+      "file": "fresh_production_preflight.json",
+      "bytes": 2683,
+      "sha256": "34e43d8a1a88a6e39a5c1a7ba9bed9c5265df540d3814a5913bb6f936ba96648"
+    },
+    {
+      "file": "independent_post_canary_readback.json",
+      "bytes": 2683,
+      "sha256": "34e43d8a1a88a6e39a5c1a7ba9bed9c5265df540d3814a5913bb6f936ba96648"
+    },
+    {
+      "file": "independent_post_canary_summary.json",
+      "bytes": 6208,
+      "sha256": "6f170dd537414d88dc98e9f874a28573a184097f1bf171351bf84dba9ee41050"
+    },
+    {
+      "file": "post_restore_preflight.json",
+      "bytes": 2683,
+      "sha256": "34e43d8a1a88a6e39a5c1a7ba9bed9c5265df540d3814a5913bb6f936ba96648"
+    },
+    {
+      "file": "run_plan.json",
+      "bytes": 2937,
+      "sha256": "09e579b61ef525b58934df9d3c401ee28c54428ad17ba2a56e804c99f54b3b5d"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 21208,
+      "sha256": "af47bce2ac81d1c54de7d3da44e60d6312a6999641595be591e0dfeacfa2390c"
+    }
+  ]
+}

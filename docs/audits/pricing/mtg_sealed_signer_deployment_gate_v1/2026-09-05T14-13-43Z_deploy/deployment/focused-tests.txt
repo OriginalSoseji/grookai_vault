@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: web and Flutter clients are hard-disabled without runtime overrides
+ok 1 - web and Flutter clients are hard-disabled without runtime overrides
+  ---
+  duration_ms: 1.080652
+  type: 'test'
+  ...
+# Subtest: clients use RPC V3 and route image signing through the trusted function
+ok 2 - clients use RPC V3 and route image signing through the trusted function
+  ---
+  duration_ms: 1.132669
+  type: 'test'
+  ...
+# Subtest: trusted signer authenticates callers and exposes no listing operation
+ok 3 - trusted signer authenticates callers and exposes no listing operation
+  ---
+  duration_ms: 0.308083
+  type: 'test'
+  ...
+# Subtest: client models expose every fail-closed operational state
+ok 4 - client models expose every fail-closed operational state
+  ---
+  duration_ms: 0.330215
+  type: 'test'
+  ...
+# Subtest: client validation repeats identity, freshness, and image boundaries
+ok 5 - client validation repeats identity, freshness, and image boundaries
+  ---
+  duration_ms: 0.287125
+  type: 'test'
+  ...
+# Subtest: no web route or Flutter product surface wires the disabled clients
+ok 6 - no web route or Flutter product surface wires the disabled clients
+  ---
+  duration_ms: 92.006614
+  type: 'test'
+  ...
+# Subtest: dedicated client tests are registered and present
+ok 7 - dedicated client tests are registered and present
+  ---
+  duration_ms: 0.437845
+  type: 'test'
+  ...
+# Subtest: signer gate is pinned to the production project and one function
+ok 8 - signer gate is pinned to the production project and one function
+  ---
+  duration_ms: 1.522965
+  type: 'test'
+  ...
+# Subtest: deployment is manual, immutable-input gated, and non-overlapping
+ok 9 - deployment is manual, immutable-input gated, and non-overlapping
+  ---
+  duration_ms: 0.264642
+  type: 'test'
+  ...
+# Subtest: bundle includes the signer and every local shared dependency
+ok 10 - bundle includes the signer and every local shared dependency
+  ---
+  duration_ms: 0.739767
+  type: 'test'
+  ...
+# Subtest: signer validates user and exact path before one signing operation
+ok 11 - signer validates user and exact path before one signing operation
+  ---
+  duration_ms: 0.255365
+  type: 'test'
+  ...
+# Subtest: readback proves authentication and hidden-state denial
+ok 12 - readback proves authentication and hidden-state denial
+  ---
+  duration_ms: 0.176558
+  type: 'test'
+  ...
+# Subtest: deployment gate preserves database, Storage, and client boundaries
+ok 13 - deployment gate preserves database, Storage, and client boundaries
+  ---
+  duration_ms: 0.199281
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 302.911394

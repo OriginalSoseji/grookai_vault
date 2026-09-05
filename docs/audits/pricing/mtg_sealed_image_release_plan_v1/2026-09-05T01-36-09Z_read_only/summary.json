@@ -1,0 +1,48 @@
+{
+  "status": "mtg_sealed_image_release_plan_frozen_zero_writes",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "722aaf241e967ebc3e05f3963eb44f31cc81c6ae",
+    "expected_head_sha": "722aaf241e967ebc3e05f3963eb44f31cc81c6ae",
+    "tracked_worktree_clean": true
+  },
+  "plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+  "release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+  "release_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+  "row_counts": {
+    "evidence": 2182,
+    "objects": 2141,
+    "assertions": 2149,
+    "releases": 1,
+    "release_members": 2149
+  },
+  "exclusion_count": 33,
+  "production_preflight_valid": true,
+  "database_fingerprint_parity": {
+    "database_member_fingerprint_count": 2149,
+    "database_member_fingerprint_mismatch_count": 0,
+    "planned_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+    "database_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+    "valid": true
+  },
+  "pointer_activation_included": false,
+  "boundaries": {
+    "database_connections": 1,
+    "database_reads": 1,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "storage_deletes": 0,
+    "image_evidence_writes": 0,
+    "image_release_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "zero_reconciliation_mismatches": true
+}

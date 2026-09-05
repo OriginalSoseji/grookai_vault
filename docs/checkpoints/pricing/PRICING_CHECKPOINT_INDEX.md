@@ -33,6 +33,311 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_126_MTG_SEALED_SIGNED_IN_BACKEND_ACTIVATED.md`
+
+This checkpoint records the exact durable MTG sealed backend transition to
+`signed_in`, the one-row compare-and-swap, full `2,144`-row corpus
+reconciliation, real-auth RPC/signer/image proof, anonymous denial, protected
+state, independent readback, and zero Auth residue.
+
+Decision locked there:
+
+- MTG sealed data and private self-hosted images are durably available through
+  the signed-in backend boundary while both product clients remain disabled
+
+Unresolved risk afterward:
+
+- bounded web and Flutter client rollout, refresh scheduling, and any future
+  anonymous policy remain separate gates
+
+### `PRICING_CHECKPOINT_125_MTG_SEALED_VISIBILITY_ACTIVATION_PLAN_FROZEN.md`
+
+This checkpoint records the exact durable MTG sealed signed-in visibility
+plan, complete-row compare-and-swap contract, full `2,144`-row corpus
+fingerprint, rollback-only production proof, stale-authority rejection, and
+exact hidden-state restoration.
+
+Decision locked there:
+
+- durable backend activation is ready under one exact activation fingerprint
+  and one exact automatic rollback fingerprint, while clients remain disabled
+
+Unresolved risk afterward:
+
+- durable apply/readback, bounded signed-in client rollout, refresh scheduling,
+  and any anonymous policy remain separate gates
+
+### `PRICING_CHECKPOINT_124_MTG_SEALED_SIGNED_IN_CANARY_PASSED.md`
+
+This checkpoint records the real-user, zero-residue MTG sealed visibility
+canary across Auth, RPC V3, the trusted signer, and exact signed-image byte
+readback, followed by exact release-control restoration and Auth-fixture
+deletion.
+
+Decision locked there:
+
+- the complete signed-in backend path is production-proven, while MTG sealed
+  visibility is restored to hidden and both clients remain disabled
+
+Unresolved risk afterward:
+
+- durable signed-in activation, client rollout, refresh scheduling, and any
+  anonymous policy remain separate gates
+
+### `PRICING_CHECKPOINT_123_MTG_SEALED_SIGNER_DEPLOYED.md`
+
+This checkpoint records the exact commit-bound deployment of the trusted MTG
+sealed image signer, production authentication probes, authenticated-role
+hidden-state denial, complete protected-state equality, and unchanged client
+and visibility boundaries.
+
+Decision locked there:
+
+- the exact-object signer is active, but signing remains denied while MTG sealed
+  visibility is hidden
+
+Unresolved risk afterward:
+
+- real-user signed-in visibility canary, client activation, durable signed-in
+  release, price scheduling, and anonymous policy remain separate gates
+
+### `PRICING_CHECKPOINT_122_MTG_SEALED_RPC_V3_APPLIED.md`
+
+This checkpoint records forward-only promotion and durable application of the
+image-backed MTG sealed pricing RPC V3, including exact ACLs, hidden-visibility
+behavior, live freshness exclusions, rollback proof, and unchanged product
+data.
+
+Decision locked there:
+
+- RPC V3 is the installed signed-in read boundary, but returns no rows while
+  MTG sealed visibility remains hidden
+
+Unresolved risk afterward:
+
+- trusted signer deployment, disabled-client deployment, signed-in visibility
+  canary, and scheduling remain separate serial gates
+
+### `PRICING_CHECKPOINT_121_MTG_SEALED_IMAGE_POINTER_ACTIVATED.md`
+
+This checkpoint records the exact durable compare-and-swap activation of the
+frozen MTG sealed image release, independent committed readback, one-row write
+attribution, stale-authority rejection, and unchanged visibility and signing
+boundaries.
+
+Decision locked there:
+
+- the MTG sealed image release is active as internal image authority, while
+  sealed visibility remains hidden and signing remains denied
+
+Unresolved risk afterward:
+
+- RPC V3 migration, signer deployment, client integration, signed-in
+  visibility, and scheduling remain separate serial gates
+
+### `PRICING_CHECKPOINT_120_MTG_SEALED_IMAGE_POINTER_ROLLBACK_PROVEN.md`
+
+This checkpoint records the forward-only repair of the image-pointer
+compare-and-swap function, exact migration-ledger and protected-state readback,
+and the successful production pointer canary that returned to a null pointer.
+
+Decision locked there:
+
+- the MTG sealed image pointer path is proven safe for a separately planned,
+  fingerprinted, and authorized durable activation
+
+Unresolved risk afterward:
+
+- durable pointer activation, RPC V3 migration, signer deployment, client
+  integration, visibility, and scheduling remain separate serial gates
+
+### `PRICING_CHECKPOINT_119_MTG_SEALED_IMAGE_RELEASE_APPLIED.md`
+
+This checkpoint records the exact 8,622-row durable MTG sealed image-evidence
+apply, frozen release and database manifest, independent read-only field-level
+readback, 33 preserved exclusions, and zero-row idempotency proof.
+
+Decision locked there:
+
+- MTG sealed image evidence is now durable and immutable, but remains inactive
+  until a separately proven and authorized image-pointer transition
+
+Unresolved risk afterward:
+
+- pointer rollback canary and activation, pricing refresh, RPC V3, signer,
+  clients, visibility, and scheduler remain serial later gates
+
+### `PRICING_CHECKPOINT_118_MTG_SEALED_IMAGE_RELEASE_ROLLBACK_PROVEN.md`
+
+This checkpoint records the complete 8,622-row production transaction,
+database-canonical manifest and release-freeze proof, exact write attribution,
+unconditional rollback, and independent zero-residue/security/boundary readback.
+
+Decision locked there:
+
+- the frozen append-only image evidence payload is safe for one separately
+  authorized durable apply without image-pointer activation
+
+Unresolved risk afterward:
+
+- durable evidence apply, independent post-apply/idempotency proof, pointer
+  canary and activation, pricing refresh, RPC V3, signer, clients, visibility,
+  and scheduler remain serial later gates
+
+### `PRICING_CHECKPOINT_117_MTG_SEALED_IMAGE_RELEASE_PLAN_FROZEN.md`
+
+This checkpoint records the exact zero-write database image-evidence payload,
+fresh production source/schema/security/collision readback, and PostgreSQL hash
+parity for all 2,149 release members and the immutable release manifest.
+
+Decision locked there:
+
+- the first database apply inserts and freezes only append-only image evidence;
+  image-pointer activation remains a separate gate
+
+Unresolved risk afterward:
+
+- the guarded rollback/apply executor, pointer canary and activation, pricing
+  refresh, RPC V3, signer, clients, visibility, and scheduler remain serial
+  later gates
+
+### `PRICING_CHECKPOINT_116_MTG_SEALED_DURABLE_IMAGE_STORAGE_PASSED.md`
+
+This checkpoint records the resumable durable Storage execution, including the
+safe transient stop, exact resume, 2,141/2,149 complete reconciliation, and
+zero forbidden-boundary activity.
+
+Decision locked there:
+
+- all eligible MTG sealed image bytes are now durably self-hosted and exact
+  readback verified; Storage success remains separate from database image
+  authority and publication
+
+Unresolved risk afterward:
+
+- database image evidence, immutable release membership, pointer transition,
+  pricing refresh, RPC V3, signer, clients, visibility, and scheduler remain
+  serial later gates
+
+### `PRICING_CHECKPOINT_115_MTG_SEALED_DURABLE_IMAGE_EXECUTOR_READY.md`
+
+This checkpoint records the separately fingerprinted resumable durable Storage
+executor, its 14/14 offline contract proof, and the credential-free execution
+plan for 2,141 exact objects supporting 2,149 variants.
+
+Decision locked there:
+
+- durable image execution uses exact collision readback, per-object verified
+  commits, cumulative retry ceilings, journal-bound resume, and narrowly owned
+  cleanup
+
+Unresolved risk afterward:
+
+- live durable Storage execution still requires exact separate authority; the
+  database image release, pointer, pricing refresh, RPC V3, signer, clients,
+  visibility, and scheduler remain serial later gates
+
+### `PRICING_CHECKPOINT_114_MTG_SEALED_DURABLE_IMAGE_PLAN_FROZEN.md`
+
+This checkpoint records the complete zero-write durable Storage plan, the
+2,141 exact object / 2,149 variant / 33 exclusion reconciliation, and the
+correction that removes three excluded placeholder hashes from the earlier
+2,144 valid-image count.
+
+Decision locked there:
+
+- durable image ingestion uses per-object exact-readback commits, bounded
+  resumability, and collision hard stops without overwriting existing bytes
+
+Unresolved risk afterward:
+
+- the separately fingerprinted durable executor, live Storage authority,
+  database image release, pricing refresh, RPC V3, signer, clients, visibility,
+  and scheduler remain serial later gates
+
+### `PRICING_CHECKPOINT_113_MTG_SEALED_STORAGE_CANARY_PASSED.md`
+
+This checkpoint records the complete 17-object source retrieval, collision,
+upload, readback, byte verification, removal, and final-absence proof.
+
+Decision locked there:
+
+- the secure transient Storage path is proven with zero durable objects and
+  zero forbidden-boundary operations
+
+Unresolved risk afterward:
+
+- the corrected 2,141-object durable Storage execution, database image release,
+  pricing refresh, RPC V3, signer, clients, visibility, and scheduler remain
+  serial later gates
+
+### `PRICING_CHECKPOINT_112_MTG_SEALED_STORAGE_CANARY_TLS_TRUST_REQUIRED.md`
+
+This checkpoint records the bounded retry canary identifying
+`unable_to_verify_leaf_signature` on all three first-image attempts while all
+17 Storage paths remained absent.
+
+Decision locked there:
+
+- certificate verification stays enabled; the next operator must use Node's
+  bundled and Windows system CA stores and reject unfrozen custom CA inputs
+
+Unresolved risk afterward:
+
+- secure source retrieval and the complete transient upload/readback/removal
+  path still require one newly fingerprinted live proof
+
+### `PRICING_CHECKPOINT_111_MTG_SEALED_STORAGE_CANARY_FAILED_SAFE.md`
+
+This checkpoint records the first transient Storage canary stopping on its
+first source request before any upload, followed by exact 17-path absence proof.
+
+Decision locked there:
+
+- the failed execution authority is consumed, production remains unchanged,
+  and only bounded retry/error telemetry may be repaired before a newly
+  fingerprinted authority
+
+Unresolved risk afterward:
+
+- the repaired transient canary still requires live execution proof before any
+  durable image, signer, pricing, visibility, or client gate
+
+### `PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md`
+
+This checkpoint records the exact schema-only MTG sealed image migration apply
+and independent production readback.
+
+Decision locked there:
+
+- the complete forced-RLS image evidence/release schema and authenticated
+  signing predicate are durably present, while all six image tables remain
+  empty and the trusted signer remains undeployed
+
+Unresolved risk afterward:
+
+- the transient and durable Storage gates, image release, pricing refresh, RPC
+  V3, signer deployment, client canary, visibility, and scheduler activation
+  remain serial later gates
+
+### `PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`
+
+This checkpoint records the atomic migration promotion and successful
+production read-only preflight for MTG sealed image evidence, image releases,
+and authenticated one-object signing authorization.
+
+Decision locked there:
+
+- the exact migration SHA and producer commit are ready for a separately
+  authorized schema-only apply, while preflight itself grants no write or
+  deployment authority
+
+Unresolved risk afterward:
+
+- migration apply/readback, transient and durable Storage gates, image and
+  price releases, RPC V3, signer deployment, client canary, and scheduler
+  activation remain serial later gates
+
 ### `PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md`
 
 This checkpoint records completion of every approved no-write MTG sealed

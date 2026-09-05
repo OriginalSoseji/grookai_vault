@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md` | All no-write preparation is complete; exact image/price/RPC production gates and hard-disabled client activation remain serial |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md` | Exact image schema/signing authorization is applied and empty; signer deployment, transient image canary, durable image release, price refresh/RPC, and client activation remain serial |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,7 +223,9 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_108_MTG_SEALED_NO_WRITE_PRODUCTIZATION_COMPLETE.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md`.
+Its immutable predecessor is
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
@@ -315,6 +317,44 @@ and 33 explicit exceptions with zero reconciliation mismatches and zero writes.
 Permanent compressed member-level evidence is linked from checkpoint 105. Do
 not rerun Gate A merely to recreate that evidence; a new audit is justified
 only by a separately versioned source or release change.
+
+The reviewed image schema and authenticated one-object signing authorization
+were promoted into migration `20260904130000` and durably applied under the
+single-use authority recorded in checkpoint 110. The following command is
+historical preparation evidence only; do not use it to request or replay the
+consumed schema apply:
+
+```powershell
+npm run mtg:sealed:image-migration-preflight:v1 -- `
+  --expected-head-sha=<exact-current-sha> `
+  --out-dir=docs/audits/pricing/mtg_sealed_image_migration_promotion_v1/<timestamp>_preflight
+```
+
+The historical command accepted a topic branch, merged `main`, or detached CI
+checkout and proved the exact SHA, tracked-clean state, canonical project,
+prerequisites, collisions, migration history, and protected data boundaries.
+The durable apply/readback now supersedes that pending-state proof.
+
+The schema-only migration apply/readback named in checkpoint 109 is complete.
+Do not replay it. Checkpoint 110 is the durable authority. The next gate is a
+separately fingerprinted transient Storage canary; it does not authorize durable
+image rows, image releases, pricing, visibility, Vault, or client activation.
+
+Historical preparation used the schema apply operator in its default no-write
+mode:
+
+```powershell
+npm run mtg:sealed:image-schema-apply:v1 -- `
+  --plan `
+  --expected-head-sha=<exact-clean-execution-sha> `
+  --out-dir=.tmp/mtg-sealed-image-schema-apply-plan-v1
+```
+
+This command performs a fresh read-only production preflight, writes the exact
+apply-plan fingerprint and authority text, and makes no database mutation. The
+single schema apply was completed from execution commit
+`3eccc923011be7f399ba1b54d12878361526e7b5`; its authority is consumed. Never
+reuse the prior `--apply` invocation or approval token.
 
 Never use `--include-all`. Migration authority does not authorize the MTG
 catalog payload, and a plan created before migration apply must be regenerated

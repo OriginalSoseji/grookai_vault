@@ -1,0 +1,38 @@
+{
+  "hash_algorithm": "sha256",
+  "producer_commit_sha": "f6339fea83facccd58cf8f6e9ea2907f38390fc0",
+  "artifacts": {
+    "activation_plan.json": {
+      "bytes": 4418,
+      "sha256": "09b91a769add1686cfb9c7e6b3a26946c0cf079ac73a2c0e628008a2ee1d42fc"
+    },
+    "fresh_pointer_preflight.json": {
+      "bytes": 5141,
+      "sha256": "da321c9c0b5869ce531cb4503d68b591f695c1f6197062413f240f18e0a5ed66"
+    },
+    "repair_authority_readback.json": {
+      "bytes": 4963,
+      "sha256": "1dfd52b43beb3fca1df7a0245b401f2368adffcfa17a7cc38515499cc66caf2f"
+    },
+    "transaction_proof.json": {
+      "bytes": 11621,
+      "sha256": "af8cfdb8a2fdd09d75a8475dee32facf58ca88d8dcd586ce04568178998c675a"
+    },
+    "independent_readback.json": {
+      "bytes": 5629,
+      "sha256": "096746364f29339bd888d39a7d904cb6dd920a4150b13f9c48af13b25374bc43"
+    },
+    "stale_cas_proof.json": {
+      "bytes": 404,
+      "sha256": "85a6fc6c1517241e9f07da90116d6244587885a74332bcc64db14978eeeb3161"
+    },
+    "summary.json": {
+      "bytes": 1083,
+      "sha256": "e2ab1256f01f475dc870d5d55cff67eec5daa94c993184966c949850fa7183c0"
+    },
+    "REPORT.md": {
+      "bytes": 180,
+      "sha256": "23e41001b98a82a3652da90e3c8cf606678d949bc9768bebe0424ce0b4b978cf"
+    }
+  }
+}

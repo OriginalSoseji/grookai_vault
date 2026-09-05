@@ -1,0 +1,58 @@
+{
+  "version": "MTG_SEALED_IMAGE_STORAGE_CANARY_RECONCILIATION_V1",
+  "reconciled_at": "2026-09-04T21:45:00.000Z",
+  "status": "passed_zero_mismatches",
+  "execution_commit_sha": "5f8ba57a8c502d1bd73b52fd6af2a254eb024aba",
+  "execution_fingerprint_sha256": "9983c18b0b9dbe69684eb4ac67450b6fc1ec4f0bf692586d6a740eb6d84ecf21",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "source_canary_plan_fingerprint_sha256": "37054e8a5e66e7f7aeb5d04e3b4d476deb0809a6019297c19e1cb9cc7c9e8a7d",
+  "counts": {
+    "selected_variants": 17,
+    "selected_unique_objects": 17,
+    "source_request_attempts": 17,
+    "source_images_verified": 17,
+    "initial_collision_checks": 17,
+    "immediate_pre_upload_collision_checks": 17,
+    "uploads": 17,
+    "unique_uploaded_paths": 17,
+    "downloads": 17,
+    "byte_verified_readbacks": 17,
+    "unique_readback_paths": 17,
+    "cleanup_discovery_checks": 17,
+    "removed_paths": 17,
+    "final_absence_checks": 17,
+    "final_absent_paths": 17,
+    "final_present_paths": 0,
+    "durable_objects_after_run": 0,
+    "errors": 0
+  },
+  "verified_image_bytes": {
+    "total": 1185749,
+    "minimum_per_object": 9337,
+    "maximum_per_object": 173180,
+    "unique_sha256_count": 17
+  },
+  "tls_runtime": {
+    "policy": "node_bundled_plus_windows_system_ca",
+    "certificate_verification_required": true,
+    "system_certificate_count": 182,
+    "bundled_certificate_count": 150
+  },
+  "boundaries": {
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "durable_storage_objects": 0,
+    "image_evidence_rows": 0,
+    "image_release_rows": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "zero_reconciliation_mismatches": true
+}

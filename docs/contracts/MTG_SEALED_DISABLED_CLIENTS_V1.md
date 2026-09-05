@@ -71,11 +71,12 @@ path. Clients never construct a public `user-card-images` URL and never consume
 the original provider URL.
 
 The existing Storage policies do not authorize collector JWTs to read
-`sealed/mtg/sha256/...`. The separate, unapplied
-`MTG_SEALED_AUTHENTICATED_IMAGE_READ_V1_CANDIDATE` must be promoted, applied,
-and read back, and the trusted signer must be deployed and smoke-tested, before
-either client can leave its hard-disabled state. The candidate provides an
-authenticated authorization predicate without granting client Storage access.
+`sealed/mtg/sha256/...`. The authenticated image-signing authorization
+predicate is applied, and the trusted signer was deployed and smoke-tested in
+GitHub Actions run `33971178286`. Hidden-state authorization remains denied and
+collector JWTs still have no direct Storage access. A separate signed-in
+visibility canary must pass before either client can leave its hard-disabled
+state.
 
 ## Boundaries
 
@@ -86,10 +87,7 @@ write, or scheduler.
 
 ## Exact Next Gate
 
-Do not enable these clients until the image schema and authenticated image-read
-boundary are applied and read back, the trusted signer is deployed and
-smoke-tested,
-the transient and durable self-hosted image gates pass, the refreshed price
-release is written and reconciled, RPC V3 is applied and smoke-tested, and a
-signed-in visibility canary is separately authorized. Client activation is a
+Do not enable these clients until a separately authorized signed-in visibility
+canary proves RPC V3 rows and exact signed image delivery through a real user
+session, then returns to hidden with zero residue. Client activation remains a
 later code and deployment gate.

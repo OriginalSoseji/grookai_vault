@@ -1,0 +1,136 @@
+{
+  "valid": true,
+  "findings": [],
+  "transaction_read_only": true,
+  "state": {
+    "authority": {
+      "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "active_price_release_state": "frozen",
+      "active_price_expected_member_count": 2182,
+      "current_image_release_id": null,
+      "mtg_sealed_visibility": "hidden",
+      "mtg_catalog_visibility": "signed_in",
+      "one_piece_price_pointer_count": 1,
+      "card_print_count": 170404,
+      "set_count": 3397,
+      "sealed_family_count": 479,
+      "sealed_variant_count": 3294,
+      "sealed_mapping_count": 3294,
+      "price_release_count": 2,
+      "price_release_member_count": 2514
+    },
+    "image_tables": [
+      {
+        "table_name": "sealed_product_image_evidence",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_objects",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_variant_image_assertions",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_releases",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_release_members",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_release_pointer",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      }
+    ],
+    "table_grants": [
+      {
+        "table_name": "sealed_product_image_evidence",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_image_evidence",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_image_objects",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_image_objects",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_image_release_members",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_image_release_members",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_image_release_pointer",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_image_releases",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_image_releases",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      },
+      {
+        "table_name": "sealed_product_variant_image_assertions",
+        "grantee": "service_role",
+        "privilege_type": "INSERT"
+      },
+      {
+        "table_name": "sealed_product_variant_image_assertions",
+        "grantee": "service_role",
+        "privilege_type": "SELECT"
+      }
+    ],
+    "routine_grants": [
+      {
+        "routine_name": "sealed_product_freeze_image_release_v1",
+        "grantee": "service_role",
+        "privilege_type": "EXECUTE"
+      },
+      {
+        "routine_name": "sealed_product_set_active_image_release_v1",
+        "grantee": "service_role",
+        "privilege_type": "EXECUTE"
+      }
+    ],
+    "lineage": {
+      "expected_count": 2182,
+      "member_count": 2182,
+      "mapping_count": 2182,
+      "mismatch_count": 0
+    }
+  }
+}

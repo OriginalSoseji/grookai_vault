@@ -1,0 +1,51 @@
+{
+  "version": "MTG_SEALED_IMAGE_STORAGE_CANARY_V1",
+  "status": "failed_and_absence_verified",
+  "execution_fingerprint_sha256": "1feb8b271fb3669cf46081b0d9017cb03111df44d99ead72766808872b77ff13",
+  "fetched_count": 0,
+  "uploaded_count": 0,
+  "readback_verified_count": 0,
+  "removed_count": 0,
+  "final_absent_count": 17,
+  "durable_objects_after_run": 0,
+  "ownership_scope_activated": false,
+  "counters": {
+    "collision_checks": 17,
+    "source_fetches": 0,
+    "source_request_attempts": 3,
+    "uploads": 0,
+    "downloads": 0,
+    "removals": 0,
+    "final_absence_checks": 17
+  },
+  "uploaded_paths": [],
+  "readbacks": [],
+  "final_present_paths": [],
+  "errors": [
+    "221329:source_transport_unable_to_verify_leaf_signature_after_3_attempts"
+  ],
+  "boundaries": {
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "durable_storage_objects": 0,
+    "image_evidence_rows": 0,
+    "image_release_rows": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "completed_at": "2026-09-04T21:17:23.968Z",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "a184eabe02b1924ebd759407113a5dda427dc2a0",
+    "tracked_worktree_clean": true
+  },
+  "database_connections": 0,
+  "signer_deployments": 0
+}
