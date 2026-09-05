@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_122_MTG_SEALED_RPC_V3_APPLIED.md`
+
+This checkpoint records forward-only promotion and durable application of the
+image-backed MTG sealed pricing RPC V3, including exact ACLs, hidden-visibility
+behavior, live freshness exclusions, rollback proof, and unchanged product
+data.
+
+Decision locked there:
+
+- RPC V3 is the installed signed-in read boundary, but returns no rows while
+  MTG sealed visibility remains hidden
+
+Unresolved risk afterward:
+
+- trusted signer deployment, disabled-client deployment, signed-in visibility
+  canary, and scheduling remain separate serial gates
+
 ### `PRICING_CHECKPOINT_121_MTG_SEALED_IMAGE_POINTER_ACTIVATED.md`
 
 This checkpoint records the exact durable compare-and-swap activation of the
