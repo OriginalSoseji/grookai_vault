@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_117_MTG_SEALED_IMAGE_RELEASE_PLAN_FROZEN.md`
+
+This checkpoint records the exact zero-write database image-evidence payload,
+fresh production source/schema/security/collision readback, and PostgreSQL hash
+parity for all 2,149 release members and the immutable release manifest.
+
+Decision locked there:
+
+- the first database apply inserts and freezes only append-only image evidence;
+  image-pointer activation remains a separate gate
+
+Unresolved risk afterward:
+
+- the guarded rollback/apply executor, pointer canary and activation, pricing
+  refresh, RPC V3, signer, clients, visibility, and scheduler remain serial
+  later gates
+
 ### `PRICING_CHECKPOINT_116_MTG_SEALED_DURABLE_IMAGE_STORAGE_PASSED.md`
 
 This checkpoint records the resumable durable Storage execution, including the

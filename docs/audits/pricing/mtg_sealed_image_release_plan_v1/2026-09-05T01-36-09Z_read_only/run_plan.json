@@ -1,0 +1,206 @@
+{
+  "version": "MTG_SEALED_IMAGE_RELEASE_PLAN_V1",
+  "mode": "production_read_only_plan",
+  "producer_commit_sha": "722aaf241e967ebc3e05f3963eb44f31cc81c6ae",
+  "game_key": "mtg",
+  "source_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "source_plan_fingerprint_sha256": "fbe124ed63838a690b700ad2e2659dd22b5060645d8964387476225774d913a0",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "source_durable_plan_fingerprint_sha256": "92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc",
+  "source_durable_execution_fingerprint_sha256": "ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e",
+  "release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+  "release_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+  "datasets": {
+    "evidence": {
+      "row_count": 2182,
+      "logical_fingerprint_sha256": "b916afc23203901ba66915e4b2b990ea4b8a945436c1ff90afa3ce2c2ca6ab4d"
+    },
+    "objects": {
+      "row_count": 2141,
+      "logical_fingerprint_sha256": "b18942bfd941bc28da005d8b2ab802b274b6d9649b546cd2d83bc23b0adbdcbd"
+    },
+    "assertions": {
+      "row_count": 2149,
+      "logical_fingerprint_sha256": "848f6cdd7ab4f0433164eeeb858563d3a49ea0efd2a678fb743c2fc310a8f833"
+    },
+    "releases": {
+      "row_count": 1,
+      "logical_fingerprint_sha256": "17b33ee90176bfcbc7bab4992ac8bc34c0484e689066d89fed79d5c55f1bfe06"
+    },
+    "release_members": {
+      "row_count": 2149,
+      "logical_fingerprint_sha256": "02fe0ca6f8dd61e5110e881bbdad89a9ac4ed64065c2375e7e9751bed8b6a004"
+    },
+    "exclusions": {
+      "row_count": 33,
+      "logical_fingerprint_sha256": "2e345e37243a7f1e096e4e94cd199eacda6f368c35c3990db30b5bd754cb5bba"
+    }
+  },
+  "production_snapshot": {
+    "valid": true,
+    "findings": [],
+    "guard": {
+      "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+      "transaction_read_only": "on",
+      "default_transaction_read_only": "on",
+      "environment_label": "mtg-sealed-image-release-plan-production-read-only",
+      "environment_key_sha256": "4a9903b58cb6f65efb3980cc7bc13629c8f018ebf99b2c83c7ecd6bb8266989a"
+    },
+    "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "active_price_release_state": "frozen",
+    "active_price_expected_member_count": 2182,
+    "current_image_release_id": null,
+    "mtg_sealed_visibility": "hidden",
+    "mtg_catalog_visibility": "signed_in",
+    "one_piece_price_pointer_count": 1,
+    "source_release_member_count": 2182,
+    "source_release_member_mismatch_count": 0,
+    "source_release_member_fingerprint_sha256": "b68bd639d7971e16f513077ba6346f402d845145f6c92b508287c66f3f2b221c",
+    "image_tables": [
+      {
+        "table_name": "sealed_product_image_evidence",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_objects",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_variant_image_assertions",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_releases",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_release_members",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      },
+      {
+        "table_name": "sealed_product_image_release_pointer",
+        "rls_enabled": true,
+        "rls_forced": true,
+        "row_count": 0
+      }
+    ],
+    "app_table_grant_count": 0,
+    "service_table_grant_count": 11,
+    "service_routine_grant_count": 2,
+    "migration_ledger": [
+      {
+        "version": "20260904130000",
+        "name": "mtg_sealed_image_evidence_and_signing_authorization_v1"
+      }
+    ],
+    "database_fingerprint_parity": {
+      "database_member_fingerprint_count": 2149,
+      "database_member_fingerprint_mismatch_count": 0,
+      "planned_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+      "database_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+      "valid": true
+    },
+    "transaction_closed_before_artifacts": true
+  },
+  "collision_policy": {
+    "exact_complete_release": "idempotent_zero_row_rerun",
+    "empty_target_tables": "insert_exact_frozen_payload_under_separate_authority",
+    "partial_exact_collision": "hard_stop_no_write",
+    "mismatched_id_or_fingerprint": "hard_stop_no_write",
+    "existing_mtg_image_pointer": "require_exact_compare_and_swap"
+  },
+  "apply_sequence": [
+    "fresh_read_only_preflight_and_authority_reconciliation",
+    "single_transaction_insert_evidence_objects_assertions_release_members",
+    "database_manifest_parity_check",
+    "freeze_release_with_exact_manifest",
+    "inside_transaction_exact_readback",
+    "commit_without_pointer_activation",
+    "independent_read_only_post_apply_readback",
+    "zero_row_idempotency_preflight"
+  ],
+  "pointer_transition": {
+    "included_in_current_apply_gate": false,
+    "target_image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "expected_current_image_release_id": null,
+    "pointer_contract_version": "SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1",
+    "function": "sealed_product_set_active_image_release_v1(uuid,uuid,uuid)",
+    "separate_authority_required": true,
+    "reason": "evidence release must be frozen and independently read back first"
+  },
+  "rollback": {
+    "before_commit": "rollback_entire_transaction_on_any_mismatch",
+    "after_evidence_commit": "append_only_evidence_remains_inactive_without_pointer",
+    "pointer_canary": "set_pointer_inside_transaction_then_rollback_to_exact_baseline",
+    "durable_pointer_activation": "separate gate after rollback canary and exact frozen-release readback",
+    "destructive_delete_allowed": false
+  },
+  "required_post_apply_readback": {
+    "exact_row_counts": {
+      "source_members": 2182,
+      "evidence": 2182,
+      "eligible_variants": 2149,
+      "exclusions": 33,
+      "objects": 2141,
+      "assertions": 2149,
+      "releases": 1,
+      "release_members": 2149
+    },
+    "exact_ids_and_fingerprints": true,
+    "manifest_function_matches_plan": true,
+    "release_state": "frozen",
+    "pointer_unchanged": true,
+    "rls_forced_and_enabled": true,
+    "app_table_grants": "none",
+    "service_table_grants": "frozen_schema_contract",
+    "cross_game_and_product_boundaries_unchanged": true
+  },
+  "boundaries": {
+    "database_connections": 1,
+    "database_reads": 1,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "storage_deletes": 0,
+    "image_evidence_writes": 0,
+    "image_release_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+  "required_future_authority_template": "I approve the durable MTG sealed database image-evidence release apply from <EXECUTION_COMMIT_SHA>, using source coverage fingerprint cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d, durable Storage execution fingerprint ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e, image release plan fingerprint 7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9, and <EXECUTION_FINGERPRINT>. This authorizes one transaction inserting exactly 2182 evidence rows, 2141 object rows, 2149 assertions, 1 draft release, and 2149 release members, then freezing that release after exact manifest verification. It authorizes no image pointer, Storage, pricing, visibility, Vault, signer, client, cross-game, update, or delete operation.",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "722aaf241e967ebc3e05f3963eb44f31cc81c6ae",
+    "expected_head_sha": "722aaf241e967ebc3e05f3963eb44f31cc81c6ae",
+    "tracked_worktree_clean": true
+  },
+  "source_artifacts": {
+    "coverage_directory": "docs/audits/pricing/mtg_sealed_image_coverage_v1/2026-09-04_live_33841181449",
+    "durable_plan_directory": "docs/audits/pricing/mtg_sealed_durable_image_plan_v1/2026-09-04T22-07-02Z_offline",
+    "durable_execution_directory": "docs/audits/pricing/mtg_sealed_durable_image_storage_v1/2026-09-05T00-34-15Z_passed",
+    "coverage_bundle_valid": true,
+    "durable_plan_artifacts_valid": true,
+    "durable_execution_artifacts_valid": true
+  },
+  "validation": {
+    "valid": true,
+    "findings": []
+  }
+}
