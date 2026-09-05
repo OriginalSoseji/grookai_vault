@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_126_MTG_SEALED_SIGNED_IN_BACKEND_ACTIVATED.md`
+
+This checkpoint records the exact durable MTG sealed backend transition to
+`signed_in`, the one-row compare-and-swap, full `2,144`-row corpus
+reconciliation, real-auth RPC/signer/image proof, anonymous denial, protected
+state, independent readback, and zero Auth residue.
+
+Decision locked there:
+
+- MTG sealed data and private self-hosted images are durably available through
+  the signed-in backend boundary while both product clients remain disabled
+
+Unresolved risk afterward:
+
+- bounded web and Flutter client rollout, refresh scheduling, and any future
+  anonymous policy remain separate gates
+
 ### `PRICING_CHECKPOINT_125_MTG_SEALED_VISIBILITY_ACTIVATION_PLAN_FROZEN.md`
 
 This checkpoint records the exact durable MTG sealed signed-in visibility
