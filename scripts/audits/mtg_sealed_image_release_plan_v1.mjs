@@ -451,13 +451,22 @@ const result = await withReadOnlyClient({
   });
   return { bundle, productionSnapshot };
 });
-const validation = validateMtgSealedImageReleasePlanV1(result.bundle);
+const productionSnapshot = {
+  ...result.productionSnapshot,
+  transaction_closed_before_artifacts: true,
+};
+const bundle = buildMtgSealedImageReleasePlanV1({
+  ...sources,
+  repositoryCommitSha: repo.head_sha,
+  productionSnapshot,
+});
+const validation = validateMtgSealedImageReleasePlanV1(bundle);
 if (!validation.valid) {
   throw new Error(`Image release plan invalid: ${validation.findings.join(',')}`);
 }
 
 const runPlan = {
-  ...result.bundle.plan,
+  ...bundle.plan,
   repository: repo,
   source_artifacts: sources.sourceArtifacts,
   validation,
@@ -469,12 +478,12 @@ const summary = {
   release_id: runPlan.release_id,
   release_manifest_fingerprint_sha256:
     runPlan.release_manifest_fingerprint_sha256,
-  row_counts: Object.fromEntries(Object.entries(result.bundle.payload)
+  row_counts: Object.fromEntries(Object.entries(bundle.payload)
     .map(([name, rows]) => [name, rows.length])),
-  exclusion_count: result.bundle.exclusions.length,
-  production_preflight_valid: result.productionSnapshot.valid,
+  exclusion_count: bundle.exclusions.length,
+  production_preflight_valid: productionSnapshot.valid,
   database_fingerprint_parity:
-    result.productionSnapshot.database_fingerprint_parity,
+    productionSnapshot.database_fingerprint_parity,
   pointer_activation_included: false,
   boundaries: runPlan.boundaries,
   zero_reconciliation_mismatches: true,
@@ -498,17 +507,17 @@ const report = `# MTG Sealed Image Release Plan V1\n\n` +
 await writeArtifacts(args.outDir, {
   'run_plan.json': Buffer.from(`${JSON.stringify(runPlan, null, 2)}\n`),
   'production_preflight.json': Buffer.from(
-    `${JSON.stringify(result.productionSnapshot, null, 2)}\n`),
-  'image_evidence.jsonl.gz': gzipSync(jsonlBytes(result.bundle.payload.evidence),
+    `${JSON.stringify(productionSnapshot, null, 2)}\n`),
+  'image_evidence.jsonl.gz': gzipSync(jsonlBytes(bundle.payload.evidence),
     { level: 9, mtime: 0 }),
-  'image_objects.jsonl.gz': gzipSync(jsonlBytes(result.bundle.payload.objects),
+  'image_objects.jsonl.gz': gzipSync(jsonlBytes(bundle.payload.objects),
     { level: 9, mtime: 0 }),
-  'image_assertions.jsonl.gz': gzipSync(jsonlBytes(result.bundle.payload.assertions),
+  'image_assertions.jsonl.gz': gzipSync(jsonlBytes(bundle.payload.assertions),
     { level: 9, mtime: 0 }),
-  'image_releases.jsonl': jsonlBytes(result.bundle.payload.releases),
+  'image_releases.jsonl': jsonlBytes(bundle.payload.releases),
   'image_release_members.jsonl.gz': gzipSync(
-    jsonlBytes(result.bundle.payload.release_members), { level: 9, mtime: 0 }),
-  'exclusions.jsonl.gz': gzipSync(jsonlBytes(result.bundle.exclusions),
+    jsonlBytes(bundle.payload.release_members), { level: 9, mtime: 0 }),
+  'exclusions.jsonl.gz': gzipSync(jsonlBytes(bundle.exclusions),
     { level: 9, mtime: 0 }),
   'pointer_plan.json': Buffer.from(
     `${JSON.stringify(runPlan.pointer_transition, null, 2)}\n`),
