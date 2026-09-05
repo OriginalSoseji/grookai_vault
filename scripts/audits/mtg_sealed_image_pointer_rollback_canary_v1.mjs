@@ -528,4 +528,5 @@ if (invoked === fileURLToPath(import.meta.url)) {
 }
 
 export { captureAppliedImageState, evaluateAppliedPreflight, parseArgs,
-  readOnlyPreflight, runRollbackCanary, verifyRollback };
+  candidateStructuralEligibility, comparableProtectedState, readOnlyPreflight,
+  runRollbackCanary, verifyRollback, visibilityAndSigning };
