@@ -1,0 +1,52 @@
+{
+  "status": "pass",
+  "scope": "bounded_signed_in_web_and_android_client_canary",
+  "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+  "parent_sha": "63384d87d220dd678e6444013f7cfe5c933e6740",
+  "implementation_sha": "2ab018235",
+  "production_project": "ycdxbpibncqcchqiihfz",
+  "backend_status": "signed_in",
+  "clients": {
+    "default_enabled": false,
+    "web_local_canary": {
+      "signed_out_redirect_status": 307,
+      "authenticated_rows": 24,
+      "self_hosted_image_loaded": true,
+      "temporary_auth_residue": 0
+    },
+    "samsung_debug_canary": {
+      "device_model": "SM-S908U",
+      "package": "com.grookai.vault",
+      "browse_passed": true,
+      "search_query": "bundle",
+      "search_passed": true,
+      "fatal_exceptions": 0,
+      "process_survived": true,
+      "debug_total_pss_kb": 3169416,
+      "debug_graphics_kb": 2551896,
+      "production_performance_proven": false
+    }
+  },
+  "tests": {
+    "web_targeted": { "passed": 7, "failed": 0 },
+    "historical_contract_transition": { "passed": 20, "failed": 0 },
+    "flutter_targeted": { "passed": 6, "failed": 0 },
+    "node_contracts": { "passed": 2977, "failed": 0 },
+    "flutter_full": { "passed": 659, "failed": 0 },
+    "web_typecheck": "pass",
+    "web_production_build": "pass",
+    "flutter_analyze": "pass",
+    "diff_check": "pass"
+  },
+  "writes": {
+    "database": 0,
+    "storage": 0,
+    "vault": 0,
+    "approvals": 0,
+    "embeddings": 0
+  },
+  "anonymous_visibility_enabled": false,
+  "production_web_deployed": false,
+  "mobile_store_deployed": false,
+  "next_gate": "signed_in_production_web_deploy_then_release_mobile_performance_canary"
+}

@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_127_MTG_SEALED_SIGNED_IN_CLIENT_CANARY_PASSED.md`
+
+This checkpoint records the disabled-by-default signed-in web and Flutter
+clients, protected and bounded catalog routes, real-auth web proof, physical
+Samsung browse/search proof, full repository shipcheck, and preserved
+anonymous and no-write boundaries.
+
+Decision locked there:
+
+- the MTG sealed client implementation is functionally proven for a bounded
+  signed-in canary while production deployment remains a separate gate
+
+Unresolved risk afterward:
+
+- production web flag/deployment proof, production-mode mobile memory and
+  latency proof, TestFlight rollout, refresh scheduling, and anonymous policy
+  remain separate gates
+
 ### `PRICING_CHECKPOINT_126_MTG_SEALED_SIGNED_IN_BACKEND_ACTIVATED.md`
 
 This checkpoint records the exact durable MTG sealed backend transition to
