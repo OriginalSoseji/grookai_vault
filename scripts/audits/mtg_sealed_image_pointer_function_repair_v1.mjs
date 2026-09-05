@@ -37,6 +37,7 @@ function parseArgs(argv) {
       'mtg-sealed-image-pointer-function-repair-v1') };
   for (const argument of argv) {
     if (argument === '--plan') args.mode = 'plan';
+    else if (argument === '--rollback-canary') args.mode = 'rollback';
     else if (argument === '--apply') args.mode = 'apply';
     else if (argument.startsWith('--env-file=')) {
       args.envFile = path.resolve(argument.slice('--env-file='.length));
@@ -220,11 +221,11 @@ async function writeArtifacts(outDir, files, producerCommitSha) {
 }
 
 async function runApply({ connectionString, projectRef, repositoryState,
-  migrationSql, plan, baseline }) {
+  migrationSql, plan, durable = true }) {
   const client = new Client(clientOptions(connectionString,
     'mtg-sealed-image-pointer-function-repair-v1'));
   await client.connect();
-  let committed = false;
+  let completed = false;
   try {
     await client.query('begin transaction isolation level repeatable read');
     await client.query("set local lock_timeout='5s'");
@@ -258,12 +259,13 @@ async function runApply({ connectionString, projectRef, repositoryState,
       throw new Error(`Inside-transaction repair readback failed: ` +
         insideValidation.findings.join(','));
     }
-    await client.query('commit');
-    committed = true;
+    await client.query(durable ? 'commit' : 'rollback');
+    completed = true;
     return { before, inside, inside_validation: insideValidation,
+      transaction: { committed: durable, rolled_back: !durable },
       repository: repositoryState };
   } finally {
-    if (!committed) await client.query('rollback').catch(() => {});
+    if (!completed) await client.query('rollback').catch(() => {});
     await client.end();
   }
 }
@@ -304,13 +306,54 @@ async function main() {
       output_directory: args.outDir }, null, 2)}\n`);
     return;
   }
+  if (args.mode === 'rollback') {
+    const execution = await runApply({ connectionString, projectRef,
+      repositoryState: repo, migrationSql, plan, durable: false });
+    const postRollback = await readOnlyState(connectionString, projectRef,
+      'mtg-sealed-image-pointer-function-repair-post-rollback-v1');
+    const postValidation =
+      evaluateMtgSealedImagePointerRepairPreflightV1(postRollback);
+    const functionRestored = hashMtgSealedImagePointerRepairV1(
+      postRollback.pointer_function.definition) ===
+        plan.baseline_function_definition_sha256;
+    const protectedStateRestored =
+      mtgSealedImagePointerRepairProtectedStateFingerprintV1(postRollback) ===
+        plan.protected_state_fingerprint_sha256;
+    if (!postValidation.valid || !functionRestored || !protectedStateRestored) {
+      throw new Error(`Repair rollback residue: ${postValidation.findings.join(',')}`);
+    }
+    const summary = { status: 'repair_migration_canary_passed_zero_residue',
+      repository: repo, migration: plan.migration,
+      apply_plan_fingerprint_sha256: plan.apply_plan_fingerprint_sha256,
+      transaction_committed: false, transaction_rolled_back: true,
+      repaired_function_readback_inside_transaction:
+        execution.inside_validation.valid,
+      function_restored_after_rollback: functionRestored,
+      protected_state_restored_after_rollback: protectedStateRestored,
+      pointer_count_after_rollback: postRollback.pointer.count,
+      boundaries: plan.boundaries,
+      required_approval_message: plan.required_approval_message };
+    await writeArtifacts(args.outDir, { 'apply_plan.json': plan,
+      'fresh_preflight.json': baseline,
+      'transaction_readback.json': execution,
+      'post_rollback_readback.json': postRollback, 'summary.json': summary,
+      'REPORT.md': `# MTG Sealed Image Pointer Function Repair Canary\n\n` +
+        `- Status: **PASS, ZERO RESIDUE**\n` +
+        `- Repaired function valid in transaction: \`true\`\n` +
+        `- Transaction committed: \`false\`\n` +
+        `- Function restored after rollback: \`true\`\n` +
+        `- Pointer rows after rollback: \`0\`\n` }, repo.head_sha);
+    process.stdout.write(`${JSON.stringify({ ...summary,
+      output_directory: args.outDir }, null, 2)}\n`);
+    return;
+  }
   if (args.expectedPlanFingerprint !== plan.apply_plan_fingerprint_sha256 ||
       process.env[MTG_SEALED_IMAGE_POINTER_REPAIR_APPROVAL_ENV_V1] !==
         plan.guard_token) {
     throw new Error('Exact repair plan fingerprint and approval token are required');
   }
   const execution = await runApply({ connectionString, projectRef,
-    repositoryState: repo, migrationSql, plan, baseline });
+    repositoryState: repo, migrationSql, plan, durable: true });
   const readback = await readOnlyState(connectionString, projectRef,
     'mtg-sealed-image-pointer-function-repair-readback-v1');
   const validation = evaluateMtgSealedImagePointerRepairReadbackV1({ plan,

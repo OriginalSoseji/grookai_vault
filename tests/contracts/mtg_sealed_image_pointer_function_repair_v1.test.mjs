@@ -145,12 +145,13 @@ test('readback fails on function, pointer, grant, or protected-data drift', () =
 
 test('operator requires exact authority and has one guarded commit path', () => {
   assert.match(script, /argument === '--plan'/);
+  assert.match(script, /argument === '--rollback-canary'/);
   assert.match(script, /argument === '--apply'/);
   assert.match(script, /expectedPlanFingerprint/);
   assert.match(script, /MTG_SEALED_IMAGE_POINTER_REPAIR_APPROVAL_ENV_V1/);
   assert.match(script, /stripSealedMigrationTransactionWrapperV1/);
   assert.match(script, /insert into supabase_migrations\.schema_migrations/);
-  assert.equal((script.match(/client\.query\('commit'\)/g) ?? []).length, 1);
+  assert.match(script, /durable \? 'commit' : 'rollback'/);
   assert.doesNotMatch(script,
     /select \* from\s+public\.sealed_product_set_active_image_release_v1\(/);
   assert.doesNotMatch(script, /storage\.from|fetch\(/);

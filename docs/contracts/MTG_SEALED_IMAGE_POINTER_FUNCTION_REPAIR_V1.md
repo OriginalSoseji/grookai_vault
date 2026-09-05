@@ -32,6 +32,10 @@ The apply must prove before commit and through an independent read-only
 connection that the pointer remains absent and every protected row count and
 release/visibility authority remains unchanged.
 
+Before durable authority is requested, the complete migration and ledger row
+must be installed in one production transaction, read back, rolled back, and
+independently proven absent with the original function restored.
+
 ## Next Gate
 
 After the migration is applied and read back, rerun the rollback-only pointer
