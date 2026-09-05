@@ -2,6 +2,8 @@ import { createHash } from 'node:crypto';
 
 import { splitSealedMigrationStatementsV1 } from
   './cross_tcg_sealed_product_schema_apply_v1.mjs';
+import { MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1 } from
+  './mtg_sealed_image_migration_preflight_v1.mjs';
 import { stableJson } from './one_piece_canonical_import_staging_v1.mjs';
 
 export const MTG_SEALED_IMAGE_POINTER_REPAIR_VERSION_V1 =
@@ -48,7 +50,7 @@ export function evaluateMtgSealedImagePointerRepairPreflightV1(preflight, {
 } = {}) {
   const findings = [];
   const add = (condition, code) => { if (condition) findings.push(code); };
-  add(preflight?.project_ref !== 'rksadomjkuoxvrbhsmxu',
+  add(preflight?.project_ref !== MTG_SEALED_IMAGE_CANONICAL_PROJECT_REF_V1,
     'production_project_mismatch');
   add(requireReadOnly && preflight?.transaction_read_only !== true,
     'preflight_not_read_only');

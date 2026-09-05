@@ -25,7 +25,7 @@ const repairedDefinition = brokenDefinition.replace(
 
 function preflight({ repaired = false, ledger = false } = {}) {
   return {
-    project_ref: 'rksadomjkuoxvrbhsmxu',
+    project_ref: 'ycdxbpibncqcchqiihfz',
     transaction_read_only: true,
     transaction_closed_before_artifacts: true,
     migration_ledger: { count: ledger ? 1 : 0,
