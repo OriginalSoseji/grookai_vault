@@ -226,7 +226,7 @@ async function captureProductionSnapshot(client, guard, sources) {
     left join public.sealed_product_game_release_controls sealed_control
       on sealed_control.game_key=pointer.game_key
     left join public.catalog_game_release_controls catalog_control
-      on catalog_control.game_key=pointer.game_key
+      on catalog_control.game_code=pointer.game_key
     where pointer.game_key='mtg'`))[0];
   const tableSecurity = await rows(client, `select relation.relname as table_name,
       relation.relrowsecurity as rls_enabled,
