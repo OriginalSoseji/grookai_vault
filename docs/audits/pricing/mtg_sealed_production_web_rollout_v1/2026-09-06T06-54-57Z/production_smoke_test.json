@@ -1,0 +1,39 @@
+{
+  "tested_at": "2026-09-06T07:01:20Z",
+  "route": "https://grookaivault.com/sealed/mtg",
+  "signed_out": {
+    "http_status": 307,
+    "location": "/login?next=%2Fsealed%2Fmtg",
+    "passed": true
+  },
+  "signed_in": {
+    "route_loaded": true,
+    "product_count": 24,
+    "market_price_count": 24,
+    "product_image_count": 24,
+    "loaded_product_image_count": 24,
+    "signed_self_hosted_image_count": 24,
+    "external_product_image_count": 0,
+    "app_origin_console_error_count": 0,
+    "passed": true
+  },
+  "search": {
+    "query": "Arena Starter Kit",
+    "result_count": 4,
+    "expected_examples_present": [
+      "2021 Arena Starter Kit",
+      "2022 Arena Starter Kit",
+      "2023 Arena Starter Kit"
+    ],
+    "loaded_product_image_count": 4,
+    "external_product_image_count": 0,
+    "passed": true
+  },
+  "security_boundary": {
+    "anonymous_catalog_access": false,
+    "private_object_paths_exposed": false,
+    "external_image_fallback_used": false,
+    "signed_url_values_persisted_in_audit": false
+  },
+  "result": "pass"
+}

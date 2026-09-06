@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_129_MTG_SEALED_PRODUCTION_WEB_ACTIVE.md`
+
+This checkpoint records the production web activation from tested, merged
+`main`, the Vercel flag and deployment provenance, signed-out denial,
+authenticated 24-product readback, signed self-hosted image proof, search proof,
+and the independent rollback path.
+
+Decision locked there:
+
+- the bounded MTG sealed web client is active only for signed-in collectors and
+  remains independently reversible through its Production feature flag
+
+Unresolved risk afterward:
+
+- production-mode mobile performance, TestFlight rollout, pagination, and the
+  separately prepared dimension constraint repair remain future gates
+
 ### `PRICING_CHECKPOINT_128_MTG_SEALED_DIMENSION_REPAIR_PREPARED.md`
 
 This checkpoint records the forward-only, schema-only repair for partially
