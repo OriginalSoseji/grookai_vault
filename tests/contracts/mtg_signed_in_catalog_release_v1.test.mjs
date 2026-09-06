@@ -254,7 +254,8 @@ test("post-commit readback and rollback use fresh bounded database connections",
     "utf8",
   );
 
-  assert.match(runner, /const READBACK_QUERY_TIMEOUT_MS = 900_000/);
+  assert.match(runner, /const READBACK_QUERY_TIMEOUT_MS = 300_000/);
+  assert.match(runner, /const ROLLBACK_QUERY_TIMEOUT_MS = 120_000/);
   assert.match(runner, /client\.on\("error"/);
   assert.match(
     runner,
@@ -268,6 +269,19 @@ test("post-commit readback and rollback use fresh bounded database connections",
     runner,
     /mtg-signed-in-catalog-release-v1-authenticated-readback/,
   );
-  assert.match(runner, /mtg-signed-in-catalog-release-v1-rollback/);
+  assert.match(
+    runner,
+    /mtg-signed-in-catalog-release-v1-rollback[\s\S]*?ROLLBACK_QUERY_TIMEOUT_MS/,
+  );
   assert.match(runner, /new AggregateError/);
+
+  const workflow = fs.readFileSync(
+    new URL(
+      "../../.github/workflows/mtg-signed-in-catalog-release.yml",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(workflow, /timeout-minutes: 60/);
+  assert.match(workflow, /leaves a rollback reserve/);
 });

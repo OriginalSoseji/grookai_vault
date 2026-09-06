@@ -38,6 +38,9 @@ future long readbacks vulnerable to the same false-failure mode.
 - Harden future release execution by closing the mutation connection after
   commit and using independent bounded connections for state, anonymous-role,
   authenticated-role, and rollback work.
+- Cap readback queries at five minutes and rollback at two minutes inside a
+  sixty-minute workflow, preserving an explicit rollback window after all
+  sequential proof queries.
 - Preserve the failed workflow as accurate evidence of a post-commit proof
   transport failure, not relabel it as a successful job.
 

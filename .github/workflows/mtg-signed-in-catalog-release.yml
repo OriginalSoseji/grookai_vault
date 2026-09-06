@@ -57,7 +57,10 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # The worker caps each readback query at five minutes and rollback at two.
+    # Sixty minutes leaves a rollback reserve after both plan/apply preflight
+    # and every sequential post-commit catalog/role proof.
+    timeout-minutes: 60
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}

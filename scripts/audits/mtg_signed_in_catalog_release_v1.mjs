@@ -18,7 +18,8 @@ import {
 
 const { Client } = pg;
 const DEFAULT_QUERY_TIMEOUT_MS = 300_000;
-const READBACK_QUERY_TIMEOUT_MS = 900_000;
+const READBACK_QUERY_TIMEOUT_MS = 300_000;
+const ROLLBACK_QUERY_TIMEOUT_MS = 120_000;
 const ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
@@ -592,6 +593,7 @@ async function main() {
                 planFingerprint,
                 args.transition,
               ),
+            ROLLBACK_QUERY_TIMEOUT_MS,
           );
         } catch (rollbackError) {
           throw new AggregateError(
