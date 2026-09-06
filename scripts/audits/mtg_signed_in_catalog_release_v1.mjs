@@ -17,6 +17,8 @@ import {
 } from "../../backend/pricing/mtg_signed_in_catalog_release_v1.mjs";
 
 const { Client } = pg;
+const DEFAULT_QUERY_TIMEOUT_MS = 300_000;
+const READBACK_QUERY_TIMEOUT_MS = 900_000;
 const ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
@@ -110,6 +112,46 @@ async function writeJson(file, value) {
   const body = `${JSON.stringify(value, null, 2)}\n`;
   await fs.writeFile(file, body, "utf8");
   return body;
+}
+
+function createReleaseClient(
+  connectionString,
+  applicationName,
+  queryTimeout = DEFAULT_QUERY_TIMEOUT_MS,
+) {
+  const client = new Client({
+    connectionString,
+    ssl: { rejectUnauthorized: false },
+    connectionTimeoutMillis: 15_000,
+    query_timeout: queryTimeout,
+    statement_timeout: queryTimeout,
+    application_name: applicationName,
+  });
+  client.on("error", (error) => {
+    console.error(
+      `[${applicationName}] database connection error: ${error.message}`,
+    );
+  });
+  return client;
+}
+
+async function withReleaseClient(
+  connectionString,
+  applicationName,
+  callback,
+  queryTimeout = READBACK_QUERY_TIMEOUT_MS,
+) {
+  const client = createReleaseClient(
+    connectionString,
+    applicationName,
+    queryTimeout,
+  );
+  try {
+    await client.connect();
+    return await callback(client);
+  } finally {
+    await client.end().catch(() => {});
+  }
 }
 
 const COUNTS_SQL = `jsonb_build_object(
@@ -318,14 +360,11 @@ async function main() {
     throw new Error("Expected commit does not match the current commit");
   }
 
-  const client = new Client({
+  const client = createReleaseClient(
     connectionString,
-    ssl: { rejectUnauthorized: false },
-    connectionTimeoutMillis: 15_000,
-    query_timeout: 300_000,
-    statement_timeout: 300_000,
-    application_name: "mtg-signed-in-catalog-release-v1",
-  });
+    "mtg-signed-in-catalog-release-v1-mutation",
+  );
+  let clientEnded = false;
   await client.connect();
   try {
     const before = await captureState(client);
@@ -478,12 +517,25 @@ async function main() {
       await client.query("commit");
       committed = true;
 
-      const after = await captureState(client);
-      const anonymous = await captureRoleVisibility(client, "anon", sample);
-      const authenticated = await captureRoleVisibility(
-        client,
-        "authenticated",
-        sample,
+      await client.end();
+      clientEnded = true;
+
+      const after = await withReleaseClient(
+        connectionString,
+        "mtg-signed-in-catalog-release-v1-state-readback",
+        captureState,
+      );
+      const anonymous = await withReleaseClient(
+        connectionString,
+        "mtg-signed-in-catalog-release-v1-anon-readback",
+        (readbackClient) =>
+          captureRoleVisibility(readbackClient, "anon", sample),
+      );
+      const authenticated = await withReleaseClient(
+        connectionString,
+        "mtg-signed-in-catalog-release-v1-authenticated-readback",
+        (readbackClient) =>
+          captureRoleVisibility(readbackClient, "authenticated", sample),
       );
       const result = evaluateMtgSignedInReleaseReadbackV1({
         before,
@@ -529,19 +581,31 @@ async function main() {
       );
     } catch (error) {
       if (committed) {
-        await restoreReleaseControl(
-          client,
-          before.release_control,
-          planFingerprint,
-          args.transition,
-        );
+        try {
+          await withReleaseClient(
+            connectionString,
+            "mtg-signed-in-catalog-release-v1-rollback",
+            (rollbackClient) =>
+              restoreReleaseControl(
+                rollbackClient,
+                before.release_control,
+                planFingerprint,
+                args.transition,
+              ),
+          );
+        } catch (rollbackError) {
+          throw new AggregateError(
+            [error, rollbackError],
+            "Release readback failed and automatic release-control rollback could not be verified",
+          );
+        }
       } else {
         await client.query("rollback");
       }
       throw error;
     }
   } finally {
-    await client.end();
+    if (!clientEnded) await client.end().catch(() => {});
   }
 }
 

@@ -1,0 +1,109 @@
+{
+  "artifact_version": "MTG_SIGNED_IN_CATALOG_RELEASE_PRODUCTION_READBACK_V1",
+  "recorded_at": "2026-09-06T17:37:50.856Z",
+  "release_source_commit_sha": "663390001d80e52f0782e58f280be7d2abad0737",
+  "release_version": "MTG_SIGNED_IN_CATALOG_RELEASE_V1",
+  "release_status": "signed_in",
+  "release_refresh_plan_fingerprint_sha256": "39a731f35bf4dea6aadd41090bcffc98c718524bd00cc35e553b0f1e1ab24534",
+  "release_control_updated_at": "2026-09-06T17:16:18.773Z",
+  "deployment": {
+    "web": {
+      "commit_sha": "663390001d80e52f0782e58f280be7d2abad0737",
+      "deployment_id": "6294350318",
+      "immutable_url": "https://grookai-vault-bupsa5kbj-sosejis-projects.vercel.app",
+      "production_status": "ready"
+    },
+    "android": {
+      "commit_sha": "663390001d80e52f0782e58f280be7d2abad0737",
+      "version_code": "312",
+      "workflow_run_id": "34040578737",
+      "artifact_id": "9991678164",
+      "artifact_sha256": "3da157cd2705f711e04a3606f6bbc1528c84dc2b8cf61cefe315d2232273df0b",
+      "artifact_status": "signed"
+    },
+    "ios": {
+      "commit_sha": "663390001d80e52f0782e58f280be7d2abad0737",
+      "build_number": "312",
+      "app_store_build_id": "40e5522f-28ca-4013-a798-f9a42902c278",
+      "distribution_status": "valid_testflight_build"
+    }
+  },
+  "pricing": {
+    "worker_version": "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5",
+    "policy_version": "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3",
+    "run_key": "mtg-global-market-production-20260906-build312-repair",
+    "run_id": "c9f22aa1-775c-4126-a88c-49ace0c1d0d6",
+    "source_sync_run_id": "1bbb7d37-23f2-48d8-9538-fcb58ef2161d",
+    "selected_count": 206459,
+    "eligible_count": 164139,
+    "current_view_count": 164139,
+    "mtg_current_view_count": 132961,
+    "pokemon_current_view_count": 31178,
+    "durable_run_state": "verified",
+    "reconciliation_state": "reconciled",
+    "reconciliation_mismatches": 0,
+    "writes_canonical_identity": false,
+    "writes_vault": false
+  },
+  "catalog_readback": {
+    "games": 1,
+    "sets": 946,
+    "card_prints": 104412,
+    "card_print_identity": 104412,
+    "card_printings": 157678,
+    "self_hosted_fronts": 104250,
+    "image_coverage_gaps": 162,
+    "image_faces": 108187
+  },
+  "sample": {
+    "card_print_id": "a17d3fee-209e-5eb2-bebb-56b37dcd3999",
+    "gv_id": "GV-MTG-SF-5AA90AB6-2686-4462-8725-5D4370C05437",
+    "name": "_____"
+  },
+  "role_visibility": {
+    "anonymous": {
+      "games": 0,
+      "sets": 0,
+      "card_prints": 0,
+      "card_print_identity": 0,
+      "card_printings": 0,
+      "self_hosted_fronts": 0,
+      "image_coverage_gaps": 0,
+      "image_faces": 0,
+      "direct_card_matches": 0,
+      "search_matches": 0,
+      "direct_face_matches": 0,
+      "pricing_rows": 0
+    },
+    "authenticated": {
+      "games": 1,
+      "sets": 946,
+      "card_prints": 104412,
+      "card_print_identity": 104412,
+      "card_printings": 157678,
+      "self_hosted_fronts": 104250,
+      "image_coverage_gaps": 162,
+      "image_faces": 108187,
+      "direct_card_matches": 1,
+      "search_matches": 1,
+      "direct_face_matches": 1,
+      "pricing_rows": 1
+    }
+  },
+  "workflow_evidence": {
+    "release_plan_run_id": "34047889277",
+    "release_plan_conclusion": "success",
+    "release_apply_run_id": "34047994529",
+    "release_apply_conclusion": "failure_after_commit_during_post_commit_readback",
+    "post_commit_plan_run_id": "34048584342",
+    "post_commit_plan_conclusion": "success"
+  },
+  "boundaries": {
+    "catalog_rows_mutated": 0,
+    "image_rows_mutated": 0,
+    "storage_objects_mutated": 0,
+    "vault_rows_mutated": 0,
+    "app_store_public_release_performed": false,
+    "testflight_upload_only": true
+  }
+}
