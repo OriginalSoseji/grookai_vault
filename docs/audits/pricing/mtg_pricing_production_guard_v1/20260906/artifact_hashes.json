@@ -3,8 +3,8 @@
   "artifacts": [
     {
       "path": "offline_replay.json",
-      "bytes": 2536,
-      "sha256": "4b1d93b708addf119a4f1cf15fcf704bc9065bc3b21b9c5206d6c44e3c6a22cb"
+      "bytes": 3670,
+      "sha256": "a6c770d7358fe99d05315b93bbd998b657334b6a59b929b62484d1719c26d307"
     },
     {
       "path": "production_read_only_query_proof.json",
@@ -13,8 +13,8 @@
     },
     {
       "path": "production_activation_read_only_query_proof.json",
-      "bytes": 743,
-      "sha256": "59c560c86326cc8fccdd0d4eed3cfdafcf4e622faa0e5d3daa3cc69c8cc2f02b"
+      "bytes": 780,
+      "sha256": "05bb14dd89626bffcc94ccb25c0ef3bd8f6a300a4f5ca6af034a4a9c1f51c650"
     }
   ]
 }

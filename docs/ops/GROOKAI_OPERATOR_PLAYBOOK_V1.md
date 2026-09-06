@@ -231,13 +231,13 @@ Operate MTG market pricing only through
 `TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3`, and a source sync reused by the
 production worker.
 
-The production guard computes both the last-known Pokemon baseline and its
-currently fresh subset through the indexed active publication pointer,
+The production guard computes last-known MTG and Pokemon baselines plus the
+currently fresh Pokemon subset through the indexed active publication pointer,
 snapshots, decisions, and truth-review quarantine. It does not aggregate the
 broad `v_market_price_current_v1` client view or count unscoped historical
-decisions. The shadow may reduce the baseline by at most `0.1%`, rounded down;
-a larger reduction blocks even when the fresh subset is empty or expired. The
-baseline query is bounded by a 120-second database timeout.
+decisions. The shadow may reduce either baseline by at most `0.1%`, rounded
+down; a larger reduction blocks even when the Pokemon fresh subset is empty or
+expired. The baseline query is bounded by a 120-second database timeout.
 
 Both shadow and baseline coverage are counts of distinct canonical
 `card_printing_id` values; source-row duplication cannot satisfy the guard.
@@ -248,7 +248,7 @@ prior counts/findings without a stack trace.
 The shadow comparison is an early provenance gate. Production worker
 `TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6` performs the authoritative second
 comparison inside the activation transaction using the actual staged
-publication snapshots and the then-current indexed Pokemon baseline. It must
+publication snapshots and the then-current indexed MTG and Pokemon baselines. It must
 complete before `activate_market_price_publication_set_v1` can move the
 publication pointer. The final artifact must report guard stage
 `production_pre_activation` and evidence scope
@@ -266,10 +266,10 @@ first executable job step, before checkout, repository verification, contract
 tests, or dependency installation. The always-running evidence upload therefore
 classifies failures that occur before the publication worker starts.
 
-The established Pokemon publication lane must have a nonzero active-publication
-baseline. A missing pointer or broken publication/run join produces a zero
-baseline and blocks both shadow preflight and production pre-activation. This
-workflow has no implicit bootstrap exception.
+The established MTG and Pokemon publication lanes must each have a nonzero
+active-publication baseline. A missing pointer or broken publication/run join
+produces zero baselines and blocks both shadow preflight and production
+pre-activation. This workflow has no implicit bootstrap exception.
 
 Every production preflight writes
 `mtg-pricing-production-guard.json` into the workflow artifact. Read that file

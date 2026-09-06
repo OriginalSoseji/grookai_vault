@@ -29,15 +29,16 @@ source movement.
 - Compute a last-known Pokemon baseline and its currently fresh subset through
   the indexed active publication pointer, snapshots, decisions, and quarantine
   boundary. Do not aggregate through the broad client view.
-- Compare the reconciled shadow's Pokemon count with that baseline even when
-  the freshness-governed subset is empty or expired.
-- Permit a decrease no larger than `0.1%` of the baseline, rounded down to a
-  whole row.
+- Compare the reconciled shadow's MTG and Pokemon counts with the active
+  publication baselines even when the Pokemon freshness-governed subset is
+  empty or expired.
+- Permit a decrease no larger than `0.1%` of either baseline, rounded down to
+  a whole row.
 - Permit restoration only after the workflow has already proven one
   exact-commit, reconciled, nonzero shadow containing eligible MTG and Pokemon
   pricing.
 - Block missing MTG pricing, missing shadow Pokemon pricing, and any material
-  Pokemon decrease above the tolerance.
+  MTG or Pokemon decrease above the tolerance.
 - Count distinct `card_printing_id` values on both shadow and baseline sides so
   duplicate source observations cannot mask identity loss.
 - Apply the active truth-review quarantine boundary to both shadow eligible
@@ -54,8 +55,8 @@ source movement.
   `mtg-pricing-production-guard.json` in the immutable workflow artifact.
 - Treat shadow coverage as an early provenance gate, not activation authority.
   Immediately before production activation, re-evaluate the actual staged
-  publication snapshots against the then-current indexed Pokemon baseline in
-  the same transaction that moves the publication pointer.
+  publication snapshots against the then-current indexed MTG and Pokemon
+  baselines in the same transaction that moves the publication pointer.
 - Overwrite the workflow guard artifact with that production pre-activation
   result. Mutable mapping, identity, source-catalog, or truth-review changes
   therefore cannot hide a materially smaller production candidate set behind
@@ -67,9 +68,10 @@ source movement.
 - Bound the authoritative worker-side guard to a 120-second transaction-local
   statement timeout and a 125-second client query timeout, then restore the
   worker's prior statement timeout before activation.
-- Fail closed when the established active Pokemon publication baseline is zero.
-  A missing pointer or broken publication/run join blocks both preflight and
-  pre-activation; this workflow does not authorize bootstrap publication.
+- Fail closed when either established active MTG or Pokemon publication
+  baseline is zero. A missing pointer or broken publication/run join blocks
+  both preflight and pre-activation; this workflow does not authorize bootstrap
+  publication.
 
 ## Alternatives Rejected
 
@@ -137,15 +139,17 @@ source movement.
 ## Verification
 
 - Guard and worker syntax checks: passed.
-- Targeted pricing contracts: passed (`59/59`).
+- Targeted pricing contracts: passed (`60/60`).
 - Boundary proof: 31-row decrease passes; 32-row decrease blocks.
-- Offline replay: five cases passed with zero production access or writes.
+- MTG boundary proof: 132-row decrease passes; 133-row decrease blocks.
+- Offline replay: seven cases passed with zero production access or writes,
+  including active MTG collapse and missing-baseline failures.
 - Exact indexed production query proof: passed read only in 35.7 seconds with
   `31,178` baseline and `31,178` fresh Pokemon rows under the 120-second bound.
-- Exact production pre-activation query proof: passed read only in 58.8 seconds
+- Exact production pre-activation query proof: passed read only in 57.0 seconds
   against the current publication as a surrogate staged set, with `132,961`
-  MTG eligible, `31,178` Pokemon eligible, a `31,178` Pokemon baseline, and
-  zero writes under the 120-second bound.
+  MTG eligible, a `132,961` MTG baseline, `31,178` Pokemon eligible, a `31,178`
+  Pokemon baseline, and zero writes under the 120-second bound.
 - `git diff --check`: passed.
 - Full repository shipcheck: passed in 273.6 seconds, including zero critical
   production drift failures, web typecheck/lint/strict build, Flutter analysis,

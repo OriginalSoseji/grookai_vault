@@ -11,6 +11,7 @@ import {
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 import { buildMtgParentMappingPlanV1 } from "../../backend/pricing/mtg_tcgplayer_parent_mapping_policy_v1.mjs";
 import {
+  MTG_PRICING_MAX_MTG_DROP_RATIO_V1,
   MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1,
   buildMtgPricingProductionGuardFailureArtifactV1,
   buildMtgPricingProductionGuardStartedArtifactV1,
@@ -183,6 +184,7 @@ test("production guard permits restoring an expired governed Pokemon view", () =
   const result = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 31178,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 0,
@@ -198,6 +200,7 @@ test("production guard blocks material loss when the governed view is expired", 
   const result = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 1,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 0,
@@ -215,6 +218,7 @@ test("production guard fails closed when the active Pokemon baseline is unavaila
   const result = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 31178,
     baselinePokemonEligible: 0,
     freshCurrentPokemonEligible: 0,
@@ -235,6 +239,7 @@ test("production guard permits the proven six-row Pokemon source delta", () => {
   const result = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 31178,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 31184,
@@ -246,10 +251,54 @@ test("production guard permits the proven six-row Pokemon source delta", () => {
   assert.equal(result.ready_for_production, true);
 });
 
+test("production guard preserves the active MTG publication baseline", () => {
+  const boundary = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132829,
+    baselineMtgEligible: 132961,
+    shadowPokemonEligible: 31178,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
+  });
+  assert.equal(MTG_PRICING_MAX_MTG_DROP_RATIO_V1, 0.001);
+  assert.equal(boundary.counts.observed_mtg_drop, 132);
+  assert.equal(boundary.counts.allowed_mtg_drop, 132);
+  assert.equal(boundary.ready_for_production, true);
+
+  const collapsed = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 1,
+    baselineMtgEligible: 132961,
+    shadowPokemonEligible: 31178,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
+  });
+  assert.equal(collapsed.ready_for_production, false);
+  assert.equal(
+    collapsed.findings[0].code,
+    "mtg_active_publication_drop_exceeds_tolerance",
+  );
+
+  const missingBaseline = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    baselineMtgEligible: 0,
+    shadowPokemonEligible: 31178,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
+  });
+  assert.equal(missingBaseline.ready_for_production, false);
+  assert.equal(
+    missingBaseline.findings[0].code,
+    "missing_current_publication_mtg_baseline",
+  );
+});
+
 test("production guard enforces the Pokemon drop tolerance boundary", () => {
   const boundary = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 31153,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 31184,
@@ -261,6 +310,7 @@ test("production guard enforces the Pokemon drop tolerance boundary", () => {
   const overBoundary = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 31152,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 31184,
@@ -273,6 +323,7 @@ test("production guard blocks material Pokemon loss and missing MTG prices", () 
   const materialDrop = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 30000,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 31184,
@@ -286,6 +337,7 @@ test("production guard blocks material Pokemon loss and missing MTG prices", () 
   const missingMtg = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 0,
     mtgEligible: 0,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 31178,
     baselinePokemonEligible: 31178,
     freshCurrentPokemonEligible: 31178,
@@ -302,6 +354,7 @@ test("production guard failure artifacts preserve prior evidence", () => {
   const evaluated = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
     mtgEligible: 132961,
+    baselineMtgEligible: 132961,
     shadowPokemonEligible: 1,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 0,
@@ -337,6 +390,7 @@ test("production activation guard reports actual publication snapshot coverage",
   const ready = evaluateMtgPricingProductionActivationGuardV1({
     productionMtgSelected: 132961,
     productionMtgEligible: 132961,
+    baselineMtgEligible: 132961,
     productionPokemonEligible: 31178,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 31184,
@@ -350,6 +404,7 @@ test("production activation guard reports actual publication snapshot coverage",
   const blocked = evaluateMtgPricingProductionActivationGuardV1({
     productionMtgSelected: 0,
     productionMtgEligible: 0,
+    baselineMtgEligible: 132961,
     productionPokemonEligible: 1,
     baselinePokemonEligible: 31184,
     freshCurrentPokemonEligible: 0,
@@ -359,18 +414,25 @@ test("production activation guard reports actual publication snapshot coverage",
     blocked.findings.map((finding) => finding.code),
     [
       "missing_eligible_production_mtg_pricing",
+      "mtg_active_publication_drop_exceeds_tolerance",
       "pokemon_active_publication_drop_exceeds_tolerance",
     ],
   );
   assert.equal(
-    blocked.findings[1].production_pokemon_eligible,
+    blocked.findings[1].production_mtg_eligible,
+    0,
+  );
+  assert.equal(
+    blocked.findings[2].production_pokemon_eligible,
     1,
   );
-  assert.equal("shadow_pokemon_eligible" in blocked.findings[1], false);
+  assert.equal("shadow_mtg_eligible" in blocked.findings[1], false);
+  assert.equal("shadow_pokemon_eligible" in blocked.findings[2], false);
 
   const missingBaseline = evaluateMtgPricingProductionActivationGuardV1({
     productionMtgSelected: 132961,
     productionMtgEligible: 132961,
+    baselineMtgEligible: 132961,
     productionPokemonEligible: 31178,
     baselinePokemonEligible: 0,
     freshCurrentPokemonEligible: 0,
@@ -394,6 +456,7 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /from public\.market_price_current_publication current_state/);
   assert.match(WORKFLOW, /join public\.market_price_publication_snapshots snapshot/);
   assert.match(WORKFLOW, /pokemon_baseline_eligible/);
+  assert.match(WORKFLOW, /mtg_baseline_eligible/);
   assert.match(WORKFLOW, /fresh_pokemon_eligible/);
   assert.match(
     WORKFLOW,
@@ -467,6 +530,10 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(
     WORKER,
     /current_counts as \([\s\S]*from public\.market_price_current_publication current_state/,
+  );
+  assert.match(
+    WORKER,
+    /current_counts as \([\s\S]*category_id' = '1'[\s\S]*as mtg_baseline_eligible/,
   );
   assert.match(WORKER, /MTG_PRICING_PRODUCTION_GUARD_OUT/);
   assert.match(WORKER, /PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS = 120_000/);

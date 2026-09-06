@@ -1,6 +1,7 @@
 {
   "artifact_version": "MTG_PRICING_PRODUCTION_GUARD_OFFLINE_REPLAY_V1",
   "policy_version": "MTG_PRICING_PRODUCTION_GUARD_V1",
+  "maximum_mtg_drop_ratio": 0.001,
   "maximum_pokemon_drop_ratio": 0.001,
   "execution_mode": "offline_no_write",
   "production_database_access": false,
@@ -10,6 +11,7 @@
       "input": {
         "mtg_selected": 161241,
         "mtg_eligible": 132961,
+        "baseline_mtg_eligible": 132961,
         "shadow_pokemon_eligible": 31178,
         "baseline_pokemon_eligible": 31184,
         "fresh_current_pokemon_eligible": 0
@@ -25,6 +27,7 @@
       "input": {
         "mtg_selected": 161241,
         "mtg_eligible": 132961,
+        "baseline_mtg_eligible": 132961,
         "shadow_pokemon_eligible": 1,
         "baseline_pokemon_eligible": 31184,
         "fresh_current_pokemon_eligible": 0
@@ -38,6 +41,7 @@
       "input": {
         "mtg_selected": 161241,
         "mtg_eligible": 132961,
+        "baseline_mtg_eligible": 132961,
         "shadow_pokemon_eligible": 31178,
         "baseline_pokemon_eligible": 31184,
         "fresh_current_pokemon_eligible": 31184
@@ -52,6 +56,7 @@
       "input": {
         "mtg_selected": 161241,
         "mtg_eligible": 132961,
+        "baseline_mtg_eligible": 132961,
         "shadow_pokemon_eligible": 30000,
         "baseline_pokemon_eligible": 31184,
         "fresh_current_pokemon_eligible": 31184
@@ -65,6 +70,7 @@
       "input": {
         "mtg_selected": 0,
         "mtg_eligible": 0,
+        "baseline_mtg_eligible": 132961,
         "shadow_pokemon_eligible": 31178,
         "baseline_pokemon_eligible": 31178,
         "fresh_current_pokemon_eligible": 31178
@@ -72,11 +78,39 @@
       "expected_status": "blocked",
       "expected_finding": "missing_eligible_mtg_pricing",
       "result": "pass"
+    },
+    {
+      "case": "material_mtg_loss",
+      "input": {
+        "mtg_selected": 161241,
+        "mtg_eligible": 1,
+        "baseline_mtg_eligible": 132961,
+        "shadow_pokemon_eligible": 31178,
+        "baseline_pokemon_eligible": 31184,
+        "fresh_current_pokemon_eligible": 31184
+      },
+      "expected_status": "blocked",
+      "expected_finding": "mtg_active_publication_drop_exceeds_tolerance",
+      "result": "pass"
+    },
+    {
+      "case": "missing_mtg_publication_baseline",
+      "input": {
+        "mtg_selected": 161241,
+        "mtg_eligible": 132961,
+        "baseline_mtg_eligible": 0,
+        "shadow_pokemon_eligible": 31178,
+        "baseline_pokemon_eligible": 31184,
+        "fresh_current_pokemon_eligible": 31184
+      },
+      "expected_status": "blocked",
+      "expected_finding": "missing_current_publication_mtg_baseline",
+      "result": "pass"
     }
   ],
   "summary": {
-    "cases": 5,
-    "passed": 5,
+    "cases": 7,
+    "passed": 7,
     "failed": 0,
     "production_writes": 0
   }

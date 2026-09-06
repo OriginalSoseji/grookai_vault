@@ -1375,10 +1375,15 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
        ),
        current_counts as (
          select
-           count(distinct snapshot.card_printing_id)::integer
-             as pokemon_baseline_eligible,
            count(distinct snapshot.card_printing_id) filter (
-             where snapshot.source_sync_finished_at >=
+             where decision.evidence ->> 'category_id' = '1'
+           )::integer as mtg_baseline_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '3'
+           )::integer as pokemon_baseline_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '3'
+               and snapshot.source_sync_finished_at >=
                now() - interval '36 hours'
            )::integer as fresh_pokemon_eligible
          from public.market_price_current_publication current_state
@@ -1402,7 +1407,6 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
           and decision.decision = 'publish'
           and decision.publication_lane = 'current'
         where current_state.singleton
-          and decision.evidence ->> 'category_id' = '3'
           and not exists (
             select 1
             from public.card_printing_truth_reviews truth_review
@@ -1417,6 +1421,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
        select
          production_counts.mtg_selected,
          production_counts.mtg_eligible,
+         current_counts.mtg_baseline_eligible,
          production_counts.pokemon_eligible,
          current_counts.pokemon_baseline_eligible,
          current_counts.fresh_pokemon_eligible
@@ -1432,6 +1437,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
       ...evaluateMtgPricingProductionActivationGuardV1({
         productionMtgSelected: counts.mtg_selected,
         productionMtgEligible: counts.mtg_eligible,
+        baselineMtgEligible: counts.mtg_baseline_eligible,
         productionPokemonEligible: counts.pokemon_eligible,
         baselinePokemonEligible: counts.pokemon_baseline_eligible,
         freshCurrentPokemonEligible: counts.fresh_pokemon_eligible,
