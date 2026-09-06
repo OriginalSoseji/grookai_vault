@@ -318,6 +318,30 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
     WORKFLOW,
     /count\(distinct decision\.card_printing_id\) filter \([\s\S]*?category_id' = '3'/,
   );
+  const shadowCountsSql = WORKFLOW.match(
+    /shadow_counts as \(([\s\S]*?)\),\s*current_counts as/,
+  )?.[1];
+  assert.ok(shadowCountsSql);
+  assert.equal(
+    (
+      shadowCountsSql.match(
+        /truth_review\.card_printing_id = decision\.card_printing_id/g,
+      ) ?? []
+    ).length,
+    2,
+  );
+  assert.equal(
+    (shadowCountsSql.match(/truth_review\.active = true/g) ?? []).length,
+    2,
+  );
+  assert.equal(
+    (shadowCountsSql.match(/'hidden_pending_review'/g) ?? []).length,
+    2,
+  );
+  assert.equal(
+    (shadowCountsSql.match(/'hidden_unsupported'/g) ?? []).length,
+    2,
+  );
   assert.match(WORKFLOW, /statement_timeout: 120_000/);
   assert.match(WORKFLOW, /query_timeout: 125_000/);
   assert.match(WORKFLOW, /evaluateMtgPricingProductionGuardV1/);

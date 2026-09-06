@@ -197,12 +197,32 @@ jobs:
                        and decision.eligible = true
                        and decision.decision = 'publish'
                        and decision.publication_lane = 'current'
+                       and not exists (
+                         select 1
+                         from public.card_printing_truth_reviews truth_review
+                         where truth_review.card_printing_id = decision.card_printing_id
+                           and truth_review.active = true
+                           and truth_review.public_visibility in (
+                             'hidden_pending_review',
+                             'hidden_unsupported'
+                           )
+                       )
                    )::integer as mtg_eligible,
                    count(distinct decision.card_printing_id) filter (
                      where decision.evidence ->> 'category_id' = '3'
                        and decision.eligible = true
                        and decision.decision = 'publish'
                        and decision.publication_lane = 'current'
+                       and not exists (
+                         select 1
+                         from public.card_printing_truth_reviews truth_review
+                         where truth_review.card_printing_id = decision.card_printing_id
+                           and truth_review.active = true
+                           and truth_review.public_visibility in (
+                             'hidden_pending_review',
+                             'hidden_unsupported'
+                           )
+                       )
                    )::integer as pokemon_eligible
                  from public.market_price_qualification_decisions decision
                  join shadow_run on shadow_run.id = decision.run_id

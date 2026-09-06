@@ -40,6 +40,8 @@ source movement.
   Pokemon decrease above the tolerance.
 - Count distinct `card_printing_id` values on both shadow and baseline sides so
   duplicate source observations cannot mask identity loss.
+- Apply the active truth-review quarantine boundary to both shadow eligible
+  counts and the active baseline so a post-shadow quarantine cannot mask loss.
 - Bound the indexed baseline query with a 120-second statement timeout and a
   125-second client query timeout.
 - Write a started artifact before database access and replace it with a blocked
@@ -69,6 +71,9 @@ source movement.
   baseline or permit a materially smaller replacement.
 - A one-row Pokemon shadow is blocked against that expired baseline.
 - Shadow and baseline coverage are compared as unique canonical printings.
+- Shadow MTG and Pokemon eligible coverage excludes active
+  `hidden_pending_review` and `hidden_unsupported` truth-review rows, matching
+  the production qualification boundary.
 - Failed preflights retain their error name/message and all prior policy
   findings without persisting a stack trace.
 - The workflow still requires the exact expected SHA, a reconciled shadow, the
@@ -81,6 +86,8 @@ source movement.
 - Production cannot proceed without eligible MTG and Pokemon shadow rows.
 - A material Pokemon count loss must fail closed and preserve its exact finding.
 - Duplicate source observations must never increase the shadow identity count.
+- A quarantined printing must never increase shadow eligible coverage or offset
+  an unrelated missing identity.
 - The guard baseline must come from the active indexed publication path, never
   from unscoped historical decisions or a whole-view aggregation.
 - The shadow run must remain reconciled and tied to the exact workflow commit.
@@ -99,7 +106,7 @@ source movement.
 - Exact indexed production query proof: passed read only in 35.7 seconds with
   `31,178` baseline and `31,178` fresh Pokemon rows under the 120-second bound.
 - `git diff --check`: passed.
-- Full repository shipcheck: passed in 269.5 seconds, including zero critical
+- Full repository shipcheck: passed in 272.1 seconds, including zero critical
   production drift failures, web typecheck/lint/strict build, Flutter analysis,
   and all `662/662` Flutter tests.
 
