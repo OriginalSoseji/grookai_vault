@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `APP_CANDIDATE_312_MTG_SIGNED_IN_RELEASE_PARITY_COMPLETE_20260906_V1.md` - `2026-09-06` - BUILD 312 EXACT CLIENT PARITY / MTG SIGNED-IN RELEASE ACTIVE - Records exact web, signed Android, and valid TestFlight provenance at `66339000`, current reconciled MTG and Pokemon pricing, committed MTG signed-in release control, anonymous denial, authenticated catalog/search/image/pricing readback, and the post-commit connection hardening gate without claiming App Store public release.
 - `APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1.md` - `2026-09-06` - BUILD 312 RESERVED / REPOSITORY VERIFIED / STORE PARITY OPEN - Records source commit `dade217c`, PR `#421`, passing repository gates, the absence of accepted Android/iOS 312 artifacts, and the exact merged-SHA parity gates required before TestFlight evidence can be claimed.
 - `APP_LAUNCH_CLOSEOUT_INTEGRATION_20260820_V1.md` - `2026-08-20` - SAFE NON-MTG INTEGRATION COMPLETE / PUBLICATION AND EXTERNAL STORE GATES OPEN - Reconciles chat safety, Vault bulk selection, and unified catalog search; records current store-media and authenticated-console gates.
 - `CHAT_SAFETY_AND_PLAY_CONTENT_RATING_20260817_V1.md` - `2026-08-17` - PRODUCT ENFORCEMENT IMPLEMENTED / DATABASE FOLLOW-UP GATED - Records Google Play content-rating work, deterministic message screening, reporting, founder review, preserved user data, and the database-enforcement follow-up.

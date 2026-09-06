@@ -244,3 +244,44 @@ test("anonymous release readback never invokes authenticated-only image surfaces
     "the private image-face RPC must only be invoked as authenticated",
   );
 });
+
+test("post-commit readback and rollback use fresh bounded database connections", () => {
+  const runner = fs.readFileSync(
+    new URL(
+      "../../scripts/audits/mtg_signed_in_catalog_release_v1.mjs",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+
+  assert.match(runner, /const READBACK_QUERY_TIMEOUT_MS = 300_000/);
+  assert.match(runner, /const ROLLBACK_QUERY_TIMEOUT_MS = 120_000/);
+  assert.match(runner, /client\.on\("error"/);
+  assert.match(
+    runner,
+    /await client\.query\("commit"\);[\s\S]*?await client\.end\(\);[\s\S]*?mtg-signed-in-catalog-release-v1-state-readback/,
+  );
+  assert.match(
+    runner,
+    /mtg-signed-in-catalog-release-v1-anon-readback/,
+  );
+  assert.match(
+    runner,
+    /mtg-signed-in-catalog-release-v1-authenticated-readback/,
+  );
+  assert.match(
+    runner,
+    /mtg-signed-in-catalog-release-v1-rollback[\s\S]*?ROLLBACK_QUERY_TIMEOUT_MS/,
+  );
+  assert.match(runner, /new AggregateError/);
+
+  const workflow = fs.readFileSync(
+    new URL(
+      "../../.github/workflows/mtg-signed-in-catalog-release.yml",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(workflow, /timeout-minutes: 60/);
+  assert.match(workflow, /leaves a rollback reserve/);
+});

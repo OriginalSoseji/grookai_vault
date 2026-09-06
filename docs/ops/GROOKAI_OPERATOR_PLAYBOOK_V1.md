@@ -185,7 +185,7 @@ owns the connection.
 | Store readiness | `docs/release/STORE_RELEASE_READINESS_V1.md` | `npm run release:store:require` and direct console readback |
 | Store media | `docs/checkpoints/product/STORE_MEDIA_PREPARATION_20260817_V1.md` | Manifest hashes, dimensions, and uploaded-console readback |
 | App Store automation | `docs/app_store_connect_automation.md` | Status readback for exact build/version and screenshot set |
-| Current app candidate | `docs/checkpoints/product/APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1.md` | Build 312 is reserved and repository-verified; matching Android/TestFlight artifacts from the final merged SHA remain open |
+| Current app candidate | `docs/checkpoints/product/APP_CANDIDATE_312_MTG_SIGNED_IN_RELEASE_PARITY_COMPLETE_20260906_V1.md` | Build 312 has exact web, signed Android, valid TestFlight, governed pricing, and signed-in MTG release parity; App Store review/public release remains separate |
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
