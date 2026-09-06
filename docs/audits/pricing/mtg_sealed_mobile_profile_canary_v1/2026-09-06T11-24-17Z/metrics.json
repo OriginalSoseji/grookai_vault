@@ -1,0 +1,87 @@
+{
+  "schema_version": "MTG_SEALED_MOBILE_PROFILE_CANARY_V1",
+  "result": "pass",
+  "recorded_at": "2026-09-06T11:24:17Z",
+  "producer_commit": "2198c9c62cd2e9a62ddf3294a8d4520d9423fd08",
+  "parent_main_commit": "78233b9e2e9033caae00dca9c82b7367f6b8101d",
+  "branch": "agent/mtg-sealed-mobile-production-canary-v1",
+  "app": {
+    "package": "com.grookai.vault",
+    "version": "1.0.0+311",
+    "build_mode": "profile",
+    "architecture": "arm64",
+    "feature_flag_enabled": true,
+    "apk_sha256": "AEA5F8EFE4F4D76D1747F399551380E397848D3088D8E877A7C7E516BB39A33B",
+    "apk_size_bytes": 62258943
+  },
+  "device": {
+    "manufacturer": "Samsung",
+    "model": "SM-S908U",
+    "android_version": 16,
+    "api_level": 36,
+    "device_id": "R5CT3291F6E"
+  },
+  "functional": {
+    "pokemon_set_count": 310,
+    "mtg_set_count": 946,
+    "sealed_selected_count": 24,
+    "sealed_unique_count": 24,
+    "sealed_rows_with_market_price": 24,
+    "arena_starter_kit_result_count": 4,
+    "runtime_error_matches": 0,
+    "returned_to_pulse": true,
+    "process_alive_after_return": true
+  },
+  "timing_ms": {
+    "cold_launch_total": 1543,
+    "cold_launch_wait": 1556,
+    "pokemon_sets_conservative_ready_bound": 3047,
+    "mtg_sets_conservative_ready_bound": 3630,
+    "mtg_sealed_conservative_ready_bound": 12577,
+    "search_conservative_ready_bound": 6122
+  },
+  "memory_kb": {
+    "pulse_baseline_pss": 348981,
+    "pulse_baseline_graphics": 151444,
+    "pokemon_sets_pss": 433695,
+    "pokemon_sets_graphics": 197788,
+    "mtg_sets_pss": 418527,
+    "mtg_sets_graphics": 200372,
+    "mtg_sealed_initial_pss": 459295,
+    "mtg_sealed_initial_graphics": 217708,
+    "mtg_sealed_full_traversal_pss": 479726,
+    "mtg_sealed_full_traversal_graphics": 253344,
+    "peak_pss": 506603,
+    "peak_graphics": 279212,
+    "returned_to_pulse_pss": 496065,
+    "returned_to_pulse_graphics": 280388,
+    "pss_reduction_percent": 83.27,
+    "graphics_reduction_percent": 89.16
+  },
+  "frames": {
+    "total": 104,
+    "janky": 16,
+    "janky_percent": 15.38,
+    "legacy_janky": 25,
+    "legacy_janky_percent": 24.04,
+    "p50_ms": 5,
+    "p90_ms": 14,
+    "p95_ms": 19,
+    "p99_ms": 23,
+    "missed_vsync": 7
+  },
+  "tests": {
+    "focused_analyzer": "pass",
+    "relevant_flutter_tests": "21/21",
+    "shipcheck": "pass",
+    "shipcheck_flutter_tests": "661/661",
+    "commit_hook_shipcheck": "pass"
+  },
+  "writes": {
+    "database": 0,
+    "storage": 0,
+    "pricing": 0,
+    "vault": 0,
+    "migration": 0
+  }
+}

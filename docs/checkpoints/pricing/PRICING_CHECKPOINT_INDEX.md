@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md`
+
+This checkpoint records the viewport-lazy catalog repair, selected-game fetch
+boundary, full test proof, and physical Samsung profile canary for the bounded
+MTG sealed client.
+
+Decision locked there:
+
+- the Android profile path is functionally correct and memory-bounded enough to
+  proceed through protected merge to a separate TestFlight/iPhone gate
+
+Unresolved risk afterward:
+
+- TestFlight/iPhone proof and the separately prepared dimension constraint
+  migration remain independent future gates
+
 ### `PRICING_CHECKPOINT_129_MTG_SEALED_PRODUCTION_WEB_ACTIVE.md`
 
 This checkpoint records the production web activation from tested, merged
