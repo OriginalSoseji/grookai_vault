@@ -397,12 +397,10 @@ class PublicSetsService {
       return cached.sets;
     }
 
-    final setRows = game == null
-        ? await _fetchPublicCatalogSetRows(client: client)
-        : await _fetchPublicCatalogGameRows(
-            client: client,
-            gameCode: game.databaseCode,
-          );
+    final setRows = await _fetchPublicCatalogSetRows(
+      client: client,
+      game: game,
+    );
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
     for (final row in setRows) {
@@ -472,8 +470,16 @@ class PublicSetsService {
 
   static Future<List<Map<String, dynamic>>> _fetchPublicCatalogSetRows({
     required SupabaseClient client,
+    PublicCatalogGame? game,
   }) async {
     try {
+      if (game != null) {
+        return await _fetchPublicCatalogGameRows(
+          client: client,
+          gameCode: game.databaseCode,
+        );
+      }
+
       // PostgREST caps set-returning RPC responses at 1,000 rows. Fetch each
       // supported catalog independently so a large MTG lane cannot truncate
       // One Piece or Pokemon from the signed-in Sets screen.
@@ -495,7 +501,12 @@ class PublicSetsService {
       }
     }
 
-    final setRows = await _fetchAllVisibleSetRows(client: client);
+    final visibleSetRows = await _fetchAllVisibleSetRows(client: client);
+    final setRows = game == null
+        ? visibleSetRows
+        : visibleSetRows
+              .where((row) => _parseCatalogGame(row['game']) == game)
+              .toList(growable: false);
     final cardCountsByCode = await _fetchExactSetCardCounts(
       client: client,
       exactSetCodes: setRows.map((row) => _cleanText(row['code'])),

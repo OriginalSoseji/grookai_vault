@@ -18,8 +18,7 @@
     "manufacturer": "Samsung",
     "model": "SM-S908U",
     "android_version": 16,
-    "api_level": 36,
-    "device_id": "R5CT3291F6E"
+    "api_level": 36
   },
   "functional": {
     "pokemon_set_count": 310,

@@ -15,7 +15,6 @@ device.
 - App version: `1.0.0+311`
 - Build mode: Flutter profile, Android arm64
 - Device: Samsung SM-S908U, Android 16 / API 36
-- Device ID: `R5CT3291F6E`
 - APK SHA-256:
   `AEA5F8EFE4F4D76D1747F399551380E397848D3088D8E877A7C7E516BB39A33B`
 - APK size: 62,258,943 bytes
