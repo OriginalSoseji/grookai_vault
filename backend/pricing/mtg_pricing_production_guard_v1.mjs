@@ -18,19 +18,29 @@ export function evaluateMtgPricingProductionGuardV1(input) {
     input.shadowPokemonEligible,
     "shadowPokemonEligible",
   );
-  const currentPokemonEligible = requiredCount(
-    input.currentPokemonEligible,
-    "currentPokemonEligible",
+  const baselinePokemonEligible = requiredCount(
+    input.baselinePokemonEligible,
+    "baselinePokemonEligible",
   );
-  const currentGovernedViewAvailable = currentPokemonEligible > 0;
-  const allowedPokemonDrop = currentGovernedViewAvailable
+  const freshCurrentPokemonEligible = requiredCount(
+    input.freshCurrentPokemonEligible,
+    "freshCurrentPokemonEligible",
+  );
+  if (freshCurrentPokemonEligible > baselinePokemonEligible) {
+    throw new Error(
+      "freshCurrentPokemonEligible cannot exceed baselinePokemonEligible",
+    );
+  }
+  const currentPublicationBaselineAvailable = baselinePokemonEligible > 0;
+  const currentGovernedViewAvailable = freshCurrentPokemonEligible > 0;
+  const allowedPokemonDrop = currentPublicationBaselineAvailable
     ? Math.floor(
-        currentPokemonEligible * MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1,
+        baselinePokemonEligible * MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1,
       )
     : 0;
   const observedPokemonDrop = Math.max(
     0,
-    currentPokemonEligible - shadowPokemonEligible,
+    baselinePokemonEligible - shadowPokemonEligible,
   );
   const findings = [];
 
@@ -48,12 +58,13 @@ export function evaluateMtgPricingProductionGuardV1(input) {
     });
   }
   if (
-    currentGovernedViewAvailable &&
+    currentPublicationBaselineAvailable &&
     observedPokemonDrop > allowedPokemonDrop
   ) {
     findings.push({
-      code: "pokemon_governed_view_drop_exceeds_tolerance",
-      current_pokemon_eligible: currentPokemonEligible,
+      code: "pokemon_active_publication_drop_exceeds_tolerance",
+      baseline_pokemon_eligible: baselinePokemonEligible,
+      fresh_current_pokemon_eligible: freshCurrentPokemonEligible,
       shadow_pokemon_eligible: shadowPokemonEligible,
       observed_drop: observedPokemonDrop,
       allowed_drop: allowedPokemonDrop,
@@ -65,12 +76,15 @@ export function evaluateMtgPricingProductionGuardV1(input) {
     policy_version: MTG_PRICING_PRODUCTION_GUARD_VERSION_V1,
     status: findings.length === 0 ? "ready_for_production" : "blocked",
     ready_for_production: findings.length === 0,
+    current_publication_baseline_available:
+      currentPublicationBaselineAvailable,
     current_governed_view_available: currentGovernedViewAvailable,
     counts: {
       mtg_selected: mtgSelected,
       mtg_eligible: mtgEligible,
       shadow_pokemon_eligible: shadowPokemonEligible,
-      current_pokemon_eligible: currentPokemonEligible,
+      baseline_pokemon_eligible: baselinePokemonEligible,
+      fresh_current_pokemon_eligible: freshCurrentPokemonEligible,
       observed_pokemon_drop: observedPokemonDrop,
       allowed_pokemon_drop: allowedPokemonDrop,
     },

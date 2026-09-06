@@ -181,12 +181,31 @@ test("production guard permits restoring an expired governed Pokemon view", () =
     mtgSelected: 161241,
     mtgEligible: 132961,
     shadowPokemonEligible: 31178,
-    currentPokemonEligible: 0,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 0,
   });
 
   assert.equal(result.ready_for_production, true);
+  assert.equal(result.current_publication_baseline_available, true);
   assert.equal(result.current_governed_view_available, false);
-  assert.equal(result.counts.observed_pokemon_drop, 0);
+  assert.equal(result.counts.observed_pokemon_drop, 6);
+});
+
+test("production guard blocks material loss when the governed view is expired", () => {
+  const result = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 1,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 0,
+  });
+
+  assert.equal(result.current_governed_view_available, false);
+  assert.equal(result.ready_for_production, false);
+  assert.equal(
+    result.findings[0].code,
+    "pokemon_active_publication_drop_exceeds_tolerance",
+  );
 });
 
 test("production guard permits the proven six-row Pokemon source delta", () => {
@@ -194,7 +213,8 @@ test("production guard permits the proven six-row Pokemon source delta", () => {
     mtgSelected: 161241,
     mtgEligible: 132961,
     shadowPokemonEligible: 31178,
-    currentPokemonEligible: 31184,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
   });
 
   assert.equal(MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1, 0.001);
@@ -208,7 +228,8 @@ test("production guard enforces the Pokemon drop tolerance boundary", () => {
     mtgSelected: 161241,
     mtgEligible: 132961,
     shadowPokemonEligible: 31153,
-    currentPokemonEligible: 31184,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
   });
   assert.equal(boundary.counts.observed_pokemon_drop, 31);
   assert.equal(boundary.counts.allowed_pokemon_drop, 31);
@@ -218,7 +239,8 @@ test("production guard enforces the Pokemon drop tolerance boundary", () => {
     mtgSelected: 161241,
     mtgEligible: 132961,
     shadowPokemonEligible: 31152,
-    currentPokemonEligible: 31184,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
   });
   assert.equal(overBoundary.counts.observed_pokemon_drop, 32);
   assert.equal(overBoundary.ready_for_production, false);
@@ -229,19 +251,21 @@ test("production guard blocks material Pokemon loss and missing MTG prices", () 
     mtgSelected: 161241,
     mtgEligible: 132961,
     shadowPokemonEligible: 30000,
-    currentPokemonEligible: 31184,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
   });
   assert.equal(materialDrop.ready_for_production, false);
   assert.equal(
     materialDrop.findings[0].code,
-    "pokemon_governed_view_drop_exceeds_tolerance",
+    "pokemon_active_publication_drop_exceeds_tolerance",
   );
 
   const missingMtg = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 0,
     mtgEligible: 0,
     shadowPokemonEligible: 31178,
-    currentPokemonEligible: 31178,
+    baselinePokemonEligible: 31178,
+    freshCurrentPokemonEligible: 31178,
   });
   assert.equal(missingMtg.ready_for_production, false);
   assert.equal(missingMtg.findings[0].code, "missing_eligible_mtg_pricing");
@@ -255,14 +279,15 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /state = 'shadow_verified'/);
   assert.match(WORKFLOW, /reconciliation_state = 'reconciled'/);
   assert.match(WORKFLOW, /policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3'/);
-  assert.match(WORKFLOW, /from public\.v_market_price_current_v1 current_price/);
-  assert.match(WORKFLOW, /where game\.code = 'pokemon'/);
+  assert.doesNotMatch(WORKFLOW, /from public\.v_market_price_current_v1/);
+  assert.match(WORKFLOW, /from public\.market_price_current_publication current_state/);
+  assert.match(WORKFLOW, /join public\.market_price_publication_snapshots snapshot/);
+  assert.match(WORKFLOW, /pokemon_baseline_eligible/);
+  assert.match(WORKFLOW, /fresh_pokemon_eligible/);
+  assert.match(WORKFLOW, /statement_timeout: 120_000/);
+  assert.match(WORKFLOW, /query_timeout: 125_000/);
   assert.match(WORKFLOW, /evaluateMtgPricingProductionGuardV1/);
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
-  assert.doesNotMatch(
-    WORKFLOW,
-    /market_price_current_publication current_state[\s\S]*?market_price_qualification_decisions decision/,
-  );
   assert.match(WORKFLOW, /--expected-source-sync-run-id=\$shadow_source_sync_run_id/);
   assert.match(WORKER, /does not match shadow-proven source run/);
   assert.match(WORKFLOW, /--database-timeout-minutes=180/);

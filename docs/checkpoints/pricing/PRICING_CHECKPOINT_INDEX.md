@@ -35,15 +35,15 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ### `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md`
 
-This checkpoint records the fielded MTG pricing preflight repair that compares
-against the freshness-governed current Pokemon view and tolerates only a `0.1%`
-source-count decrease.
+This checkpoint records the fielded MTG pricing preflight repair that derives
+the freshness-aware Pokemon baseline through the indexed active-publication
+path and tolerates only a `0.1%` source-count decrease.
 
 Decision locked there:
 
-- an exact reconciled shadow may restore an expired current view, while a
-  material Pokemon publication decrease still fails closed with an immutable
-  policy artifact
+- an exact reconciled shadow may restore an expired current view only when it
+  remains within tolerance of the last-known active-publication baseline, while
+  a material Pokemon decrease still fails closed with an immutable artifact
 
 Unresolved risk afterward:
 

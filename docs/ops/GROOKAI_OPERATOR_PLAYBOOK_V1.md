@@ -189,7 +189,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG market pricing publication | `.github/workflows/mtg-pricing-publication-runner.yml` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md` | Exact reconciled shadow, freshness-governed Pokemon comparison, production guard artifact, and final run reconciliation |
+| MTG market pricing publication | `.github/workflows/mtg-pricing-publication-runner.yml` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md` | Exact reconciled shadow, indexed freshness-aware Pokemon baseline, production guard artifact, and final run reconciliation |
 | MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md` | Signed-in production web is active and flag-reversible; Android profile performance passed; TestFlight/iPhone and the separately prepared dimension constraint repair remain future gates |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
@@ -231,12 +231,13 @@ Operate MTG market pricing only through
 `TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3`, and a source sync reused by the
 production worker.
 
-The production guard compares the shadow's eligible Pokemon rows with
-`public.v_market_price_current_v1`, not with historical raw qualification rows.
-When the current governed view is available, the shadow may reduce its Pokemon
-count by at most `0.1%`, rounded down. A larger reduction blocks. When the
-freshness-governed view is empty or expired, the exact reconciled shadow may
-restore it only if both eligible MTG and eligible Pokemon counts are nonzero.
+The production guard computes both the last-known Pokemon baseline and its
+currently fresh subset through the indexed active publication pointer,
+snapshots, decisions, and truth-review quarantine. It does not aggregate the
+broad `v_market_price_current_v1` client view or count unscoped historical
+decisions. The shadow may reduce the baseline by at most `0.1%`, rounded down;
+a larger reduction blocks even when the fresh subset is empty or expired. The
+baseline query is bounded by a 120-second database timeout.
 
 Every production preflight writes
 `mtg-pricing-production-guard.json` into the workflow artifact. Read that file

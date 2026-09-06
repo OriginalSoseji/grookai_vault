@@ -147,6 +147,9 @@ jobs:
           const client = new pg.Client({
             connectionString: process.env.SUPABASE_DB_URL,
             ssl: { rejectUnauthorized: false },
+            connectionTimeoutMillis: 15_000,
+            statement_timeout: 120_000,
+            query_timeout: 125_000,
           });
           await client.connect();
           try {
@@ -187,19 +190,52 @@ jobs:
                  join shadow_run on shadow_run.id = decision.run_id
               ),
               current_counts as (
-                 select count(*)::integer as pokemon_eligible
-                 from public.v_market_price_current_v1 current_price
-                 join public.card_prints card
-                   on card.id = current_price.card_print_id
-                 join public.games game
-                   on game.id = card.game_id
-                where game.code = 'pokemon'
+                 select
+                   count(distinct snapshot.card_printing_id)::integer
+                     as pokemon_baseline_eligible,
+                   count(distinct snapshot.card_printing_id) filter (
+                     where snapshot.source_sync_finished_at >=
+                       now() - interval '36 hours'
+                   )::integer as fresh_pokemon_eligible
+                 from public.market_price_current_publication current_state
+                 join public.market_price_publication_sets publication_set
+                   on publication_set.id = current_state.publication_set_id
+                  and publication_set.run_id = current_state.run_id
+                  and publication_set.publication_state = 'published'
+                 join public.market_price_pipeline_runs pipeline_run
+                   on pipeline_run.id = current_state.run_id
+                  and pipeline_run.reconciliation_state = 'reconciled'
+                  and pipeline_run.state in ('published', 'verified')
+                 join public.market_price_publication_snapshots snapshot
+                   on snapshot.publication_set_id = current_state.publication_set_id
+                  and snapshot.run_id = current_state.run_id
+                  and snapshot.publication_state = 'published'
+                  and snapshot.freshness_state = 'fresh'
+                 join public.market_price_qualification_decisions decision
+                   on decision.id = snapshot.qualification_decision_id
+                  and decision.run_id = snapshot.run_id
+                  and decision.eligible = true
+                  and decision.decision = 'publish'
+                  and decision.publication_lane = 'current'
+                where current_state.singleton
+                  and decision.evidence ->> 'category_id' = '3'
+                  and not exists (
+                    select 1
+                    from public.card_printing_truth_reviews truth_review
+                    where truth_review.card_printing_id = snapshot.card_printing_id
+                      and truth_review.active = true
+                      and truth_review.public_visibility in (
+                        'hidden_pending_review',
+                        'hidden_unsupported'
+                      )
+                  )
               )
               select
                 shadow_counts.mtg_selected,
                 shadow_counts.mtg_eligible,
                 shadow_counts.pokemon_eligible as shadow_pokemon_eligible,
-                current_counts.pokemon_eligible as current_pokemon_eligible
+                current_counts.pokemon_baseline_eligible,
+                current_counts.fresh_pokemon_eligible
               from shadow_counts cross join current_counts`,
               [process.env.EXPECTED_SHADOW_RUN_KEY],
             );
@@ -208,7 +244,8 @@ jobs:
               mtgSelected: counts.mtg_selected,
               mtgEligible: counts.mtg_eligible,
               shadowPokemonEligible: counts.shadow_pokemon_eligible,
-              currentPokemonEligible: counts.current_pokemon_eligible,
+              baselinePokemonEligible: counts.pokemon_baseline_eligible,
+              freshCurrentPokemonEligible: counts.fresh_pokemon_eligible,
             });
             await fs.writeFile(
               process.env.MTG_PRICING_PRODUCTION_GUARD_OUT,

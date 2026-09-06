@@ -26,22 +26,28 @@ source movement.
 
 ## Decision
 
-- Compare the reconciled shadow's Pokemon count with
-  `public.v_market_price_current_v1`, the freshness-governed current read model.
-- Permit a decrease no larger than `0.1%` of the available current Pokemon view,
-  rounded down to a whole row.
-- Permit restoration when that governed current view is empty or expired, but
-  only after the workflow has already proven one exact-commit, reconciled,
-  nonzero shadow containing eligible MTG and Pokemon pricing.
+- Compute a last-known Pokemon baseline and its currently fresh subset through
+  the indexed active publication pointer, snapshots, decisions, and quarantine
+  boundary. Do not aggregate through the broad client view.
+- Compare the reconciled shadow's Pokemon count with that baseline even when
+  the freshness-governed subset is empty or expired.
+- Permit a decrease no larger than `0.1%` of the baseline, rounded down to a
+  whole row.
+- Permit restoration only after the workflow has already proven one
+  exact-commit, reconciled, nonzero shadow containing eligible MTG and Pokemon
+  pricing.
 - Block missing MTG pricing, missing shadow Pokemon pricing, and any material
   Pokemon decrease above the tolerance.
+- Bound the indexed baseline query with a 120-second statement timeout and a
+  125-second client query timeout.
 - Persist the complete policy result as
   `mtg-pricing-production-guard.json` in the immutable workflow artifact.
 
 ## Alternatives Rejected
 
 - Compare with raw historical qualification rows: those rows remain useful
-  evidence but are not the current freshness boundary.
+  evidence but do not by themselves prove active-publication membership,
+  freshness, or truth-review visibility.
 - Require exact count equality: valid source additions and removals make exact
   equality operationally brittle.
 - Accept any nonzero count: this would not protect against material loss.
@@ -55,7 +61,9 @@ source movement.
 - The maximum accepted Pokemon decrease is `0.001` (`0.1%`).
 - At `31,184` current rows, 31 rows are allowed; 32 rows block.
 - The observed `31,184` to `31,178` transition is allowed.
-- An empty freshness-governed current view does not by itself block restoration.
+- An empty freshness-governed subset does not erase the `31,184` last-known
+  baseline or permit a materially smaller replacement.
+- A one-row Pokemon shadow is blocked against that expired baseline.
 - The workflow still requires the exact expected SHA, a reconciled shadow, the
   frozen policy version, and the shadow-proven source sync before production.
 - This repair performs no production publication, database write, migration,
@@ -65,8 +73,8 @@ source movement.
 
 - Production cannot proceed without eligible MTG and Pokemon shadow rows.
 - A material Pokemon count loss must fail closed and preserve its exact finding.
-- The guard must read the governed current view, never infer freshness from raw
-  historical decisions.
+- The guard baseline must come from the active indexed publication path, never
+  from unscoped historical decisions or a whole-view aggregation.
 - The shadow run must remain reconciled and tied to the exact workflow commit.
 - The production worker must remain pinned to the shadow-proven source sync.
 - Pricing identity, catalog identity, Vault data, and anonymous visibility are
@@ -75,9 +83,11 @@ source movement.
 ## Verification
 
 - Guard and worker syntax checks: passed.
-- Targeted pricing contracts: passed (`55/55`).
+- Targeted pricing contracts: passed (`56/56`).
 - Boundary proof: 31-row decrease passes; 32-row decrease blocks.
-- Offline replay: four cases passed with zero production access or writes.
+- Offline replay: five cases passed with zero production access or writes.
+- Exact indexed production query proof: passed read only in 35.7 seconds with
+  `31,178` baseline and `31,178` fresh Pokemon rows under the 120-second bound.
 - `git diff --check`: passed.
 - Full repository shipcheck: passed in 269.5 seconds, including zero critical
   production drift failures, web typecheck/lint/strict build, Flutter analysis,
@@ -87,6 +97,7 @@ source movement.
 
 - `docs/audits/pricing/mtg_pricing_production_guard_v1/20260906/offline_replay.json`
 - `docs/audits/pricing/mtg_pricing_production_guard_v1/20260906/artifact_hashes.json`
+- `docs/audits/pricing/mtg_pricing_production_guard_v1/20260906/production_read_only_query_proof.json`
 - The first post-merge workflow execution will preserve
   `mtg-pricing-production-guard.json` with live counts when production is next
   legitimately run.

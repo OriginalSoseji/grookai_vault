@@ -1,0 +1,15 @@
+{
+  "artifact_version": "MTG_PRICING_PRODUCTION_GUARD_QUERY_PROOF_V1",
+  "executed_at": "2026-09-06T20:27:23.0539438Z",
+  "execution_mode": "production_read_only",
+  "query_path": "indexed_active_publication_pointer",
+  "statement_timeout_ms": 120000,
+  "client_query_timeout_ms": 125000,
+  "elapsed_ms": 35687,
+  "result": {
+    "pokemon_baseline_eligible": 31178,
+    "fresh_pokemon_eligible": 31178
+  },
+  "status": "pass",
+  "production_writes": 0
+}
