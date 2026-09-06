@@ -64,6 +64,9 @@ source movement.
 - Bound the authoritative worker-side guard to a 120-second transaction-local
   statement timeout and a 125-second client query timeout, then restore the
   worker's prior statement timeout before activation.
+- Fail closed when the established active Pokemon publication baseline is zero.
+  A missing pointer or broken publication/run join blocks both preflight and
+  pre-activation; this workflow does not authorize bootstrap publication.
 
 ## Alternatives Rejected
 
@@ -131,7 +134,7 @@ source movement.
 ## Verification
 
 - Guard and worker syntax checks: passed.
-- Targeted pricing contracts: passed (`58/58`).
+- Targeted pricing contracts: passed (`59/59`).
 - Boundary proof: 31-row decrease passes; 32-row decrease blocks.
 - Offline replay: five cases passed with zero production access or writes.
 - Exact indexed production query proof: passed read only in 35.7 seconds with

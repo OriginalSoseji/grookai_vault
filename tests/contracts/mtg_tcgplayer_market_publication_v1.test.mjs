@@ -211,6 +211,26 @@ test("production guard blocks material loss when the governed view is expired", 
   );
 });
 
+test("production guard fails closed when the active Pokemon baseline is unavailable", () => {
+  const result = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 31178,
+    baselinePokemonEligible: 0,
+    freshCurrentPokemonEligible: 0,
+  });
+
+  assert.equal(result.current_publication_baseline_available, false);
+  assert.equal(result.ready_for_production, false);
+  assert.deepEqual(result.findings, [
+    {
+      code: "missing_current_publication_pokemon_baseline",
+      baseline_pokemon_eligible: 0,
+      fresh_current_pokemon_eligible: 0,
+    },
+  ]);
+});
+
 test("production guard permits the proven six-row Pokemon source delta", () => {
   const result = evaluateMtgPricingProductionGuardV1({
     mtgSelected: 161241,
@@ -347,6 +367,19 @@ test("production activation guard reports actual publication snapshot coverage",
     1,
   );
   assert.equal("shadow_pokemon_eligible" in blocked.findings[1], false);
+
+  const missingBaseline = evaluateMtgPricingProductionActivationGuardV1({
+    productionMtgSelected: 132961,
+    productionMtgEligible: 132961,
+    productionPokemonEligible: 31178,
+    baselinePokemonEligible: 0,
+    freshCurrentPokemonEligible: 0,
+  });
+  assert.equal(missingBaseline.ready_for_production, false);
+  assert.equal(
+    missingBaseline.findings[0].code,
+    "missing_current_publication_pokemon_baseline",
+  );
 });
 
 test("remote operations freeze migration, mapping, shadow, and activation boundaries", () => {

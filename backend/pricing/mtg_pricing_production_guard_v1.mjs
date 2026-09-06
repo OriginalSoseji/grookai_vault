@@ -79,6 +79,13 @@ export function evaluateMtgPricingProductionGuardV1(input) {
   );
   const findings = [];
 
+  if (!currentPublicationBaselineAvailable) {
+    findings.push({
+      code: "missing_current_publication_pokemon_baseline",
+      baseline_pokemon_eligible: baselinePokemonEligible,
+      fresh_current_pokemon_eligible: freshCurrentPokemonEligible,
+    });
+  }
   if (mtgSelected < 1 || mtgEligible < 1) {
     findings.push({
       code: "missing_eligible_mtg_pricing",

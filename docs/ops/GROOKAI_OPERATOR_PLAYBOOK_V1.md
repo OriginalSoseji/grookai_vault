@@ -261,6 +261,11 @@ and records `worker_error`; do not accept a run whose artifact remains only
 120-second transaction-local statement timeout and a 125-second client timeout
 before the worker restores its normal publication timeout.
 
+The established Pokemon publication lane must have a nonzero active-publication
+baseline. A missing pointer or broken publication/run join produces a zero
+baseline and blocks both shadow preflight and production pre-activation. This
+workflow has no implicit bootstrap exception.
+
 Every production preflight writes
 `mtg-pricing-production-guard.json` into the workflow artifact. Read that file
 alongside the worker summary and reconciliation artifacts before classifying a
