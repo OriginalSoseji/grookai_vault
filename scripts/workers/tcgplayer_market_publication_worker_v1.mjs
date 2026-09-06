@@ -24,6 +24,11 @@ import {
   buildTcgplayerCandidateProductPagesV1,
   inspectTcgplayerCandidateRowsV1,
 } from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
+import {
+  buildMtgPricingProductionGuardFailureArtifactV1,
+  buildMtgPricingProductionGuardStartedArtifactV1,
+  evaluateMtgPricingProductionActivationGuardV1,
+} from "../../backend/pricing/mtg_pricing_production_guard_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -35,7 +40,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -243,6 +248,13 @@ async function git(args) {
 
 async function writeJson(filePath, value) {
   await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+async function persistMtgProductionGuardArtifact(artifact) {
+  const artifactPath = process.env.MTG_PRICING_PRODUCTION_GUARD_OUT;
+  if (!artifactPath) return;
+  await fs.mkdir(path.dirname(artifactPath), { recursive: true });
+  await writeJson(artifactPath, artifact);
 }
 
 async function writeJsonLines(filePath, rows, batchSize = 1_000) {
@@ -1265,9 +1277,141 @@ async function persistReconciliation(client, runId, reconciliation) {
   );
 }
 
-async function activateAndVerify(client, run, publicationSet) {
+async function evaluateProductionActivationGuard(client, run, publicationSet) {
+  let guardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
+  try {
+    const result = await client.query(
+      `with production_counts as (
+         select
+           count(*) filter (
+             where decision.evidence ->> 'category_id' = '1'
+           )::integer as mtg_selected,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '1'
+               and not exists (
+                 select 1
+                 from public.card_printing_truth_reviews truth_review
+                 where truth_review.card_printing_id = snapshot.card_printing_id
+                   and truth_review.active = true
+                   and truth_review.public_visibility in (
+                     'hidden_pending_review',
+                     'hidden_unsupported'
+                   )
+               )
+           )::integer as mtg_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '3'
+               and not exists (
+                 select 1
+                 from public.card_printing_truth_reviews truth_review
+                 where truth_review.card_printing_id = snapshot.card_printing_id
+                   and truth_review.active = true
+                   and truth_review.public_visibility in (
+                     'hidden_pending_review',
+                     'hidden_unsupported'
+                   )
+               )
+           )::integer as pokemon_eligible
+         from public.market_price_publication_snapshots snapshot
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+          and decision.eligible = true
+          and decision.decision = 'publish'
+          and decision.publication_lane = 'current'
+        where snapshot.publication_set_id = $1
+          and snapshot.run_id = $2
+       ),
+       current_counts as (
+         select
+           count(distinct snapshot.card_printing_id)::integer
+             as pokemon_baseline_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where snapshot.source_sync_finished_at >=
+               now() - interval '36 hours'
+           )::integer as fresh_pokemon_eligible
+         from public.market_price_current_publication current_state
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = current_state.publication_set_id
+          and publication_set.run_id = current_state.run_id
+          and publication_set.publication_state = 'published'
+         join public.market_price_pipeline_runs pipeline_run
+           on pipeline_run.id = current_state.run_id
+          and pipeline_run.reconciliation_state = 'reconciled'
+          and pipeline_run.state in ('published', 'verified')
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.publication_set_id = current_state.publication_set_id
+          and snapshot.run_id = current_state.run_id
+          and snapshot.publication_state = 'published'
+          and snapshot.freshness_state = 'fresh'
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+          and decision.eligible = true
+          and decision.decision = 'publish'
+          and decision.publication_lane = 'current'
+        where current_state.singleton
+          and decision.evidence ->> 'category_id' = '3'
+          and not exists (
+            select 1
+            from public.card_printing_truth_reviews truth_review
+            where truth_review.card_printing_id = snapshot.card_printing_id
+              and truth_review.active = true
+              and truth_review.public_visibility in (
+                'hidden_pending_review',
+                'hidden_unsupported'
+              )
+          )
+       )
+       select
+         production_counts.mtg_selected,
+         production_counts.mtg_eligible,
+         production_counts.pokemon_eligible,
+         current_counts.pokemon_baseline_eligible,
+         current_counts.fresh_pokemon_eligible
+       from production_counts cross join current_counts`,
+      [publicationSet.id, run.id],
+    );
+    const counts = result.rows[0];
+    guardArtifact = {
+      ...evaluateMtgPricingProductionActivationGuardV1({
+        productionMtgSelected: counts.mtg_selected,
+        productionMtgEligible: counts.mtg_eligible,
+        productionPokemonEligible: counts.pokemon_eligible,
+        baselinePokemonEligible: counts.pokemon_baseline_eligible,
+        freshCurrentPokemonEligible: counts.fresh_pokemon_eligible,
+      }),
+      run_id: run.id,
+      publication_set_id: publicationSet.id,
+    };
+  } catch (error) {
+    guardArtifact = buildMtgPricingProductionGuardFailureArtifactV1({
+      priorArtifact: guardArtifact,
+      error,
+    });
+    guardArtifact.guard_stage = "production_pre_activation";
+    guardArtifact.evidence_scope = "production_publication_snapshots";
+    guardArtifact.run_id = run.id;
+    guardArtifact.publication_set_id = publicationSet.id;
+    await persistMtgProductionGuardArtifact(guardArtifact);
+    throw error;
+  }
+  await persistMtgProductionGuardArtifact(guardArtifact);
+  if (!guardArtifact.ready_for_production) {
+    throw new Error(
+      `MTG pricing production activation guard blocked: ${JSON.stringify(guardArtifact.findings)}`,
+    );
+  }
+  return guardArtifact;
+}
+
+async function activateAndVerify(client, run, publicationSet, runMode) {
   await client.query("begin");
   try {
+    const productionGuard =
+      runMode === "production"
+        ? await evaluateProductionActivationGuard(client, run, publicationSet)
+        : null;
     const activation = await client.query(
       `select *
          from public.activate_market_price_publication_set_v1($1, $2, $3)`,
@@ -1307,6 +1451,7 @@ async function activateAndVerify(client, run, publicationSet) {
       resumability_data: {
         activation: activation.rows[0],
         readback_current_count: currentCount,
+        production_guard: productionGuard,
       },
     };
   } catch (error) {
@@ -1630,7 +1775,8 @@ async function runDurable(client, args, sourceRun, runPlan) {
         run,
         sourceRun,
         phaseName: "activate",
-        operation: async () => activateAndVerify(client, run, publicationSet),
+        operation: async () =>
+          activateAndVerify(client, run, publicationSet, args.runMode),
       });
     }
     return artifactRows(client, run.id);
@@ -1652,15 +1798,24 @@ async function main() {
   } else {
     args.canaryDefinition = null;
   }
+  const runKey = args.runKey || runKeyNow(args.runMode);
+  const outDir = path.join(args.outRoot, safePathSegment(runKey));
+  await fs.mkdir(outDir, { recursive: true });
+  if (args.runMode === "production") {
+    process.env.MTG_PRICING_PRODUCTION_GUARD_OUT ||= path.join(
+      outDir,
+      "mtg-pricing-production-guard.json",
+    );
+    await persistMtgProductionGuardArtifact(
+      buildMtgPricingProductionGuardStartedArtifactV1(),
+    );
+  }
   const url = connectionString();
   if (!url) {
     throw new Error(
       "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
     );
   }
-  const runKey = args.runKey || runKeyNow(args.runMode);
-  const outDir = path.join(args.outRoot, safePathSegment(runKey));
-  await fs.mkdir(outDir, { recursive: true });
   const [commitSha, branch, trackedChanges] = await Promise.all([
     git(["rev-parse", "HEAD"]),
     git(["branch", "--show-current"]),

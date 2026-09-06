@@ -14,6 +14,7 @@ import {
   MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1,
   buildMtgPricingProductionGuardFailureArtifactV1,
   buildMtgPricingProductionGuardStartedArtifactV1,
+  evaluateMtgPricingProductionActivationGuardV1,
   evaluateMtgPricingProductionGuardV1,
 } from "../../backend/pricing/mtg_pricing_production_guard_v1.mjs";
 
@@ -301,6 +302,42 @@ test("production guard failure artifacts preserve prior evidence", () => {
   assert.equal("stack" in failed.preflight_error, false);
 });
 
+test("production activation guard reports actual publication snapshot coverage", () => {
+  const ready = evaluateMtgPricingProductionActivationGuardV1({
+    productionMtgSelected: 132961,
+    productionMtgEligible: 132961,
+    productionPokemonEligible: 31178,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 31184,
+  });
+  assert.equal(ready.guard_stage, "production_pre_activation");
+  assert.equal(ready.evidence_scope, "production_publication_snapshots");
+  assert.equal(ready.counts.production_pokemon_eligible, 31178);
+  assert.equal("shadow_pokemon_eligible" in ready.counts, false);
+  assert.equal(ready.ready_for_production, true);
+
+  const blocked = evaluateMtgPricingProductionActivationGuardV1({
+    productionMtgSelected: 0,
+    productionMtgEligible: 0,
+    productionPokemonEligible: 1,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 0,
+  });
+  assert.equal(blocked.ready_for_production, false);
+  assert.deepEqual(
+    blocked.findings.map((finding) => finding.code),
+    [
+      "missing_eligible_production_mtg_pricing",
+      "pokemon_active_publication_drop_exceeds_tolerance",
+    ],
+  );
+  assert.equal(
+    blocked.findings[1].production_pokemon_eligible,
+    1,
+  );
+  assert.equal("shadow_pokemon_eligible" in blocked.findings[1], false);
+});
+
 test("remote operations freeze migration, mapping, shadow, and activation boundaries", () => {
   assert.match(WORKFLOW, /test "\$GITHUB_SHA" = "\$EXPECTED_SHA"/);
   assert.match(WORKFLOW, /test "\$\{#pending\[@\]\}" -eq 1/);
@@ -359,6 +396,29 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /catch \(error\) \{/);
   assert.match(WORKFLOW, /await persistGuardArtifact\(\)/);
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
+  assert.match(WORKER, /evaluateMtgPricingProductionActivationGuardV1/);
+  assert.match(WORKER, /async function evaluateProductionActivationGuard/);
+  assert.match(
+    WORKER,
+    /production_counts as \([\s\S]*from public\.market_price_publication_snapshots snapshot/,
+  );
+  assert.match(
+    WORKER,
+    /production_counts as \([\s\S]*count\(distinct snapshot\.card_printing_id\)[\s\S]*card_printing_truth_reviews truth_review/,
+  );
+  assert.match(
+    WORKER,
+    /current_counts as \([\s\S]*from public\.market_price_current_publication current_state/,
+  );
+  assert.match(WORKER, /MTG_PRICING_PRODUCTION_GUARD_OUT/);
+  const activationFunction = WORKER.match(
+    /async function activateAndVerify\([\s\S]*?\n}\n\nasync function artifactRows/,
+  )?.[0];
+  assert.ok(activationFunction);
+  assert.ok(
+    activationFunction.indexOf("evaluateProductionActivationGuard") <
+      activationFunction.indexOf("activate_market_price_publication_set_v1"),
+  );
   assert.match(WORKFLOW, /--expected-source-sync-run-id=\$shadow_source_sync_run_id/);
   assert.match(WORKER, /does not match shadow-proven source run/);
   assert.match(WORKFLOW, /--database-timeout-minutes=180/);

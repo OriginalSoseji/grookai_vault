@@ -245,6 +245,15 @@ The workflow writes a `preflight_started` artifact before database access and a
 `blocked` artifact for lookup, query, evaluation, or timeout errors, preserving
 prior counts/findings without a stack trace.
 
+The shadow comparison is an early provenance gate. Production worker
+`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6` performs the authoritative second
+comparison inside the activation transaction using the actual staged
+publication snapshots and the then-current indexed Pokemon baseline. It must
+complete before `activate_market_price_publication_set_v1` can move the
+publication pointer. The final artifact must report guard stage
+`production_pre_activation` and evidence scope
+`production_publication_snapshots`.
+
 Every production preflight writes
 `mtg-pricing-production-guard.json` into the workflow artifact. Read that file
 alongside the worker summary and reconciliation artifacts before classifying a

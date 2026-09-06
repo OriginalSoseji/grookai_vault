@@ -10,6 +10,11 @@
       "path": "production_read_only_query_proof.json",
       "bytes": 454,
       "sha256": "5f3b523320d9ce4ab7ff977cb4ebcd6d770a0888b5373751b0d6bd648d05fb32"
+    },
+    {
+      "path": "production_activation_read_only_query_proof.json",
+      "bytes": 743,
+      "sha256": "59c560c86326cc8fccdd0d4eed3cfdafcf4e622faa0e5d3daa3cc69c8cc2f02b"
     }
   ]
 }

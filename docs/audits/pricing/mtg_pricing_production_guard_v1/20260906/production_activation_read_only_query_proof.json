@@ -1,0 +1,20 @@
+{
+  "artifact_version": "MTG_PRICING_PRODUCTION_ACTIVATION_GUARD_QUERY_PROOF_V1",
+  "executed_at": "2026-09-06T21:26:10.0248520Z",
+  "execution_mode": "production_read_only",
+  "query_path": "actual_publication_snapshots_and_indexed_active_baseline",
+  "statement_timeout_ms": 120000,
+  "client_query_timeout_ms": 125000,
+  "elapsed_ms": 58809,
+  "surrogate_publication_set_id": "72cb5aac-99d1-41df-8da8-1305324d190c",
+  "surrogate_run_id": "c9f22aa1-775c-4126-a88c-49ace0c1d0d6",
+  "result": {
+    "production_mtg_selected": 132961,
+    "production_mtg_eligible": 132961,
+    "production_pokemon_eligible": 31178,
+    "pokemon_baseline_eligible": 31178,
+    "fresh_pokemon_eligible": 31178
+  },
+  "status": "pass",
+  "production_writes": 0
+}

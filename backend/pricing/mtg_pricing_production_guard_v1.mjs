@@ -124,3 +124,64 @@ export function evaluateMtgPricingProductionGuardV1(input) {
     findings,
   };
 }
+
+export function evaluateMtgPricingProductionActivationGuardV1(input) {
+  const evaluated = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: input.productionMtgSelected,
+    mtgEligible: input.productionMtgEligible,
+    shadowPokemonEligible: input.productionPokemonEligible,
+    baselinePokemonEligible: input.baselinePokemonEligible,
+    freshCurrentPokemonEligible: input.freshCurrentPokemonEligible,
+  });
+  const findings = evaluated.findings.map((finding) => {
+    if (finding.code === "missing_eligible_mtg_pricing") {
+      return {
+        code: "missing_eligible_production_mtg_pricing",
+        production_mtg_selected: finding.mtg_selected,
+        production_mtg_eligible: finding.mtg_eligible,
+      };
+    }
+    if (finding.code === "missing_shadow_pokemon_pricing") {
+      return {
+        code: "missing_production_pokemon_pricing",
+        production_pokemon_eligible: finding.shadow_pokemon_eligible,
+      };
+    }
+    if (finding.code === "pokemon_active_publication_drop_exceeds_tolerance") {
+      const {
+        shadow_pokemon_eligible: productionPokemonEligible,
+        ...rest
+      } = finding;
+      return {
+        ...rest,
+        production_pokemon_eligible: productionPokemonEligible,
+      };
+    }
+    return finding;
+  });
+
+  return {
+    policy_version: evaluated.policy_version,
+    guard_stage: "production_pre_activation",
+    evidence_scope: "production_publication_snapshots",
+    status: evaluated.status,
+    ready_for_production: evaluated.ready_for_production,
+    current_publication_baseline_available:
+      evaluated.current_publication_baseline_available,
+    current_governed_view_available:
+      evaluated.current_governed_view_available,
+    counts: {
+      production_mtg_selected: evaluated.counts.mtg_selected,
+      production_mtg_eligible: evaluated.counts.mtg_eligible,
+      production_pokemon_eligible:
+        evaluated.counts.shadow_pokemon_eligible,
+      baseline_pokemon_eligible:
+        evaluated.counts.baseline_pokemon_eligible,
+      fresh_current_pokemon_eligible:
+        evaluated.counts.fresh_current_pokemon_eligible,
+      observed_pokemon_drop: evaluated.counts.observed_pokemon_drop,
+      allowed_pokemon_drop: evaluated.counts.allowed_pokemon_drop,
+    },
+    findings,
+  };
+}
