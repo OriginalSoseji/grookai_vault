@@ -386,16 +386,21 @@ class PublicSetsService {
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
     bool forceRefresh = false,
+    PublicCatalogGame? game,
   }) async {
     final audience = client.auth.currentUser == null ? 'public' : 'signed_in';
-    final cached = _setCatalogCache[client]?[audience];
+    final cacheKey = game == null ? audience : '$audience:${game.databaseCode}';
+    final cached = _setCatalogCache[client]?[cacheKey];
     if (!forceRefresh &&
         cached != null &&
         DateTime.now().difference(cached.loadedAt) < _setCatalogCacheTtl) {
       return cached.sets;
     }
 
-    final setRows = await _fetchPublicCatalogSetRows(client: client);
+    final setRows = await _fetchPublicCatalogSetRows(
+      client: client,
+      game: game,
+    );
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
     for (final row in setRows) {
@@ -455,7 +460,7 @@ class PublicSetsService {
 
     final immutableSets = List<PublicSetSummary>.unmodifiable(sets);
     final cache = _setCatalogCache[client] ?? <String, _PublicSetsCacheEntry>{};
-    cache[audience] = _PublicSetsCacheEntry(
+    cache[cacheKey] = _PublicSetsCacheEntry(
       loadedAt: DateTime.now(),
       sets: immutableSets,
     );
@@ -465,8 +470,16 @@ class PublicSetsService {
 
   static Future<List<Map<String, dynamic>>> _fetchPublicCatalogSetRows({
     required SupabaseClient client,
+    PublicCatalogGame? game,
   }) async {
     try {
+      if (game != null) {
+        return await _fetchPublicCatalogGameRows(
+          client: client,
+          gameCode: game.databaseCode,
+        );
+      }
+
       // PostgREST caps set-returning RPC responses at 1,000 rows. Fetch each
       // supported catalog independently so a large MTG lane cannot truncate
       // One Piece or Pokemon from the signed-in Sets screen.
@@ -488,7 +501,12 @@ class PublicSetsService {
       }
     }
 
-    final setRows = await _fetchAllVisibleSetRows(client: client);
+    final visibleSetRows = await _fetchAllVisibleSetRows(client: client);
+    final setRows = game == null
+        ? visibleSetRows
+        : visibleSetRows
+              .where((row) => _parseCatalogGame(row['game']) == game)
+              .toList(growable: false);
     final cardCountsByCode = await _fetchExactSetCardCounts(
       client: client,
       exactSetCodes: setRows.map((row) => _cleanText(row['code'])),

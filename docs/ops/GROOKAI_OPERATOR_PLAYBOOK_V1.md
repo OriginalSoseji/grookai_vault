@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_129_MTG_SEALED_PRODUCTION_WEB_ACTIVE.md` | Signed-in production web is active and flag-reversible; mobile performance/TestFlight and the separately prepared dimension constraint repair remain future gates |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md` | Signed-in production web is active and flag-reversible; Android profile performance passed; TestFlight/iPhone and the separately prepared dimension constraint repair remain future gates |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
@@ -223,19 +223,25 @@ is never waivable.
 ### MTG sealed world gate
 
 Current authority is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md`.
 Its immutable predecessor is
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_109_MTG_SEALED_IMAGE_MIGRATION_PROMOTION_READY.md`.
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_129_MTG_SEALED_PRODUCTION_WEB_ACTIVE.md`.
 Operate the lane only through `.github/workflows/mtg-sealed-world-runner.yml`
 and `.github/workflows/mtg-sealed-visibility-boundary.yml` from an exact merged
 `main` SHA supplied as `expected_sha`.
 
-The two sealed schema migrations and the durable MTG payload are applied.
+The durable catalog, image evidence, image pointer, pricing, and signed-in web
+surface are active. The Android production-profile canary passed after the set
+catalog was made viewport-lazy and game-scoped. TestFlight/iPhone proof is the
+current client gate. The separately prepared dimension constraint repair
+remains unapplied and requires its own authority.
+
+The two initial sealed schema migrations and the durable MTG payload are applied.
 Steps 1-13 are complete and remain below as immutable operation history. Do not
 replay them. The single-use `apply` authority for producer
 `800d41e65fbaaaf52f1e32b5cde1ae0367e1a976` is consumed. A future mutation
 requires a new contract, producer, fingerprints, rollback proof, and explicit
-authority. MTG sealed visibility remains hidden.
+authority. Do not repeat the completed Android profile canary.
 
 The complete operation order is:
 
