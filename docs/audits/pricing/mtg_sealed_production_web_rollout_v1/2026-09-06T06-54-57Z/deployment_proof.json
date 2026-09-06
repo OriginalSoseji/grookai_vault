@@ -1,0 +1,29 @@
+{
+  "contract_version": "MTG_SEALED_SIGNED_IN_CLIENT_ROLLOUT_V1",
+  "environment": "production",
+  "provider": "vercel",
+  "project": "grookai-vault",
+  "deployment_id": "2qFZTfA8uZpttaNkbw8WtvqyCEBq",
+  "deployment_url": "https://vercel.com/sosejis-projects/grookai-vault/2qFZTfA8uZpttaNkbw8WtvqyCEBq",
+  "production_domain": "https://grookaivault.com",
+  "source_branch": "main",
+  "source_commit": "249332eb302efccd78c37bf9e3c25e1c944c569d",
+  "source_tree": "10ec2a0404cbc75712d9762a35e79654645bdaf1",
+  "producer_commit": "951c0cbde7b626b064e14ee19704f2c1dd8a3604",
+  "producer_tree": "10ec2a0404cbc75712d9762a35e79654645bdaf1",
+  "producer_tree_matches_main": true,
+  "pull_request": 415,
+  "pull_request_merged_at": "2026-09-06T06:51:35Z",
+  "feature_flag": {
+    "name": "NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED",
+    "type": "config",
+    "environment": "Production",
+    "value": "true"
+  },
+  "status": "ready",
+  "build_duration_seconds": 165,
+  "database_migrations_applied_by_this_rollout": 0,
+  "database_writes": 0,
+  "storage_writes": 0,
+  "mobile_release": false
+}
