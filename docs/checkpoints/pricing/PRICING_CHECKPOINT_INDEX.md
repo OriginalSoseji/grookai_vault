@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_128_MTG_SEALED_DIMENSION_REPAIR_PREPARED.md`
+
+This checkpoint records the forward-only, schema-only repair for partially
+null image-evidence dimensions, its `32/32` focused test proof, preserved
+migration history, and the timed-out strict linked-schema diff.
+
+Decision locked there:
+
+- the applied migration remains immutable and the replacement constraint may
+  proceed only through a separately authorized forward migration
+
+Unresolved risk afterward:
+
+- strict linked-ledger preflight, local replay, and exact production apply
+  authorization remain incomplete; the repair is not applied
+
 ### `PRICING_CHECKPOINT_127_MTG_SEALED_SIGNED_IN_CLIENT_CANARY_PASSED.md`
 
 This checkpoint records the disabled-by-default signed-in web and Flutter

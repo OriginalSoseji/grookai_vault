@@ -188,7 +188,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
-| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_110_MTG_SEALED_IMAGE_SCHEMA_APPLIED.md` | Exact image schema/signing authorization is applied and empty; signer deployment, transient image canary, durable image release, price refresh/RPC, and client activation remain serial |
+| MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_128_MTG_SEALED_DIMENSION_REPAIR_PREPARED.md` | Signed-in backend and bounded clients are proven; the forward-only dimension constraint repair is prepared but still requires strict preflight, replay, and separate apply authority |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
