@@ -44,8 +44,9 @@ source movement.
   counts and the active baseline so a post-shadow quarantine cannot mask loss.
 - Bound the indexed baseline query with a 120-second statement timeout and a
   125-second client query timeout.
-- Write a started artifact before database access and replace it with a blocked
-  artifact on any lookup, query, evaluation, or timeout failure.
+- Write a started artifact before operation-specific input validation or
+  database access, then replace it with a blocked artifact on any lookup,
+  query, evaluation, or timeout failure.
 - Persist the complete policy result as
   `mtg-pricing-production-guard.json` in the immutable workflow artifact.
 
@@ -76,6 +77,8 @@ source movement.
   the production qualification boundary.
 - Failed preflights retain their error name/message and all prior policy
   findings without persisting a stack trace.
+- A malformed production dispatch with no expected shadow key still leaves a
+  `preflight_started` guard artifact for immutable workflow evidence.
 - The workflow still requires the exact expected SHA, a reconciled shadow, the
   frozen policy version, and the shadow-proven source sync before production.
 - This repair performs no production publication, database write, migration,
@@ -93,7 +96,7 @@ source movement.
 - The shadow run must remain reconciled and tied to the exact workflow commit.
 - The production worker must remain pinned to the shadow-proven source sync.
 - Every production attempt must leave a guard artifact, including query and
-  connection failures before worker launch.
+  connection failures and missing operation input before worker launch.
 - Pricing identity, catalog identity, Vault data, and anonymous visibility are
   unchanged by this policy repair.
 

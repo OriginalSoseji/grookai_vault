@@ -138,8 +138,18 @@ jobs:
           mode="${OPERATION#publication_}"
           shadow_source_sync_run_id=""
           if [[ "$mode" = "production" ]]; then
-            test -n "$EXPECTED_SHADOW_RUN_KEY"
             export MTG_PRICING_PRODUCTION_GUARD_OUT="$RUNNER_TEMP/mtg-pricing-production-guard.json"
+            node --input-type=module - <<'NODE'
+          import fs from 'node:fs/promises';
+          import { buildMtgPricingProductionGuardStartedArtifactV1 } from './backend/pricing/mtg_pricing_production_guard_v1.mjs';
+          const initialGuardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
+          await fs.writeFile(
+            process.env.MTG_PRICING_PRODUCTION_GUARD_OUT,
+            `${JSON.stringify(initialGuardArtifact, null, 2)}\n`,
+            'utf8',
+          );
+          NODE
+            test -n "$EXPECTED_SHADOW_RUN_KEY"
             shadow_source_sync_run_id="$(node --input-type=module - <<'NODE'
           import fs from 'node:fs/promises';
           import pg from 'pg';

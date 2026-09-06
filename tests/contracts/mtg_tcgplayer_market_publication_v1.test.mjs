@@ -347,6 +347,15 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /evaluateMtgPricingProductionGuardV1/);
   assert.match(WORKFLOW, /buildMtgPricingProductionGuardStartedArtifactV1/);
   assert.match(WORKFLOW, /buildMtgPricingProductionGuardFailureArtifactV1/);
+  const initialGuardArtifactIndex = WORKFLOW.indexOf(
+    "const initialGuardArtifact = buildMtgPricingProductionGuardStartedArtifactV1()",
+  );
+  const shadowKeyValidationIndex = WORKFLOW.indexOf(
+    'test -n "$EXPECTED_SHADOW_RUN_KEY"',
+  );
+  assert.ok(initialGuardArtifactIndex >= 0);
+  assert.ok(shadowKeyValidationIndex >= 0);
+  assert.ok(initialGuardArtifactIndex < shadowKeyValidationIndex);
   assert.match(WORKFLOW, /catch \(error\) \{/);
   assert.match(WORKFLOW, /await persistGuardArtifact\(\)/);
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
