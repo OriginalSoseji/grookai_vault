@@ -2,6 +2,7 @@
 
 ## Checkpoints
 
+- `APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1.md` - `2026-09-06` - BUILD 312 RESERVED / REPOSITORY VERIFIED / STORE PARITY OPEN - Records source commit `dade217c`, PR `#421`, passing repository gates, the absence of accepted Android/iOS 312 artifacts, and the exact merged-SHA parity gates required before TestFlight evidence can be claimed.
 - `APP_LAUNCH_CLOSEOUT_INTEGRATION_20260820_V1.md` - `2026-08-20` - SAFE NON-MTG INTEGRATION COMPLETE / PUBLICATION AND EXTERNAL STORE GATES OPEN - Reconciles chat safety, Vault bulk selection, and unified catalog search; records current store-media and authenticated-console gates.
 - `CHAT_SAFETY_AND_PLAY_CONTENT_RATING_20260817_V1.md` - `2026-08-17` - PRODUCT ENFORCEMENT IMPLEMENTED / DATABASE FOLLOW-UP GATED - Records Google Play content-rating work, deterministic message screening, reporting, founder review, preserved user data, and the database-enforcement follow-up.
 - `STORE_MEDIA_PREPARATION_20260817_V1.md` - `2026-08-17` - SIX ASSETS PREPARED / EXTERNAL CONSOLES OPEN - Records the dated store-media preparation evidence and external-console gates.

@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1` - `2026-09-06` - Build 312 is reserved and repository-verified at source commit `dade217c`; no Android or iOS 312 artifact is yet accepted, and exact merged-SHA production web, signed Android, TestFlight, and governed release reconciliation remain open
 - `PRICING_CHECKPOINT_123_MTG_SEALED_SIGNER_DEPLOYED` - `2026-09-05` - Exact commit-bound MTG sealed signer deployment passed production auth probes, authenticated-role hidden denial, and complete protected-state equality while visibility and both clients remained disabled
 - `PRICING_CHECKPOINT_113_MTG_SEALED_STORAGE_CANARY_PASSED` - `2026-09-04` - Exact 17-object MTG sealed source/upload/readback/removal proof passed with 17 unique hashes, 1,185,749 verified bytes, secure system CA trust, zero errors, zero durable objects, and zero forbidden-boundary operations
 - `PRICING_CHECKPOINT_112_MTG_SEALED_STORAGE_CANARY_TLS_TRUST_REQUIRED` - `2026-09-04` - Bounded retry canary isolated `unable_to_verify_leaf_signature` before upload, preserved 17/17 final absence, and requires verified Node bundled-plus-Windows-system CA trust under a new execution fingerprint
