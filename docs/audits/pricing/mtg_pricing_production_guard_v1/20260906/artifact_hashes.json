@@ -1,0 +1,20 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "offline_replay.json",
+      "bytes": 3670,
+      "sha256": "a6c770d7358fe99d05315b93bbd998b657334b6a59b929b62484d1719c26d307"
+    },
+    {
+      "path": "production_read_only_query_proof.json",
+      "bytes": 454,
+      "sha256": "5f3b523320d9ce4ab7ff977cb4ebcd6d770a0888b5373751b0d6bd648d05fb32"
+    },
+    {
+      "path": "production_activation_read_only_query_proof.json",
+      "bytes": 780,
+      "sha256": "05bb14dd89626bffcc94ccb25c0ef3bd8f6a300a4f5ca6af034a4a9c1f51c650"
+    }
+  ]
+}

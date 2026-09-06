@@ -44,6 +44,20 @@ jobs:
       EXPECTED_SHADOW_RUN_KEY: ${{ inputs.expected_shadow_run_key }}
 
     steps:
+      - name: Initialize production guard evidence
+        if: ${{ inputs.operation == 'publication_production' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/mtg-pricing-production-guard.json" <<'JSON'
+          {
+            "policy_version": "MTG_PRICING_PRODUCTION_GUARD_V1",
+            "status": "preflight_started",
+            "ready_for_production": false,
+            "findings": []
+          }
+          JSON
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -61,6 +75,7 @@ jobs:
           test "$GITHUB_SHA" = "$EXPECTED_SHA"
           test -z "$(git status --porcelain --untracked-files=no)"
           test -f "supabase/migrations/$TARGET_MIGRATION"
+          node --check backend/pricing/mtg_pricing_production_guard_v1.mjs
           node --check backend/pricing/mtg_tcgplayer_parent_mapping_policy_v1.mjs
           node --check scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs
           node --check scripts/workers/tcgplayer_market_publication_worker_v1.mjs
@@ -137,15 +152,45 @@ jobs:
           mode="${OPERATION#publication_}"
           shadow_source_sync_run_id=""
           if [[ "$mode" = "production" ]]; then
+            export MTG_PRICING_PRODUCTION_GUARD_OUT="$RUNNER_TEMP/mtg-pricing-production-guard.json"
+            node --input-type=module - <<'NODE'
+          import fs from 'node:fs/promises';
+          import { buildMtgPricingProductionGuardStartedArtifactV1 } from './backend/pricing/mtg_pricing_production_guard_v1.mjs';
+          const initialGuardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
+          await fs.writeFile(
+            process.env.MTG_PRICING_PRODUCTION_GUARD_OUT,
+            `${JSON.stringify(initialGuardArtifact, null, 2)}\n`,
+            'utf8',
+          );
+          NODE
             test -n "$EXPECTED_SHADOW_RUN_KEY"
             shadow_source_sync_run_id="$(node --input-type=module - <<'NODE'
+          import fs from 'node:fs/promises';
           import pg from 'pg';
+          import {
+            buildMtgPricingProductionGuardFailureArtifactV1,
+            buildMtgPricingProductionGuardStartedArtifactV1,
+            evaluateMtgPricingProductionGuardV1,
+          } from './backend/pricing/mtg_pricing_production_guard_v1.mjs';
+          const artifactPath = process.env.MTG_PRICING_PRODUCTION_GUARD_OUT;
+          let guardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
+          const persistGuardArtifact = async () => fs.writeFile(
+            artifactPath,
+            `${JSON.stringify(guardArtifact, null, 2)}\n`,
+            'utf8',
+          );
+          await persistGuardArtifact();
           const client = new pg.Client({
             connectionString: process.env.SUPABASE_DB_URL,
             ssl: { rejectUnauthorized: false },
+            connectionTimeoutMillis: 15_000,
+            statement_timeout: 120_000,
+            query_timeout: 125_000,
           });
-          await client.connect();
+          let connected = false;
           try {
+            await client.connect();
+            connected = true;
             const result = await client.query(
               `select count(*)::integer as count
                  from public.market_price_pipeline_runs
@@ -171,43 +216,110 @@ jobs:
                    count(*) filter (
                      where decision.evidence ->> 'category_id' = '1'
                    )::integer as mtg_selected,
-                   count(*) filter (
+                   count(distinct decision.card_printing_id) filter (
                      where decision.evidence ->> 'category_id' = '1'
                        and decision.eligible = true
+                       and decision.decision = 'publish'
+                       and decision.publication_lane = 'current'
+                       and not exists (
+                         select 1
+                         from public.card_printing_truth_reviews truth_review
+                         where truth_review.card_printing_id = decision.card_printing_id
+                           and truth_review.active = true
+                           and truth_review.public_visibility in (
+                             'hidden_pending_review',
+                             'hidden_unsupported'
+                           )
+                       )
                    )::integer as mtg_eligible,
-                   count(*) filter (
+                   count(distinct decision.card_printing_id) filter (
                      where decision.evidence ->> 'category_id' = '3'
                        and decision.eligible = true
+                       and decision.decision = 'publish'
+                       and decision.publication_lane = 'current'
+                       and not exists (
+                         select 1
+                         from public.card_printing_truth_reviews truth_review
+                         where truth_review.card_printing_id = decision.card_printing_id
+                           and truth_review.active = true
+                           and truth_review.public_visibility in (
+                             'hidden_pending_review',
+                             'hidden_unsupported'
+                           )
+                       )
                    )::integer as pokemon_eligible
                  from public.market_price_qualification_decisions decision
                  join shadow_run on shadow_run.id = decision.run_id
               ),
               current_counts as (
-                 select count(*) filter (
-                   where decision.evidence ->> 'category_id' = '3'
-                     and decision.eligible = true
-                 )::integer as pokemon_eligible
+                 select
+                   count(distinct snapshot.card_printing_id) filter (
+                     where decision.evidence ->> 'category_id' = '1'
+                   )::integer as mtg_baseline_eligible,
+                   count(distinct snapshot.card_printing_id) filter (
+                     where decision.evidence ->> 'category_id' = '3'
+                   )::integer as pokemon_baseline_eligible,
+                   count(distinct snapshot.card_printing_id) filter (
+                     where decision.evidence ->> 'category_id' = '3'
+                       and snapshot.source_sync_finished_at >=
+                       now() - interval '36 hours'
+                   )::integer as fresh_pokemon_eligible
                  from public.market_price_current_publication current_state
+                 join public.market_price_publication_sets publication_set
+                   on publication_set.id = current_state.publication_set_id
+                  and publication_set.run_id = current_state.run_id
+                  and publication_set.publication_state = 'published'
+                 join public.market_price_pipeline_runs pipeline_run
+                   on pipeline_run.id = current_state.run_id
+                  and pipeline_run.reconciliation_state = 'reconciled'
+                  and pipeline_run.state in ('published', 'verified')
+                 join public.market_price_publication_snapshots snapshot
+                   on snapshot.publication_set_id = current_state.publication_set_id
+                  and snapshot.run_id = current_state.run_id
+                  and snapshot.publication_state = 'published'
+                  and snapshot.freshness_state = 'fresh'
                  join public.market_price_qualification_decisions decision
-                   on decision.run_id = current_state.run_id
+                   on decision.id = snapshot.qualification_decision_id
+                  and decision.run_id = snapshot.run_id
+                  and decision.eligible = true
+                  and decision.decision = 'publish'
+                  and decision.publication_lane = 'current'
+                where current_state.singleton
+                  and not exists (
+                    select 1
+                    from public.card_printing_truth_reviews truth_review
+                    where truth_review.card_printing_id = snapshot.card_printing_id
+                      and truth_review.active = true
+                      and truth_review.public_visibility in (
+                        'hidden_pending_review',
+                        'hidden_unsupported'
+                      )
+                  )
               )
               select
                 shadow_counts.mtg_selected,
                 shadow_counts.mtg_eligible,
+                current_counts.mtg_baseline_eligible,
                 shadow_counts.pokemon_eligible as shadow_pokemon_eligible,
-                current_counts.pokemon_eligible as current_pokemon_eligible
+                current_counts.pokemon_baseline_eligible,
+                current_counts.fresh_pokemon_eligible
               from shadow_counts cross join current_counts`,
               [process.env.EXPECTED_SHADOW_RUN_KEY],
             );
             const counts = categoryResult.rows[0];
-            if (Number(counts.mtg_selected) < 1 || Number(counts.mtg_eligible) < 1) {
-              throw new Error('Shadow run did not prove eligible MTG pricing');
-            }
-            if (
-              Number(counts.shadow_pokemon_eligible) <
-              Number(counts.current_pokemon_eligible)
-            ) {
-              throw new Error('Shadow run would reduce current Pokemon publication');
+            guardArtifact = evaluateMtgPricingProductionGuardV1({
+              mtgSelected: counts.mtg_selected,
+              mtgEligible: counts.mtg_eligible,
+              baselineMtgEligible: counts.mtg_baseline_eligible,
+              shadowPokemonEligible: counts.shadow_pokemon_eligible,
+              baselinePokemonEligible: counts.pokemon_baseline_eligible,
+              freshCurrentPokemonEligible: counts.fresh_pokemon_eligible,
+            });
+            await persistGuardArtifact();
+            if (!guardArtifact.ready_for_production) {
+              throw new Error(
+                `MTG pricing production guard blocked: ${JSON.stringify(guardArtifact.findings)}`,
+              );
             }
             process.stdout.write(String((await client.query(
               `select source_sync_run_id
@@ -215,8 +327,15 @@ jobs:
                 where run_key = $1`,
               [process.env.EXPECTED_SHADOW_RUN_KEY],
             )).rows[0].source_sync_run_id));
+          } catch (error) {
+            guardArtifact = buildMtgPricingProductionGuardFailureArtifactV1({
+              priorArtifact: guardArtifact,
+              error,
+            });
+            await persistGuardArtifact();
+            throw error;
           } finally {
-            await client.end();
+            if (connected) await client.end();
           }
           NODE
             )"

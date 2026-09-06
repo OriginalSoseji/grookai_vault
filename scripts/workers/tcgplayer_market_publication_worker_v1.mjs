@@ -24,6 +24,11 @@ import {
   buildTcgplayerCandidateProductPagesV1,
   inspectTcgplayerCandidateRowsV1,
 } from "../../backend/pricing/tcgplayer_market_candidate_paging_v1.mjs";
+import {
+  buildMtgPricingProductionGuardFailureArtifactV1,
+  buildMtgPricingProductionGuardStartedArtifactV1,
+  evaluateMtgPricingProductionActivationGuardV1,
+} from "../../backend/pricing/mtg_pricing_production_guard_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -35,7 +40,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_5";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -51,6 +56,9 @@ const WRITE_MODES = new Set(["shadow", "canary", "production"]);
 const ACTIVATION_MODES = new Set(["canary", "production"]);
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS = 120_000;
+const PRODUCTION_GUARD_QUERY_TIMEOUT_MS = 125_000;
+let productionGuardEnabled = false;
 
 function parseArgs(argv) {
   const args = {
@@ -243,6 +251,55 @@ async function git(args) {
 
 async function writeJson(filePath, value) {
   await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+async function persistMtgProductionGuardArtifact(artifact) {
+  const artifactPath = process.env.MTG_PRICING_PRODUCTION_GUARD_OUT;
+  if (!artifactPath) return;
+  await fs.mkdir(path.dirname(artifactPath), { recursive: true });
+  await writeJson(artifactPath, artifact);
+}
+
+async function readMtgProductionGuardArtifact() {
+  const artifactPath = process.env.MTG_PRICING_PRODUCTION_GUARD_OUT;
+  if (!artifactPath) return null;
+  try {
+    return JSON.parse(await fs.readFile(artifactPath, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+async function ensureMtgProductionGuardArtifact() {
+  const existing = await readMtgProductionGuardArtifact();
+  if (existing) return existing;
+  const started = buildMtgPricingProductionGuardStartedArtifactV1();
+  await persistMtgProductionGuardArtifact(started);
+  return started;
+}
+
+async function persistMtgProductionWorkerFailure(error) {
+  if (
+    !productionGuardEnabled ||
+    !process.env.MTG_PRICING_PRODUCTION_GUARD_OUT
+  ) {
+    return;
+  }
+  const priorArtifact =
+    (await readMtgProductionGuardArtifact()) ??
+    buildMtgPricingProductionGuardStartedArtifactV1();
+  const failed = {
+    ...buildMtgPricingProductionGuardFailureArtifactV1({
+      priorArtifact,
+      error,
+      errorField: "worker_error",
+    }),
+    guard_stage: priorArtifact.guard_stage ?? "production_worker",
+    evidence_scope:
+      priorArtifact.evidence_scope ?? "production_worker_execution",
+  };
+  await persistMtgProductionGuardArtifact(failed);
 }
 
 async function writeJsonLines(filePath, rows, batchSize = 1_000) {
@@ -1265,9 +1322,158 @@ async function persistReconciliation(client, runId, reconciliation) {
   );
 }
 
-async function activateAndVerify(client, run, publicationSet) {
+async function evaluateProductionActivationGuard(client, run, publicationSet) {
+  let guardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
+  try {
+    const previousStatementTimeout = (
+      await client.query("show statement_timeout")
+    ).rows[0].statement_timeout;
+    await client.query("select set_config('statement_timeout', $1, true)", [
+      `${PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS}ms`,
+    ]);
+    const result = await client.query({
+      text: `with production_counts as (
+         select
+           count(*) filter (
+             where decision.evidence ->> 'category_id' = '1'
+           )::integer as mtg_selected,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '1'
+               and not exists (
+                 select 1
+                 from public.card_printing_truth_reviews truth_review
+                 where truth_review.card_printing_id = snapshot.card_printing_id
+                   and truth_review.active = true
+                   and truth_review.public_visibility in (
+                     'hidden_pending_review',
+                     'hidden_unsupported'
+                   )
+               )
+           )::integer as mtg_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '3'
+               and not exists (
+                 select 1
+                 from public.card_printing_truth_reviews truth_review
+                 where truth_review.card_printing_id = snapshot.card_printing_id
+                   and truth_review.active = true
+                   and truth_review.public_visibility in (
+                     'hidden_pending_review',
+                     'hidden_unsupported'
+                   )
+               )
+           )::integer as pokemon_eligible
+         from public.market_price_publication_snapshots snapshot
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+          and decision.eligible = true
+          and decision.decision = 'publish'
+          and decision.publication_lane = 'current'
+        where snapshot.publication_set_id = $1
+          and snapshot.run_id = $2
+       ),
+       current_counts as (
+         select
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '1'
+           )::integer as mtg_baseline_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '3'
+           )::integer as pokemon_baseline_eligible,
+           count(distinct snapshot.card_printing_id) filter (
+             where decision.evidence ->> 'category_id' = '3'
+               and snapshot.source_sync_finished_at >=
+               now() - interval '36 hours'
+           )::integer as fresh_pokemon_eligible
+         from public.market_price_current_publication current_state
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = current_state.publication_set_id
+          and publication_set.run_id = current_state.run_id
+          and publication_set.publication_state = 'published'
+         join public.market_price_pipeline_runs pipeline_run
+           on pipeline_run.id = current_state.run_id
+          and pipeline_run.reconciliation_state = 'reconciled'
+          and pipeline_run.state in ('published', 'verified')
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.publication_set_id = current_state.publication_set_id
+          and snapshot.run_id = current_state.run_id
+          and snapshot.publication_state = 'published'
+          and snapshot.freshness_state = 'fresh'
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+          and decision.eligible = true
+          and decision.decision = 'publish'
+          and decision.publication_lane = 'current'
+        where current_state.singleton
+          and not exists (
+            select 1
+            from public.card_printing_truth_reviews truth_review
+            where truth_review.card_printing_id = snapshot.card_printing_id
+              and truth_review.active = true
+              and truth_review.public_visibility in (
+                'hidden_pending_review',
+                'hidden_unsupported'
+              )
+          )
+       )
+       select
+         production_counts.mtg_selected,
+         production_counts.mtg_eligible,
+         current_counts.mtg_baseline_eligible,
+         production_counts.pokemon_eligible,
+         current_counts.pokemon_baseline_eligible,
+         current_counts.fresh_pokemon_eligible
+       from production_counts cross join current_counts`,
+      values: [publicationSet.id, run.id],
+      query_timeout: PRODUCTION_GUARD_QUERY_TIMEOUT_MS,
+    });
+    await client.query("select set_config('statement_timeout', $1, true)", [
+      previousStatementTimeout,
+    ]);
+    const counts = result.rows[0];
+    guardArtifact = {
+      ...evaluateMtgPricingProductionActivationGuardV1({
+        productionMtgSelected: counts.mtg_selected,
+        productionMtgEligible: counts.mtg_eligible,
+        baselineMtgEligible: counts.mtg_baseline_eligible,
+        productionPokemonEligible: counts.pokemon_eligible,
+        baselinePokemonEligible: counts.pokemon_baseline_eligible,
+        freshCurrentPokemonEligible: counts.fresh_pokemon_eligible,
+      }),
+      run_id: run.id,
+      publication_set_id: publicationSet.id,
+    };
+  } catch (error) {
+    guardArtifact = buildMtgPricingProductionGuardFailureArtifactV1({
+      priorArtifact: guardArtifact,
+      error,
+      errorField: "worker_error",
+    });
+    guardArtifact.guard_stage = "production_pre_activation";
+    guardArtifact.evidence_scope = "production_publication_snapshots";
+    guardArtifact.run_id = run.id;
+    guardArtifact.publication_set_id = publicationSet.id;
+    await persistMtgProductionGuardArtifact(guardArtifact);
+    throw error;
+  }
+  await persistMtgProductionGuardArtifact(guardArtifact);
+  if (!guardArtifact.ready_for_production) {
+    throw new Error(
+      `MTG pricing production activation guard blocked: ${JSON.stringify(guardArtifact.findings)}`,
+    );
+  }
+  return guardArtifact;
+}
+
+async function activateAndVerify(client, run, publicationSet, runMode) {
   await client.query("begin");
   try {
+    const productionGuard =
+      runMode === "production"
+        ? await evaluateProductionActivationGuard(client, run, publicationSet)
+        : null;
     const activation = await client.query(
       `select *
          from public.activate_market_price_publication_set_v1($1, $2, $3)`,
@@ -1307,10 +1513,43 @@ async function activateAndVerify(client, run, publicationSet) {
       resumability_data: {
         activation: activation.rows[0],
         readback_current_count: currentCount,
+        production_guard: productionGuard,
       },
     };
   } catch (error) {
     await client.query("rollback");
+    throw error;
+  }
+}
+
+async function restoreVerifiedProductionGuardArtifact(client, run) {
+  await client.query("begin transaction read only");
+  try {
+    const result = await client.query(
+      `select publication_set.*
+         from public.market_price_current_publication current_state
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = current_state.publication_set_id
+          and publication_set.run_id = current_state.run_id
+          and publication_set.publication_state = 'published'
+        where current_state.singleton
+          and current_state.run_id = $1`,
+      [run.id],
+    );
+    if (result.rows.length !== 1) {
+      throw new Error(
+        "verified production run is not the active publication",
+      );
+    }
+    const guardArtifact = await evaluateProductionActivationGuard(
+      client,
+      run,
+      result.rows[0],
+    );
+    await client.query("commit");
+    return guardArtifact;
+  } catch (error) {
+    await client.query("rollback").catch(() => {});
     throw error;
   }
 }
@@ -1451,6 +1690,10 @@ async function runDurable(client, args, sourceRun, runPlan) {
       commitSha: runPlan.commit_sha,
     });
 
+    if (run.state === "verified" && args.runMode === "production") {
+      await restoreVerifiedProductionGuardArtifact(client, run);
+      return artifactRows(client, run.id);
+    }
     if (["shadow_verified", "verified"].includes(run.state)) {
       return artifactRows(client, run.id);
     }
@@ -1630,7 +1873,8 @@ async function runDurable(client, args, sourceRun, runPlan) {
         run,
         sourceRun,
         phaseName: "activate",
-        operation: async () => activateAndVerify(client, run, publicationSet),
+        operation: async () =>
+          activateAndVerify(client, run, publicationSet, args.runMode),
       });
     }
     return artifactRows(client, run.id);
@@ -1643,6 +1887,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  productionGuardEnabled = args.runMode === "production";
   let loadedCanary = null;
   if (args.canaryDefinitionPath) {
     loadedCanary = await loadTcgplayerMarketCanaryDefinitionV1(
@@ -1652,15 +1897,22 @@ async function main() {
   } else {
     args.canaryDefinition = null;
   }
+  const runKey = args.runKey || runKeyNow(args.runMode);
+  const outDir = path.join(args.outRoot, safePathSegment(runKey));
+  await fs.mkdir(outDir, { recursive: true });
+  if (args.runMode === "production") {
+    process.env.MTG_PRICING_PRODUCTION_GUARD_OUT ||= path.join(
+      outDir,
+      "mtg-pricing-production-guard.json",
+    );
+    await ensureMtgProductionGuardArtifact();
+  }
   const url = connectionString();
   if (!url) {
     throw new Error(
       "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
     );
   }
-  const runKey = args.runKey || runKeyNow(args.runMode);
-  const outDir = path.join(args.outRoot, safePathSegment(runKey));
-  await fs.mkdir(outDir, { recursive: true });
   const [commitSha, branch, trackedChanges] = await Promise.all([
     git(["rev-parse", "HEAD"]),
     git(["branch", "--show-current"]),
@@ -1820,7 +2072,12 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
+  await persistMtgProductionWorkerFailure(error).catch((artifactError) => {
+    process.stderr.write(
+      `[tcgplayer-market-publication] guard artifact failure: ${artifactError.message}\n`,
+    );
+  });
   console.error(
     `[tcgplayer-market-publication] ${error.stack || error.message}`,
   );

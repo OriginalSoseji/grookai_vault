@@ -189,6 +189,7 @@ owns the connection.
 | Release readiness | `docs/release/PRODUCTION_READINESS_GATE_V1.md` | `npm run release:completion:require` and required soak evidence |
 | Pricing/MEE definition | `docs/contracts/MEE_PRICING_PLATFORM_PRODUCTION_V1_DEFINITION_OF_DONE.md` | Every frozen release gate reconciled |
 | Pricing resume | `docs/system/RESUME_PRICING_V1.md` | Current pricing checkpoint and production readback |
+| MTG market pricing publication | `.github/workflows/mtg-pricing-publication-runner.yml` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md` | Exact reconciled shadow, indexed freshness-aware Pokemon baseline, production guard artifact, and final run reconciliation |
 | MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md` | Signed-in production web is active and flag-reversible; Android profile performance passed; TestFlight/iPhone and the separately prepared dimension constraint repair remain future gates |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
 | TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
@@ -220,6 +221,67 @@ baseline directory. A missing migration, route, workflow, entrypoint, database
 object, policy, or previously healthy product case blocks the lane unless the
 active contract permits an explicit versioned disposition; migration mutation
 is never waivable.
+
+### MTG market pricing publication gate
+
+Operate MTG market pricing only through
+`.github/workflows/mtg-pricing-publication-runner.yml` from an exact merged
+`main` SHA. Production requires a shadow run at that SHA with state
+`shadow_verified`, reconciliation state `reconciled`, policy
+`TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3`, and a source sync reused by the
+production worker.
+
+The production guard computes last-known MTG and Pokemon baselines plus the
+currently fresh Pokemon subset through the indexed active publication pointer,
+snapshots, decisions, and truth-review quarantine. It does not aggregate the
+broad `v_market_price_current_v1` client view or count unscoped historical
+decisions. The shadow may reduce either baseline by at most `0.1%`, rounded
+down; a larger reduction blocks even when the Pokemon fresh subset is empty or
+expired. The baseline query is bounded by a 120-second database timeout.
+
+Both shadow and baseline coverage are counts of distinct canonical
+`card_printing_id` values; source-row duplication cannot satisfy the guard.
+The workflow writes a `preflight_started` artifact before database access and a
+`blocked` artifact for lookup, query, evaluation, or timeout errors, preserving
+prior counts/findings without a stack trace.
+
+The shadow comparison is an early provenance gate. Production worker
+`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6` performs the authoritative second
+comparison inside the activation transaction using the actual staged
+publication snapshots and the then-current indexed MTG and Pokemon baselines. It must
+complete before `activate_market_price_publication_set_v1` can move the
+publication pointer. The final artifact must report guard stage
+`production_pre_activation` and evidence scope
+`production_publication_snapshots`.
+
+The worker must preserve the completed shadow preflight artifact on startup.
+Any production worker failure then converts the latest artifact to `blocked`
+and records `worker_error`; do not accept a run whose artifact remains only
+`preflight_started`. The authoritative activation query is limited to a
+120-second transaction-local statement timeout and a 125-second client timeout
+before the worker restores its normal publication timeout.
+
+The production workflow creates its initial `preflight_started` artifact as the
+first executable job step, before checkout, repository verification, contract
+tests, or dependency installation. The always-running evidence upload therefore
+classifies failures that occur before the publication worker starts.
+
+When a retry resumes a production run already committed as `verified`, the
+worker must not trust the existing local guard file. It opens a read-only
+transaction, proves that run still owns the active publication pointer,
+re-evaluates the guard against committed snapshots and current baselines, and
+restores the resulting artifact before reporting success.
+
+The established MTG and Pokemon publication lanes must each have a nonzero
+active-publication baseline. A missing pointer or broken publication/run join
+produces zero baselines and blocks both shadow preflight and production
+pre-activation. This workflow has no implicit bootstrap exception.
+
+Every production preflight writes
+`mtg-pricing-production-guard.json` into the workflow artifact. Read that file
+alongside the worker summary and reconciliation artifacts before classifying a
+run. Never bypass a material-loss finding, substitute a different shadow, or
+compare against stale raw publication decisions.
 
 ### MTG sealed world gate
 
