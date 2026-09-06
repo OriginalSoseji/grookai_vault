@@ -1,0 +1,26 @@
+{
+  "anonymous_post": {
+    "method": "POST",
+    "status": 404,
+    "body": {
+      "code": "NOT_FOUND",
+      "message": "Requested function was not found"
+    }
+  },
+  "invalid_bearer_post": {
+    "method": "POST",
+    "status": 404,
+    "body": {
+      "code": "NOT_FOUND",
+      "message": "Requested function was not found"
+    }
+  },
+  "get": {
+    "method": "GET",
+    "status": 404,
+    "body": {
+      "code": "NOT_FOUND",
+      "message": "Requested function was not found"
+    }
+  }
+}

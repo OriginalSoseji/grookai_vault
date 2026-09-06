@@ -1,0 +1,12 @@
+{
+  "transaction_read_only": true,
+  "pointer": {
+    "pointer_count": 0,
+    "image_release_id": null
+  },
+  "release": {
+    "id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "release_state": "frozen",
+    "manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "version": "MTG_SEALED_DURABLE_IMAGE_STORAGE_V1",
+  "mode": "guarded_resumable_durable_storage",
+  "producer_commit_sha": "406e78816c19ae9974b62ad2df596edc65ec3669",
+  "source_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "source_durable_plan_fingerprint_sha256": "92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc",
+  "source_durable_artifact_hashes": {
+    "run_plan.json": {
+      "bytes": 4723,
+      "sha256": "83cf57edfc363de8ad388590d0d9f82303430d81013ad8235c96e94afefdeff9"
+    },
+    "objects.jsonl.gz": {
+      "bytes": 612238,
+      "sha256": "8a429cc11e3d284371ed17f3ffedf4dfa627f5672500d0912caaac2cae44c367"
+    },
+    "exclusions.jsonl": {
+      "bytes": 45791,
+      "sha256": "fc32954ab64798359be18c19b109b69455007cb2e391a49819c81537787018ba"
+    },
+    "shards.json": {
+      "bytes": 166301,
+      "sha256": "5538981c2cd3fa65be3346490a4e42b6dd95d805759399a68a4377cb4858374d"
+    },
+    "summary.json": {
+      "bytes": 1487,
+      "sha256": "e7aa4591e64112fe8fcf08da2858ff5ad3b7c79a2290d894ce9c71c7558e8990"
+    },
+    "REPORT.md": {
+      "bytes": 967,
+      "sha256": "14835c5b8a55e54abcf4d564d562bad23347f8b71a8d5d56f40c674e319b1b3e"
+    }
+  },
+  "target_supabase_project_ref": "ycdxbpibncqcchqiihfz",
+  "target_storage_bucket": "user-card-images",
+  "selected_member_count": 2182,
+  "selected_variant_count": 2149,
+  "selected_object_count": 2141,
+  "exclusion_count": 33,
+  "expected_durable_bytes": 157335339,
+  "shard_count": 22,
+  "object_dataset_fingerprint_sha256": "b93697b0ca0bfb9c4dd1f98ef93be1514a904f80491b991b259a1fdddc14e59e",
+  "exclusion_dataset_fingerprint_sha256": "1f60dc416bf0a4c447e19f5eb0d61bb8a8ae2c17360f2a294ddf6be01dd178e5",
+  "shard_dataset_fingerprint_sha256": "528e167a2a2787699a3130aa0162e137a2261d1b2f8cba447658b20ceeab0973",
+  "operation_contract": {
+    "maximum_concurrency": 10,
+    "shard_size": 100,
+    "source_fetch_retries": 2,
+    "maximum_source_request_attempts": 6423,
+    "maximum_source_bytes_per_object": 20000000,
+    "tls_trust_policy": "node_bundled_plus_windows_system_ca",
+    "tls_certificate_verification_required": true,
+    "custom_ca_overrides_allowed": false,
+    "source_redirects_allowed": false,
+    "collision_readback_before_source_fetch": true,
+    "collision_readback_immediately_before_upload": true,
+    "exact_existing_object_is_reused": true,
+    "mismatched_existing_object_is_hard_stop": true,
+    "upload_upsert": false,
+    "overwrite_allowed": false,
+    "exact_readback_required": "sha256_size_dimensions_format_and_content_type",
+    "durable_commit_unit": "one_content_addressed_object_after_exact_readback",
+    "verified_objects_retained_on_interruption": true,
+    "resume_requires_exact_execution_fingerprint": true,
+    "write_ahead_journal_required": true,
+    "per_object_result_required": true,
+    "stop_launching_after_first_failure": true,
+    "cleanup_scope": "only_unverified_object_created_by_current_execution_attempt",
+    "preexisting_or_verified_objects_never_removed": true,
+    "whole_plan_reconciliation_required": true
+  },
+  "authorized_operation_ceilings": {
+    "source_http_requests": 6423,
+    "storage_presence_reads": 6423,
+    "storage_downloads": 4282,
+    "storage_uploads": 2141,
+    "storage_deletes": 2141,
+    "durable_objects_on_success": 2141
+  },
+  "forbidden_boundaries": {
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "image_evidence_rows": 0,
+    "image_release_rows": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "execution_fingerprint_sha256": "ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e",
+  "approval_env": "MTG_SEALED_DURABLE_IMAGE_STORAGE_APPROVAL",
+  "required_approval_message": "I approve the resumable durable MTG sealed image Storage execution from execution commit 406e78816c19ae9974b62ad2df596edc65ec3669, using source coverage fingerprint cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d, durable plan fingerprint 92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc, and execution fingerprint ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e. This authorizes exact collision readback, retrieval of exactly 2141 frozen unique images covering 2149 variants with at most 2 transport retries per object and 6423 total source requests using verified Node bundled-plus-Windows-system CA trust, at most 2141 upsert=false durable uploads to bucket user-card-images, exact readback, resumable retention of verified objects, and removal only of an unverified object proven created by the current attempt. It preserves 33 exclusions and authorizes no database, image evidence, pointer, pricing, release, visibility, Vault, signer, client, or cross-game writes.",
+  "guard_token": "I approve the resumable durable MTG sealed image Storage execution from execution commit 406e78816c19ae9974b62ad2df596edc65ec3669, using source coverage fingerprint cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d, durable plan fingerprint 92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc, and execution fingerprint ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e. This authorizes exact collision readback, retrieval of exactly 2141 frozen unique images covering 2149 variants with at most 2 transport retries per object and 6423 total source requests using verified Node bundled-plus-Windows-system CA trust, at most 2141 upsert=false durable uploads to bucket user-card-images, exact readback, resumable retention of verified objects, and removal only of an unverified object proven created by the current attempt. It preserves 33 exclusions and authorizes no database, image evidence, pointer, pricing, release, visibility, Vault, signer, client, or cross-game writes."
+}

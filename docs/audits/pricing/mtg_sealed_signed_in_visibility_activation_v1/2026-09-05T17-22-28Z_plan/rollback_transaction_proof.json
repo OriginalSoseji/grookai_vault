@@ -1,0 +1,25 @@
+{
+  "transaction": {
+    "started": true,
+    "committed": false,
+    "rolled_back": true,
+    "updated_rows": 1,
+    "release_status": "signed_in",
+    "authenticated_rpc_rows": 2144,
+    "authenticated_rpc_fingerprint": "34a91368a22a296beff607934d070ff888a8f858de9e497ffbb88a4a8634ded7",
+    "signing_authorized": true,
+    "stale_cas_updated_rows": 0,
+    "write_attribution": [
+      {
+        "relname": "sealed_product_game_release_controls",
+        "writes": 1
+      }
+    ]
+  },
+  "post_rollback": {
+    "release_control_exact": true,
+    "protected_state_exact": true,
+    "hidden_rpc_rows": 0,
+    "hidden_signing_authorized": false
+  }
+}

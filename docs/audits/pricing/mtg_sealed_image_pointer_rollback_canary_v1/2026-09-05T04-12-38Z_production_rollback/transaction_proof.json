@@ -1,0 +1,426 @@
+{
+  "plan": {
+    "version": "MTG_SEALED_IMAGE_POINTER_ROLLBACK_CANARY_V1",
+    "mode": "production_rollback_only",
+    "producer_commit_sha": "afc812779e495e24cc1ec1c0521a450ada4d232d",
+    "producer_branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "tracked_worktree_clean": true,
+    "game_key": "mtg",
+    "source_image_release_plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+    "source_durable_apply_execution_fingerprint_sha256": "0e477804e8f7fb653b118e4567d9dca6d7b2663d8dd532073d1986c8e9aeb440",
+    "target_image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "target_image_release_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+    "required_active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "expected_current_image_release_id": null,
+    "changed_by": "ff463879-026a-5ee2-8326-59e2d8b9b665",
+    "pointer_contract_version": "SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1",
+    "pointer_function": "sealed_product_set_active_image_release_v1(uuid,uuid,uuid)",
+    "selected_signing_candidate": {
+      "storage_bucket": "user-card-images",
+      "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+      "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "variant_id": "000c1dfb-d2c8-5e73-9730-6b3f81c63f73",
+      "source_mapping_id": "4d9fa6a0-65cd-5b9a-82d5-22ff1454f1e5",
+      "observed_on": "2026-09-03",
+      "market_price": "23.13"
+    },
+    "expected_visibility": {
+      "mtg_catalog": "signed_in",
+      "mtg_sealed": "hidden",
+      "authenticated_catalog_visible": true,
+      "authenticated_sealed_visible": false,
+      "authenticated_signing_authorized_with_pointer": false
+    },
+    "rpc_v3_expectation": "not_deployed_candidate_only",
+    "production_preflight_fingerprint_sha256": "63d7b374fad0d1d0dbfd0e8abcf487fae65215ffe5b55d65315e59addffac858",
+    "timeouts": {
+      "lock_timeout": "5s",
+      "statement_timeout": "180s",
+      "idle_in_transaction_session_timeout": "60s"
+    },
+    "boundaries": {
+      "durable_database_writes": 0,
+      "transient_pointer_inserts": 1,
+      "storage_operations": 0,
+      "evidence_release_writes": 0,
+      "pricing_writes": 0,
+      "visibility_writes": 0,
+      "vault_writes": 0,
+      "signer_deployments": 0,
+      "client_activations": 0,
+      "cross_game_writes": 0,
+      "updates": 0,
+      "deletes": 0
+    },
+    "canary_fingerprint_sha256": "a49bf02d128e4a5221a31922d2fc71900c6737c37c76cb209b83f652795ab60a"
+  },
+  "preflight": {
+    "valid": true,
+    "findings": [],
+    "transaction_read_only": true,
+    "state": {
+      "authority": {
+        "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "active_price_release_state": "frozen",
+        "active_price_expected_member_count": 2182,
+        "current_image_release_id": null,
+        "mtg_sealed_visibility": "hidden",
+        "mtg_catalog_visibility": "signed_in",
+        "one_piece_price_pointer_count": 1,
+        "card_print_count": 170404,
+        "set_count": 3397,
+        "sealed_family_count": 479,
+        "sealed_variant_count": 3294,
+        "sealed_mapping_count": 3294,
+        "price_release_count": 2,
+        "price_release_member_count": 2514
+      },
+      "image_tables": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2182
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2141
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2149
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 1
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2149
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        }
+      ],
+      "table_grants": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        }
+      ],
+      "routine_grants": [
+        {
+          "routine_name": "sealed_product_freeze_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        },
+        {
+          "routine_name": "sealed_product_set_active_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        }
+      ],
+      "lineage": {
+        "expected_count": 2182,
+        "member_count": 2182,
+        "mapping_count": 2182,
+        "mismatch_count": 0
+      },
+      "release": {
+        "id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+        "game_key": "mtg",
+        "release_state": "frozen",
+        "source_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+        "expected_member_count": 2149,
+        "frozen_by": "ff463879-026a-5ee2-8326-59e2d8b9b665",
+        "frozen_at": "2026-09-05 03:10:40.550207+00",
+        "computed_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+        "evidence_count": 2182,
+        "eligible_evidence_count": 2149,
+        "excluded_evidence_count": 33,
+        "object_count": 2141,
+        "assertion_count": 2149,
+        "member_count": 2149
+      },
+      "candidate": {
+        "storage_bucket": "user-card-images",
+        "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+        "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+        "variant_id": "000c1dfb-d2c8-5e73-9730-6b3f81c63f73",
+        "source_mapping_id": "4d9fa6a0-65cd-5b9a-82d5-22ff1454f1e5",
+        "observed_on": "2026-09-03",
+        "market_price": "23.13"
+      },
+      "rpc_v3_deployed": false
+    },
+    "authenticated_before_pointer": {
+      "catalog_visible": true,
+      "sealed_visible": false,
+      "signing_authorized": false
+    }
+  },
+  "transaction_local_preflight": {
+    "valid": true,
+    "findings": []
+  },
+  "transaction": {
+    "started": true,
+    "committed": false,
+    "rolled_back": true
+  },
+  "transaction_pointer_readback": {
+    "game_key": "mtg",
+    "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "previous_image_release_id": null,
+    "pointer_contract_version": "SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1",
+    "changed_by": "ff463879-026a-5ee2-8326-59e2d8b9b665",
+    "changed_at": "2026-09-05 04:12:46.485357+00"
+  },
+  "release_price_binding_valid": true,
+  "candidate_structural_eligibility_with_pointer": true,
+  "visibility": {
+    "catalog_visible": true,
+    "sealed_visible": false
+  },
+  "signing_authorized_before_pointer": false,
+  "signing_authorized_with_hidden_pointer": false,
+  "rpc_v3_deployed": false,
+  "write_attribution": [
+    {
+      "table_name": "sealed_product_image_release_pointer",
+      "inserted": 1,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "post_rollback": {
+    "transaction_read_only": true,
+    "pointer_is_null": true,
+    "release_unchanged": true,
+    "protected_boundaries_unchanged": true,
+    "security_boundary_unchanged": true,
+    "full_preflight_valid": true,
+    "state": {
+      "authority": {
+        "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "active_price_release_state": "frozen",
+        "active_price_expected_member_count": 2182,
+        "current_image_release_id": null,
+        "mtg_sealed_visibility": "hidden",
+        "mtg_catalog_visibility": "signed_in",
+        "one_piece_price_pointer_count": 1,
+        "card_print_count": 170404,
+        "set_count": 3397,
+        "sealed_family_count": 479,
+        "sealed_variant_count": 3294,
+        "sealed_mapping_count": 3294,
+        "price_release_count": 2,
+        "price_release_member_count": 2514
+      },
+      "image_tables": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2182
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2141
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2149
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 1
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 2149
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        }
+      ],
+      "table_grants": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        }
+      ],
+      "routine_grants": [
+        {
+          "routine_name": "sealed_product_freeze_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        },
+        {
+          "routine_name": "sealed_product_set_active_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        }
+      ],
+      "lineage": {
+        "expected_count": 2182,
+        "member_count": 2182,
+        "mapping_count": 2182,
+        "mismatch_count": 0
+      },
+      "release": {
+        "id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+        "game_key": "mtg",
+        "release_state": "frozen",
+        "source_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+        "expected_member_count": 2149,
+        "frozen_by": "ff463879-026a-5ee2-8326-59e2d8b9b665",
+        "frozen_at": "2026-09-05 03:10:40.550207+00",
+        "computed_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+        "evidence_count": 2182,
+        "eligible_evidence_count": 2149,
+        "excluded_evidence_count": 33,
+        "object_count": 2141,
+        "assertion_count": 2149,
+        "member_count": 2149
+      },
+      "candidate": {
+        "storage_bucket": "user-card-images",
+        "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+        "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+        "variant_id": "000c1dfb-d2c8-5e73-9730-6b3f81c63f73",
+        "source_mapping_id": "4d9fa6a0-65cd-5b9a-82d5-22ff1454f1e5",
+        "observed_on": "2026-09-03",
+        "market_price": "23.13"
+      },
+      "rpc_v3_deployed": false
+    }
+  }
+}

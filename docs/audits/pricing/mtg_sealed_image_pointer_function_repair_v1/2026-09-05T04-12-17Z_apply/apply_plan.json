@@ -1,0 +1,58 @@
+{
+  "version": "MTG_SEALED_IMAGE_POINTER_CONFLICT_REPAIR_V1",
+  "producer_commit_sha": "afc812779e495e24cc1ec1c0521a450ada4d232d",
+  "producer_branch": "agent/mtg-sealed-image-migration-promotion-v1",
+  "tracked_worktree_clean": true,
+  "migration": {
+    "version": "20260905040000",
+    "filename": "20260905040000_sealed_product_image_pointer_conflict_repair_v1.sql",
+    "name": "sealed_product_image_pointer_conflict_repair_v1",
+    "sha256": "195e104b60d7a356a49b131800074455636a4cde946c04dc94aabf036ff8f818",
+    "statement_count": 6
+  },
+  "preflight_fingerprint_sha256": "6130dae6e10412200d6ca03331fe2252ebf1b1a5b16f109bbc5b956d4b103c2c",
+  "protected_state_fingerprint_sha256": "8e35a724be294086a0e735f43b24fa3de1217fd29877ab034d3b184660e998f5",
+  "baseline_function_definition_sha256": "ee8b7f2c709073b833b379a574d03877c8c80db8e70223b39a9e64d98fe839ff",
+  "expected_repair": {
+    "function": "sealed_product_set_active_image_release_v1(uuid,uuid,uuid)",
+    "conflict_target": "sealed_product_image_release_pointer_pkey",
+    "routine_grants": [
+      "service_role:EXECUTE"
+    ]
+  },
+  "timeouts": {
+    "lock_timeout": "5s",
+    "statement_timeout": "180s",
+    "idle_in_transaction_session_timeout": "60s"
+  },
+  "boundaries": {
+    "migration_ledger_rows": 1,
+    "function_replacements": 1,
+    "durable_data_rows": 0,
+    "pointer_writes": 0,
+    "storage_operations": 0,
+    "image_evidence_writes": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "client_changes": 0,
+    "cross_game_writes": 0,
+    "deletes": 0
+  },
+  "ledger_row": {
+    "version": "20260905040000",
+    "name": "sealed_product_image_pointer_conflict_repair_v1",
+    "statements": [
+      "-- SEALED_PRODUCT_IMAGE_POINTER_CONFLICT_REPAIR_V1\n-- Repairs an ambiguous PL/pgSQL output-variable reference in the image-release\n-- pointer compare-and-swap function. No data or visibility is changed.\n\nbegin",
+      "create or replace function public.sealed_product_set_active_image_release_v1(\n  p_target_image_release_id uuid,\n  p_expected_current_image_release_id uuid,\n  p_changed_by uuid\n)\nreturns table (\n  game_key text,\n  active_image_release_id uuid,\n  previous_image_release_id uuid,\n  changed_at timestamptz\n)\nlanguage plpgsql\nsecurity definer\nset search_path = pg_catalog, public\nas $$\ndeclare\n  v_release public.sealed_product_image_releases%rowtype;\n  v_current_release_id uuid;\n  v_current_price_release_id uuid;\n  v_computed_manifest_fingerprint text;\nbegin\n  if p_changed_by is null then\n    raise exception 'changed_by is required' using errcode = '22004';\n  end if;\n\n  select * into v_release\n  from public.sealed_product_image_releases\n  where id = p_target_image_release_id;\n\n  if not found or v_release.release_state <> 'frozen' then\n    raise exception 'target image release must exist and be frozen'\n      using errcode = '23514';\n  end if;\n\n  lock table public.sealed_product_release_members in share mode;\n  lock table public.sealed_product_image_evidence in share mode;\n  lock table public.sealed_product_variant_image_assertions in share mode;\n\n  v_computed_manifest_fingerprint :=\n    public.sealed_product_assert_image_release_complete_v1(\n      p_target_image_release_id\n    );\n  if v_computed_manifest_fingerprint <> v_release.manifest_fingerprint then\n    raise exception 'computed image release manifest fingerprint mismatch'\n      using errcode = '23514';\n  end if;\n\n  lock table public.sealed_product_release_pointer in share mode;\n\n  select price_pointer.release_id into v_current_price_release_id\n  from public.sealed_product_release_pointer price_pointer\n  where price_pointer.game_key = v_release.game_key\n  for share;\n\n  if v_current_price_release_id is distinct from v_release.source_price_release_id then\n    raise exception 'target image release is not bound to the active price release'\n      using errcode = '23514';\n  end if;\n\n  lock table public.sealed_product_image_release_pointer in exclusive mode;\n\n  select pointer.image_release_id into v_current_release_id\n  from public.sealed_product_image_release_pointer pointer\n  where pointer.game_key = v_release.game_key\n  for update;\n\n  if v_current_release_id is distinct from p_expected_current_image_release_id then\n    raise exception 'active image release changed concurrently'\n      using errcode = '40001';\n  end if;\n\n  insert into public.sealed_product_image_release_pointer (\n    game_key, image_release_id, previous_image_release_id,\n    pointer_contract_version, changed_by, changed_at\n  ) values (\n    v_release.game_key, p_target_image_release_id, v_current_release_id,\n    'SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1', p_changed_by, now()\n  )\n  on conflict on constraint sealed_product_image_release_pointer_pkey\n  do update set\n    image_release_id = excluded.image_release_id,\n    previous_image_release_id = excluded.previous_image_release_id,\n    pointer_contract_version = excluded.pointer_contract_version,\n    changed_by = excluded.changed_by,\n    changed_at = excluded.changed_at;\n\n  return query\n  select pointer.game_key, pointer.image_release_id,\n    pointer.previous_image_release_id, pointer.changed_at\n  from public.sealed_product_image_release_pointer pointer\n  where pointer.game_key = v_release.game_key;\nend;\n$$",
+      "revoke all on function public.sealed_product_set_active_image_release_v1(\n  uuid, uuid, uuid\n) from public, anon, authenticated, service_role",
+      "grant execute on function public.sealed_product_set_active_image_release_v1(\n  uuid, uuid, uuid\n) to service_role",
+      "comment on function public.sealed_product_set_active_image_release_v1(\n  uuid, uuid, uuid\n) is\n  'Activates one complete frozen sealed image release with compare-and-swap price-release binding; output-variable-safe conflict handling.'",
+      "commit"
+    ]
+  },
+  "apply_plan_fingerprint_sha256": "273cc2511fd0f84c3026d13f7c18792c30f1791a7d47105c1f35a876c27297c3",
+  "approval_env": "MTG_SEALED_IMAGE_POINTER_REPAIR_APPROVAL",
+  "required_approval_message": "I approve applying only production migration 20260905040000_sealed_product_image_pointer_conflict_repair_v1.sql with SHA-256 195e104b60d7a356a49b131800074455636a4cde946c04dc94aabf036ff8f818 from execution commit afc812779e495e24cc1ec1c0521a450ada4d232d using apply-plan fingerprint 273cc2511fd0f84c3026d13f7c18792c30f1791a7d47105c1f35a876c27297c3. This authorizes one migration-ledger row and one function replacement repairing only the image-pointer conflict target. It authorizes no pointer, image evidence, Storage, pricing, visibility, Vault, client, cross-game, update, delete, or cleanup operation.",
+  "guard_token": "I approve applying only production migration 20260905040000_sealed_product_image_pointer_conflict_repair_v1.sql with SHA-256 195e104b60d7a356a49b131800074455636a4cde946c04dc94aabf036ff8f818 from execution commit afc812779e495e24cc1ec1c0521a450ada4d232d using apply-plan fingerprint 273cc2511fd0f84c3026d13f7c18792c30f1791a7d47105c1f35a876c27297c3. This authorizes one migration-ledger row and one function replacement repairing only the image-pointer conflict target. It authorizes no pointer, image evidence, Storage, pricing, visibility, Vault, client, cross-game, update, delete, or cleanup operation."
+}

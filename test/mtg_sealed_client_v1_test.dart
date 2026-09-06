@@ -100,16 +100,63 @@ void main() {
     );
   });
 
-  test('hard-disabled loader performs no auth, RPC, or Storage call', () async {
+  test('disabled loader performs no auth, RPC, or Storage call', () async {
     final transport = _FakeTransport();
-    final state = await MtgSealedClientV1(transport: transport).load();
+    final state = await MtgSealedClientV1(
+      transport: transport,
+      enabled: false,
+    ).load();
     expect(state.status, MtgSealedCatalogStatusV1.disabled);
     expect(transport.calls, 0);
+  });
+
+  test('enabled loader signs only validated self-hosted images', () async {
+    final transport = _FakeTransport();
+    final state = await MtgSealedClientV1(
+      transport: transport,
+      enabled: true,
+    ).load(query: 'bundle', limit: 24);
+    expect(state.status, MtgSealedCatalogStatusV1.ready);
+    expect(state.rows.single.imageUrl, 'https://example.invalid');
+    expect(transport.calls, 3);
+  });
+
+  test('enabled loader bounds concurrent image signing', () async {
+    final rows = List<dynamic>.generate(9, (index) {
+      final suffix = (index + 10).toString().padLeft(12, '0');
+      return _row(<String, dynamic>{
+        'variant_id': '00000000-0000-4000-8000-$suffix',
+        'canonical_name': 'Fixture Product ${index + 1}',
+      });
+    });
+    final transport = _FakeTransport(rows: rows, signingDelayMs: 5);
+
+    final state = await MtgSealedClientV1(
+      transport: transport,
+      enabled: true,
+    ).load(limit: 24);
+
+    expect(state.status, MtgSealedCatalogStatusV1.ready);
+    expect(state.rows, hasLength(9));
+    expect(
+      transport.maxConcurrentSigning,
+      lessThanOrEqualTo(kMtgSealedImageSigningConcurrencyV1),
+    );
+    expect(transport.maxConcurrentSigning, greaterThan(1));
+    expect(state.rows.first.canonicalName, 'Fixture Product 1');
+    expect(state.rows.last.canonicalName, 'Fixture Product 9');
   });
 }
 
 class _FakeTransport implements MtgSealedClientTransportV1 {
+  _FakeTransport({List<dynamic>? rows, this.signingDelayMs = 0})
+    : rows = rows ?? <dynamic>[_row()];
+
   int calls = 0;
+  int activeSigning = 0;
+  int maxConcurrentSigning = 0;
+  final int signingDelayMs;
+  final List<dynamic> rows;
 
   @override
   Future<String> createSignedImageUrl({
@@ -118,6 +165,14 @@ class _FakeTransport implements MtgSealedClientTransportV1 {
     required int expiresInSeconds,
   }) async {
     calls += 1;
+    activeSigning += 1;
+    if (activeSigning > maxConcurrentSigning) {
+      maxConcurrentSigning = activeSigning;
+    }
+    if (signingDelayMs > 0) {
+      await Future<void>.delayed(Duration(milliseconds: signingDelayMs));
+    }
+    activeSigning -= 1;
     return 'https://example.invalid';
   }
 
@@ -129,7 +184,7 @@ class _FakeTransport implements MtgSealedClientTransportV1 {
     required int offset,
   }) async {
     calls += 1;
-    return <dynamic>[_row()];
+    return rows;
   }
 
   @override

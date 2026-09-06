@@ -1,0 +1,8 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "summary.json": "66185bab70fa9528cf721c6abedf40c8a7facf1f1aa9fb5fe8e30ee12852beb6",
+    "independent_post_apply_readback.json": "96b27068d2c61017de2f2691f21b5ed90f081147ce27bfc08c567dc1469e911a",
+    "REPORT.md": "4cda7aac1934686ca7d6983b8f808c5c8c8e74071a61ee4d6f57cd64d2ec7480"
+  }
+}

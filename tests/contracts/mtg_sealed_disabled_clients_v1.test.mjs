@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import path from 'node:path';
 import test from 'node:test';
 
 const webClientPath = 'apps/web/src/lib/sealed/mtgSealedClientV1.ts';
@@ -9,34 +8,22 @@ const webTransportPath =
 const dartClientPath = 'lib/services/sealed/mtg_sealed_client_v1.dart';
 const signingFunctionPath =
   'supabase/functions/mtg-sealed-sign-image-v1/index.ts';
+const webSurfacePath = 'apps/web/src/app/sealed/mtg/page.tsx';
+const webSetsPath = 'apps/web/src/app/sets/page.tsx';
+const routeAccessPath = 'apps/web/src/lib/auth/routeAccess.ts';
+const flutterSurfacePath = 'lib/screens/sets/mtg_sealed_catalog_screen.dart';
+const flutterSetsPath = 'lib/screens/sets/public_sets_screen.dart';
 const webClient = fs.readFileSync(webClientPath, 'utf8');
 const webTransport = fs.readFileSync(webTransportPath, 'utf8');
 const dartClient = fs.readFileSync(dartClientPath, 'utf8');
 const signingFunction = fs.readFileSync(signingFunctionPath, 'utf8');
 
-function filesUnder(root, extensions, exclusions = []) {
-  const files = [];
-  const visit = (directory) => {
-    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-      const fullPath = path.join(directory, entry.name);
-      const normalized = fullPath.replaceAll('\\', '/');
-      if (exclusions.some((value) => normalized.startsWith(value))) continue;
-      if (entry.isDirectory()) visit(fullPath);
-      else if (extensions.some((extension) => entry.name.endsWith(extension))) {
-        files.push(fullPath);
-      }
-    }
-  };
-  visit(root);
-  return files;
-}
-
-test('web and Flutter clients are hard-disabled without runtime overrides', () => {
+test('web and Flutter clients are disabled by default and require build flags', () => {
   assert.match(webClient,
-    /MTG_SEALED_CLIENT_V1_ENABLED = false as const/);
-  assert.doesNotMatch(webClient, /process\.env|NEXT_PUBLIC_|feature.?flag/i);
-  assert.match(dartClient, /kMtgSealedClientV1Enabled = false;/);
-  assert.doesNotMatch(dartClient, /fromEnvironment|remote.?config/i);
+    /process\.env\.NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED === "true"/);
+  assert.match(dartClient,
+    /bool\.fromEnvironment\(\s*'MTG_SEALED_CLIENT_V1_ENABLED'/);
+  assert.match(dartClient, /defaultValue: false/);
 });
 
 test('clients use RPC V3 and route image signing through the trusted function', () => {
@@ -90,24 +77,23 @@ test('client validation repeats identity, freshness, and image boundaries', () =
   assert.match(dartClient, /age < 0 \|\| age > 7/);
 });
 
-test('no web route or Flutter product surface wires the disabled clients', () => {
-  const webSurfaceFiles = [
-    ...filesUnder('apps/web/src/app', ['.ts', '.tsx']),
-    ...filesUnder('apps/web/src/components', ['.ts', '.tsx']),
-  ];
-  const flutterFiles = filesUnder('lib', ['.dart'], [
-    'lib/services/sealed/',
-  ]);
-  for (const file of webSurfaceFiles) {
-    assert.doesNotMatch(fs.readFileSync(file, 'utf8'),
-      /MtgSealedClientV1|mtgSealedClientV1|get_active_sealed_product_pricing_v3/,
-      file);
-  }
-  for (const file of flutterFiles) {
-    assert.doesNotMatch(fs.readFileSync(file, 'utf8'),
-      /MtgSealedClientV1|kMtgSealedClientV1Enabled|get_active_sealed_product_pricing_v3/,
-      file);
-  }
+test('bounded signed-in product surfaces are feature-gated and protected', () => {
+  const webSurface = fs.readFileSync(webSurfacePath, 'utf8');
+  const webSets = fs.readFileSync(webSetsPath, 'utf8');
+  const routeAccess = fs.readFileSync(routeAccessPath, 'utf8');
+  const flutterSurface = fs.readFileSync(flutterSurfacePath, 'utf8');
+  const flutterSets = fs.readFileSync(flutterSetsPath, 'utf8');
+
+  assert.match(webSurface, /createServerComponentClient/);
+  assert.match(webSurface, /supabase\.auth\.getUser\(\)/);
+  assert.match(webSurface, /redirect\(`\/login\?next=/);
+  assert.match(webSurface, /limit: 24/);
+  assert.match(webSets, /isMtgSealedClientV1Enabled\(\)/);
+  assert.match(routeAccess, /"\/sealed\/:path\*"/);
+  assert.match(flutterSurface, /limit: 24/);
+  assert.match(flutterSets, /kMtgSealedClientV1Enabled/);
+  assert.doesNotMatch(`${webSurface}\n${flutterSurface}`,
+    /get_active_sealed_product_pricing_v3|createSignedUrl|getPublicUrl/);
 });
 
 test('dedicated client tests are registered and present', () => {

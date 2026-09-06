@@ -1,0 +1,102 @@
+{
+  "version": "MTG_SEALED_IMAGE_RELEASE_APPLY_V1",
+  "mode": "rollback_canary",
+  "producer_commit_sha": "d38d4b443d4daf118c3abe0a111b56734f7871c1",
+  "producer_branch": "agent/mtg-sealed-image-migration-promotion-v1",
+  "tracked_worktree_clean": true,
+  "game_key": "mtg",
+  "source_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "source_durable_execution_fingerprint_sha256": "ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e",
+  "source_image_release_plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+  "source_artifact_manifest_sha256": "33fbd8699ac5384e3eb6cc8002c824e32c077d36fab2ba892a3fac80271b11ab",
+  "source_artifact_hashes": {
+    "run_plan.json": {
+      "bytes": 8833,
+      "sha256": "d7b0a5740cfbde5468311d6373292e92ce97d0b9fb04a843ac732f39fa7e57b9"
+    },
+    "production_preflight.json": {
+      "bytes": 2426,
+      "sha256": "b6f12c3c533ac1bd06561e2ab10be13fb96b90198a336368c4b6a172dfb1dbee"
+    },
+    "image_evidence.jsonl.gz": {
+      "bytes": 426986,
+      "sha256": "2e8583b0b076ec366fc8fd7076a112ed884730e1f8d5ea68645c1b862835b5db"
+    },
+    "image_objects.jsonl.gz": {
+      "bytes": 266681,
+      "sha256": "201e254a848b9644940b151791b5d07ed6eda4e49507ff474b4db5a24c4edf7a"
+    },
+    "image_assertions.jsonl.gz": {
+      "bytes": 320865,
+      "sha256": "e9f2f4a765688b6bf5f719cce01f2a8ea92ba261f19a85ff0d7c5eabed6821fd"
+    },
+    "image_releases.jsonl": {
+      "bytes": 688,
+      "sha256": "6352ad74412782b317a7bcf7042095e84b742c58d3419246b6ff4869795d7987"
+    },
+    "image_release_members.jsonl.gz": {
+      "bytes": 223212,
+      "sha256": "279fbc1fe1685650e62ce0bfb6526f0e7f63375e38b1f39ab2dab941e745f871"
+    },
+    "exclusions.jsonl.gz": {
+      "bytes": 5621,
+      "sha256": "e4cc68d58185f006ce5c18d872a94e72d57d55eb364824daa1701f89c900e997"
+    },
+    "pointer_plan.json": {
+      "bytes": 429,
+      "sha256": "fe9c821cb555b4432d62aff4918b27bd56ab0130b47e3a2e1fe31a6aa655061b"
+    },
+    "summary.json": {
+      "bytes": 1696,
+      "sha256": "d8b6d99c525ae7d64ccf94178ad546fe45943f41b1edaa796bf3a87d389cb778"
+    },
+    "REPORT.md": {
+      "bytes": 819,
+      "sha256": "87681204035765806756f5ad8c38fa1bc47d3efeabeefe93782b0b4b3f67826f"
+    }
+  },
+  "release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+  "release_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+  "expected_counts": {
+    "evidence": 2182,
+    "objects": 2141,
+    "assertions": 2149,
+    "releases": 1,
+    "release_members": 2149,
+    "exclusions": 33,
+    "total_insert_rows": 8622
+  },
+  "production_preflight_fingerprint_sha256": "8610ccea9edfd1765a29d4069382a2eccfbf8485fe3468480f731f4b52e6310e",
+  "expected_current_image_release_id": null,
+  "insert_order": [
+    "sealed_product_image_evidence",
+    "sealed_product_image_objects",
+    "sealed_product_variant_image_assertions",
+    "sealed_product_image_releases",
+    "sealed_product_image_release_members"
+  ],
+  "freeze_function": "sealed_product_freeze_image_release_v1(uuid,text,uuid)",
+  "pointer_function_called": false,
+  "timeouts": {
+    "lock_timeout": "5s",
+    "statement_timeout": "300s",
+    "idle_in_transaction_session_timeout": "90s"
+  },
+  "boundaries": {
+    "storage_operations": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "updates": 0,
+    "deletes": 0,
+    "durable_database_writes": 0
+  },
+  "execution_fingerprint_sha256": "528cea7e2b98c016607004ce99e062d0df825f9a2ff1789acc751519b6a5ffe4",
+  "approval_env": "MTG_SEALED_IMAGE_RELEASE_APPLY_APPROVAL",
+  "required_durable_apply_authority": "I approve the durable MTG sealed database image-evidence release apply from execution commit d38d4b443d4daf118c3abe0a111b56734f7871c1, using source coverage fingerprint cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d, durable Storage execution fingerprint ce99331a559a62d78a2ef2fffa389d30498df16928f4de9d7e1d58cec8ff426e, image release plan fingerprint 7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9, and execution fingerprint 528cea7e2b98c016607004ce99e062d0df825f9a2ff1789acc751519b6a5ffe4. This authorizes one transaction inserting exactly 2182 evidence rows, 2141 object rows, 2149 assertions, 1 draft release, and 2149 release members, then freezing that release after exact manifest verification. It authorizes no image pointer, Storage, pricing, visibility, Vault, signer, client, cross-game, separate update, or delete operation."
+}

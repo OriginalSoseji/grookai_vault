@@ -1,0 +1,8 @@
+{
+  "simulated_role": "authenticated",
+  "user_id_recorded": false,
+  "storage_bucket": "user-card-images",
+  "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+  "authorized": false,
+  "transaction_mode": "read_only_rolled_back"
+}

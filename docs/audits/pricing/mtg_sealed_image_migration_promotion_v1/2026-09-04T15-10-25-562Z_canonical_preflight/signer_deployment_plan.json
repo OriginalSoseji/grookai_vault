@@ -1,0 +1,14 @@
+{
+  "anonymous_access": false,
+  "authentication": "manual_jwt_validation_then_authenticated_rpc",
+  "config_sha256": "7551533d8029d2f2ff237c1ff0915b2758a25711aec701d6a5378cc7f7d94e3f",
+  "deployed_by_this_gate": false,
+  "direct_client_storage_select": false,
+  "function_name": "mtg-sealed-sign-image-v1",
+  "producer_commit_sha": "aea0bc6ffc52be7d1138989cf0c1ab95f0bc8f8c",
+  "signed_url_ttl_seconds": 3600,
+  "signing": "service_role_exact_object_after_authorization",
+  "source_sha256": "2dc6c3a6a275214dec9d39b29bd65e7ffc08f344c0ed327a1b5e76852478b30b",
+  "status": "not_authorized",
+  "version": "MTG_SEALED_TRUSTED_SIGNER_DEPLOYMENT_PLAN_V1"
+}

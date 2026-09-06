@@ -1,0 +1,364 @@
+{
+  "preflight": {
+    "valid": true,
+    "findings": [],
+    "transaction_read_only": true,
+    "state": {
+      "authority": {
+        "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "active_price_release_state": "frozen",
+        "active_price_expected_member_count": 2182,
+        "current_image_release_id": null,
+        "mtg_sealed_visibility": "hidden",
+        "mtg_catalog_visibility": "signed_in",
+        "one_piece_price_pointer_count": 1,
+        "card_print_count": 170404,
+        "set_count": 3397,
+        "sealed_family_count": 479,
+        "sealed_variant_count": 3294,
+        "sealed_mapping_count": 3294,
+        "price_release_count": 2,
+        "price_release_member_count": 2514
+      },
+      "image_tables": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        }
+      ],
+      "table_grants": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        }
+      ],
+      "routine_grants": [
+        {
+          "routine_name": "sealed_product_freeze_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        },
+        {
+          "routine_name": "sealed_product_set_active_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        }
+      ],
+      "lineage": {
+        "expected_count": 2182,
+        "member_count": 2182,
+        "mapping_count": 2182,
+        "mismatch_count": 0
+      }
+    }
+  },
+  "transaction_local_preflight": {
+    "valid": true,
+    "findings": []
+  },
+  "transaction": {
+    "started": true,
+    "committed": false,
+    "rolled_back": true
+  },
+  "transaction_readback": {
+    "evidence": {
+      "expected_count": 2182,
+      "actual_count": 2182,
+      "mismatch_count": 0,
+      "table_count": 2182,
+      "exact": true
+    },
+    "objects": {
+      "expected_count": 2141,
+      "actual_count": 2141,
+      "mismatch_count": 0,
+      "table_count": 2141,
+      "exact": true
+    },
+    "assertions": {
+      "expected_count": 2149,
+      "actual_count": 2149,
+      "mismatch_count": 0,
+      "table_count": 2149,
+      "exact": true
+    },
+    "releases": {
+      "expected_count": 1,
+      "actual_count": 1,
+      "mismatch_count": 0,
+      "table_count": 1,
+      "exact": true
+    },
+    "release_members": {
+      "expected_count": 2149,
+      "actual_count": 2149,
+      "mismatch_count": 0,
+      "table_count": 2149,
+      "exact": true
+    }
+  },
+  "database_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+  "planned_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+  "release_state": "frozen",
+  "excluded_evidence_without_assertion_count": 33,
+  "transaction_image_pointer_count": 0,
+  "write_attribution": [
+    {
+      "table_name": "sealed_product_image_evidence",
+      "inserted": 2182,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_image_objects",
+      "inserted": 2141,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_image_release_members",
+      "inserted": 2149,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_image_releases",
+      "inserted": 1,
+      "updated": 1,
+      "deleted": 0,
+      "hot_updated": 0
+    },
+    {
+      "table_name": "sealed_product_variant_image_assertions",
+      "inserted": 2149,
+      "updated": 0,
+      "deleted": 0,
+      "hot_updated": 0
+    }
+  ],
+  "post_rollback": {
+    "transaction_read_only": true,
+    "zero_target_rows": true,
+    "image_pointer_unchanged": true,
+    "protected_boundaries_unchanged": true,
+    "security_boundary_unchanged": true,
+    "state": {
+      "authority": {
+        "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "active_price_release_state": "frozen",
+        "active_price_expected_member_count": 2182,
+        "current_image_release_id": null,
+        "mtg_sealed_visibility": "hidden",
+        "mtg_catalog_visibility": "signed_in",
+        "one_piece_price_pointer_count": 1,
+        "card_print_count": 170404,
+        "set_count": 3397,
+        "sealed_family_count": 479,
+        "sealed_variant_count": 3294,
+        "sealed_mapping_count": 3294,
+        "price_release_count": 2,
+        "price_release_member_count": 2514
+      },
+      "image_tables": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "rls_enabled": true,
+          "rls_forced": true,
+          "row_count": 0
+        }
+      ],
+      "table_grants": [
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_evidence",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_objects",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_release_members",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_release_pointer",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_image_releases",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "INSERT"
+        },
+        {
+          "table_name": "sealed_product_variant_image_assertions",
+          "grantee": "service_role",
+          "privilege_type": "SELECT"
+        }
+      ],
+      "routine_grants": [
+        {
+          "routine_name": "sealed_product_freeze_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        },
+        {
+          "routine_name": "sealed_product_set_active_image_release_v1",
+          "grantee": "service_role",
+          "privilege_type": "EXECUTE"
+        }
+      ],
+      "lineage": {
+        "expected_count": 2182,
+        "member_count": 2182,
+        "mapping_count": 2182,
+        "mismatch_count": 0
+      }
+    }
+  }
+}

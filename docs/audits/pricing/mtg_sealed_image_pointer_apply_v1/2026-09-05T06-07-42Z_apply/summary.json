@@ -1,0 +1,33 @@
+{
+  "status": "mtg_sealed_image_pointer_activated_and_read_back",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "f6339fea83facccd58cf8f6e9ea2907f38390fc0",
+    "tracked_worktree_clean": true
+  },
+  "activation_plan_fingerprint_sha256": "191a12efe5772a11ebd1b35295f8ce38ee7669204b8240cdcd669ee021634736",
+  "target_image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+  "transaction_committed": true,
+  "pointer_readback_exact": true,
+  "signing_remains_denied_while_hidden": true,
+  "stale_null_cas_rejected": true,
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "boundaries": {
+    "durable_pointer_inserts": 1,
+    "durable_pointer_updates": 0,
+    "image_evidence_writes": 0,
+    "storage_operations": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "rpc_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "deletes": 0
+  },
+  "exact_next_gate": "apply and prove the separately reviewed RPC V3 migration candidate"
+}

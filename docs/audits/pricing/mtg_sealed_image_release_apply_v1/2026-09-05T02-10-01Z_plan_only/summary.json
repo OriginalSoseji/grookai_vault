@@ -1,0 +1,22 @@
+{
+  "status": "durable_apply_plan_ready_zero_writes",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "107735b2cf61145b883a550f37b9c5de91b9ee06",
+    "expected_head_sha": "107735b2cf61145b883a550f37b9c5de91b9ee06",
+    "tracked_worktree_clean": true
+  },
+  "execution_fingerprint_sha256": "0e477804e8f7fb653b118e4567d9dca6d7b2663d8dd532073d1986c8e9aeb440",
+  "source_image_release_plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+  "expected_counts": {
+    "evidence": 2182,
+    "objects": 2141,
+    "assertions": 2149,
+    "releases": 1,
+    "release_members": 2149,
+    "exclusions": 33,
+    "total_insert_rows": 8622
+  },
+  "database_writes": 0,
+  "exact_next_gate": "provide the exact required durable apply authority"
+}

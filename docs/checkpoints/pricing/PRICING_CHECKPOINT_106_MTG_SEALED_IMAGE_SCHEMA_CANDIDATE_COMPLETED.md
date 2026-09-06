@@ -7,6 +7,11 @@ audit for all 2,182 members of the active hidden MTG sealed price release. Gate
 A proved 2,149 exact image-eligible variants, 33 explicit gaps, and 2,144 unique
 valid image byte objects.
 
+**Later accounting correction:** the durable-plan reconciliation proved that
+the 2,144 valid image signatures included three excluded placeholder hashes.
+The exact durable upload scope is 2,141 eligible objects. The immutable source
+evidence remains unchanged.
+
 This checkpoint records the next bounded gate: an unapplied sealed-image schema
 candidate and a deterministic transient Storage canary plan. The candidate was
 repaired after review before merge or promotion.

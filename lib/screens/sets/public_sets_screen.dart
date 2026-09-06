@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/public/public_sets_service.dart';
+import '../../services/sealed/mtg_sealed_client_v1.dart';
 import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/gv_chip.dart';
 import 'public_set_detail_screen.dart';
+import 'mtg_sealed_catalog_screen.dart';
 
 class PublicSetsScreen extends StatefulWidget {
   const PublicSetsScreen({super.key});
@@ -342,6 +344,51 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ),
                 ),
               const SizedBox(height: 18),
+              if (_activeGame == PublicCatalogGame.mtg &&
+                  kMtgSealedClientV1Enabled) ...[
+                _SetsSurfaceCard(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.inventory_2_outlined),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'MTG sealed products',
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              'Booster boxes, bundles, decks, and other sealed releases.',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      IconButton.filled(
+                        tooltip: 'Browse sealed',
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              maintainState: false,
+                              builder: (_) => const MtgSealedCatalogScreen(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.arrow_forward),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 18),
+              ],
               _SetsSurfaceCard(
                 child: _SetsSectionHeader(
                   title: trimmedQuery.isEmpty

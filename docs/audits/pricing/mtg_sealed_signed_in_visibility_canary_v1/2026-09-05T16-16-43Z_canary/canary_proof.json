@@ -1,0 +1,498 @@
+{
+  "preflight_findings": [],
+  "auth_fixture": {
+    "created": true,
+    "signed_in": true,
+    "user_id_sha256": "e8be9a8ca03545608600a7705b24e9f4821027b8a0f448533f391a0bb9b37d45",
+    "raw_user_id_persisted": false,
+    "email_persisted": false,
+    "password_persisted": false
+  },
+  "hidden": {
+    "authenticated_rpc_status": 200,
+    "authenticated_rpc_rows": 0,
+    "authenticated_signer_status": 404,
+    "anonymous_rpc_status": 401,
+    "anonymous_rpc_rows": 0,
+    "anonymous_signer_status": 401
+  },
+  "active": {
+    "release_status": "signed_in",
+    "authenticated_rpc_status": 200,
+    "authenticated_rpc_rows": 1,
+    "rpc_sample": {
+      "variant_id": "000c1dfb-d2c8-5e73-9730-6b3f81c63f73",
+      "canonical_name": "Kamigawa: Neon Dynasty - Theme Booster [Green]",
+      "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "image_object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+      "observed_on": "2026-09-03",
+      "market_price": 23.13
+    },
+    "selected_candidate_returned": true,
+    "authenticated_signer_status": 200,
+    "signer": {
+      "status": 200,
+      "error": null,
+      "signed_url_present": true,
+      "expires_in": 3600,
+      "signed_url_persisted": false
+    },
+    "signed_image_status": 200,
+    "signed_image_bytes": 81917,
+    "signed_image_content_type": "image/jpeg",
+    "signed_image_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+    "anonymous_rpc_status": 401,
+    "anonymous_rpc_rows": 0,
+    "anonymous_signer_status": 401
+  },
+  "rollback": {
+    "restore_operation": {
+      "restored": true,
+      "already_baseline": false
+    },
+    "post_restore_authenticated_rpc_status": 200,
+    "post_restore_authenticated_rpc_rows": 0,
+    "post_restore_authenticated_signer_status": 404,
+    "auth_deletion": {
+      "deleted": true,
+      "absent_fixture": false
+    },
+    "release_control_exact": true,
+    "protected_state_exact": true,
+    "auth_user_absent": true,
+    "auth_reference_rows": 0,
+    "auth_reference_readback": [
+      {
+        "reference": "auth.flow_state.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.identities.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.mfa_factors.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.oauth_authorizations.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.oauth_consents.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.one_time_tokens.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.refresh_tokens.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.sessions.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.users.id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.webauthn_challenges.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "auth.webauthn_credentials.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.alerts.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_contributions.added_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_contributions.contributor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_contributions.decided_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_contributions.terminal_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_custom_revisions.created_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_invitations.accepted_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_invitations.intended_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_invitations.inviter_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_join_requests.decision_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_join_requests.requester_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_legacy_watch_decisions.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_members.invited_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_members.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_owner_transfer_offers.current_owner_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_owner_transfer_offers.target_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_template_adoptions.adopter_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_templates.creator_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binder_view_links.created_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.binders.owner_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidate_credits.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidate_events.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidate_evidence.created_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidates.archived_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidates.founder_approved_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidates.promoted_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidates.rejected_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_candidates.submitted_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_promotion_staging.founder_approved_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.canon_warehouse_promotion_staging.staged_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_comments.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_events.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_events.subject_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_events_emit_failures.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_execution_events.initiated_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_feed_events.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_interaction_outcomes.executed_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_interaction_outcomes.source_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_interaction_outcomes.target_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_interactions.receiver_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_interactions.sender_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_print_visual_descriptions.approved_by",
+        "row_count": 0
+      },
+      {
+        "reference": "public.card_signals.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_follows.followed_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_follows.follower_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_local_blocks.blocked_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_local_blocks.blocker_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_local_discovery_settings.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_local_mutes.muted_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_local_mutes.muter_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_memories.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.collector_memory_prompt_state.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.completion_crossings.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.device_tokens.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.ebay_accounts.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.fingerprint_bindings.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.fingerprint_provenance_events.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.founder_agent_control_decisions.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.founder_decisions.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.founder_notification_viewer_state.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.founder_work_item_viewer_state.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.listings.owner_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notification_delivery_budgets.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notification_emit_failures.recipient_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notification_outbox.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notification_outbox.recipient_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notification_prefs.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notification_type_delivery_recommendations.founder_approved_by_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notifications_log.actor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.notifications_log.recipient_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.onboarding_ladder_events.collector_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.onboarding_ladder_events.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.onboarding_ladder_state.first_followed_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.onboarding_ladder_state.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.operations_control_state.updated_by",
+        "row_count": 0
+      },
+      {
+        "reference": "public.public_profiles.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.pulse_daily_job_state.cursor_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.pulse_viewer_state.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.shared_cards.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.trust_blocks.blocked_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.trust_blocks.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.trust_reports.reported_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.trust_reports.reporter_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.user_card_images.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.user_card_intents.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.user_entitlements.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.vault_item_instance_dispositions.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.vault_item_instances.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.vault_items.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.vault_owners.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.wall_sections.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.want_matches.owner_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.want_matches.want_user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.watches.user_id",
+        "row_count": 0
+      },
+      {
+        "reference": "public.wishlist_items.user_id",
+        "row_count": 0
+      }
+    ]
+  },
+  "timing": {
+    "activated": true,
+    "restored": true,
+    "visibility_open_seconds": 2.955
+  },
+  "execution_error": null
+}

@@ -45,11 +45,14 @@ function row(index, overrides = {}) {
   };
 }
 
-test('candidate remains outside the active migration directory', () => {
+test('candidate remains immutable after promotion into the combined migration', () => {
   assert.equal(fs.existsSync(candidatePath), true);
   assert.equal(fs.existsSync(
     'supabase/migrations/20260904000000_mtg_sealed_image_evidence_and_release_v1.sql'),
   false);
+  assert.equal(fs.existsSync(
+    'supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql'),
+  true);
   assert.match(sql, /Review artifact only/);
 });
 

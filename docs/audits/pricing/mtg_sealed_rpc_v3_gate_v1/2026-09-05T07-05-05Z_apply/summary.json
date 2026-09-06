@@ -1,0 +1,37 @@
+{
+  "status": "rpc_v3_applied_and_independently_read_back",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "3e5bc3aac6b2ec5608a6e35f6c571ff03e2087e4",
+    "tracked_worktree_clean": true
+  },
+  "migration": {
+    "version": "20260905070000",
+    "name": "mtg_sealed_image_backed_pricing_rpc_v3",
+    "filename": "20260905070000_mtg_sealed_image_backed_pricing_rpc_v3.sql",
+    "sha256": "4695d4a0af162a258af7f7fe5bd035472c32530d4829498a579eeb8c319d798f",
+    "statement_count": 6
+  },
+  "apply_plan_fingerprint_sha256": "d846361789558553fbe7254851e3d167b8068c5e969b45fcb5165c0c907e385c",
+  "transaction_committed": true,
+  "function_readback_exact": true,
+  "anonymous_execute_denied": true,
+  "signed_in_rows_while_hidden": 0,
+  "protected_state_unchanged": true,
+  "findings": [],
+  "boundaries": {
+    "migration_ledger_inserts": 1,
+    "function_creates_or_replacements": 1,
+    "data_writes": 0,
+    "storage_operations": 0,
+    "pricing_writes": 0,
+    "pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "deletes": 0
+  },
+  "exact_next_gate": "deploy and prove the trusted MTG sealed image signer while keeping clients and visibility disabled"
+}

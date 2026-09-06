@@ -1,7 +1,11 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-const bool kMtgSealedClientV1Enabled = false;
+const bool kMtgSealedClientV1Enabled = bool.fromEnvironment(
+  'MTG_SEALED_CLIENT_V1_ENABLED',
+  defaultValue: false,
+);
 const int kMtgSealedImageSignedUrlTtlSecondsV1 = 60 * 60;
+const int kMtgSealedImageSigningConcurrencyV1 = 4;
 
 enum MtgSealedCatalogStatusV1 {
   disabled,
@@ -197,8 +201,11 @@ class SupabaseMtgSealedClientTransportV1 implements MtgSealedClientTransportV1 {
 }
 
 class MtgSealedClientV1 {
-  const MtgSealedClientV1({required MtgSealedClientTransportV1 transport})
-    : _transport = transport;
+  const MtgSealedClientV1({
+    required MtgSealedClientTransportV1 transport,
+    bool enabled = kMtgSealedClientV1Enabled,
+  }) : _transport = transport,
+       _enabled = enabled;
 
   static final RegExp _uuid = RegExp(
     r'^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
@@ -210,13 +217,14 @@ class MtgSealedClientV1 {
   );
 
   final MtgSealedClientTransportV1 _transport;
+  final bool _enabled;
 
   Future<MtgSealedCatalogStateV1> load({
     String? query,
     int limit = 50,
     int offset = 0,
   }) async {
-    if (!kMtgSealedClientV1Enabled) {
+    if (!_enabled) {
       return MtgSealedCatalogStateV1.disabled;
     }
 
@@ -234,16 +242,30 @@ class MtgSealedClientV1 {
       if (classified.status != MtgSealedCatalogStatusV1.ready) {
         return classified;
       }
-      final resolved = await Future.wait(
-        classified.rows.map((row) async {
-          final imageUrl = await _transport.createSignedImageUrl(
-            bucket: row.imageStorageBucket,
-            objectPath: row.imageObjectPath,
-            expiresInSeconds: kMtgSealedImageSignedUrlTtlSecondsV1,
-          );
-          return row.withImageUrl(imageUrl);
-        }),
-      );
+      final resolved = <MtgSealedCatalogRowV1>[];
+      for (
+        var start = 0;
+        start < classified.rows.length;
+        start += kMtgSealedImageSigningConcurrencyV1
+      ) {
+        final end = (start + kMtgSealedImageSigningConcurrencyV1).clamp(
+          0,
+          classified.rows.length,
+        );
+        final batch = classified.rows.sublist(start, end);
+        resolved.addAll(
+          await Future.wait(
+            batch.map((row) async {
+              final imageUrl = await _transport.createSignedImageUrl(
+                bucket: row.imageStorageBucket,
+                objectPath: row.imageObjectPath,
+                expiresInSeconds: kMtgSealedImageSignedUrlTtlSecondsV1,
+              );
+              return row.withImageUrl(imageUrl);
+            }),
+          ),
+        );
+      }
       return MtgSealedCatalogStateV1(
         status: MtgSealedCatalogStatusV1.ready,
         rows: resolved,

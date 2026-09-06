@@ -1,0 +1,56 @@
+{
+  "transaction_read_only": "on",
+  "transaction_closed_before_artifacts": true,
+  "function": {
+    "signature": "public.get_active_sealed_product_pricing_v3(text,text,integer,integer)",
+    "volatility": "s",
+    "security_definer": true,
+    "configuration": [
+      "search_path=pg_catalog, public"
+    ],
+    "public_execute": false,
+    "anon_execute": false,
+    "authenticated_execute": true,
+    "service_role_execute": true,
+    "definition_contract_valid": true
+  },
+  "ledger": {
+    "version": "20260905070000",
+    "name": "mtg_sealed_image_backed_pricing_rpc_v3",
+    "statement_count": 6
+  },
+  "behavior": {
+    "authenticated_hidden_rows": 0,
+    "service_role_hidden_rows": 0,
+    "anonymous_execute_denied": true
+  },
+  "structural_evidence": {
+    "active_price_rows": 2182,
+    "image_backed_rows": 2149,
+    "eligible_rows": 2144,
+    "missing_image_rows": 33,
+    "noneligible_rows": 38,
+    "stale_rows": 5
+  },
+  "protected_state": {
+    "card_print_count": 170404,
+    "set_count": 3397,
+    "sealed_family_count": 479,
+    "sealed_variant_count": 3294,
+    "sealed_mapping_count": 3294,
+    "price_release_count": 2,
+    "price_member_count": 2514,
+    "image_evidence_count": 2182,
+    "image_object_count": 2141,
+    "image_assertion_count": 2149,
+    "image_release_count": 1,
+    "image_member_count": 2149,
+    "image_pointer_count": 1,
+    "mtg_price_pointer": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "mtg_image_pointer": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "one_piece_price_pointer": "152e4fd2-be0d-5d1b-a68f-88e46822d84a",
+    "mtg_catalog_visibility": "signed_in",
+    "mtg_sealed_visibility": "hidden"
+  },
+  "plan_fingerprint_sha256": "d846361789558553fbe7254851e3d167b8068c5e969b45fcb5165c0c907e385c"
+}

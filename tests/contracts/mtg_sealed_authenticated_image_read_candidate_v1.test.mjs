@@ -6,11 +6,14 @@ const candidatePath =
   'docs/sql/mtg_sealed_authenticated_image_read_v1_migration_candidate.sql';
 const sql = fs.readFileSync(candidatePath, 'utf8');
 
-test('authenticated image-read SQL remains an unapplied candidate', () => {
+test('authenticated image-read candidate remains immutable after promotion', () => {
   assert.equal(fs.existsSync(candidatePath), true);
   assert.equal(fs.existsSync(
     'supabase/migrations/20260904010000_mtg_sealed_authenticated_image_read_v1.sql',
   ), false);
+  assert.equal(fs.existsSync(
+    'supabase/migrations/20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql',
+  ), true);
   assert.match(sql, /Review artifact only/i);
 });
 

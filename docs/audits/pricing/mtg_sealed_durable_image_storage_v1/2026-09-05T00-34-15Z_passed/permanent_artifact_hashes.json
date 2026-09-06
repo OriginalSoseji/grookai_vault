@@ -1,0 +1,38 @@
+{
+  "hash_algorithm": "sha256",
+  "artifact_count": 8,
+  "artifacts": {
+    "artifact_hashes.json": {
+      "bytes": 743,
+      "sha256": "d3f8b696dde02c562442b781b3261814a73f721a19e0c860c237bab6e60bcd26"
+    },
+    "execution_journal.jsonl": {
+      "bytes": 9988808,
+      "sha256": "debe25777b2ee84d6a0ccdd95b10c02ccf6ce459b2ed0302166ff76969cf59ea"
+    },
+    "object_results.jsonl.gz": {
+      "bytes": 124262,
+      "sha256": "3365e02be23d8040b4b614e2902bc5c3415650775b09cdf9cb2302329f788c81"
+    },
+    "reconciliation.json": {
+      "bytes": 2412,
+      "sha256": "4bb7d8cb043b2344b512af56499a0f364927abdeaa0fa377bf4fce33c9da9ae3"
+    },
+    "REPORT.md": {
+      "bytes": 353,
+      "sha256": "1f00d9a96f9083291eb0e8a0d2807dd88a55421e30bc1bd86fce3cefdc81f534"
+    },
+    "run_plan.json": {
+      "bytes": 6556,
+      "sha256": "4174366a8aef73df21e9df97975c447d27c342ce321a70445e4e16aba6026185"
+    },
+    "SUCCESS_REPORT.md": {
+      "bytes": 1578,
+      "sha256": "bfaebb06cd90c7bd47d1145c4ee8c7335b9a15bd8164f8db3b8df7538a18c7bc"
+    },
+    "summary.json": {
+      "bytes": 1742,
+      "sha256": "4aced77cb57340ee5cf279aa091f8189941c78d169bea8d9fe6a505d4a7c6dfe"
+    }
+  }
+}

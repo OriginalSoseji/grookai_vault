@@ -1,0 +1,312 @@
+{
+  "version": "MTG_SEALED_IMAGE_STORAGE_CANARY_V1",
+  "status": "passed_uploaded_read_back_removed_and_absent",
+  "execution_fingerprint_sha256": "9983c18b0b9dbe69684eb4ac67450b6fc1ec4f0bf692586d6a740eb6d84ecf21",
+  "fetched_count": 17,
+  "uploaded_count": 17,
+  "readback_verified_count": 17,
+  "removed_count": 17,
+  "final_absent_count": 17,
+  "durable_objects_after_run": 0,
+  "ownership_scope_activated": true,
+  "counters": {
+    "collision_checks": 34,
+    "source_fetches": 17,
+    "source_request_attempts": 17,
+    "uploads": 17,
+    "downloads": 17,
+    "removals": 17,
+    "final_absence_checks": 17
+  },
+  "uploaded_paths": [
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/dbcc86ce3f67049e92dc03ec882fe4d4c98a6d5b0b7cd418f0ced6b6b8aac53d.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/4c026c4e9ab1786adf18e4b1dc44b61b898fa2958d00829a985dc94f1e58d774.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/a0f0c34e0358aef152ab97f113d75446dcf1d7bffd61e5c61860fd5dad063dd9.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/3a01965723ee708a1c2c7a5a4e090bff4815e70fd847a6c52cc521ea26ae30b1.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/3bb1a5239975e938797e937670a3a14259f0e3258b860aa9f76b2ca9b2a54350.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/5832cb7139926a362e47a771d8b2ab8b1d40a6f9d4cc07671ef6427bb948d11c.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/2788ed06c1684474d3132046ba3d46f638f103dc2e0f2435907f422bce53dae6.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/01e035e40414d69f632bd11fc3dc7e51bab900c73f5ea02df3f2adaedc359068.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/f4f28909723221e5bb7c044e276704012ec9d28199f68a2697706760968a10a3.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/a28d632b8743abd48e314a82c89b1678e0d948312854faaf7e6149b389e69dbd.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/cbf5d3f54b7fbf301a651b754c98713e36b50f684ebc632c34f0d0cd860706d5.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/4dd5e9304ddb963a9160459f092715dfb986a54345a88eb54a4cc9699ad5844b.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/80697f5e3a61fb56f499214c77ebaab17cb6754632d33c9d1556aa7fef59f559.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/1460f44d882363c9305ca43a693b934d1adf699575c259d6cba3df4ab08fb690.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/a9c2ef606481108e36e3345255869b24647ac54c128d691db5022cc407532775.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/3076de20b03d1ade47f8fccda7bcd536566724ec0979321d3849a99589b5c798.jpg",
+    "sealed/mtg/canary/114a6e9fdd9582ca7127/f3066c7a5e82893389003f636090a543c240480635b641d29e8fccce99778839.jpg"
+  ],
+  "readbacks": [
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/dbcc86ce3f67049e92dc03ec882fe4d4c98a6d5b0b7cd418f0ced6b6b8aac53d.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 590,
+        "height": 743,
+        "size_bytes": 28832,
+        "sha256": "dbcc86ce3f67049e92dc03ec882fe4d4c98a6d5b0b7cd418f0ced6b6b8aac53d",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/4c026c4e9ab1786adf18e4b1dc44b61b898fa2958d00829a985dc94f1e58d774.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 200,
+        "height": 177,
+        "size_bytes": 9337,
+        "sha256": "4c026c4e9ab1786adf18e4b1dc44b61b898fa2958d00829a985dc94f1e58d774",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/a0f0c34e0358aef152ab97f113d75446dcf1d7bffd61e5c61860fd5dad063dd9.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 900,
+        "height": 900,
+        "size_bytes": 53673,
+        "sha256": "a0f0c34e0358aef152ab97f113d75446dcf1d7bffd61e5c61860fd5dad063dd9",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/3a01965723ee708a1c2c7a5a4e090bff4815e70fd847a6c52cc521ea26ae30b1.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 690,
+        "height": 1000,
+        "size_bytes": 127039,
+        "sha256": "3a01965723ee708a1c2c7a5a4e090bff4815e70fd847a6c52cc521ea26ae30b1",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/3bb1a5239975e938797e937670a3a14259f0e3258b860aa9f76b2ca9b2a54350.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 800,
+        "height": 900,
+        "size_bytes": 38252,
+        "sha256": "3bb1a5239975e938797e937670a3a14259f0e3258b860aa9f76b2ca9b2a54350",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/5832cb7139926a362e47a771d8b2ab8b1d40a6f9d4cc07671ef6427bb948d11c.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 222,
+        "height": 259,
+        "size_bytes": 12150,
+        "sha256": "5832cb7139926a362e47a771d8b2ab8b1d40a6f9d4cc07671ef6427bb948d11c",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/2788ed06c1684474d3132046ba3d46f638f103dc2e0f2435907f422bce53dae6.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 1000,
+        "height": 997,
+        "size_bytes": 173180,
+        "sha256": "2788ed06c1684474d3132046ba3d46f638f103dc2e0f2435907f422bce53dae6",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/01e035e40414d69f632bd11fc3dc7e51bab900c73f5ea02df3f2adaedc359068.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 1000,
+        "height": 1000,
+        "size_bytes": 136282,
+        "sha256": "01e035e40414d69f632bd11fc3dc7e51bab900c73f5ea02df3f2adaedc359068",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/f4f28909723221e5bb7c044e276704012ec9d28199f68a2697706760968a10a3.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 1000,
+        "height": 1000,
+        "size_bytes": 107153,
+        "sha256": "f4f28909723221e5bb7c044e276704012ec9d28199f68a2697706760968a10a3",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/a28d632b8743abd48e314a82c89b1678e0d948312854faaf7e6149b389e69dbd.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 200,
+        "height": 348,
+        "size_bytes": 14188,
+        "sha256": "a28d632b8743abd48e314a82c89b1678e0d948312854faaf7e6149b389e69dbd",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/cbf5d3f54b7fbf301a651b754c98713e36b50f684ebc632c34f0d0cd860706d5.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 900,
+        "height": 470,
+        "size_bytes": 66482,
+        "sha256": "cbf5d3f54b7fbf301a651b754c98713e36b50f684ebc632c34f0d0cd860706d5",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/4dd5e9304ddb963a9160459f092715dfb986a54345a88eb54a4cc9699ad5844b.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 500,
+        "height": 935,
+        "size_bytes": 68681,
+        "sha256": "4dd5e9304ddb963a9160459f092715dfb986a54345a88eb54a4cc9699ad5844b",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/80697f5e3a61fb56f499214c77ebaab17cb6754632d33c9d1556aa7fef59f559.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 500,
+        "height": 720,
+        "size_bytes": 67771,
+        "sha256": "80697f5e3a61fb56f499214c77ebaab17cb6754632d33c9d1556aa7fef59f559",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/1460f44d882363c9305ca43a693b934d1adf699575c259d6cba3df4ab08fb690.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 200,
+        "height": 215,
+        "size_bytes": 9644,
+        "sha256": "1460f44d882363c9305ca43a693b934d1adf699575c259d6cba3df4ab08fb690",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/a9c2ef606481108e36e3345255869b24647ac54c128d691db5022cc407532775.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 1000,
+        "height": 1000,
+        "size_bytes": 119018,
+        "sha256": "a9c2ef606481108e36e3345255869b24647ac54c128d691db5022cc407532775",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/3076de20b03d1ade47f8fccda7bcd536566724ec0979321d3849a99589b5c798.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 690,
+        "height": 1000,
+        "size_bytes": 124758,
+        "sha256": "3076de20b03d1ade47f8fccda7bcd536566724ec0979321d3849a99589b5c798",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "object_path": "sealed/mtg/canary/114a6e9fdd9582ca7127/f3066c7a5e82893389003f636090a543c240480635b641d29e8fccce99778839.jpg",
+      "observed": {
+        "valid_image": true,
+        "format": "jpeg",
+        "content_type": "image/jpeg",
+        "width": 800,
+        "height": 900,
+        "size_bytes": 29309,
+        "sha256": "f3066c7a5e82893389003f636090a543c240480635b641d29e8fccce99778839",
+        "placeholder_suspected": false,
+        "diagnostics": []
+      }
+    }
+  ],
+  "final_present_paths": [],
+  "errors": [],
+  "boundaries": {
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "durable_storage_objects": 0,
+    "image_evidence_rows": 0,
+    "image_release_rows": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  },
+  "completed_at": "2026-09-04T21:43:14.697Z",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "5f8ba57a8c502d1bd73b52fd6af2a254eb024aba",
+    "tracked_worktree_clean": true
+  },
+  "tls_runtime": {
+    "policy": "node_bundled_plus_windows_system_ca",
+    "certificate_verification_required": true,
+    "system_certificate_count": 182,
+    "bundled_certificate_count": 150
+  },
+  "database_connections": 0,
+  "signer_deployments": 0
+}

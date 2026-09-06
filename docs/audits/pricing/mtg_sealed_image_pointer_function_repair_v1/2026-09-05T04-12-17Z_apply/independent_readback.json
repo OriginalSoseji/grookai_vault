@@ -1,0 +1,57 @@
+{
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "transaction_read_only": true,
+  "transaction_closed_before_artifacts": true,
+  "migration_ledger": {
+    "count": 1,
+    "version": "20260905040000",
+    "name": "sealed_product_image_pointer_conflict_repair_v1",
+    "statement_count": 6,
+    "later_versions": []
+  },
+  "pointer_function": {
+    "present": true,
+    "security_definer": true,
+    "volatility": "v",
+    "configuration": [
+      "search_path=pg_catalog, public"
+    ],
+    "definition": "CREATE OR REPLACE FUNCTION public.sealed_product_set_active_image_release_v1(p_target_image_release_id uuid, p_expected_current_image_release_id uuid, p_changed_by uuid)\n RETURNS TABLE(game_key text, active_image_release_id uuid, previous_image_release_id uuid, changed_at timestamp with time zone)\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\ndeclare\n  v_release public.sealed_product_image_releases%rowtype;\n  v_current_release_id uuid;\n  v_current_price_release_id uuid;\n  v_computed_manifest_fingerprint text;\nbegin\n  if p_changed_by is null then\n    raise exception 'changed_by is required' using errcode = '22004';\n  end if;\n\n  select * into v_release\n  from public.sealed_product_image_releases\n  where id = p_target_image_release_id;\n\n  if not found or v_release.release_state <> 'frozen' then\n    raise exception 'target image release must exist and be frozen'\n      using errcode = '23514';\n  end if;\n\n  lock table public.sealed_product_release_members in share mode;\n  lock table public.sealed_product_image_evidence in share mode;\n  lock table public.sealed_product_variant_image_assertions in share mode;\n\n  v_computed_manifest_fingerprint :=\n    public.sealed_product_assert_image_release_complete_v1(\n      p_target_image_release_id\n    );\n  if v_computed_manifest_fingerprint <> v_release.manifest_fingerprint then\n    raise exception 'computed image release manifest fingerprint mismatch'\n      using errcode = '23514';\n  end if;\n\n  lock table public.sealed_product_release_pointer in share mode;\n\n  select price_pointer.release_id into v_current_price_release_id\n  from public.sealed_product_release_pointer price_pointer\n  where price_pointer.game_key = v_release.game_key\n  for share;\n\n  if v_current_price_release_id is distinct from v_release.source_price_release_id then\n    raise exception 'target image release is not bound to the active price release'\n      using errcode = '23514';\n  end if;\n\n  lock table public.sealed_product_image_release_pointer in exclusive mode;\n\n  select pointer.image_release_id into v_current_release_id\n  from public.sealed_product_image_release_pointer pointer\n  where pointer.game_key = v_release.game_key\n  for update;\n\n  if v_current_release_id is distinct from p_expected_current_image_release_id then\n    raise exception 'active image release changed concurrently'\n      using errcode = '40001';\n  end if;\n\n  insert into public.sealed_product_image_release_pointer (\n    game_key, image_release_id, previous_image_release_id,\n    pointer_contract_version, changed_by, changed_at\n  ) values (\n    v_release.game_key, p_target_image_release_id, v_current_release_id,\n    'SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1', p_changed_by, now()\n  )\n  on conflict on constraint sealed_product_image_release_pointer_pkey\n  do update set\n    image_release_id = excluded.image_release_id,\n    previous_image_release_id = excluded.previous_image_release_id,\n    pointer_contract_version = excluded.pointer_contract_version,\n    changed_by = excluded.changed_by,\n    changed_at = excluded.changed_at;\n\n  return query\n  select pointer.game_key, pointer.image_release_id,\n    pointer.previous_image_release_id, pointer.changed_at\n  from public.sealed_product_image_release_pointer pointer\n  where pointer.game_key = v_release.game_key;\nend;\n$function$\n"
+  },
+  "routine_grants": [
+    {
+      "grantee": "service_role",
+      "privilege_type": "EXECUTE"
+    }
+  ],
+  "pointer": {
+    "count": 0,
+    "image_release_id": null
+  },
+  "authority": {
+    "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "image_release_state": "frozen",
+    "image_release_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+    "image_release_member_count": 2149,
+    "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "price_release_state": "frozen",
+    "price_release_member_count": 2182,
+    "catalog_visibility": "signed_in",
+    "sealed_visibility": "hidden"
+  },
+  "protected_counts": {
+    "card_prints": 170404,
+    "sets": 3397,
+    "families": 479,
+    "variants": 3294,
+    "source_mappings": 3294,
+    "price_releases": 2,
+    "price_release_members": 2514,
+    "image_evidence": 2182,
+    "image_objects": 2141,
+    "image_assertions": 2149,
+    "image_releases": 1,
+    "image_release_members": 2149,
+    "one_piece_price_pointers": 1
+  }
+}

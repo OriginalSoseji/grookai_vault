@@ -1,0 +1,97 @@
+[
+  {
+    "file": "deployment/deploy-output.txt",
+    "sha256": "369c4c940e872e85b7ab7df9edeafe063f6486b67db428b262e67805eb7d0e7c",
+    "bytes": 197
+  },
+  {
+    "file": "deployment/focused-tests.txt",
+    "sha256": "5c05e77c29fb1345c1f60e438bc3bd94448937c91e68cbb32c3522655f303abe",
+    "bytes": 2686
+  },
+  {
+    "file": "deployment/functions-list.txt",
+    "sha256": "0626b5b3ee45fe9883aff878e2479672bed81fa8f51f31cbdbbfb22fd13a9d03",
+    "bytes": 8117
+  },
+  {
+    "file": "preflight/artifact_hashes.json",
+    "sha256": "6cdc78bb9bfc30fbf3cfa7c58bc3bd12583df4ccf60e6e5127e9e55251b6aaf5",
+    "bytes": 1000
+  },
+  {
+    "file": "preflight/authenticated_hidden_state_proof.json",
+    "sha256": "5ab1ca7b9a7842558743dbfc1a18d9c52fb6d266cf9c205cebc2cb1eac96cd15",
+    "bytes": 289
+  },
+  {
+    "file": "preflight/endpoint_probe.json",
+    "sha256": "811f319a8491ae1e9e0b467f835e3af1661cd3ca57e2659c239e4e0b74cd751b",
+    "bytes": 497
+  },
+  {
+    "file": "preflight/protected_state.json",
+    "sha256": "e8fadc197e6c11d6fb970e7f3d9b7148452ec4da06ce5e9b636bd6b0b5a475e4",
+    "bytes": 648
+  },
+  {
+    "file": "preflight/REPORT.md",
+    "sha256": "882405b06385d91afffa85cac4de7088c696ce842e77af2e818d635fec21c45c",
+    "bytes": 878
+  },
+  {
+    "file": "preflight/run_plan.json",
+    "sha256": "f925cb7f779b83e2772081d3d5591a000aaf154d7f311906866671261910c14d",
+    "bytes": 823
+  },
+  {
+    "file": "preflight/source_bundle.json",
+    "sha256": "aac9c4f3bd32ff8f4abf42cd98fef63a06eb3c5b1ad05541018f22f1c84704d9",
+    "bytes": 996
+  },
+  {
+    "file": "preflight/summary.json",
+    "sha256": "1e71773fb73ea5ab8b93c0de84229f7eeba2aa7e837a69dc78fc176e0e8ac774",
+    "bytes": 3400
+  },
+  {
+    "file": "readback/artifact_hashes.json",
+    "sha256": "0b7338085c9782a6159e82719837a907f1c34cd3ba09b881e87f2a9c8301de57",
+    "bytes": 1000
+  },
+  {
+    "file": "readback/authenticated_hidden_state_proof.json",
+    "sha256": "5ab1ca7b9a7842558743dbfc1a18d9c52fb6d266cf9c205cebc2cb1eac96cd15",
+    "bytes": 289
+  },
+  {
+    "file": "readback/endpoint_probe.json",
+    "sha256": "0d62b27feb3d0e907f9596873b9a37d2f3e7311771be783b434cb13a4792e9b9",
+    "bytes": 356
+  },
+  {
+    "file": "readback/protected_state.json",
+    "sha256": "e8fadc197e6c11d6fb970e7f3d9b7148452ec4da06ce5e9b636bd6b0b5a475e4",
+    "bytes": 648
+  },
+  {
+    "file": "readback/REPORT.md",
+    "sha256": "2f741a13361885fbe4cd721c612bc30e6b2194d35290c34d2d6df1f7aead2ed4",
+    "bytes": 877
+  },
+  {
+    "file": "readback/run_plan.json",
+    "sha256": "f925cb7f779b83e2772081d3d5591a000aaf154d7f311906866671261910c14d",
+    "bytes": 823
+  },
+  {
+    "file": "readback/source_bundle.json",
+    "sha256": "aac9c4f3bd32ff8f4abf42cd98fef63a06eb3c5b1ad05541018f22f1c84704d9",
+    "bytes": 996
+  },
+  {
+    "file": "readback/summary.json",
+    "sha256": "0f6c5a2b7dd4744b4512636a1b2435a4406e2b9e9a98f3697c18ad05e0a35163",
+    "bytes": 3252
+  }
+]

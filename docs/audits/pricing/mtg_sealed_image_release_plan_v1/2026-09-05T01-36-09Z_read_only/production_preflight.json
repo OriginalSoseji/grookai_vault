@@ -1,0 +1,76 @@
+{
+  "valid": true,
+  "findings": [],
+  "guard": {
+    "guard_version": "JPN-MASTER-INDEX-READ-ONLY-GUARD-V1",
+    "transaction_read_only": "on",
+    "default_transaction_read_only": "on",
+    "environment_label": "mtg-sealed-image-release-plan-production-read-only",
+    "environment_key_sha256": "4a9903b58cb6f65efb3980cc7bc13629c8f018ebf99b2c83c7ecd6bb8266989a"
+  },
+  "active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "active_price_release_state": "frozen",
+  "active_price_expected_member_count": 2182,
+  "current_image_release_id": null,
+  "mtg_sealed_visibility": "hidden",
+  "mtg_catalog_visibility": "signed_in",
+  "one_piece_price_pointer_count": 1,
+  "source_release_member_count": 2182,
+  "source_release_member_mismatch_count": 0,
+  "source_release_member_fingerprint_sha256": "b68bd639d7971e16f513077ba6346f402d845145f6c92b508287c66f3f2b221c",
+  "image_tables": [
+    {
+      "table_name": "sealed_product_image_evidence",
+      "rls_enabled": true,
+      "rls_forced": true,
+      "row_count": 0
+    },
+    {
+      "table_name": "sealed_product_image_objects",
+      "rls_enabled": true,
+      "rls_forced": true,
+      "row_count": 0
+    },
+    {
+      "table_name": "sealed_product_variant_image_assertions",
+      "rls_enabled": true,
+      "rls_forced": true,
+      "row_count": 0
+    },
+    {
+      "table_name": "sealed_product_image_releases",
+      "rls_enabled": true,
+      "rls_forced": true,
+      "row_count": 0
+    },
+    {
+      "table_name": "sealed_product_image_release_members",
+      "rls_enabled": true,
+      "rls_forced": true,
+      "row_count": 0
+    },
+    {
+      "table_name": "sealed_product_image_release_pointer",
+      "rls_enabled": true,
+      "rls_forced": true,
+      "row_count": 0
+    }
+  ],
+  "app_table_grant_count": 0,
+  "service_table_grant_count": 11,
+  "service_routine_grant_count": 2,
+  "migration_ledger": [
+    {
+      "version": "20260904130000",
+      "name": "mtg_sealed_image_evidence_and_signing_authorization_v1"
+    }
+  ],
+  "database_fingerprint_parity": {
+    "database_member_fingerprint_count": 2149,
+    "database_member_fingerprint_mismatch_count": 0,
+    "planned_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+    "database_manifest_fingerprint": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+    "valid": true
+  },
+  "transaction_closed_before_artifacts": true
+}

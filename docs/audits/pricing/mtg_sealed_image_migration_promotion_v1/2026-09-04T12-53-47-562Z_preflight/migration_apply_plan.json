@@ -1,0 +1,36 @@
+{
+  "future_authority_limit": {
+    "client_activation": 0,
+    "image_or_release_rows": 0,
+    "migration_ledger_rows": 1,
+    "pricing_operations": 0,
+    "schema_only": true,
+    "storage_operations": 0,
+    "tables_created": 6,
+    "vault_operations": 0,
+    "visibility_changes": 0
+  },
+  "migration": {
+    "filename": "20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql",
+    "sha256": "0efd90e3291731f153afd901f23b51c264f4a0b0d27236c10bb34f82938c8406",
+    "version": "20260904130000"
+  },
+  "preconditions": {
+    "after_fingerprint": "c9401f2bd3b991a88c3787744e6a16a8519069029c370ddf224393a4b1e28fe2",
+    "before_fingerprint": "c9401f2bd3b991a88c3787744e6a16a8519069029c370ddf224393a4b1e28fe2",
+    "collisions": {
+      "constraints": [],
+      "functions": [],
+      "indexes": [],
+      "policies": [],
+      "relations": [],
+      "triggers": []
+    },
+    "migration_ledger_count": 0,
+    "missing_prerequisite_functions": [],
+    "missing_prerequisite_relations": []
+  },
+  "producer_commit_sha": "3ba1ba69e39cf481b6b8076df292cce9e35b4124",
+  "status": "not_authorized",
+  "version": "MTG_SEALED_IMAGE_MIGRATION_APPLY_PLAN_V1"
+}

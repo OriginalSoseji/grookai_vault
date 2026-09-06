@@ -1,0 +1,93 @@
+{
+  "version": "MTG_SEALED_DURABLE_IMAGE_PLAN_V1",
+  "mode": "offline_plan_only",
+  "producer_commit_sha": "f87cd704a153cc523e21be0f6dabdd61cdf73d05",
+  "source_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "source_artifacts": {
+    "source_directory": "docs/audits/pricing/mtg_sealed_image_coverage_v1/2026-09-04_live_33841181449",
+    "coverage_jsonl_gz_sha256": "869f0e36bf673bdd3b825353d57beea797cae2cc5bf5b2df72c86c596cd04d04",
+    "coverage_jsonl_sha256": "0c1e234ae8c2806d3002e354d184467f99a87831e145ab0c18225a87188a4843",
+    "summary_json_sha256": "cd26c3d2c13920e80cab85433ecb28e12801573098bd6080ac5eadd2d359b245",
+    "permanent_manifest_sha256": "fc34253062c193c08901026cd4742ac5e174dc77ce1233a981eb54d6abe5b5f5"
+  },
+  "target_storage_bucket": "user-card-images",
+  "datasets": {
+    "objects": {
+      "row_count": 2141,
+      "logical_fingerprint_sha256": "b93697b0ca0bfb9c4dd1f98ef93be1514a904f80491b991b259a1fdddc14e59e"
+    },
+    "exclusions": {
+      "row_count": 33,
+      "logical_fingerprint_sha256": "1f60dc416bf0a4c447e19f5eb0d61bb8a8ae2c17360f2a294ddf6be01dd178e5"
+    },
+    "shards": {
+      "row_count": 22,
+      "logical_fingerprint_sha256": "528e167a2a2787699a3130aa0162e137a2261d1b2f8cba447658b20ceeab0973"
+    }
+  },
+  "reconciliation": {
+    "selected_members": 2182,
+    "eligible_variants": 2149,
+    "eligible_unique_objects": 2141,
+    "exclusions": 33,
+    "shared_content_deduplication_count": 8,
+    "eligible_expected_bytes": 157335339,
+    "source_reported_unique_valid_images": 2144,
+    "excluded_valid_placeholder_hashes": 3,
+    "corrected_unique_eligible_images": 2141,
+    "source_accounting_correction": "source_summary_count_included_excluded_placeholder_hashes"
+  },
+  "execution_policy": {
+    "shard_size": 100,
+    "shard_count": 22,
+    "maximum_concurrency": 10,
+    "source_fetch_retries": 2,
+    "maximum_source_request_attempts": 6423,
+    "maximum_source_bytes_per_object": 20000000,
+    "tls_trust_policy": "node_bundled_plus_windows_system_ca",
+    "tls_certificate_verification_required": true,
+    "custom_ca_overrides_allowed": false,
+    "redirects_allowed": false,
+    "upload_upsert": false,
+    "overwrite_allowed": false,
+    "exact_readback_required": "sha256_size_dimensions_format_and_content_type",
+    "durable_commit_unit": "one_content_addressed_object_after_exact_readback",
+    "verified_objects_retained_on_interruption": true,
+    "resume_requires_exact_plan_fingerprint": true,
+    "resume_existing_object_policy": "exact_readback_reuse_or_mismatch_hard_stop",
+    "write_ahead_journal_required": true,
+    "per_object_terminal_state_required": true,
+    "whole_plan_reconciliation_required_before_database_evidence": true,
+    "rollback_scope": "only_unverified_objects_created_by_the_current_execution_attempt",
+    "preexisting_objects_never_removed": true,
+    "mismatched_objects_never_overwritten_or_removed": true
+  },
+  "future_execution_authority": {
+    "separately_authorized_execution_required": true,
+    "execution_commit_sha_required": true,
+    "execution_fingerprint_required": true,
+    "plan_fingerprint_required": true,
+    "source_coverage_fingerprint_required": true,
+    "exact_object_and_variant_counts_required": true,
+    "current_plan_grants_storage_authority": false
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "storage_deletes": 0,
+    "image_evidence_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "cross_game_writes": 0
+  },
+  "plan_fingerprint_sha256": "92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc",
+  "required_future_authority_template": "I approve the durable MTG sealed image Storage execution from <EXECUTION_COMMIT_SHA>, using source coverage fingerprint cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d, durable plan fingerprint 92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc, and <EXECUTION_FINGERPRINT>. This authorizes collision readback, retrieval of exactly 2141 frozen unique images with at most 2 transport retries per object and 6423 total source request attempts, upsert=false durable upload and exact readback for 2141 content-addressed objects covering 2149 variants, and resumable retention only after exact readback. It preserves 33 exclusions and authorizes no database, image-evidence, pointer, pricing, release, visibility, Vault, client, or cross-game writes."
+}

@@ -1,0 +1,34 @@
+{
+  "hash_algorithm": "sha256",
+  "artifact_count": 7,
+  "artifacts": {
+    "artifact_hashes.json": {
+      "bytes": 595,
+      "sha256": "865cdaf76a7297db2a9a25b2a5f0058c0773ffac8f03cd0c1fa45606a0b2a330"
+    },
+    "execution_journal.jsonl": {
+      "bytes": 9681,
+      "sha256": "703584bc4d5c058eb03d4172f7af39f6218e079cd487563414d8796479b79300"
+    },
+    "failure_classification.json": {
+      "bytes": 1646,
+      "sha256": "f7a824513a423d24cef29e22753825a9ea22a7e89980a291642434f307bd84b6"
+    },
+    "FAILURE_REPORT.md": {
+      "bytes": 1489,
+      "sha256": "96ab69d18cc62f636504b005dc6dace94cdbf6316e773e93e6afa6f7df14a2fd"
+    },
+    "REPORT.md": {
+      "bytes": 289,
+      "sha256": "ecf021daedb202b5f943e0a7abff8095bf28407243d581295fbe17c475a02d33"
+    },
+    "run_plan.json": {
+      "bytes": 28736,
+      "sha256": "7cfd75d17cc5962832e2b2b253936a06a52eebd2c2dcffd534c23467833fa383"
+    },
+    "summary.json": {
+      "bytes": 1470,
+      "sha256": "b8a823f043305723aa883dfb84cec5cf2a027c772f5e50ee692b108a76c5f3a0"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "MTG_SEALED_IMAGE_STORAGE_CANARY_FAILURE_CLASSIFICATION_V1",
+  "classified_at": "2026-09-04T21:10:00.000Z",
+  "status": "failed_safe_before_upload",
+  "failure_class": "source_transport_failure_before_mutation",
+  "execution_commit_sha": "c7c12e457fdc4a4791112c392c93026a53e7bcf9",
+  "execution_fingerprint_sha256": "9d8206d8e09c4aa52ce88735b663c7d63ea6332000be625f76229c623ba1f653",
+  "source_product_id_at_failure": 221329,
+  "recorded_error": "fetch failed",
+  "authority_disposition": "consumed_do_not_reuse",
+  "counts": {
+    "initial_collision_checks": 17,
+    "completed_source_fetches": 0,
+    "uploads": 0,
+    "downloads": 0,
+    "removals": 0,
+    "final_absence_checks": 17,
+    "final_absent_paths": 17,
+    "durable_objects_after_run": 0
+  },
+  "ownership_scope_activated": false,
+  "recovery_required": false,
+  "database_connections": 0,
+  "signer_deployments": 0,
+  "diagnosis": {
+    "dns_resolution_after_failure": "succeeded",
+    "tcp_443_connectivity_after_failure": "succeeded",
+    "root_cause_certainty": "unresolved_generic_transport_failure"
+  },
+  "repair_decision": {
+    "bounded_transport_retries_per_url": 2,
+    "maximum_source_request_attempts": 51,
+    "structured_failure_journal": true,
+    "storage_scope_changed": false,
+    "data_boundary_changed": false,
+    "new_execution_authority_required": true
+  }
+}

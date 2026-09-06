@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "MTG_SEALED_IMAGE_MIGRATION_PROMOTION_PREFLIGHT_V1.md": {
+      "bytes": 1062,
+      "sha256": "1a09f0ed78cb38c7f70c081e85512526851dff0470e2066fe3ea20ae0a52fe3a"
+    },
+    "migration_apply_plan.json": {
+      "bytes": 21609,
+      "sha256": "8c9b3b61035d61d4cf0c33f0181c0665ebd009133a3d0ec0df10bf3990b35c0e"
+    },
+    "preflight.json": {
+      "bytes": 76041,
+      "sha256": "7e18cfa019a10350b8ab165d53b78184b9507c9515d2a00bfa0187205de464eb"
+    },
+    "signer_deployment_plan.json": {
+      "bytes": 652,
+      "sha256": "c4ac8f90cdb6daa37c0524eee07946eb21d865300067dbb836ee66287b61aa49"
+    },
+    "summary.json": {
+      "bytes": 76749,
+      "sha256": "c19321155df4c83fc3d0ad688b36b52a57db8d855dd2827af30d31d35e18facc"
+    }
+  },
+  "version": "MTG_SEALED_IMAGE_MIGRATION_PROMOTION_ARTIFACT_HASHES_V1"
+}

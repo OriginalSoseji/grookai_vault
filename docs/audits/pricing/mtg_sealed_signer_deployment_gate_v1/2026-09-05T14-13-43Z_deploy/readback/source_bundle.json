@@ -1,0 +1,30 @@
+{
+  "files": [
+    {
+      "path": "supabase/functions/mtg-sealed-sign-image-v1/index.ts",
+      "sha256": "2dc6c3a6a275214dec9d39b29bd65e7ffc08f344c0ed327a1b5e76852478b30b",
+      "bytes": 2658
+    },
+    {
+      "path": "supabase/functions/mtg-sealed-sign-image-v1/config.toml",
+      "sha256": "7551533d8029d2f2ff237c1ff0915b2758a25711aec701d6a5378cc7f7d94e3f",
+      "bytes": 19
+    },
+    {
+      "path": "supabase/functions/_shared/auth.ts",
+      "sha256": "96a8c3a206565b1938e4fd1e72afc89f664f34f2384922f9a0df1e96ecce7863",
+      "bytes": 3092
+    },
+    {
+      "path": "supabase/functions/_shared/cors.ts",
+      "sha256": "f1a25a444e8be1eb74d2a39b3a96b138c621c1f53e1c4fe6d8696382bb3831c5",
+      "bytes": 489
+    },
+    {
+      "path": "supabase/functions/_shared/key_resolver.ts",
+      "sha256": "b55eb1e17878795142d5c97d35b2840524bfcb1191a6af274fb09acac712b3c7",
+      "bytes": 1682
+    }
+  ],
+  "bundle_sha256": "a721f2e784bc5273adc2c1e2641f761d3175a2e7128f9600881f4aefd76f335c"
+}

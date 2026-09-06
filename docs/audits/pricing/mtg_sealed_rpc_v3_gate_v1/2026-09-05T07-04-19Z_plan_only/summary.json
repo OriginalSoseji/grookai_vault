@@ -1,0 +1,25 @@
+{
+  "status": "ready_not_applied",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "3e5bc3aac6b2ec5608a6e35f6c571ff03e2087e4",
+    "tracked_worktree_clean": true
+  },
+  "migration": {
+    "version": "20260905070000",
+    "name": "mtg_sealed_image_backed_pricing_rpc_v3",
+    "filename": "20260905070000_mtg_sealed_image_backed_pricing_rpc_v3.sql",
+    "sha256": "4695d4a0af162a258af7f7fe5bd035472c32530d4829498a579eeb8c319d798f",
+    "statement_count": 6
+  },
+  "apply_plan_fingerprint_sha256": "d846361789558553fbe7254851e3d167b8068c5e969b45fcb5165c0c907e385c",
+  "structural_evidence": {
+    "active_price_rows": 2182,
+    "image_backed_rows": 2149,
+    "eligible_rows": 2144,
+    "missing_image_rows": 33,
+    "noneligible_rows": 38,
+    "stale_rows": 5
+  },
+  "database_writes": 0
+}

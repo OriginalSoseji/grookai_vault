@@ -1,6 +1,6 @@
 # MTG Sealed Image Schema Candidate V1
 
-**Status:** Offline candidate; unapplied
+**Status:** Candidate preserved; promoted migration applied, data empty
 
 **Date:** 2026-09-04
 
@@ -21,7 +21,7 @@ calling Storage, changing prices, or activating MTG sealed visibility.
 
 ## Candidate Model
 
-The SQL remains outside `supabase/migrations` at
+The original reviewed SQL remains preserved outside `supabase/migrations` at
 `docs/sql/mtg_sealed_image_evidence_and_release_v1_migration_candidate.sql`.
 It proposes six service-owned resources:
 
@@ -77,8 +77,16 @@ Storage read/upload/delete, image assertion or pointer, price refresh,
 release-pointer change, visibility activation, client deployment, Vault write,
 anonymous access, cleanup, or destructive operation.
 
+## Promotion
+
+The candidate was promoted without modifying its preserved bytes into
+`20260904130000_mtg_sealed_image_evidence_and_signing_authorization_v1.sql`.
+That migration and its separately reviewed authenticated signing predicate are
+durably applied as recorded in Pricing Checkpoint 110. All six image tables
+remain empty and the signer remains undeployed.
+
 ## Exact Next Gate
 
-Review the candidate SQL, its hash, the 17-object transient plan, and focused
-tests. A later migration promotion and a later transient Storage execution are
-separate authorities. Neither is implied by this contract.
+Freeze the guarded 17-object transient Storage execution plan from an exact
+clean commit. Storage execution remains a separate fingerprint-bound authority
+and must end with all transient paths verified absent.

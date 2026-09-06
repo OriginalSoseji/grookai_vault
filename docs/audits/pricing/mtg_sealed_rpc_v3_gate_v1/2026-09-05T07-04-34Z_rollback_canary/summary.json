@@ -1,0 +1,13 @@
+{
+  "status": "rollback_proven_zero_residue",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "3e5bc3aac6b2ec5608a6e35f6c571ff03e2087e4",
+    "tracked_worktree_clean": true
+  },
+  "apply_plan_fingerprint_sha256": "d846361789558553fbe7254851e3d167b8068c5e969b45fcb5165c0c907e385c",
+  "transaction_committed": false,
+  "function_and_ledger_absent_after_rollback": true,
+  "protected_state_unchanged": true,
+  "findings": []
+}

@@ -1,0 +1,9 @@
+{
+  "included_in_current_apply_gate": false,
+  "target_image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+  "expected_current_image_release_id": null,
+  "pointer_contract_version": "SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1",
+  "function": "sealed_product_set_active_image_release_v1(uuid,uuid,uuid)",
+  "separate_authority_required": true,
+  "reason": "evidence release must be frozen and independently read back first"
+}

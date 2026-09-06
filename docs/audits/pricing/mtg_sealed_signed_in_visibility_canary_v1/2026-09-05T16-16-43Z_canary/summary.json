@@ -1,0 +1,678 @@
+{
+  "canary_version": "MTG_SEALED_SIGNED_IN_VISIBILITY_CANARY_V1",
+  "repository": {
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "head_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+    "tracked_worktree_clean": true
+  },
+  "plan": {
+    "canary_version": "MTG_SEALED_SIGNED_IN_VISIBILITY_CANARY_V1",
+    "repository": {
+      "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+      "head_sha": "33496cf9297bbed16e7d6df95ea69c03b317acf7",
+      "tracked_worktree_clean": true
+    },
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "baseline_release_control": {
+      "game_key": "mtg",
+      "release_status": "hidden",
+      "release_version": "SEALED_PRODUCT_VISIBILITY_BOUNDARY_V1_MTG_HIDDEN",
+      "evidence": {
+        "default": "fail_closed",
+        "sealed_payload_apply_authorizes_visibility": false,
+        "catalog_release_authorizes_sealed_visibility": false
+      },
+      "activated_at": null,
+      "activated_by": null,
+      "updated_at": "2026-09-03 19:24:29.599049+00"
+    },
+    "baseline_release_control_sha256": "440ce7bbd9a449d8129696f5d84418669a69fb5ce6e9c539f8293226359bd070",
+    "protected_state_sha256": "234427b04ad6b3516612019be1ff18f914d0a28cda3980a4ec5b53297f6eb5af",
+    "authority": {
+      "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "image_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+      "active_price_members": "2182",
+      "active_image_members": "2149"
+    },
+    "selected_candidate": {
+      "storage_bucket": "user-card-images",
+      "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+      "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "image_mime": "image/jpeg",
+      "image_width": 559,
+      "image_height": 1000,
+      "image_bytes": "81917",
+      "canonical_name": "Kamigawa: Neon Dynasty - Theme Booster [Green]",
+      "structurally_authorized": true
+    },
+    "transition": {
+      "from": "hidden",
+      "temporary": "signed_in",
+      "restore": "exact_baseline_row",
+      "maximum_open_seconds": 300
+    },
+    "authentication_fixture": {
+      "type": "disposable_confirmed_supabase_auth_user",
+      "email_persisted_in_artifacts": false,
+      "password_persisted_in_artifacts": false,
+      "raw_user_id_persisted_in_artifacts": false,
+      "delete_and_verify_absent": true
+    },
+    "required_proofs": {
+      "authenticated_rpc_v3_rows": ">=1",
+      "selected_candidate_in_rpc_v3": true,
+      "authenticated_signer_status": 200,
+      "signed_image_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "anonymous_rpc_rows": 0,
+      "anonymous_signer_status": 401,
+      "post_restore_authenticated_rpc_rows": 0
+    },
+    "boundaries": {
+      "temporary_visibility_updates": 2,
+      "durable_visibility_change": false,
+      "auth_fixture_create_delete_only": true,
+      "pricing_writes": 0,
+      "pointer_writes": 0,
+      "storage_writes": 0,
+      "vault_writes": 0,
+      "client_activations": 0,
+      "cross_game_writes": 0,
+      "anonymous_visibility": false
+    },
+    "plan_fingerprint_sha256": "a3facd708a9c0fb6f29d856e12f21b6ba1195ee51743064b0bd7c5e34a50978f"
+  },
+  "proof": {
+    "preflight_findings": [],
+    "auth_fixture": {
+      "created": true,
+      "signed_in": true,
+      "user_id_sha256": "e8be9a8ca03545608600a7705b24e9f4821027b8a0f448533f391a0bb9b37d45",
+      "raw_user_id_persisted": false,
+      "email_persisted": false,
+      "password_persisted": false
+    },
+    "hidden": {
+      "authenticated_rpc_status": 200,
+      "authenticated_rpc_rows": 0,
+      "authenticated_signer_status": 404,
+      "anonymous_rpc_status": 401,
+      "anonymous_rpc_rows": 0,
+      "anonymous_signer_status": 401
+    },
+    "active": {
+      "release_status": "signed_in",
+      "authenticated_rpc_status": 200,
+      "authenticated_rpc_rows": 1,
+      "rpc_sample": {
+        "variant_id": "000c1dfb-d2c8-5e73-9730-6b3f81c63f73",
+        "canonical_name": "Kamigawa: Neon Dynasty - Theme Booster [Green]",
+        "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+        "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+        "image_object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+        "observed_on": "2026-09-03",
+        "market_price": 23.13
+      },
+      "selected_candidate_returned": true,
+      "authenticated_signer_status": 200,
+      "signer": {
+        "status": 200,
+        "error": null,
+        "signed_url_present": true,
+        "expires_in": 3600,
+        "signed_url_persisted": false
+      },
+      "signed_image_status": 200,
+      "signed_image_bytes": 81917,
+      "signed_image_content_type": "image/jpeg",
+      "signed_image_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "anonymous_rpc_status": 401,
+      "anonymous_rpc_rows": 0,
+      "anonymous_signer_status": 401
+    },
+    "rollback": {
+      "restore_operation": {
+        "restored": true,
+        "already_baseline": false
+      },
+      "post_restore_authenticated_rpc_status": 200,
+      "post_restore_authenticated_rpc_rows": 0,
+      "post_restore_authenticated_signer_status": 404,
+      "auth_deletion": {
+        "deleted": true,
+        "absent_fixture": false
+      },
+      "release_control_exact": true,
+      "protected_state_exact": true,
+      "auth_user_absent": true,
+      "auth_reference_rows": 0,
+      "auth_reference_readback": [
+        {
+          "reference": "auth.flow_state.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.identities.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.mfa_factors.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.oauth_authorizations.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.oauth_consents.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.one_time_tokens.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.refresh_tokens.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.sessions.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.users.id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.webauthn_challenges.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "auth.webauthn_credentials.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.alerts.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_contributions.added_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_contributions.contributor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_contributions.decided_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_contributions.terminal_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_custom_revisions.created_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_invitations.accepted_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_invitations.intended_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_invitations.inviter_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_join_requests.decision_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_join_requests.requester_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_legacy_watch_decisions.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_members.invited_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_members.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_owner_transfer_offers.current_owner_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_owner_transfer_offers.target_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_template_adoptions.adopter_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_templates.creator_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binder_view_links.created_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.binders.owner_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidate_credits.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidate_events.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidate_evidence.created_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidates.archived_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidates.founder_approved_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidates.promoted_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidates.rejected_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_candidates.submitted_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_promotion_staging.founder_approved_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.canon_warehouse_promotion_staging.staged_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_comments.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_events.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_events.subject_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_events_emit_failures.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_execution_events.initiated_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_feed_events.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_interaction_outcomes.executed_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_interaction_outcomes.source_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_interaction_outcomes.target_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_interactions.receiver_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_interactions.sender_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_print_visual_descriptions.approved_by",
+          "row_count": 0
+        },
+        {
+          "reference": "public.card_signals.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_follows.followed_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_follows.follower_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_local_blocks.blocked_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_local_blocks.blocker_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_local_discovery_settings.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_local_mutes.muted_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_local_mutes.muter_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_memories.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.collector_memory_prompt_state.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.completion_crossings.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.device_tokens.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.ebay_accounts.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.fingerprint_bindings.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.fingerprint_provenance_events.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.founder_agent_control_decisions.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.founder_decisions.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.founder_notification_viewer_state.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.founder_work_item_viewer_state.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.listings.owner_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notification_delivery_budgets.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notification_emit_failures.recipient_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notification_outbox.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notification_outbox.recipient_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notification_prefs.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notification_type_delivery_recommendations.founder_approved_by_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notifications_log.actor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.notifications_log.recipient_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.onboarding_ladder_events.collector_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.onboarding_ladder_events.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.onboarding_ladder_state.first_followed_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.onboarding_ladder_state.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.operations_control_state.updated_by",
+          "row_count": 0
+        },
+        {
+          "reference": "public.public_profiles.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.pulse_daily_job_state.cursor_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.pulse_viewer_state.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.shared_cards.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.trust_blocks.blocked_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.trust_blocks.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.trust_reports.reported_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.trust_reports.reporter_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.user_card_images.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.user_card_intents.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.user_entitlements.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.vault_item_instance_dispositions.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.vault_item_instances.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.vault_items.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.vault_owners.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.wall_sections.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.want_matches.owner_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.want_matches.want_user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.watches.user_id",
+          "row_count": 0
+        },
+        {
+          "reference": "public.wishlist_items.user_id",
+          "row_count": 0
+        }
+      ]
+    },
+    "timing": {
+      "activated": true,
+      "restored": true,
+      "visibility_open_seconds": 2.955
+    },
+    "execution_error": null
+  },
+  "post_restore_preflight": {
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "release_control": {
+      "game_key": "mtg",
+      "release_status": "hidden",
+      "release_version": "SEALED_PRODUCT_VISIBILITY_BOUNDARY_V1_MTG_HIDDEN",
+      "evidence": {
+        "default": "fail_closed",
+        "sealed_payload_apply_authorizes_visibility": false,
+        "catalog_release_authorizes_sealed_visibility": false
+      },
+      "activated_at": null,
+      "activated_by": null,
+      "updated_at": "2026-09-03 19:24:29.599049+00"
+    },
+    "protected_state": {
+      "vault_item_count": 450,
+      "mtg_image_pointer": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "mtg_price_pointer": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_member_count": 2149,
+      "image_object_count": 2141,
+      "mtg_sealed_control": {
+        "evidence": {
+          "default": "fail_closed",
+          "sealed_payload_apply_authorizes_visibility": false,
+          "catalog_release_authorizes_sealed_visibility": false
+        },
+        "game_key": "mtg",
+        "updated_at": "2026-09-03T19:24:29.599049+00:00",
+        "activated_at": null,
+        "activated_by": null,
+        "release_status": "hidden",
+        "release_version": "SEALED_PRODUCT_VISIBILITY_BOUNDARY_V1_MTG_HIDDEN"
+      },
+      "price_member_count": 2514,
+      "image_release_count": 1,
+      "price_release_count": 2,
+      "sealed_family_count": 479,
+      "image_evidence_count": 2182,
+      "sealed_mapping_count": 3294,
+      "sealed_variant_count": 3294,
+      "vault_instance_count": 3399,
+      "image_assertion_count": 2149,
+      "mtg_catalog_visibility": "signed_in",
+      "mtg_storage_object_bytes": 157335339,
+      "mtg_storage_object_count": 2141
+    },
+    "authority": {
+      "price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+      "image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+      "image_manifest": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+      "active_price_members": "2182",
+      "active_image_members": "2149"
+    },
+    "candidate": {
+      "storage_bucket": "user-card-images",
+      "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+      "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+      "image_mime": "image/jpeg",
+      "image_width": 559,
+      "image_height": 1000,
+      "image_bytes": "81917",
+      "canonical_name": "Kamigawa: Neon Dynasty - Theme Booster [Green]",
+      "structurally_authorized": true
+    },
+    "catalog_visibility": "signed_in",
+    "privileges": {
+      "anonymous_rpc_execute": false,
+      "authenticated_rpc_execute": true
+    },
+    "hidden_rpc_rows": 0,
+    "hidden_signing_authorized": false,
+    "clients": {
+      "web_enabled": false,
+      "flutter_enabled": false
+    }
+  },
+  "validation": {
+    "status": "mtg_sealed_signed_in_visibility_canary_passed_zero_residue",
+    "passed": true,
+    "findings": []
+  },
+  "boundaries": {
+    "temporary_visibility_updates": 2,
+    "durable_visibility_change": false,
+    "auth_fixture_create_delete_only": true,
+    "pricing_writes": 0,
+    "pointer_writes": 0,
+    "storage_writes": 0,
+    "vault_writes": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "anonymous_visibility": false
+  },
+  "exact_next_gate": "prepare durable signed-in visibility activation and disabled-client rollout as separate gates"
+}

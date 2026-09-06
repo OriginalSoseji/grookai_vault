@@ -1,0 +1,23 @@
+{
+  "gate_version": "MTG_SEALED_SIGNER_DEPLOYMENT_GATE_V1",
+  "producer_commit": "f8af247aa1dc075d74a7839705a4ce7a561c2cc8",
+  "expected_branch": "agent/mtg-sealed-image-migration-promotion-v1",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "function_name": "mtg-sealed-sign-image-v1",
+  "source_bundle_sha256": "a721f2e784bc5273adc2c1e2641f761d3175a2e7128f9600881f4aefd76f335c",
+  "storage_bucket": "user-card-images",
+  "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+  "deployment_scope": [
+    "mtg-sealed-sign-image-v1"
+  ],
+  "boundaries": {
+    "database_writes": 0,
+    "storage_operations": 0,
+    "pricing_writes": 0,
+    "pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "gate_version": "MTG_SEALED_SIGNER_DEPLOYMENT_GATE_V1",
+  "mode": "preflight",
+  "passed": true,
+  "repository": {
+    "expected_branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "branch": "main",
+    "head_sha": "f8af247aa1dc075d74a7839705a4ce7a561c2cc8",
+    "tracked_worktree_clean": true
+  },
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "source_bundle": {
+    "files": [
+      {
+        "path": "supabase/functions/mtg-sealed-sign-image-v1/index.ts",
+        "sha256": "2dc6c3a6a275214dec9d39b29bd65e7ffc08f344c0ed327a1b5e76852478b30b",
+        "bytes": 2658
+      },
+      {
+        "path": "supabase/functions/mtg-sealed-sign-image-v1/config.toml",
+        "sha256": "7551533d8029d2f2ff237c1ff0915b2758a25711aec701d6a5378cc7f7d94e3f",
+        "bytes": 19
+      },
+      {
+        "path": "supabase/functions/_shared/auth.ts",
+        "sha256": "96a8c3a206565b1938e4fd1e72afc89f664f34f2384922f9a0df1e96ecce7863",
+        "bytes": 3092
+      },
+      {
+        "path": "supabase/functions/_shared/cors.ts",
+        "sha256": "f1a25a444e8be1eb74d2a39b3a96b138c621c1f53e1c4fe6d8696382bb3831c5",
+        "bytes": 489
+      },
+      {
+        "path": "supabase/functions/_shared/key_resolver.ts",
+        "sha256": "b55eb1e17878795142d5c97d35b2840524bfcb1191a6af274fb09acac712b3c7",
+        "bytes": 1682
+      }
+    ],
+    "bundle_sha256": "a721f2e784bc5273adc2c1e2641f761d3175a2e7128f9600881f4aefd76f335c"
+  },
+  "plan_fingerprint": "f9ecc69a99c9a9efb6727d4bd7f2f9e6c39992d6c751dd85289ea80dbbe3282d",
+  "protected_state": {
+    "vault_item_count": 450,
+    "mtg_image_pointer": "86b207e6-4f73-5d9a-af40-864c47256c38",
+    "mtg_price_pointer": "25626032-7d72-5542-a8e0-7a6532c2f776",
+    "image_member_count": 2149,
+    "image_object_count": 2141,
+    "price_member_count": 2514,
+    "image_release_count": 1,
+    "price_release_count": 2,
+    "sealed_family_count": 479,
+    "image_evidence_count": 2182,
+    "sealed_mapping_count": 3294,
+    "sealed_variant_count": 3294,
+    "vault_instance_count": 3399,
+    "image_assertion_count": 2149,
+    "mtg_sealed_visibility": "hidden",
+    "mtg_catalog_visibility": "signed_in",
+    "mtg_storage_object_bytes": 157335339,
+    "mtg_storage_object_count": 2141
+  },
+  "protected_state_drift": false,
+  "authenticated_hidden_state": {
+    "simulated_role": "authenticated",
+    "user_id_recorded": false,
+    "storage_bucket": "user-card-images",
+    "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+    "authorized": false,
+    "transaction_mode": "read_only_rolled_back"
+  },
+  "endpoint_probe": {
+    "anonymous_post": {
+      "method": "POST",
+      "status": 404,
+      "body": {
+        "code": "NOT_FOUND",
+        "message": "Requested function was not found"
+      }
+    },
+    "invalid_bearer_post": {
+      "method": "POST",
+      "status": 404,
+      "body": {
+        "code": "NOT_FOUND",
+        "message": "Requested function was not found"
+      }
+    },
+    "get": {
+      "method": "GET",
+      "status": 404,
+      "body": {
+        "code": "NOT_FOUND",
+        "message": "Requested function was not found"
+      }
+    }
+  },
+  "boundaries": {
+    "database_writes": 0,
+    "storage_operations": 0,
+    "pricing_writes": 0,
+    "pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0
+  }
+}

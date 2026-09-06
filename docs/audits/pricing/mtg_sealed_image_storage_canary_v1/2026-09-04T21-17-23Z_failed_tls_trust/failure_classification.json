@@ -1,0 +1,44 @@
+{
+  "version": "MTG_SEALED_IMAGE_STORAGE_CANARY_FAILURE_CLASSIFICATION_V1",
+  "classified_at": "2026-09-04T21:20:00.000Z",
+  "status": "failed_safe_before_upload",
+  "failure_class": "node_bundled_ca_could_not_verify_source_leaf_signature",
+  "execution_commit_sha": "a184eabe02b1924ebd759407113a5dda427dc2a0",
+  "execution_fingerprint_sha256": "1feb8b271fb3669cf46081b0d9017cb03111df44d99ead72766808872b77ff13",
+  "source_product_id_at_failure": 221329,
+  "recorded_error": "unable_to_verify_leaf_signature",
+  "authority_disposition": "consumed_do_not_reuse",
+  "counts": {
+    "initial_collision_checks": 17,
+    "source_request_attempts": 3,
+    "completed_source_fetches": 0,
+    "uploads": 0,
+    "downloads": 0,
+    "removals": 0,
+    "final_absence_checks": 17,
+    "final_absent_paths": 17,
+    "durable_objects_after_run": 0
+  },
+  "ownership_scope_activated": false,
+  "recovery_required": false,
+  "database_connections": 0,
+  "signer_deployments": 0,
+  "runtime_diagnosis": {
+    "node_version": "v22.19.0",
+    "node_supports_use_system_ca": true,
+    "bundled_certificate_count": 150,
+    "windows_system_certificate_count": 182,
+    "node_use_system_ca_active_during_failed_execution": false,
+    "tls_verification_was_disabled": false
+  },
+  "repair_decision": {
+    "tls_trust_policy": "node_bundled_plus_windows_system_ca",
+    "tls_certificate_verification_required": true,
+    "custom_ca_inputs_forbidden": true,
+    "certificate_verification_bypass_forbidden": true,
+    "source_urls_changed": false,
+    "storage_scope_changed": false,
+    "data_boundary_changed": false,
+    "new_execution_authority_required": true
+  }
+}

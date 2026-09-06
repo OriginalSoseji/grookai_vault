@@ -1,0 +1,63 @@
+{
+  "version": "MTG_SEALED_IMAGE_POINTER_DURABLE_APPLY_V1",
+  "mode": "durable_pointer_apply",
+  "producer_commit_sha": "f6339fea83facccd58cf8f6e9ea2907f38390fc0",
+  "producer_branch": "agent/mtg-sealed-image-migration-promotion-v1",
+  "tracked_worktree_clean": true,
+  "game_key": "mtg",
+  "source_pointer_canary_fingerprint_sha256": "a49bf02d128e4a5221a31922d2fc71900c6737c37c76cb209b83f652795ab60a",
+  "source_image_release_plan_fingerprint_sha256": "7c7f65ed0d281fec9f9b0e65f74c6b695828445bcf45fb2dcd98baab814c68a9",
+  "source_durable_image_release_apply_execution_fingerprint_sha256": "0e477804e8f7fb653b118e4567d9dca6d7b2663d8dd532073d1986c8e9aeb440",
+  "pointer_function_repair": {
+    "migration_version": "20260905040000",
+    "migration_name": "sealed_product_image_pointer_conflict_repair_v1",
+    "migration_sha256": "195e104b60d7a356a49b131800074455636a4cde946c04dc94aabf036ff8f818",
+    "function_definition_sha256": "ca3ef9b9952372bc62850c8a77ec131d1f1b3cc45da3cd29e0b7383239c5734e"
+  },
+  "target_image_release_id": "86b207e6-4f73-5d9a-af40-864c47256c38",
+  "target_image_release_manifest_fingerprint_sha256": "7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2",
+  "required_active_price_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "expected_current_image_release_id": null,
+  "changed_by": "ff463879-026a-5ee2-8326-59e2d8b9b665",
+  "pointer_contract_version": "SEALED_PRODUCT_IMAGE_RELEASE_POINTER_V1",
+  "selected_signing_candidate": {
+    "storage_bucket": "user-card-images",
+    "object_path": "sealed/mtg/sha256/e9/e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd.jpg",
+    "content_sha256": "e944f88ee4a707c018793b9069ff9625ddff2c2d1d30d31ea2219308ffd503cd",
+    "variant_id": "000c1dfb-d2c8-5e73-9730-6b3f81c63f73",
+    "source_mapping_id": "4d9fa6a0-65cd-5b9a-82d5-22ff1454f1e5",
+    "observed_on": "2026-09-03",
+    "market_price": "23.13"
+  },
+  "expected_visibility": {
+    "mtg_catalog": "signed_in",
+    "mtg_sealed": "hidden",
+    "signing_authorized_after_pointer": false
+  },
+  "pointer_preflight_fingerprint_sha256": "63d7b374fad0d1d0dbfd0e8abcf487fae65215ffe5b55d65315e59addffac858",
+  "repair_readback_fingerprint_sha256": "3e2f7c5c2fefe8ed427ff742417d703b772a92de5a3bb0ac286e6f24f18b24d9",
+  "protected_baseline_fingerprint_sha256": "86f144b6a091ef94a2bcdc41c2a02908ca6f2ba093139c4acba181a8c3528baa",
+  "timeouts": {
+    "lock_timeout": "5s",
+    "statement_timeout": "180s",
+    "idle_in_transaction_session_timeout": "60s"
+  },
+  "boundaries": {
+    "durable_pointer_inserts": 1,
+    "durable_pointer_updates": 0,
+    "image_evidence_writes": 0,
+    "storage_operations": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "signer_deployments": 0,
+    "rpc_deployments": 0,
+    "client_activations": 0,
+    "cross_game_writes": 0,
+    "deletes": 0
+  },
+  "activation_plan_fingerprint_sha256": "191a12efe5772a11ebd1b35295f8ce38ee7669204b8240cdcd669ee021634736",
+  "approval_env": "MTG_SEALED_IMAGE_POINTER_APPLY_APPROVAL",
+  "required_approval_message": "I approve the durable MTG sealed image-pointer activation only from execution commit f6339fea83facccd58cf8f6e9ea2907f38390fc0, using activation plan fingerprint 191a12efe5772a11ebd1b35295f8ce38ee7669204b8240cdcd669ee021634736, target image release 86b207e6-4f73-5d9a-af40-864c47256c38, target manifest 7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2, active price release 25626032-7d72-5542-a8e0-7a6532c2f776, and expected current pointer null. This authorizes exactly one compare-and-swap pointer insert. It authorizes no image evidence, Storage, pricing, visibility, Vault, signer, RPC, client, cross-game, update, delete, or cleanup operation.",
+  "guard_token": "I approve the durable MTG sealed image-pointer activation only from execution commit f6339fea83facccd58cf8f6e9ea2907f38390fc0, using activation plan fingerprint 191a12efe5772a11ebd1b35295f8ce38ee7669204b8240cdcd669ee021634736, target image release 86b207e6-4f73-5d9a-af40-864c47256c38, target manifest 7ef0baf51b75d54d5d52b810634432918303d76c338e6d9152be07beb06d12c2, active price release 25626032-7d72-5542-a8e0-7a6532c2f776, and expected current pointer null. This authorizes exactly one compare-and-swap pointer insert. It authorizes no image evidence, Storage, pricing, visibility, Vault, signer, RPC, client, cross-game, update, delete, or cleanup operation."
+}

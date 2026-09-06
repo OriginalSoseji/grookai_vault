@@ -1,0 +1,45 @@
+{
+  "status": "mtg_sealed_durable_image_plan_frozen_zero_calls",
+  "repository": {
+    "commit_sha": "f87cd704a153cc523e21be0f6dabdd61cdf73d05",
+    "branch": "agent/mtg-sealed-image-migration-promotion-v1",
+    "tracked_worktree_clean": true
+  },
+  "source_artifact_validation": {
+    "valid": true,
+    "findings": []
+  },
+  "validation": {
+    "valid": true,
+    "findings": []
+  },
+  "source_release_id": "25626032-7d72-5542-a8e0-7a6532c2f776",
+  "source_coverage_fingerprint_sha256": "cf0e11f6bd5e990d48fa3b5e9a3f2f58d35a7314c28fe47cbab02f7cf07cdd0d",
+  "plan_fingerprint_sha256": "92c9189e0c42adba6f274ad283a3f0a5af5e0324ff1ce4b506368f8d0f3010bc",
+  "selected_member_count": 2182,
+  "eligible_variant_count": 2149,
+  "eligible_unique_object_count": 2141,
+  "exclusion_count": 33,
+  "source_reported_unique_valid_image_count": 2144,
+  "excluded_valid_placeholder_hash_count": 3,
+  "source_accounting_correction": "source_summary_count_included_excluded_placeholder_hashes",
+  "expected_durable_bytes": 157335339,
+  "shard_count": 22,
+  "maximum_source_request_attempts": 6423,
+  "boundaries": {
+    "provider_calls": 0,
+    "database_connections": 0,
+    "database_reads": 0,
+    "database_writes": 0,
+    "storage_reads": 0,
+    "storage_writes": 0,
+    "storage_deletes": 0,
+    "image_evidence_writes": 0,
+    "image_pointer_writes": 0,
+    "pricing_writes": 0,
+    "release_pointer_writes": 0,
+    "visibility_writes": 0,
+    "vault_writes": 0,
+    "cross_game_writes": 0
+  }
+}
