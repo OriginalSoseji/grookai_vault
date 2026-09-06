@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-09-05T07:50:43.420Z
+Generated: 2026-09-06T08:05:36.102Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 204 |
-| evidence rows | 238494 |
+| evidence rows | 237914 |
 | conflicts | 0 |
 | manual review | 144 |
 
@@ -144,7 +144,7 @@ Transport: Default Node TLS verification.
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 51838 |
+| pokemontcg_api | 51849 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -193,7 +193,7 @@ Transport: Default Node TLS verification.
 | tcgdex | 49200 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23921 |
+| tcgplayer_price_guide | 23330 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -793,16 +793,16 @@ Transport: Default Node TLS verification.
 | human_fixtures | collected | 1 |
 | pkmncards | collected | 153 |
 | pkmncards | error | 51 |
-| pokemontcg_api | cached_snapshot | 12 |
-| pokemontcg_api | collected | 151 |
+| pokemontcg_api | cached_snapshot | 26 |
+| pokemontcg_api | collected | 137 |
 | pokemontcg_api | collected_plus_cached_snapshot | 11 |
 | pokemontcg_api | unavailable | 30 |
 | tcgdex | collected | 199 |
 | tcgdex | unavailable | 5 |
-| tcgplayer_price_guide | cached_snapshot | 8 |
-| tcgplayer_price_guide | collected | 131 |
-| tcgplayer_price_guide | collected_plus_cached_snapshot | 12 |
-| tcgplayer_price_guide | unavailable | 53 |
+| tcgplayer_price_guide | cached_snapshot | 22 |
+| tcgplayer_price_guide | collected | 117 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 13 |
+| tcgplayer_price_guide | unavailable | 52 |
 | thepricedex_price_list | collected | 175 |
 | thepricedex_price_list | error | 28 |
 | thepricedex_price_list | unavailable | 1 |
