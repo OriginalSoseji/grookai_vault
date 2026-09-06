@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md`
+
+This checkpoint records the fielded MTG pricing preflight repair that compares
+against the freshness-governed current Pokemon view and tolerates only a `0.1%`
+source-count decrease.
+
+Decision locked there:
+
+- an exact reconciled shadow may restore an expired current view, while a
+  material Pokemon publication decrease still fails closed with an immutable
+  policy artifact
+
+Unresolved risk afterward:
+
+- the next legitimate live production cycle must preserve and reconcile the
+  new guard artifact; this repair itself performs no production write
+
 ### `PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md`
 
 This checkpoint records the viewport-lazy catalog repair, selected-game fetch

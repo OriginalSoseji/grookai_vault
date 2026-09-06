@@ -1,0 +1,65 @@
+{
+  "artifact_version": "MTG_PRICING_PRODUCTION_GUARD_OFFLINE_REPLAY_V1",
+  "policy_version": "MTG_PRICING_PRODUCTION_GUARD_V1",
+  "maximum_pokemon_drop_ratio": 0.001,
+  "execution_mode": "offline_no_write",
+  "production_database_access": false,
+  "cases": [
+    {
+      "case": "expired_governed_view_restoration",
+      "input": {
+        "mtg_selected": 161241,
+        "mtg_eligible": 132961,
+        "shadow_pokemon_eligible": 31178,
+        "current_pokemon_eligible": 0
+      },
+      "expected_status": "ready_for_production",
+      "expected_current_governed_view_available": false,
+      "expected_observed_pokemon_drop": 0,
+      "result": "pass"
+    },
+    {
+      "case": "proven_six_row_source_delta",
+      "input": {
+        "mtg_selected": 161241,
+        "mtg_eligible": 132961,
+        "shadow_pokemon_eligible": 31178,
+        "current_pokemon_eligible": 31184
+      },
+      "expected_status": "ready_for_production",
+      "expected_allowed_pokemon_drop": 31,
+      "expected_observed_pokemon_drop": 6,
+      "result": "pass"
+    },
+    {
+      "case": "material_pokemon_loss",
+      "input": {
+        "mtg_selected": 161241,
+        "mtg_eligible": 132961,
+        "shadow_pokemon_eligible": 30000,
+        "current_pokemon_eligible": 31184
+      },
+      "expected_status": "blocked",
+      "expected_finding": "pokemon_governed_view_drop_exceeds_tolerance",
+      "result": "pass"
+    },
+    {
+      "case": "missing_mtg_pricing",
+      "input": {
+        "mtg_selected": 0,
+        "mtg_eligible": 0,
+        "shadow_pokemon_eligible": 31178,
+        "current_pokemon_eligible": 31178
+      },
+      "expected_status": "blocked",
+      "expected_finding": "missing_eligible_mtg_pricing",
+      "result": "pass"
+    }
+  ],
+  "summary": {
+    "cases": 4,
+    "passed": 4,
+    "failed": 0,
+    "production_writes": 0
+  }
+}

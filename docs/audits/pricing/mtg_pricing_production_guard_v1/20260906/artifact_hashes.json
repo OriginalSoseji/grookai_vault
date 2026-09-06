@@ -1,0 +1,10 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "offline_replay.json",
+      "bytes": 1848,
+      "sha256": "8d899cdbc1b3a2c388c7549c55063fd1a248c0435e5bfaf628bb7551223cbe31"
+    }
+  ]
+}

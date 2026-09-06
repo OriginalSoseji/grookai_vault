@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED` - `2026-09-06` - MTG pricing production preflight now compares against the freshness-governed Pokemon view, permits only a 0.1% source delta, restores an expired view from exact reconciled shadow evidence, and preserves material-loss blocking without a production write
 - `APP_CANDIDATE_312_MTG_SIGNED_IN_RELEASE_PARITY_COMPLETE_20260906_V1` - `2026-09-06` - Exact build-312 web, signed Android, and valid TestFlight provenance at `66339000`; current reconciled MTG/Pokemon pricing; active signed-in MTG catalog; anonymous denial and authenticated readback proven; post-commit release-runner connection hardening pending merge
 - `APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1` - `2026-09-06` - Build 312 is reserved and repository-verified at source commit `dade217c`; no Android or iOS 312 artifact is yet accepted, and exact merged-SHA production web, signed Android, TestFlight, and governed release reconciliation remain open
 - `PRICING_CHECKPOINT_123_MTG_SEALED_SIGNER_DEPLOYED` - `2026-09-05` - Exact commit-bound MTG sealed signer deployment passed production auth probes, authenticated-role hidden denial, and complete protected-state equality while visibility and both clients remained disabled

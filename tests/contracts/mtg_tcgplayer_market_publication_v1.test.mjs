@@ -10,6 +10,10 @@ import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 import { buildMtgParentMappingPlanV1 } from "../../backend/pricing/mtg_tcgplayer_parent_mapping_policy_v1.mjs";
+import {
+  MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1,
+  evaluateMtgPricingProductionGuardV1,
+} from "../../backend/pricing/mtg_pricing_production_guard_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const MIGRATION = readFileSync(
@@ -172,6 +176,77 @@ test("parent bridge plans only exact insert candidates and fingerprints the rows
   assert.equal(unsafe.blocking_unsafe_count, 1);
 });
 
+test("production guard permits restoring an expired governed Pokemon view", () => {
+  const result = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 31178,
+    currentPokemonEligible: 0,
+  });
+
+  assert.equal(result.ready_for_production, true);
+  assert.equal(result.current_governed_view_available, false);
+  assert.equal(result.counts.observed_pokemon_drop, 0);
+});
+
+test("production guard permits the proven six-row Pokemon source delta", () => {
+  const result = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 31178,
+    currentPokemonEligible: 31184,
+  });
+
+  assert.equal(MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1, 0.001);
+  assert.equal(result.counts.observed_pokemon_drop, 6);
+  assert.equal(result.counts.allowed_pokemon_drop, 31);
+  assert.equal(result.ready_for_production, true);
+});
+
+test("production guard enforces the Pokemon drop tolerance boundary", () => {
+  const boundary = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 31153,
+    currentPokemonEligible: 31184,
+  });
+  assert.equal(boundary.counts.observed_pokemon_drop, 31);
+  assert.equal(boundary.counts.allowed_pokemon_drop, 31);
+  assert.equal(boundary.ready_for_production, true);
+
+  const overBoundary = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 31152,
+    currentPokemonEligible: 31184,
+  });
+  assert.equal(overBoundary.counts.observed_pokemon_drop, 32);
+  assert.equal(overBoundary.ready_for_production, false);
+});
+
+test("production guard blocks material Pokemon loss and missing MTG prices", () => {
+  const materialDrop = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 30000,
+    currentPokemonEligible: 31184,
+  });
+  assert.equal(materialDrop.ready_for_production, false);
+  assert.equal(
+    materialDrop.findings[0].code,
+    "pokemon_governed_view_drop_exceeds_tolerance",
+  );
+
+  const missingMtg = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 0,
+    mtgEligible: 0,
+    shadowPokemonEligible: 31178,
+    currentPokemonEligible: 31178,
+  });
+  assert.equal(missingMtg.ready_for_production, false);
+  assert.equal(missingMtg.findings[0].code, "missing_eligible_mtg_pricing");
+});
+
 test("remote operations freeze migration, mapping, shadow, and activation boundaries", () => {
   assert.match(WORKFLOW, /test "\$GITHUB_SHA" = "\$EXPECTED_SHA"/);
   assert.match(WORKFLOW, /test "\$\{#pending\[@\]\}" -eq 1/);
@@ -180,8 +255,14 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /state = 'shadow_verified'/);
   assert.match(WORKFLOW, /reconciliation_state = 'reconciled'/);
   assert.match(WORKFLOW, /policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3'/);
-  assert.match(WORKFLOW, /Shadow run did not prove eligible MTG pricing/);
-  assert.match(WORKFLOW, /Shadow run would reduce current Pokemon publication/);
+  assert.match(WORKFLOW, /from public\.v_market_price_current_v1 current_price/);
+  assert.match(WORKFLOW, /where game\.code = 'pokemon'/);
+  assert.match(WORKFLOW, /evaluateMtgPricingProductionGuardV1/);
+  assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
+  assert.doesNotMatch(
+    WORKFLOW,
+    /market_price_current_publication current_state[\s\S]*?market_price_qualification_decisions decision/,
+  );
   assert.match(WORKFLOW, /--expected-source-sync-run-id=\$shadow_source_sync_run_id/);
   assert.match(WORKER, /does not match shadow-proven source run/);
   assert.match(WORKFLOW, /--database-timeout-minutes=180/);
