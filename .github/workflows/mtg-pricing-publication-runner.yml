@@ -44,6 +44,20 @@ jobs:
       EXPECTED_SHADOW_RUN_KEY: ${{ inputs.expected_shadow_run_key }}
 
     steps:
+      - name: Initialize production guard evidence
+        if: ${{ inputs.operation == 'publication_production' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/mtg-pricing-production-guard.json" <<'JSON'
+          {
+            "policy_version": "MTG_PRICING_PRODUCTION_GUARD_V1",
+            "status": "preflight_started",
+            "ready_for_production": false,
+            "findings": []
+          }
+          JSON
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0

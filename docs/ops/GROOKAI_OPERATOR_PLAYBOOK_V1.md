@@ -261,6 +261,11 @@ and records `worker_error`; do not accept a run whose artifact remains only
 120-second transaction-local statement timeout and a 125-second client timeout
 before the worker restores its normal publication timeout.
 
+The production workflow creates its initial `preflight_started` artifact as the
+first executable job step, before checkout, repository verification, contract
+tests, or dependency installation. The always-running evidence upload therefore
+classifies failures that occur before the publication worker starts.
+
 The established Pokemon publication lane must have a nonzero active-publication
 baseline. A missing pointer or broken publication/run join produces a zero
 baseline and blocks both shadow preflight and production pre-activation. This

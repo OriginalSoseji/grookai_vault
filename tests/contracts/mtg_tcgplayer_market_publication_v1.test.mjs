@@ -431,9 +431,23 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   const initialGuardArtifactIndex = WORKFLOW.indexOf(
     "const initialGuardArtifact = buildMtgPricingProductionGuardStartedArtifactV1()",
   );
+  const earliestGuardArtifactIndex = WORKFLOW.indexOf(
+    "- name: Initialize production guard evidence",
+  );
+  const checkoutIndex = WORKFLOW.indexOf("- uses: actions/checkout@v4");
+  const repositoryVerificationIndex = WORKFLOW.indexOf(
+    "- name: Verify frozen repository boundary",
+  );
+  const dependencyInstallIndex = WORKFLOW.indexOf(
+    "- name: Install operator dependencies",
+  );
   const shadowKeyValidationIndex = WORKFLOW.indexOf(
     'test -n "$EXPECTED_SHADOW_RUN_KEY"',
   );
+  assert.ok(earliestGuardArtifactIndex >= 0);
+  assert.ok(earliestGuardArtifactIndex < checkoutIndex);
+  assert.ok(earliestGuardArtifactIndex < repositoryVerificationIndex);
+  assert.ok(earliestGuardArtifactIndex < dependencyInstallIndex);
   assert.ok(initialGuardArtifactIndex >= 0);
   assert.ok(shadowKeyValidationIndex >= 0);
   assert.ok(initialGuardArtifactIndex < shadowKeyValidationIndex);

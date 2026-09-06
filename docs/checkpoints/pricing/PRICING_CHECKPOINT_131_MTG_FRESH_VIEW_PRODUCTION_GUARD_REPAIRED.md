@@ -47,6 +47,9 @@ source movement.
 - Write a started artifact before operation-specific input validation or
   database access, then replace it with a blocked artifact on any lookup,
   query, evaluation, or timeout failure.
+- Create that started artifact as the first executable workflow step, before
+  checkout, frozen-repository verification, contract checks, or dependency
+  installation, so those early failures are included in immutable evidence.
 - Persist the complete policy result as
   `mtg-pricing-production-guard.json` in the immutable workflow artifact.
 - Treat shadow coverage as an early provenance gate, not activation authority.
