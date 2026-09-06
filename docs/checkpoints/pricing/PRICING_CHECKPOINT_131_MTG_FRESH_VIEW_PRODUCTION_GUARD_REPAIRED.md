@@ -65,6 +65,9 @@ source movement.
   starts. Any later connection, provenance, staging, qualification, snapshot,
   reconciliation, guard, activation, or readback failure converts the latest
   evidence into a blocked artifact with a separate `worker_error`.
+- On retry of a run already committed as `verified`, prove that the run still
+  owns the active publication pointer and re-evaluate the production guard in a
+  read-only transaction before restoring ready evidence and returning success.
 - Bound the authoritative worker-side guard to a 120-second transaction-local
   statement timeout and a 125-second client query timeout, then restore the
   worker's prior statement timeout before activation.

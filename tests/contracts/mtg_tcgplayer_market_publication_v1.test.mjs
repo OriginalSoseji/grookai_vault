@@ -552,6 +552,15 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
     /main\(\)\.catch\(async \(error\) => \{[\s\S]*persistMtgProductionWorkerFailure\(error\)/,
   );
   assert.match(WORKER, /errorField: "worker_error"/);
+  assert.match(WORKER, /async function restoreVerifiedProductionGuardArtifact/);
+  assert.match(
+    WORKER,
+    /begin transaction read only[\s\S]*market_price_current_publication current_state[\s\S]*current_state\.run_id = \$1/,
+  );
+  assert.match(
+    WORKER,
+    /run\.state === "verified" && args\.runMode === "production"[\s\S]*restoreVerifiedProductionGuardArtifact\(client, run\)[\s\S]*return artifactRows\(client, run\.id\)/,
+  );
   const activationFunction = WORKER.match(
     /async function activateAndVerify\([\s\S]*?\n}\n\nasync function artifactRows/,
   )?.[0];

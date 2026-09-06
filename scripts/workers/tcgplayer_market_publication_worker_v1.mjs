@@ -1522,6 +1522,38 @@ async function activateAndVerify(client, run, publicationSet, runMode) {
   }
 }
 
+async function restoreVerifiedProductionGuardArtifact(client, run) {
+  await client.query("begin transaction read only");
+  try {
+    const result = await client.query(
+      `select publication_set.*
+         from public.market_price_current_publication current_state
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = current_state.publication_set_id
+          and publication_set.run_id = current_state.run_id
+          and publication_set.publication_state = 'published'
+        where current_state.singleton
+          and current_state.run_id = $1`,
+      [run.id],
+    );
+    if (result.rows.length !== 1) {
+      throw new Error(
+        "verified production run is not the active publication",
+      );
+    }
+    const guardArtifact = await evaluateProductionActivationGuard(
+      client,
+      run,
+      result.rows[0],
+    );
+    await client.query("commit");
+    return guardArtifact;
+  } catch (error) {
+    await client.query("rollback").catch(() => {});
+    throw error;
+  }
+}
+
 async function artifactRows(client, runId) {
   const [runResult, decisionResult, reconciliationResult] = await Promise.all([
     client.query(
@@ -1658,6 +1690,10 @@ async function runDurable(client, args, sourceRun, runPlan) {
       commitSha: runPlan.commit_sha,
     });
 
+    if (run.state === "verified" && args.runMode === "production") {
+      await restoreVerifiedProductionGuardArtifact(client, run);
+      return artifactRows(client, run.id);
+    }
     if (["shadow_verified", "verified"].includes(run.state)) {
       return artifactRows(client, run.id);
     }

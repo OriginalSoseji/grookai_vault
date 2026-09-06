@@ -266,6 +266,12 @@ first executable job step, before checkout, repository verification, contract
 tests, or dependency installation. The always-running evidence upload therefore
 classifies failures that occur before the publication worker starts.
 
+When a retry resumes a production run already committed as `verified`, the
+worker must not trust the existing local guard file. It opens a read-only
+transaction, proves that run still owns the active publication pointer,
+re-evaluates the guard against committed snapshots and current baselines, and
+restores the resulting artifact before reporting success.
+
 The established MTG and Pokemon publication lanes must each have a nonzero
 active-publication baseline. A missing pointer or broken publication/run join
 produces zero baselines and blocks both shadow preflight and production
