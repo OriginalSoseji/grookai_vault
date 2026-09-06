@@ -38,8 +38,12 @@ source movement.
   pricing.
 - Block missing MTG pricing, missing shadow Pokemon pricing, and any material
   Pokemon decrease above the tolerance.
+- Count distinct `card_printing_id` values on both shadow and baseline sides so
+  duplicate source observations cannot mask identity loss.
 - Bound the indexed baseline query with a 120-second statement timeout and a
   125-second client query timeout.
+- Write a started artifact before database access and replace it with a blocked
+  artifact on any lookup, query, evaluation, or timeout failure.
 - Persist the complete policy result as
   `mtg-pricing-production-guard.json` in the immutable workflow artifact.
 
@@ -64,6 +68,9 @@ source movement.
 - An empty freshness-governed subset does not erase the `31,184` last-known
   baseline or permit a materially smaller replacement.
 - A one-row Pokemon shadow is blocked against that expired baseline.
+- Shadow and baseline coverage are compared as unique canonical printings.
+- Failed preflights retain their error name/message and all prior policy
+  findings without persisting a stack trace.
 - The workflow still requires the exact expected SHA, a reconciled shadow, the
   frozen policy version, and the shadow-proven source sync before production.
 - This repair performs no production publication, database write, migration,
@@ -73,17 +80,20 @@ source movement.
 
 - Production cannot proceed without eligible MTG and Pokemon shadow rows.
 - A material Pokemon count loss must fail closed and preserve its exact finding.
+- Duplicate source observations must never increase the shadow identity count.
 - The guard baseline must come from the active indexed publication path, never
   from unscoped historical decisions or a whole-view aggregation.
 - The shadow run must remain reconciled and tied to the exact workflow commit.
 - The production worker must remain pinned to the shadow-proven source sync.
+- Every production attempt must leave a guard artifact, including query and
+  connection failures before worker launch.
 - Pricing identity, catalog identity, Vault data, and anonymous visibility are
   unchanged by this policy repair.
 
 ## Verification
 
 - Guard and worker syntax checks: passed.
-- Targeted pricing contracts: passed (`56/56`).
+- Targeted pricing contracts: passed (`57/57`).
 - Boundary proof: 31-row decrease passes; 32-row decrease blocks.
 - Offline replay: five cases passed with zero production access or writes.
 - Exact indexed production query proof: passed read only in 35.7 seconds with

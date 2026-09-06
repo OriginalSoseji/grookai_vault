@@ -3,6 +3,39 @@ export const MTG_PRICING_PRODUCTION_GUARD_VERSION_V1 =
 
 export const MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1 = 0.001;
 
+export function buildMtgPricingProductionGuardStartedArtifactV1() {
+  return {
+    policy_version: MTG_PRICING_PRODUCTION_GUARD_VERSION_V1,
+    status: "preflight_started",
+    ready_for_production: false,
+    findings: [],
+  };
+}
+
+export function buildMtgPricingProductionGuardFailureArtifactV1(input = {}) {
+  const priorArtifact =
+    input.priorArtifact && typeof input.priorArtifact === "object"
+      ? input.priorArtifact
+      : buildMtgPricingProductionGuardStartedArtifactV1();
+  const error = input.error;
+  return {
+    ...priorArtifact,
+    policy_version: MTG_PRICING_PRODUCTION_GUARD_VERSION_V1,
+    status: "blocked",
+    ready_for_production: false,
+    preflight_error: {
+      name:
+        error && typeof error.name === "string" && error.name
+          ? error.name
+          : "Error",
+      message:
+        error && typeof error.message === "string"
+          ? error.message
+          : String(error ?? "Unknown production preflight error"),
+    },
+  };
+}
+
 function requiredCount(value, field) {
   const count = Number(value);
   if (!Number.isSafeInteger(count) || count < 0) {

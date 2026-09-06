@@ -239,6 +239,12 @@ decisions. The shadow may reduce the baseline by at most `0.1%`, rounded down;
 a larger reduction blocks even when the fresh subset is empty or expired. The
 baseline query is bounded by a 120-second database timeout.
 
+Both shadow and baseline coverage are counts of distinct canonical
+`card_printing_id` values; source-row duplication cannot satisfy the guard.
+The workflow writes a `preflight_started` artifact before database access and a
+`blocked` artifact for lookup, query, evaluation, or timeout errors, preserving
+prior counts/findings without a stack trace.
+
 Every production preflight writes
 `mtg-pricing-production-guard.json` into the workflow artifact. Read that file
 alongside the worker summary and reconciliation artifacts before classifying a

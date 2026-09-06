@@ -143,7 +143,19 @@ jobs:
             shadow_source_sync_run_id="$(node --input-type=module - <<'NODE'
           import fs from 'node:fs/promises';
           import pg from 'pg';
-          import { evaluateMtgPricingProductionGuardV1 } from './backend/pricing/mtg_pricing_production_guard_v1.mjs';
+          import {
+            buildMtgPricingProductionGuardFailureArtifactV1,
+            buildMtgPricingProductionGuardStartedArtifactV1,
+            evaluateMtgPricingProductionGuardV1,
+          } from './backend/pricing/mtg_pricing_production_guard_v1.mjs';
+          const artifactPath = process.env.MTG_PRICING_PRODUCTION_GUARD_OUT;
+          let guardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
+          const persistGuardArtifact = async () => fs.writeFile(
+            artifactPath,
+            `${JSON.stringify(guardArtifact, null, 2)}\n`,
+            'utf8',
+          );
+          await persistGuardArtifact();
           const client = new pg.Client({
             connectionString: process.env.SUPABASE_DB_URL,
             ssl: { rejectUnauthorized: false },
@@ -151,8 +163,10 @@ jobs:
             statement_timeout: 120_000,
             query_timeout: 125_000,
           });
-          await client.connect();
+          let connected = false;
           try {
+            await client.connect();
+            connected = true;
             const result = await client.query(
               `select count(*)::integer as count
                  from public.market_price_pipeline_runs
@@ -178,13 +192,17 @@ jobs:
                    count(*) filter (
                      where decision.evidence ->> 'category_id' = '1'
                    )::integer as mtg_selected,
-                   count(*) filter (
+                   count(distinct decision.card_printing_id) filter (
                      where decision.evidence ->> 'category_id' = '1'
                        and decision.eligible = true
+                       and decision.decision = 'publish'
+                       and decision.publication_lane = 'current'
                    )::integer as mtg_eligible,
-                   count(*) filter (
+                   count(distinct decision.card_printing_id) filter (
                      where decision.evidence ->> 'category_id' = '3'
                        and decision.eligible = true
+                       and decision.decision = 'publish'
+                       and decision.publication_lane = 'current'
                    )::integer as pokemon_eligible
                  from public.market_price_qualification_decisions decision
                  join shadow_run on shadow_run.id = decision.run_id
@@ -240,21 +258,17 @@ jobs:
               [process.env.EXPECTED_SHADOW_RUN_KEY],
             );
             const counts = categoryResult.rows[0];
-            const guard = evaluateMtgPricingProductionGuardV1({
+            guardArtifact = evaluateMtgPricingProductionGuardV1({
               mtgSelected: counts.mtg_selected,
               mtgEligible: counts.mtg_eligible,
               shadowPokemonEligible: counts.shadow_pokemon_eligible,
               baselinePokemonEligible: counts.pokemon_baseline_eligible,
               freshCurrentPokemonEligible: counts.fresh_pokemon_eligible,
             });
-            await fs.writeFile(
-              process.env.MTG_PRICING_PRODUCTION_GUARD_OUT,
-              `${JSON.stringify(guard, null, 2)}\n`,
-              'utf8',
-            );
-            if (!guard.ready_for_production) {
+            await persistGuardArtifact();
+            if (!guardArtifact.ready_for_production) {
               throw new Error(
-                `MTG pricing production guard blocked: ${JSON.stringify(guard.findings)}`,
+                `MTG pricing production guard blocked: ${JSON.stringify(guardArtifact.findings)}`,
               );
             }
             process.stdout.write(String((await client.query(
@@ -263,8 +277,15 @@ jobs:
                 where run_key = $1`,
               [process.env.EXPECTED_SHADOW_RUN_KEY],
             )).rows[0].source_sync_run_id));
+          } catch (error) {
+            guardArtifact = buildMtgPricingProductionGuardFailureArtifactV1({
+              priorArtifact: guardArtifact,
+              error,
+            });
+            await persistGuardArtifact();
+            throw error;
           } finally {
-            await client.end();
+            if (connected) await client.end();
           }
           NODE
             )"

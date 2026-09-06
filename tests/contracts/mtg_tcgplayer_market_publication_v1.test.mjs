@@ -12,6 +12,8 @@ import {
 import { buildMtgParentMappingPlanV1 } from "../../backend/pricing/mtg_tcgplayer_parent_mapping_policy_v1.mjs";
 import {
   MTG_PRICING_MAX_POKEMON_DROP_RATIO_V1,
+  buildMtgPricingProductionGuardFailureArtifactV1,
+  buildMtgPricingProductionGuardStartedArtifactV1,
   evaluateMtgPricingProductionGuardV1,
 } from "../../backend/pricing/mtg_pricing_production_guard_v1.mjs";
 
@@ -271,6 +273,34 @@ test("production guard blocks material Pokemon loss and missing MTG prices", () 
   assert.equal(missingMtg.findings[0].code, "missing_eligible_mtg_pricing");
 });
 
+test("production guard failure artifacts preserve prior evidence", () => {
+  const started = buildMtgPricingProductionGuardStartedArtifactV1();
+  assert.equal(started.status, "preflight_started");
+  assert.equal(started.ready_for_production, false);
+
+  const evaluated = evaluateMtgPricingProductionGuardV1({
+    mtgSelected: 161241,
+    mtgEligible: 132961,
+    shadowPokemonEligible: 1,
+    baselinePokemonEligible: 31184,
+    freshCurrentPokemonEligible: 0,
+  });
+  const failed = buildMtgPricingProductionGuardFailureArtifactV1({
+    priorArtifact: evaluated,
+    error: new Error("query timed out"),
+  });
+
+  assert.equal(failed.status, "blocked");
+  assert.equal(failed.ready_for_production, false);
+  assert.deepEqual(failed.counts, evaluated.counts);
+  assert.deepEqual(failed.findings, evaluated.findings);
+  assert.deepEqual(failed.preflight_error, {
+    name: "Error",
+    message: "query timed out",
+  });
+  assert.equal("stack" in failed.preflight_error, false);
+});
+
 test("remote operations freeze migration, mapping, shadow, and activation boundaries", () => {
   assert.match(WORKFLOW, /test "\$GITHUB_SHA" = "\$EXPECTED_SHA"/);
   assert.match(WORKFLOW, /test "\$\{#pending\[@\]\}" -eq 1/);
@@ -284,9 +314,17 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /join public\.market_price_publication_snapshots snapshot/);
   assert.match(WORKFLOW, /pokemon_baseline_eligible/);
   assert.match(WORKFLOW, /fresh_pokemon_eligible/);
+  assert.match(
+    WORKFLOW,
+    /count\(distinct decision\.card_printing_id\) filter \([\s\S]*?category_id' = '3'/,
+  );
   assert.match(WORKFLOW, /statement_timeout: 120_000/);
   assert.match(WORKFLOW, /query_timeout: 125_000/);
   assert.match(WORKFLOW, /evaluateMtgPricingProductionGuardV1/);
+  assert.match(WORKFLOW, /buildMtgPricingProductionGuardStartedArtifactV1/);
+  assert.match(WORKFLOW, /buildMtgPricingProductionGuardFailureArtifactV1/);
+  assert.match(WORKFLOW, /catch \(error\) \{/);
+  assert.match(WORKFLOW, /await persistGuardArtifact\(\)/);
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
   assert.match(WORKFLOW, /--expected-source-sync-run-id=\$shadow_source_sync_run_id/);
   assert.match(WORKER, /does not match shadow-proven source run/);
