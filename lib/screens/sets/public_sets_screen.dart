@@ -28,6 +28,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   PublicSetEra _activeEra = PublicSetEra.all;
   PublicSetLane _activeLane = PublicSetLane.all;
   String _activeReleaseYear = PublicSetsService.allReleaseYears;
+  int _loadGeneration = 0;
 
   @override
   void initState() {
@@ -42,6 +43,8 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   }
 
   Future<void> _load({bool forceRefresh = false}) async {
+    final loadGeneration = ++_loadGeneration;
+    final requestedGame = _activeGame;
     setState(() {
       _loading = true;
       _error = null;
@@ -51,8 +54,9 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       final sets = await PublicSetsService.fetchSets(
         client: _client,
         forceRefresh: forceRefresh,
+        game: requestedGame,
       );
-      if (!mounted) {
+      if (!mounted || loadGeneration != _loadGeneration) {
         return;
       }
 
@@ -60,7 +64,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
         _sets = sets;
       });
     } catch (error) {
-      if (!mounted) {
+      if (!mounted || loadGeneration != _loadGeneration) {
         return;
       }
 
@@ -68,7 +72,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
         _error = error is Error ? error.toString() : 'Unable to load sets.';
       });
     } finally {
-      if (mounted) {
+      if (mounted && loadGeneration == _loadGeneration) {
         setState(() {
           _loading = false;
         });
@@ -140,289 +144,313 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () => _load(forceRefresh: true),
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(18, 12, 18, 28),
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Browse ${filteredSets.length} ${_activeGame.label} sets.',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.66,
-                        ),
-                        fontWeight: FontWeight.w600,
-                        height: 1.3,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              TextField(
-                controller: _searchController,
-                decoration: const InputDecoration(
-                  hintText: 'Search sets',
-                  prefixIcon: Icon(Icons.search),
-                ),
-                onChanged: (_) => setState(() {}),
-              ),
-              const SizedBox(height: 14),
-              _SetsSurfaceCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(18, 12, 18, 0),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate.fixed(<Widget>[
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Text(
-                            'Filters'.toUpperCase(),
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.0,
+                            'Browse ${filteredSets.length} ${_activeGame.label} sets.',
+                            style: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(
-                                alpha: 0.54,
+                                alpha: 0.66,
                               ),
+                              fontWeight: FontWeight.w600,
+                              height: 1.3,
                             ),
                           ),
                         ),
-                        _SetSortMenu(
-                          value: _activeFilter,
-                          onSelected: (value) {
-                            setState(() {
-                              _activeFilter = value;
-                            });
-                          },
-                        ),
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    SegmentedButton<PublicCatalogGame>(
-                      segments: PublicCatalogGame.values
-                          .map(
-                            (game) => ButtonSegment<PublicCatalogGame>(
-                              value: game,
-                              label: Text(game.label),
-                            ),
-                          )
-                          .toList(growable: false),
-                      selected: <PublicCatalogGame>{_activeGame},
-                      showSelectedIcon: false,
-                      onSelectionChanged: (selection) {
-                        setState(() {
-                          _activeGame = selection.first;
-                          _activeEra = PublicSetEra.all;
-                          _activeReleaseYear =
-                              PublicSetsService.allReleaseYears;
-                          _activeLane = PublicSetLane.all;
-                        });
-                      },
+                    const SizedBox(height: 14),
+                    TextField(
+                      controller: _searchController,
+                      decoration: const InputDecoration(
+                        hintText: 'Search sets',
+                        prefixIcon: Icon(Icons.search),
+                      ),
+                      onChanged: (_) => setState(() {}),
                     ),
-                    if (_activeGame == PublicCatalogGame.pokemon) ...[
-                      const SizedBox(height: 12),
-                      _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
-                        label: 'Era',
-                        values: PublicSetsService.eraOptions,
-                        selectedValue: _activeEra,
-                        countFor: (value) => value == PublicSetEra.all
-                            ? queryMatchedSets.length
-                            : eraCounts[value] ?? 0,
-                        valueFor: (option) => option.value,
-                        labelFor: (option) => option.shortLabel,
-                        onSelected: (value) {
-                          setState(() {
-                            _activeEra = value;
-                          });
-                        },
-                      ),
-                    ] else ...[
-                      const SizedBox(height: 12),
-                      _SetChoiceRow<String, PublicSetReleaseYearOption>(
-                        label: 'Release year',
-                        values: releaseYearOptions,
-                        selectedValue: _activeReleaseYear,
-                        countFor: (value) =>
-                            value == PublicSetsService.allReleaseYears
-                            ? queryMatchedSets.length
-                            : releaseYearCounts[value] ?? 0,
-                        valueFor: (option) => option.value,
-                        labelFor: (option) => option.label,
-                        onSelected: (value) {
-                          setState(() {
-                            _activeReleaseYear = value;
-                          });
-                        },
-                      ),
-                    ],
-                    const SizedBox(height: 12),
-                    _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
-                      label: 'Lane',
-                      values: PublicSetsService.laneOptionsForGame(_activeGame),
-                      selectedValue: _activeLane,
-                      countFor: (value) => value == PublicSetLane.all
-                          ? periodScopedSets.length
-                          : laneCounts[value] ?? 0,
-                      valueFor: (option) => option.value,
-                      labelFor: (option) => option.label,
-                      onSelected: (value) {
-                        setState(() {
-                          _activeLane = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 18),
-              if (_activeGame == PublicCatalogGame.pokemon)
-                _SetsSurfaceCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const _SetsSectionHeader(
-                        title: 'Browse by era',
-                        description:
-                            'Jump into the Pokemon catalog by release era.',
-                      ),
-                      const SizedBox(height: 14),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: PublicSetsService.eraOptions
-                            .where((option) => option.value != PublicSetEra.all)
-                            .map((option) {
-                              return GvChip(
-                                label: option.label,
-                                count: eraCounts[option.value] ?? 0,
-                                selected: _activeEra == option.value,
-                                onSelected: (_) {
+                    const SizedBox(height: 14),
+                    _SetsSurfaceCard(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Filters'.toUpperCase(),
+                                  style: theme.textTheme.labelSmall?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: 1.0,
+                                    color: theme.colorScheme.onSurface
+                                        .withValues(alpha: 0.54),
+                                  ),
+                                ),
+                              ),
+                              _SetSortMenu(
+                                value: _activeFilter,
+                                onSelected: (value) {
                                   setState(() {
-                                    _activeEra = option.value;
+                                    _activeFilter = value;
                                   });
                                 },
-                              );
-                            })
-                            .toList(),
-                      ),
-                    ],
-                  ),
-                )
-              else
-                _SetsSurfaceCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _SetsSectionHeader(
-                        title: 'Browse by release year',
-                        description:
-                            'Jump into the ${_activeGame.label} catalog by release year.',
-                      ),
-                      const SizedBox(height: 14),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: releaseYearOptions.map((option) {
-                          final count =
-                              option.value == PublicSetsService.allReleaseYears
-                              ? queryMatchedSets.length
-                              : releaseYearCounts[option.value] ?? 0;
-                          return GvChip(
-                            label: option.label,
-                            count: count,
-                            selected: _activeReleaseYear == option.value,
-                            onSelected: (_) {
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          SegmentedButton<PublicCatalogGame>(
+                            segments: PublicCatalogGame.values
+                                .map(
+                                  (game) => ButtonSegment<PublicCatalogGame>(
+                                    value: game,
+                                    label: Text(game.label),
+                                  ),
+                                )
+                                .toList(growable: false),
+                            selected: <PublicCatalogGame>{_activeGame},
+                            showSelectedIcon: false,
+                            onSelectionChanged: (selection) {
                               setState(() {
-                                _activeReleaseYear = option.value;
+                                _activeGame = selection.first;
+                                _activeEra = PublicSetEra.all;
+                                _activeReleaseYear =
+                                    PublicSetsService.allReleaseYears;
+                                _activeLane = PublicSetLane.all;
+                              });
+                              _load();
+                            },
+                          ),
+                          if (_activeGame == PublicCatalogGame.pokemon) ...[
+                            const SizedBox(height: 12),
+                            _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
+                              label: 'Era',
+                              values: PublicSetsService.eraOptions,
+                              selectedValue: _activeEra,
+                              countFor: (value) => value == PublicSetEra.all
+                                  ? queryMatchedSets.length
+                                  : eraCounts[value] ?? 0,
+                              valueFor: (option) => option.value,
+                              labelFor: (option) => option.shortLabel,
+                              onSelected: (value) {
+                                setState(() {
+                                  _activeEra = value;
+                                });
+                              },
+                            ),
+                          ] else ...[
+                            const SizedBox(height: 12),
+                            _SetChoiceRow<String, PublicSetReleaseYearOption>(
+                              label: 'Release year',
+                              values: releaseYearOptions,
+                              selectedValue: _activeReleaseYear,
+                              countFor: (value) =>
+                                  value == PublicSetsService.allReleaseYears
+                                  ? queryMatchedSets.length
+                                  : releaseYearCounts[value] ?? 0,
+                              valueFor: (option) => option.value,
+                              labelFor: (option) => option.label,
+                              onSelected: (value) {
+                                setState(() {
+                                  _activeReleaseYear = value;
+                                });
+                              },
+                            ),
+                          ],
+                          const SizedBox(height: 12),
+                          _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
+                            label: 'Lane',
+                            values: PublicSetsService.laneOptionsForGame(
+                              _activeGame,
+                            ),
+                            selectedValue: _activeLane,
+                            countFor: (value) => value == PublicSetLane.all
+                                ? periodScopedSets.length
+                                : laneCounts[value] ?? 0,
+                            valueFor: (option) => option.value,
+                            labelFor: (option) => option.label,
+                            onSelected: (value) {
+                              setState(() {
+                                _activeLane = value;
                               });
                             },
-                          );
-                        }).toList(),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              const SizedBox(height: 18),
-              if (_activeGame == PublicCatalogGame.mtg &&
-                  kMtgSealedClientV1Enabled) ...[
-                _SetsSurfaceCard(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.inventory_2_outlined),
-                      const SizedBox(width: 12),
-                      Expanded(
+                    ),
+                    const SizedBox(height: 18),
+                    if (_activeGame == PublicCatalogGame.pokemon)
+                      _SetsSurfaceCard(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'MTG sealed products',
-                              style: theme.textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
+                            const _SetsSectionHeader(
+                              title: 'Browse by era',
+                              description:
+                                  'Jump into the Pokemon catalog by release era.',
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              'Booster boxes, bundles, decks, and other sealed releases.',
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant,
-                              ),
+                            const SizedBox(height: 14),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: PublicSetsService.eraOptions
+                                  .where(
+                                    (option) =>
+                                        option.value != PublicSetEra.all,
+                                  )
+                                  .map((option) {
+                                    return GvChip(
+                                      label: option.label,
+                                      count: eraCounts[option.value] ?? 0,
+                                      selected: _activeEra == option.value,
+                                      onSelected: (_) {
+                                        setState(() {
+                                          _activeEra = option.value;
+                                        });
+                                      },
+                                    );
+                                  })
+                                  .toList(),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      _SetsSurfaceCard(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _SetsSectionHeader(
+                              title: 'Browse by release year',
+                              description:
+                                  'Jump into the ${_activeGame.label} catalog by release year.',
+                            ),
+                            const SizedBox(height: 14),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: releaseYearOptions.map((option) {
+                                final count =
+                                    option.value ==
+                                        PublicSetsService.allReleaseYears
+                                    ? queryMatchedSets.length
+                                    : releaseYearCounts[option.value] ?? 0;
+                                return GvChip(
+                                  label: option.label,
+                                  count: count,
+                                  selected: _activeReleaseYear == option.value,
+                                  onSelected: (_) {
+                                    setState(() {
+                                      _activeReleaseYear = option.value;
+                                    });
+                                  },
+                                );
+                              }).toList(),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      IconButton.filled(
-                        tooltip: 'Browse sealed',
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              maintainState: false,
-                              builder: (_) => const MtgSealedCatalogScreen(),
+                    const SizedBox(height: 18),
+                    if (_activeGame == PublicCatalogGame.mtg &&
+                        kMtgSealedClientV1Enabled) ...[
+                      _SetsSurfaceCard(
+                        child: Row(
+                          children: [
+                            const Icon(Icons.inventory_2_outlined),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'MTG sealed products',
+                                    style: theme.textTheme.titleSmall?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    'Booster boxes, bundles, decks, and other sealed releases.',
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: theme.colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward),
+                            const SizedBox(width: 10),
+                            IconButton.filled(
+                              tooltip: 'Browse sealed',
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    maintainState: false,
+                                    builder: (_) =>
+                                        const MtgSealedCatalogScreen(),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.arrow_forward),
+                            ),
+                          ],
+                        ),
                       ),
+                      const SizedBox(height: 18),
                     ],
-                  ),
-                ),
-                const SizedBox(height: 18),
-              ],
-              _SetsSurfaceCard(
-                child: _SetsSectionHeader(
-                  title: trimmedQuery.isEmpty
-                      ? 'All sets'
-                      : 'Results for "$trimmedQuery"',
-                  description: trimmedQuery.isEmpty
-                      ? '${filteredSets.length} collector-ready sets in the catalog.'
-                      : '${filteredSets.length} sets matched your search.',
+                    _SetsSurfaceCard(
+                      child: _SetsSectionHeader(
+                        title: trimmedQuery.isEmpty
+                            ? 'All sets'
+                            : 'Results for "$trimmedQuery"',
+                        description: trimmedQuery.isEmpty
+                            ? '${filteredSets.length} collector-ready sets in the catalog.'
+                            : '${filteredSets.length} sets matched your search.',
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ]),
                 ),
               ),
-              const SizedBox(height: 16),
               if (_loading)
-                const _SetsLoadingState()
+                const SliverToBoxAdapter(child: _SetsLoadingState())
               else if (_error != null)
-                _SetsSurfaceCard(
-                  child: _SetsEmptyState(
-                    title: 'Unable to load sets',
-                    body: _error!,
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  sliver: SliverToBoxAdapter(
+                    child: _SetsSurfaceCard(
+                      child: _SetsEmptyState(
+                        title: 'Unable to load sets',
+                        body: _error!,
+                      ),
+                    ),
                   ),
                 )
               else if (filteredSets.isEmpty)
-                const _SetsSurfaceCard(
-                  child: _SetsEmptyState(
-                    title: 'No sets found',
-                    body: 'No sets matched the current search or filter.',
+                const SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 18),
+                  sliver: SliverToBoxAdapter(
+                    child: _SetsSurfaceCard(
+                      child: _SetsEmptyState(
+                        title: 'No sets found',
+                        body: 'No sets matched the current search or filter.',
+                      ),
+                    ),
                   ),
                 )
               else if (shouldGroupByEra)
-                _GroupedSetResults(
+                ..._groupedSetResultSlivers(
                   groupedSets: groupedSets,
                   onOpenSet: _openSet,
                 )
               else
                 _SetGrid(sets: filteredSets, onOpenSet: _openSet),
+              const SliverToBoxAdapter(child: SizedBox(height: 28)),
             ],
           ),
         ),
@@ -647,74 +675,71 @@ class _SetChoiceRow<TValue, TOption> extends StatelessWidget {
   }
 }
 
-class _GroupedSetResults extends StatelessWidget {
-  const _GroupedSetResults({
-    required this.groupedSets,
-    required this.onOpenSet,
-  });
+List<Widget> _groupedSetResultSlivers({
+  required Map<PublicSetEra, List<PublicSetSummary>> groupedSets,
+  required ValueChanged<PublicSetSummary> onOpenSet,
+}) {
+  final groups = PublicSetsService.eraOptions
+      .where((option) => option.value != PublicSetEra.all)
+      .map((option) {
+        final sets = groupedSets[option.value] ?? const <PublicSetSummary>[];
+        return MapEntry(option, sets);
+      })
+      .where((entry) => entry.value.isNotEmpty)
+      .toList();
 
-  final Map<PublicSetEra, List<PublicSetSummary>> groupedSets;
-  final ValueChanged<PublicSetSummary> onOpenSet;
-
-  @override
-  Widget build(BuildContext context) {
-    final groups = PublicSetsService.eraOptions
-        .where((option) => option.value != PublicSetEra.all)
-        .map((option) {
-          final sets = groupedSets[option.value] ?? const <PublicSetSummary>[];
-          return MapEntry(option, sets);
-        })
-        .where((entry) => entry.value.isNotEmpty)
-        .toList();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (var index = 0; index < groups.length; index++) ...[
-          if (index > 0) const SizedBox(height: 22),
-          _SetsSurfaceCard(
+  return <Widget>[
+    for (var index = 0; index < groups.length; index++) ...[
+      if (index > 0) const SliverToBoxAdapter(child: SizedBox(height: 22)),
+      SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        sliver: SliverToBoxAdapter(
+          child: _SetsSurfaceCard(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _SetsSectionHeader(
-                  title: groups[index].key.label,
-                  description:
-                      '${groups[index].value.length} visible set${groups[index].value.length == 1 ? '' : 's'} in this era.',
-                ),
-                const SizedBox(height: 14),
-                _SetGrid(sets: groups[index].value, onOpenSet: onOpenSet),
-              ],
+            child: _SetsSectionHeader(
+              title: groups[index].key.label,
+              description:
+                  '${groups[index].value.length} visible set${groups[index].value.length == 1 ? '' : 's'} in this era.',
             ),
           ),
-        ],
-      ],
-    );
-  }
+        ),
+      ),
+      _SetGrid(
+        sets: groups[index].value,
+        onOpenSet: onOpenSet,
+        padding: const EdgeInsets.symmetric(horizontal: 34),
+      ),
+    ],
+  ];
 }
 
 class _SetGrid extends StatelessWidget {
-  const _SetGrid({required this.sets, required this.onOpenSet});
+  const _SetGrid({
+    required this.sets,
+    required this.onOpenSet,
+    this.padding = const EdgeInsets.symmetric(horizontal: 18),
+  });
 
   final List<PublicSetSummary> sets;
   final ValueChanged<PublicSetSummary> onOpenSet;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: sets.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: GvGridConstants.gridSpacing,
-        crossAxisSpacing: GvGridConstants.gridSpacing,
-        childAspectRatio: GvGridConstants.gridChildAspectRatio,
+    return SliverPadding(
+      padding: padding,
+      sliver: SliverGrid(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: GvGridConstants.gridSpacing,
+          crossAxisSpacing: GvGridConstants.gridSpacing,
+          childAspectRatio: GvGridConstants.gridChildAspectRatio,
+        ),
+        delegate: SliverChildBuilderDelegate((context, index) {
+          final setInfo = sets[index];
+          return _SetTile(setInfo: setInfo, onTap: () => onOpenSet(setInfo));
+        }, childCount: sets.length),
       ),
-      itemBuilder: (context, index) {
-        final setInfo = sets[index];
-        return _SetTile(setInfo: setInfo, onTap: () => onOpenSet(setInfo));
-      },
     );
   }
 }

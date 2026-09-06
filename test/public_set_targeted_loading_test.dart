@@ -200,6 +200,62 @@ void main() {
     },
   );
 
+  test('set index can load and cache only the selected game', () async {
+    final requests = <http.Request>[];
+    final client = SupabaseClient(
+      'https://example.supabase.co',
+      'public-anon-key',
+      httpClient: MockClient((request) async {
+        requests.add(request);
+        final params = jsonDecode(request.body) as Map<String, dynamic>;
+        final gameCode = params['p_game_code'];
+        return http.Response(
+          jsonEncode(
+            gameCode == 'mtg'
+                ? [
+                    {
+                      'id': '10000000-0000-0000-0000-000000000003',
+                      'game': 'mtg',
+                      'code': 'lea',
+                      'name': 'Limited Edition Alpha',
+                      'release_date': '1993-08-05',
+                      'created_at': '1993-08-05T00:00:00Z',
+                      'card_count': 295,
+                    },
+                  ]
+                : const [],
+          ),
+          200,
+          request: request,
+          headers: {'content-type': 'application/json'},
+        );
+      }),
+    );
+    addTearDown(client.dispose);
+
+    final sets = await PublicSetsService.fetchSets(
+      client: client,
+      game: PublicCatalogGame.mtg,
+    );
+    final cachedSets = await PublicSetsService.fetchSets(
+      client: client,
+      game: PublicCatalogGame.mtg,
+    );
+
+    expect(sets, hasLength(1));
+    expect(sets.single.game, PublicCatalogGame.mtg);
+    expect(identical(sets, cachedSets), isTrue);
+    expect(requests, hasLength(1));
+    expect(jsonDecode(requests.single.body), {'p_game_code': 'mtg'});
+
+    await PublicSetsService.fetchSets(
+      client: client,
+      game: PublicCatalogGame.mtg,
+      forceRefresh: true,
+    );
+    expect(requests, hasLength(2));
+  });
+
   test('set route aliases resolve to their canonical codes', () {
     expect(PublicSetsService.resolveSetRouteCode('Shiny Vault'), 'sma');
     expect(PublicSetsService.resolveSetRouteCode('SV3PT5'), 'sv03.5');

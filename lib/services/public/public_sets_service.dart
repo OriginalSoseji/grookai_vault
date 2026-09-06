@@ -386,16 +386,23 @@ class PublicSetsService {
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
     bool forceRefresh = false,
+    PublicCatalogGame? game,
   }) async {
     final audience = client.auth.currentUser == null ? 'public' : 'signed_in';
-    final cached = _setCatalogCache[client]?[audience];
+    final cacheKey = game == null ? audience : '$audience:${game.databaseCode}';
+    final cached = _setCatalogCache[client]?[cacheKey];
     if (!forceRefresh &&
         cached != null &&
         DateTime.now().difference(cached.loadedAt) < _setCatalogCacheTtl) {
       return cached.sets;
     }
 
-    final setRows = await _fetchPublicCatalogSetRows(client: client);
+    final setRows = game == null
+        ? await _fetchPublicCatalogSetRows(client: client)
+        : await _fetchPublicCatalogGameRows(
+            client: client,
+            gameCode: game.databaseCode,
+          );
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
     for (final row in setRows) {
@@ -455,7 +462,7 @@ class PublicSetsService {
 
     final immutableSets = List<PublicSetSummary>.unmodifiable(sets);
     final cache = _setCatalogCache[client] ?? <String, _PublicSetsCacheEntry>{};
-    cache[audience] = _PublicSetsCacheEntry(
+    cache[cacheKey] = _PublicSetsCacheEntry(
       loadedAt: DateTime.now(),
       sets: immutableSets,
     );
