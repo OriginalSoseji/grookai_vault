@@ -300,6 +300,17 @@ test("production guard failure artifacts preserve prior evidence", () => {
     message: "query timed out",
   });
   assert.equal("stack" in failed.preflight_error, false);
+
+  const workerFailed = buildMtgPricingProductionGuardFailureArtifactV1({
+    priorArtifact: evaluated,
+    error: new Error("candidate staging failed"),
+    errorField: "worker_error",
+  });
+  assert.deepEqual(workerFailed.worker_error, {
+    name: "Error",
+    message: "candidate staging failed",
+  });
+  assert.equal("preflight_error" in workerFailed, false);
 });
 
 test("production activation guard reports actual publication snapshot coverage", () => {
@@ -411,6 +422,22 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
     /current_counts as \([\s\S]*from public\.market_price_current_publication current_state/,
   );
   assert.match(WORKER, /MTG_PRICING_PRODUCTION_GUARD_OUT/);
+  assert.match(WORKER, /PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS = 120_000/);
+  assert.match(WORKER, /PRODUCTION_GUARD_QUERY_TIMEOUT_MS = 125_000/);
+  assert.match(
+    WORKER,
+    /set_config\('statement_timeout', \$1, true\)[\s\S]*query_timeout: PRODUCTION_GUARD_QUERY_TIMEOUT_MS/,
+  );
+  assert.match(WORKER, /await ensureMtgProductionGuardArtifact\(\)/);
+  assert.doesNotMatch(
+    WORKER,
+    /await persistMtgProductionGuardArtifact\(\s*buildMtgPricingProductionGuardStartedArtifactV1\(\)/,
+  );
+  assert.match(
+    WORKER,
+    /main\(\)\.catch\(async \(error\) => \{[\s\S]*persistMtgProductionWorkerFailure\(error\)/,
+  );
+  assert.match(WORKER, /errorField: "worker_error"/);
   const activationFunction = WORKER.match(
     /async function activateAndVerify\([\s\S]*?\n}\n\nasync function artifactRows/,
   )?.[0];

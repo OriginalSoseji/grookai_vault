@@ -57,6 +57,13 @@ source movement.
   result. Mutable mapping, identity, source-catalog, or truth-review changes
   therefore cannot hide a materially smaller production candidate set behind
   older shadow decisions.
+- Preserve the successful shadow preflight artifact when the production worker
+  starts. Any later connection, provenance, staging, qualification, snapshot,
+  reconciliation, guard, activation, or readback failure converts the latest
+  evidence into a blocked artifact with a separate `worker_error`.
+- Bound the authoritative worker-side guard to a 120-second transaction-local
+  statement timeout and a 125-second client query timeout, then restore the
+  worker's prior statement timeout before activation.
 
 ## Alternatives Rejected
 
@@ -89,6 +96,9 @@ source movement.
 - The final guard artifact identifies `production_pre_activation` and
   `production_publication_snapshots`; it does not label production counts as
   shadow counts.
+- Worker startup never replaces a completed shadow preflight with a blank
+  started artifact, and every production worker failure before or after the
+  activation guard is persisted as blocked evidence.
 - Failed preflights retain their error name/message and all prior policy
   findings without persisting a stack trace.
 - A malformed production dispatch with no expected shadow key still leaves a
@@ -113,6 +123,8 @@ source movement.
   snapshot set must independently pass the same coverage policy.
 - Every production attempt must leave a guard artifact, including query and
   connection failures and missing operation input before worker launch.
+- The activation transaction must not hold the publication advisory lock for
+  more than the bounded guard-query interval while waiting on coverage proof.
 - Pricing identity, catalog identity, Vault data, and anonymous visibility are
   unchanged by this policy repair.
 

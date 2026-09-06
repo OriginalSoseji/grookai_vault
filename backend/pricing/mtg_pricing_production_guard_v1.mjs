@@ -18,12 +18,14 @@ export function buildMtgPricingProductionGuardFailureArtifactV1(input = {}) {
       ? input.priorArtifact
       : buildMtgPricingProductionGuardStartedArtifactV1();
   const error = input.error;
+  const errorField =
+    input.errorField === "worker_error" ? "worker_error" : "preflight_error";
   return {
     ...priorArtifact,
     policy_version: MTG_PRICING_PRODUCTION_GUARD_VERSION_V1,
     status: "blocked",
     ready_for_production: false,
-    preflight_error: {
+    [errorField]: {
       name:
         error && typeof error.name === "string" && error.name
           ? error.name

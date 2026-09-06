@@ -254,6 +254,13 @@ publication pointer. The final artifact must report guard stage
 `production_pre_activation` and evidence scope
 `production_publication_snapshots`.
 
+The worker must preserve the completed shadow preflight artifact on startup.
+Any production worker failure then converts the latest artifact to `blocked`
+and records `worker_error`; do not accept a run whose artifact remains only
+`preflight_started`. The authoritative activation query is limited to a
+120-second transaction-local statement timeout and a 125-second client timeout
+before the worker restores its normal publication timeout.
+
 Every production preflight writes
 `mtg-pricing-production-guard.json` into the workflow artifact. Read that file
 alongside the worker summary and reconciliation artifacts before classifying a

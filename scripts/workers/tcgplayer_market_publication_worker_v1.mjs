@@ -56,6 +56,9 @@ const WRITE_MODES = new Set(["shadow", "canary", "production"]);
 const ACTIVATION_MODES = new Set(["canary", "production"]);
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS = 120_000;
+const PRODUCTION_GUARD_QUERY_TIMEOUT_MS = 125_000;
+let productionGuardEnabled = false;
 
 function parseArgs(argv) {
   const args = {
@@ -255,6 +258,48 @@ async function persistMtgProductionGuardArtifact(artifact) {
   if (!artifactPath) return;
   await fs.mkdir(path.dirname(artifactPath), { recursive: true });
   await writeJson(artifactPath, artifact);
+}
+
+async function readMtgProductionGuardArtifact() {
+  const artifactPath = process.env.MTG_PRICING_PRODUCTION_GUARD_OUT;
+  if (!artifactPath) return null;
+  try {
+    return JSON.parse(await fs.readFile(artifactPath, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+async function ensureMtgProductionGuardArtifact() {
+  const existing = await readMtgProductionGuardArtifact();
+  if (existing) return existing;
+  const started = buildMtgPricingProductionGuardStartedArtifactV1();
+  await persistMtgProductionGuardArtifact(started);
+  return started;
+}
+
+async function persistMtgProductionWorkerFailure(error) {
+  if (
+    !productionGuardEnabled ||
+    !process.env.MTG_PRICING_PRODUCTION_GUARD_OUT
+  ) {
+    return;
+  }
+  const priorArtifact =
+    (await readMtgProductionGuardArtifact()) ??
+    buildMtgPricingProductionGuardStartedArtifactV1();
+  const failed = {
+    ...buildMtgPricingProductionGuardFailureArtifactV1({
+      priorArtifact,
+      error,
+      errorField: "worker_error",
+    }),
+    guard_stage: priorArtifact.guard_stage ?? "production_worker",
+    evidence_scope:
+      priorArtifact.evidence_scope ?? "production_worker_execution",
+  };
+  await persistMtgProductionGuardArtifact(failed);
 }
 
 async function writeJsonLines(filePath, rows, batchSize = 1_000) {
@@ -1280,8 +1325,14 @@ async function persistReconciliation(client, runId, reconciliation) {
 async function evaluateProductionActivationGuard(client, run, publicationSet) {
   let guardArtifact = buildMtgPricingProductionGuardStartedArtifactV1();
   try {
-    const result = await client.query(
-      `with production_counts as (
+    const previousStatementTimeout = (
+      await client.query("show statement_timeout")
+    ).rows[0].statement_timeout;
+    await client.query("select set_config('statement_timeout', $1, true)", [
+      `${PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS}ms`,
+    ]);
+    const result = await client.query({
+      text: `with production_counts as (
          select
            count(*) filter (
              where decision.evidence ->> 'category_id' = '1'
@@ -1370,8 +1421,12 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
          current_counts.pokemon_baseline_eligible,
          current_counts.fresh_pokemon_eligible
        from production_counts cross join current_counts`,
-      [publicationSet.id, run.id],
-    );
+      values: [publicationSet.id, run.id],
+      query_timeout: PRODUCTION_GUARD_QUERY_TIMEOUT_MS,
+    });
+    await client.query("select set_config('statement_timeout', $1, true)", [
+      previousStatementTimeout,
+    ]);
     const counts = result.rows[0];
     guardArtifact = {
       ...evaluateMtgPricingProductionActivationGuardV1({
@@ -1388,6 +1443,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
     guardArtifact = buildMtgPricingProductionGuardFailureArtifactV1({
       priorArtifact: guardArtifact,
       error,
+      errorField: "worker_error",
     });
     guardArtifact.guard_stage = "production_pre_activation";
     guardArtifact.evidence_scope = "production_publication_snapshots";
@@ -1789,6 +1845,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  productionGuardEnabled = args.runMode === "production";
   let loadedCanary = null;
   if (args.canaryDefinitionPath) {
     loadedCanary = await loadTcgplayerMarketCanaryDefinitionV1(
@@ -1806,9 +1863,7 @@ async function main() {
       outDir,
       "mtg-pricing-production-guard.json",
     );
-    await persistMtgProductionGuardArtifact(
-      buildMtgPricingProductionGuardStartedArtifactV1(),
-    );
+    await ensureMtgProductionGuardArtifact();
   }
   const url = connectionString();
   if (!url) {
@@ -1975,7 +2030,12 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
+  await persistMtgProductionWorkerFailure(error).catch((artifactError) => {
+    process.stderr.write(
+      `[tcgplayer-market-publication] guard artifact failure: ${artifactError.message}\n`,
+    );
+  });
   console.error(
     `[tcgplayer-market-publication] ${error.stack || error.message}`,
   );
