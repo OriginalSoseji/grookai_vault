@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/sealed/mtg_sealed_client_v1.dart';
 
@@ -135,6 +136,23 @@ void main() {
     );
   });
 
+  test('August 31 source prices expire September 8 without re-dating', () {
+    final product = _row({'observed_on': '2026-08-31'});
+    expect(
+      MtgSealedClientV1.classifyRows([
+        product,
+      ], now: DateTime.utc(2026, 9, 7)).status,
+      MtgSealedCatalogStatusV1.ready,
+    );
+    expect(
+      MtgSealedClientV1.classifyRows([
+        product,
+      ], now: DateTime.utc(2026, 9, 8)).status,
+      MtgSealedCatalogStatusV1.stale,
+    );
+    expect(product['observed_on'], '2026-08-31');
+  });
+
   test('disabled loader performs no auth, RPC, or Storage call', () async {
     final transport = _FakeTransport();
     final state = await MtgSealedClientV1(
@@ -181,6 +199,71 @@ void main() {
     expect(state.rows.first.canonicalName, 'Fixture Product 1');
     expect(state.rows.last.canonicalName, 'Fixture Product 9');
   });
+
+  test(
+    'signing advances past a slow image and preserves selected order',
+    () async {
+      final transport = _ControlledTransport();
+      final loading = MtgSealedClientV1(
+        transport: transport,
+        enabled: true,
+      ).load();
+      await Future<void>.delayed(Duration.zero);
+      expect(transport.pending, hasLength(8));
+      transport.pending[1].complete('https://example.invalid/1');
+      await Future<void>.delayed(Duration.zero);
+      expect(transport.pending, hasLength(9));
+      expect(transport.pending[0].isCompleted, isFalse);
+      for (var i = 0; i < transport.pending.length; i++) {
+        if (!transport.pending[i].isCompleted) {
+          transport.pending[i].complete('https://example.invalid/$i');
+        }
+      }
+      final result = await loading;
+      expect(result.status, MtgSealedCatalogStatusV1.ready);
+      expect(
+        result.rows.map((row) => row.imageUrl),
+        List.generate(9, (i) => 'https://example.invalid/$i'),
+      );
+    },
+  );
+
+  test(
+    'signer rejection stops queued work and withholds the whole page',
+    () async {
+      final transport = _ControlledTransport();
+      final loading = MtgSealedClientV1(
+        transport: transport,
+        enabled: true,
+      ).load();
+      await Future<void>.delayed(Duration.zero);
+      transport.pending[0].completeError(StateError('image_not_available'));
+      await Future<void>.delayed(Duration.zero);
+      for (final pending in transport.pending.skip(1)) {
+        pending.complete('https://example.invalid');
+      }
+      final result = await loading;
+      expect(transport.pending, hasLength(8));
+      expect(result.status, MtgSealedCatalogStatusV1.error);
+      expect(result.rows, isEmpty);
+    },
+  );
+}
+
+class _ControlledTransport extends _FakeTransport {
+  _ControlledTransport() : super(rows: List.generate(9, (_) => _row()));
+  final pending = <Completer<String>>[];
+
+  @override
+  Future<String> createSignedImageUrl({
+    required String bucket,
+    required String objectPath,
+    required int expiresInSeconds,
+  }) {
+    final completion = Completer<String>();
+    pending.add(completion);
+    return completion.future;
+  }
 }
 
 class _FakeTransport implements MtgSealedClientTransportV1 {

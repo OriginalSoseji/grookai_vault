@@ -9,7 +9,7 @@ const bool kPokemonSealedClientV1Enabled = bool.fromEnvironment(
   defaultValue: false,
 );
 const int kMtgSealedImageSignedUrlTtlSecondsV1 = 60 * 60;
-const int kMtgSealedImageSigningConcurrencyV1 = 4;
+const int kMtgSealedImageSigningConcurrencyV1 = 8;
 
 enum MtgSealedCatalogStatusV1 {
   disabled,
@@ -264,33 +264,41 @@ class MtgSealedClientV1 {
       if (classified.status != MtgSealedCatalogStatusV1.ready) {
         return classified;
       }
-      final resolved = <MtgSealedCatalogRowV1>[];
-      for (
-        var start = 0;
-        start < classified.rows.length;
-        start += kMtgSealedImageSigningConcurrencyV1
-      ) {
-        final end = (start + kMtgSealedImageSigningConcurrencyV1).clamp(
-          0,
-          classified.rows.length,
-        );
-        final batch = classified.rows.sublist(start, end);
-        resolved.addAll(
-          await Future.wait(
-            batch.map((row) async {
-              final imageUrl = await _transport.createSignedImageUrl(
-                bucket: row.imageStorageBucket,
-                objectPath: row.imageObjectPath,
-                expiresInSeconds: kMtgSealedImageSignedUrlTtlSecondsV1,
-              );
-              return row.withImageUrl(imageUrl);
-            }),
-          ),
-        );
+      final resolved = List<MtgSealedCatalogRowV1?>.filled(
+        classified.rows.length,
+        null,
+      );
+      var cursor = 0;
+      Object? signingError;
+      // Keep workers occupied without waiting for the slowest request in a batch.
+      Future<void> signImages() async {
+        while (cursor < classified.rows.length && signingError == null) {
+          final index = cursor++;
+          final row = classified.rows[index];
+          try {
+            final imageUrl = await _transport.createSignedImageUrl(
+              bucket: row.imageStorageBucket,
+              objectPath: row.imageObjectPath,
+              expiresInSeconds: kMtgSealedImageSignedUrlTtlSecondsV1,
+            );
+            resolved[index] = row.withImageUrl(imageUrl);
+          } catch (error) {
+            signingError ??= error;
+          }
+        }
       }
+
+      await Future.wait(
+        List.generate(
+          classified.rows.length.clamp(0, kMtgSealedImageSigningConcurrencyV1),
+          (_) => signImages(),
+        ),
+      );
+      final error = signingError;
+      if (error != null) throw error;
       return MtgSealedCatalogStateV1(
         status: MtgSealedCatalogStatusV1.ready,
-        rows: resolved,
+        rows: resolved.map((row) => row!).toList(growable: false),
       );
     } catch (error) {
       final message = error.toString();
