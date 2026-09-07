@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `SEALED_SAMSUNG_ACCEPTANCE_20260907` - `2026-09-07` - In-place profile APK verified on Samsung; sealed browse/filter/search/pagination evidence; shared search keyboard fix with 14 passing tests; physical iPhone remains locked and on build 312
+
 - `POKEMON_SEALED_FRESHNESS_PROOF_20260907` - `2026-09-07` - Read-only live proof that 16 aging prices are absent from eight hash-verified latest source files; no unpublished newer exact warehouse quotes; seven-day expiry and genuine recovery regression coverage; no publication or Storage writes
 
 - `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED` - `2026-09-06` - MTG pricing production preflight now uses an indexed active-publication Pokemon baseline plus freshness state, permits only a 0.1% source delta, and preserves material-loss blocking even when the governed current view has expired

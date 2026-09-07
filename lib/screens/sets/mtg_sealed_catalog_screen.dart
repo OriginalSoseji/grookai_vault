@@ -94,6 +94,7 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
                 controller: _searchController,
                 textInputAction: TextInputAction.search,
                 onSubmitted: (_) {
+                  FocusScope.of(context).unfocus();
                   _offset = 0;
                   _load();
                 },
@@ -103,6 +104,7 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
                   suffixIcon: IconButton(
                     tooltip: 'Search',
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       _offset = 0;
                       _load();
                     },
