@@ -124,6 +124,7 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
                             const {
                                   '': 'All packages',
                                   'booster_box': 'Booster boxes',
+                                  'display': 'Booster displays',
                                   'pack': 'Booster packs',
                                   'sleeved_pack': 'Sleeved packs',
                                   'kit': 'Kits / ETBs',
@@ -131,6 +132,8 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
                                   'collection': 'Collections',
                                   'bundle': 'Bundles',
                                   'deck': 'Decks',
+                                  'deck_display': 'Deck displays',
+                                  'promo_pack': 'Promo packs',
                                   'case': 'Cases',
                                 }.entries
                                 .map(

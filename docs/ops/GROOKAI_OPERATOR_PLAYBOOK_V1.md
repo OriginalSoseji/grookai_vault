@@ -42,6 +42,12 @@ one deduplicated GitHub issue for failures, source drift, new candidates or pric
 approaching expiry. It does **not** automatically publish replacement price/image
 releases. Do not present this monitor as an unattended pricing writer. Existing
 seven-day stale-price exclusion remains enforced; never extend timestamps.
+The health check also creates a short-lived session for the existing non-founder
+App Review identity, calls the deployed authenticated signer, verifies three
+complete image byte hashes, and revokes only that new session. It never creates
+an account, changes credentials, sends email, or logs session tokens. The workflow
+uses existing canonical Supabase secrets. `pokemon_sealed_web_smoke_v1.mjs` uses
+the same bounded identity for signed-in SSR checks without reading browser cookies.
 
 The end-to-end founder authority and scope are in
 `docs/contracts/POKEMON_SEALED_PRODUCTION_V1.md` (2026-09-07).

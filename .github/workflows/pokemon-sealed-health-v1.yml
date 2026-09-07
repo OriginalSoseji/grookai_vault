@@ -15,6 +15,9 @@ jobs:
     timeout-minutes: 30
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_URL: ${{ secrets.MOBILE_SUPABASE_URL }}
+      SUPABASE_PUBLISHABLE_KEY: ${{ secrets.MOBILE_SUPABASE_PUBLISHABLE_KEY }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,7 +25,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: node --test tests/contracts/pokemon_sealed_health_v1.test.mjs tests/contracts/pokemon_sealed_world_v1.test.mjs
+      - run: node --test tests/contracts/pokemon_sealed_health_v1.test.mjs tests/contracts/pokemon_sealed_live_probe_v1.test.mjs tests/contracts/pokemon_sealed_world_v1.test.mjs
       - name: Inventory, refresh proposal and health readback (zero DB writes)
         run: |
           node scripts/audits/pokemon_sealed_inventory_v1.mjs --out="$RUNNER_TEMP/pokemon-sealed/inventory"

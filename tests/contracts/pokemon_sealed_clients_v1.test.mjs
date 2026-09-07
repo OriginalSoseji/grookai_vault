@@ -22,4 +22,8 @@ test('Pokemon pages have backend filtering, paging and private routes',()=>{
   const dart=fs.readFileSync('lib/screens/sets/mtg_sealed_catalog_screen.dart','utf8');
   assert.match(dart,/kPokemonSealedClientV1Enabled/);assert.match(dart,/offset: _offset/);
   assert.match(dart,/request == _request/);
+  for(const form of ['display','deck_display','promo_pack']){
+    assert.ok(web.includes(`${form}:`));assert.ok(dart.includes(`'${form}':`));
+  }
+  assert.doesNotMatch(web,/booster_display:/);
 });

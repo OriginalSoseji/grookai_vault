@@ -8,6 +8,7 @@ import pg from 'pg';
 import {pgSslConfig} from './japanese_master_index_v4/read_only_guard_v1.mjs';
 import {evaluatePokemonSealedHealthV1} from '../../backend/pricing/pokemon_sealed_health_v1.mjs';
 import {classifyPokemonSealedProductV1,pokemonSealedHashV1 as hash} from '../../backend/pricing/pokemon_sealed_world_v1.mjs';
+import {withPokemonSealedProbeSessionV1,verifyPokemonSealedImageServingV1} from '../../backend/pricing/pokemon_sealed_live_probe_v1.mjs';
 const args=Object.fromEntries(process.argv.slice(2).map(a=>{const i=a.indexOf('=');return[a.slice(2,i),a.slice(i+1)];}));
 assert.ok(args.out&&args.inventory);
 dotenv.config({path:args.env??'C:/grookai_vault/.env.local',override:true,quiet:true});
@@ -44,9 +45,21 @@ try {
   const privilege=(await client.query(`select has_function_privilege('anon',
     'get_active_pokemon_sealed_catalog_v1(text,text,integer,integer,text,text)','EXECUTE') allowed`)).rows[0].allowed;
   await client.query('rollback');
+  delete process.env.GV_USER_ACCESS_TOKEN;
+  const {createBackendClient}=await import('../../backend/supabase_backend_client.mjs');
+  let imageProbe;
+  try{
+    imageProbe=await withPokemonSealedProbeSessionV1(createBackendClient(),async caller=>{
+      const {data,error}=await caller.rpc('get_active_pokemon_sealed_catalog_v1',{
+        p_game_key:'pokemon',p_query:null,p_limit:3,p_offset:0,p_package_form:null,p_language_code:null});
+      assert.ok(!error&&data?.length,'Authenticated catalog probe failed');
+      return verifyPokemonSealedImageServingV1(caller,data);
+    });
+  }catch{imageProbe={passed:false,failure:'authenticated_signer_or_byte_readback_failed'};}
   const result={...evaluatePokemonSealedHealthV1({published:published.length,expected:control?.expected,
     oldestAgeDays:ages.oldest,sourceAgeDays:ages.source_age,newProducts:newProducts.length,
-    changedMappings:changed.length,anonymousPrivilege:privilege,pointersAligned:control?.aligned===true}),
+    changedMappings:changed.length,anonymousPrivilege:privilege,pointersAligned:control?.aligned===true,
+    imageServingVerified:imageProbe.passed}),image_probe:imageProbe,auth_probe_session:'bounded_existing_store_review_user',
     producer_commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),generated_at:new Date().toISOString()};
   await fs.mkdir(args.out,{recursive:true});
   const files={'summary.json':JSON.stringify(result,null,2),

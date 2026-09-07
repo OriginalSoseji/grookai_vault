@@ -8,7 +8,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-const forms: Record<string, string> = { "": "All packages", booster_box: "Booster boxes", booster_display: "Booster displays",
+const forms: Record<string, string> = { "": "All packages", booster_box: "Booster boxes", display: "Booster displays",
   pack: "Booster packs", sleeved_pack: "Sleeved packs", kit: "Kits / ETBs", tin: "Tins", collection: "Collections",
   bundle: "Bundles", deck: "Decks", deck_display: "Deck displays", case: "Cases", promo_pack: "Promo packs" };
 const languages: Record<string, string> = { "": "All languages", en: "English", ja: "Japanese", zh: "Chinese", ko: "Korean",
