@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-09-06T08:05:36.102Z",
+  "generated_at": "2026-09-07T08:35:54.217Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -15,7 +15,7 @@
   },
   "summary": {
     "sets": 204,
-    "evidence_rows": 237914,
+    "evidence_rows": 238436,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -639,7 +639,7 @@
       },
       {
         "source_key": "tcgplayer_price_guide",
-        "evidence_rows": 23330
+        "evidence_rows": 23820
       },
       {
         "source_key": "tcgplayer_pro_catalog_page",
@@ -2987,7 +2987,7 @@
       },
       {
         "source_key": "thepricedex_price_list",
-        "evidence_rows": 57926
+        "evidence_rows": 57958
       },
       {
         "source_key": "vendortools_ascended_heroes_spidops_019",
@@ -3002,7 +3002,7 @@
     },
     "printings_by_status": {
       "master_verified": 37765,
-      "human_source_verified": 393,
+      "human_source_verified": 401,
       "candidate_unconfirmed": 109
     },
     "conflicts": 0,
@@ -3015,18 +3015,18 @@
       "human_fixtures|collected": 1,
       "pkmncards|collected": 153,
       "pkmncards|error": 51,
-      "pokemontcg_api|cached_snapshot": 26,
-      "pokemontcg_api|collected": 137,
-      "pokemontcg_api|collected_plus_cached_snapshot": 11,
+      "pokemontcg_api|cached_snapshot": 22,
+      "pokemontcg_api|collected": 140,
+      "pokemontcg_api|collected_plus_cached_snapshot": 12,
       "pokemontcg_api|unavailable": 30,
       "tcgdex|collected": 199,
       "tcgdex|unavailable": 5,
-      "tcgplayer_price_guide|cached_snapshot": 22,
-      "tcgplayer_price_guide|collected": 117,
+      "tcgplayer_price_guide|cached_snapshot": 18,
+      "tcgplayer_price_guide|collected": 121,
       "tcgplayer_price_guide|collected_plus_cached_snapshot": 13,
       "tcgplayer_price_guide|unavailable": 52,
-      "thepricedex_price_list|collected": 175,
-      "thepricedex_price_list|error": 28,
+      "thepricedex_price_list|collected": 176,
+      "thepricedex_price_list|error": 27,
       "thepricedex_price_list|unavailable": 1
     },
     "continuity_carry_forward": {
