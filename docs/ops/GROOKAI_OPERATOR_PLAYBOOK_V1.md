@@ -70,6 +70,9 @@ and per-origin circuit stopping after 401/403/429. It must not evade source acce
 blocks, substitute similar products, or treat locally recovered image bytes as
 uploaded/published. Keep original failure artifacts unchanged and use a new output
 directory. Source endpoint access failure is not proof a product or price is absent.
+Maintenance and health validate the actual direct/pooler database project against
+the API project before connecting; noncanonical targets and connection overrides
+fail closed even if a different database has plausible record counts.
 Follow-up evidence: `docs/checkpoints/POKEMON_SEALED_SOURCE_MAINTENANCE_20260907.md`.
 
 The end-to-end founder authority and scope are in

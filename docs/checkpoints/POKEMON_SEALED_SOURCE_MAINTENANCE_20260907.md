@@ -19,6 +19,10 @@ freshness, Storage, public visibility, or other-game publication boundaries.
 - Bounded missing-image replay: 35 exact product entries, zero recovered images.
   Responses were 70 HTTP 403 and 35 HTTP 404. No alternate product identities,
   substitute images, access-control bypass, database writes, or Storage writes.
+- Preserved source metadata reports zero images for 32 of those products. The
+  three with `image_count=1` are Pokemon Day 2026 Collection Case (668591),
+  Chaos Rising 3-Pack Blister Case (695118), and Surging Sparks Half Booster Box
+  (646039). That metadata does not replace successful retrieval or byte evidence.
 - Direct source price checks for eight groups returned HTTP 401. Therefore the
   audit cannot establish current source price availability. It does not conclude
   that the products or their current prices do not exist.
@@ -37,6 +41,19 @@ Manual `audit_only=true` dispatch skips paired release writes without temporaril
 changing the repository refresh flag. The normal daily schedule still refreshes.
 The separate maintenance CLI stops an origin on 401/403/429, allows already
 in-flight requests to finish, and does not automatically retry blocked endpoints.
+Both maintenance and health reject disagreement between the API project and the
+actual direct/pooler database URL before connecting. Foreign targets and query
+parameters overriding connection identity are rejected, even if counts look valid.
+
+## Verification
+
+Audit-only workflow `34112762655` passed from
+`8bdffc99907f6d259efc8d84d2c86c9b88cb0aae`: publication step explicitly skipped,
+inventory/health/artifact upload succeeded, and issue #426 now lists all 16 aging
+products with exact source IDs and withholding dates. The authentication probe
+retains its documented short-lived test-session behavior; no catalog or Storage
+apply was performed. Subsequent project-target guard tests cover direct/pooler
+connections, wrong projects, false hostname suffixes and query overrides.
 
 ## Remaining Evidence Gates
 

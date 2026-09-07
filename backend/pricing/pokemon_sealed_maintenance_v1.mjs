@@ -1,5 +1,26 @@
 import assert from 'node:assert/strict';
 
+export function assertPokemonSealedDatabaseTargetV1(apiUrl, databaseUrl) {
+  const ref = 'ycdxbpibncqcchqiihfz';
+  let api, db;
+  try { api = new URL(apiUrl); db = new URL(databaseUrl); }
+  catch { throw new Error('Invalid Pokemon sealed database/API endpoint configuration'); }
+  assert.equal(api.protocol,'https:');
+  assert.equal(api.hostname,`${ref}.supabase.co`);
+  assert.ok(['postgres:','postgresql:'].includes(db.protocol));
+  assert.equal(db.pathname,'/postgres');
+  for (const key of db.searchParams.keys()) {
+    assert.ok(['sslmode','pgbouncer','connect_timeout'].includes(key),'Database connection override not allowed');
+  }
+  if (db.hostname === `db.${ref}.supabase.co`) {
+    assert.equal(decodeURIComponent(db.username),'postgres');
+  } else {
+    assert.match(db.hostname,/^aws-[0-9]+-[a-z0-9-]+\.pooler\.supabase\.com$/);
+    assert.equal(decodeURIComponent(db.username),`postgres.${ref}`,'Database/API project mismatch');
+  }
+  return {project_ref:ref,database_host:db.hostname};
+}
+
 export function createPokemonSealedSourceCircuitV1() {
   const blocked = new Map();
   return {

@@ -8,7 +8,8 @@ import pg from 'pg';
 import { pgSslConfig } from './japanese_master_index_v4/read_only_guard_v1.mjs';
 import { inspectMtgSealedImageBytesV1 } from '../../backend/pricing/mtg_sealed_image_coverage_v1.mjs';
 import { validatePokemonSealedImageRetryV1, comparePokemonSealedSourcePriceV1,
-  buildPokemonSealedAgingDetailV1, createPokemonSealedSourceCircuitV1 } from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
+  buildPokemonSealedAgingDetailV1, createPokemonSealedSourceCircuitV1,
+  assertPokemonSealedDatabaseTargetV1 } from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
 
 const args = Object.fromEntries(process.argv.slice(2).map(a => {
   const i = a.indexOf('='); assert.ok(i > 2); return [a.slice(2, i), a.slice(i + 1)];
@@ -16,7 +17,7 @@ const args = Object.fromEntries(process.argv.slice(2).map(a => {
 assert.ok(args.images && args.out);
 assert.ok(process.execArgv.includes('--use-system-ca') && process.env.NODE_TLS_REJECT_UNAUTHORIZED !== '0');
 dotenv.config({ path: args.env ?? 'C:/grookai_vault/.env.local', quiet: true, override: true });
-assert.equal(new URL(process.env.SUPABASE_URL).hostname, 'ycdxbpibncqcchqiihfz.supabase.co');
+const target = assertPokemonSealedDatabaseTargetV1(process.env.SUPABASE_URL,process.env.SUPABASE_DB_URL);
 const hash = b => createHash('sha256').update(b).digest('hex');
 const inputBytes = await fs.readFile(args.images);
 const retries = JSON.parse(inputBytes).filter(r => r.status === 'excluded');
@@ -57,7 +58,7 @@ assert.ok(groups.length <= 32);
 for (const group of groups) assert.match(group, /^(3|85)\/[1-9][0-9]*$/);
 const plan = { version: 'POKEMON_SEALED_MAINTENANCE_V1', producer_commit: execFileSync('git', ['rev-parse','HEAD'], {encoding:'utf8'}).trim(),
   operator_sha256: hash(await fs.readFile(new URL(import.meta.url))), source_results_sha256: hash(inputBytes),
-  database_sanity: sanity, aging_prices: aging, image_retries: retries, price_groups: groups,
+  target, database_sanity: sanity, aging_prices: aging, image_retries: retries, price_groups: groups,
   max_requests: groups.length + retries.reduce((n,r) => n + r.urls.length, 0),
   attempts_per_url: 1, concurrency: 4, stop_origin_on_status:[401,403,429], database_writes: 0, storage_writes: 0, generated_at: new Date().toISOString() };
 await fs.mkdir(args.out, { recursive: true });

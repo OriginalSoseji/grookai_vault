@@ -7,12 +7,13 @@ import dotenv from 'dotenv';
 import pg from 'pg';
 import {pgSslConfig} from './japanese_master_index_v4/read_only_guard_v1.mjs';
 import {evaluatePokemonSealedHealthV1} from '../../backend/pricing/pokemon_sealed_health_v1.mjs';
-import {buildPokemonSealedAgingDetailV1} from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
+import {buildPokemonSealedAgingDetailV1,assertPokemonSealedDatabaseTargetV1} from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
 import {classifyPokemonSealedProductV1,pokemonSealedHashV1 as hash} from '../../backend/pricing/pokemon_sealed_world_v1.mjs';
 import {withPokemonSealedProbeSessionV1,verifyPokemonSealedImageServingV1} from '../../backend/pricing/pokemon_sealed_live_probe_v1.mjs';
 const args=Object.fromEntries(process.argv.slice(2).map(a=>{const i=a.indexOf('=');return[a.slice(2,i),a.slice(i+1)];}));
 assert.ok(args.out&&args.inventory);
 dotenv.config({path:args.env??'C:/grookai_vault/.env.local',override:true,quiet:true});
+const target=assertPokemonSealedDatabaseTargetV1(process.env.SUPABASE_URL,process.env.SUPABASE_DB_URL);
 const bytes=await fs.readFile(path.join(args.inventory,'source_products.jsonl.gz'));
 const manifest=JSON.parse(await fs.readFile(path.join(args.inventory,'artifact_hashes.json'),'utf8'));
 assert.equal(hash(bytes),manifest['source_products.jsonl.gz']);
@@ -73,7 +74,7 @@ try {
     imageServingVerified:imageProbe.passed,automaticPricePublication:process.env.POKEMON_SEALED_REFRESH_ACTIVE==='true'}),image_probe:imageProbe,
     aging_price_count:agingPrices.length,prices_expiring_next_day:agingPrices.filter(r=>r.freshness_status==='expires_next_day').length,
     expired_price_count:agingPrices.filter(r=>r.freshness_status==='expired').length,auth_probe_session:'bounded_existing_store_review_user',
-    producer_commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),generated_at:new Date().toISOString()};
+    target,producer_commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),generated_at:new Date().toISOString()};
   await fs.mkdir(args.out,{recursive:true});
   const files={'summary.json':JSON.stringify(result,null,2),
     'aging_prices.json':JSON.stringify(agingPrices,null,2),

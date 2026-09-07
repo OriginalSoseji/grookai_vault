@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validatePokemonSealedImageRetryV1,comparePokemonSealedSourcePriceV1,buildPokemonSealedAgingDetailV1,createPokemonSealedSourceCircuitV1} from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
+import {validatePokemonSealedImageRetryV1,comparePokemonSealedSourcePriceV1,buildPokemonSealedAgingDetailV1,createPokemonSealedSourceCircuitV1,assertPokemonSealedDatabaseTargetV1} from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
 const row = {status:'excluded',source_product_id:123,source_payload_hash:'a'.repeat(64),urls:['https://tcgplayer-cdn.tcgplayer.com/product/123_200w.jpg']};
 test('image retry is bounded to original exact identity and public source',()=>{
   assert.deepEqual(validatePokemonSealedImageRetryV1(row),row.urls);
@@ -41,4 +41,14 @@ test('access denied and rate limits stop the entire origin, not unrelated origin
   }
   const c=createPokemonSealedSourceCircuitV1();c.observe('https://tcgcsv.com/a',404);
   assert.equal(c.status('https://tcgcsv.com/b'),null);
+});
+test('database and API must name the same canonical project before connecting',()=>{
+  const ref='ycdxbpibncqcchqiihfz',api=`https://${ref}.supabase.co`;
+  assert.equal(assertPokemonSealedDatabaseTargetV1(api,`postgres://postgres@db.${ref}.supabase.co:5432/postgres`).project_ref,ref);
+  const pooled=`postgres://postgres.${ref}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`;
+  assert.equal(assertPokemonSealedDatabaseTargetV1(api,pooled).project_ref,ref);
+  for(const db of [pooled.replace(ref,'differentproject'),pooled.replace('supabase.com','supabase.com.evil.test'),
+    pooled.replace('/postgres','/other'),`${pooled}?host=db.other.supabase.co`,
+    `postgres://postgres@db.other.supabase.co/postgres`])assert.throws(()=>assertPokemonSealedDatabaseTargetV1(api,db));
+  assert.throws(()=>assertPokemonSealedDatabaseTargetV1('https://other.supabase.co',pooled));
 });
