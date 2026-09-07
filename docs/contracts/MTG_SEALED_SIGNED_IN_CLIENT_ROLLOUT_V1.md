@@ -85,8 +85,8 @@ members, Storage, Vault, or cross-game data.
 - Signed-out web access redirects to login.
 - A disposable authenticated web user reads 24 products and one exact private
   image, then leaves zero Auth residue.
-- Flutter contract tests pass, including the four-call signing bound and order
-  preservation.
+- Flutter contract tests pass, including the eight-call signing bound, rolling
+  scheduling, order preservation, and failure draining without new queued calls.
 - Flutter analysis passes.
 - A physical Samsung device browses products and searches successfully with
   self-hosted images and market prices rendered.

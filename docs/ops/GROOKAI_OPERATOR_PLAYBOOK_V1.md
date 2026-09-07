@@ -86,6 +86,8 @@ authorization, response order, and whole-page withholding on signing failure.
 The bounded 96-request production comparison had zero failures and reduced
 24-image signing time from about 3.55s to 3.07s. This is network-phase evidence,
 not a claim about all app routes or end-to-end device rendering.
+Current evidence and remaining gates:
+`docs/checkpoints/SEALED_CLIENT_CLOSEOUT_20260907.md`.
 
 The end-to-end founder authority and scope are in
 `docs/contracts/POKEMON_SEALED_PRODUCTION_V1.md` (2026-09-07).
