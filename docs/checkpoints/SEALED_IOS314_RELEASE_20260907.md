@@ -71,8 +71,10 @@ operator scripts contain no credentials. The archive stays on the Mac at
 
 1. Internal TestFlight distribution is complete. Keep source/archived artifact
    provenance bound to the release SHA above, not a later documentation commit.
-2. Install the processed candidate and finish physical iPhone signed-in sealed
-   browse when Xcode can launch on the unlocked device.
+2. Physical iPhone installation readback and bounded signed-in sealed browse
+   are complete in `SEALED_IOS314_PHYSICAL_ACCEPTANCE_20260907.md`. Do not repeat
+   installation. Resume its controlled scroll-position reproduction and
+   instrumented performance follow-ups instead.
 3. Preserve source-image and stale-price exclusions. Source maintenance,
    ownership, licensing and general app performance remain separate gates in
    `SEALED_CLIENT_CLOSEOUT_20260907.md` and
