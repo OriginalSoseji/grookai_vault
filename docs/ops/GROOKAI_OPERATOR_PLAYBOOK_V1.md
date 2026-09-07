@@ -270,9 +270,19 @@ keychain permissions, save a password, or automate an authentication dialog.
 If the desktop keychain itself is locked, the founder must unlock it.
 The operator scripts/readback are in the sealed closeout artifact root recorded
 in `docs/checkpoints/SEALED_CLIENT_CLOSEOUT_20260907.md`.
-Build 313 is processed and available to the existing internal Friends and Family
-group from source `7f5412b5b4124bd16544cdf62adf3e3c15f06dbd`, with both sealed flags
-enabled. This is not public App Store or external-beta publication.
+Build 314 is the latest processed sealed candidate for the existing internal
+Friends and Family group, from source
+`736f15c1fa866fad3616a4a55d9a46dc566ae0e5`. It includes the Samsung-verified
+search keyboard fix and retains both sealed flags. Actual internal membership,
+automatic-notification setting and testing notes were read back from Apple.
+Source/archive/signature/dSYM and simulator proof:
+`docs/checkpoints/SEALED_IOS314_RELEASE_20260907.md`.
+Build 313 and its archive remain preserved. This is not public App Store or
+external-beta publication, nor proof that the physical phone installed 314.
+CoreDevice may acknowledge launching TestFlight while Xcode subsequently reports
+the phone locked. Stop the owned probe on that explicit evidence; never infer
+physical acceptance from the launch acknowledgement. The 314 probe was stopped
+with exit 143 and verified absent; simulator startup passed separately.
 
 For TestFlight readback, enumerate each existing beta group's `builds` relation;
 the build's `betaGroups` related GET is not supported by Apple's API. Verify
