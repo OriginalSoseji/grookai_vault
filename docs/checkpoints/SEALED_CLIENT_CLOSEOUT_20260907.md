@@ -9,7 +9,8 @@ remains deferred in `docs/plans/SEALED_PRODUCT_IMAGE_ISOLATION_V1_20260907.md`.
 Source checkout: `C:/grookai_vault_pokemon_sealed`.
 Client implementation tested: `f31a75ee121ce3faceb0462820e45c9c4793b6b5`.
 iOS sealed-flag fix: PR 430, commit `8bb01f9c527cb5f0a4caddf171ca4fef6aee06c0`,
-merged. Loading change: PR 431, not yet merged at this checkpoint.
+merged. Loading change: PR 431 merged after checks and review resolutions.
+Merged release authority: `7f5412b5b4124bd16544cdf62adf3e3c15f06dbd`.
 
 ## Retained Readback
 
@@ -53,13 +54,45 @@ rolling workers; it does not isolate the old barrier-batch scheduling cost.
 - Windows: all 19 renderer tests pass, matching the CI platform split.
 - iOS release/bootstrap: 23 Windows checks pass, one Ruby execution test
   skipped locally; the actual Ruby flag fixture passes on the Mac.
-- PR checks must pass and review threads resolve before merging PR 431.
+- All required PR checks passed; both review threads were addressed before merge.
+- Final sealed Node suite: 406 pass, zero fail, one Windows Ruby skip; the
+  equivalent Ruby fixture was executed successfully on the Mac.
+- MTG plan-reason repair and founder-outcome contracts: 12 pass. The narrow
+  reporting fix changes no mutation, qualification, or authority behavior.
+
+## iOS Build 313
+
+- Exact merged main above, isolated Mac checkout
+  `~/grookai_vault_testflight_313_sealed`; primary checkout untouched.
+- Bundle `com.cesar.grookaivault`, version `1.0.0`, build `313`.
+- Both sealed flags verified true in generated Xcode configuration. Other
+  configuration values and credentials are not printed in this checkpoint.
+- Archive: `build/ios/archive/GrookaiVault-1.0.0-313.xcarchive`.
+- Deep/strict code-signature verification passed. Runner executable SHA-256:
+  `fcb3b7a9bdda35862af7d6b1c274f843e9db0b42f29b79d304ea7277efb383a4`.
+- Initial SSH build failed accessing the existing signing keychain. The same
+  source/flags archived successfully in the established Mac desktop session.
+  No certificate, permission, password, or signing configuration was changed.
+- Apple accepted upload. Readback at `2026-09-07T12:05:17Z`: `VALID`,
+  `IN_BETA_TESTING`, `autoNotifyEnabled=true`, internal Friends and Family
+  membership confirmed. Build ID `c1e519c0-f870-4872-aa81-a9220deb114c`.
+- Build-specific TestFlight notes were written and read back exactly. No App
+  Store version attachment, submission, or audience expansion was performed.
+- Same-source iPhone 17 Pro simulator build and launch pass; retained screenshot
+  `ios313_start.png` shows the normal signed-out screen, not a blank startup.
+  This does not claim signed-in sealed navigation on a physical iPhone.
+- Final Apple evidence: `grookai_313_testflight_readback.json` and
+  `grookai_313_finalization.json` in the operator root. Archive, upload,
+  simulator and test logs are retained there. Mac has about 13 GiB free;
+  original archives and the dirty primary checkout were not cleaned up.
+- Prior build 312 is available to internal `Friends and Family` only; preserve
+  that audience. Public external beta groups were not activated by this work.
 
 ## Remaining Gates
 
-1. Merge reviewed client change; archive exact merged main as iOS build 313
-   with both MTG and Pokemon sealed flags; upload to TestFlight and verify
-   Apple processing. No public App Store submission is authorized here.
+1. Distribution is complete to the existing internal TestFlight group. A
+   physical-iPhone signed-in sealed browse remains a separate device acceptance
+   check; no public App Store submission was made.
 2. Preserve 35 missing-image exclusions: 32 have no source image; three
    source images remain unavailable. No guessed package images or substitutes.
 3. Preserve stale/missing-price and qualification exclusions. The three
@@ -68,8 +101,9 @@ rolling workers; it does not isolate the old barrier-batch scheduling cost.
    it is not a publication release and requires image/release reconciliation.
 4. MTG `slz`: read-only plan contains 363 cards and one set, no collisions.
    Payload `9b0ab65a13b186910bc4dff88ca101500e27fe1cd71c13e688c25c0fd30b4b68`.
-   No canonical or image writes. The worker's `already_exact_complete` reason
-   is a reporting defect for plan mode; the actual database state is absent.
+   No canonical or image writes. The preserved plan's `already_exact_complete`
+   reason is a reporting defect; the actual database state is absent. A narrow
+   tested repair now reports `eligible_absent_plan`; old evidence is unchanged.
 5. Language baselines are preserved: Korean source regression, German orphan
    rows and Simplified Chinese conflicting set ownership remain quarantined.
    Issue 260 links fresh evidence. Adapter issue 271 records five unavailable
