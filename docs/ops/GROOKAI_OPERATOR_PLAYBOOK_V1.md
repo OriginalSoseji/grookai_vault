@@ -57,6 +57,24 @@ an account, changes credentials, sends email, or logs session tokens. The workfl
 uses existing canonical Supabase secrets. `pokemon_sealed_web_smoke_v1.mjs` uses
 the same bounded identity for signed-in SSR checks without reading browser cookies.
 
+Price-maintenance alerts include `aging_prices.json`: exact product names/source
+IDs, observation dates, and the first date each quote is withheld. Manual workflow
+dispatch with `audit_only=true` skips publication without changing the global
+automatic-refresh variable. Its authentication probe still creates/revokes only
+its bounded test session. Use this mode to verify monitoring changes without
+creating another immutable price/image release.
+`scripts/audits/pokemon_sealed_maintenance_v1.mjs` performs a separate bounded,
+artifact-only gap investigation: original image failures (maximum 50), at most
+32 source price groups, one attempt per frozen URL, no redirects, four workers,
+and per-origin circuit stopping after 401/403/429. It must not evade source access
+blocks, substitute similar products, or treat locally recovered image bytes as
+uploaded/published. Keep original failure artifacts unchanged and use a new output
+directory. Source endpoint access failure is not proof a product or price is absent.
+Maintenance and health validate the actual direct/pooler database project against
+the API project before connecting; noncanonical targets and connection overrides
+fail closed even if a different database has plausible record counts.
+Follow-up evidence: `docs/checkpoints/POKEMON_SEALED_SOURCE_MAINTENANCE_20260907.md`.
+
 The end-to-end founder authority and scope are in
 `docs/contracts/POKEMON_SEALED_PRODUCTION_V1.md` (2026-09-07).
 Worktree: `C:/grookai_vault_pokemon_sealed`; branch:

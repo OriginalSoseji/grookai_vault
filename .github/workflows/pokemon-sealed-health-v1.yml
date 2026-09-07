@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '35 11 * * *'
   workflow_dispatch:
+    inputs:
+      audit_only:
+        description: 'Skip price publication; run read-only discovery and health only'
+        type: boolean
+        default: false
 permissions:
   contents: read
   issues: write
@@ -26,10 +31,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: node --test tests/contracts/pokemon_sealed_refresh_v1.test.mjs tests/contracts/pokemon_sealed_health_v1.test.mjs tests/contracts/pokemon_sealed_live_probe_v1.test.mjs tests/contracts/pokemon_sealed_world_v1.test.mjs
+      - run: node --test tests/contracts/pokemon_sealed_refresh_v1.test.mjs tests/contracts/pokemon_sealed_health_v1.test.mjs tests/contracts/pokemon_sealed_live_probe_v1.test.mjs tests/contracts/pokemon_sealed_world_v1.test.mjs tests/contracts/pokemon_sealed_maintenance_v1.test.mjs
       - name: Refresh already-verified price and image releases atomically
         id: refresh
-        if: env.POKEMON_SEALED_REFRESH_ACTIVE == 'true'
+        if: env.POKEMON_SEALED_REFRESH_ACTIVE == 'true' && inputs.audit_only != true
         run: node scripts/audits/pokemon_sealed_refresh_v1.mjs --mode=run --out="$RUNNER_TEMP/pokemon-sealed/refresh"
       - name: Inventory, refresh proposal and health readback (zero DB writes)
         if: always()
@@ -65,7 +70,10 @@ jobs:
             if(summary.status==='healthy') {
               if(existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});
             } else {
-              const body = `Daily Pokemon sealed audit needs attention. Inspect the separate refresh artifact for transaction outcome; the health audit itself is read-only apart from its bounded authentication probe.\n\n${summary.findings.map(f=>`- ${f}`).join('\n')}\n\nEvidence: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+              let aging=[];
+              try { aging=JSON.parse(fs.readFileSync(`${process.env.RUNNER_TEMP}/pokemon-sealed/health/aging_prices.json`)); } catch {}
+              const productLines=aging.slice(0,20).map(r=>`- ${String(r.canonical_name).replace(/[\r\n`]/g,' ')} (TCGPlayer ${r.source_product_id}): ${r.age_days} days old; withheld from ${r.withheld_from}.`).join('\n');
+              const body = `Daily Pokemon sealed audit needs attention. Inspect the separate refresh artifact for transaction outcome; the health audit itself is read-only apart from its bounded authentication probe.\n\n${summary.findings.map(f=>`- ${f}`).join('\n')}\n\n${aging.length} aging products; ${summary.prices_expiring_next_day??0} reach the expiry boundary next day.\n${productLines}\n\nFull product list: aging_prices.json in the run artifact. Never substitute prices or re-date source observations.\n\nEvidence: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
               if(existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,body});
               else await github.rest.issues.create({...context.repo,title,body});
               const maintenanceOnly=summary.findings.every(f=>['price_refresh_due_before_seven_day_expiry','new_sealed_candidates_require_identity_review'].includes(f));
