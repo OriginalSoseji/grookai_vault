@@ -226,6 +226,27 @@ archives, and TestFlight. Discover its current address from Tailscale rather
 than relying on an old IP. The known host is `cesars-macbook-pro-2`, and the
 existing SSH key is `~/.ssh/grookai_mac_remote_ed25519`.
 
+If SSH signing fails with `errSecInternalComponent`, inspect the actual
+keychain error before replacing certificates or asking for setup again. An
+unlocked desktop login keychain can still deny the SSH security session.
+Build 313 succeeded by running the unchanged archive command in a new Terminal
+window in the existing Mac desktop session through AppleScript. Use a dedicated
+window, log and exit-status file; monitor it to completion. Do not weaken
+keychain permissions, save a password, or automate an authentication dialog.
+If the desktop keychain itself is locked, the founder must unlock it.
+The operator scripts/readback are in the sealed closeout artifact root recorded
+in `docs/checkpoints/SEALED_CLIENT_CLOSEOUT_20260907.md`.
+Build 313 is processed and available to the existing internal Friends and Family
+group from source `7f5412b5b4124bd16544cdf62adf3e3c15f06dbd`, with both sealed flags
+enabled. This is not public App Store or external-beta publication.
+
+For TestFlight readback, enumerate each existing beta group's `builds` relation;
+the build's `betaGroups` related GET is not supported by Apple's API. Verify
+processing state and actual group membership independently. Preserve the prior
+audience; uploading a build does not authorize public beta links or an App Store
+submission. Check Mac free space before native builds; build 313 left roughly
+16 GiB before simulator verification. Do not delete prior archives to make room.
+
 Before touching the Mac checkout:
 
 1. inspect its branch, commit, status, and worktrees;

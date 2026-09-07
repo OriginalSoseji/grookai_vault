@@ -258,7 +258,8 @@ async function main() {
     const shouldMutate = releaseEligible && databaseState === "absent";
     let transactionResult = {
       action: shouldMutate ? "plan_only" : "no_op",
-      reason: !releaseEligible ? "future_release" : "already_exact_complete",
+      reason: !releaseEligible ? "future_release"
+        : shouldMutate ? "eligible_absent_plan" : "already_exact_complete",
     };
     let collisions = null;
     if (shouldMutate) {
