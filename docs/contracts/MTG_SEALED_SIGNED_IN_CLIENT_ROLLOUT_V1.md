@@ -42,8 +42,11 @@ image, release, Storage, Vault, or anonymous-access boundaries.
 - Image access must use the trusted signer; clients must not read private
   Storage directly.
 - Signed image URLs expire after exactly 3,600 seconds.
-- Flutter signs at most four image URLs concurrently and preserves catalog
-  order.
+- Flutter signs at most eight image URLs concurrently and preserves catalog
+  order (2026-09-07 bounded loading amendment). A rolling worker pool avoids
+  a slow image holding up the next batch. A signer failure stops queued work,
+  drains in-flight requests, and withholds the page. No authorization is cached
+  across loads or skipped; the trusted signer remains authoritative per image.
 - Flutter limits decoded and disk-cached image width and disables offscreen
   grid prefetch for this bounded canary.
 - Leaving the Flutter Sets route must not retain the image-heavy route state.
