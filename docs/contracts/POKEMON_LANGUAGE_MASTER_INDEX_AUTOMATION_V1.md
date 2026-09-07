@@ -136,6 +136,34 @@ silently substitute for missing card-level identity evidence.
 
 ## Downstream Boundary
 
+### Read-Only Anomaly Evidence
+
+`scripts/audits/pokemon_language_anomaly_evidence_v1.mjs` is a diagnostic,
+not a candidate or canonical writer. The daily refresh runs it against the
+generated German/Chinese candidate snapshots, with output outside the candidate
+directory copied by apply. It freezes at most 300 anomaly IDs and 300 requests,
+uses three workers with no retries, follows no redirects, and stops new calls
+after 401/403/429 while draining in-flight evidence. Responses are limited to
+4 MiB and 20 seconds. Existing output directories cannot be reused.
+
+An orphan card can receive `candidate_revalidation_supported` only when its
+fresh detail endpoint matches its original card ID, name and number and supplies
+an explicit, consistent owner. Prefixes are endpoint probes only. An available
+set endpoint must agree; a 404 remains upstream adapter debt. Returned set names
+and counts must agree across the affected cards. This diagnostic never grants
+independent admission, edits a candidate, or clears a quarantine record.
+
+A single set endpoint cannot resolve two colliding source set records. Source
+filenames do not override conflicting declared IDs. Both records stay preserved
+until corrected evidence supports an explicit reconciliation.
+
+The issue report distinguishes supported revalidation evidence from unresolved
+records and transport failures. Diagnostic execution failures are visible in
+adapter health but cannot grant authority or block unrelated valid data-only
+updates. Raw source responses and their hashes remain in the existing 90-day
+workflow artifact. A successful diagnostic does not make the primary inventory
+healthy or establish complete language coverage.
+
 After a successful data merge, automation dispatches fresh discovery and bounded
 promotion from the merged default-branch SHA. Promotion continues to enforce its
 existing source-specific maximum-target and rollback rules.

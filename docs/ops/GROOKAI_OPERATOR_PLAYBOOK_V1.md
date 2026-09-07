@@ -44,6 +44,16 @@ Contract: `docs/contracts/POKEMON_LANGUAGE_MASTER_INDEX_AUTOMATION_V1.md`.
 Live evidence and next steps:
 `docs/checkpoints/catalog_discovery/2026-09-07_POKEMON_LANGUAGE_REGRESSION_RECOVERY_V1.md`.
 
+The daily refresh also runs `pokemon_language_anomaly_evidence_v1.mjs` as a
+bounded, read-only diagnostic. It checks explicit card-detail owners for German
+orphans and retains Chinese set collisions; it never uses a card-ID prefix or
+repository filename as identity authority. At most 300 requests, three workers,
+no retries, no redirects, with a circuit stop on access/rate-limit responses.
+Evidence lives under the language report's `anomaly_evidence/`, outside candidate
+apply paths, and issue 260 reports its outcome without automatically clearing
+quarantine. Resume command, evidence and upstream defects:
+`docs/checkpoints/catalog_discovery/2026-09-07_POKEMON_LANGUAGE_ANOMALY_EVIDENCE_V1.md`.
+
 ### Pokemon sealed production work
 
 Deferred presentation work: `docs/plans/SEALED_PRODUCT_IMAGE_ISOLATION_V1_20260907.md`.
