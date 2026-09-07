@@ -295,7 +295,7 @@ async function plan(options) {
             primary_sha256: pokemonLanguageFingerprint(source),
           };
           const fallback = (await githubFallback()).snapshots[language];
-          if (!fallback || fallback.status !== "available") {
+          if (!fallback) {
             throw new Error(`GitHub regression fallback unavailable for ${language}.`);
           }
           await fs.writeFile(path.join(evidenceDir, "fallback.json"),
@@ -304,6 +304,9 @@ async function plan(options) {
             fallback_path: `source_recovery/${language}/fallback.json`,
             fallback_sha256: pokemonLanguageFingerprint(fallback),
           });
+          if (fallback.status !== "available") {
+            throw new Error(`GitHub regression fallback unavailable for ${language}.`);
+          }
           return normalizePokemonLanguageSourceSnapshotV1({
             language,
             sets: fallback.sets,

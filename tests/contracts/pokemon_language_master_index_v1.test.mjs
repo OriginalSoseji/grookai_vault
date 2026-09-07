@@ -404,6 +404,16 @@ test("offline fixtures and already-GitHub regressions cannot recurse to fallback
   assert.match(workflow, /Primary API regressions recovered from pinned GitHub evidence/);
 });
 
+test("worker retains returned unavailable fallback evidence before rejecting its status", () => {
+  const source = fs.readFileSync("scripts/workers/pokemon_language_master_index_refresh_v1.mjs", "utf8");
+  const recovery = source.slice(source.indexOf("loadFallbackCurrent: options.sourceDir"));
+  const persisted = recovery.indexOf('path.join(evidenceDir, "fallback.json")');
+  const hashed = recovery.indexOf("fallback_sha256: pokemonLanguageFingerprint(fallback)");
+  const statusGate = recovery.indexOf('if (fallback.status !== "available")');
+  assert.ok(persisted > 0 && hashed > persisted && statusGate > hashed);
+  assert.doesNotMatch(recovery.slice(0, persisted), /fallback\.status/);
+});
+
 test("worker plan and apply are deterministic with fixture sources", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "pokemon-language-index-"));
   const source = path.join(root, "source");

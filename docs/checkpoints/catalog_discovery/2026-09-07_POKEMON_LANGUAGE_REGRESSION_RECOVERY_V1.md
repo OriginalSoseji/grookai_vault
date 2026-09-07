@@ -62,11 +62,21 @@ These counts do not imply complete language catalogs or independent admission.
 
 ## Verification
 
-- Language contracts: 20/20 pass, including seven new recovery cases.
-- Combined English/language/Japanese/discovery contracts: 78/78 pass.
+- Language contracts: 21/21 pass, including eight new recovery cases.
+- Combined English/language/Japanese/discovery contracts: 79/79 pass.
+- Four additional English human-fixture contracts pass.
 - Worker syntax and `git diff --check` pass.
 - Live source plan: all three selected scopes ready, no source-error scopes,
   no candidate/registry content changes, all 252 anomalies preserved.
+- PR 434 review added failure-path evidence retention: a returned unavailable
+  fallback is saved and hashed before its status is rejected. A missing snapshot
+  or transport failure cannot manufacture evidence. Live successful-path source
+  results above are unchanged; the added regression check verifies write/hash
+  ordering before status rejection.
+- Full local shipcheck passed the secret-packaging guard, then stopped at the
+  isolated checkout's missing `SUPABASE_DB_URL`. Targeted checks above passed;
+  command-local hook bypass did not change hook configuration. GitHub runtime,
+  drift, Windows and security checks remain the merge gates.
 
 ## Remaining Work
 
