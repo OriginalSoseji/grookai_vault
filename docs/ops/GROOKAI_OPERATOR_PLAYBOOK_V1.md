@@ -279,6 +279,16 @@ Source/archive/signature/dSYM and simulator proof:
 `docs/checkpoints/SEALED_IOS314_RELEASE_20260907.md`.
 Build 313 and its archive remain preserved. This is not public App Store or
 external-beta publication, nor proof that the physical phone installed 314.
+Later same-day installed-device readback and signed-in Pokemon/MTG sealed
+inspection are now complete in
+`docs/checkpoints/SEALED_IOS314_PHYSICAL_ACCEPTANCE_20260907.md`.
+Use that checkpoint for current device acceptance; preserve the earlier locked
+probe as history. For Xcode automation, inspect screenshots as well as hierarchy:
+TestFlight overlays can cover the underlying app tree. Resolve the sealed search
+arrow by exact label and visible upper-screen bounds, not the ambiguous Search
+identifier shared with the native keyboard. Wait for rendered results, not just
+an enabled Reload button. Bound owned test processes and preserve failed logs;
+incomplete xcresult bundles and inspection-only exit codes are not passing proof.
 CoreDevice may acknowledge launching TestFlight while Xcode subsequently reports
 the phone locked. Stop the owned probe on that explicit evidence; never infer
 physical acceptance from the launch acknowledgement. The 314 probe was stopped

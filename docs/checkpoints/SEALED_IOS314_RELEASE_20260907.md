@@ -50,6 +50,11 @@ installation on a physical phone.
 
 ## Physical iPhone
 
+Later same-day physical readback and acceptance supersede the lock limitation
+below: see `SEALED_IOS314_PHYSICAL_ACCEPTANCE_20260907.md`. Build 314 is installed;
+bounded signed-in Pokemon and MTG sealed checks are now recorded there, with
+harness failures and remaining limitations preserved.
+
 CoreDevice accepted a TestFlight launch request, but the isolated Xcode probe
 then explicitly reported the iPhone locked. The owned test process was stopped,
 exit 143 read back, and process absence verified. No unlock or authentication

@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `SEALED_IOS314_PHYSICAL_ACCEPTANCE_20260907` - `2026-09-07` - Installed iPhone 314 verified; signed-in Pokemon browse/pagination/151 search and package/language filter evidence; fresh-launch MTG sealed images/prices verified; harness failures retained; scroll-position and performance follow-ups remain
+
 - `SEALED_IOS314_RELEASE_20260907` - `2026-09-07` - Search keyboard repair distributed as valid internal TestFlight build 314; exact source/configuration/signature/dSYM evidence and simulator startup pass; physical iPhone signed-in acceptance remains blocked by device lock
 
 - `SEALED_SAMSUNG_ACCEPTANCE_20260907` - `2026-09-07` - In-place profile APK verified on Samsung; sealed browse/filter/search/pagination evidence; shared search keyboard fix with 14 passing tests; physical iPhone remains locked and on build 312
