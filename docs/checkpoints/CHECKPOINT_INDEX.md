@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `POKEMON_SEALED_FRESHNESS_PROOF_20260907` - `2026-09-07` - Read-only live proof that 16 aging prices are absent from eight hash-verified latest source files; no unpublished newer exact warehouse quotes; seven-day expiry and genuine recovery regression coverage; no publication or Storage writes
+
 - `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED` - `2026-09-06` - MTG pricing production preflight now uses an indexed active-publication Pokemon baseline plus freshness state, permits only a 0.1% source delta, and preserves material-loss blocking even when the governed current view has expired
 - `APP_CANDIDATE_312_MTG_SIGNED_IN_RELEASE_PARITY_COMPLETE_20260906_V1` - `2026-09-06` - Exact build-312 web, signed Android, and valid TestFlight provenance at `66339000`; current reconciled MTG/Pokemon pricing; active signed-in MTG catalog; anonymous denial and authenticated readback proven; post-commit release-runner connection hardening pending merge
 - `APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1` - `2026-09-06` - Build 312 is reserved and repository-verified at source commit `dade217c`; no Android or iOS 312 artifact is yet accepted, and exact merged-SHA production web, signed Android, TestFlight, and governed release reconciliation remain open
