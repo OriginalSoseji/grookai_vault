@@ -32,6 +32,11 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ### Pokemon sealed production work
 
+Deferred presentation work: `docs/plans/SEALED_PRODUCT_IMAGE_ISOLATION_V1_20260907.md`.
+The founder requested saving this for later, not executing it. Resume with a
+20-product local before/after preview; preserve original evidence and use separate
+transparent display derivatives only after quality and access checks. No job is scheduled.
+
 The signed-in Pokemon release is active. Web enablement is declared in
 `apps/web/vercel.json`; Android builds use `-EnablePokemonSealed` with the existing
 public-environment build script. Preserve `-EnableMtgSealed` when building both.
@@ -192,6 +197,14 @@ state first, then use a separately approved forward-only database enforcement
 gate. Never delete or rewrite existing messages while adding moderation.
 
 ### App Store Connect and Mac
+
+Sealed iOS builds require explicit `MTG_SEALED_CLIENT_V1_ENABLED=true` and
+`POKEMON_SEALED_CLIENT_V1_ENABLED=true` in the release environment. The shared
+`scripts/write_ios_xcode_secrets.rb` now validates and carries both flags into
+generated xcconfig files; absent flags remain false. Check decoded flag names
+and values without printing other defines before archive. The existing Mac SSH
+account is `cesarcabral`; use the key and Tailscale discovery below, not a guessed
+account or changes to the primary checkout.
 
 The automation contract and commands are in:
 

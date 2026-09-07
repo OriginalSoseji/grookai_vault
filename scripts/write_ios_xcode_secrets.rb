@@ -27,6 +27,7 @@ end
 
 required_keys = %w[SUPABASE_URL SUPABASE_PUBLISHABLE_KEY]
 optional_keys = %w[GROOKAI_WEB_BASE_URL NEXT_PUBLIC_SITE_URL SITE_URL]
+sealed_keys = %w[MTG_SEALED_CLIENT_V1_ENABLED POKEMON_SEALED_CLIENT_V1_ENABLED]
 binder_keys = %w[
   BINDERS_SCHEMA_V1
   BINDERS_PERSONAL_V1
@@ -63,9 +64,18 @@ env = release_defaults
 # Xcode Cloud supplies release configuration as workflow environment variables.
 # Process values take precedence over local dotenv files without ever being
 # written to a tracked file or printed to the build log.
-(required_keys + optional_keys + binder_keys).each do |key|
+(required_keys + optional_keys + binder_keys + sealed_keys).each do |key|
   value = ENV[key].to_s
   env[key] = value unless value.strip.empty?
+end
+
+sealed_keys.each do |key|
+  value = env.fetch(key, 'false').to_s.strip
+  unless %w[true false].include?(value)
+    warn "Invalid boolean release flag: #{key}"
+    exit 1
+  end
+  env[key] = value
 end
 
 web_base = env['GROOKAI_WEB_BASE_URL'] ||
@@ -90,7 +100,7 @@ if firebase_ios_app_id.to_s.strip.empty?
   exit 1
 end
 
-encoded = (required_keys + ['GROOKAI_WEB_BASE_URL'] + binder_keys).map do |key|
+encoded = (required_keys + ['GROOKAI_WEB_BASE_URL'] + binder_keys + sealed_keys).map do |key|
   value = env[key].to_s
   value.empty? ? nil : Base64.strict_encode64("#{key}=#{value}")
 end.compact.join(',')
