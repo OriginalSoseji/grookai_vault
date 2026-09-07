@@ -30,6 +30,20 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ## 1. Source-Of-Truth Order
 
+### Pokemon language source recovery
+
+The daily `pokemon-master-index-refresh.yml` worker can recover a catastrophic
+TCGdex API card-count regression using the existing pinned official GitHub
+snapshot adapter. It reuses the unchanged merge guards and never admits a
+candidate directly into canon. Rejected API and fallback snapshots, hashes and
+recovery status are retained in the workflow artifacts. A recovered candidate
+scope is not a healthy primary API: issue 260 remains open for that debt and
+all quarantined source anomalies. Offline fixture sources never use network
+fallback. Do not guess German set owners or resolve Chinese collisions by count.
+Contract: `docs/contracts/POKEMON_LANGUAGE_MASTER_INDEX_AUTOMATION_V1.md`.
+Live evidence and next steps:
+`docs/checkpoints/catalog_discovery/2026-09-07_POKEMON_LANGUAGE_REGRESSION_RECOVERY_V1.md`.
+
 ### Pokemon sealed production work
 
 Deferred presentation work: `docs/plans/SEALED_PRODUCT_IMAGE_ISOLATION_V1_20260907.md`.

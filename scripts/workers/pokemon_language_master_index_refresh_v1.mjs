@@ -4,7 +4,7 @@ import process from "node:process";
 import zlib from "node:zlib";
 
 import {
-  mergePokemonLanguageCandidateSnapshotV1,
+  mergePokemonLanguageCandidateWithRecoveryV1,
   normalizePokemonLanguageSourceSnapshotV1,
   POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
   pokemonLanguageFingerprint,
@@ -236,6 +236,7 @@ async function plan(options) {
   };
   const results = await mapPool(options.languages, options.concurrency, async (language) => {
     const baseline = await readSnapshot(options.baselineDir, language);
+    let recoveryEvidence = null;
     try {
       let source;
       let apiError = null;
@@ -280,7 +281,38 @@ async function plan(options) {
         source: source.source ?? "tcgdex_v2",
         sourceCommitSha: source.source_commit_sha,
       });
-      const merged = mergePokemonLanguageCandidateSnapshotV1({ baseline, current });
+      const { snapshot: merged, recovery } = await mergePokemonLanguageCandidateWithRecoveryV1({
+        baseline,
+        current,
+        loadFallbackCurrent: options.sourceDir ? null : async () => {
+          // Rejected raw responses stay outside the candidate directory copied by apply.
+          const evidenceDir = path.join(options.outDir, "source_recovery", language);
+          await fs.mkdir(evidenceDir, { recursive: true });
+          await fs.writeFile(path.join(evidenceDir, "primary.json"),
+            stablePokemonLanguageJson(source));
+          recoveryEvidence = {
+            primary_path: `source_recovery/${language}/primary.json`,
+            primary_sha256: pokemonLanguageFingerprint(source),
+          };
+          const fallback = (await githubFallback()).snapshots[language];
+          if (!fallback || fallback.status !== "available") {
+            throw new Error(`GitHub regression fallback unavailable for ${language}.`);
+          }
+          await fs.writeFile(path.join(evidenceDir, "fallback.json"),
+            stablePokemonLanguageJson(fallback));
+          Object.assign(recoveryEvidence, {
+            fallback_path: `source_recovery/${language}/fallback.json`,
+            fallback_sha256: pokemonLanguageFingerprint(fallback),
+          });
+          return normalizePokemonLanguageSourceSnapshotV1({
+            language,
+            sets: fallback.sets,
+            cards: fallback.cards,
+            source: fallback.source,
+            sourceCommitSha: fallback.source_commit_sha,
+          });
+        },
+      });
       const summary = await writeSnapshot(candidateRoot, merged);
       const baselineSummary = baseline
         ? summarizePokemonLanguageCandidateSnapshotV1(baseline)
@@ -290,7 +322,10 @@ async function plan(options) {
         baselineSummary.cards_fingerprint_sha256 !== summary.cards_fingerprint_sha256 ||
         baselineSummary.source_anomalies_fingerprint_sha256 !==
           summary.source_anomalies_fingerprint_sha256;
-      return { language, status: "candidate_index_ready", changed, ...summary };
+      return {
+        language, status: "candidate_index_ready", changed, ...summary,
+        ...(recovery ? { source_recovery: { ...recovery, evidence: recoveryEvidence } } : {}),
+      };
     } catch (error) {
       if (baseline) {
         const summary = await writeSnapshot(candidateRoot, baseline);
@@ -299,6 +334,9 @@ async function plan(options) {
           status: "source_error_baseline_preserved",
           changed: false,
           error: String(error.message ?? error),
+          ...(error.source_recovery ? {
+            source_recovery: { ...error.source_recovery, evidence: recoveryEvidence },
+          } : {}),
           ...summary,
         };
       }
@@ -378,6 +416,9 @@ async function plan(options) {
     registry_changed: registryChanged,
     source_error_languages: results.filter((row) =>
       row.status.startsWith("source_error")
+    ).map((row) => row.language),
+    source_recovered_languages: results.filter((row) =>
+      row.source_recovery?.status === "candidate_recovered"
     ).map((row) => row.language),
     source_anomaly_languages: results.filter((row) =>
       Number(row.source_anomaly_count ?? 0) > 0

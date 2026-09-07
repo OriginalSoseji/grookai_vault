@@ -62,6 +62,21 @@ TCGdex cards-database repository snapshot. The fallback must record the exact
 source commit, parse source files without executing them, and retain
 `canonical_authority: false`.
 
+The same pinned fallback may recover an otherwise successful API response only
+when the existing catastrophic card-count guard rejects it (baseline at least
+100 cards, current source below 80 percent of baseline). The fallback must pass
+the unchanged language, count, owner, and coordinate checks. A healthy response
+does not invoke recovery; a direct identity conflict does not authorize fallback.
+Offline fixture runs never perform network recovery. Fallback cannot recurse.
+
+Retain the rejected API response and fallback snapshot under the run's
+`source_recovery/<language>/` directory, with exact hashes in `summary.json`.
+These raw files remain outside the candidate directory copied by apply.
+`source_recovered_languages` reports candidate continuity, not API health or
+canonical admission. Keep the adapter-health issue open while a primary-source
+regression needs fallback. If fallback is unavailable, unpinned, or invalid,
+preserve the baseline and report the failure; do not weaken validation.
+
 English continues to use the verified English Master Index as admitted
 authority. Japanese continues to use Japanese V4 plus the append-only
 incremental overlay. Other languages remain candidate-only until an independent
@@ -110,7 +125,8 @@ silently substitute for missing card-level identity evidence.
 - A Japanese evidence-source outage cannot block candidate capture for other
   languages; it preserves the prior Japanese admitted index and creates visible
   adapter-health debt.
-- A catastrophic provider row-count drop fails closed.
+- A catastrophic provider row-count drop rejects that source. Only a separately
+  validated pinned fallback may recover candidate continuity as described above.
 - Temporarily unobserved candidate rows remain present with revalidation debt.
 - Printed-name changes preserve prior names.
 - Coordinate changes fail closed.
