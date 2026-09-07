@@ -71,8 +71,10 @@ test('client validation repeats identity, freshness, and image boundaries', () =
     assert.match(source, /source_image_url/);
     assert.match(source, /selected_source_url/);
   }
-  assert.match(webClient, /sealed\\\/mtg\\\/sha256/);
-  assert.match(dartClient, /sealed\/mtg\/sha256/);
+  assert.match(webClient, /mtg\|pokemon/);
+  assert.match(dartClient, /mtg\|pokemon/);
+  assert.ok(webClient.includes('startsWith(`sealed/${gameKey}/sha256/`)'));
+  assert.ok(dartClient.includes("startsWith('sealed/$gameKey/sha256/')"));
   assert.match(webClient, /age < 0 \|\| age > 7/);
   assert.match(dartClient, /age < 0 \|\| age > 7/);
 });

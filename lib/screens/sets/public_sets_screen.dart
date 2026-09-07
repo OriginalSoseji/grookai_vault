@@ -357,8 +357,10 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                         ),
                       ),
                     const SizedBox(height: 18),
-                    if (_activeGame == PublicCatalogGame.mtg &&
-                        kMtgSealedClientV1Enabled) ...[
+                    if ((_activeGame == PublicCatalogGame.mtg &&
+                            kMtgSealedClientV1Enabled) ||
+                        (_activeGame == PublicCatalogGame.pokemon &&
+                            kPokemonSealedClientV1Enabled)) ...[
                       _SetsSurfaceCard(
                         child: Row(
                           children: [
@@ -369,7 +371,9 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'MTG sealed products',
+                                    _activeGame == PublicCatalogGame.pokemon
+                                        ? 'Pokemon sealed products'
+                                        : 'MTG sealed products',
                                     style: theme.textTheme.titleSmall?.copyWith(
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -391,8 +395,13 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute<void>(
                                     maintainState: false,
-                                    builder: (_) =>
-                                        const MtgSealedCatalogScreen(),
+                                    builder: (_) => MtgSealedCatalogScreen(
+                                      gameKey:
+                                          _activeGame ==
+                                              PublicCatalogGame.pokemon
+                                          ? 'pokemon'
+                                          : 'mtg',
+                                    ),
                                   ),
                                 );
                               },

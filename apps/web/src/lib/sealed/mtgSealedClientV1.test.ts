@@ -49,6 +49,23 @@ test("valid exact self-hosted rows classify as ready", () => {
     assert.equal(result.rows[0].imageUrl, null);
   }
 });
+test("Pokemon supports evidence-backed languages without crossing image namespaces", () => {
+  const pokemon = row({ game_key: "pokemon", language_code: "ja", image_object_path: `sealed/pokemon/sha256/aa/${hash}.jpg` });
+  const result = classifyMtgSealedRowsV1([pokemon], now, "pokemon");
+  assert.equal(result.status, "ready");
+  if (result.status === "ready") assert.equal(result.rows[0].languageCode, "ja");
+  assert.equal(classifyMtgSealedRowsV1([pokemon], now).status, "error");
+  assert.equal(classifyMtgSealedRowsV1([row()], now, "pokemon").status, "error");
+  assert.equal(classifyMtgSealedRowsV1([{ ...pokemon, image_object_path: `sealed/mtg/sha256/aa/${hash}.jpg` }], now, "pokemon").status, "missing_image");
+});
+test("Pokemon transport sends exact backend filters and rejects cross-game scope", async () => {
+  const calls: unknown[] = [];
+  const client = { rpc: async (...args: unknown[]) => { calls.push(args); return { data: [], error: null }; } } as unknown as SupabaseClient;
+  const transport = createMtgSealedSupabaseTransportV1(client, "pokemon", { packageForm: "tin", languageCode: "ja" });
+  await transport.fetchRows({ gameKey: "pokemon", query: "Pikachu", limit: 24, offset: 24 });
+  assert.deepEqual(calls, [["get_active_pokemon_sealed_catalog_v1", { p_game_key: "pokemon", p_query: "Pikachu", p_limit: 24, p_offset: 24, p_package_form: "tin", p_language_code: "ja" }]]);
+  await assert.rejects(() => transport.fetchRows({ gameKey: "mtg", query: null, limit: 24, offset: 0 }));
+});
 
 test("stale and future price evidence is withheld", () => {
   assert.equal(classifyMtgSealedRowsV1([
