@@ -25,6 +25,13 @@ test('resume reuses exact existing bytes, never uploads',async()=>{
   const storage={from:()=>({download:async()=>({data:new Blob([bytes])}),upload:()=>assert.fail('Existing object overwritten')})};
   assert.equal((await storePokemonSealedObjectV1({storage,object,bytes,onJournal:async()=>{}})).created_this_attempt,false);
 });
+test('legacy SDK structured NoSuchKey response is recognized, not arbitrary HTTP 400',async()=>{
+  let stored=false;
+  const storage={from:()=>({download:async()=>stored?{data:new Blob([bytes])}:{error:{originalError:new Response(
+    JSON.stringify({statusCode:'404',code:'NoSuchKey',message:'Object not found'}),{status:400})}},
+    upload:async()=>{stored=true;return{};}})};
+  assert.equal((await storePokemonSealedObjectV1({storage,object,bytes,onJournal:async()=>{}})).created_this_attempt,true);
+});
 test('mismatched collision and unauthorized preflight stop without writes',async()=>{
   for(const result of [{data:new Blob([Buffer.alloc(2500,8)])},{error:{statusCode:401,message:'Unauthorized'}}]){
     const storage={from:()=>({download:async()=>result,upload:()=>assert.fail('Unauthorized write'),remove:()=>assert.fail('Unauthorized deletion')})};

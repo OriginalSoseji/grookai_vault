@@ -24,7 +24,14 @@ export async function storePokemonSealedObjectV1({storage,object,bytes,onJournal
   const first=await bucket.download(object.path);
   let created=false;
   if(first.error){
-    if(!storageObjectMissingV1(first.error)) throw new Error(`Collision preflight failed: ${first.error.message}`);
+    let error=first.error;
+    // Older storage-js retains the API's structured error in the Response.
+    if(error.originalError instanceof Response){
+      const response=error.originalError;
+      const detail=await response.clone().json().catch(()=>null);
+      if([400,404].includes(response.status)&&detail?.code==='NoSuchKey') error=detail;
+    }
+    if(!storageObjectMissingV1(error)) throw new Error(`Collision preflight failed: ${error.message}`);
     await onJournal({event:'absent',path:object.path,at:new Date().toISOString()});
     const uploaded=await bucket.upload(object.path,bytes,{upsert:false,contentType:object.image.content_type,cacheControl:'31536000'});
     if(uploaded.error) throw new Error(`Upload failed; retained for collision readback on resume: ${uploaded.error.message}`);
