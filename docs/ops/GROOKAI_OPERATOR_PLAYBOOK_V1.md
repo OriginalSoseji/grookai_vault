@@ -104,6 +104,16 @@ the API project before connecting; noncanonical targets and connection overrides
 fail closed even if a different database has plausible record counts.
 Follow-up evidence: `docs/checkpoints/POKEMON_SEALED_SOURCE_MAINTENANCE_20260907.md`.
 
+Freshness diagnosis (2026-09-07): compare each aging published quote against its
+latest exact warehouse observation before rerunning publication. A completed
+full sync does not imply every product supplied a price. When direct source
+access is blocked, inspect already-retained warehouse response archives over the
+existing operator SSH route, read-only, and require exact database artifact hash
+and byte-size parity before parsing. Never extend observation timestamps from
+the retrieval date. The eight-file proof for 16 missing source quotes and the
+day-seven/day-eight regression tests are recorded in
+`docs/checkpoints/POKEMON_SEALED_FRESHNESS_PROOF_20260907.md`.
+
 Mobile loading amendment (2026-09-07): sealed image signing uses a rolling pool
 of at most eight requests, not fixed groups of four. It retains per-image
 authorization, response order, and whole-page withholding on signing failure.

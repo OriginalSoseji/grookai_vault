@@ -45,3 +45,34 @@ test('unchanged observation qualification stays stable across later syncs',()=>{
   const i=fixture(),a=build(i);i.today='2026-09-08';i.sync={...i.sync,id:'next',observed_on:'2026-09-08'};
   const b=build(i);assert.deepEqual(a.prices.qualifications,b.prices.qualifications);assert.notEqual(a.prices.releases[0].id,b.prices.releases[0].id);
 });
+
+test('seven-day quote expires on day eight even when the warehouse sync is fresh',()=>{
+  const input=fixture();
+  input.prices[0].observed_on='2026-08-31';
+  const before=build(input);
+  assert.equal(before.prices.members.length,20);
+  assert.equal(before.prices.qualifications.find(q=>q.variant_id===input.baseline[0].variant_id).observed_on,'2026-08-31');
+  input.today='2026-09-08';
+  input.sync={...input.sync,id:'fresh-next-day-sync',observed_on:'2026-09-08'};
+  const after=build(input);
+  assert.equal(after.prices.members.length,19);
+  assert.equal(after.images.release_members.length,19);
+  assert.deepEqual(after.exclusions,[{variant_id:input.baseline[0].variant_id,reason:'missing_stale_or_invalid_exact_market_price'}]);
+  assert.ok(after.prices.qualifications.every(q=>q.variant_id!==input.baseline[0].variant_id));
+  assert.ok(after.images.evidence.every(e=>e.variant_id!==input.baseline[0].variant_id));
+  assert.equal(input.prices[0].observed_on,'2026-08-31');
+});
+
+test('a genuinely new exact observation restores an expired quote without changing image provenance',()=>{
+  const input=fixture();
+  input.today='2026-09-08';
+  input.sync={...input.sync,observed_on:'2026-09-08'};
+  input.prices[0].observed_on='2026-08-31';
+  assert.equal(build(input).exclusions.length,1);
+  input.prices[0]={...input.prices[0],observed_on:'2026-09-08',payload_hash:'9'.repeat(64)};
+  const restored=build(input);
+  assert.equal(restored.exclusions.length,0);
+  assert.equal(restored.prices.members.length,20);
+  assert.equal(restored.images.release_members.length,20);
+  assert.equal(restored.images.evidence.find(e=>e.variant_id===input.baseline[0].variant_id).retrieved_at,input.baseline[0].image_evidence.retrieved_at);
+});
