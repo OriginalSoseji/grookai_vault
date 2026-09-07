@@ -86,14 +86,16 @@ async function pool(items, action) {
 }
 const prices = await pool(groups, async group => {
   const url = `https://tcgcsv.com/tcgplayer/${group}/prices`;
+  const groupRows = aging.filter(a => `${a.category_id}/${a.group_id}` === group);
+  const unavailableRows = () => groupRows.map(row => ({...row,disposition:'source_unavailable'}));
   try {
     const r = await get(url);
-    if (r.status !== 200) return {group,url,status:r.status,skipped:r.skipped??null,disposition:'source_unavailable'};
+    if (r.status !== 200) return {group,url,status:r.status,skipped:r.skipped??null,disposition:'source_unavailable',rows:unavailableRows()};
     const payload = JSON.parse(r.bytes);
     await fs.writeFile(path.join(args.out, 'source', `${group.replace('/','-')}-prices.json`), r.bytes, {flag:'wx'});
-    return {group,url,status:r.status,sha256:r.sha256,rows:aging.filter(a => `${a.category_id}/${a.group_id}` === group)
+    return {group,url,status:r.status,sha256:r.sha256,rows:groupRows
       .map(row => ({...row,...comparePokemonSealedSourcePriceV1(row,payload)}))};
-  } catch (error) { return {group,url,disposition:'source_unavailable',error:error.message}; }
+  } catch (error) { return {group,url,disposition:'source_unavailable',error:error.message,rows:unavailableRows()}; }
 });
 const images = await pool(retries, async row => {
   const attempts = [];
