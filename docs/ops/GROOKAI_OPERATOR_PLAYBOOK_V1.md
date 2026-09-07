@@ -303,6 +303,20 @@ adb devices -l
 ```
 
 Use an emulator for repeatable flows that do not require a physical device.
+
+Sealed acceptance follow-up (2026-09-07):
+`docs/checkpoints/SEALED_SAMSUNG_ACCEPTANCE_20260907.md` records the physical
+Samsung in-place update and search-focus repair. Before installing, compare APK
+signing certificate fingerprints with the installed base APK. Never uninstall
+the founder's app just to replace a development certificate with a CI beta key.
+Use the existing public-env profile build with the matching certificate instead.
+On Windows, ADB is under `%LOCALAPPDATA%/Android/Sdk/platform-tools/adb.exe` when
+absent from PATH. Hidden `.android/debug.keystore` files require `-Force` during
+PowerShell discovery; an unqualified listing is not proof a key is missing.
+For iPhone acceptance, CoreDevice availability and `passcodeRequired=false` are
+not sufficient: honor Xcode's actual locked-device error. Cancel the owned test
+process and preserve logs rather than leave a probe waiting indefinitely.
+
 Use Samsung/physical Android only for hardware, signing, deep-link, camera, or
 real-device acceptance evidence. The unattended locked-device harness is
 documented in `docs/runbooks/ANDROID_LOCKED_ACCEPTANCE_DEBUG.md`.
