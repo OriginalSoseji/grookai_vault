@@ -30,6 +30,22 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ## 1. Source-Of-Truth Order
 
+### Pokemon sealed production work
+
+The end-to-end founder authority and scope are in
+`docs/contracts/POKEMON_SEALED_PRODUCTION_V1.md` (2026-09-07).
+Worktree: `C:/grookai_vault_pokemon_sealed`; branch:
+`agent/pokemon-sealed-production-v1`. Immutable operator evidence is under
+`C:/grookai_vault_operator_artifacts/pokemon_sealed/`.
+Use `pokemon_sealed_inventory_v1.mjs`, `pokemon_sealed_plan_v1.mjs`, and
+`pokemon_sealed_apply_v1.mjs` in `scripts/audits` for inventory, frozen planning,
+rollback canary, exact apply, and readback. Storage uses
+`pokemon_sealed_image_acquisition_v1.mjs` followed by
+`pokemon_sealed_storage_v1.mjs`: content-addressed Pokemon-only paths,
+upsert disabled, exact byte readback, and resumable journals. Never infer that
+downloaded local bytes have been uploaded or that an inactive release is visible.
+Keep MTG/One Piece pointers and all card/Vault records outside this authority.
+
 Use evidence in this order:
 
 1. Fresh direct readback from the actual system being discussed.
