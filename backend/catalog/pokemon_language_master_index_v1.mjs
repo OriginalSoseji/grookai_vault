@@ -325,10 +325,10 @@ export function mergePokemonLanguageCandidateSnapshotV1({
   }
   if (baseline.cards.length >= 100 &&
       current.cards.length < baseline.cards.length * catastrophicDropRatio) {
-    throw new Error(
+    throw Object.assign(new Error(
       `Catastrophic ${current.language} source regression: ` +
       `${baseline.cards.length} -> ${current.cards.length}.`,
-    );
+    ), { code: "POKEMON_LANGUAGE_SOURCE_REGRESSION" });
   }
 
   const sets = new Map(baseline.sets.map((row) => [row.source_set_id, row]));
@@ -412,6 +412,45 @@ export function mergePokemonLanguageCandidateSnapshotV1({
       left.source_anomaly_id.localeCompare(right.source_anomaly_id)
     ),
   };
+}
+
+export async function mergePokemonLanguageCandidateWithRecoveryV1({
+  baseline = null,
+  current,
+  loadFallbackCurrent = null,
+}) {
+  try {
+    return {
+      snapshot: mergePokemonLanguageCandidateSnapshotV1({ baseline, current }),
+      recovery: null,
+    };
+  } catch (error) {
+    if (error.code !== "POKEMON_LANGUAGE_SOURCE_REGRESSION" ||
+        current.source !== "tcgdex_v2" || !loadFallbackCurrent) throw error;
+    const recovery = {
+      trigger: error.code,
+      status: "fallback_rejected",
+      rejected_source: summarizePokemonLanguageCandidateSnapshotV1(current),
+      baseline: summarizePokemonLanguageCandidateSnapshotV1(baseline),
+      fallback_source: null,
+      canonical_authority: false,
+    };
+    try {
+      const fallback = await loadFallbackCurrent();
+      if (fallback?.source !== "tcgdex_github_snapshot" ||
+          !/^[a-f0-9]{40}$/.test(fallback.source_commit_sha ?? "") ||
+          fallback.canonical_authority !== false) {
+        throw new Error("Regression recovery requires a pinned candidate-only GitHub snapshot.");
+      }
+      recovery.fallback_source = summarizePokemonLanguageCandidateSnapshotV1(fallback);
+      const snapshot = mergePokemonLanguageCandidateSnapshotV1({ baseline, current: fallback });
+      recovery.status = "candidate_recovered";
+      return { snapshot, recovery };
+    } catch (fallbackError) {
+      fallbackError.source_recovery = recovery;
+      throw fallbackError;
+    }
+  }
 }
 
 export function summarizePokemonLanguageCandidateSnapshotV1(snapshot) {

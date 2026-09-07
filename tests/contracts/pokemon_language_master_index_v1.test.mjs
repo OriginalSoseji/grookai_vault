@@ -9,6 +9,7 @@ import zlib from "node:zlib";
 import {
   buildPokemonLanguageCandidateIndexReconciliationV1,
   mergePokemonLanguageCandidateSnapshotV1,
+  mergePokemonLanguageCandidateWithRecoveryV1,
   normalizePokemonLanguageSourceSnapshotV1,
   POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
   summarizePokemonLanguageCandidateSnapshotV1,
@@ -287,6 +288,130 @@ test("catastrophic source regression fails closed", () => {
     () => mergePokemonLanguageCandidateSnapshotV1({ baseline, current }),
     /Catastrophic de source regression/,
   );
+});
+
+function recoveryFixture(count, { language = "ko", github = false } = {}) {
+  return normalizePokemonLanguageSourceSnapshotV1({
+    language,
+    source: github ? "tcgdex_github_snapshot" : "tcgdex_v2",
+    sourceCommitSha: github ? "a".repeat(40) : null,
+    sets: [{ id: "sv01", name: "Set", cardCount: { total: count } }],
+    cards: Array.from({ length: count }, (_, i) => ({
+      id: `sv01-${i + 1}`, localId: String(i + 1), name: `Card ${i + 1}`,
+    })),
+  });
+}
+
+test("healthy API refresh does not request fallback", async () => {
+  const current = recoveryFixture(100);
+  const result = await mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline: current, current,
+    loadFallbackCurrent: () => assert.fail("healthy API must not invoke fallback"),
+  });
+  assert.equal(result.recovery, null);
+  assert.equal(result.snapshot.cards.length, 100);
+});
+
+test("coverage regression recovers once from pinned candidate evidence", async () => {
+  const baseline = recoveryFixture(100, { github: true });
+  const preserved = JSON.stringify(baseline);
+  let calls = 0;
+  const result = await mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10),
+    loadFallbackCurrent: async () => {
+      calls += 1;
+      return recoveryFixture(101, { github: true });
+    },
+  });
+  assert.equal(calls, 1);
+  assert.equal(result.snapshot.cards.length, 101);
+  assert.equal(result.snapshot.canonical_authority, false);
+  assert.equal(result.recovery.status, "candidate_recovered");
+  assert.equal(result.recovery.rejected_source.card_count, 10);
+  assert.equal(result.recovery.baseline.card_count, 100);
+  assert.equal(result.recovery.fallback_source.source_commit_sha, "a".repeat(40));
+  assert.equal(JSON.stringify(baseline), preserved);
+});
+
+test("incomplete fallback still fails the original coverage guard", async () => {
+  const baseline = recoveryFixture(100);
+  const before = JSON.stringify(baseline);
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10),
+    loadFallbackCurrent: async () => recoveryFixture(20, { github: true }),
+  }), (error) => {
+    assert.equal(error.code, "POKEMON_LANGUAGE_SOURCE_REGRESSION");
+    assert.equal(error.source_recovery.status, "fallback_rejected");
+    assert.equal(error.source_recovery.fallback_source.card_count, 20);
+    return true;
+  });
+  assert.equal(JSON.stringify(baseline), before);
+});
+
+test("recovery rejects unpinned or canonical-authority fallbacks", async () => {
+  for (const override of [{ source_commit_sha: null }, { canonical_authority: true }]) {
+    await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+      baseline: recoveryFixture(100), current: recoveryFixture(10),
+      loadFallbackCurrent: async () => ({ ...recoveryFixture(100, { github: true }), ...override }),
+    }), /pinned candidate-only GitHub snapshot/);
+  }
+});
+
+test("coordinate conflicts do not trigger fallback or pass through recovery", async () => {
+  const baseline = recoveryFixture(100);
+  const conflict = recoveryFixture(100);
+  conflict.cards[0].printed_number = "999";
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: conflict,
+    loadFallbackCurrent: () => assert.fail("identity conflict is not source outage"),
+  }), /coordinate changed/);
+  const fallback = recoveryFixture(100, { github: true });
+  fallback.cards[0].printed_number = "999";
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10), loadFallbackCurrent: async () => fallback,
+  }), /coordinate changed/);
+});
+
+test("wrong-language and failed fallback keep baseline protection", async () => {
+  const baseline = recoveryFixture(100);
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10),
+    loadFallbackCurrent: async () => recoveryFixture(100, { language: "fr", github: true }),
+  }), /does not match current scope/);
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10),
+    loadFallbackCurrent: async () => { throw new Error("provider unavailable"); },
+  }), (error) => {
+    assert.equal(error.message, "provider unavailable");
+    assert.equal(error.source_recovery.status, "fallback_rejected");
+    return true;
+  });
+});
+
+test("offline fixtures and already-GitHub regressions cannot recurse to fallback", async () => {
+  const baseline = recoveryFixture(100);
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10),
+  }), /Catastrophic/);
+  await assert.rejects(mergePokemonLanguageCandidateWithRecoveryV1({
+    baseline, current: recoveryFixture(10, { github: true }),
+    loadFallbackCurrent: () => assert.fail("no fallback recursion"),
+  }), /Catastrophic/);
+  const workerSource = fs.readFileSync("scripts/workers/pokemon_language_master_index_refresh_v1.mjs", "utf8");
+  assert.match(workerSource, /loadFallbackCurrent: options\.sourceDir \? null/);
+  const workflow = fs.readFileSync(".github/workflows/pokemon-master-index-refresh.yml", "utf8");
+  assert.match(workflow, /recovered\.length === 0/);
+  assert.match(workflow, /Primary API regressions recovered from pinned GitHub evidence/);
+});
+
+test("worker retains returned unavailable fallback evidence before rejecting its status", () => {
+  const source = fs.readFileSync("scripts/workers/pokemon_language_master_index_refresh_v1.mjs", "utf8");
+  const recovery = source.slice(source.indexOf("loadFallbackCurrent: options.sourceDir"));
+  const persisted = recovery.indexOf('path.join(evidenceDir, "fallback.json")');
+  const hashed = recovery.indexOf("fallback_sha256: pokemonLanguageFingerprint(fallback)");
+  const statusGate = recovery.indexOf('if (fallback.status !== "available")');
+  assert.ok(persisted > 0 && hashed > persisted && statusGate > hashed);
+  assert.doesNotMatch(recovery.slice(0, persisted), /fallback\.status/);
 });
 
 test("worker plan and apply are deterministic with fixture sources", () => {

@@ -218,6 +218,7 @@ jobs:
             const failures = summary.required_live_language_failures || [];
             const errors = summary.source_error_languages || [];
             const anomalies = summary.source_anomaly_languages || [];
+            const recovered = summary.source_recovered_languages || [];
             const englishHealthPath = `${process.env.REPORT_DIR}/source_health.json`;
             const englishHealth = fs.existsSync(englishHealthPath)
               ? JSON.parse(fs.readFileSync(englishHealthPath, 'utf8'))
@@ -232,7 +233,7 @@ jobs:
             });
             const existing = issues.find((issue) => issue.title === title);
             if (failures.length === 0 && errors.length === 0 &&
-                anomalies.length === 0 && englishHealth?.status === 'healthy' &&
+                anomalies.length === 0 && recovered.length === 0 && englishHealth?.status === 'healthy' &&
                 !japaneseHealth) {
               if (existing) await github.rest.issues.update({
                 owner: context.repo.owner, repo: context.repo.repo,
@@ -246,6 +247,7 @@ jobs:
               `Required live scopes without a usable baseline: ${JSON.stringify(failures)}`,
               `Source errors with preserved baselines: ${JSON.stringify(errors)}`,
               `Scopes with quarantined source anomalies: ${JSON.stringify(anomalies)}`,
+              `Primary API regressions recovered from pinned GitHub evidence: ${JSON.stringify(recovered)}`,
               `English source inventory: ${JSON.stringify(englishHealth)}`,
               `Japanese source discovery: ${JSON.stringify(japaneseHealth)}`,
               '',
