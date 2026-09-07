@@ -65,7 +65,7 @@ checks. This is not evidence that the entire repository shipcheck passed.
   web parity/accessibility, drift, and secret scanning.
 - Targeted sealed contracts: 43/43 passed. Web runtime tests: 9/9. Flutter
   sealed-client tests: 7/7. Web production build and scoped Flutter analysis passed.
-- Samsung SM-S908U `R5CT3291F6E` was rebuilt and installed without clearing data.
+- The Samsung SM-S908U test device was rebuilt and installed without clearing data.
   APK SHA-256:
   `38578089da15926e46cac0fa1db365eed10b5c42da1517955a75a3a6d7782227f`.
   This is a local profile build, version 1.0.0+312, not a new store release.
