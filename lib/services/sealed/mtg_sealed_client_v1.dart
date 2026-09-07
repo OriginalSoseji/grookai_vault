@@ -4,6 +4,10 @@ const bool kMtgSealedClientV1Enabled = bool.fromEnvironment(
   'MTG_SEALED_CLIENT_V1_ENABLED',
   defaultValue: false,
 );
+const bool kPokemonSealedClientV1Enabled = bool.fromEnvironment(
+  'POKEMON_SEALED_CLIENT_V1_ENABLED',
+  defaultValue: false,
+);
 const int kMtgSealedImageSignedUrlTtlSecondsV1 = 60 * 60;
 const int kMtgSealedImageSigningConcurrencyV1 = 4;
 
@@ -141,10 +145,17 @@ abstract interface class MtgSealedClientTransportV1 {
 }
 
 class SupabaseMtgSealedClientTransportV1 implements MtgSealedClientTransportV1 {
-  const SupabaseMtgSealedClientTransportV1({required SupabaseClient client})
-    : _client = client;
+  const SupabaseMtgSealedClientTransportV1({
+    required SupabaseClient client,
+    this.gameKey = 'mtg',
+    this.packageForm,
+    this.languageCode,
+  }) : _client = client;
 
   final SupabaseClient _client;
+  final String gameKey;
+  final String? packageForm;
+  final String? languageCode;
 
   @override
   Future<bool> isAuthenticated() async => _client.auth.currentUser != null;
@@ -156,13 +167,20 @@ class SupabaseMtgSealedClientTransportV1 implements MtgSealedClientTransportV1 {
     required int limit,
     required int offset,
   }) {
+    if (gameKey != this.gameKey) {
+      return Future.error(StateError('Sealed game scope mismatch'));
+    }
     return _client.rpc(
-      'get_active_sealed_product_pricing_v3',
+      gameKey == 'pokemon'
+          ? 'get_active_pokemon_sealed_catalog_v1'
+          : 'get_active_sealed_product_pricing_v3',
       params: <String, dynamic>{
         'p_game_key': gameKey,
         'p_query': query,
         'p_limit': limit,
         'p_offset': offset,
+        if (gameKey == 'pokemon') 'p_package_form': packageForm,
+        if (gameKey == 'pokemon') 'p_language_code': languageCode,
       },
     );
   }
@@ -177,7 +195,9 @@ class SupabaseMtgSealedClientTransportV1 implements MtgSealedClientTransportV1 {
       throw StateError('Invalid signed sealed image TTL.');
     }
     final response = await _client.functions.invoke(
-      'mtg-sealed-sign-image-v1',
+      gameKey == 'pokemon'
+          ? 'pokemon-sealed-sign-image-v1'
+          : 'mtg-sealed-sign-image-v1',
       body: <String, dynamic>{
         'storage_bucket': bucket,
         'object_path': objectPath,
@@ -204,6 +224,7 @@ class MtgSealedClientV1 {
   const MtgSealedClientV1({
     required MtgSealedClientTransportV1 transport,
     bool enabled = kMtgSealedClientV1Enabled,
+    this.gameKey = 'mtg',
   }) : _transport = transport,
        _enabled = enabled;
 
@@ -213,11 +234,12 @@ class MtgSealedClientV1 {
   );
   static final RegExp _sha256 = RegExp(r'^[0-9a-f]{64}$');
   static final RegExp _imagePath = RegExp(
-    r'^sealed/mtg/sha256/([0-9a-f]{2})/([0-9a-f]{64})\.(jpg|png|gif|webp)$',
+    r'^sealed/(?:mtg|pokemon)/sha256/([0-9a-f]{2})/([0-9a-f]{64})\.(jpg|png|gif|webp)$',
   );
 
   final MtgSealedClientTransportV1 _transport;
   final bool _enabled;
+  final String gameKey;
 
   Future<MtgSealedCatalogStateV1> load({
     String? query,
@@ -233,12 +255,12 @@ class MtgSealedClientV1 {
         return MtgSealedCatalogStateV1.signedOut;
       }
       final response = await _transport.fetchRows(
-        gameKey: 'mtg',
+        gameKey: gameKey,
         query: _text(query),
         limit: limit.clamp(1, 100).toInt(),
         offset: offset < 0 ? 0 : offset,
       );
-      final classified = classifyRows(response);
+      final classified = classifyRows(response, gameKey: gameKey);
       if (classified.status != MtgSealedCatalogStatusV1.ready) {
         return classified;
       }
@@ -281,7 +303,11 @@ class MtgSealedClientV1 {
     }
   }
 
-  static MtgSealedCatalogStateV1 classifyRows(dynamic value, {DateTime? now}) {
+  static MtgSealedCatalogStateV1 classifyRows(
+    dynamic value, {
+    DateTime? now,
+    String gameKey = 'mtg',
+  }) {
     if (value is! List) {
       return const MtgSealedCatalogStateV1(
         status: MtgSealedCatalogStatusV1.error,
@@ -291,7 +317,10 @@ class MtgSealedClientV1 {
     if (value.isEmpty) return MtgSealedCatalogStateV1.empty;
 
     final parsed = value
-        .map((row) => _parseRow(row, now?.toUtc() ?? DateTime.now().toUtc()))
+        .map(
+          (row) =>
+              _parseRow(row, now?.toUtc() ?? DateTime.now().toUtc(), gameKey),
+        )
         .toList(growable: false);
     final invalidCount = parsed
         .where((row) => row.kind == _RowKind.invalid)
@@ -324,7 +353,7 @@ class MtgSealedClientV1 {
     );
   }
 
-  static _ParsedRow _parseRow(dynamic value, DateTime now) {
+  static _ParsedRow _parseRow(dynamic value, DateTime now, String gameKey) {
     if (value is! Map) return const _ParsedRow(_RowKind.invalid);
     final row = Map<String, dynamic>.from(value);
     if (<String>[
@@ -356,8 +385,23 @@ class MtgSealedClientV1 {
         packageForm == null ||
         observedOn == null ||
         marketPrice == null ||
-        _text(row['game_key']) != 'mtg' ||
-        _text(row['language_code']) != 'en' ||
+        !const ['mtg', 'pokemon'].contains(gameKey) ||
+        _text(row['game_key']) != gameKey ||
+        !(gameKey == 'mtg'
+                ? const ['en']
+                : const [
+                    'en',
+                    'ja',
+                    'zh',
+                    'ko',
+                    'fr',
+                    'de',
+                    'it',
+                    'pt',
+                    'es',
+                    'ru',
+                  ])
+            .contains(_text(row['language_code'])) ||
         _text(row['source_provider']) != 'tcgplayer' ||
         _text(row['currency']) != 'USD') {
       return const _ParsedRow(_RowKind.invalid);
@@ -387,6 +431,7 @@ class MtgSealedClientV1 {
           }[pathMatch.group(3)];
     if (imageStorageBucket != 'user-card-images' ||
         pathMatch == null ||
+        !(imageObjectPath?.startsWith('sealed/$gameKey/sha256/') ?? false) ||
         imageContentSha256 == null ||
         !_sha256.hasMatch(imageContentSha256) ||
         pathMatch.group(1) != imageContentSha256.substring(0, 2) ||
@@ -414,7 +459,7 @@ class MtgSealedClientV1 {
         variantId: variantId,
         canonicalName: canonicalName,
         packageForm: packageForm,
-        languageCode: 'en',
+        languageCode: _text(row['language_code'])!,
         regionCode: _text(row['region_code']),
         edition: _text(row['edition']),
         wave: _text(row['wave']),

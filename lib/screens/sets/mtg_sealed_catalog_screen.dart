@@ -6,9 +6,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/sealed/mtg_sealed_client_v1.dart';
 
 class MtgSealedCatalogScreen extends StatefulWidget {
-  const MtgSealedCatalogScreen({super.key, this.client});
+  const MtgSealedCatalogScreen({super.key, this.client, this.gameKey = 'mtg'});
 
   final MtgSealedClientV1? client;
+  final String gameKey;
 
   @override
   State<MtgSealedCatalogScreen> createState() => _MtgSealedCatalogScreenState();
@@ -16,12 +17,24 @@ class MtgSealedCatalogScreen extends StatefulWidget {
 
 class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
   final TextEditingController _searchController = TextEditingController();
-  late final MtgSealedClientV1 _client =
+  String? _packageForm;
+  String? _languageCode;
+  int _offset = 0;
+  int _request = 0;
+  String get _gameLabel => widget.gameKey == 'pokemon' ? 'Pokemon' : 'MTG';
+  MtgSealedClientV1 get _client =>
       widget.client ??
       MtgSealedClientV1(
         transport: SupabaseMtgSealedClientTransportV1(
           client: Supabase.instance.client,
+          gameKey: widget.gameKey,
+          packageForm: _packageForm,
+          languageCode: _languageCode,
         ),
+        gameKey: widget.gameKey,
+        enabled: widget.gameKey == 'pokemon'
+            ? kPokemonSealedClientV1Enabled
+            : kMtgSealedClientV1Enabled,
       );
 
   MtgSealedCatalogStateV1 _state = MtgSealedCatalogStateV1.loading;
@@ -39,12 +52,14 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
   }
 
   Future<void> _load() async {
+    final request = ++_request;
     setState(() => _state = MtgSealedCatalogStateV1.loading);
     final next = await _client.load(
       query: _searchController.text.trim(),
       limit: 24,
+      offset: _offset,
     );
-    if (mounted) setState(() => _state = next);
+    if (mounted && request == _request) setState(() => _state = next);
   }
 
   @override
@@ -53,7 +68,7 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'MTG Sealed',
+          '$_gameLabel Sealed',
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w700,
             letterSpacing: 0,
@@ -78,19 +93,135 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
                 key: const Key('mtg-sealed-search'),
                 controller: _searchController,
                 textInputAction: TextInputAction.search,
-                onSubmitted: (_) => _load(),
+                onSubmitted: (_) {
+                  _offset = 0;
+                  _load();
+                },
                 decoration: InputDecoration(
                   hintText: 'Search boxes, bundles, or decks',
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: IconButton(
                     tooltip: 'Search',
-                    onPressed: _load,
+                    onPressed: () {
+                      _offset = 0;
+                      _load();
+                    },
                     icon: const Icon(Icons.arrow_forward),
                   ),
                 ),
               ),
             ),
+            if (widget.gameKey == 'pokemon')
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: DropdownButton<String>(
+                        value: _packageForm ?? '',
+                        isExpanded: true,
+                        items:
+                            const {
+                                  '': 'All packages',
+                                  'booster_box': 'Booster boxes',
+                                  'display': 'Booster displays',
+                                  'pack': 'Booster packs',
+                                  'sleeved_pack': 'Sleeved packs',
+                                  'kit': 'Kits / ETBs',
+                                  'tin': 'Tins',
+                                  'collection': 'Collections',
+                                  'bundle': 'Bundles',
+                                  'deck': 'Decks',
+                                  'deck_display': 'Deck displays',
+                                  'promo_pack': 'Promo packs',
+                                  'case': 'Cases',
+                                }.entries
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e.key,
+                                    child: Text(e.value),
+                                  ),
+                                )
+                                .toList(),
+                        onChanged: (v) {
+                          setState(() {
+                            _packageForm = v == '' ? null : v;
+                            _offset = 0;
+                          });
+                          _load();
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: DropdownButton<String>(
+                        value: _languageCode ?? '',
+                        isExpanded: true,
+                        items:
+                            const {
+                                  '': 'All languages',
+                                  'en': 'English',
+                                  'ja': 'Japanese',
+                                  'zh': 'Chinese',
+                                  'ko': 'Korean',
+                                  'fr': 'French',
+                                  'de': 'German',
+                                  'it': 'Italian',
+                                  'pt': 'Portuguese',
+                                  'es': 'Spanish',
+                                  'ru': 'Russian',
+                                }.entries
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e.key,
+                                    child: Text(e.value),
+                                  ),
+                                )
+                                .toList(),
+                        onChanged: (v) {
+                          setState(() {
+                            _languageCode = v == '' ? null : v;
+                            _offset = 0;
+                          });
+                          _load();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             Expanded(child: _buildContent(context)),
+            if (_state.status == MtgSealedCatalogStatusV1.ready || _offset > 0)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    tooltip: 'Previous page',
+                    icon: const Icon(Icons.chevron_left),
+                    onPressed:
+                        _offset == 0 ||
+                            _state.status == MtgSealedCatalogStatusV1.loading
+                        ? null
+                        : () {
+                            _offset = (_offset - 24).clamp(0, 100000);
+                            _load();
+                          },
+                  ),
+                  Text('Page ${_offset ~/ 24 + 1}'),
+                  IconButton(
+                    tooltip: 'Next page',
+                    icon: const Icon(Icons.chevron_right),
+                    onPressed:
+                        _state.status != MtgSealedCatalogStatusV1.ready ||
+                            _state.rows.length < 24
+                        ? null
+                        : () {
+                            _offset += 24;
+                            _load();
+                          },
+                  ),
+                ],
+              ),
           ],
         ),
       ),
@@ -109,12 +240,13 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
           actionLabel: 'Clear search',
           onAction: () {
             _searchController.clear();
+            _offset = 0;
             _load();
           },
         );
       case MtgSealedCatalogStatusV1.signedOut:
-        return const _MtgSealedMessage(
-          title: 'Sign in to browse MTG sealed products',
+        return _MtgSealedMessage(
+          title: 'Sign in to browse $_gameLabel sealed products',
         );
       case MtgSealedCatalogStatusV1.stale:
         return _MtgSealedMessage(
@@ -130,19 +262,19 @@ class _MtgSealedCatalogScreenState extends State<MtgSealedCatalogScreen> {
         );
       case MtgSealedCatalogStatusV1.offline:
         return _MtgSealedMessage(
-          title: 'MTG sealed browsing is temporarily offline',
+          title: '$_gameLabel sealed browsing is temporarily offline',
           actionLabel: 'Retry',
           onAction: _load,
         );
       case MtgSealedCatalogStatusV1.error:
         return _MtgSealedMessage(
-          title: 'MTG sealed products could not load',
+          title: '$_gameLabel sealed products could not load',
           actionLabel: 'Retry',
           onAction: _load,
         );
       case MtgSealedCatalogStatusV1.disabled:
-        return const _MtgSealedMessage(
-          title: 'MTG sealed browsing is temporarily unavailable',
+        return _MtgSealedMessage(
+          title: '$_gameLabel sealed browsing is temporarily unavailable',
         );
     }
   }
@@ -241,7 +373,7 @@ class _MtgSealedProductTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    _packageLabel(row.packageForm),
+                    '${_packageLabel(row.packageForm)} - ${const {'en': 'English', 'ja': 'Japanese', 'zh': 'Chinese', 'ko': 'Korean', 'fr': 'French', 'de': 'German', 'it': 'Italian', 'pt': 'Portuguese', 'es': 'Spanish', 'ru': 'Russian'}[row.languageCode] ?? row.languageCode}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(

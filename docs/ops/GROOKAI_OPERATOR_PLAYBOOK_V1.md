@@ -30,6 +30,47 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ## 1. Source-Of-Truth Order
 
+### Pokemon sealed production work
+
+The signed-in Pokemon release is active. Web enablement is declared in
+`apps/web/vercel.json`; Android builds use `-EnablePokemonSealed` with the existing
+public-environment build script. Preserve `-EnableMtgSealed` when building both.
+The signed APK workflow reads the matching repository variables (default off).
+The daily `pokemon-sealed-health-v1.yml` workflow inventories source products,
+builds a read-only refresh proposal, verifies pointers/coverage/access, and opens
+one deduplicated GitHub issue for failures, source drift, new candidates or prices
+approaching expiry. `POKEMON_SEALED_REFRESH_ACTIVE=true` enables the separate
+bounded paired-release refresh before the read-only audit. Keep this variable
+off until the exact worker's rollback, durable apply and idempotency proofs pass.
+The worker `pokemon_sealed_refresh_v1.mjs` operates only over frozen baseline
+`0bf7970b-842e-556c-9c6f-d541d1456212`: no new identities or Storage writes.
+It stops on source drift, more than five percent coverage loss, or a price ratio
+outside one-third to three times the prior quote. It preserves original image
+retrieval dates and moves price/image pointers atomically. Existing seven-day
+stale-price exclusion remains enforced; never extend timestamps. Maintenance-only
+source gaps open/update an issue without falsely reporting pipeline execution as
+failed. Actual refresh failures retain their failing job result and artifacts.
+The health check also creates a short-lived session for the existing non-founder
+App Review identity, calls the deployed authenticated signer, verifies three
+complete image byte hashes, and revokes only that new session. It never creates
+an account, changes credentials, sends email, or logs session tokens. The workflow
+uses existing canonical Supabase secrets. `pokemon_sealed_web_smoke_v1.mjs` uses
+the same bounded identity for signed-in SSR checks without reading browser cookies.
+
+The end-to-end founder authority and scope are in
+`docs/contracts/POKEMON_SEALED_PRODUCTION_V1.md` (2026-09-07).
+Worktree: `C:/grookai_vault_pokemon_sealed`; branch:
+`agent/pokemon-sealed-production-v1`. Immutable operator evidence is under
+`C:/grookai_vault_operator_artifacts/pokemon_sealed/`.
+Use `pokemon_sealed_inventory_v1.mjs`, `pokemon_sealed_plan_v1.mjs`, and
+`pokemon_sealed_apply_v1.mjs` in `scripts/audits` for inventory, frozen planning,
+rollback canary, exact apply, and readback. Storage uses
+`pokemon_sealed_image_acquisition_v1.mjs` followed by
+`pokemon_sealed_storage_v1.mjs`: content-addressed Pokemon-only paths,
+upsert disabled, exact byte readback, and resumable journals. Never infer that
+downloaded local bytes have been uploaded or that an inactive release is visible.
+Keep MTG/One Piece pointers and all card/Vault records outside this authority.
+
 Use evidence in this order:
 
 1. Fresh direct readback from the actual system being discussed.

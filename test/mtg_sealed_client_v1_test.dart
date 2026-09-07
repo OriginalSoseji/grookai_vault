@@ -39,6 +39,41 @@ void main() {
     expect(state.rows.single.marketPrice, 125.5);
     expect(state.rows.single.imageUrl, isNull);
   });
+  test('Pokemon language and image namespace remain isolated from MTG', () {
+    final pokemon = _row({
+      'game_key': 'pokemon',
+      'language_code': 'ja',
+      'image_object_path': 'sealed/pokemon/sha256/aa/$_hash.jpg',
+    });
+    final result = MtgSealedClientV1.classifyRows(
+      [pokemon],
+      now: now,
+      gameKey: 'pokemon',
+    );
+    expect(result.status, MtgSealedCatalogStatusV1.ready);
+    expect(result.rows.single.languageCode, 'ja');
+    expect(
+      MtgSealedClientV1.classifyRows([pokemon], now: now).status,
+      MtgSealedCatalogStatusV1.error,
+    );
+    expect(
+      MtgSealedClientV1.classifyRows(
+        [_row()],
+        now: now,
+        gameKey: 'pokemon',
+      ).status,
+      MtgSealedCatalogStatusV1.error,
+    );
+    pokemon['image_object_path'] = 'sealed/mtg/sha256/aa/$_hash.jpg';
+    expect(
+      MtgSealedClientV1.classifyRows(
+        [pokemon],
+        now: now,
+        gameKey: 'pokemon',
+      ).status,
+      MtgSealedCatalogStatusV1.missingImage,
+    );
+  });
 
   test('stale, future, and missing image evidence is withheld', () {
     expect(

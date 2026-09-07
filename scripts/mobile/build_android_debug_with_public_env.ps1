@@ -2,6 +2,7 @@ param(
     [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")),
     [string]$EnvFile = ".env.local",
     [switch]$EnableMtgSealed,
+    [switch]$EnablePokemonSealed,
     [ValidateSet("debug", "profile", "release")]
     [string]$BuildMode = "debug",
     [ValidateSet("", "android-arm", "android-arm64", "android-x64")]
@@ -48,6 +49,7 @@ $publicDefines = [ordered]@{
     SUPABASE_PUBLISHABLE_KEY = Read-DotEnvValue -Path $resolvedEnvFile -Name "SUPABASE_PUBLISHABLE_KEY"
     COLLECTOR_MEMORIES_ENABLED = "true"
     MTG_SEALED_CLIENT_V1_ENABLED = if ($EnableMtgSealed) { "true" } else { "false" }
+    POKEMON_SEALED_CLIENT_V1_ENABLED = if ($EnablePokemonSealed) { "true" } else { "false" }
 }
 
 $defineFile = Join-Path ([System.IO.Path]::GetTempPath()) (

@@ -1,4 +1,8 @@
 export const MTG_SEALED_IMAGE_SIGNED_URL_TTL_SECONDS_V1 = 60 * 60;
+export type SealedGameV1 = "mtg" | "pokemon";
+export function isPokemonSealedClientV1Enabled() {
+  return process.env.NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED === "true";
+}
 
 export function isMtgSealedClientV1Enabled() {
   return process.env.NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED === "true";
@@ -6,7 +10,7 @@ export function isMtgSealedClientV1Enabled() {
 
 const MTG_SEALED_RPC_V3 = "get_active_sealed_product_pricing_v3";
 const PRIVATE_IMAGE_BUCKET = "user-card-images";
-const IMAGE_PATH = /^sealed\/mtg\/sha256\/([0-9a-f]{2})\/([0-9a-f]{64})\.(jpg|png|gif|webp)$/;
+const IMAGE_PATH = /^sealed\/(?:mtg|pokemon)\/sha256\/([0-9a-f]{2})\/([0-9a-f]{64})\.(jpg|png|gif|webp)$/;
 const SHA256 = /^[0-9a-f]{64}$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -19,7 +23,7 @@ export type MtgSealedCatalogRowV1 = {
   variantId: string;
   canonicalName: string;
   packageForm: string;
-  languageCode: "en";
+  languageCode: string;
   regionCode: string | null;
   edition: string | null;
   wave: string | null;
@@ -55,7 +59,7 @@ export const MTG_SEALED_LOADING_STATE_V1: MtgSealedCatalogStateV1 = {
 export type MtgSealedClientTransportV1 = {
   isAuthenticated(): Promise<boolean>;
   fetchRows(input: {
-    gameKey: "mtg";
+    gameKey: SealedGameV1;
     query: string | null;
     limit: number;
     offset: number;
@@ -129,7 +133,7 @@ type ParsedRow =
   | { kind: "stale" }
   | { kind: "invalid" };
 
-function parseRow(value: unknown, now: Date): ParsedRow {
+function parseRow(value: unknown, now: Date, gameKey: SealedGameV1): ParsedRow {
   const row = record(value);
   if (!row || containsExternalImageAuthority(row)) return { kind: "invalid" };
 
@@ -147,7 +151,8 @@ function parseRow(value: unknown, now: Date): ParsedRow {
     !familyId || !UUID.test(familyId) ||
     !variantId || !UUID.test(variantId) ||
     !canonicalName || !packageForm || !observedOn || marketPrice == null ||
-    text(row.game_key) !== "mtg" || text(row.language_code) !== "en" ||
+    text(row.game_key) !== gameKey ||
+    !(gameKey === "mtg" ? ["en"] : ["en", "ja", "zh", "ko", "fr", "de", "it", "pt", "es", "ru"]).includes(text(row.language_code) ?? "") ||
     text(row.source_provider) !== "tcgplayer" || text(row.currency) !== "USD"
   ) {
     return { kind: "invalid" };
@@ -175,6 +180,7 @@ function parseRow(value: unknown, now: Date): ParsedRow {
     : null;
   if (
     imageStorageBucket !== PRIVATE_IMAGE_BUCKET || !pathMatch ||
+    !imageObjectPath?.startsWith(`sealed/${gameKey}/sha256/`) ||
     !imageContentSha256 || !SHA256.test(imageContentSha256) ||
     pathMatch[1] !== imageContentSha256.slice(0, 2) ||
     pathMatch[2] !== imageContentSha256 || expectedMime !== imageMime ||
@@ -193,7 +199,7 @@ function parseRow(value: unknown, now: Date): ParsedRow {
       variantId,
       canonicalName,
       packageForm,
-      languageCode: "en",
+      languageCode: text(row.language_code)!,
       regionCode: nullableText(row.region_code),
       edition: nullableText(row.edition),
       wave: nullableText(row.wave),
@@ -216,13 +222,14 @@ function parseRow(value: unknown, now: Date): ParsedRow {
 export function classifyMtgSealedRowsV1(
   value: unknown,
   now: Date = new Date(),
+  gameKey: SealedGameV1 = "mtg",
 ): MtgSealedCatalogStateV1 {
   if (!Array.isArray(value)) {
     return { status: "error", message: "Invalid sealed catalog response." };
   }
   if (value.length === 0) return { status: "empty" };
 
-  const parsed = value.map((row) => parseRow(row, now));
+  const parsed = value.map((row) => parseRow(row, now, gameKey));
   const invalidCount = parsed.filter((row) => row.kind === "invalid").length;
   const staleCount = parsed.filter((row) => row.kind === "stale").length;
   const missingImageCount = parsed.filter((row) => row.kind === "missing_image").length;
@@ -248,22 +255,23 @@ function isNetworkFailure(error: unknown) {
 export async function loadMtgSealedCatalogV1(
   transport: MtgSealedClientTransportV1,
   input: { query?: string | null; limit?: number; offset?: number } = {},
-  options: { enabled?: boolean } = {},
+  options: { enabled?: boolean; gameKey?: SealedGameV1 } = {},
 ): Promise<MtgSealedCatalogStateV1> {
-  if (!(options.enabled ?? isMtgSealedClientV1Enabled())) {
+  const gameKey = options.gameKey ?? "mtg";
+  if (!(options.enabled ?? (gameKey === "pokemon" ? isPokemonSealedClientV1Enabled() : isMtgSealedClientV1Enabled()))) {
     return { status: "disabled" };
   }
 
   try {
     if (!(await transport.isAuthenticated())) return { status: "signed_out" };
     const result = await transport.fetchRows({
-      gameKey: "mtg",
+      gameKey,
       query: input.query?.trim() || null,
       limit: Math.min(Math.max(Math.trunc(input.limit ?? 50), 1), 100),
       offset: Math.max(Math.trunc(input.offset ?? 0), 0),
     });
     if (result.error) throw result.error;
-    const classified = classifyMtgSealedRowsV1(result.data);
+    const classified = classifyMtgSealedRowsV1(result.data, new Date(), gameKey);
     if (classified.status !== "ready") return classified;
 
     const rows = await Promise.all(classified.rows.map(async (row) => ({
