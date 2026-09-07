@@ -154,7 +154,16 @@ test("origin circuit stops new calls and reconciles skipped rows without retries
       source_anomalies_fingerprint_sha256: pokemonLanguageFingerprint(rows) }));
   }
   let calls = 0;
-  t.mock.method(globalThis, "fetch", async () => { calls += 1; return new Response("rate limited", { status: 429 }); });
+  t.mock.method(globalThis, "fetch", async () => {
+    calls += 1;
+    if (calls !== 1) return new Response("{}");
+    return new Response(new ReadableStream({ start(controller) {
+      setTimeout(() => {
+        controller.enqueue(new TextEncoder().encode("rate limited"));
+        controller.close();
+      }, 50);
+    } }), { status: 429 });
+  });
   const result = await runLanguageAnomalyEvidenceV1({ baselineDir: baseline, outDir: path.join(root, "out") });
   assert.ok(calls <= 3);
   assert.equal(result.attempted_requests + result.skipped_requests, result.planned_requests);

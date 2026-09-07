@@ -80,6 +80,10 @@ completed run and must not overwrite it.
 - Final classifier hardening rejects incomplete probe evidence, impossible count
   relationships and duplicate card evidence. Offline replay of all 252 retained
   rows remains exactly equal; no additional provider requests were made.
+- PR 435 review hardened the circuit timing: 401/403/429 response headers stop
+  new calls immediately, even if the response body is slow. The regression test
+  mixes one slow blocked response with fast successful responses and confirms
+  that only the original three in-flight calls can proceed.
 - Daily workflow diagnostic output is a sibling of `candidate_index`, not a
   publishable candidate input. Failure/skip counts and job outcome appear in
   adapter health; they cannot silently close issue 260.

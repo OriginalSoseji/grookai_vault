@@ -122,12 +122,13 @@ export function classifyLanguageAnomalyEvidenceV1(plan, responses) {
     retries: 0, rows };
 }
 
-async function requestEvidence(request) {
+async function requestEvidence(request, onBlocked) {
   let status = null;
   try {
     const response = await fetch(request.url, { redirect: "manual", signal: AbortSignal.timeout(20_000),
       headers: { "User-Agent": "GrookaiLanguageEvidence/1.0 catalog-ops@grookai.com" } });
     status = response.status;
+    if ([401, 403, 429].includes(status)) onBlocked();
     const chunks = [];
     let bytes = 0;
     for await (const chunk of response.body) {
@@ -174,8 +175,8 @@ export async function runLanguageAnomalyEvidenceV1({ baselineDir, outDir }) {
     while (cursor < plan.requests.length) {
       const index = cursor++;
       const request = plan.requests[index];
-      const response = stopped ? { ...request, skipped: true, reason: "origin_circuit_open" } : await requestEvidence(request);
-      if ([401, 403, 429].includes(response.status)) stopped = true;
+      const response = stopped ? { ...request, skipped: true, reason: "origin_circuit_open" } :
+        await requestEvidence(request, () => { stopped = true; });
       responses[index] = response;
       try {
         await fs.writeFile(path.join(outDir, "responses", `${request.request_id}.json`), stablePokemonLanguageJson(response), { flag: "wx" });
