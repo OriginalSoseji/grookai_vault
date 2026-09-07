@@ -32,6 +32,17 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ### Pokemon sealed production work
 
+The signed-in Pokemon release is active. Web enablement is declared in
+`apps/web/vercel.json`; Android builds use `-EnablePokemonSealed` with the existing
+public-environment build script. Preserve `-EnableMtgSealed` when building both.
+The signed APK workflow reads the matching repository variables (default off).
+The daily `pokemon-sealed-health-v1.yml` workflow inventories source products,
+builds a read-only refresh proposal, verifies pointers/coverage/access, and opens
+one deduplicated GitHub issue for failures, source drift, new candidates or prices
+approaching expiry. It does **not** automatically publish replacement price/image
+releases. Do not present this monitor as an unattended pricing writer. Existing
+seven-day stale-price exclusion remains enforced; never extend timestamps.
+
 The end-to-end founder authority and scope are in
 `docs/contracts/POKEMON_SEALED_PRODUCTION_V1.md` (2026-09-07).
 Worktree: `C:/grookai_vault_pokemon_sealed`; branch:

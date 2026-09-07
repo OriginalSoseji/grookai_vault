@@ -1,0 +1,10 @@
+{
+  "env": {
+    "NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED": "true"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED": "true"
+    }
+  }
+}
