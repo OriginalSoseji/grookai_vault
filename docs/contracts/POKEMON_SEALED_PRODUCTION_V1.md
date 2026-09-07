@@ -36,6 +36,26 @@ No change may overwrite MTG or One Piece releases, images, controls, or pricing.
 8. Configure bounded refresh/monitoring using the existing source warehouse.
 9. Verify production APIs, web, and Android; preserve a completion checkpoint.
 
+## Bounded Ongoing Refresh
+
+The same start-to-finish authority covers daily paired price/image release
+refreshes for the 1,721 already image-verified variants in frozen baseline
+`0bf7970b-842e-556c-9c6f-d541d1456212`. This is not authority to expand identities.
+Only unchanged exact source mappings and positive USD Normal market observations
+at most seven days old qualify. A completed warehouse sync must be at most two
+days old. Source identity drift, duplicate inputs, price movements outside
+one-third to three times the previous quote, or loss of more than five percent
+of the fixed baseline stop the whole refresh without writes.
+
+Each execution freezes its plan and commit, proves a full rollback, then inserts
+immutable qualifications and bound price/image releases in one transaction.
+Both game-scoped pointers move together with compare-and-swap. Existing verified
+Storage objects and original retrieval timestamps are reused, never re-uploaded
+or re-dated. Independent readback and exact published-set reconciliation are
+required after commit. Repeated identical runs are zero-write no-ops. No identity,
+Storage, visibility, Vault, or other-game writes are authorized by this refresh.
+New products remain staged for separate identity/image evidence completion.
+
 ## Completion
 
 Every inspected source product has a disposition. Published products have exact

@@ -35,7 +35,15 @@ await withPokemonSealedProbeSessionV1(createBackendClient(),async(caller,session
     assert.ok(!rpcError&&rows.length,'Expected catalog rows missing');
     for(const row of rows){assert.ok(html.includes(escape(row.canonical_name)),`Rendered product missing: ${row.variant_id}`);
       assert.ok(html.includes(row.image_object_path),'Rendered image path missing');}
-    assert.ok(!html.includes('tcgplayer-cdn.tcgplayer.com'),'Third-party image URL rendered');
+    const productSection=html.match(/<section\b[^>]*aria-label="Pokemon sealed products"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(productSection,'Product grid missing');
+    const imageSources=[...productSection.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)].map(match=>match[1]);
+    assert.equal(imageSources.length,rows.length,'Product image count mismatch');
+    for(const source of imageSources){
+      const imageUrl=new URL(source.replaceAll('&amp;','&'),origin);
+      assert.equal(imageUrl.origin,new URL(process.env.SUPABASE_URL).origin,'Unexpected image host');
+      assert.ok(imageUrl.pathname.startsWith('/storage/v1/object/sign/user-card-images/sealed/pokemon/'),'Unexpected image namespace');
+    }
     evidence.push({...check,status:response.status,rows:rows.length,duration_ms:Date.now()-start,all_expected_names_and_self_hosted_images:true});
   }
 });

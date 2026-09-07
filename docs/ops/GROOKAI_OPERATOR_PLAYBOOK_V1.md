@@ -39,9 +39,17 @@ The signed APK workflow reads the matching repository variables (default off).
 The daily `pokemon-sealed-health-v1.yml` workflow inventories source products,
 builds a read-only refresh proposal, verifies pointers/coverage/access, and opens
 one deduplicated GitHub issue for failures, source drift, new candidates or prices
-approaching expiry. It does **not** automatically publish replacement price/image
-releases. Do not present this monitor as an unattended pricing writer. Existing
-seven-day stale-price exclusion remains enforced; never extend timestamps.
+approaching expiry. `POKEMON_SEALED_REFRESH_ACTIVE=true` enables the separate
+bounded paired-release refresh before the read-only audit. Keep this variable
+off until the exact worker's rollback, durable apply and idempotency proofs pass.
+The worker `pokemon_sealed_refresh_v1.mjs` operates only over frozen baseline
+`0bf7970b-842e-556c-9c6f-d541d1456212`: no new identities or Storage writes.
+It stops on source drift, more than five percent coverage loss, or a price ratio
+outside one-third to three times the prior quote. It preserves original image
+retrieval dates and moves price/image pointers atomically. Existing seven-day
+stale-price exclusion remains enforced; never extend timestamps. Maintenance-only
+source gaps open/update an issue without falsely reporting pipeline execution as
+failed. Actual refresh failures retain their failing job result and artifacts.
 The health check also creates a short-lived session for the existing non-founder
 App Review identity, calls the deployed authenticated signer, verifies three
 complete image byte hashes, and revokes only that new session. It never creates

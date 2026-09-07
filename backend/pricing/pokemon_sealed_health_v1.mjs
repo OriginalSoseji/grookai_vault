@@ -1,5 +1,5 @@
 export function evaluatePokemonSealedHealthV1({published,expected,oldestAgeDays,sourceAgeDays,
-  newProducts=0,changedMappings=0,anonymousPrivilege=false,pointersAligned=true,imageServingVerified=false}) {
+  newProducts=0,changedMappings=0,anonymousPrivilege=false,pointersAligned=true,imageServingVerified=false,automaticPricePublication=false}) {
   const findings=[];
   if (!Number.isSafeInteger(published)||published<=0||published!==expected) findings.push('published_count_mismatch');
   if (!Number.isFinite(oldestAgeDays)||oldestAgeDays>=4) findings.push('price_refresh_due_before_seven_day_expiry');
@@ -11,5 +11,5 @@ export function evaluatePokemonSealedHealthV1({published,expected,oldestAgeDays,
   if (!imageServingVerified) findings.push('authenticated_image_serving_unverified');
   return {version:'POKEMON_SEALED_HEALTH_V1',status:findings.length?'attention_required':'healthy',
     findings,published,expected,oldestAgeDays,sourceAgeDays,newProducts,changedMappings,
-    database_writes:0,storage_writes:0,automatic_price_publication:false};
+    database_writes:0,storage_writes:0,automatic_price_publication:automaticPricePublication};
 }

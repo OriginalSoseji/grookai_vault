@@ -59,7 +59,7 @@ try {
   const result={...evaluatePokemonSealedHealthV1({published:published.length,expected:control?.expected,
     oldestAgeDays:ages.oldest,sourceAgeDays:ages.source_age,newProducts:newProducts.length,
     changedMappings:changed.length,anonymousPrivilege:privilege,pointersAligned:control?.aligned===true,
-    imageServingVerified:imageProbe.passed}),image_probe:imageProbe,auth_probe_session:'bounded_existing_store_review_user',
+    imageServingVerified:imageProbe.passed,automaticPricePublication:process.env.POKEMON_SEALED_REFRESH_ACTIVE==='true'}),image_probe:imageProbe,auth_probe_session:'bounded_existing_store_review_user',
     producer_commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),generated_at:new Date().toISOString()};
   await fs.mkdir(args.out,{recursive:true});
   const files={'summary.json':JSON.stringify(result,null,2),
