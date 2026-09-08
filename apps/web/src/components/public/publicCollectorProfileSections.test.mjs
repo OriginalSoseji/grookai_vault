@@ -118,8 +118,22 @@ test("public profile section UI keeps old Collection and Visible labels out", ()
   assert.equal(userFacingLiterals.includes("Visible"), false);
 });
 
-test("empty selected public section renders the clean empty state", () => {
+test("empty card grids do not claim sealed-only sections are empty", () => {
   const profileContent = readSource("components", "public", "PublicCollectorProfileContent.tsx");
 
-  assert.match(profileContent, /<PublicCollectionEmptyState title="Nothing to show right now\." \/>/);
+  assert.match(profileContent, /<PublicCollectionEmptyState title="No cards in this section right now\." \/>/);
+  assert.match(profileContent, /<PublicCollectionEmptyState title="No cards on this Wall right now\." \/>/);
+});
+
+test("sealed section reads use the hydrated viewer and remount on viewer or section changes", () => {
+  const profileContent = readSource("components", "public", "PublicCollectorProfileContent.tsx");
+  const panel = readSource("components", "vault", "OwnedSealedPanel.tsx");
+  assert.match(profileContent, /effectiveViewerUserId = clientViewer\.userId \?\? viewerUserId/);
+  assert.match(profileContent, /effectiveViewerUserId && <OwnedSealedPanel/);
+  assert.doesNotMatch(profileContent, /\{viewerUserId && <OwnedSealedPanel/);
+  assert.match(profileContent, /key=\{`\$\{effectiveViewerUserId\}:\$\{activeSectionId\}`\}/);
+  assert.match(profileContent, /ownerId=\{collectorUserId\} wallOnly sectionId=\{activeSectionId === PUBLIC_WALL_SECTION_ID \? undefined : activeSectionId\}/);
+  assert.match(panel, /if \(!sealedOwnershipEnabled\) return null/);
+  assert.match(panel, /get_owned_sealed_inventory_v1/);
+  assert.doesNotMatch(panel, /createServerAdminClient|SERVICE_ROLE/);
 });

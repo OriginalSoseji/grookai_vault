@@ -391,7 +391,7 @@ export function PublicCollectorProfileContent({
 
   return (
     <section className="space-y-4">
-      {viewerUserId && <OwnedSealedPanel ownerId={collectorUserId} wallOnly sectionId={activeSectionId === PUBLIC_WALL_SECTION_ID ? undefined : activeSectionId} />}
+      {effectiveViewerUserId && <OwnedSealedPanel key={`${effectiveViewerUserId}:${activeSectionId}`} ownerId={collectorUserId} wallOnly sectionId={activeSectionId === PUBLIC_WALL_SECTION_ID ? undefined : activeSectionId} />}
       <div className="rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
         <div className="overflow-x-auto">
           <div className="flex min-w-max gap-2">
@@ -668,7 +668,7 @@ export function PublicCollectorProfileContent({
               })}
             </div>
           ) : (
-            <PublicCollectionEmptyState title="Nothing to show right now." />
+            <PublicCollectionEmptyState title="No cards on this Wall right now." />
           )}
         </div>
       ) : (
@@ -723,7 +723,7 @@ export function PublicCollectorProfileContent({
               ownerUserId={collectorUserId}
             />
           ) : (
-            <PublicCollectionEmptyState title="Nothing to show right now." />
+            <PublicCollectionEmptyState title="No cards in this section right now." />
           )}
         </div>
       )}
