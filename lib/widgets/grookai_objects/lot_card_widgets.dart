@@ -4,6 +4,10 @@ import 'grookai_object_frame.dart';
 import 'grookai_object_models.dart';
 import 'grookai_object_skin.dart';
 
+String _lotPriceLabel(double price) => !price.isFinite || price <= 0
+    ? 'Unpriced'
+    : '\$${price.toStringAsFixed(price == price.roundToDouble() ? 0 : 2)}';
+
 /// Front side — shareable Lot card. The front must represent the actual
 /// bundle, so it renders every selected card image up to the supported lot cap.
 class LotCardFront extends StatelessWidget {
@@ -58,15 +62,17 @@ class LotCardFront extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               CardPriceTag(tokens: t, skin: data.skin, price: data.bundlePrice),
-              const SizedBox(width: 10),
-              Text(
-                '\$${data.estimatedValue.toStringAsFixed(0)} value',
-                style: TextStyle(
-                  fontSize: 11,
-                  color: t.mutedText,
-                  decoration: TextDecoration.lineThrough,
+              if (data.hasCompleteEstimatedValue) ...[
+                const SizedBox(width: 10),
+                Text(
+                  '${_lotPriceLabel(data.estimatedValue)} value',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: t.mutedText,
+                    decoration: TextDecoration.lineThrough,
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
           const SizedBox(height: 12),
@@ -250,7 +256,7 @@ class _GridTile extends StatelessWidget {
                     vertical: 1.5,
                   ),
                   child: Text(
-                    '\$${item.price.toStringAsFixed(0)}',
+                    _lotPriceLabel(item.price),
                     style: monoLabel(
                       tokens,
                       size: 8,
@@ -438,7 +444,7 @@ class _LotDetailRow extends StatelessWidget {
                 style: monoLabel(tokens, size: dense ? 6.8 : 7.8),
               ),
               Text(
-                '\$${item.price.toStringAsFixed(0)}',
+                _lotPriceLabel(item.price),
                 style: monoLabel(
                   tokens,
                   size: dense ? 8 : 9,

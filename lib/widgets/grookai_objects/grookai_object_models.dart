@@ -311,10 +311,22 @@ class LotListingData {
     'sellerTradeCount': sellerTradeCount,
   };
 
+  // Seller asking amounts are never eligible sealed market evidence.
+  static double? _estimatedItemValue(LotItem item) =>
+      item.objectKind == 'sealed'
+      ? item.marketPrice
+      : item.marketPrice ?? item.price;
+
   double get estimatedValue => items.fold<double>(
     0,
-    (sum, item) => sum + (item.marketPrice ?? item.price),
+    (sum, item) => sum + (_estimatedItemValue(item) ?? 0),
   );
+  bool get hasCompleteEstimatedValue =>
+      items.isNotEmpty &&
+      items.every((item) {
+        final value = _estimatedItemValue(item);
+        return value != null && value.isFinite && value > 0;
+      });
   int get cardCount => items.length;
   String get itemNoun =>
       items.any((item) => item.objectKind == 'sealed') ? 'ITEMS' : 'CARDS';

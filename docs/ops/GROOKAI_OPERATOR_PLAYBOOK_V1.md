@@ -62,11 +62,17 @@ local acceptance evidence and exact release boundary:
 `docs/checkpoints/SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907.md`.
 Current production schema receipt:
 `docs/checkpoints/SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md`.
-All four migrations are applied with 391/391 ledger parity; do not reapply them.
-Client release is held at PR #440 for the photo privacy repair:
-`docs/checkpoints/SEALED_OWNERSHIP_PHOTO_PRIVACY_REPAIR_20260908.md`.
+All four migrations plus the separately approved photo-revision migration are
+applied with 392/392 ledger parity; do not reapply them. PR #440 is merged and
+default-off clients are deployed. Current receipt and remaining acceptance:
+`docs/checkpoints/SEALED_OWNERSHIP_CLIENTS_316_20260908.md`.
+Enabled emulator share/print acceptance and the unpriced lot-export repair:
+`docs/checkpoints/SEALED_OWNERSHIP_NATIVE_ACCEPTANCE_20260908.md`.
+The production ownership switch is global, not account-scoped. Never enable it
+and describe that as a single-owner canary. Local acceptance is not activation.
 New sealed uploads must use unique revision paths, never overwrite a shared path.
-The separate two-function revision migration is not covered by the prior apply.
+The separate two-function revision migration was independently authorized and
+applied; preserve its single-use marker and exact plan receipt.
 iOS archive 315 predates this repair and must not be uploaded as the fixed build.
 The bounded executor's start marker is preserved outside the checkout. Ownership
 is disabled, with no sealed copies or journal rows. Older worktrees/main lacking
@@ -77,12 +83,16 @@ The original `6d46b8c2c` migration plan is historical and must not authorize the
 repaired SQL. Freeze fresh hashes after the repair commit. For new service-only
 tables/views, explicitly revoke service-role defaults before bounded grants;
 test actual privileges, not only the presence of GRANT statements in source.
-Ownership clients are locally verified but not yet deployed/activated. Production
+Ownership clients are deployed with ownership OFF, not activated. Production
 now has the real sealed anchor; never insert sealed UUIDs into card columns.
 The repeatable local evidence runner is
 `node tests/integration/sealed_verification_v1.mjs checks|fixtures|android|replay`
 (choose one phase). It writes logs and hashes outside the checkout. `fixtures`
 commits disposable local data and requires the final isolated `replay` phase.
+After the five migrations were applied, replay requires zero pending migrations;
+do not reuse the historical four-pending-ID expectation. Local UI signed Storage
+URLs may require emulator-only `adb reverse tcp:55429 tcp:55429`; remove that
+temporary forwarding afterward. Stop the local web harness before final replay.
 The final x64 APK points to local emulator Supabase, not production; never ship it.
 `scripts/schema/sealed_ownership_rollout_plan_v1.mjs` creates a commit/hash-bound
 read-only release plan. It cannot apply SQL, activate flags or grant authority.
@@ -320,7 +330,11 @@ keychain permissions, save a password, or automate an authentication dialog.
 If the desktop keychain itself is locked, the founder must unlock it.
 The operator scripts/readback are in the sealed closeout artifact root recorded
 in `docs/checkpoints/SEALED_CLIENT_CLOSEOUT_20260907.md`.
-Build 314 is the latest processed sealed candidate for the existing internal
+Build 316 is now the latest processed default-off ownership compatibility build
+for the existing internal group; use the client release checkpoint above.
+It includes the photo privacy repair, verified symbols and simulator startup.
+No physical iPhone ownership acceptance or public store submission is implied.
+Build 314 was the previous processed sealed candidate for the existing internal
 Friends and Family group, from source
 `736f15c1fa866fad3616a4a55d9a46dc566ae0e5`. It includes the Samsung-verified
 search keyboard fix and retains both sealed flags. Actual internal membership,

@@ -1,5 +1,9 @@
 # Sealed Ownership Client Release Hold
 
+Superseded status: the authorized photo migration is applied and PR #440 merged.
+See [client release 316](SEALED_OWNERSHIP_CLIENTS_316_20260908.md) for deployment,
+readbacks and remaining gates. The hold narrative below is preserved history.
+
 Date: 2026-09-08 UTC (2026-09-07 America/Denver).
 Branch: `feature/sealed-owned-collectibles-v1`. PR: #440, draft.
 Repair base: `3f92cd10937ceefa0cff558081a0790bfc669842`.

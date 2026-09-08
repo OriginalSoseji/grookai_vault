@@ -57,7 +57,7 @@ if (phase === 'android') {
   assert.match(config, /project_id\s*=\s*"sealed-ownership-replay-20260907"/);
   assert.match(config, /port\s*=\s*55430/);
   await run('strict_pre_push_full_replay', 'pwsh', ['-NoProfile', '-File', 'scripts/migration_preflight_strict.ps1',
-    '-Phase', 'PrePush', '-ExpectedLocalOnlyIds', '20260905120000,20260907160000,20260907180000,20260907183000'], replay);
+    '-Phase', 'PrePush'], replay);
   await run('post_replay_sql_rollback', process.execPath, ['tests/integration/sealed_owned_instances_v1.mjs']);
 } else {
   await run('contracts', process.execPath, ['--test',
