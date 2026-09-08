@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
   resolveOwnedCollectibleTargetV1 as resolve,
   planSealedVaultAdditionV1 as add,
@@ -15,6 +16,17 @@ const release = id(4);
 const card = id(5);
 const printing = id(6);
 const product = { variant_id: variant, game_key: 'pokemon', identity_status: 'released', game_visible: true };
+for (const [file,table,privileges] of [
+  ['20260907180000_sealed_owned_instances_v1.sql','sealed_ownership_controls_v1','select,update'],
+  ['20260907180000_sealed_owned_instances_v1.sql','vault_sealed_requests_v1','select,insert'],
+  ['20260907183000_sealed_owned_read_models_v1.sql','vault_sealed_current_evidence_v1','select'],
+]) test(`${table} explicitly clears default service grants before bounded grants`,()=>{
+  const source=readFileSync(new URL(`../../supabase/migrations/${file}`,import.meta.url),'utf8');
+  const revoke=`revoke all on public.${table} from public,anon,authenticated,service_role;`;
+  const grant=`grant ${privileges} on public.${table} to service_role;`;
+  assert.ok(source.includes(revoke));
+  assert.ok(source.indexOf(grant)>source.indexOf(revoke));
+});
 const addition = changes => add({ ownerId: owner, requestId: request, product, ...changes });
 const copy = (changes = {}) => ({
   id: id(10), user_id: owner, gv_vi_id: 'GVVI-ABCDEFAB-000001',

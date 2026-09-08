@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907` - `2026-09-07` - Live read-only ledger/data preconditions pass; inherited service-role grants caught and removed before production; 97 targeted contracts, 36 SQL scenarios and fresh replay pass; replacement frozen plan and production rollout remain gated
+
 - `SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907` - `2026-09-07` - Sealed lifecycle clients/migrations implemented; 35 SQL scenarios, 94 contracts, 38 Flutter tests and 12 web tests pass; native add/sale/history and web photo/lot readback proven; fresh replay passes; production apply/deployment/activation remain gated
 
 - `SEALED_SCHEMA_BASELINE_RECONCILED_20260907` - `2026-09-07` - Strict scoped baseline audit and isolated PrePush pass; three physical table-order differences explain all 41 view proposals, 873 security objects match, 126 tests pass; two migrations remain unapplied and sealed ownership is not yet integrated; zero production writes

@@ -47,7 +47,7 @@ where coalesce(auth.role(),'') in ('authenticated','service_role')
   and mapping.source_provider='tcgplayer' and qualification.source_subtype_name_normalized='normal'
   and qualification.currency='USD' and image_object.storage_bucket='user-card-images'
   and image_object.object_path like 'sealed/'||family.game_key||'/sha256/%';
-revoke all on public.vault_sealed_current_evidence_v1 from public,anon,authenticated;
+revoke all on public.vault_sealed_current_evidence_v1 from public,anon,authenticated,service_role;
 grant select on public.vault_sealed_current_evidence_v1 to service_role;
 
 create or replace function public.get_owned_sealed_copies_v1(

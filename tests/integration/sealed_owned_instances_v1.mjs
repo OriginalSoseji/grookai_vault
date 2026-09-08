@@ -73,6 +73,25 @@ try {
   await c.query(reads);
   await c.query(reads);
   await c.query('begin');
+  await check('sealed service grants remain least-privilege despite Supabase defaults',async()=>{
+    for(const [table,allowed] of [
+      ['sealed_ownership_controls_v1',['SELECT','UPDATE']],
+      ['vault_sealed_requests_v1',['SELECT','INSERT']],
+      ['vault_sealed_current_evidence_v1',['SELECT']],
+    ]) {
+      for(const privilege of ['SELECT','INSERT','UPDATE','DELETE','TRUNCATE','REFERENCES','TRIGGER','MAINTAIN']) {
+        const actual=(await c.query('select has_table_privilege($1,$2,$3) allowed',['service_role',`public.${table}`,privilege])).rows[0].allowed;
+        assert.equal(actual,allowed.includes(privilege),`${table}: service_role ${privilege}`);
+        for(const role of ['anon','authenticated'])
+          assert.equal((await c.query('select has_table_privilege($1,$2,$3) allowed',[role,`public.${table}`,privilege])).rows[0].allowed,false,`${table}: ${role} ${privilege}`);
+      }
+    }
+    await c.query('set local role service_role');
+    await denied(()=>c.query('delete from public.vault_sealed_requests_v1 where false'),/permission denied/);
+    await denied(()=>c.query('update public.vault_sealed_requests_v1 set result=result where false'),/permission denied/);
+    await denied(()=>c.query('truncate public.vault_sealed_requests_v1'),/permission denied/);
+    await c.query('reset role');
+  });
   await c.query('insert into auth.users(id,email) values($1,$2),($3,$4)',[owner,`${owner}@example.invalid`,other,`${other}@example.invalid`]);
   const mtg=await fixture('mtg'),pokemon=await fixture('pokemon','ja');
   await c.query('update public.sealed_ownership_controls_v1 set enabled=false');

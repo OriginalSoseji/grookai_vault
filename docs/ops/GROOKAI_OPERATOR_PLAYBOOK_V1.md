@@ -60,6 +60,12 @@ Sealed ownership is required product scope across released games. Contract:
 `docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md`. Current implementation,
 local acceptance evidence and exact release boundary:
 `docs/checkpoints/SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907.md`.
+Release preflight and the subsequent service-role default-grant repair:
+`docs/checkpoints/SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907.md`.
+The original `6d46b8c2c` migration plan is historical and must not authorize the
+repaired SQL. Freeze fresh hashes after the repair commit. For new service-only
+tables/views, explicitly revoke service-role defaults before bounded grants;
+test actual privileges, not only the presence of GRANT statements in source.
 Ownership is locally verified but production still assumes cards/slabs;
 do not insert a sealed UUID into card columns or enable clients before migrations.
 The repeatable local evidence runner is

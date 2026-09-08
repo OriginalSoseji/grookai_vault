@@ -3,6 +3,10 @@
 Updated: 2026-09-07 America/Denver (final evidence extends into 2026-09-08 UTC).
 Status: implemented and locally verified; NOT applied, deployed or activated in production.
 
+Release follow-up: `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907.md` records fresh
+live read-only preconditions and a least-privilege repair discovered before apply.
+Its replacement frozen plan supersedes the original commit's migration hashes.
+
 Worktree: `C:/grookai_vault_pokemon_sealed`; branch:
 `feature/sealed-owned-collectibles-v1`. Original base:
 `0688a21a1d5f54c4d0c90dabfebe43927bb4e98a`.

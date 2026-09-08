@@ -47,7 +47,8 @@ create table if not exists public.sealed_ownership_controls_v1 (
 insert into public.sealed_ownership_controls_v1(singleton,enabled) values(true,false) on conflict do nothing;
 alter table public.sealed_ownership_controls_v1 enable row level security;
 alter table public.sealed_ownership_controls_v1 force row level security;
-revoke all on public.sealed_ownership_controls_v1 from public,anon,authenticated;
+-- Clear inherited Supabase defaults before granting the exact worker scope.
+revoke all on public.sealed_ownership_controls_v1 from public,anon,authenticated,service_role;
 grant select,update on public.sealed_ownership_controls_v1 to service_role;
 drop policy if exists sealed_ownership_controls_service_v1 on public.sealed_ownership_controls_v1;
 create policy sealed_ownership_controls_service_v1 on public.sealed_ownership_controls_v1 to service_role using(true) with check(true);
@@ -63,7 +64,7 @@ create table if not exists public.vault_sealed_requests_v1 (
 );
 alter table public.vault_sealed_requests_v1 enable row level security;
 alter table public.vault_sealed_requests_v1 force row level security;
-revoke all on public.vault_sealed_requests_v1 from public,anon,authenticated;
+revoke all on public.vault_sealed_requests_v1 from public,anon,authenticated,service_role;
 grant select,insert on public.vault_sealed_requests_v1 to service_role;
 drop policy if exists vault_sealed_requests_service_v1 on public.vault_sealed_requests_v1;
 create policy vault_sealed_requests_service_v1 on public.vault_sealed_requests_v1 to service_role using(true) with check(true);
