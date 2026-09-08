@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../../widgets/vault/owned_sealed_panel.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -919,6 +920,9 @@ class _PublicCollectorSegmentedContentState
             onWallChanged: widget.onWallChanged,
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
+        if (_viewerUserId.isNotEmpty)
+          OwnedSealedPanel(ownerId: widget.profile.userId, wallOnly: true,
+          sectionId: selectedSectionId == _wallSectionId ? null : selectedSectionId),
       ],
     );
   }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
@@ -390,6 +391,7 @@ export function PublicCollectorProfileContent({
 
   return (
     <section className="space-y-4">
+      {viewerUserId && <OwnedSealedPanel ownerId={collectorUserId} wallOnly sectionId={activeSectionId === PUBLIC_WALL_SECTION_ID ? undefined : activeSectionId} />}
       <div className="rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
         <div className="overflow-x-auto">
           <div className="flex min-w-max gap-2">

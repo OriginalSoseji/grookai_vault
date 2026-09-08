@@ -7,6 +7,7 @@ import {
   type MtgSealedCatalogStateV1,
 } from "@/lib/sealed/mtgSealedClientV1";
 import { createMtgSealedSupabaseTransportV1 } from "@/lib/sealed/mtgSealedSupabaseTransportV1";
+import { AddSealedButton } from "@/components/vault/OwnedSealedPanel";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -113,6 +114,7 @@ export default async function MtgSealedPage({ searchParams }: MtgSealedPageProps
                     <span className="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Market</span>
                     <span className="text-base font-bold text-slate-950 dark:text-slate-50">${row.marketPrice.toFixed(2)}</span>
                   </div>
+                  <AddSealedButton variantId={row.variantId} name={row.canonicalName} />
                 </div>
               </article>
             ))}

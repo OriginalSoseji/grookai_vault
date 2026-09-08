@@ -22,3 +22,10 @@ test("strict migration preflight accepts an empty expected and actual pending se
     /\[AllowEmptyCollection\(\)\]\s*\[string\[\]\]\$Actual/,
   );
 });
+
+test("linked audit reports local-only migrations without claiming complete ledger parity", () => {
+  assert.match(preflight, /Local-only IDs \(not applied\)/);
+  assert.match(preflight, /not complete ledger parity/);
+  assert.doesNotMatch(preflight, /Linked migration ledger is clean and linked schema diff is empty/);
+  assert.match(preflight, /FAIL - Linked Schema Drift Detected/);
+});

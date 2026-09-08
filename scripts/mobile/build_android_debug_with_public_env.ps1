@@ -3,6 +3,7 @@ param(
     [string]$EnvFile = ".env.local",
     [switch]$EnableMtgSealed,
     [switch]$EnablePokemonSealed,
+    [switch]$EnableSealedOwnership,
     [ValidateSet("debug", "profile", "release")]
     [string]$BuildMode = "debug",
     [ValidateSet("", "android-arm", "android-arm64", "android-x64")]
@@ -50,6 +51,7 @@ $publicDefines = [ordered]@{
     COLLECTOR_MEMORIES_ENABLED = "true"
     MTG_SEALED_CLIENT_V1_ENABLED = if ($EnableMtgSealed) { "true" } else { "false" }
     POKEMON_SEALED_CLIENT_V1_ENABLED = if ($EnablePokemonSealed) { "true" } else { "false" }
+    SEALED_OWNERSHIP_V1_ENABLED = if ($EnableSealedOwnership) { "true" } else { "false" }
 }
 
 $defineFile = Join-Path ([System.IO.Path]::GetTempPath()) (

@@ -5,6 +5,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { loadMtgSealedCatalogV1 } from "@/lib/sealed/mtgSealedClientV1";
 import { createMtgSealedSupabaseTransportV1 } from "@/lib/sealed/mtgSealedSupabaseTransportV1";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { AddSealedButton } from "@/components/vault/OwnedSealedPanel";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -59,6 +60,7 @@ export default async function PokemonSealedPage({ searchParams }: {
             <p className="text-xs text-slate-500 dark:text-slate-400">{row.packageForm.replaceAll("_", " ")} · {languages[row.languageCode] ?? row.languageCode}</p>
             <div className="flex items-end justify-between gap-2"><span className="text-xs text-slate-500">Market</span><span className="font-bold">${row.marketPrice.toFixed(2)}</span></div>
             <p className="text-[11px] text-slate-500">TCGPlayer · {row.observedOn}</p>
+            <AddSealedButton variantId={row.variantId} name={row.canonicalName} />
           </div>
         </article>)}
       </section> : <section className="border-y border-slate-200 py-10 text-center dark:border-slate-800">

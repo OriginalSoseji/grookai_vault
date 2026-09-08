@@ -18,6 +18,7 @@ import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresen
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
+import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -249,6 +250,7 @@ export default async function WallPage() {
       </section>
 
       <OwnerWallSectionRail initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
+      <OwnedSealedPanel ownerId={user.id} wallOnly />
 
       {error ? (
         <ProductState

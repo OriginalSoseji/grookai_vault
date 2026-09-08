@@ -56,6 +56,56 @@ quarantine. Resume command, evidence and upstream defects:
 
 ### Pokemon sealed production work
 
+Sealed ownership is required product scope across released games. Contract:
+`docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md`. Current implementation,
+local acceptance evidence and exact release boundary:
+`docs/checkpoints/SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907.md`.
+Current production schema receipt:
+`docs/checkpoints/SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md`.
+All four migrations are applied with 391/391 ledger parity; do not reapply them.
+Client release is held at PR #440 for the photo privacy repair:
+`docs/checkpoints/SEALED_OWNERSHIP_PHOTO_PRIVACY_REPAIR_20260908.md`.
+New sealed uploads must use unique revision paths, never overwrite a shared path.
+The separate two-function revision migration is not covered by the prior apply.
+iOS archive 315 predates this repair and must not be uploaded as the fixed build.
+The bounded executor's start marker is preserved outside the checkout. Ownership
+is disabled, with no sealed copies or journal rows. Older worktrees/main lacking
+these committed migrations must reconcile before any later schema operation.
+Release preflight and the subsequent service-role default-grant repair:
+`docs/checkpoints/SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907.md`.
+The original `6d46b8c2c` migration plan is historical and must not authorize the
+repaired SQL. Freeze fresh hashes after the repair commit. For new service-only
+tables/views, explicitly revoke service-role defaults before bounded grants;
+test actual privileges, not only the presence of GRANT statements in source.
+Ownership clients are locally verified but not yet deployed/activated. Production
+now has the real sealed anchor; never insert sealed UUIDs into card columns.
+The repeatable local evidence runner is
+`node tests/integration/sealed_verification_v1.mjs checks|fixtures|android|replay`
+(choose one phase). It writes logs and hashes outside the checkout. `fixtures`
+commits disposable local data and requires the final isolated `replay` phase.
+The final x64 APK points to local emulator Supabase, not production; never ship it.
+`scripts/schema/sealed_ownership_rollout_plan_v1.mjs` creates a commit/hash-bound
+read-only release plan. It cannot apply SQL, activate flags or grant authority.
+Strict linked-schema preflight originally found a non-empty diff and a pending
+dimension repair. The comparison is now reconciled; never execute the broad
+generated diff. Preserve the populated local Supabase instance when replaying.
+
+Current prerequisite proof and exact resume command:
+`docs/checkpoints/SEALED_SCHEMA_BASELINE_RECONCILED_20260907.md`.
+The scoped `AuditLinkedSchema -ReconciledReplayAudit` and isolated PrePush pass
+for exactly `20260905120000,20260907160000`. The image-dimension repair and the
+32-function source reconciliation were subsequently applied with the ownership
+batch recorded above. Three table column-order
+differences explain all 41 view proposals; 873 security objects match and 126
+tests pass. Never rebuild the card table or drop views to satisfy the raw diff.
+This is a baseline prerequisite pass, not deployed sealed ownership or write
+authority. The audit uses pinned development-only `@pgkit` 0.6.1 packages;
+retain raw/reconciled SQL and evidence in a fresh directory for every audit.
+Use the separate `sealed-ownership-replay-20260907` project on ports 55430/55431,
+not the populated local project on 54330. A cold isolated Deno dependency cache
+can reuse the existing project's cache through a read-only source mount; never
+disable certificate verification or modify the original cache to make tools run.
+
 Deferred presentation work: `docs/plans/SEALED_PRODUCT_IMAGE_ISOLATION_V1_20260907.md`.
 The founder requested saving this for later, not executing it. Resume with a
 20-product local before/after preview; preserve original evidence and use separate

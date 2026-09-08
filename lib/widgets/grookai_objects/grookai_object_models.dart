@@ -166,6 +166,8 @@ class SaleListingData {
 
 @immutable
 class LotItem {
+  final String objectKind;
+  final String? sealedVariantId, packageIdentity;
   final String? cardPrintId;
   final String? gvviId;
   final String cardName;
@@ -181,6 +183,9 @@ class LotItem {
   final String? imageUrl;
   final String? fallbackImageUrl;
   const LotItem({
+    this.objectKind = 'card',
+    this.sealedVariantId,
+    this.packageIdentity,
     this.cardPrintId,
     this.gvviId,
     required this.cardName,
@@ -198,6 +203,9 @@ class LotItem {
   });
 
   factory LotItem.fromFields(Map<String, dynamic> f) => LotItem(
+    objectKind: f['objectKind'] as String? ?? 'card',
+    sealedVariantId: f['sealedVariantId'] as String?,
+    packageIdentity: f['packageIdentity'] as String?,
     cardPrintId: f['cardPrintId'] as String?,
     gvviId: f['gvviId'] as String?,
     cardName: f['cardName'] as String,
@@ -216,6 +224,9 @@ class LotItem {
   );
 
   Map<String, dynamic> toFields() => {
+    'objectKind': objectKind,
+    if (sealedVariantId != null) 'sealedVariantId': sealedVariantId,
+    if (packageIdentity != null) 'packageIdentity': packageIdentity,
     'cardPrintId': cardPrintId,
     'gvviId': gvviId,
     'cardName': cardName,
@@ -232,12 +243,14 @@ class LotItem {
     'fallbackImageUrl': fallbackImageUrl,
   };
 
-  String get setAndNumberLine => _lotItemSetAndNumberLine(
-    setName: setName,
-    setCode: setCode,
-    collectorNumber: collectorNumber,
-    printedTotal: printedTotal,
-  );
+  String get setAndNumberLine => objectKind == 'sealed'
+      ? packageIdentity ?? ''
+      : _lotItemSetAndNumberLine(
+          setName: setName,
+          setCode: setCode,
+          collectorNumber: collectorNumber,
+          printedTotal: printedTotal,
+        );
 
   String? get meaningfulVariantLabel {
     final normalized = (variantLabel ?? '').trim();
@@ -303,6 +316,8 @@ class LotListingData {
     (sum, item) => sum + (item.marketPrice ?? item.price),
   );
   int get cardCount => items.length;
+  String get itemNoun =>
+      items.any((item) => item.objectKind == 'sealed') ? 'ITEMS' : 'CARDS';
 }
 
 String _lotItemSetAndNumberLine({

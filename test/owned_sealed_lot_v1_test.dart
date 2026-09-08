@@ -1,0 +1,151 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_renderer.dart';
+import 'package:grookai_vault/services/sealed/owned_sealed_service_v1.dart';
+import 'package:grookai_vault/services/sealed/owned_sealed_lot_v1.dart';
+import 'package:grookai_vault/models/grookai_sale_listing.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_models.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_skin.dart';
+
+Map<String, dynamic> copy() => {
+  'object_kind': 'sealed',
+  'instance_id': '11111111-1111-4111-8111-111111111111',
+  'sealed_product_variant_id': '22222222-2222-4222-8222-222222222222',
+  'gv_vi_id': 'GVVI-FIXTURE-000001',
+  'name': 'Japanese booster box',
+  'package_form': 'booster_box',
+  'language_code': 'ja',
+  'edition': 'First edition',
+  'seal_state': 'factory_sealed',
+  'package_condition': 'undamaged',
+  'owned_market_price': 12.34,
+  'asking_price_amount': 10.5,
+  'asking_price_currency': 'USD',
+};
+void main() {
+  setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
+  test('a sealed lot cannot carry a card anchor', () {
+    expect(
+      () => GrookaiLotListingAdapter.fromTerms(
+        source: const GrookaiLotListingSource(
+          title: 'Invalid',
+          items: [
+            GrookaiLotListingItemSource(
+              objectKind: 'sealed',
+              sealedVariantId: 'sealed',
+              gvviId: 'copy',
+              cardPrintId: 'card',
+              cardName: 'Invalid',
+              condition: 'unknown',
+              price: 1,
+            ),
+          ],
+        ),
+        skin: GrookaiObjectSkin.onyx,
+        bundlePrice: 1,
+        metadata: const {},
+      ),
+      throwsStateError,
+    );
+  });
+  for (final front in [true, false]) {
+    testWidgets(
+      'five sealed copies render ${front ? 'front' : 'back'} without overflow',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(440, 620));
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+        final object = GrookaiLotListingAdapter.fromTerms(
+          source: GrookaiLotListingSource(
+            title: 'Sealed lot',
+            items: List.generate(
+              5,
+              (_) => sealedLotItem(OwnedSealedCopy.fromJson(copy())),
+            ),
+          ),
+          skin: GrookaiObjectSkin.onyx,
+          bundlePrice: 50,
+          metadata: const {},
+        );
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: GrookaiObjectRenderer(object: object, showFront: front),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        expect(
+          find.text(front ? 'LOT · 5 ITEMS' : 'BUNDLE PRICE · 5 ITEMS'),
+          findsOneWidget,
+        );
+      },
+    );
+  }
+  test(
+    'sealed lot preserves full product identity and separates asking from market',
+    () {
+      final item = sealedLotItem(OwnedSealedCopy.fromJson(copy()));
+      expect(item.cardPrintId, isNull);
+      expect(item.sealedVariantId, copy()['sealed_product_variant_id']);
+      expect(item.setAndNumberLine, 'booster box - JA - First edition');
+      expect(item.marketPrice, 12.34);
+      expect(item.price, 10.5);
+      expect(item.condition, 'factory sealed / undamaged');
+    },
+  );
+  test('mixed lot round-trip retains typed identity and exact GVVI', () {
+    final sealed = sealedLotItem(OwnedSealedCopy.fromJson(copy()));
+    final object = GrookaiLotListingAdapter.fromTerms(
+      source: GrookaiLotListingSource(
+        title: 'Mixed collection',
+        sellerHandle: 'Fixture',
+        items: [
+          sealed,
+          const GrookaiLotListingItemSource(
+            cardName: 'Card fixture',
+            cardPrintId: 'card-fixture',
+            price: 5,
+            condition: 'Raw NM',
+          ),
+        ],
+      ),
+      skin: GrookaiObjectSkin.onyx,
+      bundlePrice: 15.5,
+      metadata: const {},
+    );
+    final lot = LotListingData.fromFields(object.skin, object.fields);
+    final restored = LotItem.fromFields(lot.items.first.toFields());
+    expect(restored.objectKind, 'sealed');
+    expect(restored.cardPrintId, isNull);
+    expect(restored.sealedVariantId, sealed.sealedVariantId);
+    expect(restored.gvviId, sealed.gvviId);
+    expect(restored.setAndNumberLine, contains('First edition'));
+    expect(lot.items.last.objectKind, 'card');
+  });
+  test(
+    'unpriced sealed lot never invents a market value or card condition',
+    () {
+      final item = sealedLotItem(
+        OwnedSealedCopy.fromJson({
+          ...copy(),
+          'owned_market_price': null,
+          'asking_price_amount': null,
+          'seal_state': 'unknown',
+          'package_condition': 'unknown',
+        }),
+      );
+      expect(item.marketPrice, isNull);
+      expect(item.condition, 'unknown / unknown');
+    },
+  );
+  test('foreign asking currencies are never silently treated as USD', () {
+    expect(
+      () => sealedLotItem(
+        OwnedSealedCopy.fromJson({...copy(), 'asking_price_currency': 'JPY'}),
+      ),
+      throwsStateError,
+    );
+  });
+}

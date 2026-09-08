@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { parseSealedCopy, sealedOwnershipEnabled } from "@/lib/sealed/ownedSealedV1";
+import { SealedCopyLanding } from "@/components/vault/SealedCopyLanding";
 import CopyButton from "@/components/CopyButton";
 import VendorCardPageViewEvent from "@/components/gvvi/VendorCardPageViewEvent";
 import VendorOfferSummary from "@/components/gvvi/VendorOfferSummary";
@@ -41,6 +43,7 @@ export async function generateMetadata(
   const params = await props.params;
   const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id);
   if (!detail) {
+    if (sealedOwnershipEnabled) return { title: "Collector copy | Grookai Vault", robots: { index: false, follow: false } };
     notFound();
   }
 
@@ -107,6 +110,14 @@ export default async function PublicVaultInstancePage(
     includeMarketPricing: Boolean(user),
   });
   if (!detail) {
+    if (sealedOwnershipEnabled) {
+      if (!user) redirect(`/login?next=${encodeURIComponent(`/gvvi/${params.gvvi_id}`)}`);
+      const { data, error } = await supabase.rpc('get_sealed_copy_by_gvvi_v1', { p_gvvi_id: params.gvvi_id });
+      if (!error && data) {
+        const row = parseSealedCopy(data);
+        return <SealedCopyLanding row={row} owner={row.owner_id === user.id} />;
+      }
+    }
     notFound();
   }
 

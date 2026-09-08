@@ -117,6 +117,9 @@ class GrookaiSaleListingAdapter {
 
 class GrookaiLotListingItemSource {
   const GrookaiLotListingItemSource({
+    this.objectKind = 'card',
+    this.sealedVariantId,
+    this.packageIdentity,
     this.cardPrintId,
     this.gvviId,
     required this.cardName,
@@ -133,6 +136,8 @@ class GrookaiLotListingItemSource {
     this.fallbackImageUrl,
   });
 
+  final String objectKind;
+  final String? sealedVariantId, packageIdentity;
   final String? cardPrintId;
   final String? gvviId;
   final String cardName;
@@ -150,12 +155,14 @@ class GrookaiLotListingItemSource {
   final String? imageUrl;
   final String? fallbackImageUrl;
 
-  String get setAndNumberLine => _lotSetAndNumberLine(
-    setName: setName,
-    setCode: setCode,
-    collectorNumber: collectorNumber,
-    printedTotal: printedTotal,
-  );
+  String get setAndNumberLine => objectKind == 'sealed'
+      ? packageIdentity ?? ''
+      : _lotSetAndNumberLine(
+          setName: setName,
+          setCode: setCode,
+          collectorNumber: collectorNumber,
+          printedTotal: printedTotal,
+        );
 
   factory GrookaiLotListingItemSource.fromVaultRow({
     required Map<String, dynamic> row,
@@ -223,10 +230,26 @@ class GrookaiLotListingAdapter {
     required Map<String, dynamic> metadata,
     String? listingNo,
   }) {
+    for (final item in source.items) {
+      if (item.objectKind == 'sealed' &&
+          (_blankToNull(item.sealedVariantId) == null ||
+              _blankToNull(item.gvviId) == null ||
+              _blankToNull(item.cardPrintId) != null)) {
+        throw StateError(
+          'Sealed lots require an exact sealed copy, never a card anchor',
+        );
+      }
+      if (item.objectKind != 'sealed' && item.sealedVariantId != null) {
+        throw StateError('A card lot item cannot carry a sealed anchor');
+      }
+    }
     final items = source.items
         .take(kGrookaiLotMaxCards)
         .map(
           (item) => LotItem(
+            objectKind: item.objectKind,
+            sealedVariantId: item.sealedVariantId,
+            packageIdentity: item.packageIdentity,
             cardPrintId: _blankToNull(item.cardPrintId),
             gvviId: _blankToNull(item.gvviId),
             cardName: _fallback(item.cardName, 'Card'),
@@ -239,7 +262,12 @@ class GrookaiLotListingAdapter {
               item.printingIdentityLabel,
               'Printing not recorded',
             ),
-            condition: _fallback(item.condition, 'Raw NM'),
+            condition: _fallback(
+              item.condition,
+              item.objectKind == 'sealed'
+                  ? 'Package condition unknown'
+                  : 'Raw NM',
+            ),
             marketPrice: item.marketPrice == null
                 ? null
                 : _normalizePrice(item.marketPrice!),

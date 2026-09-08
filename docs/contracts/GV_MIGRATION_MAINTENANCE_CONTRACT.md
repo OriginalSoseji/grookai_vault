@@ -34,6 +34,29 @@ The goal is to **never** repeat the migration drift and shadow DB errors we just
 
 ## 1. Principles
 
+### Scoped Replay Comparison (2026-09-07)
+
+For the sealed-ownership prerequisite only, `AuditLinkedSchema` may use
+`-ReconciledReplayAudit -ExpectedLocalOnlyIds 20260905120000,20260907160000`
+with an explicit `-AuditEnvFile` and new `-AuditOutDir`. This is a read-only
+baseline audit, not permission to apply either migration.
+
+The pinned CLI inspection engine compares production with the isolated replay
+database on port 55430. It may reorder inspection metadata for only
+`card_prints`, `pricing_jobs`, and `sets`, and only after every named column's
+definition matches exactly. It never alters database column order, normalizes
+function text, or suppresses view SQL. View output order remains significant.
+Owners, table/column/function grants, forced RLS, and function configuration are
+checked separately. The only accepted remaining SQL delta is the exact
+fingerprint-bound, still-pending image-dimension constraint repair.
+
+Both reconciliation sources, the full replay ledger, and exact pending IDs must
+match. Raw and reconciled SQL are retained as diagnostics and never executed.
+Unexpected differences fail closed. The default raw-diff audit is unchanged.
+`PrePush`, isolated replay, frozen apply authority, and remote readback remain
+required. This exception must not be expanded to unrelated migrations or used
+to justify dropping/recreating live views or canonical tables.
+
 1. The **live database** (Supabase project) is the current state of the world.
 2. The **migrations in this repo** are the story of how to build that world from scratch.
 3. These two must always agree: a brand-new database must be able to replay all migrations

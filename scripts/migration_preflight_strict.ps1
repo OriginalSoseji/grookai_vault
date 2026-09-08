@@ -17,7 +17,11 @@ param(
   [ValidateSet("AuditLinkedSchema", "PrePush")]
   [string]$Phase,
 
-  [string[]]$ExpectedLocalOnlyIds = @()
+  [string[]]$ExpectedLocalOnlyIds = @(),
+
+  [switch]$ReconciledReplayAudit,
+  [string]$AuditEnvFile,
+  [string]$AuditOutDir
 )
 
 Set-StrictMode -Version Latest
@@ -490,6 +494,35 @@ try {
   }
 
   if ($Phase -eq "AuditLinkedSchema") {
+    Write-Host "Applied IDs: $($linkedSummary.AppliedIds.Count)"
+    Write-Host "Local-only IDs (not applied): $(if ($linkedSummary.LocalOnlyIds.Count -gt 0) { $linkedSummary.LocalOnlyIds -join ', ' } else { 'none' })"
+    if ($linkedSummary.LocalOnlyIds.Count -gt 0) {
+      Write-Host "Ledger audit found pending local files, not complete ledger parity. The schema diff below includes these files."
+    }
+    if ($ReconciledReplayAudit) {
+      Require-Command "node"
+      if ([string]::IsNullOrWhiteSpace($AuditEnvFile) -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+        Fail "Reconciled replay requires explicit AuditEnvFile and a new AuditOutDir."
+      }
+      $expected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+      $comparison = Compare-IdSets -Expected $expected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($expected.Count -eq 0 -or $comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) {
+        Fail "Reconciled replay requires an exact, non-empty expected pending set."
+      }
+      Write-Section "2) Fingerprint-Bound Read-Only Replay Audit"
+      $auditScript = Join-Path $repoRoot "scripts\schema\audit_reconciled_public_schema_v1.mjs"
+      $audit = Invoke-ExternalCommand -FileName "node" -Arguments @(
+        "--use-system-ca", $auditScript, "--env-file=$AuditEnvFile",
+        "--out-dir=$AuditOutDir", "--expected-pending=$($expected -join ',')"
+      )
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) {
+        Fail "Reconciled replay audit failed. No apply is permitted."
+      }
+      Write-Section "STRICT BASELINE AUDIT PASS - PENDING APPLY"
+      Write-Host "Known replay differences are reconciled. The exact pending migrations remain unapplied and require their separate apply authority and PrePush gate."
+      exit 0
+    }
     Write-Section "2) Linked Schema Diff"
     $diffResult = Invoke-SupabaseCommand -Arguments @("db", "diff", "--linked")
     Write-CommandTranscript -result $diffResult
@@ -505,7 +538,7 @@ try {
     }
 
     Write-Section "STRICT PREFLIGHT PASS"
-    Write-Host "Linked migration ledger is clean and linked schema diff is empty."
+    Write-Host "No remote-only migration drift; linked schema diff is empty. Local-only IDs above still require their separate apply gate."
     exit 0
   }
 
