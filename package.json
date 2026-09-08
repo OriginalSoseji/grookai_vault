@@ -200,6 +200,9 @@
     "catalog:sets:publication-gate": "node scripts/workers/cross_tcg_set_publication_gate_v1.mjs"
   },
   "devDependencies": {
+    "@pgkit/client": "0.6.1",
+    "@pgkit/migra": "0.6.1",
+    "@pgkit/schemainspect": "0.6.1",
     "@playwright/test": "^1.61.1",
     "typescript": "^5.9.3"
   }
