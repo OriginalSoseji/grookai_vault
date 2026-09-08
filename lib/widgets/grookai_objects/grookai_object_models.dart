@@ -315,6 +315,12 @@ class LotListingData {
     0,
     (sum, item) => sum + (item.marketPrice ?? item.price),
   );
+  bool get hasCompleteEstimatedValue =>
+      items.isNotEmpty &&
+      items.every((item) {
+        final value = item.marketPrice ?? item.price;
+        return value.isFinite && value > 0;
+      });
   int get cardCount => items.length;
   String get itemNoun =>
       items.any((item) => item.objectKind == 'sealed') ? 'ITEMS' : 'CARDS';

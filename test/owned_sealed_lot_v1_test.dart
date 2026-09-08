@@ -25,6 +25,113 @@ Map<String, dynamic> copy() => {
 };
 void main() {
   setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
+  for (final front in [true, false]) {
+    testWidgets(
+      'priced lots retain exact cents (${front ? 'front' : 'back'})',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(440, 620));
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+        final object = GrookaiLotListingAdapter.fromTerms(
+          source: GrookaiLotListingSource(
+            title: 'Priced lot',
+            items: [
+              sealedLotItem(
+                OwnedSealedCopy.fromJson({
+                  ...copy(),
+                  'asking_price_amount': 0.49,
+                  'owned_market_price': 0.75,
+                }),
+              ),
+            ],
+          ),
+          skin: GrookaiObjectSkin.onyx,
+          bundlePrice: 1,
+          metadata: const {},
+        );
+        expect(
+          LotListingData.fromFields(
+            object.skin,
+            object.fields,
+          ).hasCompleteEstimatedValue,
+          isTrue,
+        );
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: GrookaiObjectRenderer(object: object, showFront: front),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(find.text('\$0.49'), findsOneWidget);
+        expect(find.text('Unpriced'), findsNothing);
+        if (front) expect(find.text('\$0.75 value'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+    for (final count in [2, 12]) {
+      testWidgets(
+        '$count unpriced sealed copies never export zero prices (${front ? 'front' : 'back'})',
+        (tester) async {
+          await tester.binding.setSurfaceSize(const Size(440, 620));
+          addTearDown(() => tester.binding.setSurfaceSize(null));
+          final item = sealedLotItem(
+            OwnedSealedCopy.fromJson({
+              ...copy(),
+              'owned_market_price': null,
+              'asking_price_amount': null,
+            }),
+          );
+          final object = GrookaiLotListingAdapter.fromTerms(
+            source: GrookaiLotListingSource(
+              title: 'Unpriced lot',
+              items: List.generate(count, (_) => item),
+            ),
+            skin: GrookaiObjectSkin.onyx,
+            bundlePrice: 35,
+            metadata: const {},
+          );
+          final data = LotListingData.fromFields(object.skin, object.fields);
+          expect(data.hasCompleteEstimatedValue, isFalse);
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: GrookaiObjectRenderer(object: object, showFront: front),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+          expect(find.text('Unpriced'), findsNWidgets(count));
+          expect(find.text('\$0'), findsNothing);
+          expect(find.textContaining(' value'), findsNothing);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
+  test('partial lot estimate is not presented as a complete value', () {
+    final object = GrookaiLotListingAdapter.fromTerms(
+      source: GrookaiLotListingSource(
+        title: 'Mixed prices',
+        items: [
+          sealedLotItem(OwnedSealedCopy.fromJson(copy())),
+          sealedLotItem(
+            OwnedSealedCopy.fromJson({
+              ...copy(),
+              'owned_market_price': null,
+              'asking_price_amount': null,
+            }),
+          ),
+        ],
+      ),
+      skin: GrookaiObjectSkin.onyx,
+      bundlePrice: 20,
+      metadata: const {},
+    );
+    final data = LotListingData.fromFields(object.skin, object.fields);
+    expect(data.estimatedValue, 12.34);
+    expect(data.hasCompleteEstimatedValue, isFalse);
+  });
   test('a sealed lot cannot carry a card anchor', () {
     expect(
       () => GrookaiLotListingAdapter.fromTerms(

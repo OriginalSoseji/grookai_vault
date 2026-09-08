@@ -296,6 +296,18 @@ try {
     assert.equal(totals.active_copy_count,count);
     await denied(()=>c.query('update public.vault_item_instances set card_print_id=$2 where id=$1',[pair.instance_ids[1],card.id]),/constraint|sealed|immutable/);
   });
+  await check('disabling additions preserves inventory, totals and disposition history',async()=>{
+    const copies=(await c.query('select public.get_owned_sealed_copies_v1() item')).rows;
+    const totals=(await c.query('select public.get_owned_sealed_totals_v1() result')).rows;
+    const history=(await c.query('select public.get_sealed_ownership_history_v1() item')).rows;
+    await c.query('reset role');
+    await c.query('update public.sealed_ownership_controls_v1 set enabled=false');
+    await asUser();
+    await denied(()=>add(mtg),/sealed_ownership_disabled/);
+    assert.deepEqual((await c.query('select public.get_owned_sealed_copies_v1() item')).rows,copies);
+    assert.deepEqual((await c.query('select public.get_owned_sealed_totals_v1() result')).rows,totals);
+    assert.deepEqual((await c.query('select public.get_sealed_ownership_history_v1() item')).rows,history);
+  });
   await c.query('rollback');
   if(process.argv.includes('--concurrency')) {
     // These committed fixtures stay only in the named disposable DB until its required fresh replay.

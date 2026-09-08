@@ -66,6 +66,10 @@ All four migrations plus the separately approved photo-revision migration are
 applied with 392/392 ledger parity; do not reapply them. PR #440 is merged and
 default-off clients are deployed. Current receipt and remaining acceptance:
 `docs/checkpoints/SEALED_OWNERSHIP_CLIENTS_316_20260908.md`.
+Enabled emulator share/print acceptance and the unpriced lot-export repair:
+`docs/checkpoints/SEALED_OWNERSHIP_NATIVE_ACCEPTANCE_20260908.md`.
+The production ownership switch is global, not account-scoped. Never enable it
+and describe that as a single-owner canary. Local acceptance is not activation.
 New sealed uploads must use unique revision paths, never overwrite a shared path.
 The separate two-function revision migration was independently authorized and
 applied; preserve its single-use marker and exact plan receipt.
@@ -85,6 +89,10 @@ The repeatable local evidence runner is
 `node tests/integration/sealed_verification_v1.mjs checks|fixtures|android|replay`
 (choose one phase). It writes logs and hashes outside the checkout. `fixtures`
 commits disposable local data and requires the final isolated `replay` phase.
+After the five migrations were applied, replay requires zero pending migrations;
+do not reuse the historical four-pending-ID expectation. Local UI signed Storage
+URLs may require emulator-only `adb reverse tcp:55429 tcp:55429`; remove that
+temporary forwarding afterward. Stop the local web harness before final replay.
 The final x64 APK points to local emulator Supabase, not production; never ship it.
 `scripts/schema/sealed_ownership_rollout_plan_v1.mjs` creates a commit/hash-bound
 read-only release plan. It cannot apply SQL, activate flags or grant authority.
