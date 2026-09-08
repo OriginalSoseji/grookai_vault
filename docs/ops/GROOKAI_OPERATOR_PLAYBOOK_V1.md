@@ -73,6 +73,11 @@ scheduled failure findings:
 `docs/checkpoints/SEALED_OWNERSHIP_WEB_SECTIONS_20260908.md`.
 The production ownership switch is global, not account-scoped. Never enable it
 and describe that as a single-owner canary. Local acceptance is not activation.
+An account-scoped canary candidate is now implemented and locally tested, but
+NOT applied: `docs/contracts/SEALED_OWNERSHIP_ACCOUNT_CANARY_V1.md`.
+Its SQL integration runner `tests/integration/sealed_account_canary_v1.mjs`
+requires disposable sealed fixtures and commits local racing-test data. Always
+finish with the isolated replay cleanup; never run it against production.
 New sealed uploads must use unique revision paths, never overwrite a shared path.
 The separate two-function revision migration was independently authorized and
 applied; preserve its single-use marker and exact plan receipt.
