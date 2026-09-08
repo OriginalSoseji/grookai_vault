@@ -2,6 +2,8 @@
 
 Updated: 2026-09-07 America/Denver (final evidence extends into 2026-09-08 UTC).
 Status: implemented and locally verified; NOT applied, deployed or activated in production.
+Historical status. Schema is now applied; clients remain undeployed/disabled.
+See `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md` for current state.
 
 Release follow-up: `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907.md` records fresh
 live read-only preconditions and a least-privilege repair discovered before apply.

@@ -2,6 +2,8 @@
 
 Date: 2026-09-07 America/Denver (evidence 2026-09-08 UTC).
 Status: narrow privilege repair verified locally; NOT production-applied or live.
+Historical preflight status. The approved batch is now applied and independently
+verified; see `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md`. Do not reapply it.
 Branch: `feature/sealed-owned-collectibles-v1`.
 
 ## Fresh Production Evidence

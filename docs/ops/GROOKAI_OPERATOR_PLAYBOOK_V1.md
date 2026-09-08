@@ -60,14 +60,20 @@ Sealed ownership is required product scope across released games. Contract:
 `docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md`. Current implementation,
 local acceptance evidence and exact release boundary:
 `docs/checkpoints/SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907.md`.
+Current production schema receipt:
+`docs/checkpoints/SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md`.
+All four migrations are applied with 391/391 ledger parity; do not reapply them.
+The bounded executor's start marker is preserved outside the checkout. Ownership
+is disabled, with no sealed copies or journal rows. Older worktrees/main lacking
+these committed migrations must reconcile before any later schema operation.
 Release preflight and the subsequent service-role default-grant repair:
 `docs/checkpoints/SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907.md`.
 The original `6d46b8c2c` migration plan is historical and must not authorize the
 repaired SQL. Freeze fresh hashes after the repair commit. For new service-only
 tables/views, explicitly revoke service-role defaults before bounded grants;
 test actual privileges, not only the presence of GRANT statements in source.
-Ownership is locally verified but production still assumes cards/slabs;
-do not insert a sealed UUID into card columns or enable clients before migrations.
+Ownership clients are locally verified but not yet deployed/activated. Production
+now has the real sealed anchor; never insert sealed UUIDs into card columns.
 The repeatable local evidence runner is
 `node tests/integration/sealed_verification_v1.mjs checks|fixtures|android|replay`
 (choose one phase). It writes logs and hashes outside the checkout. `fixtures`
@@ -83,7 +89,8 @@ Current prerequisite proof and exact resume command:
 `docs/checkpoints/SEALED_SCHEMA_BASELINE_RECONCILED_20260907.md`.
 The scoped `AuditLinkedSchema -ReconciledReplayAudit` and isolated PrePush pass
 for exactly `20260905120000,20260907160000`. The image-dimension repair and the
-32-function source reconciliation remain unapplied. Three table column-order
+32-function source reconciliation were subsequently applied with the ownership
+batch recorded above. Three table column-order
 differences explain all 41 view proposals; 873 security objects match and 126
 tests pass. Never rebuild the card table or drop views to satisfy the raw diff.
 This is a baseline prerequisite pass, not deployed sealed ownership or write

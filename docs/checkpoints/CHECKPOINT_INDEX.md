@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
+
 - `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907` - `2026-09-07` - Live read-only ledger/data preconditions pass; inherited service-role grants caught and removed before production; 97 targeted contracts, 36 SQL scenarios and fresh replay pass; replacement frozen plan and production rollout remain gated
 
 - `SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907` - `2026-09-07` - Sealed lifecycle clients/migrations implemented; 35 SQL scenarios, 94 contracts, 38 Flutter tests and 12 web tests pass; native add/sale/history and web photo/lot readback proven; fresh replay passes; production apply/deployment/activation remain gated
