@@ -75,6 +75,9 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
       final item = widget.source.items[index];
       items.add(
         GrookaiLotListingItemSource(
+          objectKind: item.objectKind,
+          sealedVariantId: item.sealedVariantId,
+          packageIdentity: item.packageIdentity,
           cardPrintId: item.cardPrintId,
           gvviId: item.gvviId,
           cardName: item.cardName,
@@ -330,7 +333,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
               ),
               const SizedBox(height: 16),
               Text(
-                '${widget.source.items.length} cards',
+                '${widget.source.items.length} ${widget.source.items.any((item) => item.objectKind == 'sealed') ? 'items' : 'cards'}',
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),

@@ -630,6 +630,9 @@ class VaultPageState extends State<VaultPage> {
   int _reloadRequestVersion = 0;
   String? _uid;
   List<Map<String, dynamic>> _items = const [];
+  OwnedSealedTotals? _sealedTotals;
+  List<OwnedSealedCopy> _selectedSealedCopies = [];
+  int _sealedSelectionEpoch = 0;
   Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
   Map<String, VaultExactPricingSummary> _pricingSummaryByCardPrintId =
       const <String, VaultExactPricingSummary>{};
@@ -672,9 +675,13 @@ class VaultPageState extends State<VaultPage> {
 
   Future<void> reload() async {
     final requestVersion = ++_reloadRequestVersion;
+    _selectedSealedCopies = [];
+    _sealedSelectionEpoch++;
+    _sealedTotals = null;
     if (_uid == null) {
       setState(() {
         _items = const [];
+        _sealedTotals = null;
         _pricingByCardPrintId = const <String, CardSurfacePricingData>{};
         _pricingSummaryByCardPrintId =
             const <String, VaultExactPricingSummary>{};
@@ -1219,6 +1226,7 @@ class VaultPageState extends State<VaultPage> {
       _search = nextValue;
       _pokemonSearch = nextValue;
       _selectedCardPrintIds.clear();
+      _selectedSealedCopies = [];
       _recomputeDerivedData();
     });
   }
@@ -1231,6 +1239,7 @@ class VaultPageState extends State<VaultPage> {
     setState(() {
       _view = view;
       _selectedCardPrintIds.clear();
+      _selectedSealedCopies = [];
     });
   }
 
@@ -1253,6 +1262,8 @@ class VaultPageState extends State<VaultPage> {
       _selectionMode = !_selectionMode;
       if (!_selectionMode) {
         _selectedCardPrintIds.clear();
+        _selectedSealedCopies = [];
+        _sealedSelectionEpoch++;
       }
     });
   }
@@ -1273,11 +1284,13 @@ class VaultPageState extends State<VaultPage> {
   }
 
   void _clearSelection() {
-    if (_selectedCardPrintIds.isEmpty) {
+    if (_selectedCardPrintIds.isEmpty && _selectedSealedCopies.isEmpty) {
       return;
     }
     setState(() {
       _selectedCardPrintIds.clear();
+      _selectedSealedCopies = [];
+      _sealedSelectionEpoch++;
     });
   }
 
@@ -1309,20 +1322,55 @@ class VaultPageState extends State<VaultPage> {
           ),
         )
         .toList(growable: false);
-    if (selectedRows.length < 2) {
+    if (selectedRows.length + _selectedSealedCopies.length < 2 ||
+        selectedRows.length + _selectedSealedCopies.length >
+            kGrookaiLotMaxCards) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Select at least 2 cards for a lot.')),
+        const SnackBar(content: Text('Select 2 to 12 items for a lot.')),
       );
       return;
     }
+
+    final sealedItems = <GrookaiLotListingItemSource>[];
+    try {
+      if (_selectedSealedCopies.isNotEmpty) {
+        final service = OwnedSealedService.supabase();
+        final fresh = await service.page(
+          ids: _selectedSealedCopies.map((r) => r.id).toList(),
+        );
+        if (fresh.length != _selectedSealedCopies.length) {
+          throw StateError('Owned copies changed');
+        }
+        for (final copy in fresh) {
+          sealedItems.add(
+            sealedLotItem(
+              copy,
+              imageUrl:
+                  await service.personalImage(copy) ??
+                  await service.image(copy),
+            ),
+          );
+        }
+      }
+    } catch (_) {
+      if (mounted) {
+        _showVaultMutationError(
+          'Refresh your selection. Lots require active copies and one currency.',
+        );
+      }
+      return;
+    }
+    if (!mounted) return;
 
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => LotPricingScreen(
           source: GrookaiLotListingSource(
-            title: _defaultLotTitle(selectedRows),
+            title: sealedItems.isNotEmpty
+                ? 'Collector lot'
+                : _defaultLotTitle(selectedRows),
             sellerHandle: _vaultSellerHandle,
-            items: selectedRows.map(_lotItemSourceForRow).toList(),
+            items: [...selectedRows.map(_lotItemSourceForRow), ...sealedItems],
           ),
           metadata: <String, dynamic>{
             'card_print_ids': selectedRows
@@ -1334,6 +1382,12 @@ class VaultPageState extends State<VaultPage> {
                 .where((id) => id.isNotEmpty)
                 .toList(),
             'source': 'vault_grid_multi_select',
+            'sealed_instance_ids': _selectedSealedCopies
+                .map((r) => r.id)
+                .toList(),
+            'sealed_variant_ids': _selectedSealedCopies
+                .map((r) => r.text('sealed_product_variant_id'))
+                .toList(),
           },
         ),
       ),
@@ -1341,7 +1395,9 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Future<void> _confirmRemoveSelected() async {
-    if (_bulkArchiveBusy || _selectedCardPrintIds.isEmpty || _uid == null) {
+    if (_bulkArchiveBusy ||
+        (_selectedCardPrintIds.isEmpty && _selectedSealedCopies.isEmpty) ||
+        _uid == null) {
       return;
     }
     final selectedRows = _items
@@ -1351,12 +1407,12 @@ class VaultPageState extends State<VaultPage> {
           ),
         )
         .toList(growable: false);
-    final copyCount = selectedRows.fold<int>(
-      0,
-      (sum, row) => sum + _ownedCountForRow(row),
-    );
+    final sealedCopies = List<OwnedSealedCopy>.from(_selectedSealedCopies);
+    final copyCount =
+        selectedRows.fold<int>(0, (sum, row) => sum + _ownedCountForRow(row)) +
+        sealedCopies.length;
     final cardCount = selectedRows.length;
-    if (cardCount == 0 || copyCount == 0) {
+    if (copyCount == 0) {
       _showVaultMutationError(
         'The selected cards are no longer in your Vault.',
       );
@@ -1371,6 +1427,7 @@ class VaultPageState extends State<VaultPage> {
         content: Text(
           'This removes all active copies of the $cardCount selected '
           '${cardCount == 1 ? 'card' : 'cards'} from your Vault and Wall. '
+          '${sealedCopies.length} selected sealed copies will also be removed. '
           'Memories and transaction history remain. You can add the cards '
           'again later.',
         ),
@@ -1395,12 +1452,45 @@ class VaultPageState extends State<VaultPage> {
       return;
     }
 
-    await _removeSelectedCards(selectedRows);
+    var removed = 0;
+    if (sealedCopies.isNotEmpty) {
+      setState(() => _bulkArchiveBusy = true);
+      try {
+        final service = OwnedSealedService.supabase();
+        for (final copy in sealedCopies) {
+          await service.disposeCopy(copy, 'remove', {});
+          removed++;
+        }
+      } catch (_) {
+        if (mounted) {
+          _showVaultMutationError(
+            '$removed of ${sealedCopies.length} sealed copies removed. Card removal has not started. Refresh to confirm the remaining copies.',
+          );
+        }
+        if (mounted) {
+          setState(() => _bulkArchiveBusy = false);
+          await reload();
+        }
+        return;
+      }
+      if (!mounted) return;
+      setState(() {
+        _bulkArchiveBusy = false;
+        _selectedSealedCopies = [];
+        _sealedSelectionEpoch++;
+      });
+    }
+    if (selectedRows.isNotEmpty) {
+      await _removeSelectedCards(selectedRows, sealedRemoved: removed);
+    } else {
+      await reload();
+    }
   }
 
   Future<void> _removeSelectedCards(
-    List<Map<String, dynamic>> selectedRows,
-  ) async {
+    List<Map<String, dynamic>> selectedRows, {
+    int sealedRemoved = 0,
+  }) async {
     final userId = _uid;
     if (userId == null || _bulkArchiveBusy) {
       return;
@@ -1448,8 +1538,8 @@ class VaultPageState extends State<VaultPage> {
         ..showSnackBar(
           SnackBar(
             content: Text(
-              '${result.archivedInstanceCount} '
-              '${result.archivedInstanceCount == 1 ? 'copy' : 'copies'} '
+              '${result.archivedInstanceCount + sealedRemoved} '
+              '${result.archivedInstanceCount + sealedRemoved == 1 ? 'copy' : 'copies'} '
               'removed from your Vault.',
             ),
           ),
@@ -1465,8 +1555,10 @@ class VaultPageState extends State<VaultPage> {
         _recomputeDerivedData();
       });
       _showVaultMutationError(
-        'Nothing was removed. Refresh your Vault and try again.',
+        '${sealedRemoved > 0 ? '$sealedRemoved sealed copies were removed. ' : ''}'
+        'Card removal could not be confirmed. Refresh before trying again.',
       );
+      await reload();
     }
   }
 
@@ -2345,6 +2437,12 @@ class VaultPageState extends State<VaultPage> {
       minTileWidth: 96,
     );
     final vaultContentSlivers = <Widget>[];
+    final sealedUsd = _sealedTotals?.usd;
+    final combinedValue =
+        derivedData.estimatedValue == null && sealedUsd == null
+        ? null
+        : ((derivedData.estimatedValue ?? 0) * 100).round() / 100 +
+              ((sealedUsd ?? 0) * 100).round() / 100;
     switch (_view) {
       case _VaultStructuralView.all:
         if (_loading) {
@@ -2694,20 +2792,22 @@ class VaultPageState extends State<VaultPage> {
                   ),
                   const SizedBox(height: 5),
                   Semantics(
-                    identifier:
-                        derivedData.vaultPricingSummary.totalMarketValue == null
+                    identifier: (_sealedTotals?.copies ?? 0) > 0
+                        ? 'vault_owned_total_v1_${derivedData.pricedCopyCount + _sealedTotals!.priced}_${derivedData.vaultPricingSummary.unpricedCopyCount + _sealedTotals!.unpriced}_${combinedValue?.toStringAsFixed(2) ?? 'unknown'}'
+                        : derivedData.vaultPricingSummary.totalMarketValue ==
+                              null
                         ? null
                         : vaultExactPricingTotalProofKey(
                             derivedData.vaultPricingSummary,
                           ),
                     label: 'TCGPlayer Market Vault total',
-                    value: derivedData.estimatedValue == null
+                    value: combinedValue == null
                         ? 'Unavailable'
-                        : _formatVaultValue(derivedData.estimatedValue!),
+                        : _formatVaultValue(combinedValue),
                     child: Text(
-                      derivedData.estimatedValue == null
+                      combinedValue == null
                           ? 'TCGPlayer Market'
-                          : _formatVaultValue(derivedData.estimatedValue!),
+                          : _formatVaultValue(combinedValue),
                       style: theme.textTheme.headlineSmall?.copyWith(
                         color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.w700,
@@ -2729,6 +2829,12 @@ class VaultPageState extends State<VaultPage> {
                     ),
                   ),
                   const SizedBox(height: 6),
+                  if (_sealedTotals != null)
+                    Text(
+                      '${_sealedTotals!.copies} sealed copies / ${_sealedTotals!.unpriced} unpriced / '
+                      'Sealed ${sealedMoney(_sealedTotals!.usd, 'USD')}',
+                      style: theme.textTheme.bodySmall,
+                    ),
                   Row(
                     children: [
                       Expanded(
@@ -2828,7 +2934,9 @@ class VaultPageState extends State<VaultPage> {
                   if (_selectionMode) ...[
                     const SizedBox(height: 8),
                     _VaultSelectionBar(
-                      selectedCount: _selectedCardPrintIds.length,
+                      selectedCount:
+                          _selectedCardPrintIds.length +
+                          _selectedSealedCopies.length,
                       visibleCount: visibleSelectionIds.length,
                       allVisibleSelected: allVisibleSelected,
                       busy: _bulkArchiveBusy,
@@ -2843,6 +2951,26 @@ class VaultPageState extends State<VaultPage> {
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
+          if (kSealedOwnershipEnabled && _view == _VaultStructuralView.all)
+            SliverToBoxAdapter(
+              child: OwnedSealedPanel(
+                reloadToken: _reloadRequestVersion,
+                query: _search,
+                selectionEpoch: _sealedSelectionEpoch,
+                onSelectionChanged: (copies) {
+                  if (mounted) {
+                    setState(() {
+                      _selectedSealedCopies = copies;
+                      if (copies.isNotEmpty) _selectionMode = true;
+                    });
+                  }
+                },
+                onShareLot: _openSelectedLotPricing,
+                onTotals: (totals) {
+                  if (mounted) setState(() => _sealedTotals = totals);
+                },
+              ),
+            ),
           ...vaultContentSlivers,
           if (_view == _VaultStructuralView.all) ...[
             const SliverToBoxAdapter(child: SizedBox(height: 18)),

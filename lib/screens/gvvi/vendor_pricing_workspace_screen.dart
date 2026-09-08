@@ -8,6 +8,8 @@ import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import 'public_gvvi_screen.dart';
+import '../../services/sealed/owned_sealed_service_v1.dart';
+import '../../widgets/vault/owned_sealed_panel.dart';
 
 enum _VendorWorkspaceFilter {
   all,
@@ -49,6 +51,7 @@ class _VendorPricingWorkspaceScreenState
   List<VendorWorkspaceSection> _sections = const [];
   _VendorWorkspaceFilter _filter = _VendorWorkspaceFilter.all;
   bool _loading = true;
+  bool _showSealed = false;
   String? _loadError;
 
   @override
@@ -653,6 +656,31 @@ class _VendorPricingWorkspaceScreenState
     return Scaffold(
       appBar: AppBar(
         title: const Text('Vendor Mode'),
+        bottom: kSealedOwnershipEnabled
+            ? PreferredSize(
+                preferredSize: const Size.fromHeight(48),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SegmentedButton<bool>(
+                    segments: const [
+                      ButtonSegment(
+                        value: false,
+                        label: Text('Cards'),
+                        icon: Icon(Icons.style_outlined),
+                      ),
+                      ButtonSegment(
+                        value: true,
+                        label: Text('Sealed'),
+                        icon: Icon(Icons.inventory_2_outlined),
+                      ),
+                    ],
+                    selected: {_showSealed},
+                    onSelectionChanged: (values) =>
+                        setState(() => _showSealed = values.single),
+                  ),
+                ),
+              )
+            : null,
         actions: [
           IconButton(
             tooltip: 'Refresh inventory',
@@ -661,7 +689,9 @@ class _VendorPricingWorkspaceScreenState
           ),
         ],
       ),
-      body: _loading
+      body: _showSealed
+          ? const SingleChildScrollView(child: OwnedSealedPanel())
+          : _loading
           ? const Center(child: CircularProgressIndicator())
           : _loadError != null
           ? _WorkspaceState(

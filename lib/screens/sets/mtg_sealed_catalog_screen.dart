@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/sealed/mtg_sealed_client_v1.dart';
+import '../../widgets/vault/owned_sealed_panel.dart';
 
 class MtgSealedCatalogScreen extends StatefulWidget {
   const MtgSealedCatalogScreen({super.key, this.client, this.gameKey = 'mtg'});
@@ -401,6 +402,10 @@ class _MtgSealedProductTile extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  AddSealedButton(
+                    variantId: row.variantId,
+                    name: row.canonicalName,
                   ),
                 ],
               ),

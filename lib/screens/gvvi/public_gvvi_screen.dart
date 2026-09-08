@@ -21,6 +21,8 @@ import '../../widgets/contact_owner_button.dart';
 import '../network/network_inbox_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
+import '../../services/sealed/owned_sealed_service_v1.dart';
+import 'sealed_copy_view.dart';
 
 ResolvedDisplayIdentity _publicGvviDisplayIdentity(PublicGvviData data) {
   return resolveDisplayIdentityFromFields(
@@ -55,6 +57,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
       OwnershipResolverAdapter.instance;
 
   PublicGvviData? _data;
+  OwnedSealedCopy? _sealedCopy;
   GvviVendorOffer? _vendorOffer;
   OwnershipState? _viewerOwnershipState;
   bool _loading = true;
@@ -72,9 +75,23 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
       _loading = true;
       _error = null;
       _vendorOffer = null;
+      _sealedCopy = null;
     });
 
     try {
+      if (kSealedOwnershipEnabled && _client.auth.currentUser != null) {
+        try {
+          final raw = await _client.rpc('get_sealed_copy_by_gvvi_v1', params: {'p_gvvi_id': widget.gvviId});
+          if (!mounted) return;
+          if (raw != null) {
+            final copy = OwnedSealedCopy.fromJson(Map<String, dynamic>.from(raw as Map));
+            setState(() { _sealedCopy = copy; _loading = false; });
+            return;
+          }
+        } catch (_) {
+          // A staged sealed rollout must not disable existing card links.
+        }
+      }
       final results = await Future.wait<Object?>([
         VaultGvviService.loadPublic(client: _client, gvviId: widget.gvviId),
         GvviVendorOfferService.load(widget.gvviId),
@@ -406,6 +423,10 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_sealedCopy != null) {
+      return SealedCopyView(copy: _sealedCopy!,
+      ownerTools: _sealedCopy!.text('owner_id') == _client.auth.currentUser?.id && widget.showOwnerQrTools);
+    }
     final theme = Theme.of(context);
     final displayName = _data == null
         ? null

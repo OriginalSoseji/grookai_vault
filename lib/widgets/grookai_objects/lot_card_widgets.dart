@@ -33,7 +33,10 @@ class LotCardFront extends StatelessWidget {
                   weight: FontWeight.w600,
                 ),
               ),
-              CardBadge(tokens: t, label: 'LOT · ${data.cardCount} CARDS'),
+              CardBadge(
+                tokens: t,
+                label: 'LOT · ${data.cardCount} ${data.itemNoun}',
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -325,7 +328,7 @@ class LotCardBack extends StatelessWidget {
           const SizedBox(height: 10),
           CardDetailRow(
             tokens: t,
-            label: 'BUNDLE PRICE · ${data.cardCount} CARDS',
+            label: 'BUNDLE PRICE · ${data.cardCount} ${data.itemNoun}',
             value: '\$${data.bundlePrice.toStringAsFixed(0)} firm',
             valueColor: t.accent,
             valueSize: 19,

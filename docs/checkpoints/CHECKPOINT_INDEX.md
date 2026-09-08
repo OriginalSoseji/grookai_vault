@@ -1,5 +1,13 @@
 # CHECKPOINT_INDEX
 
+- `SEALED_OWNERSHIP_LOCAL_ACCEPTANCE_20260907` - `2026-09-07` - Sealed lifecycle clients/migrations implemented; 35 SQL scenarios, 94 contracts, 38 Flutter tests and 12 web tests pass; native add/sale/history and web photo/lot readback proven; fresh replay passes; production apply/deployment/activation remain gated
+
+- `SEALED_SCHEMA_BASELINE_RECONCILED_20260907` - `2026-09-07` - Strict scoped baseline audit and isolated PrePush pass; three physical table-order differences explain all 41 view proposals, 873 security objects match, 126 tests pass; two migrations remain unapplied and sealed ownership is not yet integrated; zero production writes
+
+- `SEALED_SCHEMA_RECONCILIATION_REPLAY_20260907` - `2026-09-07` - Diagnosed one unapplied dimension repair, 32 CRLF-only function differences and physical card-column ordering; exact hash-guarded forward repair passes isolated replay/idempotency/rollback and 108 tests; strict comparison and sealed ownership integration remain open; zero production writes
+
+- `SEALED_OWNERSHIP_FOUNDATION_20260907` - `2026-09-07` - Full sealed Vault/Wall/sale/trade parity contracted; live read-only dependency audit and 98 offline regression tests pass; linked schema diff blocks migration work; no ownership writer, client integration or deployment yet
+
 - `SEALED_IOS314_PHYSICAL_ACCEPTANCE_20260907` - `2026-09-07` - Installed iPhone 314 verified; signed-in Pokemon browse/pagination/151 search and package/language filter evidence; fresh-launch MTG sealed images/prices verified; harness failures retained; scroll-position and performance follow-ups remain
 
 - `SEALED_IOS314_RELEASE_20260907` - `2026-09-07` - Search keyboard repair distributed as valid internal TestFlight build 314; exact source/configuration/signature/dSYM evidence and simulator startup pass; physical iPhone signed-in acceptance remains blocked by device lock

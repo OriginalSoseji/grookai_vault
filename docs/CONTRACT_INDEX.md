@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| SEALED_OWNED_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md - Exact-copy sealed ownership in the existing Vault, qualified totals, Wall, vendor, sale/trade/history and sharing; production activation requires migration replay and mixed-inventory acceptance |
 | GROOKAI_GUARDRAILS | Active | Global stop-rules and mandatory audit triggers |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |

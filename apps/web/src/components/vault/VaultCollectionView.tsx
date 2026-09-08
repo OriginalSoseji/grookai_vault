@@ -19,6 +19,8 @@ import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
+import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
+import { combineUsdTotal, type SealedTotals } from "@/lib/sealed/ownedSealedV1";
 
 export type RecentCardData = {
   id: string;
@@ -245,6 +247,7 @@ export function VaultCollectionView({
   const { density, setDensity } = useViewDensity();
   const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
   const [items, setItems] = useState(initialItems);
+  const [sealedTotals, setSealedTotals] = useState<SealedTotals | null>(null);
   const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [pokemonQuery, setPokemonQuery] = useState("");
@@ -295,11 +298,12 @@ export function VaultCollectionView({
         : "setup"
       : null;
   const collectorPageActivationHref = publicProfileHref ?? "/account";
+  const combinedValue = combineUsdTotal(valueSummary.totalEstimatedValue, sealedTotals);
   const formattedVaultValue =
-    typeof valueSummary.totalEstimatedValue === "number"
-      ? formatVaultCurrency(valueSummary.totalEstimatedValue)
+    typeof combinedValue === "number"
+      ? formatVaultCurrency(combinedValue)
       : null;
-  const coverageLabel = `${valueSummary.pricedCopyCount} / ${valueSummary.totalRawCopyCount}`;
+  const coverageLabel = `${valueSummary.pricedCopyCount + (sealedTotals?.priced_copy_count ?? 0)} / ${valueSummary.totalRawCopyCount + (sealedTotals?.active_copy_count ?? 0)}`;
   const freshnessLabel = formatPricingFreshness(valueSummary.latestPricingUpdateAt);
 
   const recentItems = useMemo(
@@ -631,7 +635,7 @@ export function VaultCollectionView({
         <PageIntro
           title="Your Vault"
           eyebrow="Vault"
-          description="Your personal card library, organized around ownership, value, set progress, and collector intent."
+          description="Your collection, organized around ownership, value, set progress, and collector intent."
           size="compact"
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
@@ -693,7 +697,7 @@ export function VaultCollectionView({
             </svg>
           </Link>
         ) : null}
-        {valueSummary.totalGroupedCount > 0 ? (
+        {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
           <div className="gv-command-surface mt-6 px-5 py-5 md:px-6 md:py-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="min-w-0 space-y-2.5">
@@ -706,10 +710,10 @@ export function VaultCollectionView({
                     data-pricing-proof="vault-exact-total"
                     data-pricing-scope="vault_total"
                     data-vault-market-value-usd={
-                      valueSummary.totalEstimatedValue ?? undefined
+                      combinedValue ?? undefined
                     }
-                    data-priced-copy-count={valueSummary.pricedCopyCount}
-                    data-unpriced-copy-count={valueSummary.unpricedCopyCount}
+                    data-priced-copy-count={valueSummary.pricedCopyCount + (sealedTotals?.priced_copy_count ?? 0)}
+                    data-unpriced-copy-count={valueSummary.unpricedCopyCount + (sealedTotals?.unpriced_copy_count ?? 0)}
                     data-total-raw-copy-count={valueSummary.totalRawCopyCount}
                     data-published-at={
                       valueSummary.latestPricingUpdateAt ?? undefined
@@ -719,7 +723,8 @@ export function VaultCollectionView({
                   >
                     {formattedVaultValue ?? "No estimate yet"}
                   </p>
-                  <p className="text-xs text-slate-400">TCGPlayer Market for exact raw printings.</p>
+                  {sealedTotals && <p className="text-sm">{sealedTotals.active_copy_count} sealed copies / {sealedTotals.unpriced_copy_count} unpriced / Sealed {sealedTotals.totals_by_currency.USD == null ? 'unpriced' : formatVaultCurrency(sealedTotals.totals_by_currency.USD)}</p>}
+                  <p className="text-xs text-slate-400">TCGPlayer Market for eligible exact printings and sealed products.</p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
@@ -757,7 +762,7 @@ export function VaultCollectionView({
           action={<button type="button" className="gv-primary-button" onClick={() => window.location.reload()}>Try again</button>}
           secondaryAction={<Link href="/explore" className="gv-secondary-button">Search cards</Link>}
         />
-      ) : items.length === 0 ? (
+      ) : items.length === 0 ? (sealedTotals?.active_copy_count ? null :
         <ProductState
           eyebrow="No cards yet"
           title="Your Vault is ready"
@@ -833,10 +838,11 @@ export function VaultCollectionView({
         </PageSection>
       )}
 
+      <OwnedSealedPanel onTotals={setSealedTotals} />
       <PageSection spacing="compact">
         <SectionHeader
           title="Recently Added"
-          description="Recent additions to your collection."
+          description="Recently added cards."
           actions={
             <Link href="/wall" className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
               View wall
