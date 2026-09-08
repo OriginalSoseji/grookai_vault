@@ -69,6 +69,15 @@ because today's prices still render. No production rerun was performed here.
 
 ## Remaining gates
 
+PR #443's initial CodeQL and preview checks passed. Main subsequently advanced
+with dashboard snapshots; reconciliation preserves those snapshots and the
+existing playbook content. The first reconciliation hook stalled before loading
+the unchanged scanner perceptual-hash suite. Only the positively identified
+local tester was stopped; that hook remains failed in the audit. All six tests
+in the focused retry passed. Require a complete normal hook retry, not a bypass.
+Release follow-up receipts:
+`C:/grookai_vault_operator_artifacts/sealed_ownership/20260908_web_section_release/`.
+
 1. Release this small section fix through normal review and CI; its local
    browser proof is not proof of deployed web or native behavior.
 2. Finish enabled browser media/share/print/bulk-removal acceptance and native
