@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Camera, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
-import { parseSealedCopy, type SealedCopy } from '@/lib/sealed/ownedSealedV1';
+import { isSealedPhotoPath, sealedPhotoPath, parseSealedCopy, type SealedCopy } from '@/lib/sealed/ownedSealedV1';
 
 const control = 'min-h-10 w-full rounded-md border border-current/25 bg-transparent px-3 py-2 text-sm';
 const button = 'inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-3 disabled:opacity-40';
 
 export async function sealedPersonalImage(row: SealedCopy, back = false): Promise<string | null> {
   const path = back ? row.personal_back_image_url : row.personal_image_url;
-  if (path !== `${row.owner_id}/vault-instances/${row.instance_id}/${back ? 'back' : 'front'}/current`) return null;
+  if (!isSealedPhotoPath(path, row.owner_id, row.instance_id, back ? 'back' : 'front')) return null;
   const { data, error } = await supabase.storage.from('user-card-images').createSignedUrl(path, 3600);
   return !error ? data?.signedUrl ?? null : null;
 }
@@ -37,12 +37,13 @@ export function SealedDetailsDialog({ row, close }: { row: SealedCopy; close: ()
   const [front, setFront] = useState<File | null>(null), [back, setBack] = useState<File | null>(null);
   const [busy, setBusy] = useState(false), [error, setError] = useState('');
   useEffect(() => { dialog.current?.showModal(); }, []);
-  async function upload(file: File | null, side: string, previous: string | null | undefined) {
+  async function upload(file: File | null, side: 'front' | 'back', previous: string | null | undefined) {
     if (!file) return previous ?? null;
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 10 * 1024 * 1024) throw new Error('Unsupported image');
     const decoded = await createImageBitmap(file); decoded.close();
-    const path = `${row.owner_id}/vault-instances/${row.instance_id}/${side}/current`;
-    const { error } = await supabase.storage.from('user-card-images').upload(path, file, { upsert: true, contentType: file.type });
+    // Never change bytes behind a live pointer or an already issued signed URL.
+    const path = sealedPhotoPath(row.owner_id, row.instance_id, side, crypto.randomUUID().replaceAll('-', ''));
+    const { error } = await supabase.storage.from('user-card-images').upload(path, file, { upsert: false, contentType: file.type });
     if (error) throw error;
     return path;
   }

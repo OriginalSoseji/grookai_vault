@@ -13,6 +13,22 @@ Map<String, dynamic> row() => {'object_kind': 'sealed', 'instance_id': instance,
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  test('signed-out inventory never issues an authenticated RPC', () async {
+    final service = OwnedSealedService(userId: () => null, rpc: (_, _) async {
+      fail('Signed-out reader attempted RPC');
+    });
+    expect(await service.page(ownerId: instance, wallOnly: true), isEmpty);
+  });
+  test('photo revisions are unique and strictly owner, copy and side bound', () {
+    final first = sealedPhotoPath(variant, instance, false);
+    final second = sealedPhotoPath(variant, instance, false);
+    expect(first, isNot(second));
+    expect(isSealedPhotoPath(first, variant, instance, false), isTrue);
+    expect(isSealedPhotoPath(first, variant, instance, true), isFalse);
+    expect(isSealedPhotoPath(first, instance, instance, false), isFalse);
+    expect(isSealedPhotoPath('$first/extra', variant, instance, false), isFalse);
+    expect(isSealedPhotoPath('$variant/vault-instances/$instance/front/current', variant, instance, false), isTrue);
+  });
   test('typed sealed identity never substitutes a card ID and keeps unknown price', () {
     final copy = OwnedSealedCopy.fromJson(row());
     expect(copy.id, instance); expect(copy.amount('owned_market_price'), isNull);

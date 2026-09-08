@@ -7,6 +7,23 @@ authorization. It supersedes treating sealed ownership as optional backlog.
 
 ## Product Scope
 
+### Personal Photo Safety
+
+Personal sealed photos use unique owner/copy/side-bound revision paths and
+`upsert=false`. Never overwrite bytes behind an existing shared path or signed
+URL. The details RPC switches photo pointers and sharing mode atomically after
+validating every path. A failed save leaves staged photos owner-only and preserves
+the previous published photo. Existing `current` paths remain readable; new
+uploads must use revisions. Do not delete staged objects after an ambiguous
+response because the pointer transaction may already have committed.
+
+Previously issued signed URLs can show the previously shared bytes until expiry;
+changing sharing does not revoke already downloaded images or issued tokens.
+Authenticated-only sealed inventory must not load on signed-out public profiles.
+
+The forward photo-path migration is a separate schema gate. Do not activate
+ownership or ship a purportedly fixed release against only the original schema.
+
 Every released sealed identity, across supported TCGs and languages, must have
 the same collector lifecycle as an owned card. Do not require a market price to
 own an item. Expired pricing or unavailable imagery must not erase ownership.

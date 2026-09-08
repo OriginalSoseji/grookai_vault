@@ -72,6 +72,9 @@ try {
   const reads=await fs.readFile(new URL('../../supabase/migrations/20260907183000_sealed_owned_read_models_v1.sql',import.meta.url),'utf8');
   await c.query(reads);
   await c.query(reads);
+  const revisions=await fs.readFile(new URL('../../supabase/migrations/20260908070000_sealed_owned_photo_revisions_v1.sql',import.meta.url),'utf8');
+  await c.query(revisions);
+  await c.query(revisions);
   await c.query('begin');
   await check('sealed service grants remain least-privilege despite Supabase defaults',async()=>{
     for(const [table,allowed] of [
@@ -175,7 +178,7 @@ try {
   await c.query('reset role');
   await c.query("insert into public.public_profiles(user_id,slug,display_name,public_profile_enabled,vault_sharing_enabled) values($1,$2,'Fixture',true,true) on conflict(user_id) do update set public_profile_enabled=true,vault_sharing_enabled=true",[owner,`fixture-${owner}`]);
   const section=await insert('wall_sections',{user_id:owner,name:'Fixture sealed',is_public:true,is_active:true,position:10});
-  const photoPath=`${owner}/vault-instances/${pair.instance_ids[0]}/front/current`;
+  const photoPath=`${owner}/vault-instances/${pair.instance_ids[0]}/front/revisions/${randomUUID().replaceAll('-','')}`;
   await c.query("insert into storage.buckets(id,name,public) values('user-card-images','user-card-images',false) on conflict(id) do nothing");
   await c.query("insert into storage.objects(bucket_id,name,owner,owner_id,metadata) values('user-card-images',$1,$2::uuid,$2::uuid::text,'{\"mimetype\":\"image/jpeg\",\"size\":100}')",[photoPath,owner]);
   await asUser();
@@ -201,6 +204,22 @@ try {
     const sharedRow=(await c.query('select public.get_owned_sealed_copies_v1($1,$2) item',[owner,[pair.instance_ids[0]]])).rows[0].item;
     assert.equal(sharedRow.personal_image_url,photoPath);assert.equal(sharedRow.notes,null);
     assert.equal((await c.query('select name from storage.objects where name=$1',[photoPath])).rows.length,1);
+    await asUser();
+  });
+  await check('photo revision validation is atomic and rejects missing, wrong-side and new legacy paths',async()=>{
+    const prefix=`${owner}/vault-instances/${pair.instance_ids[0]}/`;
+    const staged=prefix+`front/revisions/${randomUUID().replaceAll('-','')}`;
+    const legacy=prefix+'back/current';
+    await c.query('reset role');
+    for(const path of [staged,legacy]) await c.query("insert into storage.objects(bucket_id,name,owner,owner_id) values('user-card-images',$1,$2::uuid,$2::uuid::text)",[path,owner]);
+    await asUser();
+    for(const back of [staged,legacy,prefix+'back/revisions/'+'a'.repeat(32)])
+      await denied(()=>c.query("select public.vault_save_sealed_details_v1($1,'New private',$2,$3,false)",[pair.instance_ids[0],staged,back]),/invalid_owned_photo_path/);
+    const retained=(await c.query('select image_url,image_display_mode from public.vault_item_instances where id=$1',[pair.instance_ids[0]])).rows[0];
+    assert.equal(retained.image_url,photoPath);assert.equal(retained.image_display_mode,'uploaded');
+    await asUser(other);
+    assert.equal((await c.query('select public.sealed_owned_media_visible_v1($1) allowed',[staged])).rows[0].allowed,false);
+    assert.equal((await c.query('select public.sealed_owned_media_visible_v1($1) allowed',[photoPath])).rows[0].allowed,true);
     await asUser();
   });
   await check('private section and block both withhold sealed appearances',async()=>{

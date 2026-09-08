@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFile} from 'node:fs/promises';
-import {createHash} from 'node:crypto';
+import {createHash,randomUUID} from 'node:crypto';
 import {createClient} from '@supabase/supabase-js';
 import pg from 'pg';
 const status=JSON.parse(execFileSync('supabase',['status','-o','json'],{cwd:'C:/grookai_vault_sealed_schema_reconcile',encoding:'utf8',stdio:['ignore','pipe','ignore']}));
@@ -25,7 +25,7 @@ try {
   const login=await client.auth.signInWithPassword({email:fixture.email,password});assert.ifError(login.error);
   const bytes=await readFile(new URL('../../apps/web/public/set-logos/xy1.png',import.meta.url));
   const hash=buffer=>createHash('sha256').update(buffer).digest('hex');
-  const paths=['front','back'].map(side=>`${fixture.user_id}/vault-instances/${fixture.id}/${side}/current`);
+  const paths=['front','back'].map(side=>`${fixture.user_id}/vault-instances/${fixture.id}/${side}/revisions/${randomUUID().replaceAll('-','')}`);
   for(const path of paths) {
     const uploaded=await client.storage.from('user-card-images').upload(path,bytes,{upsert:false,contentType:'image/png'});assert.ifError(uploaded.error);
     const downloaded=await client.storage.from('user-card-images').download(path);assert.ifError(downloaded.error);
@@ -39,8 +39,35 @@ try {
   const response=await fetch(signed.data.signedUrl);assert.equal(response.status,200);assert.equal(hash(Buffer.from(await response.arrayBuffer())),hash(bytes));
   const anonymous=createClient(status.API_URL,status.PUBLISHABLE_KEY,options);
   const denied=await anonymous.storage.from('user-card-images').createSignedUrl(paths[0],60);assert.ok(denied.error);
+  const viewerEmail=`sealed-media-${randomUUID()}@example.invalid`;
+  const viewerUser=await admin.auth.admin.createUser({email:viewerEmail,password,email_confirm:true});assert.ifError(viewerUser.error);
+  const viewer=createClient(status.API_URL,status.PUBLISHABLE_KEY,options);
+  assert.ifError((await viewer.auth.signInWithPassword({email:viewerEmail,password})).error);
+  await c.query("insert into public.public_profiles(user_id,slug,display_name,public_profile_enabled,vault_sharing_enabled) values($1,$2,'Local media fixture',true,true) on conflict(user_id) do update set public_profile_enabled=true,vault_sharing_enabled=true",[fixture.user_id,`fixture-${fixture.user_id}`]);
+  await c.query("update public.vault_item_instances set intent='showcase' where id=$1 and user_id=$2",[fixture.id,fixture.user_id]);
+  const details={p_instance_id:fixture.id,p_front_path:paths[0],p_back_path:paths[1],p_show_photos:true};
+  assert.ifError((await client.rpc('vault_save_sealed_details_v1',details)).error);
+  // Match the clients' one-hour token lifetime while testing failed saves.
+  const shared=await viewer.storage.from('user-card-images').createSignedUrl(paths[0],3600);assert.ifError(shared.error);
+  const replacement=await readFile(new URL('../../apps/web/public/set-logos/xy2.png',import.meta.url));
+  assert.notEqual(hash(bytes),hash(replacement));
+  const staged=`${fixture.user_id}/vault-instances/${fixture.id}/front/revisions/${randomUUID().replaceAll('-','')}`;
+  assert.ifError((await client.storage.from('user-card-images').upload(staged,replacement,{upsert:false,contentType:'image/png'})).error);
+  assert.ok((await client.storage.from('user-card-images').upload(paths[0],replacement,{upsert:false,contentType:'image/png'})).error);
+  const failed=await client.rpc('vault_save_sealed_details_v1',{...details,p_front_path:staged,p_back_path:'missing',p_show_photos:false});assert.ok(failed.error);
+  assert.ok((await viewer.storage.from('user-card-images').createSignedUrl(staged,60)).error);
+  const oldResponse=await fetch(shared.data.signedUrl);assert.equal(oldResponse.status,200,oldResponse.ok?'':await oldResponse.text());
+  assert.equal(hash(Buffer.from(await oldResponse.arrayBuffer())),hash(bytes));
+  assert.ifError((await client.rpc('vault_save_sealed_details_v1',{...details,p_front_path:staged,p_show_photos:false})).error);
+  assert.ok((await viewer.storage.from('user-card-images').createSignedUrl(staged,60)).error);
+  const stillOld=await fetch(shared.data.signedUrl);assert.equal(stillOld.status,200);
+  assert.equal(hash(Buffer.from(await stillOld.arrayBuffer())),hash(bytes));
+  assert.ifError((await client.rpc('vault_save_sealed_details_v1',{...details,p_front_path:staged})).error);
+  assert.ifError((await viewer.storage.from('user-card-images').createSignedUrl(staged,60)).error);
+  await viewer.auth.signOut({scope:'local'});
   await client.auth.signOut({scope:'local'});
-  console.log(JSON.stringify({status:'passed',local_only:true,production_access:false,uploads:2,exact_byte_readbacks:3,
+  console.log(JSON.stringify({status:'passed',local_only:true,production_access:false,uploads:3,exact_byte_readbacks:5,
+    replacement_failure_preserves_shared_bytes:true,staged_replacement_private:true,retained_signed_url_preserves_original:true,
     private_by_default:true,anonymous_signing_denied:true,fixture_instance_id:fixture.id,fixture_owner:fixture.user_id,
     fixture_asset:'set-logos/xy1.png - test photo only',requires_isolated_replay:true}));
 } finally {await c.end();}

@@ -16,6 +16,22 @@ const kSealedOwnershipEnabled = bool.fromEnvironment(
 typedef SealedRpc =
     Future<dynamic> Function(String name, Map<String, dynamic> params);
 
+String sealedPhotoPath(String owner, String instance, bool back) {
+  final revision = List.generate(
+    16,
+    (_) => Random.secure().nextInt(256),
+  ).map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+  return '$owner/vault-instances/$instance/${back ? 'back' : 'front'}/revisions/$revision';
+}
+
+bool isSealedPhotoPath(String path, String owner, String instance, bool back) {
+  final prefix = '$owner/vault-instances/$instance/${back ? 'back' : 'front'}/';
+  return path.startsWith(prefix) &&
+      RegExp(
+        r'^(current|revisions/[a-f0-9]{32})$',
+      ).hasMatch(path.substring(prefix.length));
+}
+
 class OwnedSealedCopy {
   OwnedSealedCopy.fromJson(Map<String, dynamic> json)
     : data = Map.unmodifiable(json) {
@@ -130,6 +146,7 @@ class OwnedSealedService {
     String? query,
     bool wallOnly = false,
   }) async {
+    if (userId() == null) return [];
     final result = await rpc(
       ids == null
           ? 'get_owned_sealed_inventory_v1'
@@ -175,9 +192,9 @@ class OwnedSealedService {
     final path = copy.text(
       back ? 'personal_back_image_url' : 'personal_image_url',
     );
-    final expected =
-        '${copy.text('owner_id')}/vault-instances/${copy.id}/${back ? 'back' : 'front'}/current';
-    if (path != expected) return null;
+    if (!isSealedPhotoPath(path, copy.text('owner_id'), copy.id, back)) {
+      return null;
+    }
     try {
       return await Supabase.instance.client.storage
           .from('user-card-images')

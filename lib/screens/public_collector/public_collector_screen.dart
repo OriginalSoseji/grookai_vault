@@ -920,7 +920,8 @@ class _PublicCollectorSegmentedContentState
             onWallChanged: widget.onWallChanged,
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
-        OwnedSealedPanel(ownerId: widget.profile.userId, wallOnly: true,
+        if (_viewerUserId.isNotEmpty)
+          OwnedSealedPanel(ownerId: widget.profile.userId, wallOnly: true,
           sectionId: selectedSectionId == _wallSectionId ? null : selectedSectionId),
       ],
     );

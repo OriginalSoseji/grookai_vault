@@ -268,6 +268,7 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
   }
 
   Future<void> _load() async {
+    if (_service.userId() == null) return;
     _images.clear();
     final generation = ++_generation;
     setState(() {

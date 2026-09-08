@@ -69,8 +69,11 @@ class _SealedCopyDetailsDialogState extends State<SealedCopyDetailsDialog> {
       if (bytes.length > 10 * 1024 * 1024) {
         throw StateError('Image exceeds 10 MB');
       }
-      final path =
-          '${widget.copy.text('owner_id')}/vault-instances/${widget.copy.id}/${back ? 'back' : 'front'}/current';
+      final path = sealedPhotoPath(
+        widget.copy.text('owner_id'),
+        widget.copy.id,
+        back,
+      );
       final String mime;
       if (bytes.length >= 8 &&
           bytes.take(8).join(',') == '137,80,78,71,13,10,26,10') {
@@ -99,7 +102,7 @@ class _SealedCopyDetailsDialogState extends State<SealedCopyDetailsDialog> {
           .uploadBinary(
             path,
             bytes,
-            fileOptions: FileOptions(upsert: true, contentType: mime),
+            fileOptions: FileOptions(upsert: false, contentType: mime),
           );
       if (back) {
         _back = path;

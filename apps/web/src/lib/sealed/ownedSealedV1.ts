@@ -12,6 +12,15 @@ export type SealedCopy = {
 };
 export type SealedTotals = { active_copy_count: number; priced_copy_count: number; unpriced_copy_count: number; totals_by_currency: Record<string, number> };
 export type SealedRpc = (name: string, params: Record<string, unknown>) => Promise<unknown>;
+export function sealedPhotoPath(owner: string, instance: string, side: 'front' | 'back', revision: string): string {
+  if (!/^[a-f0-9]{32}$/.test(revision)) throw new Error('Invalid photo revision');
+  return `${owner}/vault-instances/${instance}/${side}/revisions/${revision}`;
+}
+export function isSealedPhotoPath(path: unknown, owner: string, instance: string, side: 'front' | 'back'): path is string {
+  const prefix = `${owner}/vault-instances/${instance}/${side}/`;
+  return typeof path === 'string' && path.startsWith(prefix) &&
+    /^(current|revisions\/[a-f0-9]{32})$/.test(path.slice(prefix.length));
+}
 export function sealedIdentity(row: SealedCopy) {
   return [row.name, row.package_form.replaceAll('_', ' '), row.language_code.toUpperCase(), row.region_code, row.edition, row.wave].filter(Boolean).join(' - ');
 }

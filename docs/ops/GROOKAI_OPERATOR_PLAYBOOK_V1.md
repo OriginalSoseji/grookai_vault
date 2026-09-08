@@ -63,6 +63,11 @@ local acceptance evidence and exact release boundary:
 Current production schema receipt:
 `docs/checkpoints/SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md`.
 All four migrations are applied with 391/391 ledger parity; do not reapply them.
+Client release is held at PR #440 for the photo privacy repair:
+`docs/checkpoints/SEALED_OWNERSHIP_PHOTO_PRIVACY_REPAIR_20260908.md`.
+New sealed uploads must use unique revision paths, never overwrite a shared path.
+The separate two-function revision migration is not covered by the prior apply.
+iOS archive 315 predates this repair and must not be uploaded as the fixed build.
 The bounded executor's start marker is preserved outside the checkout. Ownership
 is disabled, with no sealed copies or journal rows. Older worktrees/main lacking
 these committed migrations must reconcile before any later schema operation.
