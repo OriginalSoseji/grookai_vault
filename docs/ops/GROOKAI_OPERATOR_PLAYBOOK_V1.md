@@ -68,6 +68,9 @@ default-off clients are deployed. Current receipt and remaining acceptance:
 `docs/checkpoints/SEALED_OWNERSHIP_CLIENTS_316_20260908.md`.
 Enabled emulator share/print acceptance and the unpriced lot-export repair:
 `docs/checkpoints/SEALED_OWNERSHIP_NATIVE_ACCEPTANCE_20260908.md`.
+Latest browser section repair, local sale/trade readback, cleanup and separate
+scheduled failure findings:
+`docs/checkpoints/SEALED_OWNERSHIP_WEB_SECTIONS_20260908.md`.
 The production ownership switch is global, not account-scoped. Never enable it
 and describe that as a single-owner canary. Local acceptance is not activation.
 New sealed uploads must use unique revision paths, never overwrite a shared path.
