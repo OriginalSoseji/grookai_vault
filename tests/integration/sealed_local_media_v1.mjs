@@ -9,7 +9,7 @@ const status=JSON.parse(execFileSync('supabase',['status','-o','json'],{cwd:'C:/
 assert.equal(status.API_URL,'http://127.0.0.1:55429');
 const c=new pg.Client({host:'127.0.0.1',port:55430,user:'postgres',password:'postgres',database:'postgres'});
 const options={auth:{persistSession:false,autoRefreshToken:false}};
-const admin=createClient(status.API_URL,status.SERVICE_ROLE_KEY,options);
+const admin=createClient(status.API_URL,status.SECRET_KEY,options);
 await c.connect();
 try {
   const buckets=await admin.storage.listBuckets();assert.ifError(buckets.error);
@@ -21,7 +21,7 @@ try {
   await c.query("update auth.users set instance_id='00000000-0000-0000-0000-000000000000',aud='authenticated',role='authenticated',created_at=coalesce(created_at,now()),updated_at=now(),confirmation_token='',recovery_token='',email_change_token_new='',email_change='',email_change_token_current='',reauthentication_token='',phone_change='',phone_change_token='' where id=$1 and email like '%@example.invalid'",[fixture.user_id]);
   const password='Sealed-local-only-2026!';
   const prepared=await admin.auth.admin.updateUserById(fixture.user_id,{password,email_confirm:true});assert.ifError(prepared.error);
-  const client=createClient(status.API_URL,status.ANON_KEY,options);
+  const client=createClient(status.API_URL,status.PUBLISHABLE_KEY,options);
   const login=await client.auth.signInWithPassword({email:fixture.email,password});assert.ifError(login.error);
   const bytes=await readFile(new URL('../../apps/web/public/set-logos/xy1.png',import.meta.url));
   const hash=buffer=>createHash('sha256').update(buffer).digest('hex');
@@ -37,7 +37,7 @@ try {
   const signed=await client.storage.from('user-card-images').createSignedUrl(paths[0],60);assert.ifError(signed.error);
   assert.ok(signed.data.signedUrl.startsWith(status.API_URL));
   const response=await fetch(signed.data.signedUrl);assert.equal(response.status,200);assert.equal(hash(Buffer.from(await response.arrayBuffer())),hash(bytes));
-  const anonymous=createClient(status.API_URL,status.ANON_KEY,options);
+  const anonymous=createClient(status.API_URL,status.PUBLISHABLE_KEY,options);
   const denied=await anonymous.storage.from('user-card-images').createSignedUrl(paths[0],60);assert.ok(denied.error);
   await client.auth.signOut({scope:'local'});
   console.log(JSON.stringify({status:'passed',local_only:true,production_access:false,uploads:2,exact_byte_readbacks:3,

@@ -12,17 +12,17 @@ const owner=(await c.query("select u.id,u.email,count(*) copies from auth.users 
 assert.ok(owner,'Run the local concurrency fixture first');
 await c.query("update auth.users set instance_id='00000000-0000-0000-0000-000000000000',aud='authenticated',role='authenticated',created_at=coalesce(created_at,now()),updated_at=now(),confirmation_token='',recovery_token='',email_change_token_new='',email_change='',email_change_token_current='',reauthentication_token='',phone_change='',phone_change_token='' where id=$1 and email like '%@example.invalid'",[owner.id]);
 await c.end();
-const admin=createClient(status.API_URL,status.SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const admin=createClient(status.API_URL,status.SECRET_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
 const password='Sealed-local-only-2026!';
 const {error}=await admin.auth.admin.updateUserById(owner.id,{password,email_confirm:true});
 if(error) throw error;
 console.log(JSON.stringify({url:'http://localhost:3157/login',fixture_email:owner.email,local_only:true}));
 const env={...process.env,SUPABASE_URL:status.API_URL,NEXT_PUBLIC_SUPABASE_URL:status.API_URL,
-  SUPABASE_PUBLISHABLE_KEY:status.ANON_KEY,SUPABASE_ANON_KEY:status.ANON_KEY,
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:status.ANON_KEY,NEXT_PUBLIC_SUPABASE_ANON_KEY:status.ANON_KEY,
-  SUPABASE_SECRET_KEY:status.SERVICE_ROLE_KEY,SUPABASE_SERVICE_ROLE_KEY:status.SERVICE_ROLE_KEY,
-  NEXT_PUBLIC_SEALED_OWNERSHIP_V1_ENABLED:'true',NEXT_PUBLIC_MTG_SEALED_ENABLED:'true',
-  NEXT_PUBLIC_POKEMON_SEALED_ENABLED:'true',NEXT_TELEMETRY_DISABLED:'1'};
+  SUPABASE_PUBLISHABLE_KEY:status.PUBLISHABLE_KEY,
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:status.PUBLISHABLE_KEY,
+  SUPABASE_SECRET_KEY:status.SECRET_KEY,
+  NEXT_PUBLIC_SEALED_OWNERSHIP_V1_ENABLED:'true',NEXT_PUBLIC_MTG_SEALED_CLIENT_V1_ENABLED:'true',
+  NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED:'true',NEXT_TELEMETRY_DISABLED:'1'};
 const child=spawn(process.execPath,['node_modules/next/dist/bin/next','dev','--hostname','127.0.0.1','--port','3157'],{
   cwd:new URL('../../apps/web',import.meta.url),env,stdio:'inherit'});
 for(const signal of ['SIGINT','SIGTERM']) process.on(signal,()=>child.kill(signal));
