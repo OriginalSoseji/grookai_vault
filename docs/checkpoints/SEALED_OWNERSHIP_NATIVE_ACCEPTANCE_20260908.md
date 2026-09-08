@@ -82,7 +82,23 @@ Production readback at 12:40 UTC: ownership false, zero sealed copies/request
 rows, 3,401 total existing copies, three dispositions, 392 migrations;
 170,404 cards, 3,397 sets, 32,903 traits.
 
-## Browser Limitation
+## PR 442 Review Follow-Up
+
+On 2026-09-08, normal pre-push verification independently passed all 695 Flutter
+tests, 3,151 contracts, web checks and static analysis at `0211fb464`. That
+producer was pushed through PR #442. Automated review found one additional
+case: an asking-only sealed copy could still contribute its seller-controlled
+amount to comparative `value`. The follow-up requires eligible `marketPrice`
+for sealed comparative totals and completeness, preserves asking amounts on
+the item, and retains the existing card-only fallback. Added front/back,
+mixed-eligibility and mixed-card regressions cover this distinction.
+
+This follow-up has not been included in the prior emulator export evidence;
+verify its own test/CI receipts before merge or distribution. Release receipts
+and the exact remaining acceptance checklist are under
+`C:/grookai_vault_operator_artifacts/sealed_ownership/20260908_lot_repair_release/`.
+
+## Browser Connection Follow-Up
 
 MTG production catalog rendered product names, prices and image elements;
 sanitized DOM is saved. The browser transport then disconnected repeatedly.

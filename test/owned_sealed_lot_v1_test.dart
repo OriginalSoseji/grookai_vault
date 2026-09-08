@@ -26,6 +26,52 @@ Map<String, dynamic> copy() => {
 void main() {
   setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
   for (final front in [true, false]) {
+    for (final includeEligible in [false, true]) {
+      testWidgets(
+        'asking-only sealed value stays incomplete (mixed=$includeEligible, front=$front)',
+        (tester) async {
+          await tester.binding.setSurfaceSize(const Size(440, 620));
+          addTearDown(() => tester.binding.setSurfaceSize(null));
+          final object = GrookaiLotListingAdapter.fromTerms(
+            source: GrookaiLotListingSource(
+              title: 'Asking-only sealed lot',
+              items: [
+                sealedLotItem(
+                  OwnedSealedCopy.fromJson({
+                    ...copy(),
+                    'seal_state': 'opened',
+                    'package_condition': 'damaged',
+                    'owned_market_price': null,
+                    'asking_price_amount': 25,
+                  }),
+                ),
+                if (includeEligible)
+                  sealedLotItem(OwnedSealedCopy.fromJson(copy())),
+              ],
+            ),
+            skin: GrookaiObjectSkin.onyx,
+            bundlePrice: 35,
+            metadata: const {},
+          );
+          final data = LotListingData.fromFields(object.skin, object.fields);
+          expect(data.hasCompleteEstimatedValue, isFalse);
+          expect(data.estimatedValue, includeEligible ? 12.34 : 0);
+          expect(data.items.first.marketPrice, isNull);
+          expect(data.items.first.price, 25);
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: GrookaiObjectRenderer(object: object, showFront: front),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+          expect(find.text('\$25'), findsOneWidget);
+          expect(find.textContaining(' value'), findsNothing);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
     testWidgets(
       'priced lots retain exact cents (${front ? 'front' : 'back'})',
       (tester) async {
@@ -132,6 +178,31 @@ void main() {
     expect(data.estimatedValue, 12.34);
     expect(data.hasCompleteEstimatedValue, isFalse);
   });
+  for (final includeSealed in [false, true]) {
+    test('legacy card estimates are preserved (mixed=$includeSealed)', () {
+      final data = LotListingData(
+        skin: GrookaiObjectSkin.onyx,
+        listingNo: 'test',
+        title: 'Mixed estimate',
+        items: [
+          const LotItem(cardName: 'Card', condition: 'NM', price: 7.5),
+          if (includeSealed)
+            const LotItem(
+              objectKind: 'sealed',
+              cardName: 'Box',
+              condition: 'opened',
+              price: 25,
+            ),
+        ],
+        bundlePrice: 30,
+        sellerHandle: 'fixture',
+        sellerRating: 0,
+        sellerTradeCount: 0,
+      );
+      expect(data.estimatedValue, 7.5);
+      expect(data.hasCompleteEstimatedValue, !includeSealed);
+    });
+  }
   test('a sealed lot cannot carry a card anchor', () {
     expect(
       () => GrookaiLotListingAdapter.fromTerms(
