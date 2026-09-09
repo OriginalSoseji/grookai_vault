@@ -72,6 +72,7 @@ import 'services/navigation/pending_personal_card_action.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_exact_pricing.dart';
 import 'services/sealed/owned_sealed_service_v1.dart';
+import 'services/sealed/owned_sealed_totals_controller.dart';
 import 'services/sealed/owned_sealed_lot_v1.dart';
 import 'widgets/vault/owned_sealed_panel.dart';
 import 'services/vault/vault_gvvi_service.dart';

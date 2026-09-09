@@ -6,6 +6,8 @@ param(
     [switch]$EnableSealedOwnership,
     [ValidateSet("debug", "profile", "release")]
     [string]$BuildMode = "debug",
+    [ValidateRange(1, 2100000000)]
+    [int]$BuildNumber,
     [ValidateSet("", "android-arm", "android-arm64", "android-x64")]
     [string]$TargetPlatform = ""
 )
@@ -63,6 +65,9 @@ try {
     Push-Location $resolvedRepoRoot
     try {
         $buildArguments = @("build", "apk", "--$BuildMode", "--dart-define-from-file=$defineFile")
+        if ($PSBoundParameters.ContainsKey('BuildNumber')) {
+            $buildArguments += "--build-number=$BuildNumber"
+        }
         if (-not [string]::IsNullOrWhiteSpace($TargetPlatform)) {
             $buildArguments += @("--target-platform", $TargetPlatform)
         }

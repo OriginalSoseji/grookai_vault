@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 
 export const CANARY_PROJECT = 'ycdxbpibncqcchqiihfz';
 export const CANARY_BRANCH = 'feature/sealed-account-canary-boundary';
+export const CANARY_BRANCHES = Object.freeze([CANARY_BRANCH, 'fix/sealed-canary-explicit-product']);
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 const digest = /^[0-9a-f]{64}$/;
 export function canonicalJson(value) {
@@ -14,8 +15,19 @@ export function canonicalJson(value) {
 }
 export const canaryHash = value => createHash('sha256').update(canonicalJson(value)).digest('hex');
 
+export function validateRequestedVariants(selection) {
+  assert.ok(Array.isArray(selection) && selection.length >= 1 && selection.length <= 2, 'Select one or two exact variants');
+  for (const row of selection) {
+    assert.deepEqual(Object.keys(row).sort(), ['game_key', 'query', 'variant_id']);
+    assert.ok(['pokemon', 'mtg'].includes(row.game_key), 'Unsupported canary game');
+    assert.match(row.variant_id, uuid);
+    assert.ok(typeof row.query === 'string' && row.query.trim() === row.query && row.query.length > 0 && row.query.length <= 200, 'Bounded product lookup required');
+  }
+  assert.equal(new Set(selection.map(row => row.variant_id)).size, selection.length, 'Duplicate requested variant');
+}
+
 export function buildAccountCanaryPlan(snapshot, repository) {
-  assert.equal(repository.branch, CANARY_BRANCH);
+  assert.ok(CANARY_BRANCHES.includes(repository.branch), 'Wrong canary branch');
   assert.match(repository.commit, /^[0-9a-f]{40}$/);
   assert.equal(repository.clean, true, 'Freeze tracked and untracked files first');
   assert.equal(snapshot.project_ref, CANARY_PROJECT);
@@ -37,9 +49,15 @@ export function buildAccountCanaryPlan(snapshot, repository) {
   assert.equal(owner.lifetime_created, 0);
   assert.match(snapshot.protected_state_hash, digest); assert.match(snapshot.policy_hash, digest);
   const candidates = snapshot.candidates;
-  assert.equal(candidates.length, 2, 'Exactly one priced image-backed variant per game');
-  assert.deepEqual(candidates.map(v => v.game_key).sort(), ['mtg', 'pokemon']);
-  assert.equal(new Set(candidates.map(v => v.variant_id)).size, 2);
+  if (snapshot.requested_variants !== undefined) {
+    validateRequestedVariants(snapshot.requested_variants);
+    assert.deepEqual(candidates.map(({ game_key, variant_id }) => ({ game_key, variant_id })),
+      snapshot.requested_variants.map(({ game_key, variant_id }) => ({ game_key, variant_id })), 'Requested product scope mismatch');
+  } else {
+    assert.equal(candidates.length, 2, 'Exactly one priced image-backed variant per game');
+    assert.deepEqual(candidates.map(v => v.game_key).sort(), ['mtg', 'pokemon']);
+  }
+  assert.equal(new Set(candidates.map(v => v.variant_id)).size, candidates.length);
   const starts = new Date(snapshot.captured_at);
   assert.ok(Number.isFinite(starts.getTime()));
   for (const row of candidates) {
@@ -68,12 +86,15 @@ export function buildAccountCanaryPlan(snapshot, repository) {
     max_created_copies: 25,
     budget: 'Lifetime successful add requests; removal and retries never restore or duplicate allowance',
     variants: candidates,
-    selection_policy: 'First alphabetic priced image-backed eligible variant in each governed 100-row page; proposed test scope, not proof of ownership',
+    ...(snapshot.requested_variants === undefined ? {} : { requested_variants: snapshot.requested_variants }),
+    selection_policy: snapshot.requested_variants === undefined
+      ? 'First alphabetic priced image-backed eligible variant in each governed 100-row page; proposed test scope, not proof of ownership'
+      : 'Explicit operator-selected exact IDs resolved through governed bounded product search; selection is not proof of ownership',
     caller_proof: 'Session-local authenticated claims in a read-only service connection; not an end-user login or deployed client acceptance',
     preflight_fingerprint: canaryHash(snapshot),
     protected_state_hash: snapshot.protected_state_hash,
     policy_hash: snapshot.policy_hash,
-    intended_activation_writes: { owner_grants: 1, variant_grants: 2, canary_control_updates: 1, inventory: 0 },
+    intended_activation_writes: { owner_grants: 1, variant_grants: candidates.length, canary_control_updates: 1, inventory: 0 },
     expected_controls: snapshot.control,
     broad_additions_enabled_after_activation: false,
     fresh_preflight_required: true,

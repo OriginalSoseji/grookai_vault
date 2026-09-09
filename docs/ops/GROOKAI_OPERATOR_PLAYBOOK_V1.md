@@ -32,6 +32,12 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ### Active market-release closeout
 
+The consolidated final App Store checklist is
+`docs/release/APP_STORE_FINAL_LAUNCH_CHECKLIST_20260909.md`.
+Use it for the finite launch gates; preserve older receipts as history rather
+than treating every green observer workflow as fresh business-health evidence.
+The September 9 pricing-canary job exits the already-completed August window.
+
 Security dependency evidence and the remaining installer-only archive advisory
 are recorded in `docs/checkpoints/RELEASE_SECURITY_CLOSEOUT_20260909.md`.
 Recheck deployed worker dependencies separately from merged web source.
@@ -104,6 +110,25 @@ quarantine. Resume command, evidence and upstream defects:
 `docs/checkpoints/catalog_discovery/2026-09-07_POKEMON_LANGUAGE_ANOMALY_EVIDENCE_V1.md`.
 
 ### Pokemon sealed production work
+
+Collection totals must load independently of inventory panels and sum only
+governed owned values, never asking prices or factory-sealed references for
+unknown/opened/damaged copies. September 9's Blooming Waters total diagnosis,
+refresh repair and exact delivery boundary are in
+`docs/checkpoints/COLLECTION_SEALED_TOTALS_20260909.md`.
+For local Android delivery, read the installed version code first. The public
+environment builder accepts `-BuildNumber` so a stale checkout version cannot
+silently become a downgrade. Preserve app data with normal replacement install;
+never uninstall or force a downgrade to get a test build onto the device.
+
+When the founder chooses a real product for account-only Add testing, use the
+explicit selection workflow in
+`docs/checkpoints/SEALED_BLOOMING_WATERS_ADD_20260909.md`. The planner accepts
+`--selection-file` containing one or two exact game/variant/query selections;
+the frozen plan replays those exact selections under lock. Never reuse the old
+alphabetic sample or silently substitute a product. Client build 317 does not
+itself enable Add: server capability and account enrollment must be read back
+first. Preparing a plan creates neither enrollment nor inventory.
 
 Sealed ownership is required product scope across released games. Contract:
 `docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md`. Current implementation,

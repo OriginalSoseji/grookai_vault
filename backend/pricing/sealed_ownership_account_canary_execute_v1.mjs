@@ -86,7 +86,7 @@ export async function transitionCanary(client, { mode, plan, preflight, versions
     if (status === 'not_enrolled') {
       const tx = (await client.query('show transaction_read_only')).rows[0].transaction_read_only;
       const def = (await client.query('show default_transaction_read_only')).rows[0].default_transaction_read_only;
-      const current = await capture(client, { transaction_read_only: tx, default_transaction_read_only: def }, versions);
+      const current = await capture(client, { transaction_read_only: tx, default_transaction_read_only: def }, versions, plan.requested_variants);
       const now = (await client.query('select clock_timestamp() now')).rows[0].now;
       assertFreshCanary(plan, preflight, current, now);
       counts.grants_inserted = (await client.query(`insert into public.sealed_ownership_canary_grants_v1
@@ -96,7 +96,7 @@ export async function transitionCanary(client, { mode, plan, preflight, versions
         select $1::uuid,unnest($2::uuid[])`, [plan.owner_id, plan.variants.map(v => v.variant_id)])).rowCount;
       counts.controls_updated = (await client.query(`update public.sealed_ownership_controls_v1 set canary_enabled=true
         where singleton and enabled=false and canary_enabled=false`)).rowCount;
-      assert.deepEqual(counts, { grants_inserted: 1, variants_inserted: 2, controls_updated: 1, grants_revoked: 0 });
+      assert.deepEqual(counts, { grants_inserted: 1, variants_inserted: plan.variants.length, controls_updated: 1, grants_revoked: 0 });
     }
   } else {
     assert.notEqual(status, 'not_enrolled', 'No exact enrollment to revoke');

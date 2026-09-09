@@ -49,6 +49,17 @@ export function combineUsdTotal(cardValue: number | null, sealed: SealedTotals |
   if (cardValue == null && sealedValue == null) return null;
   return (Math.round((cardValue ?? 0) * 100) + Math.round((sealedValue ?? 0) * 100)) / 100;
 }
+export function sealedValuationExclusion(row: SealedCopy): string | null {
+  if (row.owned_market_price != null) return null;
+  if (row.reference_market_price == null) return 'Not included in total: market price unavailable.';
+  if (row.seal_state === 'opened' || row.package_condition === 'damaged') {
+    return 'Not included in total: factory-sealed pricing does not value opened or damaged products.';
+  }
+  if (row.seal_state !== 'factory_sealed' || row.package_condition !== 'undamaged') {
+    return 'Not included in total: seal or package condition is unconfirmed.';
+  }
+  return 'Not included in total: owned market value unavailable.';
+}
 export async function verifySealedAddition(rpc: SealedRpc, result: unknown, variant: string, quantity: number) {
   const r = result as { instance_ids: string[]; created_count: number };
   if (!r || !Array.isArray(r.instance_ids) || r.created_count !== quantity || r.instance_ids.length !== quantity || new Set(r.instance_ids).size !== quantity) throw new Error('Copy count mismatch');

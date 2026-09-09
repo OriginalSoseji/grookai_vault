@@ -4,6 +4,31 @@ Date: 2026-09-08. Status: schema applied and independently verified in productio
 default off and grant-empty. NOT production activation authority.
 Parent: `SEALED_OWNED_COLLECTIBLES_V1.md`.
 
+## September 9 Single-Product Scope Amendment
+
+The founder selected Blooming Waters 151, reviewed the account-only activation
+request, and explicitly answered "yes" when asked to confirm enabling that
+test without automatically adding inventory. This supersedes only the original
+requirement to include both Pokemon and MTG in every canary. A frozen plan may
+now select one or two exact released Pokemon/MTG variants. The old two-product
+plan remains historical and unchanged; no product may be substituted in it.
+
+This documentation amendment applies to the preserved executable commit
+`222b6dee132c596f9726301ba4e3fcdfdac75c2f`, plan
+`a1d2d35fa883ab65899b195f455ccfe7785c9cabb3baf50a2cf596edbcb903f6`, execution
+`74a928f44cfb1e294a11d5ecc65ccf3dd097b938b090237f4f8cab0d8dca6590`.
+Its sole variant is `4643eb90-c362-57cf-96ea-bca2cd08e82b` (English Blooming
+Waters Premium Collection). Do not rebuild its authority from a documentation
+commit or alter the frozen execution, source evidence, window or product list.
+
+The corresponding authorization is one existing founder grant, one exact
+variant grant and one canary-switch update, with zero inventory creation and
+global additions remaining off. The 25-copy cumulative ceiling, frozen 24-hour
+window, fresh preflight, locked parity, exact affected-row counts, independent
+readback and preservation/rollback boundaries all remain mandatory. Approval
+of this activation does not authorize schema, catalog, pricing, Storage,
+deployment, deletion, fabricated holdings or sale/trade writes.
+
 ## Why This Is Needed
 
 The deployed `sealed_ownership_controls_v1.enabled` switch and
@@ -19,7 +44,7 @@ single-use authorities cannot be reused.
   for exact owner IDs and exact released sealed variant IDs. Default empty.
 - Bind each grant to a frozen plan fingerprint, start/end timestamps and a
   cumulative creation limit. Initial plan: one owner, at most 25 copies,
-  exact Pokemon and MTG variants, no anonymous additions. Do not populate
+  one or two exact Pokemon/MTG variants, no anonymous additions. Do not populate
   grants or turn on switches as part of a schema-only migration.
 - Force RLS and clear inherited grants. No anonymous/authenticated direct
   reads or writes to grant tables; no self-enrollment RPC. Expose only the
@@ -102,7 +127,8 @@ Receipt: `docs/checkpoints/SEALED_OWNERSHIP_CANARY_SCHEMA_APPLIED_20260908.md`.
 `scripts/schema/sealed_ownership_account_canary_plan_v1.mjs` prepares the next
 scope without a writer or activation route. `--discover` permits a dirty
 checkout for investigation only. Normal plan generation requires a clean
-checkout on `feature/sealed-account-canary-boundary` and records its exact SHA.
+checkout on `feature/sealed-account-canary-boundary` or the explicit-selection
+execution branch `fix/sealed-canary-explicit-product`, and records its exact SHA.
 Production queries use a verified read-only transaction. Existing service
 credentials are never written into artifacts or the repository.
 
@@ -112,11 +138,16 @@ sealed inventory/journal, forced RLS and no anonymous/authenticated table
 privileges. It requires one unambiguous active founder with an existing owner
 allocator. Private owner identity and hashes remain outside git.
 
-The proposed scope is one image-backed, fresh-priced English Pokemon variant
+The original proposed scope is one image-backed, fresh-priced English Pokemon variant
 and one MTG variant, chosen alphabetically from each governed first 100-row
 page. This is deterministic candidate selection, NOT evidence that the founder
 owns either product. Do not add a product the founder does not actually own.
 Changing selection requires a new frozen plan, not substitution during apply.
+The optional `--selection-file` path instead binds one or two explicit
+game/variant/query selections. Each exact ID must resolve once through its
+governed bounded search; unrelated results never substitute for a missing ID.
+All image, price and release checks still apply. The selection is fingerprinted
+in snapshot and plan and replayed both before and inside the locked transaction.
 The caller claims simulate release filtering inside the read-only service
 connection; they are not an end-user authorization or deployed-client test.
 
@@ -155,7 +186,8 @@ the executor does not deploy or certify installed clients.
 The transaction locks the control row, existing owner allocator, grant tables
 and current release/visibility rows. Lock timeout is two seconds; statement
 timeout is 30 seconds. Activation repeats fresh preflight under those locks,
-inserts exactly one grant and two variants, and compare-and-swaps only the
+inserts exactly one grant and the frozen plan's one or two variant grants,
+asserts those exact affected-row counts, and compare-and-swaps only the
 canary switch. It never turns on broad additions or creates inventory. Rollback
 requires the exact sole grant/allowlist, revokes it and disables the canary.
 Current owner inventory, allocator, journal, dispositions and protected release

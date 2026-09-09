@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { CANARY_PROJECT, CANARY_BRANCH, canaryHash } from '../../backend/pricing/sealed_ownership_account_canary_plan_v1.mjs';
+import { CANARY_PROJECT, CANARY_BRANCHES, canaryHash } from '../../backend/pricing/sealed_ownership_account_canary_plan_v1.mjs';
 import { captureCanarySnapshot } from '../../backend/pricing/sealed_ownership_account_canary_snapshot_v1.mjs';
 import { validateCanaryBundle, assertFreshCanary, readCanaryState, classifyCanaryState, executeCanaryTransaction } from '../../backend/pricing/sealed_ownership_account_canary_execute_v1.mjs';
 import { withReadOnlyClient, pgSslConfig } from '../audits/japanese_master_index_v4/read_only_guard_v1.mjs';
@@ -38,12 +38,12 @@ validateCanaryBundle(plan, preflight);
 assert.deepEqual(manifest.producer, plan.repository);
 const git = (...argv) => execFileSync('git', argv, { cwd: root, encoding: 'utf8' }).trim();
 const repository = { commit: git('rev-parse', 'HEAD'), branch: git('branch', '--show-current'), clean: git('status', '--porcelain') === '' };
-assert.equal(repository.branch, CANARY_BRANCH); assert.equal(repository.clean, true);
+assert.ok(CANARY_BRANCHES.includes(repository.branch), 'Wrong canary branch'); assert.equal(repository.clean, true);
 git('merge-base', '--is-ancestor', plan.repository.commit, repository.commit);
 const envelope = {
   version: 'SEALED_ACCOUNT_CANARY_EXECUTION_V1', repository, project_ref: CANARY_PROJECT,
   source_plan_fingerprint: plan.plan_fingerprint, source_artifact_hashes: manifest.files,
-  activation: { grant_inserts: 1, variant_inserts: 2, canary_flag_updates: 1, inventory_writes: 0 },
+  activation: { grant_inserts: 1, variant_inserts: plan.variants.length, canary_flag_updates: 1, inventory_writes: 0 },
   rollback: { grant_revocations: 1, canary_flag_updates_max: 1, deletes: 0 },
   automatic_retries: 0, broad_activation: false,
 };
@@ -78,7 +78,7 @@ async function inspect(fresh = false) {
     const window_open = status === 'active' && now >= new Date(plan.starts_at) && now < new Date(plan.expires_at);
     if (fresh) {
       assert.equal(status, 'not_enrolled', 'Use readback, never reapply an existing enrollment');
-      const snapshot = await captureCanarySnapshot(client, guard, versions);
+      const snapshot = await captureCanarySnapshot(client, guard, versions, plan.requested_variants);
       assertFreshCanary(plan, preflight, snapshot, snapshot.captured_at);
       return { state, status, snapshot, guard };
     }
