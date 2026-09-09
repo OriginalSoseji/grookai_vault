@@ -105,6 +105,15 @@ quarantine. Resume command, evidence and upstream defects:
 
 ### Pokemon sealed production work
 
+When the founder chooses a real product for account-only Add testing, use the
+explicit selection workflow in
+`docs/checkpoints/SEALED_BLOOMING_WATERS_ADD_20260909.md`. The planner accepts
+`--selection-file` containing one or two exact game/variant/query selections;
+the frozen plan replays those exact selections under lock. Never reuse the old
+alphabetic sample or silently substitute a product. Client build 317 does not
+itself enable Add: server capability and account enrollment must be read back
+first. Preparing a plan creates neither enrollment nor inventory.
+
 Sealed ownership is required product scope across released games. Contract:
 `docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md`. Current implementation,
 local acceptance evidence and exact release boundary:

@@ -1,8 +1,23 @@
 import assert from 'node:assert/strict';
-import { canaryHash, CANARY_PROJECT } from './sealed_ownership_account_canary_plan_v1.mjs';
+import { canaryHash, CANARY_PROJECT, validateRequestedVariants } from './sealed_ownership_account_canary_plan_v1.mjs';
+
+export async function captureRequestedCandidates(client, selection) {
+  validateRequestedVariants(selection);
+  const candidates = [];
+  for (const requested of selection) {
+    const rpc = requested.game_key === 'pokemon' ? 'get_active_pokemon_sealed_pricing_v1' : 'get_active_sealed_product_pricing_v3';
+    const page = (await client.query(`select p.*,p.observed_on::text observed_on from public.${rpc}($1,$2,100,0) p`,
+      [requested.game_key, requested.query])).rows;
+    const exact = page.filter(row => row.variant_id === requested.variant_id && row.game_key === requested.game_key);
+    assert.equal(exact.length, 1, 'Requested variant must resolve exactly once in governed product search; no substitution');
+    candidates.push(exact[0]);
+  }
+  return candidates;
+}
 
 // The caller owns the transaction and must provide its observed guard state.
-export async function captureCanarySnapshot(client, guard, versions) {
+export async function captureCanarySnapshot(client, guard, versions, requestedVariants) {
+  if (requestedVariants !== undefined) validateRequestedVariants(requestedVariants);
   const rows = async (sql, values = []) => (await client.query(sql, values)).rows;
   const [canonical] = await rows(`select (select count(*)::int from public.card_prints) cards,
     (select count(*)::int from public.sets) sets,(select count(*)::int from public.card_print_traits) traits`);
@@ -23,8 +38,8 @@ export async function captureCanarySnapshot(client, guard, versions) {
   assert.equal(founders.length, 1, 'Resolve multiple founder accounts before selecting an owner');
   // Session-local claims evaluate the same release policy without creating a user/session.
   await rows("select set_config('request.jwt.claim.sub',$1,true),set_config('request.jwt.claim.role','authenticated',true)", [founders[0].user_id]);
-  const candidates = [];
-  for (const [game, sql] of [
+  const candidates = requestedVariants === undefined ? [] : await captureRequestedCandidates(client, requestedVariants);
+  if (requestedVariants === undefined) for (const [game, sql] of [
     ['pokemon', "select p.*,p.observed_on::text observed_on from public.get_active_pokemon_sealed_pricing_v1('pokemon',null,100,0) p"],
     ['mtg', "select p.*,p.observed_on::text observed_on from public.get_active_sealed_product_pricing_v3('mtg',null,100,0) p"],
   ]) {
@@ -51,6 +66,6 @@ export async function captureCanarySnapshot(client, guard, versions) {
   const [time] = await rows("select to_char(statement_timestamp() at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') captured_at");
   return { project_ref: CANARY_PROJECT, ...time, guard, canonical, ledger_count: ledger.length,
     ledger_matches: JSON.stringify(ledger) === JSON.stringify(versions), control: controlRows[0], ...counts,
-    founders, candidates, security, policy_hash: canaryHash(policies), protected_state_hash: canaryHash(protectedState) };
+    founders, candidates, ...(requestedVariants === undefined ? {} : { requested_variants: requestedVariants }),
+    security, policy_hash: canaryHash(policies), protected_state_hash: canaryHash(protectedState) };
 }
-
