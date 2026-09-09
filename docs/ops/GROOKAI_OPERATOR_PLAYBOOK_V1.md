@@ -30,6 +30,13 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ## 1. Source-Of-Truth Order
 
+### Active market-release closeout
+
+Use `docs/checkpoints/RELEASE_CLOSEOUT_20260909.md` as the finite cross-domain
+release checklist. It separates tested sealed implementation, deployed clients,
+bounded ownership activation and live business-health evidence. Complete
+existing release gates before adding collectible or presentation scope.
+
 ### Pokemon language source recovery
 
 The daily `pokemon-master-index-refresh.yml` worker can recover a catastrophic
