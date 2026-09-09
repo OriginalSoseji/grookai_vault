@@ -1,23 +1,29 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { hash } from 'node:crypto';
 
 import { normalizeReferenceEvidenceV1 } from '../../backend/pricing/market_evidence_normalized_reference_v1.mjs';
+import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
+import { latestReferenceAcquisitionsBySourceV1 } from '../../backend/pricing/mee_reference_artifact_selection_v1.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const DEFAULT_OUT_DIR = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1');
+const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 
 function parseArgs(argv) {
   const parsed = {
     acquisition: null,
+    latestPerSource: false,
     outDir: DEFAULT_OUT_DIR,
     sampleLimit: 50,
   };
 
   for (const arg of argv) {
-    if (arg.startsWith('--acquisition=')) {
+    if (arg === '--latest-per-source') {
+      parsed.latestPerSource = true;
+    } else if (arg.startsWith('--acquisition=')) {
       parsed.acquisition = path.resolve(arg.slice('--acquisition='.length));
     } else if (arg.startsWith('--out-dir=')) {
       parsed.outDir = path.resolve(arg.slice('--out-dir='.length));
@@ -26,6 +32,9 @@ function parseArgs(argv) {
     }
   }
 
+  if (parsed.latestPerSource && parsed.acquisition) {
+    throw new Error('[mee-normalize-reference] choose --acquisition or --latest-per-source, not both');
+  }
   if (!Number.isInteger(parsed.sampleLimit) || parsed.sampleLimit < 1) {
     throw new Error('[mee-normalize-reference] --sample-limit must be a positive integer');
   }
@@ -135,15 +144,27 @@ function renderMarkdown({ normalized, jsonPath, acquisitionPath }) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const acquisitionPath = args.acquisition ?? await findLatestReferenceAcquisition(args.outDir);
-  const generatedAt = new Date().toISOString();
+  const paths = args.latestPerSource
+    ? await latestReferenceAcquisitionsBySourceV1(args.outDir)
+    : [args.acquisition ?? await findLatestReferenceAcquisition(args.outDir)];
+  let previousTimestamp = 0;
+  for (const acquisitionPath of paths) {
+    previousTimestamp = Math.max(Date.now(), previousTimestamp + 1);
+    await normalizeArtifact(args, acquisitionPath, new Date(previousTimestamp).toISOString());
+  }
+}
+
+async function normalizeArtifact(args, acquisitionPath, generatedAt) {
   const stamp = generatedAt.replace(/[:.]/g, '-');
-  const acquisition = JSON.parse(await fs.readFile(acquisitionPath, 'utf8'));
+  const acquisitionBytes = await fs.readFile(acquisitionPath);
+  const acquisition = JSON.parse(acquisitionBytes.toString('utf8'));
   const normalized = normalizeReferenceEvidenceV1({
     acquisition,
     generatedAt,
     sampleLimit: args.sampleLimit,
   });
+  normalized.input_summary.acquisition_path = acquisitionPath;
+  normalized.input_summary.acquisition_sha256 = hash('sha256', acquisitionBytes, 'hex');
 
   await fs.mkdir(args.outDir, { recursive: true });
   const jsonPath = path.join(args.outDir, `mee_06c_normalized_reference_evidence_${stamp}.json`);

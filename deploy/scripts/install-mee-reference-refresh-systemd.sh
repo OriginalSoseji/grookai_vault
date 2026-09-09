@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_DIR="${REPO_DIR:-/opt/grookai_vault_mee_nightly}"
+REPO_DIR="${REPO_DIR:-/opt/grookai_mee_current}"
 ENV_DIR="${ENV_DIR:-/etc/grookai}"
 ENV_FILE="${ENV_FILE:-${ENV_DIR}/mee-nightly.env}"
 SERVICE_NAME="grookai-mee-reference-refresh.service"
@@ -117,6 +117,7 @@ if [[ -z "${reference_sources}" ]]; then
 fi
 
 artifact_root="${MEE_RUNTIME_ARTIFACT_ROOT:-/var/lib/grookai/mee/audits}"
+export MEE_RUNTIME_ARTIFACT_ROOT="${artifact_root}"
 node scripts/audits/market_evidence_engine_overnight_worklist_v1.mjs --limit="${reference_limit}" --out-dir="${artifact_root}"
 node scripts/audits/market_evidence_engine_query_plan_v1.mjs --limit="${reference_limit}" --out-dir="${artifact_root}"
 node scripts/audits/market_evidence_engine_acquisition_batch_v1.mjs --sources="${reference_sources}" --limit="${reference_limit}" --out-dir="${artifact_root}"

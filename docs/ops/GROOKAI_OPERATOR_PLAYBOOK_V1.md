@@ -52,6 +52,33 @@ The separate MEE reference-refresh memory failure and bounded artifact-selection
 repair are recorded in `docs/checkpoints/pricing/MEE_REFERENCE_MEMORY_REPAIR_20260909.md`.
 Neither source repair is a receipt for production worker deployment.
 
+Actual MEE deployment and exact missing-row recovery are now recorded in
+`docs/checkpoints/pricing/MEE_REFERENCE_RUNTIME_PARITY_20260909.md`. The active
+runtime is pinned to ed7414b98034641632ad378d3c5766095a6d53f7. Reference producers
+must share MEE_RUNTIME_ARTIFACT_ROOT and normalize the latest input per source,
+not the newest two files globally. Main parity covers this reference lane only;
+do not overwrite the full nightly runtime from main until its separate policy
+differences are reconciled. Original failed runs and the old unit are preserved.
+The verification script must resolve `/opt/grookai_mee_current` and
+`MEE_RUNTIME_ARTIFACT_ROOT`, never the retired nightly checkout. REST fallback
+lookups use 40-key URL chunks; direct PostgreSQL keeps 500-key array chunks.
+Keep the MEE/pricing rollback-current pins until their separate retirement gate.
+Pricing run 34314680975 now has independent publication/readback proof in that
+checkpoint; this does not close the outstanding retention or observation gates.
+
+For current release execution details, read the checkpoint's external
+`C:/grookai_vault_operator_artifacts/release_closeout/20260909/FINAL_GATE_STATUS.md`.
+It includes physical-device attempts, store listing readback, pricing receipts
+and archive restoration evidence. Do not substitute old store metadata for a
+current console readback. The Mac's observed LAN route `192.168.86.35` also
+worked when its Tailscale SSH address refused connection; retain the existing
+`HostKeyAlias=100.118.59.67` verification and the configured Mac key. Re-discover
+the LAN address through Tailscale before reuse; never disable host-key checking.
+For large Linux recovery archives, create and compare the archive on the source
+host, transfer via SCP, verify its hash independently, then restore in an isolated
+Linux environment. A streamed Windows SSH tar capture failed byte verification;
+that failed artifact is not restoration authority and has been preserved.
+
 ### Pokemon language source recovery
 
 The daily `pokemon-master-index-refresh.yml` worker can recover a catastrophic

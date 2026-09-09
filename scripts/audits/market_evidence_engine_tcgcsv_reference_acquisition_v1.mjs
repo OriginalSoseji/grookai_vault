@@ -11,12 +11,13 @@ import {
   acquireTcgcsvReferenceEvidenceV1,
   matchingTcgcsvGroupsForItemV1,
 } from '../../backend/pricing/market_evidence_tcgcsv_reference_acquisition_v1.mjs';
+import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const DEFAULT_OUT_DIR = path.join(REPO_ROOT, 'docs', 'audits', 'market_evidence_engine_v1');
+const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const DEFAULT_CACHE_DIR = path.join(DEFAULT_OUT_DIR, 'tcgcsv_reference_cache_v1');
 const CURL_BIN = os.platform() === 'win32' ? 'curl.exe' : 'curl';
 const CATEGORY_ID = 3;
