@@ -38,15 +38,15 @@ production authority. Routine testing does not require repeated micro-approvals.
 
 | Area | Verified state | Release implication |
 |---|---|---|
-| Native totals repair | Committed as a5f21d1c1; candidate 526559d2a470f693566fc8e3b949cece0a1b6352 reconciles current main; Samsung 318 visually verified; full 716-test Flutter suite passed | PR454 awaits merge; iOS 318 archive succeeded with upload underway; production web/iOS delivery still needs readback |
+| Native totals repair | Candidate 526559d2a470f693566fc8e3b949cece0a1b6352; Samsung318 visually verified; 716 Flutter tests passed; iOS318 VALID and IN_BETA_TESTING | Internal TestFlight delivered; production web deployment readback and external distribution remain |
 | Sealed ownership | One genuine Blooming Waters holding exists; condition unknown; reference USD 326.70; owned value null | Confirm condition only from owner evidence; do not infer it or substitute reference price |
-| Add access | Account-only, one-product test; global Add off; expires September 10 at 13:13:42 UTC | Ordinary collectors/reviewers do not yet have durable sealed Add access |
-| Apple build | Last direct receipt: 317 in internal TestFlight and selected in an unsubmitted manual-release draft | Fresh console readback and a final candidate containing current fixes required |
-| Pokemon sealed maintenance | Run 34369019748 failed September 9 at 15:15 UTC; issue 426 open | Source identity drift blocked refresh; 24 aging prices, eight reach expiry September 10 |
-| Printing identity | Issue 450 remains open | Four Phantom Forces EX entries exposed as reverse holo require authoritative resolution |
+| Add access | Global signed-in Add enabled at 19:27:53 UTC with exact one-row write attribution and rollback proof; ordinary reviewer login/RPC passed | No inventory, canonical, Storage or schema mutations; anonymous Add denied |
+| Apple build | 318 accepted and assigned to existing internal group at 19:21:50 UTC; matching Runner/App symbols verified | External beta review and App Store draft/submission remain separate |
+| Pokemon sealed maintenance | Producer fd4938df3853bd2d25414d0e7556a646c8d15d5c applied 1712 paired products; exact readback and zero-write rerun passed | Nine exclusions remain; contained source drift and aging quotes remain operator maintenance, not fabricated repairs |
+| Printing identity | Seven choices hidden via review sidecar; six unsupported and secret121 reverse explicitly unverifiable; no canonical or owned changes | Issue450 remains for source reconciliation; post-deploy resolver proof pending |
 | Pricing canary monitor | Run 34377983245 succeeded by exiting an already-complete August 13-16 window | Not a current pipeline/price-health proof |
 | Supabase capacity | Audit 34377974946 PASS at 16:39:23 UTC; Medium, 320 GB, 80.93% used, 600 GB maximum | Configuration/headroom pass only; load, growth, billing, restore and worker disk remain separate |
-| Repository | Candidate 526559d2a470f693566fc8e3b949cece0a1b6352 contains main 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d and the scoped total repair; PR454 checks passed | Resolve the checklist review and merge PR454; close PR453 only after confirmed replacement merge |
+| Repository | PR454 merged as 588be2887ce73f70cbcc1273197202a4a9d7ce58; PR453 closed as superseded without branch deletion | PR455 carries the daily refresh containment repair |
 
 Operational facts not freshly rechecked remain pending, even when older receipts
 show success. Relevant evidence:
@@ -61,7 +61,7 @@ show success. Relevant evidence:
 ## Gate 1: One Release Candidate
 
 - [x] Preserve and commit the collection-total changes and PR453 contract amendment
-  without changing historical execution provenance. Merge/deployment remains open.
+  without changing historical execution provenance. PR454 merged; PR453 superseded.
 - [x] Reconcile against main 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d. Unrelated
   work and recovery refs remain intact; recheck the live base before merging.
 - [ ] Pass full repository checks, relevant integration tests and security review.

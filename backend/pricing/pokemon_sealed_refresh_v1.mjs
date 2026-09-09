@@ -3,6 +3,7 @@ import {deterministicUuidV5} from './one_piece_canonical_import_staging_v1.mjs';
 import {pokemonSealedHashV1 as hash,POKEMON_SEALED_REVIEWER_ID} from './pokemon_sealed_world_v1.mjs';
 import {postgresJsonbArrayTextV1,imageReleaseManifestFingerprintV1} from './mtg_sealed_image_release_plan_v1.mjs';
 export const POKEMON_SEALED_REFRESH_V1='POKEMON_SEALED_REFRESH_V1';
+export const POKEMON_SEALED_SOURCE_CONTAINMENT_V1='POKEMON_SEALED_SOURCE_CONTAINMENT_V1';
 export const POKEMON_SEALED_REFRESH_BASELINE='0bf7970b-842e-556c-9c6f-d541d1456212';
 const uuid=value=>deterministicUuidV5(`pokemon:sealed:refresh:${value}`);
 const stamp=(type,core,field)=>{const fp=hash({type,...core});return{id:uuid(`${type}:${fp}`),...core,[field]:fp};};
@@ -20,12 +21,19 @@ export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,p
   for(const row of baseline){
     assert.equal(row.game_key,'pokemon');assert.ok([3,85].includes(Number(row.source_category_id)));
     const s=bySource.get(String(row.source_product_id));
-    assert.ok(s?.source_active&&s.payload_hash===row.source_payload_hash&&Number(s.category_id)===Number(row.source_category_id),`Source identity drift: ${row.variant_id}`);
     assert.equal(row.image_object.game_key,'pokemon');assert.equal(row.image_object.content_sha256,row.image_evidence.content_sha256);
     assert.equal(row.image_object.storage_readback_sha256,row.image_object.content_sha256);
     assert.equal(row.image_object.storage_bucket,'user-card-images');
     assert.match(row.image_object.object_path,/^sealed\/pokemon\/sha256\/[a-f0-9]{2}\/[a-f0-9]{64}\.(jpg|png|gif|webp)$/);
     for(const key of ['image_mime','image_width','image_height','image_bytes'])assert.equal(row.image_object[key],row.image_evidence[key]);
+    if(!s?.source_active||s.payload_hash!==row.source_payload_hash||Number(s.category_id)!==Number(row.source_category_id)){
+      exclusions.push({variant_id:row.variant_id,reason:'source_identity_not_currently_verified',
+        policy:POKEMON_SEALED_SOURCE_CONTAINMENT_V1,source_product_id:row.source_product_id,
+        expected_source_payload_hash:row.source_payload_hash,observed_source_payload_hash:s?.payload_hash??null,
+        expected_source_category_id:row.source_category_id,observed_source_category_id:s?.category_id??null,
+        source_active:s?.source_active??null});
+      continue;
+    }
     const normal=(byPrice.get(String(row.source_product_id))??[]).filter(p=>p.subtype_name_normalized==='normal');
     assert.ok(normal.length<=1,'Ambiguous Normal price');
     const p=normal[0],market=Number(p?.market_price);
@@ -80,6 +88,7 @@ export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,p
   imageRelease.manifest_fingerprint=imageReleaseManifestFingerprintV1(imageRelease,imageMembers);
   const body={version:POKEMON_SEALED_REFRESH_V1,producer_commit:producerCommit,baseline_image_release:POKEMON_SEALED_REFRESH_BASELINE,
     source_fingerprint:sourceFingerprint,expected_pointers:pointers,source_sync:sync,exclusions,
+    source_containment_policy:POKEMON_SEALED_SOURCE_CONTAINMENT_V1,
     prices:{qualifications:qualified,releases:[release],members},images:{evidence,assertions,releases:[imageRelease],release_members:imageMembers},
     boundaries:{identity_writes:0,storage_writes:0,visibility_writes:0,vault_writes:0,cross_game_writes:0,max_variants:3000,max_coverage_loss:.05,max_price_ratio:3}};
   return{...body,fingerprint:hash(body)};

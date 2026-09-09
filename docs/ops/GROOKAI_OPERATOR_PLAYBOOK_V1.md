@@ -111,6 +111,18 @@ quarantine. Resume command, evidence and upstream defects:
 
 ### Pokemon sealed production work
 
+September 9 source-containment repair:
+`docs/checkpoints/POKEMON_SEALED_SOURCE_CONTAINMENT_20260909.md`.
+Changed supplier identities remain excluded from paired refresh releases, not
+remapped. Contained drift stays an operator issue; active drift remains a failed
+health check. Never fix a supplier hash mismatch by copying the new hash into an
+existing exact mapping without identity review.
+
+September 9 signed-in ownership activation and build318 release receipts:
+`docs/checkpoints/APP_LAUNCH_PROGRESS_20260909.md`. The global Add control is now
+enabled; the prior founder-only grant is historical, not the ordinary-account
+release boundary. Never infer a holding's physical condition to fill its value.
+
 Collection totals must load independently of inventory panels and sum only
 governed owned values, never asking prices or factory-sealed references for
 unknown/opened/damaged copies. September 9's Blooming Waters total diagnosis,

@@ -43,9 +43,18 @@ refreshes for the 1,721 already image-verified variants in frozen baseline
 `0bf7970b-842e-556c-9c6f-d541d1456212`. This is not authority to expand identities.
 Only unchanged exact source mappings and positive USD Normal market observations
 at most seven days old qualify. A completed warehouse sync must be at most two
-days old. Source identity drift, duplicate inputs, price movements outside
+days old. Duplicate inputs, price movements outside
 one-third to three times the previous quote, or loss of more than five percent
 of the fixed baseline stop the whole refresh without writes.
+
+September 9 release-containment amendment: the founder directed completion of
+launch repairs without calendar holds. Under `POKEMON_SEALED_SOURCE_CONTAINMENT_V1`,
+a missing, inactive, changed-hash or changed-category source row is excluded from
+both new releases with expected/observed source evidence. It is never remapped,
+reapproved or published by this repair. Source exclusions and price exclusions
+share the unchanged five-percent loss limit. Invalid baseline image evidence
+still stops the entire refresh, even for an excluded source. The prior whole-run
+source-drift failure remains preserved as historical evidence, not relabeled.
 
 Each execution freezes its plan and commit, proves a full rollback, then inserts
 immutable qualifications and bound price/image releases in one transaction.

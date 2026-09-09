@@ -5,7 +5,7 @@ import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import { supabase } from "@/lib/supabaseClient";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useState } from "react";
 import {
   redactBinderSecretPath,
@@ -58,7 +58,6 @@ function getAuthErrorMessage(error: unknown, mode: "signin" | "signup") {
 }
 
 function LoginPageContent() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = getSafeNextPath(searchParams.get("next"));
   const destination = getDestinationCopy(nextPath);
@@ -93,7 +92,8 @@ function LoginPageContent() {
           });
         }
       }
-      router.replace(nextPath);
+      // Discard redirects prefetched before the browser acquired auth cookies.
+      window.location.replace(nextPath);
     } catch (err: unknown) {
       setError(getAuthErrorMessage(err, mode));
     } finally {
