@@ -32,6 +32,10 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ### Active market-release closeout
 
+Security dependency evidence and the remaining installer-only archive advisory
+are recorded in `docs/checkpoints/RELEASE_SECURITY_CLOSEOUT_20260909.md`.
+Recheck deployed worker dependencies separately from merged web source.
+
 Use `docs/checkpoints/RELEASE_CLOSEOUT_20260909.md` as the finite cross-domain
 release checklist. It separates tested sealed implementation, deployed clients,
 bounded ownership activation and live business-health evidence. Complete
