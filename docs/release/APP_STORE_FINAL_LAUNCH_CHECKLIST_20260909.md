@@ -38,15 +38,15 @@ production authority. Routine testing does not require repeated micro-approvals.
 
 | Area | Verified state | Release implication |
 |---|---|---|
-| Native totals repair | Samsung 318 installed and visually verified; 27 Flutter tests pass | Local source remains uncommitted; web/iOS do not include this repair |
+| Native totals repair | Candidate 526559d2a470f693566fc8e3b949cece0a1b6352; Samsung318 visually verified; 716 Flutter tests passed; iOS318 VALID and IN_BETA_TESTING | Internal TestFlight delivered; production web deployment readback and external distribution remain |
 | Sealed ownership | One genuine Blooming Waters holding exists; condition unknown; reference USD 326.70; owned value null | Confirm condition only from owner evidence; do not infer it or substitute reference price |
-| Add access | Account-only, one-product test; global Add off; expires September 10 at 13:13:42 UTC | Ordinary collectors/reviewers do not yet have durable sealed Add access |
-| Apple build | Last direct receipt: 317 in internal TestFlight and selected in an unsubmitted manual-release draft | Fresh console readback and a final candidate containing current fixes required |
-| Pokemon sealed maintenance | Run 34369019748 failed September 9 at 15:15 UTC; issue 426 open | Source identity drift blocked refresh; 24 aging prices, eight reach expiry September 10 |
+| Add access | Global signed-in Add enabled at 19:27:53 UTC with exact one-row write attribution and rollback proof; ordinary reviewer login/RPC passed | No inventory, canonical, Storage or schema mutations; anonymous Add denied |
+| Apple build | 318 accepted and assigned to existing internal group at 19:21:50 UTC; matching Runner/App symbols verified | External beta review and App Store draft/submission remain separate |
+| Pokemon sealed maintenance | Producer fd4938df3853bd2d25414d0e7556a646c8d15d5c applied 1712 paired products; exact readback and zero-write rerun passed | Nine exclusions remain; contained source drift and aging quotes remain operator maintenance, not fabricated repairs |
 | Printing identity | Issue 450 remains open | Four Phantom Forces EX entries exposed as reverse holo require authoritative resolution |
 | Pricing canary monitor | Run 34377983245 succeeded by exiting an already-complete August 13-16 window | Not a current pipeline/price-health proof |
 | Supabase capacity | Audit 34377974946 PASS at 16:39:23 UTC; Medium, 320 GB, 80.93% used, 600 GB maximum | Configuration/headroom pass only; load, growth, billing, restore and worker disk remain separate |
-| Repository | Remote main observed at 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d; PR453 open | Preserve local repair and reconcile deliberately; no blind branch merge |
+| Repository | PR454 merged as 588be2887ce73f70cbcc1273197202a4a9d7ce58; PR453 closed as superseded without branch deletion | PR455 carries the daily refresh containment repair |
 
 Operational facts not freshly rechecked remain pending, even when older receipts
 show success. Relevant evidence:
@@ -60,9 +60,10 @@ show success. Relevant evidence:
 
 ## Gate 1: One Release Candidate
 
-- [ ] Preserve and commit the collection-total changes; resolve PR453 and its
-  separate contract amendment without changing historical execution provenance.
-- [ ] Reconcile against current main. Leave unrelated work and recovery refs intact.
+- [x] Preserve and commit the collection-total changes and PR453 contract amendment
+  without changing historical execution provenance. PR454 merged; PR453 superseded.
+- [x] Reconcile against main 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d. Unrelated
+  work and recovery refs remain intact; recheck the live base before merging.
 - [ ] Pass full repository checks, relevant integration tests and security review.
 - [ ] Freeze source SHA, build numbers, app IDs, schema ledger, feature flags,
   web deployment and separately pinned backend runtimes in a release manifest.
