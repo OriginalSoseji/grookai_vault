@@ -20,7 +20,22 @@ healthy. Missing/inactive source rows are also reported, and an absent published
 variant ID fails the evidence check instead of proving containment. The operator
 issue stays open until the source identity is actually reconciled.
 
-Verification: 31 targeted refresh, health, image-probe, maintenance and world
-contracts passed locally. Live execution is pending a clean frozen commit,
-fresh plan, transaction rollback proof and independent committed readback.
-No production writes have been performed by this repair checkpoint yet.
+Verification: the initial 31 targeted contracts passed. Production execution
+completed September 9 from `fd4938df3853bd2d25414d0e7556a646c8d15d5c`.
+Frozen plan: `f9f001deff3ad0bb0a31a2f7d053116fccadf1e609a3f0ec22256591a552ba4a`.
+The rollback transaction passed, followed by 8,532 immutable inserted rows and
+two pointer changes: 1,712 published products and nine excluded. Exact readback
+passed; the identical plan then inserted zero rows and changed zero pointers.
+Price release: `9fb3a5b9-18d1-5759-8145-e0bdecae85a5`.
+Image release: `8933f0b0-b9c5-5bab-8d03-163039196e29`.
+No identity, Storage, Vault or cross-game writes occurred. Do not reapply this
+completed action. Receipts are under
+`C:/grookai_vault_operator_artifacts/release_closeout/20260909/`, in
+`sealed_source_containment_rehearsal`, `sealed_source_containment_idempotency`
+and `sealed_source_containment_health`.
+
+Remaining: merge the scheduled-worker repair, then verify scheduled health.
+One changed product remains excluded pending identity reconciliation; aging
+source prices remain reported rather than silently renewed. Category-move
+diagnostics now retain all observed alternatives without accepting a
+product-ID-only match as canonical identity.

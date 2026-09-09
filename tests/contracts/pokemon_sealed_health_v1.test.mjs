@@ -30,3 +30,16 @@ test('source containment requires exact mapped identity and current publication 
   assert.throws(()=>classify({mappings:[{...mappings[0],variant_id:null}],source,publishedVariantIds:[]}),/Missing mapped/);
   assert.throws(()=>classify({mappings,source:[...source,...source],publishedVariantIds:[]}),/Duplicate/);
 });
+
+test('category moves preserve evidence without accepting a product-ID-only identity',()=>{
+  const mappings=[{variant_id:'a',source_category_id:3,source_product_id:1,source_payload_hash:'same'}];
+  const moved={category_id:85,product_id:1,name:'Observed product',payload_hash:'same',source_active:true};
+  const [row]=classify({mappings,source:[moved],publishedVariantIds:['a']});
+  assert.equal(row.disposition,'active_source_identity_drift');
+  assert.equal(row.category_id,3);assert.equal(row.observed_category_id,85);
+  assert.equal(row.name,'Observed product');assert.equal(row.payload_hash,'same');
+  assert.equal(row.source_active,true);assert.deepEqual(row.observed_sources,[moved]);
+  const [ambiguous]=classify({mappings,source:[moved,{...moved,category_id:86}],publishedVariantIds:[]});
+  assert.equal(ambiguous.observed_sources.length,2);assert.equal(ambiguous.observed_category_id,null);
+  assert.equal(ambiguous.disposition,'excluded_pending_identity_review');
+});
