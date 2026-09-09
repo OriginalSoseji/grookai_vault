@@ -1,5 +1,12 @@
 # MEE Nightly Droplet Worker V1 Runbook
 
+## September 9 Runtime Hotfix
+
+`docs/checkpoints/pricing/MEE_RUNTIME_HISTORY_MEMORY_HOTFIX_20260909.md`
+records the narrow normalized-history selector backport. It is based on the
+actual deployed MEE SHA, not current application main. Do not deploy this
+runtime-only branch as web/mobile or merge its older application tree to main.
+
 ## Artifact Capacity
 
 The runtime artifact root is governed by
