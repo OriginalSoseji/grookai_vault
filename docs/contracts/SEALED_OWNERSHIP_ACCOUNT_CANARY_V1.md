@@ -128,9 +128,47 @@ byte-level `ARTIFACT_HASHES.json`. An expired plan, or one with less than an hou
 left, must not be activated. Fresh preflight is mandatory before any authorized
 transaction; an old snapshot is never authority to ignore drift.
 
-This preparation does not include an executable production writer or rollback
-executor. The activation implementation must bind its transaction and rollback
-commands to the exact plan, use affected-row assertions and independent readback,
-and pass local expiry, contention, retry and preservation tests before use.
+The initial preparation did not include an executable writer. The subsequent
+executor now binds its transaction and rollback commands to the exact plan,
+uses affected-row assertions and independent readback, and has local expiry,
+contention, retry and preservation tests. Implementation is not activation.
 Rollback must disable only the sole matching canary and revoke its exact
 fingerprint-bound grant; it must never delete inventory or replenish the budget.
+
+## Bounded Transition Executor
+
+`scripts/schema/sealed_ownership_account_canary_execute_v1.mjs` defaults to
+readback; `--mode=prepare` is also read-only. Both require the source plan
+directory, a new external output directory and a clean execution checkout.
+The frozen source commit must be an ancestor; its original byte hashes and
+complete plan/preflight relationship must verify. Preparation performs fresh
+production parity and produces a separate execution envelope binding the new
+code SHA to the unchanged source plan.
+
+`--mode=activate` and `--mode=rollback` require that exact execution envelope,
+its fingerprint and an action-specific external authority file. The format is
+enforced in code; a schema-only approval does not match. Never create this file
+on behalf of the founder without the corresponding explicit authority. Client
+production configuration/deployment acceptance remains an operator release gate;
+the executor does not deploy or certify installed clients.
+
+The transaction locks the control row, existing owner allocator, grant tables
+and current release/visibility rows. Lock timeout is two seconds; statement
+timeout is 30 seconds. Activation repeats fresh preflight under those locks,
+inserts exactly one grant and two variants, and compare-and-swaps only the
+canary switch. It never turns on broad additions or creates inventory. Rollback
+requires the exact sole grant/allowlist, revokes it and disables the canary.
+Current owner inventory, allocator, journal, dispositions and protected release
+state must remain unchanged across each transition.
+
+Expiry does not prevent rollback. An expired enrollment's stored state is
+reported separately from its open/closed time window. Repeated exact transitions
+are zero-write in the transaction core; the operator CLI uses a stable exclusive
+start marker beside the source plan and never retries mutations automatically.
+It refuses to reactivate a disabled or revoked grant. A failed/lost COMMIT is
+unknown until independent readback, not presumed rolled back. Preserve the
+marker and all failure evidence. A readback failure never authorizes replay or
+automatic compensating writes.
+
+Tests and exact next release steps:
+`docs/checkpoints/SEALED_OWNERSHIP_CANARY_EXECUTOR_20260908.md`.

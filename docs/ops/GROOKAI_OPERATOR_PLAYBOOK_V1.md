@@ -98,8 +98,16 @@ hashes. Confirm it exists and hashes reconcile before claiming a plan was emitte
 Its owner UUID is private; do not commit the JSON. Proposed variants do not prove
 ownership. This script cannot enroll accounts, activate additions or deploy.
 The frozen plan has a 24-hour window; refresh expired evidence without changing
-production. The schema-only authority remains consumed. Activation/rollback
-implementation and production-configured deployment are subsequent gates.
+production. The schema-only authority remains consumed. The bounded transition
+executor is implemented with rollback-only local SQL proof:
+`docs/checkpoints/SEALED_OWNERSHIP_CANARY_EXECUTOR_20260908.md`.
+Use `sealed_ownership_account_canary_execute_v1.mjs --mode=prepare` for read-only
+fresh preflight/execution-envelope generation, or the default `readback` mode.
+Provide `--plan-dir` and a new external `--out-dir`. Actual activate/rollback
+modes require their own exact execution envelope, fingerprint and authority.
+Never delete start markers, automatically retry an unknown COMMIT, or ship the
+local debug defines. Production-configured deployment and real owner canary
+remain release gates, not consequences of successful executor tests.
 The `sealed_owned_instances_v1.mjs` runner now replays historical migrations
 inside a rollback-only transaction, stripping their transaction wrappers, and
 asserts exact current function definitions before lifecycle fixtures. Older
