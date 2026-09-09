@@ -18,7 +18,12 @@ Do not relabel those runs or erase historical alerts.
 Worker V1.7 stages each existing source-product page as it arrives, retaining
 only observation IDs for exact cross-page reconciliation. It reads staged
 counts through aggregation rather than rehydrating the full payload ledger.
-Qualification and artifact export use run-bound composite-key pagination.
+Qualification uses run-bound composite-key pagination on the candidate index.
+Decision exports use a run-bound server cursor that sorts once per pass, with
+bounded FETCH results and explicit closure on success, early exit or error.
+The decision source-order keys lack a matching index; repeating keyset sorts
+would multiply database work. The held cursor can spill to PostgreSQL temporary
+storage instead of retaining the ledger in Node. No new index/migration is needed.
 Summary and JSONL generation are bounded and repeatable over immutable rows.
 The small canary identity path and read-only dry-run output remain compatible.
 
@@ -34,7 +39,8 @@ the repaired production/shadow paths stream staging, qualification and export.
   This proves bounded payload retention, not whole-production process RSS.
 - Isolated SQL proof passes: 2510 fixture rows, 2505 exact selected rows,
   five other-run rows excluded, tied cursor keys preserved, two identical
-  exports, 28 bounded queries, full rollback and verified temporary-table absence.
+  exports, bounded queries, full rollback and verified temporary-table absence.
+  Cursor revision also proves no open cursor remains after an early exit.
 - Run the full shipcheck before committing.
 - Freeze source, then run read-only production parity or a bounded shadow before
   replacing the pinned deployed worker. A local pass is not production activation.

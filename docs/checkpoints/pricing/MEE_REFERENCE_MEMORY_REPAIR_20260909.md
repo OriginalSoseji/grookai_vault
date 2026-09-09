@@ -34,6 +34,13 @@ review gates, counts, and public-pricing exclusions remain unchanged.
 
 ## Remaining Live Gate
 
+Runtime parity blocker: deployed SHA `87632e01b4ebb47a7b3ae35684b2fbe3935907b9`
+contains `mee_runtime_artifacts_v1.mjs`, runtime-root-aware writer paths, and
+same-day acquisition reuse that current main does not contain. Do not replace
+the entire MEE pointer with main. Preserve those behaviors through a tested
+narrow backport or explicit reconciliation before deployment. Runtime evidence
+must remain under `/var/lib/grookai/mee/audits`, outside retained checkouts.
+
 This is source repair, not a successful production refresh. Deploy an immutable
 tested runtime while preserving the old pointer. Run the writer's read-only
 preflight against current artifacts and warehouse counts under a bounded heap.

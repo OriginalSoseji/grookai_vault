@@ -25,7 +25,7 @@ try {
     order by source_product_id, source_subtype_name, source_observation_id`, [run])).rows;
   let calls = 0, maxRows = 0;
   const adapter = { async query(sql, params) {
-    assert.match(sql, /from public\.market_price_(pipeline_candidates|qualification_decisions)/);
+    assert.match(sql, /from public\.market_price_(pipeline_candidates|qualification_decisions)|^(fetch|close) /);
     const result = await client.query(sql.replace(/public\.market_price_(pipeline_candidates|qualification_decisions)/, 'pg_temp.pricing_stream_fixture'), params);
     calls++; maxRows = Math.max(maxRows, result.rows.length);
     return result;
@@ -41,10 +41,27 @@ try {
     for await (const row of rows) exported.push(row);
     assert.deepEqual(exported, expected);
   }
+  for await (const _ of readMarketLedgerBatchesV1(adapter, 'decisions', run, 1)) break;
+  assert.equal((await client.query("select count(*)::integer n from pg_cursors where name like 'market_decisions_%'")).rows[0].n, 0);
   await client.query('rollback');
   assert.equal((await client.query("select to_regclass('pg_temp.pricing_stream_fixture') object")).rows[0].object, null);
+  await client.query("set work_mem = '1MB'");
+  const outsideTransaction = { async query(sql, params) {
+    const virtualLedger = `(select md5(i::text)::uuid id, $1::uuid run_id,
+      i / 5 source_product_id, 'Normal'::text source_subtype_name,
+      md5(('obs' || i)::text)::uuid source_observation_id,
+      repeat('evidence', 100) payload from generate_series(1, 100000) i) ledger`;
+    const result = await client.query(sql.replace('public.market_price_qualification_decisions', virtualLedger), params);
+    assert.ok(result.rows.length <= 1000);
+    return result;
+  } };
+  let outsideCount = 0;
+  for await (const _ of marketLedgerRowsV1(outsideTransaction, 'decisions', run)) outsideCount++;
+  assert.equal(outsideCount, 100000);
+  assert.equal((await client.query("select count(*)::integer n from pg_cursors where name like 'market_decisions_%'")).rows[0].n, 0);
   console.log(JSON.stringify({ status: 'passed', fixture_rows: 2510, selected_rows: 2505,
-    excluded_other_run: 5, repeated_export_passes: 2, queries: calls, durable_writes: 0, cleanup: 'rolled_back' }));
+    excluded_other_run: 5, repeated_export_passes: 2, queries: calls,
+    autocommit_cursor_rows: outsideCount, open_cursors: 0, durable_writes: 0, cleanup: 'rolled_back' }));
 } finally {
   await client.query('rollback').catch(() => {});
   await client.end();

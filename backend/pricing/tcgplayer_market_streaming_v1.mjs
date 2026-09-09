@@ -1,3 +1,5 @@
+import { randomUUID } from 'node:crypto';
+
 export function createCandidateStreamReconcilerV1(expectedSourceRunId, expectedCount) {
   if (!Number.isSafeInteger(expectedCount) || expectedCount < 0) throw new Error('Invalid expected candidate count');
   const seen = new Set();
@@ -29,10 +31,34 @@ const queries = {
   decisions: { table: 'public.market_price_qualification_decisions', columns: '*' },
 };
 
-// Both ledgers are immutable, run-bound, and indexed by the leading cursor keys.
+// Sort decisions once: their source-order fields have no matching index.
+// WITH HOLD also permits use outside a caller transaction; PostgreSQL can spill
+// the result to temporary storage without retaining the ledger in Node.
+async function* readDecisionBatches(client, runId, batchSize) {
+  const cursor = `market_decisions_${randomUUID().replaceAll('-', '')}`;
+  await client.query(`declare ${cursor} no scroll cursor with hold for
+    select * from public.market_price_qualification_decisions where run_id = $1
+    order by source_product_id, source_subtype_name, source_observation_id`, [runId]);
+  try {
+    for (;;) {
+      const { rows } = await client.query(`fetch forward ${batchSize} from ${cursor}`);
+      if (rows.length > batchSize) throw new Error('Ledger page exceeded bound');
+      if (!rows.length) break;
+      yield rows;
+    }
+  } finally {
+    await client.query(`close ${cursor}`);
+  }
+}
+
+// Candidate paging uses its existing run/product/subtype index and UUID ties.
 export async function* readMarketLedgerBatchesV1(client, kind, runId, batchSize = 1000) {
   const query = queries[kind];
   if (!query || !Number.isSafeInteger(batchSize) || batchSize < 1 || batchSize > 10000) throw new Error('Invalid ledger paging configuration');
+  if (kind === 'decisions') {
+    yield* readDecisionBatches(client, runId, batchSize);
+    return;
+  }
   let cursor = null;
   for (;;) {
     const { rows } = await client.query(

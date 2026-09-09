@@ -35,7 +35,7 @@ test('ledger pages use a run-bound composite cursor without offset or skipped ti
   assert.equal(calls.length, 4);
   assert.deepEqual(calls[1].params, ['run', row(2).source_product_id, 'Normal', row(2).source_observation_id, 2]);
   assert.match(calls[1].sql, /\(source_product_id, source_subtype_name, source_observation_id\) >/);
-  const iterable = marketLedgerRowsV1(client, 'decisions', 'run');
+  const iterable = marketLedgerRowsV1(client, 'candidates', 'run');
   const first = [], second = [];
   for await (const r of iterable) first.push(r);
   for await (const r of iterable) second.push(r);
@@ -47,8 +47,43 @@ test('ledger iterator propagates failures and rejects invalid bounds, kinds and 
   await assert.rejects(consume(readMarketLedgerBatchesV1({}, 'untrusted', 'run')), /configuration/);
   await assert.rejects(consume(readMarketLedgerBatchesV1({}, 'decisions', 'run', 10001)), /configuration/);
   await assert.rejects(consume(readMarketLedgerBatchesV1({ query: async () => { throw new Error('connection lost'); } }, 'decisions', 'run')), /connection lost/);
-  await assert.rejects(consume(readMarketLedgerBatchesV1({ query: async () => ({ rows: [row(1)] }) }, 'decisions', 'run')), /cursor/);
-  await assert.rejects(consume(readMarketLedgerBatchesV1({ query: async () => ({ rows: [row(1), row(2)] }) }, 'decisions', 'run', 1)), /exceeded/);
+  await assert.rejects(consume(readMarketLedgerBatchesV1({ query: async () => ({ rows: [row(1)] }) }, 'candidates', 'run')), /cursor/);
+  await assert.rejects(consume(readMarketLedgerBatchesV1({ query: async () => ({ rows: [row(1), row(2)] }) }, 'candidates', 'run', 1)), /exceeded/);
+});
+
+test('decision exports sort once per pass and close on success, early exit and failure', async () => {
+  const fixture = [row(1), row(2), row(3)], calls = [];
+  let offset = 0, failFetch = false;
+  const client = { async query(sql, params) {
+    calls.push(sql);
+    if (sql.startsWith('declare')) {
+      assert.match(sql, /no scroll cursor with hold/);
+      assert.match(sql, /where run_id = \$1/);
+      assert.deepEqual(params, ['run']); offset = 0;
+      return { rows: [] };
+    }
+    if (sql.startsWith('fetch')) {
+      if (failFetch) throw new Error('fetch failed');
+      const limit = Number(sql.match(/fetch forward (\d+)/)[1]);
+      const rows = fixture.slice(offset, offset + limit); offset += rows.length;
+      return { rows };
+    }
+    assert.match(sql, /^close market_decisions_[a-f0-9]{32}$/);
+    return { rows: [] };
+  } };
+  const iterable = marketLedgerRowsV1(client, 'decisions', 'run');
+  for (let pass = 0; pass < 2; pass++) {
+    const result = [];
+    for await (const value of iterable) result.push(value);
+    assert.deepEqual(result, fixture);
+  }
+  for await (const _ of readMarketLedgerBatchesV1(client, 'decisions', 'run', 1)) break;
+  failFetch = true;
+  await assert.rejects(async () => { for await (const _ of iterable) {} }, /fetch failed/);
+  assert.equal(calls.filter(sql => sql.startsWith('declare')).length, 4);
+  assert.equal(calls.filter(sql => sql.startsWith('close')).length, 4);
+  assert.equal(new Set(calls.filter(sql => sql.startsWith('close'))).size, 4);
+  assert.equal(calls.filter(sql => /order by/.test(sql)).length, 4);
 });
 
 test('durable stage, qualification and exports no longer accumulate whole ledgers', () => {
