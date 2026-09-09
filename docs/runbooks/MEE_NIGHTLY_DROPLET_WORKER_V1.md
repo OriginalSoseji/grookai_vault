@@ -196,3 +196,11 @@ If a Supabase readback query is still running more than 30 minutes after the
 worker has stopped, treat it as an orphaned process and kill it before rerunning
 the timer. The nightly service, reference refresh service, and post-ingest
 service must not overlap.
+## Reference Normalization Recovery (2026-09-09)
+
+Use `market_evidence_engine_normalized_reference_v1.mjs --latest-per-source`
+with the external runtime artifact root. Do not select the two newest files
+globally: they may both be the same source, allowing older evidence to overwrite
+the latest normalized selection. Each output records its acquisition path/hash.
+Preserve previous artifacts. Require a clean delta-writer dry run before writes;
+normalization itself makes no provider calls or database writes.

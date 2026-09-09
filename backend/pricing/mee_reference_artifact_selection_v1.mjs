@@ -1,6 +1,27 @@
 import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
+export async function latestReferenceAcquisitionsBySourceV1(directory) {
+  const patterns = [
+    /^mee_06a_pokemontcg_io_reference_evidence_.*\.json$/,
+    /^mee_06b_tcgcsv_reference_evidence_.*\.json$/,
+  ];
+  const entries = await readdir(directory, { withFileTypes: true });
+  const selected = [];
+  for (const pattern of patterns) {
+    const candidates = [];
+    for (const entry of entries) {
+      if (!entry.isFile() || !pattern.test(entry.name)) continue;
+      const fullPath = path.join(directory, entry.name);
+      candidates.push({ fullPath, mtimeMs: (await stat(fullPath)).mtimeMs });
+    }
+    candidates.sort((a, b) => b.mtimeMs - a.mtimeMs || a.fullPath.localeCompare(b.fullPath));
+    if (!candidates.length) throw new Error(`Missing reference acquisition for ${pattern.source}`);
+    selected.push(candidates[0].fullPath);
+  }
+  return selected;
+}
+
 export async function latestNormalizedReferenceArtifactV1(directory, source, {
   readJsonFile = async (file) => JSON.parse(await readFile(file, "utf8")),
 } = {}) {

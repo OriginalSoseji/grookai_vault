@@ -33,3 +33,21 @@ automated reference warehouse apply contract. Never introduce a pricing write.
 
 Artifacts: `C:/grookai_vault_operator_artifacts/release_closeout/20260909/`.
 Source preparation alone does not prove successful production execution.
+# Follow-up: source pairing
+
+Read-only host preflight of fc26dda used 286248 KiB peak RSS without OOM,
+but correctly blocked 10372 normalized rows without matching candidate hashes.
+The installed unit normalized the two newest acquisitions globally: today's
+Pokemon acquisition, then yesterday's Pokemon acquisition. The latter became
+the newest normalized artifact and mismatched the writer's latest acquisition.
+
+The follow-up replaces that loop with `--latest-per-source`, selecting exactly
+one latest Pokemon and one latest TCGCSV acquisition. Missing inputs fail closed.
+Normalized JSON now records the exact input path and SHA-256. Original artifacts
+remain untouched. Candidate hashes, writer policy, pricing and identity rules
+remain unchanged. No provider reacquisition is needed for recovery.
+
+Runtime-only deployment must update the unit as well as the immutable pointer,
+preserving the old unit/pointer and all failed evidence. First normalize preserved
+inputs offline, then require clean writer read-only preflight before any write.
+Do not merge this older runtime application tree into main.
