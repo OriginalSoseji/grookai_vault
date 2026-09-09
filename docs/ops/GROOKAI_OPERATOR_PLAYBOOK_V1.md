@@ -32,6 +32,10 @@ exist only in chat, an unindexed audit, or one person's memory.
 
 ### Active market-release closeout
 
+Security dependency evidence and the remaining installer-only archive advisory
+are recorded in `docs/checkpoints/RELEASE_SECURITY_CLOSEOUT_20260909.md`.
+Recheck deployed worker dependencies separately from merged web source.
+
 Use `docs/checkpoints/RELEASE_CLOSEOUT_20260909.md` as the finite cross-domain
 release checklist. It separates tested sealed implementation, deployed clients,
 bounded ownership activation and live business-health evidence. Complete
@@ -43,6 +47,10 @@ verification: `docs/checkpoints/pricing/PRICING_MEMORY_REPAIR_20260909.md`.
 Green GitHub observation jobs alone do not override failed systemd runs. Preserve
 scanner availability and old publication evidence; do not rerun retention deletes
 or replay publication without the relevant frozen execution checks.
+
+The separate MEE reference-refresh memory failure and bounded artifact-selection
+repair are recorded in `docs/checkpoints/pricing/MEE_REFERENCE_MEMORY_REPAIR_20260909.md`.
+Neither source repair is a receipt for production worker deployment.
 
 ### Pokemon language source recovery
 

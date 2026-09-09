@@ -27,13 +27,13 @@ the reports before closing pricing, catalog or capacity release gates.
 
 ## Finite Release Checklist
 
-- [ ] Reconcile tested sealed branch with main, pass checks, merge and deploy.
+- [x] Reconcile tested sealed branch with main, pass checks, merge and deploy.
 - [ ] Verify production web and production-configured mobile source/config.
 - [ ] Refresh bounded account activation evidence and satisfy exact authority.
 - [ ] Verify genuine owner lifecycle and cross-client totals with readback.
 - [ ] Complete bounded availability rollout with rollback and monitoring.
 - [ ] Inspect pricing publication, freshness, nightly and warehouse reports.
-- [ ] Resolve released-set publication defect and confirm daily discovery.
+- [x] Resolve released-set publication defect and confirm daily discovery.
 - [ ] Review capacity, security, backup and incident/retention evidence.
 - [ ] Verify critical collector journeys and distribution/legal release gates.
 - [ ] Publish final pass/fail/deferred report; do not claim public release early.
@@ -52,3 +52,53 @@ plan variants, reuse consumed schema authority or silently extend a frozen plan.
 
 Sealed executor details and existing test receipts:
 `docs/checkpoints/SEALED_OWNERSHIP_CANARY_EXECUTOR_20260908.md`.
+
+## September 9 Follow-Up: Direct Readback
+
+- Sealed PR 445 merged as `7b98e7bab9dd3abaa2ca6d83f2e49251375534b0`.
+  Its production Vercel deployment reached READY; later security deployments
+  supersede it. Next 16.3.4 and js-yaml 4.3.2 are merged and deployed.
+- iOS 317 from that sealed SHA is VALID and IN_BETA_TESTING in the existing
+  internal group. Automatic notification is enabled; no external group or
+  public submission was added. Archive signatures and dSYMs verified; the
+  simulator opens the sign-in screen. This is not authenticated lifecycle proof.
+- All three native sealed flags are explicitly built; server ownership controls
+  remain off. Fresh account readback is not_enrolled, with no sealed inventory
+  added. Genuine ownership confirmation and exact current canary authority
+  remain required; proposed products are not evidence of founder holdings.
+- Catalog recheck `34304736565` passed; issue 444 closed. The prior MTG cover
+  failure was a transport timeout. Pokemon sealed audit-only run `34304695355`
+  passed including artifact finalization; it did not republish prices.
+- Pricing is NOT operationally complete. Direct systemd evidence confirms an
+  OOM kill. At `2026-09-09T03:39:08Z`, the source warehouse was current (548246
+  rows, 18.088 hours old), but the September 8 publication remained unfinished.
+  The active September 7 publication exceeded the 36-hour cutoff and yielded
+  zero fresh exact prices. Do not extend freshness thresholds to conceal this.
+- Pricing's prior seven matched slots include six unhealthy cycles; they are
+  not seven successful unattended runs. Its streaming repair still requires
+  immutable runtime deployment and controlled live reconciliation.
+- MEE reference refresh separately failed with heap exhaustion. See
+  `pricing/MEE_REFERENCE_MEMORY_REPAIR_20260909.md` for its narrow repair.
+- Immutable-release retention fails Git ownership checks; MEE artifact retention
+  is below its 15 GB free-space floor. No retention deletion was performed.
+- Supabase capacity audit passed on Medium: 320 GB disk, 79.34% used, 600 GB
+  autoscale maximum. This does not independently verify billing/Spend Cap.
+- Security patch evidence and the remaining unpatched installer advisory are
+  in `RELEASE_SECURITY_CLOSEOUT_20260909.md`. Merged source does not upgrade
+  pinned production backend dependencies.
+
+## Remaining Launch Order
+
+1. Restore fresh pricing with the bounded-memory worker, exact reconciliation,
+   active read-model readback, and preserved rollback. Verify MEE independently.
+2. Resolve retention safely and verify production alerts, backups and capacity.
+3. Complete genuine sealed owner acceptance, then bounded ownership rollout.
+4. Finish final-candidate authenticated and signed-out journeys across clients,
+   and recheck current store declarations rather than relying on August notes.
+5. Freeze the candidate and satisfy the existing operational observation gates.
+   Do not backdate the 72-hour soak or count failed pricing cycles as successes.
+6. Produce the release decision and submit only through the store authorization
+   boundary. TestFlight availability is not public market release.
+
+No new collectible expansion, image background removal, new pricing model, or
+visual-search scope is required to close this release list.
