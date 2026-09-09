@@ -1,6 +1,6 @@
 # App Launch Progress
 
-Date: September 9, 2026. Updated through 19:33 UTC.
+Date: September 9, 2026. Updated through 19:51 UTC.
 Founder direction: release useful functionality without a calendar canary hold.
 Security, correct ownership/value and honest limitations remain required.
 
@@ -33,13 +33,32 @@ Security, correct ownership/value and honest limitations remain required.
 
 - Merge PR455 so daily automation uses the proven source-containment repair.
 - Verify the production web deployment and signed-in collector routes.
-- Contain the Phantom Forces incorrect printing choices through the existing
-  non-destructive review sidecar, preserving canonical/owned data.
-- Complete external TestFlight reviewer information and submit the verified
-  build for external beta review; App Store submission is still separate.
+- Submit the verified build for external beta review; App Store submission is
+  still separate. Existing working review credentials were copied privately to
+  the previously incomplete beta review form and read back. Draft build is318.
 - Finish current store/privacy/reviewer journey evidence and final submission.
 - Keep source identity reconciliation, legitimate quote gaps, worker capacity
   and remaining operational debt visible after release. No artificial 72-hour wait.
+
+## Additional Live Findings And Completed Containment
+
+Production web deployment `dpl_9FBwmfCdrsBTGgC8A1XMtcpBaLts` is READY from
+main `588be2887ce73f70cbcc1273197202a4a9d7ce58`. Ordinary-account browser smoke
+then exposed two actual defects: an absent production public sealed-ownership
+flag and reuse of a login redirect prefetched before authentication. The flag
+was created as `true` for production only; the next build must embed it. Login
+now uses a fresh document at the existing sanitized continuation after successful
+authentication. No authentication boundary is relaxed. Re-test after deployment;
+the preserved failed smoke receipts must not be represented as passes.
+
+Seven Phantom Forces finish choices were hidden at19:36:56 UTC through existing
+`card_printing_truth_reviews`: six unsupported normal/reverse finishes for
+34/35/114, plus secret121 reverse as explicitly unverifiable. The official PDF
+ends at119 and does not establish secret121's finish. Canonical/owned rows were
+unchanged, zero affected owned references; exact readback passed. Plan:
+`3ede4f4ccb84d487ca92cd3833aacffb9f83d8c0ec1a19a3e89518fceb40b678`.
+Issue450 remains open for remaining authoritative reconciliation, not more
+blind writes. Current query API proof remains part of the post-deploy smoke.
 
 ## Evidence And Rollback
 
