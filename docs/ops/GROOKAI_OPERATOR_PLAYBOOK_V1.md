@@ -37,6 +37,13 @@ release checklist. It separates tested sealed implementation, deployed clients,
 bounded ownership activation and live business-health evidence. Complete
 existing release gates before adding collectible or presentation scope.
 
+September 9 direct host readback found the pinned publication worker OOM-killed
+and retention failing Git ownership checks. Pricing memory-repair scope and
+verification: `docs/checkpoints/pricing/PRICING_MEMORY_REPAIR_20260909.md`.
+Green GitHub observation jobs alone do not override failed systemd runs. Preserve
+scanner availability and old publication evidence; do not rerun retention deletes
+or replay publication without the relevant frozen execution checks.
+
 ### Pokemon language source recovery
 
 The daily `pokemon-master-index-refresh.yml` worker can recover a catastrophic
