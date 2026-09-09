@@ -16,6 +16,6 @@
   "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
   "source_anomaly_count": 0,
   "source_authority": "candidate_only",
-  "source_commit_sha": "5e7911b3d703804f7a9065f5edcd99e1a5efb1cf",
+  "source_commit_sha": "1c30c50253756bafecf0f065fc377f77016ad12f",
   "version": "POKEMON_LANGUAGE_MASTER_INDEX_V1"
 }
