@@ -292,7 +292,7 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
         _selected.clear();
       });
       widget.onSelectionChanged?.call([]);
-      if (_own) {
+      if (_own && widget.onTotals != null) {
         try {
           final totals = await _service.totals();
           if (mounted && generation == _generation) {
@@ -533,6 +533,11 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
                         Text(
                           'Market: ${sealedMoney(row.amount('owned_market_price'), row.text('market_currency'))}',
                         ),
+                        if (row.valuationExclusion != null)
+                          Text(
+                            row.valuationExclusion!,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
                         if (row.amount('owned_market_price') == null &&
                             row.amount('reference_market_price') != null)
                           Text(

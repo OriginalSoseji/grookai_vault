@@ -56,6 +56,22 @@ class OwnedSealedCopy {
 
   String get id => text('instance_id');
   String get name => text('name');
+  String? get valuationExclusion {
+    if (amount('owned_market_price') != null) return null;
+    if (amount('reference_market_price') == null) {
+      return 'Not included in total: market price unavailable.';
+    }
+    if (text('seal_state') == 'opened' ||
+        text('package_condition') == 'damaged') {
+      return 'Not included in total: factory-sealed pricing does not value opened or damaged products.';
+    }
+    if (text('seal_state') != 'factory_sealed' ||
+        text('package_condition') != 'undamaged') {
+      return 'Not included in total: seal or package condition is unconfirmed.';
+    }
+    return 'Not included in total: owned market value unavailable.';
+  }
+
   String get identity => [
     name,
     text('package_form').replaceAll('_', ' '),
@@ -103,6 +119,8 @@ class OwnedSealedTotals {
 class OwnedSealedService {
   static final _additions = StreamController<String>.broadcast();
   static Stream<String> get additions => _additions.stream;
+  static final _changes = StreamController<String>.broadcast();
+  static Stream<String> get changes => _changes.stream;
   static final _clients = Expando<OwnedSealedService>();
   static final Map<String, Future<Map<String, dynamic>>> _inFlight = {};
   static final List<Completer<void>> _imageWaiters = [];
@@ -300,7 +318,10 @@ class OwnedSealedService {
         }
       },
     );
-    if (owner != null && userId() == owner) _additions.add(owner);
+    if (owner != null && userId() == owner) {
+      _additions.add(owner);
+      _changes.add(owner);
+    }
   }
 
   Future<void> save(
@@ -311,6 +332,7 @@ class OwnedSealedService {
     String? asking,
     String currency = 'USD',
   }) async {
+    final owner = userId();
     await rpc('vault_update_sealed_copy_v1', {
       'p_instance_id': copy.id,
       'p_seal_state': seal,
@@ -330,6 +352,7 @@ class OwnedSealedService {
             (asking == null ? '' : currency)) {
       throw StateError('Settings awaiting readback');
     }
+    if (owner != null && userId() == owner) _changes.add(owner);
   }
 
   Future<void> disposeCopy(
@@ -337,6 +360,7 @@ class OwnedSealedService {
     String operation,
     Map<String, dynamic> details,
   ) async {
+    final owner = userId();
     await mutation(
       'vault_dispose_sealed_copy_v1',
       {'p_instance_id': copy.id, 'p_operation': operation, ...details},
@@ -349,6 +373,7 @@ class OwnedSealedService {
         }
       },
     );
+    if (owner != null && userId() == owner) _changes.add(owner);
   }
 
   Future<String?> image(OwnedSealedCopy copy) async {

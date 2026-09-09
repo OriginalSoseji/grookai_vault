@@ -20,7 +20,7 @@ import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
 import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
-import { combineUsdTotal, type SealedTotals } from "@/lib/sealed/ownedSealedV1";
+import { combineUsdTotal, sealedOwnershipEnabled, type SealedTotals } from "@/lib/sealed/ownedSealedV1";
 
 export type RecentCardData = {
   id: string;
@@ -702,7 +702,7 @@ export function VaultCollectionView({
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="min-w-0 space-y-2.5">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
-                  Estimated Vault Value
+                  {sealedOwnershipEnabled && !sealedTotals ? 'Card subtotal' : 'Estimated Vault Value'}
                 </p>
                 <div className="space-y-1">
                   <p
@@ -715,6 +715,8 @@ export function VaultCollectionView({
                     data-priced-copy-count={valueSummary.pricedCopyCount + (sealedTotals?.priced_copy_count ?? 0)}
                     data-unpriced-copy-count={valueSummary.unpricedCopyCount + (sealedTotals?.unpriced_copy_count ?? 0)}
                     data-total-raw-copy-count={valueSummary.totalRawCopyCount}
+                    data-total-owned-copy-count={valueSummary.totalRawCopyCount + (sealedTotals?.active_copy_count ?? 0)}
+                    data-sealed-total-loaded={!sealedOwnershipEnabled || sealedTotals != null}
                     data-published-at={
                       valueSummary.latestPricingUpdateAt ?? undefined
                     }
@@ -723,7 +725,13 @@ export function VaultCollectionView({
                   >
                     {formattedVaultValue ?? "No estimate yet"}
                   </p>
-                  {sealedTotals && <p className="text-sm">{sealedTotals.active_copy_count} sealed copies / {sealedTotals.unpriced_copy_count} unpriced / Sealed {sealedTotals.totals_by_currency.USD == null ? 'unpriced' : formatVaultCurrency(sealedTotals.totals_by_currency.USD)}</p>}
+                  {sealedOwnershipEnabled && !sealedTotals && <p className="text-sm" role="status">Card subtotal shown. Sealed value not available yet.</p>}
+                  {sealedTotals && <>
+                    <p className="text-sm">Cards {valueSummary.totalEstimatedValue == null ? 'unpriced' : formatVaultCurrency(valueSummary.totalEstimatedValue)} + Sealed {sealedTotals.active_copy_count === 0 ? formatVaultCurrency(0) : sealedTotals.totals_by_currency.USD == null ? 'unpriced' : formatVaultCurrency(sealedTotals.totals_by_currency.USD)}</p>
+                    <p className="text-sm">{sealedTotals.active_copy_count} sealed copies / {sealedTotals.unpriced_copy_count} unpriced</p>
+                    {Object.entries(sealedTotals.totals_by_currency).filter(([currency]) => currency !== 'USD').map(([currency, value]) =>
+                      <p key={currency} className="text-sm">Sealed {currency} {value.toFixed(2)} (separate from USD total)</p>)}
+                  </>}
                   <p className="text-xs text-slate-400">TCGPlayer Market for eligible exact printings and sealed products.</p>
                 </div>
               </div>

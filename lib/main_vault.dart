@@ -630,7 +630,8 @@ class VaultPageState extends State<VaultPage> {
   int _reloadRequestVersion = 0;
   String? _uid;
   List<Map<String, dynamic>> _items = const [];
-  OwnedSealedTotals? _sealedTotals;
+  late final OwnedSealedTotalsController _sealedValue;
+  OwnedSealedTotals? get _sealedTotals => _sealedValue.totals;
   List<OwnedSealedCopy> _selectedSealedCopies = [];
   int _sealedSelectionEpoch = 0;
   Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
@@ -660,6 +661,9 @@ class VaultPageState extends State<VaultPage> {
     _searchController = TextEditingController();
     _searchController.addListener(_handleSearchChanged);
     _uid = supabase.auth.currentUser?.id;
+    _sealedValue = OwnedSealedTotalsController(
+      OwnedSealedService.supabase(supabase),
+    )..addListener(_sealedValueChanged);
     if (BinderFeatureFlags.production.personalAvailable) {
       unawaited(_loadBinderWhatsNewState());
     }
@@ -668,20 +672,24 @@ class VaultPageState extends State<VaultPage> {
 
   @override
   void dispose() {
+    _sealedValue.dispose();
     _searchController.removeListener(_handleSearchChanged);
     _searchController.dispose();
     super.dispose();
+  }
+
+  void _sealedValueChanged() {
+    if (mounted) setState(() {});
   }
 
   Future<void> reload() async {
     final requestVersion = ++_reloadRequestVersion;
     _selectedSealedCopies = [];
     _sealedSelectionEpoch++;
-    _sealedTotals = null;
+    if (kSealedOwnershipEnabled) unawaited(_sealedValue.refresh());
     if (_uid == null) {
       setState(() {
         _items = const [];
-        _sealedTotals = null;
         _pricingByCardPrintId = const <String, CardSurfacePricingData>{};
         _pricingSummaryByCardPrintId =
             const <String, VaultExactPricingSummary>{};
@@ -2437,12 +2445,10 @@ class VaultPageState extends State<VaultPage> {
       minTileWidth: 96,
     );
     final vaultContentSlivers = <Widget>[];
-    final sealedUsd = _sealedTotals?.usd;
-    final combinedValue =
-        derivedData.estimatedValue == null && sealedUsd == null
-        ? null
-        : ((derivedData.estimatedValue ?? 0) * 100).round() / 100 +
-              ((sealedUsd ?? 0) * 100).round() / 100;
+    final combinedValue = combineCollectionUsd(
+      derivedData.estimatedValue,
+      _sealedTotals,
+    );
     switch (_view) {
       case _VaultStructuralView.all:
         if (_loading) {
@@ -2800,7 +2806,9 @@ class VaultPageState extends State<VaultPage> {
                         : vaultExactPricingTotalProofKey(
                             derivedData.vaultPricingSummary,
                           ),
-                    label: 'TCGPlayer Market Vault total',
+                    label: kSealedOwnershipEnabled && _sealedTotals == null
+                        ? 'TCGPlayer Market card subtotal, sealed total unavailable'
+                        : 'TCGPlayer Market Vault total',
                     value: combinedValue == null
                         ? 'Unavailable'
                         : _formatVaultValue(combinedValue),
@@ -2829,12 +2837,27 @@ class VaultPageState extends State<VaultPage> {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  if (_sealedTotals != null)
+                  if (kSealedOwnershipEnabled && _sealedTotals == null)
                     Text(
-                      '${_sealedTotals!.copies} sealed copies / ${_sealedTotals!.unpriced} unpriced / '
-                      'Sealed ${sealedMoney(_sealedTotals!.usd, 'USD')}',
+                      _sealedValue.loading
+                          ? 'Card subtotal shown. Loading sealed value...'
+                          : 'Card subtotal shown. Sealed value unavailable.',
                       style: theme.textTheme.bodySmall,
                     ),
+                  if (_sealedTotals != null)
+                    Text(
+                      'Cards ${sealedMoney(derivedData.estimatedValue, 'USD')} + '
+                      'Sealed ${_sealedTotals!.copies == 0 ? 'USD 0.00' : sealedMoney(_sealedTotals!.usd, 'USD')}\n'
+                      '${_sealedTotals!.copies} sealed copies / ${_sealedTotals!.unpriced} unpriced',
+                      style: theme.textTheme.bodySmall,
+                    ),
+                  if (_sealedTotals != null)
+                    for (final entry in _sealedTotals!.currencies.entries)
+                      if (entry.key != 'USD')
+                        Text(
+                          'Sealed ${entry.key} ${(entry.value as num).toStringAsFixed(2)} (separate from USD total)',
+                          style: theme.textTheme.bodySmall,
+                        ),
                   Row(
                     children: [
                       Expanded(
@@ -2966,9 +2989,6 @@ class VaultPageState extends State<VaultPage> {
                   }
                 },
                 onShareLot: _openSelectedLotPricing,
-                onTotals: (totals) {
-                  if (mounted) setState(() => _sealedTotals = totals);
-                },
               ),
             ),
           ...vaultContentSlivers,

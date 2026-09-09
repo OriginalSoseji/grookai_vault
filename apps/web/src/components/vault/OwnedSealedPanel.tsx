@@ -6,7 +6,7 @@ import { Camera, History, ChevronLeft, ChevronRight, Edit, Package, Plus, Refres
 import { SealedDetailsDialog, SealedHistoryDialog } from './SealedCopyDetails';
 import { SealedLotDialog } from './SealedLotDialog';
 import { supabase } from '@/lib/supabaseClient';
-import { combineUsdTotal, parseSealedCopy, parseSealedTotals, sealedIdentity, sealedOwnershipEnabled,
+import { combineUsdTotal, parseSealedCopy, parseSealedTotals, sealedIdentity, sealedOwnershipEnabled, sealedValuationExclusion,
   verifySealedAddition, type SealedCopy, type SealedTotals } from '@/lib/sealed/ownedSealedV1';
 
 const control = 'min-h-10 w-full rounded-md border border-current/25 bg-transparent px-3 py-2 text-sm';
@@ -85,6 +85,23 @@ export function OwnedSealedPanel({ ownerId, sectionId, wallOnly = false, onTotal
   useEffect(() => { totalsRef.current = onTotals; }, [onTotals]);
   const reload = useCallback(() => setGeneration(n => n + 1), []);
   useEffect(() => {
+    if (!sealedOwnershipEnabled || !totalsRef.current) return;
+    let cancelled = false;
+    totalsRef.current(null);
+    // Account totals remain independent of inventory filters and page failures.
+    async function loadTotals() {
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error || !user || (ownerId && ownerId !== user.id)) return;
+        const totals = parseSealedTotals(await rpc('get_owned_sealed_totals_v1'));
+        const current = await supabase.auth.getUser();
+        if (!cancelled && current.data.user?.id === user.id) totalsRef.current?.(totals);
+      } catch { if (!cancelled) totalsRef.current?.(null); }
+    }
+    void loadTotals();
+    return () => { cancelled = true; };
+  }, [ownerId, generation]);
+  useEffect(() => {
     if (!sealedOwnershipEnabled) return;
     let cancelled = false;
     async function load() {
@@ -98,11 +115,7 @@ export function OwnedSealedPanel({ ownerId, sectionId, wallOnly = false, onTotal
         const parsed = (result as unknown[]).map(parseSealedCopy);
         if (cancelled) return;
         setRows(parsed); setSelected(new Set()); setSelf(own);
-        if (own && totalsRef.current) {
-          try { const totals = parseSealedTotals(await rpc('get_owned_sealed_totals_v1')); if (!cancelled) totalsRef.current(totals); }
-          catch { if (!cancelled) totalsRef.current(null); }
-        }
-      } catch { if (!cancelled) { setError('Sealed inventory could not load. Your collection is unchanged.'); totalsRef.current?.(null); } }
+      } catch { if (!cancelled) { setError('Sealed inventory could not load. Your collection is unchanged.'); } }
       finally { if (!cancelled) setBusy(false); }
     }
     void load(); return () => { cancelled = true; };
@@ -140,6 +153,7 @@ export function OwnedSealedPanel({ ownerId, sectionId, wallOnly = false, onTotal
         <p className="text-xs opacity-70">{row.seal_state.replaceAll('_', ' ')} / {row.package_condition}</p>
         <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm"><span>Market: {money(row.owned_market_price, row.market_currency)}</span>
           <span>My price: {money(row.asking_price_amount, row.asking_price_currency)}</span></div>
+        {sealedValuationExclusion(row) && <p className="text-xs opacity-70">{sealedValuationExclusion(row)}</p>}
         {row.owned_market_price == null && row.reference_market_price != null && <p className="text-xs opacity-70">Factory-sealed reference: {money(row.reference_market_price, row.market_currency)}</p>}
         <div className="flex flex-wrap gap-2">{self && <><button className={icon} title="Manage copy" aria-label={`Manage ${row.name}`} disabled={busy} onClick={() => setEdit(row)}><Edit size={18} /></button>
           <AddSealedButton variantId={row.sealed_product_variant_id} name={row.name} onChanged={reload} />
