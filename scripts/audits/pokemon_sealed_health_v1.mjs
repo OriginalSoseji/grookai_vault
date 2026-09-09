@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import dotenv from 'dotenv';
 import pg from 'pg';
 import {pgSslConfig} from './japanese_master_index_v4/read_only_guard_v1.mjs';
-import {evaluatePokemonSealedHealthV1} from '../../backend/pricing/pokemon_sealed_health_v1.mjs';
+import {evaluatePokemonSealedHealthV1,classifyPokemonSealedSourceChangesV1} from '../../backend/pricing/pokemon_sealed_health_v1.mjs';
 import {buildPokemonSealedAgingDetailV1,assertPokemonSealedDatabaseTargetV1} from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
 import {classifyPokemonSealedProductV1,pokemonSealedHashV1 as hash} from '../../backend/pricing/pokemon_sealed_world_v1.mjs';
 import {withPokemonSealedProbeSessionV1,verifyPokemonSealedImageServingV1} from '../../backend/pricing/pokemon_sealed_live_probe_v1.mjs';
@@ -38,7 +38,7 @@ try {
      where status='completed' and sync_mode='current_full_sync')::integer source_age
     from sealed_product_release_pointer p join sealed_product_release_members m on m.release_id=p.release_id
     join sealed_product_pricing_lane_qualifications q on q.id=m.qualification_id where p.game_key='pokemon'`)).rows[0];
-  const mappings=(await client.query(`select m.source_product_id,m.source_category_id,m.source_payload_hash
+  const mappings=(await client.query(`select m.variant_id::text,m.source_product_id,m.source_category_id,m.source_payload_hash
     from sealed_product_source_mappings m join sealed_product_variants v on v.id=m.variant_id
     join sealed_product_families f on f.id=v.family_id where f.game_key='pokemon' and m.mapping_status='exact_reviewed'`)).rows;
   const agingPrices=buildPokemonSealedAgingDetailV1((await client.query(`select v.id::text variant_id,v.canonical_name,
@@ -53,7 +53,7 @@ try {
     order by q.observed_on,v.canonical_name,v.id`)).rows);
   const index=new Map(mappings.map(m=>[`${m.source_category_id}:${m.source_product_id}`,m]));
   const newProducts=source.filter(s=>classifyPokemonSealedProductV1(s).classification==='sealed_candidate'&&!index.has(`${s.category_id}:${s.product_id}`));
-  const changed=source.filter(s=>{const m=index.get(`${s.category_id}:${s.product_id}`);return m&&m.source_payload_hash!==s.payload_hash;});
+  const changed=classifyPokemonSealedSourceChangesV1({mappings,source,publishedVariantIds:published.map(r=>r.variant_id)});
   const privilege=(await client.query(`select has_function_privilege('anon',
     'get_active_pokemon_sealed_catalog_v1(text,text,integer,integer,text,text)','EXECUTE') allowed`)).rows[0].allowed;
   await client.query('rollback');
@@ -70,7 +70,8 @@ try {
   }catch{imageProbe={passed:false,failure:'authenticated_signer_or_byte_readback_failed'};}
   const result={...evaluatePokemonSealedHealthV1({published:published.length,expected:control?.expected,
     oldestAgeDays:ages.oldest,sourceAgeDays:ages.source_age,newProducts:newProducts.length,
-    changedMappings:changed.length,anonymousPrivilege:privilege,pointersAligned:control?.aligned===true,
+    changedMappings:changed.length,containedMappings:changed.filter(r=>!r.active_publication).length,
+    anonymousPrivilege:privilege,pointersAligned:control?.aligned===true,
     imageServingVerified:imageProbe.passed,automaticPricePublication:process.env.POKEMON_SEALED_REFRESH_ACTIVE==='true'}),image_probe:imageProbe,
     aging_price_count:agingPrices.length,prices_expiring_next_day:agingPrices.filter(r=>r.freshness_status==='expires_next_day').length,
     expired_price_count:agingPrices.filter(r=>r.freshness_status==='expired').length,auth_probe_session:'bounded_existing_store_review_user',
@@ -79,7 +80,7 @@ try {
   const files={'summary.json':JSON.stringify(result,null,2),
     'aging_prices.json':JSON.stringify(agingPrices,null,2),
     'new_candidates.json':JSON.stringify(newProducts.map(s=>({category_id:s.category_id,product_id:s.product_id,name:s.name,payload_hash:s.payload_hash}))),
-    'source_changes.json':JSON.stringify(changed.map(s=>({category_id:s.category_id,product_id:s.product_id,name:s.name,payload_hash:s.payload_hash})))};
+    'source_changes.json':JSON.stringify(changed)};
   for(const [name,value] of Object.entries(files))await fs.writeFile(path.join(args.out,name),value);
   await fs.writeFile(path.join(args.out,'artifact_hashes.json'),JSON.stringify(Object.fromEntries(Object.entries(files).map(([k,v])=>[k,hash(Buffer.from(v))])),null,2));
   console.log(JSON.stringify(result));

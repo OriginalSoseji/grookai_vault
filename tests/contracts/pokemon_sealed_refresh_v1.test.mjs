@@ -27,10 +27,39 @@ test('refresh is deterministic and binds every image to the new exact price memb
   assert.equal(p.images.releases[0].source_price_release_id,p.prices.releases[0].id);
   assert.equal(p.boundaries.storage_writes,0);assert.equal(p.boundaries.identity_writes,0);assert.equal(p.images.objects,undefined);
 });
-test('source drift, wrong game, duplicate identity, wrong bytes and large price swings stop',()=>{
-  const mutations=[i=>i.source[0].payload_hash='0'.repeat(64),i=>i.baseline[0].game_key='mtg',i=>i.baseline.push(i.baseline[0]),
+test('wrong game, duplicate identity, wrong bytes and large price swings stop',()=>{
+  const mutations=[i=>i.baseline[0].game_key='mtg',i=>i.baseline.push(i.baseline[0]),
     i=>i.baseline[0].image_object={...i.baseline[0].image_object,storage_readback_sha256:'0'.repeat(64)},i=>i.prices[0].market_price=999];
   for(const mutate of mutations){const i=fixture();mutate(i);assert.throws(()=>build(i));}
+});
+
+test('changed, missing, inactive and cross-category source rows are excluded from both releases',()=>{
+  for(const mutate of [i=>i.source[0].payload_hash='0'.repeat(64),i=>i.source.shift(),
+    i=>i.source[0].source_active=false,i=>i.source[0].category_id=1]){
+    const i=fixture();mutate(i);const original=structuredClone(i),p=build(i),id=i.baseline[0].variant_id;
+    assert.equal(p.prices.members.length,19);assert.equal(p.images.release_members.length,19);
+    assert.equal(p.exclusions[0].reason,'source_identity_not_currently_verified');
+    assert.equal(p.exclusions[0].expected_source_payload_hash,'a'.repeat(64));
+    assert.equal(p.exclusions[0].observed_source_payload_hash,i.source.find(s=>s.product_id===1)?.payload_hash??null);
+    assert.equal(p.source_containment_policy,p.exclusions[0].policy);
+    for(const rows of [p.prices.qualifications,p.prices.members,p.images.evidence,p.images.assertions,p.images.release_members]){
+      assert.ok(rows.every(r=>r.variant_id!==id));
+    }
+    assert.deepEqual(i,original);assert.deepEqual(p,build(i));
+  }
+});
+
+test('source containment and stale prices share the existing five percent loss limit',()=>{
+  const i=fixture();i.source[0].payload_hash='0'.repeat(64);i.prices[1].market_price=null;
+  assert.throws(()=>build(i),/Coverage loss/);
+  i.prices[1].market_price=55;i.source[1].source_active=false;
+  assert.throws(()=>build(i),/Coverage loss/);
+});
+
+test('source containment cannot hide corrupted baseline image evidence',()=>{
+  const i=fixture();i.source[0].source_active=false;
+  i.baseline[0].image_object={...i.baseline[0].image_object,storage_readback_sha256:'0'.repeat(64)};
+  assert.throws(()=>build(i));
 });
 test('small genuine gaps are excluded, not fabricated; more than five percent stops',()=>{
   const i=fixture();i.prices[0].market_price=null;const p=build(i);assert.equal(p.prices.members.length,19);assert.equal(p.images.release_members.length,19);

@@ -76,7 +76,7 @@ jobs:
               const body = `Daily Pokemon sealed audit needs attention. Inspect the separate refresh artifact for transaction outcome; the health audit itself is read-only apart from its bounded authentication probe.\n\n${summary.findings.map(f=>`- ${f}`).join('\n')}\n\n${aging.length} aging products; ${summary.prices_expiring_next_day??0} reach the expiry boundary next day.\n${productLines}\n\nFull product list: aging_prices.json in the run artifact. Never substitute prices or re-date source observations.\n\nEvidence: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
               if(existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,body});
               else await github.rest.issues.create({...context.repo,title,body});
-              const maintenanceOnly=summary.findings.every(f=>['price_refresh_due_before_seven_day_expiry','new_sealed_candidates_require_identity_review'].includes(f));
+              const maintenanceOnly=summary.findings.every(f=>['price_refresh_due_before_seven_day_expiry','new_sealed_candidates_require_identity_review','source_identity_drift_quarantined'].includes(f));
               if(maintenanceOnly) core.warning('Source coverage maintenance is due; see the operator issue.');
               else core.setFailed('Pokemon sealed health requires attention; see preserved artifacts.');
             }
