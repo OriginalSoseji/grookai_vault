@@ -602,7 +602,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_7/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
@@ -653,7 +653,8 @@ test("candidate reconciliation pins count, source run, and observation uniquenes
 
 test("large qualification artifacts are written and hashed in bounded streams", () => {
   assert.match(WORKER, /async function writeJsonLines/);
-  assert.match(WORKER, /for \(const batch of chunks\(rows, batchSize\)\)/);
+  assert.match(WORKER, /for await \(const row of rows\)/);
+  assert.match(WORKER, /batch\.length === batchSize/);
   assert.match(WORKER, /createReadStream\(filePath\)/);
   assert.match(WORKER, /hashes\[name\] = await sha256File\(filePath\)/);
   assert.doesNotMatch(

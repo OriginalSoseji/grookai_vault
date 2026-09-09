@@ -7,6 +7,11 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
+import {
+  createCandidateStreamReconcilerV1,
+  readMarketLedgerBatchesV1,
+  marketLedgerRowsV1,
+} from "../../backend/pricing/tcgplayer_market_streaming_v1.mjs";
 
 import "../../backend/env.mjs";
 import {
@@ -40,7 +45,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_7";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -305,11 +310,15 @@ async function persistMtgProductionWorkerFailure(error) {
 async function writeJsonLines(filePath, rows, batchSize = 1_000) {
   const handle = await fs.open(filePath, "w");
   try {
-    for (const batch of chunks(rows, batchSize)) {
-      await handle.writeFile(
-        `${batch.map((row) => JSON.stringify(row)).join("\n")}\n`,
-      );
+    let batch = [];
+    for await (const row of rows) {
+      batch.push(JSON.stringify(row));
+      if (batch.length === batchSize) {
+        await handle.writeFile(`${batch.join("\n")}\n`);
+        batch = [];
+      }
     }
+    if (batch.length) await handle.writeFile(`${batch.join("\n")}\n`);
   } finally {
     await handle.close();
   }
@@ -378,6 +387,7 @@ async function candidateRows(client, {
   limit,
   canaryDefinition,
   sourceRun,
+  onBatch = null,
 }) {
   if (canaryDefinition) {
     const printingIds = canaryDefinition.printings.map(
@@ -437,6 +447,11 @@ async function candidateRows(client, {
     if (!inspection.valid) {
       throw new Error(`canary candidate reconciliation failed: ${inspection.findings.join(",")}`);
     }
+    if (onBatch) {
+      await onBatch(rows);
+      return { count: rows.length, first_source_observation_id: rows[0]?.source_observation_id ?? null,
+        last_source_observation_id: rows.at(-1)?.source_observation_id ?? null };
+    }
     return rows;
   }
   const inventory = (
@@ -458,6 +473,8 @@ async function candidateRows(client, {
     : Math.min(limit, observationCount);
   const pages = buildTcgplayerCandidateProductPagesV1(inventory.product_ids);
   const rows = [];
+  const tracker = createCandidateStreamReconcilerV1(sourceRun.id, expectedCount);
+  let selectedCount = 0;
   for (const productIds of pages) {
     const result = await client.query(
       `select
@@ -473,9 +490,16 @@ async function candidateRows(client, {
                 candidate.source_observation_id`,
       [sourceRun.id, productIds],
     );
-    rows.push(...result.rows);
-    if (limit !== null && rows.length >= limit) break;
+    const batch = limit === null ? result.rows : result.rows.slice(0, limit - selectedCount);
+    tracker.accept(batch);
+    assertCandidateScopeEvidence(batch);
+    if (onBatch) await onBatch(batch);
+    else rows.push(...batch);
+    selectedCount += batch.length;
+    if (limit !== null && selectedCount >= limit) break;
   }
+  const streamed = tracker.finish();
+  if (onBatch) return streamed;
   const selectedRows = limit === null ? rows : rows.slice(0, limit);
   const inspection = inspectTcgplayerCandidateRowsV1({
     rows: selectedRows,
@@ -897,17 +921,6 @@ async function insertCandidates(client, candidates, batchSize) {
       [JSON.stringify(batch)],
     );
   }
-}
-
-async function stagedCandidates(client, runId) {
-  const result = await client.query(
-    `select id, candidate_payload
-       from public.market_price_pipeline_candidates
-      where run_id = $1
-      order by source_product_id, source_subtype_name, source_observation_id`,
-    [runId],
-  );
-  return result.rows;
 }
 
 async function insertDecisions(client, decisions, batchSize) {
@@ -1555,18 +1568,11 @@ async function restoreVerifiedProductionGuardArtifact(client, run) {
 }
 
 async function artifactRows(client, runId) {
-  const [runResult, decisionResult, reconciliationResult] = await Promise.all([
+  const [runResult, reconciliationResult] = await Promise.all([
     client.query(
       `select *
          from public.market_price_pipeline_runs
         where id = $1`,
-      [runId],
-    ),
-    client.query(
-      `select *
-         from public.market_price_qualification_decisions
-        where run_id = $1
-        order by source_product_id, source_subtype_name, source_observation_id`,
       [runId],
     ),
     client.query(
@@ -1578,7 +1584,7 @@ async function artifactRows(client, runId) {
   ]);
   return {
     run: runResult.rows[0],
-    decisions: decisionResult.rows,
+    decisions: marketLedgerRowsV1(client, 'decisions', runId),
     reconciliation: reconciliationResult.rows[0]?.reconciliation ?? {},
   };
 }
@@ -1607,9 +1613,9 @@ async function writeArtifacts(outDir, {
   await writeJson(path.join(outDir, "artifact_hashes.json"), hashes);
 }
 
-function decisionSummary(decisions) {
+async function decisionSummary(decisions) {
   const result = {
-    selected_count: decisions.length,
+    selected_count: 0,
     eligible_count: 0,
     delayed_count: 0,
     suppressed_count: 0,
@@ -1618,7 +1624,8 @@ function decisionSummary(decisions) {
     reason_counts: {},
     category_counts: {},
   };
-  for (const decision of decisions) {
+  for await (const decision of decisions) {
+    result.selected_count += 1;
     const categoryKey = String(decision.evidence?.category_id ?? "unknown");
     const category = result.category_counts[categoryKey] ?? {
       selected_count: 0,
@@ -1667,7 +1674,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
       evaluatedAt,
     ),
   );
-  const counts = decisionSummary(decisions);
+  const counts = await decisionSummary(decisions);
   const reconciliation = {
     ...counts,
     source_sync_run_id: sourceRun.id,
@@ -1726,28 +1733,27 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "stage_candidates",
       operation: async () => {
-        const rows = await candidateRows(client, {
+        const streamed = await candidateRows(client, {
           limit: args.limit,
           canaryDefinition: args.canaryDefinition,
           sourceRun,
+          onBatch: async rows => insertCandidates(client, rows.map(row => buildCandidate(row, run.id)), args.batchSize),
         });
-        const candidates = rows.map((row) => buildCandidate(row, run.id));
-        await insertCandidates(client, candidates, args.batchSize);
-        const staged = await stagedCandidates(client, run.id);
-        if (staged.length !== candidates.length) {
+        const staged = Number((await client.query('select count(*)::integer as count from public.market_price_pipeline_candidates where run_id = $1', [run.id])).rows[0].count);
+        if (staged !== streamed.count) {
           throw new Error(
-            `candidate staging mismatch selected=${candidates.length} staged=${staged.length}`,
+            `candidate staging mismatch selected=${streamed.count} staged=${staged}`,
           );
         }
         return {
-          input_count: rows.length,
-          output_count: staged.length,
-          reconciled_count: staged.length,
+          input_count: streamed.count,
+          output_count: staged,
+          reconciled_count: staged,
           resumability_data: {
             first_source_observation_id:
-              rows[0]?.source_observation_id ?? null,
+              streamed.first_source_observation_id,
             last_source_observation_id:
-              rows.at(-1)?.source_observation_id ?? null,
+              streamed.last_source_observation_id,
           },
         };
       },
@@ -1758,29 +1764,32 @@ async function runDurable(client, args, sourceRun, runPlan) {
       sourceRun,
       phaseName: "qualify",
       operation: async ({ phaseAttemptId }) => {
-        const candidates = await stagedCandidates(client, run.id);
         const evaluatedAt = new Date().toISOString();
-        const decisions = candidates.map((candidate) =>
-          buildDecision(
-            candidate,
-            evaluateTcgplayerMarketQualificationV1(
-              candidate.candidate_payload,
-              {
-                now: new Date(evaluatedAt),
-                freshnessHours: args.freshnessHours,
-                suppressionHours: args.suppressionHours,
-              },
+        let candidateCount = 0;
+        for await (const candidates of readMarketLedgerBatchesV1(client, 'candidates', run.id)) {
+          candidateCount += candidates.length;
+          const decisions = candidates.map((candidate) =>
+            buildDecision(
+              candidate,
+              evaluateTcgplayerMarketQualificationV1(
+                candidate.candidate_payload,
+                {
+                  now: new Date(evaluatedAt),
+                  freshnessHours: args.freshnessHours,
+                  suppressionHours: args.suppressionHours,
+                },
+              ),
+              run,
+              phaseAttemptId,
+              evaluatedAt,
             ),
-            run,
-            phaseAttemptId,
-            evaluatedAt,
-          ),
-        );
-        await insertDecisions(client, decisions, args.batchSize);
+          );
+          await insertDecisions(client, decisions, args.batchSize);
+        }
         const counts = await decisionCounts(client, run.id);
-        if (counts.decision_count !== candidates.length) {
+        if (counts.decision_count !== candidateCount) {
           throw new Error(
-            `qualification mismatch candidates=${candidates.length} decisions=${counts.decision_count}`,
+            `qualification mismatch candidates=${candidateCount} decisions=${counts.decision_count}`,
           );
         }
         await client.query(
@@ -1791,7 +1800,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
           [run.id],
         );
         return {
-          input_count: candidates.length,
+          input_count: candidateCount,
           output_count: counts.decision_count,
           excluded_count: counts.excluded_count,
           quarantined_count:
@@ -2024,7 +2033,7 @@ async function main() {
       decisions = durable.decisions;
       reconciliation = durable.reconciliation;
     }
-    const counts = decisionSummary(decisions);
+    const counts = await decisionSummary(decisions);
     const summary = {
       worker_version: WORKER_VERSION,
       policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,

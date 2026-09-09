@@ -13,6 +13,7 @@ import {
   MARKET_REFERENCE_WAREHOUSE_AUTOMATED_APPLY_CONTRACT_VERSION,
 } from "../../backend/pricing/market_reference_warehouse_automated_apply_policy_v1.mjs";
 import { referenceCandidateHashV1 } from "../../backend/pricing/market_reference_warehouse_backfill_manifest_v1.mjs";
+import { latestNormalizedReferenceArtifactV1 } from "../../backend/pricing/mee_reference_artifact_selection_v1.mjs";
 
 export const PACKAGE_ID = "MEE-REFERENCE-WAREHOUSE-DELTA-WRITER-V1";
 
@@ -129,25 +130,8 @@ async function countRowsBySourceWithPg(table) {
   });
 }
 
-function sourceCountsFromNormalizedArtifact(artifact) {
-  return artifact?.counts?.source_counts ?? {};
-}
-
 async function latestNormalizedForSource(source) {
-  const entries = await readdir(AUDIT_DIR, { withFileTypes: true });
-  const matches = [];
-  for (const entry of entries) {
-    if (!entry.isFile() || !/^mee_06c_normalized_reference_evidence_.*\.json$/.test(entry.name)) continue;
-    const fullPath = path.join(AUDIT_DIR, entry.name);
-    const artifact = readJsonIfPresent(fullPath);
-    if (!artifact) continue;
-    const counts = sourceCountsFromNormalizedArtifact(artifact);
-    if (!Object.prototype.hasOwnProperty.call(counts, source)) continue;
-    const info = await stat(fullPath);
-    matches.push({ fullPath, artifact, mtimeMs: info.mtimeMs });
-  }
-  matches.sort((left, right) => right.mtimeMs - left.mtimeMs);
-  return matches[0] ?? null;
+  return latestNormalizedReferenceArtifactV1(AUDIT_DIR, source);
 }
 
 async function buildArtifactInventory({ candidateCounts = {}, normalizedCounts = {} } = {}) {
