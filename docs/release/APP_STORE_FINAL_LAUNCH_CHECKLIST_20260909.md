@@ -38,7 +38,7 @@ production authority. Routine testing does not require repeated micro-approvals.
 
 | Area | Verified state | Release implication |
 |---|---|---|
-| Native totals repair | Samsung 318 installed and visually verified; 27 Flutter tests pass | Local source remains uncommitted; web/iOS do not include this repair |
+| Native totals repair | Committed as a5f21d1c1; candidate 526559d2a470f693566fc8e3b949cece0a1b6352 reconciles current main; Samsung 318 visually verified; full 716-test Flutter suite passed | PR454 awaits merge; iOS 318 archive succeeded with upload underway; production web/iOS delivery still needs readback |
 | Sealed ownership | One genuine Blooming Waters holding exists; condition unknown; reference USD 326.70; owned value null | Confirm condition only from owner evidence; do not infer it or substitute reference price |
 | Add access | Account-only, one-product test; global Add off; expires September 10 at 13:13:42 UTC | Ordinary collectors/reviewers do not yet have durable sealed Add access |
 | Apple build | Last direct receipt: 317 in internal TestFlight and selected in an unsubmitted manual-release draft | Fresh console readback and a final candidate containing current fixes required |
@@ -46,7 +46,7 @@ production authority. Routine testing does not require repeated micro-approvals.
 | Printing identity | Issue 450 remains open | Four Phantom Forces EX entries exposed as reverse holo require authoritative resolution |
 | Pricing canary monitor | Run 34377983245 succeeded by exiting an already-complete August 13-16 window | Not a current pipeline/price-health proof |
 | Supabase capacity | Audit 34377974946 PASS at 16:39:23 UTC; Medium, 320 GB, 80.93% used, 600 GB maximum | Configuration/headroom pass only; load, growth, billing, restore and worker disk remain separate |
-| Repository | Remote main observed at 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d; PR453 open | Preserve local repair and reconcile deliberately; no blind branch merge |
+| Repository | Candidate 526559d2a470f693566fc8e3b949cece0a1b6352 contains main 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d and the scoped total repair; PR454 checks passed | Resolve the checklist review and merge PR454; close PR453 only after confirmed replacement merge |
 
 Operational facts not freshly rechecked remain pending, even when older receipts
 show success. Relevant evidence:
@@ -60,9 +60,10 @@ show success. Relevant evidence:
 
 ## Gate 1: One Release Candidate
 
-- [ ] Preserve and commit the collection-total changes; resolve PR453 and its
-  separate contract amendment without changing historical execution provenance.
-- [ ] Reconcile against current main. Leave unrelated work and recovery refs intact.
+- [x] Preserve and commit the collection-total changes and PR453 contract amendment
+  without changing historical execution provenance. Merge/deployment remains open.
+- [x] Reconcile against main 312c5c7ab0cc9ebf594dd1696354e58f85b9b33d. Unrelated
+  work and recovery refs remain intact; recheck the live base before merging.
 - [ ] Pass full repository checks, relevant integration tests and security review.
 - [ ] Freeze source SHA, build numbers, app IDs, schema ledger, feature flags,
   web deployment and separately pinned backend runtimes in a release manifest.
