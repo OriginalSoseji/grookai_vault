@@ -45,7 +45,8 @@ test("mobile service uses the governed bulk RPC and reconciles its response", ()
 });
 
 test("Vault exposes explicit selection, pricing filters, and bulk removal", () => {
-  assert.match(vaultUi, /Select all/);
+  assert.match(vaultUi, /allVisibleSelected \? 'Clear all' : 'Select cards'/);
+  assert.match(vaultUi, /!allVisibleSelected && visibleCount == 0/);
   assert.match(vaultUi, /Remove selected/);
   assert.match(vaultUi, /_VaultPricingFilter\.unpriced/);
   assert.match(vaultUi, /archiveSelectedVaultCards/);

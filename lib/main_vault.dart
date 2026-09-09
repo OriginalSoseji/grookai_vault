@@ -574,17 +574,17 @@ class _VaultSelectionBar extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              '$selectedCount selected · $visibleCount shown',
+              '$selectedCount selected',
               style: theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.w800,
               ),
             ),
           ),
           TextButton(
-            onPressed: busy
+            onPressed: busy || (!allVisibleSelected && visibleCount == 0)
                 ? null
                 : (allVisibleSelected ? onClear : onSelectAll),
-            child: Text(allVisibleSelected ? 'Clear all' : 'Select all'),
+            child: Text(allVisibleSelected ? 'Clear all' : 'Select cards'),
           ),
           IconButton(
             tooltip: 'List selected as a lot',

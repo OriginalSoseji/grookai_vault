@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import { randomUUID, createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import pg from 'pg';
+import { stripSealedMigrationTransactionWrapperV1 } from '../../backend/pricing/cross_tcg_sealed_product_schema_apply_v1.mjs';
 const container = JSON.parse(execFileSync('docker',['inspect','supabase_db_sealed-ownership-replay-20260907'],{encoding:'utf8'}))[0];
 assert.equal(container.NetworkSettings.Ports['5432/tcp'][0].HostPort,'55430');
 assert.equal(container.State.Running,true);
@@ -66,15 +67,23 @@ async function denied(fn,pattern) {
 const add=(variant,request=randomUUID(),quantity=1)=>c.query('select public.vault_add_sealed_copies_v1($1,$2,$3) result',[variant,request,quantity]).then(r=>r.rows[0].result);
 await c.connect();
 try {
-  const migration=await fs.readFile(new URL('../../supabase/migrations/20260907180000_sealed_owned_instances_v1.sql',import.meta.url),'utf8');
-  await c.query(migration);
-  await c.query(migration);
-  const reads=await fs.readFile(new URL('../../supabase/migrations/20260907183000_sealed_owned_read_models_v1.sql',import.meta.url),'utf8');
-  await c.query(reads);
-  await c.query(reads);
-  const revisions=await fs.readFile(new URL('../../supabase/migrations/20260908070000_sealed_owned_photo_revisions_v1.sql',import.meta.url),'utf8');
-  await c.query(revisions);
-  await c.query(revisions);
+  const functionSql="select p.proname,pg_get_function_identity_arguments(p.oid) args,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' order by p.proname,args";
+  const functionsBefore=(await c.query(functionSql)).rows;
+  // Historical idempotency checks must not replace newer policy definitions.
+  await c.query('begin');
+  try {
+    for(const file of ['20260907180000_sealed_owned_instances_v1.sql','20260907183000_sealed_owned_read_models_v1.sql','20260908070000_sealed_owned_photo_revisions_v1.sql']) {
+      const sql=await fs.readFile(new URL(`../../supabase/migrations/${file}`,import.meta.url),'utf8');
+      const body=stripSealedMigrationTransactionWrapperV1(sql);
+      await c.query(body);
+      await c.query(body);
+    }
+  } finally {
+    await c.query('rollback');
+  }
+  await check('historical migration replay preserves current function definitions',async()=>{
+    assert.deepEqual((await c.query(functionSql)).rows,functionsBefore);
+  });
   await c.query('begin');
   await check('sealed service grants remain least-privilege despite Supabase defaults',async()=>{
     for(const [table,allowed] of [
@@ -348,7 +357,7 @@ try {
     });
     console.log(JSON.stringify({local_fixture_owner:owner,requires_isolated_replay:true}));
   }
-  console.log(JSON.stringify({status:'passed',tests:tests.length,production_access:false,fixture_transaction:process.argv.includes('--concurrency')?'base_rolled_back_concurrency_committed_requires_isolated_replay':'rolled_back',migration_applied_to:'isolated_local_only',run}));
+  console.log(JSON.stringify({status:'passed',tests:tests.length,production_access:false,fixture_transaction:process.argv.includes('--concurrency')?'base_rolled_back_concurrency_committed_requires_isolated_replay':'rolled_back',historical_migration_replay:'isolated_transaction_rolled_back',run}));
 } catch(error) {
   await c.query('rollback').catch(()=>{});
   throw error;
