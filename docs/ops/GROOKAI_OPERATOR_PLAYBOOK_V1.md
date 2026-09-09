@@ -373,6 +373,11 @@ gate. Never delete or rewrite existing messages while adding moderation.
 
 Sealed iOS builds require explicit `MTG_SEALED_CLIENT_V1_ENABLED=true` and
 `POKEMON_SEALED_CLIENT_V1_ENABLED=true` in the release environment. The shared
+ownership UI additionally requires `SEALED_OWNERSHIP_V1_ENABLED=true`, now
+carried by both the iOS generator and signed Android workflow. It defaults off;
+this compile-time switch never enrolls an account or bypasses the database gate.
+Verify all three defines in an intended ownership release, not just browse.
+The shared
 `scripts/write_ios_xcode_secrets.rb` now validates and carries both flags into
 generated xcconfig files; absent flags remain false. Check decoded flag names
 and values without printing other defines before archive. The existing Mac SSH
