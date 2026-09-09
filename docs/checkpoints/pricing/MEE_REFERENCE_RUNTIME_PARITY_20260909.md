@@ -63,6 +63,28 @@ The result JSON links exact production preflight/apply/readback artifacts.
 The hotfix commit and tag push each passed 2477 Node and 634 Flutter tests.
 This main-parity patch must pass main's own full gates before merge.
 
+## Review Follow-Up and Pricing Readback
+
+PR451 review found two additional reference-lane defects. REST fallback filters
+now use 40-key GET chunks, while PostgreSQL array chunks remain 500. A mocked
+real Supabase client verifies all 501 hashes and UUIDs survive lookup and every
+URL stays below 4 KiB. The systemd verification script now uses the immutable
+runtime pointer and external artifact root rather than an obsolete checkout.
+The deployed reference runtime uses direct PostgreSQL; this REST fallback
+hardening does not change or rerun its already-verified recovery.
+
+Production pricing run 34314680975 completed from frozen SHA
+60d1c1d07f85504d747519b6cd566f253ddc96f8. Independent artifact verification on
+September 9 at 06:13 UTC proves 206476 unique decisions, 164134 published
+snapshots, 30695 quarantines, 11647 exclusions, and zero mismatches. The active
+database pointer matches that run and publication set. Its scheduled runtime
+was then activated with unchanged unit/timer and preserved old environment.
+This is pricing recovery, not seven unattended successful cycles.
+
+Explicit rollback pins protect both prior runtimes:
+`/opt/grookai_mee_rollback_current` and
+`/opt/grookai_pricing_rollback_current`. No runtime cleanup was performed.
+
 ## Next Gates
 
 1. Keep pricing recovery frozen on 60d1c1d07f85504d747519b6cd566f253ddc96f8

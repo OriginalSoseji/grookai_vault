@@ -54,6 +54,10 @@ test("MEE reference refresh systemd timer is separate from eBay and post-ingest"
   assert.match(install, /mee_reference_warehouse_delta_writer_v1\.mjs --dry-run/);
   assert.match(verify, /journalctl -u "\$\{SERVICE_NAME\}"/);
   assert.match(verify, /mee_reference_warehouse_delta_writer_v1_/);
+  assert.match(verify, /REPO_DIR="\$\{REPO_DIR:-\/opt\/grookai_mee_current\}"/);
+  assert.match(verify, /ARTIFACT_ROOT="\$\{MEE_RUNTIME_ARTIFACT_ROOT:-\/var\/lib\/grookai\/mee\/audits\}"/);
+  assert.match(verify, /export MEE_RUNTIME_ARTIFACT_ROOT=%q/);
+  assert.doesNotMatch(verify, /\/opt\/grookai_vault_mee_nightly|ls -lt docs\/audits/);
 });
 
 test("MEE reference acquisition adapters share the external runtime artifact root", () => {

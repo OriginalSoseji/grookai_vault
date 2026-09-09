@@ -32,6 +32,8 @@ const REFERENCE_WAREHOUSE_TABLES = new Set([
   "market_reference_normalized_evidence",
 ]);
 const LOOKUP_CHUNK_SIZE = 500;
+// REST filters travel in GET URLs; PostgreSQL array parameters do not.
+const REST_LOOKUP_CHUNK_SIZE = 40;
 
 function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
@@ -298,11 +300,11 @@ async function fetchExistingNormalizedKeysWithPg(source, candidateIds) {
   });
 }
 
-async function fetchExistingCandidateMap(supabase, source, candidateHashes) {
+export async function fetchExistingCandidateMap(supabase, source, candidateHashes) {
   if (process.env.SUPABASE_DB_URL) return fetchExistingCandidateMapWithPg(source, candidateHashes);
 
   const rows = [];
-  for (const hashes of chunkValues(candidateHashes)) {
+  for (const hashes of chunkValues(candidateHashes, REST_LOOKUP_CHUNK_SIZE)) {
     const { data, error } = await supabase
       .from("market_reference_candidates")
       .select("id,candidate_hash")
@@ -314,11 +316,11 @@ async function fetchExistingCandidateMap(supabase, source, candidateHashes) {
   return new Map(rows.map((row) => [row.candidate_hash, row.id]));
 }
 
-async function fetchExistingNormalizedKeys(supabase, source, candidateIds) {
+export async function fetchExistingNormalizedKeys(supabase, source, candidateIds) {
   if (process.env.SUPABASE_DB_URL) return fetchExistingNormalizedKeysWithPg(source, candidateIds);
 
   const rows = [];
-  for (const ids of chunkValues(candidateIds)) {
+  for (const ids of chunkValues(candidateIds, REST_LOOKUP_CHUNK_SIZE)) {
     const { data, error } = await supabase
       .from("market_reference_normalized_evidence")
       .select("candidate_id,normalizer_version")
