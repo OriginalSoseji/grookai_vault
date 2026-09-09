@@ -1,7 +1,8 @@
 # Sealed Ownership Account Canary V1
 
-Date: 2026-09-08. Status: locally implemented and tested, NOT deployed,
-NOT production activation authority. Parent: `SEALED_OWNED_COLLECTIBLES_V1.md`.
+Date: 2026-09-08. Status: schema applied and independently verified in production,
+default off and grant-empty. NOT production activation authority.
+Parent: `SEALED_OWNED_COLLECTIBLES_V1.md`.
 
 ## Why This Is Needed
 
@@ -89,6 +90,47 @@ does not reset after grant edits or renewal; this canary is not a recurring quot
 
 Local proof: 19 SQL checks, including ten racing connections with a one-copy
 allowance (one creation, nine denied), four new source contracts, and a full
-393-migration replay. No production canary table, grant or switch was created.
-The candidate is not a frozen production apply plan until its final execution
-commit and exact migration hashes are recorded under release governance.
+393-migration replay. The subsequent exact schema-only approval was executed
+from `539fa592d5784d62833b6ee6df6ddb0d30c00366` on September 8. All 393 migrations,
+891 security objects and function definitions match the final replay. Both
+switches remain false; grant and target tables are empty. The apply authority
+is consumed, not permission to enroll users or activate additions.
+Receipt: `docs/checkpoints/SEALED_OWNERSHIP_CANARY_SCHEMA_APPLIED_20260908.md`.
+
+## Read-Only Account Plan Producer
+
+`scripts/schema/sealed_ownership_account_canary_plan_v1.mjs` prepares the next
+scope without a writer or activation route. `--discover` permits a dirty
+checkout for investigation only. Normal plan generation requires a clean
+checkout on `feature/sealed-account-canary-boundary` and records its exact SHA.
+Production queries use a verified read-only transaction. Existing service
+credentials are never written into artifacts or the repository.
+
+The producer checks all migration versions (including the historical 8-digit
+IDs), canonical environment counts, both disabled controls, empty grants and
+sealed inventory/journal, forced RLS and no anonymous/authenticated table
+privileges. It requires one unambiguous active founder with an existing owner
+allocator. Private owner identity and hashes remain outside git.
+
+The proposed scope is one image-backed, fresh-priced English Pokemon variant
+and one MTG variant, chosen alphabetically from each governed first 100-row
+page. This is deterministic candidate selection, NOT evidence that the founder
+owns either product. Do not add a product the founder does not actually own.
+Changing selection requires a new frozen plan, not substitution during apply.
+The caller claims simulate release filtering inside the read-only service
+connection; they are not an end-user authorization or deployed-client test.
+
+The plan records a 25-copy lifetime maximum, a 24-hour UTC window starting at
+capture, exact release/image evidence, protected inventory/control/pointer hashes,
+policy hashes, stop conditions and non-destructive rollback requirements.
+Artifacts are exclusive-create `preflight.json`, `activation_plan.json`, and
+byte-level `ARTIFACT_HASHES.json`. An expired plan, or one with less than an hour
+left, must not be activated. Fresh preflight is mandatory before any authorized
+transaction; an old snapshot is never authority to ignore drift.
+
+This preparation does not include an executable production writer or rollback
+executor. The activation implementation must bind its transaction and rollback
+commands to the exact plan, use affected-row assertions and independent readback,
+and pass local expiry, contention, retry and preservation tests before use.
+Rollback must disable only the sole matching canary and revoke its exact
+fingerprint-bound grant; it must never delete inventory or replenish the budget.

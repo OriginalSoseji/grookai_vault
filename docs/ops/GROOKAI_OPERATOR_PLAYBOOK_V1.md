@@ -63,7 +63,8 @@ local acceptance evidence and exact release boundary:
 Current production schema receipt:
 `docs/checkpoints/SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907.md`.
 All four migrations plus the separately approved photo-revision migration are
-applied with 392/392 ledger parity; do not reapply them. PR #440 is merged and
+applied. The separately approved account-canary migration now brings exact
+ledger parity to 393/393; do not reapply any of them. PR #440 is merged and
 default-off clients are deployed. Current receipt and remaining acceptance:
 `docs/checkpoints/SEALED_OWNERSHIP_CLIENTS_316_20260908.md`.
 Enabled emulator share/print acceptance and the unpriced lot-export repair:
@@ -73,8 +74,37 @@ scheduled failure findings:
 `docs/checkpoints/SEALED_OWNERSHIP_WEB_SECTIONS_20260908.md`.
 The production ownership switch is global, not account-scoped. Never enable it
 and describe that as a single-owner canary. Local acceptance is not activation.
-An account-scoped canary candidate is now implemented and locally tested, but
-NOT applied: `docs/contracts/SEALED_OWNERSHIP_ACCOUNT_CANARY_V1.md`.
+The account-scoped canary schema is now applied, default off and grant-empty:
+`docs/contracts/SEALED_OWNERSHIP_ACCOUNT_CANARY_V1.md`. Its consumed authority,
+independent readback, final 393-migration parity and remaining gates are recorded
+in `docs/checkpoints/SEALED_OWNERSHIP_CANARY_SCHEMA_APPLIED_20260908.md`.
+The latest isolated browser acceptance uses a separate headless Playwright test
+process against local3157, not the founder's browser session. Front/back upload,
+QR print rendering, lot downloads, mixed totals and Wall disappearance have
+local receipts. The three remaining native gates are now confirmed in the
+checkpoint's "Native Completion" section and the external
+`20260908_native_completion/README.md` evidence packet: two-copy lot PNGs and
+native share sheet, back revision/rendering, and Wall membership/removal/history.
+Inspect-only XCTest passes do not close gates; retain assertions, screenshots
+and independent readback. The final three native tests passed without failures.
+Native fixtures must be rebound after replay. Never ship local-only build316.
+The account-canary read-only producer is
+`node scripts/schema/sealed_ownership_account_canary_plan_v1.mjs --out-dir=<new-private-directory>`.
+Use `--discover` only for investigation; a normal plan requires a clean exact
+commit. Current preparation evidence lives outside git at
+`C:/grookai_vault_operator_artifacts/sealed_ownership/20260908_account_activation_preparation/`.
+The frozen output is `frozen/activation_plan.json`, with preflight and artifact
+hashes. Confirm it exists and hashes reconcile before claiming a plan was emitted.
+Its owner UUID is private; do not commit the JSON. Proposed variants do not prove
+ownership. This script cannot enroll accounts, activate additions or deploy.
+The frozen plan has a 24-hour window; refresh expired evidence without changing
+production. The schema-only authority remains consumed. Activation/rollback
+implementation and production-configured deployment are subsequent gates.
+The `sealed_owned_instances_v1.mjs` runner now replays historical migrations
+inside a rollback-only transaction, stripping their transaction wrappers, and
+asserts exact current function definitions before lifecycle fixtures. Older
+worktrees lacking this fix can overwrite newer local policies; do not use them
+after the final full replay. The repaired runner passes 36 rollback checks.
 Its SQL integration runner `tests/integration/sealed_account_canary_v1.mjs`
 requires disposable sealed fixtures and commits local racing-test data. Always
 finish with the isolated replay cleanup; never run it against production.
@@ -97,11 +127,28 @@ The repeatable local evidence runner is
 `node tests/integration/sealed_verification_v1.mjs checks|fixtures|android|replay`
 (choose one phase). It writes logs and hashes outside the checkout. `fixtures`
 commits disposable local data and requires the final isolated `replay` phase.
-After the five migrations were applied, replay requires zero pending migrations;
+After the six migrations were applied, replay requires zero pending migrations;
 do not reuse the historical four-pending-ID expectation. Local UI signed Storage
 URLs may require emulator-only `adb reverse tcp:55429 tcp:55429`; remove that
 temporary forwarding afterward. Stop the local web harness before final replay.
 The final x64 APK points to local emulator Supabase, not production; never ship it.
+For isolated native iOS acceptance when Chrome automation is unavailable, use a
+separate Mac worktree and dedicated simulator, with local publishable defines
+and a loopback-only SSH reverse tunnel to API55429. Preserve existing simulators
+and production/TestFlight builds. Xcode UI tests and screenshots can verify
+local lifecycle, share, print and picker behavior without a physical phone.
+Exact setup, source provenance, results and remaining gaps are in
+`docs/checkpoints/SEALED_OWNERSHIP_CANARY_SCHEMA_APPLIED_20260908.md`, section
+"Native iOS Follow-Up". Never ship that local debug build. Close its tunnel and
+shut down only its dedicated simulator before the mandatory final replay.
+Flutter AX frames may lag a resized dialog; retain screenshot evidence instead
+of treating failed coordinate targeting as an application failure or a pass.
+Sealed checkboxes now expose exact-GVVI semantic labels. After scrolling, wait
+for layout to settle and verify checked values; taps can stop scrolling without
+selecting. Reveal controls above the bottom navigation on shell screens, but
+allow the lower safe area on standalone pricing routes. iOS share-sheet actions
+are cells (for example `Save 2 Images`), not necessarily buttons. Copy labels
+can be merged; visible screenshot/readback evidence remains required.
 `scripts/schema/sealed_ownership_rollout_plan_v1.mjs` creates a commit/hash-bound
 read-only release plan. It cannot apply SQL, activate flags or grant authority.
 Strict linked-schema preflight originally found a non-empty diff and a pending

@@ -11,6 +11,7 @@ import '../../services/identity/display_identity.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
+import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -883,6 +884,7 @@ class _PublicCollectorSegmentedContentState
         ? _wallSectionId
         : widget.selectedSectionId.trim();
     final loadingSelectedSection = widget.loadingSectionId == selectedSectionId;
+    final includesSealed = kSealedOwnershipEnabled && _viewerUserId.isNotEmpty;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -897,7 +899,8 @@ class _PublicCollectorSegmentedContentState
         ),
         const SizedBox(height: 8),
         _CollectorWallSectionRail(
-          wallCount: widget.wallView.wallCards.length,
+          // The card page length is not a combined card-and-sealed total.
+          wallCount: includesSealed ? null : widget.wallView.wallCards.length,
           sections: widget.wallView.sections,
           selectedSectionId: selectedSectionId,
           loadingSectionId: widget.loadingSectionId,
@@ -911,7 +914,7 @@ class _PublicCollectorSegmentedContentState
           _WallSectionCard(emptyMessage: widget.sectionError)
         else if (loadingSelectedSection)
           const _WallLoadingCard()
-        else
+        else if (_activeCards.isNotEmpty || !includesSealed)
           _PublicWallCardsSection(
             profile: widget.profile,
             cards: _activeCards,
@@ -921,8 +924,14 @@ class _PublicCollectorSegmentedContentState
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
         if (_viewerUserId.isNotEmpty)
-          OwnedSealedPanel(ownerId: widget.profile.userId, wallOnly: true,
-          sectionId: selectedSectionId == _wallSectionId ? null : selectedSectionId),
+          OwnedSealedPanel(
+            ownerId: widget.profile.userId,
+            wallOnly: true,
+            sectionId: selectedSectionId == _wallSectionId
+                ? null
+                : selectedSectionId,
+            onInventoryChanged: widget.onWallChanged,
+          ),
       ],
     );
   }
@@ -1035,7 +1044,7 @@ class _CollectorWallSectionRail extends StatelessWidget {
     required this.onAddSection,
   });
 
-  final int wallCount;
+  final int? wallCount;
   final List<PublicCollectorSectionSummary> sections;
   final String selectedSectionId;
   final String? loadingSectionId;
@@ -1105,7 +1114,7 @@ class _SectionRailChip extends StatelessWidget {
   });
 
   final String label;
-  final int count;
+  final int? count;
   final bool selected;
   final bool loading;
   final VoidCallback onTap;

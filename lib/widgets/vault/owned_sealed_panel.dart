@@ -208,6 +208,7 @@ class OwnedSealedPanel extends StatefulWidget {
     this.onSelectionChanged,
     this.onShareLot,
     this.selectionEpoch = 0,
+    this.onInventoryChanged,
   });
   final String? ownerId, sectionId;
   final int reloadToken;
@@ -216,6 +217,7 @@ class OwnedSealedPanel extends StatefulWidget {
   final String query;
   final ValueChanged<List<OwnedSealedCopy>>? onSelectionChanged;
   final Future<void> Function()? onShareLot;
+  final Future<void> Function()? onInventoryChanged;
   final ValueChanged<OwnedSealedTotals?>? onTotals;
   @override
   State<OwnedSealedPanel> createState() => _OwnedSealedPanelState();
@@ -351,6 +353,7 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
       SnackBar(content: Text('$removed of ${selected.length} copies removed')),
     );
     await _load();
+    if (mounted && removed > 0) await widget.onInventoryChanged?.call();
   }
 
   Future<void> _shareLot() async {
@@ -480,6 +483,8 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
                 children: [
                   if (_own)
                     Checkbox(
+                      semanticLabel:
+                          'Select ${row.identity} ${row.text('gv_vi_id')}',
                       value: _selected.contains(row.id),
                       onChanged: _busy
                           ? null
@@ -557,6 +562,10 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
                                           ),
                                         );
                                         if (mounted) await _load();
+                                        if (mounted) {
+                                          await widget.onInventoryChanged
+                                              ?.call();
+                                        }
                                       },
                               ),
                               IconButton(
@@ -596,6 +605,10 @@ class _OwnedSealedPanelState extends State<OwnedSealedPanel> {
                                               _SealedSectionsDialog(copy: row),
                                         );
                                         if (mounted) await _load();
+                                        if (mounted) {
+                                          await widget.onInventoryChanged
+                                              ?.call();
+                                        }
                                       },
                               ),
                             ],

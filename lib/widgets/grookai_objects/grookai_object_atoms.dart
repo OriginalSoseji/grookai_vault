@@ -235,22 +235,31 @@ class CardSellerRow extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '@$handle',
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: tokens.primaryText,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '@$handle',
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: tokens.primaryText,
+                  ),
+                ),
               ),
-            ),
-            Text(
-              '★ $rating · $tradeCount trades',
-              style: TextStyle(fontSize: 11, color: tokens.mutedText),
-            ),
-          ],
+              Text(
+                '★ $rating · $tradeCount trades',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 11, color: tokens.mutedText),
+              ),
+            ],
+          ),
         ),
       ],
     );
