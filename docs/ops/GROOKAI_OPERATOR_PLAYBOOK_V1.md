@@ -52,6 +52,14 @@ The separate MEE reference-refresh memory failure and bounded artifact-selection
 repair are recorded in `docs/checkpoints/pricing/MEE_REFERENCE_MEMORY_REPAIR_20260909.md`.
 Neither source repair is a receipt for production worker deployment.
 
+Actual MEE deployment and exact missing-row recovery are now recorded in
+`docs/checkpoints/pricing/MEE_REFERENCE_RUNTIME_PARITY_20260909.md`. The active
+runtime is pinned to ed7414b98034641632ad378d3c5766095a6d53f7. Reference producers
+must share MEE_RUNTIME_ARTIFACT_ROOT and normalize the latest input per source,
+not the newest two files globally. Main parity covers this reference lane only;
+do not overwrite the full nightly runtime from main until its separate policy
+differences are reconciled. Original failed runs and the old unit are preserved.
+
 ### Pokemon language source recovery
 
 The daily `pokemon-master-index-refresh.yml` worker can recover a catastrophic

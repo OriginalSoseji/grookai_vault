@@ -26,6 +26,8 @@ test("MEE reference warehouse delta writer is guarded and non-public", () => {
   assert.match(script, /countRowsBySourceWithPg/);
   assert.match(script, /fetchExistingCandidateMapWithPg/);
   assert.match(script, /fetchExistingNormalizedKeysWithPg/);
+  assert.match(script, /resolveMeeArtifactInputV1\(REPO_ROOT, item\.acquisitionPath\)/);
+  assert.match(script, /resolveMeeArtifactInputV1\(REPO_ROOT, item\.normalizedPath\)/);
   assert.match(script, /db_writes:\s*run\s*&&\s*applyResults\.some/);
   assert.match(script, /pricing_observations_writes:\s*false/);
   assert.match(script, /ebay_active_prices_latest_writes:\s*false/);
@@ -48,4 +50,15 @@ test("MEE reference warehouse delta writer checks all reference sources", () => 
   assert.match(script, /tcgdex_candidate_row_manifest_missing/);
   assert.match(script, /market_reference_candidates/);
   assert.match(script, /market_reference_normalized_evidence/);
+});
+
+test("MEE reference delta lookups are bounded to hashes and candidate IDs from the current artifacts", () => {
+  const script = source("scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs");
+
+  assert.match(script, /candidate_hash = any\(\$2::text\[\]\)/);
+  assert.match(script, /candidate_id = any\(\$2::uuid\[\]\)/);
+  assert.match(script, /\.in\("candidate_hash", hashes\)/);
+  assert.match(script, /\.in\("candidate_id", ids\)/);
+  assert.doesNotMatch(script, /where source = \$1\s+order by id asc/);
+  assert.doesNotMatch(script, /where source = \$1\s+order by candidate_id asc/);
 });
