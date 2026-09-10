@@ -2,6 +2,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
+import os from "node:os";
+import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 const worker = fs.readFileSync(
   new URL("../../scripts/workers/mtg_incremental_promotion_v1.mjs", import.meta.url),
@@ -11,6 +14,40 @@ const payloadBuilder = fs.readFileSync(
   new URL("../../scripts/audits/mtg_canonical_catalog_canary_plan_v1.mjs", import.meta.url),
   "utf8",
 );
+
+test("MTG provenance preserves actual branch, detached SHA and dirty state", () => {
+  const source = worker.match(/function captureMtgRepositoryV1\(runGit = git\) \{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source);
+  const capture = vm.runInNewContext(`(${source})`);
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "mtg-provenance-"));
+  const git = (...args) => execFileSync("git", ["-C", directory, ...args], {
+    encoding: "utf8", stdio: ["ignore", "pipe", "pipe"],
+  }).trim();
+  try {
+    git("init", "--initial-branch=fixture");
+    fs.writeFileSync(path.join(directory, "fixture.txt"), "original\n");
+    git("add", "fixture.txt");
+    git("-c", "user.name=Contract", "-c", "user.email=contract@example.invalid",
+      "-c", "core.hooksPath=", "commit", "-m", "Isolated test fixture");
+    const sha = git("rev-parse", "HEAD");
+    assert.equal(capture(git).branch, "fixture");
+    assert.equal(capture(git).detached_head, false);
+    git("checkout", "--detach", sha);
+    const detached = capture(git);
+    assert.equal(detached.commit_sha, sha);
+    assert.equal(detached.branch, "HEAD");
+    assert.equal(detached.detached_head, true);
+    assert.equal(detached.tracked_worktree_clean, true);
+    fs.appendFileSync(path.join(directory, "fixture.txt"), "changed\n");
+    assert.equal(capture(git).tracked_worktree_clean, false);
+    assert.match(worker, /repository\.commit_sha !== options\.expectedHeadSha/);
+    assert.match(worker, /!repository\.tracked_worktree_clean/);
+  } finally {
+    assert.equal(path.dirname(path.resolve(directory)), path.resolve(os.tmpdir()));
+    assert.ok(path.basename(directory).startsWith("mtg-provenance-"));
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 test("MTG incremental promotion uses existing canonical contracts dynamically", () => {
   assert.match(worker, /buildMtgCanonicalCandidateV1/);

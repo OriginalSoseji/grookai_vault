@@ -25,6 +25,32 @@ function git(...args) {
   return execFileSync("git", args, { encoding: "utf8" }).trim();
 }
 
+function captureMtgRepositoryV1(runGit = git) {
+  // Detached CI checkouts have no branch name; HEAD records that fact without
+  // inventing branch authority from an environment variable.
+  const branch = runGit("rev-parse", "--abbrev-ref", "HEAD");
+  return {
+    commit_sha: runGit("rev-parse", "HEAD"),
+    branch,
+    detached_head: branch === "HEAD",
+    tracked_worktree_clean: runGit("status", "--porcelain", "--untracked-files=no") === "",
+  };
+}
+
+function mtgPayloadRepositoryV1(repository) {
+  if (!/^[0-9a-f]{40}$/.test(repository.commit_sha ?? "") ||
+      typeof repository.tracked_worktree_clean !== "boolean") {
+    throw new Error("Payload authority requires an exact commit and tracked clean state");
+  }
+  // HEAD identifies the same exact commit in attached and detached checkouts.
+  // Actual branch/detached provenance remains untouched in run_plan.json.
+  return {
+    commit_sha: repository.commit_sha,
+    branch: "HEAD",
+    tracked_worktree_clean: repository.tracked_worktree_clean,
+  };
+}
+
 function parseArgs(argv) {
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const options = {
@@ -169,11 +195,7 @@ async function writeJson(file, value) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const repository = {
-    commit_sha: git("rev-parse", "HEAD"),
-    branch: git("branch", "--show-current"),
-    tracked_worktree_clean: git("status", "--porcelain", "--untracked-files=no") === "",
-  };
+  const repository = captureMtgRepositoryV1();
   if (options.mode === "apply" && (repository.commit_sha !== options.expectedHeadSha ||
       !repository.tracked_worktree_clean)) {
     throw new Error("Apply requires the exact clean frozen commit");
@@ -243,7 +265,7 @@ async function main() {
       sourceBulkSha256,
       stagingMigrationSha256: await fileHash("supabase/migrations/20260813185000_mtg_canonical_import_staging_v1.sql"),
       foundationMigrationSha256: await fileHash("supabase/migrations/20260813190000_mtg_canonical_catalog_foundation_v1.sql"),
-      repository,
+      repository: mtgPayloadRepositoryV1(repository),
     }, {
       plan_version: "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
       require_expansion: false,

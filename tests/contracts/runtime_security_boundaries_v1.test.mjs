@@ -107,11 +107,12 @@ test("shared AI client sends the configured token on every protected route", asy
   }
 });
 
-test("App Store asset uploads are restricted to Apple's HTTPS blobstore hosts", () => {
-  assert.equal(appleAutomationSource.includes('APPLE_UPLOAD_HOST_SUFFIX = ".blobstore.apple.com"'), true);
+test("App Store asset uploads are restricted to Apple's HTTPS storage hosts", () => {
+  assert.equal(appleAutomationSource.includes('APPLE_UPLOAD_HOST_SUFFIXES = [".blobstore.apple.com", ".object-storage.apple.com"].freeze'), true);
   assert.match(appleAutomationSource, /uri = validated_asset_upload_uri\(operation\.fetch\("url"\)\)/);
   assert.match(appleAutomationSource, /uri\.is_a\?\(URI::HTTPS\)/);
   assert.match(appleAutomationSource, /uri\.userinfo\.nil\?/);
   assert.match(appleAutomationSource, /uri\.port == 443/);
-  assert.match(appleAutomationSource, /host\.end_with\?\(APPLE_UPLOAD_HOST_SUFFIX\)/);
+  assert.match(appleAutomationSource, /APPLE_UPLOAD_HOST_SUFFIXES\.any\?/);
+  assert.match(appleAutomationSource, /host\.end_with\?\(suffix\) && host\.length > suffix\.length/);
 });

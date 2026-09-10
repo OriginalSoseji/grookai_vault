@@ -168,7 +168,7 @@ class AppStoreConnectClient
 end
 
 class IosReleaseAutomation
-  APPLE_UPLOAD_HOST_SUFFIX = ".blobstore.apple.com"
+  APPLE_UPLOAD_HOST_SUFFIXES = [".blobstore.apple.com", ".object-storage.apple.com"].freeze
 
   def initialize(config, client = nil)
     @config = config
@@ -955,7 +955,9 @@ class IosReleaseAutomation
   def validated_asset_upload_uri(value)
     uri = URI.parse(value.to_s)
     host = uri.host.to_s.downcase
-    trusted_host = host.end_with?(APPLE_UPLOAD_HOST_SUFFIX) && host.length > APPLE_UPLOAD_HOST_SUFFIX.length
+    trusted_host = APPLE_UPLOAD_HOST_SUFFIXES.any? do |suffix|
+      host.end_with?(suffix) && host.length > suffix.length
+    end
     unless uri.is_a?(URI::HTTPS) && uri.scheme == "https" && uri.userinfo.nil? && uri.port == 443 && trusted_host
       raise AppStoreConnectError, "Apple returned an untrusted asset upload URL"
     end

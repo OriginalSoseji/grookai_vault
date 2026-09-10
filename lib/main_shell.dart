@@ -2766,10 +2766,10 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(m)));
 
   InputDecoration _authFieldDecoration({
+    required ColorScheme scheme,
     required String label,
     required IconData icon,
   }) {
-    final scheme = Theme.of(context).colorScheme;
     return InputDecoration(
       labelText: label,
       prefixIcon: Icon(icon, size: 18),
@@ -2942,6 +2942,7 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 decoration: _authFieldDecoration(
+                  scheme: scheme,
                   label: 'Email',
                   icon: Icons.alternate_email_rounded,
                 ),
@@ -2953,6 +2954,7 @@ class _LoginPageState extends State<LoginPage> {
                 textInputAction: TextInputAction.done,
                 onSubmitted: (_) => _submitEmailAuth(),
                 decoration: _authFieldDecoration(
+                  scheme: scheme,
                   label: 'Password',
                   icon: Icons.lock_outline_rounded,
                 ),
@@ -3053,6 +3055,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    // This branded surface has a fixed dark background in both system modes.
+    return Theme(
+      data: _buildGrookaiTheme(Brightness.dark),
+      child: Builder(builder: _buildLoginSurface),
+    );
+  }
+
+  Widget _buildLoginSurface(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final textTheme = theme.textTheme;

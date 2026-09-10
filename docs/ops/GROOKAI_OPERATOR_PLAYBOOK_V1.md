@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+Release follow-up (September 9, 2026): see
+`docs/checkpoints/FINAL_RELEASE_VERIFICATION_20260909.md` and
+`docs/release/APP_STORE_PRIVACY_BUILD318_20260909.md`. A clean detached CI checkout
+must preserve its exact SHA and report `HEAD`, not invent a branch or bypass
+frozen approval checks. The old August privacy worksheet is not current evidence.
+Incremental MTG payload authority uses the exact `HEAD` commit and tracked clean
+state, independent of attached/detached checkout topology. Actual branch and
+detached status stay in `run_plan.json`; they must not change the approved row
+fingerprint. Source, migration, row or cleanliness changes still invalidate it.
+
 **Status:** Active
 
 **Purpose:** This is the first operational reference for Grookai work. It

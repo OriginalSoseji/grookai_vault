@@ -1,5 +1,10 @@
 # App Store Privacy Answers: iOS 1.0
 
+Historical worksheet only. For build318, use
+`APP_STORE_PRIVACY_BUILD318_20260909.md`; local-discovery and transaction
+features invalidate the older blanket exclusions below. Neither worksheet
+proves that answers have been published in App Store Connect.
+
 These answers are based on the release-candidate iOS source and a code/config scan on 2026-08-07.
 
 Apple's public App Store Connect API covers the privacy policy URL, but not the App Privacy nutrition-label data-type questionnaire. Complete this in App Store Connect as an Admin.
