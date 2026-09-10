@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-09-08T08:18:34.804Z",
+  "generated_at": "2026-09-10T08:21:44.989Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -15,7 +15,7 @@
   },
   "summary": {
     "sets": 204,
-    "evidence_rows": 238121,
+    "evidence_rows": 238464,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -443,7 +443,7 @@
       },
       {
         "source_key": "pokemontcg_api",
-        "evidence_rows": 51853
+        "evidence_rows": 51847
       },
       {
         "source_key": "pokemonwizard_variant_exact",
@@ -627,7 +627,7 @@
       },
       {
         "source_key": "tcgdex",
-        "evidence_rows": 49200
+        "evidence_rows": 49203
       },
       {
         "source_key": "tcgnav_exact_finish",
@@ -639,7 +639,7 @@
       },
       {
         "source_key": "tcgplayer_price_guide",
-        "evidence_rows": 23501
+        "evidence_rows": 23847
       },
       {
         "source_key": "tcgplayer_pro_catalog_page",
@@ -3002,7 +3002,8 @@
     },
     "printings_by_status": {
       "master_verified": 37765,
-      "human_source_verified": 401,
+      "human_source_verified": 400,
+      "api_agreed": 1,
       "candidate_unconfirmed": 109
     },
     "conflicts": 0,
@@ -3015,15 +3016,15 @@
       "human_fixtures|collected": 1,
       "pkmncards|collected": 153,
       "pkmncards|error": 51,
-      "pokemontcg_api|cached_snapshot": 10,
-      "pokemontcg_api|collected": 149,
-      "pokemontcg_api|collected_plus_cached_snapshot": 15,
+      "pokemontcg_api|cached_snapshot": 17,
+      "pokemontcg_api|collected": 143,
+      "pokemontcg_api|collected_plus_cached_snapshot": 14,
       "pokemontcg_api|unavailable": 30,
       "tcgdex|collected": 199,
       "tcgdex|unavailable": 5,
-      "tcgplayer_price_guide|cached_snapshot": 9,
-      "tcgplayer_price_guide|collected": 129,
-      "tcgplayer_price_guide|collected_plus_cached_snapshot": 15,
+      "tcgplayer_price_guide|cached_snapshot": 14,
+      "tcgplayer_price_guide|collected": 127,
+      "tcgplayer_price_guide|collected_plus_cached_snapshot": 12,
       "tcgplayer_price_guide|unavailable": 51,
       "thepricedex_price_list|collected": 176,
       "thepricedex_price_list|error": 27,
