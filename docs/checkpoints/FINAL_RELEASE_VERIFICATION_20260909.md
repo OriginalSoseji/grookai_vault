@@ -54,6 +54,27 @@ remains externally available in TestFlight, not the public App Store.
 
 ## Remaining Release Boundaries
 
+### Delivery Update
+
+Build319 from `ef70e96bb34dff56d75b4a098711df22a5188da9` is VALID and
+IN_BETA_TESTING in the existing internal/external groups. The App Store draft
+selects319, but has not been publicly submitted. Samsung319 installed without
+clearing account data; collection total USD2025.04 and the explicit unpriced
+Blooming Waters condition render. New iPhone/iPad product screenshots are
+COMPLETE with checksum readback. The authenticated iPad walkthrough and full
+3267 Node / 718 Flutter hook suites subsequently passed.
+
+PR456 review identified that actual checkout topology was still included in
+the MTG payload hash. The follow-up uses exact HEAD commit/clean-state authority
+for the payload and keeps real branch/detached provenance in the run plan.
+Attached/detached payloads now match; changed commit, source, migration, row or
+cleanliness still changes the fingerprint. Existing shared payload integrity
+verification passes unchanged. No old approved command is rewritten. This
+follow-up is worker/tests/docs only; it does not change the build319 app source.
+
+The earlier progress bullets below remain historical until superseded by the
+explicit delivery receipts in the external completion checkpoint.
+
 - These source changes need hooks, merge, web deployment and a separately
   identified native build before claiming them deployed. Do not relabel318.
 - App Store privacy answers are unpublished. Both available Apple browser

@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import fs from "node:fs";
+import vm from "node:vm";
+import { verifyMtgCanaryPayloadIntegrityV1 } from "../../scripts/audits/mtg_canonical_catalog_canary_preflight_v1.mjs";
 
 import { buildMtgCanonicalCandidateV1 } from "../../backend/pricing/mtg_canonical_catalog_candidate_v1.mjs";
 import {
@@ -11,6 +14,40 @@ const REPOSITORY = {
   commit_sha: "a".repeat(40),
   branch: "agent/mtg-pricing-readiness-v1",
 };
+
+test("incremental MTG fingerprint binds commit and payload, not checkout topology", () => {
+  const worker = fs.readFileSync(new URL("../../scripts/workers/mtg_incremental_promotion_v1.mjs", import.meta.url), "utf8");
+  const source = worker.match(/function mtgPayloadRepositoryV1\(repository\) \{[\s\S]*?\n\}/)?.[0];
+  assert.ok(source);
+  const authority = vm.runInNewContext(`(${source})`);
+  const attached = { ...REPOSITORY, detached_head: false, tracked_worktree_clean: true };
+  const detached = { ...attached, branch: "HEAD", detached_head: true };
+  const base = {
+    candidates: [candidate()], warehouseProducts: new Map(),
+    sourceBulkSha256: "a".repeat(64), stagingMigrationSha256: "b".repeat(64),
+    foundationMigrationSha256: "c".repeat(64),
+  };
+  const build = (repository, changes = {}) => buildMtgCanaryPayloadV1({
+    ...base, ...changes, repository: authority(repository),
+  });
+  const planned = build(attached);
+  const execution = build(detached);
+  assert.equal(planned.writer_payload_fingerprint, execution.writer_payload_fingerprint);
+  assert.equal(verifyMtgCanaryPayloadIntegrityV1(execution).ok, true);
+  assert.equal(attached.branch, REPOSITORY.branch);
+  assert.equal(attached.detached_head, false);
+  for (const changed of [
+    build({ ...detached, commit_sha: "d".repeat(40) }),
+    build({ ...detached, tracked_worktree_clean: false }),
+    build(detached, { sourceBulkSha256: "d".repeat(64) }),
+    build(detached, { foundationMigrationSha256: "d".repeat(64) }),
+    build(detached, { candidates: [candidate({ name: "Different visible identity" })] }),
+  ]) assert.notEqual(changed.writer_payload_fingerprint, planned.writer_payload_fingerprint);
+  assert.throws(() => authority({ ...attached, commit_sha: "HEAD" }), /exact commit/);
+  assert.throws(() => authority({ ...attached, tracked_worktree_clean: undefined }), /clean state/);
+  assert.match(worker, /repository: mtgPayloadRepositoryV1\(repository\)/);
+  assert.match(worker, /set_code: options\.setCode,\s+repository,/);
+});
 
 function candidate(overrides = {}) {
   return buildMtgCanonicalCandidateV1({

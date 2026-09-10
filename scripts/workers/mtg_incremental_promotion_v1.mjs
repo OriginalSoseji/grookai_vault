@@ -37,6 +37,20 @@ function captureMtgRepositoryV1(runGit = git) {
   };
 }
 
+function mtgPayloadRepositoryV1(repository) {
+  if (!/^[0-9a-f]{40}$/.test(repository.commit_sha ?? "") ||
+      typeof repository.tracked_worktree_clean !== "boolean") {
+    throw new Error("Payload authority requires an exact commit and tracked clean state");
+  }
+  // HEAD identifies the same exact commit in attached and detached checkouts.
+  // Actual branch/detached provenance remains untouched in run_plan.json.
+  return {
+    commit_sha: repository.commit_sha,
+    branch: "HEAD",
+    tracked_worktree_clean: repository.tracked_worktree_clean,
+  };
+}
+
 function parseArgs(argv) {
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const options = {
@@ -251,7 +265,7 @@ async function main() {
       sourceBulkSha256,
       stagingMigrationSha256: await fileHash("supabase/migrations/20260813185000_mtg_canonical_import_staging_v1.sql"),
       foundationMigrationSha256: await fileHash("supabase/migrations/20260813190000_mtg_canonical_catalog_foundation_v1.sql"),
-      repository,
+      repository: mtgPayloadRepositoryV1(repository),
     }, {
       plan_version: "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
       require_expansion: false,
