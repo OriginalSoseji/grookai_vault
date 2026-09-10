@@ -25,6 +25,18 @@ function git(...args) {
   return execFileSync("git", args, { encoding: "utf8" }).trim();
 }
 
+function captureMtgRepositoryV1(runGit = git) {
+  // Detached CI checkouts have no branch name; HEAD records that fact without
+  // inventing branch authority from an environment variable.
+  const branch = runGit("rev-parse", "--abbrev-ref", "HEAD");
+  return {
+    commit_sha: runGit("rev-parse", "HEAD"),
+    branch,
+    detached_head: branch === "HEAD",
+    tracked_worktree_clean: runGit("status", "--porcelain", "--untracked-files=no") === "",
+  };
+}
+
 function parseArgs(argv) {
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const options = {
@@ -169,11 +181,7 @@ async function writeJson(file, value) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const repository = {
-    commit_sha: git("rev-parse", "HEAD"),
-    branch: git("branch", "--show-current"),
-    tracked_worktree_clean: git("status", "--porcelain", "--untracked-files=no") === "",
-  };
+  const repository = captureMtgRepositoryV1();
   if (options.mode === "apply" && (repository.commit_sha !== options.expectedHeadSha ||
       !repository.tracked_worktree_clean)) {
     throw new Error("Apply requires the exact clean frozen commit");

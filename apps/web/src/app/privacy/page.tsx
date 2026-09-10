@@ -12,16 +12,18 @@ export default function PrivacyPage() {
     <InformationPage
       eyebrow="Privacy"
       title="Privacy Policy"
-      description="Effective August 17, 2026. This policy explains what Grookai Vault collects, how that information is used, and the choices available to collectors."
+      description="Updated September 9, 2026. This policy explains what Grookai Vault collects, how that information is used, and the choices available to collectors."
     >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Information We Collect</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>Account information, including email address and account identifiers.</li>
-            <li>Collection data, including vault cards, wanted cards, sections, public wall settings, and notes.</li>
+            <li>Collection data, including cards, sealed products, wanted items, sections, public wall settings, and notes.</li>
+            <li>Collection and transaction values you record or view, including acquisition costs, asking prices, sale amounts, and trade details.</li>
+            <li>City or area, region, and country you optionally provide for nearby collector discovery. This setting does not collect your GPS position.</li>
             <li>User content, including profile media, card photos, uploaded images, messages, and submissions.</li>
             <li>Device-permission content you choose to provide, such as camera captures or selected photo-library images.</li>
-            <li>Usage, diagnostics, and security data used to operate, protect, and improve the service.</li>
+            <li>Usage, diagnostics, and security data used to operate, protect, and improve the service, including website search queries and feature interactions.</li>
           </ul>
         </section>
 
