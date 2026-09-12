@@ -4,6 +4,20 @@ Recorded September 11, 2026 America/Denver / September 12 UTC.
 
 ## Decision
 
+September 12, 13:26 UTC update: both backend blockers described below are now
+repaired in production. See `COLLECTOR_BACKEND_REPAIR_CHECKPOINT_20260912.md` for
+exact releases and readbacks. Clean producer `ff0884c91dabb2077019327758bdd8d82a8eff1b`
+passed 3,370 contract tests, 719 Flutter tests, analysis, web typecheck/lint/build
+and strict 394-migration replay. The founder's later repair instruction extended
+the original website-only scope through its separate backend repair contract.
+
+The website switch has NOT occurred. Remaining gates are scheduled MTG worker
+deployment, production-configuration/client verification and conditional website
+rollout while retaining the original live version. The remainder of this document
+is the preserved pre-repair release snapshot, not evidence that repairs are pending.
+
+### Original Decision
+
 Release candidate verified locally; production switch NOT performed. The founder
 authorized conditional website rollout, not production database or pricing repair.
 Do not describe this checkpoint as launch completion. Two backend blockers remain.

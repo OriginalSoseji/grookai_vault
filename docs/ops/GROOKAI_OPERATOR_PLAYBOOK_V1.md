@@ -19,14 +19,17 @@ The local Supabase `start.log` includes generated development credentials; do no
 publish it or copy it into release assets.
 
 Read `COLLECTOR_BACKEND_REPAIR_CHECKPOINT_20260912.md` and the corresponding
-backend release-repair contract before resuming. MTG paired-refresh code and the
-confirmed-cameo migration are locally tested but NOT applied. Publication is off.
+backend release-repair contract before resuming. Both repairs are applied from
+producer `ff0884c91dabb2077019327758bdd8d82a8eff1b`: 2,103 MTG sealed products passed
+paired publication/readback and zero-write idempotency; the confirmed-only cameo
+reader is live with zero promoted confirmations. Scheduled refresh is still OFF
+and the website has not switched. Do not repeat the migration apply.
 Baseline diagnosis is now complete: see `COLLECTOR_SCHEMA_RECONCILIATION_20260912.md`.
 Only three table column orders differed; all 891 security objects match and the
 reconciled baseline SQL diff is empty. Never execute the broad raw view-replacement
 output. A successful refresh plan is not published pricing. Preserve
-the approved website and update this checkpoint with actual canary/apply/readback
-receipts before declaring either blocker resolved.
+the approved website. The checkpoint records actual canary/apply/readback receipts;
+deployment and scheduled operation remain distinct outstanding gates.
 
 ## Collector Website Release Candidate - September 12, 2026 UTC
 

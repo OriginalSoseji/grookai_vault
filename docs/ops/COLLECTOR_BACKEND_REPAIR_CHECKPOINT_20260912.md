@@ -1,7 +1,47 @@
 # Collector Backend Repair Checkpoint
 
-September 12, 2026 UTC. Both code repairs are implemented and locally tested;
-neither is applied to production. Do not call the live blockers resolved.
+## Current Result - September 12, 2026, 13:26 UTC
+
+Both bounded backend repairs are now applied and independently read back in
+production from clean producer `ff0884c91dabb2077019327758bdd8d82a8eff1b`.
+The full unchanged managed commit hook passed: 3,370 contract tests, one existing
+skip, web typecheck/lint/optimized build, Flutter analysis and all 719 Flutter tests.
+
+MTG refresh:
+- Production rollback canary passed with verified absence of trial rows.
+- Durable apply: 10,517 inserted rows and two atomic price/image pointer writes.
+- Published: 2,103 paired, verified-image sealed products.
+- Excluded: 33 stale/missing/invalid prices and 13 source-identity mismatches.
+- Price release: `d2254a8c-55d4-5088-8ef3-f3b2dc57d9c6`.
+- Image release: `afd9bf2c-3dee-58e8-ba12-adccc1cf2c81`.
+- Frozen plan: `7f9a2246873dd7b6ebf6e3abf7daf6cbfc2d0cc730b28f9ce637d9f112181f4a`.
+- Independent readback passed; idempotency passed with zero inserts/pointer writes.
+- Zero Storage, canonical identity, ownership or cross-game writes.
+
+Confirmed cameo migration `20260912050000` is applied with its recorded hash.
+The production function matches the full isolated replay exactly. RLS is enabled;
+anon/authenticated cannot read the confirmation table, service_role cannot insert,
+and the bounded public reader executes for both ordinary roles. Zero confirmation
+rows exist: no unsupported legacy association was promoted.
+
+Authoritative receipts:
+- `C:/grookai_vault_operator_artifacts/collector_polish/mtg_frozen_refresh_20260912/`
+  contains frozen plan, producer, canary, apply and idempotency JSON.
+- `C:/grookai_vault_operator_artifacts/collector_polish/cameo_full_replay_20260912/`
+  contains strict gates, 394-migration replay, managed commit log, production apply
+  plan/log and `production-readback.json`.
+
+Remaining: deploy and enable the verified scheduled MTG worker, verify the
+candidate against production configuration and authenticated product surfaces,
+then complete the conditional website rollout. No main push, Vercel deployment,
+schedule activation or website switch occurred. Both website versions remain
+preserved. Do not rerun the now-satisfied sole-pending migration gate; it should
+reject because that migration is no longer pending.
+
+## Historical Preparation Record
+
+The material below describes pre-apply diagnosis and failures, not current live
+status. Preserve it for provenance; the receipts above supersede its pending list.
 
 Follow-up: `COLLECTOR_SCHEMA_RECONCILIATION_20260912.md` now explains and verifies
 the baseline differences. Three table column-order differences triggered 41 view
