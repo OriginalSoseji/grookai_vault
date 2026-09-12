@@ -9,6 +9,7 @@ import ProductState from "@/components/layout/ProductState";
 import PublicCardImage from "@/components/PublicCardImage";
 import { OwnerWallSectionRail } from "@/components/wall/OwnerWallSectionRail";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
+import { getRecentOwnedCards } from "@/lib/vault/getRecentOwnedCards";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import {
   applyChildDisplayImageFallback,
@@ -204,12 +205,7 @@ export default async function WallPage() {
   const { supabase, user } = await requireServerUser("/wall");
 
   const [{ data, error }, { data: profile }, wallSectionsModel] = await Promise.all([
-    supabase
-      .from("v_recently_added")
-      .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
-      .eq("user_id", user.id)
-      .limit(50)
-      .order("created_at", { ascending: false }),
+    getRecentOwnedCards(supabase, user.id, 50),
     supabase
       .from("public_profiles")
       .select("slug,public_profile_enabled,vault_sharing_enabled")

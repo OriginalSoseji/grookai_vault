@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
+import { getRecentOwnedCards } from "@/lib/vault/getRecentOwnedCards";
 import {
   VaultCollectionView,
   type RecentCardData,
@@ -169,12 +170,7 @@ export default async function VaultPage(
     { data: recentData, error: recentError },
     { items, canonicalRows, itemsError, publicProfileHref, publicCollectionHref },
   ] = await Promise.all([
-    supabase
-      .from("v_recently_added")
-      .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
-      .eq("user_id", user.id)
-      .order("created_at", { ascending: false })
-      .limit(10),
+    getRecentOwnedCards(supabase, user.id, 10),
     getOwnerVaultItems(user.id, { cardPrintIds: exactCardPrintIds }),
   ]);
 

@@ -1,5 +1,27 @@
 # Grookai Operator Playbook V1
 
+## Collector Rollout And Canonical Activity Reads (September 12)
+
+Read the latest top section of `COLLECTOR_WEB_PRODUCTION_RELEASE_CHECKPOINT_20260912.md`.
+MTG scheduled paired publication is now enabled and its real hosted run passed.
+Do not confuse older OFF/pending notes below with the current worker state.
+The website rollout was rolled back on a live activity timeout also reproduced
+on the original build. Keep original production and approved staging preserved.
+
+Card activity must select bounded active `vault_item_instances` for the verified
+owner before catalog enrichment. Reuse `getRecentOwnedCards` with the authenticated
+client. Never return to the globally limited legacy `v_recently_added` projection,
+silently turn timeouts into empty-success feeds, or use admin access as a fallback.
+Sealed activity remains separate; price and Vault total authority are unchanged.
+
+For staged production promotion, preserve live deployment ID, source SHA and
+environment metadata, disable automatic custom-domain assignment, and use the
+Vercel promotion/rollback endpoints with readback. A successful mutation can have
+an empty HTTP body: never retry it just because JSON parsing failed. Reconcile the
+live pointer first. Restore automatic domain assignment only after healthy smoke
+or a deliberate abort. Source/receipt recovery belongs in the existing private
+recovery repository, not the public application repository.
+
 ## Collector Backend Release Blockers (September 12)
 
 Full 394-migration isolated reset and both strict preflight phases now pass.

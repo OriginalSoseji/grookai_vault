@@ -1,5 +1,65 @@
 # Collector Website Release Checkpoint
 
+## Rollout And Activity Repair - September 12, 2026
+
+The MTG daily publisher is enabled (`MTG_SEALED_REFRESH_ACTIVE=true`, cron
+`50 11 * * *`). Hosted run `34698332496` passed rollback canary, durable apply,
+independent readback and zero-write idempotency: 2,103 products, 46 explicit
+exclusions, zero Storage/identity/user writes. Current price release is
+`6cbc2cfd-6b1e-5eaf-9c3f-d09efd8e6ebb`; paired image release is
+`a1258a73-5cde-5b50-b26f-5bf906a5e8e6`. Do not rerun publication to resume the UI work.
+
+Producer `95518fec57b0b5380e1101d529f0b89a60f15417` is pushed to main.
+All ten GitHub checks ultimately passed; local managed hooks passed 3,373
+contracts (one existing skip), web checks/build, analysis and 719 Flutter tests.
+CI fixes preserved the production runtime tree: Linux dependency installation,
+portable paths/baseline digest, and current staging key names. Two intermittent
+Windows Flutter startup failures were retained; unchanged full retries passed.
+
+Production candidate `dpl_Bo9GtMzSF1tdNCuERuEzJ99B4hvr` was promoted once and its
+deployment/source/feature flags read back. The last security scan was still
+running at promotion; the prior successful scan covered the identical runtime
+and dependency trees. The new scan subsequently passed too. The empty successful
+promotion response initially triggered an operator JSON-parser error; no second
+promotion request was sent, and independent readback confirmed success.
+
+Signed-in smoke confirmed unchanged Vault totals/copy counts, exact card pricing,
+MTG sealed images/prices, 946 MTG sets, 61 One Piece sets, both game searches and
+exact-printing image-correction context. It also exposed failed Wall activity and
+Vault recent activity. The original deployment was restored immediately:
+`dpl_EZXp6L6jkUdVCGJPvAALFJSXc3JQ`, verified September 12 at 15:05 UTC.
+The original has the same activity failure. Nothing was deleted or rewritten.
+The approved staging site and both production builds remain preserved.
+
+Read-only diagnosis: the authenticated `v_recently_added` query times out in
+`catalog_game_visible_to_request_v1` / `catalog_set_visible_to_request_v1` /
+`catalog_card_print_visible_to_request_v1`. Its schema and SELECT grants exist;
+the legacy view globally limits the old `v_vault_items` projection. This is not
+missing ownership or a reason to raise timeouts or bypass RLS.
+
+Narrow repair: `getRecentOwnedCards` reads at most 50 active, owner-filtered
+`vault_item_instances` with a card identity, then metadata only for those IDs,
+using the existing authenticated client. Both account activity surfaces use it.
+Canonical instances, not compatibility buckets, define individual activity rows.
+Archived copies, sealed instances (shown separately), hidden/unmapped metadata,
+and cross-owner rows cannot become card activity. Errors remain explicit. Pricing,
+totals, write paths, database schema/data and the approved design stay unchanged.
+
+Before another switch: finish full managed checks, freeze/push the narrow repair,
+verify the staged build, then prove Wall and Vault activity in the existing
+signed-in production session with immediate rollback available. Preserve each
+attempt's source/deployment receipts. Automatic domain assignment remains OFF
+while this release is staged; restore the original setting only after a healthy
+rollout or a deliberate complete abort.
+
+Evidence: `C:/grookai_vault_operator_artifacts/collector_polish/production_rollout_20260912/`.
+Read hosted-worker-verification, rollback-request, prepromotion-verification,
+live-health-after, recent-view-owner-count-probe and canonical-activity-owner-count-probe.
+The latter is aggregate read-only SQL evidence, not an actual user login. Browser
+checks used the existing signed-in session; synthetic writes remained isolated.
+Separate backlog: existing medium `adm-zip` advisory in `backend/package-lock.json`
+(GitHub Dependabot #61); this release does not claim that issue resolved.
+
 Recorded September 11, 2026 America/Denver / September 12 UTC.
 
 ## Decision

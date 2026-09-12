@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Current Collector Rollout Follow-up
+
+The MTG scheduled refresh is enabled and verified. The collector deployment was
+temporarily promoted, then rolled back after its signed-in smoke exposed the
+legacy recent-activity timeout also present on the original website. Read
+`docs/ops/COLLECTOR_WEB_PRODUCTION_RELEASE_CHECKPOINT_20260912.md` before resuming.
+Only a bounded authenticated card-activity read repair is in progress; do not
+repeat migrations, pricing publication, or expand production permissions.
+
 ## Active Backend Repair
 
 The founder subsequently requested fixing both release blockers. Read
