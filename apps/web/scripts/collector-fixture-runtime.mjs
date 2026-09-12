@@ -79,7 +79,7 @@ export async function startFixtureRuntime({database,out,local}) {
     // Secret files are local-only and accessible only to the operator and SYSTEM.
     const who=run('whoami',[]).trim();
     run('icacls',[out,'/inheritance:r','/grant:r',`${who}:(OI)(CI)F`,'SYSTEM:(OI)(CI)F']);
-    const imageResult=await createClient(local.API_URL,local.SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}})
+    const imageResult=await createClient(local.API_URL,local.SECRET_KEY,{auth:{persistSession:false,autoRefreshToken:false}})
       .storage.from('user-card-images').download(imagePath);
     if(imageResult.error) throw new Error('Existing local sample artwork is unavailable');
     const imageBytes=Buffer.from(await imageResult.data.arrayBuffer());
@@ -127,7 +127,7 @@ export async function startFixtureRuntime({database,out,local}) {
     await new Promise((resolve,reject)=>{gateway.once('error',reject);gateway.listen(54361,'127.0.0.1',resolve);});
     await ready(api+'/auth/v1/health');
     const options={auth:{persistSession:false,autoRefreshToken:false}};
-    const admin=createClient(api,local.SERVICE_ROLE_KEY,options);
+    const admin=createClient(api,local.SECRET_KEY,options);
     let probe;
     for(let attempt=0;attempt<40;attempt++) {
       probe=await admin.from('card_prints').select('id',{head:true,count:'exact'});
@@ -146,7 +146,7 @@ export async function startFixtureRuntime({database,out,local}) {
     const startWeb=async()=>{
       const env={...process.env};
       for(const key of Object.keys(env)) if(/SUPABASE|DATABASE|POSTGRES|PGPASSWORD|OPENAI|ANTHROPIC|PSA|UPSTASH|VERCEL|BRIDGE_IMPORT|RESEND|SENDGRID|SENTRY|POSTHOG|AWS|S3_|TCGPLAYER|EBAY|BINDER|SITE_URL|COLLECTOR/i.test(key)) delete env[key];
-      Object.assign(env,{SUPABASE_URL:api,SUPABASE_PUBLISHABLE_KEY:local.ANON_KEY,SUPABASE_SECRET_KEY:local.SERVICE_ROLE_KEY,
+      Object.assign(env,{SUPABASE_URL:api,SUPABASE_PUBLISHABLE_KEY:local.ANON_KEY,SUPABASE_SECRET_KEY:local.SECRET_KEY,
         NEXT_PUBLIC_SITE_URL:site,SITE_URL:site,NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB:'true',
         NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY:'false',NEXT_TELEMETRY_DISABLED:'1',
         GROOKAI_BINDERS_SCHEMA_RPC_V1_ENABLED:'true',GROOKAI_BINDERS_PERSONAL_V1_ENABLED:'true',

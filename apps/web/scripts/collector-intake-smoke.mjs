@@ -25,7 +25,7 @@ const out = `${artifactRoot}/intake-smoke-${Date.now()}`;
 mkdirSync(out,{recursive:true});
 const options={auth:{persistSession:false,autoRefreshToken:false}};
 const owner=createClient(status.API_URL,status.ANON_KEY,options);
-const admin=createClient(status.API_URL,status.SERVICE_ROLE_KEY,options);
+const admin=createClient(status.API_URL,status.SECRET_KEY,options);
 const anonymous=createClient(status.API_URL,status.ANON_KEY,options);
 const login=await owner.auth.signInWithPassword({email:account.email,password:account.password});
 if(login.error) throw login.error;

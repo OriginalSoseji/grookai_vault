@@ -58,6 +58,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install web presentation test dependencies
+        run: npm ci --prefix apps/web --ignore-scripts
+
       - name: Run runtime health checks
         run: npm run contracts:runtime-health
 

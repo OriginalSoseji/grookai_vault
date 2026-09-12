@@ -8,7 +8,7 @@ const status = JSON.parse(execFileSync('pwsh', ['-NoProfile', '-Command', 'supab
   cwd: new URL('../../../', import.meta.url), encoding: 'utf8', stdio: ['ignore','pipe','pipe'],
 }));
 assertCollectorStagingTarget(status.API_URL);
-const db = createClient(status.API_URL, status.SERVICE_ROLE_KEY, { auth: { persistSession: false } });
+const db = createClient(status.API_URL, status.SECRET_KEY, { auth: { persistSession: false } });
 const sample = await db.from('card_prints').select('id', { count: 'exact', head: true });
 assert.equal(sample.error, null);
 assert.equal(sample.count, 326, 'Unexpected sample database; stop without writes.');

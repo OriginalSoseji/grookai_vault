@@ -22,7 +22,7 @@ assert.equal(account.url,base+'/login');
 const out=`${artifacts}/shared-binder-${Date.now()}`;
 mkdirSync(out,{recursive:true});
 const options={auth:{persistSession:false,autoRefreshToken:false}};
-const admin=createClient(local.API_URL,local.SERVICE_ROLE_KEY,options);
+const admin=createClient(local.API_URL,local.SECRET_KEY,options);
 async function read(table,filters=[],columns='*') {
   let query=admin.from(table).select(columns);
   for(const [key,value] of filters) query=query.eq(key,value);

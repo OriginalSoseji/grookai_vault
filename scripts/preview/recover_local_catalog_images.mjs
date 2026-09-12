@@ -19,7 +19,7 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 if (sha(JSON.stringify(snapshot)) !== receipt.sourceSha256) throw new Error('Source snapshot drift.');
 const local = JSON.parse(execFileSync('supabase.exe', ['status', '-o', 'json'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }));
 guardDestination(local.API_URL);
-const client = createClient(local.API_URL, local.SERVICE_ROLE_KEY, { auth: { persistSession: false }, global: { fetch: (input, init) => { guardDestination(new URL(String(input)).origin); return fetch(input, init); } } });
+const client = createClient(local.API_URL, local.SECRET_KEY, { auth: { persistSession: false }, global: { fetch: (input, init) => { guardDestination(new URL(String(input)).origin); return fetch(input, init); } } });
 const recovered = [];
 for (const gap of receipt.imageGaps.filter(item => item.reason.includes('(429)'))) {
   await delay(1200);

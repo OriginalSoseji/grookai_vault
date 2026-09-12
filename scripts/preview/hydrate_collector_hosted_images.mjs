@@ -8,7 +8,7 @@ const {createClient}=require('@supabase/supabase-js');
 const project=await verifyTarget();
 const status=JSON.parse(exec('pwsh',['-NoProfile','-Command','supabase status -o json']));assert.equal(status.API_URL,'http://127.0.0.1:54321');
 const keys=JSON.parse(readFileSync(`${out}/private/keys.json`));
-const source=createClient(status.API_URL,status.SERVICE_ROLE_KEY,{auth:{persistSession:false}});
+const source=createClient(status.API_URL,status.SECRET_KEY,{auth:{persistSession:false}});
 const dest=createClient(`https://${project.id}.supabase.co`,keys.find(k=>k.name==='service_role').api_key,{auth:{persistSession:false}});
 const snapshot=JSON.parse(readFileSync(`${out}/catalog-snapshot.json`));
 const paths=[...new Set([...snapshot.card_prints,...snapshot.card_printings].map(c=>c.image_path).filter(Boolean))].sort();

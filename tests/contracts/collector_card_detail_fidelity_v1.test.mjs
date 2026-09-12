@@ -1,15 +1,17 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import test from 'node:test';
 const read = path => readFileSync(new URL(`../../apps/web/src/${path}`, import.meta.url), 'utf8');
 
 test('card detail preserves readers and slab action outside the authorized copy-options action', () => {
   const current = read('app/card/[gv_id]/page.tsx');
-  const base = execFileSync('git', ['show', 'bcbf8bab754528bd78f65e983bb270c27de48579:apps/web/src/app/card/[gv_id]/page.tsx'], { encoding: 'utf8' });
+  // Frozen normalized business-body digest from preserved bcbf8bab754528bd78f65e983bb270c27de48579.
+  // The private historical ref is not a prerequisite for a fresh public CI checkout.
+  const baselineDigest = 'a8659114e83ea724106467f9d8a3ed8819774e987d4f73d85d71cc6a3559246d';
   const business = source => source.replaceAll('\r\n', '\n').split('async function CardPageContent(')[1].split('  const initialRenderMs')[0]
     .replace(/  async function addToVaultAction\([\s\S]*?(?=  async function createSlabAction)/, '');
-  assert.equal(business(current), business(base));
+  assert.equal(createHash('sha256').update(business(current)).digest('hex'), baselineDigest);
   assert.match(current, /parseCardAddOptions\(_formData.get\("condition"\), _formData.get\("quantity"\)\)/);
   assert.match(current, /conditionLabel: options.conditionLabel/);
   assert.match(current, /assertAuthenticatedVaultUser|actionClient.auth.getUser/);

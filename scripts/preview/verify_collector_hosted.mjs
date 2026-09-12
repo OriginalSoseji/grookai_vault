@@ -13,7 +13,7 @@ await api(`/v1/projects/${db.id}/config/auth`,{method:'PATCH',body:{site_url:'ht
 const bypass=randomBytes(16).toString('hex');
 await vercel(`/v1/projects/${p.id}/protection-bypass`,{method:'PATCH',body:{generate:{secret:bypass,note:'Temporary collector staging browser verification'}}});
 const keys=JSON.parse(readFileSync(`${out}/private/keys.json`));
-privateFile('browser-config.json',{API_URL:`https://${db.id}.supabase.co`,ANON_KEY:keys.find(k=>k.name==='anon').api_key,SERVICE_ROLE_KEY:keys.find(k=>k.name==='service_role').api_key,BYPASS:bypass});
+privateFile('browser-config.json',{API_URL:`https://${db.id}.supabase.co`,ANON_KEY:keys.find(k=>k.type==='publishable').api_key,SECRET_KEY:keys.find(k=>k.type==='secret').api_key,BYPASS:bypass});
 let code;
 try{
  const env=Object.fromEntries(Object.entries(process.env).filter(([k])=>!/(SUPABASE|PSA|UPSTASH|VERCEL|RESEND|SENTRY|BRIDGE|POSTHOG)/.test(k)));

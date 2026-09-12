@@ -143,7 +143,7 @@ async function main() {
       if ((index + 1) % 25 === 0) console.log(JSON.stringify({ phase: 'downloaded', completed: index + 1, total: images.length }));
     }
   }));
-  const destination = createClient(local.API_URL, local.SERVICE_ROLE_KEY, { auth: { persistSession: false, autoRefreshToken: false }, global: { fetch: (input, init) => {
+  const destination = createClient(local.API_URL, local.SECRET_KEY, { auth: { persistSession: false, autoRefreshToken: false }, global: { fetch: (input, init) => {
     guardDestination(new URL(String(input)).origin);
     return fetch(input, init);
   } } });

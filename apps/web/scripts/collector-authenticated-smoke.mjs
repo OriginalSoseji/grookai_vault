@@ -18,7 +18,7 @@ assert.ok(!(releaseLocal && hosted));
 const base = hosted?'https://grookai-collector-staging.vercel.app':releaseLocal?'http://127.0.0.1:3169':'http://127.0.0.1:3167';
 const out = hosted?`C:/grookai_vault_operator_artifacts/collector_polish/hosted_staging_1789182212844/browser-${Date.now()}`:releaseLocal?`C:/grookai_vault_operator_artifacts/collector_polish/production_release_20260912/browser-${Date.now()}`:`C:/grookai_vault_operator_artifacts/collector_polish/authenticated_20260910/${Date.now()}`;
 mkdirSync(out, { recursive: true });
-const admin = createClient(status.API_URL, status.SERVICE_ROLE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+const admin = createClient(status.API_URL, status.SECRET_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
 const results = [], errors = [], failures = [], accounts = [];
 const browser = await chromium.launch();
 try {

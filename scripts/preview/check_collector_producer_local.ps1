@@ -14,7 +14,7 @@ try {
   Get-ChildItem Env: | Where-Object { $_.Name -match 'SUPABASE|DATABASE_URL|POSTGRES_URL|SECRET|TOKEN|API_KEY|PASSWORD|PSA|UPSTASH|VERCEL|BRIDGE_IMPORT|RESEND|SENDGRID|SENTRY|POSTHOG|GROOKAI_COLLECTOR_RELEASE|DOTENV_CONFIG_PATH|NODE_OPTIONS' } | ForEach-Object { Remove-Item -LiteralPath "Env:$($_.Name)" }
   $env:SUPABASE_URL = $status.API_URL
   $env:SUPABASE_PUBLISHABLE_KEY = $status.ANON_KEY
-  $env:SUPABASE_SECRET_KEY = $status.SERVICE_ROLE_KEY
+  $env:SUPABASE_SECRET_KEY = $status.SECRET_KEY
   $env:SUPABASE_DB_URL = 'postgresql://postgres:postgres@127.0.0.1:56530/postgres'
   $env:DOTENV_CONFIG_PATH = "$out/no-env-file"
   if (Test-Path $env:DOTENV_CONFIG_PATH) { throw 'Unexpected environment override' }

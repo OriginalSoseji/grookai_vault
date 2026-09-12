@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 const gate = new URL('../../scripts/migration_preflight_strict.ps1', import.meta.url);
 const script = fs.readFileSync(gate, 'utf8');
 const verifier = fs.readFileSync(new URL('../../scripts/schema/verify_collector_cameo_replay_v1.mjs', import.meta.url), 'utf8');
@@ -9,7 +10,7 @@ const verifier = fs.readFileSync(new URL('../../scripts/schema/verify_collector_
 for (const args of [[], ['-ExpectedLocalOnlyIds', '20260912050000,20260912060000'],
   ['-ExpectedLocalOnlyIds', '20260912050000', '-ReconciledReplayAudit']]) {
   test(`collector gate rejects invalid scope before any external command: ${args.join(' ')}`, () => {
-    const result = spawnSync('pwsh', ['-NoProfile', '-File', gate.pathname.replace(/^\//, ''),
+    const result = spawnSync('pwsh', ['-NoProfile', '-File', fileURLToPath(gate),
       '-Phase', 'PrePush', '-CollectorCameoIsolatedReplay', ...args], {encoding:'utf8',windowsHide:true});
     assert.equal(result.status, 1);
     assert.match(result.stdout + result.stderr, /requires only 20260912050000/);

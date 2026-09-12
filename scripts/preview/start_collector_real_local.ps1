@@ -17,9 +17,10 @@ try {
   $env:SUPABASE_URL = $url.AbsoluteUri.TrimEnd('/')
   $env:SUPABASE_PUBLISHABLE_KEY = $status.ANON_KEY
   if (-not $env:SUPABASE_PUBLISHABLE_KEY) { throw 'Local publishable credential unavailable.' }
-  Remove-Item Env:SUPABASE_SECRET_KEY, Env:SUPABASE_SERVICE_ROLE_KEY, Env:VERCEL, Env:GROOKAI_VISUAL_TEST_MODE -ErrorAction SilentlyContinue
+  Get-ChildItem Env: | Where-Object { $_.Name -match '^SUPABASE_.*KEY$' -and $_.Name -ne 'SUPABASE_PUBLISHABLE_KEY' } | ForEach-Object { Remove-Item -LiteralPath "Env:$($_.Name)" }
+  Remove-Item Env:VERCEL, Env:GROOKAI_VISUAL_TEST_MODE -ErrorAction SilentlyContinue
   # Existing server-side readers require the local-only service credential.
-  $env:SUPABASE_SECRET_KEY = $status.SERVICE_ROLE_KEY
+  $env:SUPABASE_SECRET_KEY = $status.SECRET_KEY
   if ($Mode -eq 'fixture') { $env:GROOKAI_VISUAL_TEST_MODE = '1' }
   $env:NEXT_TELEMETRY_DISABLED = '1'
   Set-Location $web
