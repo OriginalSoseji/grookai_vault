@@ -3,6 +3,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { collectorPreview } from "@/lib/collectorPreview";
 
 const BASE_URL = "https://grookaivault.com";
 
@@ -85,6 +86,7 @@ export function urlSetResponse(entries: SitemapEntry[]) {
 }
 
 export async function getPublicCardSitemapPageCount() {
+  if (collectorPreview) return 0;
   const admin = createServerAdminClient();
   const { count, error } = await admin
     .from("card_prints")
@@ -99,6 +101,7 @@ export async function getPublicCardSitemapPageCount() {
 }
 
 export async function getCardSitemapEntries(pageIndex: number) {
+  if (collectorPreview) return [];
   const safePageIndex = Number.isInteger(pageIndex) && pageIndex >= 0 ? pageIndex : 0;
   const from = safePageIndex * CARD_SITEMAP_PAGE_SIZE;
   const to = from + CARD_SITEMAP_PAGE_SIZE - 1;
@@ -136,6 +139,7 @@ export async function getCardSitemapEntries(pageIndex: number) {
 }
 
 export async function getSetSitemapEntries() {
+  if (collectorPreview) return [];
   const origin = getSitemapOrigin();
   const admin = createServerAdminClient();
 
@@ -158,6 +162,7 @@ export async function getSetSitemapEntries() {
 }
 
 export async function getPublicProfileSitemapEntries() {
+  if (collectorPreview) return [];
   const origin = getSitemapOrigin();
   const admin = createServerAdminClient();
   const { data, error } = await admin
@@ -181,6 +186,7 @@ export async function getPublicProfileSitemapEntries() {
 }
 
 export function getStaticSitemapEntries() {
+  if (collectorPreview) return [];
   const origin = getSitemapOrigin();
   return [
     { loc: `${origin}/` },

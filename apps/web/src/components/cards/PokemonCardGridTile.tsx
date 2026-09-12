@@ -122,7 +122,7 @@ function renderImage({
         priority={imagePriority}
         sizes={imageSizes}
         imageClassName={`aspect-[5/7] w-full rounded-[22px] object-contain transition duration-200 group-hover:scale-[1.006] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+        fallbackClassName="gv-collector-card-image-empty flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (
@@ -203,14 +203,14 @@ export default function PokemonCardGridTile({
 
   return (
     <article
-      className={`gv-visual-card group overflow-hidden ${TILE_PADDING_BY_DENSITY[density]} ${className}`.trim()}
+      className={`gv-visual-card gv-collector-product group overflow-hidden ${TILE_PADDING_BY_DENSITY[density]} ${className}`.trim()}
     >
       {utility ? <div className="gv-visual-card-utility">{utility}</div> : null}
 
       <div className={CONTENT_STACK_BY_DENSITY[density]}>
         {imageHref ? <Link href={imageHref} prefetch={imagePrefetch}>{image}</Link> : image}
 
-        <div className={BODY_STACK_BY_DENSITY[density]}>
+        <div className={`gv-collector-product-body ${BODY_STACK_BY_DENSITY[density]}`}>
           <div className="space-y-1.5">
             <div className={`${TITLE_TEXT_BY_DENSITY[density]} gv-hi-card-identity`}>{title}</div>
             {subtitle ? <div className={`${SUBTITLE_TEXT_BY_DENSITY[density]} gv-hi-metadata`}>{subtitle}</div> : null}
@@ -218,7 +218,7 @@ export default function PokemonCardGridTile({
 
           {badges ? <div className="flex flex-wrap gap-1.5">{badges}</div> : null}
           {meta ? <div className={`${META_TEXT_BY_DENSITY[density]} gv-hi-metadata`}>{meta}</div> : null}
-          {summary ? <div className="space-y-2.5">{summary}</div> : null}
+          {summary ? <div className="gv-collector-product-summary space-y-2.5">{summary}</div> : null}
           {actions ? <div className="pt-1">{actions}</div> : null}
           {details ? <div className="pt-1">{details}</div> : null}
           {footer ? (

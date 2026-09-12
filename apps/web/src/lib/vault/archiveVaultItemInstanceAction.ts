@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import {
   assertVaultCardCountProof,
   assertVaultInstanceArchivedProof,
@@ -209,6 +210,10 @@ export async function archiveVaultItemInstanceAction(
       expectedCount: resolvedRemainingCount,
     });
   }
+
+  // The archived copy can disappear during revalidation before a client effect runs.
+  // Only this fixed internal destination is accepted from the submitted form.
+  if (formData.get("return_to_vault") === "true") redirect("/vault");
 
   const message =
     resolvedRemainingCount > 0

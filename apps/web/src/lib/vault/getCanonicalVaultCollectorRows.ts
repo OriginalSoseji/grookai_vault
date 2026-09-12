@@ -655,7 +655,14 @@ function buildVaultExactPricingSummary({
     }
 
     const marketPrice = marketPriceByPrintingId.get(copy.card_printing_id);
-    if (!marketPrice) {
+    if (
+      !marketPrice ||
+      marketPrice.card_print_id !== aggregate.cardPrintId ||
+      marketPrice.card_printing_id !== copy.card_printing_id ||
+      marketPrice.pricing_scope !== "card_printing" ||
+      !Number.isFinite(marketPrice.market_close) ||
+      marketPrice.market_close <= 0
+    ) {
       return copy;
     }
 

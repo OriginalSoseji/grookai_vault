@@ -2,6 +2,8 @@
 
 import { Analytics } from "@vercel/analytics/react";
 import { isBinderSecretPath } from "@/lib/binders/safePath";
+import { collectorPreview } from "@/lib/collectorPreview";
+import { collectorStaging } from "@/lib/collectorStaging.mjs";
 
 export function isSecretBinderAnalyticsUrl(value: string) {
   try {
@@ -56,6 +58,7 @@ export function sanitizeBinderAnalyticsUrl(value: string) {
  * mechanism and protects direct loads, SPA navigation, and back/forward.
  */
 export function SafeAnalytics() {
+  if (collectorPreview || collectorStaging) return null;
   return (
     <Analytics
       beforeSend={(event) => {

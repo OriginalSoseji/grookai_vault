@@ -15,8 +15,9 @@ test("web shell uses Pulse as the visible network surface label", () => {
   const layoutFallback = readSource("apps/web/src/app/layout.tsx");
   const shellManifest = readSource("apps/web/src/lib/mobileParity/shellManifest.ts");
 
-  assert.match(siteHeader, /<span>Pulse<\/span>/);
-  assert.match(siteHeader, /\? "Pulse"/);
+  // The compact header delegates primary destinations to the shared manifests.
+  assert.match(siteHeader, /<DesktopApplicationShell/);
+  assert.doesNotMatch(siteHeader, /mobileSectionLabel|NetworkLabel/);
   assert.match(desktopManifest, /key: "pulse", label: "Pulse", href: "\/network"/);
   assert.match(desktopShell, /DESKTOP_PRIMARY_NAV\.map/);
   assert.match(

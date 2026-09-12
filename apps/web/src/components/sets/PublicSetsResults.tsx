@@ -286,20 +286,16 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
                 {activeLanguageScopeLabel}
               </span>
             ) : null}
-            <span className="text-xs text-slate-400">
-              {normalizedQuery ? "Filtered results" : "Collector-ready browse"}
-            </span>
           </>
         )}
       />
 
-      <div className="gv-premium-surface space-y-4 px-4 py-4 sm:px-5">
+      <details className="gv-collector-disclosure">
+        <summary>{browseConfig.groupTitle}</summary>
+        <div className="space-y-4 pt-4">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="gv-eyebrow">{browseConfig.groupTitle}</p>
-            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-              {browseConfig.groupDescription}
-            </p>
           </div>
           <Link
             href={buildFacetHref({ group: null, lane: activeLane })}
@@ -360,7 +356,8 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
             );
           })}
         </div>
-      </div>
+        </div>
+      </details>
 
       {filteredAndSortedSets.length > 0 ? (
         <div className="space-y-5">

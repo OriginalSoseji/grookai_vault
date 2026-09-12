@@ -37,7 +37,8 @@ test("Search result hierarchy keeps collector facts visible and diagnostics disc
   assert.match(details, /<ExploreResultEvidence/);
   assert.match(list, /gv-search-result-row-commercial/);
   assert.match(search, /<ProductState/);
-  assert.match(search, />\s*Search cards\s*</);
+  assert.match(search, /<h1[^>]*>\s*\{normalizedQuery \|\| discoveryTitle\}/);
+  assert.match(search, /<PublicSearchForm/);
   assert.doesNotMatch(search, /Search collector reality/);
 });
 
@@ -48,7 +49,8 @@ test("Card Detail prioritizes collection action before optional context", () => 
   assert.match(cardPage, /id="vault-actions" className="order-1/);
   assert.match(cardPage, /gv-variant-story order-2/);
   assert.match(cardPage, /gv-result-evidence order-3/);
-  assert.match(cardPage, /text-\[2\.5rem\]/);
+  assert.match(cardPage, /<h1 className="gv-hi-card-identity"/);
+  assert.match(read("apps/web/src/app/collector-detail.css"), /\.gv-detail-heading h1 \{ font-size: 35px;[\s\S]*?overflow-wrap: anywhere/);
   assert.doesNotMatch(cardPage, /lg:text-\[5\.35rem\]/);
   assert.match(styles, /\.gv-card-detail-hero \{/);
   assert.match(styles, /\.gv-card-lower-section \{[\s\S]*?border-top:/);
@@ -202,13 +204,11 @@ test("Account recovery hides RPC detail and preserves existing write components"
 test("collector card-art surfaces use the canonical five-by-seven frame", () => {
   const files = [
     "apps/web/src/components/cards/PokemonCardGridTile.tsx",
-    "apps/web/src/components/explore/ExploreDiscoverySections.tsx",
     "apps/web/src/components/compare/CompareWorkspace.tsx",
     "apps/web/src/components/network/NetworkStreamCard.tsx",
     "apps/web/src/components/public/FeaturedWallSection.tsx",
     "apps/web/src/components/vault/VaultMobileViews.tsx",
     "apps/web/src/app/card/[gv_id]/CardRouteLoading.tsx",
-    "apps/web/src/app/card/[gv_id]/page.tsx",
     "apps/web/src/app/dex/[speciesSlug]/page.tsx",
   ];
 
@@ -217,6 +217,12 @@ test("collector card-art surfaces use the canonical five-by-seven frame", () => 
     assert.match(source, /aspect-\[5\/7\]/, `${file} must use the canonical frame`);
     assert.doesNotMatch(source, /aspect-\[3\/4\]/, `${file} retains legacy card geometry`);
   }
+  const discovery = read("apps/web/src/components/explore/ExploreDiscoverySections.tsx");
+  assert.match(discovery, /<PokemonCardGridTile/);
+  assert.match(discovery, /gv-collector-discovery-feature-image[^`]*object-contain/);
+  // The approved unframed detail image retains intrinsic card geometry.
+  assert.match(read("apps/web/src/app/card/[gv_id]/page.tsx"), /gv-detail-main-image/);
+  assert.match(read("apps/web/src/app/collector-detail.css"), /\.gv-detail-main-image \{[^}]*height: auto;[^}]*object-fit: contain;/);
 });
 
 test("Flutter collector card-art surfaces use the canonical ratio", () => {

@@ -1,0 +1,28 @@
+import {exec,out,root} from './collector_hosted_ops.mjs';
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const repo='OriginalSoseji/grookai-collector-recovery';
+const remote=JSON.parse(exec('gh',['repo','view',repo,'--json','isPrivate,defaultBranchRef']));assert.equal(remote.isPrivate,true,'Refuse public backup destination');
+const snapshot=JSON.parse(exec('node',['scripts/preview/preserve_collector_authenticated.mjs']));
+const readme=readFileSync(`${root}/docs/ops/COLLECTOR_HOSTED_STAGING_CHECKPOINT_20260911.md`,'utf8');
+if(!remote.defaultBranchRef?.name){exec('gh',['api',`repos/${repo}/contents/README.md`,'--method','PUT','--input','-'],{input:JSON.stringify({message:'Document private recovery boundary',content:Buffer.from(readme).toString('base64')})});}
+const stamp=Date.now();const tag=`collector-preserved-${stamp}`;
+const dir=`${out}/offsite-${stamp}`;mkdirSync(dir,{recursive:true});
+const manifest=JSON.parse(readFileSync(`${out}/hosted-package-manifest.json`));
+exec('tar.exe',['-a','-cf',`${dir}/collector-changes.zip`,'-C',snapshot.out,'.']);
+exec('tar.exe',['-a','-cf',`${dir}/collector-web-source.zip`,'-C',manifest.dest,'apps','scripts']);
+exec('git',['archive','--format=zip',`--output=${dir}/live-web-source.zip`,'31372a7c69c221adbfa6ac8c9505d929fe3ec08c','apps/web','scripts/ci/run_next_build_with_system_ca.mjs','scripts/generate_public_set_card_counts.mjs']);
+for(const name of ['preservation.json','hosted-package-manifest.json'])writeFileSync(`${dir}/${name}`,readFileSync(`${out}/${name}`));
+writeFileSync(`${dir}/RECOVERY.md`,readme);
+const files=['collector-changes.zip','collector-web-source.zip','live-web-source.zip','preservation.json','hosted-package-manifest.json','RECOVERY.md'];
+const hash=file=>createHash('sha256').update(readFileSync(file)).digest('hex');
+const receipt={repo,private:true,tag,createdAt:new Date().toISOString(),candidateSnapshot:snapshot.out,files:files.map(name=>({name,sha256:hash(`${dir}/${name}`)})),secretsIncluded:false,productionMutations:false};
+writeFileSync(`${dir}/SHA256.json`,JSON.stringify(receipt,null,2));files.push('SHA256.json');
+exec('gh',['release','create',tag,'--repo',repo,'--target','main','--title','Live and collector website recovery - September 11, 2026','--notes','Private recovery only. Does not publish the application. Exact source hashes and restoration instructions attached.',...files.map(f=>`${dir}/${f}`)]);
+const download=`${dir}/readback`;mkdirSync(download);
+exec('gh',['release','download',tag,'--repo',repo,'--dir',download]);
+for(const file of files)assert.equal(hash(`${download}/${file}`),hash(`${dir}/${file}`),`Remote recovery mismatch: ${file}`);
+assert.equal(JSON.parse(exec('gh',['repo','view',repo,'--json','isPrivate'])).isPrivate,true);
+receipt.verifiedRemoteReadback=true;receipt.url=`https://github.com/${repo}/releases/tag/${tag}`;
+writeFileSync(`${out}/offsite-recovery.json`,JSON.stringify(receipt,null,2));console.log(JSON.stringify({url:receipt.url,verifiedRemoteReadback:true,files:files.length,snapshot:snapshot.out}));

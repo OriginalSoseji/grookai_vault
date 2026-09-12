@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
+import { parseCardAddOptions } from "@/lib/vault/cardAddOptions";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
@@ -18,6 +19,7 @@ type AddCardToVaultParams = {
   setName?: string;
   imageUrl?: string;
   cardPrintingId?: string;
+  conditionLabel?: string;
 };
 
 type VaultInstanceCreateRow = {
@@ -93,7 +95,9 @@ export async function addCardToVault({
   setName,
   imageUrl,
   cardPrintingId,
+  conditionLabel = "NM",
 }: AddCardToVaultParams): Promise<AddCardToVaultResult> {
+  const condition = parseCardAddOptions(conditionLabel, 1).conditionLabel;
   const normalizedUserId = userId.trim();
   await assertAuthenticatedVaultUser(client, normalizedUserId);
 
@@ -128,7 +132,7 @@ export async function addCardToVault({
         createData: {
           gvId,
           quantity: 1,
-          conditionLabel: "NM",
+          conditionLabel: condition,
           name: normalizedName,
           setName: normalizedSetName,
           photoUrl: normalizedImageUrl,
@@ -138,7 +142,7 @@ export async function addCardToVault({
         p_user_id: normalizedUserId,
         p_card_print_id: normalizedCardPrintId,
         p_legacy_vault_item_id: anchor.id,
-        p_condition_label: "NM",
+        p_condition_label: condition,
         p_name: normalizedName,
         p_set_name: normalizedSetName || null,
         p_photo_url: normalizedImageUrl,

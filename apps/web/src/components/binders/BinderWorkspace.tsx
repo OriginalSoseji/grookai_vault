@@ -656,7 +656,7 @@ export function BinderWorkspace({
       ) : null}
       <PageSection surface="card" spacing="loose">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div className="h-56 w-full shrink-0 overflow-hidden rounded-2xl bg-slate-50 sm:w-40">
+          {binder.coverImageUrl ? <div className="h-56 w-full shrink-0 overflow-hidden rounded-2xl bg-slate-50 sm:w-40">
             <PublicCardImage
               src={binder.coverImageUrl ?? undefined}
               alt={`${binder.title} cover artwork`}
@@ -665,7 +665,7 @@ export function BinderWorkspace({
               priority
               sizes="(max-width: 640px) 90vw, 160px"
             />
-          </div>
+          </div> : null}
           <div className="min-w-0">
             <p className="gv-eyebrow capitalize">{binder.role} · {binder.targetLabel}</p>
             <h1 className="gv-display-title mt-2 break-words">{binder.title}</h1>

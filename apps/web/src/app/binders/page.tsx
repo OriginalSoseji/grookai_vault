@@ -69,7 +69,6 @@ export default async function BindersPage(
         <PageIntro
           eyebrow="Binders"
           title="Binders"
-          description="Collection goals powered by cards in your Vault."
         />
         <ProductState
           eyebrow="Binder library unavailable"
@@ -110,7 +109,6 @@ export default async function BindersPage(
       <PageIntro
         eyebrow="Binders"
         title="Binders"
-        description="Collection goals powered by cards in your Vault."
         actions={
           <>
             {flags.publicBinders && flags.community ? (

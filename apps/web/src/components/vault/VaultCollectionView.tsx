@@ -631,20 +631,14 @@ export function VaultCollectionView({
 
   return (
     <div className="space-y-10 py-7 md:space-y-12 md:py-9">
-      <section className="gv-collector-panel px-5 py-7 sm:px-7 md:px-9 md:py-9">
+      <section className="space-y-5">
         <PageIntro
           title="Your Vault"
-          eyebrow="Vault"
-          description="Your collection, organized around ownership, value, set progress, and collector intent."
           size="compact"
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
-              <Link
-                href="/network"
-                className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white shadow-[0_16px_30px_-22px_rgba(15,23,42,0.6)] transition hover:bg-slate-800 md:px-5"
-              >
-                Browse Network
-              </Link>
+              <Link href="/saved" className="gv-secondary-button">Saved cards</Link>
+              {bindersEnabled ? <Link href="/binders" className="gv-secondary-button">Binders</Link> : null}
               <Link
                 href="/vault/import"
                 className="inline-flex rounded-full border border-slate-200 bg-white/95 px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-300 hover:bg-white md:px-5"
@@ -654,49 +648,7 @@ export function VaultCollectionView({
             </div>
           }
         />
-        {bindersEnabled ? (
-          <Link
-            href="/binders"
-            className="gv-action-panel group mt-6 flex min-h-[78px] items-center gap-4 px-4 py-4 text-left transition hover:border-sky-200 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:hover:border-sky-400/30 dark:hover:bg-white/[0.06] sm:px-5"
-          >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500/[0.10] text-sky-700 ring-1 ring-sky-200/70 transition group-hover:bg-sky-500/[0.15] dark:bg-sky-400/[0.12] dark:text-sky-300 dark:ring-sky-300/20">
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="h-5 w-5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5.25 4.75h10.5A2.25 2.25 0 0 1 18 7v12.25H7.5A2.5 2.5 0 0 1 5 16.75V5a.25.25 0 0 1 .25-.25Z" />
-                <path d="M7.5 19.25A2.5 2.5 0 0 1 10 16.75h8" />
-                <path d="M9 8.5h5" />
-              </svg>
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-base font-semibold text-slate-950 dark:text-slate-100">
-                Binders
-              </span>
-              <span className="mt-0.5 block text-sm text-slate-500 dark:text-slate-400">
-                What you’re building
-              </span>
-            </span>
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-5 w-5 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-slate-600 dark:group-hover:text-slate-200"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m9 5 7 7-7 7" />
-            </svg>
-          </Link>
-        ) : null}
+        {/* Binder navigation lives with the collection actions, not in a second promotional panel. */}
         {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
           <div className="gv-command-surface mt-6 px-5 py-5 md:px-6 md:py-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

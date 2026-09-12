@@ -13,7 +13,6 @@ test("card summary surfaces use the shared child image fallback resolver", () =>
   assert.match(helper, /representative_missing_variant_visual/);
 
   for (const file of [
-    "apps/web/src/app/page.tsx",
     "apps/web/src/app/vault/page.tsx",
     "apps/web/src/app/wall/page.tsx",
     "apps/web/src/lib/getPublicCardByGvId.ts",
@@ -32,6 +31,9 @@ test("card summary surfaces use the shared child image fallback resolver", () =>
       `${file} must not regress to parent-only image resolution`,
     );
   }
+  // Home redirects to Explore; image evidence is resolved by its bounded loader.
+  assert.match(source("apps/web/src/app/page.tsx"), /redirect\(query\.size \? `\/explore\?/);
+  assert.match(source("apps/web/src/app/explore/page.tsx"), /getPublicCardsByGvIds\(FEATURED_151_IDS\.slice/);
 });
 
 test("web image components pass fallback display URLs through product surfaces", () => {

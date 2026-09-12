@@ -25,10 +25,11 @@ test("root chrome does not perform server auth reads during public render", () =
 
 test("public routes cache only when they do not depend on request-scoped state", () => {
   const cacheableRouteSources = [
-    readSource("app", "page.tsx"),
     readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx"),
   ].join("\n");
   const requestScopedRouteSources = [
+    readSource("app", "page.tsx"),
+    readSource("app", "explore", "page.tsx"),
     readSource("app", "network", "page.tsx"),
     readSource("app", "network", "discover", "page.tsx"),
     readSource("app", "u", "[slug]", "page.tsx"),
@@ -39,7 +40,6 @@ test("public routes cache only when they do not depend on request-scoped state",
 
   assert.doesNotMatch(cacheableRouteSources, /force-dynamic|revalidate\s*=\s*0/);
   assert.match(cacheableRouteSources, /export const revalidate = 60/);
-  assert.match(cacheableRouteSources, /export const revalidate = 300/);
   for (const routeSource of requestScopedRouteSources) {
     assert.match(routeSource, /export const dynamic = "force-dynamic"/);
   }
@@ -98,7 +98,10 @@ test("canonical catalog image routes use safe cache policies and do not redirect
   assert.match(canonImageRoute, /download\(path\)/);
   assert.match(canonImageRoute, /max-age=31536000, immutable/);
   assert.match(canonCardImageRoute, /resolveCanonCardImageStorageLocation/);
-  assert.match(canonCardImageRoute, /catalog_card_print_visible_to_request_v1/);
+  assert.match(canonCardImageRoute, /catalogImageVisibleToRequest/);
+  assert.match(canonCardImageRoute, /if \(access === "hidden"\) return false/);
+  assert.match(canonCardImageRoute, /return requestIsAuthenticated\(request\)/);
+  assert.match(canonCardImageRoute, /requestClient.auth.getUser\(\)/);
   assert.match(canonCardImageRoute, /\.from\(imageLocation\.bucket\)/);
   assert.match(canonCardImageRoute, /\.download\(imageLocation\.path\)/);
   assert.match(canonCardImageRoute, /CDN-Cache-Control/);
@@ -174,7 +177,7 @@ test("explore search keeps results compact and cards above supporting tools", ()
   assert.doesNotMatch(exploreClient, /const presetPillStrip = \(/);
   assert.match(exploreClient, /Browse sets/);
   assert.match(exploreClient, /resolverSummary && displayRows\.length === 0/);
-  assert.match(exploreClient, /\{hasExplicitSmartFilters \? \(/);
+  assert.match(exploreClient, /\{hasExplicitSmartFilters \? "Active" : "\+"\}/);
 
   const thumbGridStart = exploreClient.indexOf('viewMode === "thumb-lg"');
   const listGridStart = exploreClient.indexOf('viewMode === "list"');
@@ -247,17 +250,16 @@ test("card detail streams lower panels after exact card information", () => {
   assert.match(cardPage, /getPublicCameosByGvId/);
   assert.match(cardPage, /getPublicRelatedPrintsByGvId/);
   assert.match(cardPage, /<Suspense fallback=\{<CardLowerSectionFallback title="Artwork Cameos" \/>\}>/);
-  assert.match(cardPage, /<Suspense fallback=\{<CardLowerSectionFallback title="Other Versions" \/>\}>/);
+  assert.match(cardPage, /<Suspense fallback=\{<CardLowerSectionFallback title="More cards like this" \/>\}>/);
   assert.match(cardPage, /<Suspense fallback=\{null\}>\s*<CardNetworkOffersSection/);
   assert.match(cardPage, /<Suspense fallback=\{null\}>\s*<NearbyCardsSection/);
   assert.match(cardPage, /async function CardNetworkOffersSection/);
   assert.match(cardPage, /async function NearbyCardsSection/);
-  assert.match(cardPage, /\{ label: "Language", value: getCardLanguageLabel\(resolvedCard\.gv_id\) \}/);
+  assert.match(cardPage, /\{ label: "Language", value: getCardLanguageLabel\(resolvedCard\) \}/);
   assert.match(cardPage, /<h2>Card information<\/h2>/);
-  assert.match(cardPage, /<h2>Other versions of this card<\/h2>/);
   assert.ok(
-    cardPage.indexOf("<h2>Card information</h2>") < cardPage.indexOf("<StreamedRelatedPrintsSection"),
-    "card detail information should render before streamed other versions",
+    cardPage.indexOf("<SetCollectionSection") < cardPage.indexOf("<StreamedRelatedPrintsSection"),
+    "approved same-set section precedes similar cards while both stream below the primary detail",
   );
   assert.match(pricingRail, /<AuthenticatedPricingState/);
   assert.match(pricingRail, /isLoading=\{isLoadingPricing && !selectedPricing\}/);

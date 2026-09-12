@@ -1,8 +1,6 @@
 import Link from "next/link";
-import PageIntro from "@/components/layout/PageIntro";
-import PageSection from "@/components/layout/PageSection";
-import NetworkSectionNav from "@/components/network/NetworkSectionNav";
-import SectionHeader from "@/components/layout/SectionHeader";
+import { MessageCircle } from "lucide-react";
+import NetworkPageLayout from "@/components/network/NetworkPageLayout";
 import NetworkStreamCard from "@/components/network/NetworkStreamCard";
 import ContactEligibilityProvider, {
   type ContactEligibilityTarget,
@@ -10,6 +8,7 @@ import ContactEligibilityProvider, {
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { getOptionalServerUser } from "@/lib/auth/requireServerUser";
 import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
+import { collectorPreview } from "@/lib/collectorPreview";
 import {
   DISCOVERABLE_VAULT_INTENT_VALUES,
   getVaultIntentLabel,
@@ -34,6 +33,11 @@ export default async function NetworkPage(
     searchParams?: Promise<{ intent?: string }>;
   }
 ) {
+  if (collectorPreview) return <NetworkPageLayout active="cards" actions={null}>
+    <h2 className="text-lg font-medium">Latest cards</h2>
+    <p>Collector accounts are not connected to this read-only preview.</p>
+    <Link href="/network/discover" className="underline">Discover collectors</Link>
+  </NetworkPageLayout>;
   const searchParams = await props.searchParams;
   const { user } = await getOptionalServerUser();
   const viewerUserId = user?.id ?? null;
@@ -56,61 +60,51 @@ export default async function NetworkPage(
   });
 
   return (
-    <div className="space-y-8 py-8">
-      <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
-        <PageIntro
-          eyebrow="Collector Network"
-          title="Cards collectors want to share"
-          description="Message collectors about cards marked Trade, Sell, or Showcase."
-          actions={
-            <Link
-              href={user ? "/network/inbox" : "/login?next=%2Fnetwork"}
-              className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-            >
-              {user ? "Open inbox" : "Sign in to interact"}
-            </Link>
-          }
-        />
-      </PageSection>
-
-      <PageSection surface="subtle" spacing="compact" className="p-2.5">
-        <NetworkSectionNav active="cards" />
-      </PageSection>
-
-      <PageSection surface="subtle" spacing="compact" className="p-2.5">
-        <div className="flex flex-wrap gap-2">
+    <NetworkPageLayout
+      active="cards"
+      actions={
+        <Link
+          href={user ? "/network/inbox" : "/login?next=%2Fnetwork"}
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[color:var(--gv-border-soft)] px-4 py-2 text-sm font-medium text-[color:var(--gv-text-primary)] transition hover:bg-[color:var(--gv-surface-soft)]"
+        >
+          <MessageCircle size={17} aria-hidden="true" className="shrink-0" />
+          {user ? "Open inbox" : "Sign in to interact"}
+        </Link>
+      }
+    >
+      <nav aria-label="Card intent" className="flex flex-wrap gap-1">
+        <Link
+          href="/network"
+          aria-current={intent === null ? "page" : undefined}
+          className={`inline-flex min-h-11 items-center rounded-md px-4 py-2 text-sm font-medium transition ${
+            intent === null
+              ? "bg-[color:var(--gv-surface-container)] text-[color:var(--gv-text-primary)]"
+              : "text-[color:var(--gv-text-secondary)] hover:bg-[color:var(--gv-surface-soft)] hover:text-[color:var(--gv-text-primary)]"
+          }`}
+        >
+          All
+        </Link>
+        {DISCOVERABLE_VAULT_INTENT_VALUES.map((value) => (
           <Link
-            href="/network"
-            className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-              intent === null
-                ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
-                : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
+            key={value}
+            href={`/network?intent=${encodeURIComponent(value)}`}
+            aria-current={intent === value ? "page" : undefined}
+            className={`inline-flex min-h-11 items-center rounded-md px-4 py-2 text-sm font-medium transition ${
+              intent === value
+                ? "bg-[color:var(--gv-surface-container)] text-[color:var(--gv-text-primary)]"
+                : "text-[color:var(--gv-text-secondary)] hover:bg-[color:var(--gv-surface-soft)] hover:text-[color:var(--gv-text-primary)]"
             }`}
           >
-            All
+            {getVaultIntentLabel(value)}
           </Link>
-          {DISCOVERABLE_VAULT_INTENT_VALUES.map((value) => (
-            <Link
-              key={value}
-              href={`/network?intent=${encodeURIComponent(value)}`}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                intent === value
-                  ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
-                  : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
-              }`}
-            >
-              {getVaultIntentLabel(value)}
-            </Link>
-          ))}
-        </div>
-      </PageSection>
+        ))}
+      </nav>
 
-      <PageSection spacing="compact">
+      <section aria-labelledby="pulse-cards-heading" className="min-w-0 space-y-5">
         {/* LOCK: Intent, discoverability, and contact language must stay calm and product-facing. */}
-        <SectionHeader
-          title={intent ? `${getVaultIntentLabel(intent)} cards` : "Latest cards"}
-          description="Newest cards visible from collectors."
-        />
+        <h2 id="pulse-cards-heading" className="text-lg font-medium text-[color:var(--gv-text-primary)]">
+          {intent ? `${getVaultIntentLabel(intent)} cards` : "Latest cards"}
+        </h2>
 
         {rows.length === 0 ? (
           <PublicCollectionEmptyState
@@ -119,7 +113,7 @@ export default async function NetworkPage(
           />
         ) : (
           <ContactEligibilityProvider targets={contactEligibilityTargets}>
-            <div className="space-y-4">
+            <div className="min-w-0 space-y-5 [overflow-wrap:anywhere]">
               {rows.map((row) => (
                 <NetworkStreamCard
                   key={row.vaultItemId}
@@ -132,7 +126,7 @@ export default async function NetworkPage(
             </div>
           </ContactEligibilityProvider>
         )}
-      </PageSection>
-    </div>
+      </section>
+    </NetworkPageLayout>
   );
 }

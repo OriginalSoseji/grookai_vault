@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Activity, PanelsTopLeft, ScanLine, Archive, Search, Library, Grid2X2, ArrowLeftRight, BookOpen, MessageCircle } from "lucide-react";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   DESKTOP_PRIMARY_NAV,
@@ -7,6 +8,8 @@ import {
   getDesktopRouteState,
   type DesktopWallAvailability,
 } from "@/lib/desktopShellManifest";
+
+const navIcons = { pulse: Activity, wall: PanelsTopLeft, scan: ScanLine, vault: Archive, search: Search, sets: Library, dex: Grid2X2, compare: ArrowLeftRight, binders: BookOpen, messages: MessageCircle };
 
 type DesktopApplicationShellProps = {
   pathname: string;
@@ -65,10 +68,10 @@ export function DesktopApplicationShell({
             height={36}
             className="gv-brand-mark shrink-0"
           />
-          <span className="truncate">Grookai Vault</span>
+          <span className="gv-approved-brand-name">Grookai<span>VAULT</span></span>
         </Link>
 
-        <div className="flex min-w-0 items-center justify-end gap-2">
+        <div className="gv-collector-header-actions flex min-w-0 items-center justify-end gap-2">
           {wallAvailability === "unavailable" ? (
             <span
               data-wall-availability="unavailable"
@@ -100,6 +103,7 @@ export function DesktopApplicationShell({
           {DESKTOP_PRIMARY_NAV.map((item) => {
             const href = item.key === "search" ? searchHref : item.href;
             const active = routeState.activePrimary === item.key;
+            const Icon = navIcons[item.key];
             return (
               <Link
                 key={item.key}
@@ -107,6 +111,7 @@ export function DesktopApplicationShell({
                 aria-current={active ? "page" : undefined}
                 className={`gv-desktop-primary-link ${active ? "gv-desktop-primary-link-active" : ""}`}
               >
+                <Icon size={16} aria-hidden="true" />
                 <span>{item.label}</span>
                 {item.key === "pulse" ? <UnreadBadge count={networkUnreadCount} /> : null}
               </Link>
@@ -118,6 +123,7 @@ export function DesktopApplicationShell({
           {secondaryItems.map((item) => {
             const href = item.key === "compare" ? compareHref : item.href;
             const active = routeState.activeSecondary === item.key;
+            const Icon = navIcons[item.key];
             const label = item.key === "compare" && compareCount > 0
               ? `Compare (${compareCount})`
               : item.label;
@@ -128,6 +134,7 @@ export function DesktopApplicationShell({
                 aria-current={active ? "page" : undefined}
                 className={`gv-desktop-secondary-link ${active ? "gv-desktop-secondary-link-active" : ""}`}
               >
+                <Icon size={15} aria-hidden="true" />
                 <span>{label}</span>
                 {item.key === "messages" ? <UnreadBadge count={networkUnreadCount} /> : null}
               </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import GoogleSignInButton from "@/components/GoogleSignInButton";
+import { collectorStaging } from "@/lib/collectorStaging.mjs";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
@@ -111,7 +112,7 @@ function LoginPageContent() {
       />
 
       <PageSection surface="card" spacing="loose" className="mx-auto w-full max-w-md">
-        <div className="space-y-3">
+        {!collectorStaging ? <div className="space-y-3">
           <GoogleSignInButton
             label="Sign in with Google"
             className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
@@ -119,7 +120,7 @@ function LoginPageContent() {
             onError={setError}
           />
           <p className="text-center text-xs uppercase tracking-[0.18em] text-slate-400">or use email</p>
-        </div>
+        </div> : null}
         <form className="space-y-3" onSubmit={handleSubmit}>
           <label className="block text-sm font-medium text-slate-700">
             <span>Email</span>

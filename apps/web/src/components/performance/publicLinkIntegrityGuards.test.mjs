@@ -78,12 +78,14 @@ test("GVVI sharing distinguishes the public link from the exact-copy ID", () => 
 test("root metadata supplies a non-empty title and canonical metadata base", () => {
   const rootLayout = readSource("app", "layout.tsx");
   const homePage = readSource("app", "page.tsx");
+  const explorePage = readSource("app", "explore", "page.tsx");
   const dexPage = readSource("app", "dex", "page.tsx");
 
   assert.match(rootLayout, /metadataBase: new URL\(GROOKAI_VAULT_ORIGIN\)/);
   assert.match(rootLayout, /title: "Grookai Vault"/);
-  assert.match(homePage, /alternates: \{ canonical: "\/" \}/);
-  assert.match(homePage, /openGraph: \{ url: "\/" \}/);
+  assert.match(homePage, /redirect\(query.size \? `\/explore\?/);
+  assert.match(explorePage, /alternates: \{ canonical: "\/explore" \}/);
+  assert.match(explorePage, /openGraph: \{ url: "\/explore" \}/);
   assert.match(dexPage, /title: "Grookai Dex \| Grookai Vault"/);
   assert.match(dexPage, /alternates: \{ canonical: "\/dex" \}/);
   assert.match(dexPage, /url: "\/dex"/);

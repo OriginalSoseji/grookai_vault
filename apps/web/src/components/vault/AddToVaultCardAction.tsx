@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { useFormState } from "react-dom";
+import { useEffect, useId, useRef, useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
+import { CARD_CONDITIONS } from "@/lib/vault/cardAddOptions";
 import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { findPrintingByReference } from "@/lib/cards/printingSelection";
+import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import type { CardPrinting } from "@/types/cards";
+import { useClientReady } from "@/components/layout/useClientReady";
 
 export type AddToVaultActionResult =
   | {
@@ -17,12 +20,14 @@ export type AddToVaultActionResult =
       status: "added" | "incremented" | "exists";
       gvvi_id?: string | null;
       submissionKey: number;
+      addedCount?: number;
     }
   | {
       ok: false;
       status: "login-required" | "not-found" | "error";
       message?: string;
       submissionKey: number;
+      addedCount?: number;
     };
 
 export type AddToVaultCardServerAction = (
@@ -40,6 +45,7 @@ type AddToVaultCardActionProps = {
   initialPrintingId?: string | null;
   selectedPrintingId?: string | null;
   onSelectedPrintingChange?: (printing: CardPrinting) => void;
+  compactPresentation?: boolean;
 };
 
 function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
@@ -68,7 +74,7 @@ function getStatusMessage(result: AddToVaultActionResult | null) {
       return {
         tone: "success" as const,
         title: "Added to Vault",
-        body: "This card is now in your vault.",
+        body: result.addedCount && result.addedCount > 1 ? `${result.addedCount} copies are now in your vault.` : "This card is now in your vault.",
       };
     case "incremented":
       return {
@@ -138,6 +144,16 @@ function buildImageSuggestionPath(args: {
   return `/submit?${params.toString()}`;
 }
 
+function CopyOptions() {
+  const { pending } = useFormStatus();
+  return <fieldset disabled={pending} className="gv-detail-copy-options">
+    <label>Condition<select name="condition" defaultValue="NM">
+      {CARD_CONDITIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+    </select></label>
+    <label>Quantity<input aria-label="Quantity" name="quantity" type="number" min="1" max="20" step="1" defaultValue="1" required /></label>
+  </fieldset>;
+}
+
 export default function AddToVaultCardAction({
   action,
   isAuthenticated,
@@ -148,7 +164,10 @@ export default function AddToVaultCardAction({
   initialPrintingId,
   selectedPrintingId,
   onSelectedPrintingChange,
+  compactPresentation = false,
 }: AddToVaultCardActionProps) {
+  const finishSelectId = useId();
+  const ready = useClientReady();
   const router = useRouter();
   const viewer = useClientViewer(null);
   const [state, formAction] = useFormState(action, null);
@@ -230,9 +249,7 @@ export default function AddToVaultCardAction({
     return () => window.clearTimeout(timeoutId);
   }, [router, state]);
 
-  return (
-    <div className="space-y-4">
-      {printings.length > 0 ? (
+  const printingControls = printings.length > 0 ? (
         <PrintingSelector
           printings={printings}
           selectedPrintingId={effectiveSelectedPrinting?.id}
@@ -253,7 +270,30 @@ export default function AddToVaultCardAction({
               : []
           }
         />
-      ) : null}
+      ) : null;
+  const selectedImage = effectiveSelectedPrinting ? resolveCardImagePresentation(effectiveSelectedPrinting) : null;
+  const selectedImageNote = effectiveSelectedPrinting?.is_display_fallback
+    ? "Base image only; finish-specific artwork is not verified."
+    : selectedImage?.detailNote ?? selectedImage?.detailBadgeLabel;
+
+  return (
+    <div className="space-y-4">
+      {compactPresentation && printings.length > 0 ? (
+        <div className="gv-detail-finish-field">
+          <label htmlFor={finishSelectId}>Variant / Finish</label>
+          <select id={finishSelectId} value={effectiveSelectedPrinting?.id ?? ""}
+            disabled={!ready}
+            onChange={event => {
+              const printing = printings.find(item => item.id === event.target.value);
+              if (printing) handleSelectedPrintingChange(printing);
+            }}>
+            {printings.map(printing => (
+              <option key={printing.id} value={printing.id}>{printing.finish_name || printing.finish_key || "Base printing"}</option>
+            ))}
+          </select>
+        </div>
+      ) : printingControls}
+      {compactPresentation && selectedImageNote ? <p className="gv-detail-printing-notice">{selectedImageNote}</p> : null}
 
       <div className="flex flex-wrap items-center gap-3">
         {effectiveIsAuthenticated ? (
@@ -268,8 +308,10 @@ export default function AddToVaultCardAction({
             }}
           >
             {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}
+            {compactPresentation ? <CopyOptions /> : null}
             <VaultSubmitButton
               label="Add to Vault"
+              disabled={state?.ok === false && state.addedCount !== undefined}
               successActive={successPulse !== null}
               successLabel={successPulse === "incremented" ? "Updated" : "Added"}
             />
@@ -288,6 +330,7 @@ export default function AddToVaultCardAction({
         <div className={`rounded-[12px] border px-4 py-3 ${toneClasses}`}>
           <p className="text-sm font-semibold">{statusMessage.title}</p>
           <p className="mt-1 text-sm">{statusMessage.body}</p>
+          {state?.ok === false && state.addedCount !== undefined ? <Link href="/vault" className="underline">Check Vault</Link> : null}
           {(state?.status === "login-required" || !effectiveIsAuthenticated) ? (
             <div className="mt-3 flex flex-wrap gap-3">
               <Link href={loginHref} className="text-sm font-medium underline underline-offset-4">

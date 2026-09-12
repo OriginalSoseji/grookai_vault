@@ -27,9 +27,12 @@ test("web search exposes governed live exact-card suggestions", () => {
   assert.match(suggestions, /SEARCH_SUGGESTION_FAMILY_FETCH_LIMIT/);
   assert.match(suggestions, /exactNumber/);
   assert.match(form, /suggestionRequest\.resolverQuery/);
-  assert.match(suggestionRoute, /\.from\("card_prints"\)/);
-  assert.match(suggestionRoute, /\.ilike\("name"/);
-  assert.match(suggestionRoute, /cardQuery\.in\("number", numberCandidates\)/);
+  assert.match(suggestionRoute, /\.rpc\("search_game_card_prints_v4"/);
+  assert.match(suggestionRoute, /game_code_in: game, q: safeQuery\.slice\(0, 160\)/);
+  assert.match(suggestionRoute, /number_in: number\?\.replace/);
+  assert.match(suggestionRoute, /privateRequest \? await createServerComponentClient\(\) : createPublicServerClient/);
+  assert.match(suggestionRoute, /suggestionResponseHeaders\(privateRequest\)/);
+  assert.doesNotMatch(suggestionRoute, /\.from\("card_prints"\)/);
   assert.match(suggestionRoute, /catalog_search_suggestions_v1/);
   assert.match(suggestions, /params\.set\("printing", printingGvId\)/);
   assert.match(suggestions, /card\.set_name/);

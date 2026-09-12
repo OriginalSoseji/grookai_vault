@@ -19,7 +19,7 @@ test("species detail deduplicates card mappings and cameo rows", () => {
   assert.match(source, /SUPABASE_IN_FILTER_CHUNK_SIZE\s*=\s*250/);
   assert.match(source, /mapWithBoundedConcurrency/);
   assert.match(source, /getPublicCardPrintingOptions\(admin, cardPrintIds\)/);
-  assert.match(source, /\.range\(cameoFrom, cameoTo\)/);
+  assert.match(source, /\.rpc\("get_public_card_cameos_v2", \{ p_pokemon_ndex:.*p_offset: cameoFrom \}\)/);
   assert.match(source, /cameoRawPage\.length < CAMEO_PAGE_SIZE/);
   assert.match(source, /getOwnedPrintingOwnershipByCardPrintIds/);
   assert.match(source, /unassignedCountsByCardPrintId\.get/);

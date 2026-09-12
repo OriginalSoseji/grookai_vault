@@ -1,5 +1,7 @@
 "use client";
 
+import { useClientReady } from "@/components/layout/useClientReady";
+
 import PublicCardImage from "@/components/PublicCardImage";
 import {
   SearchToolbar,
@@ -44,7 +46,7 @@ import {
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type PublicSearchFormProps = {
-  variant: "header" | "hero" | "mobile-compact" | "command";
+  variant: "header" | "hero" | "mobile-compact" | "command" | "collector";
 };
 
 type SuggestionResponse = {
@@ -83,6 +85,7 @@ function suggestionCardHref(
 }
 
 export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
+  const ready = useClientReady();
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -160,7 +163,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             normalizedQuery,
           ),
         );
-        setSuggestionsOpen(true);
+        // A delayed response must not reopen the menu over another control.
+        setSuggestionsOpen(document.activeElement === formRef.current?.querySelector('input[type="search"]'));
         setActiveSuggestionIndex(-1);
       } catch {
         if (!controller.signal.aborted) setSuggestions([]);
@@ -262,7 +266,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const isMobileCompact = variant === "mobile-compact";
   const isHero = variant === "hero";
   const isCommand = variant === "command";
-  const formClassName = isHero ? "w-full max-w-3xl" : "w-full";
+  const isCollector = variant === "collector";
+  const formClassName = isCollector ? "gv-approved-search w-full" : isHero ? "w-full max-w-3xl" : "w-full";
   const toolbarSurface = isHero ? "pill" : isMobileCompact ? "soft-pill" : "none";
   const toolbarClassName = isHero
     ? "flex flex-col gap-2 sm:flex-row sm:items-center"
@@ -284,7 +289,9 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       method="get"
       onSubmit={handleSubmit}
       className={formClassName}
+      aria-busy={!ready}
     >
+      <fieldset disabled={!ready} className="min-w-0">
       {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
       {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
       {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
@@ -346,7 +353,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
                     type="button"
                     role="option"
                     aria-selected={selected}
-                    onMouseEnter={() => setActiveSuggestionIndex(index)}
+                    onMouseEnter={() => setActiveSuggestionIndex(-1)}
                     onClick={() => openSuggestion(card)}
                     className={`flex w-full items-center gap-3 rounded-[6px] px-2 py-2 text-left transition ${
                       selected
@@ -402,7 +409,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
           ) : null}
         </div>
 
-        <select
+        {isCollector ? <input type="hidden" name="game" value={gameScope} /> : <select
           aria-label="Trading card game"
           value={gameScope}
           onChange={(event) => {
@@ -431,9 +438,9 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
               {isMobileCompact && option.value === "mtg" ? "MTG" : option.label}
             </option>
           ))}
-        </select>
+        </select>}
 
-        {!isMobileCompact ? (
+        {!isMobileCompact && !isCollector ? (
           <SearchToolbarButton
             type="submit"
             tone="primary"
@@ -444,6 +451,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
           </SearchToolbarButton>
         ) : null}
       </SearchToolbar>
+      </fieldset>
     </form>
   );
 }

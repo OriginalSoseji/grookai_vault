@@ -56,7 +56,7 @@ function MediaTile({
       <div className="overflow-hidden rounded-[0.9rem] border border-slate-200 bg-slate-50">
         {imageUrl ? (
           <div className="relative aspect-[3/4] w-full">
-            <Image src={imageUrl} alt={label} fill className="object-contain" />
+            <Image src={imageUrl} alt={label} fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" className="object-contain" />
           </div>
         ) : (
           <div className="flex aspect-[3/4] w-full items-center justify-center px-4 text-center text-sm text-slate-500">
@@ -71,7 +71,7 @@ function MediaTile({
         accept={VAULT_INSTANCE_MEDIA_ACCEPT}
         capture="environment"
         className="hidden"
-        onChange={(event) => {
+        onChange={() => {
           void onPick();
         }}
       />
@@ -121,6 +121,13 @@ export default function VaultInstanceNotesMediaCard({
   const [isPending, startTransition] = useTransition();
   const frontInputRef = useRef<HTMLInputElement | null>(null);
   const backInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => () => {
+    if (frontImageUrl?.startsWith("blob:")) URL.revokeObjectURL(frontImageUrl);
+  }, [frontImageUrl]);
+  useEffect(() => () => {
+    if (backImageUrl?.startsWith("blob:")) URL.revokeObjectURL(backImageUrl);
+  }, [backImageUrl]);
 
   useEffect(() => {
     setNotes(initialNotes ?? "");
@@ -198,7 +205,6 @@ export default function VaultInstanceNotesMediaCard({
     const storagePath = buildVaultInstanceMediaStoragePath(userId, instanceId, side);
     const objectUrl = URL.createObjectURL(file);
     const previousUrl = side === "front" ? frontImageUrl : backImageUrl;
-    const previousPath = side === "front" ? frontImagePath : backImagePath;
 
     if (side === "front") {
       setFrontImageUrl(objectUrl);
@@ -254,6 +260,13 @@ export default function VaultInstanceNotesMediaCard({
         body: side === "front" ? "Front photo saved." : "Back photo saved.",
       });
       router.refresh();
+    } catch {
+      if (side === "front") {
+        setFrontImageUrl(previousUrl);
+      } else {
+        setBackImageUrl(previousUrl);
+      }
+      setStatusMessage({ tone: "error", body: "Could not confirm the photo upload. Reload this copy before trying again." });
     } finally {
       if (input) {
         input.value = "";

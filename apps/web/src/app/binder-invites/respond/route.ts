@@ -59,12 +59,12 @@ function addPrivateHeaders(response: NextResponse) {
   return response;
 }
 
-function initialRedirect(request: NextRequest) {
+function initialRedirect() {
   return addPrivateHeaders(
     NextResponse.redirect(
       new URL(
         "/binders?notice=invitation-unavailable&result=error",
-        request.url,
+        getSiteOrigin(),
       ),
       303,
     ),
@@ -73,10 +73,9 @@ function initialRedirect(request: NextRequest) {
 
 function setRedirectLocation(
   response: NextResponse,
-  request: NextRequest,
   path: string,
 ) {
-  response.headers.set("Location", new URL(path, request.url).toString());
+  response.headers.set("Location", new URL(path, getSiteOrigin()).toString());
 }
 
 function clearTransientCookie(response: NextResponse, request: NextRequest) {
@@ -113,7 +112,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const response = initialRedirect(request);
+  const response = initialRedirect();
   let formData: FormData;
   try {
     formData = await request.formData();
@@ -160,7 +159,6 @@ export async function POST(request: NextRequest) {
   if (!user) {
     setRedirectLocation(
       response,
-      request,
       buildLoginHref(BINDER_INVITE_REVIEW_PATH),
     );
     return response;
@@ -211,7 +209,6 @@ export async function POST(request: NextRequest) {
     // destination so this trust action cannot become an invitation oracle.
     setRedirectLocation(
       response,
-      request,
       "/binders?notice=invitation-reported",
     );
     return response;
@@ -229,13 +226,11 @@ export async function POST(request: NextRequest) {
   if (operation === "accept" && binderPublicId) {
     setRedirectLocation(
       response,
-      request,
       `/binders/${encodeURIComponent(binderPublicId)}`,
     );
   } else if (operation === "decline") {
     setRedirectLocation(
       response,
-      request,
       "/binders?notice=invitation-declined",
     );
   }

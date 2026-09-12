@@ -24,7 +24,8 @@ export const metadata: Metadata = {
   title: "Binder Invitation | Grookai Vault",
   description: "Review a private Grookai Vault Binder invitation.",
   robots: { index: false, follow: false, nocache: true },
-  referrer: "no-referrer",
+  // This fixed URL contains no bearer token; same-origin preserves native POST CSRF checks.
+  referrer: "same-origin",
 };
 
 function GenericInvitation({

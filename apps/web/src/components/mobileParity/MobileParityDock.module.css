@@ -8,6 +8,26 @@
   pointer-events: none;
 }
 
+:global(.gv-collector) .frame {
+  padding: 0;
+  background: var(--gv-surface-base);
+  border-top: 1px solid var(--gv-border-soft);
+}
+:global(.gv-collector) .dock {
+  max-width: none;
+  min-height: 70px;
+  padding: 4px 12px calc(4px + env(safe-area-inset-bottom));
+  border: 0;
+  border-radius: 0;
+  background: var(--gv-surface-base);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+:global(.gv-collector) .item { border-radius: 4px; color: var(--gv-text-secondary); font-weight: 500; gap: 5px; }
+:global(.gv-collector) .selected { color: var(--gv-primary); background: transparent; font-weight: 700; }
+:global(.gv-collector) .item:hover { color: var(--gv-primary); }
+:global(.gv-collector) .scanIconWrap { color: var(--gv-primary); border: 0; background: transparent; }
+
 .dock {
   display: flex;
   align-items: stretch;

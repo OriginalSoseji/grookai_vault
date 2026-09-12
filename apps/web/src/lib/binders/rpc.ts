@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { collectorStaging } from "@/lib/collectorStaging.mjs";
 import { BINDER_READ_RPC, type BinderReadRpcName } from "./rpcContract";
 import type {
   BinderActivityItem,
@@ -24,8 +25,17 @@ import type {
 } from "./types";
 import {
   parsePublicContributionActions,
-  safeCanonicalBinderImageUrl,
+  safeCanonicalBinderImageUrl as validateCanonicalBinderImageUrl,
 } from "./publicSafety";
+
+function safeCanonicalBinderImageUrl(value: unknown): string | null {
+  const safe = validateCanonicalBinderImageUrl(value);
+  return collectorStaging && safe ? new URL(safe, "https://grookaivault.com").pathname : safe;
+}
+
+function memberImageUrl(value: unknown): string | null {
+  return collectorStaging ? safeCanonicalBinderImageUrl(value) : nullableString(value);
+}
 
 type JsonRecord = Record<string, unknown>;
 const OPAQUE_UUID_PATTERN =
@@ -155,7 +165,7 @@ function parseSummary(value: unknown): BinderSummary {
     publicId: string(field(item, "public_id", "publicId")),
     title: string(item.title, "Untitled Binder"),
     description: nullableString(item.description),
-    coverImageUrl: nullableString(field(item, "cover_image_url", "cover_url", "cover")),
+    coverImageUrl: memberImageUrl(field(item, "cover_image_url", "cover_url", "cover")),
     binderType:
       item.target_kind === "set" || item.target_kind === "custom"
         ? item.target_kind
@@ -282,7 +292,7 @@ function parseChecklistSlot(value: unknown): BinderChecklistSlot {
     title: string(field(item, "title", "card_name", "label"), "Card print"),
     subtitle: nullableString(field(item, "subtitle", "set_label", "finish_label")),
     finishLabel: nullableString(field(item, "finish_label")),
-    imageUrl: nullableString(field(item, "image_url", "canonical_image_url")),
+    imageUrl: memberImageUrl(field(item, "image_url", "canonical_image_url")),
     hostedImage: boolean(
       field(item, "hosted_image") ?? field(card, "hosted_image"),
     ),
@@ -472,7 +482,7 @@ function parseEligibleCopy(value: unknown): BinderEligibleCopy {
     cardPrintingId: nullableString(item.card_printing_id),
     title: string(field(item, "title", "card_name"), "Owned copy"),
     finishLabel: nullableString(field(item, "finish_label")),
-    imageUrl: nullableString(field(item, "image_url", "canonical_image_url")),
+    imageUrl: memberImageUrl(field(item, "image_url", "canonical_image_url")),
     eligible: boolean(field(item, "eligible"), true),
     reason: nullableString(field(item, "reason", "ineligible_reason")),
   };
@@ -926,7 +936,7 @@ export function parseLegacyCandidates(value: unknown): BinderLegacyCandidate[] {
       targetId: string(field(item, "target_id")),
       title: string(field(item, "title"), "Collection goal"),
       routeKey: nullableString(field(item, "route_key")),
-      imageUrl: nullableString(field(item, "image_url")),
+      imageUrl: memberImageUrl(field(item, "image_url")),
     };
   });
 }

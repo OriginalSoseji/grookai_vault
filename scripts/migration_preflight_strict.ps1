@@ -20,6 +20,8 @@ param(
   [string[]]$ExpectedLocalOnlyIds = @(),
 
   [switch]$ReconciledReplayAudit,
+  [switch]$CollectorCameoIsolatedReplay,
+  [string]$InspectionDeps,
   [string]$AuditEnvFile,
   [string]$AuditOutDir
 )
@@ -437,6 +439,13 @@ function Get-LocalDiffBody([string]$StdOut) {
   return $StdOut.Trim()
 }
 
+if ($CollectorCameoIsolatedReplay) {
+  $collectorExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($ReconciledReplayAudit -or $collectorExpected.Count -ne 1 -or $collectorExpected[0] -ne "20260912050000") {
+    Fail "Collector isolated replay requires only 20260912050000 and cannot combine audit exceptions."
+  }
+}
+
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $migrationFiles = @(Get-RepoMigrationFiles -RepoRoot $repoRoot)
 $duplicateTimestamps = @(Get-DuplicateTimestampGroups -MigrationFiles $migrationFiles)
@@ -498,6 +507,24 @@ try {
     Write-Host "Local-only IDs (not applied): $(if ($linkedSummary.LocalOnlyIds.Count -gt 0) { $linkedSummary.LocalOnlyIds -join ', ' } else { 'none' })"
     if ($linkedSummary.LocalOnlyIds.Count -gt 0) {
       Write-Host "Ledger audit found pending local files, not complete ledger parity. The schema diff below includes these files."
+    }
+    if ($CollectorCameoIsolatedReplay) {
+      Require-Command "node"
+      if ([string]::IsNullOrWhiteSpace($AuditEnvFile) -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+        Fail "Collector baseline audit requires explicit AuditEnvFile and a new AuditOutDir."
+      }
+      $comparison = Compare-IdSets -Expected @("20260912050000") -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) {
+        Fail "Collector baseline audit requires the exact sole pending cameo migration."
+      }
+      $arguments = @("--use-system-ca", (Join-Path $repoRoot "scripts/schema/audit_collector_schema_baseline_v1.mjs"),
+        "--env-file=$AuditEnvFile", "--out-dir=$AuditOutDir", "--expected-pending=20260912050000")
+      if (-not [string]::IsNullOrWhiteSpace($InspectionDeps)) { $arguments += "--inspection-deps=$InspectionDeps" }
+      $audit = Invoke-ExternalCommand -FileName "node" -Arguments $arguments
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail "Collector schema baseline differs; no apply is permitted." }
+      Write-Section "STRICT COLLECTOR BASELINE PASS - PENDING APPLY"
+      exit 0
     }
     if ($ReconciledReplayAudit) {
       Require-Command "node"
@@ -615,7 +642,14 @@ try {
   }
 
   Write-Section "5) Local Replay Proof"
-  $resetResult = Invoke-SupabaseCommand -Arguments @("db", "reset", "--local", "--yes")
+  if ($CollectorCameoIsolatedReplay) {
+    Require-Command "node"
+    $resetResult = Invoke-ExternalCommand -FileName "node" -Arguments @(
+      (Join-Path $repoRoot "scripts/schema/verify_collector_cameo_replay_v1.mjs")
+    )
+  } else {
+    $resetResult = Invoke-SupabaseCommand -Arguments @("db", "reset", "--local", "--yes")
+  }
   Write-CommandTranscript -result $resetResult
   if ($resetResult.ExitCode -ne 0) {
     Fail "supabase db reset --local --yes failed with exit code $($resetResult.ExitCode)"

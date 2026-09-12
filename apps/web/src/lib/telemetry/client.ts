@@ -1,6 +1,8 @@
 "use client";
 
 import type { WebEventPayload } from "@/lib/telemetry/events";
+import { collectorPreview } from "@/lib/collectorPreview";
+import { collectorStaging } from "@/lib/collectorStaging.mjs";
 
 function cleanPayload(payload: WebEventPayload) {
   return {
@@ -15,6 +17,7 @@ function cleanPayload(payload: WebEventPayload) {
 }
 
 export function sendTelemetryEvent(payload: WebEventPayload) {
+  if (collectorPreview || collectorStaging) return;
   const body = JSON.stringify(cleanPayload(payload));
 
   if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {

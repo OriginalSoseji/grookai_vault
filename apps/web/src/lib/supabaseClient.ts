@@ -1,5 +1,7 @@
 import { createBrowserClient } from "@supabase/ssr";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
+import { createClient } from "@supabase/supabase-js";
+import { collectorPreview, createPreviewReadFetch } from "@/lib/collectorPreview";
 
 // Env authority note:
 // Canonical public key source = SUPABASE_PUBLISHABLE_KEY
@@ -8,7 +10,10 @@ import { getSupabasePublicConfig } from "@/lib/supabase/config";
 
 const { url, publishableKey } = getSupabasePublicConfig();
 
-export const supabase = createBrowserClient(url, publishableKey, {
+export const supabase = collectorPreview ? createClient(url, publishableKey, {
+  global: { fetch: createPreviewReadFetch(url, publishableKey) },
+  auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+}) : createBrowserClient(url, publishableKey, {
   auth: {
     flowType: "pkce",
     detectSessionInUrl: false,

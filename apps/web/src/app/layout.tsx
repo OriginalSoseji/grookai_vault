@@ -11,7 +11,11 @@ import { isBinderLibraryEnabled } from "@/lib/binders/featureFlags";
 import { GROOKAI_VAULT_ORIGIN } from "@/lib/getSiteOrigin";
 import { isLocalVisualParityFixtureMode } from "@/lib/visualParity/fixtureMode";
 import "./globals.css";
+import "./collector.css";
+import "./collector-approved.css";
+import "./collector-detail.css";
 import { SafeAnalytics } from "@/components/analytics/SafeAnalytics";
+import { collectorStaging, collectorFixtureLab } from "@/lib/collectorStaging.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(GROOKAI_VAULT_ORIGIN),
@@ -62,11 +66,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const visualParityFixtureMode = isLocalVisualParityFixtureMode();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="gv-collector" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>
       <body>
+        {collectorStaging ? <div role="status" style={{ padding: "6px 16px", background: "#194b3c", color: "white", textAlign: "center", fontSize: 12 }}>{collectorFixtureLab ? "TEST FIXTURES ONLY - Prices are synthetic, not live market data" : "Test environment · Sample catalog · Separate from your live Vault"}</div> : null}
         {visualParityFixtureMode ? (
           children
         ) : (

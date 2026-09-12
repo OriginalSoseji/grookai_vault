@@ -49,6 +49,35 @@ const requiredRoutes = [
   "app/binder-templates/templateId-placeholder",
 ];
 
+test("secret Binder links stay with their configured backend and reject other origins", () => {
+  const { resolveBinderSecretUrl } = loadTypeScriptModule("lib/binders/secretLinks.ts");
+  const local = "http://127.0.0.1:3167";
+  const canonical = "https://grookaivault.com";
+  const token = "a_valid_single_use_token_123456789";
+  for (const prefix of ["b", "binder-invites"]) {
+    const pathname = `/${prefix}/${token}`;
+    assert.equal(resolveBinderSecretUrl(canonical + pathname, local, canonical), local + pathname);
+    assert.equal(resolveBinderSecretUrl(pathname, local, canonical), local + pathname);
+    assert.equal(resolveBinderSecretUrl(canonical + pathname, canonical, canonical), canonical + pathname);
+    for (const invalid of [
+      "https://other.example" + pathname, "//other.example" + pathname,
+      `https://user:pass@grookaivault.com${pathname}`, pathname + "?next=elsewhere",
+      pathname + "#fragment", "/binders/123", "/binder-invites/short", null,
+    ]) assert.equal(resolveBinderSecretUrl(invalid, local, canonical), undefined);
+  }
+  assert.match(read("lib/binders/actions.ts"), /resolveBinderSecretUrl\(rawSecretUrl, getSiteOrigin\(\), GROOKAI_VAULT_ORIGIN\)/);
+});
+
+test("invitation handoff and response redirects preserve the configured login origin", () => {
+  const entry = read("app/binder-invites/[inviteToken]/route.ts");
+  const response = read("app/binder-invites/respond/route.ts");
+  assert.match(entry, /new URL\(BINDER_INVITE_REVIEW_PATH, getSiteOrigin\(\)\)/);
+  assert.match(response, /new URL\(path, getSiteOrigin\(\)\)/);
+  assert.doesNotMatch(entry + response, /new URL\([^;]*request\.url/s);
+  assert.match(response, /binderInviteCsrfMatches\(transientState.csrf, csrf\)/);
+  assert.match(response, /isTrustedBinderInvitePost/);
+});
+
 test("Collaborative Binders web route contract exists", () => {
   const concreteRoutes = requiredRoutes.map((route) =>
     route
@@ -65,6 +94,12 @@ test("Collaborative Binders web route contract exists", () => {
   for (const route of concreteRoutes) {
     assert.equal(fs.existsSync(path.join(webSrc, route)), true, route);
   }
+});
+test("absent covers do not render broken placeholders and completed slots distinguish unresolved copies", () => {
+  assert.match(read("components/binders/BinderWorkspace.tsx"), /binder.coverImageUrl \? <div/);
+  const checklist=read("components/binders/BinderChecklist.tsx");
+  assert.match(checklist,/slot.satisfiedQuantity > 0/);
+  assert.match(checklist,/Unresolved copies are excluded from this completed slot/);
 });
 
 test("authorized iOS and Android app links cover Binder routes", () => {
@@ -247,6 +282,8 @@ test("secret routes are no-referrer, private no-store, noindex, and analytics-fr
     /login\?next=/,
   );
   assert.match(inviteReview, /never saved in the login destination/i);
+  assert.match(inviteReview, /referrer: "same-origin"/);
+  assert.match(middleware, /if \(request\.nextUrl\.pathname === "\/binder-invites\/review"\) \{\s*response\.headers\.set\("Referrer-Policy", "same-origin"\);\s*\}/);
   assert.match(view, /showTrustSafety=\{false\}/);
   assert.match(view, /No Binder details were disclosed/i);
   assert.match(
@@ -292,7 +329,7 @@ test("invitation URL bearer terminates before React and never enters form/action
     "the raw-token segment is a redirect-only Route Handler, never a React page",
   );
   assert.match(handoff, /sealBinderInviteTransientState\(params\.inviteToken\)/);
-  assert.match(handoff, /new URL\(BINDER_INVITE_REVIEW_PATH, request\.url\)/);
+  assert.match(handoff, /new URL\(BINDER_INVITE_REVIEW_PATH, getSiteOrigin\(\)\)/);
   assert.match(handoff, /httpOnly:\s*true/);
   assert.match(handoff, /sameSite:\s*"lax"/);
   assert.match(handoff, /Referrer-Policy", "no-referrer"/);
@@ -877,8 +914,10 @@ test("Binder UI uses collector language and does not change the mobile dock", ()
   const bottomDock = read("components/layout/MobileBottomNav.tsx");
   assert.doesNotMatch(bottomDock, /Binders/);
   const header = read("components/layout/SiteHeader.tsx");
-  assert.match(header, /href="\/binders"/);
-  assert.match(header, />\s*Binders\s*</);
+  assert.match(header, /<CollectorMobileTools[^>]*bindersEnabled=\{props.bindersEnabled\}/);
+  const tools = read("components/layout/CollectorMobileTools.tsx");
+  assert.match(tools, /item.key === "binders"\) return isAuthenticated && bindersEnabled/);
+  assert.match(read("lib/desktopShellManifest.ts"), /href: "\/binders"/);
   const views = read("components/binders/BinderViews.tsx");
   const workspace = read("components/binders/BinderWorkspace.tsx");
   assert.match(views, /aria-valuenow=\{accessibleCompleted\}/);
@@ -943,10 +982,9 @@ test("Vault exposes Binders only through the server-evaluated library gate", () 
   );
   assert.match(vaultView, /bindersEnabled: boolean;/);
 
-  const gatedCard = vaultView.match(
-    /\{bindersEnabled \? \([\s\S]*?<Link[\s\S]*?href="\/binders"[\s\S]*?<\/Link>\s*\) : null\}/,
+  const gatedLink = vaultView.match(
+    /\{bindersEnabled \? <Link[^>]*href="\/binders"[^>]*>Binders<\/Link> : null\}/,
   )?.[0];
-  assert.ok(gatedCard, "Vault Binder discovery must remain feature-gated");
-  assert.match(gatedCard, />\s*Binders\s*</);
-  assert.match(gatedCard, />\s*What you’re building\s*</);
+  assert.ok(gatedLink, "The compact Vault Binder link must remain feature-gated");
+  assert.equal((vaultView.match(/href="\/binders"/g) ?? []).length, 1);
 });

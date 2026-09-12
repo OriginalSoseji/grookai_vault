@@ -85,6 +85,7 @@ export default function OwnedObjectRemoveAction({
     <div className="space-y-1 text-right">
       <form action={formAction} onSubmit={handleSubmit}>
         <input type="hidden" name="instance_id" value={instanceId} />
+        {redirectHref === "/vault" ? <input type="hidden" name="return_to_vault" value="true" /> : null}
         <RemoveSubmitButton label={label} className={resolvedButtonClassName} />
       </form>
       {!state?.ok && state?.message ? (

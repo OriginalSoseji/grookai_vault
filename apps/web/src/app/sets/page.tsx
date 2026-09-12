@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { collectorStaging } from "@/lib/collectorStaging.mjs";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 import PublicSetsToolbar from "@/components/sets/PublicSetsToolbar";
 import PublicSetsResults from "@/components/sets/PublicSetsResults";
@@ -36,6 +38,21 @@ export default async function SetsPage(props: SetsPageProps) {
   const sets = gameSets.filter(
     (setInfo) => matchesPublicSetLanguageScope(setInfo, languageScope),
   );
+  // The bounded local snapshot has no set-cover evidence. Use an actual card
+  // from that sample as presentation only; never mutate set identity or artwork.
+  if (collectorStaging && sets.length <= 10) {
+    const missing = sets.filter(set => !set.hero_image_url?.startsWith("/api/canon/cards/"));
+    if (missing.length) {
+      const { data } = await createPublicServerClient(300).from("card_prints")
+        .select("gv_id,set_code,rarity,number").in("set_code", missing.map(set => set.code)).limit(500);
+      const rank = (rarity: string | null) => /special illustration/i.test(rarity ?? "") ? 0 : /illustration|secret|ultra/i.test(rarity ?? "") ? 1 : 2;
+      for (const set of missing) {
+        const cover = (data ?? []).filter(card => card.set_code === set.code)
+          .sort((a, b) => rank(a.rarity) - rank(b.rarity) || String(b.number).localeCompare(String(a.number)))[0];
+        if (cover?.gv_id) set.hero_image_url = `/api/canon/cards/${encodeURIComponent(cover.gv_id)}/image`;
+      }
+    }
+  }
   const setLogoPathByCode = await getSetLogoAssetPathMap(sets.map((setInfo) => setInfo.code));
   const newestYear = sets.reduce<number | null>(
     (latest, setInfo) => typeof setInfo.release_year === "number" ? Math.max(latest ?? 0, setInfo.release_year) : latest,
@@ -46,38 +63,13 @@ export default async function SetsPage(props: SetsPageProps) {
   ).length;
 
   return (
-    <main className="gv-page-shell gv-mobile-safe-content">
+    <div className="gv-page-shell gv-mobile-safe-content">
       <div className="gv-page-container gv-page-rhythm">
-        <header className="gv-hero-section px-5 py-6 sm:px-7 lg:px-8">
-          <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(340px,460px)] lg:items-end">
-            <div className="space-y-5">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-[18px] border border-emerald-200/70 bg-emerald-500/[0.08] text-lg font-black text-emerald-700 dark:border-emerald-300/20 dark:bg-emerald-400/[0.13] dark:text-emerald-200">
-                S
-              </div>
-              <div className="space-y-2">
-                <p className="gv-eyebrow">Public Sets</p>
-                <h1 className="gv-display-title">{browseConfig.pageTitle}</h1>
-                <p className="gv-body-copy max-w-2xl">
-                  {browseConfig.pageDescription}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              <div className="gv-soft-surface px-4 py-3 text-center">
-                <p className="text-2xl font-bold text-slate-950 dark:text-slate-50">{sets.length}</p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Sets</p>
-              </div>
-              <div className="gv-soft-surface px-4 py-3 text-center">
-                <p className="text-2xl font-bold text-slate-950 dark:text-slate-50">{newestYear ?? "—"}</p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Latest</p>
-              </div>
-              <div className="gv-soft-surface px-4 py-3 text-center">
-                <p className="text-2xl font-bold text-slate-950 dark:text-slate-50">{deckCount}</p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Decks</p>
-              </div>
-            </div>
-          </div>
+        <header className="gv-collector-page-intro flex flex-wrap items-end justify-between gap-4 py-4">
+          <h1 className="gv-display-title">{browseConfig.pageTitle}</h1>
+          <p className="text-sm text-[color:var(--gv-text-secondary)]">
+            {sets.length} sets · {deckCount} decks{newestYear ? ` · Latest ${newestYear}` : ""}
+          </p>
         </header>
 
         <section className="space-y-6">
@@ -99,6 +91,6 @@ export default async function SetsPage(props: SetsPageProps) {
           <PublicSetsResults sets={sets} logoEntries={[...setLogoPathByCode.entries()]} />
         </section>
       </div>
-    </main>
+    </div>
   );
 }

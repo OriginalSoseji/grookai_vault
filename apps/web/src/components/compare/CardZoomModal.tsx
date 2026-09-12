@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import PublicCardImage from "@/components/PublicCardImage";
+import { ZoomIn } from "lucide-react";
 
 type CardZoomModalProps = {
   src?: string;
@@ -14,6 +15,7 @@ type CardZoomModalProps = {
   sizes?: string;
   priority?: boolean;
   unoptimized?: boolean;
+  triggerLabel?: string;
 };
 
 export default function CardZoomModal({
@@ -26,6 +28,7 @@ export default function CardZoomModal({
   sizes,
   priority = false,
   unoptimized = false,
+  triggerLabel,
 }: CardZoomModalProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -125,6 +128,7 @@ export default function CardZoomModal({
       <button
         ref={triggerButtonRef}
         type="button"
+        disabled={!mounted}
         onClick={() => setOpen(true)}
         className="block w-full cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
         aria-label={`Open enlarged preview for ${alt}`}
@@ -140,6 +144,7 @@ export default function CardZoomModal({
           priority={priority}
           unoptimized={unoptimized}
         />
+        {triggerLabel ? <span className="gv-detail-zoom-label"><ZoomIn size={17} />{triggerLabel}</span> : null}
       </button>
 
       {lightbox}

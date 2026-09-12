@@ -24,12 +24,12 @@ export function PageIntro({
   return (
     <div
       className={cx(
-        "flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between",
+        "gv-collector-page-intro flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between",
         className,
       )}
     >
       <div className="min-w-0 space-y-3">
-        {eyebrow ? (
+        {eyebrow && eyebrow !== title ? (
           <p className="gv-eyebrow">
             {eyebrow}
           </p>

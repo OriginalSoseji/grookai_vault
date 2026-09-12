@@ -153,17 +153,7 @@ export default async function GrookaiDexPage(
                 <span className="gv-discovery-pill">Vault-aware</span>
               </div>
               <div className="space-y-2">
-                <h1 className="gv-display-title max-w-full text-[clamp(2.3rem,10vw,6.5rem)] sm:max-w-3xl sm:text-[clamp(3rem,8vw,6.5rem)]">
-                  <span className="sm:hidden">
-                    Character
-                    <br />
-                    completion,
-                    <br />
-                    not just
-                    <br />a checklist.
-                  </span>
-                  <span className="hidden sm:inline">Character completion, not just a checklist.</span>
-                </h1>
+                <h1 className="gv-display-title max-w-full">Grookai Dex</h1>
                 <p className="gv-body-copy max-w-full text-[1.08rem] sm:max-w-2xl">
                   Search a Pokemon and see every mapped card print, what your vault already owns, and the exact gaps still left for that character.
                 </p>

@@ -70,7 +70,11 @@ test("Dex and child-image reads apply stable paging to every unbounded row set",
   assert.match(printingOptionsSource, /PAGE_SIZE = 1000/);
   assert.match(printingOptionsSource, /p_offset: offset/);
   assert.match(printingOptionsSource, /if \(page\.length < PAGE_SIZE\)/);
-  assert.match(detailSource, /\.range\(cameoFrom, cameoTo\)/);
+  assert.match(detailSource, /\.rpc\("get_public_card_cameos_v2",[\s\S]*?p_offset: cameoFrom/);
+  assert.match(detailSource, /cameoFrom \+= CAMEO_PAGE_SIZE/);
+  assert.match(detailSource, /cameoRawPage\.length < CAMEO_PAGE_SIZE/);
+  assert.match(detailSource, /cameoAppearances\.length >= CAMEO_RESULT_LIMIT/);
+  assert.doesNotMatch(detailSource, /\.from\("card_cameos"\)/);
   assert.match(overviewSource, /getRemainingPageIndexes/);
   assert.match(overviewSource, /mapWithBoundedConcurrency/);
   assert.match(overviewSource, /\.from\("v_grookai_dex_species_v1"\)/);

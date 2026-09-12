@@ -1,12 +1,11 @@
 import Link from "next/link";
-import PageIntro from "@/components/layout/PageIntro";
-import PageSection from "@/components/layout/PageSection";
-import NetworkSectionNav from "@/components/network/NetworkSectionNav";
-import SectionHeader from "@/components/layout/SectionHeader";
+import { ArrowLeft, Search, X } from "lucide-react";
+import NetworkPageLayout from "@/components/network/NetworkPageLayout";
 import CollectorListRow from "@/components/public/CollectorListRow";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { getOptionalServerUser } from "@/lib/auth/requireServerUser";
 import { getCollectorDiscoverRows } from "@/lib/network/getCollectorDiscoverRows";
+import { collectorPreview } from "@/lib/collectorPreview";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +39,11 @@ export default async function NetworkDiscoverPage(
     searchParams?: Promise<{ q?: string }>;
   }
 ) {
+  if (collectorPreview) return <NetworkPageLayout active="collectors" actions={null}>
+    <h2 className="text-lg font-medium">Discover collectors</h2>
+    <p>Collector accounts are not connected to this read-only preview.</p>
+    <Link href="/explore" className="underline">Browse cards</Link>
+  </NetworkPageLayout>;
   const searchParams = await props.searchParams;
   const { user } = await getOptionalServerUser();
   const viewerUserId = user?.id ?? null;
@@ -52,55 +56,53 @@ export default async function NetworkDiscoverPage(
   });
 
   return (
-    <div className="space-y-8 py-8">
-      <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
-        <PageIntro
-          eyebrow="Collector Network"
-          title="Discover collectors"
-          description="Search by collector name or @username to quickly revisit the people behind the cards."
-          actions={
-            <Link
-              href="/network"
-              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-            >
-              View card stream
-            </Link>
-          }
-        />
-      </PageSection>
+    <NetworkPageLayout
+      active="collectors"
+      actions={
+        <Link
+          href="/network"
+          className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[color:var(--gv-text-secondary)] transition hover:text-[color:var(--gv-text-primary)]"
+        >
+          <ArrowLeft size={17} aria-hidden="true" className="shrink-0" />
+          Back to cards
+        </Link>
+      }
+    >
+      <section aria-labelledby="discover-heading" className="space-y-4">
+        <h2 id="discover-heading" className="text-lg font-medium text-[color:var(--gv-text-primary)]">Discover collectors</h2>
 
-      <PageSection surface="subtle" spacing="compact" className="p-2.5">
-        <NetworkSectionNav active="collectors" />
-      </PageSection>
-
-      <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
-        <SectionHeader
-          title="Collector search"
-          description="Collector-only discovery lane. Separate from card and Pokemon search."
-        />
-
-        <form action="/network/discover" className="mt-4 flex flex-col gap-3 sm:flex-row">
-          <input
-            type="search"
-            name="q"
-            defaultValue={query ?? ""}
-            placeholder="Search collectors or @username"
-            className="min-w-0 flex-1 rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-300 focus:ring-2 focus:ring-slate-200"
-          />
+        <form action="/network/discover" method="get" role="search" aria-label="Collector search" className="flex items-end gap-2">
+          <div className="min-w-0 flex-1">
+            <label htmlFor="collector-query" className="sr-only">Collector name or username</label>
+            <input
+              id="collector-query"
+              type="search"
+              name="q"
+              defaultValue={query ?? ""}
+              placeholder="Search collectors or @username"
+              className="min-h-11 w-full min-w-0 rounded-md border border-[color:var(--gv-border-soft)] bg-[color:var(--gv-surface-base)] px-3 py-2.5 text-sm text-[color:var(--gv-text-primary)] outline-none transition placeholder:text-[color:var(--gv-text-secondary)] focus-visible:ring-2 focus-visible:ring-[color:var(--gv-text-secondary)]"
+            />
+          </div>
           <button
             type="submit"
-            className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+            aria-label="Search collectors"
+            title="Search collectors"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[color:var(--gv-border-soft)] text-[color:var(--gv-text-primary)] transition hover:bg-[color:var(--gv-surface-container)]"
           >
-            Search
+            <Search size={18} aria-hidden="true" />
           </button>
+          {query ? (
+            <Link href="/network/discover" aria-label="Clear collector search" title="Clear collector search" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-[color:var(--gv-text-secondary)] transition hover:bg-[color:var(--gv-surface-container)]">
+              <X size={18} aria-hidden="true" />
+            </Link>
+          ) : null}
         </form>
-      </PageSection>
+      </section>
 
-      <PageSection spacing="compact">
-        <SectionHeader
-          title={query ? `Collector results for “${query}”` : "Collectors to revisit"}
-          description={query ? "Matching public collectors." : "Latest public collectors with shared vaults."}
-        />
+      <section aria-labelledby="discover-results-heading" className="min-w-0 space-y-4">
+        <h3 id="discover-results-heading" className="text-sm font-medium text-[color:var(--gv-text-secondary)] [overflow-wrap:anywhere]">
+          {query ? `Collector results for "${query}"` : "Latest collectors"}
+        </h3>
 
         {collectors.length === 0 ? (
           <PublicCollectionEmptyState
@@ -112,7 +114,7 @@ export default async function NetworkDiscoverPage(
             }
           />
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3 [&>div]:rounded-lg">
             {collectors.map((collector) => (
               <CollectorListRow
                 key={collector.userId}
@@ -126,7 +128,7 @@ export default async function NetworkDiscoverPage(
             ))}
           </div>
         )}
-      </PageSection>
-    </div>
+      </section>
+    </NetworkPageLayout>
   );
 }

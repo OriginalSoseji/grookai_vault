@@ -177,8 +177,10 @@ test("public list first paint enriches pricing only for a verified signed-in vie
   assert.match(explorePage, /const canViewPricing = Boolean\(user\)/);
   assert.match(
     explorePage,
-    /const featuredPricing = canViewPricing[\s\S]*?getPublicPricingByCardIds\(\s*supabase/,
+    /getPublicCardsByGvIds\(FEATURED_151_IDS\.slice[\s\S]*?includePricing: canViewPricing, pricingClient: supabase/,
   );
+  assert.match(read("apps/web/src/lib/cards/getPublicCardsByGvIds.ts"),
+    /options\.includePricing\s*\? getPublicPricingByCardIds\(\s*options\.pricingClient/);
   assert.match(explorePage, /canViewPricing=\{canViewPricing\}/);
   assert.doesNotMatch(read("apps/web/src/lib/publicSets.ts"), /getPublicPricingByCardIds/);
   assert.doesNotMatch(readTree("apps/web/src/app/network"), /getPublicPricingByCardIds/);

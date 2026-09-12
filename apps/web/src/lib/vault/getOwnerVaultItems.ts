@@ -69,7 +69,7 @@ export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): Vaul
     pricedCopyCount += row.priced_raw_copy_count;
     totalRawCopyCount += row.raw_count;
     unpricedCopyCount += row.unpriced_raw_copy_count;
-    if (typeof row.effective_price !== "number" || Number.isNaN(row.effective_price)) {
+    if (typeof row.effective_price !== "number" || !Number.isFinite(row.effective_price) || row.effective_price <= 0) {
       continue;
     }
 

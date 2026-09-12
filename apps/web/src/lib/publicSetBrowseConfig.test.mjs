@@ -72,7 +72,7 @@ test("incompatible group and lane values reset when games change", () => {
 });
 
 test("set list scopes before loading and set links preserve game identity", () => {
-  assert.match(setsPageSource, /getPublicSets\(gameScope, false\)/);
+  assert.match(setsPageSource, /getPublicSets\(gameScope\)/);
   assert.match(tileSource, /routeParams\.set\("game", setInfo\.game_code\)/);
   assert.match(tileSource, /setInfo\.hero_image_url/);
   assert.match(detailSource, /getCachedPublicSetByCode\(params\.set_code, gameCode\)/);

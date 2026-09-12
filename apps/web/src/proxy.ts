@@ -7,6 +7,7 @@ import {
   normalizeNextPath,
 } from "./lib/auth/routeAccess";
 import { getSupabaseServerConfig } from "./lib/supabase/config";
+import { collectorPreview, previewRequestKind } from "./lib/collectorPreview";
 import {
   isBinderSecretPath,
   redactBinderSecretPath,
@@ -304,6 +305,9 @@ function addSecurityHeaders(response: NextResponse, request: NextRequest) {
 
   if (isBinderSecretPath(request.nextUrl.pathname)) {
     response.headers.set("Referrer-Policy", "no-referrer");
+    if (request.nextUrl.pathname === "/binder-invites/review") {
+      response.headers.set("Referrer-Policy", "same-origin");
+    }
     response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
   }
 
@@ -425,6 +429,30 @@ async function applyProtectedRouteAuth(request: NextRequest) {
 }
 
 export async function proxy(request: NextRequest, event: NextFetchEvent) {
+  if (collectorPreview) {
+    const kind = previewRequestKind(request.nextUrl.pathname, request.method);
+    const headers = new Headers(request.headers);
+    headers.delete("authorization");
+    headers.delete("cookie");
+    let response: NextResponse;
+    if (kind === "deny") {
+      response = NextResponse.json({ error: "Read-only design preview" }, { status: 403 });
+    } else if (kind === "account") {
+      response = NextResponse.redirect(new URL("/preview-access", request.url));
+    } else if (kind === "image") {
+      // Use the existing public, self-hosted image reader; no signer credentials in this project.
+      const target = new URL(request.nextUrl.pathname + request.nextUrl.search, "https://grookaivault.com");
+      response = NextResponse.rewrite(target, { request: { headers: new Headers({ accept: "image/*" }) } });
+    } else {
+      response = NextResponse.next({ request: { headers } });
+    }
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+    response.headers.set("X-Grookai-Preview", "read-only");
+    return addSecurityHeaders(response, request);
+  }
+  if (/^\/_next\/(static|image)(\/|$)/.test(request.nextUrl.pathname) || /\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map)$/.test(request.nextUrl.pathname)) {
+    return NextResponse.next();
+  }
   const abuseResponse = await applyAbuseProtection(request, event);
   if (abuseResponse) {
     return abuseResponse;
@@ -439,6 +467,6 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|apple-icon.png|icon.png|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map)$).*)",
+    "/:path*",
   ],
 };

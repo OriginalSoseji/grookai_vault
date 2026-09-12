@@ -113,7 +113,8 @@ test("disabled loader makes no auth, RPC, or Storage call", async () => {
   assert.equal(calls, 0);
 });
 
-test("enabled loader requires auth and signs only validated private images", async () => {
+test("enabled loader requires auth and signs only validated private images", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now });
   let calls = 0;
   const transport: MtgSealedClientTransportV1 = {
     async isAuthenticated() { calls += 1; return true; },

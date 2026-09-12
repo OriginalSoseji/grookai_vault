@@ -1,19 +1,29 @@
 import path from "path";
-import dotenv from "dotenv";
+import { assertCollectorReleaseEnvironment } from "./src/lib/collectorRelease.mjs";
+import { collectorStaging, collectorFixtureLab, collectorHostedStaging, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
 
 /**
  * Env contract reuse:
  * Root is authoritative: SUPABASE_URL + SUPABASE_PUBLISHABLE_KEY
  * Web requires NEXT_PUBLIC_ vars; we map them without forking the contract.
  */
-const rootEnvLocal = path.resolve(process.cwd(), "../../.env.local");
-const rootEnv = path.resolve(process.cwd(), "../../.env");
 const repoRoot = path.resolve(process.cwd(), "../..");
 
-dotenv.config({ path: rootEnvLocal });
-dotenv.config({ path: rootEnv });
+const collectorPreview = process.env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY === "true";
+if (!collectorPreview && !collectorStaging) {
+  assertCollectorReleaseEnvironment(process.env);
+} else if (process.env.GROOKAI_COLLECTOR_RELEASE_V1 === "true") {
+  throw new Error("Production release and collector test modes are mutually exclusive.");
+}
+if (collectorPreview && process.env.SUPABASE_SECRET_KEY) {
+  throw new Error("Collector preview must not receive administrative database credentials.");
+}
 
 const supabaseUrl = process.env.SUPABASE_URL;
+if (collectorStaging) {
+  if (collectorPreview) throw new Error("Choose read-only preview or authenticated staging, not both.");
+  assertCollectorStagingTarget(supabaseUrl);
+}
 const supabaseAnon = process.env.SUPABASE_PUBLISHABLE_KEY;
 const supabaseHost = supabaseUrl ? new URL(supabaseUrl).hostname : null;
 
@@ -42,6 +52,7 @@ if (!supabaseUrl || !supabaseAnon) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: collectorFixtureLab ? ".next-fixture" : ".next",
   outputFileTracingRoot: repoRoot,
   outputFileTracingIncludes: {
       "/u/[slug]/opengraph-image": [
@@ -71,11 +82,22 @@ const nextConfig = {
     cpus: 1,
   },
   env: {
+    NEXT_PUBLIC_COLLECTOR_STAGING: collectorStaging ? "true" : "false",
+    NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB: collectorFixtureLab ? "true" : "false",
+    NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING: collectorHostedStaging ? "true" : "false",
+    NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY: collectorPreview ? "true" : "false",
     NEXT_PUBLIC_SUPABASE_URL: supabaseUrl,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: supabaseAnon,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: supabaseAnon,
   },
   async headers() {
+    if (collectorStaging) return [{
+      source: "/:path*",
+      headers: [
+        { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        { key: "Cache-Control", value: "private, no-store" },
+      ],
+    }];
     const shortPublicCache = "public, s-maxage=60, stale-while-revalidate=300";
     const mediumPublicCache = "public, s-maxage=120, stale-while-revalidate=600";
     const setPublicCache = "public, s-maxage=300, stale-while-revalidate=900";

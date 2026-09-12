@@ -1,5 +1,22 @@
 # Grookai Agent Entry Point
 
+## Active Backend Repair
+
+The founder subsequently requested fixing both release blockers. Read
+`docs/contracts/COLLECTOR_BACKEND_RELEASE_REPAIR_V1.md` and
+`docs/ops/COLLECTOR_BACKEND_REPAIR_CHECKPOINT_20260912.md`. This extends the
+website-only scope to these two backend repairs, not to bypassing migration,
+producer-freeze or production-apply gates. Preserve the staged approved design.
+
+## Collector Production Release Candidate
+
+Read `docs/contracts/COLLECTOR_WEB_PRODUCTION_RELEASE_V1.md`. This separate release
+tree preserves both live and the approved staging source. The founder authorized
+production verification and a conditional website switch only after every critical
+gate passes. No schema/data migration or operational worker changes. Keep testing
+writes isolated; do not route a dev/staging app to production. Record results in
+`docs/ops/COLLECTOR_WEB_PRODUCTION_RELEASE_CHECKPOINT_20260912.md`.
+
 Read this file before operating in this repository.
 
 ## Required Reading

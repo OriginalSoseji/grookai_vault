@@ -9,13 +9,14 @@ export default function NetworkSectionNav({
   const localCommunityEnabled = isLocalCommunityFeedEnabled();
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <nav aria-label="Pulse sections" className="flex flex-wrap gap-x-6 border-b border-[color:var(--gv-border-soft)]">
       <Link
         href="/network"
-        className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+        aria-current={active === "cards" ? "page" : undefined}
+        className={`inline-flex min-h-11 items-center border-b-2 py-3 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 ${
           active === "cards"
-            ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
-            : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
+            ? "border-[color:var(--gv-text-primary)] text-[color:var(--gv-text-primary)]"
+            : "border-transparent text-[color:var(--gv-text-secondary)] hover:text-[color:var(--gv-text-primary)]"
         }`}
       >
         Cards
@@ -23,10 +24,11 @@ export default function NetworkSectionNav({
       {localCommunityEnabled ? (
         <Link
           href="/network/nearby"
-          className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+          aria-current={active === "nearby" ? "page" : undefined}
+          className={`inline-flex min-h-11 items-center border-b-2 py-3 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 ${
             active === "nearby"
-              ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
-              : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
+              ? "border-[color:var(--gv-text-primary)] text-[color:var(--gv-text-primary)]"
+              : "border-transparent text-[color:var(--gv-text-secondary)] hover:text-[color:var(--gv-text-primary)]"
           }`}
         >
           Nearby
@@ -34,14 +36,15 @@ export default function NetworkSectionNav({
       ) : null}
       <Link
         href="/network/discover"
-        className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+        aria-current={active === "collectors" ? "page" : undefined}
+        className={`inline-flex min-h-11 items-center border-b-2 py-3 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 ${
           active === "collectors"
-            ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
-            : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
+            ? "border-[color:var(--gv-text-primary)] text-[color:var(--gv-text-primary)]"
+            : "border-transparent text-[color:var(--gv-text-secondary)] hover:text-[color:var(--gv-text-primary)]"
         }`}
       >
-        Collectors
+        Discover
       </Link>
-    </div>
+    </nav>
   );
 }

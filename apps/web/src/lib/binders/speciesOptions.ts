@@ -57,26 +57,15 @@ export async function getBinderSetOptions(
   searchQuery: string,
 ): Promise<BinderSetOption[]> {
   const normalizedQuery = searchQuery.trim().slice(0, 60);
-  let query = supabase
-    .from("sets")
-    .select("id,name,code")
-    .order("release_date", { ascending: false, nullsFirst: false })
-    .limit(40);
-  if (normalizedQuery) {
-    query = query.ilike(
-      "name",
-      `%${normalizedQuery.replaceAll("%", "\\%").replaceAll("_", "\\_")}%`,
-    );
-  }
-  const { data, error } = await query;
+  const { data, error } = await supabase.rpc("binder_set_options_v1", { p_query: normalizedQuery });
   if (error) {
     return [];
   }
   return (data ?? [])
-    .map((row) => ({
-      setId: typeof row.id === "string" ? row.id : "",
+    .map((row: { set_id?: unknown; name?: unknown; code?: unknown }) => ({
+      setId: typeof row.set_id === "string" ? row.set_id : "",
       name: typeof row.name === "string" ? row.name : "Pokémon set",
       code: typeof row.code === "string" ? row.code : "",
     }))
-    .filter((row) => row.setId);
+    .filter((row: BinderSetOption) => row.setId);
 }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBinderFeatureFlags } from "@/lib/binders/featureFlags";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import {
   BINDER_INVITE_REVIEW_PATH,
   BINDER_INVITE_TRANSIENT_COOKIE,
@@ -13,9 +14,9 @@ export const runtime = "nodejs";
 
 const TOKEN_PATTERN = /^[A-Za-z0-9_-]{20,256}$/;
 
-function secureRedirect(request: NextRequest) {
+function secureRedirect() {
   const response = NextResponse.redirect(
-    new URL(BINDER_INVITE_REVIEW_PATH, request.url),
+    new URL(BINDER_INVITE_REVIEW_PATH, getSiteOrigin()),
     303,
   );
   response.headers.set("Cache-Control", "private, no-store, max-age=0");
@@ -43,7 +44,7 @@ function clearTransientCookie(response: NextResponse, secure: boolean) {
  */
 export async function GET(request: NextRequest, props: { params: Promise<{ inviteToken: string }> }) {
   const params = await props.params;
-  const response = secureRedirect(request);
+  const response = secureRedirect();
   const secure =
     process.env.NODE_ENV === "production" ||
     request.nextUrl.protocol === "https:";

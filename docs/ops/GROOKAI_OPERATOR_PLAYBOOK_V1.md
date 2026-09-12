@@ -1,5 +1,44 @@
 # Grookai Operator Playbook V1
 
+## Collector Backend Release Blockers (September 12)
+
+Full 394-migration isolated reset and both strict preflight phases now pass.
+Use `-CollectorCameoIsolatedReplay -ExpectedLocalOnlyIds 20260912050000` only as
+documented in the migration contract. Replay project is
+`collector-cameo-replay-20260912`, port 56530. Never reset the working preview on
+54330. Evidence is under operator artifacts `collector_polish/cameo_full_replay_20260912`.
+
+`scripts/preview/check_collector_producer_local.ps1` runs the normal shipcheck with
+backend SQL checks on the isolated schema DB and web rendering on the local
+preview API. It removes inherited external credentials. Optional `-Commit` uses
+the installed, unchanged pre-commit hook, not a bypass. Its local dependency
+resolver loads genuine pinned @pgkit 0.6.1 packages from the existing identical-lock
+installation without changing any shared node_modules junction or package files.
+Do not deploy that local resolver or treat local checks as production readback.
+The local Supabase `start.log` includes generated development credentials; do not
+publish it or copy it into release assets.
+
+Read `COLLECTOR_BACKEND_REPAIR_CHECKPOINT_20260912.md` and the corresponding
+backend release-repair contract before resuming. MTG paired-refresh code and the
+confirmed-cameo migration are locally tested but NOT applied. Publication is off.
+Baseline diagnosis is now complete: see `COLLECTOR_SCHEMA_RECONCILIATION_20260912.md`.
+Only three table column orders differed; all 891 security objects match and the
+reconciled baseline SQL diff is empty. Never execute the broad raw view-replacement
+output. A successful refresh plan is not published pricing. Preserve
+the approved website and update this checkpoint with actual canary/apply/readback
+receipts before declaring either blocker resolved.
+
+## Collector Website Release Candidate - September 12, 2026 UTC
+
+Tree `C:/grookai_vault_collector_release`, branch
+`release/collector-web-production-20260912`. Read
+`docs/contracts/COLLECTOR_WEB_PRODUCTION_RELEASE_V1.md` and the matching checkpoint.
+Preserved design/staging stays in `C:/grookai_vault_collector_authenticated` and
+`https://grookai-collector-staging.vercel.app`. Current live remains unchanged until
+source parity, production compatibility and critical workflow gates pass. Recover
+both sources from private `OriginalSoseji/grookai-collector-recovery`, not the public
+main repo. Never move staging credentials or synthetic data into production.
+
 Release follow-up (September 9, 2026): see
 `docs/checkpoints/FINAL_RELEASE_VERIFICATION_20260909.md` and
 `docs/release/APP_STORE_PRIVACY_BUILD318_20260909.md`. A clean detached CI checkout

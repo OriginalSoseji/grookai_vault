@@ -233,7 +233,9 @@ async function mapCardPrintings(
           external_image_fallback_url:
             imageFields.external_image_fallback_url ?? undefined,
           display_image_kind: imageFields.display_image_kind,
-          is_display_fallback: imageFields.display_image_kind !== "exact",
+          // A governed printing remains selectable even when its image is shared.
+          // Image uncertainty belongs to display_image_kind, not printing identity.
+          is_display_fallback: false,
           finish_sort_order:
             typeof printing.finish_sort_order === "number"
               ? printing.finish_sort_order
@@ -632,13 +634,7 @@ async function getCameosByGvId(
   }
 
   const { data, error } = await supabase
-    .from("v_card_print_cameos_public_v1")
-    .select(
-      "cameo_subject_type,cameo_subject_name,pokemon_ndex,notes_raw,cameo_qualifiers,source_name",
-    )
-    .eq("gv_id", normalizedGvId)
-    .order("cameo_subject_type", { ascending: true })
-    .order("cameo_subject_name", { ascending: true });
+    .rpc("get_public_card_cameos_v2", { p_gv_id: normalizedGvId });
 
   if (error || !data) {
     return undefined;

@@ -1,3 +1,5 @@
+import { collectorStaging, assertCollectorStagingTarget } from "@/lib/collectorStaging.mjs";
+
 function pickFirstNonEmpty(...values: Array<string | undefined>) {
   for (const value of values) {
     if (typeof value === "string" && value.trim().length > 0) {
@@ -25,6 +27,7 @@ export function getSupabasePublicConfig() {
     );
   }
 
+  if (collectorStaging) assertCollectorStagingTarget(url);
   return { url, publishableKey };
 }
 
@@ -45,5 +48,6 @@ export function getSupabaseServerConfig() {
     );
   }
 
+  if (collectorStaging) assertCollectorStagingTarget(url);
   return { url, publishableKey };
 }

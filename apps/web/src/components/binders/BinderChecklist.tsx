@@ -151,7 +151,9 @@ export function BinderChecklist({
                   </div>
                   {slot.needsFinishReview ? (
                     <p className="mt-3 rounded-xl bg-amber-50 p-2 text-xs font-medium text-amber-900">
-                      Finish needs review and cannot satisfy a finish-specific slot yet.
+                      {slot.satisfiedQuantity > 0
+                        ? "Unresolved copies are excluded from this completed slot."
+                        : "Finish needs review and cannot satisfy a finish-specific slot yet."}
                     </p>
                   ) : null}
                   <p className="mt-3 text-xs text-slate-500">

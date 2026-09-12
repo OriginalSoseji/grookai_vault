@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignOutButton from "@/components/account/SignOutButton";
 import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
 import { WallSectionsSettingsCard } from "@/components/account/WallSectionsSettingsCard";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
@@ -122,6 +123,7 @@ export default async function AccountPage(props: AccountPageProps) {
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your Grookai profile</h1>
+          <SignOutButton />
           <p className="max-w-2xl text-base leading-7 text-slate-600">
             Manage your Grookai identity, public page, and account settings here.
           </p>
@@ -273,6 +275,7 @@ export default async function AccountPage(props: AccountPageProps) {
                 >
                   Import Collection
                 </Link>
+                <Link href="/saved" className="gv-secondary-button ml-3">Saved cards</Link>
               </div>
             </div>
           </section>

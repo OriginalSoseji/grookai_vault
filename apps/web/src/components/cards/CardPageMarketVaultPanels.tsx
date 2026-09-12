@@ -1,10 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
+import { ImagePlus } from "lucide-react";
 import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
 import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import ShareCardButton from "@/components/ShareCardButton";
+import SaveCardButton from "@/components/cards/SaveCardButton";
 import AddToVaultCardAction, {
   type AddToVaultActionResult,
 } from "@/components/vault/AddToVaultCardAction";
@@ -75,10 +78,16 @@ export default function CardPageMarketVaultPanels({
   const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(initialPrinting);
   const selectedPrintingId = selectedPrinting?.id ?? null;
   const selectedPrintingGvId = selectedPrinting?.printing_gv_id ?? null;
+  const printingReference = selectedPrinting?.is_display_fallback
+    ? null : selectedPrintingGvId ?? selectedPrintingId;
+  const imageParams = new URLSearchParams({ intent: "MISSING_IMAGE", card: gvId, reason: "image_update_request", returnTo: currentPath });
+  if (printingReference) imageParams.set("printing", printingReference);
+  if (selectedPrinting?.finish_name) imageParams.set("finish", selectedPrinting.finish_name);
+  const imagePath = `/submit?${imageParams.toString()}`;
 
   return (
-    <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
-      <div className="gv-action-panel p-5 sm:p-6">
+    <aside className="gv-detail-market-vault grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
+      <div className="gv-detail-market gv-action-panel p-5 sm:p-6">
         <CardPagePricingRail
           isAuthenticated={isAuthenticated}
           loginHref={loginHref}
@@ -91,8 +100,8 @@ export default function CardPageMarketVaultPanels({
         />
       </div>
 
-      <div className="gv-action-panel space-y-5 p-5 sm:p-6">
-        <div>
+      <div className="gv-detail-vault gv-action-panel space-y-5 p-5 sm:p-6">
+        <div className="gv-detail-ownership" data-owned={rawCount > 0 || slabCount > 0}>
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
           <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
           {rawCount > 0 || slabCount > 0 ? (
@@ -105,6 +114,7 @@ export default function CardPageMarketVaultPanels({
         </div>
 
         <AddToVaultCardAction
+          compactPresentation
           action={addToVaultAction}
           isAuthenticated={isAuthenticated}
           loginHref={loginHref}
@@ -116,11 +126,15 @@ export default function CardPageMarketVaultPanels({
           onSelectedPrintingChange={setSelectedPrinting}
         />
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="gv-detail-secondary-actions flex flex-wrap items-center gap-3">
+          {cardPrintId ? <SaveCardButton cardPrintId={cardPrintId} isAuthenticated={isAuthenticated} loginHref={loginHref} /> : null}
           {isAuthenticated ? <AddSlabCardAction action={createSlabAction} cardName={cardName} /> : null}
           <CompareCardButton gvId={gvId} />
-          <ShareCardButton gvId={gvId} />
+          <ShareCardButton gvId={gvId} printingReference={printingReference} cardName={cardName} />
         </div>
+        <Link className="gv-detail-update-image" href={isAuthenticated ? imagePath : `/login?next=${encodeURIComponent(imagePath)}`}>
+          <ImagePlus size={14} aria-hidden="true" />Update image
+        </Link>
       </div>
     </aside>
   );

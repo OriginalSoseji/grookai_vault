@@ -31,6 +31,7 @@ export function PageSection({
 }: PageSectionProps) {
   return (
     <section
+      data-page-section={surface}
       className={cx(
         "w-full",
         SPACING_CLASSNAME[spacing],

@@ -49,6 +49,6 @@ test("Explore renderers keep child art before the provider error fallback", () =
     /fallbackSrc=\{spotlightCard\.display_image_fallback_url\}\s*fallbackSources=\{\[spotlightCard\.external_image_fallback_url\]\}/,
   );
   assert.ok(
-    [...discovery.matchAll(/imageFallbackSrc=\{card\.display_image_fallback_url\}\s*imageFallbackSources=\{\[card\.external_image_fallback_url\]\}/g)].length >= 2,
+    [...discovery.matchAll(/imageFallbackSrc=\{card\.display_image_fallback_url\}\s*imageFallbackSources=\{\[card\.external_image_fallback_url\]\}/g)].length >= 1,
   );
 });

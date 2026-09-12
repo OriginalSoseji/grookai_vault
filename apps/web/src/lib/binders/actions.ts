@@ -6,6 +6,7 @@ import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { getSiteOrigin, GROOKAI_VAULT_ORIGIN } from "@/lib/getSiteOrigin";
 import { getBinderFeatureFlags, isBinderLibraryEnabled } from "./featureFlags";
 import { BINDER_MUTATION_RPC, type BinderMutationRpcName } from "./rpcContract";
+import { resolveBinderSecretUrl } from "./secretLinks";
 import type { BinderActionState } from "./types";
 
 type JsonRecord = Record<string, unknown>;
@@ -694,22 +695,7 @@ export async function binderFormAction(
         : typeof result.value?.invitation_url === "string"
           ? result.value.invitation_url
           : null;
-  let secretUrl: string | undefined;
-  if (rawSecretUrl) {
-    try {
-      const candidate = new URL(rawSecretUrl, getSiteOrigin());
-      if (
-        (candidate.origin === getSiteOrigin() ||
-          candidate.origin === GROOKAI_VAULT_ORIGIN) &&
-        (candidate.pathname.startsWith("/b/") ||
-          candidate.pathname.startsWith("/binder-invites/"))
-      ) {
-        secretUrl = candidate.toString();
-      }
-    } catch {
-      secretUrl = undefined;
-    }
-  }
+  const secretUrl = resolveBinderSecretUrl(rawSecretUrl, getSiteOrigin(), GROOKAI_VAULT_ORIGIN);
 
   return { ok: true, message: successMessage, secretUrl };
 }

@@ -4,6 +4,8 @@ import { Fragment, type ReactNode } from "react";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import PublicSearchForm from "@/components/PublicSearchForm";
+import { SlidersHorizontal } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   buildIdentityFilterCounts,
@@ -463,11 +465,8 @@ function getResolverSummary(meta: ResolverMeta | null) {
         body: "These results are approximate. Add a set code, collector number, or promo code to strengthen the match.",
       };
     case "NO_MATCH":
-      return {
-        tone: "border-slate-200 bg-slate-50",
-        title: "No matching cards",
-        body: "No viable deterministic match was found for this query.",
-      };
+      // The result empty state already explains this; keep one message.
+      return null;
   }
 }
 
@@ -525,7 +524,7 @@ export default function ExplorePageClient({
     !exactReleaseYear &&
     !exactIllustrator &&
     !isIdentityFilterActive(identityFilter) &&
-    !hasExplicitSmartFilters;
+    !hasExplicitSmartFilters && Boolean(discoveryContent);
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [provisionalRows, setProvisionalRows] = useState<PublicProvisionalCard[]>([]);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
@@ -554,7 +553,7 @@ export default function ExplorePageClient({
         !exactIllustrator &&
         !isIdentityFilterActive(identityFilter) &&
         !hasExplicitSmartFilters &&
-        gameScope === "pokemon"
+        gameScope === "pokemon" && Boolean(discoveryContent)
       ) {
         setRows([]);
         setProvisionalRows([]);
@@ -692,6 +691,7 @@ export default function ExplorePageClient({
       controller.abort();
     };
   }, [
+    discoveryContent,
     q,
     normalizedQuery,
     sortMode,
@@ -1359,6 +1359,9 @@ export default function ExplorePageClient({
           </option>
         </select>
       </label>
+      <details className="gv-collector-disclosure gv-collector-result-options">
+        <summary><SlidersHorizontal size={16} aria-hidden="true" />Display options</summary>
+        <div className="gv-collector-options-panel">
       <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
         <span className="hidden sm:inline">Image</span>
         <select
@@ -1381,6 +1384,9 @@ export default function ExplorePageClient({
         value={viewMode}
         onChange={commitViewMode}
       />
+          {languageScopeControl}
+        </div>
+      </details>
     </div>
   );
   const activeFilterStrip = activeFilterChips.length > 0 ? (
@@ -1467,15 +1473,17 @@ export default function ExplorePageClient({
       className={`space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
       {isDiscoveryMode ? (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 pb-3 dark:border-slate-800/70">
-          <h1 className="sr-only">Search cards</h1>
+        <div className="gv-collector-discovery-heading flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 pb-5 dark:border-slate-800/70">
+          <div className="min-w-0 flex-1 space-y-2">
+            <h1 className="gv-collector-discovery-title text-3xl font-semibold text-slate-950 dark:text-slate-50">A good find starts here.</h1>
+            <p className="gv-collector-discovery-description text-sm text-slate-600 dark:text-slate-400">Old favorites. New obsessions. The next piece of your collection.</p>
+          </div>
           <Link
             href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
             className="inline-flex min-h-9 items-center rounded-[6px] border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
           >
             Browse sets
           </Link>
-          {languageScopeControl}
         </div>
       ) : (
         <section className="gv-command-surface px-4 py-3 sm:px-5">
@@ -1508,12 +1516,20 @@ export default function ExplorePageClient({
                 {resultControls}
               </div>
             </div>
-            <div className="shrink-0">{languageScopeControl}</div>
           </div>
           {activeFilterStrip}
-          {identityFilterStrip}
         </section>
       )}
+
+      <div className="gv-collector-search-toolbar">
+        <PublicSearchForm variant="command" />
+        {isDiscoveryMode ? (
+          <details className="gv-collector-disclosure">
+            <summary><SlidersHorizontal size={16} aria-hidden="true" />Language</summary>
+            <div className="gv-collector-options-panel">{languageScopeControl}</div>
+          </details>
+        ) : null}
+      </div>
 
       {error ? (
         <div className="rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-300/20 dark:bg-amber-400/[0.12] dark:text-amber-100">
@@ -1555,7 +1571,9 @@ export default function ExplorePageClient({
           ) : null}
 
           {interpretedLabels.length > 0 || residualQuery || unappliedLabels.length > 0 ? (
-            <div className="gv-soft-surface px-4 py-3">
+            <details className="gv-collector-disclosure" open={unappliedLabels.length > 0}>
+              <summary>Search details{unappliedLabels.length > 0 ? " - some filters were not applied" : ""}</summary>
+              <div className="pt-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
@@ -1675,7 +1693,8 @@ export default function ExplorePageClient({
                   ) : null}
                 </div>
               ) : null}
-            </div>
+              </div>
+            </details>
           ) : null}
 
           {ownershipScopeCopy ? (
@@ -1702,24 +1721,20 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
-          {hasExplicitSmartFilters ? (
           <details
-            open
-            className="gv-soft-surface group px-4 py-3"
+            className="gv-collector-disclosure group"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                  Smart filters
-                </p>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-                  Pin exact filters for year, finish, stamp, image confidence, ownership, and artist.
+                  <SlidersHorizontal size={16} className="inline" aria-hidden="true" /> Filters
                 </p>
               </div>
               <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 transition group-open:bg-slate-950 group-open:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:group-open:bg-slate-100 dark:group-open:text-slate-950">
-                {hasExplicitSmartFilters ? "Editing" : "Open"}
+                {hasExplicitSmartFilters ? "Active" : "+"}
               </span>
             </summary>
+            {identityFilterStrip}
             <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
               {q ? <input type="hidden" name="q" value={q} /> : null}
               {languageScope !== "all" ? <input type="hidden" name="lang" value={languageScope} /> : null}
@@ -1858,8 +1873,6 @@ export default function ExplorePageClient({
               </div>
             </form>
           </details>
-          ) : null}
-
           {loading && displayRows.length === 0 ? (
             loadingState
           ) : viewMode === "list" ? (

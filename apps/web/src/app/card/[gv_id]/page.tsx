@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Suspense, type ComponentProps } from "react";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { getPublicSetCards } from "@/lib/publicSets";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import CardRouteLoading from "./CardRouteLoading";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
@@ -59,6 +61,7 @@ import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerComponentClient, hasSupabaseServerAuthCookie } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
+import { addCopies, parseCardAddOptions } from "@/lib/vault/cardAddOptions";
 import {
   getOwnedPrintingCountsByCardPrintIds,
   type OwnedPrintingCountsByCardPrintId,
@@ -491,22 +494,27 @@ async function StreamedArtworkCameosSection({
 function RelatedPrintsSection({
   relatedPrints,
   compareCards,
+  title = "More cards like this",
+  viewSetHref,
+  reason = "Same card name",
 }: {
   relatedPrints: RelatedCardPrint[];
   compareCards: string[];
+  title?: string;
+  viewSetHref?: string;
+  reason?: string;
 }) {
   if (relatedPrints.length === 0) {
     return null;
   }
 
   return (
-    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-      <div className="gv-card-section-header">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Other Versions</p>
-        <h2>Other versions of this card</h2>
-        <p>Read-only links to other prints that share this card name.</p>
+    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6" aria-label={title}>
+      <div className="gv-card-section-header gv-detail-collection-header">
+        <h2>{title}</h2>
+        {viewSetHref ? <Link href={viewSetHref} className="gv-approved-link">View set</Link> : null}
       </div>
-      <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+      <div className="gv-detail-related-grid">
         {relatedPrints.map((relatedCard) => {
           const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
           const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
@@ -530,7 +538,7 @@ function RelatedPrintsSection({
             <Link
               key={relatedCard.gv_id}
               href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
-              className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
+              className="group min-w-0 transition-transform duration-150 hover:-translate-y-[2px]"
             >
               <div className="flex gap-3 md:flex-col md:items-start">
                 <div className="space-y-2">
@@ -539,9 +547,9 @@ function RelatedPrintsSection({
                     fallbackSrc={relatedCardImageFallbacks[0]}
                     fallbackSources={relatedCardImageFallbacks.slice(1)}
                     alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
-                    imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
+                    imageClassName="gv-detail-related-image object-contain"
                     fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
-                    sizes="74px"
+                    sizes="(max-width:760px) 44vw, 220px"
                   />
                   {relatedImagePresentation.compactBadgeLabel ? (
                     <CardImageTruthBadge
@@ -570,6 +578,7 @@ function RelatedPrintsSection({
                     ) : null}
                   </div>
                   {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
+                  <p className="text-[11px] text-slate-500">{reason}</p>
                   {relatedVariantLabels.length > 0 ? (
                     <div className="flex flex-wrap gap-1">
                       {relatedVariantLabels.map((label) => (
@@ -597,13 +606,31 @@ async function StreamedRelatedPrintsSection({
   perfEnabled?: boolean;
 }) {
   const startedAt = performance.now();
-  const relatedPrints = await getPublicRelatedPrintsByGvId(gvId);
+  const relatedPrints = await getPublicRelatedPrintsByGvId(gvId).catch(() => []);
   logCardPageServerPerf(perfEnabled, "streamed_related_prints", {
     gvId,
     rowCount: relatedPrints?.length ?? 0,
     ms: roundPerfMs(performance.now() - startedAt),
   });
   return <RelatedPrintsSection relatedPrints={relatedPrints ?? []} compareCards={compareCards} />;
+}
+
+async function SetCollectionSection({ card, compareCards, setHref }: {
+  card: CardDetail; compareCards: string[]; setHref: string;
+}) {
+  if (!card.set_code) return null;
+  try {
+    const adjacent = await getAdjacentPublicCardsByGvId(card.gv_id);
+    const excluded = new Set([card.gv_id, adjacent.previous?.gv_id, adjacent.next?.gv_id]);
+    const candidates = await getPublicSetCards(card.set_code, 0, 12, card.game_code);
+    const cards = candidates.filter(item => !excluded.has(item.gv_id)).slice(0, 5)
+      .map(item => ({ ...item, id: item.id ?? item.gv_id, set_name: card.set_name }));
+    return <RelatedPrintsSection relatedPrints={cards} compareCards={compareCards}
+      title="More from this collection" viewSetHref={setHref} reason="Same set" />;
+  } catch {
+    return <section className="gv-card-lower-section"><h2>More from this collection</h2>
+      <Link href={setHref}>Browse this set</Link></section>;
+  }
 }
 
 async function CardPageContent({
@@ -699,8 +726,11 @@ async function CardPageContent({
     if (!resolvedCard.id || !resolvedCard.gv_id) return { ok: false, status: "not-found", submissionKey };
 
     let result: AddCardToVaultResult;
+    let quantity = 1;
     try {
-      result = await addCardToVault({
+      const options = parseCardAddOptions(_formData.get("condition"), _formData.get("quantity"));
+      quantity = options.quantity;
+      const batch = await addCopies(quantity, () => addCardToVault({
         client: actionClient,
         userId: user.id,
         cardPrintId: resolvedCard.id,
@@ -709,7 +739,16 @@ async function CardPageContent({
         setName: resolvedCard.set_name,
         imageUrl: resolvedCard.image_url,
         cardPrintingId: selectedPrintingId || undefined,
-      });
+        conditionLabel: options.conditionLabel,
+      }));
+      if (batch.error) {
+        console.error("[vault:add] bounded copy add stopped", batch.error);
+        return {
+          ok: false, status: "error", submissionKey, addedCount: batch.completed.length,
+          message: `${batch.completed.length} of ${quantity} copies confirmed. Check your Vault before trying again; the last request could not be confirmed.`,
+        };
+      }
+      result = batch.completed[batch.completed.length - 1];
     } catch (error) {
       const detail =
         error instanceof Error
@@ -737,9 +776,9 @@ async function CardPageContent({
       userId: user.id,
       path: currentCardPath,
       gvId: resolvedCard.gv_id,
-      metadata: { gv_vi_id: result.gvvi_id, quantity_delta: 1, card_printing_id: selectedPrintingId || null },
+      metadata: { gv_vi_id: result.gvvi_id, quantity_delta: quantity, card_printing_id: selectedPrintingId || null },
     });
-    return { ok: true, status: "added", gvvi_id: result.gvvi_id, submissionKey };
+    return { ok: true, status: "added", gvvi_id: result.gvvi_id, submissionKey, addedCount: quantity };
   }
 
   async function createSlabAction(
@@ -1000,7 +1039,7 @@ async function CardPageContent({
   });
 
   return (
-    <div className={`space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+    <div className={`gv-approved-card-detail ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <CardPagePerformanceProbe
         enabled={perfEnabled}
         gvId={resolvedCard.gv_id}
@@ -1017,10 +1056,14 @@ async function CardPageContent({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdMarkup(cardProductJsonLd) }}
       />
+      <nav className="gv-detail-breadcrumbs" aria-label="Card breadcrumb">
+        <Link href={buildPathWithCompareCards("/explore", "", compareCards)}><ArrowLeft size={15} />Search</Link>
+        {setHref ? <><span aria-hidden="true">/</span><Link href={setHref}>{setName || setCodeLabel}</Link></> : null}
+      </nav>
       <section className="gv-product-hero gv-card-detail-hero isolate">
-        <div className="relative z-10 grid gap-8 py-2 sm:py-4 lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)] lg:items-start lg:gap-12">
-          <div className="mx-auto flex w-full max-w-[260px] flex-col items-center sm:max-w-[330px] lg:sticky lg:top-8 lg:max-w-[390px]">
-            <div className="gv-image-stage gv-card-hero-image-stage w-full p-3 sm:p-4">
+        <div className="gv-detail-layout">
+          <div className="gv-detail-art-column">
+            <div className="gv-detail-art-stage">
               {(resolvedCard.image_faces?.length ?? 0) > 1 ? (
                 <CardFaceGallery
                   faces={resolvedCard.image_faces ?? []}
@@ -1036,9 +1079,10 @@ async function CardPageContent({
                     resolvedDisplayIdentity.display_name,
                     displayedImageTruthSource,
                   )}
-                  imageClassName="h-auto max-h-[560px] w-full cursor-zoom-in rounded-[18px] object-contain shadow-[0_24px_60px_-40px_rgba(15,23,42,0.82)] transition duration-150 hover:scale-[1.006] sm:max-h-[620px]"
-                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[18px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
-                  sizes="(max-width: 1024px) 86vw, 390px"
+                  imageClassName="gv-detail-main-image"
+                  fallbackClassName="gv-detail-image-missing"
+                  sizes="(max-width: 760px) 80vw, 400px"
+                  triggerLabel="Take a closer look"
                   priority
                   unoptimized={isCanonImageProxyUrl(resolvedCardImageSrc)}
                 />
@@ -1066,69 +1110,24 @@ async function CardPageContent({
             ) : null}
           </div>
 
-          <div className="gv-card-hero-copy flex min-w-0 flex-col gap-5">
+          <div className="gv-card-hero-copy gv-detail-copy">
             <div className="contents">
-              <div className="flex flex-wrap items-center gap-2">
-                {resolvedCard.supertype ? (
-                  <span className="gv-card-detail-eyebrow">
-                    {resolvedCard.supertype}
-                  </span>
-                ) : null}
-                <span className="gv-hi-ownership inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                  {ownershipLabel}
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                {(setName || setCodeLabel) ? (
-                  <div className="flex flex-wrap items-center gap-2">
-                    {setCodeLabel ? (
-                      <span className="inline-flex rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-800 shadow-sm dark:border-emerald-400/25 dark:bg-emerald-400/12 dark:text-emerald-100">
-                        {setCodeLabel}
-                      </span>
-                    ) : null}
-                    {setName ? (
-                      setHref ? (
-                        <Link
-                          href={setHref}
-                          className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 shadow-sm underline-offset-4 transition hover:border-slate-300 hover:text-slate-950 hover:underline dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white"
-                        >
-                          {setName}
-                        </Link>
-                      ) : (
-                        <span className="inline-flex rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
-                          {setName}
-                        </span>
-                      )
-                    ) : null}
-                  </div>
-                ) : null}
-                <div className="space-y-3">
-                  <h1 className="gv-hi-card-identity max-w-3xl text-[2.5rem] leading-[1.02] tracking-normal sm:text-[3.4rem] lg:text-[4.25rem]">
-                    {resolvedDisplayIdentity.base_name}
-                  </h1>
-                  {resolvedDisplayIdentity.printed_name ? (
-                    <p className="gv-hi-metadata text-sm font-medium sm:text-base">
-                      {resolvedDisplayIdentity.printed_name}
-                    </p>
-                  ) : null}
-                  <div className="flex flex-wrap items-center gap-2">
-                    {identitySubtitle ? (
-                      <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
-                    ) : null}
-                    {collectorNumberLine ? (
-                      <p className="inline-flex w-fit rounded-full border border-slate-200/80 bg-slate-50/90 px-3 py-1 font-mono text-sm font-semibold uppercase tracking-[0.12em] text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
-                        {collectorNumberLine}
-                      </p>
-                    ) : null}
-                  </div>
+              <div className="gv-detail-heading">
+                <p className="gv-approved-eyebrow">{getCardGameLabel(resolvedCard)} / Cards</p>
+                <h1 className="gv-hi-card-identity">{resolvedDisplayIdentity.base_name}</h1>
+                {resolvedDisplayIdentity.printed_name ? <p className="gv-detail-printed-name">{resolvedDisplayIdentity.printed_name}</p> : null}
+                {setName ? <p className="gv-detail-set">{setHref ? <Link href={setHref}>{setName}</Link> : setName}</p> : null}
+                {identitySubtitle ? <p className="gv-detail-subtitle">{identitySubtitle}</p> : null}
+                <div className="gv-detail-tags">
+                  {collectorNumberLine ? <span>{collectorNumberLine}</span> : null}
+                  {selectedRoutePrinting?.finish_name || finishLabels.length === 1 ? <span>{selectedRoutePrinting?.finish_name ?? finishLabels[0]}</span> : null}
+                  <span>{getCardLanguageLabel(resolvedCard)}</span>
                 </div>
               </div>
-
               {(resolvedCard.rarity || variantLabels.length > 0) ? (
-                <div className="flex flex-wrap gap-2">
+                <div className="gv-detail-rarity">
                   {resolvedCard.rarity ? (
-                    <span className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 shadow-sm dark:bg-amber-500/18 dark:text-amber-200">
+                    <span>
                       {resolvedCard.rarity}
                     </span>
                   ) : null}
@@ -1242,11 +1241,33 @@ async function CardPageContent({
                 slabCount={ownedObjectSummary.slabCount}
               />
             </div>
+            <dl className="gv-detail-identity-table">
+              {setName ? <div><dt>Set</dt><dd>{setHref ? <Link href={setHref}>{setName}</Link> : setName}</dd></div> : null}
+              {collectorNumberLine ? <div><dt>Number</dt><dd>{collectorNumberLine}</dd></div> : null}
+              {finishLabels.length ? <div><dt>Available finishes</dt><dd>{finishLabels.join(" / ")}</dd></div> : null}
+              <div><dt>Language</dt><dd>{getCardLanguageLabel(resolvedCard)}</dd></div>
+              {illustratorName ? <div><dt>Artist</dt><dd>{illustratorName}</dd></div> : null}
+              {resolvedCard.rarity ? <div><dt>Rarity</dt><dd>{resolvedCard.rarity}</dd></div> : null}
+              {releaseDateLabel ? <div><dt>Release date</dt><dd>{releaseDateLabel}</dd></div> : null}
+              {resolvedCard.supertype || resolvedCard.card_category ? <div><dt>Card type</dt><dd>{resolvedCard.supertype || resolvedCard.card_category}</dd></div> : null}
+              <div><dt>Identity</dt><dd>{resolvedCard.gv_id}</dd></div>
+            </dl>
           </div>
         </div>
       </section>
 
+      <Suspense fallback={null}>
+        <NearbyCardsSection gvId={resolvedCard.gv_id} compareCards={compareCards} perfEnabled={perfEnabled} />
+      </Suspense>
+      {setHref ? <Suspense fallback={<CardLowerSectionFallback title="More from this collection" />}>
+        <SetCollectionSection card={resolvedCard} compareCards={compareCards} setHref={setHref} />
+      </Suspense> : null}
+      <Suspense fallback={<CardLowerSectionFallback title="More cards like this" />}>
+        <StreamedRelatedPrintsSection gvId={resolvedCard.gv_id} compareCards={compareCards} perfEnabled={perfEnabled} />
+      </Suspense>
+
       {!user ? (
+        <details className="gv-detail-disclosure"><summary>Collection activity</summary>
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="gv-card-section-header">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Around This Card</p>
@@ -1264,9 +1285,11 @@ async function CardPageContent({
             Claim your vault
           </Link>
         </section>
+        </details>
       ) : null}
 
       {detailItems.length > 0 ? (
+        <details className="gv-detail-disclosure"><summary>Card information</summary>
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="gv-card-section-header">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Card Details</p>
@@ -1282,9 +1305,11 @@ async function CardPageContent({
             ))}
           </dl>
         </section>
+        </details>
       ) : null}
 
       {setContextItems.length > 0 ? (
+        <details className="gv-detail-disclosure"><summary>About this set</summary>
         <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="gv-card-section-header">
@@ -1310,18 +1335,11 @@ async function CardPageContent({
             ))}
           </dl>
         </section>
+        </details>
       ) : null}
 
       <Suspense fallback={<CardLowerSectionFallback title="Artwork Cameos" />}>
         <StreamedArtworkCameosSection gvId={resolvedCard.gv_id} perfEnabled={perfEnabled} />
-      </Suspense>
-
-      <Suspense fallback={<CardLowerSectionFallback title="Other Versions" />}>
-        <StreamedRelatedPrintsSection
-          gvId={resolvedCard.gv_id}
-          compareCards={compareCards}
-          perfEnabled={perfEnabled}
-        />
       </Suspense>
 
       {user && hasOwnedItems ? (
@@ -1402,14 +1420,6 @@ async function CardPageContent({
           />
         </Suspense>
       ) : null}
-
-      <Suspense fallback={null}>
-        <NearbyCardsSection
-          gvId={resolvedCard.gv_id}
-          compareCards={compareCards}
-          perfEnabled={perfEnabled}
-        />
-      </Suspense>
 
       <PricingDisclosure />
 
@@ -1645,7 +1655,7 @@ function NearbyCardLink({
   return (
     <Link
       href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
-      className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
+      className="flex items-center gap-3 transition-transform duration-150 hover:-translate-y-[2px]"
     >
       <div className="space-y-2">
         <PublicCardImage
@@ -1653,7 +1663,7 @@ function NearbyCardLink({
           fallbackSrc={cardImageFallbacks[0]}
           fallbackSources={cardImageFallbacks.slice(1)}
           alt={getCardImageAltText(displayIdentity.display_name, card)}
-          imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
+          imageClassName="h-16 w-12 object-contain"
           fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
           sizes="48px"
         />
@@ -1695,25 +1705,18 @@ async function NearbyCardsSection({
   if (!adjacentCards.previous && !adjacentCards.next) return null;
 
   return (
-    <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-      <div className="gv-card-section-header">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">In This Set</p>
-        <h2>Nearby cards</h2>
-        <p>Cards from the same set, ordered around this print.</p>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2">
+    <nav className="gv-detail-set-navigation" aria-label="Previous and next card in set">
         {adjacentCards.previous ? (
           <NearbyCardLink card={adjacentCards.previous} direction="previous" compareCards={compareCards} />
         ) : (
-          <div className="hidden sm:block" />
+          <span aria-disabled="true">First card in this set</span>
         )}
         {adjacentCards.next ? (
           <NearbyCardLink card={adjacentCards.next} direction="next" compareCards={compareCards} />
         ) : (
-          <div className="hidden sm:block" />
+          <span aria-disabled="true">Last card in this set</span>
         )}
-      </div>
-    </section>
+    </nav>
   );
 }
 

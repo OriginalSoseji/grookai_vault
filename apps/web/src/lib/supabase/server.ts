@@ -5,8 +5,18 @@ import { cookies, headers } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServerConfig } from "@/lib/supabase/config";
+import { collectorPreview, createPreviewReadFetch } from "@/lib/collectorPreview";
+
+function createPreviewClient() {
+  const { url, publishableKey } = getSupabaseServerConfig();
+  return createSupabaseClient(url, publishableKey, {
+    global: { fetch: createPreviewReadFetch(url, publishableKey) },
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  });
+}
 
 export async function createServerComponentClient() {
+  if (collectorPreview) return createPreviewClient();
   const { url, publishableKey } = getSupabaseServerConfig();
   const headerStore = await headers();
   const authorization = headerStore.get("authorization")?.trim() ?? "";
@@ -42,6 +52,7 @@ export async function createServerComponentClient() {
 }
 
 export async function hasSupabaseServerAuthCookie() {
+  if (collectorPreview) return false;
   const cookieStore = await cookies();
   const { url } = getSupabaseServerConfig();
   const projectRef = (() => {
@@ -67,6 +78,7 @@ export async function hasSupabaseServerAuthCookie() {
 }
 
 export function createRouteHandlerClient(request: NextRequest, response: NextResponse) {
+  if (collectorPreview) return createPreviewClient();
   const { url, publishableKey } = getSupabaseServerConfig();
 
   return createServerClient(url, publishableKey, {

@@ -232,22 +232,12 @@ export default async function WallPage() {
 
   return (
     <div className="space-y-8 py-8">
-      <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-end">
-          <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Wall</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Manage your Wall.</h1>
-            <p className="max-w-3xl text-base leading-7 text-slate-600">
-              Create and manage sections here, then organize exact copies from their copy pages.
-            </p>
-          </div>
-          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Activity Window</p>
-            <p className="mt-2 text-3xl font-semibold text-slate-950">{feed.length}</p>
-            <p className="mt-1 text-sm text-slate-600">{feed.length === 1 ? "recent item" : "recent items"}</p>
-          </div>
-        </div>
-      </section>
+      <header className="flex flex-wrap items-end justify-between gap-4">
+        <h1 className="gv-display-title">Your Wall</h1>
+        <p className="text-sm text-[color:var(--gv-text-secondary)]" aria-label="Activity Window">
+          {feed.length} {feed.length === 1 ? "recent item" : "recent items"}
+        </p>
+      </header>
 
       <OwnerWallSectionRail initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
       <OwnedSealedPanel ownerId={user.id} wallOnly />

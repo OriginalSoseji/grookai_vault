@@ -2,6 +2,7 @@ import "server-only";
 
 import { createClient } from "@supabase/supabase-js";
 import { getSupabaseServerConfig } from "@/lib/supabase/config";
+import { collectorPreview, createPreviewReadFetch } from "@/lib/collectorPreview";
 
 export function createPublicServerClient(revalidateSeconds = 60) {
   const { url, publishableKey } = getSupabaseServerConfig();
@@ -21,7 +22,7 @@ export function createPublicServerClient(revalidateSeconds = 60) {
   // LOCK: Prefer bounded revalidation over request-by-request dynamic rendering.
   return createClient(url, publishableKey, {
     global: {
-      fetch: publicFetch,
+      fetch: collectorPreview ? createPreviewReadFetch(url, publishableKey, publicFetch) : publicFetch,
     },
     auth: {
       persistSession: false,

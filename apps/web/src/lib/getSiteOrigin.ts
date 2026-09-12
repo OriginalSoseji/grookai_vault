@@ -12,6 +12,18 @@ const LOCAL_HOSTNAMES = new Set(["localhost", "127.0.0.1", "[::1]"]);
  */
 export function getSiteOrigin(): string {
   const explicitOrigin = (process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL)?.trim();
+  if (process.env.NEXT_PUBLIC_COLLECTOR_STAGING === "true") {
+    const local = explicitOrigin ? new URL(explicitOrigin) : null;
+    const hosted = process.env.NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING === "true";
+    const validOrigin = local && (hosted
+      ? local.origin === "https://grookai-collector-staging.vercel.app"
+      : local.protocol === "http:" && local.hostname === "127.0.0.1");
+    if (!local || !validOrigin ||
+        local.username || local.password || local.search || local.hash || local.pathname !== "/") {
+      throw new Error("Collector staging requires its explicit verified site origin.");
+    }
+    return local.origin;
+  }
   if (!explicitOrigin) {
     return GROOKAI_VAULT_ORIGIN;
   }

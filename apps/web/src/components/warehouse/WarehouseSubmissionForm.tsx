@@ -191,6 +191,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
   const [candidateId, setCandidateId] = useState<string | null>(null);
+  const [submissionUnconfirmed, setSubmissionUnconfirmed] = useState(false);
   const lockedSubmissionIntent = initialValues?.lockedSubmissionIntent === true;
   const referenceContext = initialValues?.referenceContext ?? null;
   const hasKnownCardImageContext =
@@ -216,7 +217,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
   const shouldShowError = (field: keyof typeof validationErrors) => submitAttempted || Boolean(touched[field]);
 
   function clearStatusForEdit() {
-    if (candidateId) {
+    if (candidateId || submissionUnconfirmed) {
       return;
     }
 
@@ -242,6 +243,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmitting || candidateId || submissionUnconfirmed) return;
     setSubmitAttempted(true);
     clearStatusForEdit();
 
@@ -272,6 +274,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
         : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
     const uploadedPaths: string[] = [];
+    let intakeAttempted = false;
     setIsSubmitting(true);
 
     try {
@@ -308,6 +311,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
       // 1. Browser uploads user-owned evidence paths to storage.
       // 2. The edge function validates the request.
       // 3. The RPC writes warehouse rows atomically.
+      intakeAttempted = true;
       const result = await submitWarehouseIntake({
         notes: normalizedNotes,
         tcgplayer_id: normalizedTcgplayerId,
@@ -337,11 +341,16 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
       });
       setSubmitAttempted(false);
     } catch (error) {
-      await removeWarehouseEvidenceImages(uploadedPaths);
+      // A lost response does not prove rollback. Keep evidence that a saved
+      // candidate may reference, and prevent another submission from this form.
+      if (!intakeAttempted) await removeWarehouseEvidenceImages(uploadedPaths);
+      setSubmissionUnconfirmed(intakeAttempted);
       setStatus({
         tone: "error",
         body:
-          error instanceof Error && error.message.trim().length > 0
+          intakeAttempted
+            ? `We could not confirm your submission. Your uploaded evidence has been kept. Do not resubmit yet; contact support with reference ${submissionId}.`
+            : error instanceof Error && error.message.trim().length > 0
             ? error.message
             : "Submission failed.",
       });
@@ -601,7 +610,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
           </p>
           <button
             type="submit"
-            disabled={isSubmitting || hasValidationErrors}
+            disabled={isSubmitting || hasValidationErrors || submissionUnconfirmed}
             className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
             {isSubmitting ? "Submitting..." : "Submit to warehouse"}

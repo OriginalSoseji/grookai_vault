@@ -435,18 +435,12 @@ export async function getGrookaiDexSpeciesDetail(
   }, 0);
   const cameoAppearances: GrookaiDexCameoAppearance[] = [];
   for (let cameoFrom = 0; ; cameoFrom += CAMEO_PAGE_SIZE) {
-    const cameoTo = cameoFrom + CAMEO_PAGE_SIZE - 1;
     const { data, error } = await admin
-      .from("v_card_print_cameos_public_v1")
-      .select("gv_id,card_name,set_code,set_name,number,notes_raw,cameo_qualifiers")
-      .eq("cameo_subject_type", "pokemon")
-      .eq("pokemon_ndex", String(rows[0]?.national_dex_number ?? ""))
-      .order("set_name", { ascending: true })
-      .order("number", { ascending: true })
-      .order("gv_id", { ascending: true })
-      .range(cameoFrom, cameoTo);
+      .rpc("get_public_card_cameos_v2", { p_pokemon_ndex: String(rows[0]?.national_dex_number ?? ""), p_offset: cameoFrom });
 
     if (error) {
+      // Missing optional projection must not remove the canonical species page.
+      if (error.code === "PGRST202" || error.code === "42883") break;
       throw new Error(`[grookai-dex:species-detail-cameos] ${error.message}`);
     }
 

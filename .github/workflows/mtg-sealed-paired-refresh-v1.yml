@@ -1,0 +1,69 @@
+name: MTG Sealed Paired Refresh and Health
+on:
+  schedule:
+    - cron: '50 11 * * *'
+  workflow_dispatch:
+    inputs:
+      audit_only:
+        description: Read-only proposal, no release publication
+        type: boolean
+        default: true
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: mtg-sealed-paired-refresh-v1
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_URL: ${{ secrets.MOBILE_SUPABASE_URL }}
+      MTG_SEALED_REFRESH_ACTIVE: ${{ vars.MTG_SEALED_REFRESH_ACTIVE || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/contracts/mtg_sealed_paired_refresh_v1.test.mjs tests/contracts/mtg_sealed_paired_refresh_execution_v1.test.mjs tests/contracts/mtg_sealed_pricing_refresh_v1.test.mjs
+      - name: Bounded paired release or read-only proposal
+        id: refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode=plan
+          if [[ "$MTG_SEALED_REFRESH_ACTIVE" == true && "${{ inputs.audit_only }}" != true ]]; then mode=run; fi
+          node scripts/audits/mtg_sealed_paired_refresh_v1.mjs --mode="$mode" --expected-head="$GITHUB_SHA" --out="$RUNNER_TEMP/mtg-sealed-refresh"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mtg-sealed-paired-refresh-${{ github.run_id }}
+          path: ${{ runner.temp }}/mtg-sealed-refresh
+          if-no-files-found: error
+          retention-days: 90
+      - name: Deduplicated founder alert
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          REFRESH_OUTCOME: ${{ steps.refresh.outcome }}
+        with:
+          script: |
+            const fs=require('fs');
+            const title='[MTG Sealed] Pricing publication needs attention';
+            let result=null;
+            try {result=JSON.parse(fs.readFileSync(`${process.env.RUNNER_TEMP}/mtg-sealed-refresh/idempotency.json`));} catch {}
+            const healthy=process.env.REFRESH_OUTCOME==='success'&&result?.status==='passed'&&result?.already_current===true&&result?.independent_readback===true&&result?.inserted===0;
+            const issues=await github.paginate(github.rest.issues.listForRepo,{...context.repo,state:'open',creator:'github-actions[bot]',per_page:100});
+            const existing=issues.find(i=>!i.pull_request&&i.title===title);
+            if(healthy){if(existing)await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});}
+            else {
+              const body=`MTG sealed publication is not proved healthy. A successful read-only plan is not a published price release. Inspect the preserved plan/canary/apply/idempotency receipts. Do not change observation dates or relax freshness.\n\n${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+              if(existing)await github.rest.issues.update({...context.repo,issue_number:existing.number,body});
+              else await github.rest.issues.create({...context.repo,title,body});
+              if(process.env.REFRESH_OUTCOME==='failure')core.setFailed('Refresh failed; see preserved evidence');
+              else core.warning('Audit-only or publication not yet enabled; prices are not proven refreshed');
+            }

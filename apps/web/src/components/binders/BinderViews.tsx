@@ -74,22 +74,41 @@ export function BinderProgress({
   );
 }
 
+function BinderCoverArtwork({
+  src,
+  title,
+  priority = false,
+  sizes = "(max-width: 640px) 100vw, 360px",
+}: {
+  src: string | null;
+  title: string;
+  priority?: boolean;
+  sizes?: string;
+}) {
+  // A cover is canonical artwork, not evidence of a member's owned cards.
+  return (
+    <PublicCardImage
+      src={src ?? undefined}
+      alt={`${title} cover artwork`}
+      imageClassName="gv-collector-binder-cover-image h-full w-full -rotate-[7deg] object-contain p-6 drop-shadow-md"
+      fallbackClassName="gv-collector-binder-cover-empty flex h-full items-center justify-center px-6 text-center text-sm text-slate-500"
+      fallbackLabel="Cover artwork unavailable"
+      priority={priority}
+      sizes={sizes}
+    />
+  );
+}
+
 export function BinderSummaryCard({ binder }: { binder: BinderSummary }) {
   return (
     <Link
       href={`/binders/${encodeURIComponent(binder.publicId)}`}
-      className="group grid min-h-44 grid-cols-[92px_minmax(0,1fr)] gap-4 rounded-lg border border-slate-200 bg-white p-3 transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 sm:grid-cols-1 sm:p-4"
+      className="gv-collector-binder-tile group flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
     >
-      <div className="aspect-[5/7] overflow-hidden rounded-md bg-slate-50 sm:aspect-[16/10]">
-        <PublicCardImage
-          src={binder.coverImageUrl ?? undefined}
-          alt={`${binder.title} cover artwork`}
-          imageClassName="h-full w-full object-contain"
-          fallbackClassName="flex h-full items-center justify-center text-xs text-slate-500"
-          sizes="(max-width: 640px) 92px, 360px"
-        />
+      <div className="gv-collector-binder-cover h-[220px] overflow-hidden bg-slate-50 sm:h-[250px]">
+        <BinderCoverArtwork src={binder.coverImageUrl} title={binder.title} />
       </div>
-      <div className="flex min-w-0 flex-col justify-between gap-4">
+      <div className="gv-collector-binder-info flex min-w-0 flex-1 flex-col justify-between gap-4 break-words p-5">
         <div className="min-w-0">
           <p className="text-xs font-semibold capitalize text-slate-500">
             {binder.role} · {binder.binderType}
@@ -134,7 +153,7 @@ function DashboardSection({
         {description ? <p className="mt-1 text-sm text-slate-600">{description}</p> : null}
       </div>
       {items.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="gv-collector-binder-grid grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {items.map((binder) => (
             <BinderSummaryCard key={binder.publicId} binder={binder} />
           ))}
@@ -372,14 +391,12 @@ export function BinderPublicView({
     <div className="space-y-8">
       <PageSection surface="card" spacing="loose">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div className="aspect-[5/7] w-full shrink-0 overflow-hidden rounded-lg bg-slate-50 sm:w-40">
-            <PublicCardImage
-              src={binder.coverImageUrl ?? undefined}
-              alt={`${binder.title} cover artwork`}
-              imageClassName="h-full w-full object-contain"
-              fallbackClassName="flex h-full items-center justify-center text-xs text-slate-500"
+          <div className="gv-collector-binder-cover gv-collector-binder-public-cover h-[220px] w-full shrink-0 overflow-hidden rounded-lg bg-slate-50 sm:h-64 sm:w-48">
+            <BinderCoverArtwork
+              src={binder.coverImageUrl}
+              title={binder.title}
               priority
-              sizes="(max-width: 640px) 90vw, 160px"
+              sizes="(max-width: 640px) 90vw, 192px"
             />
           </div>
           <div className="min-w-0 space-y-2">
@@ -524,20 +541,15 @@ export function BinderTemplateGrid({ templates }: { templates: BinderTemplateSum
     );
   }
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="gv-collector-binder-template-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {templates.map((template) => (
         <Link
           key={template.templatePublicId}
           href={`/binder-templates/${encodeURIComponent(template.templatePublicId)}`}
-          className="rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-300"
+          className="gv-collector-binder-template min-w-0 break-words rounded-lg border border-slate-200 bg-white p-4 transition hover:border-sky-300"
         >
-          <div className="mb-4 aspect-[5/7] overflow-hidden rounded-md bg-slate-50">
-            <PublicCardImage
-              src={template.coverImageUrl ?? undefined}
-              alt={`${template.title} Template artwork`}
-              imageClassName="h-full w-full object-contain"
-              fallbackClassName="flex h-full items-center justify-center text-xs text-slate-500"
-            />
+          <div className="gv-collector-binder-cover mb-4 h-[220px] overflow-hidden rounded-md bg-slate-50 sm:h-[250px]">
+            <BinderCoverArtwork src={template.coverImageUrl} title={template.title} />
           </div>
           <p className="gv-eyebrow">Template · Version {template.version}</p>
           <h2 className="mt-2 text-lg font-semibold text-slate-950">{template.title}</h2>

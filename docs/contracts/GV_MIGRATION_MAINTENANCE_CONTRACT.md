@@ -34,6 +34,28 @@ The goal is to **never** repeat the migration drift and shadow DB errors we just
 
 ## 1. Principles
 
+### Collector Cameo Isolated Replay (2026-09-12)
+
+For the sole pending migration `20260912050000`, the strict gate accepts
+`-CollectorCameoIsolatedReplay -ExpectedLocalOnlyIds 20260912050000`.
+Other pending IDs and combining reconciliation exceptions are rejected.
+
+In `AuditLinkedSchema`, require explicit `-AuditEnvFile` and a new `-AuditOutDir`.
+The collector baseline audit compares all 393 applied migrations and requires
+zero remaining SQL or security differences. Its three-table column-order
+reconciliation uses the same exact column-definition checks described below;
+no function/view SQL is suppressed. Optional `-InspectionDeps` must supply the
+already pinned 0.6.1 inspection packages.
+
+In `PrePush`, every existing ledger/pending/object check remains mandatory.
+Replay resets only the separately created `collector-cameo-replay-20260912`
+project on port 56530, never the existing preview database. The verifier checks
+its resolved path, project/config hash, running container/port, empty application
+data, exact 394-file inventory, and source/copy hashes before running the real
+`supabase db reset --local --yes`. It verifies the complete ledger afterward.
+An old success receipt alone cannot satisfy this gate. Default behavior is
+unchanged. This option grants no production apply or broader reset authority.
+
 ### Scoped Replay Comparison (2026-09-07)
 
 For the sealed-ownership prerequisite only, `AuditLinkedSchema` may use

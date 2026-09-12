@@ -179,9 +179,28 @@ export async function getMarketPricingReadModelV1(
     return [];
   }
 
-  return ((data ?? []) as MarketPricingReadRowV1[])
+  if (!Array.isArray(data)) {
+    return [];
+  }
+  const parentTargets = new Set(parentIds);
+  const printingTargets = new Set(printingIds);
+  const records = data
+    .filter((row): row is MarketPricingReadRowV1 => row !== null && typeof row === "object")
     .map(mapRow)
-    .filter((row): row is MarketPricingRecordV1 => row !== null);
+    .filter((row): row is MarketPricingRecordV1 => row !== null)
+    .filter((row) => row.pricing_scope === "parent"
+      ? parentTargets.has(row.card_print_id)
+      : printingTargets.has(row.card_printing_id!));
+
+  // A conflicting duplicate must not make pricing depend on RPC row order.
+  const keyOf = (row: MarketPricingRecordV1) =>
+    `${row.pricing_scope}:${row.pricing_scope === "parent" ? row.card_print_id : row.card_printing_id}`;
+  const counts = new Map<string, number>();
+  for (const row of records) {
+    const key = keyOf(row);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return records.filter((row) => counts.get(keyOf(row)) === 1);
 }
 
 export function indexExactMarketPricingByCardPrintingId(

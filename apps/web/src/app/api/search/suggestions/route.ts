@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { suggestionRequestIsPrivate, suggestionResponseHeaders } from "@/lib/search/suggestionAccess.mjs";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const MAX_SUGGESTIONS = 12;
 
@@ -30,41 +33,36 @@ export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q")?.trim() ?? "";
   const number = request.nextUrl.searchParams.get("number")?.trim() || null;
   const limit = parseLimit(request.nextUrl.searchParams.get("limit"));
-  if (query.length < 2) {
+  const safeQuery = query.replace(/[%_]/g, "").trim();
+  const requestedGame = request.nextUrl.searchParams.get("game")?.trim().toLowerCase() || "all";
+  const supportedGames = ["pokemon", "mtg", "one_piece"];
+  if (requestedGame !== "all" && !supportedGames.includes(requestedGame)) {
+    return NextResponse.json({ ok: false, rows: [], error: "Unsupported game." }, { status: 400 });
+  }
+  if (safeQuery.length < 2) {
     return NextResponse.json({ ok: true, rows: [], source: "catalog_search_suggestions_v1" });
   }
 
   try {
-    const supabase = await createServerComponentClient();
-    const safeQuery = query.replace(/[%_]/g, "").trim();
-    let cardQuery = supabase
-      .from("card_prints")
-      .select(
-        "id,gv_id,name,number,rarity,image_url,representative_image_url,image_status,image_source,set_code,printed_set_abbrev",
-      )
-      .ilike("name", `%${safeQuery}%`)
-      .limit(Math.min(limit * 3, 30));
-    if (number) {
-      const normalizedNumber = number.trim().replace(/^#/, "").split("/", 1)[0];
-      const digits = normalizedNumber.replace(/\D/g, "");
-      const numericDigits = digits
-        ? String(Number.parseInt(digits, 10))
-        : null;
-      const numberCandidates = Array.from(
-        new Set(
-          [
-            normalizedNumber,
-            digits,
-            numericDigits,
-            digits ? digits.padStart(3, "0") : null,
-          ].filter((value): value is string => Boolean(value)),
-        ),
-      );
-      cardQuery = cardQuery.in("number", numberCandidates);
-    }
-
-    const { data: cardRows, error: cardError } = await cardQuery;
-    if (cardError) throw new Error(cardError.message);
+    const privateRequest = suggestionRequestIsPrivate(request.headers, request.cookies.getAll());
+    // Signed-in catalogs must keep their viewer context. Shared caching is only
+    // allowed when the request contains neither an auth cookie nor a bearer.
+    const supabase = privateRequest ? await createServerComponentClient() : createPublicServerClient(60);
+    const games = requestedGame === "all" ? supportedGames : [requestedGame];
+    const pages = await Promise.all(games.map(async (game) => {
+      const { data, error } = await supabase.rpc("search_game_card_prints_v4", {
+        game_code_in: game, q: safeQuery.slice(0, 160), set_code_in: null,
+        number_in: number?.replace(/^#/, "").split("/", 1)[0] || null,
+        illustrator_in: null, language_scope_in: "all", limit_in: limit, offset_in: 0,
+      }).abortSignal(AbortSignal.timeout(3500));
+      if (error) throw new Error(error.message);
+      return (data ?? []) as CardPrintSuggestionRow[];
+    }));
+    const cardRows = Array.from(new Map(pages.flat().map(row => [row.id, row])).values())
+      .sort((a, b) => {
+        const exact = (row: CardPrintSuggestionRow) => row.name.toLowerCase() === safeQuery.toLowerCase() ? 0 : 1;
+        return exact(a) - exact(b) || a.name.localeCompare(b.name) || a.gv_id.localeCompare(b.gv_id);
+      }).slice(0, limit);
     const setCodes = Array.from(
       new Set(
         ((cardRows ?? []) as CardPrintSuggestionRow[])
@@ -95,9 +93,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       { ok: true, rows, source: "catalog_search_suggestions_v1" },
       {
-        headers: {
-          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
-        },
+        headers: suggestionResponseHeaders(privateRequest),
       },
     );
   } catch (error) {

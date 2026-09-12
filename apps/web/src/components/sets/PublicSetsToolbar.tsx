@@ -8,6 +8,7 @@ import {
   SearchToolbarSelect,
 } from "@/components/common/SearchToolbar";
 import { FormEvent, useEffect, useState } from "react";
+import { useClientReady } from "@/components/layout/useClientReady";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import {
@@ -34,6 +35,7 @@ import {
 } from "@/lib/publicGameScope";
 
 export default function PublicSetsToolbar() {
+  const ready = useClientReady();
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -163,8 +165,9 @@ export default function PublicSetsToolbar() {
     currentLane !== "all";
 
   return (
-    <form onSubmit={handleSubmit}>
-      <SearchToolbar surface="card">
+    <form onSubmit={handleSubmit} aria-busy={!ready}>
+      <fieldset disabled={!ready} className="min-w-0">
+      <SearchToolbar surface="none">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
           <SearchToolbarField label="Search" className="min-w-0 flex-1">
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -183,7 +186,7 @@ export default function PublicSetsToolbar() {
             </div>
           </SearchToolbarField>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:w-auto lg:grid-cols-[170px_210px_170px_180px_190px_auto] lg:items-end">
+          <div className="flex flex-wrap items-end gap-3">
             <SearchToolbarField label="Game" className="min-w-0">
               <SearchToolbarSelect
                 id="public-sets-game"
@@ -202,6 +205,9 @@ export default function PublicSetsToolbar() {
               </SearchToolbarSelect>
             </SearchToolbarField>
 
+            <details className="gv-collector-disclosure gv-collector-set-filters">
+              <summary>Filters{hasActiveFilters || currentLanguageScope !== "all" ? " (active)" : ""}</summary>
+              <div className="gv-collector-options-panel">
             <SearchToolbarField label="Language" className="min-w-0">
               <div
                 className="inline-flex h-11 w-full rounded-[14px] border border-slate-200 bg-white/70 p-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/80"
@@ -286,6 +292,8 @@ export default function PublicSetsToolbar() {
               </SearchToolbarSelect>
             </SearchToolbarField>
 
+              </div>
+            </details>
             {hasActiveFilters ? (
               <SearchToolbarButton type="button" tone="secondary" onClick={handleReset} className="w-full sm:col-span-2 lg:col-span-1">
                 Reset
@@ -294,6 +302,7 @@ export default function PublicSetsToolbar() {
           </div>
         </div>
       </SearchToolbar>
+      </fieldset>
     </form>
   );
 }

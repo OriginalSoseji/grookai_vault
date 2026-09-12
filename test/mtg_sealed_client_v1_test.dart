@@ -31,6 +31,14 @@ Map<String, dynamic> _row([Map<String, dynamic> overrides = const {}]) {
   };
 }
 
+// Loader tests use the real clock; historical classifier fixtures stay fixed.
+Map<String, dynamic> _freshRow([Map<String, dynamic> overrides = const {}]) {
+  return _row({
+    'observed_on': DateTime.now().toUtc().toIso8601String().substring(0, 10),
+    ...overrides,
+  });
+}
+
 void main() {
   final now = DateTime.utc(2026, 9, 4, 12);
 
@@ -174,10 +182,31 @@ void main() {
     expect(transport.calls, 3);
   });
 
+  test('expired loader evidence never reaches image signing', () async {
+    final expiredDate = DateTime.now()
+        .toUtc()
+        .subtract(const Duration(days: 8))
+        .toIso8601String()
+        .substring(0, 10);
+    final transport = _FakeTransport(
+      rows: [
+        _row({'observed_on': expiredDate}),
+      ],
+    );
+    final state = await MtgSealedClientV1(
+      transport: transport,
+      enabled: true,
+    ).load();
+    expect(state.status, MtgSealedCatalogStatusV1.stale);
+    expect(state.rows, isEmpty);
+    expect(transport.maxConcurrentSigning, 0);
+    expect(transport.rows.single['observed_on'], expiredDate);
+  });
+
   test('enabled loader bounds concurrent image signing', () async {
     final rows = List<dynamic>.generate(9, (index) {
       final suffix = (index + 10).toString().padLeft(12, '0');
-      return _row(<String, dynamic>{
+      return _freshRow(<String, dynamic>{
         'variant_id': '00000000-0000-4000-8000-$suffix',
         'canonical_name': 'Fixture Product ${index + 1}',
       });
@@ -251,7 +280,7 @@ void main() {
 }
 
 class _ControlledTransport extends _FakeTransport {
-  _ControlledTransport() : super(rows: List.generate(9, (_) => _row()));
+  _ControlledTransport() : super(rows: List.generate(9, (_) => _freshRow()));
   final pending = <Completer<String>>[];
 
   @override
@@ -268,7 +297,7 @@ class _ControlledTransport extends _FakeTransport {
 
 class _FakeTransport implements MtgSealedClientTransportV1 {
   _FakeTransport({List<dynamic>? rows, this.signingDelayMs = 0})
-    : rows = rows ?? <dynamic>[_row()];
+    : rows = rows ?? <dynamic>[_freshRow()];
 
   int calls = 0;
   int activeSigning = 0;
