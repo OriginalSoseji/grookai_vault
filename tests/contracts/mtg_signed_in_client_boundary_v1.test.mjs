@@ -23,7 +23,7 @@ test("web exposes MTG as an explicit collector catalog scope", () => {
   assert.doesNotMatch(explore, /aria-label="Game scope"/);
 });
 
-test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", () => {
+test("MTG search follows catalog release authority, stays game-scoped, and bypasses Pokemon resolution", () => {
   const route = source("apps/web/src/app/api/resolver/search/route.ts");
   const lookup = source("apps/web/src/lib/explore/getExploreRows.ts");
   const migrationV1 = source(
@@ -39,8 +39,9 @@ test("MTG search is signed-in, game-scoped, and bypasses Pokemon resolution", ()
     "supabase/migrations/20260823074000_cross_tcg_direct_gvid_search_v4.sql",
   );
 
-  assert.match(route, /gameScope !== "pokemon" && !userId/);
-  assert.match(route, /Sign in to search this catalog/);
+  assert.doesNotMatch(route, /gameScope !== "pokemon" && !userId/);
+  assert.match(route, /rpc\("catalog_game_visible_to_request_v1"/);
+  assert.match(route, /catalogSearchAccess\(visibility, Boolean\(userId\)\)/);
   assert.match(route, /getExploreRowsForGameScopedTextSearch/);
   assert.match(route, /includeProvisional =\s*gameScope === "pokemon"/);
   assert.match(route, /game_scope: gameScope/);

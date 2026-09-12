@@ -25,6 +25,7 @@ import {
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { normalizePublicGameScope } from "@/lib/publicGameScope";
+import { catalogSearchAccess } from "@/lib/catalogSearchAccess";
 import { classifySmartVariantResolverState } from "@/lib/search/smartVariantSearchPolicy";
 import { resolveSmartSearchQuery } from "@/lib/search/resolveSmartSearchQuery";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -464,11 +465,18 @@ export async function GET(request: NextRequest) {
       } = await requestSupabase.auth.getUser();
       userId = user?.id ?? null;
     }
-    if (gameScope !== "pokemon" && !userId) {
-      return NextResponse.json(
-        { ok: false, error: "Sign in to search this catalog.", game_scope: gameScope },
-        { status: 401, headers: { "Cache-Control": "private, no-store" } },
-      );
+    if (gameScope !== "pokemon") {
+      // Catalog audience is governed by the database, independently of pricing.
+      const visibility = await requestSupabase!.rpc("catalog_game_visible_to_request_v1", {
+        p_game_code: gameScope,
+      });
+      const access = catalogSearchAccess(visibility, Boolean(userId));
+      if (!access.allowed) {
+        return NextResponse.json(
+          { ok: false, error: access.error, game_scope: gameScope },
+          { status: access.status, headers: { "Cache-Control": "private, no-store" } },
+        );
+      }
     }
     if (valueSortRequested && !userId) {
       return NextResponse.json(
