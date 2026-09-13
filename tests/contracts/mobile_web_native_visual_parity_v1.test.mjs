@@ -215,3 +215,14 @@ test("visual fixtures fail closed in Vercel and keep private captures out of CI"
     "playwright test tests/parity/mobile.a11y.spec.ts",
   );
 });
+test("visual harness selects local read-only mode without inherited production credentials", () => {
+  const config = readFileSync(new URL("../../apps/web/playwright.config.ts", import.meta.url), "utf8");
+  assert.match(config, /NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY: "true"/);
+  assert.match(config, /GROOKAI_COLLECTOR_RELEASE_V1: "false"/);
+  assert.match(config, /NEXT_PUBLIC_COLLECTOR_STAGING: "false"/);
+  assert.match(config, /NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING: "false"/);
+  assert.match(config, /SUPABASE_URL: "http:\/\/127\.0\.0\.1:54321"/);
+  assert.match(config, /Object\.entries\(process\.env\)\.map/);
+  assert.match(config, /\? "" : value/);
+  assert.match(config, /SUPABASE\|DATABASE_URL\|POSTGRES_URL\|SECRET\|TOKEN/);
+});

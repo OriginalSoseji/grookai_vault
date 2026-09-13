@@ -16,6 +16,12 @@ The six numbered image faces and two source-name conflicts are separate work in
 `catalog_presentation_20260912/japanese-exceptions-8`; preparation is NOT Storage
 or DB publication. Do not conflate this website release with resolving those rows.
 
+Visual parity uses explicit local read-only collector mode on loopback, with
+inherited production credentials removed. Do not enable production credentials
+or relax the production release guard to start the visual fixture server. A
+Vercel branch preview without the existing production target is intentionally
+rejected; use a staged production-target candidate with preserved live rollback.
+
 ## Collector Rollout And Canonical Activity Reads (September 12)
 
 Read the latest top section of `COLLECTOR_WEB_PRODUCTION_RELEASE_CHECKPOINT_20260912.md`.

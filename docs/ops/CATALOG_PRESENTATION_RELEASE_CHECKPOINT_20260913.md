@@ -36,6 +36,21 @@ entire Japanese catalog or resolving every missing image.
 
 ## Release Gates
 
+First frozen producer `0d5985b1a942140bab5916069a41639f45e4dd6d` passed
+normal commit/push checks. PR 462 exposed a pre-existing visual-test environment
+gap: the local Playwright server did not select a collector test mode and was
+rejected by the production guard. The follow-up explicitly uses local read-only
+mode and strips inherited production credentials. No production guard, screenshot
+baseline, or application permission is relaxed. Attempt 1 was aborted with the
+original deployment retained and automatic domain assignment restored.
+The actual local run then exposed collector-theme inheritance in the native
+fixture pages. The root collector class is now excluded only in the existing
+local visual fixture mode, which is disabled in production and Vercel. Existing
+goldens remain unchanged; normal collector pages retain their approved theme.
+Local verification then passed all 104 existing visual/accessibility tests.
+Detailed logs and preserved failure images: operator artifacts
+`catalog_presentation_20260913/local-parity-03.log` and `parity-failure-02/`.
+
 Require normal managed shipcheck, preserved live deployment/rollback, exact
 source/main reconciliation, one staged production candidate, actual candidate
 image/catalog/anonymous and signed-in smoke before promotion, then live readback.
