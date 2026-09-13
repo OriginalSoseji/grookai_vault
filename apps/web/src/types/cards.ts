@@ -61,6 +61,7 @@ export interface CardSummary {
   name: string;
   number: string;
   set_name?: string;
+  set_name_ja?: string;
   rarity?: string;
   image_url?: string;
   tcgdex_external_id?: string;

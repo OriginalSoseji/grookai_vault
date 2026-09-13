@@ -6,7 +6,16 @@ const baseURL = `http://127.0.0.1:${port}`;
 const reuseExistingServer = process.env.GROOKAI_PLAYWRIGHT_REUSE_SERVER === "1";
 
 const webServerEnv = {
-  ...process.env,
+  // Playwright merges this with its parent environment; blank sensitive keys
+  // explicitly so removing them here cannot restore inherited credentials.
+  ...Object.fromEntries(Object.entries(process.env).map(([key, value]) =>
+    [key, /SUPABASE|DATABASE_URL|POSTGRES_URL|SECRET|TOKEN|API_KEY|PASSWORD|VERCEL|BRIDGE_IMPORT|GROOKAI_COLLECTOR_RELEASE|NEXT_PUBLIC_COLLECTOR_/.test(key) ? "" : value],
+  )),
+  GROOKAI_COLLECTOR_RELEASE_V1: "false",
+  NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY: "true",
+  NEXT_PUBLIC_COLLECTOR_STAGING: "false",
+  NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB: "false",
+  NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING: "false",
   GROOKAI_VISUAL_TEST_MODE: "1",
   SUPABASE_URL: "http://127.0.0.1:54321",
   SUPABASE_PUBLISHABLE_KEY: "local-visual-parity-fixture-key",

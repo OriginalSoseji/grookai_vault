@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const visualParityFixtureMode = isLocalVisualParityFixtureMode();
 
   return (
-    <html lang="en" className="gv-collector" suppressHydrationWarning>
+    <html lang="en" className={visualParityFixtureMode ? undefined : "gv-collector"} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>

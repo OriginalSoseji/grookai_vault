@@ -1,5 +1,27 @@
 # Grookai Operator Playbook V1
 
+## Catalog Presentation Candidate - September 13, 2026
+
+Read `docs/ops/CATALOG_PRESENTATION_RELEASE_CHECKPOINT_20260913.md`.
+Candidate tree: `C:/grookai_vault_catalog_presentation_release_20260913`.
+Preserved design tree: `C:/grookai_vault_collector_release`.
+The import manifest and exact original files are in operator artifacts under
+`catalog_presentation_20260913`. Only source-hashed display/cover changes were
+imported; no previous image executors or private DB snapshots were imported.
+Card detail must use its canonical printed_set_abbrev/printed_total before set
+fallbacks; a hash-named set code is not a printed abbreviation. Unknown finishes
+remain qualified. No new identity or pricing authority comes from presentation.
+
+The six numbered image faces and two source-name conflicts are separate work in
+`catalog_presentation_20260912/japanese-exceptions-8`; preparation is NOT Storage
+or DB publication. Do not conflate this website release with resolving those rows.
+
+Visual parity uses explicit local read-only collector mode on loopback, with
+inherited production credentials removed. Do not enable production credentials
+or relax the production release guard to start the visual fixture server. A
+Vercel branch preview without the existing production target is intentionally
+rejected; use a staged production-target candidate with preserved live rollback.
+
 ## Collector Rollout And Canonical Activity Reads (September 12)
 
 Read the latest top section of `COLLECTOR_WEB_PRODUCTION_RELEASE_CHECKPOINT_20260912.md`.

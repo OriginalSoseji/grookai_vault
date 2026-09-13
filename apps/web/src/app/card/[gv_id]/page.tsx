@@ -94,7 +94,7 @@ function getPrintedSetAbbrevFallback(card: { printed_set_abbrev?: string; set_co
   if (explicitAbbrev) return explicitAbbrev;
 
   const gvIdAbbrev = card.gv_id?.match(/^GV-PK-([A-Z0-9]+)-/i)?.[1]?.trim().toUpperCase();
-  if (gvIdAbbrev && gvIdAbbrev !== card.set_code?.trim().toUpperCase()) return gvIdAbbrev;
+  if (gvIdAbbrev && gvIdAbbrev !== "JPN" && gvIdAbbrev !== card.set_code?.trim().toUpperCase()) return gvIdAbbrev;
 
   return undefined;
 }
@@ -1117,6 +1117,7 @@ async function CardPageContent({
                 <h1 className="gv-hi-card-identity">{resolvedDisplayIdentity.base_name}</h1>
                 {resolvedDisplayIdentity.printed_name ? <p className="gv-detail-printed-name">{resolvedDisplayIdentity.printed_name}</p> : null}
                 {setName ? <p className="gv-detail-set">{setHref ? <Link href={setHref}>{setName}</Link> : setName}</p> : null}
+                {resolvedCard.set_name_ja ? <p lang="ja" className="gv-detail-printed-name">{resolvedCard.set_name_ja}</p> : null}
                 {identitySubtitle ? <p className="gv-detail-subtitle">{identitySubtitle}</p> : null}
                 <div className="gv-detail-tags">
                   {collectorNumberLine ? <span>{collectorNumberLine}</span> : null}

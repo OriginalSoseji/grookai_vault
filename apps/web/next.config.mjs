@@ -107,6 +107,10 @@ const nextConfig = {
     // LOCK: Public read helpers should be cacheable by default.
     return [
       {
+        source: "/catalog-set-covers/:file",
+        headers: [{ key: "Cache-Control", value: immutablePublicCache }],
+      },
+      {
         source: "/dex/sprites/v1/:sprite.png",
         headers: [{ key: "Cache-Control", value: immutablePublicCache }],
       },

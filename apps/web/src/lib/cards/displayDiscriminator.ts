@@ -219,7 +219,7 @@ export function getCardPrintDisplayDiscriminator(
   if (input.hasDuplicateCaption) {
     const fallbackIndex = input.fallbackIndex ?? 0;
     return {
-      label: fallbackIndex === 0 ? "Standard Print" : "Unclassified Variant",
+      label: fallbackIndex === 0 ? "Finish not confirmed" : "Unclassified Variant",
       source: "fallback",
     };
   }

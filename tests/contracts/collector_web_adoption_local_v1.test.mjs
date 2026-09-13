@@ -24,7 +24,7 @@ test('approved appearance lives in a separate stylesheet without replacing theme
   const source = read('apps/web/src/app/layout.tsx');
   assert.match(source, /import "\.\/globals.css"/);
   assert.match(source, /import "\.\/collector.css"/);
-  assert.match(source, /className="gv-collector"/);
+  assert.match(source, /className=\{visualParityFixtureMode \? undefined : "gv-collector"\}/);
   assert.match(source, /grookai-theme/);
   assert.match(source, /classList.toggle\("gv-dark"/);
 });

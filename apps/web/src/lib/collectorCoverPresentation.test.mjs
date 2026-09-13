@@ -106,6 +106,25 @@ test("missing, blank, and invalid set covers stay honest even with a logo", () =
   }
 });
 
+test("a governed local set logo is a valid fallback without a cover", () => {
+  const html = render(PublicSetTile, { setInfo: { ...setInfo, hero_image_url: undefined }, compareCards: [], logoPath: '/set-logos/base1.png' });
+  assert.match(html, /src="\/set-logos\/base1.png"/);
+  assert.doesNotMatch(html, /Cover artwork unavailable/);
+});
+
+test("TCGdex logo and symbol files are not rewritten into card directories", () => {
+  const { normalizePublicCardImageUrl, normalizePublicCardImageSrc } = load('lib/publicCardImage.ts');
+  for (const filename of ['logo.png', 'symbol.svg', 'logo.webp']) {
+    const url = `https://assets.tcgdex.net/en/me/me04/${filename}`;
+    assert.equal(normalizePublicCardImageUrl(url), url);
+  }
+  assert.equal(normalizePublicCardImageUrl('https://assets.tcgdex.net/en/me/me04/084'), 'https://assets.tcgdex.net/en/me/me04/084/high.webp');
+  assert.equal(normalizePublicCardImageUrl('https://assets.tcgdex.net/en/me/me04/084/low.webp'), 'https://assets.tcgdex.net/en/me/me04/084/high.webp');
+  assert.equal(normalizePublicCardImageSrc('/set-logos/../private.png'), undefined);
+  assert.equal(normalizePublicCardImageSrc('/catalog-set-covers/not-a-hash.jpg'), undefined);
+  assert.equal(normalizePublicCardImageSrc('/catalog-set-covers/' + 'a'.repeat(64) + '.jpg'), '/catalog-set-covers/' + 'a'.repeat(64) + '.jpg');
+});
+
 test("binder summary uses only its cover and preserves link and progress", () => {
   const html = render(BinderSummaryCard, { binder });
   assert.equal((html.match(/<img /g) ?? []).length, 1);
@@ -176,7 +195,7 @@ test("cover image failure exhausts its single source into an honest placeholder"
 test("presentation components add no fetch, RPC, fixture source, or cover candidate queries", () => {
   for (const relative of ["components/sets/PublicSetTile.tsx", "components/binders/BinderViews.tsx"]) {
     const source = fs.readFileSync(path.join(srcRoot, relative), "utf8");
-    assert.doesNotMatch(source, /\bfetch\s*\(|\.rpc\s*\(|\.from\s*\(|fallbackSrc=|fallbackSources=|visual-fixtures|collector-site-preview/);
+    assert.doesNotMatch(source, /\bfetch\s*\(|\.rpc\s*\(|\.from\s*\(|visual-fixtures|collector-site-preview/);
   }
 });
 

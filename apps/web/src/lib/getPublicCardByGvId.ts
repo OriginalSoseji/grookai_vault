@@ -1,4 +1,6 @@
 import { cache } from "react";
+import { getCatalogSetPresentation } from "@/lib/catalogPresentation";
+import { resolveCollectorPrintedCoordinates } from "@/lib/catalogDisplayReference";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import {
@@ -46,6 +48,9 @@ type TraitRow = {
 
 type PublicCardRow = {
   id: string | null;
+  set_id?: string | null;
+  printed_set_abbrev?: string | null;
+  printed_total?: number | null;
   game_id: string | null;
   gv_id: string | null;
   name: string | null;
@@ -270,7 +275,7 @@ function buildFallbackDisplayPrinting(
 
   return {
     id: `canonical:${fallbackId}`,
-    finish_name: "Standard Print",
+    finish_name: "Finish not confirmed",
     display_finish: null,
     is_display_fallback: true,
   };
@@ -705,6 +710,9 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
         artist,
         external_ids,
         set_code,
+        set_id,
+        printed_set_abbrev,
+        printed_total,
         variant_key,
         printed_identity_modifier,
         variants,
@@ -759,15 +767,18 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
   const printings = await mapCardPrintings(printingRows);
-  const setName = normalizePublicSetDisplayName(
-    setRecord?.name ?? fallbackSet.name,
-  );
-  const printedTotal =
-    typeof setRecord?.printed_total === "number"
-      ? setRecord.printed_total
-      : fallbackSet.printedTotal;
-  const printedSetAbbrev =
-    setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev;
+  const setPresentation = getCatalogSetPresentation({
+    id: row.set_id, code: row.set_code ?? "", game: gameRecord?.code,
+    name: normalizePublicSetDisplayName(setRecord?.name ?? fallbackSet.name),
+    printedCode: setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev,
+  });
+  const setName = setPresentation.name;
+  const { printedTotal, printedSetAbbrev } = resolveCollectorPrintedCoordinates({
+    cardCode: row.printed_set_abbrev, cardTotal: row.printed_total,
+    evidenceCode: setPresentation.display_code,
+    setCode: setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev,
+    setTotal: setRecord?.printed_total ?? fallbackSet.printedTotal,
+  });
   const releaseDate = setRecord?.release_date ?? fallbackSet.releaseDate;
 
   return {
@@ -780,6 +791,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     number_plain: row.number_plain ?? undefined,
     printed_set_abbrev: printedSetAbbrev ?? undefined,
     set_name: setName,
+    set_name_ja: setPresentation.name_ja,
     set_code: row.set_code ?? undefined,
     active_identity: activeIdentity,
     language_code: activeIdentity?.language_code,

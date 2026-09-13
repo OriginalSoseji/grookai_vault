@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { formatCollectorCardReference } from "@/lib/catalogDisplayReference";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
@@ -28,6 +29,8 @@ import type { PublicSetCard } from "@/lib/publicSets.shared";
 
 type PublicSetCardGridProps = {
   setCode: string;
+  setName?: string;
+  displayCode?: string;
   gameCode: string;
   initialCards: PublicSetCard[];
   totalCount: number;
@@ -47,6 +50,8 @@ function getDefaultPrintingId(card: PublicSetCard) {
 
 export default function PublicSetCardGrid({
   setCode,
+  setName,
+  displayCode,
   gameCode,
   initialCards,
   totalCount,
@@ -123,7 +128,8 @@ export default function PublicSetCardGrid({
       <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
         {cards.map((card, index) => {
           const displayIdentity = resolveDisplayIdentity(card);
-          const setLabel = setCode.toUpperCase();
+          const setLabel = setName ?? setCode.toUpperCase();
+          const collectorReference = formatCollectorCardReference({ gvId: card.gv_id, setCode, setName, displayCode, number: card.number });
           const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
             identitySubtitle: displayIdentity.suffix,
             visibleSetLabel: setLabel,
@@ -207,7 +213,7 @@ export default function PublicSetCardGrid({
                     <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
                   ) : null}
                   <span className="gv-hi-metadata block truncate font-mono text-[11px] font-semibold uppercase tracking-[0.12em]">
-                    Grookai ID {card.gv_id}
+                    {collectorReference}
                   </span>
                 </Link>
               }
@@ -273,7 +279,10 @@ export default function PublicSetCardGrid({
               }
               footer={
                 <div className="flex items-center justify-between gap-3">
-                  <span className="gv-hi-diagnostics">GV-ID: {card.gv_id}</span>
+                  <details className="min-w-0 text-xs">
+                    <summary className="cursor-pointer">Catalog ID</summary>
+                    <span className="block break-all">{card.gv_id}</span>
+                  </details>
                   <ShareCardButton gvId={card.gv_id} />
                 </div>
               }
