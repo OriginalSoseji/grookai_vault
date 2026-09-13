@@ -1,5 +1,7 @@
 const PARSER_VERSION = 'JPN-MASTER-INDEX-SET-SOURCE-PARSERS-V1';
 
+export { stripHtml as stripSourceSetHtmlV1 };
+
 function decodeHtml(value) {
   return String(value ?? '')
     .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))

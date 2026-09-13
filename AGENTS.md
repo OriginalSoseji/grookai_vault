@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Catalog Presentation Release - September 13, 2026
+
+Read `docs/ops/CATALOG_PRESENTATION_RELEASE_CHECKPOINT_20260913.md` first.
+This clean candidate preserves the original presentation tree and current main.
+It contains display/cover repairs only, no image/identity mutation executor.
+The completed 343 recent Japanese image pointers must not be repeated. The eight
+remaining source exceptions are prepared separately, not included in this release.
+
 ## Current Collector Rollout Follow-up
 
 The MTG scheduled refresh is enabled and verified. The collector deployment was

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
+import { getCatalogSetPresentation } from "@/lib/catalogPresentation";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import {
@@ -299,12 +300,18 @@ function mapSetRowToSummary(
   }
 
   const code = row.code.trim().toLowerCase();
-  const displayName = normalizePublicSetDisplayName(row.name);
+  const presentation = getCatalogSetPresentation({
+    id: row.id, code, game: row.game, name: normalizePublicSetDisplayName(row.name),
+    printedCode: row.printed_set_abbrev,
+  });
+  const displayName = presentation.name;
 
   return {
     game_code: row.game?.trim().toLowerCase() || "pokemon",
     code,
     name: displayName,
+    name_ja: presentation.name_ja,
+    display_code: presentation.display_code,
     printed_set_abbrev: row.printed_set_abbrev?.trim().toUpperCase() || undefined,
     printed_total: typeof row.printed_total === "number" ? row.printed_total : undefined,
     release_date: row.release_date ?? undefined,
@@ -312,8 +319,8 @@ function mapSetRowToSummary(
     release_year: getReleaseYear(row.release_date),
     card_count: canonicalCardCount + getBaseSetPrintRunLaneCardCountAdjustment(code),
     card_count_is_exact: cardCountIsExact,
-    hero_image_url: row.hero_image_url?.trim() || undefined,
-    hero_image_source: row.hero_image_source?.trim() || undefined,
+    hero_image_url: row.hero_image_url?.trim() || presentation.package_cover_url || presentation.representative_cover_url,
+    hero_image_source: row.hero_image_source?.trim() || (presentation.package_cover_url ? "official_package" : presentation.representative_cover_url ? "representative_card" : undefined),
     catalog_set_type: getCatalogSetType(row),
     normalized_code: normalizeSetCode(code),
     normalized_name: normalizeSetQuery(displayName),
@@ -359,7 +366,10 @@ export const getPublicSets = cache(async (
     const candidate = mapSetRowToSummary(row, cardCount, cardCountIsExact);
     if (!candidate) continue;
 
-    const canonicalNameKey = `${candidate.game_code}:${normalizeSetQuery(candidate.name)}`;
+    // A translation is presentation, never authority to merge release containers.
+    const canonicalNameKey = candidate.code.startsWith("jpn-")
+      ? `${candidate.game_code}:${candidate.code}`
+      : `${candidate.game_code}:${normalizeSetQuery(row.name ?? "")}`;
 
     const existing = canonicalSetsByName.get(canonicalNameKey);
     if (!existing) {

@@ -1,0 +1,18 @@
+{
+  "version": "JAPANESE_DISPLAY_TRANSLATIONS_V1",
+  "policy": "Editorial English translations of preserved official Japanese names, not official English release identities or replacement set codes.",
+  "entries": {
+    "jpn-product-4b7ef0a0f96e6ef5": {
+      "name_ja": "スターターセットex イーブイex",
+      "name_en": "Starter Set ex: Eevee ex"
+    },
+    "jpn-product-009933fefda0f9f0": {
+      "name_ja": "スターターセットex ゾロア＆ゾロアークex",
+      "name_en": "Starter Set ex: Zorua & Zoroark ex"
+    },
+    "jpn-product-94e8f8d9e03d3cad": {
+      "name_ja": "スターターセットex ニャオハ＆マスカーニャex",
+      "name_en": "Starter Set ex: Sprigatito & Meowscarada ex"
+    }
+  }
+}

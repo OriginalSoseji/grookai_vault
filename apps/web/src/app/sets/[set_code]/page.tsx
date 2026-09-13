@@ -148,8 +148,8 @@ async function SetPageContent({
           <div className="space-y-5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="gv-discovery-eyebrow">Set Album</span>
-              <span className="gv-discovery-pill">{setDetail.code.toUpperCase()}</span>
-              {setDetail.printed_set_abbrev ? (
+              <span className="gv-discovery-pill">{setDetail.display_code ?? setDetail.code.toUpperCase()}</span>
+              {setDetail.printed_set_abbrev && !/product-|artofpkm:|tcgcollector:/i.test(setDetail.printed_set_abbrev) && setDetail.printed_set_abbrev !== setDetail.display_code ? (
                 <span className="gv-discovery-pill">{setDetail.printed_set_abbrev}</span>
               ) : null}
             </div>
@@ -176,9 +176,10 @@ async function SetPageContent({
               <h1 className="gv-display-title max-w-4xl text-[clamp(3rem,8vw,6.5rem)]">
                 {setDetail.name}
               </h1>
+              {setDetail.name_ja ? <p lang="ja" className="text-lg text-slate-600 dark:text-slate-400">{setDetail.name_ja}</p> : null}
               <p className="gv-body-copy max-w-2xl text-[1.08rem]">
                 {printRunExplanation?.summary ??
-                  "Browse every reconciled English physical identity, finish, and variant option in this set. Your vault progress is shown against the Master Index."}
+                  "Your collection progress for this set."}
               </p>
             </div>
 
@@ -338,6 +339,8 @@ async function SetPageContent({
         </div>
         <PublicSetCardGrid
           setCode={setDetail.code}
+          setName={setDetail.name}
+          displayCode={setDetail.display_code}
           gameCode={setDetail.game_code}
           initialCards={initialCardsWithPricing}
           totalCount={setDetail.card_count}

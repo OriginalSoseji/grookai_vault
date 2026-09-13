@@ -13,7 +13,7 @@ type PublicSetTileProps = {
   priority?: boolean;
 };
 
-export default function PublicSetTile({ setInfo, compareCards, priority = false }: PublicSetTileProps) {
+export default function PublicSetTile({ setInfo, compareCards, logoPath, priority = false }: PublicSetTileProps) {
   const accentColor = getSetAccentColor(setInfo.code);
   const routeParams = new URLSearchParams();
   if (setInfo.game_code !== "pokemon") {
@@ -35,26 +35,28 @@ export default function PublicSetTile({ setInfo, compareCards, priority = false 
       <div className="gv-collector-set-cover relative z-10 h-[220px] overflow-hidden border-b border-slate-200/70 bg-slate-100 sm:h-[250px] dark:border-white/[0.08] dark:bg-slate-900">
         <PublicCardImage
           src={setInfo.hero_image_url}
+          fallbackSrc={logoPath}
           alt={`${setInfo.name} cover art`}
           imageClassName="gv-collector-set-cover-image h-full w-full rotate-[7deg] object-contain p-6 drop-shadow-md"
           fallbackClassName="gv-collector-set-cover-empty flex h-full flex-col items-center justify-center gap-2 px-6 text-center text-sm text-slate-600 dark:text-slate-400"
           fallbackLabel={
             <>
-              <span className="max-w-full break-words font-mono font-semibold uppercase">{setInfo.code}</span>
+              <span className="max-w-full break-words font-semibold">{setInfo.display_code ?? setInfo.code}</span>
               <span>Cover artwork unavailable</span>
             </>
           }
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           loading="lazy"
           priority={priority}
-          unoptimized
+          unoptimized={!setInfo.hero_image_url?.startsWith("/catalog-set-covers/")}
         />
       </div>
 
       <div className="gv-collector-set-info relative z-10 space-y-3 break-words px-5 py-5">
         <div className="space-y-2">
-          <p className="gv-eyebrow">{setInfo.code}</p>
+          <p className="gv-eyebrow">{setInfo.display_code ?? setInfo.code}</p>
           <h2 className="text-xl font-semibold text-slate-950 dark:text-slate-50">{setInfo.name}</h2>
+          {setInfo.name_ja ? <p lang="ja" className="text-sm text-slate-600 dark:text-slate-400">{setInfo.name_ja}</p> : null}
         </div>
         <p className="text-sm text-slate-600 dark:text-slate-400">
           {[

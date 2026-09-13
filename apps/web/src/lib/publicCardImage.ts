@@ -76,6 +76,9 @@ export function normalizePublicCardImageUrl(value: string) {
     unwrapped.startsWith("https://assets.tcgdex.net/en/") &&
     !unwrapped.endsWith("/high.webp")
   ) {
+    // Logos and symbols are files, not card-image directories.
+    const pathname = new URL(unwrapped).pathname;
+    if (/\.(?:png|jpe?g|webp|svg|gif)$/i.test(pathname) && !/\/(?:low|high)\.(?:webp|png|jpg|jpeg)$/i.test(pathname)) return unwrapped;
     const withoutKnownFile = unwrapped.replace(/\/(?:low|high)\.(?:webp|png|jpg|jpeg)$/i, "");
     return `${withoutKnownFile.replace(/\/+$/, "")}/high.webp`;
   }
@@ -89,6 +92,8 @@ export function normalizePublicCardImageSrc(value: string | null | undefined) {
   }
 
   const normalized = normalizePublicCardImageUrl(value.trim());
+  if (/^\/set-logos\/[a-z0-9._-]+\.png$/i.test(normalized)) return normalized;
+  if (/^\/catalog-set-covers\/[a-f0-9]{64}\.(jpg|png|webp)$/.test(normalized)) return normalized;
   const canonCardProxyUrl = normalizeCanonCardImageProxyUrl(normalized);
   if (normalized.startsWith("/api/canon/image?path=")) {
     return normalized;

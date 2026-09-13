@@ -53,8 +53,11 @@ Stable parent / modifier labels:
 
 Fallback labels:
 
-- Standard Print
+- Finish not confirmed
 - Unclassified Variant
+
+September 12, 2026: missing child-printing evidence must not assert a standard
+finish. This label change does not create or suppress any verified finish.
 
 ## Species Dex Rule
 

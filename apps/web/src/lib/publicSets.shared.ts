@@ -179,6 +179,8 @@ export type PublicSetSummary = {
   game_code: string;
   code: string;
   name: string;
+  name_ja?: string;
+  display_code?: string;
   printed_set_abbrev?: string;
   printed_total?: number;
   release_date?: string;
@@ -197,6 +199,8 @@ export type PublicSetSummary = {
 
 type PublicSetSearchCandidate = {
   name?: string | null;
+  name_ja?: string | null;
+  display_code?: string | null;
   code?: string | null;
   printed_set_abbrev?: string | null;
   release_year?: number;
@@ -434,6 +438,8 @@ function getWorldChampionshipDeckParts(setInfo: PublicSetSearchCandidate) {
 
 export function getPublicSetSearchHaystacks(setInfo: PublicSetSearchCandidate) {
   const baseHaystacks = [
+    normalizeSetQuery(setInfo.name_ja ?? ""),
+    normalizeSetQuery(setInfo.display_code ?? ""),
     setInfo.normalized_name ?? normalizeSetQuery(setInfo.name ?? ""),
     setInfo.normalized_code ?? normalizeSetQuery(setInfo.code ?? ""),
     setInfo.normalized_printed_set_abbrev ?? normalizeSetQuery(setInfo.printed_set_abbrev ?? ""),
