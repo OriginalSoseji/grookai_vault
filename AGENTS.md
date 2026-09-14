@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Current Catalog Latency Follow-up
+
+Numeric pagination is live at main `e986e10eee8b8c917ae646f37a11a20536a259c9`.
+Read `docs/ops/CATALOG_PAGE_READ_LATENCY_CHECKPOINT_20260913.md` for the next
+bounded read optimization. Preserve the exact-set index and caller visibility;
+only independent metadata/printing reads may overlap. Completed release receipts:
+`C:/grookai_vault_operator_artifacts/catalog_numeric_pagination_20260913/CHECKPOINT.md`.
+
 ## Current Catalog Follow-up
 
 The September 13 presentation release is live at main `494c8626830514c278eedcdb7133575244824627`.

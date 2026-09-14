@@ -38,3 +38,14 @@ beyond JS safe integers, lower server row caps, count drift and missing detail
 rows. Replay read-only live set indices through the same implementation and
 verify selected IDs are conserved. Typecheck, lint and relevant contracts must
 pass. Runtime smoke remains required before a later deployment is reported live.
+
+## Bounded Read Latency Follow-up
+
+Once the exact ordered page IDs are selected, metadata and printing reads may
+overlap. This changes dependency scheduling, not authority or data selection.
+Keep metadata chunks sequential at 100 IDs, page size at most 500, and the
+existing printing reader's 250-ID/1,000-row limits. At most two transport reads
+are active within the page read operation. Both branches settle before any
+error is surfaced; never return a partial page. Metadata identity/order
+reconciliation remains mandatory. Empty/duplicate/oversized selections cannot
+launch unnecessary reads. Do not add cross-request caller caches or write data.

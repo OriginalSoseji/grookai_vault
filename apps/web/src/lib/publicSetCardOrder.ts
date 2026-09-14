@@ -68,3 +68,32 @@ export function restorePublicSetCardPageOrder<T extends { id: string | null }>(i
   }
   return ids.map(id => byId.get(id)!);
 }
+
+export async function readPublicSetCardPage<T extends { id: string | null }, P>(
+  pageIds: readonly string[],
+  readMetadata: (ids: string[]) => Promise<T[]>,
+  readPrintings: (ids: string[]) => Promise<P[]>,
+) {
+  const ids = [...pageIds];
+  if (ids.length > 500 || new Set(ids).size !== ids.length || ids.some(id => !id)) {
+    throw new Error("Invalid set page identities");
+  }
+  if (!ids.length) return { rows: [] as T[], printingRows: [] as P[] };
+
+  // These reads depend on the selected IDs, not on one another. Keep metadata
+  // chunks sequential and let the existing printing reader retain its limits.
+  // Settle both branches before failing so no read outlives this page operation.
+  const [metadata, printings] = await Promise.allSettled([
+    (async () => {
+      const rows: T[] = [];
+      for (let start = 0; start < ids.length; start += 100) {
+        rows.push(...await readMetadata(ids.slice(start, start + 100)));
+      }
+      return restorePublicSetCardPageOrder(ids, rows);
+    })(),
+    Promise.resolve().then(() => readPrintings([...ids])),
+  ]);
+  if (metadata.status === "rejected") throw metadata.reason;
+  if (printings.status === "rejected") throw printings.reason;
+  return { rows: metadata.value, printingRows: printings.value };
+}
