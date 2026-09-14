@@ -16,8 +16,9 @@ test('ordering is exact-set, request-scoped and independent from private pricing
   assert.doesNotMatch(index,/service.role|unstable_cache|image_path|price|ownership/i);
   assert.match(cards,/resolveVisiblePublicSetReferences/);
   assert.match(cards,/orderedIndex\.slice\(offset, offset \+ limit\)/);
-  assert.match(cards,/\.in\("id", pageIds\.slice\(start, start \+ 100\)\)/);
-  assert.match(cards,/restorePublicSetCardPageOrder\(pageIds/);
+  assert.match(cards,/readPublicSetCardPage\(\s*pageIds,/);
+  assert.match(cards,/\.in\("id", ids\)/);
+  assert.match(cards,/ids => getPublicCardPrintingOptions\(supabase, ids\)/);
   assert.doesNotMatch(cards,/\.range\(offset/);
   assert.match(cards,/getPublicCardPrintingOptions/);
 });

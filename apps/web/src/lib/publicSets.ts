@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-import { readPublicSetCardOrderIndex, restorePublicSetCardPageOrder, SET_ORDER_CHUNK, type PublicSetCardOrderRow } from "@/lib/publicSetCardOrder";
+import { readPublicSetCardOrderIndex, readPublicSetCardPage, SET_ORDER_CHUNK, type PublicSetCardOrderRow } from "@/lib/publicSetCardOrder";
 import { getCatalogSetPresentation } from "@/lib/catalogPresentation";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
@@ -549,28 +549,25 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   const orderedIndex = await getPublicSetCardOrderIndex(JSON.stringify([...exactSetIds].sort()));
   const pageIds = orderedIndex.slice(offset, offset + limit).map(row => row.id);
   if (!pageIds.length) return [];
-  const pageRows: PublicSetCardRow[] = [];
-  // Keep UUID filters below proxy URL limits, including the 500-row detail read.
-  for (let start = 0; start < pageIds.length; start += 100) {
-    const { data, error } = await supabase
-      .from("card_prints")
-      .select(selectClause)
-      .in("set_id", exactSetIds)
-      .in("id", pageIds.slice(start, start + 100))
-      .not("gv_id", "is", null)
-      .order("id", { ascending: true });
-    if (error) throw new Error(error.message);
-    pageRows.push(...((data ?? []) as unknown as PublicSetCardRow[]));
-  }
-
-  const rows = restorePublicSetCardPageOrder(pageIds, pageRows).filter(
+  const { rows: pageRows, printingRows } = await readPublicSetCardPage(
+    pageIds,
+    async ids => {
+      const { data, error } = await supabase
+        .from("card_prints")
+        .select(selectClause)
+        .in("set_id", exactSetIds)
+        .in("id", ids)
+        .not("gv_id", "is", null)
+        .order("id", { ascending: true });
+      if (error) throw new Error(error.message);
+      return (data ?? []) as unknown as PublicSetCardRow[];
+    },
+    ids => getPublicCardPrintingOptions(supabase, ids),
+  );
+  const rows = pageRows.filter(
     (row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id),
   );
 
-  const printingRows = await getPublicCardPrintingOptions(
-    supabase,
-    rows.map((row) => row.id ?? ""),
-  );
   return mapPublicSetCardRows(rows, groupPublicCardPrintingOptionsByCardPrintId(printingRows));
 });
 

@@ -1,9 +1,52 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {readPublicSetCardOrderIndex, comparePublicSetCardOrder, restorePublicSetCardPageOrder, MAX_SET_ORDER_ROWS} from './publicSetCardOrder.ts';
+import {readPublicSetCardOrderIndex, readPublicSetCardPage, comparePublicSetCardOrder, restorePublicSetCardPageOrder, MAX_SET_ORDER_ROWS} from './publicSetCardOrder.ts';
 
 const card = (number, id=number) => ({id, number, number_plain:number});
 const ordered = rows => [...rows].sort(comparePublicSetCardOrder).map(r=>r.number);
+
+const deferred=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject};};
+const tick=()=>new Promise(resolve=>setImmediate(resolve));
+
+test('page metadata and finish reads overlap without changing selected IDs or order',async()=>{
+  const metadata=deferred(),printings=deferred(),calls=[];
+  const ids=['variant-b','variant-a'];
+  const pending=readPublicSetCardPage(ids,async selected=>{calls.push(['metadata',selected]);return metadata.promise;},async selected=>{calls.push(['printings',selected]);return printings.promise;});
+  await tick();assert.deepEqual(calls,[['metadata',ids],['printings',ids]]);
+  const options=[{id:'finish-a',card_print_id:'variant-a'},{id:'finish-b',card_print_id:'variant-b'}];
+  printings.resolve(options);metadata.resolve([{id:'variant-a'},{id:'variant-b'}]);
+  assert.deepEqual(await pending,{rows:[{id:'variant-b'},{id:'variant-a'}],printingRows:options});
+  assert.deepEqual(ids,['variant-b','variant-a']);
+});
+
+test('500-row pages keep metadata chunks sequential and at most two reads active',async()=>{
+  const ids=Array.from({length:500},(_,i)=>`id-${i}`),printingGate=deferred();let active=0,peak=0,completed=0;const chunks=[];
+  const pending=readPublicSetCardPage(ids,async selected=>{active++;peak=Math.max(peak,active);chunks.push(selected.length);await tick();active--;completed++;return [...selected].reverse().map(id=>({id}));},async selected=>{assert.deepEqual(selected,ids);active++;peak=Math.max(peak,active);await printingGate.promise;active--;return [];});
+  for(let i=0;i<10&&completed<5;i++)await tick();
+  assert.equal(completed,5);assert.deepEqual(chunks,[100,100,100,100,100]);assert.equal(peak,2);
+  printingGate.resolve();assert.deepEqual((await pending).rows.map(r=>r.id),ids);assert.equal(active,0);
+});
+
+test('page failures wait for the other read and never publish partial results',async()=>{
+  for(const failMetadata of [true,false]){
+    const gate=deferred(),error=new Error(failMetadata?'metadata failed':'printing failed');let settled=false;
+    const pending=readPublicSetCardPage(['id'],async()=>{if(failMetadata)throw error;await gate.promise;return [{id:'id'}];},async()=>{if(!failMetadata)throw error;await gate.promise;return [];});
+    const checked=pending.then(()=>assert.fail('Partial page accepted'),e=>{settled=true;assert.equal(e,error);});
+    await tick();assert.equal(settled,false);gate.resolve();await checked;assert.equal(settled,true);
+  }
+  for(const rows of [[],[{id:'other'}],[{id:'id'},{id:'id'}]]){
+    await assert.rejects(readPublicSetCardPage(['id'],async()=>rows,async()=>[]),/Set page changed/);
+  }
+});
+
+test('empty or invalid page identities never launch reads; inputs remain isolated',async()=>{
+  const never=async()=>assert.fail('Unexpected read');
+  assert.deepEqual(await readPublicSetCardPage([],never,never),{rows:[],printingRows:[]});
+  for(const ids of [[''],['id','id'],Array.from({length:501},(_,i)=>`${i}`)])await assert.rejects(readPublicSetCardPage(ids,never,never),/Invalid set page/);
+  const input=['one'];
+  const pending=readPublicSetCardPage(input,async ids=>{ids[0]='changed';return [{id:'one'}];},async ids=>{assert.deepEqual(ids,['one']);ids.push('changed');return [];});
+  assert.deepEqual((await pending).rows,[{id:'one'}]);assert.deepEqual(input,['one']);
+});
 
 test('numeric order precedes pagination, including the reported 11/100 boundary', async () => {
   const rows=Array.from({length:113},(_,n)=>card(String(n+1),String(n+1).padStart(6,'0')));
