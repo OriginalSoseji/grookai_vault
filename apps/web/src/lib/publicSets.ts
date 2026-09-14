@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
+import { readPublicSetCardOrderIndex, restorePublicSetCardPageOrder, SET_ORDER_CHUNK, type PublicSetCardOrderRow } from "@/lib/publicSetCardOrder";
 import { getCatalogSetPresentation } from "@/lib/catalogPresentation";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
@@ -437,6 +438,25 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   return setInfo && setInfo.card_count > 0 ? setInfo : null;
 });
 
+// React cache is request-scoped: never share an authenticated visibility result
+// across users. All full-card reads remain limited to the requested page.
+const getPublicSetCardOrderIndex = cache(async function getPublicSetCardOrderIndex(setIdsKey: string) {
+  const supabase = await createServerSupabase();
+  const setIds = JSON.parse(setIdsKey) as string[];
+  return readPublicSetCardOrderIndex(async afterId => {
+    let query = supabase.from("card_prints")
+      .select("id,number,number_plain", { count: "exact" })
+      .in("set_id", setIds)
+      .not("gv_id", "is", null)
+      .order("id", { ascending: true })
+      .limit(SET_ORDER_CHUNK);
+    if (afterId) query = query.gt("id", afterId);
+    const { data, error, count } = await query;
+    if (error) throw new Error(error.message);
+    return { rows: (data ?? []) as PublicSetCardOrderRow[], count };
+  });
+});
+
 export const getPublicSetCards = cache(async function getPublicSetCards(
   setCode: string,
   offset = 0,
@@ -446,6 +466,9 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode || limit <= 0) {
     return [];
+  }
+  if (!Number.isSafeInteger(offset) || offset < 0 || !Number.isSafeInteger(limit) || limit > 500) {
+    throw new Error("Invalid set card page");
   }
 
   const supabase = await createServerSupabase();
@@ -523,21 +546,24 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     return mapPublicSetCardRows(rows, groupPublicCardPrintingOptionsByCardPrintId(printingRows));
   }
 
-  const { data, error } = await supabase
-    .from("card_prints")
-    .select(selectClause)
-    .in("set_id", exactSetIds)
-    .not("gv_id", "is", null)
-    .order("number_plain", { ascending: true, nullsFirst: false })
-    .order("number", { ascending: true })
-    .order("id", { ascending: true })
-    .range(offset, offset + limit - 1);
-
-  if (error) {
-    throw new Error(error.message);
+  const orderedIndex = await getPublicSetCardOrderIndex(JSON.stringify([...exactSetIds].sort()));
+  const pageIds = orderedIndex.slice(offset, offset + limit).map(row => row.id);
+  if (!pageIds.length) return [];
+  const pageRows: PublicSetCardRow[] = [];
+  // Keep UUID filters below proxy URL limits, including the 500-row detail read.
+  for (let start = 0; start < pageIds.length; start += 100) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select(selectClause)
+      .in("set_id", exactSetIds)
+      .in("id", pageIds.slice(start, start + 100))
+      .not("gv_id", "is", null)
+      .order("id", { ascending: true });
+    if (error) throw new Error(error.message);
+    pageRows.push(...((data ?? []) as unknown as PublicSetCardRow[]));
   }
 
-  const rows = ((data ?? []) as unknown as PublicSetCardRow[]).filter(
+  const rows = restorePublicSetCardPageOrder(pageIds, pageRows).filter(
     (row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id),
   );
 

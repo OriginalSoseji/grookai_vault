@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Current Catalog Follow-up
+
+The September 13 presentation release is live at main `494c8626830514c278eedcdb7133575244824627`.
+The eight M6 exceptions are complete; M4/M5/M6 have 351/351 hosted images.
+Do not repeat completed Storage or pointer operations. Full receipts:
+`C:/grookai_vault_operator_artifacts/catalog_presentation_20260913/CHECKPOINT.md`.
+The next isolated code repair is natural numeric set pagination; read
+`docs/contracts/CATALOG_NUMERIC_PAGINATION_V1.md` and
+`docs/ops/CATALOG_NUMERIC_PAGINATION_CHECKPOINT_20260913.md`.
+
 ## Catalog Presentation Release - September 13, 2026
 
 Read `docs/ops/CATALOG_PRESENTATION_RELEASE_CHECKPOINT_20260913.md` first.
