@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Numeric Set Pagination - September 13, 2026
+
+The presentation release and eight Japanese exception writes are complete.
+Continue from `CATALOG_NUMERIC_PAGINATION_CHECKPOINT_20260913.md`, not older
+pre-release or image-preparation instructions. The ordering repair reads a
+lightweight exact-set index before paging full metadata, with caller-scoped
+visibility and explicit completeness checks. It does not mutate printed numbers.
+Read `docs/contracts/CATALOG_NUMERIC_PAGINATION_V1.md` before changing it.
+
 ## Catalog Presentation Candidate - September 13, 2026
 
 Read `docs/ops/CATALOG_PRESENTATION_RELEASE_CHECKPOINT_20260913.md`.
