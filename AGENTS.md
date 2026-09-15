@@ -1,5 +1,12 @@
 # Grookai Agent Entry Point
 
+## Active Market Activation Repair
+
+Read `docs/ops/MARKET_ACTIVATION_GUARD_REPAIR_20260915.md` first in this worktree.
+This isolated branch repairs the pricing coverage query only. Production reads
+are diagnostic; no deployment or publication has occurred. Keep the catalog
+client candidate separate and preserve the failed producer's frozen provenance.
+
 ## Current Catalog Latency Follow-up
 
 Numeric pagination is live at main `e986e10eee8b8c917ae646f37a11a20536a259c9`.
