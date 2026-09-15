@@ -717,6 +717,14 @@ is never waivable.
 
 ### MTG market pricing publication gate
 
+September 15 activation-timeout repair:
+`docs/ops/MARKET_ACTIVATION_GUARD_REPAIR_20260915.md`. Worker V1_8 materializes
+the staged/current release slices before the coverage join. The guard's six
+counts, loss policy, truth exclusions, and 120/125-second limits are unchanged.
+Local PostgreSQL parity and a bounded production read-only query are proven;
+deployment and successful publication are separate, still-required gates.
+Never resume a frozen V1_7 run under V1_8 or mutate its provenance to permit it.
+
 Operate MTG market pricing only through
 `.github/workflows/mtg-pricing-publication-runner.yml` from an exact merged
 `main` SHA. Production requires a shadow run at that SHA with state

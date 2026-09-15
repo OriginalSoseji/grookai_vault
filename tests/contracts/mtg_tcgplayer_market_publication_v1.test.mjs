@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { MARKET_ACTIVATION_COVERAGE_SQL_V1 as COVERAGE_SQL } from "../../backend/pricing/market_activation_coverage_v1.mjs";
 
 import {
   TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
@@ -519,22 +520,13 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
   assert.match(WORKER, /evaluateMtgPricingProductionActivationGuardV1/);
   assert.match(WORKER, /async function evaluateProductionActivationGuard/);
-  assert.match(
-    WORKER,
-    /production_counts as \([\s\S]*from public\.market_price_publication_snapshots snapshot/,
-  );
-  assert.match(
-    WORKER,
-    /production_counts as \([\s\S]*count\(distinct snapshot\.card_printing_id\)[\s\S]*card_printing_truth_reviews truth_review/,
-  );
-  assert.match(
-    WORKER,
-    /current_counts as \([\s\S]*from public\.market_price_current_publication current_state/,
-  );
-  assert.match(
-    WORKER,
-    /current_counts as \([\s\S]*category_id' = '1'[\s\S]*as mtg_baseline_eligible/,
-  );
+  assert.match(WORKER, /text: MARKET_ACTIVATION_COVERAGE_SQL_V1/);
+  assert.match(COVERAGE_SQL, /scoped_snapshots as materialized/);
+  assert.match(COVERAGE_SQL, /scoped_decisions as materialized/);
+  assert.match(COVERAGE_SQL, /count\(distinct card_printing_id\)/);
+  assert.match(COVERAGE_SQL, /public\.card_printing_truth_reviews/);
+  assert.match(COVERAGE_SQL, /public\.market_price_current_publication current_state/);
+  assert.match(COVERAGE_SQL, /scope = 'current' and category_id = '1' and visible[\s\S]*as mtg_baseline_eligible/);
   assert.match(WORKER, /MTG_PRICING_PRODUCTION_GUARD_OUT/);
   assert.match(WORKER, /PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS = 120_000/);
   assert.match(WORKER, /PRODUCTION_GUARD_QUERY_TIMEOUT_MS = 125_000/);
