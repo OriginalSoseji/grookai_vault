@@ -32,7 +32,7 @@ sealed publication to native cover delivery and TestFlight.
 
 ## Access And Evidence
 
-Mac account `cesarcabral`, existing SSH key `grookai_mac_remote_ed25519`.
+Use the existing Mac account and SSH key from the private operator receipts.
 September 16 discovery found LAN `192.168.86.22` using `tailscale ping`;
 `HostKeyAlias=100.118.59.67` validated the existing host identity. The direct
 Tailscale SSH route failed; desktop helper reported missing native pipe even
