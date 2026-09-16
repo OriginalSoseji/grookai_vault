@@ -24,6 +24,26 @@ const { resolveCanonImageV1 } = load('@/lib/canon/resolveCanonImageV1');
 const source = 'self_hosted_verified_external_exact_product_v1';
 const imagePath = `warehouse-derived/image-truth-v1/pokemon-30th-celebration-20260916/${'a'.repeat(64)}.jpeg`;
 
+test('card detail preserves complete printed fractions and RGB coordinates', () => {
+  const file = ts.createSourceFile('page.tsx', read('apps/web/src/app/card/[gv_id]/page.tsx'),
+    ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const functions = file.statements.filter(node => ts.isFunctionDeclaration(node)
+    && ['formatPrintedTotal', 'formatCollectorIdentity'].includes(node.name?.text));
+  assert.equal(functions.length, 2);
+  const exports = {};
+  vm.runInNewContext(ts.transpileModule(functions.map(node => node.getText(file)).join('\n')
+    + '\nexports.formatCollectorIdentity = formatCollectorIdentity;', {
+    compilerOptions: {module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022},
+  }).outputText, {exports});
+  const format = exports.formatCollectorIdentity;
+  for (const number of ['1/128', '4/102', '11/101', '11/113', 'R/RGB', 'G/RGB', 'B/RGB']) {
+    assert.equal(format({printedNumber: number, printedTotal: 128}), number);
+  }
+  assert.equal(format({printedNumber: '001', printedTotal: 165}), '001/165');
+  assert.equal(format({printedNumber: 'TG01', printedTotal: 30}), 'TG01/TG30');
+  assert.equal(format({printedSetAbbrev: '30c', printedNumber: ' 1/128 ', printedTotal: 128}), '30C 1/128');
+});
+
 test('verified hosted source resolves to the stable canonical route without changing evidence', async () => {
   const row = { gv_id: 'GV-PK-30C-001', image_source: source, image_path: imagePath,
     image_status: 'representative_shared', image_note: 'Finish unconfirmed' };
