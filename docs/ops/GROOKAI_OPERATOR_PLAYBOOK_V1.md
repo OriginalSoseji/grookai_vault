@@ -1,5 +1,13 @@
 # Grookai Operator Playbook V1
 
+## Post-Publication Health Timeouts
+
+Read `MARKET_HEALTH_READ_REPAIR_20260916.md`. A failed scheduled wrapper can
+follow successful publication. Verify the ledger and active pointer before
+retrying anything. Run the bounded health reader alone for recovery evidence;
+never rerun source ingestion/publication or overwrite a failed historical summary
+to clear a health-query incident. Preserve runtime rollback and producer pins.
+
 ## Verified Catalog Image Sources
 
 Read `docs/ops/VERIFIED_CATALOG_IMAGE_DELIVERY_20260916.md` for the 30th

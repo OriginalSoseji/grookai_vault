@@ -88,12 +88,16 @@ async function main() {
     connectionString: url,
     ssl: sslConfig(url),
     connectionTimeoutMillis: 15_000,
-    query_timeout: 120_000,
+    query_timeout: 125_000,
     statement_timeout: 120_000,
   });
   await client.connect();
 
   try {
+    await client.query("begin isolation level repeatable read read only");
+    await client.query("set local lock_timeout = '3s'");
+    const queryStartedAt = Date.now();
+    // Fence run-local evidence before joining; never scan historical freshness indexes.
     const result = await client.query(
       `with latest_source as (
          select
@@ -137,8 +141,9 @@ async function main() {
          join selected_run pipeline_run
            on pipeline_run.id = publication_set.run_id
        ),
-       selected_decisions as (
-         select decision.*
+       selected_decisions as materialized (
+         select decision.id, decision.run_id, decision.eligible, decision.decision,
+           decision.source_observation_id, decision.card_printing_id
          from public.market_price_qualification_decisions decision
          join selected_run pipeline_run
            on pipeline_run.id = decision.run_id
@@ -165,7 +170,7 @@ async function main() {
          from selected_publication_set publication_set
          left join public.market_price_publication_snapshots snapshot
            on snapshot.publication_set_id = publication_set.id
-         left join public.market_price_qualification_decisions decision
+         left join selected_decisions decision
            on decision.id = snapshot.qualification_decision_id
           and decision.run_id = snapshot.run_id
        ),
@@ -191,6 +196,31 @@ async function main() {
          from public.market_price_current_publication
          where singleton = true
        ),
+       current_snapshots as materialized (
+         select snapshot.id, snapshot.run_id, snapshot.publication_set_id,
+           snapshot.card_printing_id, snapshot.card_print_id,
+           snapshot.qualification_decision_id, snapshot.publication_state,
+           snapshot.freshness_state, snapshot.source_sync_finished_at
+         from public.market_price_publication_snapshots snapshot
+         where snapshot.publication_set_id = (select publication_set_id from current_publication)
+           and snapshot.run_id = (select run_id from current_publication)
+       ),
+       current_decisions as materialized (
+         select decision.id, decision.run_id, decision.eligible,
+           decision.decision, decision.publication_lane
+         from public.market_price_qualification_decisions decision
+         where decision.run_id = (select run_id from current_publication)
+           and decision.eligible = true
+           and decision.decision = 'publish'
+           and decision.publication_lane = 'current'
+       ),
+       current_qualified_snapshots as materialized (
+         select snapshot.*
+         from current_snapshots snapshot
+         join current_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+       ),
        current_totals as (
          select
            count(distinct snapshot.card_printing_id)::integer
@@ -208,18 +238,12 @@ async function main() {
            on pipeline_run.id = current_state.run_id
           and pipeline_run.reconciliation_state = 'reconciled'
           and pipeline_run.state in ('published', 'verified')
-         join public.market_price_publication_snapshots snapshot
+         join current_qualified_snapshots snapshot
            on snapshot.publication_set_id = current_state.publication_set_id
           and snapshot.run_id = current_state.run_id
           and snapshot.publication_state = 'published'
           and snapshot.freshness_state = 'fresh'
           and snapshot.source_sync_finished_at >= now() - interval '36 hours'
-         join public.market_price_qualification_decisions decision
-           on decision.id = snapshot.qualification_decision_id
-          and decision.run_id = snapshot.run_id
-          and decision.eligible = true
-          and decision.decision = 'publish'
-          and decision.publication_lane = 'current'
          where not exists (
            select 1
            from public.card_printing_truth_reviews truth_review
@@ -281,6 +305,8 @@ async function main() {
        left join current_publication on true`,
       [args.runKey],
     );
+    const queryDurationMs = Date.now() - queryStartedAt;
+    await client.query("rollback");
     const metrics = result.rows[0];
     const sourceHealth = evaluateTcgplayerCurrentSourceHealthV1(metrics, {
       maxSourceAgeHours: args.maxSourceAgeHours,
@@ -360,6 +386,7 @@ async function main() {
       health_version: HEALTH_VERSION,
       health_policy_version: TCGPLAYER_MARKET_HEALTH_POLICY_V1,
       checked_at: new Date().toISOString(),
+      query_duration_ms: queryDurationMs,
       status: findings.length ? "critical" : "healthy",
       run_key: args.runKey,
       thresholds: {
@@ -404,6 +431,7 @@ async function main() {
     );
     if (findings.length) process.exitCode = 1;
   } finally {
+    await client.query("rollback").catch(() => {});
     await client.end().catch(() => {});
   }
 }

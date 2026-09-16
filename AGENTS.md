@@ -1,5 +1,11 @@
 # Grookai Agent Entry Point
 
+## Active Market Health Read Repair
+
+Read `docs/ops/MARKET_HEALTH_READ_REPAIR_20260916.md`. Health-reader repair only;
+preserve the completed publication and failed wrapper evidence. No ingestion,
+publication, canonical data, migration, or separate MEE runtime changes.
+
 ## Verified Catalog Image Delivery
 
 Read `docs/ops/VERIFIED_CATALOG_IMAGE_DELIVERY_20260916.md` first on this branch.
