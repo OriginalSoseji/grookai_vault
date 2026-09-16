@@ -65,6 +65,12 @@ required after commit. Repeated identical runs are zero-write no-ops. No identit
 Storage, visibility, Vault, or other-game writes are authorized by this refresh.
 New products remain staged for separate identity/image evidence completion.
 
+September 16 opt-in amendment: `POKEMON_SEALED_ANNIVERSARY_REFRESH_V1` permits
+the 1,730-member union only after separate admission and image verification of
+nine new products. Its pinned policy also binds 27 exact reviewed nonidentity
+source changes. This does not grant general source-drift acceptance. The original
+baseline remains the default until the explicit workflow selector is deployed.
+
 ## Completion
 
 Every inspected source product has a disposition. Published products have exact

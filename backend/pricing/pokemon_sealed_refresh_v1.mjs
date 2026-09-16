@@ -2,13 +2,15 @@ import assert from 'node:assert/strict';
 import {deterministicUuidV5} from './one_piece_canonical_import_staging_v1.mjs';
 import {pokemonSealedHashV1 as hash,POKEMON_SEALED_REVIEWER_ID} from './pokemon_sealed_world_v1.mjs';
 import {postgresJsonbArrayTextV1,imageReleaseManifestFingerprintV1} from './mtg_sealed_image_release_plan_v1.mjs';
+import {validatePokemonSealedBaselineV2,reviewedPokemonSourceChangeV2} from './pokemon_sealed_refresh_baseline_v2.mjs';
 export const POKEMON_SEALED_REFRESH_V1='POKEMON_SEALED_REFRESH_V1';
 export const POKEMON_SEALED_SOURCE_CONTAINMENT_V1='POKEMON_SEALED_SOURCE_CONTAINMENT_V1';
 export const POKEMON_SEALED_REFRESH_BASELINE='0bf7970b-842e-556c-9c6f-d541d1456212';
 const uuid=value=>deterministicUuidV5(`pokemon:sealed:refresh:${value}`);
 const stamp=(type,core,field)=>{const fp=hash({type,...core});return{id:uuid(`${type}:${fp}`),...core,[field]:fp};};
 const pick=(row,keys)=>Object.fromEntries(keys.split(',').map(k=>[k,row[k]]));
-export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,producerCommit,pointers}){
+export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,producerCommit,pointers,baselinePolicy=null}){
+  if(baselinePolicy)validatePokemonSealedBaselineV2(baselinePolicy,baseline);
   assert.ok(baseline.length>0&&baseline.length<=3000,'Refresh population outside envelope');
   assert.equal(new Set(baseline.map(r=>r.variant_id)).size,baseline.length,'Duplicate baseline variant');
   assert.match(producerCommit,/^[a-f0-9]{40}$/);
@@ -26,7 +28,8 @@ export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,p
     assert.equal(row.image_object.storage_bucket,'user-card-images');
     assert.match(row.image_object.object_path,/^sealed\/pokemon\/sha256\/[a-f0-9]{2}\/[a-f0-9]{64}\.(jpg|png|gif|webp)$/);
     for(const key of ['image_mime','image_width','image_height','image_bytes'])assert.equal(row.image_object[key],row.image_evidence[key]);
-    if(!s?.source_active||s.payload_hash!==row.source_payload_hash||Number(s.category_id)!==Number(row.source_category_id)){
+    const reconciled=reviewedPokemonSourceChangeV2(baselinePolicy,row,s);
+    if(!s?.source_active||(!reconciled&&s.payload_hash!==row.source_payload_hash)||Number(s.category_id)!==Number(row.source_category_id)){
       exclusions.push({variant_id:row.variant_id,reason:'source_identity_not_currently_verified',
         policy:POKEMON_SEALED_SOURCE_CONTAINMENT_V1,source_product_id:row.source_product_id,
         expected_source_payload_hash:row.source_payload_hash,observed_source_payload_hash:s?.payload_hash??null,
@@ -46,14 +49,15 @@ export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,p
     const q={variant_id:row.variant_id,source_mapping_id:row.source_mapping_id,
       source_price_row_identity:p.source_price_row_identity,source_subtype_name_normalized:'normal',observed_on:p.observed_on,
       currency:'USD',qualification_status:'qualified_exact',qualification_evidence:{policy:'tcgplayer_market_price_exact_product_v1',
-        observation:{market_price:market,low_price:p.low_price===null?null:Number(p.low_price),source_price_row_identity:p.source_price_row_identity}},
+        observation:{market_price:market,low_price:p.low_price===null?null:Number(p.low_price),source_price_row_identity:p.source_price_row_identity},
+        ...(reconciled?{source_reconciliation:reconciled}:{})},
       source_observation_fingerprint:p.payload_hash,qualification_contract_version:POKEMON_SEALED_REFRESH_V1,publication_authority:false};
     qualified.push({id:uuid(`qualification:${hash(q)}`),...q});
   }
   assert.ok(qualified.length>=Math.ceil(baseline.length*.95),'Coverage loss exceeds five percent');
   qualified.sort((a,b)=>a.id.localeCompare(b.id));
   const sourceFingerprint=hash({version:POKEMON_SEALED_REFRESH_V1,baseline:POKEMON_SEALED_REFRESH_BASELINE,
-    qualified,producerCommit,sync_id:sync.id});
+    qualified,producerCommit,sync_id:sync.id,...(baselinePolicy?{baseline_policy_fingerprint:hash(baselinePolicy)}:{})});
   const priceId=uuid(`price-release:${sourceFingerprint}`);
   const members=qualified.map(q=>{
     const core={release_id:priceId,variant_id:q.variant_id,source_mapping_id:q.source_mapping_id,qualification_id:q.id,qualification_status:'qualified_exact'};
@@ -87,6 +91,7 @@ export function buildPokemonSealedRefreshV1({baseline,source,prices,sync,today,p
   });
   imageRelease.manifest_fingerprint=imageReleaseManifestFingerprintV1(imageRelease,imageMembers);
   const body={version:POKEMON_SEALED_REFRESH_V1,producer_commit:producerCommit,baseline_image_release:POKEMON_SEALED_REFRESH_BASELINE,
+    ...(baselinePolicy?{baseline_policy:baselinePolicy,baseline_policy_fingerprint:hash(baselinePolicy)}:{}),
     source_fingerprint:sourceFingerprint,expected_pointers:pointers,source_sync:sync,exclusions,
     source_containment_policy:POKEMON_SEALED_SOURCE_CONTAINMENT_V1,
     prices:{qualifications:qualified,releases:[release],members},images:{evidence,assertions,releases:[imageRelease],release_members:imageMembers},

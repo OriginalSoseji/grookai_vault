@@ -3,6 +3,24 @@
 Date: 2026-09-16. Founder requested anniversary sealed products on the completion
 list and completion of anniversary catalog/native delivery work.
 
+## September 16 Publication Follow-up
+
+The preparation below is historical, superseded by external execution receipts.
+Producer `7c40054d387d792953994a7870675eea2719632e` has now admitted nine products
+(100 catalog rows) and verified nine Storage objects plus 37 image records.
+Rollback, independent readback and zero-write repeats passed. Both nine-product
+releases remain inactive; no repeat admission or upload is needed.
+See `SEALED_ADDITIVE_APPLY_CHECKPOINT.md` and `SEALED_IMAGE_APPLY_CHECKPOINT.md`
+in the private artifact directory below for immutable execution details.
+
+`POKEMON_SEALED_ANNIVERSARY_REFRESH_V1` now defines the opt-in 1,730-member union
+and 27 pinned source reconciliations. Read-only production replay qualified
+1,694 products: all prior 1,658 plus 36 (27 reconciled and nine new), with 36
+withheld. This is a preview, not an activation receipt. Targeted tests passed
+40/40 before producer freeze. Publication, scheduled selector rollout and live
+readback remain to be executed from the frozen tested producer. Use the external
+`COMPLETION_CHECKLIST.md` for the latest post-freeze state.
+
 ## Current Evidence
 
 Private artifacts: `C:/grookai_vault_operator_artifacts/pokemon_30th_20260916/`.

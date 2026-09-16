@@ -10,8 +10,10 @@ import {evaluatePokemonSealedHealthV1,classifyPokemonSealedSourceChangesV1} from
 import {buildPokemonSealedAgingDetailV1,assertPokemonSealedDatabaseTargetV1} from '../../backend/pricing/pokemon_sealed_maintenance_v1.mjs';
 import {classifyPokemonSealedProductV1,pokemonSealedHashV1 as hash} from '../../backend/pricing/pokemon_sealed_world_v1.mjs';
 import {withPokemonSealedProbeSessionV1,verifyPokemonSealedImageServingV1} from '../../backend/pricing/pokemon_sealed_live_probe_v1.mjs';
+import {loadPokemonSealedBaselineV2} from '../../backend/pricing/pokemon_sealed_refresh_baseline_v2.mjs';
 const args=Object.fromEntries(process.argv.slice(2).map(a=>{const i=a.indexOf('=');return[a.slice(2,i),a.slice(i+1)];}));
 assert.ok(args.out&&args.inventory);
+const baselinePolicy=loadPokemonSealedBaselineV2(args.baseline??'original');
 dotenv.config({path:args.env??'C:/grookai_vault/.env.local',override:true,quiet:true});
 const target=assertPokemonSealedDatabaseTargetV1(process.env.SUPABASE_URL,process.env.SUPABASE_DB_URL);
 const bytes=await fs.readFile(path.join(args.inventory,'source_products.jsonl.gz'));
@@ -38,7 +40,7 @@ try {
      where status='completed' and sync_mode='current_full_sync')::integer source_age
     from sealed_product_release_pointer p join sealed_product_release_members m on m.release_id=p.release_id
     join sealed_product_pricing_lane_qualifications q on q.id=m.qualification_id where p.game_key='pokemon'`)).rows[0];
-  const mappings=(await client.query(`select m.variant_id::text,m.source_product_id,m.source_category_id,m.source_payload_hash
+  const mappings=(await client.query(`select m.id::text source_mapping_id,m.variant_id::text,m.source_product_id,m.source_category_id,m.source_group_id,m.source_payload_hash
     from sealed_product_source_mappings m join sealed_product_variants v on v.id=m.variant_id
     join sealed_product_families f on f.id=v.family_id where f.game_key='pokemon' and m.mapping_status='exact_reviewed'`)).rows;
   const agingPrices=buildPokemonSealedAgingDetailV1((await client.query(`select v.id::text variant_id,v.canonical_name,
@@ -53,7 +55,7 @@ try {
     order by q.observed_on,v.canonical_name,v.id`)).rows);
   const index=new Map(mappings.map(m=>[`${m.source_category_id}:${m.source_product_id}`,m]));
   const newProducts=source.filter(s=>classifyPokemonSealedProductV1(s).classification==='sealed_candidate'&&!index.has(`${s.category_id}:${s.product_id}`));
-  const changed=classifyPokemonSealedSourceChangesV1({mappings,source,publishedVariantIds:published.map(r=>r.variant_id)});
+  const changed=classifyPokemonSealedSourceChangesV1({mappings,source,publishedVariantIds:published.map(r=>r.variant_id),baselinePolicy});
   const privilege=(await client.query(`select has_function_privilege('anon',
     'get_active_pokemon_sealed_catalog_v1(text,text,integer,integer,text,text)','EXECUTE') allowed`)).rows[0].allowed;
   await client.query('rollback');
@@ -75,6 +77,7 @@ try {
     imageServingVerified:imageProbe.passed,automaticPricePublication:process.env.POKEMON_SEALED_REFRESH_ACTIVE==='true'}),image_probe:imageProbe,
     aging_price_count:agingPrices.length,prices_expiring_next_day:agingPrices.filter(r=>r.freshness_status==='expires_next_day').length,
     expired_price_count:agingPrices.filter(r=>r.freshness_status==='expired').length,auth_probe_session:'bounded_existing_store_review_user',
+    baseline_policy_fingerprint:baselinePolicy?hash(baselinePolicy):null,
     target,producer_commit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),generated_at:new Date().toISOString()};
   await fs.mkdir(args.out,{recursive:true});
   const files={'summary.json':JSON.stringify(result,null,2),

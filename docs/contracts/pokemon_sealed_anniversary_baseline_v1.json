@@ -1,0 +1,661 @@
+{
+  "version": "POKEMON_SEALED_ANNIVERSARY_BASELINE_V1",
+  "key": "anniversary-20260916",
+  "expected_variants": 1730,
+  "image_releases": [
+    {
+      "id": "0bf7970b-842e-556c-9c6f-d541d1456212",
+      "count": 1721,
+      "manifest": "37932130e4c0e9614a52797e6facf460e5d5de7d19472c08fbed8cb10e8c016d"
+    },
+    {
+      "id": "a31a6184-a100-58af-ac8f-711ef232378d",
+      "count": 9,
+      "manifest": "78de609977adf15645bb08722af7d38bd4bd7e788e50a8c4c50850daca0b1dfe"
+    }
+  ],
+  "source_reconciliations": [
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704143,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "0c20c357-19d5-54c7-afd0-280a559ca13c",
+      "variant_id": "62228312-6676-5abc-8ef8-4f1bea3c17de",
+      "mapped_payload_hash": "ee44816af8080e02969cc079b752736dea802475a06f9862827d3783fabffd7f",
+      "current_payload_hash": "41192b830a18c8cf6254d9993b496c45d0188e71f76db72b04b7b1e67ba20cc3",
+      "preserved_product_projection_sha256": "84140105705872500dd68a3c0d1a1b7b04ebcd7b85002d97182d30fedc473283",
+      "preserved_extended_data_sha256": "d50e85367c2377dd1038769c10bcee4b81b7c13f8fa83008ed0cbcba1f088c93",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158801",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "860f63269af8c0406c4e35858097af18c4923f82c39f396784aba5579549bf5b"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704144,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "cd92bdbc-97a1-5c51-b230-a15fea8ad0af",
+      "variant_id": "3d961b04-bd32-572a-9cd4-5969b2e7b702",
+      "mapped_payload_hash": "67448cd14bfd5c9d10b0dc880d013d981d6db9d5d4b1a762efb510d820465fb3",
+      "current_payload_hash": "4cb8eb99379e3042ed3fbc75f733501492bd2cf0d9c8aa1371dd73bdf13ae009",
+      "preserved_product_projection_sha256": "96c038c7ac82b2e8d3354be1f60c28a1a44cd529860d477e2ad0c29489e6aaa4",
+      "preserved_extended_data_sha256": "84f507cb14698535d418cba63de7bc2b4b928d4f8eedaaf61e519313ee325d54",
+      "added_source_fields": [],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "360b35ddee5b7cdcfc602a5f793b8286ba3e9eda69bb3de91d38faf9b5e366c5"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704147,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "edefbeaf-ab8c-524d-baeb-8a6ad6003afb",
+      "variant_id": "ac0a2dad-0862-53d6-ac4c-cdf5725f4d51",
+      "mapped_payload_hash": "2d9e42c28c5e87150d807c2abe0d65feb6be47e6e7ac3d084bf066755bdbdcac",
+      "current_payload_hash": "5e319cae386de60c1d6ca463fae3dd4c8e8e819fa25e494d477e1a8fe99b9112",
+      "preserved_product_projection_sha256": "41ec548f9d923caeb3c17764a0dfcff35d2a563f48160e2546f51a3e0685fef8",
+      "preserved_extended_data_sha256": "00f7a1a52f1453b2d9bcd592368bffff9b2af6b5a6fea7ef21b64cad9b0fc840",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158771",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "5a0be41e56d2bf4a9301f6e0acc2ab4310f3be709384e7bb8175dbb84efe891e"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704149,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "e09d0486-55a4-5198-9be0-6797ca7858ee",
+      "variant_id": "23950af2-cbeb-5147-a866-ad6cbc59d2a8",
+      "mapped_payload_hash": "a60317135cd0301076ea64337651236cab4cd171431dada7b3fc617f82312899",
+      "current_payload_hash": "76086f5253b4e04b5ceac31ae27a9be24b3445dbb94b027ce26e718f94709a52",
+      "preserved_product_projection_sha256": "c9d178a3fad48b1bfc1db129a7e827f16b70ee0c5da2218098f1be81007ce67f",
+      "preserved_extended_data_sha256": "6484cbd4d5713844a1e18c506976edf7aeb897cdb0b482aa56d3a579cfda499c",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214146259",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "f35743048a7eddae8b5955f20d31a7a9d42d00a77f08f37e4a7ef11affaaabd8"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704150,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "1ad4b776-0192-5237-a373-b9311edf376e",
+      "variant_id": "81c13a7e-9d17-588d-91d4-186c7e825cbd",
+      "mapped_payload_hash": "8fbc6548347e2443b53abdc6b98f6cc567550c6955cdc294ab029a97c89b4d86",
+      "current_payload_hash": "2d0b6c359fa4f4ccb6d631fdfac3cf826a3944beff538819f5ad9992debb243a",
+      "preserved_product_projection_sha256": "6277282fdeb9639935e109a6f4ff92551072607ac016f1e640d737ee28e74011",
+      "preserved_extended_data_sha256": "99cf67540cbedb2c82791a05c795b19543d8968f84e6653bed0bdf42c51dbfc9",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214146259",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "0edc123842acd1b633196c85db2784bec60c6e111a20f58747b36a98b542add6"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704151,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "769a49d5-7bbe-54e8-8c69-04a11dc62809",
+      "variant_id": "908215d0-b0a9-5b92-84ea-24c3ab9503d1",
+      "mapped_payload_hash": "065c4e909d4d70322cd11b0bc8022cad626c2bb59db5dd068f7389ae9165478a",
+      "current_payload_hash": "ff1851589ae04495aa3d364d42f19d7794e30b3d0af63a9836dd90a4877e9f15",
+      "preserved_product_projection_sha256": "a9eaf6168d7c8a18dac3c0d8703a866bc418b22876ea57d11dcc4bb208b5a75b",
+      "preserved_extended_data_sha256": "daa1aa6bd4baa554e779502e8e9a20d18cc1921d47ded5693b224c4619cb2a6a",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214146259",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "7055d71f10e11708fca9db0de450b7444d574fc58c80e48999e6f1ed1dc2effd"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704153,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "2572399e-d647-5190-b5d7-18193a9939ff",
+      "variant_id": "46263049-137b-5221-bfd5-4377de34bd9e",
+      "mapped_payload_hash": "fb29acfc8cd5b96c4cf75d859ac61f311ad505a0c0b131c20e5dc602331f3ea5",
+      "current_payload_hash": "daf66057a5ab228dbe8d69bb714389ed33940f1da2e96d87aa802b728c9ac90a",
+      "preserved_product_projection_sha256": "e9f049aa25babceb52686df38bd4e1446364d4602554f8504f4e7abcecc58c83",
+      "preserved_extended_data_sha256": "20453aa801cc4bfe056ae875393e0f82d39d405b6551a87aec2c87cef2733194",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158757",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "845035385376ebcb59a790f95398bb5edf0baeb8039dbf1cec4c3a9ebafec1e1"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704171,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "f339cd69-0bb3-5319-ab80-e3ab28424cba",
+      "variant_id": "e6eb06b5-4178-5fea-a304-f1b2b5ea202b",
+      "mapped_payload_hash": "e5e2a51fad4035afb50a209c39f0c85a60903612de26a86ed6d84b84da2b374f",
+      "current_payload_hash": "cd2d6e245654df3a1a3232cebbf273ab6f16846dcd3bbcbf0400921dfd059de9",
+      "preserved_product_projection_sha256": "33e1e76c96eb4bf736e38de77f36030734d50d17af3bfc8a2318c0379e446914",
+      "preserved_extended_data_sha256": "68002b8260e610937872cd8dbb36e4aace1d9120528a5b9b471a02740a9438c7",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158849",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "1786fda2cf8cd099cbc17c85ef669b3b6ac6ee7e9e58205a4041885fd26b6451"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704176,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "f57b5b78-c67f-5624-8033-43a1ef616f1e",
+      "variant_id": "d93ac49b-3cde-5904-ab58-ecf330c0ff27",
+      "mapped_payload_hash": "2105804d5b027cbc7a73c906da5da6d8e77378ad1bb8e916a8a021894cc01c15",
+      "current_payload_hash": "ce3ed0ae24a68a1e70d3943a9fb1308293eb385d2cc8b64b1eb2e4c015c0d179",
+      "preserved_product_projection_sha256": "e63a204cb09a70d3e4b70842f34b6eb07ce31dd52c07faa88ef4ce982cdb4262",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "5cf75ba185d4abf407ee2233ea5e909dae866805795cc84344999a0fe9e2e7bd"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704177,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "29967e95-184f-51a2-8c4e-171a1dbd1f14",
+      "variant_id": "ab777041-ef10-5db0-8e34-72f93aed266e",
+      "mapped_payload_hash": "0ddae1142520bf16d9b1043250c802165013a5bb2c47eeb6342707bb949d01d4",
+      "current_payload_hash": "d1be516e6a2b289fb7fd7f22d112ef134a81061cac12cde0b3595ca2fc6763f4",
+      "preserved_product_projection_sha256": "060c49cdc68d6bc05bafd78b0a6949d282320ad9b46938bdc9d3f9546667f72c",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "f3f4145080d590d9d36593b52e7a6ac0afe732221bac01ddad44f7a9b5bded82"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704178,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "e2a1ff32-5601-5960-a1f6-2396ec09ba97",
+      "variant_id": "d740b939-a357-5399-bb52-ec1b5ee7a31a",
+      "mapped_payload_hash": "dd9f47e4c8c2feb2373c853d832ba22c917251047edf2366e61acee49f87fb8d",
+      "current_payload_hash": "8b4f3597b281ac70f81e05ac17eca9d3a95ced7f9f0abd0fe78a59da5bc21f85",
+      "preserved_product_projection_sha256": "c50552e834984f75c700f708a81b35b3bfb1e4dccc7d1a369d2056e285b55680",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "85469ef57790c8cd741b984c17f5fb934dae2326816dcc3e4a3573d61dceb34c"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704179,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "e5a25b1c-cb3d-58b8-98b8-d835dc75e9b6",
+      "variant_id": "d0bcc5e0-01e5-54a1-b0db-8a2fbaccf85e",
+      "mapped_payload_hash": "fb586f530c247b256ec66a5dcafda475bae2c1dfa9372f18cd279fbcd20ff5a1",
+      "current_payload_hash": "ad755925a8c712ff9335b96571d68781e692c53317f7c85d9b48b1d0dc24f8b7",
+      "preserved_product_projection_sha256": "b2304690861ec21086bb083dacd03ef760fb2d237fa156c80c9bf0eca3958d7e",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "eb24f32e4f72e5bfa8923b9885c1d440094a4a17026fa33e4e8da9ae138de687"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704180,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "4f27a9d5-4728-56b6-8237-f350bedacfd1",
+      "variant_id": "25a6eead-d56f-5d1a-a7fc-451cf79de1df",
+      "mapped_payload_hash": "64609479bcd7e0b318f2748362d4e3e48d64edd91037ae6edc7a6d3a4f417617",
+      "current_payload_hash": "4a4a175162b09019720cae9f18a207a96387406db634120c2fcc774e44719937",
+      "preserved_product_projection_sha256": "e3de1df1c7bb6ee1272c253cc91f89aad749186196e9e5ee42c7bf0ae392ef85",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "37927bb0506b4e9aea0123233086dbb5f3f8cb445fecdec2e8d258d98cdd499b"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704181,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "fc56c1b4-f0ca-5834-9005-26926f4732d3",
+      "variant_id": "31b83e1c-33f9-54e0-bf72-a6d527652e49",
+      "mapped_payload_hash": "7e529d3cf06fbeab45bedcb7baa2278e0ba70402ebc8351d1d7df4ffa790185e",
+      "current_payload_hash": "bcc7275d7912d80505d3479483066c7fcfc47fa219e96e8800ed04f8b60f3355",
+      "preserved_product_projection_sha256": "d3d05ad2999033e2a73ebdab020d27cd9359be0ca59814f853eb98a34859f7d9",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "ff6c02e7270667dfa4261099df18013988f3c727ce0afb000c2723adb68ff8c2"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704182,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "3bc8b4ee-68f1-565e-94de-27c34c5c0678",
+      "variant_id": "d925f693-55b8-5873-a7d8-8a1d5bbe02d8",
+      "mapped_payload_hash": "6af73fc6e974494bdabb9f11f28f7b2a85111e9f865286ac3ad0bc292a7e3110",
+      "current_payload_hash": "48a414c9c0393c0ea78a609fdc1937a947c8901767dc447b0fc57f4196630fec",
+      "preserved_product_projection_sha256": "5b1652d8a652ce04557b444f20fb4a65a4c5adadfc07149bcf3b6c7620004c62",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "34d077ed0a89ad1a61a2e762ecc678c0f15cc645c580719e0e47305bb8e4bd7c"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704183,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "ab9083d1-367b-5f6e-b0c9-f91dee4ba105",
+      "variant_id": "50e3fb66-4593-5a6b-8300-60ff054a5a53",
+      "mapped_payload_hash": "caa3fad8bb72d15e96afc77414ba079ff58b9f870a8d6076a06183190e9e1960",
+      "current_payload_hash": "2a1240fa936c0c0202f334a96d368427a4a5320593c32785ac17d804cdedadbc",
+      "preserved_product_projection_sha256": "0fa313e20293e86c698dc36ca57df01d0db0a4eb9bc3472d262cf8d35efd39a9",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "3579ed18f005a1d22f5cf02a4a4927fd6c08a1187324fd4554ef98fee46305f6"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704184,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "857ff227-c651-5fe5-81a6-342b520e2b06",
+      "variant_id": "64032744-2a4d-57c7-b7a3-e1a7990caeef",
+      "mapped_payload_hash": "b187cea0dbd2ca173b948103ffc18aa16464ed85603c37637ae407ae7e1b3725",
+      "current_payload_hash": "568860d4f288448d2ead3ecdf9d12b5324c98e73ad84ed903d47118a26a2f2bf",
+      "preserved_product_projection_sha256": "629200a37c77098cb6adcc5b71ef35ec6cf1776414c8f5bddc6d8ae07553fb87",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "cd8fffff02146d9b35eddcf54e677088da15cd2db58bbd4226f88def39bf2f9e"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704185,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "0c5ea508-4fca-5ba6-bc9d-b62d4e8114d8",
+      "variant_id": "f6c2bb0c-54ec-5c07-ae40-3119c1882796",
+      "mapped_payload_hash": "603a0a49f9b4bfebc963ef4a254ee8f0eb566f524ff0d0a8f8729cd3719018da",
+      "current_payload_hash": "ec6bbe32301ffe4e135a468ea6a93f130bcdfc5cfab2df423e05f19125d7d4c2",
+      "preserved_product_projection_sha256": "d6de903044ac6adb282ce04999101ee032eda377c025de3c190a26f5380dbdea",
+      "preserved_extended_data_sha256": "53e7ec0e390f43a0898b4ea2c1909d3a42099fff3065ed49c468964a139970c8",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159082",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "11ea117f1651c0261af1803de0363ed04dfed7d51d45e58c8a974b8c324a8a7d"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704186,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "96a2b49f-42a6-59bc-ac0a-a557d045e5ee",
+      "variant_id": "7f692363-6f43-52d6-8cce-ff57729f9fcb",
+      "mapped_payload_hash": "1b3e2bac700d8acf17f82802fbf86e1a43637a442a2fab880e881eb47aef66a3",
+      "current_payload_hash": "8fadb20bc17591276028efed079c2cb0e19c16d98dd116627b0ccf96a59c7a87",
+      "preserved_product_projection_sha256": "1bb256021b00940f84f63d1b5e58764c460875aa57b6799286311dd8721f4559",
+      "preserved_extended_data_sha256": "7435444cfa84f726694fbf8e4d178b420efba8fb12e7db3043c47f71a403b3a7",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214159099",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "124179d4f73a8d92e105d56ee5f2b56390295fd543191a3471719e8d3f3cfc97"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704187,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "e54639ec-cd9c-538d-b6c5-83be9de9d4cb",
+      "variant_id": "cd620f60-01e6-5404-b673-160bdf07e42c",
+      "mapped_payload_hash": "036583a301d933face5940cd9c1f3913ec04a13d89fe801e584dfa3b0778b074",
+      "current_payload_hash": "9002c4f5d10d5fff352728aeea3be21ed0454c2176d9408e3d8b61a17c8bf76a",
+      "preserved_product_projection_sha256": "2d783638c1ae5411f6292a64f452988a6305884be065ce0a343ed0f91e65cf42",
+      "preserved_extended_data_sha256": "3e20713864c403d3157c74dd187c3f2427183a9b10d451a7fca70e34b20d424d",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214147270",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "bceb769bbd996d6b98e956e86e977da466b4036279a04b6016ff09029f9a5707"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704188,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "a80c69a2-c2aa-5526-8e5d-cd4452447d22",
+      "variant_id": "00e3a61f-8376-5427-8884-6a547efa054b",
+      "mapped_payload_hash": "32c1e743531afd5189882097fd8a337e3be16bf1025e5d0f26af8d4d5eae28ba",
+      "current_payload_hash": "14a3336f7df299809b7d0be16525ede89a1441e073dc1b6f852383cc8991c662",
+      "preserved_product_projection_sha256": "5d78c66d40acda4f00cebf947883d86b6c6d1936da89d521647234bac287b133",
+      "preserved_extended_data_sha256": "f75cd0d9a8f904360d83274e21da0fbcfdc23193a6da077571f1ed28e2709f62",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214147270",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "59d1df39283b2a11acc53448604d023470367319b5b15d18d5dfd7c7a9c1b028"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704189,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "3c38d981-d83f-52d7-b958-2fb196fed46f",
+      "variant_id": "0ebdabd9-4c01-5249-bafe-80d5f1932452",
+      "mapped_payload_hash": "c54f7c12435e6ac8962a2322f111f7be02e6f7cafb8bca9ca7bcaa07af04b684",
+      "current_payload_hash": "404f2df4972cd314556b120847c90dbb52bb42a5653f20ae3d84fb4bb5efb672",
+      "preserved_product_projection_sha256": "23d3b4c9c0a79893258aa24e01ef5e62e4771e8ab3d5df2e9cb1ad26f138f395",
+      "preserved_extended_data_sha256": "e5a97b02fb4bf66ca198c3ac4463e272c60ffab57c3a164456ad249e035c8625",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158368",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "7a0b79c69e9ea8d1c371d0feef254046b0a0957da575fe906e0ad322d10e2e9b"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704190,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "59af619b-c936-5055-b094-0e12b8e6f742",
+      "variant_id": "1f9cd45f-ae17-51e7-854c-454e6dc7fadf",
+      "mapped_payload_hash": "a9f13da1d920e512b5ce92a437d5982fab55a738ea04d8f661dccc5f6097ef37",
+      "current_payload_hash": "5703a8f6e160f7d7236c31be78efc51132af11b7807d28c6ec4cb9d08fd91539",
+      "preserved_product_projection_sha256": "451022e7e5efa1ca09d5cac0e99efe3c9aff64b0fee47f57b7c2e1b85de56d57",
+      "preserved_extended_data_sha256": "0e7af7ddb8e701fc189043443a8f24178629eab6c370e04cd56b86f0e2ed2e34",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158696",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "ad537772cb968a3af31e33f5c5ae2ee94944d775beaa5bd33f8a25e54205453d"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704191,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "66c760c4-7a69-56ee-b0a9-dd5db0f85c43",
+      "variant_id": "db194f25-6fef-5b65-b8f8-06226af14b93",
+      "mapped_payload_hash": "3a072f3301d4a98a1669337f8614661b5b9642334df907ecb5c9924433dda375",
+      "current_payload_hash": "470f0d4f1213630489fd835f85bd587406de02ff561f6483fdb040c454ec8869",
+      "preserved_product_projection_sha256": "89a29ca0ec2e60817e4261e85ab7444c07579011f813e954d3f6d7de10e0ff0f",
+      "preserved_extended_data_sha256": "ac00652ee0742870f7013db72842e9f81f09aa274a35a8b419656072a774cbe9",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158696",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "29e9e806093827373f6e05d585b69ced437fdc4397a510bc8bea0506a69f2ae2"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704193,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "63ca47bd-7316-54cd-a4b8-794f9d7029c0",
+      "variant_id": "0474d047-5a6b-5560-ae82-4d6226fd051f",
+      "mapped_payload_hash": "ed181c7e98f28a367dca003b1d8dfcd688b68abe0b1b0064d68951f675ede8ef",
+      "current_payload_hash": "792ab9153c18d92f385eebd74872823ab2dfa4240135a352be20ba49e757d20b",
+      "preserved_product_projection_sha256": "5235fffa4b38f6f4463d90d101b47e44b0c40f8cbefc8f7765ca4514fb026ddd",
+      "preserved_extended_data_sha256": "ca4bdaa6733b226e75dac0c6c31221ae0b5fccda0b5d91d95a5763cea2e7476b",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158856",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "9761bcd6c2c753f982a607bbc798057ee6425a015301ac19ed38657990a31a18"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 704194,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "0c5d302a-7370-5417-a63e-c782720531df",
+      "variant_id": "1db6b630-d857-5eaf-8e3a-b8d17f04a945",
+      "mapped_payload_hash": "aba517f5ff1cc856dcab2578014e473a84a18eb719145ebf516e5f2083efcda3",
+      "current_payload_hash": "9ccdcb848013bbba80bcaae590acb1b52c1d43bd90f6ed5731ee502d9eec3194",
+      "preserved_product_projection_sha256": "915978e395e10aedcf2753f03318a0171ba61bc3c517b6b8e55795ab8375e272",
+      "preserved_extended_data_sha256": "c52508db4df9aac2f14270587adfb934b940d708bb668a03b0960f81aff95fea",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "0196214158856",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "bc5a8bb87a52abf478a91f911225aa6804baf0925b8901693f936eb14c9e95b1"
+    },
+    {
+      "version": "POKEMON_SEALED_SOURCE_RECONCILIATION_V1",
+      "source_product_id": 709029,
+      "source_category_id": 3,
+      "source_group_id": 24722,
+      "source_mapping_id": "c9ec35b4-a468-5857-9d0f-7ee6c62d7a6a",
+      "variant_id": "69db59d1-5aef-559a-9a58-ec1927fb3c76",
+      "mapped_payload_hash": "6f4887432efeec3fcd7d44475e1cc4cc08c7d3fcb9bc10d1b00eef9356f1809a",
+      "current_payload_hash": "ec4d231d9d927fdb901ec4efb27e2765781c519f85320772c297648b974228b0",
+      "preserved_product_projection_sha256": "71b76374bda8b5dd5b2354c25670d6dfbaf57a57b021afa5391af329c5de3f79",
+      "preserved_extended_data_sha256": "9e84bc0aa3f1b6ec0a4608d77e22707c45f176adab2b4e063650691c2a2a54b3",
+      "added_source_fields": [
+        {
+          "name": "UPC",
+          "value": "10196214158693",
+          "displayName": "UPC"
+        }
+      ],
+      "classification": "identity_preserved_metadata_only",
+      "canonical_upc_write": false,
+      "mapping_write": false,
+      "publication_authority": false,
+      "fingerprint": "fcc3a0d168723cdc27cf3d8cffc04e0a6a5d179900698034ec86449f2f6680d9"
+    }
+  ]
+}
