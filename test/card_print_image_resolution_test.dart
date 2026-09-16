@@ -6,6 +6,26 @@ import 'package:grookai_vault/services/identity/image_presentation.dart';
 import 'package:grookai_vault/utils/display_image_contract.dart';
 
 void main() {
+  test('verified hosted provenance does not admit arbitrary source labels', () {
+    for (final source in <String>[
+      'identity',
+      'self_hosted_verified_external_exact_product_v1',
+      ' SELF_HOSTED_VERIFIED_EXTERNAL_EXACT_PRODUCT_V1 ',
+    ]) {
+      expect(isHostedCatalogImageSource(source), isTrue);
+    }
+    for (final source in <String?>[
+      null,
+      '',
+      'external',
+      'user_photo',
+      'self_hosted_unknown',
+      'self_hosted_verified_external_exact_product_v1_candidate',
+    ]) {
+      expect(isHostedCatalogImageSource(source), isFalse);
+    }
+  });
+
   test('display_image_url is preferred over legacy image fields', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-1',

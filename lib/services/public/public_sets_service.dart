@@ -723,7 +723,7 @@ class PublicSetsService {
             row['representative_image_url'],
           );
           final hostedImagePath =
-              _cleanText(row['image_source']).toLowerCase() == 'identity'
+              isHostedCatalogImageSource(row['image_source'])
               ? _normalizeOptionalText(row['image_path'])
               : null;
           final hostedDisplayImageUrl = normalizeWarehouseDisplayImagePath(

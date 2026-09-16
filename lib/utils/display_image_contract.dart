@@ -7,6 +7,12 @@ const List<String> _warehouseImagePathPrefixes = <String>[
   'warehouse-derived/image-truth-v1/',
 ];
 
+bool isHostedCatalogImageSource(dynamic value) {
+  final source = (value ?? '').toString().trim().toLowerCase();
+  return source == 'identity' ||
+      source == 'self_hosted_verified_external_exact_product_v1';
+}
+
 // LOCK: displayImageUrl is the primary product image contract.
 // LOCK: Do not regress to imageUrl-only rendering.
 String? normalizeDisplayImageUrl(

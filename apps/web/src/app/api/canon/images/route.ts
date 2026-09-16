@@ -40,12 +40,12 @@ async function resolveStableCanonImageUrls(paths: string[]) {
       admin
         .from("card_prints")
         .select("gv_id,image_source,image_path")
-        .eq("image_source", "identity")
+        .in("image_source", ["identity", "self_hosted_verified_external_exact_product_v1"])
         .in("image_path", paths),
       admin
         .from("card_printings")
         .select("printing_gv_id,image_source,image_path")
-        .eq("image_source", "identity")
+        .in("image_source", ["identity", "self_hosted_verified_external_exact_product_v1"])
         .in("image_path", paths),
     ]);
 
