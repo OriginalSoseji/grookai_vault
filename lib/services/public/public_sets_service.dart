@@ -31,9 +31,13 @@ class PublicSetSummary {
   final String? sortDate;
   final int? releaseYear;
 
-  String? get hostedHeroImageUrl => buildHostedSetLogoUrl(code);
+  String? get hostedHeroImageUrl => isCanonicalCardImageUrl(heroImageUrl)
+      ? normalizeDisplayImageUrl(heroImageUrl)
+      : buildHostedSetLogoUrl(code);
   String? get providerHeroFallbackImageUrl {
-    final fallback = normalizeDisplayImageUrl(heroImageUrl);
+    final fallback = isCanonicalCardImageUrl(heroImageUrl)
+        ? buildHostedSetLogoUrl(code)
+        : normalizeDisplayImageUrl(heroImageUrl);
     return fallback == hostedHeroImageUrl ? null : fallback;
   }
 }

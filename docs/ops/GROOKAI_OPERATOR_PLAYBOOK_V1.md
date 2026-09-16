@@ -1,5 +1,19 @@
 # Grookai Operator Playbook V1
 
+## Native Anniversary Delivery - September 16
+
+Read `NATIVE_ANNIVERSARY_RELEASE_20260916.md` for the isolated release candidate.
+The Windows desktop helper can report a missing native pipe while the Mac is
+reachable through the existing SSH key. `tailscale ping` discovered the Mac at
+LAN `192.168.86.22:41641` on September 16; SSH to that LAN address succeeded with
+the existing `HostKeyAlias=100.118.59.67`. The old `.35` address was stale.
+Always rediscover the route before reuse. Do not replace keys, weaken host-key
+checks or ask the founder to repeat setup merely because Tailscale SSH fails.
+Preserve the primary Mac checkout and use an isolated release worktree. Apple
+build availability, tester-group membership and physical installation are
+separate verification steps. Never use a broad metadata/apply command just to
+distribute a TestFlight update.
+
 ## Additive Pokemon Sealed Admission
 
 Read `docs/contracts/POKEMON_SEALED_ADDITIVE_CATALOG_V1.md` and

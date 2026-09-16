@@ -1,5 +1,12 @@
 # Grookai Agent Entry Point
 
+## Native Anniversary Release - September 16
+
+Read `docs/ops/NATIVE_ANNIVERSARY_RELEASE_20260916.md` first. This branch
+integrates the Samsung-verified native cover fix onto current main for the
+existing TestFlight audience. Preserve all Mac checkouts and prior archives.
+No database/Storage writes or public App Store submission belong to this step.
+
 ## Anniversary Sealed Intake - September 16
 
 Read `docs/ops/ANNIVERSARY_SEALED_CHECKPOINT_20260916.md` first on this branch.
