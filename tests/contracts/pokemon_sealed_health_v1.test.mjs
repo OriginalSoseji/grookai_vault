@@ -1,7 +1,25 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {evaluatePokemonSealedHealthV1 as evaluate,classifyPokemonSealedSourceChangesV1 as classify} from '../../backend/pricing/pokemon_sealed_health_v1.mjs';
+import {loadPokemonSealedBaselineV2} from '../../backend/pricing/pokemon_sealed_refresh_baseline_v2.mjs';
 const valid={published:1721,expected:1721,oldestAgeDays:1,sourceAgeDays:1,imageServingVerified:true};
+
+test('only an explicitly selected exact reviewed source transition suppresses drift',()=>{
+  const baselinePolicy=loadPokemonSealedBaselineV2('anniversary-20260916');
+  const receipt=baselinePolicy.source_reconciliations[0];
+  const mapping={variant_id:receipt.variant_id,source_mapping_id:receipt.source_mapping_id,
+    source_product_id:receipt.source_product_id,source_category_id:receipt.source_category_id,
+    source_group_id:receipt.source_group_id,source_payload_hash:receipt.mapped_payload_hash};
+  const current={product_id:receipt.source_product_id,category_id:receipt.source_category_id,
+    group_id:receipt.source_group_id,payload_hash:receipt.current_payload_hash,source_active:true};
+  const input={mappings:[mapping],source:[current],publishedVariantIds:[receipt.variant_id]};
+  assert.equal(classify(input)[0].disposition,'active_source_identity_drift');
+  assert.deepEqual(classify({...input,baselinePolicy}),[]);
+  for(const delta of [{payload_hash:'future change'},{source_active:false},{group_id:0},{category_id:85}])
+    assert.equal(classify({...input,baselinePolicy,source:[{...current,...delta}]})[0].disposition,'active_source_identity_drift');
+  assert.equal(classify({...input,baselinePolicy,mappings:[{...mapping,source_mapping_id:'other'}]}).length,1);
+  assert.throws(()=>classify({...input,baselinePolicy:{...baselinePolicy,expected_variants:1}}),/policy drift/);
+});
 test('healthy sealed release remains read-only',()=>{const r=evaluate(valid);assert.equal(r.status,'healthy');assert.equal(r.database_writes,0);assert.equal(r.automatic_price_publication,false);});
 test('aging prices alert before endpoint expires',()=>assert.ok(evaluate({...valid,oldestAgeDays:4}).findings.includes('price_refresh_due_before_seven_day_expiry')));
 test('missing prices, image mismatch, anonymous grants and source drift cannot look healthy',()=>{

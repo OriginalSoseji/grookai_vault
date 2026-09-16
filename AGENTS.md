@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Anniversary Sealed Intake - September 16
+
+Read `docs/ops/ANNIVERSARY_SEALED_CHECKPOINT_20260916.md` first on this branch.
+Read `docs/contracts/POKEMON_SEALED_ADDITIVE_CATALOG_V1.md` before the new
+manifest-bound executor. Preparation is not a deployed catalog expansion.
+Preserve the live Pokemon catalog, existing mappings and
+all other games. Do not run the original hidden-lane writer or replace the
+active catalog with the nine-product candidate release.
+
 ## Active Market Health Read Repair
 
 Read `docs/ops/MARKET_HEALTH_READ_REPAIR_20260916.md`. Health-reader repair only;

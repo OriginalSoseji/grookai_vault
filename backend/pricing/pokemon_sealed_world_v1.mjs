@@ -26,7 +26,9 @@ export function classifyPokemonSealedProductV1(row) {
       base.evidence.some(item => item.code === 'custom_or_retailer_signal')) return base;
   const name = String(row.name ?? '');
   const content = (row.extended_data ?? []).map(item => String(item.value ?? '')).join(' ').replace(/<[^>]*>/g, ' ');
-  const hasPacks = /\b\d+\s+(?:[A-Za-z&-]+\s+){0,6}booster\s+packs?\b/i.test(content);
+  // Set names can contain numerals, accented letters, and a TCG colon. Keep the
+  // match bounded to one positive-quantity contents phrase, not arbitrary prose.
+  const hasPacks = /\b[1-9]\d*\s+(?:[\p{L}\p{N}&:'\u2019-]+\s+){0,12}booster\s+packs?\b/iu.test(content);
   let form = base.candidate_identity.package_form;
   let reason = null;
   // Package counts and exact names remain intact; a multi-pack blister is a bundle.
@@ -35,6 +37,10 @@ export function classifyPokemonSealedProductV1(row) {
     reason = 'pokemon_blister_with_explicit_booster_contents';
   } else if (/\b(?:collection|box)\b/i.test(name) && hasPacks && !form) {
     form = 'collection'; reason = 'pokemon_collection_with_explicit_booster_contents';
+  } else if (/\bclassic collection pack$/i.test(name) && !/\b(?:empty|opened|wrapper)\b/i.test(name) &&
+      /\bPok[e\u00e9]mon (?:TCG|Trading Card Game)\b/iu.test(content) &&
+      /\beach pack includes (?:[1-9]\d*|one|two|three|four|five|six) randomly selected\b[^.!?]{0,100}\bcards\b/i.test(content)) {
+    form = 'pack'; reason = 'pokemon_classic_pack_with_explicit_random_card_contents';
   } else if (/\btrainer kit\b/i.test(name)) {
     form = 'kit'; reason = 'pokemon_trainer_kit_exact_package';
   } else if (/\bbattle arena decks?\b/i.test(name)) {

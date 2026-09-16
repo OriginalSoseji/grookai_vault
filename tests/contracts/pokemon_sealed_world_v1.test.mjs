@@ -29,6 +29,51 @@ test('single cards, code cards and custom repacks remain unpromotable', () => {
   for (const row of [product('Pikachu Collection',{extended_data:[{name:'Number',value:'025'}]}), product('Code Card Elite Trainer Box'),product('Custom Repack Booster Box')])
     assert.notEqual(classifyPokemonSealedProductV1(row).classification,'sealed_candidate');
 });
+
+test('numbered Pokemon set names in package contents retain exact product form', () => {
+  for (const [name, form] of [
+    ['30th Celebration Tech Sticker Collection [Lucario]', 'collection'],
+    ['30th Celebration 2-Pack Blister', 'bundle'],
+    ['30th Celebration Sylveon ex Box', 'collection'],
+    ['30th Celebration Binder Collection', 'collection'],
+  ]) {
+    const row = product(name, { extended_data: [{ name: 'CardText',
+      value: 'Contains:<br>3 Pok\u00e9mon TCG: 30th Celebration booster packs (cards vary).' }] });
+    const result = classifyPokemonSealedProductV1(row);
+    assert.equal(result.classification, 'sealed_candidate');
+    assert.equal(result.candidate_identity.package_form, form);
+    assert.equal(result.candidate_identity.exact_source_mapping.source_product_name, name);
+  }
+});
+
+test('expanded contents grammar cannot promote empty accessories, cards, or repacks', () => {
+  for (const value of [
+    'Contains 0 Pokemon TCG: 30th Celebration booster packs.',
+    'Contains 3 stickers. Pokemon TCG: 30th Celebration booster packs sold separately.',
+    'Display for Pokemon TCG: 30th Celebration booster packs. Cards not included.',
+  ]) assert.notEqual(classifyPokemonSealedProductV1(product('Binder Collection', {
+    extended_data: [{ name: 'CardText', value }],
+  })).classification, 'sealed_candidate');
+  for (const row of [
+    product('Custom Repack Collection'),
+    product('Pikachu Collection', { extended_data: [{ name: 'Number', value: '025' }] }),
+    product('Code Card Collection'),
+  ]) {
+    row.extended_data.push({ name: 'CardText', value: 'Contains 3 Pokemon TCG: 30th Celebration booster packs.' });
+    assert.notEqual(classifyPokemonSealedProductV1(row).classification, 'sealed_candidate');
+  }
+});
+
+test('Classic Collection pack requires explicit randomized card contents', () => {
+  const name = '30th Celebration Classic Collection Pack';
+  assert.equal(classifyPokemonSealedProductV1(product(name)).classification, 'ambiguous_review');
+  const value = 'Pokemon TCG: Classic Collection. Each pack includes three randomly selected, specially etched cards.';
+  const result = classifyPokemonSealedProductV1(product(name, { extended_data: [{ name: 'CardText', value }] }));
+  assert.equal(result.classification, 'sealed_candidate');
+  assert.equal(result.candidate_identity.package_form, 'pack');
+  for (const other of ['Classic Collection Pack Case', 'Empty Classic Collection Pack', 'Custom Repack Classic Collection Pack'])
+    assert.notEqual(classifyPokemonSealedProductV1(product(other, { extended_data: [{ name: 'CardText', value }] })).candidate_identity.package_form, 'pack');
+});
 test('language stays separate and conflicting markers abstain', () => {
   assert.equal(pokemonSealedLanguageV1(product('Booster Box',{category_id:85})).code,'ja');
   assert.equal(pokemonSealedLanguageV1(product('Korean Booster Box')).code,'ko');

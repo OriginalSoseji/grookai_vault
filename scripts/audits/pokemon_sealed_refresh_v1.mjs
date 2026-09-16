@@ -5,12 +5,15 @@ import assert from 'node:assert/strict';
 import dotenv from 'dotenv';
 import pg from 'pg';
 import {buildPokemonSealedRefreshV1,POKEMON_SEALED_REFRESH_BASELINE} from '../../backend/pricing/pokemon_sealed_refresh_v1.mjs';
+import {loadPokemonSealedBaselineV2,validatePokemonSealedBaselineV2} from '../../backend/pricing/pokemon_sealed_refresh_baseline_v2.mjs';
 import {pokemonSealedHashV1 as hash,POKEMON_SEALED_REVIEWER_ID} from '../../backend/pricing/pokemon_sealed_world_v1.mjs';
 import {insertSealedWorldPlanV1} from '../../backend/pricing/sealed_world_writer_v1.mjs';
 import {insertDataset,exactReadback,writeAttribution} from './mtg_sealed_image_release_rollback_canary_v1.mjs';
 import {pgSslConfig} from './japanese_master_index_v4/read_only_guard_v1.mjs';
 const args=Object.fromEntries(process.argv.slice(2).map(a=>{const i=a.indexOf('=');return[a.slice(2,i),a.slice(i+1)];}));
 assert.ok(['plan','canary','apply','run'].includes(args.mode)&&args.out);
+const baselinePolicy=loadPokemonSealedBaselineV2(args.baseline??'original');
+const baselineIds=baselinePolicy?.image_releases.map(r=>r.id)??[POKEMON_SEALED_REFRESH_BASELINE];
 dotenv.config({path:args.env??'C:/grookai_vault/.env.local',override:true,quiet:true});
 assert.equal(new URL(process.env.SUPABASE_URL).hostname,'ycdxbpibncqcchqiihfz.supabase.co');
 const head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
@@ -24,10 +27,14 @@ async function pointers(c,other=false){return (await c.query(`select p.game_key,
   from sealed_product_release_pointer p left join sealed_product_image_release_pointer ip using(game_key)
   where p.game_key ${other?'<>':'='} 'pokemon' order by p.game_key`)).rows;}
 async function load(c){
+  if(baselinePolicy){
+    const releases=(await c.query('select id,game_key,release_state,expected_member_count,manifest_fingerprint from sealed_product_image_releases where id=any($1::uuid[])',[baselineIds])).rows;
+    validatePokemonSealedBaselineV2(baselinePolicy,null,releases);
+  }
   const sync=(await c.query(`select id::text,status,observed_on::text from tcgcsv_source_sync_runs
     where sync_mode='current_full_sync' and status='completed' order by created_at desc,id desc limit 1`)).rows[0];
-  const baseline=(await c.query(`select f.game_key,v.id::text variant_id,m.id::text source_mapping_id,
-    m.source_product_id,m.source_category_id,m.source_payload_hash,
+  const baseline=(await c.query(`select im.image_release_id::text baseline_image_release_id,f.game_key,v.id::text variant_id,m.id::text source_mapping_id,
+    m.source_product_id,m.source_category_id,m.source_group_id,m.source_payload_hash,
     coalesce(cq.qualification_evidence#>>'{observation,market_price}',q.qualification_evidence#>>'{observation,market_price}') previous_market_price,
     to_jsonb(e) image_evidence,to_jsonb(o) image_object
     from sealed_product_image_release_members im
@@ -43,10 +50,14 @@ async function load(c){
     left join sealed_product_release_pointer cp on cp.game_key='pokemon'
     left join sealed_product_release_members cm on cm.release_id=cp.release_id and cm.variant_id=v.id
     left join sealed_product_pricing_lane_qualifications cq on cq.id=cm.qualification_id
-    where im.image_release_id=$1 order by v.id`,[POKEMON_SEALED_REFRESH_BASELINE])).rows;
-  assert.equal(baseline.length,1721,'Frozen refresh baseline changed');
+    where im.image_release_id=any($1::uuid[]) order by v.id`,[baselineIds])).rows;
+  assert.equal(baseline.length,baselinePolicy?.expected_variants??1721,'Frozen refresh baseline changed');
+  const active=(await c.query(`select m.variant_id::text from sealed_product_release_pointer p
+    join sealed_product_release_members m on m.release_id=p.release_id where p.game_key='pokemon'`)).rows;
+  const baselineVariants=new Set(baseline.map(r=>r.variant_id));
+  assert.ok(active.every(r=>baselineVariants.has(r.variant_id)),'Selected baseline would drop active identities');
   const ids=baseline.map(r=>r.source_product_id);
-  const source=(await c.query(`select product_id,category_id,payload_hash,source_active from tcgcsv_source_products
+  const source=(await c.query(`select product_id,category_id,group_id,payload_hash,source_active from tcgcsv_source_products
     where product_id=any($1::bigint[]) and category_id in (3,85) order by product_id`,[ids])).rows;
   const prices=[];
   for(let offset=0;offset<ids.length;offset+=100){prices.push(...(await c.query(`select distinct on(product_id,subtype_name_normalized)
@@ -54,7 +65,7 @@ async function load(c){
     from tcgcsv_source_price_daily_observations where product_id=any($1::bigint[])
     order by product_id,subtype_name_normalized,observed_on desc,updated_at desc,id desc`,[ids.slice(offset,offset+100)])).rows);}
   return buildPokemonSealedRefreshV1({baseline,source,prices,sync,today:(await c.query('select current_date::text today')).rows[0].today,
-    producerCommit:head,pointers:await pointers(c)});
+    producerCommit:head,pointers:await pointers(c),baselinePolicy});
 }
 async function assertPriceRows(c,key,rows,frozen=false){
   for(let i=0;i<rows.length;i+=250){
@@ -128,6 +139,7 @@ await fs.mkdir(args.out,{recursive:true});let plan;
 if(args.mode==='apply'){
   plan=JSON.parse(await fs.readFile(path.join(args.out,'run_plan.json'),'utf8'));const {fingerprint,...body}=plan;
   assert.equal(fingerprint,hash(body));assert.equal(fingerprint,args.fingerprint);assert.equal(plan.producer_commit,head);
+  assert.deepEqual(plan.baseline_policy??null,baselinePolicy,'Frozen baseline selection changed');
 }else{
   const c=await connect();try{await c.query('begin isolation level repeatable read read only');plan=await load(c);await c.query('rollback');}finally{await c.end();}
   await fs.writeFile(path.join(args.out,'run_plan.json'),JSON.stringify(plan));console.log(JSON.stringify({fingerprint:plan.fingerprint,published:plan.prices.members.length,exclusions:plan.exclusions.length}));

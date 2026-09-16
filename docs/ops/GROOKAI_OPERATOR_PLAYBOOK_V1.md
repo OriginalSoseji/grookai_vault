@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Additive Pokemon Sealed Admission
+
+Read `docs/contracts/POKEMON_SEALED_ADDITIVE_CATALOG_V1.md` and
+`docs/ops/ANNIVERSARY_SEALED_CHECKPOINT_20260916.md`. The additive command reuses
+an exact existing family and creates an inactive bounded release. Never run the
+original hidden-lane writer against live Pokemon or activate the nine-product
+release as a replacement catalog. Freeze source, run preflight and rollback
+canary, bind its receipt, apply once and independently read back. A lost COMMIT
+response requires readback, not a retry. Publication and baseline expansion
+remain separate from this admission.
+
 ## Post-Publication Health Timeouts
 
 Read `MARKET_HEALTH_READ_REPAIR_20260916.md`. A failed scheduled wrapper can

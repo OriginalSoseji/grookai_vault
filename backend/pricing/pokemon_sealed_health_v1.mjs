@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
+import {validatePokemonSealedBaselineV2,reviewedPokemonSourceChangeV2} from './pokemon_sealed_refresh_baseline_v2.mjs';
 
-export function classifyPokemonSealedSourceChangesV1({mappings,source,publishedVariantIds}) {
+export function classifyPokemonSealedSourceChangesV1({mappings,source,publishedVariantIds,baselinePolicy=null}) {
+  if(baselinePolicy)validatePokemonSealedBaselineV2(baselinePolicy);
   const key=r=>`${r.category_id??r.source_category_id}:${r.product_id??r.source_product_id}`;
   const index=new Map(source.map(r=>[key(r),r]));
   const byProduct=new Map();
@@ -15,6 +17,7 @@ export function classifyPokemonSealedSourceChangesV1({mappings,source,publishedV
     assert.ok(typeof m.variant_id==='string'&&m.variant_id.length>0,'Missing mapped variant');
     const s=index.get(key(m));
     if(s?.source_active&&s.payload_hash===m.source_payload_hash)return [];
+    if(reviewedPokemonSourceChangeV2(baselinePolicy,m,s))return [];
     // Fallback records observed category moves, but never proves mapped identity.
     const observed=s?[s]:(byProduct.get(String(m.source_product_id))??[]);
     const evidence=observed.length===1?observed[0]:null;
