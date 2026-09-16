@@ -112,7 +112,9 @@ function formatCollectorIdentity({
   if (!normalizedNumber) return undefined;
 
   const normalizedAbbrev = printedSetAbbrev?.trim().toUpperCase();
-  const normalizedTotal = formatPrintedTotal(normalizedNumber, printedTotal);
+  const normalizedTotal = normalizedNumber.includes("/")
+    ? undefined
+    : formatPrintedTotal(normalizedNumber, printedTotal);
   const normalizedPrintedNumber = normalizedTotal ? `${normalizedNumber}/${normalizedTotal}` : normalizedNumber;
   return [normalizedAbbrev, normalizedPrintedNumber]
     .filter((value): value is string => Boolean(value))

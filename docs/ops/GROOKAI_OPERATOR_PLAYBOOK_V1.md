@@ -1,5 +1,13 @@
 # Grookai Operator Playbook V1
 
+## Verified Catalog Image Sources
+
+Read `docs/ops/VERIFIED_CATALOG_IMAGE_DELIVERY_20260916.md` for the 30th
+Celebration image delivery repair. The explicit verified self-hosted source
+uses the existing bounded canonical proxy, not public Storage. Source delivery
+recognition does not change image_status, finish evidence or publication gates.
+Freeze and deploy this narrow client change separately from the intake writer.
+
 ## Numeric Set Pagination - September 13, 2026
 
 The presentation release and eight Japanese exception writes are complete.

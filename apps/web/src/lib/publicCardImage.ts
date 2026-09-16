@@ -141,7 +141,10 @@ function normalizeLowerOrNull(value: string | null | undefined) {
 }
 
 export function isIdentityCardImageSource(value: string | null | undefined) {
-  return normalizeLowerOrNull(value) === "identity";
+  const normalized = normalizeLowerOrNull(value);
+  // Delivery provenance does not upgrade representative artwork to exact finish evidence.
+  return normalized === "identity"
+    || normalized === "self_hosted_verified_external_exact_product_v1";
 }
 
 export function isExternalCompatibleCardImageSource(value: string | null | undefined) {

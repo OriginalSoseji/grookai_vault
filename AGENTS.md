@@ -1,5 +1,11 @@
 # Grookai Agent Entry Point
 
+## Verified Catalog Image Delivery
+
+Read `docs/ops/VERIFIED_CATALOG_IMAGE_DELIVERY_20260916.md` first on this branch.
+This is an isolated read-path repair for already-published 30th Celebration
+images. Do not repeat catalog/Storage applies or import the dirty intake tree.
+
 ## Active Market Activation Repair
 
 Read `docs/ops/MARKET_ACTIVATION_GUARD_REPAIR_20260915.md` first in this worktree.
