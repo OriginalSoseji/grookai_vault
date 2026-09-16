@@ -4,8 +4,79 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/services/identity/image_presentation.dart';
 import 'package:grookai_vault/utils/display_image_contract.dart';
+import 'package:grookai_vault/services/public/public_sets_service.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() {
+  for (final entry in <String, String>{
+    'representative_shared': 'representative',
+    'representative_shared_collision': 'representative',
+    'representative_missing_variant_visual': 'missing_variant_visual',
+    'blocked_source_identity_conflict': 'blocked',
+    'exact': 'exact',
+  }.entries) {
+    test('set grid preserves ${entry.key} for verified hosted art', () async {
+      final client = SupabaseClient(
+        'https://example.supabase.co',
+        'public-anon-key',
+        httpClient: MockClient((request) async {
+          final data = switch (request.url.path) {
+            '/rest/v1/sets' => <Map<String, dynamic>>[
+              {'code': '30c'},
+            ],
+            '/rest/v1/card_prints' => <Map<String, dynamic>>[
+              {
+                'id': '20735fca-078b-5034-a65b-781ce6ba75fb',
+                'gv_id': 'GV-PK-30C-001',
+                'name': 'Exeggcute',
+                'number': '1/128',
+                'image_source':
+                    'self_hosted_verified_external_exact_product_v1',
+                'image_path':
+                    'warehouse-derived/image-truth-v1/pokemon-30th/a.jpeg',
+                'image_status': entry.key,
+                'image_note': 'Exact physical finish is not confirmed.',
+              },
+            ],
+            _ => <Map<String, dynamic>>[],
+          };
+          return http.Response(
+            jsonEncode(data),
+            200,
+            headers: {'content-type': 'application/json'},
+            request: request,
+          );
+        }),
+      );
+      addTearDown(client.dispose);
+      final cards = await PublicSetsService.fetchSetCards(
+        client: client,
+        setCode: '30c',
+      );
+      expect(cards, hasLength(1));
+      final card = cards.single;
+      expect(card.displayImageUrl, contains('/api/canon/image?path='));
+      expect(card.imageStatus, entry.key);
+      expect(card.displayImageKind, entry.value);
+      final presentation = resolveImagePresentationFromFields(
+        imageUrl: card.displayImageUrl,
+        displayImageKind: card.displayImageKind,
+        imageStatus: card.imageStatus,
+        imageNote: card.imageNote,
+      );
+      if (entry.value == 'representative') {
+        expect(presentation.isRepresentative, isTrue);
+        expect(presentation.detailBadgeLabel, isNotNull);
+        expect(
+          presentation.detailNote,
+          'Exact physical finish is not confirmed.',
+        );
+      }
+    });
+  }
+
   test('verified hosted provenance does not admit arbitrary source labels', () {
     for (final source in <String>[
       'identity',

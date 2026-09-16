@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'card_surface_pricing_service.dart';
 import 'public_card_printing_options_service.dart';
 import '../vault/vault_card_service.dart';
+import '../identity/image_presentation.dart';
 import '../../utils/display_image_contract.dart';
 
 class PublicSetSummary {
@@ -731,6 +732,20 @@ class PublicSetsService {
           );
           final displayImageUrl =
               hostedDisplayImageUrl ?? exactImageUrl ?? representativeImageUrl;
+          final imageStatus = _normalizeOptionalText(row['image_status']);
+          final usesRepresentativeArt = (imageStatus ?? '')
+              .toLowerCase()
+              .startsWith('representative_');
+          final presentation = resolveImagePresentationFromFields(
+            imageUrl: usesRepresentativeArt
+                ? null
+                : hostedDisplayImageUrl ?? exactImageUrl,
+            representativeImageUrl: usesRepresentativeArt
+                ? displayImageUrl
+                : representativeImageUrl,
+            imageStatus: imageStatus,
+            imageNote: _normalizeOptionalText(row['image_note']),
+          );
 
           return PublicSetCard(
             cardPrintId: cardPrintId,
@@ -752,15 +767,10 @@ class PublicSetsService {
             providerImageUrl: providerImageUrl,
             representativeImageUrl: representativeImageUrl,
             hostedImagePath: hostedImagePath,
-            imageStatus: _normalizeOptionalText(row['image_status']),
+            imageStatus: imageStatus,
             imageNote: _normalizeOptionalText(row['image_note']),
             displayImageUrl: displayImageUrl,
-            displayImageKind:
-                hostedDisplayImageUrl != null || exactImageUrl != null
-                ? 'exact'
-                : representativeImageUrl != null
-                ? 'representative'
-                : 'missing',
+            displayImageKind: presentation.displayImageKind,
             printings: printingsByCardPrintId[cardPrintId] ?? const [],
             pricing: pricingById[cardPrintId],
           );
