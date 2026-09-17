@@ -9,6 +9,10 @@ import {
   sourceAuthorityKey,
   uniqueSorted,
 } from '../shared.mjs';
+import {
+  PRIZE_PACK_SCOPE_REVIEW_REASON,
+  requiresPrizePackScopeReviewV1,
+} from '../printing_evidence_scope_v1.mjs';
 
 function classifyRows(rows, { finishTruth = false } = {}) {
   const sourceKeys = uniqueSorted(rows.map(sourceAuthorityKey));
@@ -136,6 +140,7 @@ export function classifyEvidence(records) {
     && record.card_number
     && record.card_name
     && ['finish_presence', 'finish_absence'].includes(record.evidence_type)
+    && !requiresPrizePackScopeReviewV1(record)
   ));
   const nonExactPrintingRows = records.filter((record) => (
     record.language === 'en'
@@ -143,7 +148,16 @@ export function classifyEvidence(records) {
     && record.card_number
     && record.card_name
     && !['finish_presence', 'finish_absence'].includes(record.evidence_type)
+    && !requiresPrizePackScopeReviewV1(record)
   ));
+  const scopedPrintingGroups = new Map();
+  for (const record of records) {
+    if (record.language !== 'en' || !record.card_number || !record.card_name
+      || !requiresPrizePackScopeReviewV1(record)) continue;
+    const key = printingFactKey(record);
+    if (!scopedPrintingGroups.has(key)) scopedPrintingGroups.set(key, []);
+    scopedPrintingGroups.get(key).push(record);
+  }
   const setLevelRows = records.filter((record) => record.language === 'en' && (!record.card_number || !record.card_name));
 
   const cardGroups = new Map();
@@ -241,7 +255,13 @@ export function classifyEvidence(records) {
     printings: printings.sort(compareFactRecords),
     finish_absences: finishAbsences.sort(compareFactRecords),
     conflicts: conflicts.sort(compareFactRecords),
-    manual_review: [...manualReview, ...setLevelManualReview, ...nonExactManualReview]
+    manual_review: [...manualReview, ...setLevelManualReview, ...nonExactManualReview,
+      ...[...scopedPrintingGroups].map(([key, rows]) => ({
+        fact_type: 'printing_finish_variant_scope_review',
+        key: `${key}|prize-pack-scope-review`,
+        ...buildFactRecord(rows, 'needs_manual_review', { finishTruth: true }),
+        review_reason: PRIZE_PACK_SCOPE_REVIEW_REASON,
+      }))]
       .sort(compareFactRecords),
   };
 }

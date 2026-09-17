@@ -203,7 +203,15 @@ export function sourceAuthorityKey(row) {
   if (rawUrl) {
     try {
       const url = new URL(rawUrl);
-      return url.hostname.replace(/^www\./, '').toLowerCase();
+      const host = url.hostname.replace(/^www\./, '').toLowerCase().replace(/\.$/, '');
+      if (host === 'prices.pokemontcg.io' && /^\/tcgplayer(?:\/|$)/i.test(url.pathname)) {
+        return 'tcgplayer.com';
+      }
+      // These catalog channels share upstream product data, not independent votes.
+      if (['tcgplayer.com', 'tcgplayerpro.com', 'tcgcsv.com'].some((domain) => (
+        host === domain || host.endsWith(`.${domain}`)
+      ))) return 'tcgplayer.com';
+      return host;
     } catch {
       return rawUrl.toLowerCase();
     }

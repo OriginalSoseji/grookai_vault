@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Master Index Evidence Scope
+
+Read `MASTER_INDEX_SOURCE_INDEPENDENCE_20260917.md`. TCGplayer catalog mirrors
+and its preserved PokemonTCG price-guide path count as one authority, not separate
+confirmation. Keep ordinary PokemonTCG API identity data separate. Prize Pack
+Normal/Holo/Cosmos evidence requires exact stamped-variant parent binding and is
+review-only in the unqualified index. Preserve records and references; do not
+mint base children, relabel finishes or replay historical applies to clear flags.
+Source-outage baseline copies must retain the new scope-review status. A successful
+data-only refresh does not authorize database mutation or collector readiness.
+
 ## Legacy Set SQL Tools
 
 Read `LEGACY_SET_SQL_REVIEW_CHECKPOINT_20260917.md`. Both

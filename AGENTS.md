@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Master Index Source Independence - September 17
+
+Read `docs/ops/MASTER_INDEX_SOURCE_INDEPENDENCE_20260917.md`. Catalog mirrors
+are not independent finish votes. Preserve raw provenance and do not replay
+superseded historical finish candidates. The current index already replaced
+four MEP generic Holo claims with Cosmos and removed Lugia ex's old Normal claim.
+Source-status corrections are not production mutation authority.
+Prize Pack finish evidence also remains variant-scoped review material; it cannot
+prove an unstamped Normal/Holo/Cosmos option. Historical/source-outage carry-forward
+retains those records without restoring their old verified status.
+
 ## Legacy Set SQL Review - September 17
 
 Read `docs/ops/LEGACY_SET_SQL_REVIEW_CHECKPOINT_20260917.md`. The set repair and

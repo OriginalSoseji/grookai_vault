@@ -1,4 +1,5 @@
 import { FINISH_LABELS, sourceAuthorityKey } from '../shared.mjs';
+import { requiresPrizePackScopeReviewV1 } from '../printing_evidence_scope_v1.mjs';
 
 function parseExpectedFinishCounts(value) {
   if (!value) return new Map();
@@ -65,6 +66,9 @@ export function enforceStrictGuardrails({ records, classified, setConfigs, optio
   }
 
   for (const row of classified.printings) {
+    if (row.status === 'master_verified' && requiresPrizePackScopeReviewV1(row)) {
+      failures.push(`${row.set_name} ${row.card_number} ${row.card_name} ${row.finish_key} has unbound Prize Pack variant scope`);
+    }
     if (row.status === 'master_verified' && row.source_count < 2) {
       failures.push(`${row.set_name} ${row.card_number} ${row.card_name} ${row.finish_key} is master_verified with source_count=${row.source_count}`);
     }
