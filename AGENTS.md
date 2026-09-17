@@ -5,8 +5,9 @@
 Read `docs/ops/MASTER_MAPPING_AUTHORITY_CHECKPOINT_20260917.md`. The local
 candidate requires reviewed Master Index mapping evidence before the bounded
 writer connects. Packaging is offline and does not create reviews or execution
-authority. Local valid dry-run and lost-commit-response proof pass; full apply,
-release checks and remote TLS read-only verification remain before deployment.
+authority. Local dry-run, frozen apply/readback and lost-commit-response proof
+pass. Preserve the receipts; release checks and remote TLS/runtime verification
+remain before deployment. Do not repeat completed local applies as pending work.
 Preserve the separate frozen McDonald's executor and existing data identities.
 
 ## Legacy TCGdex Mapping Boundary - September 17

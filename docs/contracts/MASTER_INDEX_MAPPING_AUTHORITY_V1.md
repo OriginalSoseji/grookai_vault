@@ -88,5 +88,7 @@ a misleading rollback or automatic retry. Post-commit readback failure also
 requires reconciliation. Precommit evidence is saved before sending COMMIT.
 Rollback is proven only by an acknowledged ROLLBACK; lost rollback responses
 remain explicit uncertainty. Failures must be investigated by independent readback.
-Before release: finish real local apply/readback proof, full hooks and review.
+Frozen real local apply/readback is complete; see the checkpoint for its exact
+commit, receipt and synthetic-schema limitation. Before release: finish PR review
+and CI. Before deployment: verify the remote TLS handshake and runtime integration.
 Do not repeat or alter the separately frozen McDonald's executor or its approval.

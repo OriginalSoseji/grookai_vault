@@ -27,14 +27,15 @@ limit to one reached and verified the intended authority gate. No production cal
 
 ## Next Required Work
 
-1. Finish the real local apply/readback path after freezing the candidate commit.
-   The valid real CLI dry-run is now proved on a fresh synthetic PostgreSQL schema.
+1. Local apply/readback is complete. Preserve the frozen result below; do not
+   repeat it merely because this checkpoint previously listed it as pending.
 2. Verify remote TLS only through read-only checks before deployment; the unsafe
    helper is replaced with exact-target/verified TLS and tested URL guards.
 3. Lost COMMIT response now reports unknown outcome, skips misleading rollback,
    saves precommit evidence and forbids automatic retry. A real PostgreSQL commit
    plus independent readback proves the helper behavior, not a full CLI fault test.
-4. Run full hooks, review and release this candidate. It is not committed yet.
+4. Finish PR484 review/CI and release. Normal commit/push hooks passed on b8e0d07c;
+   the main-history merge passed commit hooks too. The latest push retry is pending.
 5. Audit actual callers of the remaining JustTCG legacy writer and deployed jobs.
    Old scripts in preserved releases are not proof they are invoked; do not replace
    the entire MEE runtime from main, whose pricing policy differs intentionally.
@@ -51,6 +52,32 @@ Local rehearsal: artifacts/master_mapping_local/20260917_65e4188b/result.json.
 Database grookai_mapping_authority_20260917_65e4188b is preserved on localhost:54330.
 Valid dry-run, normalized-equivalent raw drift rejection, restored dry-run, zero
 mapping writes, and lost server COMMIT response with independent readback pass.
-Synthetic schema only; no production mutation or full apply proof is claimed.
+Synthetic schema only; no production mutation or production schema parity is claimed.
 An unrelated Docker listing command hung; only its exact verified child PID48012
 was stopped. Existing containers and unrelated Docker commands were untouched.
+
+## Frozen Local Apply Completed
+
+Execution commit: `b8e0d07c681c2076c63363b753c8412c8b76d680`.
+Receipt: `artifacts/master_mapping_local/frozen_apply_v1/result.json`.
+The real maintenance launcher inserted exactly one synthetic mapping, verified
+the exact Master Index/candidate metadata, preserved parent/publication rows,
+and rejected a repeated apply before any additional insert. Independent snapshots
+and every emitted artifact hash were checked. Preserve the existing local DB.
+This is real local apply proof, not approval or proof for a production payload.
+
+PR484: https://github.com/OriginalSoseji/grookai_vault/pull/484.
+Main-history merge `5583acbff6896ed593856091117f15be493b9d9a` has an identical
+file tree to b8e0d07c. Both full commit hooks passed3791 contracts, web checks,
+Flutter analysis and728 Flutter tests. The merge resolves documentation-only
+ancestry conflicts from PR483's squash without changing the tested runtime.
+
+Push-v2 stalled while loading scanner/perceptual_image_hash_test.dart before its
+test body. Exact childPID72260/parent74596 and this worktree's asset path were
+verified; repeated log/CPU reads showed no progress. Only that child was stopped.
+The hook then finished failed at12:19:43 UTC. Keep that failed receipt, verify the
+unchanged isolated test, and use a fresh normal hook retry. No bypass or test skip.
+The unchanged isolated scanner test subsequently passed all six cases.
+
+Production repairs, reviewed deployment, remote TLS handshake and all-writer
+coverage remain pending. The local proof does not close those broader gates.
