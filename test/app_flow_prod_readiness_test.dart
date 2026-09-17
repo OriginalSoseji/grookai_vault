@@ -13,7 +13,8 @@ void main() {
     expect(screen, contains('VaultCardService.addOrIncrementVaultItem'));
     expect(screen, contains('_resolvePrintingOptionForVaultAdd'));
     expect(screen, contains('swallowErrors: false'));
-    expect(screen, contains('cardPrintingId: printingOption.id'));
+    expect(screen, contains('cardPrintingId: printingOption?.id'));
+    expect(screen, contains('confirmUnassignedVaultPrinting(context)'));
     expect(screen, contains("eventType: 'add_to_vault'"));
     expect(screen, contains('VaultManageCardScreen(gvviId: gvviId)'));
     expect(screen, contains("throw Exception('Copy could not be created.')"));

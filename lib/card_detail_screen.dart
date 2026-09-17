@@ -32,6 +32,7 @@ import 'services/public/compare_service.dart';
 import 'services/public/public_card_printing_options_service.dart';
 import 'services/vault/collector_memory_service.dart';
 import 'services/vault/vault_card_service.dart';
+import 'widgets/vault/confirm_unassigned_printing.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'utils/display_image_contract.dart';
@@ -519,7 +520,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return options;
   }
 
-  Future<_CardDetailPrintingOption> _resolvePrintingOptionForVaultAdd() async {
+  Future<_CardDetailPrintingOption?> _resolvePrintingOptionForVaultAdd() async {
     final selected = _selectedPrintingOption;
     if (selected != null && _hasExplicitPrintingContext) {
       return selected;
@@ -536,9 +537,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       'card.detail.printings.add.resolve: $cardPrintId (${options.length})',
     );
     if (options.isEmpty) {
-      throw Exception(
-        'Exact printing is unavailable. Try again before adding this card.',
-      );
+      return null;
     }
     if (options.length > 1 && !_hasExplicitPrintingContext) {
       if (mounted) {
@@ -1432,7 +1431,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     final messenger = ScaffoldMessenger.of(context);
     final navigator = Navigator.of(context);
-    late final _CardDetailPrintingOption printingOption;
+    late final _CardDetailPrintingOption? printingOption;
     try {
       printingOption = await _resolvePrintingOptionForVaultAdd();
     } catch (error) {
@@ -1447,6 +1446,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return;
     }
 
+    if (!mounted) return;
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) {
       await _showSignedOutIntentSheet(
@@ -1465,6 +1465,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
 
     try {
+      if (printingOption == null &&
+          !await confirmUnassignedVaultPrinting(context)) {
+        return;
+      }
+      if (!mounted) return;
       final gvviId = await VaultCardService.addOrIncrementVaultItem(
         client: supabase,
         userId: userId,
@@ -1475,7 +1480,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         fallbackImageUrl: _cleanText(widget.imageUrl).isEmpty
             ? null
             : widget.imageUrl,
-        cardPrintingId: printingOption.id,
+        cardPrintingId: printingOption?.id,
+        unassignedPrintingConfirmed: printingOption == null,
       );
 
       if (!mounted) {
