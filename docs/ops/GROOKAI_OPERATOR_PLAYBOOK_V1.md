@@ -9,6 +9,19 @@ and review source/Master Index evidence before using a governed mapping writer.
 The default 50-card selection limit does not bound all database metadata reads.
 Do not confuse these local safeguards with deployed runtime enforcement.
 
+## Master Mapping Evidence Packages
+
+Read `MASTER_MAPPING_AUTHORITY_CHECKPOINT_20260917.md` and
+`docs/contracts/MASTER_INDEX_MAPPING_AUTHORITY_V1.md`. Use the offline packaging
+command with exact selected candidates and already-reviewed manifests/source
+bytes. It cannot approve a candidate and must not invent review evidence.
+Missing authority blocks the mapping writer even in dry-run mode. The local
+candidate is not released; frozen local apply/readback is complete and linked
+in the checkpoint. Release checks and remote read-only TLS verification remain.
+A lost commit response requires
+independent readback, never automatic retry. Do not substitute this writer for
+the separately frozen printing repair executor.
+
 ## Legacy TCGdex Mapping Discovery
 
 Read `TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Do not run the historical

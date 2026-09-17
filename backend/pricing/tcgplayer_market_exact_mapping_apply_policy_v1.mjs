@@ -8,7 +8,7 @@ import {
 } from "./tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1 =
-  "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1";
+  "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1";
 export const TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1";
 export const TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1 =
@@ -256,6 +256,10 @@ export function buildTcgplayerExactMappingMetaV1(candidate, context) {
     candidate_artifact_path: context.candidate_artifact_path,
     candidate_plan_commit_sha: context.candidate_plan_commit_sha,
     producing_commit_sha: context.producing_commit_sha,
+    master_authority_fingerprint: context.master_authority_fingerprint,
+    master_authority_binding: context.master_authority_bindings?.find(
+      binding => binding.candidate_fingerprint === candidate.candidate_fingerprint,
+    ),
     source_group_id: Number(candidate.source_group_id),
     source_group_name: candidate.source_group_name,
     canonical_gv_id: candidate.target.gv_id,
