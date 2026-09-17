@@ -1,7 +1,9 @@
-import '../env.mjs';
+import { createHash, randomUUID } from 'node:crypto';
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-import { createBackendClient } from '../supabase_backend_client.mjs';
-import { createTcgdexClient } from '../clients/tcgdex.mjs';
+export const TCGDEX_BRIDGE_REVIEW_POLICY = 'TCGDEX_TCGPLAYER_REVIEW_ONLY_V1';
 
 const SOURCE = 'tcgdex';
 const TARGET_SOURCE = 'tcgplayer';
@@ -16,38 +18,31 @@ const PRODUCT_ID_PATHS = [
   { key: 'unlimited-holofoil', path: 'pricing.tcgplayer.unlimited-holofoil.productId' },
 ];
 
-if (typeof fetch !== 'function') {
-  console.error('❌ Global fetch unavailable; use Node 18+');
-  process.exit(1);
-}
-
-function parseArgs() {
-  const args = process.argv.slice(2);
+export function parseArgs(args = process.argv.slice(2)) {
   const options = {
     dryRun: true,
-    apply: false,
-    limit: null,
+    limit: 50,
+    output: null,
   };
 
   for (let index = 0; index < args.length; index += 1) {
     const token = args[index];
     if (token === '--dry-run') {
-      options.dryRun = true;
-      options.apply = false;
-    } else if (token === '--apply') {
-      options.apply = true;
-      options.dryRun = false;
-    } else if (token === '--limit' && args[index + 1]) {
-      const value = Number(args[index + 1]);
-      if (!Number.isNaN(value) && value > 0) {
-        options.limit = value;
+      continue;
+    } else if (token === '--apply' || token.startsWith('--apply=')) {
+      throw new Error('DIRECT_MAPPING_APPLY_RETIRED: price-bucket agreement is a review lead, not Master Index authority. Use the reviewed exact-mapping plan and bounded maintenance executor.');
+    } else if (token === '--limit' || token.startsWith('--limit=')) {
+      const value = Number(token === '--limit' ? args[++index] : token.slice(8));
+      if (!Number.isSafeInteger(value) || value < 1 || value > 500) {
+        throw new Error('limit must be an integer from 1 to 500');
       }
-      index += 1;
-    } else if (token.startsWith('--limit=')) {
-      const value = Number(token.split('=')[1]);
-      if (!Number.isNaN(value) && value > 0) {
-        options.limit = value;
-      }
+      options.limit = value;
+    } else if (token === '--output' || token.startsWith('--output=')) {
+      const value = token === '--output' ? args[++index] : token.slice(9);
+      if (!value || value.startsWith('--')) throw new Error('output directory is required');
+      options.output = path.resolve(value);
+    } else {
+      throw new Error(`Unknown bridge option: ${token}`);
     }
   }
 
@@ -58,17 +53,17 @@ function uniqueValues(values) {
   return Array.from(new Set(values.filter((value) => typeof value === 'string' && value.trim())));
 }
 
-function collectProductIdDetails(cardPayload) {
+export function collectProductIdDetails(cardPayload) {
   const tcgplayerPricing = cardPayload?.pricing?.tcgplayer;
   if (!tcgplayerPricing || typeof tcgplayerPricing !== 'object') {
     return {
       productIds: [],
-      validatedVariantPaths: [],
+      observedVariantPaths: [],
     };
   }
 
   const productIds = [];
-  const validatedVariantPaths = [];
+  const observedVariantPaths = [];
 
   for (const entry of PRODUCT_ID_PATHS) {
     const value = tcgplayerPricing?.[entry.key]?.productId;
@@ -77,42 +72,43 @@ function collectProductIdDetails(cardPayload) {
     }
 
     const normalized = String(value).trim();
-    if (!normalized) {
-      continue;
+    if (!/^[1-9]\d*$/.test(normalized) || !['string', 'number'].includes(typeof value)
+        || (typeof value === 'number' && !Number.isSafeInteger(value))) {
+      throw new Error('INVALID_PROVIDER_PRODUCT_ID');
     }
 
     productIds.push(normalized);
-    validatedVariantPaths.push(entry.path);
+    observedVariantPaths.push(entry.path);
   }
 
   return {
     productIds,
-    validatedVariantPaths,
+    observedVariantPaths,
   };
 }
 
-function evaluateProductIds(productIds) {
+export function evaluateProductIds(productIds) {
   if (productIds.length === 0) {
     return {
       result: 'FAIL',
       reason: 'No pricing.tcgplayer.*.productId fields were present in the full TCGdex card payload.',
-      validatedProductId: null,
+      candidateProductId: null,
     };
   }
 
   const distinctProductIds = uniqueValues(productIds);
   if (distinctProductIds.length === 1) {
     return {
-      result: 'PASS',
-      reason: 'At least one TCGplayer productId was present and all populated variant buckets agreed.',
-      validatedProductId: distinctProductIds[0],
+      result: 'REVIEW_REQUIRED',
+      reason: 'Provider product IDs agree; independent source identity and reviewed Master Index evidence are still required.',
+      candidateProductId: distinctProductIds[0],
     };
   }
 
   return {
     result: 'AMBIGUOUS',
     reason: `Multiple distinct TCGplayer productIds were present across variant buckets (${distinctProductIds.join(', ')}).`,
-    validatedProductId: null,
+    candidateProductId: null,
   };
 }
 
@@ -123,6 +119,8 @@ async function fetchTcgdexMappingPage(supabase, offset, pageSize) {
     .eq('source', SOURCE)
     .eq('active', true)
     .order('synced_at', { ascending: false })
+    .order('card_print_id', { ascending: true })
+    .order('external_id', { ascending: true })
     .range(offset, offset + pageSize - 1);
 
   if (error) {
@@ -132,21 +130,21 @@ async function fetchTcgdexMappingPage(supabase, offset, pageSize) {
   return data ?? [];
 }
 
-async function fetchCardNames(supabase, cardPrintIds) {
+async function fetchCardIdentities(supabase, cardPrintIds) {
   if (!Array.isArray(cardPrintIds) || cardPrintIds.length === 0) {
     return new Map();
   }
 
   const { data, error } = await supabase
     .from('card_prints')
-    .select('id,name')
+    .select('id,name,gv_id,set_id,set_code,number,number_plain,identity_domain,print_identity_key,printed_identity_modifier,variant_key')
     .in('id', cardPrintIds);
 
   if (error) {
     throw new Error(`[tcgdex-tcgplayer-bridge] card name query failed: ${error.message}`);
   }
 
-  return new Map((data ?? []).map((row) => [row.id, row.name ?? '']));
+  return new Map((data ?? []).map((row) => [row.id, row]));
 }
 
 async function loadScopedCards(supabase, limit) {
@@ -178,7 +176,7 @@ async function loadScopedCards(supabase, limit) {
       }
     }
 
-    const nameById = await fetchCardNames(
+    const identityById = await fetchCardIdentities(
       supabase,
       pageScoped.map((row) => row.cardPrintId),
     );
@@ -187,7 +185,8 @@ async function loadScopedCards(supabase, limit) {
       scoped.push({
         cardPrintId: row.cardPrintId,
         tcgdexExternalId: row.tcgdexExternalId,
-        name: nameById.get(row.cardPrintId) ?? '',
+        name: identityById.get(row.cardPrintId)?.name ?? '',
+        targetIdentity: identityById.get(row.cardPrintId) ?? null,
       });
 
       if (limit != null && scoped.length >= limit) {
@@ -232,26 +231,6 @@ async function loadAnyTcgplayerMappingsByExternalId(supabase, externalId) {
   return data ?? [];
 }
 
-async function upsertTcgplayerMapping(supabase, cardPrintId, externalId, meta) {
-  const { error } = await supabase
-    .from('external_mappings')
-    .upsert(
-      {
-        card_print_id: cardPrintId,
-        source: TARGET_SOURCE,
-        external_id: externalId,
-        active: true,
-        synced_at: new Date().toISOString(),
-        meta,
-      },
-      { onConflict: 'source,external_id' },
-    );
-
-  if (error) {
-    throw new Error(`[tcgdex-tcgplayer-bridge] upsert failed: ${error.message}`);
-  }
-}
-
 function logResult(row) {
   console.log('\nROW:');
   console.log(`card_print_id: ${row.cardPrintId}`);
@@ -262,158 +241,128 @@ function logResult(row) {
   console.log(`reason: ${row.reason}`);
 }
 
-function printVerificationQueries() {
-  console.log('\nVERIFICATION_SQL:');
-  console.log("select count(*) as active_tcgplayer_rows from public.external_mappings where source = 'tcgplayer' and active = true;");
-  console.log("select count(distinct card_print_id) as covered_card_prints from public.external_mappings where source = 'tcgplayer' and active = true;");
-  console.log("select count(*) as conflicting_external_ids from (select external_id from public.external_mappings where source = 'tcgplayer' and active = true group by external_id having count(distinct card_print_id) > 1) s;");
-  console.log("select count(*) as card_prints_with_multiple_active_tcgplayer_mappings from (select card_print_id from public.external_mappings where source = 'tcgplayer' and active = true group by card_print_id having count(*) > 1) s;");
-}
-
-async function main() {
-  const options = parseArgs();
-  const supabase = createBackendClient();
-  const tcgdexClient = createTcgdexClient();
+export async function runReadOnlyBridge({ supabase, tcgdexClient, limit = 50, onRow = async () => {}, onSelection = async () => {} }) {
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > 500) throw new Error('Invalid bridge limit');
   const summary = {
+    policy: TCGDEX_BRIDGE_REVIEW_POLICY,
+    write_ready: false,
+    database_writes: 0,
+    catalog_completeness_verified: false,
     inspected: 0,
-    would_upsert: 0,
-    upserted: 0,
-    already_correct: 0,
+    review_required: 0,
+    existing_mapping_requires_review: 0,
     no_product_id: 0,
     ambiguous: 0,
     conflicting_existing: 0,
     errors: 0,
   };
-
-  let scopedCards = [];
-  try {
-    scopedCards = await loadScopedCards(supabase, options.limit);
-  } catch (error) {
-    console.error('❌ Failed to load tcgdex-mapped cards:', error);
-    process.exit(1);
-  }
-
+  const scopedCards = await loadScopedCards(supabase, limit);
+  await onSelection(scopedCards);
+  const rows = [];
   for (const card of scopedCards) {
     summary.inspected += 1;
-
+    const row = {
+      ...card, policy: TCGDEX_BRIDGE_REVIEW_POLICY, write_ready: false,
+      observed_at: new Date().toISOString(), productIds: [], observedVariantPaths: [],
+      candidateProductId: null, source_payload: null, source_payload_sha256: null,
+      source_serialization: 'parsed_json_utf8_not_original_response_bytes',
+      active_card_mappings: [], external_id_mappings: [],
+    };
+    let phase = 'source_fetch';
     try {
       const payload = await tcgdexClient.fetchTcgdexCardById(card.tcgdexExternalId);
-      const { productIds, validatedVariantPaths } = collectProductIdDetails(payload);
-      const evaluation = evaluateProductIds(productIds);
-
+      // Preserve the provider evidence even when identity or bucket validation fails.
+      const serialized = JSON.stringify(payload);
+      row.source_payload = JSON.parse(serialized);
+      row.source_payload_sha256 = createHash('sha256').update(serialized).digest('hex');
+      phase = 'source_validation';
+      if (!payload || payload.id !== card.tcgdexExternalId) throw new Error('SOURCE_ID_MISMATCH');
+      if (!card.targetIdentity) throw new Error('TARGET_IDENTITY_MISSING');
+      Object.assign(row, collectProductIdDetails(payload));
+      const evaluation = evaluateProductIds(row.productIds);
+      row.candidateProductId = evaluation.candidateProductId;
+      row.reason = evaluation.reason;
       if (evaluation.result === 'FAIL') {
         summary.no_product_id += 1;
-        logResult({
-          ...card,
-          productIds,
-          status: 'SKIP_NO_PRODUCT_ID',
-          reason: evaluation.reason,
-        });
-        continue;
-      }
-
-      if (evaluation.result === 'AMBIGUOUS') {
+        row.status = 'SKIP_NO_PRODUCT_ID';
+      } else if (evaluation.result === 'AMBIGUOUS') {
         summary.ambiguous += 1;
-        logResult({
-          ...card,
-          productIds,
-          status: 'SKIP_AMBIGUOUS_PRODUCT_IDS',
-          reason: evaluation.reason,
-        });
-        continue;
+        row.status = 'SKIP_AMBIGUOUS_PRODUCT_IDS';
+      } else {
+        phase = 'mapping_read';
+        row.active_card_mappings = await loadActiveTcgplayerMappingsForCard(supabase, card.cardPrintId);
+        row.external_id_mappings = await loadAnyTcgplayerMappingsByExternalId(supabase, row.candidateProductId);
+        const existingIds = uniqueValues(row.active_card_mappings.map(mapping => String(mapping.external_id)));
+        if (existingIds.some(id => id !== row.candidateProductId)
+            || row.external_id_mappings.some(mapping => mapping.card_print_id !== card.cardPrintId)) {
+          summary.conflicting_existing += 1;
+          row.status = 'SKIP_CONFLICTING_EXISTING_TCGPLAYER_MAPPING';
+          row.reason = 'Existing mapping ownership conflicts with this provider candidate; preserve both for adjudication.';
+        } else if (existingIds.includes(row.candidateProductId)) {
+          summary.existing_mapping_requires_review += 1;
+          row.status = 'EXISTING_MAPPING_REQUIRES_REVIEW';
+          row.reason = 'Existing mapping agrees with provider IDs, but that agreement does not verify canonical identity or finish.';
+        } else {
+          summary.review_required += 1;
+          row.status = 'REVIEW_REQUIRED';
+        }
       }
-
-      const validatedProductId = evaluation.validatedProductId;
-      const activeMappingsForCard = await loadActiveTcgplayerMappingsForCard(supabase, card.cardPrintId);
-      const activeExternalIdsForCard = uniqueValues(activeMappingsForCard.map((row) => row.external_id));
-      if (activeExternalIdsForCard.some((externalId) => externalId !== validatedProductId)) {
-        summary.conflicting_existing += 1;
-        logResult({
-          ...card,
-          productIds,
-          status: 'SKIP_CONFLICTING_EXISTING_TCGPLAYER_MAPPING',
-          reason: `Active tcgplayer mapping already exists for this card_print_id with a different external_id (${activeExternalIdsForCard.join(', ')}).`,
-        });
-        continue;
-      }
-
-      if (activeExternalIdsForCard.length === 1 && activeExternalIdsForCard[0] === validatedProductId) {
-        summary.already_correct += 1;
-        logResult({
-          ...card,
-          productIds,
-          status: 'SKIP_ALREADY_CORRECT',
-          reason: 'Active tcgplayer mapping already matches the validated productId.',
-        });
-        continue;
-      }
-
-      const existingRowsByExternalId = await loadAnyTcgplayerMappingsByExternalId(supabase, validatedProductId);
-      const conflictingExternalRows = existingRowsByExternalId.filter(
-        (row) => row.card_print_id && row.card_print_id !== card.cardPrintId,
-      );
-      if (conflictingExternalRows.length > 0) {
-        summary.conflicting_existing += 1;
-        logResult({
-          ...card,
-          productIds,
-          status: 'SKIP_CONFLICTING_EXISTING_TCGPLAYER_MAPPING',
-          reason: `Validated tcgplayer external_id ${validatedProductId} is already attached to a different card_print_id (${conflictingExternalRows.map((row) => row.card_print_id).join(', ')}).`,
-        });
-        continue;
-      }
-
-      const meta = {
-        derived_from: 'tcgdex_pricing_productId',
-        tcgdex_external_id: card.tcgdexExternalId,
-        validated_variant_paths: validatedVariantPaths,
-        promoted_by: 'promote_tcgdex_tcgplayer_bridge_v1',
-      };
-
-      if (options.dryRun) {
-        summary.would_upsert += 1;
-        logResult({
-          ...card,
-          productIds,
-          status: 'WOULD_UPSERT',
-          reason: `Would upsert source='tcgplayer' external_id=${validatedProductId} using the validated derived bridge candidate.`,
-        });
-        continue;
-      }
-
-      await upsertTcgplayerMapping(supabase, card.cardPrintId, validatedProductId, meta);
-      summary.upserted += 1;
-      logResult({
-        ...card,
-        productIds,
-        status: 'UPSERTED',
-        reason: `Upserted source='tcgplayer' external_id=${validatedProductId} from validated TCGdex pricing productId agreement.`,
-      });
     } catch (error) {
       summary.errors += 1;
-      logResult({
-        ...card,
-        productIds: [],
-        status: 'SKIP_ERROR',
-        reason: error instanceof Error ? error.message : String(error),
-      });
+      row.status = 'SKIP_ERROR';
+      row.error_phase = phase;
+      row.reason = ['SOURCE_ID_MISMATCH', 'TARGET_IDENTITY_MISSING', 'INVALID_PROVIDER_PRODUCT_ID'].includes(error?.message)
+        ? error.message : 'BRIDGE_READ_FAILED';
+      row.http_status = Number.isInteger(error?.status) ? error.status : null;
     }
+    // Artifact failure stops the run instead of becoming a silently skipped card.
+    await onRow(row, rows.length);
+    rows.push(row);
   }
-
-  console.log('\nSUMMARY:');
-  console.log(`inspected: ${summary.inspected}`);
-  console.log(`would_upsert: ${summary.would_upsert}`);
-  console.log(`upserted: ${summary.upserted}`);
-  console.log(`already_correct: ${summary.already_correct}`);
-  console.log(`no_product_id: ${summary.no_product_id}`);
-  console.log(`ambiguous: ${summary.ambiguous}`);
-  console.log(`conflicting_existing: ${summary.conflicting_existing}`);
-  console.log(`errors: ${summary.errors}`);
-
-  printVerificationQueries();
+  return { summary, rows };
 }
 
-main().catch((error) => {
-  console.error('❌ Unhandled tcgdex tcgplayer bridge promotion failure:', error);
-  process.exit(1);
-});
+export async function main(args = process.argv.slice(2)) {
+  const options = parseArgs(args);
+  const output = options.output ?? path.resolve('artifacts', 'tcgdex_mapping_review', randomUUID());
+  await mkdir(path.dirname(output), { recursive: true });
+  await mkdir(output); // Refuse an existing run directory, including partial runs.
+  await writeFile(path.join(output, 'run_plan.json'), JSON.stringify({
+    policy: TCGDEX_BRIDGE_REVIEW_POLICY, started_at: new Date().toISOString(),
+    limit: options.limit, database_writes: false, write_ready: false,
+    handoff: 'Source adjudication and reviewed Master Index required before a fresh exact-mapping plan. This report is not executable.',
+  }, null, 2) + '\n', { flag: 'wx' });
+  await import('../env.mjs');
+  const { createBackendClient } = await import('../supabase_backend_client.mjs');
+  const { createTcgdexClient } = await import('../clients/tcgdex.mjs');
+  const { summary } = await runReadOnlyBridge({
+    supabase: createBackendClient(), tcgdexClient: createTcgdexClient(), limit: options.limit,
+    onSelection: async cards => {
+      const sourceBase = new URL(process.env.TCGDEX_BASE_URL);
+      sourceBase.username = '';
+      sourceBase.password = '';
+      sourceBase.search = '';
+      sourceBase.hash = '';
+      await writeFile(path.join(output, 'selection.json'), JSON.stringify({
+        selected_at: new Date().toISOString(), source: 'tcgdex',
+        source_base: sourceBase.href, source_language: process.env.TCGDEX_LANG || 'en',
+        scope: 'bounded_active_mapping_sample_not_complete_catalog', cards,
+      }, null, 2) + '\n', { flag: 'wx' });
+    },
+    onRow: async (row, index) => {
+      await writeFile(path.join(output, `row-${String(index + 1).padStart(4, '0')}.json`),
+        JSON.stringify(row, null, 2) + '\n', { flag: 'wx' });
+      logResult(row);
+    },
+  });
+  await writeFile(path.join(output, 'summary.json'), JSON.stringify(summary, null, 2) + '\n', { flag: 'wx' });
+  console.log(JSON.stringify({ ...summary, output }, null, 2));
+  if (summary.errors > 0) process.exitCode = 1;
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main().catch(error => {
+    console.error(`[tcgdex-tcgplayer-bridge] ${error.message}`);
+    process.exitCode = 1;
+  });
+}
