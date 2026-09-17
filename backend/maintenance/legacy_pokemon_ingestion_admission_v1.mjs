@@ -38,6 +38,39 @@ export function assertLegacyPokemonNormalizerRetired() {
   throw new Error('LEGACY_POKEMON_NORMALIZER_RETIRED: this historical writer has no safe dry-run or reviewed atomic admission; preserve raw staging and use the Master Index planner');
 }
 
+export function assertLegacySetReviewOnly(args = process.argv.slice(2), env = process.env) {
+  if (args.length === 1 && ['--help', '-h'].includes(args[0])) return { help: true };
+  assert.ok(args.includes('--dry-run') && !args.some(arg => /^--apply(?:=|$)/.test(arg))
+    && env.CANON_MAINTENANCE_DRY_RUN !== 'false',
+  'LEGACY_SET_SQL_REVIEW_ONLY: explicit --dry-run required; historical SQL apply is retired');
+  const result = { dryRun: true, setCode: null, limit: 50, detail: false };
+  const seen = new Set();
+  for (let index = 0; index < args.length; index++) {
+    const token = args[index];
+    const equals = token.indexOf('=');
+    const key = equals < 0 ? token : token.slice(0, equals);
+    assert.ok(['--dry-run', '--set', '--limit', '--detail'].includes(key), `unknown_set_review_argument:${key}`);
+    assert.ok(!seen.has(key), `duplicate_set_review_argument:${key}`);
+    seen.add(key);
+    if (key === '--dry-run' || key === '--detail') {
+      assert.equal(equals, -1, `flag_cannot_have_value:${key}`);
+      if (key === '--detail') result.detail = true;
+      continue;
+    }
+    const value = equals < 0 ? args[++index] : token.slice(equals + 1);
+    assert.ok(value && !value.startsWith('--'), `set_review_value_required:${key}`);
+    if (key === '--set') {
+      assert.match(value, /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/, 'invalid_set_review_code');
+      result.setCode = value;
+    } else {
+      assert.ok(/^\d+$/.test(value) && Number(value) >= 1 && Number(value) <= 500, 'set_review_limit_must_be_1_to_500');
+      result.limit = Number(value);
+    }
+  }
+  assert.ok(result.setCode, 'set_review_requires_exact_set');
+  return result;
+}
+
 const entry = (process.argv[1] ?? '').replaceAll('\\', '/').split('/').pop();
 if (entry === 'pokemonapi_normalize_worker.mjs') {
   assertLegacyPokemonNormalizerRetired();
@@ -46,3 +79,4 @@ if (['pokemon_enrichment_worker.mjs', 'pokemonapi_backfill_mappings_worker.mjs',
   assertLegacyPokemonReviewOnly(undefined, undefined, { allowScope: entry === 'tcgdex_normalize_worker.mjs' });
 }
 if (entry === 'new_set_release_ingest_v1.mjs') assertLegacyNewSetPreparationOnly();
+if (['set_repair_runner.mjs', 'tcgdex_canonize_set.mjs'].includes(entry)) assertLegacySetReviewOnly();

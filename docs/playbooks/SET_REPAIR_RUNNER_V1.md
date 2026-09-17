@@ -1,5 +1,29 @@
 # SET_REPAIR_RUNNER_V1
 
+## Current Operation - September 17, 2026
+
+The historical SQL writer below is retired. The active command now performs
+bounded evidence review only, including when a set already appears mapped.
+It does not insert the historical dry-run admin checkpoint.
+
+```bash
+node backend/tools/set_repair_runner.mjs --set swsh12 --dry-run --limit=50
+```
+
+One exact Pokemon set, explicit dry-run, 1..500 rows per evidence collection
+(default 50). Apply, all-auto-safe and include-reverse/include-tg-routing flags
+are rejected. The shared backend client uses `SUPABASE_URL` and
+`SUPABASE_SECRET_KEY`; the active command does not use `DATABASE_URL` or a SQL pool.
+JSON retains raw source payloads, observed parents/printings/mappings and explicit
+truncation. It never marks a scope auto-safe or complete. Read
+`docs/ops/LEGACY_SET_SQL_REVIEW_CHECKPOINT_20260917.md` and
+`docs/playbooks/MASTER_INDEX_FIRST_INGESTION_V1.md` for the current path to writes.
+
+## Historical Reference Only
+
+The remaining sections describe the former implementation. Do not execute their
+apply or all-auto-safe examples, or treat their numerical checks as authority.
+
 ## Purpose
 `backend/tools/set_repair_runner.mjs` automates the auto-safe subset of `SET_REPAIR_PROTOCOL_V1` for a set code.
 
