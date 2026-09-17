@@ -9,7 +9,10 @@ reviewed Master Index projection. It is evidence, not execution approval. The
 local runtime now validates staging and execution, inserts raw evidence before
 the child/review, and checks exact readback. Use an explicit authority JSON file
 with the exact candidate ID; legacy queues must not be given invented evidence.
-The complete claim/event wrapper, concurrency and release checks remain pending.
+The complete claim/event wrapper and concurrency checks passed locally. PR #479
+release verification remains pending. Review found a cross-parent negative-fact
+gap; the candidate now queries all forbidden/suppressed tuples at every admission
+and readback gate. Never limit negative-fact checks to the target card's siblings.
 The isolated rehearsal database is `grookai_warehouse_printing_20260917_v1` on
 localhost:54330. Preserve it and the original McDonald's rehearsal database.
 An uncertain commit/rollback returns `reconciliation_required`; never retry it

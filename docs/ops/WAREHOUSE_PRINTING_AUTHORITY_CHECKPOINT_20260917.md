@@ -5,6 +5,23 @@ Worktree: `C:/grookai_vault_warehouse_printing_authority_20260917`
 Branch: `fix/warehouse-printing-authority-20260917`
 Base: `1587eafa361e712b74640f212a747d602f56917b`
 
+## PR 479 Review Follow-up
+
+Initial head `04061fca86f58f1d4e68ecce25d2ef0e8abdf72e` passed all GitHub
+checks. Its Vercel preview log explicitly reports `Collector production release
+requires explicit activation`; the guard is unchanged and was not bypassed.
+Review comment 4034918473 identified a real cross-parent negative-fact gap.
+The follow-up checks every forbidden/suppressed tuple in the reviewed manifest
+at preparation, locked execution and readback, rather than only target siblings.
+Eight new regressions pass (85 targeted warehouse tests total).
+
+Isolated PostgreSQL proof `negative-scope-v2.json` passes both negative-fact kinds:
+preflight and pre-write rejection, clean admission, later readback rejection,
+and exact rollback across eleven table digests. The first proof attempt tried
+to populate a generated fixture column; it failed and rolled back. Preserve
+`negative-scope-v1.json` alongside the corrected proof. No production access.
+Normal follow-up commit/push hooks and remote review remain required.
+
 ## Live Safeguard Verification
 
 The same read-only run `35193527355` is now terminal. Do not redispatch it to

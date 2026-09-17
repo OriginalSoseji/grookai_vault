@@ -63,8 +63,15 @@ export async function prepareWarehousePrintingAdmission(client,bundle,target,{lo
   assert.ok(existing.length<=1,'warehouse_duplicate_printing');
   assert.ok(siblings.every(row=>row.finish_key===target.finish_key||
     (row.id!==expected.child.id&&row.printing_gv_id!==target.printing_gv_id)),'warehouse_printing_identity_collision');
-  for (const fact of [...bundle.manifest.authority.forbidden_facts,...bundle.manifest.suppressed_printing_facts]) {
-    assert.ok(!siblings.some(row=>row.card_print_id===fact.card_print_id&&row.finish_key===fact.finish_key),'warehouse_forbidden_printing_present');
+  const negativeFacts=[...bundle.manifest.authority.forbidden_facts,...bundle.manifest.suppressed_printing_facts];
+  if (negativeFacts.length) {
+    // Negative facts constrain the whole reviewed scope, not just this child.
+    // Serializable execution also tracks absence predicates before insertion.
+    const violations=await rows(`select to_jsonb(p) row from public.card_printings p
+      where exists (select 1 from jsonb_to_recordset($1::jsonb) as f(card_print_id uuid,finish_key text)
+        where p.card_print_id=f.card_print_id and p.finish_key=f.finish_key)
+      order by p.id ${lock?'for update of p':''}`,[JSON.stringify(negativeFacts)]);
+    assert.equal(violations.length,0,'warehouse_forbidden_printing_present');
   }
   const childIds=[...new Set([...siblings.map(row=>row.id),expected.child.id])];
   const reviews=await rows(`select to_jsonb(r) row from public.card_printing_truth_reviews r

@@ -9,16 +9,22 @@ import {buildPromotionWritePlanSnapshot,buildFrozenPayload,buildComparableStageP
   from '../../backend/warehouse/promotion_stage_worker_v1.mjs';
 import {buildCreateCardPrintingPlan,applyMutation,verifySucceededPrintingStage,runPromotionExecutorV1} from '../../backend/warehouse/promotion_executor_v1.mjs';
 
-function harness() {
-  const f=fixture(),bundle=freezeWarehousePrintingAuthority(f);
+function harness(options) {
+  const f=fixture(options),bundle=freezeWarehousePrintingAuthority(f);
   const state={parent:{...f.parent,number:'1'},children:[],reviews:[],raw:[],footprint:'unchanged',schema:[],isolation:'serializable',
-    writes:[],failAt:null,publicMissing:false};
+    writes:[],queries:[],failAt:null,publicMissing:false};
   const client={async query(sql,args=[]) {
     const q=sql.replace(/\s+/g,' ').trim();
+    state.queries.push(q);
     if(q.startsWith('select current_setting'))return {rows:[{isolation:state.isolation,read_only:'off'}]};
     if(q.includes('to_jsonb(p) parent'))return {rows:[{parent:structuredClone(state.parent),game:state.parent.game,
       canonical_set_code:state.parent.set_code,set_game:state.parent.game}]};
-    if(q.includes('to_jsonb(p) row from public.card_printings'))return {rows:state.children.map(row=>({row:structuredClone(row)}))};
+    if(q.includes('to_jsonb(p) row from public.card_printings')) {
+      const selected=q.includes('jsonb_to_recordset')
+        ? state.children.filter(row=>JSON.parse(args[0]).some(fact=>fact.card_print_id===row.card_print_id&&fact.finish_key===row.finish_key))
+        : state.children.filter(row=>row.card_print_id===args[0]||row.id===args[1]||row.printing_gv_id===args[2]);
+      return {rows:selected.map(row=>({row:structuredClone(row)}))};
+    }
     if(q.includes('to_jsonb(r) row from public.card_printing_truth_reviews'))return {rows:state.reviews.map(row=>({row:structuredClone(row)}))};
     if(q.includes("jsonb_build_object('id',r.id::text)"))return {rows:state.raw.map(row=>({row:structuredClone(row)}))};
     if(q.startsWith('select key from public.finish_keys'))return {rows:[{key:'holo'}]};
@@ -43,6 +49,32 @@ function harness() {
   return {...f,bundle,state,client};
 }
 const prepare=f=>prepareWarehousePrintingAdmission(f.client,f.bundle,f.target);
+for (const kind of ['forbidden','suppressed']) {
+  for (const phase of ['prepare','apply','readback']) {
+    test(`${kind} finish on another reviewed parent blocks ${phase}`,async()=>{
+      const f=harness({otherParentNegativeFact:kind}),before=await prepare(f);
+      if(phase==='readback')await applyWarehousePrintingAdmission(f.client,before);
+      const writes=f.state.writes.length;
+      f.state.children.push({id:'77777777-7777-4777-8777-777777777777',
+        card_print_id:f.manifest.parents[1].id,finish_key:'normal',printing_gv_id:'GV-PK-TEST-2-NORMAL'});
+      await assert.rejects(phase==='prepare'?prepare(f):phase==='apply'?applyWarehousePrintingAdmission(f.client,before):
+        verifyWarehousePrintingAdmissionReadback(f.client,f.bundle,f.target,hash(before)),/warehouse_forbidden_printing_present/);
+      assert.equal(f.state.writes.length,writes);
+      if(phase==='apply')assert.ok(f.state.queries.some(q=>q.includes('jsonb_to_recordset')&&q.endsWith('for update of p')));
+    });
+  }
+  test(`${kind} predicates do not block another parent with a different finish`,async()=>{
+    const f=harness({otherParentNegativeFact:kind});
+    const unrelated={id:'77777777-7777-4777-8777-777777777777',
+      card_print_id:f.manifest.parents[1].id,finish_key:'holo',printing_gv_id:'GV-PK-TEST-2-HOLO'};
+    f.state.children.push(unrelated);
+    const before=await prepare(f);
+    await applyWarehousePrintingAdmission(f.client,before);
+    assert.equal((await verifyWarehousePrintingAdmissionReadback(f.client,f.bundle,f.target,hash(before))).exact_readback,true);
+    assert.deepEqual(f.state.children[0],unrelated);
+    assert.equal(f.state.writes.length,3);
+  });
+}
 function stageInput(f) {return {candidate:{id:f.target.candidate_id,proposed_action_type:'CREATE_CARD_PRINTING',
   interpreter_resolved_finish_key:'holo'},metadataExtraction:{normalized_metadata_package:{identity:{set_code:'test',name:'Fixture',printed_number:'1'}}},
   interpreterPackage:{status:'READY',proposed_action:'CREATE_CARD_PRINTING',canon_context:{matched_card_print_id:f.target.card_print_id,finish_key:'holo'}},

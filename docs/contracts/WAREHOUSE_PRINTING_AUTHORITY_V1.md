@@ -40,6 +40,10 @@ and parent/child row locks. A new printing inserts raw source bytes first, then
 the exact child/GV-ID and its bound verified review. It does not update existing
 printings, images, reviews or provenance. Such repairs use a separate bounded
 repair plan. Unreviewed or conflicting existing children cannot become a no-op.
+Forbidden and suppressed finish predicates are checked across every parent named
+by those facts, not only the target card's siblings. The same exact tuple query
+runs at staging, before/after admission and during independent readback. Missing
+negative tuples are read inside the serializable execution transaction.
 
 Before commit and on independent post-commit readback, exact receipts, public
 options, existing rows and five scoped dependency digests are verified. Readback
@@ -57,7 +61,7 @@ release/apply contract. No production execution is authorized by this document.
 
 ## Required Release Completion
 
-The workers now call the validator, but this remains uncommitted local code.
+The workers now call the validator; PR #479 contains the release candidate.
 Do not mark the production warehouse bypass closed before release evidence.
 
 1. Isolated PostgreSQL now proves staging, job claim, event recording, new child
