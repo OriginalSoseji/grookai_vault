@@ -1,3 +1,4 @@
+import { assertLegacyNewSetPreparationOnly } from '../../backend/maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import http from 'node:http';
@@ -1240,6 +1241,7 @@ ${stops}
 }
 
 async function main() {
+  assertLegacyNewSetPreparationOnly();
   const args = parseArgs(process.argv);
   const manifestPath = path.resolve(ROOT, args.manifest);
   const manifest = await readJson(manifestPath);

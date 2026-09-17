@@ -135,9 +135,11 @@ async function runFixture({ existing = false, conflict = false, scriptIndex = 0,
       child.stdout.on('data', data => { stdout += data; });
       child.stderr.on('data', data => { stderr += data; });
       child.on('error', reject);
-      child.on('close', code => resolve({ code, stdout, stderr }));
+      child.on('close', (code, signal) => resolve({ code, signal, stdout, stderr }));
     });
-    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.code, 0, JSON.stringify({
+      script: LEGACY_REVIEW_SCRIPTS[scriptIndex], ...result, calls,
+    }, null, 2));
     assert.ok(calls.some(call => call.path === '/provider/cards'));
     assert.ok(calls.filter(call => call.path.startsWith('/rest/')).every(call => call.method === 'GET'));
     const records = result.stdout.split(/\r?\n/).filter(line => line.startsWith('{')).map(line => JSON.parse(line));

@@ -1,14 +1,13 @@
 // backend/pokemon/pokemonapi_backfill_mappings_worker.mjs
 //
-// Backfills external_mappings for PokemonAPI cards by resolving raw_imports -> card_prints.
-// Idempotent and safe to re-run (upsert on source, external_id).
+// Reviews PokemonAPI mapping candidates. Existing matches are not identity authority.
 
 // Load environment variables
+import { assertLegacyPokemonReviewOnly } from '../maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import {
-  ensurePokemonApiMapping,
   getPokemonApiId,
   resolveCardPrint,
   resolveSet,
@@ -18,28 +17,14 @@ const SOURCE = 'pokemonapi';
 const PAGE_SIZE = 200;
 
 function parseArgs() {
-  const args = process.argv.slice(2);
-  const options = {
-    dryRun: false,
-    limit: null,
-  };
-  for (let i = 0; i < args.length; i += 1) {
-    const token = args[i];
-    if (token === '--dry-run') {
-      options.dryRun = true;
-    } else if (token === '--limit' && args[i + 1]) {
-      const n = Number(args[i + 1]);
-      if (!Number.isNaN(n)) options.limit = n;
-      i += 1;
-    }
-  }
-  return options;
+  return assertLegacyPokemonReviewOnly();
 }
 
 async function backfillMappings(supabase, { dryRun, limit }) {
   let fetched = 0;
-  let mapped = 0;
+  let candidates = 0;
   let unmatched = 0;
+  const seen = new Set();
 
   for (;;) {
     if (limit != null && fetched >= limit) break;
@@ -57,6 +42,11 @@ async function backfillMappings(supabase, { dryRun, limit }) {
       .range(fetched, fetched + pageSize - 1);
     if (error) throw error;
     if (!raws || raws.length === 0) break;
+    if (raws.length > pageSize) throw new Error('oversized_review_page');
+    for (const row of raws) {
+      if (row.id == null || seen.has(String(row.id))) throw new Error('duplicate_or_missing_review_raw_id');
+      seen.add(String(row.id));
+    }
 
     for (const row of raws) {
       fetched += 1;
@@ -64,27 +54,30 @@ async function backfillMappings(supabase, { dryRun, limit }) {
       const externalId = getPokemonApiId(card);
       if (!externalId) {
         unmatched += 1;
+        console.log(JSON.stringify({ status: 'requires_master_index_review', outcome: 'missing_source_id',
+          raw_import_id: row.id, source_payload: card, database_writes: 0, write_ready: false }));
         continue;
       }
 
       const setInfo = await resolveSet(supabase, card.set || {});
       if (!setInfo?.id) {
         unmatched += 1;
+        console.log(JSON.stringify({ status: 'requires_master_index_review', outcome: 'unresolved_set',
+          raw_import_id: row.id, source_payload: card, database_writes: 0, write_ready: false }));
         continue;
       }
 
       const { match: cardPrint, multiple } = await resolveCardPrint(supabase, card, setInfo.id);
       if (multiple || !cardPrint?.id) {
         unmatched += 1;
+        console.log(JSON.stringify({ status: 'requires_master_index_review', outcome: 'unresolved_parent',
+          raw_import_id: row.id, source_payload: card, database_writes: 0, write_ready: false }));
         continue;
       }
 
-      if (dryRun) {
-        console.log(`[DRY RUN] pokemonapi:${externalId} -> card_print ${cardPrint.id}`);
-      } else {
-        await ensurePokemonApiMapping(supabase, cardPrint.id, externalId);
-      }
-      mapped += 1;
+      console.log(JSON.stringify({ status: 'requires_master_index_review', raw_import_id: row.id,
+          candidate_card_print_id: cardPrint.id, source_payload: card, database_writes: 0, write_ready: false }));
+      candidates += 1;
       if (limit != null && fetched >= limit) break;
     }
 
@@ -92,7 +85,7 @@ async function backfillMappings(supabase, { dryRun, limit }) {
   }
 
   console.log(
-    `[pokemonapi][backfill-mappings] complete: fetched=${fetched}, mapped=${mapped}, unmatched=${unmatched}, dryRun=${dryRun}`,
+    `[pokemonapi][backfill-mappings] complete: fetched=${fetched}, candidates=${candidates}, unmatched=${unmatched}, dryRun=${dryRun}, database_writes=0`,
   );
 }
 

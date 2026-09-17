@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Pokemon Legacy Admission
+
+Read `POKEMON_LEGACY_ADMISSION_CHECKPOINT_20260917.md` before any PokemonAPI or
+TCGdex legacy worker. Enrichment, mapping backfill and TCGdex normalization now
+require `--dry-run`, default to 50 raw rows and allow at most 500. TCGdex's limit
+covers sets and cards together, sets first; use `--kind=card` for card-only review.
+No raw statuses, mappings, traits, sets or printings are written. Source finish
+flags and existing matches remain review evidence. The older PokemonAPI normalizer
+has no safe dry-run and rejects all execution. The remote import wrapper and
+new-set `--apply` reject before staging/acquisition. Discovery-only source intake
+is not a replacement for a governed Master Index apply. Runtime deployment and
+fresh reviewed write paths remain separate work; never replay old command blocks.
+
 ## Source-Backed JustTCG And Historical Batches
 
 Read `SOURCE_BACKED_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The legacy source-backed

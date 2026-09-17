@@ -2,7 +2,14 @@
 
 ## Status
 
-ACTIVE
+Evidence preparation only. Legacy apply retired as of 2026-09-17.
+
+The historical apply commands below are retained for provenance, not execution.
+`new_set_release_ingest_v1.mjs --apply` rejects before acquisition or mutation;
+its old child normalizers lack the reviewed atomic Master Index admission needed
+for the current policy. Use dry-run preparation and a fresh scope-specific
+reviewed executor. This is interim containment, not a claim that automatic new-set
+publication is functional. See `docs/ops/POKEMON_LEGACY_ADMISSION_CHECKPOINT_20260917.md`.
 
 ## Purpose
 

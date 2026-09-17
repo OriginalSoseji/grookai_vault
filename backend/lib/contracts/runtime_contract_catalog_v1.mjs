@@ -214,7 +214,6 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
         'scripts/audits/english_master_index_publishable_v1_build.mjs',
         'scripts/audits/english_master_index_chaos_rising_completion_package_v1.mjs',
         'scripts/audits/english_master_index_pkg04a_chaos_rising_child_printing_completion_v1.mjs',
-        'scripts/ingest/new_set_release_ingest_v1.mjs',
       ],
       audit: [
         'scripts/contracts/drift_audit_v1.sql',
@@ -230,7 +229,7 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
         'Per-set readback must reproduce exact parent, printing, and by-finish counts; zero suppressed/forbidden facts; all protected facts; and the pinned plan/contract hashes.',
     },
     current_enforcement_status: 'partially_enforced',
-    gaps: 'Active Master Index and ME04 paths are guarded; older one-off historical child-printing scripts predate the shared manifest rule.',
+    gaps: 'Legacy PokemonAPI/TCGdex normalization and new-set apply are retired or review-only. Fresh reviewed replacements and deployed admission proof remain required; historical one-off scripts must not be replayed.',
     next_action: 'Require an equivalent truth-manifest and pre-commit assertion before any historical one-off path is reused.',
   },
   EXTERNAL_SOURCE_INGESTION_MODEL_V1: {

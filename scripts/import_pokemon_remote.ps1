@@ -4,6 +4,8 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+throw 'LEGACY_REMOTE_POKEMON_IMPORT_RETIRED: this chain mutates before reviewed Master Index admission; preserve raw staging and use fresh bounded execution.'
+
 function Require-Env([string]$name) {
   $v = [Environment]::GetEnvironmentVariable($name)
   if ([string]::IsNullOrWhiteSpace($v)) {

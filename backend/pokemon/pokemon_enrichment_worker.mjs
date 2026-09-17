@@ -6,11 +6,11 @@
 // Enrichment is idempotent and non-destructive to identity (set_id/number/name).
 
 // Load environment variables
+import { assertLegacyPokemonReviewOnly } from '../maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import {
-  ensurePokemonApiMapping,
   getPokemonApiId,
   resolveCardPrint,
   resolveSet,
@@ -21,28 +21,7 @@ const SOURCE = 'pokemonapi';
 const PAGE_SIZE = 200;
 
 function parseArgs() {
-  const args = process.argv.slice(2);
-  const options = {
-    mode: 'backfill',
-    dryRun: false,
-    limit: null,
-  };
-
-  for (let i = 0; i < args.length; i += 1) {
-    const token = args[i];
-    if (token === '--mode' && args[i + 1]) {
-      options.mode = args[i + 1];
-      i += 1;
-    } else if (token === '--dry-run') {
-      options.dryRun = true;
-    } else if (token === '--limit' && args[i + 1]) {
-      const asNum = Number(args[i + 1]);
-      if (!Number.isNaN(asNum)) options.limit = asNum;
-      i += 1;
-    }
-  }
-
-  return options;
+  return assertLegacyPokemonReviewOnly();
 }
 
 function extractHpAndDexFromPayload(payload) {
@@ -141,8 +120,10 @@ async function resolveCardPrintId(supabase, card) {
       .select('card_print_id')
       .eq('source', SOURCE)
       .eq('external_id', externalId)
+      .eq('active', true)
       .maybeSingle();
-    if (!mapErr && mapped?.card_print_id) {
+    if (mapErr) throw new Error(mapErr.message);
+    if (mapped?.card_print_id) {
       return mapped.card_print_id;
     }
   }
@@ -151,9 +132,6 @@ async function resolveCardPrintId(supabase, card) {
   if (!setInfo?.id) return null;
   const { match: cp, multiple } = await resolveCardPrint(supabase, card, setInfo.id);
   if (multiple || !cp?.id) return null;
-  if (externalId) {
-    await ensurePokemonApiMapping(supabase, cp.id, externalId);
-  }
   return cp.id;
 }
 
@@ -195,6 +173,9 @@ async function enrichFromRawImports(supabase, { limit, dryRun }) {
 
       processed += 1;
       if (dryRun) {
+        console.log(JSON.stringify({ status: 'requires_master_index_review', raw_import_id: row.id,
+          candidate_card_print_id: cardPrintId, source_payload: card, database_writes: 0,
+          write_ready: false, proposed_traits: { hp, nationalDex, types, rarity, supertype, cardCategory } }));
         console.log(
           `[DRY RUN] card_print ${cardPrintId} hp=${hp ?? 'null'} dex=${nationalDex ?? 'null'} rarity=${
             rarity ?? 'null'
@@ -213,7 +194,7 @@ async function enrichFromRawImports(supabase, { limit, dryRun }) {
         supertype,
         cardCategory,
       });
-      if (didUpdate) updated += 1;
+      if (didUpdate.updated) updated += 1;
     }
 
     if (raws.length < pageSize) break;
