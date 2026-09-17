@@ -1,6 +1,9 @@
 ## Pokemon Enrichment v2: Types & Rarity Standardization
 
-PokemonAPI is now the authoritative trait source for types/rarity (plus supertype/card_category) on Pokemon `card_prints`. Legacy values are preserved only as needed (e.g., `legacy_rarity`) while the canonical surface is `card_print_traits`.
+PokemonAPI supplies trait evidence for types/rarity and supertype/card_category.
+As of September 17, 2026, the legacy worker is bounded review-only. Provider
+payloads and matching heuristics do not authorize canonical mutations; existing
+traits and legacy values remain unchanged pending reviewed execution.
 
 ### Data Model
 - Canonical trait surface: `card_print_traits` (shared with normalize and enrichment workers).
@@ -15,14 +18,14 @@ PokemonAPI is now the authoritative trait source for types/rarity (plus supertyp
 
 ### Worker Behavior
 - Worker: `backend/pokemon/pokemon_enrichment_worker.mjs`
-- Command: `npm run pokemon:enrich` (backfill mode).
+- Command: `npm run pokemon:enrich` (backfill mode, explicit dry-run, default limit 50).
 - Inputs: PokemonAPI card payloads from `raw_imports` (`source='pokemonapi'`, `_kind='card'`, `status='normalized'`).
-- Matching: prefers `external_mappings (source='pokemonapi')`; falls back to set resolution + number/number_plain matching, then backfills the mapping.
-- Writes (idempotent):
-  - Overwrites `types`, `rarity`, `supertype`, `card_category` on `card_print_traits` for mapped prints.
-  - Preserves prior rarity in `legacy_rarity` when replacing with PokemonAPI rarity.
-  - Only fills hp/dex when missing; other traits overwrite to standardize.
-- Options: `--dry-run`, `--limit`.
+- Matching: reads active PokemonAPI mappings, then uses set/number matching for
+  candidate discovery only. Read errors stop the run; no mapping is backfilled.
+- Writes: none. JSON evidence retains raw row ID, source payload, candidate parent
+  and proposed traits with `database_writes:0` and `write_ready:false`.
+- Options: explicit dry-run is supplied by the alias. Use
+  `npm run pokemon:enrich -- --limit=25`; limit must be 1..500. Apply is rejected.
 
 ### Coverage Checks
 Run in Supabase Studio (see `docs/sql/ENRICHMENT_HP_DEX_COVERAGE.sql`):

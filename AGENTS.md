@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Legacy Pokemon Admission - September 17
+
+Read `docs/ops/POKEMON_LEGACY_ADMISSION_CHECKPOINT_20260917.md`. Legacy enrichment,
+mapping backfill and TCGdex normalization admit bounded review-only runs. The old
+PokemonAPI normalizer, remote import chain and new-set apply are retired. This
+closes unsafe entry paths in code, not deployed runtime or catalog completeness.
+Do not restart historical applies; preserve source bytes for reviewed execution.
+
 ## Source-Backed JustTCG Boundary - September 17
 
 Read `docs/ops/SOURCE_BACKED_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The legacy

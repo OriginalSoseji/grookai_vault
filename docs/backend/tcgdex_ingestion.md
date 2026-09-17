@@ -1,6 +1,10 @@
 # TCGdex Ingestion Pipeline
 
-The TCGdex ingestion workers mirror the PokemonAPI flow but are namespaced under `source = 'tcgdex'`. They import canonical set + card data into `raw_imports`, normalize to `sets` / `card_prints`, emit `external_mappings`, and enrich `card_print_traits` without touching identity columns.
+TCGdex acquisition is namespaced under `source = 'tcgdex'` and stages external
+set/card evidence in `raw_imports`. As of September 17, 2026, legacy normalization
+is bounded review-only: it does not write sets, cards, mappings, printings, traits,
+raw statuses or checkpoints. Evidence needs reviewed Master Index authority and
+a separate governed executor before canonical mutation.
 
 ## Environment
 
@@ -11,7 +15,10 @@ Set the following environment variables (see `.env.example` for placeholders):
 - `TCGDEX_API_KEY` - Optional API key/header if the instance enforces auth.
 - Standard Supabase backend secrets: `SUPABASE_URL`, `SUPABASE_SECRET_KEY`.
 
-Each worker supports `--dry-run`, `--limit`, and `--mode` flags in line with existing contracts. Missing env vars cause an early exit with a descriptive error.
+Legacy normalization requires explicit `--dry-run`, accepts only backfill mode,
+defaults to 50 selected rows and caps `--limit` at 500. Its limit covers sets and
+cards together; use `--kind=card` for card-only review. Unknown arguments and all
+apply spellings are rejected. Acquisition workers have separate staging semantics.
 
 ## Commands
 
@@ -19,14 +26,16 @@ Run these scripts from the repo root:
 
 - `npm run tcgdex:import-sets` — Fetches paginated TCGdex set data and upserts into `raw_imports` (`_kind = 'set'`). Supports `--limit`, `--page`, `--mode`, and `--dry-run` for scoped imports.
 - `npm run tcgdex:import-cards` — Imports cards per set into `raw_imports` (`_kind = 'card'`). Accepts `--set <setId>` to scope runs, plus `--limit`, `--mode`, and `--dry-run`.
-- `npm run tcgdex:normalize` — Normalizes pending `raw_imports` rows into `sets`, `card_prints`, `external_mappings`, and `card_print_traits`. Honors `--limit`, `--dry-run`, and `--mode` without mutating PokemonAPI identity.
+- `npm run tcgdex:normalize` - Reviews up to 50 pending rows with zero database writes. The alias supplies `--dry-run`; for a scoped review use `npm run tcgdex:normalize -- --set <setId> --kind=card --limit=25`.
 
-Order of operations:
+Evidence preparation order (acquisition may write raw staging, review cannot):
 
 1. `tcgdex:import-sets`
 2. `tcgdex:import-cards`
 3. `tcgdex:normalize`
 
-Repeat the cycle whenever new data lands upstream, or run with `--dry-run` to audit changes safely.
-
+This is not an automatic publication chain. Source finish flags and existing
+matches remain hints; follow `docs/playbooks/MASTER_INDEX_FIRST_INGESTION_V1.md`
+for reviewed planning and bounded execution. Never replay old normalize/apply
+commands as a substitute for that contract.
 

@@ -2,7 +2,14 @@
 
 ## Status
 
-ACTIVE
+Evidence preparation only. Legacy apply retired as of 2026-09-17.
+
+The historical apply commands below are retained for provenance, not execution.
+`new_set_release_ingest_v1.mjs --apply` rejects before acquisition or mutation;
+its old child normalizers lack the reviewed atomic Master Index admission needed
+for the current policy. Use dry-run preparation and a fresh scope-specific
+reviewed executor. This is interim containment, not a claim that automatic new-set
+publication is functional. See `docs/ops/POKEMON_LEGACY_ADMISSION_CHECKPOINT_20260917.md`.
 
 ## Purpose
 
@@ -188,15 +195,18 @@ facts, and forbids Normal for Holo-only `109 Jumbo Ice Cream`.
 
 ### Route A: TCGdex Available
 
-Use the existing TCGdex workers:
+Acquire raw evidence through separately authorized staging, then review it:
 
 ```bash
 node backend/sets/tcgdex_import_sets_worker.mjs --mode=full --set <set_id>
 node backend/pokemon/tcgdex_import_cards_worker.mjs --mode=full --set <set_id> --detail
-node backend/pokemon/tcgdex_normalize_worker.mjs --mode=backfill --set <set_id>
-node backend/tools/tcgdex_canonize_set.mjs --set <set_id> --dry-run --detail
-node backend/tools/tcgdex_canonize_set.mjs --set <set_id> --apply
+npm run tcgdex:normalize -- --set <set_id> --limit=50
 ```
+
+Normalization is review-only and does not complete this set's canonical intake.
+Do not invoke the historical `tcgdex_canonize_set.mjs --apply` route: that
+independent legacy writer has not been admitted under Master Index authority.
+Use the reviewed planner and an applicable frozen bounded executor instead.
 
 ### Route B: TCGdex Not Yet Available
 

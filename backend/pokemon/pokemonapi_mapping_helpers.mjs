@@ -1,14 +1,12 @@
 // backend/pokemon/pokemonapi_mapping_helpers.mjs
 //
 // Shared PokemonAPI mapping helpers.
-// Canonical identity for a Pokemon card_print (game='pokemon'):
+// Candidate discovery only, not verified canonical identity:
 // - Resolve set by PokemonAPI set code/id (or ptcgo code).
 // - Match card_prints by priority: external_ids->pokemonapi, (set_id, number), then (set_id, number_plain).
-// This mirrors pokemonapi_normalize_worker to avoid drift.
+// Number/external-ID matches require reviewed Master Index evidence before writes.
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
-
-const SOURCE = 'pokemonapi';
 
 export function numberPlain(number) {
   if (!number) return null;
@@ -102,20 +100,7 @@ export async function resolveCardPrint(supabase, card, setId) {
 }
 
 export async function ensurePokemonApiMapping(supabase, cardPrintId, externalId) {
-  if (!cardPrintId || !externalId) return;
-  const { error } = await supabase
-    .from('external_mappings')
-    .upsert(
-      {
-        source: SOURCE,
-        external_id: externalId,
-        card_print_id: cardPrintId,
-      },
-      { onConflict: 'source,external_id' },
-    );
-  if (error) {
-    console.error('[pokemonapi][mapping] upsert failed:', error.message ?? error);
-  }
+  throw new Error('MASTER_INDEX_MAPPING_AUTHORITY_REQUIRED: implicit PokemonAPI mapping promotion is retired; preserve source evidence for reviewed execution');
 }
 
 // Helper to create a client when used standalone (optional)

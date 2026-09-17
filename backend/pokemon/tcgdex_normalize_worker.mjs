@@ -1,9 +1,10 @@
 // backend/pokemon/tcgdex_normalize_worker.mjs
 //
-// Normalizes TCGdex raw_imports into canonical sets + card_prints + traits.
-// Mirrors pokemonapi_normalize_worker behavior while keeping writes namespaced under source='tcgdex'.
+// Bounded read-only candidate review. The historical mutation bodies below are
+// not admitted; source variants are hints, never reviewed Master Index authority.
 
 // Load environment variables
+import { assertLegacyPokemonReviewOnly } from '../maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
@@ -17,43 +18,7 @@ const TRAIT_TYPE = 'pokemon:stats';
 const TRAIT_VALUE = 'tcgdex';
 
 function parseArgs() {
-  const args = process.argv.slice(2);
-  const options = {
-    mode: 'backfill',
-    limit: null,
-    dryRun: false,
-    setIds: [],
-    kind: 'all',
-  };
-
-  for (let i = 0; i < args.length; i += 1) {
-    const token = args[i];
-    if (token === '--limit' && args[i + 1]) {
-      const value = Number(args[i + 1]);
-      if (!Number.isNaN(value)) options.limit = value;
-      i += 1;
-    } else if (token === '--set' && args[i + 1]) {
-      options.setIds.push(args[i + 1]);
-      i += 1;
-    } else if (token === '--kind' && args[i + 1]) {
-      options.kind = args[i + 1];
-      i += 1;
-    } else if (token === '--dry-run') {
-      options.dryRun = true;
-    } else if (token.startsWith('--mode')) {
-      if (token.includes('=')) {
-        options.mode = token.split('=')[1] || options.mode;
-      } else if (args[i + 1]) {
-        options.mode = args[i + 1];
-        i += 1;
-      }
-    }
-  }
-
-  if (!['all', 'set', 'card'].includes(options.kind)) {
-    throw new Error('[tcgdex][normalize] --kind must be one of: all, set, card');
-  }
-  return options;
+  return assertLegacyPokemonReviewOnly(undefined, undefined, { allowScope: true });
 }
 
 function todayIso() {
@@ -168,10 +133,13 @@ async function fetchPendingBatch(supabase, kind, batchSize, options = {}) {
     .eq('source', SOURCE)
     .eq('payload->>_kind', kind)
     .eq('status', 'pending')
-    .order('ingested_at', { ascending: true });
+    .order('id', { ascending: true });
   query = applySetScope(query, kind, options.setIds);
   const { data, error } = await query.limit(limit);
   if (error) throw error;
+  if (!Array.isArray(data) || data.length > limit) throw new Error('invalid_review_selection');
+  const ids = data.map(row => row.id == null ? '' : String(row.id));
+  if (ids.some(id => !id) || new Set(ids).size !== ids.length) throw new Error('duplicate_or_missing_review_raw_id');
   return data ?? [];
 }
 
@@ -808,6 +776,13 @@ async function handleTcgDexPrintings({
 }) {
   if (!card_print_id) return;
 
+  if (options.dryRun) {
+    console.log(JSON.stringify({ status: 'requires_master_index_review', candidate_card_print_id: card_print_id,
+      source: SOURCE, source_finish_hints: card?.variants ?? null, source_card: card,
+      database_writes: 0, write_ready: false }));
+    return;
+  }
+
   const finishes = normalizeFromTcgDex(card?.variants);
   for (const finish of finishes) {
     await upsertPrinting({
@@ -822,49 +797,39 @@ async function handleTcgDexPrintings({
 }
 
 async function normalizeSets(supabase, options) {
-  const stats = { normalized: 0, conflicts: 0, errors: 0, processed: 0 };
-  let remaining = options.limit ?? null;
-
-  while (true) {
-    const batchSize =
-      remaining !== null ? Math.min(BATCH_SIZE, Math.max(remaining, 0)) : BATCH_SIZE;
-    if (batchSize === 0) break;
-    const raws = await fetchPendingBatch(supabase, 'set', batchSize, options);
-    if (!raws || raws.length === 0) break;
-    for (const raw of raws) {
+  const stats = { reviewed: 0, conflicts: 0, errors: 0, processed: 0 };
+  const raws = await fetchPendingBatch(supabase, 'set', options.limit, options);
+  for (const raw of raws) {
+    let outcome = 'error';
+    try {
       const result = await upsertSet(supabase, raw, options);
-      stats.processed += 1;
-      if (result?.status === 'normalized') stats.normalized += 1;
+      outcome = result?.status === 'normalized' ? 'candidate' : result?.status ?? 'error';
+      if (result?.status === 'normalized') stats.reviewed += 1;
       else if (result?.status === 'conflict') stats.conflicts += 1;
-      else if (result?.status === 'error') stats.errors += 1;
-      if (remaining !== null) {
-        remaining -= 1;
-        if (remaining <= 0) break;
-      }
+      else stats.errors += 1;
+    } catch (error) {
+      stats.errors += 1;
+      console.error('[tcgdex][review] set error:', error?.message ?? error);
+    } finally {
+      stats.processed += 1;
+      console.log(JSON.stringify({ status: 'requires_master_index_review', outcome, kind: 'set',
+        raw_import_id: raw.id, source_payload: raw.payload, database_writes: 0, write_ready: false }));
     }
-    if (raws.length < batchSize) break;
-    if (remaining !== null && remaining <= 0) break;
   }
-
   return stats;
 }
 
 async function normalizeCards(supabase, options) {
-  const stats = { normalized: 0, conflicts: 0, errors: 0, processed: 0 };
-  let remaining = options.limit ?? null;
-
-  while (true) {
-    const batchSize =
-      remaining !== null ? Math.min(BATCH_SIZE, Math.max(remaining, 0)) : BATCH_SIZE;
-    if (batchSize === 0) break;
-    const raws = await fetchPendingBatch(supabase, 'card', batchSize, options);
-    if (!raws || raws.length === 0) break;
-
-    for (const raw of raws) {
+  const stats = { reviewed: 0, conflicts: 0, errors: 0, processed: 0 };
+  const raws = await fetchPendingBatch(supabase, 'card', options.limit, options);
+  for (const raw of raws) {
       const cardPayload = raw.payload || {};
+      let outcome = 'error';
+      let candidateId = null;
       try {
         const { matches } = await resolveSetForCard(supabase, cardPayload);
         if (!matches || matches.length !== 1) {
+          outcome = 'conflict';
           stats.conflicts += 1;
           const reason =
             !matches || matches.length === 0
@@ -888,6 +853,7 @@ async function normalizeCards(supabase, options) {
           options,
         );
         if (upsertResult?.status === 'conflict') {
+          outcome = 'conflict';
           stats.conflicts += 1;
           await insertConflict(
             supabase,
@@ -907,6 +873,7 @@ async function normalizeCards(supabase, options) {
         const cardExternalId =
           cardPayload._external_id || cardPayload.card?.id || cardPayload.card?._id || null;
         const cardData = cardPayload?.card ?? cardPayload ?? {};
+        candidateId = upsertResult.id;
         await ensureTcgdexMapping(supabase, upsertResult.id, cardExternalId, null, options);
         await handleTcgDexPrintings({
           supabase,
@@ -916,22 +883,19 @@ async function normalizeCards(supabase, options) {
         });
         await upsertTraits(supabase, upsertResult.id, extractTraits(cardPayload), options);
         await markRawImport(supabase, raw.id, 'normalized', options);
-        stats.normalized += 1;
+        outcome = 'candidate';
+        stats.reviewed += 1;
       } catch (err) {
         stats.errors += 1;
         console.error('[tcgdex][normalize] card error:', err?.message ?? err);
         await markRawImport(supabase, raw.id, 'error', options);
+      } finally {
+        stats.processed += 1;
+        console.log(JSON.stringify({ status: 'requires_master_index_review', kind: 'card', outcome,
+          raw_import_id: raw.id, source_payload: raw.payload, candidate_card_print_id: candidateId,
+          source_finish_hints: (cardPayload.card ?? cardPayload)?.variants ?? null,
+          database_writes: 0, write_ready: false }));
       }
-
-      stats.processed += 1;
-      if (remaining !== null) {
-        remaining -= 1;
-        if (remaining <= 0) break;
-      }
-    }
-
-    if (remaining !== null && remaining <= 0) break;
-    if (raws.length < batchSize) break;
   }
 
   return stats;
@@ -964,6 +928,7 @@ async function main() {
   const options = parseArgs();
   const supabase = createBackendClient();
   console.log('[tcgdex][normalize] start', options);
+  console.log(JSON.stringify({ status: 'requires_master_index_review', database_writes: 0, write_ready: false }));
 
   const pendingRowsExist = await hasPendingRows(supabase, options);
   if (!pendingRowsExist) {
@@ -973,10 +938,11 @@ async function main() {
 
   const setStats = options.kind === 'all' || options.kind === 'set'
     ? await normalizeSets(supabase, options)
-    : { normalized: 0, conflicts: 0, errors: 0, processed: 0, skipped: true };
-  const cardStats = options.kind === 'all' || options.kind === 'card'
-    ? await normalizeCards(supabase, options)
-    : { normalized: 0, conflicts: 0, errors: 0, processed: 0, skipped: true };
+    : { reviewed: 0, conflicts: 0, errors: 0, processed: 0, skipped: true };
+  const remaining = options.limit - setStats.processed;
+  const cardStats = remaining > 0 && (options.kind === 'all' || options.kind === 'card')
+    ? await normalizeCards(supabase, { ...options, limit: remaining })
+    : { reviewed: 0, conflicts: 0, errors: 0, processed: 0, skipped: true };
 
   await logRun(
     supabase,
@@ -986,7 +952,9 @@ async function main() {
     },
     options,
   );
-  console.log('[tcgdex][normalize] complete', { sets: setStats, cards: cardStats });
+  console.log(JSON.stringify({ event: 'review_complete', sets: setStats, cards: cardStats,
+    database_writes: 0, write_ready: false }));
+  if (setStats.errors || cardStats.errors || setStats.conflicts || cardStats.conflicts) process.exitCode = 1;
 }
 
 main().catch((err) => {

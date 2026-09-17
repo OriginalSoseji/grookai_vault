@@ -4,6 +4,7 @@
 // No pricing fields are touched.
 
 // Load environment variables
+import { assertLegacyPokemonNormalizerRetired } from '../maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
@@ -551,6 +552,7 @@ async function logRun(supabase, stats) {
 }
 
 async function main() {
+  assertLegacyPokemonNormalizerRetired();
   const supabase = createBackendClient();
 
   const { data: pendingRows, error: pendingError } = await supabase
