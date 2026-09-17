@@ -10,6 +10,10 @@ import {
   normalizeNumber,
   normalizeText,
 } from "../audits/verified_master_set_index_v1/shared.mjs";
+import {
+  retainPrintingForScopeReviewV1,
+  PRIZE_PACK_SCOPE_REVIEW_REASON,
+} from "../audits/verified_master_set_index_v1/printing_evidence_scope_v1.mjs";
 import { mergeEnglishPokemonFoldedSubsetOwnersV1 } from
   "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
@@ -228,10 +232,12 @@ export function preserveUnobservedPrintingAuthorityV1({
     if (isRevokedLegacyUnqualifiedNormal(printing)) return false;
     if (allowedPrintingSupersession(printing, candidateByCardKey)) return false;
     return true;
-  });
+  }).map(retainPrintingForScopeReviewV1);
+  const printings = [...candidatePrintings.map(retainPrintingForScopeReviewV1), ...preserved];
   return {
-    printings: [...candidatePrintings, ...preserved],
+    printings,
     preserved,
+    scope_review_rows: printings.filter(row => row.authority_review_reason === PRIZE_PACK_SCOPE_REVIEW_REASON),
   };
 }
 
@@ -425,6 +431,7 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
       revoked_legacy_printings: revokedLegacyPrintings.length,
       superseded_printings: supersededPrintings.length,
       preserved_unobserved_printings: unobservedPrintings.length,
+      variant_scope_review_printings: effectiveCandidate.scope_review_rows.length,
       baseline_alias_remaps: baselineAliases.length,
       source_candidate_alias_remaps: candidateAliases.length,
       candidate_alias_remaps: effectiveAliases.report.remaps.length,
@@ -571,6 +578,13 @@ async function applyCandidateAuthority(options) {
   const reviewByKey = new Map([
     ...(candidateManualReview.manual_review ?? []),
     ...continuityReviewRows,
+    ...effectiveCandidatePrintings.scope_review_rows.map(printing => ({
+      ...printing,
+      fact_type: "printing_finish_variant_scope_review",
+      key: `${printing.key}|prize-pack-scope-review`,
+      status: "needs_manual_review",
+      review_reason: PRIZE_PACK_SCOPE_REVIEW_REASON,
+    })),
   ].map((row) => [row.key, row]));
   candidateManualReview.manual_review = [...reviewByKey.values()]
     .sort((left, right) => left.key.localeCompare(right.key));

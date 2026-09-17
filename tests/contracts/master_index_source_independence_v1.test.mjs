@@ -24,6 +24,19 @@ const syndicated = [
   record('pro_shop_b', 'https://another.tcgplayerpro.com/catalog/product/664055'),
 ];
 
+test('preserved TCGplayer price-guide path is syndicated but PokemonTCG identity API is separate', () => {
+  const price = record('tcgplayer_price_guide', 'https://prices.pokemontcg.io/tcgplayer/mcd21-1');
+  assert.equal(sourceAuthorityKey(price), 'tcgplayer.com');
+  assert.equal(sourceAuthorityKey(record('pokemontcg_api', 'https://api.pokemontcg.io/v2/cards/mcd21-1')), 'api.pokemontcg.io');
+  assert.equal(sourceAuthorityKey(record('other_prices', 'https://prices.pokemontcg.io/cardmarket/mcd21-1')), 'prices.pokemontcg.io');
+  assert.equal(sourceAuthorityKey(record('lookalike_path', 'https://prices.pokemontcg.io/tcgplayer-copy/mcd21-1')), 'prices.pokemontcg.io');
+  assert.equal(sourceAuthorityKey(record('lookalike_host', 'https://prices.pokemontcg.io.example.test/tcgplayer/mcd21-1')), 'prices.pokemontcg.io.example.test');
+  const [fact] = classifyEvidence([syndicated[0], price]).printings;
+  assert.equal(fact.source_count, 1);
+  assert.equal(fact.status, 'human_source_verified');
+  assert.equal(fact.evidence.length, 2);
+});
+
 test('TCGplayer catalog, API, CSV and Pro channels share one authority', () => {
   for (const row of [...syndicated,
     record('api', 'https://api.tcgplayer.com/catalog/products/664055'),
