@@ -24,6 +24,7 @@ function row(overrides = {}) {
     catalog_set_type: "starter",
     effective_release_status: "signed_in",
     card_count: 17,
+    printing_coverage: {parents_checked:17,parents_without_printing:0,missing_printing_gvid:0,wrong_parent_gvid:0,provisional_printings:0,unproven_printings:0},
     hero_image_url:
       `${ORIGIN}/storage/v1/object/public/external-card-images/` +
       "set-covers/one_piece/st30/tcgplayer/123/image.jpg",
@@ -41,6 +42,15 @@ function evaluate(overrides = {}) {
 
 test("the publication gate contract is versioned", () => {
   assert.equal(CROSS_TCG_SET_PUBLICATION_GATE_VERSION, "CROSS_TCG_SET_PUBLICATION_GATE_V1");
+});
+
+test('printing coverage is mandatory even when covers and parent counts pass', () => {
+  const absent = evaluate({printing_coverage:null});
+  assert.equal(absent.decision, 'blocked');
+  assert.ok(absent.issues.some(i => i.code === 'printing_coverage_not_checked'));
+  const missing = evaluate({printing_coverage:{...row().printing_coverage,parents_without_printing:1}});
+  assert.equal(missing.decision, 'blocked');
+  assert.ok(missing.issues.some(i => i.code === 'printing_gap:parents_without_printing:1'));
 });
 
 test("an exact self-hosted package cover with canonical cards is eligible", () => {

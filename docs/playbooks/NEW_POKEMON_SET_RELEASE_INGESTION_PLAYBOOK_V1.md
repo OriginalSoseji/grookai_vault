@@ -39,6 +39,13 @@ Out of scope:
 
 ## Required Inputs
 
+Read `docs/contracts/INGESTION_PRINTING_COMPLETENESS_V1.md`. Each collector-scope
+set now requires `printing_manifest` with exact reviewed finishes and GV-IDs
+before acquisition. Older manifests below describe identity intake only and
+must use `--identity-only`; they cannot claim collector completion. The runner
+prepares printing admission plans but does not independently insert children.
+Use the bounded printing writer and exact readback before collector release.
+
 Every release run starts with a manifest:
 
 ```text

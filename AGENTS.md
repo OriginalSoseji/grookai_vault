@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## Printing Completeness Repair - September 17
+
+Start with `docs/ops/MASTER_INDEX_TOP_DOWN_REPAIR_CHECKPOINT_20260917.md` for
+the current Master Index authority contract, source-bound reconciler and first
+reviewed McDonald's scope. This is local preparation, not a database-wide repair
+or deployed guard. Existing production IDs and ownership must be preserved.
+
+Read `docs/ops/INGESTION_PRINTING_GATE_CHECKPOINT_20260917.md` and
+`docs/contracts/INGESTION_PRINTING_COMPLETENESS_V1.md` for the current isolated
+ingestion repair. No new production apply is part of this change. Preserve the
+completed anniversary Holo repair and all unrelated worktrees.
+
 ## Native Anniversary Release - September 16
 
 Read `docs/ops/NATIVE_ANNIVERSARY_RELEASE_20260916.md` first. This branch

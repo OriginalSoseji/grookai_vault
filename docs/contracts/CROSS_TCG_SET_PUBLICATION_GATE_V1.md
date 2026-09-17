@@ -28,6 +28,9 @@ Every released set must have:
 - an explicit versioned browse configuration for its game;
 - a supported product lane for that game;
 - at least one canonical `card_prints` row with a GV-ID;
+- explicit printing coverage with zero missing children, missing/wrong parent
+  GV-IDs, provisional printings or missing provenance, as defined in
+  `INGESTION_PRINTING_COMPLETENESS_V1.md`;
 - a public HTTPS cover in Grookai's self-hosted Storage authority;
 - game/set-matched media identity for governed set-cover paths; and
 - a live URL that returns an image content type.
@@ -64,7 +67,7 @@ One Piece, Magic, or future-game configuration.
 ## Automation
 
 The gate runs inside the existing six-hour Catalog Shadow Reconciliation
-workflow after discovery and candidate freezing. It:
+workflow, including when discovery or candidate freezing fails. It:
 
 - pins the exact Git commit;
 - uses a read-only PostgreSQL transaction and read-only session option;

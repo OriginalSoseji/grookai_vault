@@ -3,6 +3,8 @@ import {
 } from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const ALLOWED_FINISH_KEYS = new Set(['normal', 'holo', 'reverse']);
+const FINISH_SUFFIX = Object.freeze({normal:'STD',holo:'HOLO',reverse:'RH'});
+const PROOF_TYPES = new Set(['checked_checklist', 'official_printing', 'image_confirmed', 'exact_printing_mapping']);
 
 function hasProofEvidence(evidence) {
   return Boolean(
@@ -12,8 +14,10 @@ function hasProofEvidence(evidence) {
       evidence.source.trim().length > 0 &&
       typeof evidence.external_id === 'string' &&
       evidence.external_id.trim().length > 0 &&
-      typeof evidence.evidence_type === 'string' &&
-      evidence.evidence_type.trim().length > 0,
+      PROOF_TYPES.has(evidence.evidence_type) &&
+      evidence.review_status === 'verified' &&
+      typeof evidence.source_sha256 === 'string' &&
+      /^[a-f0-9]{64}$/.test(evidence.source_sha256),
   );
 }
 
@@ -22,6 +26,7 @@ export async function upsertPrinting({
   card_print_id,
   finish_key,
   printing_gv_id = null,
+  parent_gv_id = null,
   source,
   ref,
   evidence,
@@ -29,10 +34,24 @@ export async function upsertPrinting({
   created_by = 'printing_ingestion_v2',
   dryRun = false,
 }) {
+  // Fail before the write/audit boundary, including in dry-run mode. A single
+  // supported finish is still an exact printing, not an optional identity.
+  if (!card_print_id || !ALLOWED_FINISH_KEYS.has(finish_key)) throw new Error('Invalid exact printing identity');
+  if (typeof parent_gv_id !== 'string' || !parent_gv_id.startsWith('GV-') ||
+      printing_gv_id !== `${parent_gv_id}-${FINISH_SUFFIX[finish_key]}`) {
+    throw new Error('Governed parent and exact printing GV-ID are required');
+  }
+  if (!hasProofEvidence(evidence) || evidence.card_print_id !== card_print_id || evidence.finish_key !== finish_key) {
+    throw new Error('Printing evidence must bind the exact parent and finish');
+  }
+  if (source !== evidence.source || ref !== evidence.external_id || is_provisional !== false) {
+    throw new Error('Verified printing provenance must match the admitted evidence');
+  }
   const payloadSnapshot = {
     card_print_id,
     finish_key,
     printing_gv_id,
+    parent_gv_id,
     source: source ?? null,
     ref: ref ?? null,
     evidence: evidence ?? null,
@@ -46,6 +65,11 @@ export async function upsertPrinting({
       `[printing][dry-run] would upsert child printing card_print_id=${card_print_id} finish_key=${finish_key} source=${source ?? 'null'} ref=${ref ?? 'null'}`,
     );
     return;
+  }
+
+  const parentRead = await supabase.from('card_prints').select('id,gv_id').eq('id',card_print_id).single();
+  if (parentRead.error || parentRead.data?.id !== card_print_id || parentRead.data?.gv_id !== parent_gv_id) {
+    throw new Error('Canonical parent GV-ID readback mismatch');
   }
 
   await assertExecuteCanonWriteV1({
@@ -73,8 +97,7 @@ export async function upsertPrinting({
       },
       {
         ok:
-          printing_gv_id === null ||
-          (typeof printing_gv_id === 'string' && printing_gv_id.trim().length > 0),
+          typeof printing_gv_id === 'string' && printing_gv_id.trim().length > 0,
         contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
         violation_type: 'invalid_printing_gv_id',
         reason: 'printing_upsert_v1 received an empty or invalid printing_gv_id.',

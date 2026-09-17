@@ -1,3 +1,11 @@
+import {assessLivePrintingCoverage} from './printing_completeness_gate_v1.mjs';
+
+// Mirrors catalog_set_visible_to_request_v1: a set override wins, Pokemon
+// defaults public without a game-control row, and other unknown games fail closed.
+export const SET_RELEASE_STATUS_SQL = `coalesce(set_control.release_status,
+  case when lower(target_set.game) = 'pokemon' then 'public'
+       else coalesce(game_control.release_status, 'hidden') end)`;
+
 export const CROSS_TCG_SET_PUBLICATION_GATE_VERSION =
   "CROSS_TCG_SET_PUBLICATION_GATE_V1";
 
@@ -212,6 +220,9 @@ export function evaluateSetPublicationCandidateV1(row, options = {}) {
   const cardCount = Number(row?.card_count ?? 0);
   const effectiveReleaseStatus = normalizedText(row?.effective_release_status);
   const issues = [];
+  for (const code of assessLivePrintingCoverage(row?.printing_coverage, cardCount)) {
+    issues.push(issue(code, 'blocker'));
+  }
   const policy = CROSS_TCG_SET_PUBLICATION_GAME_POLICIES[game];
 
   if (!setId || !setCode || !setName || !game) {
@@ -277,6 +288,7 @@ export function evaluateSetPublicationCandidateV1(row, options = {}) {
     effective_release_status: effectiveReleaseStatus || null,
     product_lane: productLane,
     card_count: cardCount,
+    printing_coverage: row?.printing_coverage ?? null,
     cover_kind: media.cover_kind,
     cover_object_path: media.object_path,
     image_probe: probe,

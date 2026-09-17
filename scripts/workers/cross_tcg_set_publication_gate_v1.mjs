@@ -6,11 +6,13 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 import pg from "pg";
+import {PRINTING_COVERAGE_SQL} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
 
 import {
   buildSetPublicationGateV1,
   CROSS_TCG_SET_PUBLICATION_GATE_VERSION,
   CROSS_TCG_SET_PUBLICATION_GAME_POLICIES,
+  SET_RELEASE_STATUS_SQL,
 } from "../../backend/catalog/cross_tcg_set_publication_gate_v1.mjs";
 
 const { Client } = pg;
@@ -97,14 +99,13 @@ async function loadReleasedSetsReadOnly(options) {
             target_set.source -> 'scryfall' ->> 'set_type',
             target_set.set_role
           ) as catalog_set_type,
-          coalesce(set_control.release_status, game_control.release_status) as effective_release_status
+          ${SET_RELEASE_STATUS_SQL} as effective_release_status
         from public.sets target_set
-        join public.catalog_game_release_controls game_control
+        left join public.catalog_game_release_controls game_control
           on lower(game_control.game_code) = lower(target_set.game)
-         and game_control.release_status in ('signed_in', 'public')
         left join public.catalog_set_release_controls set_control
           on set_control.set_id = target_set.id
-        where coalesce(set_control.release_status, game_control.release_status)
+        where ${SET_RELEASE_STATUS_SQL}
           in ('signed_in', 'public')
           ${gameFilter}
       )
@@ -127,8 +128,10 @@ async function loadReleasedSetsReadOnly(options) {
         released_sets.effective_release_status
       order by released_sets.game, released_sets.code, released_sets.id
     `, params);
+    const coverage = await client.query(PRINTING_COVERAGE_SQL, [result.rows.map(row=>row.id)]);
+    const bySet = new Map(coverage.rows.map(row=>[row.set_id,row]));
     await client.query("rollback");
-    return result.rows;
+    return result.rows.map(row=>({...row,printing_coverage:bySet.get(row.id)??null}));
   } catch (error) {
     try {
       await client.query("rollback");
