@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Legacy JustTCG Discovery
+
+Read `JUSTTCG_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The TCGPlayer bridge,
+TCGdex bridge and direct-structure JustTCG scripts are review-only. Apply is
+retired, including through the maintenance launcher. Preserve JSON row output
+and review source/Master Index evidence before using a governed mapping writer.
+The default 50-card selection limit does not bound all database metadata reads.
+Do not confuse these local safeguards with deployed runtime enforcement.
+
 ## Legacy TCGdex Mapping Discovery
 
 Read `TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Do not run the historical

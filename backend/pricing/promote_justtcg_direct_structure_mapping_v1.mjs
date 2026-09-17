@@ -1,7 +1,7 @@
 /**
  * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
  *
- * This script mutates canonical data outside runtime executor.
+ * Discovery only. Provider agreement is not Master Index identity authority.
  *
  * RULES:
  * - not part of runtime authority
@@ -9,6 +9,7 @@
  * - requires explicit maintenance mode
  * - defaults to DRY RUN
  */
+import { assertLegacyMappingReviewOnly, legacyMappingReviewRecord } from '../maintenance/legacy_mapping_review_only_v1.mjs';
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
@@ -18,7 +19,6 @@ import {
   uniqueValues,
 } from './justtcg_client.mjs';
 import {
-  assertCanonMaintenanceWriteAllowed,
   getCanonMaintenanceDryRun,
 } from '../maintenance/canon_maintenance_boundary_v1.mjs';
 
@@ -29,7 +29,7 @@ const DB_RETRY_DELAYS_MS = [250, 750, 1500];
 const DB_IN_FILTER_CHUNK_SIZE = 150;
 const DEFAULT_CONSOLE_ROW_LOG_LIMIT = 60;
 
-if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+if (process.env.ENABLE_CANON_MAINTENANCE_MODE !== 'true') {
   throw new Error(
     'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
   );
@@ -63,7 +63,7 @@ function parseArgs() {
   const options = {
     dryRun: true,
     apply: false,
-    limit: null,
+    limit: 50,
     verbose: false,
     setCode: null,
     gvId: null,
@@ -286,7 +286,7 @@ async function fetchCardPrintPage(supabase, offset, pageSize, options) {
   return withRetries(async () => {
     let query = supabase
       .from('card_prints')
-      .select('id,gv_id,name,number,number_plain,set_id,set_code,variant_key,rarity,sets(name)')
+      .select('id,gv_id,name,number,number_plain,set_id,set_code,variant_key,rarity,identity_domain,print_identity_key,printed_identity_modifier,sets(name)')
       .order('set_code', { ascending: true, nullsFirst: false })
       .order('number_plain', { ascending: true, nullsFirst: false })
       .order('number', { ascending: true, nullsFirst: false })
@@ -386,6 +386,7 @@ async function loadScopedCards(supabase, options) {
       }
 
       scoped.push({
+        canonical_identity: row,
         cardPrintId: row.id,
         gvId: row.gv_id ?? null,
         name: row.name ?? '',
@@ -521,73 +522,6 @@ async function loadAnyJustTcgMappingsByExternalId(supabase, externalId) {
   }, 'justtcg external id query');
 
   return data;
-}
-
-async function upsertJustTcgMapping(supabase, cardPrintId, externalId, meta) {
-  if (DRY_RUN) {
-    console.log(
-      `[DRY RUN] would execute: promote_justtcg_direct_structure_mapping_v1 :: UPSERT :: public.external_mappings :: card_print_id=${cardPrintId} external_id=${externalId}`,
-    );
-    return;
-  }
-
-  assertCanonMaintenanceWriteAllowed();
-  await withRetries(async () => {
-    const { error } = await supabase
-      .from('external_mappings')
-      .upsert(
-        {
-          card_print_id: cardPrintId,
-          source: TARGET_SOURCE,
-          external_id: externalId,
-          active: true,
-          synced_at: new Date().toISOString(),
-          meta,
-        },
-        { onConflict: 'source,external_id' },
-      );
-
-    if (error) {
-      throw new Error(error.message);
-    }
-  }, 'mapping upsert');
-}
-
-async function upsertAutoSetMapping(supabase, row, alignment) {
-  if (DRY_RUN) {
-    console.log(
-      `[DRY RUN] would execute: promote_justtcg_direct_structure_mapping_v1 :: UPSERT :: public.justtcg_set_mappings :: grookai_set_id=${row.setId ?? 'null'}`,
-    );
-    return;
-  }
-
-  assertCanonMaintenanceWriteAllowed();
-  await withRetries(async () => {
-    const { error } = await supabase
-      .from('justtcg_set_mappings')
-      .upsert(
-        {
-          grookai_set_id: row.setId,
-          justtcg_set_id: alignment.justTcgSet.id,
-          justtcg_set_name: alignment.justTcgSet.name ?? null,
-          alignment_status: 'exact_aligned',
-          match_method: alignment.matchMethod,
-          notes: {
-            promoted_by: 'promote_justtcg_direct_structure_mapping_v1',
-            auto_aligned: true,
-            grookai_set_code: row.setCode,
-            grookai_set_name: row.setName,
-          },
-          active: true,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: 'grookai_set_id' },
-      );
-
-    if (error) {
-      throw new Error(error.message);
-    }
-  }, 'auto set mapping upsert');
 }
 
 function logResult(row) {
@@ -810,6 +744,7 @@ function resolveCardCandidate(row, alignment, override, cards) {
 }
 
 async function main() {
+  assertLegacyMappingReviewOnly();
   const options = parseArgs();
   if (DRY_RUN) {
     options.apply = false;
@@ -830,9 +765,9 @@ async function main() {
     override_match: 0,
     ambiguous: 0,
     conflicting_existing: 0,
-    already_correct: 0,
-    would_upsert: 0,
-    upserted: 0,
+    existing_requires_review: 0,
+    review_candidates: 0,
+    database_writes: 0,
     errors: 0,
   };
 
@@ -882,6 +817,7 @@ async function main() {
   let suppressedRowLogs = 0;
 
   function maybeLogRow(payload) {
+    console.log(JSON.stringify(legacyMappingReviewRecord(payload)));
     if (options.verbose || consoleRowLogs < DEFAULT_CONSOLE_ROW_LOG_LIMIT) {
       logResult(payload);
       consoleRowLogs += 1;
@@ -1000,20 +936,6 @@ async function main() {
         continue;
       }
 
-      if (activeJustTcgExternalIds.length === 1 && activeJustTcgExternalIds[0] === justTcgCardId) {
-        summary.already_correct += 1;
-        maybeLogRow({
-          ...row,
-          alignmentStatus: alignment.status,
-          justTcgSetId: alignment.justTcgSet.id,
-          justTcgQueryNumber: cached.queryNumberUsed,
-          justTcgCardId,
-          status: 'SKIP_ALREADY_CORRECT',
-          reason: 'Active justtcg mapping already matches the resolved JustTCG card id.',
-        });
-        continue;
-      }
-
       const existingRowsByExternalId = await loadAnyJustTcgMappingsByExternalId(supabase, justTcgCardId);
       const conflictingExternalRows = existingRowsByExternalId.filter(
         (mapping) => mapping.card_print_id && mapping.card_print_id !== row.cardPrintId,
@@ -1029,6 +951,16 @@ async function main() {
           status: 'SKIP_CONFLICTING_EXISTING_JUSTTCG_EXTERNAL_ID',
           reason: `Validated justtcg external_id ${justTcgCardId} is already attached to a different card_print_id (${conflictingExternalRows.map((mapping) => mapping.card_print_id).join(', ')}).`,
         });
+        continue;
+      }
+
+      if (activeJustTcgExternalIds.length === 1 && activeJustTcgExternalIds[0] === justTcgCardId) {
+        summary.existing_requires_review += 1;
+        maybeLogRow({ ...row, alignmentStatus: alignment.status,
+          justTcgSetId: alignment.justTcgSet.id, justTcgQueryNumber: cached.queryNumberUsed,
+          justTcgCardId, status: 'EXISTING_MAPPING_REQUIRES_REVIEW',
+          provider_evidence: resolution.card,
+          reason: 'Provider agreement with an existing mapping is not reviewed Master Index authority.' });
         continue;
       }
 
@@ -1052,40 +984,22 @@ async function main() {
       };
 
       if (!options.apply) {
-        summary.would_upsert += 1;
+        summary.review_candidates += 1;
         maybeLogRow({
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
           justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId,
-          status:
-            resolution.matchType === 'override_match'
-              ? 'WOULD_UPSERT_OVERRIDE_MATCH'
-              : 'WOULD_UPSERT_EXACT_MATCH',
-          reason: resolution.reason,
+          status: 'MAPPING_CANDIDATE_REQUIRES_REVIEW',
+          provider_evidence: resolution.card,
+          mapping_evidence: meta,
+          reason: `Review lead only: ${resolution.reason}`,
         });
         continue;
       }
 
-      if (!alignment.fromManualHelper && row.setId) {
-        await upsertAutoSetMapping(supabase, row, alignment);
-      }
-
-      await upsertJustTcgMapping(supabase, row.cardPrintId, justTcgCardId, meta);
-      summary.upserted += 1;
-      maybeLogRow({
-        ...row,
-        alignmentStatus: alignment.status,
-        justTcgSetId: alignment.justTcgSet.id,
-        justTcgQueryNumber: cached.queryNumberUsed,
-        justTcgCardId,
-        status:
-          resolution.matchType === 'override_match'
-            ? 'UPSERTED_OVERRIDE_MATCH'
-            : 'UPSERTED_EXACT_MATCH',
-        reason: resolution.reason,
-      });
+      throw new Error('LEGACY_MAPPING_APPLY_RETIRED');
     } catch (error) {
       summary.errors += 1;
       maybeLogRow({
@@ -1108,9 +1022,9 @@ async function main() {
   console.log(`override_match: ${summary.override_match}`);
   console.log(`ambiguous: ${summary.ambiguous}`);
   console.log(`conflicting_existing: ${summary.conflicting_existing}`);
-  console.log(`already_correct: ${summary.already_correct}`);
-  console.log(`would_upsert: ${summary.would_upsert}`);
-  console.log(`upserted: ${summary.upserted}`);
+  console.log(`existing_requires_review: ${summary.existing_requires_review}`);
+  console.log(`review_candidates: ${summary.review_candidates}`);
+  console.log(`database_writes: ${summary.database_writes}`);
   console.log(`errors: ${summary.errors}`);
   if (!options.verbose && suppressedRowLogs > 0) {
     console.log(`suppressed_console_row_logs: ${suppressedRowLogs}`);
