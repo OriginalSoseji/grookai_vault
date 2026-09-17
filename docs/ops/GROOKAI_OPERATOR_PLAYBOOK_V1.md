@@ -1,5 +1,23 @@
 # Grookai Operator Playbook V1
 
+## Master Printing Executor Rehearsal
+
+Read `docs/ops/MASTER_PRINTING_EXECUTOR_CHECKPOINT_20260917.md` before the
+McDonald's repair. The full local PostgreSQL rehearsal includes raw evidence,
+reviews, public RPC, real collision rollback, independent readback and zero-write
+repeat execution. Local plan fingerprints are not production authority. Preserve
+existing databases; do not reset a shared local backend to repeat this proof.
+The read-only production runner is `scripts/audits/master_index_printing_execution_v1.mjs`.
+Read `docs/contracts/MASTER_PRINTING_EXECUTION_V1.md` for target/TLS checks,
+immutable input hashes, explicit write authority and rollback receipt rules.
+Use the existing Linux execution host and its verified pooler environment;
+connection paths are in private operator receipts, never copy credentials into
+the repo. HTTP source outages and actual printing mismatches are distinct alerts.
+Exact-state readback and zero-write replay must still match the frozen dependency
+footprints. Investigate later ownership/mapping drift; do not silently rebaseline
+it. The PR #476 review repair changes the producer fingerprint, so its prior
+pending approval request and frozen producer are not valid for the repaired code.
+
 ## Printing-Complete Ingestion - September 17
 
 Current checkpoint: `MASTER_INDEX_TOP_DOWN_REPAIR_CHECKPOINT_20260917.md`.

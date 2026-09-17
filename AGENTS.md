@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Bounded Master Printing Executor - September 17
+
+Read `docs/ops/MASTER_PRINTING_EXECUTOR_CHECKPOINT_20260917.md` for the first
+complete local raw-evidence/printing/review transaction proof. This isolated
+executor has not repaired production. PR #474 is merged; preserve the local
+rehearsal receipts and poll read-only audit run `35188899452` before claiming
+deployed monitoring is verified.
+
 ## Printing Completeness Repair - September 17
 
 Start with `docs/ops/MASTER_INDEX_TOP_DOWN_REPAIR_CHECKPOINT_20260917.md` for
