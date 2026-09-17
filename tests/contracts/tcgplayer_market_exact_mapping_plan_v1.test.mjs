@@ -9,11 +9,14 @@ import {
   normalizeTcgplayerMappingNumberV1,
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
+  tcgplayerExactMappingCandidateFingerprintV1,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 import {
   buildTcgplayerExactMappingMetaV1,
   selectTcgplayerExactMappingApplyBatchV1,
   TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1,
+  validateTcgplayerExactMappingCandidateForApplyV1,
+  validateTcgplayerExactMappingLiveTargetV1,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_apply_policy_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -100,6 +103,98 @@ test("direct embedded identity produces an exact candidate", () => {
   assert.equal(result.mapping_confidence, 1);
   assert.equal(result.target.card_print_id, "card-1");
   assert.match(result.candidate_fingerprint, /^[a-f0-9]{64}$/);
+});
+
+test("collector suffix normalization preserves unfamiliar printing labels", () => {
+  for (const label of ["Prize Pack", "Play Pokemon", "Special Release", "Alternate Treatment"]) {
+    assert.equal(
+      normalizeTcgplayerMappingNameV1(`Luxray - 071/193 (${label})`),
+      normalizeTcgplayerMappingNameV1(`Luxray (${label})`),
+    );
+    assert.notEqual(normalizeTcgplayerMappingNameV1(`Luxray - 071/193 (${label})`), "luxray");
+    const result = planTcgplayerExactMappingCandidateV1({
+      source: source({ source_product_name: `Luxray - 071/193 (${label})`, printed_number: "071/193" }),
+      directTargets: [target({ name: "Luxray", number: "071" })],
+    });
+    assert.equal(result.disposition, "blocked");
+  }
+});
+
+test("old fingerprint-valid candidates cannot hide discarded source labels", () => {
+  const candidate = planTcgplayerExactMappingCandidateV1({ source: source(), directTargets: [target()] });
+  candidate.source_product_name = "Tropius - 001/084 (Special Release)";
+  const { candidate_fingerprint: ignored, ...payload } = candidate;
+  candidate.candidate_fingerprint = tcgplayerExactMappingCandidateFingerprintV1(payload);
+  const result = validateTcgplayerExactMappingCandidateForApplyV1(candidate);
+  assert.equal(result.accepted, false);
+  assert.ok(result.failures.includes("source_name_normalization_mismatch"));
+});
+
+test("old policy plans must be regenerated, not silently reinterpreted", () => {
+  const candidate = planTcgplayerExactMappingCandidateV1({ source: source(), directTargets: [target()] });
+  candidate.policy_version = "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1";
+  const { candidate_fingerprint: ignored, ...payload } = candidate;
+  candidate.candidate_fingerprint = tcgplayerExactMappingCandidateFingerprintV1(payload);
+  assert.throws(() => selectTcgplayerExactMappingApplyBatchV1([candidate], { limit: 1 }), /unexpected_candidate_policy_version/);
+});
+
+test("live target validation preserves every frozen identity boundary", () => {
+  const candidate = planTcgplayerExactMappingCandidateV1({ source: source(), directTargets: [target()] });
+  assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, target()), []);
+  for (const [field, value, failure] of [
+    ["card_print_id", "other-card", "target_id_changed"],
+    ["gv_id", "other-gvid", "target_gv_id_changed"],
+    ["set_id", "other-set", "target_set_id_changed"],
+    ["set_code", "other-code", "target_set_code_changed"],
+    ["set_id", null, "target_set_id_changed"],
+    ["set_code", "", "target_set_code_changed"],
+    ["variant_key", "prize_pack_stamp", "target_not_base_variant"],
+    ["name", "Tropius (Special Release)", "target_name_changed"],
+    ["number", "002", "target_number_changed"],
+    ["active_standard_identity_count", 2, "target_standard_identity_not_unique"],
+    ["active_tcgplayer_mapping_count", 1, "target_mapping_now_exists"],
+  ]) {
+    assert.ok(validateTcgplayerExactMappingLiveTargetV1(candidate, target({ [field]: value })).includes(failure), field);
+  }
+  assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, null), ["target_missing"]);
+});
+
+test("hash-valid malformed identities cannot enter an apply batch", () => {
+  const original = planTcgplayerExactMappingCandidateV1({ source: source(), directTargets: [target()] });
+  for (const [field, value, failure] of [
+    ["set_id", "", "missing_target_set_id"],
+    ["set_code", "", "missing_target_set_code"],
+    ["canonical_name", "Luxray", "target_name_mismatch"],
+    ["canonical_number", "002", "target_number_mismatch"],
+  ]) {
+    const candidate = structuredClone(original);
+    candidate.target[field] = value;
+    const { candidate_fingerprint: ignored, ...payload } = candidate;
+    candidate.candidate_fingerprint = tcgplayerExactMappingCandidateFingerprintV1(payload);
+    assert.throws(() => selectTcgplayerExactMappingApplyBatchV1([candidate], { limit: 1 }), new RegExp(failure));
+  }
+});
+
+test("multiple suffix labels and meaningful name numbers survive normalization", () => {
+  assert.equal(normalizeTcgplayerMappingNameV1("Luxray - 071/193 (Prize Pack) (Series 3)"), "luxray prize pack series 3");
+  assert.equal(normalizeTcgplayerMappingNameV1("Porygon2"), "porygon2");
+  assert.equal(normalizeTcgplayerMappingNameV1("Porygon-Z - 075/091"), "porygon z");
+});
+
+test("historical treatment labels cannot enter the base set-consensus lane", () => {
+  for (const [name, number, label] of [
+    ["Champions Festival", "BW95", "Worlds 13"],
+    ["Chimecho", "024", "e-League"],
+    ["Flygon", "025", "e-League"],
+    ["Mew", "8", "Glossy Finish"],
+  ]) {
+    const result = planTcgplayerExactMappingCandidateV1({
+      source: source({ source_product_name: `${name} - ${number} (${label})`, printed_number: number }),
+      groupConsensus: { set_count: 1, set_id: "set-1", set_code: "test", mapped_source_product_count: 50 },
+      setTargets: [target({ name, number })],
+    });
+    assert.equal(result.disposition, "blocked", label);
+  }
 });
 
 test("embedded identity blocks without one active standard identity", () => {
@@ -302,6 +397,7 @@ test("mapping apply is launcher-only, dry-run-default, bounded, and insert-only"
   assert.match(APPLY_SCRIPT, /pg_advisory_xact_lock/);
   assert.match(APPLY_SCRIPT, /insert into public\.external_mappings/);
   assert.match(APPLY_SCRIPT, /active_publication_overlap/);
+  assert.match(APPLY_SCRIPT, /rowFailures\.push\(\.\.\.validateTcgplayerExactMappingLiveTargetV1\(candidate, target\)\)/);
   assert.match(APPLY_SCRIPT, /SOURCE_PLAN_TRACKED_WORKTREE_NOT_CLEAN/);
   assert.match(APPLY_SCRIPT, /SOURCE_PLAN_COMMIT_NOT_ANCESTOR/);
   assert.match(

@@ -8,6 +8,8 @@ export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1";
+export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2 =
+  "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2";
 
 function text(value) {
   return String(value ?? "").trim();
@@ -27,8 +29,9 @@ function normalizedAlnum(value) {
 }
 
 export function normalizeTcgplayerMappingNameV1(value) {
+  // Remove only the printed coordinate, never a trailing treatment or stamp.
   const withoutCollectorSuffix = text(value).replace(
-    /\s+-\s+[a-z]*\d+[a-z]?(?:\/[a-z0-9.-]+)?(?:\s+\([^)]*\))?\s*$/i,
+    /\s+-\s+[a-z]*\d+[a-z]?(?:\/[a-z0-9.-]+)?(?=\s*(?:\([^)]*\)\s*)*$)/i,
     "",
   );
   return normalizedAlnum(withoutCollectorSuffix);
@@ -134,6 +137,8 @@ function targetEvidence(target) {
 
 function targetFailures(source, target) {
   const failures = [];
+  if (!text(target.set_id)) failures.push("missing_target_set_id");
+  if (!text(target.set_code)) failures.push("missing_target_set_code");
   if (text(target.variant_key)) failures.push("target_not_base_variant");
   if (
     normalizeTcgplayerMappingNameV1(source.source_product_name) !==
@@ -158,7 +163,7 @@ function targetFailures(source, target) {
 
 function baseResult(source) {
   return {
-    policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
+    policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
     source_product_id: Number(source.source_product_id),
     source_product_name: text(source.source_product_name),
     source_group_id: Number(source.source_group_id),

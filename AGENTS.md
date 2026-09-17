@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Exact Mapping Identity Preservation - September 17
+
+Read `docs/ops/EXACT_MAPPING_IDENTITY_CHECKPOINT_20260917.md`. The isolated
+mapping repair preserves source treatment labels and checks frozen set identity
+before writes. Old V1.1 plans require regeneration; do not modify their hashes
+or replay old applies. Historical label differences are review leads, not proof
+that existing mappings are wrong. No production records were changed here.
+
 ## Warehouse Printing Authority - September 17
 
 Read `docs/ops/WAREHOUSE_PRINTING_AUTHORITY_CHECKPOINT_20260917.md`. The source

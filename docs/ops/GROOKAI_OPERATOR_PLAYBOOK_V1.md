@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Exact Mapping Plan Identity
+
+Read `EXACT_MAPPING_IDENTITY_CHECKPOINT_20260917.md` before preparing another
+TCGPlayer exact-mapping batch. Plan policy V1.2 preserves trailing source labels
+and rejects older plans at apply admission. Regenerate with fresh read-only
+source/target evidence; never change a historical plan's version or fingerprint
+to pass the new gate. The live writer also checks set UUID/code against the frozen
+target. Label differences require source adjudication, not automatic remapping.
+These safeguards do not adjudicate Pokemon GO aliases or close legacy bridge
+writers. Deployment and all-active-writer verification remain separate work.
+
 ## Warehouse Printing Evidence Handoff
 
 Read `WAREHOUSE_PRINTING_AUTHORITY_CHECKPOINT_20260917.md` and
