@@ -1,5 +1,26 @@
 # Grookai Operator Playbook V1
 
+## Warehouse Printing Evidence Handoff
+
+Read `WAREHOUSE_PRINTING_AUTHORITY_CHECKPOINT_20260917.md` and
+`docs/contracts/WAREHOUSE_PRINTING_AUTHORITY_V1.md`. The JSON authority package
+preserves actual source bytes, exact candidate/printing identity and the existing
+reviewed Master Index projection. It is evidence, not execution approval. The
+local runtime now validates staging and execution, inserts raw evidence before
+the child/review, and checks exact readback. Use an explicit authority JSON file
+with the exact candidate ID; legacy queues must not be given invented evidence.
+The complete claim/event wrapper and concurrency checks passed locally. PR #479
+release verification remains pending. Review found a cross-parent negative-fact
+gap; the candidate now queries all forbidden/suppressed tuples at every admission
+and readback gate. Never limit negative-fact checks to the target card's siblings.
+The isolated rehearsal database is `grookai_warehouse_printing_20260917_v1` on
+localhost:54330. Preserve it and the original McDonald's rehearsal database.
+An uncertain commit/rollback returns `reconciliation_required`; never retry it
+blindly or mark a later self-consistent snapshot as the frozen baseline.
+Read-only run `35193527355` is terminal; its source-access repair passed live,
+while catalog publication remains blocked by reported gaps. Preserve that result
+rather than restarting discovery to seek a green workflow.
+
 ## Master Printing Executor Rehearsal
 
 Read `docs/ops/MASTER_PRINTING_EXECUTOR_CHECKPOINT_20260917.md` before the
