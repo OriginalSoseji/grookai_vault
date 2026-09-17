@@ -207,6 +207,12 @@ Normalization is review-only and does not complete this set's canonical intake.
 Do not invoke the historical `tcgdex_canonize_set.mjs --apply` route: that
 independent legacy writer has not been admitted under Master Index authority.
 Use the reviewed planner and an applicable frozen bounded executor instead.
+Its active entry point now only collects bounded review evidence; even its old
+SQL apply mode is rejected. Optional independent review:
+
+```bash
+node backend/tools/tcgdex_canonize_set.mjs --set <set_id> --dry-run --limit=50
+```
 
 ### Route B: TCGdex Not Yet Available
 

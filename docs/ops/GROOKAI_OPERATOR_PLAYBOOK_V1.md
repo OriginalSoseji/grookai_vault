@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Legacy Set SQL Tools
+
+Read `LEGACY_SET_SQL_REVIEW_CHECKPOINT_20260917.md`. Both
+`backend/tools/set_repair_runner.mjs` and `backend/tools/tcgdex_canonize_set.mjs`
+require `--set <exact-code> --dry-run`. Apply, implicit modes and all-auto-safe
+are retired. Review uses the shared backend client and GET-only reads, not the
+historical PostgreSQL pool. Configure the canonical backend environment and
+verify its identity before using production reads; do not print credentials.
+Limit defaults to 50 and caps at 500 per evidence collection, with explicit
+lookahead/truncation and a 15-second per-request deadline. At most seven reads
+are made. Exact set lookup is limited to two returned candidates plus lookahead.
+Source flags, observed children and existing mappings remain unreviewed evidence.
+No checkpoint or other database row is written. Results are not an apply snapshot;
+use a reviewed Master Index plan and separate frozen executor for writes.
+
 ## Pokemon Legacy Admission
 
 Read `POKEMON_LEGACY_ADMISSION_CHECKPOINT_20260917.md` before any PokemonAPI or

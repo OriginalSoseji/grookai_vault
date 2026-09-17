@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Legacy Set SQL Review - September 17
+
+Read `docs/ops/LEGACY_SET_SQL_REVIEW_CHECKPOINT_20260917.md`. The set repair and
+TCGdex canonization tools now admit one bounded evidence-only scope, not their
+historical SQL apply paths. Even old dry-run checkpoint writes are unreachable.
+Retain source payloads and explicit truncation; a successful review is not
+printing completeness or production authority. Runtime deployment remains open.
+
 ## Legacy Pokemon Admission - September 17
 
 Read `docs/ops/POKEMON_LEGACY_ADMISSION_CHECKPOINT_20260917.md`. Legacy enrichment,

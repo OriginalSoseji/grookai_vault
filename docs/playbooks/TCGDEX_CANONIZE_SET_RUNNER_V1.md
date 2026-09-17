@@ -1,5 +1,26 @@
 # TCGDEX_CANONIZE_SET_RUNNER_V1
 
+## Current Operation - September 17, 2026
+
+The historical canonization apply path below is retired. The active command is:
+
+```bash
+node backend/tools/tcgdex_canonize_set.mjs --set <set_code> --dry-run --limit=50
+```
+
+This is bounded evidence review, not canonical materialization. It uses the
+shared backend client (`SUPABASE_URL`, `SUPABASE_SECRET_KEY`) and performs at most
+seven GET-only reads. Default 50, maximum 500 per evidence collection, with
+explicit truncation. `--detail` remains accepted; source evidence is always
+included. No classifications, sets, parents, printings, mappings or checkpoints
+are written. Existing matches do not establish identity authority. Read
+`docs/ops/LEGACY_SET_SQL_REVIEW_CHECKPOINT_20260917.md` for the current boundary.
+
+## Historical Reference Only
+
+The remaining sections preserve former behavior, not executable approval.
+Historical apply commands and count-based completeness claims must not be reused.
+
 ## Purpose
 `backend/tools/tcgdex_canonize_set.mjs` canonizes one tcgdex set code using deterministic gates and two playbook patterns:
 

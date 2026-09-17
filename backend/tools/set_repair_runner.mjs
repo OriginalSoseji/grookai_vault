@@ -1,3 +1,5 @@
+import '../maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
+import { runLegacySetEvidenceReview } from '../maintenance/legacy_set_evidence_review_v1.mjs';
 import dotenv from 'dotenv';
 import pg from 'pg';
 
@@ -1256,7 +1258,8 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+// Historical SQL bodies are preserved, but only bounded evidence review is admitted.
+runLegacySetEvidenceReview().catch((err) => {
   console.error(`fatal error=${err.message}`);
   process.exit(1);
 });
