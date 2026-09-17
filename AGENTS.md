@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Legacy JustTCG Mapping Review - September 17
+
+Read `docs/ops/JUSTTCG_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Three legacy
+JustTCG discovery scripts no longer write mappings or auto-align set mappings.
+Provider agreement stays review-only; existing matches are not identity proof.
+The separate source-backed JustTCG writer and runtime deployment remain open.
+Preserve the frozen McDonald's production apply boundary.
+
 ## Master Mapping Evidence - September 17
 
 Read `docs/ops/MASTER_MAPPING_AUTHORITY_CHECKPOINT_20260917.md`. The local
